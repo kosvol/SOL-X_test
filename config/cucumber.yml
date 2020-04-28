@@ -1,0 +1,14 @@
+#************** Browser Profiles *************#
+
+mac_chrome_dev: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev
+mac_chrome_dev_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev
+
+########################### DIRECTORIES AND REPORT CONFIG ##############################
+
+dir: -r support -r stepdefinitions -r pageobjects
+html: --expand -f Formatter::HtmlFormatter -o testreport/reports/html_report_.html
+json: --expand -f json -o testreport/jsonreports/json_report.json
+xml: --expand -f pretty -f junit -o testreport/xmlreports/
+html_pretty:  --expand -f pretty -f junit -o testreport/reports/html_report_.html
+
+#.......................................................................................................................................................................#

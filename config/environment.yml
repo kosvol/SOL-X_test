@@ -1,0 +1,17 @@
+
+##Service
+dev:
+  c2_preview: "http://cloud-edge.dev.solas.magellanx.io:8080"
+
+sit:
+  c2_pre_view: "http://52.230.70.68:8080"
+
+uat:
+  c2_pre_view: "http://104.215.192.113:8080"
+
+jira_url: "https://teamsolas.atlassian.net/browse/"
+
+## To enable and disable screenshot feature ##
+# "True" - Takes screenshot for all steps ##
+# "False" - Takes screenshot only for failures ##
+screenshot: "true"
