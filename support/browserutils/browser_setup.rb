@@ -31,20 +31,24 @@ class BrowserSetup
     # p "*********************************************************"
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
+      options = Selenium::WebDriver::Chrome::Options.new
       begin
-        if ENV['PLATFORM'] == "chrome_headless"
-          caps=Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions", "--disable-web-security", "start-maximized", "--headless", "window-size=1500,1500"], "useAutomationExtension" => false})
+        if ENV['PLATFORM'] === "chrome_headless"
+          options.add_argument("--headless")
+          options.add_argument("--window-size=1560,800")
+          caps=Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions", "--disable-web-security"], "useAutomationExtension" => true})
         else
-          caps=Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions", "--disable-web-security", "start-maximized", "window-size=1500,1500"], "useAutomationExtension" => false})
+          options = Selenium::WebDriver::Chrome::Options.new
+          options.add_argument("--start-fullscreen")
+          caps=Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions", "--disable-web-security"], "useAutomationExtension" => true})
         end
-        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps,http_client: $client 
+        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps,http_client: $client, options: options
       rescue
-        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps,http_client: $client 
+        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps,http_client: $client, options: options
       end
     else
-      Selenium::WebDriver::Chrome.driver_path = File.join(File.absolute_path('../', File.dirname(__FILE__)), '/drivers/chromedriver.exe')
-      caps=Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
-      $browser = Selenium::WebDriver.for :remote, url: 'http://10.65.42.253:4444/wd/hub', desired_capabilities: caps,http_client: $client 
+      # Selenium::WebDriver::Chrome.driver_path = File.join(File.absolute_path('../', File.dirname(__FILE__)), '/drivers/chromedriver.exe')
+      # $browser = Selenium::WebDriver.for :remote, url: 'http://10.65.42.253:4444/wd/hub', desired_capabilities: caps,http_client: $client 
     end
   end
 

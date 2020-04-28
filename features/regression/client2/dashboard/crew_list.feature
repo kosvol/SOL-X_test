@@ -6,6 +6,6 @@ Feature: Crew list screen
 
   Scenario: Verify crew member details are listed as expected
     Given I launch sol-x portal
-    When I navigate to crew list screen
+    When I navigate to "Crew List" screen
     # Then I should see crew details display correctly
     # And I should see table header display correctly

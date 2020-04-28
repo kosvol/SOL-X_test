@@ -2,7 +2,7 @@ Given (/^I launch sol-x portal$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
 end
 
-When (/^I navigate to crew list screen$/) do |which_section|
+When (/^I navigate to "(.+)" screen$/) do |which_section|
   on(NavigationPage).tap_hamburger_menu
   on(NavigationPage).select_nav_section(which_section)
 end 
