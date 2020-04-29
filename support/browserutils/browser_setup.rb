@@ -7,12 +7,6 @@ class BrowserSetup
     $browser = case ENV['PLATFORM'].upcase
       when 'CHROME','CHROME_HEADLESS'
         load_chrome(os)
-      # when 'FIREFOX'
-      #   load_firefox(os)
-      # when 'IE'
-      #   load_ie(os)
-      # when 'SAFARI'
-      #   load_safari(os)
       when 'CHROME_MEW',"CHROME_MEW_HEADLESS"
         load_chrome_mew(os)
       when 'WEB_APP'
@@ -52,30 +46,6 @@ class BrowserSetup
     end
   end
 
-  # def self.load_firefox(os)
-  #   p "*********************************************************"
-  #   p "Test Started:: Invoking Firefox $browser..!"
-  #   if os.downcase == 'mac'
-  #     # Selenium::WebDriver::Firefox::Binary.path = "/Users/user/Applications/Firefox 46.app/Contents/MacOS/firefox-bin"
-  #     caps = Selenium::WebDriver::Remote::Capabilities.firefox
-  #     $browser = Selenium::WebDriver.for :firefox, :desired_capabilities => caps
-  #   else
-  #     $browser = Selenium::WebDriver.for :firefox
-  #   end
-  # end
-
-  # def self.load_ie(os)
-  #   p "*********************************************************"
-  #   p "Test Started:: Invoking IE $browser..!"
-  #   $browser = Selenium::WebDriver.for :ie
-  # end
-
-  # def self.load_safari(os)
-  #   p "*********************************************************"
-  #   p "Test Started:: Invoking Safari #{ENV['PLATFORM']}..!"
-  #   $browser = Selenium::WebDriver.for :safari
-  # end
-
   def self.load_chrome_mew(os)
     p "*********************************************************"
     p "Test Started:: Invoking Chrome Mobile Emulation #{ENV['DEVICE']}..!"
@@ -112,37 +82,6 @@ class BrowserSetup
                   :isHeadless => @device['isHeadless'],
                   # :fullReset => fullreset,
                   :noReset => noreset
-                },
-            appium_lib: {:port => @device['port'],wait:60}
-        }
-    return Appium::Driver.new(opts,true).start_driver
-  end
-
-  def self.load_mobile_app(os,noreset,fullreset)
-    p "*********************************************************"
-    @device = YAML.load_file('config/devices.yml')["#{ENV['DEVICE']}"] if ENV['JENKINS'].to_s === "no"
-    @device = YAML.load_file('config/devices_jenkins.yml')["#{ENV['DEVICE']}"] if ENV['JENKINS'].to_s === "yes"
-    p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
-    opts =
-        {
-            caps:
-                {
-                    :app => "#{@device['app']}",
-                    #:derivedDataPath => "#{@device['derivedDataPath']}",
-                    :platformName => "#{@device['platformName']}",
-                    :platformVersion => "#{@device['platformVersion']}",
-                    :deviceName => "#{@device['deviceName']}",
-                    :automationName => "#{@device['automationName']}",
-                    # :fullReset => fullreset,
-                    :isHeadless => @device['isHeadless'],
-                    :noReset => noreset,
-                    :udid => "#{@device['udid']}",
-                    :connectHardwareKeyboard => false,
-                    :clearSystemFiles => true
-                    # :xcodeOrgId => "QFUHAANNP5",
-                    # :xcodeSigningId => "iPhone Developer",
-                    # :bundleId => "dev.nf.YaboX"
-                    # :updatedWDABundleId => ""
                 },
             appium_lib: {:port => @device['port'],wait:60}
         }
