@@ -16,4 +16,4 @@ gem 'facets'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rake'
-gem "sinatra-cross_origin", "~> 0.3.1"
+# gem "sinatra-cross_origin", "~> 0.3.1"

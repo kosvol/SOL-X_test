@@ -1,13 +1,15 @@
-
 ##Service
 dev:
-  c2_preview: "http://cloud-edge.dev.solas.magellanx.io:8080"
-
+  c2_preview: "http://23.97.50.121:8080"
+  service: "http://23.97.50.121:4000"
+  
 sit:
-  c2_pre_view: "http://52.230.70.68:8080"
+  c2_preview: "http://52.230.70.68:8080"
+  service: "http://52.230.70.68:4000"
 
 uat:
-  c2_pre_view: "http://104.215.192.113:8080"
+  c2_preview: "http://104.215.192.113:8080"
+  service: "http://104.215.192.11:4000"
 
 jira_url: "https://teamsolas.atlassian.net/browse/"
 

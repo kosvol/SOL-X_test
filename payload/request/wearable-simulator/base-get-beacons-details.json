@@ -1,0 +1,5 @@
+{
+	"operationName": null,
+	"variables": {},
+	"query": "{\n  beacons {\n    _id\n    mac\n    comment\n    location {\n      zone {\n        _id\n        name\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

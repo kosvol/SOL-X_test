@@ -1,3 +1,6 @@
+""""""""""""""""""""""""""""""""""""""
+""" DO NOT TOUCH THIS WHEN UNSURE """
+""""""""""""""""""""""""""""""""""""""
 AfterConfiguration do |config|
   raise "Invalid OS => #{ENV['OS']}" unless ['MAC', 'WINDOWS', 'Android', 'iOS','iOS-web','Android-web'].include? "#{ENV['OS']}"
   $client = Selenium::WebDriver::Remote::Http::Default.new
@@ -7,8 +10,6 @@ AfterConfiguration do |config|
   $folder_name = "#{$tag}_#{$timestamp}"
   $extent = RelevantCodes::ExtentReports.new("testreport/reports/extent_report.html")
   $examples_count = 0
-  File.truncate('platform', 0) if File.exist?("platform")
-  # ServiceUtil.fakepoco("platform","w",ENV["OS"])
 end
 
 Before('@skip') do

@@ -1,4 +1,6 @@
 *~
 .DS_Store
 /testreport/*
+/payload/response/*
+/payload/request/*/mod_*
 Gemfile.lock
