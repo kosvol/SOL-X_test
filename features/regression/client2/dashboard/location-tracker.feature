@@ -1,4 +1,4 @@
-@location-tracking
+@location-tracking @SOL-1838
 Feature: LocationTracking
   As a ...
   I want to ...
@@ -25,6 +25,7 @@ Feature: LocationTracking
   Scenario Outline: Verify active crew member location changed after 30s
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
+    And I toggle activity crew list
     And I update location to new zone <new_zoneid> and mac <new_mac>
     Then I should see ui location updated
     And I unlink all crew from wearable

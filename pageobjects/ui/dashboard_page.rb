@@ -1,6 +1,6 @@
 require './././support/env'
 
-class DashboardPage
+class DashboardPage < WearablePage
   include PageObject
   
   @root_xpath = "//%s[@data-testid='%s']"

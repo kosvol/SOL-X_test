@@ -27,7 +27,7 @@ end
 
 Then (/^I should see active crew details$/) do
   step 'I toggle activity crew list'
-  is_true(on(DashboardPage).is_crew_location_detail_correct) 
+  is_true(on(DashboardPage).is_crew_location_detail_correct("service")) 
 end
 
 Then (/^I should see countdown starts at 15s$/) do
@@ -89,7 +89,6 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid,mac|
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
-  step 'I toggle activity crew list'
 end
 
 And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid,mac|
