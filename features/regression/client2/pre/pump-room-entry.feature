@@ -36,12 +36,6 @@ Feature: Pump Room Entry
 
   Scenario: Verify Updates Needed count is update on dashboard if PRE requires update
 
-  Scenario: Verify Updated Needed count reflected on dashboard
-      When I finish filling up PRE from
-      And I submit for approval
-      When I set the created PRE permit to Update Needed
-      Then I should see total "Update Needed" count reflected on dashboard
-
   Scenario: Verify only Chief Officer able to approve PRE and should becomes active and count reflected on active permit
 
   Scenario: Verify dashboard is showing count for active PRE
@@ -50,7 +44,7 @@ Feature: Pump Room Entry
 
   Scenario: Verify user able to terminal PRE permit
   
-  Scenario: Verify PDF generated ?
+  Scenario: Verify PRE PDF generated ?
   
   @unit-test-level
   Scenario: Verify PRE expires after 8 hours for on sea

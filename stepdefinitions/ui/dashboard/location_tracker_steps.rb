@@ -25,8 +25,8 @@ Then (/^I should see acive crew count is correct$/) do
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})",on(DashboardPage).get_active_crew_status)
 end
 
-Then (/^I should see acive crew details$/) do
-  step 'I link wearable'
+Then (/^I should see active crew details$/) do
+  step 'I toggle activity crew list'
   is_true(on(DashboardPage).is_crew_location_detail_correct) 
 end
 
@@ -45,6 +45,10 @@ Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
   step 'I link wearable'
   is_true(on(DashboardPage).is_activity_indicator_green("rgba(82, 196, 26, 1)")) if indicator_color === "green below"
   is_true(on(DashboardPage).is_activity_indicator_green("rgba(250, 173, 20, 1)")) if indicator_color === "yellow after"
+end
+
+Then (/^I should see (.+) count 1$/) do |zone|
+  is_equal(on(DashboardPage).get_map_zone_count(zone), "1")
 end
 
 When (/^I link wearable$/) do
@@ -66,4 +70,40 @@ When (/^I link wearable$/) do
   sleep 5
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
+end
+
+And (/^I toggle activity crew list$/) do
+  on(DashboardPage).toggle_crew_activity_list
+end
+
+When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid,mac|
+  step 'I get wearable-simulator/base-get-wearable-details request payload'
+  step 'I hit graphql'
+  step 'I get a list of wearable id'
+  step 'I get wearable-simulator/base-get-list-of-crew request payload'
+  step 'I hit graphql'
+  step 'I get a list of crews'
+  step 'I get wearable-simulator/base-link-crew-to-wearable request payload'
+  step 'I manipulate wearable requeset payload'
+  step 'I hit graphql'
+  step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
+  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
+  step 'I hit graphql'
+  step 'I toggle activity crew list'
+end
+
+And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid,mac|
+  sleep 30
+  step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
+  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
+  step 'I hit graphql'
+  step 'I hit graphql'
+  step 'I verify method updateWearableLocation is successful'
+  step 'I wait for 1 seconds'
+end
+
+Then (/^I should see ui location updated$/) do
+  step 'I get wearable-simulator/base-get-wearable-details request payload'
+  step 'I hit graphql'
+  is_true(on(DashboardPage).is_crew_location_detail_correct("ui")) 
 end

@@ -1,7 +1,7 @@
-Given (/^I form (.+) request payload with these ID (.+)$/) do |request_payload_locality,id|
-	@which_json = request_payload_locality
-	FeatureCategorizer.categorizer(@@which_json).swap_payload(@@which_json,id)
-end
+# Given (/^I form (.+) request payload with these ID (.+)$/) do |request_payload_locality,id|
+# 	@which_json = request_payload_locality
+# 	FeatureCategorizer.categorizer(@@which_json).swap_payload(@@which_json,id)
+# end
 
 Given (/^I get (.+) request payload$/) do |request_payload_locality|
 	@which_json = request_payload_locality

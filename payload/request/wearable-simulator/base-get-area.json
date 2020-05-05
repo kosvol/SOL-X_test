@@ -1,0 +1,3 @@
+{
+	"query": "query area {\n    areas {\n        _id\n        name\n        maps{\n            # zoneIds\n            zones{\n                # _id\n                # name\n                beacons{\n                    _id\n            #         mac\n                }\n            }\n        }\n    }\n}"
+}

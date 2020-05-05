@@ -5,6 +5,10 @@ class WearablePage
       @@wearableid = wearable_id
     end
 
+    def get_beacon_id
+      @@beacon
+    end
+
     def swap_payload(which_json,custom_value1=nil,custom_value2=nil)
       case which_json
       when "wearable-simulator/base-link-crew-to-wearable"
@@ -13,26 +17,29 @@ class WearablePage
         tmp_req_payload = JSON.parse JsonUtil.read_json(which_json)
         tmp_req_payload["variables"]["wearableId"] = @@wearableid
         tmp_req_payload["variables"]["userId"] = @@crewid
-        JsonUtil.create_request_file(which_json,tmp_req_payload)
       when "wearable-simulator/base-unlink-crew-to-wearable"
         tmp_req_payload = JSON.parse JsonUtil.read_json(which_json)
         tmp_req_payload["variables"]["id"] = @@wearableid
-        JsonUtil.create_request_file(which_json,tmp_req_payload)
       when "wearable-simulator/base-update-wearable-location"
         @@beacon = @@list_of_beacon.sample
         tmp_req_payload = JSON.parse JsonUtil.read_json(which_json)
         tmp_req_payload["variables"]["id"] = @@wearableid
         tmp_req_payload["variables"]["beacons"][0]["id"] = @@beacon.first
         tmp_req_payload["variables"]["beacons"][0]["mac"] = @@beacon.last
-        JsonUtil.create_request_file(which_json,tmp_req_payload)
       when "wearable-simulator/mod-update-wearable-location"
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
         get_alternate_beacon
         tmp_req_payload["variables"]["id"] = @@wearableid
         tmp_req_payload["variables"]["beacons"][0]["id"] = @@beacon.first
         tmp_req_payload["variables"]["beacons"][0]["mac"] = @@beacon.last
-        JsonUtil.create_request_file(which_json,tmp_req_payload)
+      when "wearable-simulator/mod-update-wearable-location-by-zone"
+        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        @@beacon = custom_value1
+        tmp_req_payload["variables"]["id"] = @@wearableid
+        tmp_req_payload["variables"]["beacons"][0]["id"] = @@beacon
+        tmp_req_payload["variables"]["beacons"][0]["mac"] = custom_value2
       end
+      JsonUtil.create_request_file(which_json,tmp_req_payload)
     end
     
     def is_location_updated
@@ -87,7 +94,8 @@ class WearablePage
     
     def get_base_json(json)
       case json
-      when "wearable-simulator/mod-update-wearable-location"
+      when "wearable-simulator/mod-update-wearable-location",
+        "wearable-simulator/mod-update-wearable-location-by-zone"
         return "wearable-simulator/base-update-wearable-location"
       end
     end
