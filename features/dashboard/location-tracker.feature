@@ -4,6 +4,7 @@ Feature: LocationTracking
   I want to ...
   So that ...
 
+  @gx1
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inacive crew count is correct

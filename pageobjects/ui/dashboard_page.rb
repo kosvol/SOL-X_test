@@ -48,9 +48,9 @@ class DashboardPage < WearablePage
   end
   
   def is_crew_location_detail_correct(ui_or_service)
-    ui_or_service === "ui" ? tmp = get_ui_active_crew_details : tmp = get_serv_active_crew_details
+    tmp = get_serv_active_crew_details(ui_or_service)
     Log.instance.info("\n\n#{tmp}")
-    get_active_crew_details.each do |crew|
+    get_ui_active_crew_details.each do |crew|
       Log.instance.info("\n\n#{crew}")
       return true if tmp.include? crew
     end
@@ -86,7 +86,7 @@ class DashboardPage < WearablePage
   
   private
   
-  def get_active_crew_details
+  def get_ui_active_crew_details
     crew_details = []
     active_crew_details_elements.each do |crew|
       tmp = crew.text.split(/\n/)
@@ -96,21 +96,15 @@ class DashboardPage < WearablePage
     return crew_details
   end
   
-  def get_serv_active_crew_details
+  def get_serv_active_crew_details(ui_or_service)
     crew_details = []
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       if !wearable['crewMember'].nil?
+        if ui_or_service === "service"
         crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],get_beacon_location]
-      end
-    end
-    return crew_details
-  end
-
-  def get_ui_active_crew_details
-    crew_details = []
-    ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
-      if !wearable['crewMember'].nil?
-        crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],"Pump Room 3rd Deck"]
+        elsif ui_or_service === "ui"
+          crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],"Pump Room 3rd Deck"]
+        end
       end
     end
     return crew_details
