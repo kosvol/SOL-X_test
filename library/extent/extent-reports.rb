@@ -2,7 +2,7 @@ require 'rubygems'
 require 'liquid'
 
 require_relative 'report'
-require_relative 'extent_test'
+require_relative 'extent-test'
 # require_relative 'icon'
 
 module RelevantCodes

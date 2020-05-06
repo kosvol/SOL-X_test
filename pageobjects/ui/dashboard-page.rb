@@ -24,7 +24,9 @@ class DashboardPage < WearablePage
     end
   end
   
-  def is_activity_indicator_green(color)
+  ### "rgba(250, 173, 20, 1)" - green
+  ### "rgba(250, 173, 20, 1)" - yellow
+  def is_activity_indicator_status(color)
     toggle_crew_activity_list
     color == "rgba(250, 173, 20, 1)" ? (sleep 27) : (sleep 23)
     $browser.find_element(:xpath, "#{@@activity_indicator}").css_value("background-color").to_s === color
@@ -70,16 +72,22 @@ class DashboardPage < WearablePage
     exit if !area_count_elements[0].text === 1
     case which_zone
     when "Engine Room"
+      area_count_elements[1].click
       return area_count_elements[1].text
     when "Pump Room"
+      area_count_elements[2].click
       return area_count_elements[2].text
     when "Funnel Stack"
+      area_count_elements[3].click
       return area_count_elements[3].text
     when "Upper Deck"
+      area_count_elements[4].click
       return area_count_elements[4].text
     when "Accomm."
+      area_count_elements[5].click
       return area_count_elements[5].text
     when "Nav. Bridge"
+      area_count_elements[6].click
       return area_count_elements[6].text
     end
   end
