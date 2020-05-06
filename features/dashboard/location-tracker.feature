@@ -4,7 +4,7 @@ Feature: LocationTracking
   I want to ...
   So that ...
 
-  Scenario: Verify wearable is single sign on
+  # Scenario: Verify wearable is single sign on
   
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
