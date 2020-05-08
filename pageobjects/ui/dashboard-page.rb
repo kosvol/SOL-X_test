@@ -111,7 +111,7 @@ class DashboardPage < WearablePage
         if ui_or_service === "service"
         crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],get_beacon_location]
         elsif ui_or_service === "ui"
-          crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],"Pump Room 3rd Deck"]
+          crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],"Pump Room Bottom"]
         end
       end
     end

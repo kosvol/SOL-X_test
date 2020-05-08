@@ -22,6 +22,7 @@ Then (/^I should see acive crew count is correct$/) do
   step 'I hit graphql'
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
+  sleep 1
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})",on(DashboardPage).get_active_crew_status)
 end
 

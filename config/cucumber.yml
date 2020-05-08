@@ -5,6 +5,12 @@ mac_chrome_tablet_dev: --profile dir --profile html --profile xml --profile json
 mac_chrome_dev_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
 mac_chrome_dev_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet
 
+mac_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
+mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
+mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+
+
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
 
 dir: -r support -r stepdefinitions -r pageobjects

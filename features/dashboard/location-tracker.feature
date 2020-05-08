@@ -24,6 +24,7 @@ Feature: LocationTracking
 
   # Scenario: Verify active crew member name longer than 3 chars to display on map
 
+  @11
   Scenario Outline: Verify active crew member location changed after 30s
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
@@ -34,7 +35,7 @@ Feature: LocationTracking
 
     Examples:
     | zone         | zoneid                     | mac               | new_zone  | new_zoneid                 | new_mac           |
-    | Engine Room  | CDEV_0PKF410X2KMWA6PCGZNBN | B0:B4:48:E1:D5:19 | Pump Room | CDEV_0PKFCWJBQ1327FY0CJ5MA | 48:46:00:00:41:46 |
+    | Engine Room  | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
   Scenario: Verify active duration countdown starts at 15s
     Given I launch sol-x portal
@@ -64,11 +65,11 @@ Feature: LocationTracking
 
     Examples:
     | zone         | zoneid                     | mac               |
-    | Engine Room  | CDEV_0PKF410X2KMWA6PCGZNBN | B0:B4:48:E1:D5:19 |
-    | Pump Room    | CDEV_0PKFCWJBQ1327FY0CJ5MA | 48:46:00:00:41:46 |
-    | Funnel Stack | CDEV_0PKFE6QXVDWBQY5KCRZ7T | A0:E6:F8:25:E0:E5 |
-    | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
-    | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
-    | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
+    | Engine Room  | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 |
+    | Pump Room    | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+    | Funnel Stack | SIT_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 |
+    # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
+    # | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
+    # | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
 
   # Scenario: Verify total count for full ship is correct

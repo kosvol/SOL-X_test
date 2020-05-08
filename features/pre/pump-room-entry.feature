@@ -57,3 +57,10 @@ Feature: Pump Room Entry
       Then I should see 0 active PRE permit
 
   Scenario: Verify breach alert show when detected human in pump room with no active PRE permit
+
+# new ---->
+  Scenario: Verify only one PRE permit can be created for one timing in the day
+  
+  Scenario: Verify PRE permit auto start
+
+  Scenario: Verify PRE permit auto end
