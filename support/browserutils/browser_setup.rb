@@ -6,8 +6,8 @@ class BrowserSetup
   def self.get_browser(os, platform,noreset=false,fullreset=true)
     $browser = case ENV['PLATFORM'].upcase
       when 'CHROME','CHROME_HEADLESS'
-        # load_chrome(os)
-        load_web_app(os,noreset,fullreset)
+        load_chrome(os)
+        # load_web_app(os,noreset,fullreset)
       # when 'CHROME_MEW',"CHROME_MEW_HEADLESS"
       #   load_chrome_mew(os)
       else

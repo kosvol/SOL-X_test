@@ -3,7 +3,7 @@ Given (/^I launch sol-x portal$/) do
   sleep 1
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
-  puts "screen size: #{$browser.window_size}"
+  # puts "screen size: #{$browser.window_size}"
 end
 
 When (/^I navigate to "(.+)" screen$/) do |which_section|
