@@ -3,6 +3,7 @@ Feature: CrewList
   I want to ...
   So that ...
 
+  @111
   Scenario: Verify all crew member details are listed as expected
     Given I launch sol-x portal
     When I navigate to "Crew List" screen

@@ -1,0 +1,9 @@
+a_chrome:
+  platformName: "Android"
+  platformVersion: '10'
+  deviceName: "emulator-5554"
+  app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false
