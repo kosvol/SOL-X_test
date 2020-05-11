@@ -2,6 +2,6 @@
 .DS_Store
 /testreport/*
 /payload/response/*
-/payload/request/*/mod_*
+/payload/request/*/mod-*
 Gemfile.lock
 /ms/*
