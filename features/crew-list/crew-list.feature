@@ -14,4 +14,4 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     Then I should see total crew count match inactive crew
 
-  Scenario: Verify total crew member count is display
+  # Scenario: Verify total crew member count is display
