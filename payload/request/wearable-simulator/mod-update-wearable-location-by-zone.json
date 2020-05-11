@@ -1,1 +1,0 @@
-{"operationName":null,"variables":{"id":"fcd1363b7bd69fc526a74c7620000ac2","beacons":[{"id":"SIT_0ABXE1MTWY05N3SP16F96T","mac":"00:00:00:00:00:90","rssi":90,"batteryLevel":12}],"wifiStrength":60},"query":"mutation ($id: ID!, $beacons: [NearbyBeaconInput!], $wifiStrength: Int!) {\n  updateWearableLocation(id: $id, beacons: $beacons, wifiStrength: $wifiStrength)\n}\n"}

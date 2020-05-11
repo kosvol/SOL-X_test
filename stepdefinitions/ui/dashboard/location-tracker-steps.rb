@@ -40,6 +40,7 @@ end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
+  on(DashboardPage).toggle_crew_activity_list
   is_equal(on(DashboardPage).is_last_seen,"Just now")
 end
 
