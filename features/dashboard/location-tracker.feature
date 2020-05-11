@@ -24,7 +24,6 @@ Feature: LocationTracking
 
   # Scenario: Verify active crew member name longer than 3 chars to display on map
 
-  @11
   Scenario Outline: Verify active crew member location changed after 30s
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
@@ -37,6 +36,7 @@ Feature: LocationTracking
     | zone         | zoneid                     | mac               | new_zone  | new_zoneid                 | new_mac           |
     | Engine Room  | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
+@112
   Scenario: Verify active duration countdown starts at 15s
     Given I launch sol-x portal
     Then I should see countdown starts at 15s

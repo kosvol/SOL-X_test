@@ -63,7 +63,6 @@ class DashboardPage < WearablePage
   end
 
   def is_last_seen
-    toggle_crew_activity_list
     last_seen
   end
   

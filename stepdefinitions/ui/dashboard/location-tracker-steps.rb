@@ -33,7 +33,8 @@ end
 
 Then (/^I should see countdown starts at 15s$/) do
   step 'I link wearable'
-  sleep 11
+  on(DashboardPage).toggle_crew_activity_list
+  sleep 12
   is_true(on(DashboardPage).is_last_seen.include? "secs")
 end
 
