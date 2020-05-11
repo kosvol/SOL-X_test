@@ -7,6 +7,7 @@ class DashboardPage < WearablePage
   span(:inactive_status,xpath: "#{@root_xpath % ["span","inactive-status"]}")
   span(:active_status,xpath: "#{@root_xpath % ["span","active-status"]}")
   divs(:active_crew_details,xpath: "#{@root_xpath % ["div","crew-row"]}")
+  divs(:crew_list,xpath: "#{@root_xpath % ["div","listing"]}/div")
   element(:active_switch,xpath: "#{@root_xpath % ["div","status-toggle"]}/label")
   span(:last_seen,xpath: "#{@root_xpath % ["div","crew-row"]}/span[3]")
   spans(:area_count,xpath: "#{@root_xpath % ["div","area-buttons"]}/div/div/button/span[1]")
@@ -33,6 +34,10 @@ class DashboardPage < WearablePage
     $browser.find_element(:xpath, "#{@@location_pin}").css_value("background-color").to_s === color
   end
   
+  def get_total_crew_list_count
+    crew_list_elements.size
+  end
+
   def get_inactive_crew_status
     inactive_status
   end

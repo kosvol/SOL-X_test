@@ -1,13 +1,17 @@
+@crew-list
 Feature: CrewList
   As a ...
   I want to ...
   So that ...
 
-  @111
-  Scenario: Verify all crew member details are listed as expected
+  Scenario: Verify table column headers are correct
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
+    Then I should see correct column headers
 
-  Scenario: Verify vessle detail is display
+  Scenario: Verify crew count match
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see total crew count match inactive crew
 
   Scenario: Verify total crew member count is display
