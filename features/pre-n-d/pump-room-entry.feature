@@ -47,13 +47,8 @@ Feature: Pump Room Entry
   Scenario: Verify PRE PDF generated ?
   
   @unit-test-level
-  Scenario: Verify PRE expires after 8 hours for on sea
+  Scenario: Verify PRE expires duration
       When active PRE permit expire after 8 hours
-      Then I should see 0 active PRE permit
-
-  @unit-test-level
-  Scenario: Verify PRE expires after 4 hours for on sea
-      When active PRE permit expire after 4 hours
       Then I should see 0 active PRE permit
 
   Scenario: Verify breach alert show when detected human in pump room with no active PRE permit

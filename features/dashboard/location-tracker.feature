@@ -5,7 +5,7 @@ Feature: LocationTracking
   So that ...
 
   # Scenario: Verify wearable is single sign on
-  
+
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inacive crew count is correct

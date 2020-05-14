@@ -26,6 +26,7 @@ Then (/^I should see acive crew count is correct$/) do
   sleep 1
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})",on(DashboardPage).get_active_crew_status)
   step 'I toggle activity crew list'
+  sleep 1
   is_equal(on(DashboardPage).get_total_crew_list_count,on(DashboardPage).get_serv_active_crew_count)
 end
 
