@@ -25,9 +25,8 @@ Then (/^I should see acive crew count is correct$/) do
   step 'I hit graphql'
   sleep 1
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})",on(DashboardPage).get_active_crew_status)
-  # step 'I toggle activity crew list'
-  # sleep 1
-  # is_equal(on(DashboardPage).get_total_crew_list_count,on(DashboardPage).get_serv_active_crew_count)
+  step 'I toggle activity crew list'
+  is_equal(on(DashboardPage).get_total_crew_list_count,on(DashboardPage).get_serv_active_crew_count)
 end
 
 Then (/^I should see active crew details$/) do
@@ -50,8 +49,8 @@ end
 
 Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
   step 'I link wearable'
-  is_true(on(DashboardPage).is_activity_indicator_status("rgba(82, 196, 26, 1)")) if indicator_color === "green below"
-  is_true(on(DashboardPage).is_activity_indicator_status("rgba(250, 173, 20, 1)")) if indicator_color === "yellow after"
+  is_true(on(DashboardPage).is_activity_indicator_status("rgba(67, 160, 71, 1)")) if indicator_color === "green below"
+  is_true(on(DashboardPage).is_activity_indicator_status("rgba(242, 204, 84, 1)")) if indicator_color === "yellow after"
 end
 
 Then (/^I should see (.+) count 1$/) do |zone|

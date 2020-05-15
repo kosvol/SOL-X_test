@@ -11,7 +11,6 @@ Feature: LocationTracking
     Then I should see inacive crew count is correct
     And I unlink all crew from wearable
 
-@1
   Scenario: Verify active crew count is correct
     Given I launch sol-x portal
     Then I should see acive crew count is correct

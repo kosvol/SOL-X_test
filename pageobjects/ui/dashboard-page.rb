@@ -6,13 +6,14 @@ class DashboardPage < WearablePage
   @root_xpath = "//%s[@data-testid='%s']"
   span(:inactive_status,xpath: "#{@root_xpath % ["span","inactive-status"]}")
   span(:active_status,xpath: "#{@root_xpath % ["span","active-status"]}")
-  divs(:active_crew_details,xpath: "#{@root_xpath % ["div","crew-row"]}")
-  divs(:crew_list,xpath: "#{@root_xpath % ["div","listing"]}/div")
-  element(:active_switch,xpath: "#{@root_xpath % ["div","status-toggle"]}/label")
-  span(:last_seen,xpath: "#{@root_xpath % ["div","crew-row"]}/span[3]")
-  spans(:area_count,xpath: "#{@root_xpath % ["div","area-buttons"]}/div/div/button/span[1]")
+  elements(:active_crew_details,xpath: "//table/tbody/tr")
+  elements(:crew_list,xpath: "//table/tbody/tr")
+  element(:active_switch,xpath: "//div[@role='switch']/label")
+  element(:last_seen,xpath: "//table/tbody/tr/td[4]")
+  spans(:area_count,xpath: "//span[@class='count']")
+  spans(:permits_count,xpath: '//span[@class="stat"]')
   
-  @@activity_indicator = "//div[@data-testid='crew-row']/div/div"
+  @@activity_indicator = "//table/tbody/tr/td/div"
   @@location_pin = "//a[@data-testid='location-pin']"
   
   def unlink_all_crew_frm_wearable
@@ -25,11 +26,12 @@ class DashboardPage < WearablePage
     end
   end
   
-  ### "rgba(250, 173, 20, 1)" - green
-  ### "rgba(250, 173, 20, 1)" - yellow
+  
+  ### "rgba(67, 160, 71, 1), 1)" - green
+  ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     toggle_crew_activity_list
-    color == "rgba(250, 173, 20, 1)" ? (sleep 27) : (sleep 23)
+    color == "rgba(242, 204, 84, 1)" ? (sleep 27) : (sleep 2)
     $browser.find_element(:xpath, "#{@@activity_indicator}").css_value("background-color").to_s === color
     $browser.find_element(:xpath, "#{@@location_pin}").css_value("background-color").to_s === color
   end
@@ -68,7 +70,7 @@ class DashboardPage < WearablePage
   end
 
   def is_last_seen
-    last_seen
+    last_seen_element.text
   end
   
   def get_map_zone_count(which_zone)
@@ -113,9 +115,9 @@ class DashboardPage < WearablePage
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       if !wearable['crewMember'].nil?
         if ui_or_service === "service"
-        crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],get_beacon_location]
+        crew_details << [wearable["crewMember"]["rank"] +" "+ wearable["crewMember"]["lastName"],get_beacon_location]
         elsif ui_or_service === "ui"
-          crew_details << [wearable["crewMember"]["rank"],wearable["crewMember"]["lastName"],"Pump Room Bottom"]
+          crew_details << [wearable["crewMember"]["rank"] +" "+ wearable["crewMember"]["lastName"],"Pump Room Bottom"]
         end
       end
     end
