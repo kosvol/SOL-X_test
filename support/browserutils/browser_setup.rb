@@ -24,7 +24,7 @@ class BrowserSetup
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument("--window-size=2560,1264") if ENV['DEVICE'] === "dashboard"
-      options.add_argument("--window-size=1680,2304") if ENV['DEVICE'] === "tablet"
+      options.add_argument("--window-size=720,1280") if ENV['DEVICE'] === "tablet"
       begin
         if ENV['PLATFORM'] === "chrome_headless"
           options.add_argument("--headless")

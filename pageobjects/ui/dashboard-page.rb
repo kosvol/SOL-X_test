@@ -3,9 +3,8 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
   
-  @root_xpath = "//%s[@data-testid='%s']"
-  span(:inactive_status,xpath: "#{@root_xpath % ["span","inactive-status"]}")
-  span(:active_status,xpath: "#{@root_xpath % ["span","active-status"]}")
+  span(:inactive_status,xpath: "//span[@data-testid='inactive-status']")
+  span(:active_status,xpath: "//span[@data-testid='active-status']")
   elements(:active_crew_details,xpath: "//table/tbody/tr")
   elements(:crew_list,xpath: "//table/tbody/tr")
   element(:active_switch,xpath: "//div[@role='switch']/label")
@@ -34,18 +33,6 @@ class DashboardPage < WearablePage
     color == "rgba(242, 204, 84, 1)" ? (sleep 27) : (sleep 2)
     $browser.find_element(:xpath, "#{@@activity_indicator}").css_value("background-color").to_s === color
     $browser.find_element(:xpath, "#{@@location_pin}").css_value("background-color").to_s === color
-  end
-  
-  def get_total_crew_list_count
-    crew_list_elements.size
-  end
-
-  def get_inactive_crew_status
-    inactive_status
-  end
-  
-  def get_active_crew_status
-    active_status
   end
   
   def get_serv_active_crew_count

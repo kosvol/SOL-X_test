@@ -1,1 +1,1 @@
-{"operationName":null,"variables":{"wearableId":"7f946200c6e01bf8","userId":"SIT_SOLX0024"},"query":"mutation ($wearableId: ID!, $userId: ID!) {\n  linkUserWithWearable(wearableId: $wearableId, userId: $userId)\n}\n"}
+{"operationName":null,"variables":{"wearableId":"fcd1363b7bd69fc526a74c7620000ac10","userId":"SIT_SOLX0022"},"query":"mutation ($wearableId: ID!, $userId: ID!) {\n  linkUserWithWearable(wearableId: $wearableId, userId: $userId)\n}\n"}

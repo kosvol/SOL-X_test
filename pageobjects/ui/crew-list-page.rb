@@ -15,8 +15,4 @@ class CrewListPage
     return data_collector
   end
 
-  def get_all_crew_from_table
-    return crew_list_elements.size
-  end
-
 end
