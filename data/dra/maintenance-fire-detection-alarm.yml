@@ -1,0 +1,15 @@
+page1:
+  wam_accommodation: ["2","4","medium"]
+  wam_engine: ["1","4","low"]
+  wam_ohsas: ["2","3","low"]
+
+m,l,l
+
+page2:
+  ecm_accommodation: ["1","4","low"]
+  ecm_engine: ["1","4","low"]
+  ecm_ohsas: ["2","3","low"]
+  ecm_cons_total_loss: ["2","3","low"]
+  ecm_malfunction: ["2","3","low"]
+  ecm_maintenance: ["2","3","low"]
+  ecm_inadequate: ["2","3","low"]

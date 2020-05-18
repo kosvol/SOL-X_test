@@ -1,0 +1,16 @@
+page1:
+  wam_moist_slip: ["3","2","low"]
+  wam_illumination: ["2","3","low"]
+  wam_working_overside: ["2","4","medium"]
+
+m,l,l
+
+page2:
+  ecm_moist_slip: ["2","2","low"]
+  ecm_illumination: ["1","3","low"]
+  ecm_working_overside: ["1","4","low"]
+  ecm_stress: ["2","3","low"]
+  ecm_equip_defect: ["2","2","low"]
+  ecm_magnet: ["2","2","low"]
+  ecm_dmg_ship: ["2","2","low"]
+  ecm_accident_personel: ["2","3","low"]

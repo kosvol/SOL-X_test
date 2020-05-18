@@ -1,0 +1,17 @@
+page1:
+  wam_oxygen: ["3","3","medium"]
+  wam_toxic: ["3","3","medium"]
+  wam_explosion: ["3","2","low"]
+
+m,l,l
+
+page2:
+  ecm_oxygen: ["2","3","low"]
+  ecm_toxic: ["2","3","low"]
+  ecm_explosion: ["3","2","low"]
+  ecm_poor_illum: ["3","2","low"]
+  ecm_vapor: ["3","2","low"]
+  ecm_nitrogen: ["2","3","low"]
+  ecm_poor_chem: ["2","2","low"]
+  ecm_lack_training: ["2","2","low"]
+  ecm_phy_eye_contact: ["2","2","low"]

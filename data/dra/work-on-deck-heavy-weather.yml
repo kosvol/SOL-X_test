@@ -1,0 +1,16 @@
+page1:
+  wam_overboard: ["3","3","medium"]
+  wam_fatigue: ["2","3","low"]
+  wam_injury: ["2","3","low"]
+
+m,m,l
+
+page2:
+  ecm_overbord: ["3","3","medium"]
+  acm_overbord: ["2","3","low"]
+  ecm_fatigue: ["2","3","low"]
+  ecm_injury: ["2","3","low"]
+  ecm_weather_monitoring: ["2","3","low"]
+  ecm_lose_item: ["2","2","low"]
+  ecm_wave_n_roll: ["2","3","low"]
+  ecm_slip: ["2","3","low"]
