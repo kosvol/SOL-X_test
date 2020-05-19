@@ -1,0 +1,23 @@
+
+page1:
+  wam_sea_chest: ["2","4","medium"]
+  wam_fatigue: ["2","4","medium"]
+  wam_injury: ["2","3","low"]
+
+m,m,l
+
+page2:
+  ecm_sea_chest: ["2","4","medium"]
+  acm_sea_chest: ["1","4","low"]
+  ecm_fatigue: ["2","4","medium"]
+  acm_fatigue: ["1","4","low"]
+  ecm_injury: ["2","3","low"]
+  ecm_inadvertent: ["2","2","low"]
+  ecm_fail_dive_equip: ["2","3","low"]
+  ecm_hypothermia: ["2","2","low"]
+  acm_hypothermia: ["2","3","low"]
+  ecm_lack: ["2","3","low"]
+  ecm_unforeseen: ["2","3","low"]
+  acm_unforeseen: ["2","3","low"]
+  ecm_falling_obj: ["2","3","low"]
+  ecm_overboard: ["2","3","low"]

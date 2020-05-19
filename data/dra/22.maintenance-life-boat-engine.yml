@@ -1,0 +1,12 @@
+page1:
+  wam_immobilize: ["3","3","medium"]
+  wam_injury: ["3","3","medium"]
+  wam_dmg_equip: ["3","3","medium"]
+
+  m,l,l
+
+page2:
+  ecm_immobilize: ["2","3","low"]
+  ecm_injury: ["2","3","low"]
+  ecm_dmg_equip: ["2","3","low"]
+  ecm_ego_hazard: ["2","3","low"]

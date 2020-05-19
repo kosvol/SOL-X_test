@@ -1,0 +1,11 @@
+page1:
+  wam_flame: ["2","2","low"]
+  wam_terminal: ["2","2","low"]
+  wam_accident: ["2","3","low"]
+
+l,l,l
+
+page2:
+  ecm_flame: ["2","2","low"]
+  ecm_terminal: ["2","2","low"]
+  acm_accident: ["2","3","low"]

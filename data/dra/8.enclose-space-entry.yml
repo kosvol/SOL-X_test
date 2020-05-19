@@ -1,0 +1,22 @@
+page1:
+  wam_oxygen: ["2","4","medium"]
+  wam_toxic: ["2","3","low"]
+  wam_comms: ["2","4","medium"]
+
+m,l,l
+
+page2:
+  ecm_oxygen: ["2","4","medium"]
+  ecm_toxic: ["2","3","low"]
+  ecm_comms: ["2","4","medium"]
+  acm_oxygen: ["1","4","low"]
+  acm_toxic: ["1","3","low"]
+  acm_comms: ["1","4","low"]
+
+  ecm_hot: ["2","2","low"]
+  ecm_malfunction: ["3","2","low"]
+  ecm_corroded: ["2","3","low"]
+  ecm_slip: ["3","2","low"]
+  ecm_lack: ["2","2","low"]
+  ecm_rest: ["2","3","low"]
+  ecm_weather: ["2","3","low"]

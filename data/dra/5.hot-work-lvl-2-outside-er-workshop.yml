@@ -1,0 +1,22 @@
+page1:
+  wam_gas: ["3","4","high"]
+  wam_flammable: ["3","4","high"]
+  wam_fire: ["3","4","high"]
+
+h,m,l 
+
+page2:
+  ecm_gas: ["2","4","medium"]
+  ecm_flammable: ["2","4","medium"]
+  ecm_fire: ["2","4","medium"]
+  acm_gas: ["1","4","low"]
+  acm_flammable: ["1","4","low"]
+  acm_fire: ["1","4","low"]
+  ecm_residual: ["2","3","low"]
+  ecm_dmg_equip: ["2","3","low"]
+  ecm_electrocution: ["2","3","low"]
+  ecm_burn: ["2","3","low"]
+  ecm_faulty_equip: ["2","3","low"]
+  ecm_hazard: ["2","3","low"]
+  ecm_unforeseen: ["2","3","low"]
+  ecm_weather: ["2","2","low"]

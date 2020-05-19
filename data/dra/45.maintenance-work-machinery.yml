@@ -1,0 +1,16 @@
+page1:
+  wam_dmg_equip: ["3","2","low"]
+  wam_restrict_work_place: ["3","2","low"]
+  wam_system_isolation: ["3","2","low"]
+
+l,l,l
+
+page2:
+  ecm_dmg_equip: ["3","2","low"]
+  ecm_restrict_work_place: ["2","2","low"]
+  ecm_system_isolation: ["3","2","low"]
+  ecm_ego_hazard: ["1","2","low"]
+  ecm_slip: ["2","2","low"]
+  ecm_unforseen: ["2","3","low"]
+  ecm_change_weather: ["2","3","low"]
+  ecm_restrict_work_space: ["2","3","low"]

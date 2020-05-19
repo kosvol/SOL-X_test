@@ -1,0 +1,16 @@
+page1:
+  wam_fire: ["3","3","medium"]
+  wam_injury: ["2","3","low"]
+  wam_comms: ["2","2","low"]
+
+m,l,l
+
+page2:
+  ecm_fire: ["2","3","low"]
+  ecm_injury: ["2","3","low"]
+  ecm_comms: ["2","2","low"]
+  ecm_weather: ["2","3","low"]
+  ecm_vapor: ["2","3","low"]
+  ecm_crash: ["2","3","low"]
+  ecm_oil_spill: ["2","3","low"]
+  ecm_electro: ["2","3","low"]

@@ -1,0 +1,15 @@
+page1:
+  wam_fire: ["2","4","medium"]
+  wam_fail: ["2","4","medium"]
+  wam_flood: ["3","2","low"]
+
+  m,?,?
+
+page2:
+  ecm_fie: ["1","4","low"]
+  ecm_fail: ["1","4","low"]
+  ecm_flood: ["2","2","low"]
+  ecm_ohsas: ["2","3","low"]
+  ecm_fire_explode: ["2","3","low"]
+  ecm_maintenance: ["2","2","low"]
+  ecm_ego_hazard: ["2","2","low"]

@@ -1,0 +1,16 @@
+page1:
+  wam_fire_engine: ["3","3","medium"]
+  wam_fire_pump: ["3","2","low"]
+  wam_immobilize: ["3","2","low"]
+
+  m,l,l
+
+page2:
+  ecm_fire_engine: ["2","2","low"]
+  ecm_fire_pump: ["2","2","low"]
+  ecm_immobilize: ["2","2","low"]
+  ecm_accident_machine: ["2","2","low"]
+  ecm_accident_foam: ["3","2","low"]
+  ecm_damage: ["3","2","low"]
+  ecm_injury: ["3","2","low"]
+  ecm_ohsas: ["3","2","low"]

@@ -1,0 +1,12 @@
+page1:
+  wam_flame: ["1","4","low"]
+  wam_falling: ["1","3","low"]
+  wam_injury: ["2","3","low"]
+
+  l,l,l
+
+page2:
+  ecm_flame: ["1","4","low"]
+  ecm_falling: ["1","3","low"]
+  ecm_injury: ["2","3","low"]
+  ecm_weather: ["2","3","low"]

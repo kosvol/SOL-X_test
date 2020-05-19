@@ -1,0 +1,14 @@
+page1:
+  wam_discharge: ["3","3","medium"]
+  wam_weather: ["2","3","low"]
+  wam_equip_fail: ["2","3","low"]
+
+m,l,l
+
+page2:
+  ecm_personal_injury: ["2","3","low"]
+  acm_personal_injury: ["2","3","low"]
+  ecm_burstling: ["2","3","low"]
+  ecm_wrong_line: ["2","3","low"]
+  ecm_slip: ["2","2","low"]
+  ecm_fatigue: ["2","2","low"]

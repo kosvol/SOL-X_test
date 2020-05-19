@@ -1,0 +1,14 @@
+page1:
+  wam_oil: ["3","3","medium"]
+  wam_electrial: ["2","3","low"]
+  wam_toxic: ["2","3","low"]
+
+m,m,l
+
+page2:
+  ecm_oil: ["3","3","medium"]
+  acm_oil: ["2","3","low"]
+  ecm_electrical: ["2","3","low"]
+  ecm_toxic: ["2","3","low"]
+  ecm_hazard: ["2","3","low"]
+  ecm_handling: ["2","3","low"]

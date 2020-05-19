@@ -1,0 +1,14 @@
+page1:
+  wam_gas: ["2","4","medium"]
+  wam_flammable: ["2","3","low"]
+  wam_fire: ["2","3","low"]
+
+m,l,l 
+
+page2:
+  ecm_gas: ["1","4","low"]
+  ecm_flammable: ["2","3","low"]
+  ecm_fire: ["2","3","low"]
+  ecm_risk_electrocution: ["2","3","low"]
+  ecm_burn: ["2","3","low"]
+  ecm_faulty_equip: ["2","3","low"]
