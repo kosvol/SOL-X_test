@@ -4,7 +4,7 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
-  Scenario Outline: Verify only Captain and 2nd Officer can change ship's time
+  Scenario Outline: Verify only Captain and 2nd Officer can change ship time
     Given I launch sol-x portal
     When I change local time
     And I enter pin <pin>
@@ -30,6 +30,9 @@ Feature: ShipLocalTime
   # @manual
   # Scenario: Verify ship's local time only limit at -12 to +14
 
+
+  ################## ----WILL NOT BE HERE----- ##################
+  
   # @manual
   # Scenario: Verify time change reflects on Wearable and Dashboard
 
