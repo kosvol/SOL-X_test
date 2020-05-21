@@ -1,0 +1,47 @@
+Working Aloft Overside:
+  page1:
+    major_hazards: [
+      ["Slipping and falling from height","2","3","low"],
+      ["Equipment Failure","3","2","low"],
+      ["Weather and sea hazard","2","3","low"]
+    ]
+    erisk: ["low","low","low"]
+  page2:
+    existing_methods: [
+      ["Slipping and falling from height",
+      "1. Comply with PPE matrix.
+      2. Surface of working area shall be clear of salt deposit and ice in cold weather.  
+      3. Supervision by experience personnel  
+      4. Establish communication between deck and bridge  
+      5. Work area well illuminated for the task.
+      6. Use anti skid walkway in work areas and its surrounding.",
+      "2","3","low"],
+      ["Equipment Failure",
+      "1. Condition of all the equipment used for working aloft are proper and maintained well.
+      2. Suitable size and load of harness selected for the task performer.
+      3. Identify strong and suitable securing points for harness.
+      4. Stop work when found abnormalities during operation.",
+      "3","2","low"],
+      ["Weather and sea hazard",
+      "1. Obtain weather forecast and arrange work in acceptable weather condition.
+      2. Weather and sea conditions to be monitored throughout the task.
+      3. No working overside while underway except for preparation for pilot embarkation/disembarkaation.",
+      "2","3","low"],
+      ["Accident to personnel",
+      "1. Comply with PPE matrix.
+      2. Avoid selecting acrophobic crew to task related to height and hanging overside.
+      3. Cordon and barricare areas under working aloft areas.",
+      "2","3","low"],
+      ["Working tools falling down",
+      "1. Transfer tools to task performer using appropriate means by tool bag or bucket with attached line.
+      2. Cordon and barricare areas under working aloft areas.
+      3. Appropriate PPE for handling tools.",
+      "1","3","low"]
+    ]
+    additional_methods: [
+      ["Equipment Failure",
+      "1.Carry out routine inspection and test of all the equipments used for working aloft.
+      2.Use safety net if aplicable.",
+      "3","2","low"]
+    ]
+  

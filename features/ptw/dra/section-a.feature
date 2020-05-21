@@ -20,6 +20,11 @@ Feature: DRASectionA
     | Underwater Operations at Night                                        |
     | Underwater Operation during daytime without any simultenous operation |
     | Hot Work Level - 2 outside ER (Ballast Passage)                       |
+    | Hot Work Level - 2 outside ER (Loaded & Ballast Passage)              |
+    | Hot Work Level - 2 in Designated Area                                 |
+    | Hot Work Level - 1 (Loaded & Ballast Passage)                         |
+    | Working Aloft Overside                                                |
+    | Use of Non-Intrinsically Safe Camera                                  |
 
     # Scenario: Verify identified hazards contents
     #   Given I launch sol-x portal
