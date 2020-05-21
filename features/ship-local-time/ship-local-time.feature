@@ -21,10 +21,10 @@ Feature: ShipLocalTime
     # | 6666 |
 
   @skip
-  Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2/O
+  Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
-    When I change local time
-    And I enter pin <pin>
+    # When I change local time
+    # And I enter pin <pin>
     # Then I should see invalid login error
 
     Examples:
