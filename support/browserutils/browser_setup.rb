@@ -23,7 +23,8 @@ class BrowserSetup
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument("--window-size=2560,1264") if ENV['DEVICE'] === "dashboard"
+      options.add_argument("--window-size=1920,1080") if ENV['DEVICE'] === "dashboard"
+      # options.add_argument("--window-size=2560,1264") if ENV['DEVICE'] === "dashboard"
       options.add_argument("--window-size=720,1280") if ENV['DEVICE'] === "tablet"
       begin
         if ENV['PLATFORM'] === "chrome_headless"
