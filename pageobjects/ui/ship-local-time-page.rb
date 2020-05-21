@@ -30,10 +30,9 @@ class ShipLocalTimePage
     sleep 1
     tmp = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     current_time = utc_time.split(':')
-    Log.instance.info(">>> #{utc_timezone_elements[1].text}")
-    Log.instance.info(">>> Local Time +#{tmp}h")
-    Log.instance.info(">>> #{current_time[0].to_i+tmp}:#{current_time[1]}")
-    return ((utc_time_text === "Local Time #{tmp}h") && (utc_timezone_elements[1].text === "#{current_time[0].to_i+tmp}:#{current_time[1]}")) if tmp < 0
-    return ((utc_time_text === "Local Time +#{tmp}h") && (utc_timezone_elements[1].text === "#{current_time[0].to_i+tmp}:#{current_time[1]}")) if tmp >= 0
+    current_time[0].to_i < 10 ? new_hour = "0#{current_time[0].to_i+tmp}" : new_hour = "#{current_time[0].to_i+tmp}"
+    Log.instance.info(">>> #{new_hour}:#{current_time[1]}")
+    return ((utc_time_text === "Local Time #{tmp}h") && (utc_timezone_elements[1].text === "#{new_hour}:#{current_time[1]}")) if tmp < 0
+    return ((utc_time_text === "Local Time +#{tmp}h") && (utc_timezone_elements[1].text === "#{new_hour}:#{current_time[1]}")) if tmp >= 0
   end
 end
