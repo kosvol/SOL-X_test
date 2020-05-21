@@ -11,31 +11,9 @@ class DashboardPage < WearablePage
   element(:last_seen,xpath: "//table/tbody/tr/td[4]")
   spans(:area_count,xpath: "//span[@class='count']")
   spans(:permits_count,xpath: '//span[@class="stat"]')
-  button(:clock_btn,xpath: "//button[starts-with(@class,'Clock__ClockButton')]")
-  element(:clock,xpath: "//button[starts-with(@class,'Clock__ClockButton')]/h3")
-  span(:utc_time,xpath: "//span[@data-testid='utc-time']")
-  span(:utc_time_text,xpath: "//span[@data-testid='label-id']")
-  spans(:utc_timezone,xpath: "//span[starts-with(@class,'ClockModal__UTCTimeText')]")
-  button(:decrement,xpath: "//div[starts-with(@class,'ClockModal__')]/button[1]")
-  button(:increment,xpath: "//div[starts-with(@class,'ClockModal__')]/button[2]")
   
   @@activity_indicator = "//table/tbody/tr/td/div"
   @@location_pin = "//a[@data-testid='location-pin']"
-  
-  def adjust_ship_local_time
-    clock_btn
-    ["1","2"].sample === "1" ? decrement : increment
-  end
-
-  def is_update_ship_time
-    sleep 1
-    clock_btn
-    sleep 1
-    tmp = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-    current_time = utc_time.split(':')
-    return ((utc_time_text === "Local Time #{tmp}h") && (utc_timezone_elements[1].text === "#{current_time[0].to_i+tmp}:#{current_time[1]}")) if tmp < 0
-    return ((utc_time_text === "Local Time +#{tmp}h") && (utc_timezone_elements[1].text === "#{current_time[0].to_i+tmp}:#{current_time[1]}")) if tmp >= 0
-  end
 
   def unlink_all_crew_frm_wearable
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|

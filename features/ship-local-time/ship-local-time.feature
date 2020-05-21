@@ -4,6 +4,11 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
+  @skip
+  Scenario: Verify base time is UTC
+    # Given I launch sol-x portal
+    Then I should see base time is UTC
+  
   Scenario Outline: Verify only Captain and 2nd Officer can change ship time
     Given I launch sol-x portal
     When I change local time
@@ -20,7 +25,7 @@ Feature: ShipLocalTime
     Given I launch sol-x portal
     When I change local time
     And I enter pin <pin>
-    # Then I should see invalid pop up
+    # Then I should see invalid login error
 
     Examples:
     | pin  |

@@ -1,5 +1,5 @@
 When (/^I change local time$/) do
-  on(DashboardPage).adjust_ship_local_time
+  on(ShipLocalTimePage).adjust_ship_local_time
 end
 
 And (/^I enter pin (.+)$/) do |pin|
@@ -9,5 +9,9 @@ end
 Then (/^I should see ship local time updated$/) do
   step 'I get ship-local-time/base-get-current-time request payload'
   step 'I hit graphql'
-  is_true(on(DashboardPage).is_update_ship_time)
+  is_true(on(ShipLocalTimePage).is_update_ship_time)
+end
+
+Then (/^I should see base time is UTC$/) do
+  puts ">>> #{on(ShipLocalTimePage).is_utc_time}"
 end
