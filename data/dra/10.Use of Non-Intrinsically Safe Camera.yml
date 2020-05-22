@@ -1,14 +1,14 @@
 Use of Non-Intrinsically Safe Camera:
   page1:
     major_hazards: [
-      ["Presence of flammable vapors ","2","2","low"],
+      ["Presence of flammable vapors","2","2","low"],
       ["Terminal restrictions","2","2","low"],
       ["Accidental fall of camera creating spark","2","3","low"]
     ]
     erisk: ["low","low","low"]
   page2:
     existing_methods: [
-      ["Presence of flammable vapors ","2","2","low"],
+      ["Presence of flammable vapors","2","2","low"],
       ["Terminal restrictions","2","2","low"],
       ["Accidental fall of camera creating spark","2","3","low"]
     ]

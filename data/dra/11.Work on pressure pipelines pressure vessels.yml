@@ -1,0 +1,33 @@
+Work on pressure pipelines pressure vessels:
+  page1:
+    major_hazards: [
+      ["Oil Pollution","2","3","low"],
+      ["Equipment damage","1","3","low"],
+      ["Personal injury","1","1","low"]
+    ]
+    erisk: ["low","low","low"]
+  page2:
+    existing_methods: [
+      ["Oil Pollution",
+      "1. Strip and drain all lines from cargo or oil.
+      2. Plug in all save alls and scuppers.
+      3. Oil Spill equipment kept in readiness.
+      4. Cease all cargo transfer operations.
+      5. Emergency plan for Oil spill prepared.",
+      "2","3","low"],
+      ["Equipment damage",
+      "1. Operate equipment within its operating limits - This must be confirmed with reference to operating manual.
+      2. Emergency stop switches to be tested prior any operations.
+      3. Ensure that the pressure gauges have been calibrated.
+      4. Maintain equipment as per PMS.
+      5. Use the correct tools for the task.",
+      "1","3","low"],
+      ["Personal injury",
+      "1. Carry out tool box meeting.
+      2. Comply with PPE matrix.
+      3. Stand clear from weak points of the system.
+      4. Use the correct tools for the task.",
+      "1","1","low"]
+    ]
+    additional_methods: [
+    ]

@@ -25,7 +25,15 @@ Feature: DRASectionA
     | Hot Work Level - 1 (Loaded & Ballast Passage)                         |
     | Working Aloft Overside                                                |
     | Use of Non-Intrinsically Safe Camera                                  |
-
+    | Work on pressure pipelines pressure vessels                           |
+    | Personnel Transfer by Transfer Basket                                 |
+    | Helicopter Operation                                                  |
+    | Use of Portable Power Tools                                           |
+    | Use of ODME on manual mode                                            |
+    | Working on Elect Equip                                                |      
+    | Use of Hydroblaster                                                   |
+    | Maintenance on Emergency Generator                                    |
+    
     # Scenario: Verify identified hazards contents
     #   Given I launch sol-x portal
     #   When I create a Underwater Operations at Night permit

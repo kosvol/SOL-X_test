@@ -1,0 +1,47 @@
+Use of Portable Power Tools:
+  page1:
+    major_hazards: [
+      ["Personal injury.","2","4","medium"],
+      ["Hose Bursting","2","3","low"],
+      ["Hose Connection Snapping off","3","2","low"]
+    ]
+    erisk: ["medium","medium","low"]
+  page2:
+    existing_methods: [
+      ["Personal injury.",
+      "1. Comply with PPE matrix.
+      2. Renew PPE when required. 
+      3. Select well maintained tool for the task.
+      4. Ensure air hose and couplings are in good condition.
+      5. Utilise suitable anti-whiplash kit.",
+      "2","4","medium"],
+      ["Hose Bursting",
+      "1. Carry out inspection of air hoses prior use. 
+      2. Utilize suitable pneumatic hoses and replace when showing signs of deteriorating. 
+      3. Drain out moist or water accumulated inside hoses prior use.",
+      "2","3","low"],
+      ["Hose Connection Snapping off",
+      "1.To inspect the hose couplings before use for any damage
+      2. Utilise suitable anti-whiplash kit.",
+      "3","2","low"],
+      ["Physical injury due to flying particles",
+      "1. Comply with PPE matrix.
+      2. Proper control of air supply of the tool.
+      3.Tools and equipment inspected prior usage
+      4. Toolbox meeting to be carried out",
+      "2","3","low"],
+      ["Inhaling of Dust Particles",
+      "1. Comply with PPE matrix.
+      2. Renew dust mask frequently.",
+      "2","3","low"],
+      ["Personal Injury to others Nearby",
+      "1. Comply with PPE matrix.
+      2. Be aware of the surroundings and Identify location of other team members nearby.
+      3. Area Cordoned Off And Personnels Informed",
+      "2","3","low"]
+    ]
+    additional_methods: [
+      ["Personal injury.",
+      "1. Always ensure that the user is well versed with handling the equipment and well trained.",
+      "2","3","low"],
+    ]
