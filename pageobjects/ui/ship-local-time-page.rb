@@ -42,7 +42,8 @@ class ShipLocalTimePage
   end
 
   def cal_new_offset_time(get_current_offset,current_time)
-    current_time[0].to_i < 10 ? "0#{current_time[0].to_i+get_current_offset}" : "#{current_time[0].to_i+get_current_offset}"
+    count_hour = ((current_time[0].to_i+get_current_offset)-24).abs
+    "#{count_hour}".size === 2 ? "#{count_hour}" : "0#{count_hour}"
   end
 
 end

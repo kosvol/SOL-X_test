@@ -1,0 +1,20 @@
+Maintenance on Emergency Generator :
+  page1:
+    major_hazards: [
+      ["Emergency Fire Pump becomes inoperative","2","4","medium"],
+      ["Fail to meet statutory requirement","2","4","medium"],
+      ["Flooding of Engine Room","3","2","low"]
+    ]
+    erisk: ["medium","?","?"]
+  page2:
+    existing_methods: [
+      ["Emergency Fire Pump becomes inoperative","1","4","low"],
+      ["Fail to meet statutory requirement","1","4","low"],
+      ["Flooding of Engine Room","2","2","low"],
+      ["OHSAS Health Hazard","2","3","low"],
+      ["Fire and Explosion","2","3","low"],
+      ["Maintenance Schedule not updated","2","2","low"],
+      ["Ergonomic hazard","2","2","low"]
+    ]
+    additional_methods: [
+    ]

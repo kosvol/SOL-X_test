@@ -18,7 +18,7 @@ Feature: ShipLocalTime
     Examples:
     | pin  |
     | 1111 |
-    # | 6666 |
+    | 6666 |
 
   @skip
   Scenario: Verify all other ranks are not allow to change time other than Captain and 2 officer
