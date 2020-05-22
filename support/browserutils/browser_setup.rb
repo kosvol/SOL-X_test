@@ -29,7 +29,7 @@ class BrowserSetup
       options.add_argument("--unsafely-allow-protected-media-identifier-for-domain=http://cloud-edge.stage.solas.magellanx.io:8080")
       options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080")
       # options.add_argument("--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/")
-      options.add_argument("--user-data-dir=/home/solas/.config/google-chrome")
+      # options.add_argument("--user-data-dir=/home/solas/.config/google-chrome")
 
       options.add_argument("--window-size=1920,1080") if ENV['DEVICE'] === "dashboard"
       # options.add_argument("--window-size=2560,1264") if ENV['DEVICE'] === "dashboard"
