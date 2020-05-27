@@ -7,15 +7,15 @@ module EnvironmentSelector
     def get_graphql_environment_url(key)
       $obj_env_yml["#{get_environment}"]["#{key}"]
     end
-    
+
     private
+
     def get_environment
-      $current_platform = ENV['ENVIRONMENT']
+      $current_platform = ENV["ENVIRONMENT"]
     end
-    
+
     def get_application
-      $current_platform = ENV['APPLICATION']
+      $current_platform = ENV["APPLICATION"]
     end
-    
   end
 end

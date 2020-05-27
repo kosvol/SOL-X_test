@@ -1,9 +1,9 @@
-require 'liquid'
+require "liquid"
 
-require_relative 'log'
+require_relative "log"
 # require_relative 'test_attribute'
-require_relative 'author'
-require_relative 'category'
+require_relative "author"
+require_relative "category"
 
 module RelevantCodes
   module Model
@@ -18,8 +18,8 @@ module RelevantCodes
 
       def initialize(name, description)
         @name = name.strip
-        @description = description.nil? || description == '' ? '' : description.strip
-        @status = 'fail'
+        @description = description.nil? || description == "" ? "" : description.strip
+        @status = "fail"
 
         @child_node = false
         @has_ended = false
@@ -74,6 +74,7 @@ module RelevantCodes
       end
 
       private
+
       def finalize(test)
         test.logs.each do |log|
           @arr.push(log.get_status)
@@ -85,25 +86,24 @@ module RelevantCodes
           end
         end
 
-        if @arr.include?('fatal')
-          @status = 'fatal'
-        elsif @arr.include?('fail')
-          @status = 'fail'
-        elsif @arr.include?('error')
-          @status = 'error'
-        elsif @arr.include?('warning')
-          @status = 'warning'
-        elsif @arr.include?('pass')
-          @status = 'pass'
-        elsif @arr.include?('skip')
-          @status = 'skip'
-        elsif @arr.include?('info')
-          @status = 'pass'
+        if @arr.include?("fatal")
+          @status = "fatal"
+        elsif @arr.include?("fail")
+          @status = "fail"
+        elsif @arr.include?("error")
+          @status = "error"
+        elsif @arr.include?("warning")
+          @status = "warning"
+        elsif @arr.include?("pass")
+          @status = "pass"
+        elsif @arr.include?("skip")
+          @status = "skip"
+        elsif @arr.include?("info")
+          @status = "pass"
         else
-          @status = 'skip'
+          @status = "skip"
         end
       end
-
     end
   end
 end

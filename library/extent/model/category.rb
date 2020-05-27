@@ -1,4 +1,5 @@
-require 'liquid'
+require "liquid"
+
 module RelevantCodes
   module Model
     class Category < Liquid::Drop

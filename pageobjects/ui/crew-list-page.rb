@@ -1,10 +1,10 @@
-require './././support/env'
+require "./././support/env"
 
 class CrewListPage
   include PageObject
-  
-  elements(:crew_table_header,xpath: "//*/tr/th")
-  elements(:crew_list,xpath: "//*/tbody/tr")
+
+  elements(:crew_table_header, xpath: "//*/tr/th")
+  elements(:crew_list, xpath: "//*/tbody/tr")
 
   def get_crew_table_headers
     data_collector = []
@@ -13,5 +13,4 @@ class CrewListPage
     end
     return data_collector
   end
-
 end

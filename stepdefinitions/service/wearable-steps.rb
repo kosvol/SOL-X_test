@@ -10,8 +10,8 @@ And (/^I manipulate wearable requeset payload$/) do
   WearablePage.swap_payload(@which_json)
 end
 
-And (/^I manipulate wearable requeset payload with (.+) and (.+)$/) do |zoneid,mac|
-  WearablePage.swap_payload(@which_json,zoneid,mac)
+And (/^I manipulate wearable requeset payload with (.+) and (.+)$/) do |zoneid, mac|
+  WearablePage.swap_payload(@which_json, zoneid, mac)
 end
 
 Then (/^I get list of beacons detail$/) do

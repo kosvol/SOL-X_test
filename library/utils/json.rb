@@ -16,31 +16,31 @@ module JsonUtil
       end
       keystore_arr
     end
-    
+
     @@request_payload_fpath = "../../../payload/request/"
-    
+
     def read_json(filename)
       get_absolute_path = File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__)
       file = File.read(get_absolute_path)
     end
-    
+
     def create_request_file(filename, request_body)
-      file = File.open(File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__), 'w')
+      file = File.open(File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__), "w")
       file.puts request_body.to_json
       file.close
     end
-    
+
     @@response_payload_fpath = "../../../payload/response/"
-    
-    def create_response_file(filename,response_body,response_status_code)
+
+    def create_response_file(filename, response_body, response_status_code)
       if response_status_code === 200
-        FileUtils.mkdir_p(File.expand_path("#{filename.split('/').first}/", "payload/response"))
-        file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), 'w')
+        FileUtils.mkdir_p(File.expand_path("#{filename.split("/").first}/", "payload/response"))
+        file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), "w")
         file.puts response_body
         file.close
       end
     end
-    
+
     # def self.is_data_structure(which_service)
     #   get_response_data_structure(which_service)
     #   base_arr = get_base_data_structure(which_service)
@@ -48,7 +48,7 @@ module JsonUtil
     #   puts "\n\nExpected: #{base_arr}\n\n\n"
     #   return (@@farmer.first(base_arr.size) === base_arr)
     # end
-    
+
     # def self.get_base_data_structure(which_service)
     #   # if $current_application == "frontend" or $global_which_service == "authentication"
     #   return $obj_data_structure_yml[which_service]
@@ -56,7 +56,7 @@ module JsonUtil
     #   # return $obj_data_structure_yml[which_service]
     #   # end
     # end
-    
+
     # def self.get_response_data_structure(which_service)
     #   @@farmer = []
     #   get_json_keys(ServiceUtil.get_response_body_json.to_hash,@@farmer)

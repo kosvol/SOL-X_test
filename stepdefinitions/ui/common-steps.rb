@@ -1,5 +1,5 @@
 Given (/^I launch sol-x portal$/) do
-  step 'I unlink all crew from wearable'
+  step "I unlink all crew from wearable"
   sleep 1
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2

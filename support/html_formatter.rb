@@ -1,8 +1,7 @@
-require 'cucumber/formatter/html'
+require "cucumber/formatter/html"
 
 module Formatter
   class HtmlFormatter < Cucumber::Formatter::Html
-
     def before_features(features)
       @step_count = features && features.step_count || 0 #TODO: Make this work with core!
 
@@ -10,22 +9,22 @@ module Formatter
       @builder.declare!
       @builder << '<html xmlns ="http://www.w3.org/1999/xhtml">'
       @builder.head do
-        @builder.meta('http-equiv' => 'Content-Type', :content => 'text/html;charset=utf-8')
-        @builder.title 'Cucumber'
+        @builder.meta("http-equiv" => "Content-Type", :content => "text/html;charset=utf-8")
+        @builder.title "Cucumber"
       end
-      @builder << '<body>'
+      @builder << "<body>"
       @builder << "<!-- Step count #{@step_count}-->"
       @builder << '<div class="cucumber">'
-      @builder.div(:id => 'cucumber-header') do
-        @builder.div(:id => 'label') do
-          @builder.h1('Cucumber Features')
+      @builder.div(:id => "cucumber-header") do
+        @builder.div(:id => "label") do
+          @builder.h1("Cucumber Features")
         end
-        @builder.div(:id => 'summary') do
-          @builder.p('', :id => 'totals')
-          @builder.p('', :id => 'duration')
-          @builder.div(:id => 'expand-collapse') do
-            @builder.p('Expand All', :id => 'expander')
-            @builder.p('Collapse All', :id => 'collapser')
+        @builder.div(:id => "summary") do
+          @builder.p("", :id => "totals")
+          @builder.p("", :id => "duration")
+          @builder.div(:id => "expand-collapse") do
+            @builder.p("Expand All", :id => "expander")
+            @builder.p("Collapse All", :id => "collapser")
           end
         end
       end
@@ -34,22 +33,22 @@ module Formatter
 
     def embed(str_src, str_mime_type, str_label)
       case str_mime_type
-        when /^image\/(png|gif|jpg|jpeg)/
-          embed_image(str_src, str_label)
-        when /^text\/plain/
-          embed_file(str_src, str_label)
+      when /^image\/(png|gif|jpg|jpeg)/
+        embed_image(str_src, str_label)
+      when /^text\/plain/
+        embed_file(str_src, str_label)
       end
     end
 
     def embed_link(str_src, str_label)
-      @builder.span(:class => 'embed') do |pre|
+      @builder.span(:class => "embed") do |pre|
         pre << %{<a href="#{str_src}" target="_blank">"#{str_label}"</a> }
       end
     end
 
     def embed_file(str_src, str_label = "Click to view embedded file")
       id = "object_#{Time.now.strftime("%y%m%d%H%M%S")}"
-      @builder.span(:class => 'embed') do |pre|
+      @builder.span(:class => "embed") do |pre|
         pre << %{<a href="" onclick="o=document.getElementById('#{id}'); o.style.display = (o.style.display == 'none' ? 'block' : 'none');return false">#{str_label}</a><br>&nbsp;
 	        <object id="#{id}" data="#{str_src}" type="text/plain" width="100%" style="height: 10em;display: none"></object>}
       end
@@ -66,10 +65,10 @@ module Formatter
     def after_table_row(table_row)
       return if @hide_this_step
       print_table_row_messages
-      @builder << '</tr>'
+      @builder << "</tr>"
       if table_row.exception
         @builder.tr do
-          @builder.td(:colspan => @col_index.to_s, :class => 'failed') do
+          @builder.td(:colspan => @col_index.to_s, :class => "failed") do
             @builder.pre do |pre|
               pre << h(format_exception(table_row.exception))
             end
@@ -91,9 +90,9 @@ module Formatter
       else
         $table = "("
         $value.size.times do |i|
-          $table+= "| #{@first[i]}: #{$value[i]} " if @first
+          $table += "| #{@first[i]}: #{$value[i]} " if @first
         end
-        $table+="|))"
+        $table += "|))"
         $tables << $table
       end
     end
@@ -103,7 +102,7 @@ module Formatter
       $value << value
 
       @cell_type = @outline_row == 0 ? :th : :td
-      attributes = {:id => "#{@row_id}_#{@col_index}", :class => 'step'}
+      attributes = { :id => "#{@row_id}_#{@col_index}", :class => "step" }
       attributes[:class] += " #{status}" if status
       build_cell(@cell_type, value, attributes)
       set_scenario_color(status) if @inside_outline
@@ -116,8 +115,7 @@ module Formatter
 
     def after_steps(steps)
       print_messages
-      @builder << '</ol>' if @in_background or @in_scenario_outline
+      @builder << "</ol>" if @in_background or @in_scenario_outline
     end
-
   end
 end

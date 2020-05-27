@@ -1,9 +1,8 @@
-require 'liquid'
-require 'socket'
+require "liquid"
+require "socket"
 
 module RelevantCodes
   class Report < Liquid::Drop
-
     def initialize(file_path)
       @file_path = file_path
       @get_start_time = Time.new.strftime(DATE_TIME_FORMAT)
@@ -13,19 +12,19 @@ module RelevantCodes
 
       # to decouple
       @system_variables = {
-          #'OS' => ENV['OS'],
-          'User Name' => Socket.gethostname,
-          'Ruby Version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}",
-          'Host Name' => Socket.gethostname
+        #'OS' => ENV['OS'],
+        "User Name" => Socket.gethostname,
+        "Ruby Version" => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}",
+        "Host Name" => Socket.gethostname,
       }
 
       @configuration = {
-          'encoding' => 'UTF-8',
-          'document_title' => 'ExtentReports for Ruby',
-          'report_name' => 'ExtentReports',
-          'report_headline' => '',
-          'scripts' => '',
-          'styles' => ''
+        "encoding" => "UTF-8",
+        "document_title" => "ExtentReports for Ruby",
+        "report_name" => "ExtentReports",
+        "report_headline" => "",
+        "scripts" => "",
+        "styles" => "",
       }
     end
 
@@ -81,6 +80,5 @@ module RelevantCodes
         t.desc_append(table[ix])
       end
     end
-
   end
 end

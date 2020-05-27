@@ -1,13 +1,13 @@
-require 'liquid'
-require './support/html_formatter'
-$LOAD_PATH << './support'
-$LOAD_PATH << './lib'
+require "liquid"
+require "./support/html_formatter"
+$LOAD_PATH << "./support"
+$LOAD_PATH << "./lib"
 
-require_relative 'model/test'
-require_relative 'model/log'
+require_relative "model/test"
+require_relative "model/log"
 # require_relative 'model/test_attribute'
-require_relative 'model/category'
-require_relative 'model/author'
+require_relative "model/category"
+require_relative "model/author"
 
 module RelevantCodes
   class ExtentTest < Liquid::Drop
@@ -29,12 +29,12 @@ module RelevantCodes
         Log.instance.info details
         screenshotpath = ReportUtils.get_screenshot(browser)
         # if status.to_s == "pass"
-          log.details = details + "<img src=\"#{screenshotpath}\" alt=\"#{screenshotpath}\" style=\"width:304px;height:228px;\">" + "<a href=\"#{screenshotpath}\" target=\"_blank\">Full Image</a>"
+        log.details = details + "<img src=\"#{screenshotpath}\" alt=\"#{screenshotpath}\" style=\"width:304px;height:228px;\">" + "<a href=\"#{screenshotpath}\" target=\"_blank\">Full Image</a>"
         # else
         # end
         # if ($obj_env_yml['screenshot'] == "true" && ENV['PLATFORM'].upcase!="API")
         #   sleep 1 #if ENV['PLATFORM'] == "web_app"
-          
+
         # else
         #   log.details = details
         # end

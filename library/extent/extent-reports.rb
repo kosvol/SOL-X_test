@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'liquid'
+require "rubygems"
+require "liquid"
 
-require_relative 'report'
-require_relative 'extent-test'
+require_relative "report"
+require_relative "extent-test"
 # require_relative 'icon'
 
 module RelevantCodes
@@ -26,11 +26,12 @@ module RelevantCodes
 
     def flush
       remove_child_tests
-      file ||= 'library/extent/view/extent.html.liquid.html'
-      markup = Liquid::Template.parse(File.read(file)).render('report' => self)
+      file ||= "library/extent/view/extent.html.liquid.html"
+      markup = Liquid::Template.parse(File.read(file)).render("report" => self)
 
-      File.open(@file_path, 'w') {
-          |file| file.write(markup)
+      File.open(@file_path, "w") {
+        |file|
+        file.write(markup)
       }
     end
   end
