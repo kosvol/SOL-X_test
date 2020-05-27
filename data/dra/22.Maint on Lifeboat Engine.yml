@@ -1,0 +1,39 @@
+Maint on Lifeboat Engine:
+  page1:
+    major_hazards: [
+      ["Imobilization of Equipment","3","3","medium"],
+      ["Personnel injury","3","3","medium"],
+      ["Damage to Equipment","3","3","medium"]
+    ]
+    erisk: ["medium","low","low"]
+  page2:
+    existing_methods: [
+      ["Imobilization of Equipment",
+      "1. Tool box meeting carried out.
+      2. Discuss the alternatiove method of Life saving appliance and consequence involve.
+      3. Equipment shall be properly check prior use.
+      4. Spares has been check and kept stand by for use.
+      5. Person has to be stand by and responsible for the safety while job is in progress.",
+      "2","3","low"],
+      ["Personnel injury",
+      "1. Tool box meeting carried out
+      2. Comply with Take 5
+      3. Comply with work and rest hour",
+      "2","3","low"],
+      ["Damage to Equipment",
+      "1.Tool box meeting carried out.
+      2. Conduct a proper trainning to crew and junior officers.
+      3. FPD shall be connect properly.
+      4. Safety pin,winch,wire,harbour pin shall be check prior lowering
+      5. Check hoisting limit switch.
+      6. Battery charger should be remove before lowering the life boat.",
+      "2","3","low"],
+      ["Ergonomic Hazard",
+      "1. Tool box meeting carried out. 
+      2. Comply with work and rest hour.
+      3. Take a short break in between the job.
+      4. Provide enough man power for the task.",
+      "2","3","low"]
+    ]
+    additional_methods: [
+    ]

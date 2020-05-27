@@ -1,0 +1,51 @@
+Maint on Life Boats and Davits:
+  page1:
+    major_hazards: [
+      ["Fall from height","3","2","low"],
+      ["Lifeboat falling into the water","2","4","medium"],
+      ["Adverse weather affecting the ship","3","3","medium"]
+    ]
+    erisk: ["medium","low","low"]
+  page2:
+    existing_methods: [
+      ["Fall from height",
+      "1. All personnel must be thoroughly briefed regarding the planned job.
+      2. Personnels who will be working aloft must don a safety harness, lifevest and proper PPE. 
+      3. Only experienced crew will help dock workers in the job.
+      4. Personnel working aloft must secure their life line to a strong point.
+      5. Ensure safety harness and life line have been inspected for any defects prior donning. Replace safety harness and life line if suspected in poor condition. ",
+      "2","2","low"],
+      ["Lifeboat falling into the water",
+      "1. Safety strap to be place correctly prior task.
+      2. Secure lifeboat fore and aft of lifeboat and tightened without any slack.
+      3. Additional lashing with 30mm messenger rope must be set fore and aft.
+      4. Lifeboat lashing gripes must be tightened fully.",
+      "1","4","low"],
+      ["Adverse weather affecting the ship",
+      "1. Regular monitoring of the weather.
+      2. Port weather channel to be monitored.
+      3. Comply IMS procedure for heavy weather",
+      "2","3","low"],
+      ["Injury due to slip and fall",
+      "1. Utilization of company's working aloft / over side permit and checklist.
+      2. Check condition of safety harness and ropes to be used by personnel working aloft making sure everything is in satisfactory condition.
+      3. Proper use of PPE by personnel working aloft                         
+      4. Establish communication between bridge duty officer and responsible person of the team working aloft. 
+      5. Responsible person to monitor throughout the operations.
+      6. Tool box meeting carried out with all personnel involved.",
+      "2","3","low"],
+      ["Communication",
+      "1. Ensure all using in common language "English' as per company's standard.
+      2. Ensure all walkie-talkie used are properly charged.
+      3. Ensure all responsible person holding the walkie-talkie is well experience, briefed, knowledgeable on the task to be done",
+      "2","3","low"],
+      ["Unforeseen delays",
+      "1. All persons involved in to be properly rested.
+      2. comply duty roster.
+      3. Proper rest prior stating of the job.
+      4. STCW/ILO rest hour requirement to be complied.
+      5. If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
+      "2","3","low"]
+    ]
+    additional_methods: [
+    ]

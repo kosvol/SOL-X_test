@@ -3,7 +3,6 @@ require './././support/env'
 class CrewListPage
   include PageObject
   
-  @root_xpath = "//%s[@data-testid='%s']"
   elements(:crew_table_header,xpath: "//*/tr/th")
   elements(:crew_list,xpath: "//*/tbody/tr")
 

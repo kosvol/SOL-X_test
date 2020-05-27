@@ -32,7 +32,21 @@ Feature: DRASectionA
     | Use of ODME on manual mode                                            |
     | Working on Elect Equip                                                |      
     | Use of Hydroblaster                                                   |
-    | Maintenance on Emergency Generator                                    |
+    | Maint on Emergency Generator                                          |
+    | Maint on Emergency Fire Pump                                          |
+    | Maint on Fixed Fire Fighting System                                   |
+    | Maint on Lifeboat Engine                                              |
+    | Maint on Anchor                                                       |
+    | Maint on Radio Battery                                                |
+    | Maint on Fire Detection Alarm System                                  |
+    | Maint on Rrm Gas Detect Alarm Sys                                     |
+    | Maint Emergency Switch Engine                                         |
+    | Maint Main Propulsion                                                 |
+    | Maint on Boiler and GE                                                |
+    | Maint on Oil Mist Detector Monitoring Sys                             |
+    | Maint Fuel Lub Oil Tank                                               |
+    | Maint on magnetic compass                                             |
+    | Maint on Life Boats and Davits                                        |
     
     # Scenario: Verify identified hazards contents
     #   Given I launch sol-x portal

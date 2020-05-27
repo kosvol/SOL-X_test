@@ -1,0 +1,63 @@
+Maint on Rrm Gas Detect Alarm Sys:
+  page1:
+    major_hazards: [
+      ["Undetected building up gas in respective area","2","3","low"],
+      ["Electrocution","2","3","low"],
+      ["Improper commissioning","2","3","low"]
+    ]
+    erisk: ["low","low","low"]
+  page2:
+    existing_methods: [
+      ["Undetected building up gas in respective area",
+      "1. Tool box meeting carried out.
+      2. Ventilation to be carried out properly.
+      3. Before entering the pump room check the O2 level 20.9% and other toxic gases should be zero.
+      4. Staff to wear personal gas detectors
+      5. Ensure gas detectors to be calibrated
+      6. Pump room ventilation must be continously running, check atmosphere before entry.
+      7. Take-5, Stop card and Intervension policy discussed.
+      8. To check all PGM  and portable gas meters prior to be used.
+      9. PGM must be worn at all times.
+      10. PPE to be worn and complies as per PPE matrix.
+      11. MSDS obtained and understood by responsible officer and explained to all staff.
+      12. Hazards associated with toxic substances identified and understood.",
+      "1","3","low"],
+      ["Electrocution",
+      "1. Tool box meeting carried out.                            
+      2. Comply with EIC                                                 
+      3. PPE matrix has to be followed.
+      4.Control volatage fuse has to remove.
+      5.Authoorized personnel to do the job.",
+      "1","3","low"],
+      ["Improper commissioning",
+      "1. Tool box  meeting carried out.
+      2. Comply with makers instructions.
+      3. Test all safety alarms prior putting in service.",
+      "1","3","low"],
+      ["Insufficient resources",
+      "1. DRA and Job scope has been discussed.
+      2. Check all essential spares and keep it stand by.",
+      "1","3","low"],
+      ["Damage to equipement",
+      "1. Tool box meeting carried out all personnel clear about the job plan.
+      2. Comply with Take five
+      3. Follow maker’s instruction manual.
+      4. Competent person carried out the job",
+      "2","2","low"],
+      ["Slip/trip and falls",
+      "1. All personel are to ensure personal safety about the tripping hazards
+      2. PPE matrix need to be comply.
+      3. Ladders are duly secured before use
+      4. Three point contact for ladder and staircase use is duly followed.
+      5. Workplace area adequately illuminated.
+      6. Slippery surface inside and ouside work space is to be wiped out as required.",
+      "2","3","low"],
+      ["Ergonomic Hazard",
+      "1. Tool box meeting carried out.
+      2. Enough Man power
+      3. Take short breaks in betwwen the job.
+      4. Comply with proper work and rest hour.",
+      "2","3","low"]
+    ]
+    additional_methods: [
+    ]

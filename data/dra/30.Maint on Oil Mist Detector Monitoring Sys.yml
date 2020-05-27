@@ -1,0 +1,39 @@
+Maint on Oil Mist Detector Monitoring Sys:
+  page1:
+    major_hazards: [
+      ["Oil mist in crankcase can not be detected","3","3","medium"],
+      ["Main Engine auto slow down won't function","3","4","high"],
+      ["Equipment damage","3","3","medium"]
+    ]
+    erisk: ["high","medium","low"]
+  page2:
+    existing_methods: [
+      ["Oil mist in crankcase can not be detected",
+      "1. Work Plan meeting and toolbox meeting to be carried out
+      2. E/R manned, Regular monitoring of crankcase door temperature.
+      3. Supervised by senior officer
+      4. To carry out the job if possible when main engine not running",
+      "2","3","medium"],
+      ["Main Engine auto slow down won't function",
+      "1. Work Plan meeting and toolbox meeting to be carried out
+      2. Regular monitor the main engine running parameters physically.
+      3. Person has to be stand by near the main engine for informing the abnormalities
+      4. Job has to be carried out on first opportunity.",
+      "2","4","medium"],
+      ["Equipment damage",
+      "1. Work Plan meeting and toolbox meeting to be carried out
+      2. Maintain the minimum spares onboard.
+      3. Use Appropriate tools.
+      4. Always refer to maker's instruction mannual beore proceeding the job.
+      5. Proper supervision required by Responsible Authority
+      6. Proper EIC to be complied with
+      7. Take five has to be followed.",
+      "2","3","low"]
+    ]
+    additional_methods: [
+      ["Main Engine auto slow down won't function","Equipment damage",
+      "1) To run main engine in slower speeds.
+      2) Ensure that there is ready spare available before carrying out the job
+      3. All ER staff to be familiar with manual auto slow down procedure when joining ship",
+      "1","4","low"]
+    ]
