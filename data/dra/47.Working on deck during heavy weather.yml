@@ -1,0 +1,93 @@
+47.Working on deck during heavy weather:
+  page1:
+    major_hazards:
+      [
+        ["Fall overboard", "3", "3", "medium"],
+        ["Fatigue", "2", "3", "low"],
+        ["Personal Injury", "2", "3", "low"],
+      ]
+    erisk: ["medium", "medium", "low"]
+  page2:
+    existing_methods: [
+        [
+          "Fall overboard",
+          ". Tool box meeting carried out.
+          2. Lifeline rigged along the walkway.
+          3. Identify life buoys located in work area for rapid deployment.
+          4. Rescue party to be informed of such task taking place.
+          5. Task performer to wear safety harness.",
+          "3",
+          "3",
+          "medium",
+        ],
+        [
+          "Fatigue",
+          "1. Comply with ILO Rest and work hour.
+          2. Person carrying out the task to be well aware of the hazards involved in the operation.
+          3. Short duration of work to be considered in view of difficult work conditions during heavy weather.
+          4. Share work loads between team members.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Personal Injury",
+          "1. Tool box meeting carried out. Dangers of likely hood of vessel rolling/ pitching and shipping seas adequately discussed.
+          2. Comply with PPE matrix.
+          3. Take 5 to be used at all time.
+          4. Work in pairs and use Harness and L/Wests.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Weather Monitoring",
+          "1. Obtain weather forecast.
+          2. Compare weather forecast with other stations or with different service providers.
+          3. Anticipate weather changes and plan work during clear period for the task.
+          4. Decide on a common weather restiction for the task.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "LOSE ITEMS ON DECK",
+          "1. Lash lose items on deck prior sailing out to open sea. (No losse objects)
+          2. Lashing system to be of suitable type and work load.",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "UNEXPECTED WAVE AND ROLLING",
+          "1. Obtain weather forecast.
+          2. Anticipate for weather changes and calm periods.
+          3. Utilise catwalk and walkways with anti skid paint.
+          4. Maintain 3 point contact.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "SLIP AND FALL",
+          "1. Carry out tool box meeting.
+          2. Comply with PPE matrix.
+          3. Utilise catwalk and walkways with anti skid paint.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: [
+        [
+          "Fall overboard",
+          "1. Task performer to wear Lifejacket.
+          2. lifebouy and lifeline ready.
+          3. Post extra lookout on bridge.
+          4. Plan work area away from ships side
+          5. Alteration of course to be considered when ever required.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]

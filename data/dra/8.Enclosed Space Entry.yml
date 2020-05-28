@@ -1,83 +1,136 @@
 Enclosed Space Entry:
   page1:
-    major_hazards: [
-      ["Oxygen deficiencies","2","4","medium"],
-      ["Toxic / Flammable gases","2","3","low"],
-      ["Communication failure","2","4","medium"]
-    ]
-    erisk: ["medium","medium","low"]
+    major_hazards:
+      [
+        ["Oxygen deficiencies", "2", "4", "medium"],
+        ["Toxic / Flammable gases", "2", "3", "low"],
+        ["Communication failure", "2", "4", "medium"],
+      ]
+    erisk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
-      ["Oxygen deficiencies",
-      "1. Displace the athmosphere effectively by mechanical or natural means.
-      2. Ensure gas meters are calibrated as per PMS.
-      3. Carry extra multi gas meters if required.
-      4. Ensure authorized entrants are equipped with PGM.
-      5. Take adequate samples of athmosphere readings prior entry.",
-      "2","4","medium"],
-      ["Toxic / Flammable gases",
-      "1. Enclosed space been tested and found safe for entry. 
-      2. Representative cross-section of the atmosphere in the space, 
-      3. Samples should be taken from several levels and through as many openings as possible. 
-      4. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere gas test areobtained.",
-      "2","3","low"],
-      ["Communication failure",
-      "1. Equip each team member with a walkie talkie and select a clear channel to communicate.
-      2. Radio communication to be tested and battery fully charged prior entry.
-      3. Establish and observe reporting intervals strictly",
-      "2","4","medium"],
-      ["Hot Surface",
-      "1. Comply with PPE matrix.
-      2. Identify heated tanks and its adjacent bulkheads in the work area.
-      3. Buddy system looking out for each others safety.",
-      "2","2","low"],
-      ["Malfunction of PGM",
-      "1. Authorized entrants shall enter and move inside enclosed spaces in pairs.
-      2. Regular service and maintenance on PGM.
-      3. Stand-by extra PGM
-      4. Carry another type of multi gas meter available.",
-      "3","2","low"],
-      ["Corroded ladder",
-      "1. Maintain 3 point contact.
-      2. Area to be well illuminated.
-      3. Stop work policy
-      4. Use another route for entry.",
-      "2","3","low"],
-      ["Slip and trip hazards",
-      "1. Utilise 3 point contact method while climbing or decending.
-      2. Comply with PPE matrix.
-      3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.  
-      4. Supervision by experience personnel  
-      5. Establish communication between deck and bridge  
-      6. Work area well illuminated for the task.
-      7. Use anti skid paint in work areas and its surrounding.",
-      "3","2","low"],
-      ["Lack of adequate Ventilation",
-      "1. Effective ventilation maintained continuously during the entry period.
-      2. Keep team members hydrated",
-      "2","2","low"],
-      ["Rest hour non-compliance",
-      "1. Proper rest prior stating of the job.
-      2. STCW/ILO rest hour requirement to be complied.
-      3. If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
-      "2","3","low"],
-      ["Adverse effect of sea/weather on vessel movement",
-      "1. Obtain weather forecast and arrange work in acceptable weather condition.
-      2. Weather and sea conditions to be monitored throughout the task.
-      3. No working overside while underway except for preparation for pilot embarkation/disembarkaation.",
-      "2","3","low"]
-    ]
+        [
+          "Oxygen deficiencies",
+          "1. Displace the athmosphere effectively by mechanical or natural means.
+          2. Ensure gas meters are calibrated as per PMS.
+          3. Carry extra multi gas meters if required.
+          4. Ensure authorized entrants are equipped with PGM.
+          5. Take adequate samples of athmosphere readings prior entry.",
+          "2",
+          "4",
+          "medium",
+        ],
+        [
+          "Toxic / Flammable gases",
+          "1. Enclosed space been tested and found safe for entry.
+          2. Representative cross-section of the atmosphere in the space,
+          3. Samples should be taken from several levels and through as many openings as possible.
+          4. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere gas test areobtained.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Communication failure",
+          "1. Equip each team member with a walkie talkie and select a clear channel to communicate.
+          2. Radio communication to be tested and battery fully charged prior entry.
+          3. Establish and observe reporting intervals strictly",
+          "2",
+          "4",
+          "medium",
+        ],
+        [
+          "Hot Surface",
+          "1. Comply with PPE matrix.
+          2. Identify heated tanks and its adjacent bulkheads in the work area.
+          3. Buddy system looking out for each others safety.",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "Malfunction of PGM",
+          "1. Authorized entrants shall enter and move inside enclosed spaces in pairs.
+          2. Regular service and maintenance on PGM.
+          3. Stand-by extra PGM
+          4. Carry another type of multi gas meter available.",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Corroded ladder",
+          "1. Maintain 3 point contact.
+          2. Area to be well illuminated.
+          3. Stop work policy
+          4. Use another route for entry.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Slip and trip hazards",
+          "1. Utilise 3 point contact method while climbing or decending.
+          2. Comply with PPE matrix.
+          3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.
+          4. Supervision by experience personnel
+          5. Establish communication between deck and bridge
+          6. Work area well illuminated for the task.
+          7. Use anti skid paint in work areas and its surrounding.",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Lack of adequate Ventilation",
+          "1. Effective ventilation maintained continuously during the entry period.
+          2. Keep team members hydrated",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "Rest hour non-compliance",
+          "1. Proper rest prior stating of the job.
+          2. STCW/ILO rest hour requirement to be complied.
+          3. If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Adverse effect of sea/weather on vessel movement",
+          "1. Obtain weather forecast and arrange work in acceptable weather condition.
+          2. Weather and sea conditions to be monitored throughout the task.
+          3. No working overside while underway except for preparation for pilot embarkation/disembarkaation.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
     additional_methods: [
-      ["Oxygen deficiencies",
-      "1. Anticipate weather changes and confirm its abort conditions",
-      "1","4","low"],
-      ["Toxic / Flammable gases",
-      "1. Gas meter shall be of appropriate type and calibrated.
-      2. Provide continuous ventilation during work process.",
-      "1","3","low"],
-      ["Communication failure",
-      "1. The frequency of communication checks between authorized entrants and standby person shall be agreed upon prior to entry.
-      2. Identify Back up communication channel.
-      3. Equip with portable VHF as back up. ",
-      "1","4","low"]
-    ]
+        [
+          "Oxygen deficiencies",
+          "1. Anticipate weather changes and confirm its abort conditions",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Toxic / Flammable gases",
+          "1. Gas meter shall be of appropriate type and calibrated.
+          2. Provide continuous ventilation during work process.",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Communication failure",
+          "1. The frequency of communication checks between authorized entrants and standby person shall be agreed upon prior to entry.
+          2. Identify Back up communication channel.
+          3. Equip with portable VHF as back up. ",
+          "1",
+          "4",
+          "low",
+        ],
+      ]

@@ -1,0 +1,62 @@
+Maint on Oily water Separator:
+  page1:
+    major_hazards:
+      [
+        ["Damage to Equipment", "2", "3", "low"],
+        ["Lifting heavy objects", "2", "3", "low"],
+        ["Accidental Oil Release", "3", "4", "high"],
+      ]
+    erisk: ["high", "medium", "low"]
+  page2:
+    existing_methods: [
+        [
+          "Damage to Equipment",
+          "1) Tool box meeting carried out.
+          2) Competent person involve in the job
+          3) Whlie boxing back see that no items or tools are left inside sepeartor.
+          4) No sharp edge tool has to be used when carrying out maintenance.",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Lifting heavy objects",
+          "1) Proper PPE to be worn at all times.
+          2) Correct lifting postures to be used.
+          3) Chain blocks & wire slings to be of the right capacity prior use.
+          4) Stay away from suspended heavy loads",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Accidental Oil Release",
+          "1) Ensure that the overboard valve is shut & padlocked.
+          2) Insert a blank in line prior commencing task.
+          3) Drain all water to Bilge hoding tk prior carrying task.
+          4) keep drain valves open during course of the job.
+          5) SOPEP equipment to be stand by",
+          "2",
+          "4",
+          "medium",
+        ],
+        [
+          "Slip Trip &Fall",
+          "1) Proper PPE to be worn at all times,
+          2) Any oil spilled to be cleaned immediately
+          3) Personnel to work carefully when near OWS",
+          "1",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: [
+        [
+          "Accidental Oil Release",
+          "1) All working personnel to be briefed about therelated valves and equipment
+          2) Lock Out Tag Out to be applied",
+          "1",
+          "4",
+          "low",
+        ],
+      ]

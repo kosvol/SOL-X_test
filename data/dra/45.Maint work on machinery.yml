@@ -1,0 +1,95 @@
+45.Maint work on machinery:
+  page1:
+    major_hazards:
+      [
+        ["Damage to equipment", "3", "2", "low"],
+        ["Restricted work place", "3", "2", "low"],
+        ["Inadequate system isolation", "3", "2", "low"],
+      ]
+    erisk: ["low", "low", "low"]
+  page2:
+    existing_methods: [
+        [
+          "Damage to equipment",
+          "1. Tool box meeting carried out.
+          2. To check condition of all hand tools and power tools before using them.
+          3. Lock out tag out to complied with,
+          4. Engineer in charge to supervise while job is carrying out.
+          5. Maintenance to be reffered to appropriate makers instruction manual.",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Restricted work place",
+          "1. Tool box meeting carried out.
+          2. Comply with PPE matrix
+          3. Proper use of Engine room crane
+          4. Proper use of shackle,wire sling, chain blocks and hoist crane as per SWL.",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "Inadequate system isolation",
+          "1. Tool box meeting carried out.
+          2. Comply with Isolation procedure and permits to work.
+          3. Competent person has to isolate the system and verified by head of department",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Ergonomic Hazard",
+          "1. Tool box meeting carried out.
+          2. Comply with work and rest hour.
+          3. Comply with PPE matrix.
+          4. Take short breaks while doing a task.",
+          "1",
+          "2",
+          "low",
+        ],
+        [
+          "Slip and Fall",
+          "1. Tool box meeting carried out.
+          2. Remove all tools, equipments on the working place
+          3. Keep the area dry and free from oil.
+          4. BE vigilant at all times, proper communication to established.",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "Unforeseen delays",
+          "1. All persons involved in to be properly rested.
+          2. Comply duty roster.
+          3. Proper rest prior stating of the job.
+          4. STCW/ILO rest hour requirement to be complied.
+          5. If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.
+          6. See that window opportunity is suitable with vessels schedule",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Sudden change in the weather condition",
+          "1. Obtain weather forecast regularly
+          2. Have a common weather restriction to the task
+          3. Anticipate clear window period for the task.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Restricted work space",
+          "1. Take Five
+          2. Ensure only nessesary personnels are present.
+          3. Adequate lighting is provided.
+          4. Use of special tools for hard to reach areas.
+          5. Proper Work plan to ensure safe execution.",
+          "3",
+          "2",
+          "low",
+        ],
+      ]
+    additional_methods: []

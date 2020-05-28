@@ -1,42 +1,61 @@
 Maint Fuel Lub Oil Tank:
   page1:
-    major_hazards: [
-      ["Leak of control air","2","3","low"],
-      ["Black out and loss of propulsion and steering","3","4","high"],
-      ["Quick closing system malfunction","2","3","low"]
-    ]
-    erisk: ["high","medium","low"]
+    major_hazards:
+      [
+        ["Leak of control air", "2", "3", "low"],
+        ["Black out and loss of propulsion and steering", "3", "4", "high"],
+        ["Quick closing system malfunction", "2", "3", "low"],
+      ]
+    erisk: ["high", "medium", "low"]
   page2:
     existing_methods: [
-      ["Leak of control air",
-      "1) Tool box meeting has to be carried out.
-      2) Testing of equipment has to be done before and after the maintenance.                                
-      3) Control air pressure has to be monitored
-      4) Control air pressure low alarm has to be checked .",
-      "2","3","low"],
-      ["Black out and loss of propulsion and steering",
-      "1) Tool box meeting carried out.                      
-      2) Master and Chief engg informed prior maintenance.                                                    
-      3) PTW and checklist has to complied.             
-      4)DRA has to be carried out.",
-      "2","4","medium"],
-      ["Quick closing system malfunction",
-      "1) Tool box meeting carried out.
-      2) Maker's instruction has to be follow.             
-      3) Vessel Suprintendent has to be inform.        
-      4) Proper training conduted to crew and junior engineers.",
-      "1","4","low"],
-      ["Hand/finger injury",
-      "1) Tool box meeting carried out.                       
-      2) Proper job scope discuss with all personnel. 3) Take five has to be follow.",
-      "2","3","low"]
-    ]
+        [
+          "Leak of control air",
+          "1) Tool box meeting has to be carried out.
+          2) Testing of equipment has to be done before and after the maintenance.
+          3) Control air pressure has to be monitored
+          4) Control air pressure low alarm has to be checked .",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Black out and loss of propulsion and steering",
+          "1) Tool box meeting carried out.
+          2) Master and Chief engg informed prior maintenance.
+          3) PTW and checklist has to complied.
+          4)DRA has to be carried out.",
+          "2",
+          "4",
+          "medium",
+        ],
+        [
+          "Quick closing system malfunction",
+          "1) Tool box meeting carried out.
+          2) Maker's instruction has to be follow.
+          3) Vessel Suprintendent has to be inform.
+          4) Proper training conduted to crew and junior engineers.",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Hand/finger injury",
+          "1) Tool box meeting carried out.
+          2) Proper job scope discuss with all personnel. 3) Take five has to be follow.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
     additional_methods: [
-      ["Black out and loss of propulsion and steering",
-      "1) Maintenance would not be carried out while main engine is running.
-      2) Sign to be placed on both FO and DO service tanks and in vicinity of activation point.
-      3) Proper tarining carried out for crew and junior engineer.",
-      "1","4","low"]
-    ]
-
-  
+        [
+          "Black out and loss of propulsion and steering",
+          "1) Maintenance would not be carried out while main engine is running.
+          2) Sign to be placed on both FO and DO service tanks and in vicinity of activation point.
+          3) Proper tarining carried out for crew and junior engineer.",
+          "1",
+          "4",
+          "low",
+        ],
+      ]

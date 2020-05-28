@@ -1,39 +1,63 @@
 Hot Work Level - 2 in Designated Area:
   page1:
-    major_hazards: [
-      ["Gaseous atmosphere","2","4","medium"],
-      ["Flammable materials","2","3","low"],
-      ["Fire Hazard in adjacent compartments","2","3","low"]
-    ]
-    erisk: ["medium","low","low"]
+    major_hazards:
+      [
+        ["Gaseous atmosphere", "2", "4", "medium"],
+        ["Flammable materials", "2", "3", "low"],
+        ["Fire Hazard in adjacent compartments", "2", "3", "low"],
+      ]
+    erisk: ["medium", "low", "low"]
   page2:
     existing_methods: [
-      ["Gaseous atmosphere",
-      "1. Continous ventilation of work area - confirm LFL less than 1%
-      2. Frequency of monitoring gas content established .
-      3. Gas free adjacent compartments.",
-      "1","4","low"],
-      ["Flammable materials",
-      "1. Work area and adjacent compartment inspected clear from combustibles flammable materials.
-      2. Post extra stand-by person",
-      "2","3","low"],
-      ["Fire Hazard in adjacent compartments",
-      "1. Post extra stand-by person
-      2. Emergency evacuation procedures agreed.
-      3. Provide boundary cooling in adjacent compartment if necessary.",
-      "2","3","low"],
-      ["Risk of Electrocution",
-      "1. Comply wit PPE matrix.
-      2. Maintain buddy system checking condition, situation, and progress of task performed.
-      3. Man ESDS switch during restarts.",
-      "2","3","low"],
-      ["Burns / eye injury",
-      "1. Carry out inspection prior use.
-      2. Replace parts regularly as PMS.",
-      "2","3","low"],
-      ["Faulty equipment - Oxygen or Acetylene hose , Faulty flash back arrestor",
-      "1. Hot work carried out at one location at a time only.",
-      "2","3","low"]
-    ]
-    additional_methods: [
-    ]
+        [
+          "Gaseous atmosphere",
+          "1. Continous ventilation of work area - confirm LFL less than 1%
+          2. Frequency of monitoring gas content established .
+          3. Gas free adjacent compartments.",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Flammable materials",
+          "1. Work area and adjacent compartment inspected clear from combustibles flammable materials.
+          2. Post extra stand-by person",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Fire Hazard in adjacent compartments",
+          "1. Post extra stand-by person
+          2. Emergency evacuation procedures agreed.
+          3. Provide boundary cooling in adjacent compartment if necessary.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Risk of Electrocution",
+          "1. Comply wit PPE matrix.
+          2. Maintain buddy system checking condition, situation, and progress of task performed.
+          3. Man ESDS switch during restarts.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Burns / eye injury",
+          "1. Carry out inspection prior use.
+          2. Replace parts regularly as PMS.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Faulty equipment - Oxygen or Acetylene hose , Faulty flash back arrestor",
+          "1. Hot work carried out at one location at a time only.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: []

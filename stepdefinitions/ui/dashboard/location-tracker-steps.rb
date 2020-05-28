@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given (/^I unlink all crew from wearable$/) do
   step "I get wearable-simulator/base-get-wearable-details request payload"
   step "I hit graphql"
@@ -31,14 +33,14 @@ end
 
 Then (/^I should see active crew details$/) do
   step "I toggle activity crew list"
-  is_true(on(DashboardPage).is_crew_location_detail_correct("service"))
+  is_true(on(DashboardPage).is_crew_location_detail_correct?("service"))
 end
 
 Then (/^I should see countdown starts at 15s$/) do
   step "I link wearable"
   on(DashboardPage).toggle_crew_activity_list
   sleep 12
-  is_true(on(DashboardPage).is_last_seen.include? "secs")
+  is_true(on(DashboardPage).is_last_seen.include?("secs"))
 end
 
 Then (/^I should see Just now as current active crew$/) do
@@ -49,8 +51,12 @@ end
 
 Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
   step "I link wearable"
-  is_true(on(DashboardPage).is_activity_indicator_status("rgba(67, 160, 71, 1)")) if indicator_color === "green below"
-  is_true(on(DashboardPage).is_activity_indicator_status("rgba(242, 204, 84, 1)")) if indicator_color === "yellow after"
+  if indicator_color === "green below"
+    is_true(on(DashboardPage).is_activity_indicator_status("rgba(67, 160, 71, 1)"))
+  end
+  if indicator_color === "yellow after"
+    is_true(on(DashboardPage).is_activity_indicator_status("rgba(242, 204, 84, 1)"))
+  end
 end
 
 Then (/^I should see (.+) count 1$/) do |zone|
@@ -107,8 +113,8 @@ And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
   step "I wait for 1 seconds"
 end
 
-Then (/^I should see ui location updated$/) do
+Then (/^I should see ui location updated to (.+)$/) do |_new_zone|
   step "I get wearable-simulator/base-get-wearable-details request payload"
   step "I hit graphql"
-  is_true(on(DashboardPage).is_crew_location_detail_correct("ui"))
+  is_true(on(DashboardPage).is_crew_location_detail_correct?("ui", _new_zone))
 end

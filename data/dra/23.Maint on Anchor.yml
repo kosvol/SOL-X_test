@@ -1,41 +1,57 @@
 Maint on Anchor:
   page1:
-    major_hazards: [
-      ["Presence of flammable gases / Fire hazard","1","4","low"],
-      ["Falling down Anchor chain","1","3","low"],
-      ["Personal Injury","2","3","low"]
-    ]
-    erisk: ["low","low","low"]
+    major_hazards:
+      [
+        ["Presence of flammable gases / Fire hazard", "1", "4", "low"],
+        ["Falling down Anchor chain", "1", "3", "low"],
+        ["Personal Injury", "2", "3", "low"],
+      ]
+    erisk: ["low", "low", "low"]
   page2:
     existing_methods: [
-      ["Presence of flammable gases / Fire hazard",
-      "1. All cargo tanks purged to HC content less than 1% by Volume. 
-      2. Vessel heading in windward direction, taking all gasses on deck in aft direction.
-      3. Contnous monitoring of atmosphere in the vicinity of Hotwork to be carried out.
-      4. Drain or strip cargo pipelines around the adjacent  area.         
-      5. Have fire line charged during the task.
-      6.Area must be clear of any flammable material.",
-      "1","4","low"],
-      ["Falling down Anchor chain",
-      "1. Bow stopper to be down to hold the chain.
-      2. Provide extra lashing if possible.
-      3. Recheck bitter end is secured.
-      4. Task performer handling windlass to be insight of the signaller.",
-      "1","3","low"],
-      ["Personal Injury",
-      "1. Comply with PPE matrix.                         
-      2. Carry out tool box meeting.
-      3. Maintain buddy system throughout the task.
-      4. Use correct tools for the task.
-      5. Operate equipment within its operating limits.
-      6. Work area to be clear from tripping hazards.",
-      "2","3","low"],
-      ["Heavy weather / sea condition",
-      "1. Obtain weather forecast.
-      2. Compare weather forecast with other stations or with different service providers.
-      3. Anticipate weather changes and plan work during clear period for the task.
-      4. Decide on a common weather restiction for the task.",
-      "2","3","low"]
-    ]
-    additional_methods: [
-    ]
+        [
+          "Presence of flammable gases / Fire hazard",
+          "1. All cargo tanks purged to HC content less than 1% by Volume.
+          2. Vessel heading in windward direction, taking all gasses on deck in aft direction.
+          3. Contnous monitoring of atmosphere in the vicinity of Hotwork to be carried out.
+          4. Drain or strip cargo pipelines around the adjacent  area.
+          5. Have fire line charged during the task.
+          6.Area must be clear of any flammable material.",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Falling down Anchor chain",
+          "1. Bow stopper to be down to hold the chain.
+          2. Provide extra lashing if possible.
+          3. Recheck bitter end is secured.
+          4. Task performer handling windlass to be insight of the signaller.",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Personal Injury",
+          "1. Comply with PPE matrix.
+          2. Carry out tool box meeting.
+          3. Maintain buddy system throughout the task.
+          4. Use correct tools for the task.
+          5. Operate equipment within its operating limits.
+          6. Work area to be clear from tripping hazards.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Heavy weather / sea condition",
+          "1. Obtain weather forecast.
+          2. Compare weather forecast with other stations or with different service providers.
+          3. Anticipate weather changes and plan work during clear period for the task.
+          4. Decide on a common weather restiction for the task.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: []

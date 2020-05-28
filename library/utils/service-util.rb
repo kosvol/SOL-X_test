@@ -45,9 +45,7 @@ module ServiceUtil
     end
 
     def get_http_response_status_code
-      if !@@response.body.nil? && !@@response.body.empty?
-        @@response.code.to_i
-      end
+      @@response.code.to_i if !@@response.body.nil? && !@@response.body.empty?
     end
   end
 end

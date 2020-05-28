@@ -1,38 +1,59 @@
 Personnel Transfer by Transfer Basket:
   page1:
-    major_hazards: [
-      ["Slip and Fall / Injuries","2","3","low"],
-      ["Basket falls down","2","3","low"],
-      ["Contact with stationary objects (railings, bulwarks, etc.)","2","4","medium"]
-    ]
-    erisk: ["medium","low","low"]
+    major_hazards:
+      [
+        ["Slip and Fall / Injuries", "2", "3", "low"],
+        ["Basket falls down", "2", "3", "low"],
+        [
+          "Contact with stationary objects (railings, bulwarks, etc.)",
+          "2",
+          "4",
+          "medium",
+        ],
+      ]
+    erisk: ["medium", "low", "low"]
   page2:
     existing_methods: [
-      ["Slip and Fall / Injuries",
-      "1. Comply with PPE matrix for the task.                                                                                                                       2. The work area shall be free from tripping hazards.
-      3. Team members to identify basket landing area .                                                                                4. Non-experience personnel to be briefed and escorted 
-      5. Land in areas where anti skid is provided on deck.
-      6. Area to be well illmuinated during dark hours.",
-      "2","3","low"],
-      ["Basket falls down",
-      "1. PMS of crane and lifting appliances.
-      2. SSV to be invicinity and able to react during personnel transfer by basket.
-      3. Ensure crane hook safety latch is in good condition.
-      4. All associated components must be thoroughly inspected by Supply Boat and ship staffs 
-      5. Conduct basket dry run prior to task.",
-      "2","3","low"],
-      ["Contact with stationary objects (railings, bulwarks, etc.)",
-      "1. Anticipate projection and movement of basket prior lifting.Select path with least obstruction.
-      2. Establish proper communication voice and signal.
-      3. Provide tag lines to control basket movement.
-      4. Personnel on basket to remain
-      5. Select a crane with suitable reach for the transfer.
-      6. Work area to be well illuminated.",
-      "2","3","low"],
-      ["Weather Condition",
-      "1. Obtain weather forecast and arrange work in acceptable weather condition.
-      2. Weather and sea conditions to be monitored throughout the task.",
-      "2","3","low"]
-    ]
-    additional_methods: [
-    ]
+        [
+          "Slip and Fall / Injuries",
+          "1. Comply with PPE matrix for the task.                                                                                                                       2. The work area shall be free from tripping hazards.
+          3. Team members to identify basket landing area .                                                                                4. Non-experience personnel to be briefed and escorted
+          5. Land in areas where anti skid is provided on deck.
+          6. Area to be well illmuinated during dark hours.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Basket falls down",
+          "1. PMS of crane and lifting appliances.
+          2. SSV to be invicinity and able to react during personnel transfer by basket.
+          3. Ensure crane hook safety latch is in good condition.
+          4. All associated components must be thoroughly inspected by Supply Boat and ship staffs
+          5. Conduct basket dry run prior to task.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Contact with stationary objects (railings, bulwarks, etc.)",
+          "1. Anticipate projection and movement of basket prior lifting.Select path with least obstruction.
+          2. Establish proper communication voice and signal.
+          3. Provide tag lines to control basket movement.
+          4. Personnel on basket to remain
+          5. Select a crane with suitable reach for the transfer.
+          6. Work area to be well illuminated.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Weather Condition",
+          "1. Obtain weather forecast and arrange work in acceptable weather condition.
+          2. Weather and sea conditions to be monitored throughout the task.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: []

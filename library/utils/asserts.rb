@@ -1,26 +1,27 @@
+# frozen_string_literal: true
+
 require "rspec/expectations"
 
 module AssertionUtil
-
   # def is_textfield_length(element, acceptable_length)
   #   element.text.length > acceptable_length ? (return false) : (return true)
   # end
 
-  def is_selected(element)
-    element.selected?
-  end
+  # def is_selected?(element)
+  #   element.selected?
+  # end
 
-  def self.is_enabled(element)
-    element.enabled?
-  end
+  # def is_enabled?(element)
+  #   element.enabled?
+  # end
 
-  def self.is_display(element)
-    begin
-      element.displayed?
-    rescue
-      return false
-    end
-  end
+  # def is_display(element)
+  #   begin
+  #     element.displayed?
+  #   rescue
+  #     return false
+  #   end
+  # end
 
   def is_equal(compare_to_text, equal_text)
     expect(compare_to_text.to_s).to eql equal_text.to_s
@@ -42,14 +43,6 @@ module AssertionUtil
     expect(compare_to_text).not_to include include_text
   end
 
-  # def is_enabled(element)
-  #   expect(element).to be_enabled
-  # end
-
-  # def is_disabled(element)
-  #   expect(element).to be_disabled
-  # end
-
   # # def not_to_exists(element)
   # #   expect(element).not_to exist
   # # end
@@ -60,14 +53,6 @@ module AssertionUtil
 
   # def is_visible(element)
   #   expect(element).to be_visible
-  # end
-
-  # def click_element(element)
-  #   element.click
-  # end
-
-  # def click_dropdown_field(which_dropdown)
-  #   which_dropdown.click
   # end
 
   # def select_from_dropdown(dropdown_list,which_type)

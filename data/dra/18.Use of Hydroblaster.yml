@@ -1,59 +1,87 @@
 Use of Hydroblaster:
   page1:
-    major_hazards: [
-      ["Personal Injury - Operator","2","3","low"],
-      ["High Pressure","2","3","low"],
-      ["Damage to equipment","3","2","low"]
-    ]
-    erisk: ["low","low","low"]
+    major_hazards:
+      [
+        ["Personal Injury - Operator", "2", "3", "low"],
+        ["High Pressure", "2", "3", "low"],
+        ["Damage to equipment", "3", "2", "low"],
+      ]
+    erisk: ["low", "low", "low"]
   page2:
     existing_methods: [
-      ["Personal Injury - Operator",
-      "1. Tool Box Meeting Carried
-      2. Comply with PPE matrix.
-      3. Use special or additional PPE recommended by maker.
-      4. Work area to be clear from tripping hazards.
-      5. Task performer has completed training and is certified.",
-      "2","3","low"],
-      ["High Pressure",
-      "1. Comply with PPE matrix.
-      2. Buddy system by checking team members situational awareness.
-      3. Cordon or barricade the work area.
-      4. Equipment is maintained and operational.
-      5. Test emergency stop button and its cut off prior use.
-      6. Post extra look out for handling lengthy hoses.
-      7. Avoid kinking and bending of hoses.",
-      "2","3","low"],
-      ["Damage to equipment",
-      "1. Use equipment as prescribed in the manual.
-      2. Operator's sight must be clear during operation.
-      3. Operation shall have a good margin to avoid damaging other equipment.
-      4. Avoid kinking and bending of hoses.
-      5. Post extra look out for handling lengthy hoses.",
-      "3","2","low"],
-      ["Free surface effect (Virtual Loss of GM)",
-      "1. Control amount of discharge in a compartment.
-      2. Buddy system by checking team members situational awareness.",
-      "2","3","low"],
-      ["Cargo leakage in ballast",
-      "1. Frequent checks of athmosphere content.
-      2. Compare ullages and soundings of tanks.
-      3. Operator's sight must be clear during operation.
-      4. Operation shall have a margin to avoid damaging other equipment.
-      5. Work area to be well illuminated.",
-      "2","3","low"],
-      ["Discharge of water ashore on jetty",
-      "1. Carry out tool box meeting.
-      2. Obtain terminal's permission
-      3. Operation shall have a margin to avoid ships side.",
-      "1","4","low"],
-      ["Damage to piping",
-      "1. Carry out tool box meeting.
-      2. Obtain terminal's permission
-      3. Operation shall have a margin to avoid pipelines.
-      4. Operator's sight must be clear during operation.
-      5. Buddy system by checking team members situational awareness.",
-      "2","3","low"]
-    ]
-    additional_methods: [
-    ]
+        [
+          "Personal Injury - Operator",
+          "1. Tool Box Meeting Carried
+          2. Comply with PPE matrix.
+          3. Use special or additional PPE recommended by maker.
+          4. Work area to be clear from tripping hazards.
+          5. Task performer has completed training and is certified.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "High Pressure",
+          "1. Comply with PPE matrix.
+          2. Buddy system by checking team members situational awareness.
+          3. Cordon or barricade the work area.
+          4. Equipment is maintained and operational.
+          5. Test emergency stop button and its cut off prior use.
+          6. Post extra look out for handling lengthy hoses.
+          7. Avoid kinking and bending of hoses.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Damage to equipment",
+          "1. Use equipment as prescribed in the manual.
+          2. Operator's sight must be clear during operation.
+          3. Operation shall have a good margin to avoid damaging other equipment.
+          4. Avoid kinking and bending of hoses.
+          5. Post extra look out for handling lengthy hoses.",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Free surface effect (Virtual Loss of GM)",
+          "1. Control amount of discharge in a compartment.
+          2. Buddy system by checking team members situational awareness.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Cargo leakage in ballast",
+          "1. Frequent checks of athmosphere content.
+          2. Compare ullages and soundings of tanks.
+          3. Operator's sight must be clear during operation.
+          4. Operation shall have a margin to avoid damaging other equipment.
+          5. Work area to be well illuminated.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Discharge of water ashore on jetty",
+          "1. Carry out tool box meeting.
+          2. Obtain terminal's permission
+          3. Operation shall have a margin to avoid ships side.",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Damage to piping",
+          "1. Carry out tool box meeting.
+          2. Obtain terminal's permission
+          3. Operation shall have a margin to avoid pipelines.
+          4. Operator's sight must be clear during operation.
+          5. Buddy system by checking team members situational awareness.",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    additional_methods: []

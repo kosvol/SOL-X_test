@@ -6,7 +6,7 @@ Feature: Pump Room Entry
   Background: Given I navigate to sol-x portal
 
   Scenario: Verify user roles for PRE creation
-  
+
   Scenario: Verify user able to select date from calendar for Date of Last Calibration
 
   Scenario: Verify user able to add gas records
@@ -22,11 +22,11 @@ Feature: Pump Room Entry
 
   Scenario: Verify end time is dynamic base on selected start time
 
-  Examples:
-  | hours |
-  | 4     |
-  | 6     |
-  | 8     |
+    Examples:
+      | hours |
+      | 4     |
+      | 6     |
+      | 8     |
 
   Scenario: Verify submit for approval button is disable when mandatory fields not fill
 
@@ -39,23 +39,23 @@ Feature: Pump Room Entry
   Scenario: Verify only Chief Officer able to approve PRE and should becomes active and count reflected on active permit
 
   Scenario: Verify dashboard is showing count for active PRE
-  
+
   Scenario: Verify dashboard is showing count for PRE under pending for approval
 
   Scenario: Verify user able to terminal PRE permit
-  
+
   Scenario: Verify PRE PDF generated ?
-  
+
   @unit-test-level
   Scenario: Verify PRE expires duration
-      When active PRE permit expire after 8 hours
-      Then I should see 0 active PRE permit
+    When active PRE permit expire after 8 hours
+    Then I should see 0 active PRE permit
 
   Scenario: Verify breach alert show when detected human in pump room with no active PRE permit
 
-# new ---->
+  # new ---->
   Scenario: Verify only one PRE permit can be created for one timing in the day
-  
+
   Scenario: Verify PRE permit auto start
 
   Scenario: Verify PRE permit auto end

@@ -1,60 +1,94 @@
 Maint on magnetic compass:
   page1:
-    major_hazards: [
-      ["Inability to keep the course in case of Gyro failure","2","3","low"],
-      ["Grounding","2","3","low"],
-      ["Malfunction of Navigational Equipment due to loss of feed","2","3","low"]
-    ]
-    erisk: ["low","low","low"]
+    major_hazards:
+      [
+        [
+          "Inability to keep the course in case of Gyro failure",
+          "2",
+          "3",
+          "low",
+        ],
+        ["Grounding", "2", "3", "low"],
+        [
+          "Malfunction of Navigational Equipment due to loss of feed",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
+    erisk: ["low", "low", "low"]
   page2:
     existing_methods: [
-      ["Inability to keep the course in case of Gyro failure",
-      "1. No 2 Gyro compass fully operational.
-      2. Frequent Compas errors established to verify accuracy.
-      3. Course made good from the GPS to be utlized in case of Gyro failure.
-      4. Ensure Magnetic Compass deviation curve is valid and the same to be used to identify the Magnetic course to keep in case of Gyro failure.
-      5. Position fixing interval as per company guidelines to be complied with.  Frequency to be increased as deemed neccesary.
-      6. Terrestrial objects to be used to keep the course.
-      7. Ranges to be used.
-      8. Parallel Indexing to be marked on charts wherever suitable and to be complied with.",
-      "2","3","low"],
-      ["Grounding",
-      "1. Detailed Passage Plan to be developed and discussed with the Bridge team.
-      2. Contingency Plan for Gyro failure to be discussed and Bridge to be fully familiar with the actions to be taken in that case.
-      3. Position Fixing intervals determined in the SMS to be observed.  Frequency to be inscreased as neccesary.
-      4. Course made good displayed by the GPS to be utilized.
-      5.  Echo sounder to be on in sounding below 50m and soundings monitored continusously.
-      6. UKC tabulated and compliance observed throughout.
-      7. Vessel to proceed at a safe speed at all times as required by Colregs #6.",
-      "2","3","low"],
-      ["Malfunction of Navigational Equipment due to loss of feed",
-      "1. No. 2 Gyro compass confirmed to be fully functional and to be used to feed all other Navigational equipment.
-      2. In case of failure, manual logging of Magnetic course steered to be carried out.
-      3. BW level to be heightened to level III or IV as neccesary.
-      4. Course made good provided by thye GPS to be used to manually feed into the equipment.",
-      "2","3","low"],
-      ["Fatigue of Watchkeepers",
-      "1. Rest hours to be anticipated and Roster drawn up in order to observe compliance.
-      2. Master to be relieved by the C/O.  One senior officer to be present on the Bridge at all times.
-      3. Training to be carried out for all staff regarding the action shoude be taken for gyro failure,
-      4. Instruction of action should be taken for gyro failure to be posted.",
-      "1","2","low"],
-      ["Inability to use the Auto Pilot",
-      "1. No 2 Gyro operational and capable of being used for the Auto Pilot.
-      2. Hand steering to be carried out in case of Gyro total failure.
-      3. Magnetic compass or Terrestrial objects to be used for course keeping.
-      4. All staff to be briefed on the Contingency plan for the Gyro compass failure.",
-      "1","2","low"],
-      ["Vessel frequently transiting in Singapore & Malacca straits",
-      "1. BW level to be heightened to level III or IV as neccesary.
-      2. Master to be relieved by the C/O.  One senior officer to be present on the Bridge at all times.
-      3. Transit bearing of compass error to be taken regularly.
-      4. DRA of transit in singapore & malacca strait to be reviewed prior entry.
-      5. Anchor lashing to be removed, both anchor ready to let go during emergency.
-      6. Emergency anchoring procedure briefed for all staff.
-      7. Early action to be taken during heavy traffic & Close Quarters situation.
-      8. Heading off alarm &  Magnetic off course alarm to be monitered.",
-      "2","2","low"]
-    ]
-    additional_methods: [
-    ]
+        [
+          "Inability to keep the course in case of Gyro failure",
+          "1. No 2 Gyro compass fully operational.
+          2. Frequent Compas errors established to verify accuracy.
+          3. Course made good from the GPS to be utlized in case of Gyro failure.
+          4. Ensure Magnetic Compass deviation curve is valid and the same to be used to identify the Magnetic course to keep in case of Gyro failure.
+          5. Position fixing interval as per company guidelines to be complied with.  Frequency to be increased as deemed neccesary.
+          6. Terrestrial objects to be used to keep the course.
+          7. Ranges to be used.
+          8. Parallel Indexing to be marked on charts wherever suitable and to be complied with.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Grounding",
+          "1. Detailed Passage Plan to be developed and discussed with the Bridge team.
+          2. Contingency Plan for Gyro failure to be discussed and Bridge to be fully familiar with the actions to be taken in that case.
+          3. Position Fixing intervals determined in the SMS to be observed.  Frequency to be inscreased as neccesary.
+          4. Course made good displayed by the GPS to be utilized.
+          5.  Echo sounder to be on in sounding below 50m and soundings monitored continusously.
+          6. UKC tabulated and compliance observed throughout.
+          7. Vessel to proceed at a safe speed at all times as required by Colregs #6.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Malfunction of Navigational Equipment due to loss of feed",
+          "1. No. 2 Gyro compass confirmed to be fully functional and to be used to feed all other Navigational equipment.
+          2. In case of failure, manual logging of Magnetic course steered to be carried out.
+          3. BW level to be heightened to level III or IV as neccesary.
+          4. Course made good provided by thye GPS to be used to manually feed into the equipment.",
+          "2",
+          "3",
+          "low",
+        ],
+        [
+          "Fatigue of Watchkeepers",
+          "1. Rest hours to be anticipated and Roster drawn up in order to observe compliance.
+          2. Master to be relieved by the C/O.  One senior officer to be present on the Bridge at all times.
+          3. Training to be carried out for all staff regarding the action shoude be taken for gyro failure,
+          4. Instruction of action should be taken for gyro failure to be posted.",
+          "1",
+          "2",
+          "low",
+        ],
+        [
+          "Inability to use the Auto Pilot",
+          "1. No 2 Gyro operational and capable of being used for the Auto Pilot.
+          2. Hand steering to be carried out in case of Gyro total failure.
+          3. Magnetic compass or Terrestrial objects to be used for course keeping.
+          4. All staff to be briefed on the Contingency plan for the Gyro compass failure.",
+          "1",
+          "2",
+          "low",
+        ],
+        [
+          "Vessel frequently transiting in Singapore & Malacca straits",
+          "1. BW level to be heightened to level III or IV as neccesary.
+          2. Master to be relieved by the C/O.  One senior officer to be present on the Bridge at all times.
+          3. Transit bearing of compass error to be taken regularly.
+          4. DRA of transit in singapore & malacca strait to be reviewed prior entry.
+          5. Anchor lashing to be removed, both anchor ready to let go during emergency.
+          6. Emergency anchoring procedure briefed for all staff.
+          7. Early action to be taken during heavy traffic & Close Quarters situation.
+          8. Heading off alarm &  Magnetic off course alarm to be monitered.",
+          "2",
+          "2",
+          "low",
+        ],
+      ]
+    additional_methods: []

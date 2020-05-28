@@ -9,7 +9,7 @@ Use of ODME on manual mode:
   page2:
     existing_methods: [
       ["discharge of oil into sea",
-      "1.Operation to be carried out in day time  to ensure visual monitoring of discharge
+      "1. Operation to be carried out in day time  to ensure visual monitoring of discharge
       2. Proper line up must be done and double checked by responsible officer.
       3. One responsible officer will be present at all times to watch effluent and the surface of the water in the locality of the discharge shall be continously monitored.
       4. Operation will be ceased with sufficient ullage in the tank.(stop discharge of dirty water 2mtr before interface of oil)
@@ -41,12 +41,12 @@ Use of ODME on manual mode:
       "2","3","low"]
       ["slip and trip",
       "1. all personels to comply with ppe matrix.
-      2.person observing the high overboard should stand at designated observation area.
+      2. person observing the high overboard should stand at designated observation area.
       3. proper size ppe to be used at all time.",
       "2","2","low"],
       ["fatigue",
-      "1.all personals to be properly rested before operation and ilo n stcw regulation to be complied with.
-      2.all personals on deck to be given breaks at regular intervals to avoid heat strokes.",
+      "1. all personals to be properly rested before operation and ilo n stcw regulation to be complied with.
+      2. all personals on deck to be given breaks at regular intervals to avoid heat strokes.",
       "2","2","low"]
     ]
     additional_methods: [

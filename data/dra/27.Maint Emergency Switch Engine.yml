@@ -1,83 +1,132 @@
 Maint Emergency Switch Engine:
   page1:
-    major_hazards: [
-      ["Vapor cloud","2","4","medium"],
-      ["Gas trip","1","3","medium"],
-      ["Mis-Operation","1","3","low"]
-    ]
-    erisk: ["medium","medium","low"]
+    major_hazards:
+      [
+        ["Vapor cloud", "2", "4", "medium"],
+        ["Gas trip", "1", "3", "medium"],
+        ["Mis-Operation", "1", "3", "low"],
+      ]
+    erisk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
-      ["Vapor cloud",
-      "1. Comply with PPE matrix.
-      2. Gas detecting equipments are used during the opeation",
-      "2","4","medium"],
-      ["Gas trip",
-      "1. PTW and check lists are complied with
-      2. Competency and training of personnel
-      3. Boiler firing on dual fuel mode
-      4. Supervision by responsible person",
-      "1","3","low"],
-      ["Mis-Operation",
-      "1. Cargo operation check list are used
-      2. Discussed during pre cargo operation meeting
-      3. Sharing information and C/Off's cargo opeation instructions after ship shore safety meeting
-      4. Competency and training of personnel
-      5. Supervision by responsible person",
-      "1","3","low"],
-      ["Releasing air pressure",
-      "1. PTW & Check lists
-      2. Proper maintenance of cargo equipments
-      3. Comply with PPE matrix.
-      4. Tool Box meeting
-      5. Training of personnel",
-      "2","2","low"],
-      ["Hydraulic failure / leak",
-      "1. Maintenance of cargo machinaries & equipments as per PMS
-      2. Stand-by machinary in ready to use status
-      3. Competency and proper training of personnel",
-      "3","2","low"],
-      ["Poor communication",
-      "1. Continuous monitoring of weather
-      2. Stop work policy
-      3. Agreement during ship shore safety committee meeting
-      4. Competency & training of personnel",
-      "1","3","low"],
-      ["Weather",
-      "1. Continuous monitoring of weather
-      2. Stop work policy
-      3. Agreement during ship shore safety committee meeting
-      4. Competency & training of personnel",
-      "3","2","low"],
-      ["Electrocution",
-      "1. Comply with PPE matrix. 
-      2. Training of personnel
-      3. Supervision by responsible person",
-      "1","4","low"],
-      ["Slip / Trip / Fall",
-      "1. Continuous monitoring of weather
-      2. Comply with PPE matrix.
-      3. Tool box meeting
-      4. Training/Briefing to personnel
-      5. Supervision by responsible person
-      6. Maintain good housekeeping in area",
-      "3","2","low"],
-      ["In-experience",
-      "1. Train the juniors/new joined personnel
-      2. Tool box meeting and briefing prior commencing the task
-      3. Closed Loop communication to be practised speciallly by Trainees",
-      "2","1","low"],
-      ["Working at height",
-      "1. Proper training of personnel
-      2. COSWP to be strictly followed
-      3. Comply with PPE matrix.
-      4. Regular monitoring of crew health condition
-      5. Supervision by responsible person",
-      "2","3","low"]
-    ]
+        [
+          "Vapor cloud",
+          "1. Comply with PPE matrix.
+          2. Gas detecting equipments are used during the opeation",
+          "2",
+          "4",
+          "medium",
+        ],
+        [
+          "Gas trip",
+          "1. PTW and check lists are complied with
+          2. Competency and training of personnel
+          3. Boiler firing on dual fuel mode
+          4. Supervision by responsible person",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Mis-Operation",
+          "1. Cargo operation check list are used
+          2. Discussed during pre cargo operation meeting
+          3. Sharing information and C/Off's cargo opeation instructions after ship shore safety meeting
+          4. Competency and training of personnel
+          5. Supervision by responsible person",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Releasing air pressure",
+          "1. PTW & Check lists
+          2. Proper maintenance of cargo equipments
+          3. Comply with PPE matrix.
+          4. Tool Box meeting
+          5. Training of personnel",
+          "2",
+          "2",
+          "low",
+        ],
+        [
+          "Hydraulic failure / leak",
+          "1. Maintenance of cargo machinaries & equipments as per PMS
+          2. Stand-by machinary in ready to use status
+          3. Competency and proper training of personnel",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Poor communication",
+          "1. Continuous monitoring of weather
+          2. Stop work policy
+          3. Agreement during ship shore safety committee meeting
+          4. Competency & training of personnel",
+          "1",
+          "3",
+          "low",
+        ],
+        [
+          "Weather",
+          "1. Continuous monitoring of weather
+          2. Stop work policy
+          3. Agreement during ship shore safety committee meeting
+          4. Competency & training of personnel",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "Electrocution",
+          "1. Comply with PPE matrix.
+          2. Training of personnel
+          3. Supervision by responsible person",
+          "1",
+          "4",
+          "low",
+        ],
+        [
+          "Slip / Trip / Fall",
+          "1. Continuous monitoring of weather
+          2. Comply with PPE matrix.
+          3. Tool box meeting
+          4. Training/Briefing to personnel
+          5. Supervision by responsible person
+          6. Maintain good housekeeping in area",
+          "3",
+          "2",
+          "low",
+        ],
+        [
+          "In-experience",
+          "1. Train the juniors/new joined personnel
+          2. Tool box meeting and briefing prior commencing the task
+          3. Closed Loop communication to be practised speciallly by Trainees",
+          "2",
+          "1",
+          "low",
+        ],
+        [
+          "Working at height",
+          "1. Proper training of personnel
+          2. COSWP to be strictly followed
+          3. Comply with PPE matrix.
+          4. Regular monitoring of crew health condition
+          5. Supervision by responsible person",
+          "2",
+          "3",
+          "low",
+        ],
+      ]
     additional_methods: [
-      ["Vapor cloud",
-      "1. Responsible person to supervise
-      2. Proper maintenance of machinaries / equipments",
-      "1","4","low"]
-    ]
+        [
+          "Vapor cloud",
+          "1. Responsible person to supervise
+          2. Proper maintenance of machinaries / equipments",
+          "1",
+          "4",
+          "low",
+        ],
+      ]
