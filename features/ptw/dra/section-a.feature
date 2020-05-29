@@ -19,8 +19,8 @@ Feature: VerifyDRA
       | Underwater Operations at Night                                        |
       | Underwater Operation during daytime without any simultenous operation |
       | Hot Work Level - 2 outside ER (Ballast Passage)                       |
-      | Hot Work Level - 2 outside ER (Loaded & Ballast Passage)              |
-      | Hot Work Level - 2 in Designated Area                                 |
+      | 5.Hot Work Level - 2 outside ER within (Loaded & Ballast Passage)     |
+      | 6.Hot Work Level - 2  in ER (Loaded & Ballast Passage)                |
       | Hot Work Level - 1 (Loaded & Ballast Passage)                         |
       | Working Aloft Overside                                                |
       | Use of Non-Intrinsically Safe Camera                                  |
@@ -49,12 +49,12 @@ Feature: VerifyDRA
       | Maint on Oily water Separator                                         |
       | Maint on oil discharge monitoring equip                               |
       | 39.CW Connecting and disconnecting pipelines                          |
-      | 40.Removing and fitting of valves blanks spades or blinds             |
+      | 40.CW Removing and fitting of valves blanks spades or blinds          |
       | 41.CW Blanking & deblanking of pipelines and other openings           |
-      | 42.Working on Closed Electrical Equipment and Circuits                |
+      | 42.CW Working on Closed Electrical Equipment and Circuits             |
       | 43.CW Cleaning up of spills                                           |
       | 44.CW Working in hazardous or dangerous area                          |
-      | 45.Maint work on machinery                                            |
+      | 45.CW Maint work on machinery                                         |
       | 46.RIGGING OF GANGWAY & PILOT LADDER                                  |
       | 47.Working on deck during heavy weather                               |
       | 48.Underwater Sim operation during daytime with other operation       |
