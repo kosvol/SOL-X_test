@@ -1,29 +1,29 @@
 # frozen_string_literal: true
 
-require "./././support/env"
+require './././support/env'
 
 class DashboardPage < WearablePage
   include PageObject
 
   span(:inactive_status, xpath: "//span[@data-testid='inactive-status']")
   span(:active_status, xpath: "//span[@data-testid='active-status']")
-  elements(:active_crew_details, xpath: "//table/tbody/tr")
-  elements(:crew_list, xpath: "//table/tbody/tr")
+  elements(:active_crew_details, xpath: '//table/tbody/tr')
+  elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'CrewStatusToggle__Switch')]")
-  element(:last_seen, xpath: "//table/tbody/tr/td[4]")
+  element(:last_seen, xpath: '//table/tbody/tr/td[4]')
   spans(:area_count, xpath: "//span[@class='count']")
   spans(:permits_count, xpath: '//span[@class="stat"]')
 
-  @@activity_indicator = "//table/tbody/tr/td/div"
+  @@activity_indicator = '//table/tbody/tr/td/div'
   @@location_pin = "//a[@data-testid='location-pin']"
 
   def unlink_all_crew_frm_wearable
-    ServiceUtil.get_response_body["data"]["wearables"].each do |wearable|
-      next if wearable["crewMember"].nil?
+    ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
+      next if wearable['crewMember'].nil?
 
-      WearablePage.set_wearable_id(wearable["_id"])
-      WearablePage.swap_payload("wearable-simulator/base-unlink-crew-to-wearable")
-      ServiceUtil.post_graph_ql("wearable-simulator/base-unlink-crew-to-wearable")
+      WearablePage.set_wearable_id(wearable['_id'])
+      WearablePage.swap_payload('wearable-simulator/mod-unlink-crew-to-wearable')
+      ServiceUtil.post_graph_ql('wearable-simulator/mod-unlink-crew-to-wearable')
     end
   end
 
@@ -31,15 +31,15 @@ class DashboardPage < WearablePage
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     toggle_crew_activity_list
-    color == "rgba(242, 204, 84, 1)" ? (sleep 27) : (sleep 2)
-    $browser.find_element(:xpath, @@activity_indicator.to_s).css_value("background-color").to_s === color
-    $browser.find_element(:xpath, @@location_pin.to_s).css_value("background-color").to_s === color
+    color == 'rgba(242, 204, 84, 1)' ? (sleep 27) : (sleep 2)
+    $browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
+    $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end
 
   def get_serv_active_crew_count
     active_crew_count = 0
-    ServiceUtil.get_response_body["data"]["wearables"].each do |wearable|
-      active_crew_count += 1 unless wearable["crewMember"].nil?
+    ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
+      active_crew_count += 1 unless wearable['crewMember'].nil?
     end
     active_crew_count
   end
@@ -65,22 +65,22 @@ class DashboardPage < WearablePage
     toggle_crew_activity_list
     exit if !area_count_elements[0].text === 1
     case which_zone
-    when "Engine Room"
+    when 'Engine Room'
       area_count_elements[1].click
       area_count_elements[1].text
-    when "Pump Room"
+    when 'Pump Room'
       area_count_elements[2].click
       area_count_elements[2].text
-    when "Funnel Stack"
+    when 'Funnel Stack'
       area_count_elements[3].click
       area_count_elements[3].text
-    when "Upper Deck"
+    when 'Upper Deck'
       area_count_elements[4].click
       area_count_elements[4].text
-    when "Accomm."
+    when 'Accomm.'
       area_count_elements[5].click
       area_count_elements[5].text
-    when "Nav. Bridge"
+    when 'Nav. Bridge'
       area_count_elements[6].click
       area_count_elements[6].text
     end
@@ -100,12 +100,12 @@ class DashboardPage < WearablePage
 
   def get_serv_active_crew_details(ui_or_service, _new_zone = nil)
     crew_details = []
-    ServiceUtil.get_response_body["data"]["wearables"].each do |wearable|
-      unless wearable["crewMember"].nil?
-        if ui_or_service === "service"
-          crew_details << [wearable["crewMember"]["rank"] + " " + wearable["crewMember"]["lastName"], get_beacon_location]
-        elsif ui_or_service === "ui"
-          crew_details << [wearable["crewMember"]["rank"] + " " + wearable["crewMember"]["lastName"], _new_zone]
+    ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
+      unless wearable['crewMember'].nil?
+        if ui_or_service === 'service'
+          crew_details << [wearable['crewMember']['rank'] + ' ' + wearable['crewMember']['lastName'], get_beacon_location]
+        elsif ui_or_service === 'ui'
+          crew_details << [wearable['crewMember']['rank'] + ' ' + wearable['crewMember']['lastName'], _new_zone]
         end
       end
     end
