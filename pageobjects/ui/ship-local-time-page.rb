@@ -1,4 +1,6 @@
-require "./././support/env"
+# frozen_string_literal: true
+
+require './././support/env'
 
 class ShipLocalTimePage
   include PageObject
@@ -14,24 +16,22 @@ class ShipLocalTimePage
   def is_utc_time
     # clock_btn
     # sleep 1
-    return Time.now.utc.strftime("%I:%M") if Time.now.utc.strftime("%k") < "12"
-    return "#{Time.now.utc.strftime("%k:%M")}" if Time.now.utc.strftime("%k") > "12"
+    return Time.now.utc.strftime('%I:%M') if Time.now.utc.strftime('%k') < '12'
+
+    Time.now.utc.strftime('%k:%M').to_s if Time.now.utc.strftime('%k') > '12'
   end
 
   def adjust_ship_local_time
     clock_btn
-    ["1", "2"].sample === "1" ? decrement : increment
+    %w[1 2].sample === '1' ? decrement : increment
   end
 
   def is_update_ship_time
     sleep 1
     clock_btn
     sleep 1
-    get_current_offset = ServiceUtil.get_response_body["data"]["currentTime"]["utcOffset"]
-    current_time = utc_time.split(":")
-    new_hour = cal_new_offset_time(get_current_offset, current_time)
-    Log.instance.info(">>> #{new_hour}:#{current_time[1]}")
-    return ((utc_time_text === get_new_current_offset_text(get_current_offset)) && (utc_timezone_elements[1].text === "#{new_hour}:#{current_time[1]}"))
+    get_current_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    ((utc_time_text === get_new_current_offset_text(get_current_offset)) && (utc_timezone_elements[1].text === "#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}"))
   end
 
   private
@@ -40,8 +40,9 @@ class ShipLocalTimePage
     get_current_offset < 0 ? "Local Time #{get_current_offset}h" : "Local Time +#{get_current_offset}h"
   end
 
-  def cal_new_offset_time(get_current_offset, current_time)
-    count_hour = ((current_time[0].to_i + get_current_offset) - 24).abs
-    "#{count_hour}".size === 2 ? "#{count_hour}" : "0#{count_hour}"
+  def cal_new_offset_time(get_current_offset)
+    @current_time = utc_time.split(':')
+    count_hour = ((@current_time[0].to_i + get_current_offset) - 24).abs
+    count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 end
