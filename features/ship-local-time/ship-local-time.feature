@@ -9,7 +9,6 @@ Feature: ShipLocalTime
     Given I launch sol-x portal
     Then I should see base time is UTC
 
-  @x2
   Scenario Outline: Verify only Captain and 2nd Officer can change ship time
     Given I launch sol-x portal
     When I change local time
@@ -19,7 +18,7 @@ Feature: ShipLocalTime
     Examples:
       | pin  |
       | 1111 |
-  # | 6666 |
+      | 6666 |
 
   @skip
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
