@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then (/^I get a list of wearable id$/) do
   WearablePage.get_list_of_wearables_id
 end
@@ -20,8 +22,4 @@ end
 
 And (/^I should see location updated$/) do
   is_true(WearablePage.is_location_updated)
-end
-
-When (/^I wait for (.+) seconds$/) do |second|
-  sleep second.to_i
 end

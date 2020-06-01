@@ -110,7 +110,7 @@ And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
   step 'I hit graphql'
   step 'I hit graphql'
   step 'I verify method updateWearableLocation is successful'
-  step 'I wait for 1 seconds'
+  sleep 1
 end
 
 Then (/^I should see ui location updated to (.+)$/) do |_new_zone|

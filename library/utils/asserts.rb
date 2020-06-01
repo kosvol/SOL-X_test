@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "rspec/expectations"
+require 'rspec/expectations'
 
 module AssertionUtil
   # def is_textfield_length(element, acceptable_length)

@@ -17,7 +17,7 @@ module JsonUtil
       keystore_arr
     end
 
-    @@request_payload_fpath = "../../../payload/request/"
+    @@request_payload_fpath = '../../../payload/request/'
 
     def read_json(filename)
       get_absolute_path = File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__)
@@ -25,17 +25,17 @@ module JsonUtil
     end
 
     def create_request_file(filename, request_body)
-      file = File.open(File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__), "w")
+      file = File.open(File.expand_path("#{@@request_payload_fpath}#{filename}.json", __FILE__), 'w')
       file.puts request_body.to_json
       file.close
     end
 
-    @@response_payload_fpath = "../../../payload/response/"
+    @@response_payload_fpath = '../../../payload/response/'
 
     def create_response_file(filename, response_body, response_status_code)
       if response_status_code === 200
-        FileUtils.mkdir_p(File.expand_path("#{filename.split("/").first}/", "payload/response"))
-        file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), "w")
+        FileUtils.mkdir_p(File.expand_path("#{filename.split('/').first}/", 'payload/response'))
+        file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), 'w')
         file.puts response_body
         file.close
       end

@@ -45,7 +45,7 @@ class DashboardPage < WearablePage
   end
 
   def is_crew_location_detail_correct?(ui_or_service, _new_zone = nil)
-    tmp = get_serv_active_crew_details(ui_or_service, _new_zone)
+    tmp = get_active_crew_details(ui_or_service, _new_zone)
     Log.instance.info("\n\n#{tmp}")
     get_ui_active_crew_details.all? do |crew|
       Log.instance.info("\n\n#{crew}")
@@ -86,19 +86,7 @@ class DashboardPage < WearablePage
     end
   end
 
-  private
-
-  def get_ui_active_crew_details
-    crew_details = []
-    active_crew_details_elements.each do |crew|
-      tmp = crew.text.split(/\n/)
-      tmp.pop
-      crew_details << tmp
-    end
-    crew_details
-  end
-
-  def get_serv_active_crew_details(ui_or_service, _new_zone = nil)
+  def get_active_crew_details(ui_or_service, _new_zone = nil)
     crew_details = []
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       unless wearable['crewMember'].nil?
@@ -108,6 +96,18 @@ class DashboardPage < WearablePage
           crew_details << [wearable['crewMember']['rank'] + ' ' + wearable['crewMember']['lastName'], _new_zone]
         end
       end
+    end
+    crew_details
+  end
+
+  private
+
+  def get_ui_active_crew_details
+    crew_details = []
+    active_crew_details_elements.each do |crew|
+      tmp = crew.text.split(/\n/)
+      tmp.pop
+      crew_details << tmp
     end
     crew_details
   end
