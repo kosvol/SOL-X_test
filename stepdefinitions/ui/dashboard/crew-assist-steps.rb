@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-When (/^I trigger crew assist$/) do
+When (/^I trigger crew assist from wearable$/) do
   step 'I link wearable'
   step 'I get wearable-simulator/mod-trigger-panic request payload'
   step 'I manipulate wearable requeset payload'
@@ -8,7 +8,7 @@ When (/^I trigger crew assist$/) do
 end
 
 And (/^I trigger second crew assist$/) do
-  step 'I trigger crew assist'
+  step 'I trigger crew assist from wearable'
 end
 
 Then (/^I should see two crew assist dialogs on dashboard$/) do
@@ -42,7 +42,7 @@ Then (/^I should see crew assist dialog dismiss in both tab$/) do
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)
 end
 
-And (/^I dismiss crew assist$/) do
+And (/^I dismiss crew assist from wearable$/) do
   step 'I get wearable-simulator/mod-dismiss-panic request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
