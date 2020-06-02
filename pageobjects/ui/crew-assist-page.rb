@@ -7,7 +7,6 @@ class CrewAssistPage < DashboardPage
 
   divs(:crew_assist_details, xpath: "//div[starts-with(@class,'CrewAssistModal__CrewDatumRow')]/div")
   divs(:crew_assist_dialogs, xpath: "//div[@role='dialog']")
-  element(:unauthorized_msg, xpath: "//section[@class='pin-indicators-section']/h2")
   button(:acknowledge_btn, xpath: "//div[starts-with(@class, 'CrewAssistModal__Content')]/button")
 
   @@crew_assist_location_indicator = "//div[starts-with(@class,'CrewListItem__Indicator')]"

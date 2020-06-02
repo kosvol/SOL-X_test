@@ -49,7 +49,7 @@ And (/^I dismiss crew assist$/) do
 end
 
 Then (/^I should see invalid pin message$/) do
-  is_equal(on(CrewAssistPage).unauthorized_msg_element.text, 'You Are Not Authorized To Perform That Action')
+  is_equal(on(PinPadPage).unauthorized_msg_element.text, 'You Are Not Authorized To Perform That Action')
 end
 
 And (/^I dismiss enter pin screen$/) do

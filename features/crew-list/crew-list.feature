@@ -16,21 +16,34 @@ Feature: CrewList
 
   Scenario: Verify crew pin is hidden before view pin
     Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see pin hidden
 
-  Scenario: Verify crew latest location is updated on crew listing
+  Scenario: Verify crew details match
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see all crew details match
 
-  Scenario: Verify crew pin is shown after tapping on view pin
+# Scenario: Verify location pin turn red after triggering crew assist
 
-  Scenario: Verify total crew count and vessel name
+# Scenario: Verify location pin turn green below 30s
 
-  @manual
-  Scenario: Verify total crew list count match inactive user count and COMPASS system
+# Scenario: Verify location pin turn yellow after 30s
 
-  @manual
-  Scenario: Verify Email notification sent to the assign crew
+# Scenario: Verify crew latest location is updated on crew listing
 
-  @manual
-  Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+# Scenario: Verify crew pin is shown after tapping on view pin
 
-  @manual
-  Scenario: Verify adhoc crew is added the next day T+1
+# Scenario: Verify total crew count and vessel name
+
+# @manual
+# Scenario: Verify total crew list count match inactive user count and COMPASS system
+
+# @manual
+# Scenario: Verify Email notification sent to the assign crew
+
+# @manual
+# Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+
+# @manual
+# Scenario: Verify adhoc crew is added the next day T+1

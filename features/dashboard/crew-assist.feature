@@ -20,7 +20,11 @@ Feature: CrewAssistScenarios
     And I should see two crew assist dialogs on dashboard
     And I unlink all crew from wearable
 
+  @skip
   Scenario: Verify crew assist dialog display current time ?
+
+  @skip
+  Scenario: Verify map location pin turn red after triggering crew assist
 
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
