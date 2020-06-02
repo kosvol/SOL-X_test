@@ -65,5 +65,6 @@ at_exit do
   $extent.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush
   ReportUtils.make_folder($folder_name)
+  @browser.quit
   # ReportUtils.get_steps_for_examples("./testreport/jsonreports/json_report.json")
 end
