@@ -1,4 +1,6 @@
-require "./././support/env"
+# frozen_string_literal: true
+
+require './././support/env'
 
 class PinPadPage
   include PageObject
@@ -7,7 +9,7 @@ class PinPadPage
   button(:cancel, xpath: "//button[@class='cancel']")
 
   def enter_pin(pin)
-    pin.split("").each do |num|
+    pin.split('').each do |num|
       pin_pad_elements[num.to_i].click
     end
   end

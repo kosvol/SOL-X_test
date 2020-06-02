@@ -12,6 +12,9 @@ class WearablePage
 
     def swap_payload(which_json, custom_value1 = nil, custom_value2 = nil)
       case which_json
+      when 'wearable-simulator/mod-dismiss-panic'
+        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload['variables']['id'] = @@wearableid
       when 'wearable-simulator/mod-trigger-panic'
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
         tmp_req_payload['variables']['id'] = @@wearableid
@@ -72,7 +75,7 @@ class WearablePage
 
     def get_one_wearable_id
       tmp = @@list_of_wearables.sample
-      tmp != 'fd817c462e3f60dd' ? @@wearableid = tmp : get_one_wearable_id
+      !%w[fd817c462e3f60dd 616ee000ad6ac808].include?(tmp) ? @@wearableid = tmp : get_one_wearable_id
     end
 
     def get_id(which_id)
@@ -102,6 +105,8 @@ class WearablePage
         'wearable-simulator/base-link-crew-to-wearable'
       when 'wearable-simulator/mod-trigger-panic'
         'wearable-simulator/base-trigger-panic'
+      when 'wearable-simulator/mod-dismiss-panic'
+        'wearable-simulator/base-dismiss-panic'
       end
     end
   end

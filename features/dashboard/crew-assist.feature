@@ -7,10 +7,10 @@ Feature: CrewAssistScenarios
     Then I should see crew assist popup display crew rank,name and location on dashboard
     And I unlink all crew from wearable
 
-  Scenario: Verify location pin is green
+  Scenario: Verify location pin is red
     Given I launch sol-x portal
     When I trigger crew assist
-    Then I should crew location indicator is green
+    Then I should crew location indicator is red
     And I unlink all crew from wearable
 
   Scenario: Verify multiple dialog show on screen
@@ -20,10 +20,44 @@ Feature: CrewAssistScenarios
     And I should see two crew assist dialogs on dashboard
     And I unlink all crew from wearable
 
-  Scenario: Verfiy crew assists dialog can be acknowledge by any crew
-
   Scenario: Verify crew assist dialog display current time ?
 
-  Scenario: Verify crew assist dialog cannot be dismissed with invalid pin
+  Scenario: Verify crew assist dialog should not display on refresh after acknowledging
+    Given I launch sol-x portal
+    When I trigger crew assist
+    And I acknowledge the assistance with pin 1212
+    Then I should not see crew assist dialog
+    When I refresh the browser
+    Then I should not see crew assist dialog
+    And I unlink all crew from wearable
 
-  Scenario: Verify crew assist dialog dismiss from all other tablet
+  Scenario: Verify crew assist dialog still display after cancel from pin screen
+    Given I launch sol-x portal
+    When I trigger crew assist
+    And I acknowledge the assistance with pin 1234
+    And I dismiss enter pin screen
+    Then I should see crew assist popup display crew rank,name and location on dashboard
+    And I unlink all crew from wearable
+
+  Scenario: Verify crew assist dialog cannot be dismissed with invalid pin
+    Given I launch sol-x portal
+    When I trigger crew assist
+    And I acknowledge the assistance with pin 1234
+    Then I should see invalid pin message
+    And I unlink all crew from wearable
+
+  Scenario: Verify crew assist dialog dismiss from all other tablet after acknowledge
+    Given I launch sol-x portal
+    And I launch sol-x portal on another tab
+    When I trigger crew assist
+    And I acknowledge the assistance with pin 4444
+    Then I should see crew assist dialog dismiss in both tab
+    And I unlink all crew from wearable
+
+  Scenario: Verify crew can dismiss the dialog from multiple browser without acknowledge
+    Given I launch sol-x portal
+    And I launch sol-x portal on another tab
+    When I trigger crew assist
+    And I dismiss crew assist
+    Then I should see crew assist dialog dismiss in both tab
+    And I unlink all crew from wearable

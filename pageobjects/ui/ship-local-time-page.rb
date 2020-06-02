@@ -22,7 +22,9 @@ class ShipLocalTimePage
   end
 
   def adjust_ship_local_time
+    sleep 1
     clock_btn
+    sleep 1
     %w[1 2].sample === '1' ? decrement : increment
   end
 
@@ -42,7 +44,11 @@ class ShipLocalTimePage
 
   def cal_new_offset_time(get_current_offset)
     @current_time = utc_time.split(':')
-    count_hour = ((@current_time[0].to_i + get_current_offset) - 24).abs
+    count_hour = if (@current_time[0].to_i + get_current_offset) > 24
+                   ((@current_time[0].to_i + get_current_offset) - 24).abs
+                 else
+                   (@current_time[0].to_i + get_current_offset)
+                 end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 end
