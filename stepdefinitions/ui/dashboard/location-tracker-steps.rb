@@ -59,8 +59,8 @@ Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
   end
 end
 
-Then (/^I should see (.+) count 1$/) do |zone|
-  is_equal(on(DashboardPage).get_map_zone_count(zone), '1')
+Then (/^I should see (.+) count (.+)$/) do |zone, count|
+  is_equal(on(DashboardPage).get_map_zone_count(zone), count)
 end
 
 When (/^I link wearable$/) do
@@ -113,8 +113,21 @@ And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
   sleep 1
 end
 
-Then (/^I should see ui location updated to (.+)$/) do |_new_zone|
+Then (/^I (should|should not) see ui location updated to (.+)$/) do |_condition, _new_zone|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', _new_zone))
+
+  if _condition === 'should'
+    is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', _new_zone))
+  elsif _condition === 'should not'
+    is_equal(on(DashboardPage).get_ui_active_crew_details.size, '0')
+  end
+end
+
+Then (/^I should see (.+) location indicator showing (.+) on location pin$/) do |_location, _count|
+  is_equal(on(DashboardPage).get_location_pin_text(_location), _count)
+end
+
+And (/^I should not see (.+) location indicator$/) do |_location|
+  is_true(!on(DashboardPage).get_location_pin_text(_location))
 end

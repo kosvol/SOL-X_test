@@ -54,11 +54,11 @@ class WearablePage
     end
 
     def get_list_of_wearables_id
-      @@list_of_wearables = get_id('wearables')
+      @@list_of_wearables = get_wearables_id
     end
 
     def get_list_of_crews_id
-      @@list_of_crew_id = get_id('crewMembers')
+      @@list_of_crew_id = get_crews_id
     end
 
     def get_list_of_beacons_id_n_mac
@@ -78,9 +78,19 @@ class WearablePage
       !%w[fd817c462e3f60dd 616ee000ad6ac808].include?(tmp) ? @@wearableid = tmp : get_one_wearable_id
     end
 
-    def get_id(which_id)
+    def get_crews_id
       @@tmp_list = []
-      ServiceUtil.get_response_body['data'][which_id.to_s].each do |list|
+      ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
+        @@tmp_list << list['_id']
+      end
+      @@tmp_list
+    end
+
+    def get_wearables_id
+      @@tmp_list = []
+      ServiceUtil.get_response_body['data']['wearables'].each do |list|
+        next unless ServiceUtil.get_response_body['data']['crewMember'].nil?
+
         @@tmp_list << list['_id']
       end
       @@tmp_list

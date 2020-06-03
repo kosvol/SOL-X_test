@@ -13,9 +13,19 @@ class DashboardPage < WearablePage
   element(:last_seen, xpath: '//table/tbody/tr/td[4]')
   spans(:area_count, xpath: "//span[@class='count']")
   spans(:permits_count, xpath: '//span[@class="stat"]')
+  div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")
 
   @@activity_indicator = '//table/tbody/tr/td/div'
   @@location_pin = "//a[@data-testid='location-pin']"
+
+  def get_location_pin_text(location)
+    toggle_zone_filter(location)
+    begin
+      location_pin_txt
+    rescue StandardError
+      false
+    end
+  end
 
   def unlink_all_crew_frm_wearable
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
@@ -62,26 +72,22 @@ class DashboardPage < WearablePage
   end
 
   def get_map_zone_count(which_zone)
-    toggle_crew_activity_list
     exit if !area_count_elements[0].text === 1
+    toggle_zone_filter(which_zone)
     case which_zone
+    when 'Full Ship'
+      area_count_elements[0].text
     when 'Engine Room'
-      area_count_elements[1].click
       area_count_elements[1].text
     when 'Pump Room'
-      area_count_elements[2].click
       area_count_elements[2].text
     when 'Funnel Stack'
-      area_count_elements[3].click
       area_count_elements[3].text
     when 'Upper Deck'
-      area_count_elements[4].click
       area_count_elements[4].text
     when 'Accomm.'
-      area_count_elements[5].click
       area_count_elements[5].text
     when 'Nav. Bridge'
-      area_count_elements[6].click
       area_count_elements[6].text
     end
   end
@@ -100,8 +106,6 @@ class DashboardPage < WearablePage
     crew_details
   end
 
-  private
-
   def get_ui_active_crew_details
     crew_details = []
     active_crew_details_elements.each do |crew|
@@ -112,9 +116,30 @@ class DashboardPage < WearablePage
     crew_details
   end
 
+  private
+
   def get_beacon_location
     @@list_of_beacon.each do |beacon|
       return beacon[1] if beacon.first === @@beacon.first
+    end
+  end
+
+  def toggle_zone_filter(which_zone)
+    case which_zone
+    when 'Full Ship'
+      area_count_elements[0].click
+    when 'Engine Room'
+      area_count_elements[1].click
+    when 'Pump Room'
+      area_count_elements[2].click
+    when 'Funnel Stack'
+      area_count_elements[3].click
+    when 'Upper Deck'
+      area_count_elements[4].click
+    when 'Accomm.'
+      area_count_elements[5].click
+    when 'Nav. Bridge'
+      area_count_elements[6].click
     end
   end
 end

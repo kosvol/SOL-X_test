@@ -21,7 +21,21 @@ Feature: LocationTracking
     Then I should see active crew details
     And I unlink all crew from wearable
 
-  # Scenario: Verify active crew member name longer than 3 chars to display on map
+  Scenario: Verify total crew count display on map while having same location
+    Given I launch sol-x portal
+    When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
+    And I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
+    And I toggle activity crew list
+    Then I should see Full Ship location indicator showing 2 on location pin
+    And I should see Engine Room location indicator showing 2 on location pin
+    And I unlink all crew from wearable
+
+  Scenario: Verify location pin not visible on zone not linked by wearable
+    Given I launch sol-x portal
+    When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
+    And I toggle activity crew list
+    And I should not see Pump Room location indicator
+    And I unlink all crew from wearable
 
   Scenario Outline: Verify active crew member location changed after 30s
     Given I launch sol-x portal
@@ -58,16 +72,34 @@ Feature: LocationTracking
   Scenario Outline: Verify active crew member count is correct on engine room against full ship
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
+    And I toggle activity crew list
     Then I should see <zone> count 1
+    And I should see ui location updated to <location>
+    And I should see Full Ship count 1
+    And I should see ui location updated to <location>
+    And I should see Accomm. count 0
+    And I should not see ui location updated to <location>
     And I unlink all crew from wearable
 
     Examples:
-      | zone         | zoneid                     | mac               |
-      | Engine Room  | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 |
-      | Pump Room    | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
-      | Funnel Stack | SIT_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 |
-# | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
-# | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
-# | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
+      | zone         | zoneid                     | mac               | location                   |
+      | Engine Room  | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Bottom Flat Engine Forward |
+      | Pump Room    | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom           |
+      | Funnel Stack | SIT_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 | IG Platform 2              |
+  # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
+  # | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
+  # | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
 
-# Scenario: Verify total count for full ship is correct
+  Scenario: Verify total count for full ship is correct when toggle at inactive
+    Given I launch sol-x portal
+    And I link wearable
+    Then I should see Full Ship count 0
+    And I unlink all crew from wearable
+
+  Scenario: Verify total count for full ship is correct when toggle at active
+    Given I launch sol-x portal
+    When I toggle activity crew list
+    And I link wearable
+    And I link wearable
+    Then I should see Full Ship count 2
+    And I unlink all crew from wearable
