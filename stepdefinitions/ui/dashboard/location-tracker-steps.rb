@@ -6,14 +6,14 @@ Given (/^I unlink all crew from wearable$/) do
   on(DashboardPage).unlink_all_crew_frm_wearable
 end
 
-Then (/^I should see inacive crew count is correct$/) do
+Then (/^I should see inactive crew count is correct$/) do
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
   is_equal(on(DashboardPage).inactive_status, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
 end
 
-Then (/^I should see acive crew count is correct$/) do
+Then (/^I should see active crew count is correct$/) do
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -38,14 +38,14 @@ end
 
 Then (/^I should see countdown starts at 15s$/) do
   step 'I link wearable'
-  on(DashboardPage).toggle_crew_activity_list
+  step 'I toggle activity crew list'
   sleep 12
   is_true(on(DashboardPage).is_last_seen.include?('secs'))
 end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
-  on(DashboardPage).toggle_crew_activity_list
+  step 'I toggle activity crew list'
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 
@@ -59,7 +59,7 @@ Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
   end
 end
 
-Then (/^I should see (.+) count (.+)$/) do |zone, count|
+Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
   is_equal(on(DashboardPage).get_map_zone_count(zone), count)
 end
 

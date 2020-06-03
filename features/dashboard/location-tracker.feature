@@ -7,12 +7,12 @@ Feature: LocationTracking
   # Scenario: Verify wearable is single sign on
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
-    Then I should see inacive crew count is correct
+    Then I should see inactive crew count is correct
     And I unlink all crew from wearable
 
   Scenario: Verify active crew count is correct
     Given I launch sol-x portal
-    Then I should see acive crew count is correct
+    Then I should see active crew count is correct
     And I unlink all crew from wearable
 
   Scenario: Verify active crew with location details are correct
@@ -73,11 +73,11 @@ Feature: LocationTracking
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
     And I toggle activity crew list
-    Then I should see <zone> count 1
+    Then I should see <zone> count represent 1
     And I should see ui location updated to <location>
-    And I should see Full Ship count 1
+    And I should see Full Ship count represent 1
     And I should see ui location updated to <location>
-    And I should see Accomm. count 0
+    And I should see Accomm. count represent 0
     And I should not see ui location updated to <location>
     And I unlink all crew from wearable
 
@@ -93,7 +93,7 @@ Feature: LocationTracking
   Scenario: Verify total count for full ship is correct when toggle at inactive
     Given I launch sol-x portal
     And I link wearable
-    Then I should see Full Ship count 0
+    Then I should see Full Ship count represent 0
     And I unlink all crew from wearable
 
   Scenario: Verify total count for full ship is correct when toggle at active
@@ -101,5 +101,5 @@ Feature: LocationTracking
     When I toggle activity crew list
     And I link wearable
     And I link wearable
-    Then I should see Full Ship count 2
+    Then I should see Full Ship count represent 2
     And I unlink all crew from wearable
