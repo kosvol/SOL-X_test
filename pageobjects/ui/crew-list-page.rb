@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class CrewListPage
+class CrewListPage < DashboardPage
   include PageObject
 
   elements(:crew_table_header, xpath: '//*/tr/th')
@@ -10,6 +10,9 @@ class CrewListPage
   elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
   elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
+  divs(:location_details, xpath: "//div[@data-testid='location']")
+  button(:view_pin_btn, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
+  @@location_indicator = "//div[@data-testid='location-indicator']"
 
   def get_crew_table_headers
     data_collector = []
@@ -33,5 +36,40 @@ class CrewListPage
       Log.instance.info("Actual: #{crew_details['crew'][_index]}")
       crew.text.to_s.gsub!(/\s+/, ' ') === crew_details['crew'][_index]
     end
+  end
+
+  ### "rgba(67, 160, 71, 1), 1)" - green
+  ### "rgba(242, 204, 84, 1)" - yellow
+  def is_activity_indicator_status(color)
+    color === 'rgba(242, 204, 84, 1)' ? (sleep 27) : (sleep 2)
+    $browser.find_element(:xpath, @@location_indicator).css_value('background-color') === color
+  end
+
+  def is_location_details(_location = nil)
+    _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
+    location_details_elements.each do |location|
+      next if location.text === ''
+
+      Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
+      Log.instance.info("Actual: #{_get_active_crew_details_frm_service.first.first}")
+      return (location.text.gsub!(/\s+/, ' ').to_s === _get_active_crew_details_frm_service.first.first)
+    end
+  end
+
+  private
+
+  def get_active_crew_details_frm_service(_location = nil)
+    crew_details = []
+    if _location.nil?
+      ServiceUtil.get_response_body['data']['wearables'].each do |_wearable|
+        next if _wearable['crewMember'].nil?
+
+        crew_details << ["#{get_beacon_location} - Just now"]
+      end
+    else
+      crew_details << ["#{_location} - Just now"]
+    end
+
+    crew_details
   end
 end

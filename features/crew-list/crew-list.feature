@@ -24,15 +24,44 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     Then I should see all crew details match
 
-# Scenario: Verify location pin turn red after triggering crew assist
+  # Scenario: Verify location pin turn red after triggering crew assist
 
-# Scenario: Verify location pin turn green below 30s
+  Scenario: Verify location pin turn green below 30s
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see crew list location indicator is green below 30s
+    And I unlink all crew from wearable
 
-# Scenario: Verify location pin turn yellow after 30s
+  Scenario: Verify location pin turn yellow after 30s
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see crew list location indicator is yellow after 30s
+    And I unlink all crew from wearable
 
-# Scenario: Verify crew latest location is updated on crew listing
+  Scenario: Verify crew latest location is display on crew listing
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I link wearable
+    Then I should see crew location details on crew screen
+    And I unlink all crew from wearable
 
-# Scenario: Verify crew pin is shown after tapping on view pin
+  Scenario Outline: Verify crew updated location is display on crew listing
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I link wearable to zone <zoneid> and mac <mac>
+    And I update location to new zone <new_zoneid> and mac <new_mac>
+    Then I should see crew location <new_zone> details on crew screen
+    And I unlink all crew from wearable
+
+    Examples:
+      | zone        | zoneid                     | mac               | new_zone         | new_zoneid                 | new_mac           |
+      | Engine Room | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room Bottom | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+
+  Scenario: Verify crew pin is shown after tapping on view pin with captain's pin
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I view pin
+    Then I should see pin reviewed
 
 # Scenario: Verify total crew count and vessel name
 
