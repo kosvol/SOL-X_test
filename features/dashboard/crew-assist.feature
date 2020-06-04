@@ -1,5 +1,5 @@
 @crew-assist
-Feature: CrewAssistScenarios
+Feature: CrewAssist
 
   Scenario: Verify alert dialog popup display crew rank,name and location
     Given I launch sol-x portal
@@ -25,6 +25,9 @@ Feature: CrewAssistScenarios
 
   @skip
   Scenario: Verify map location pin turn red after triggering crew assist ?
+
+  @skip
+  Scenario: Verify active permits display on crew assists dialog box
 
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
