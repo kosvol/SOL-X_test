@@ -24,7 +24,8 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     Then I should see all crew details match
 
-  # Scenario: Verify location pin turn red after triggering crew assist
+  @skip
+  Scenario: Verify location pin turn red after triggering crew assist
 
   Scenario: Verify location pin turn green below 30s
     Given I launch sol-x portal
@@ -63,16 +64,21 @@ Feature: CrewList
     And I view pin
     Then I should see pin reviewed
 
-# Scenario: Verify total crew count and vessel name
+  @manual
+  Scenario: Verify total crew list count match inactive user count and COMPASS system
 
-# @manual
-# Scenario: Verify total crew list count match inactive user count and COMPASS system
+  @manual
+  Scenario: Verify Email notification sent to the assign crew
 
-# @manual
-# Scenario: Verify Email notification sent to the assign crew
+  @manual
+  Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-# @manual
-# Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+  @manual
+  Scenario: Verify adhoc crew is added the next day T+1
 
-# @manual
-# Scenario: Verify adhoc crew is added the next day T+1
+  @skip
+  Scenario: Verify existing crew id cannot be added to the voyage
+    Given I launch sol-x portal
+    When I navigate to crew List
+    And I add an existing crew id
+    Then I should not be able to add
