@@ -75,7 +75,7 @@ class WearablePage
 
     def get_one_wearable_id
       tmp = @@list_of_wearables.sample
-      !%w[fd817c462e3f60dd 616ee000ad6ac808].include?(tmp) ? @@wearableid = tmp : get_one_wearable_id
+      tmp.size >= 32 ? @@wearableid = tmp : get_one_wearable_id
     end
 
     def get_crews_id

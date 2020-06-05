@@ -1,5 +1,7 @@
-require "liquid"
-require "socket"
+# frozen_string_literal: true
+
+require 'liquid'
+require 'socket'
 
 module RelevantCodes
   class Report < Liquid::Drop
@@ -12,29 +14,25 @@ module RelevantCodes
 
       # to decouple
       @system_variables = {
-        #'OS' => ENV['OS'],
-        "User Name" => Socket.gethostname,
-        "Ruby Version" => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}",
-        "Host Name" => Socket.gethostname,
+        # 'OS' => ENV['OS'],
+        'User Name' => Socket.gethostname,
+        'Ruby Version' => "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}",
+        'Host Name' => Socket.gethostname
       }
 
       @configuration = {
-        "encoding" => "UTF-8",
-        "document_title" => "ExtentReports for Ruby",
-        "report_name" => "ExtentReports",
-        "report_headline" => "",
-        "scripts" => "",
-        "styles" => "",
+        'encoding' => 'UTF-8',
+        'document_title' => 'Sol-X',
+        'report_name' => '../../testreport/img/sol-x-logo.912a6bb7.svg',
+        'report_headline' => '',
+        'scripts' => '',
+        'styles' => ''
       }
     end
 
-    def tests
-      @tests
-    end
+    attr_reader :tests
 
-    def get_start_time
-      @get_start_time
-    end
+    attr_reader :get_start_time
 
     def get_end_time
       Time.new.strftime(DATE_TIME_FORMAT)
@@ -69,9 +67,7 @@ module RelevantCodes
 
     def remove_child_tests
       @tests.each_with_index do |t, ix|
-        if t.test.is_child?
-          @tests.delete_at(ix)
-        end
+        @tests.delete_at(ix) if t.test.is_child?
       end
     end
 

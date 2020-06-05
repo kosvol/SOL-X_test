@@ -19,7 +19,7 @@
         
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css' type='text/css' />
         <link href='https://cdn.rawgit.com/noelboss/featherlight/1.3.4/release/featherlight.min.css' type='text/css' rel='stylesheet' />
-        <link href='http://cdn.rawgit.com/anshooarora/extentreports/c52c8b4c4cf7853d658daeb1cb09207ed5a667c6/cdn/extent.css' type='text/css' rel='stylesheet' />
+        <link href='../../testreport/css/extent.css' type='text/css' rel='stylesheet' />
         
         <style>
             {% if report.get_configuration %}
@@ -41,7 +41,10 @@
                 <li class='analysis waves-effect'><a href='#!' class='testrunner-logs-view'><i class='mdi-action-assignment'></i>TestRunner Logs</a></li>
             </ul>
             <a href='#' data-activates='slide-out' class='button-collapse'><i class='mdi-navigation-menu medium'></i></a>
-            <span class='report-name'>{% if report.get_configuration %} {{ report.get_configuration['report_name'] }} {% endif %}</span> <span class='report-headline'>{% if report.get_configuration %} {{ report.get_configuration['report_headline'] }} {% endif %}</span>
+            <img
+                src="{% if report.get_configuration %}{{report.get_configuration['report_name'] }}{% endif %}"
+                alt="SOL-X"
+            />
             <ul class='right hide-on-med-and-down nav-right'>
                 <li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $(".theme-selector").click();' title='Click to toggle dark theme. To enable by default, use js configuration $(".theme-selector").click();'>
                     <i class='mdi-hardware-desktop-windows'></i>

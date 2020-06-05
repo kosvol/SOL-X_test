@@ -86,10 +86,10 @@ class ReportUtils
 
   def self.clear_folder
     Dir['testreport/*'].each do |subfolder|
-      if %w[jsonreports log reports xmlreports].include? subfolder.to_s
+      if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports].include? subfolder.to_s
         FileUtils.rm_r(subfolder)
       end
-      FileUtils.rm_r(subfolder) unless subfolder.to_s.include? '@'
+      FileUtils.rm_r(subfolder) if subfolder.to_s.include? '@'
     end
   end
 

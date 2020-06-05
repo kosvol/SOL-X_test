@@ -1,8 +1,10 @@
-require "rubygems"
-require "liquid"
+# frozen_string_literal: true
 
-require_relative "report"
-require_relative "extent-test"
+require 'rubygems'
+require 'liquid'
+
+require_relative 'report'
+require_relative 'extent-test'
 # require_relative 'icon'
 
 module RelevantCodes
@@ -24,15 +26,24 @@ module RelevantCodes
       tests_add_examples(tables)
     end
 
-    def flush
-      remove_child_tests
-      file ||= "library/extent/view/extent.html.liquid.html"
-      markup = Liquid::Template.parse(File.read(file)).render("report" => self)
+    def flush_extent_report
+      # remove_child_tests
+      file ||= 'library/extent/view/extent.html.liquid.html'
+      markup = Liquid::Template.parse(File.read(file)).render('report' => self)
 
-      File.open(@file_path, "w") {
-        |file|
+      File.open(@file_path, 'w') do |file|
         file.write(markup)
-      }
+      end
+    end
+
+    def flush_living_report
+      remove_child_tests
+      file ||= 'library/extent/view/living_documentation.html'
+      markup = Liquid::Template.parse(File.read(file)).render('report' => self)
+
+      File.open(@file_path, 'w') do |file|
+        file.write(markup)
+      end
     end
   end
 end
