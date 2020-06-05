@@ -23,7 +23,7 @@ module RelevantCodes
       @configuration = {
         'encoding' => 'UTF-8',
         'document_title' => 'Sol-X',
-        'report_name' => '../../testreport/img/sol-x-logo.912a6bb7.svg',
+        'report_name' => '../img/sol-x-logo.912a6bb7.svg',
         'report_headline' => '',
         'scripts' => '',
         'styles' => ''

@@ -78,7 +78,7 @@ class ReportUtils
       unless subfolder.to_s.include? '@'
         FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
       end
-      if %w[jsonreports log reports xmlreports].include? subfolder.to_s
+      if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports].include? subfolder.to_s
         FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
       end
     end
