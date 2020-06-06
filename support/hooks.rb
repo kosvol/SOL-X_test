@@ -12,7 +12,7 @@ AfterConfiguration do |config|
   $client.read_timeout = 180
   $tag = config.tag_expressions.join("'_'")
   $timestamp = Time.now.strftime('%Y_%m_%d-%IH_%MM_%SS_%LS_%p')
-  $folder_name = "#{$tag}_#{$timestamp}"
+  $folder_name = 'bundle'
   $extent = RelevantCodes::ExtentReports.new('testreport/reports/extent_report.html')
   $living_documentation = RelevantCodes::ExtentReports.new('testreport/reports/living_documentation.html')
   $examples_count = 0

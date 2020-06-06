@@ -75,10 +75,7 @@ class ReportUtils
   def self.make_folder(folder_name)
     Dir.mkdir("testreport/#{folder_name}")
     Dir['testreport/*'].each do |subfolder|
-      unless subfolder.to_s.include? '@'
-        FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
-      end
-      if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports].include? subfolder.to_s
+      if %w[testreport/css testreport/log testreport/reports testreport/img].include? subfolder.to_s
         FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
       end
     end
@@ -92,22 +89,4 @@ class ReportUtils
       FileUtils.rm_r(subfolder) if subfolder.to_s.include? '@'
     end
   end
-
-  # ##return list of steps with example variables
-  # def self.get_steps_for_examples(file)
-  #   report = File.read(file)
-  #   data = JSON.parse(report)
-  #   @overall_steps = []
-  #   # CSV.open("xls/AllScenarioSteps.csv", "a+") do |csv|
-  #   #   data[0]['elements'].each do |element|
-  #   #     @scenario_steps = []
-  #   #     element['steps'].each do |steps|
-  #   #       @scenario_steps << steps['name']
-  #   #     end
-  #   #     @overall_steps << @scenario_steps
-  #   #     csv << @scenario_steps
-  #   #   end
-  #   # end
-  #   # @overall_steps
-  # end
 end
