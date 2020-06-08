@@ -79,7 +79,7 @@ Feature: CrewList
 
   @skip
   Scenario: Verify existing crew id cannot be added to the voyage
-    Given I launch sol-x portal
-    When I navigate to crew List
-    And I add an existing crew id
-    Then I should not be able to add
+# Given I launch sol-x portal
+# When I navigate to crew List
+# And I add an existing crew id
+# Then I should not be able to add

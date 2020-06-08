@@ -26,6 +26,10 @@ Before('@manual') do
   skip_this_scenario
 end
 
+Before('@defect') do
+  skip_this_scenario
+end
+
 Before do |scenario|
   @step = 0
   @current_feature = scenario.respond_to?('scenario_outline') ? scenario.scenario_outline : scenario.feature
