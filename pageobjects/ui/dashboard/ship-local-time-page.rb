@@ -44,7 +44,7 @@ class ShipLocalTimePage
   def cal_new_offset_time(get_current_offset)
     @current_time = utc_time.split(':')
     time_w_offset = @current_time[0].to_i + get_current_offset
-    count_hour = if time_w_offset > 24
+    count_hour = if time_w_offset >= 24
                    (time_w_offset - 24).abs
                  else
                    time_w_offset

@@ -20,6 +20,7 @@ Feature: ShipLocalTime
       | 1111 |
       | 6666 |
 
+  @defect
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
     When I change local time

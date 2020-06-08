@@ -7,6 +7,7 @@ Feature: CrewAssist
     Then I should see crew assist popup display crew rank,name and location on dashboard
     And I unlink all crew from wearable
 
+  @skip
   Scenario: Verify location pin is red
     Given I launch sol-x portal
     When I trigger crew assist from wearable
