@@ -30,6 +30,9 @@ Feature: CrewAssist
   @skip
   Scenario: Verify active permits display on crew assists dialog box
 
+  @skip
+  Scenario: Verify pending permits display on crew assists dialog box
+
   @defect
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
@@ -63,7 +66,7 @@ Feature: CrewAssist
     Then I should see crew assist dialog dismiss in both tab
     And I unlink all crew from wearable
 
-  Scenario: Verify crew can dismiss the dialog from multiple browser without acknowledge
+  Scenario: Verify crew can dismiss from multiple browser after dismiss from wearable
     Given I launch sol-x portal
     And I launch sol-x portal on another tab
     When I trigger crew assist from wearable

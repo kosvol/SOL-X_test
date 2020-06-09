@@ -27,9 +27,8 @@ class BrowserSetup
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--disable-web-security')
-      # options.add_argument('--allow-insecure-localhost')
-      # options.add_argument('--allow-running-insecure-content')
-      # options.add_argument('--unsafely-allow-protected-media-identifier-for-domain=http://cloud-edge.stage.solas.magellanx.io:8080')
+      options.add_argument('--allow-running-insecure-content')
+      options.add_argument('--ignore-certificate-errors')
       # options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080')
       # options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
 
@@ -38,9 +37,9 @@ class BrowserSetup
       begin
         if ENV['PLATFORM'] === 'chrome_headless'
           options.add_argument('--headless')
-          caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }, 'chromeOptions' => { 'args' => ['disable-extensions'], 'useAutomationExtension' => false, '--unsafely-treat-insecure-origin-as-secure' => true }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
+          caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }, 'chromeOptions' => { 'args' => ['--unsafely-treat-insecure-origin-as-secure', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
         else
-          caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }, 'chromeOptions' => { 'args' => ['disable-extensions'], 'useAutomationExtension' => false, '--unsafely-treat-insecure-origin-as-secure' => true }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
+          caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }, 'chromeOptions' => { 'args' => ['--unsafely-treat-insecure-origin-as-secure', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
         end
         $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
       rescue StandardError
