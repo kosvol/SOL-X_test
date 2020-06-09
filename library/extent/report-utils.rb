@@ -72,7 +72,7 @@ class ReportUtils
     end
   end
 
-  def self.make_folder(folder_name)
+  def self.make_folder_test(folder_name)
     Dir.mkdir("testreport/#{folder_name}")
     Dir['testreport/*'].each do |subfolder|
       if %w[testreport/css testreport/log testreport/reports testreport/img].include? subfolder.to_s
@@ -81,12 +81,24 @@ class ReportUtils
     end
   end
 
+  def self.make_folder_documentation(folder_name)
+    Dir.mkdir("testreport/#{folder_name}")
+    Dir['testreport/*'].each do |subfolder|
+      if %w[testreport/css testreport/img testreport/livingdoc].include? subfolder.to_s
+        FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
+      end
+    end
+    FileUtils.cp_r('testreport/reports/screenshots/', "testreport/#{folder_name}/livingdoc/")
+  end
+
   def self.clear_folder
     Dir['testreport/*'].each do |subfolder|
-      if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports].include? subfolder.to_s
+      # if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports testreport/livingdoc].include? subfolder.to_s
+      #   FileUtils.rm_r(subfolder)
+      # end
+      unless %w[testreport/css testreport/img].include? subfolder
         FileUtils.rm_r(subfolder)
       end
-      FileUtils.rm_r(subfolder) if subfolder.to_s.include? '@'
     end
   end
 end

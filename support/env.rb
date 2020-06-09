@@ -40,6 +40,7 @@ Dir.mkdir('testreport/log') unless File.exist?('testreport/log')
 Dir.mkdir('testreport/xmlreports') unless File.exist?('testreport/xmlreports')
 Dir.mkdir('testreport/jsonreports') unless File.exist?('testreport/jsonreports')
 Dir.mkdir('testreport/reports/') unless File.exist?('testreport/reports/')
+Dir.mkdir('testreport/livingdoc/') unless File.exist?('testreport/livingdoc/')
 unless File.exist?('testreport/reports/screenshots')
   Dir.mkdir('testreport/reports/screenshots')
 end

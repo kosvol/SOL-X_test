@@ -5,6 +5,9 @@
 /testreport/bundle
 /testreport/log
 /testreport/reports
+/testreport/livingdoc
+/testreport/finalreport
+/testreport/documentation
 /testreport/xmlreports
 /payload/response/*
 /payload/request/*/mod-*

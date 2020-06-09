@@ -12,9 +12,10 @@ AfterConfiguration do |config|
   $client.read_timeout = 180
   $tag = config.tag_expressions.join("'_'")
   $timestamp = Time.now.strftime('%Y_%m_%d-%IH_%MM_%SS_%LS_%p')
-  $folder_name = 'bundle'
+  $test_report = 'finalreport'
+  $documentation = 'documentation'
   $extent = RelevantCodes::ExtentReports.new('testreport/reports/extent_report.html')
-  $living_documentation = RelevantCodes::ExtentReports.new('testreport/reports/living_documentation.html')
+  $living_documentation = RelevantCodes::ExtentReports.new('testreport/livingdoc/living_documentation.html')
   $examples_count = 0
 end
 
@@ -70,6 +71,7 @@ at_exit do
   $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report
   $living_documentation.flush_living_report
-  ReportUtils.make_folder($folder_name)
+  ReportUtils.make_folder_test($test_report)
+  ReportUtils.make_folder_documentation($documentation)
   # ReportUtils.get_steps_for_examples("./testreport/jsonreports/json_report.json")
 end
