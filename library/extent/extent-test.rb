@@ -29,7 +29,8 @@ module RelevantCodes
       Log.instance.info details
       screenshotpath = ReportUtils.get_screenshot(browser)
       # if status.to_s == "pass"
-      log.step_name = step_name + "<p><img src=\"#{screenshotpath}\" alt=\"#{screenshotpath}\" style=\"width:304px;height:228px;\">" + "<a href=\"#{screenshotpath}\" target=\"_blank\"><p>Full Image</p></a></p>"
+      log.step_name = step_name + "<a href=\"#{screenshotpath}\" target=\"_blank\"><p>Full Image</p></a>"
+      # log.step_name = step_name + "<img src=\"#{screenshotpath}\" alt=\"#{screenshotpath}\" style=\"width:304px;height:228px;\">" + "<a href=\"#{screenshotpath}\" target=\"_blank\"><p>Full Image</p></a></>"
       log.details = details #+ "<img src=\"#{screenshotpath}\" alt=\"#{screenshotpath}\" style=\"width:304px;height:228px;\">" + "<a href=\"#{screenshotpath}\" target=\"_blank\">Full Image</a>"
       @test.log = log
     rescue Exception => e
