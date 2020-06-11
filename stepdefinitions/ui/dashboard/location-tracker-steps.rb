@@ -9,7 +9,7 @@ end
 Then (/^I should see inactive crew count is correct$/) do
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
-  is_equal(on(DashboardPage).inactive_status, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
+  is_equal(on(DashboardPage).inactive_status_element.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
 end
 
@@ -26,7 +26,7 @@ Then (/^I should see active crew count is correct$/) do
   sleep 1
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status)
+  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
   step 'I toggle activity crew list'
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end

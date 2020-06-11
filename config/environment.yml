@@ -5,6 +5,7 @@ dev:
 
 sit:
   c2_preview: "http://cloud-edge.stage.solas.magellanx.io:8080/dashboard"
+  # c2_preview: "https://52.230.70.68:8443"
   service: "http://52.230.70.68:4000"
 
 uat:

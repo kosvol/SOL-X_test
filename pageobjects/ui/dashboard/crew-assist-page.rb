@@ -6,7 +6,7 @@ class CrewAssistPage < DashboardPage
   include PageObject
 
   divs(:crew_assist_details, xpath: "//div[starts-with(@class,'CrewAssistModal__CrewDatumRow')]/div")
-  divs(:crew_assist_dialogs, xpath: "//div[@role='dialog']")
+  divs(:crew_assist_dialogs, xpath: "//div[@role='dialog']/div")
   button(:acknowledge_btn, xpath: "//div[starts-with(@class, 'CrewAssistModal__Content')]/button")
 
   @@crew_assist_location_indicator = "//div[starts-with(@class,'CrewListItem__Indicator')]"
