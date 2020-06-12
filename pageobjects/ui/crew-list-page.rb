@@ -6,6 +6,7 @@ class CrewListPage < DashboardPage
   include PageObject
 
   elements(:crew_table_header, xpath: '//*/tr/th')
+  elements(:crew_rank, xpath: "//tr/td[starts-with(@data-testid,'rank-')]")
   elements(:crew_list, xpath: '//*/tbody/tr')
   elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
@@ -13,6 +14,14 @@ class CrewListPage < DashboardPage
   divs(:location_details, xpath: "//div[@data-testid='location']")
   button(:view_pin_btn, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
   @@location_indicator = "//div[@data-testid='location-indicator']"
+
+  def is_crew_sorted_descending_seniority
+    rank_arr = []
+    crew_rank_elements.each do |x|
+      rank_arr << x.text
+    end
+    rank_arr.uniq === $sit_rank_and_pin_yml['Ranks']
+  end
 
   def get_crew_table_headers
     data_collector = []

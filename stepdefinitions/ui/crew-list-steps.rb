@@ -38,10 +38,31 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  on(CrewListPage).view_pin_btn
+  step 'I click on view pin button'
   on(PinPadPage).enter_pin('1111')
 end
 
 Then (/^I should see pin reviewed$/) do
   is_true(!on(CrewListPage).is_pin_hidden)
+end
+
+And (/^I enter a non-existent pin$/) do
+  step 'I click on view pin button'
+  on(PinPadPage).enter_pin('1234')
+end
+
+And (/^I click on view pin button$/) do
+  on(CrewListPage).view_pin_btn
+end
+
+And (/^I backspace on entered pin$/) do
+  on(PinPadPage).backspace_once
+end
+
+Then (/^I should not see invalid pin message$/) do
+  is_equal(on(PinPadPage).error_msg_element.text, 'Please Enter Your PIN')
+end
+
+Then (/^I should see crews are sorted by descending order on seniority$/) do
+  on(CrewListPage).is_crew_sorted_descending_seniority
 end

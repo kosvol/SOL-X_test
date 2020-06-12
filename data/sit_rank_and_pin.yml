@@ -1,3 +1,31 @@
+Ranks:
+  [
+    "MAS",
+    "A/M",
+    "C/O",
+    "A C/O",
+    "2/O",
+    "A 2/O",
+    "3/O",
+    "A 3/O",
+    "4/O",
+    "D/C",
+    "C/E",
+    "A C/E",
+    "2/E",
+    "A 2/E",
+    "3/E",
+    "A 3/E",
+    "4/E",
+    "A 4/E",
+    "ETO",
+    "BOS",
+    "PMAN",
+    "A/B",
+    "O/S",
+    "OLR",
+  ]
+
 MAS:
   ID: "SIT_SOLX0001"
   PIN: "1111"
@@ -13,84 +41,83 @@ C/O:
 A C/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 2/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A 2/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 3/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A 3/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 4/O:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 D/C:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 C/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A C/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 2/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A 2/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 3/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A 3/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 4/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A 4/E:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 ETO:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 BOS:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 PMAN:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 A/B:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 O/S:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  
+
 OLR:
   ID: "SIT_SOLX0001"
   PIN: "1111"
-  

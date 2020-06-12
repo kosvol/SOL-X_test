@@ -64,15 +64,23 @@ Feature: CrewList
     And I view pin
     Then I should see pin reviewed
 
-  @skip
   Scenario: Verify error message shown for non-existent pin
-  # Incorrect pin, please enter again.
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I enter a non-existent pin
+    Then I should see invalid pin message
 
-  @skip
+  Scenario: Verify error message disappear after backspace on entered pin
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I enter a non-existent pin
+    And I backspace on entered pin
+    Then I should not see invalid pin message
+
   Scenario: Verify crew list is sorted in descending order of seniority
-
-  @manual
-  Scenario: Verify total crew list count match inactive user count and COMPASS system
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see crews are sorted by descending order on seniority
 
   @manual
   Scenario: Verify Email notification sent to the assign crew
@@ -80,6 +88,7 @@ Feature: CrewList
   @manual
   Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
+  ## i think this is not valid anymore
   @manual
   Scenario: Verify adhoc crew is added the next day T+1
 
