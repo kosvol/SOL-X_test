@@ -467,7 +467,7 @@
                                                         <tbody>
                                                             {% for test in test_list %}
                                                                 <tr class='{{ test.status }}'>
-                                                                    <td>{{ test.start_time }}</td>
+                                                                    <td>{{ test.get_start_time }}</td>
                                                                     <td><span class='category-link linked'>{{ test.name }}</span></td>
                                                                     <td><div style="width:41px" class='status label capitalize {{ test.status }}'>{{ test.status }}</div></td>
                                                                 </tr>
