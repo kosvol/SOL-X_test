@@ -33,7 +33,6 @@ Feature: CrewAssist
   @skip
   Scenario: Verify pending permits display on crew assists dialog box
 
-  @defect
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
     When I trigger crew assist from wearable

@@ -13,7 +13,7 @@ mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --pro
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
 
 dir: -r support -r stepdefinitions -r pageobjects
-html: --expand -f Formatter::HtmlFormatter -o testreport/reports/html_report_.html
+html: --expand -f Formatter::HtmlFormatter -o testreport/html_report_.html
 json: --expand -f json -o testreport/jsonreports/json_report.json
 xml: --expand -f pretty -f junit -o testreport/xmlreports/
 html_pretty: --expand -f pretty -f junit -o testreport/html_report_.html
