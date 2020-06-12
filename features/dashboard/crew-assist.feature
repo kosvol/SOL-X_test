@@ -7,12 +7,12 @@ Feature: CrewAssist
     Then I should see crew assist popup display crew rank,name and location on dashboard
     And I unlink all crew from wearable
 
-  @skip
-  Scenario: Verify location pin is red
-    Given I launch sol-x portal
-    When I trigger crew assist from wearable
-    Then I should crew location indicator is red
-    And I unlink all crew from wearable
+  # @skip
+  # Scenario: Verify location pin is red
+  #   Given I launch sol-x portal
+  #   When I trigger crew assist from wearable
+  #   Then I should crew location indicator is red
+  #   And I unlink all crew from wearable
 
   Scenario: Verify multiple dialog show on screen
     Given I launch sol-x portal
@@ -21,11 +21,11 @@ Feature: CrewAssist
     And I should see two crew assist dialogs on dashboard
     And I unlink all crew from wearable
 
-  @skip
-  Scenario: Verify crew assist dialog display current time ?
+  # @skip
+  # Scenario: Verify crew assist dialog display current time ?
 
-  @skip
-  Scenario: Verify map location pin turn red after triggering crew assist ?
+  # @skip
+  # Scenario: Verify map location pin turn red after triggering crew assist ?
 
   @skip
   Scenario: Verify active permits display on crew assists dialog box

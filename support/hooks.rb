@@ -54,11 +54,11 @@ After do |scenario|
       $living_test.info(:fatal, 'Exception Raised', e, @browser)
     end
   else
-    # scenario.test_steps.each do |x, _index|
-    #   unless ['Before hook', 'AfterStep hook'].include? x.text
-    #     $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
-    #   end
-    # end
+    scenario.test_steps.each do |x, _index|
+      unless ['Before hook', 'AfterStep hook'].include? x.text
+        $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
+      end
+    end
 
   end
   @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")

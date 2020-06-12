@@ -15,5 +15,5 @@ Then (/^I should see ship local time updated$/) do
 end
 
 Then (/^I should see base time is UTC$/) do
-  puts ">>> #{on(ShipLocalTimePage).is_utc_time}"
+  is_equal(on(ShipLocalTimePage).is_utc_time, on(ShipLocalTimePage).utc_time)
 end
