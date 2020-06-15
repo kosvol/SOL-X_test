@@ -8,7 +8,8 @@ class BrowserSetup
     $browser = case ENV['PLATFORM'].upcase
                when 'CHROME', 'CHROME_HEADLESS'
                  load_chrome(os)
-               # load_web_app(os,noreset,fullreset)
+               when 'android'
+                 load_web_app(os, _noreset, _fullreset)
                # when 'CHROME_MEW',"CHROME_MEW_HEADLESS"
                #   load_chrome_mew(os)
                else

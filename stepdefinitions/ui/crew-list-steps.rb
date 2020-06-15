@@ -51,6 +51,11 @@ And (/^I enter a non-existent pin$/) do
   on(PinPadPage).enter_pin('1234')
 end
 
+And (/^I enter a invalid master pin$/) do
+  step 'I click on view pin button'
+  on(PinPadPage).enter_pin('1212')
+end
+
 And (/^I click on view pin button$/) do
   on(CrewListPage).view_pin_btn
 end
@@ -61,6 +66,10 @@ end
 
 Then (/^I should not see invalid pin message$/) do
   is_equal(on(PinPadPage).error_msg_element.text, 'Please Enter Your PIN')
+end
+
+Then (/^I should see not authorize error message$/) do
+  is_equal(on(PinPadPage).error_msg_element.text, 'You Are Not Authorized To Perform That Action')
 end
 
 Then (/^I should see crews are sorted by descending order on seniority$/) do

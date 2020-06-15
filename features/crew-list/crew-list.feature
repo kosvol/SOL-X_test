@@ -24,8 +24,8 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     Then I should see all crew details match
 
-  @skip
-  Scenario: Verify location pin turn red after triggering crew assist
+  # @skip
+  # Scenario: Verify location pin turn red after triggering crew assist
 
   Scenario: Verify location pin turn green below 30s
     Given I launch sol-x portal
@@ -69,6 +69,12 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     And I enter a non-existent pin
     Then I should see invalid pin message
+
+  Scenario: Verify error message shown for invalid master pin
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I enter a invalid master pin
+    Then I should see not authorize error message
 
   Scenario: Verify error message disappear after backspace on entered pin
     Given I launch sol-x portal
