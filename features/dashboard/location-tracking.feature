@@ -27,7 +27,6 @@ Feature: LocationTracking
     Given I launch sol-x portal
     When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
     And I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
-    And I toggle activity crew list
     Then I should see Full Ship location indicator showing 2 on location pin
     And I should see Engine Room location indicator showing 2 on location pin
     And I unlink all crew from wearable
@@ -35,14 +34,14 @@ Feature: LocationTracking
   Scenario: Verify location pin not visible on zone not linked by wearable
     Given I launch sol-x portal
     When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
-    And I toggle activity crew list
+    # And I toggle activity crew list
     And I should not see Pump Room location indicator
     And I unlink all crew from wearable
 
   Scenario Outline: Verify active crew member location changed after 30s
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
-    And I toggle activity crew list
+    # And I toggle activity crew list
     And I update location to new zone <new_zoneid> and mac <new_mac>
     Then I should see ui location updated to <new_zone>
     And I unlink all crew from wearable
@@ -74,7 +73,7 @@ Feature: LocationTracking
   Scenario Outline: Verify active crew member count is correct on engine room against full ship
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
-    And I toggle activity crew list
+    # And I toggle activity crew list
     Then I should see <zone> count represent 1
     And I should see ui location updated to <location>
     And I should see Full Ship count represent 1
@@ -95,12 +94,13 @@ Feature: LocationTracking
   Scenario: Verify total count for full ship is correct when toggle at inactive
     Given I launch sol-x portal
     And I link wearable
+    When I toggle activity crew list
     Then I should see Full Ship count represent 0
     And I unlink all crew from wearable
 
   Scenario: Verify total count for full ship is correct when toggle at active
     Given I launch sol-x portal
-    When I toggle activity crew list
+    # When I toggle activity crew list
     And I link wearable
     And I link wearable
     Then I should see Full Ship count represent 2
