@@ -109,7 +109,7 @@ Feature: Ptwforms
     Then I should see permits match backend results
     And I tear down created form
 
-  Scenario: Verify after click cancel on pin pad it will navigate back to permit selection screen
+# Scenario: Verify after click cancel on pin pad it will navigate back to permit selection screen
 
 
 
