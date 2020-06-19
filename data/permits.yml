@@ -1,0 +1,53 @@
+Cold Work:
+  [
+    "Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard",
+    "Cold Work - Cleaning Up of Spills",
+    "Cold Work - Connecting and Disconnecting Pipelines",
+    "Cold Work - Working on Closed Electrical Equipment and Circuits",
+    "Cold Work - Maintenance Work on Machinery",
+    "Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds",
+    "Cold Work - Working in Hazardous or Dangerous Area",
+  ]
+
+Critical Equipment Maintenance:
+  [
+    "Maintenance on Anchor",
+    "Maintenance on Emergency Fire Pump",
+    "Maintenance on Emergency Generator",
+    "Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment",
+    "Maintenance on Fire Detection Alarm System",
+    "Maintenance on Fixed Fire Fighting System",
+    "Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel",
+    "Maintenance on Life/Rescue Boats and Davits",
+    "Maintenance on Lifeboat Engine",
+    "Maintenance on Critical Equipment - Magnetic Compass",
+    "Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device",
+    "Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device",
+    "Maintenance on Oil Discharging Monitoring Equipment",
+    "Maintenance on Oil Mist Detector Monitoring System",
+    "Maintenance on Oily Water Separator",
+    "Maintenance on P/P Room Gas Detection Alarm System",
+    "Maintenance on Radio Battery",
+  ]
+
+Hotwork:
+  [
+    "Hot Work Level-1 (Loaded & Ballast Passage)",
+    "Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)",
+    "Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)",
+    "Hot Work Level-2 outside E/R (Ballast Passage)",
+    "Hot Work Level-2 outside E/R (Loaded Passage)",
+  ]
+
+Rotational Portable Power Tool:
+  [
+    "Use of Hydro blaster/working with High-pressure tools",
+    "Use of Portable Power Tools",
+  ]
+
+Underwater Operations:
+  [
+    "Underwater Operation during daytime without any simultaneous operations",
+    "Simultaneous underwater operation during daytime with other operation",
+    "Underwater Operation at night",
+  ]

@@ -4,7 +4,7 @@ When (/^I change local time$/) do
   on(ShipLocalTimePage).adjust_ship_local_time
 end
 
-And (/^I enter pin (.+)$/) do |pin|
+And ('I enter pin {int}') do |pin|
   on(PinPadPage).enter_pin(pin)
 end
 

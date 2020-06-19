@@ -12,6 +12,10 @@ uat:
   c2_preview: "http://104.215.192.113:8080"
   service: "http://104.215.192.11:4000"
 
+sit_fauxton_forms:
+  delete_form: "http://52.230.70.68:5984/forms/_bulk_docs"
+  get_forms: "http://52.230.70.68:5984/forms/_all_docs?skip=0&limit=101"
+
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 ## To enable and disable screenshot feature ##
