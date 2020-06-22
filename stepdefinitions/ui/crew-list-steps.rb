@@ -39,7 +39,9 @@ end
 
 And (/^I view pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin('1111')
+  sleep 1
+  on(PinPadPage).enter_pin(1111)
+  sleep 1
 end
 
 Then (/^I should see pin reviewed$/) do
@@ -48,12 +50,12 @@ end
 
 And (/^I enter a non-existent pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin('1234')
+  on(PinPadPage).enter_pin(1234)
 end
 
 And (/^I enter a invalid master pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin('1212')
+  on(PinPadPage).enter_pin(1212)
 end
 
 And (/^I click on view pin button$/) do
