@@ -23,41 +23,38 @@ Feature: ShipLocalTime
     Given I launch sol-x portal
     When I change local time
     And I enter pin <pin>
-    Then I should see invalid pin message
+    Then I should see not authorize error message
 
     Examples:
       | pin  |
       | 1212 |
-# | 4444 |
-# | 5555 |
-# | 7777 |
-# | 8888 |
-# | 9999 |
-# | 1010 |
-# | 1616 |
-# | 2222 |
-# | 0110 |
-# | 1313 |
-# | 1414 |
-# | 3333 |
-# | 1515 |
-# | 2323 |
-# | 2424 |
-# | 1717 |
-# | 1818 |
-# | 2020 |
-# | 2121 |
-# | 1919 |
-# | 0220 |
+      | 4444 |
+      | 5555 |
+      | 7777 |
+      | 8888 |
+      | 9999 |
+      | 1010 |
+      | 1616 |
+      | 2222 |
+      | 0110 |
+      | 1313 |
+      | 1414 |
+      | 3333 |
+      | 1515 |
+      | 2323 |
+      | 2424 |
+      | 1717 |
+      | 1818 |
+      | 2020 |
+      | 2121 |
+      | 1919 |
+      | 0220 |
 
 # @manual
 # Scenario: Verify ship's local time only limit at -12 to +14
 
 
 ################## ----WILL NOT BE HERE----- ##################
-
-# @manual
-# Scenario: Verify time change reflects on Wearable and Dashboard
 
 # @manual
 # Scenario: Verify local time with timezone change reflect on PDF and EMAIL (DRA,Gas Reading,Checklist,Toolbox and section 7) ie. xxx LT (GTM -/+ 8)

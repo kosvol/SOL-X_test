@@ -1,5 +1,5 @@
-@ptwforms
-Feature: Ptwforms
+@smart-forms-permission
+Feature: SmartFormsPermission
   As a ...
   I want to ...
   So that ...
@@ -35,7 +35,8 @@ Feature: Ptwforms
   #   When I navigate to "SmartForms" screen
   #   And I navigate to create new permit to work
   #   And I enter RA pin <pin>
-  #   Then I should not see smart form landing screen
+  #   Then I should see not authorize error message
+  #   And I should not see smart form landing screen
 
   #   Examples:
   #     | pin  |

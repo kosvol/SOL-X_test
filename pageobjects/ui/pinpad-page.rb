@@ -12,7 +12,7 @@ class PinPadPage
   def enter_pin(pin)
     format('%04d', pin).to_s.split('').each do |num|
       p num.to_i
-      pin_pad_elements[num.to_i].click
+      pin_pad_elements[(num.to_i - 1)].click
     end
   end
 

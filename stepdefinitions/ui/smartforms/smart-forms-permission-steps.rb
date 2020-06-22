@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 Then('I should see a list of available forms for selections') do |_table|
-  on(PtwPage).click_permit_type_ddl
-  is_true(on(PtwPage).is_level_1_permit?(_table.raw))
+  on(SmartFormsPermissionPage).click_permit_type_ddl
+  is_true(on(SmartFormsPermissionPage).is_level_1_permit?(_table.raw))
 end
 
 And (/^I navigate to create new permit to work$/) do
-  on(PtwPage).click_create_permit_btn
+  on(SmartFormsPermissionPage).click_create_permit_btn
 end
 
 And ('I enter RA pin {int}') do |_pin|
@@ -15,24 +15,24 @@ end
 
 Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
   if _condition === 'should'
-    is_true(on(PtwPage).ptw_id_element.text.include?('SIT/PTW/'))
+    is_true(on(SmartFormsPermissionPage).ptw_id_element.text.include?('SIT/PTW/'))
   end
   if _condition === 'should not'
-    # is_true(on(PtwPage).ptw_id_element.text.include?('SIT/PTW/'))
+    # is_true(on(SmartFormsPermissionPage).ptw_id_element.text.include?('SIT/PTW/'))
   end
 end
 
 And (/^I tear down created form$/) do
-  SmartFormDBPage.tear_down_ptw_form(on(PtwPage).ptw_id_element.text)
+  SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  on(PtwPage).click_permit_type_ddl
-  on(PtwPage).select_level_1_permit(_permit)
+  on(SmartFormsPermissionPage).click_permit_type_ddl
+  on(SmartFormsPermissionPage).select_level_1_permit(_permit)
 end
 
 Then (/^I should see second level permits details$/) do
-  is_true(on(PtwPage).is_level_2_permits?)
+  is_true(on(SmartFormsPermissionPage).is_level_2_permits?)
 end
 
 And (/^I navigate to level 2 permits$/) do
@@ -40,7 +40,7 @@ And (/^I navigate to level 2 permits$/) do
 end
 
 And (/^I navigate back to SmartForms screen$/) do
-  on(PtwPage).back_btn
+  on(SmartFormsPermissionPage).back_btn
   sleep 1
-  on(PtwPage).back_btn
+  on(SmartFormsPermissionPage).back_btn
 end
