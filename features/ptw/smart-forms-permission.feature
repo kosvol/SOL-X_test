@@ -54,10 +54,6 @@ Feature: SmartFormsPermission
       | 2121 |
       | 1919 |
       | 0220 |
-      | 0379 |
-      | 9146 |
-      | 1243 |
-      | 2743 |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal
