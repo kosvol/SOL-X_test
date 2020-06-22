@@ -9,7 +9,7 @@ class SmartFormsPermissionPage
   element(:ptw_id, xpath: "//main[starts-with(@class,'CreateForm__PageContainer')]/div/h2")
   button(:click_permit_type_ddl, xpath: "//button[@id='permitType']")
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")
-  button(:save_btn, xpath: "//div[starts-with(@class='Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
+  button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
@@ -19,15 +19,16 @@ class SmartFormsPermissionPage
     click_create_permit_btn_element.click
   end
 
+  permit_type = ''
   def select_permit
     click_permit_type_ddl
-    permit = list_permit_type_elements.sample
     sleep 1
-    permit.click
+    permit_type = get_random_permit
+    permit_type.click
     sleep 1
     unless list_permit_type_elements.empty?
-      permit = list_permit_type_elements.sample
-      permit.click
+      permit_type = get_random_permit
+      permit_type.click
     end
     sleep 1
     save_btn
@@ -57,6 +58,11 @@ class SmartFormsPermissionPage
   end
 
   private
+
+  def get_random_permit
+    permit = list_permit_type_elements.sample
+    permit.text === 'Rigging of Pilot/Combination Ladder' ? get_random_permit : permit
+  end
 
   def get_app_permits
     app_permits = []

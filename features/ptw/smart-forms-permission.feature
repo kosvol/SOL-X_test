@@ -30,35 +30,34 @@ Feature: SmartFormsPermission
       | Additional Second Engineer | 1414 |
       | Electro Technical Officer  | 1717 |
 
-  # Scenario Outline: Verify non RA cannot create permit
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
-  #   And I navigate to create new permit to work
-  #   And I enter RA pin <pin>
-  #   Then I should see not authorize error message
-  #   And I should not see smart form landing screen
+  Scenario Outline: Verify non RA cannot create permit
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit to work
+    And I enter RA pin <pin>
+    Then I should see not authorize error message
 
-  #   Examples:
-  #     | pin  |
-  #     | 1111 |
-  #     | 7777 |
-  #     | 8888 |
-  #     | 9999 |
-  #     | 1010 |
-  #     | 1616 |
-  #     | 3333 |
-  #     | 1515 |
-  #     | 2323 |
-  #     | 2424 |
-  #     | 1818 |
-  #     | 2020 |
-  #     | 2121 |
-  #     | 1919 |
-  #     | 0220 |
-  #     | 0379 |
-  #     | 9146 |
-  #     | 1243 |
-  #     | 2743 |
+    Examples:
+      | pin  |
+      | 1111 |
+      | 7777 |
+      | 8888 |
+      | 9999 |
+      | 1010 |
+      | 1616 |
+      | 3333 |
+      | 1515 |
+      | 2323 |
+      | 2424 |
+      | 1818 |
+      | 2020 |
+      | 2121 |
+      | 1919 |
+      | 0220 |
+      | 0379 |
+      | 9146 |
+      | 1243 |
+      | 2743 |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal
