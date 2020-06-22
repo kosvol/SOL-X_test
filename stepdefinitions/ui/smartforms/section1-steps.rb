@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I select a any permits$/) do
-  on(SmartFormsPermissionPage).select_permit
+  on(SmartFormsPermissionPage).select_random_permit
 end
 
 Then (/^I should see permit details are pre-filled$/) do
@@ -16,4 +16,12 @@ end
 
 Then (/^I should see a list of wind forces$/) do |_table|
   is_true(on(Section1Page).is_wind_forces?(_table.raw))
+end
+
+Then (/^I should not see save and previous button exists$/) do
+  is_equal(on(Section1Page).previous_btn_elements.size, 1)
+end
+
+Then (/^I should see maintenance duration section and require text$/) do
+  is_true(on(Section1Page).is_maint_duration_dd_exists?)
 end

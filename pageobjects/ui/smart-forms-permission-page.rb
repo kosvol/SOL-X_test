@@ -20,7 +20,7 @@ class SmartFormsPermissionPage
   end
 
   permit_type = ''
-  def select_permit
+  def select_random_permit
     click_permit_type_ddl
     sleep 1
     permit_type = get_random_permit
@@ -49,7 +49,7 @@ class SmartFormsPermissionPage
     base_permits === get_app_permits
   end
 
-  def select_level_1_permit(_permit)
+  def select_permit(_permit)
     @@permit = _permit
     sleep 1
     list_permit_type_elements.each do |permit|

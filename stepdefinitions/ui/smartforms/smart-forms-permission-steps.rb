@@ -28,7 +28,15 @@ end
 
 When (/^I select (.+) permit$/) do |_permit|
   on(SmartFormsPermissionPage).click_permit_type_ddl
-  on(SmartFormsPermissionPage).select_level_1_permit(_permit)
+  on(SmartFormsPermissionPage).select_permit(_permit)
+  # on(SmartFormsPermissionPage).list_permit_type_elements.each do |permit|
+  #   p ">>> #{permit.text}"
+  # end
+end
+
+When (/^I select (.+) permit for level 2$/) do |_permit|
+  on(SmartFormsPermissionPage).select_permit(_permit)
+  on(SmartFormsPermissionPage).save_btn
 end
 
 Then (/^I should see second level permits details$/) do
