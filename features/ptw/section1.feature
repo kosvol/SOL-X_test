@@ -93,18 +93,40 @@ Feature: NonOfficeApprovalPermits
       | Maintenance on P/P Room Gas Detection Alarm System                                            |
       | Maintenance on Radio Battery                                                                  |
 
-  # Scenario: Verify question input field does not exists in permits
-  # Scenario: Verify created permit is under Created Permit to Work
-  # Scenario: Verify created permit data matched on edit screen
-
-  # Scenario: Verify screen text
-
-  Scenario: Verify there is no Save and Previous button
+  Scenario Outline: Verify question input field does not exists in permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit to work
     And I enter RA pin 1212
-    And I select a any permits
-    Then I should not see save and previous button exists
+    And I select <level one permit> permit
+    And I select a level 2 permit randomly
+    Then I should not see maintenance duration section and require text
     And I tear down created form
+
+    Examples:
+      | level one permit                          |
+      | Cold Work                                 |
+      | Enclosed Spaces Entry                     |
+      | Helicopter Operations                     |
+      | Hotwork                                   |
+      | Personal Transfer By Transfer Basket      |
+      | Rotational Portable Power Tool            |
+      | Underwater Operations                     |
+      | Use of non-intrinsically safe Camera      |
+      | Use of ODME in Manual Mode                |
+      | Work on Electrical Equipment and Circuits |
+      | Work on Pressure Pipeline/Vessels         |
+      | Working Aloft/Overside                    |
+      | Working on Deck During Heavy Weather      |
+
+# Scenario: Verify screen text
+
+# Scenario: Verify there is no Save and Previous button
+#   Given I launch sol-x portal
+#   When I navigate to "SmartForms" screen
+#   And I navigate to create new permit to work
+#   And I enter RA pin 1212
+#   And I select a any permits
+#   Then I should not see save and previous button exists
+#   And I tear down created form
 

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require './././support/env'
+# require_relative 'dashboard/ship-local-time-page'
 
-class SmartFormsPermissionPage
+class SmartFormsPermissionPage < ShipLocalTimePage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
@@ -14,22 +15,33 @@ class SmartFormsPermissionPage
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
+  @@section1_data_collector = []
 
   def click_create_permit_btn
     click_create_permit_btn_element.click
   end
 
-  permit_type = ''
+  def get_section1_filled_data
+    # probably need to dynamic this created by
+    @@section1_data_collector << 'Created By A/M Atif Hayat at'
+    clock_btn_element.click
+    @@section1_data_collector << "#{Time.new.strftime('%d/%b/%Y')} #{utc_timezone_elements[1].text} LT (GMT+#{/\d+/.match(utc_time_text)})"
+    clock_btn_element.click
+    p ">>> #{@@section1_data_collector}"
+    @@section1_data_collector
+  end
+
   def select_random_permit
     click_permit_type_ddl
     sleep 1
-    permit_type = get_random_permit
-    permit_type.click
+    selected_permit_type = get_random_permit
+    selected_permit_type.click
     sleep 1
     unless list_permit_type_elements.empty?
-      permit_type = get_random_permit
-      permit_type.click
+      selected_permit_type = get_random_permit
+      selected_permit_type.click
     end
+    @@section1_data_collector << ptw_id_element.text
     sleep 1
     save_btn
   end
@@ -57,12 +69,13 @@ class SmartFormsPermissionPage
     end
   end
 
-  private
-
   def get_random_permit
     permit = list_permit_type_elements.sample
+    @@section1_data_collector << permit.text
     permit.text === 'Rigging of Pilot/Combination Ladder' ? get_random_permit : permit
   end
+
+  private
 
   def get_app_permits
     app_permits = []

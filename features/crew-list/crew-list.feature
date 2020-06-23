@@ -94,13 +94,19 @@ Feature: CrewList
   @manual
   Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-  ## i think this is not valid anymore
   @manual
   Scenario: Verify adhoc crew is added the next day T+1
 
-  @skip
+  @manual
+  Scenario: Verify captain can add crew into current vessel
+
+  Scenario: Verify Retrieve My Data button is disable if empty Crew ID
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    Then I should see Retrieve My Data button disabled
+
   Scenario: Verify existing crew id cannot be added to the voyage
-# Given I launch sol-x portal
-# When I navigate to crew List
-# And I add an existing crew id
-# Then I should not be able to add
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I add an existing crew id
+    Then I should see duplicate crew error message

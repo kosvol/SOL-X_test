@@ -77,3 +77,18 @@ end
 Then (/^I should see crews are sorted by descending order on seniority$/) do
   on(CrewListPage).is_crew_sorted_descending_seniority
 end
+
+And (/^I add an existing crew id$/) do
+  on(CrewListPage).add_new_crew_btn
+  on(CrewListPage).crew_id = 'SIT_SOLX0004'
+  on(CrewListPage).retrieve_data_btn
+end
+
+Then (/^I should see duplicate crew error message$/) do
+  is_equal('Unable to add crew to the crew list. Please enter a correct Crew ID.', on(CrewListPage).duplicate_crew_element.text)
+end
+
+Then (/^I should see Retrieve My Data button disabled$/) do
+  on(CrewListPage).add_new_crew_btn
+  is_true(!is_enabled?(on(CrewListPage).retrieve_data_btn_element))
+end

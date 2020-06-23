@@ -18,12 +18,16 @@ Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
     is_true(on(SmartFormsPermissionPage).ptw_id_element.text.include?('SIT/PTW/'))
   end
   if _condition === 'should not'
-    # is_true(on(SmartFormsPermissionPage).ptw_id_element.text.include?('SIT/PTW/'))
+
   end
 end
 
 And (/^I tear down created form$/) do
-  SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
+  begin
+    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
+  rescue StandardError
+    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).get_section1_filled_data[2])
+  end
 end
 
 When (/^I select (.+) permit$/) do |_permit|

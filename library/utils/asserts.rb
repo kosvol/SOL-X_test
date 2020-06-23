@@ -11,9 +11,9 @@ module AssertionUtil
   #   element.selected?
   # end
 
-  # def is_enabled?(element)
-  #   element.enabled?
-  # end
+  def is_enabled?(element)
+    element.enabled?
+  end
 
   # def is_display(element)
   #   begin
