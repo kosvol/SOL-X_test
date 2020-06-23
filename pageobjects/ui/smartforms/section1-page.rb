@@ -5,13 +5,17 @@ require './././support/env'
 class Section1Page
   include PageObject
 
+  element(:heading_text, xpath: "//form[starts-with(@class,'FormFactory__Form')]/section/h2")
   buttons(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
-
+  @@previous_btns = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
   @@maint_require_text = '//div[@id="1_subsection5"]'
   @@wind_forces = '//button[@id="windforce"]'
   @@list_of_dd_values = "//ul[starts-with(@class,'UnorderedList-')]/li/button"
   @@sea_states = '//button[@id="seaState"]'
   @@maint_duration = '//button[@id="duration_of_maintenance_over_2_hours"]'
+  @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
+  @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
+  @@text_areas = '//textarea'
 
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
@@ -30,7 +34,31 @@ class Section1Page
     get_dd_list_values(@@wind_forces, @@list_of_dd_values) === serialize_table_input(_table)
   end
 
+  def fill_all_of_section_1
+    select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
+    select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
+    fill_text_area(@@text_areas, 'test')
+    BrowserActions.scroll_down($browser.find_elements(:xpath, @@previous_btns)[0])
+    previous_btn_elements[0].click
+  end
+
   private
+
+  def select_checkbox(_input, _location)
+    _elements = $browser.find_elements(:xpath, _input)
+    _elements.each do |element|
+      BrowserActions.scroll_down(element)
+      element.click if element.text === _location
+    end
+  end
+
+  def fill_text_area(_input, _text)
+    _elements = $browser.find_elements(:xpath, _input)
+    _elements.each do |element|
+      BrowserActions.scroll_down(element)
+      element.send_keys(_text)
+    end
+  end
 
   def serialize_table_input(_table)
     serialized_input = []

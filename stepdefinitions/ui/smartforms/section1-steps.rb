@@ -35,3 +35,7 @@ And (/^I select a level 2 permit randomly$/) do
   on(SmartFormsPermissionPage).get_random_permit.click
   on(SmartFormsPermissionPage).save_btn
 end
+
+And (/^I submit after filling up section 1$/) do
+  on(Section1Page).fill_all_of_section_1
+end

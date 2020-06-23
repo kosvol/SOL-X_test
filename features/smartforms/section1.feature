@@ -119,6 +119,16 @@ Feature: NonOfficeApprovalPermits
       | Working Aloft/Overside                    |
       | Working on Deck During Heavy Weather      |
 
+  Scenario: Verify user can fill up the form, save and proceed to next page
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit to work
+    And I enter RA pin 1212
+    And I select a any permits
+    And I submit after filling up section 1
+    Then I should see section 2
+    And I tear down created form
+
 # Scenario: Verify screen text
 
 # Scenario: Verify there is no Save and Previous button
