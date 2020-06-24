@@ -15,6 +15,7 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
+  @@section1_data_collector = []
 
   def click_create_permit_btn
     click_create_permit_btn_element.click
@@ -65,7 +66,10 @@ class SmartFormsPermissionPage < ShipLocalTimePage
     @@permit = _permit
     sleep 1
     list_permit_type_elements.each do |permit|
-      permit.click if permit.text === @@permit
+      if permit.text === @@permit
+        permit.click
+        break
+      end
     end
   end
 
