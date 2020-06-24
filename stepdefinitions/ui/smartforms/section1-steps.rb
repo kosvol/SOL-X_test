@@ -39,5 +39,9 @@ And (/^I select a level 2 permit randomly$/) do
 end
 
 And (/^I submit after filling up section 1$/) do
-  on(Section1Page).fill_all_of_section_1
+  on(Section1Page).fill_all_of_section_1_wo_duration
+end
+
+And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
+  on(Section1Page).fill_all_of_section_1_w_duration(condition)
 end

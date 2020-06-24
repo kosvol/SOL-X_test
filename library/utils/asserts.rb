@@ -43,9 +43,13 @@ module AssertionUtil
     expect(compare_to_text).not_to include include_text
   end
 
-  # # def not_to_exists(element)
-  # #   expect(element).not_to exist
-  # # end
+  def not_to_exists(element)
+    expect(element).not_to exist
+  end
+
+  def to_exists(element)
+    expect(element).to exist
+  end
 
   # def is_not_visible(element)
   #   expect(element).not_to be_visible
