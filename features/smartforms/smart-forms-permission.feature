@@ -12,7 +12,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify only RA can create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin <pin>
     Then I should see smart form landing screen
     And I tear down created form
@@ -33,7 +33,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin <pin>
     Then I should see not authorize error message
 
@@ -58,7 +58,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     Then I should see a list of available forms for selections
       | Cold Work                                 |
@@ -81,7 +81,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     When I select <permit> permit
     Then I should see second level permits details
@@ -98,7 +98,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I navigate to level 2 permits
     And I navigate back to SmartForms screen

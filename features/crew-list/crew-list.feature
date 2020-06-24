@@ -88,17 +88,17 @@ Feature: CrewList
     When I navigate to "Crew List" screen
     Then I should see crews are sorted by descending order on seniority
 
-  @manual
-  Scenario: Verify Email notification sent to the assign crew
+  # @manual
+  # Scenario: Verify Email notification sent to the assign crew
 
-  @manual
-  Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+  # @manual
+  # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-  @manual
-  Scenario: Verify adhoc crew is added the next day T+1
+  # @manual
+  # Scenario: Verify adhoc crew is added the next day T+1
 
-  @manual
-  Scenario: Verify captain can add crew into current vessel
+  # @manual
+  # Scenario: Verify captain can add crew into current vessel
 
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     Given I launch sol-x portal

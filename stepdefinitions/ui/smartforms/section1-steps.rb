@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I select a any permits$/) do
+  sleep 2
   on(SmartFormsPermissionPage).select_random_permit
 end
 
@@ -33,6 +34,7 @@ end
 
 And (/^I select a level 2 permit randomly$/) do
   on(SmartFormsPermissionPage).get_random_permit.click
+  sleep 1
   on(SmartFormsPermissionPage).save_btn
 end
 

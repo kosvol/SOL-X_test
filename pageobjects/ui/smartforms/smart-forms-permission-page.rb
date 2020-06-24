@@ -15,7 +15,6 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
-  @@section1_data_collector = []
 
   def click_create_permit_btn
     click_create_permit_btn_element.click
@@ -32,6 +31,7 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   end
 
   def select_random_permit
+    @@section1_data_collector = [] # reset
     click_permit_type_ddl
     sleep 1
     selected_permit_type = get_random_permit

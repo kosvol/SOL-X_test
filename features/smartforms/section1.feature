@@ -7,7 +7,7 @@ Feature: NonOfficeApprovalPermits
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
     Then I should see permit details are pre-filled
@@ -16,7 +16,7 @@ Feature: NonOfficeApprovalPermits
   Scenario: Verify sea state dropdown input fields are correct
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
     Then I should see a list of sea states
@@ -35,7 +35,7 @@ Feature: NonOfficeApprovalPermits
   Scenario: Verify wind force dropdown input fields are correct
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
     Then I should see a list of wind forces
@@ -57,7 +57,7 @@ Feature: NonOfficeApprovalPermits
   Scenario: Verify there is no Previous button
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
     Then I should not see save and previous button exists
@@ -66,7 +66,7 @@ Feature: NonOfficeApprovalPermits
   Scenario Outline: Verify question input field exists
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select Critical Equipment Maintenance permit
     And I select <permit> permit for level 2
@@ -96,7 +96,7 @@ Feature: NonOfficeApprovalPermits
   Scenario Outline: Verify question input field does not exists in permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select a level 2 permit randomly
@@ -122,7 +122,7 @@ Feature: NonOfficeApprovalPermits
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
-    And I navigate to create new permit to work
+    And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
     And I submit after filling up section 1
@@ -134,7 +134,7 @@ Feature: NonOfficeApprovalPermits
 # Scenario: Verify there is no Save and Previous button
 #   Given I launch sol-x portal
 #   When I navigate to "SmartForms" screen
-#   And I navigate to create new permit to work
+#   And I navigate to create new permit
 #   And I enter RA pin 1212
 #   And I select a any permits
 #   Then I should not see save and previous button exists

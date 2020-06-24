@@ -5,7 +5,7 @@ Then('I should see a list of available forms for selections') do |_table|
   is_true(on(SmartFormsPermissionPage).is_level_1_permit?(_table.raw))
 end
 
-And (/^I navigate to create new permit to work$/) do
+And (/^I navigate to create new permit$/) do
   on(SmartFormsPermissionPage).click_create_permit_btn
 end
 
