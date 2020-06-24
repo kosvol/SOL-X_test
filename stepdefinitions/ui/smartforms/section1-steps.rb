@@ -45,3 +45,14 @@ end
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).fill_all_of_section_1_w_duration(condition)
 end
+
+Then (/^I should see display texts match$/) do
+  section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_labels']
+  page_elements = on(Section1Page).all_labels_elements
+  if page_elements.size === 14
+    section1_labels_arr.delete_at(section1_labels_arr.size - 2)
+  end
+  page_elements.each_with_index do |label, _index|
+    is_equal(section1_labels_arr[_index], label.text)
+  end
+end

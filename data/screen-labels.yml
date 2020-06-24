@@ -1,0 +1,18 @@
+default_labels:
+  [
+    "Name of Vessel:",
+    "PTW No:",
+    "Permit Type:",
+    "At Sea",
+    "In Port",
+    "Anchorage",
+    "Loaded",
+    "Ballast",
+    "Other",
+    "Cargo Details:",
+    "Sea State:",
+    "Wind Force:",
+    "Description of work:",
+    "Will the duration of this Maintenance be over 2 hours? (Required)",
+    "Location of work:",
+  ]

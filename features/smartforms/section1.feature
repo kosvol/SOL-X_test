@@ -129,7 +129,13 @@ Feature: Section1
     Then I should see section 2
     And I tear down created form
 
-# Scenario: Verify screen text
+  Scenario: Verify screen text
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1212
+    And I select a any permits
+    Then I should see display texts match
 
 # Scenario: Verify there is no Save and Previous button
 #   Given I launch sol-x portal

@@ -6,6 +6,7 @@ class Section1Page
   include PageObject
 
   element(:heading_text, xpath: "//form[starts-with(@class,'FormFactory__Form')]/section/h2")
+  elements(:all_labels, xpath: '//label')
   buttons(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
   buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   @@previous_btns = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
