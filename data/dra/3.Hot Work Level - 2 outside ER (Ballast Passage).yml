@@ -1,12 +1,12 @@
 Hot Work Level - 2 outside ER (Ballast Passage):
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Gaseous atmosphere", "3", "4", "high"],
         ["Flammable materials", "3", "4", "high"],
         ["Fire Hazard in adjacent compartments", "3", "4", "high"],
       ]
-    erisk: ["high", "medium", "low"]
+    evaluate_risk: ["high", "medium", "low"]
   page2:
     existing_methods: [
         [

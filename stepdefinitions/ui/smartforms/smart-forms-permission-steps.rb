@@ -39,7 +39,8 @@ When (/^I select (.+) permit$/) do |_permit|
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
-  on(SmartFormsPermissionPage).select_permit(_permit)
+  @@selected_level2_permit = _permit
+  on(SmartFormsPermissionPage).select_permit(@@selected_level2_permit)
   on(SmartFormsPermissionPage).save_btn
 end
 

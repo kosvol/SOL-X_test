@@ -1,12 +1,12 @@
 46.RIGGING OF GANGWAY & PILOT LADDER:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["MOIST, SLIPPERY ON STEPS", "3", "2", "low"],
         ["LACK OF ILLUMINATION", "2", "3", "low"],
         ["WORKING OVERSIDE", "2", "4", "medium"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

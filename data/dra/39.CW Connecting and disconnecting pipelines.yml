@@ -1,12 +1,12 @@
 39.CW Connecting and disconnecting pipelines:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Lifting heavy loads", "2", "3", "low"],
         ["Personal Injury", "2", "3", "low"],
         ["Communication Failure", "2", "3", "low"],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

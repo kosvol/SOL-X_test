@@ -1,12 +1,12 @@
 40.CW Removing and fitting of valves blanks spades or blinds:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Lifting heavy loads", "3", "3", "medium"],
         ["Personal Injury", "3", "3", "medium"],
         ["Communication Failure", "2", "3", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

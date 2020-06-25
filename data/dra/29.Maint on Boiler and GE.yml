@@ -1,12 +1,12 @@
 Maint on Boiler and GE:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Hot oil spill", "3", "4", "high"],
         ["Hot surface", "3", "3", "medium"],
         ["Steam leaks", "3", "3", "medium"],
       ]
-    erisk: ["high", "medium", "low"]
+    evaluate_risk: ["high", "medium", "low"]
   page2:
     existing_methods: [
         [

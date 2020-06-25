@@ -1,12 +1,12 @@
 Use of Hydroblaster:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Personal Injury - Operator", "2", "3", "low"],
         ["High Pressure", "2", "3", "low"],
         ["Damage to equipment", "3", "2", "low"],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

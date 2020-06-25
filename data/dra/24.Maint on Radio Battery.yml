@@ -1,6 +1,6 @@
 Maint on Radio Battery:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Electric shock", "3", "3", "medium"],
         ["Toxic fumes", "2", "3", "low"],
@@ -11,7 +11,7 @@ Maint on Radio Battery:
           "medium",
         ],
       ]
-    erisk: ["medium", "medium", "low"]
+    evaluate_risk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
         [

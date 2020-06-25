@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I select a any permits$/) do
-  sleep 2
+  sleep 1
   on(SmartFormsPermissionPage).select_random_permit
 end
 
@@ -54,5 +54,14 @@ Then (/^I should see display texts match$/) do
   end
   page_elements.each_with_index do |label, _index|
     is_equal(section1_labels_arr[_index], label.text)
+  end
+end
+
+And (/^I fill up section 1$/) do
+  permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
+  if permits_arr.include? @@selected_level2_permit
+    on(Section1Page).fill_all_of_section_1_w_duration(%w[more less].sample)
+  else
+    step 'I submit after filling up section 1'
   end
 end

@@ -1,12 +1,12 @@
 Work on pressure pipelines pressure vessels:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Oil Pollution", "2", "3", "low"],
         ["Equipment damage", "1", "3", "low"],
         ["Personal injury", "1", "1", "low"],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

@@ -1,12 +1,12 @@
 Maint on Oily water Separator:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Damage to Equipment", "2", "3", "low"],
         ["Lifting heavy objects", "2", "3", "low"],
         ["Accidental Oil Release", "3", "4", "high"],
       ]
-    erisk: ["high", "medium", "low"]
+    evaluate_risk: ["high", "medium", "low"]
   page2:
     existing_methods: [
         [

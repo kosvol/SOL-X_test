@@ -1,12 +1,12 @@
 47.Working on deck during heavy weather:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Fall overboard", "3", "3", "medium"],
         ["Fatigue", "2", "3", "low"],
         ["Personal Injury", "2", "3", "low"],
       ]
-    erisk: ["medium", "medium", "low"]
+    evaluate_risk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
         [

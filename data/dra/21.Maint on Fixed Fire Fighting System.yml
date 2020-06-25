@@ -1,11 +1,11 @@
 Maint on Fixed Fire Fighting System:
   page1:
-    major_hazards: [
+    identify_hazard_name: [
       ["Fire in Engine room with non functional Firefighting System","3","3","medium"]
       ["Fire in Pump room/deck/other places","3","2","low"]
       ["Imobilization of Equipment","3","2","low"]
     ]
-    erisk: ["medium","low","low"]
+    evaluate_risk: ["medium","low","low"]
   page2:
     existing_methods: [
       ["Fire in Engine room with non functional Firefighting System",

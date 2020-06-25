@@ -1,12 +1,12 @@
 Maint on Emergency Fire Pump:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Emergency Fire Pump becomes inoperative", "2", "4", "medium"],
         ["Fail to meet statutory requirement", "2", "4", "medium"],
         ["Flooding of Engine Room", "3", "2", "low"],
       ]
-    erisk: ["medium", "?", "?"]
+    evaluate_risk: ["medium", "?", "?"]
   page2:
     existing_methods:
       [

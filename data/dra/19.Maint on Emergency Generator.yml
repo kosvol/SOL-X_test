@@ -1,12 +1,12 @@
 Maint on Emergency Generator:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Emergency Generator Immobilzation", "3", "3", "medium"],
         ["Accidental start of Machinery", "3", "3", "medium"],
         ["Health Hazards-Prolong body posture, Ergonomics", "2", "3", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

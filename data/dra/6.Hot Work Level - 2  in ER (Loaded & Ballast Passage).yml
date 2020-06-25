@@ -1,12 +1,12 @@
 6.Hot Work Level - 2  in ER (Loaded & Ballast Passage):
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Gaseous atmosphere", "2", "4", "medium"],
         ["Flammable materials", "2", "3", "low"],
         ["Fire Hazard in adjacent compartments", "2", "3", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

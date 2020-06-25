@@ -1,12 +1,12 @@
 Maint Fuel Lub Oil Tank:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Leak of control air", "2", "3", "low"],
         ["Black out and loss of propulsion and steering", "3", "4", "high"],
         ["Quick closing system malfunction", "2", "3", "low"],
       ]
-    erisk: ["high", "medium", "low"]
+    evaluate_risk: ["high", "medium", "low"]
   page2:
     existing_methods: [
         [

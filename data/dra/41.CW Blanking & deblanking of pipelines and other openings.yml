@@ -1,12 +1,12 @@
 41.CW Blanking & deblanking of pipelines and other openings:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["OIL SPILL", "3", "3", "medium"],
         ["ELECTRICAL EARTHING", "2", "3", "low"],
         ["TOXIC GAS INHALTION", "2", "3", "low"],
       ]
-    erisk: ["medium", "medium", "low"]
+    evaluate_risk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
         [

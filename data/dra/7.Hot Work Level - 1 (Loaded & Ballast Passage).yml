@@ -1,12 +1,12 @@
 Hot Work Level - 1 (Loaded & Ballast Passage):
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Lack of Ventilation / ASPHYXIATION", "2", "4", "medium"],
         ["Use of sharp/ hazardous hand tools", "2", "2", "low"],
         ["Improper procedure of coating repair", "2", "3", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

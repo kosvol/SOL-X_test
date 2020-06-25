@@ -1,12 +1,12 @@
 43.CW Cleaning up of spills:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Oxygen deficiency", "3", "3", "medium"],
         ["Toxic gases / Methane", "3", "3", "medium"],
         ["Explosion", "3", "2", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

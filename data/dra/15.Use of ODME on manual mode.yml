@@ -1,11 +1,11 @@
 Use of ODME on manual mode:
   page1:
-    major_hazards: [
+    identify_hazard_name: [
       ["discharge of oil into sea","3","3","medium"],
       ["adverse weather conditions","2","3","low"],
       ["equipment failure","2","3","low"]
     ]
-    erisk: ["medium","low","low"]
+    evaluate_risk: ["medium","low","low"]
   page2:
     existing_methods: [
       ["discharge of oil into sea",

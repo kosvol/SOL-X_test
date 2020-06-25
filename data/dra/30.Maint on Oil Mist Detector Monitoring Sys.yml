@@ -1,12 +1,12 @@
 Maint on Oil Mist Detector Monitoring Sys:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Oil mist in crankcase can not be detected", "3", "3", "medium"],
         ["Main Engine auto slow down won't function", "3", "4", "high"],
         ["Equipment damage", "3", "3", "medium"],
       ]
-    erisk: ["high", "medium", "low"]
+    evaluate_risk: ["high", "medium", "low"]
   page2:
     existing_methods: [
         [

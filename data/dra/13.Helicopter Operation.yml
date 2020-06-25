@@ -1,12 +1,12 @@
 Personnel Transfer by Transfer Basket:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Fire hazard", "3", "3", "medium"],
         ["Personnel injury", "2", "3", "low"],
         ["Misunderstanding due to improper communication", "2", "2", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

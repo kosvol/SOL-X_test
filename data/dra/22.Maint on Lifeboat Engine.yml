@@ -1,12 +1,12 @@
 Maint on Lifeboat Engine:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Imobilization of Equipment", "3", "3", "medium"],
         ["Personnel injury", "3", "3", "medium"],
         ["Damage to Equipment", "3", "3", "medium"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

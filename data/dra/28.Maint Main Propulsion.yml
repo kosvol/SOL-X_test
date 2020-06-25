@@ -1,12 +1,12 @@
 Maint Main Propulsion:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["System unable to reset", "2", "3", "low"],
         ["Erratic readings", "2", "3", "low"],
         ["Equipment failure", "2", "3", "low"],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

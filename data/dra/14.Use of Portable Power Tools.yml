@@ -1,12 +1,12 @@
 Use of Portable Power Tools:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Personal injury.", "2", "4", "medium"],
         ["Hose Bursting", "2", "3", "low"],
         ["Hose Connection Snapping off", "3", "2", "low"],
       ]
-    erisk: ["medium", "medium", "low"]
+    evaluate_risk: ["medium", "medium", "low"]
   page2:
     existing_methods: [
         [

@@ -1,6 +1,6 @@
 Maint on magnetic compass:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         [
           "Inability to keep the course in case of Gyro failure",
@@ -16,7 +16,7 @@ Maint on magnetic compass:
           "low",
         ],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

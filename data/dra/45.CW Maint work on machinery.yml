@@ -1,12 +1,12 @@
 45.CW Maint work on machinery:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Damage to equipment", "3", "2", "low"],
         ["Restricted work place", "3", "2", "low"],
         ["Inadequate system isolation", "3", "2", "low"],
       ]
-    erisk: ["low", "low", "low"]
+    evaluate_risk: ["low", "low", "low"]
   page2:
     existing_methods: [
         [

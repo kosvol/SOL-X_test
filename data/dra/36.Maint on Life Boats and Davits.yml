@@ -1,11 +1,11 @@
 Maint on Life Boats and Davits:
   page1:
-    major_hazards: [
+    identify_hazard_name: [
       ["Fall from height","3","2","low"],
       ["Lifeboat falling into the water","2","4","medium"],
       ["Adverse weather affecting the ship","3","3","medium"]
     ]
-    erisk: ["medium","low","low"]
+    evaluate_risk: ["medium","low","low"]
   page2:
     existing_methods: [
       ["Fall from height",

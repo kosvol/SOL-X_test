@@ -1,12 +1,12 @@
 Maint on Fire Detection Alarm System:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Fire in Accommodation / non functional", "2", "4", "medium"],
         ["Fire in Engine Room / non functional", "1", "4", "low"],
         ["OHSAS- Casualty", "2", "3", "low"],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [

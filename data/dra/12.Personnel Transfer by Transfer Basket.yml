@@ -1,6 +1,6 @@
 Personnel Transfer by Transfer Basket:
   page1:
-    major_hazards:
+    identify_hazard_name:
       [
         ["Slip and Fall / Injuries", "2", "3", "low"],
         ["Basket falls down", "2", "3", "low"],
@@ -11,7 +11,7 @@ Personnel Transfer by Transfer Basket:
           "medium",
         ],
       ]
-    erisk: ["medium", "low", "low"]
+    evaluate_risk: ["medium", "low", "low"]
   page2:
     existing_methods: [
         [
