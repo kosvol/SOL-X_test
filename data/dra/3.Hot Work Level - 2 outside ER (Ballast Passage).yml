@@ -1,152 +1,123 @@
 Hot Work Level - 2 outside ER (Ballast Passage):
-  page1:
-    identify_hazard_name:
+  identify_hazard_name:
+    [
+      ["Gaseous atmosphere", ["3 – Moderate", "4 – Major", "High Risk"]],
+      ["Flammable materials", ["3 – Moderate", "4 – Major", "High Risk"]],
       [
-        ["Gaseous atmosphere", "3", "4", "high"],
-        ["Flammable materials", "3", "4", "high"],
-        ["Fire Hazard in adjacent compartments", "3", "4", "high"],
-      ]
-    evaluate_risk: ["high", "medium", "low"]
-  page2:
-    existing_methods: [
-        [
-          "Gaseous atmosphere",
-          "1. Continous ventilation of work area - confirm LFL less than 1%
-          2. Frequency of monitoring gas content established .
-          3. Gas free adjacent compartments.
-          4. Obtain information of previous cargo loaded and Clean adjacent compartments from cargo residues and combustible materials.",
-          "2",
-          "4",
-          "medium",
-        ],
-        [
-          "Flammable materials",
-          "1. Procedures as per ISGOTT and Space should be clean , free of cargo residue.
-          2. Clean adjacent compartments from cargo residues and combustible materials.",
-          "2",
-          "4",
-          "medium",
-        ],
-        [
-          "Fire Hazard in adjacent compartments",
-          "1. Fire watches in adjacent compartments
-          2. Emergency evacuation procedures agreed.
-          3. Cleaning of adjacent compartment ",
-          "2",
-          "4",
-          "medium",
-        ],
-        [
-          "Residual oil sleek",
-          "1. Pipings drained , vented , isolated.
-          2. IG lines to the tank purged.
-          3. Consider flushing the lines as store oily water in a suitable compartment. ",
-          "2",
-          "4",
-          "medium",
-        ],
-        [
-          "Damage to electrical equipment in vicinity",
-          "1. Have ave EIC in place.
-          2. Apply protection barriers to electrical equipment in vicinity.
-          3. Have a margin of safe distance from electrical equipment for the task.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Risk of Electrocution",
-          "1. Carry out inspection prior use.
-          2. Replace parts regularly as recommended in your  Maintenance program
-          3. Use proper PPE - Insulating material",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Burns / eye injury",
-          "1. Proper PPE to be worn
-          2. Hot work carried out at one location at a time only.",
-          "2",
-          "2",
-          "low",
-        ],
-        [
-          "Faulty equipment - Oxygen or Acetylene hose , Faulty flash back arrestor",
-          "1. Inspect all parts prior work.
-          2. Provide extra barriers and covers to the equipment.
-          3. Temporarily dismantle the equipment.",
-          "2",
-          "2",
-          "low",
-        ],
-        [
-          "Health hazard due to Non ionizing rdiation",
-          "1. Carry out tool box meeting
-          2. Comply with PPE matrix
-          3. Comply with ILO work rest hours
-          4. Welding shield to be use while carrying out the hot work",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Unforeseen delays",
-          "1. All persons involved in to be properly rested.
-          2. Comply with duty roster.
-          3. Proper rest prior stating of the job.
-          4. STCW/ILO rest hour requirement to be complied.
-          5. Anticipate required diving time and make necessary arrangements to abort or suspend task.",
-          "2",
-          "2",
-          "low",
-        ],
-        [
-          "SUDDEN CHANGE IN THE WEATHER CONDITION",
-          "1. Obtain weather forecast.
-          2. Compare weather forecast with other stations or with different service providers.
-          3. Anticipate weather changes and plan work during clear period for the task.
-          4. Decide on a common weather restiction for the task.",
-          "1",
-          "3",
-          "low",
-        ],
-      ]
-    additional_methods: [
-        [
-          "Gaseous atmosphere",
-          "1.Hotwork to be carried out during ballast condition only.
-          2. Portable and personal gas detectors shall be calibrated prior putting it to service
-          3. Confirm there are no sources of toxic or hazadous gas emmisions incluidng any leaks.
-          4. Discuss and seek VS approval in case hotwork can be avoided.",
-          "1",
-          "4",
-          "low",
-        ],
-        [
-          "Flammable materials",
-          "1. ER water mist system
-          2. Smoke and flame detectors
-          3. CO2 system
-          4. Contigency plan read and understood",
-          "1",
-          "4",
-          "low",
-        ],
-        [
-          "Fire Hazard in adjacent compartments",
-          "1. All opening of adjacent compartment to be closed prior operation
-          2. Operation to be carried out furthest as possible from bunker tank.",
-          "1",
-          "4",
-          "low",
-        ],
-        [
-          "Residual oil sleek",
-          "1. Lines filled with water.
-          2. Lock out - Tag out",
-          "1",
-          "4",
-          "low",
-        ],
-      ]
+        "Fire Hazard in adjacent compartments",
+        ["3 – Moderate", "4 – Major", "High Risk"],
+      ],
+    ]
+  evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
+  existing_methods: [
+      [
+        "Gaseous atmosphere",
+        "1. Continous ventilation of work area - confirm LFL less than 1%
+        2. Frequency of monitoring gas content established .
+        3. Gas free adjacent compartments.
+        4. Obtain information of previous cargo loaded and Clean adjacent compartments from cargo residues and combustible materials.",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      [
+        "Flammable materials",
+        "1. Procedures as per ISGOTT and Space should be clean , free of cargo residue.
+        2. Clean adjacent compartments from cargo residues and combustible materials.",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      [
+        "Fire Hazard in adjacent compartments",
+        "1. Fire watches in adjacent compartments
+        2. Emergency evacuation procedures agreed.
+        3. Cleaning of adjacent compartment ",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      [
+        "Residual oil sleek",
+        "1. Pipings drained , vented , isolated.
+        2. IG lines to the tank purged.
+        3. Consider flushing the lines as store oily water in a suitable compartment. ",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      [
+        "Damage to electrical equipment in vicinity",
+        "1. Have ave EIC in place.
+        2. Apply protection barriers to electrical equipment in vicinity.
+        3. Have a margin of safe distance from electrical equipment for the task.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Risk of Electrocution",
+        "1. Carry out inspection prior use.
+        2. Replace parts regularly as recommended in your  Maintenance program
+        3. Use proper PPE - Insulating material",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Burns / eye injury",
+        "1. Proper PPE to be worn
+        2. Hot work carried out at one location at a time only.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Faulty equipment - Oxygen or Acetylene hose , Faulty flash back arrestor",
+        "1. Inspect all parts prior work.
+        2. Provide extra barriers and covers to the equipment.
+        3. Temporarily dismantle the equipment.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Health hazard due to Non ionizing rdiation",
+        "1. Carry out tool box meeting
+        2. Comply with PPE matrix
+        3. Comply with ILO work rest hours
+        4. Welding shield to be use while carrying out the hot work",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Unforeseen delays",
+        "1. All persons involved in to be properly rested.
+        2. Comply with duty roster.
+        3. Proper rest prior stating of the job.
+        4. STCW/ILO rest hour requirement to be complied.
+        5. Anticipate required diving time and make necessary arrangements to abort or suspend task.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "SUDDEN CHANGE IN THE WEATHER CONDITION",
+        "1. Obtain weather forecast.
+        2. Compare weather forecast with other stations or with different service providers.
+        3. Anticipate weather changes and plan work during clear period for the task.
+        4. Decide on a common weather restiction for the task.",
+        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+      ],
+    ]
+  additional_methods: [
+      [
+        "Gaseous atmosphere",
+        "1.Hotwork to be carried out during ballast condition only.
+        2. Portable and personal gas detectors shall be calibrated prior putting it to service
+        3. Confirm there are no sources of toxic or hazadous gas emmisions incluidng any leaks.
+        4. Discuss and seek VS approval in case hotwork can be avoided.",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      [
+        "Flammable materials",
+        "1. ER water mist system
+        2. Smoke and flame detectors
+        3. CO2 system
+        4. Contigency plan read and understood",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      [
+        "Fire Hazard in adjacent compartments",
+        "1. All opening of adjacent compartment to be closed prior operation
+        2. Operation to be carried out furthest as possible from bunker tank.",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      [
+        "Residual oil sleek",
+        "1. Lines filled with water.
+        2. Lock out - Tag out",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+    ]

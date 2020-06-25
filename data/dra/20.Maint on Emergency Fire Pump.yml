@@ -1,21 +1,34 @@
 Maint on Emergency Fire Pump:
-  page1:
-    identify_hazard_name:
+  identify_hazard_name:
+    [
       [
-        ["Emergency Fire Pump becomes inoperative", "2", "4", "medium"],
-        ["Fail to meet statutory requirement", "2", "4", "medium"],
-        ["Flooding of Engine Room", "3", "2", "low"],
-      ]
-    evaluate_risk: ["medium", "?", "?"]
-  page2:
-    existing_methods:
+        "Emergency Fire Pump becomes inoperative",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
       [
-        ["Emergency Fire Pump becomes inoperative", "1", "4", "low"],
-        ["Fail to meet statutory requirement", "1", "4", "low"],
-        ["Flooding of Engine Room", "2", "2", "low"],
-        ["OHSAS Health Hazard", "2", "3", "low"],
-        ["Fire and Explosion", "2", "3", "low"],
-        ["Maintenance Schedule not updated", "2", "2", "low"],
-        ["Ergonomic hazard", "2", "2", "low"],
-      ]
-    additional_methods: []
+        "Fail to meet statutory requirement",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      ["Flooding of Engine Room", ["3 – Moderate", "2 - Minor", "Low Risk"]],
+    ]
+  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
+  existing_methods:
+    [
+      [
+        "Emergency Fire Pump becomes inoperative",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      [
+        "Fail to meet statutory requirement",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      ["Flooding of Engine Room", ["2 - Minor", "2 - Minor", "Low Risk"]],
+      ["OHSAS Health Hazard", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+      ["Fire and Explosion", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+      [
+        "Maintenance Schedule not updated",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      ["Ergonomic hazard", ["2 - Minor", "2 - Minor", "Low Risk"]],
+    ]
+  additional_methods: []

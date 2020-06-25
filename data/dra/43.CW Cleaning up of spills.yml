@@ -1,101 +1,84 @@
 43.CW Cleaning up of spills:
-  page1:
-    identify_hazard_name:
+  identify_hazard_name:
+    [
+      ["Oxygen deficiency", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
       [
-        ["Oxygen deficiency", "3", "3", "medium"],
-        ["Toxic gases / Methane", "3", "3", "medium"],
-        ["Explosion", "3", "2", "low"],
-      ]
-    evaluate_risk: ["medium", "low", "low"]
-  page2:
-    existing_methods: [
-        [
-          "Oxygen deficiency",
-          "1. PTW & Check lists
-          2. Comply with PPE matrix.
-          3. Tool Box meeting
-          4. Continuous monitoring of space during the full duration of man entry by the stby person
-          5. Supervision by responsible person  ",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Toxic gases / Methane",
-          "1. Follow checklists and procedures as mentioned in the instructions
-          2. Check the condition of the valves and equipments prior commencing
-          3. Experienced personnel should train the inexperienced and supervise them
-          4. Comply with PPE matrix.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Explosion",
-          "1. Maintain gas reading on deck for sign of Heavy density of Methane laying on deck
-          2. Lightining detector to place on bridge
-          3. FFA equipment standby for usage.",
-          "3",
-          "2",
-          "low",
-        ],
-        [
-          "Poor illumination",
-          "1. Tool box meeting
-          2. Fully charged approved torches to be used
-          3. Approved spare torches to be kept at the entrance of the space
-          4. Carry calyume (fluorescent) sticks as a standby
-          5. Additional illumination to be provided if requried.",
-          "3",
-          "2",
-          "low",
-        ],
-        [
-          "Vapor cloud",
-          "1. Crew to wear proper PPE
-          2. Gas detecting equipments are used during the opeation
-          3. Responsible person to supervise
-          4. Proper maintenance of machinaries/equipments",
-          "3",
-          "2",
-          "low",
-        ],
-        [
-          "Nitrogen gas",
-          "1. PTW & Check list to be complied with
-          2. Proper purging procedure as per cargo operation manual  instructions
-          3. Proper use of PPE's
-          4. Competency and training of personnel
-          5. Responsible person to supervise",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Poor chemical segeregation",
-          "1. MSDS available near chemical storage area.
-          2. Briefing and training to new joiners.
-          3. Acidity and alkalinity chemicals must be store separated.
-          4. Store chemical in correct containers.",
-          "2",
-          "2",
-          "low",
-        ],
-        [
-          "Lack of training in handling chemicals",
-          "1.carry out tool box meeting, briefing and training for all staff for chemicals hazards acording MSDS.",
-          "2",
-          "2",
-          "low",
-        ],
-        [
-          "Physical contact or eye injury",
-          "1. wear full sleeve apron and face mask while handling chemicals.
-          2. Gravity type wash station available near chemical storage area
-          3. Comply with PPE matrix.",
-          "2",
-          "2",
-          "low",
-        ],
-      ]
-    additional_methods: []
+        "Toxic gases / Methane",
+        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+      ],
+      ["Explosion", ["3 – Moderate", "2 - Minor", "Low Risk"]],
+    ]
+  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+  existing_methods: [
+      [
+        "Oxygen deficiency",
+        "1. PTW & Check lists
+        2. Comply with PPE matrix.
+        3. Tool Box meeting
+        4. Continuous monitoring of space during the full duration of man entry by the stby person
+        5. Supervision by responsible person  ",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Toxic gases / Methane",
+        "1. Follow checklists and procedures as mentioned in the instructions
+        2. Check the condition of the valves and equipments prior commencing
+        3. Experienced personnel should train the inexperienced and supervise them
+        4. Comply with PPE matrix.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Explosion",
+        "1. Maintain gas reading on deck for sign of Heavy density of Methane laying on deck
+        2. Lightining detector to place on bridge
+        3. FFA equipment standby for usage.",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Poor illumination",
+        "1. Tool box meeting
+        2. Fully charged approved torches to be used
+        3. Approved spare torches to be kept at the entrance of the space
+        4. Carry calyume (fluorescent) sticks as a standby
+        5. Additional illumination to be provided if requried.",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Vapor cloud",
+        "1. Crew to wear proper PPE
+        2. Gas detecting equipments are used during the opeation
+        3. Responsible person to supervise
+        4. Proper maintenance of machinaries/equipments",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Nitrogen gas",
+        "1. PTW & Check list to be complied with
+        2. Proper purging procedure as per cargo operation manual  instructions
+        3. Proper use of PPE's
+        4. Competency and training of personnel
+        5. Responsible person to supervise",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Poor chemical segeregation",
+        "1. MSDS available near chemical storage area.
+        2. Briefing and training to new joiners.
+        3. Acidity and alkalinity chemicals must be store separated.
+        4. Store chemical in correct containers.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Lack of training in handling chemicals",
+        "1.carry out tool box meeting, briefing and training for all staff for chemicals hazards acording MSDS.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Physical contact or eye injury",
+        "1. wear full sleeve apron and face mask while handling chemicals.
+        2. Gravity type wash station available near chemical storage area
+        3. Comply with PPE matrix.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+    ]
+  additional_methods: []

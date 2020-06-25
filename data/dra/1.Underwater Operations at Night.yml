@@ -1,4 +1,4 @@
-Underwater Operations at Night:
+Underwater Operation at night:
   identify_hazard_name: #and without applying measure
     [
       ["Sea Chest Suction",["2 – Minor", "4 – Major", "Medium Risk"]]
@@ -6,7 +6,7 @@ Underwater Operations at Night:
       ["Overboard discharging",["2 – Minor", "3 – Moderate", "Low Risk"]]
     ]
 
-  evaluate_risk: ["Medium", "Medium", "Low"]
+  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
   existing_methods: [
       [
         "Sea Chest Suction",
@@ -136,7 +136,7 @@ Underwater Operations at Night:
         "Sea Chest Suction",
         "1. EIC Shut down all possible suction pipes.
         2. Diving operation to be carried out during day time.",
-        ["1 – Insignificant","4 – Major","low"],
+        ["1 – Insignificant","4 – Major","Low Risk"],
       ],
       [
         "Diver/personal fatigue and loss of life",
@@ -144,7 +144,7 @@ Underwater Operations at Night:
         2.  Fresh permit to be prepared for work extending beyond 4 hours.
         3.  Diving operation shall not be carried out simultaneous to any other operation, no boats or barges shall be allowed to come alongside.
         4. Cross check for the diving working hours with the diving supervisor.",
-        ["1 – Insignificant","2 – Minor","low"],
+        ["1 – Insignificant","2 – Minor","Low Risk"],
       ],
       [
         "Adverse Weather conditions",
@@ -167,7 +167,7 @@ Underwater Operations at Night:
         "Darkness",
         "1. If weather deteriorates, Master is to inform Chief Diver/ Officer in Charge of Diving Unit.
         2. Non-essential Sea Chest and overboard valves to be closed and locked out/tagged out.",
-        ["2 – Minor","2 – Minor","low"],
+        ["2 – Minor","2 – Minor","Low Risk"],
       ],
       [
         "Falling objects",

@@ -1,72 +1,92 @@
 Maint on Fixed Fire Fighting System:
-  page1:
-    identify_hazard_name: [
-      ["Fire in Engine room with non functional Firefighting System","3","3","medium"]
-      ["Fire in Pump room/deck/other places","3","2","low"]
-      ["Imobilization of Equipment","3","2","low"]
+  identify_hazard_name:
+    [
+      [
+        "Fire in Engine room with non functional Firefighting System",
+        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+      ],
+      [
+        "Fire in Pump room/deck/other places",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      ["Imobilization of Equipment", ["3 – Moderate", "2 - Minor", "Low Risk"]],
     ]
-    evaluate_risk: ["medium","low","low"]
-  page2:
-    existing_methods: [
-      ["Fire in Engine room with non functional Firefighting System",
-      "1. Tool box meeting carried out
-      2. Regular  fire rounds in Engine Room
-      3. ER to be manned at all times
-      4. No any hot work to be carry out prior job and up to job completion.
-      5. All portable fire extinguisher to be kept ready or in place for emergency use.
-      6.No maintenance to be carry out on any fire pump and shall be ready for use at all times
-      7. Maintenance to be planned and done within a short period.
-      8. Consideration to deploy spare portable extinguishing extinguishers.",
-      "2","2","low"],
-      ["Fire in Pump room/deck/other places",
-      "1.Tool box meeting carried out.
-      2. No cargo operation,purging or gas freeing during prior maintenance.
-      3. All portable fire extinguisher to be kept ready or in place for emergency use.
-      4.No maintenance to be carry out on any fire pump and shall be ready for use at all times.
-      5.Galley personnel shall be proper inform and trained of other alternative method to combat the fire.",
-      "2","2","low"],
-      ["Imobilization of Equipment",
-      "1. Tool box meeting carried out.
-      2. Discussed the alternative method to be use for fighting the fire and the consequences of the risk involve.
-      3. Follow correct procedures as per IDMS prior carry out the job
-      4. All required spares to be check and keep ready prior commencing the job.
-      5. Supervision of Senior engineer at all times.
-      6. No hot-work task to be assigned",
-      "2","2","low"],
-      ["Accidental start of Machinery",
-      "1. Tool box meeting carried out.
-      2. Inform all crew members and write on the bulletin board.
-      3. Warning notice placed at starting panel and breaker off.
-      4. Log out - tag out procedure should be in place.
-      5. Keep the fixed fire fighting equipment on manual mode.
-      6. Remove the  auto start fuse.
-      7. All associated valve to be properly isolated prior job.
-      8. Responsible personal to monitor the complete operation and maintenance",
-      "2","2","low"],
-      ["Accidental release of foam/water",
-      "1. Tool box meeting carried out.
-      2.Proper isolation to be carry out prior job,comply with Isolation Procedure                         
-      3.All valve to be properly tag either associated valve is Normally oper or Normally close to avoid confusion.
-      4.Responsible Engineer/Officer to be present prior testing of equipment and during maintenance hour.
-      5. Responsible person to fully understand the lining up of the system",
-      "3","2","low"],
-      ["Damage to equipment",
-      "1. Tool box meeting carried out
-      2.Follow correct procedure as per makers instruction manual when  dissassembling and assembling
-      3. Correct and check spares to be use during renewal of any parts                                                                                         
-      4.Follow IDMS procedures for carry out critical equipment maintenance",
-      "3","2","low"],
-      ["Personnel Injury",
-      "1. Tool box meeting carried out . 
-      2. Comply with PPE matrix.
-      3. Stop card or job interruption must be applied if unsafe practices performed",
-      "3","2","low"],
-      ["OHSAS health hazard",
-      "1. Tool box meeting carried out.
-      2. Comply with PPE matrix. 
-      3. De-hydration: Ensure regular breaks and continuous hydration for the person working.
-      4.Comply with work and rest hour",
-      "3","2","low"]
+  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+  existing_methods: [
+      [
+        "Fire in Engine room with non functional Firefighting System",
+        "1. Tool box meeting carried out
+        2. Regular  fire rounds in Engine Room
+        3. ER to be manned at all times
+        4. No any hot work to be carry out prior job and up to job completion.
+        5. All portable fire extinguisher to be kept ready or in place for emergency use.
+        6.No maintenance to be carry out on any fire pump and shall be ready for use at all times
+        7. Maintenance to be planned and done within a short period.
+        8. Consideration to deploy spare portable extinguishing extinguishers.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Fire in Pump room/deck/other places",
+        "1.Tool box meeting carried out.
+        2. No cargo operation,purging or gas freeing during prior maintenance.
+        3. All portable fire extinguisher to be kept ready or in place for emergency use.
+        4.No maintenance to be carry out on any fire pump and shall be ready for use at all times.
+        5.Galley personnel shall be proper inform and trained of other alternative method to combat the fire.",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Imobilization of Equipment",
+        "1. Tool box meeting carried out.
+        2. Discussed the alternative method to be use for fighting the fire and the consequences of the risk involve.
+        3. Follow correct procedures as per IDMS prior carry out the job
+        4. All required spares to be check and keep ready prior commencing the job.
+        5. Supervision of Senior engineer at all times.
+        6. No hot-work task to be assigned",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Accidental start of Machinery",
+        "1. Tool box meeting carried out.
+        2. Inform all crew members and write on the bulletin board.
+        3. Warning notice placed at starting panel and breaker off.
+        4. Log out - tag out procedure should be in place.
+        5. Keep the fixed fire fighting equipment on manual mode.
+        6. Remove the  auto start fuse.
+        7. All associated valve to be properly isolated prior job.
+        8. Responsible personal to monitor the complete operation and maintenance",
+        ["2 - Minor", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Accidental release of foam/water",
+        "1. Tool box meeting carried out.
+        2.Proper isolation to be carry out prior job,comply with Isolation Procedure
+        3.All valve to be properly tag either associated valve is Normally oper or Normally close to avoid confusion.
+        4.Responsible Engineer/Officer to be present prior testing of equipment and during maintenance hour.
+        5. Responsible person to fully understand the lining up of the system",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Damage to equipment",
+        "1. Tool box meeting carried out
+        2.Follow correct procedure as per makers instruction manual when  dissassembling and assembling
+        3. Correct and check spares to be use during renewal of any parts
+        4.Follow IDMS procedures for carry out critical equipment maintenance",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Personnel Injury",
+        "1. Tool box meeting carried out .
+        2. Comply with PPE matrix.
+        3. Stop card or job interruption must be applied if unsafe practices performed",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "OHSAS health hazard",
+        "1. Tool box meeting carried out.
+        2. Comply with PPE matrix.
+        3. De-hydration: Ensure regular breaks and continuous hydration for the person working.
+        4.Comply with work and rest hour",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
     ]
-    additional_methods: [
-    ]
+  additional_methods: []

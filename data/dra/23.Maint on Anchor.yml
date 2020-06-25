@@ -1,11 +1,17 @@
 Maint on Anchor:
   identify_hazard_name:
     [
-      ["Presence of flammable gases/fire hazard",["1 – Insignificant", "4 – Major", "Low Risk"]]
-      ["Falling down anchor chain",["1 – Insignificant", "3 – Moderate", "Low Risk"]]
-      ["Personal injury",["2 – Minor", "3 – Moderate", "Low Risk"]]
+      [
+        "Presence of flammable gases/fire hazard",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+      [
+        "Falling down anchor chain",
+        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+      ],
+      ["Personal injury", ["2 – Minor", "3 – Moderate", "Low Risk"]],
     ]
-  evaluate_risk: ["Low", "Low", "Low"]
+  evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
   existing_method_desc: [
       [
         "Presence of flammable gases/fire hazard",

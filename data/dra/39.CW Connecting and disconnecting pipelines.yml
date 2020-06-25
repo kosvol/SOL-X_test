@@ -1,101 +1,81 @@
 39.CW Connecting and disconnecting pipelines:
-  page1:
-    identify_hazard_name:
+  identify_hazard_name:
+    [
+      ["Lifting heavy loads", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+      ["Personal Injury", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+      ["Communication Failure", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ]
+  evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
+  existing_methods: [
       [
-        ["Lifting heavy loads", "2", "3", "low"],
-        ["Personal Injury", "2", "3", "low"],
-        ["Communication Failure", "2", "3", "low"],
-      ]
-    evaluate_risk: ["low", "low", "low"]
-  page2:
-    existing_methods: [
-        [
-          "Lifting heavy loads",
-          "1. Appropriate Lifting appliance in use - inspected prior use and supervised by responsible officer.
-          2. Adequate Manpower to be available.
-          3. The lifting equipment to be checked prior use.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Personal Injury",
-          "1. Tool box meeting.
-          2. Comply with PPE matrix.
-          3. Expectation from deck crew to explained.
-          4. Area to be cleaned to avoid slip & trip.
-          5. Work area to be clear of tripping hazards.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Communication Failure",
-          "1. Agree on common language for communication.
-          2. Use hand signal prescribed in COSWP
-          3. The signaller must stay insight to all team members.
-          4. Establish communications with team members  and select a clear channel.
-          5. Agree on back up communications.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Restricted work space",
-          "1. Take Five
-          2. Ensure only nessesary personnels are present.
-          3. Adequate lighting is provided.
-          4. Use of special tools for hard to reach areas.
-          5. Free up space by clearing items in way or around work area.",
-          "3",
-          "2",
-          "low",
-        ],
-        [
-          "Sudden change in the weather condition",
-          "1. Obtain weather forecast.
-          2. Compare weather forecast with other stations or with different service providers.
-          3. Anticipate weather changes and plan work during clear period for the task.
-          4. Decide on a common weather restiction for the task.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Unforeseen delays",
-          "1. All persons involved in to be properly rested.
-          2. comply duty roster.
-          3. Proper rest prior stating of the job.
-          4. STCW/ILO rest hour requirement to be complied.
-          5.If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Flooding",
-          "1. All valves to be in shut position.
-          2.  Ensure EIC is in place.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Equipment damage",
-          "1. The special care to be taken while opening the equipment.
-          2. Utilise correct tools for the task as described in its manual.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Leakages after assembly",
-          "1. Scuppers plugged
-          2. Personnel to keep away from flange connection area - liable for leaks.
-          3. Standby emergency stop when system restart.",
-          "3",
-          "2",
-          "low",
-        ],
-      ]
-    additional_methods: []
+        "Lifting heavy loads",
+        "1. Appropriate Lifting appliance in use - inspected prior use and supervised by responsible officer.
+        2. Adequate Manpower to be available.
+        3. The lifting equipment to be checked prior use.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Personal Injury",
+        "1. Tool box meeting.
+        2. Comply with PPE matrix.
+        3. Expectation from deck crew to explained.
+        4. Area to be cleaned to avoid slip & trip.
+        5. Work area to be clear of tripping hazards.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Communication Failure",
+        "1. Agree on common language for communication.
+        2. Use hand signal prescribed in COSWP
+        3. The signaller must stay insight to all team members.
+        4. Establish communications with team members  and select a clear channel.
+        5. Agree on back up communications.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Restricted work space",
+        "1. Take Five
+        2. Ensure only nessesary personnels are present.
+        3. Adequate lighting is provided.
+        4. Use of special tools for hard to reach areas.
+        5. Free up space by clearing items in way or around work area.",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+      [
+        "Sudden change in the weather condition",
+        "1. Obtain weather forecast.
+        2. Compare weather forecast with other stations or with different service providers.
+        3. Anticipate weather changes and plan work during clear period for the task.
+        4. Decide on a common weather restiction for the task.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Unforeseen delays",
+        "1. All persons involved in to be properly rested.
+        2. comply duty roster.
+        3. Proper rest prior stating of the job.
+        4. STCW/ILO rest hour requirement to be complied.
+        5.If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Flooding",
+        "1. All valves to be in shut position.
+        2.  Ensure EIC is in place.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Equipment damage",
+        "1. The special care to be taken while opening the equipment.
+        2. Utilise correct tools for the task as described in its manual.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Leakages after assembly",
+        "1. Scuppers plugged
+        2. Personnel to keep away from flange connection area - liable for leaks.
+        3. Standby emergency stop when system restart.",
+        ["3 – Moderate", "2 - Minor", "Low Risk"],
+      ],
+    ]
+  additional_methods: []

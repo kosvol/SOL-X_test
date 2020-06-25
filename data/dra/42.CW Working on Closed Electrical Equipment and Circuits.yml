@@ -1,96 +1,77 @@
 42.CW Working on Closed Electrical Equipment and Circuits:
-  page1:
-    identify_hazard_name:
+  identify_hazard_name:
+    [
+      ["Electric shock", ["2 - Minor", "4 – Major", "Medium Risk"]],
       [
-        ["Electric shock", "2", "4", "medium"],
-        [
-          "Improper commissioning or poor post maintenance performance",
-          "2",
-          "3",
-          "low",
-        ],
-        ["Damage to equipement", "2", "3", "low"],
-      ]
-    evaluate_risk: ["medium", "medium", "low"]
-  page2:
-    existing_methods: [
-        [
-          "Electric shock",
-          "1.Tool box meeting carried out.
-          2. Electrical isolation and lock out tag out in place.
-          3. Insulation Mat placed below the new starter panel
-          4. Appropriate PPE is used properly during the work process
-          5. Work area kept clear of hazardous substances
-          6. Unauthorized entry prohibited
-          7. Check tools before using
-          ",
-          "2",
-          "4",
-          "medium",
-        ],
-        [
-          "Improper commissioning or poor post maintenance performance",
-          "1.Use correct PPE as per PPE matrix.
-          2. Post Maintenance has to be check by competent person.
-          3. Supervision by person in charge.
-          4. First Aid on standby.
-          5. Proper communication established.
-          6. Clearly designates roles and responsibilities",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Damage to equipement",
-          "1. Tool box meeting carried out all personnel clear about the job plan.
-          2. Ensure proper PPE for all personnel.
-          3. Follow maker’s instruction manual.
-          4. Use proper tools.
-          5. Job to be carried out according to the plan.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "OHSAS-Ergonomic Hazards-Back pain",
-          "1. Personnel involved should get proper rest.
-          2. Don’t work in same position continuously.
-          3. Take break in between.
-          4. Change people if necessary.
-          5. No short cut method is allowed.",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Obstrcution in work Area",
-          "1. Tool box meeting carried out & discussed work plan.
-          2. Ensure proper PPE for all personnel.
-          3. Working area should be dry and clean at all time
-          4. Tools should be properly arranged in work area",
-          "2",
-          "3",
-          "low",
-        ],
-        [
-          "Adverse Weather Condition",
-          "1. Close monitoring of the weather and evaluated regularly.
-          2. Toolbox meeting carried out.
-          3. Weather conditions carefully assessed in relation to other hazards such as traffic density, nature of seabed, tidal condition, and proximity of other hazards such as shallow water.
-          4. Abort maintenance work and revert to standby condition during adverse weather condition",
-          "2",
-          "3",
-          "low",
-        ],
-      ]
-    additional_methods: [
-        [
-          "Electric shock",
-          "1. Prior start working on electrical equipment fuses has to be remove to dead the equipment.
-          2.Check has to be carried out for dead circuit before starting the work on electrical equipment.
-          3.All meters and tools are tested and in good condition",
-          "1",
-          "4",
-          "low",
-        ],
-      ]
+        "Improper commissioning or poor post maintenance performance",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      ["Damage to equipement", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ]
+  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
+  existing_methods: [
+      [
+        "Electric shock",
+        "1.Tool box meeting carried out.
+        2. Electrical isolation and lock out tag out in place.
+        3. Insulation Mat placed below the new starter panel
+        4. Appropriate PPE is used properly during the work process
+        5. Work area kept clear of hazardous substances
+        6. Unauthorized entry prohibited
+        7. Check tools before using",
+        ["2 - Minor", "4 – Major", "Medium Risk"],
+      ],
+      [
+        "Improper commissioning or poor post maintenance performance",
+        "1.Use correct PPE as per PPE matrix.
+        2. Post Maintenance has to be check by competent person.
+        3. Supervision by person in charge.
+        4. First Aid on standby.
+        5. Proper communication established.
+        6. Clearly designates roles and responsibilities",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Damage to equipement",
+        "1. Tool box meeting carried out all personnel clear about the job plan.
+        2. Ensure proper PPE for all personnel.
+        3. Follow maker’s instruction manual.
+        4. Use proper tools.
+        5. Job to be carried out according to the plan.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "OHSAS-Ergonomic Hazards-Back pain",
+        "1. Personnel involved should get proper rest.
+        2. Don’t work in same position continuously.
+        3. Take break in between.
+        4. Change people if necessary.
+        5. No short cut method is allowed.",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Obstrcution in work Area",
+        "1. Tool box meeting carried out & discussed work plan.
+        2. Ensure proper PPE for all personnel.
+        3. Working area should be dry and clean at all time
+        4. Tools should be properly arranged in work area",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+      [
+        "Adverse Weather Condition",
+        "1. Close monitoring of the weather and evaluated regularly.
+        2. Toolbox meeting carried out.
+        3. Weather conditions carefully assessed in relation to other hazards such as traffic density, nature of seabed, tidal condition, and proximity of other hazards such as shallow water.
+        4. Abort maintenance work and revert to standby condition during adverse weather condition",
+        ["2 - Minor", "3 – Moderate", "Low Risk"],
+      ],
+    ]
+  additional_methods: [
+      [
+        "Electric shock",
+        "1. Prior start working on electrical equipment fuses has to be remove to dead the equipment.
+        2.Check has to be carried out for dead circuit before starting the work on electrical equipment.
+        3.All meters and tools are tested and in good condition",
+        ["1 – Insignificant", "4 – Major", "Low Risk"],
+      ],
+    ]
