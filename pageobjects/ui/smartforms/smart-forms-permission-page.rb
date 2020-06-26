@@ -15,35 +15,52 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
-  @@section1_data_collector = []
+  # @@section1_data_collector = []
+  # @@selected_level2_permit = ''
+
+  def set_selected_level2_permit(_permit)
+    @@selected_level2_permit = _permit
+  end
+
+  def get_selected_level2_permit
+    @@selected_level2_permit
+  end
 
   def click_create_permit_btn
     click_create_permit_btn_element.click
   end
 
   def get_section1_filled_data
+    @@section1_data_collector
+  end
+
+  def set_section1_filled_data
     # probably need to dynamic this created by
     @@section1_data_collector << 'Created By A/M Atif Hayat at'
     clock_btn_element.click
+    sleep 1
     @@section1_data_collector << "#{Time.new.strftime('%d/%b/%Y')} #{utc_timezone_elements[1].text} LT (GMT+#{/\d+/.match(utc_time_text)})"
     clock_btn_element.click
     p ">>> #{@@section1_data_collector}"
     @@section1_data_collector
   end
 
-  def select_random_permit
+  def select_random_level1_permit
     @@section1_data_collector = [] # reset
     click_permit_type_ddl
     sleep 1
     selected_permit_type = get_random_permit
     selected_permit_type.click
+  end
+
+  def select_random_level2_permit
     sleep 1
     unless list_permit_type_elements.empty?
       selected_permit_type = get_random_permit
       selected_permit_type.click
     end
+    set_selected_level2_permit(ptw_id_element.text)
     @@section1_data_collector << ptw_id_element.text
-    sleep 1
     save_btn
   end
 
@@ -63,13 +80,15 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   end
 
   def select_permit(_permit)
+    @@section1_data_collector = [] # reset
     @@permit = _permit
     sleep 1
     list_permit_type_elements.each do |permit|
-      if permit.text === @@permit
-        permit.click
-        break
-      end
+      next unless permit.text === @@permit
+
+      permit.click
+      @@section1_data_collector << @@permit
+      break
     end
   end
 

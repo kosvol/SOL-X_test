@@ -4,10 +4,10 @@ Then (/^I should see the newly created permit details listed on Created Permits 
   step 'I get ship-local-time/base-get-current-time request payload'
   step 'I hit graphql'
   # data collector; will evolve
-  created_permit_data = on(SmartFormsPermissionPage).get_section1_filled_data
-  is_equal(created_permit_data[2], on(CreatedPermitToWorkPage).ptw_id_elements[0].text)
-  is_equal(created_permit_data[3], on(CreatedPermitToWorkPage).created_by_elements[0].text)
-  is_equal(created_permit_data[4], on(CreatedPermitToWorkPage).created_date_time_elements[0].text)
+  created_permit_data = on(SmartFormsPermissionPage).set_section1_filled_data
+  is_equal(created_permit_data[2], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
+  is_equal(created_permit_data[3], on(CreatedPermitToWorkPage).created_by_elements.first.text)
+  is_equal(created_permit_data[4], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
 
 And (/^I want to edit the newly created permit$/) do

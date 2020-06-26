@@ -2,7 +2,8 @@
 
 And (/^I select a any permits$/) do
   sleep 1
-  on(SmartFormsPermissionPage).select_random_permit
+  on(SmartFormsPermissionPage).select_random_level1_permit
+  on(SmartFormsPermissionPage).select_random_level2_permit
 end
 
 Then (/^I should see permit details are pre-filled$/) do
@@ -38,9 +39,9 @@ And (/^I select a level 2 permit randomly$/) do
   on(SmartFormsPermissionPage).save_btn
 end
 
-And (/^I submit after filling up section 1$/) do
-  on(Section1Page).fill_all_of_section_1_wo_duration
-end
+# And (/^I submit after filling up section 1$/) do
+#   on(Section1Page).fill_all_of_section_1_wo_duration
+# end
 
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).fill_all_of_section_1_w_duration(condition)
@@ -59,9 +60,9 @@ end
 
 And (/^I fill up section 1$/) do
   permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
-  if permits_arr.include? @@selected_level2_permit
+  if permits_arr.include? on(SmartFormsPermissionPage).get_selected_level2_permit
     on(Section1Page).fill_all_of_section_1_w_duration(%w[more less].sample)
   else
-    step 'I submit after filling up section 1'
+    on(Section1Page).fill_all_of_section_1_wo_duration
   end
 end

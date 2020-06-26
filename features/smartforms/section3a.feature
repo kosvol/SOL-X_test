@@ -4,7 +4,7 @@ Feature: Section3ADRA
   I want to ...
   So that ...
 
-  @x1
+
   Scenario Outline: Verify DRAs content match
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

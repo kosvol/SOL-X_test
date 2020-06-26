@@ -10,7 +10,7 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
-    And I submit after filling up section 1
+    And I fill up section 1
     Then I should see section 2
     And I should see previous and next buttons
     And I tear down created form
@@ -21,7 +21,7 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
-    And I submit after filling up section 1
+    And I fill up section 1
     Then I should see section 2
     When I proceed to section 3a
     Then I should see section 3a screen
@@ -34,7 +34,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I submit after filling up section 1
+    And I fill up section 1
     Then I should see correct approval details for non-OA
     And I tear down created form
 
@@ -65,7 +65,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I fill up section 1 with duration more than 2 hours
     Then I should see correct approval details for maintenance duration more than 2 hours
     And I tear down created form
 
@@ -96,7 +96,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I submit after filling up section 1 with duration less than 2 hours
+    And I fill up section 1 with duration less than 2 hours
     Then I should see correct approval details for maintenance duration less than 2 hours
     And I tear down created form
 
@@ -127,7 +127,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I submit after filling up section 1
+    And I fill up section 1
     Then I should see correct approval details OA <office approval> and ship approval <ship approval>
     And I tear down created form
 
@@ -148,5 +148,5 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select a any permits
-    And I submit after filling up section 1
+    And I fill up section 1
     Then I should see ship and office approval text fields disabled
