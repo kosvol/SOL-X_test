@@ -8,7 +8,8 @@ class CrewListPage < DashboardPage
   elements(:crew_table_header, xpath: '//*/tr/th')
   elements(:crew_rank, xpath: "//tr/td[starts-with(@data-testid,'rank-')]")
   elements(:crew_list, xpath: '//*/tbody/tr')
-  elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
+  elements(:crew_pin_list, xpath: '//tbody/tr/td[6]')
+  # elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
   elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
   divs(:location_details, xpath: "//div[@data-testid='location']")
@@ -50,7 +51,7 @@ class CrewListPage < DashboardPage
     data_collector
   end
 
-  def is_pin_hidden
+  def is_pin_hidden?
     crew_pin_list_elements.all? do |pin|
       pin.text === '••••'
     end

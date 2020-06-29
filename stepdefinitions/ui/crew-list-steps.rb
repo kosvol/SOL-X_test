@@ -45,7 +45,7 @@ And (/^I view pin$/) do
 end
 
 Then (/^I should see pin reviewed$/) do
-  is_true(!on(CrewListPage).is_pin_hidden)
+  is_true(!on(CrewListPage).is_pin_hidden?)
 end
 
 And (/^I enter a non-existent pin$/) do

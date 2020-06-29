@@ -83,6 +83,7 @@ When (/^I link wearable$/) do
   sleep 5
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
+  sleep 1
 end
 
 And (/^I toggle activity crew list$/) do
