@@ -12,7 +12,7 @@ Then (/^I should see total crew count match inactive crew$/) do
 end
 
 Then (/^I should see pin hidden$/) do
-  is_true(on(CrewListPage).is_pin_hidden)
+  is_true(on(CrewListPage).is_pin_hidden?)
 end
 
 Then (/^I should see all crew details match$/) do
