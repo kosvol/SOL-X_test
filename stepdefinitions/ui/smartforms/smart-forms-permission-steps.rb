@@ -52,7 +52,7 @@ And (/^I navigate to level 2 permits$/) do
   step "I select #{['Cold Work', 'Critical Equipment Maintenance', 'Hotwork', 'Rotational Portable Power Tool', 'Underwater Operations'].sample} permit"
 end
 
-And (/^I navigate back to SmartForms screen$/) do
+And (/^I navigate back to permit selection screen$/) do
   on(SmartFormsPermissionPage).back_btn
   sleep 1
   on(SmartFormsPermissionPage).back_btn

@@ -17,14 +17,29 @@ class CrewListPage < DashboardPage
   text_field(:crew_id, xpath: "//input[starts-with(@class, 'Input-')]")
   button(:retrieve_data_btn, xpath: "//div[starts-with(@class,'NewCrewDialog__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
   element(:duplicate_crew, xpath: "//div[starts-with(@class,'Input__InputContainer')]/div")
+  buttons(:rank_list_selection, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+  button(:rank_list_btn, xpath: "//button[@id='rank']")
   @@location_indicator = "//div[@data-testid='location-indicator']"
 
-  def is_crew_sorted_descending_seniority
+  def is_rank_correctly_displayed?(_current_rank)
+    rank_list_btn
+    rank_list = $sit_rank_and_pin_yml['ranks']
+    sleep 1
+    rank_list.each_with_index do |rank, index|
+      next unless _current_rank === rank
+
+      is_equal(rank_list_selection_elements[0].text, rank_list[index - 1])
+      is_equal(rank_list_selection_elements[2].text, rank_list[index + 1])
+      break
+    end
+  end
+
+  def is_crew_sorted_descending_seniority?
     rank_arr = []
     crew_rank_elements.each do |x|
       rank_arr << x.text
     end
-    rank_arr.uniq === $sit_rank_and_pin_yml['Ranks']
+    rank_arr.uniq === $sit_rank_and_pin_yml['ranks_sorted']
   end
 
   def get_crew_table_headers

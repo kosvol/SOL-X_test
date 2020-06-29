@@ -24,7 +24,7 @@ Feature: SmartFormsPermission
       | Additional Chief Officer   | 5555 |
       | Second Officer             | 6666 |
       | Additional Second Officer  | 7777 |
-      | Chief Engineer             | 2222 |
+      | Chief Engineer             | 9780 |
       | Additional Chief Engineer  | 0110 |
       | Second Engineer            | 1313 |
       | Additional Second Engineer | 1414 |
@@ -45,7 +45,7 @@ Feature: SmartFormsPermission
       | 9999 |
       | 1010 |
       | 1616 |
-      | 3333 |
+      | 4092 |
       | 1515 |
       | 2323 |
       | 2424 |
@@ -101,8 +101,8 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter RA pin 1212
     And I navigate to level 2 permits
-    And I navigate back to SmartForms screen
-    Then I should see permits match backend results
+    And I navigate back to permit selection screen
+    Then I should see smart form landing screen
     And I tear down created form
 
 # Scenario: Verify after click cancel on pin pad it will navigate back to permit selection screen

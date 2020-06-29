@@ -7,7 +7,9 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
-  element(:ptw_id, xpath: "//main[starts-with(@class,'CreateForm__PageContainer')]/div/h2")
+  element(:select_permit_screen, xpath: "//label[@for='permitType']")
+  # element(:ptw_id, xpath: "//main[starts-with(@class,'CreateForm__PageContainer')]/div/h2")
+  element(:ptw_id, xpath: "//section[starts-with(@class,'title')]/h3")
   button(:click_permit_type_ddl, xpath: "//button[@id='permitType']")
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")
   button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")

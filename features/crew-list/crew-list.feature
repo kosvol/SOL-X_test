@@ -97,8 +97,15 @@ Feature: CrewList
   # @manual
   # Scenario: Verify adhoc crew is added the next day T+1
 
-  # @manual
-  # Scenario: Verify captain can add crew into current vessel
+  Scenario Outline: Verify captain can add crew into current vessel
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I add crew <crew_id> id
+    Then I should see rank listing for <current_rank> showing 1 rank before and after
+
+    Examples:
+      | crew_id  | current_rank |
+      | test_002 | A/M          |
 
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     Given I launch sol-x portal

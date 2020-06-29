@@ -75,7 +75,7 @@ Then (/^I should see not authorize error message$/) do
 end
 
 Then (/^I should see crews are sorted by descending order on seniority$/) do
-  on(CrewListPage).is_crew_sorted_descending_seniority
+  is_true(on(CrewListPage).is_crew_sorted_descending_seniority?)
 end
 
 And (/^I add an existing crew id$/) do
@@ -91,4 +91,15 @@ end
 Then (/^I should see Retrieve My Data button disabled$/) do
   on(CrewListPage).add_new_crew_btn
   is_true(!is_enabled?(on(CrewListPage).retrieve_data_btn_element))
+end
+
+And (/^I add crew (.+) id$/) do |crewid|
+  on(CrewListPage).add_new_crew_btn
+  on(CrewListPage).crew_id = crewid
+  sleep 1
+  on(CrewListPage).retrieve_data_btn
+end
+
+Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
+  on(CrewListPage).is_rank_correctly_displayed?(_current_rank)
 end

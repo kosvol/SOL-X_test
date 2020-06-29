@@ -27,9 +27,7 @@ $current_application = ENV['APPLICATION'].to_s
 $current_environment = ENV['ENVIRONMENT'].to_s
 
 $obj_env_yml = YAML.load_file('config/environment.yml')
-if $current_environment === 'sit'
-  $sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')
-end
+$sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')
 
 # Clear report folders contents
 ReportUtils.clear_folder

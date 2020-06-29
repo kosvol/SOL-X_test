@@ -28,10 +28,10 @@ class BrowserSetup
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
       options.add_argument('--disable-web-security')
-      # options.add_argument('--allow-running-insecure-content')
-      # options.add_argument('--ignore-certificate-errors')
-      # options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080')
-      # options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      options.add_argument('--allow-running-insecure-content')
+      options.add_argument('--ignore-certificate-errors')
+      options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.prod.solas.magellanx.io:8080')
+      options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
 
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')
 
