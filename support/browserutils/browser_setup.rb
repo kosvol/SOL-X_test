@@ -8,7 +8,7 @@ class BrowserSetup
     $browser = case ENV['PLATFORM'].upcase
                when 'CHROME', 'CHROME_HEADLESS'
                  load_chrome(os)
-               when 'android'
+               when 'ANDROID'
                  load_web_app(os, _noreset, _fullreset)
                # when 'CHROME_MEW',"CHROME_MEW_HEADLESS"
                #   load_chrome_mew(os)
@@ -31,7 +31,11 @@ class BrowserSetup
       options.add_argument('--allow-running-insecure-content')
       options.add_argument('--ignore-certificate-errors')
       options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.prod.solas.magellanx.io:8080')
+      # if ENV['DEVICE'] === 'dashboard' || ENV['DEVICE'] === 'tablet'
+      #   options.add_argument('--user-data-dir=/data/user/0/com.android.chrome/app_chrome/Default/')
+      # else
       # options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      # end
 
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')
 
@@ -73,7 +77,11 @@ class BrowserSetup
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'
-    @device = YAML.load_file('config/devices.yml')['a_chrome']
+    if ENV['DEVICE'] === 'dashboard'
+      @device = YAML.load_file('config/devices.yml')['dashboard_chrome']
+    elsif ENV['DEVICE'] === 'tablet'
+      @device = YAML.load_file('config/devices.yml')['tablet_chrome']
+    end
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
       {
@@ -83,6 +91,8 @@ class BrowserSetup
           platformVersion: (@device['platformVersion']).to_s,
           deviceName: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
+          newCommandTimeout: 420,
+          chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://cloud-edge.stage.solas.magellanx.io:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.prod.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           # :fullReset => fullreset,
           noReset: noreset
         },

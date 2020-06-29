@@ -19,7 +19,7 @@ Then (/^I should see all crew details match$/) do
   is_true(on(CrewListPage).get_crew_details)
 end
 
-Then (/^I should see crew list location indicator is (.+) 30s$/) do |indicator_color|
+Then (/^I should see crew list location indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
   if indicator_color === 'green below'
     is_true(on(CrewListPage).is_activity_indicator_status('rgba(67, 160, 71, 1)'))
@@ -101,5 +101,5 @@ And (/^I add crew (.+) id$/) do |crewid|
 end
 
 Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
-  on(CrewListPage).is_rank_correctly_displayed?(_current_rank)
+  is_true(on(CrewListPage).is_rank_correctly_displayed?(_current_rank))
 end

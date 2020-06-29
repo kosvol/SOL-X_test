@@ -1,7 +1,17 @@
-a_chrome:
+dashboard_chrome:
   platformName: "Android"
-  platformVersion: '10'
-  deviceName: "emulator-5554"
+  platformVersion: "7.1"
+  deviceName: "201902230863"
+  app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false
+
+tablet_chrome:
+  platformName: "Android"
+  platformVersion: "7.1"
+  deviceName: "201902230863"
   app: ""
   port: 4723
   browserName: "Chrome"

@@ -18,6 +18,7 @@ Feature: ShipLocalTime
       | pin  |
       | 1111 |
       | 6666 |
+      | 5555 |
 
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
@@ -29,7 +30,6 @@ Feature: ShipLocalTime
       | pin  |
       | 1212 |
       | 4444 |
-      # | 5555 |
       | 7777 |
       | 8888 |
       | 9999 |

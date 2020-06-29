@@ -60,14 +60,14 @@ Feature: LocationTracking
     Then I should see Just now as current active crew
     And I unlink all crew from wearable
 
-  Scenario: Verify active crew member indicator is green below 30s
+  Scenario: Verify active crew member indicator is green below 5 minutes
     Given I launch sol-x portal
-    Then I should see activity indicator is green below 30s
+    Then I should see activity indicator is green below 5 minutes
     And I unlink all crew from wearable
 
-  Scenario: Verify active crew member indicator is yellow after 30s
+  Scenario: Verify active crew member indicator is yellow after 5 minutes
     Given I launch sol-x portal
-    Then I should see activity indicator is yellow after 30s
+    Then I should see activity indicator is yellow after 5 minutes
     And I unlink all crew from wearable
 
   Scenario Outline: Verify active crew member count is correct on engine room against full ship

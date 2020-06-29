@@ -50,7 +50,7 @@ Then (/^I should see Just now as current active crew$/) do
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 
-Then (/^I should see activity indicator is (.+) 30s$/) do |indicator_color|
+Then (/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
   if indicator_color === 'green below'
     is_true(on(DashboardPage).is_activity_indicator_status('rgba(67, 160, 71, 1)'))

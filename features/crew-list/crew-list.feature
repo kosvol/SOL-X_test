@@ -30,13 +30,13 @@ Feature: CrewList
   Scenario: Verify location pin turn green below 30s
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
-    Then I should see crew list location indicator is green below 30s
+    Then I should see crew list location indicator is green below 5 minutes
     And I unlink all crew from wearable
 
   Scenario: Verify location pin turn yellow after 30s
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
-    Then I should see crew list location indicator is yellow after 30s
+    Then I should see crew list location indicator is yellow after 5 minutes
     And I unlink all crew from wearable
 
   Scenario: Verify crew latest location is display on crew listing

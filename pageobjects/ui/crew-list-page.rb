@@ -29,8 +29,7 @@ class CrewListPage < DashboardPage
     rank_list.each_with_index do |rank, index|
       next unless _current_rank === rank
 
-      is_equal(rank_list_selection_elements[0].text, rank_list[index - 1])
-      is_equal(rank_list_selection_elements[2].text, rank_list[index + 1])
+      return (rank_list_selection_elements[0].text === rank_list[index - 1]) && (rank_list_selection_elements[2].text === rank_list[index + 1])
       break
     end
   end
@@ -70,14 +69,15 @@ class CrewListPage < DashboardPage
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
-    color === 'rgba(242, 204, 84, 1)' ? (sleep 27) : (sleep 2)
     _element = $browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
+    color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     _element.css_value('background-color') === color
   end
 
   def is_location_details(_location = nil)
     _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
+    BrowserActions.scroll_down($browser.find_element(:xpath, @@location_indicator))
     location_details_elements.each do |location|
       next if location.text === ''
 

@@ -13,4 +13,6 @@ end
 When (/^I navigate to "(.+)" screen$/) do |which_section|
   on(NavigationPage).tap_hamburger_menu
   on(NavigationPage).select_nav_category(which_section)
+  sleep 1
+  $browser.navigate.refresh
 end
