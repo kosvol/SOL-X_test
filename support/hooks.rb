@@ -23,17 +23,9 @@ Before('@skip') do
   skip_this_scenario
 end
 
-Before('@manual') do
-  skip_this_scenario
-end
-
-Before('@defect') do
-  skip_this_scenario
-end
-
 Before do |scenario|
-  system('rm -rf http_cloud-edge.dev.solas.magellanx.io_8080.indexeddb.leveldb')
-  system('rm -rf http_cloud-edge.stage.solas.magellanx.io_8080.indexeddb.leveldb')
+  # system('rm -rf http_cloud-edge.dev.solas.magellanx.io_8080.indexeddb.leveldb')
+  # system('rm -rf http_cloud-edge.stage.solas.magellanx.io_8080.indexeddb.leveldb')
   @step = 0
   @current_feature = scenario.respond_to?('scenario_outline') ? scenario.scenario_outline : scenario.feature
   @all_steps = ReportUtils.get_steps(@current_feature, scenario)
@@ -55,7 +47,7 @@ After do |scenario|
       $extent_test.info(:fatal, 'Exception Raised', e, @browser)
       # $living_test.info(:fatal, 'Exception Raised', e, @browser)
     end
-  else
+    # else
     # scenario.test_steps.each do |x, _index|
     #   unless ['Before hook', 'AfterStep hook'].include? x.text
     #     $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
