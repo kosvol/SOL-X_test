@@ -1,5 +1,5 @@
 {
-  "operationName": "SmartFormStats",
+  "operationName": "FormStats",
   "variables": {},
-  "query": "fragment smartFormStatsFragment on SmartFormStats {\n  __typename\n  active\n  pendingOfficerApproval\n  pendingMasterReview\n  pendingOfficeApproval\n  pendingMasterApproval\n  pendingTermination\n  approvalUpdatesNeeded\n  activeUpdatesNeeded\n  terminationUpdatesNeeded\n}\n\nquery SmartFormStats {\n  smartFormStats {\n    ...smartFormStatsFragment\n    __typename\n  }\n}\n"
+  "query": "fragment formStatsFragment on FormStats {\n  __typename\n  active\n  pendingOfficerApproval\n  pendingMasterReview\n  pendingOfficeApproval\n  pendingMasterApproval\n  pendingTermination\n  approvalUpdatesNeeded\n  activeUpdatesNeeded\n  terminationUpdatesNeeded\n}\n\nquery FormStats {\n  formStats {\n    ...formStatsFragment\n    __typename\n  }\n}\n"
 }
