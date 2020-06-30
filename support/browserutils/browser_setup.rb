@@ -15,7 +15,7 @@ class BrowserSetup
                else
                  raise "Invalid Platform => #{platform} for the OS => #{os}"
       end
-    if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE'
+    if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
     $browser.manage.timeouts.implicit_wait = 5
@@ -34,7 +34,9 @@ class BrowserSetup
       # if ENV['DEVICE'] === 'dashboard' || ENV['DEVICE'] === 'tablet'
       #   options.add_argument('--user-data-dir=/data/user/0/com.android.chrome/app_chrome/Default/')
       # else
-      options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      if ENV['LOCAL'] === 'local'
+        options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      end
       # end
 
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')
