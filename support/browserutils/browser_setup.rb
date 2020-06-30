@@ -34,7 +34,7 @@ class BrowserSetup
       # if ENV['DEVICE'] === 'dashboard' || ENV['DEVICE'] === 'tablet'
       #   options.add_argument('--user-data-dir=/data/user/0/com.android.chrome/app_chrome/Default/')
       # else
-      # options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
       # end
 
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')

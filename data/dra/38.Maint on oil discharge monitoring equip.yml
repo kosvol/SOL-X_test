@@ -1,60 +1,62 @@
-Maint on oil discharge monitoring equip:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Discharge of oil into sea", ["3 – Moderate", "2 - Minor", "Low Risk"]],
+    ["Adverse weather conditions", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["Equipment failure", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["3", "2", "2"],
+    ["2", "3", "3"],
+    ["Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk"],
+  ]
+evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
+existing_methods: [
     [
-      ["Discharge of oil into sea", ["3 – Moderate", "2 - Minor", "Low Risk"]],
-      ["Adverse weather conditions", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["Equipment failure", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-    ]
-  evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Discharge of oil into sea",
-        "1. Operation to be carried out in day time  to ensure visual monitoring of discharge
-        2. Proper line up must be done and double checked by responsible officer.
-        3. One responsible officer will be present at all times to watch effluent and the surface of the water in the locality of the discharge shall be continously monitored.
-        4. Operation will be ceased with sufficient ullage in the tank.(stop discharge of dirty water 2mtr before interface of oil)
-        5. Ensure all scuppers are plugged thoughout the operation.
-        6. Comparison of ullages between ccr and manual gauging to be carried out.
-        7. Ensure correct readings of ullage and interface are obtained and continous monitoring.
-        8. Comply with MARPOL requirements.
-        9. All required entries will be made in oil record book.
-        10. All remaining oily mixtures and slops shall be discharged to shore reception facilities.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Adverse weather conditions",
-        "1. Operation shall be suspended in case of bad weather, high wind speed and swell.
-        2. Weather forecast to be obtained.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Equipment failure",
-        "1. Stripping pump shall be warmed up properly before operation.
-        2. Communication between ccr and monitoring person on deck should be clear and short.
-        3. Person standby near slop tank to ensure that the stripping pump strokes are normal with no adverse sound and movement.
-        4. In case of any other failure operations to be stopped.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Wrong line up & seeting during routine test for maintenance",
-        "1. Line up by authorized person only and double check by ch.officer.
-        2. ODME setting by responsible person only.
-        3. Ensure slop tank was blank position and empty condition.
-        4. Visual check overboard valve & slop tank valve during test or simulation.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Slip and trip",
-        "1. All personels to comply with ppe matrix.
-        2. Person observing the high overboard should stand at designated observation area.
-        3. Proper size ppe to be used at all time.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Fatigue",
-        "1. All personals to be properly rested before operation and ilo n stcw regulation to be complied with.
-        2. All personals on deck to be given breaks at regular intervals to avoid heat strokes.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Discharge of oil into sea",
+      "1. Operation to be carried out in day time  to ensure visual monitoring of discharge
+      2. Proper line up must be done and double checked by responsible officer.
+      3. One responsible officer will be present at all times to watch effluent and the surface of the water in the locality of the discharge shall be continously monitored.
+      4. Operation will be ceased with sufficient ullage in the tank.(stop discharge of dirty water 2mtr before interface of oil)
+      5. Ensure all scuppers are plugged thoughout the operation.
+      6. Comparison of ullages between ccr and manual gauging to be carried out.
+      7. Ensure correct readings of ullage and interface are obtained and continous monitoring.
+      8. Comply with MARPOL requirements.
+      9. All required entries will be made in oil record book.
+      10. All remaining oily mixtures and slops shall be discharged to shore reception facilities.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Adverse weather conditions",
+      "1. Operation shall be suspended in case of bad weather, high wind speed and swell.
+      2. Weather forecast to be obtained.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Equipment failure",
+      "1. Stripping pump shall be warmed up properly before operation.
+      2. Communication between ccr and monitoring person on deck should be clear and short.
+      3. Person standby near slop tank to ensure that the stripping pump strokes are normal with no adverse sound and movement.
+      4. In case of any other failure operations to be stopped.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Wrong line up & seeting during routine test for maintenance",
+      "1. Line up by authorized person only and double check by ch.officer.
+      2. ODME setting by responsible person only.
+      3. Ensure slop tank was blank position and empty condition.
+      4. Visual check overboard valve & slop tank valve during test or simulation.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Slip and trip",
+      "1. All personels to comply with ppe matrix.
+      2. Person observing the high overboard should stand at designated observation area.
+      3. Proper size ppe to be used at all time.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Fatigue",
+      "1. All personals to be properly rested before operation and ilo n stcw regulation to be complied with.
+      2. All personals on deck to be given breaks at regular intervals to avoid heat strokes.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+  ]
+additional_methods: []

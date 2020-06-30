@@ -1,61 +1,70 @@
-Maint on Emergency Generator:
-  identify_hazard_name:
+identify_hazard_name:
+  [
     [
-      [
-        "Emergency Generator Immobilzation",
-        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
-      ],
-      [
-        "Accidental start of Machinery",
-        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
-      ],
-      [
-        "Health Hazards-Prolong body posture, Ergonomics",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Emergency Generator Immobilzation",
-        "1. Work Plan Meeting & Toolbox Meeting should be carried out prior commencing the maintenance.
-        2. Ensure All three D/G are in good conditions & two running D/G in Parallel continously until maintenance completed & monItor all paramenters.
-        3. Duty Engineers to close monitor the running D/G's at all times.
-        4. Avoid high load consumption during the maintenance.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Accidental start of Machinery",
-        "1. Tool box meeting carried out prior doing the job.
-        2. Inform all crew members and write on the bulletin board.
-        3. Warning notice placed at starting panel and breaker off.
-        4. Log out - tag out procedure should be in place.
-        5. Keep the em'cy generator on manual mode.
-        6. Remove the  auto start fuse.
-        7. F.O. supply tank valve to keep shut during maintenance
-        8. EOW stby.
-        9. Senior personal to monitor the complete operation and maintenance.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Health Hazards-Prolong body posture, Ergonomics",
-        "1. Do not remain in the same working position too long, keep changing working posture.
-        2. Have sufficient rest before commencing of job.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Slippery surface due to L.O. spill",
-        "1. Transfer pipe, flexible hose and arrangements to check thoroughly before work start.
-        2. Accidental spill to be cleaned immediately.
-        3. proper house keeping to be maintained.",
-        ["3 – Moderate", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Rest hour non-compliance",
-        "1. Proper rest prior stating of the job.
-        2. STCW/ILO rest hour requirement to be complied.
-        3.If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
-        ["3 – Moderate", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Emergency Generator Immobilzation",
+      ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+    ],
+    [
+      "Accidental start of Machinery",
+      ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+    ],
+    [
+      "Health Hazards-Prolong body posture, Ergonomics",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    ["3", "3", "2"],
+    ["3", "3", "3"],
+    [
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Emergency Generator Immobilzation",
+      "1. Work Plan Meeting & Toolbox Meeting should be carried out prior commencing the maintenance.
+      2. Ensure All three D/G are in good conditions & two running D/G in Parallel continously until maintenance completed & monItor all paramenters.
+      3. Duty Engineers to close monitor the running D/G's at all times.
+      4. Avoid high load consumption during the maintenance.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Accidental start of Machinery",
+      "1. Tool box meeting carried out prior doing the job.
+      2. Inform all crew members and write on the bulletin board.
+      3. Warning notice placed at starting panel and breaker off.
+      4. Log out - tag out procedure should be in place.
+      5. Keep the em'cy generator on manual mode.
+      6. Remove the  auto start fuse.
+      7. F.O. supply tank valve to keep shut during maintenance
+      8. EOW stby.
+      9. Senior personal to monitor the complete operation and maintenance.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Health Hazards-Prolong body posture, Ergonomics",
+      "1. Do not remain in the same working position too long, keep changing working posture.
+      2. Have sufficient rest before commencing of job.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Slippery surface due to L.O. spill",
+      "1. Transfer pipe, flexible hose and arrangements to check thoroughly before work start.
+      2. Accidental spill to be cleaned immediately.
+      3. proper house keeping to be maintained.",
+      ["3 – Moderate", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Rest hour non-compliance",
+      "1. Proper rest prior stating of the job.
+      2. STCW/ILO rest hour requirement to be complied.
+      3.If job is extended due to unforeseen dealy, job aborted and restarted after proper rest.",
+      ["3 – Moderate", "2 - Minor", "Low Risk"],
+    ],
+  ]
+additional_methods: []

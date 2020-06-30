@@ -1,87 +1,96 @@
-46.RIGGING OF GANGWAY & PILOT LADDER:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["MOIST, SLIPPERY ON STEPS", ["3 – Moderate", "2 - Minor", "Low Risk"]],
+    ["LACK OF ILLUMINATION", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["WORKING OVERSIDE", ["2 - Minor", "4 – Major", "Medium Risk"]],
+    ["3", "2", "2"],
+    ["2", "3", "4"],
     [
-      ["MOIST, SLIPPERY ON STEPS", ["3 – Moderate", "2 - Minor", "Low Risk"]],
-      ["LACK OF ILLUMINATION", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["WORKING OVERSIDE", ["2 - Minor", "4 – Major", "Medium Risk"]],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "MOIST, SLIPPERY ON STEPS",
-        "1. Utilise 3 point contact method while climbing or decending.
-        2. Comply with PPE matrix.
-        3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.
-        4. Supervision by experience personnel
-        5. Establish communication between deck and bridge
-        6. Work area well illuminated for the task.
-        7. Use anti skid paint in work areas and its surrounding.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "LACK OF ILLUMINATION",
-        "1. Adequate Illumination of work area,use search light where possible.
-        2. Boarding Arrangement / Area to be suitably lit
-        3. Establish communication between deck and bridge ",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "WORKING OVERSIDE",
-        "1. All crew to comply with ILO work and rest hour policy.
-        2. Avoid selecting acrophobic crew to task involving heights and hanging overside.
-        3. Work vest to be  worn while stationed at the pilot access point.
-        4. Lifebuoy ready for use.
-        5. Personnel working overside to wear safety harness connected to strong point.
-        6. Check bottom platfrom is secured properly prior lowering gangway.
-        7. The operation to be suspended when excessive rolling and pitching.
-        8. Vessel to provide lee for task performers when it safe and practicable.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "STRESS AND FATIGUE",
-        "1. All crew to comply with ILO work and rest hour policy.
-        2. Avoid selecting acrophobic crew to task involving heights and hanging overside.
-        3. Share work load between members.
-        4. Check for signs of fatigue and stress between crew members.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "EQUIPMENT DEFECT, WIRE CORRODED, MANROPE DETERIORATED, CONDITION OF STEPS",
-        "1. Operate equipment as recommended by maker.
-        2. Maintenance to be done as PMS.
-        3. Wires to be renewed as recommended.
-        4. Rope to be renewed as recommended.
-        5. Stop work when found abnormalities during operation.
-        6. Conduct dry run prior deployment.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "DEPLOYING / REMOVING PORTABLE MAGNET",
-        "1. Comply with PPE matrix.
-        2. PPE shall be suitable and comfortable for the task.
-        3. Use appropriate method to deliver the magnets.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Damage to ships structure",
-        "1. Identify strong support to rest weight of MOT.
-        2. Monitor tidal changes and identify restrictions of MOT reach on shore side.
-        3. Control number of personnel on MOT while boarding or disembarking vessel.
-        4. Lifting equipment and accessories for MOT maintained as in PMS.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Accident to personnel",
-        "1. Comply with PPE matrix.
-        2. Avoid selecting acrophobic crew to task related to height and hanging overside.
-        3. Buddy system cross checking team members including shore personnel assisting in rigging gangway or MOT.
-        4. Provide sufficient illumination to work area.
-        5. Provide sufficient tag line for handling movement of MOT while suspended on crane.
-        6. Tool box meeting between team members prior task.
-        7. Adhere to limitations of boarding arrangements and operate within its limits as prescribed by maker.
-        8. Team members to anticipate projection and movements of suspended MOT.
-        9. Ensure team members are clear from areas of suspended load.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Low Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "MOIST, SLIPPERY ON STEPS",
+      "1. Utilise 3 point contact method while climbing or decending.
+      2. Comply with PPE matrix.
+      3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.
+      4. Supervision by experience personnel
+      5. Establish communication between deck and bridge
+      6. Work area well illuminated for the task.
+      7. Use anti skid paint in work areas and its surrounding.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "LACK OF ILLUMINATION",
+      "1. Adequate Illumination of work area,use search light where possible.
+      2. Boarding Arrangement / Area to be suitably lit
+      3. Establish communication between deck and bridge ",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "WORKING OVERSIDE",
+      "1. All crew to comply with ILO work and rest hour policy.
+      2. Avoid selecting acrophobic crew to task involving heights and hanging overside.
+      3. Work vest to be  worn while stationed at the pilot access point.
+      4. Lifebuoy ready for use.
+      5. Personnel working overside to wear safety harness connected to strong point.
+      6. Check bottom platfrom is secured properly prior lowering gangway.
+      7. The operation to be suspended when excessive rolling and pitching.
+      8. Vessel to provide lee for task performers when it safe and practicable.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "STRESS AND FATIGUE",
+      "1. All crew to comply with ILO work and rest hour policy.
+      2. Avoid selecting acrophobic crew to task involving heights and hanging overside.
+      3. Share work load between members.
+      4. Check for signs of fatigue and stress between crew members.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "EQUIPMENT DEFECT, WIRE CORRODED, MANROPE DETERIORATED, CONDITION OF STEPS",
+      "1. Operate equipment as recommended by maker.
+      2. Maintenance to be done as PMS.
+      3. Wires to be renewed as recommended.
+      4. Rope to be renewed as recommended.
+      5. Stop work when found abnormalities during operation.
+      6. Conduct dry run prior deployment.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "DEPLOYING / REMOVING PORTABLE MAGNET",
+      "1. Comply with PPE matrix.
+      2. PPE shall be suitable and comfortable for the task.
+      3. Use appropriate method to deliver the magnets.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Damage to ships structure",
+      "1. Identify strong support to rest weight of MOT.
+      2. Monitor tidal changes and identify restrictions of MOT reach on shore side.
+      3. Control number of personnel on MOT while boarding or disembarking vessel.
+      4. Lifting equipment and accessories for MOT maintained as in PMS.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Accident to personnel",
+      "1. Comply with PPE matrix.
+      2. Avoid selecting acrophobic crew to task related to height and hanging overside.
+      3. Buddy system cross checking team members including shore personnel assisting in rigging gangway or MOT.
+      4. Provide sufficient illumination to work area.
+      5. Provide sufficient tag line for handling movement of MOT while suspended on crane.
+      6. Tool box meeting between team members prior task.
+      7. Adhere to limitations of boarding arrangements and operate within its limits as prescribed by maker.
+      8. Team members to anticipate projection and movements of suspended MOT.
+      9. Ensure team members are clear from areas of suspended load.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

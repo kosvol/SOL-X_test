@@ -10,6 +10,7 @@ And (/^I should see previous and next buttons$/) do
 end
 
 When (/^I proceed to section 3a$/) do
+  sleep 1
   on(Section2Page).next_btn
 end
 

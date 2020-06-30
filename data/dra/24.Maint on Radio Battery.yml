@@ -1,60 +1,69 @@
-Maint on Radio Battery:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Electric shock", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
     [
-      ["Electric shock", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-      ["Toxic fumes", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      [
-        "Vessel unable to send distress alert using battery",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-    ]
-  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Electric shock",
-        "1) Tool box meeting carried out.
-        2) Comply with Electrical Isolation Certificate
-        3) Surrounding work area must be dry
-        4) Electrical Isolation Rubber Mat placed in front of panel.
-        5) Apply lock out-Tag out and inform EOW/OOW.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Toxic fumes",
-        "1) Tool box meeting carried out.
-        2) Enter only after ventilating the room for at least 10 minutes.
-        3) Carry personal gas meter.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Vessel unable to send distress alert using battery",
-        "1) Tool box meeting carried out.
-        2) Portable two way VHF in readiness condition to send a distress signal.
-        3) Task has to be done by competent person.",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Ergonomic Hazard",
-        "1) Tool box meeting carried out.
-        2) Comply with work and rest hour.
-        3) Take short breaks in between the task.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Personal injury",
-        "1) Tool box meeting carried out.
-        2) Due to corrosive in nature follow proper PPE matrix.
-        3) Ensure there is no obstruction.
-        4) Maintain proper house keeping.
-        5) Stop work if weather not permiting (vessel is rolling excessively.)",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "Vessel unable to send distress alert using battery",
-        "1) Battery maintenance should be carried while vessel is sailing.
-        2) Maintenance has to carried out while at anchorage/ in port.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-    ]
+      "Vessel unable to send distress alert using battery",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    ["Toxic fumes", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["3", "2", "2"],
+    ["3", "4", "3"],
+    [
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Electric shock",
+      "1) Tool box meeting carried out.
+      2) Comply with Electrical Isolation Certificate
+      3) Surrounding work area must be dry
+      4) Electrical Isolation Rubber Mat placed in front of panel.
+      5) Apply lock out-Tag out and inform EOW/OOW.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Toxic fumes",
+      "1) Tool box meeting carried out.
+      2) Enter only after ventilating the room for at least 10 minutes.
+      3) Carry personal gas meter.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Vessel unable to send distress alert using battery",
+      "1) Tool box meeting carried out.
+      2) Portable two way VHF in readiness condition to send a distress signal.
+      3) Task has to be done by competent person.",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Ergonomic Hazard",
+      "1) Tool box meeting carried out.
+      2) Comply with work and rest hour.
+      3) Take short breaks in between the task.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Personal injury",
+      "1) Tool box meeting carried out.
+      2) Due to corrosive in nature follow proper PPE matrix.
+      3) Ensure there is no obstruction.
+      4) Maintain proper house keeping.
+      5) Stop work if weather not permiting (vessel is rolling excessively.)",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "Vessel unable to send distress alert using battery",
+      "1) Battery maintenance should be carried while vessel is sailing.
+      2) Maintenance has to carried out while at anchorage/ in port.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+  ]

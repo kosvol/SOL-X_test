@@ -1,86 +1,95 @@
-Maint on Fire Detection Alarm System:
-  identify_hazard_name:
+identify_hazard_name:
+  [
     [
-      [
-        "Fire in Accommodation / non functional",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Fire in Engine Room / non functional",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      ["OHSAS- Casualty", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Fire in Accommodation / non functional",
-        "1.Tool box meeting carried out.
-        2. Crew training conducted in prevention of fire
-        3. No smoking policy in place, smoking only in designated area
-        4. Regular rounds in Accomodation
-        5. Washing machine and dryer switched off at night, ensure Dryer machine filter is always kept clean
-        6. Food warmer kept off during off hour
-        7. FFA in readiness at all times ",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Fire in Engine Room / non functional",
-        "1. Tool box meeting carried out.
-        2. Regular increased fire rounds in Engine Room
-        3. ER to be manned at all times
-        4. Hot work  planned from 0800-1800hrs only.
-        5. Training to crew in prevention of fire
-        6. FFA in readiness at all times including water mist system and CO2 system
-        7. Leak off alarm is tested so that any leak oil is identified auto
-        8. No combustible material is kept unattended
-        9. Ensure all hot surfaces are insulated
-        10. Ensure all h.p LO/FO lines jacketing are intact",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "OHSAS- Casualty",
-        "1. Work plan and safety meeting conducted with all shipboard personnel on board, all are well briefed of the possible hazards
-        2. Training to crew for escape routes
-        3. Training to crew in use of resuscitator, first aid in case of burns and saffocation
-        4. Person detecting any fire anywhere must use the PA or raise the general alarm system.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Constructive Total Loss",
-        "1.Tool box meeting carried out.
-        2. Vessel equipped with Fire Fighting System
-        3. Vessel manned with trained crew
-        4. Hot work procedure followed as per Idms and ISGOTT
-        5. To monitor all machinery for leaks/ overheating to prevent fire in all possible area
-        6. All anti static precuation is excercised
-        7. Fire rounds are increased and dedicated personnel for the job, no multi tasking",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "New system malfunctioning/ failure",
-        "1.Tool box meeting carried out
-        2. Ensure the system is working satisfactorily after the maintenance.
-        3. Ensure sufficient critical spares are in hand
-        4. Establish proper equipment oerating procedure
-        5. Train all staff regarding the use as appropriate as per Maker
-        6. Carry our regular check and test and confirm working in order.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Maintenance Schedule not updated",
-        "1. Job scope has to be discuss with all department
-        2. Maintenance job has to be according maker's instruction.
-        3. Maintenance has to be done as per PMS
-        4. All timely based maintenance has to be updated in NS5.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Inadequate training in usage",
-        "1. Work plan circulated to all concerned
-        2. Conduct effective training and discussions among the staff
-        3. Establish proper equipment operating procedure and keep readily visible aside the equipment",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Fire in Accommodation / non functional",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Fire in Engine Room / non functional",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    ["OHSAS- Casualty", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["2", "1", "2"],
+    ["4", "4", "3"],
+    [
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Fire in Accommodation / non functional",
+      "1.Tool box meeting carried out.
+      2. Crew training conducted in prevention of fire
+      3. No smoking policy in place, smoking only in designated area
+      4. Regular rounds in Accomodation
+      5. Washing machine and dryer switched off at night, ensure Dryer machine filter is always kept clean
+      6. Food warmer kept off during off hour
+      7. FFA in readiness at all times ",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Fire in Engine Room / non functional",
+      "1. Tool box meeting carried out.
+      2. Regular increased fire rounds in Engine Room
+      3. ER to be manned at all times
+      4. Hot work  planned from 0800-1800hrs only.
+      5. Training to crew in prevention of fire
+      6. FFA in readiness at all times including water mist system and CO2 system
+      7. Leak off alarm is tested so that any leak oil is identified auto
+      8. No combustible material is kept unattended
+      9. Ensure all hot surfaces are insulated
+      10. Ensure all h.p LO/FO lines jacketing are intact",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "OHSAS- Casualty",
+      "1. Work plan and safety meeting conducted with all shipboard personnel on board, all are well briefed of the possible hazards
+      2. Training to crew for escape routes
+      3. Training to crew in use of resuscitator, first aid in case of burns and saffocation
+      4. Person detecting any fire anywhere must use the PA or raise the general alarm system.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Constructive Total Loss",
+      "1.Tool box meeting carried out.
+      2. Vessel equipped with Fire Fighting System
+      3. Vessel manned with trained crew
+      4. Hot work procedure followed as per Idms and ISGOTT
+      5. To monitor all machinery for leaks/ overheating to prevent fire in all possible area
+      6. All anti static precuation is excercised
+      7. Fire rounds are increased and dedicated personnel for the job, no multi tasking",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "New system malfunctioning/ failure",
+      "1.Tool box meeting carried out
+      2. Ensure the system is working satisfactorily after the maintenance.
+      3. Ensure sufficient critical spares are in hand
+      4. Establish proper equipment oerating procedure
+      5. Train all staff regarding the use as appropriate as per Maker
+      6. Carry our regular check and test and confirm working in order.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Maintenance Schedule not updated",
+      "1. Job scope has to be discuss with all department
+      2. Maintenance job has to be according maker's instruction.
+      3. Maintenance has to be done as per PMS
+      4. All timely based maintenance has to be updated in NS5.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Inadequate training in usage",
+      "1. Work plan circulated to all concerned
+      2. Conduct effective training and discussions among the staff
+      3. Establish proper equipment operating procedure and keep readily visible aside the equipment",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

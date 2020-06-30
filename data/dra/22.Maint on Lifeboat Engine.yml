@@ -1,48 +1,57 @@
-Maint on Lifeboat Engine:
-  identify_hazard_name:
+identify_hazard_name:
+  [
     [
-      [
-        "Imobilization of Equipment",
-        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
-      ],
-      ["Personnel injury", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-      ["Damage to Equipment", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Imobilization of Equipment",
-        "1. Tool box meeting carried out.
-        2. Discuss the alternatiove method of Life saving appliance and consequence involve.
-        3. Equipment shall be properly check prior use.
-        4. Spares has been check and kept stand by for use.
-        5. Person has to be stand by and responsible for the safety while job is in progress.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Personnel injury",
-        "1. Tool box meeting carried out
-        2. Comply with Take 5
-        3. Comply with work and rest hour",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Damage to Equipment",
-        "1.Tool box meeting carried out.
-        2. Conduct a proper trainning to crew and junior officers.
-        3. FPD shall be connect properly.
-        4. Safety pin,winch,wire,harbour pin shall be check prior lowering
-        5. Check hoisting limit switch.
-        6. Battery charger should be remove before lowering the life boat.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Ergonomic Hazard",
-        "1. Tool box meeting carried out.
-        2. Comply with work and rest hour.
-        3. Take a short break in between the job.
-        4. Provide enough man power for the task.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Imobilization of Equipment",
+      ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+    ],
+    ["Personnel injury", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["Damage to Equipment", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["3", "3", "3"],
+    ["3", "3", "3"],
+    [
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Imobilization of Equipment",
+      "1. Tool box meeting carried out.
+      2. Discuss the alternatiove method of Life saving appliance and consequence involve.
+      3. Equipment shall be properly check prior use.
+      4. Spares has been check and kept stand by for use.
+      5. Person has to be stand by and responsible for the safety while job is in progress.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Personnel injury",
+      "1. Tool box meeting carried out
+      2. Comply with Take 5
+      3. Comply with work and rest hour",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Damage to Equipment",
+      "1.Tool box meeting carried out.
+      2. Conduct a proper trainning to crew and junior officers.
+      3. FPD shall be connect properly.
+      4. Safety pin,winch,wire,harbour pin shall be check prior lowering
+      5. Check hoisting limit switch.
+      6. Battery charger should be remove before lowering the life boat.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Ergonomic Hazard",
+      "1. Tool box meeting carried out.
+      2. Comply with work and rest hour.
+      3. Take a short break in between the job.
+      4. Provide enough man power for the task.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

@@ -1,21 +1,23 @@
-Use of Non-Intrinsically Safe Camera:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Presence of flammable vapors", ["2 - Minor", "2 - Minor", "Low Risk"]],
+    ["Terminal restrictions", ["2 - Minor", "2 - Minor", "Low Risk"]],
     [
-      ["Presence of flammable vapors", ["2 - Minor", "2 - Minor", "Low Risk"]],
-      ["Terminal restrictions", ["2 - Minor", "2 - Minor", "Low Risk"]],
-      [
-        "Accidental fall of camera creating spark",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
-  existing_methods:
+      "Accidental fall of camera creating spark",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    ["2", "2", "2"],
+    ["2", "2", "3"],
+    ["Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk"],
+  ]
+evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
+existing_methods:
+  [
+    ["Presence of flammable vapors", ["2 - Minor", "2 - Minor", "Low Risk"]],
+    ["Terminal restrictions", "2 - Minor", "2 - Minor", "Low Risk"],
     [
-      ["Presence of flammable vapors", ["2 - Minor", "2 - Minor", "Low Risk"]],
-      ["Terminal restrictions", "2 - Minor", "2 - Minor", "Low Risk"],
-      [
-        "Accidental fall of camera creating spark",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Accidental fall of camera creating spark",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

@@ -1,111 +1,120 @@
-Hot Work Level - 1 (Loaded & Ballast Passage):
-  identify_hazard_name:
+identify_hazard_name:
+  [
     [
-      [
-        "Lack of Ventilation / ASPHYXIATION",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Use of sharp/ hazardous hand tools",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Improper procedure of coating repair",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Lack of Ventilation / ASPHYXIATION",
-        "1. Permit to Work  and LOTO procedures to comply
-        2. Enclosed space atmosphere to be checked prior entry.
-        3.Continous ventilation to be maintained during the work.
-        4.Enclosed space to be monitored regularly during work in progress.
-        5.Personal Gas Meters  to be used by all personnel and the space to be evacuated immediately if alarmed.
-        6. Ensure communication contact with the team.
-        7. Periodic calibration of gas detectors
-        8. Warning signage
-        9. Competency and training of personnel
-        10. Supervision by person in charge",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Use of sharp/ hazardous hand tools",
-        "1. Comply with PPE matrix
-        2. Use special PPE as recommended by maker of equipment.
-        3. Buddy system cross checking each other tools and movements.
-        4. Use equipment as prescribed in its manual.
-        5. Equipment maintained as prescribed in its manual.
-        6. Supervision by PIC",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Improper procedure of coating repair",
-        "1. Discussed during tool box meeting before commencement of job
-        2. Competent and well training person for conducting the job
-        3. Proper supervision
-        4. Follow maker instruction guidance",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Slip and trip hazards",
-        "1. Area clear of obstructions - Housekeeping
-        2. Comply with PPE matrix.
-        3. Competency
-        4. Training of personnel
-        5. Good weather forecasted at expected working window
-        6. Adequate illumination for cargo tank prior entry.
-        7. One person at a time on the ladder / three point contact to be adhered.",
-        ["3 – Moderate", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Communication failure",
-        "1. The frequency of communication checks between the tank entry team and deck team supervising shall be agreed upon prior to entry.
-        2. Contingency plan to discussed in case of loss of communication.
-        3. One person supervising the entry relays the messages from tank to the CCR.
-        4. Approved type radios to be used and the channel to be agreed
-        5. Test the communication channel and confirm prior commencing the task
-        6. Supervising and monitoring by person in charge
-        7. Proper communication i.e command, acknowledge & confirm.
-        8. Spare batteries to be kept standby",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Heat stress (high ambient temperatures) and humidity",
-        "1. Proper and sufficient ventilation
-        2. To administor personnel to consume salt tablets
-        3. High intake of water by personnel working in areas of high temperature and humidity
-        4. Planned work rotation",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Insufficient Illumination / Unsafe access",
-        "1. Checklist / Permit to work / Lock Out and Tag Out (LOTO)
-        2. Comply with PPE matrix.
-        3. Limit access to work area
-        4. Competency and training of personnel
-        5. Warning signage",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Adverse effect of ssea/weather on vessel movement",
-        "1. Obtain weather forecast.
-        2. Anticipate for weather changes and calm periods.
-        3. Utilise catwalk and walkways with anti skid paint.
-        4. Maintain 3 point contact.
-        5. Stop work policy",
-        ["3 – Moderate", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Long irregular hours and shifts/ Fatigue",
-        "1. Work planning
-        2. Staff rotation, work/rest hour in plan
-        3. Competency and training of personnel
-        4. Supervision by person in charge
-        5. Tool box meeting / Job delegation
-        6. Regular exercise, high protein diet and power nap may assist in combating stress",
-        ["3 – Moderate", "1 – Insignificant", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Lack of Ventilation / ASPHYXIATION",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Use of sharp/ hazardous hand tools",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Improper procedure of coating repair",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    ["2", "2", "2"],
+    ["4", "2", "3"],
+    [
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Lack of Ventilation / ASPHYXIATION",
+      "1. Permit to Work  and LOTO procedures to comply
+      2. Enclosed space atmosphere to be checked prior entry.
+      3.Continous ventilation to be maintained during the work.
+      4.Enclosed space to be monitored regularly during work in progress.
+      5.Personal Gas Meters  to be used by all personnel and the space to be evacuated immediately if alarmed.
+      6. Ensure communication contact with the team.
+      7. Periodic calibration of gas detectors
+      8. Warning signage
+      9. Competency and training of personnel
+      10. Supervision by person in charge",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Use of sharp/ hazardous hand tools",
+      "1. Comply with PPE matrix
+      2. Use special PPE as recommended by maker of equipment.
+      3. Buddy system cross checking each other tools and movements.
+      4. Use equipment as prescribed in its manual.
+      5. Equipment maintained as prescribed in its manual.
+      6. Supervision by PIC",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Improper procedure of coating repair",
+      "1. Discussed during tool box meeting before commencement of job
+      2. Competent and well training person for conducting the job
+      3. Proper supervision
+      4. Follow maker instruction guidance",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Slip and trip hazards",
+      "1. Area clear of obstructions - Housekeeping
+      2. Comply with PPE matrix.
+      3. Competency
+      4. Training of personnel
+      5. Good weather forecasted at expected working window
+      6. Adequate illumination for cargo tank prior entry.
+      7. One person at a time on the ladder / three point contact to be adhered.",
+      ["3 – Moderate", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Communication failure",
+      "1. The frequency of communication checks between the tank entry team and deck team supervising shall be agreed upon prior to entry.
+      2. Contingency plan to discussed in case of loss of communication.
+      3. One person supervising the entry relays the messages from tank to the CCR.
+      4. Approved type radios to be used and the channel to be agreed
+      5. Test the communication channel and confirm prior commencing the task
+      6. Supervising and monitoring by person in charge
+      7. Proper communication i.e command, acknowledge & confirm.
+      8. Spare batteries to be kept standby",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Heat stress (high ambient temperatures) and humidity",
+      "1. Proper and sufficient ventilation
+      2. To administor personnel to consume salt tablets
+      3. High intake of water by personnel working in areas of high temperature and humidity
+      4. Planned work rotation",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Insufficient Illumination / Unsafe access",
+      "1. Checklist / Permit to work / Lock Out and Tag Out (LOTO)
+      2. Comply with PPE matrix.
+      3. Limit access to work area
+      4. Competency and training of personnel
+      5. Warning signage",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Adverse effect of ssea/weather on vessel movement",
+      "1. Obtain weather forecast.
+      2. Anticipate for weather changes and calm periods.
+      3. Utilise catwalk and walkways with anti skid paint.
+      4. Maintain 3 point contact.
+      5. Stop work policy",
+      ["3 – Moderate", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Long irregular hours and shifts/ Fatigue",
+      "1. Work planning
+      2. Staff rotation, work/rest hour in plan
+      3. Competency and training of personnel
+      4. Supervision by person in charge
+      5. Tool box meeting / Job delegation
+      6. Regular exercise, high protein diet and power nap may assist in combating stress",
+      ["3 – Moderate", "1 – Insignificant", "Low Risk"],
+    ],
+  ]
+additional_methods: []

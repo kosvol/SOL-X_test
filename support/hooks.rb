@@ -24,8 +24,8 @@ Before('@skip') do
 end
 
 Before do |scenario|
-  # system('rm -rf http_cloud-edge.dev.solas.magellanx.io_8080.indexeddb.leveldb')
-  # system('rm -rf http_cloud-edge.stage.solas.magellanx.io_8080.indexeddb.leveldb')
+  # system('rm -rf /Users/slo-gx/Library/Application Support/Google/Chrome/Default/IndexedDB/http_cloud-edge.dev.solas.magellanx.io_8080.indexeddb.leveldb')
+  # system('rm -rf /Users/slo-gx/Library/Application Support/Google/Chrome/Default/IndexedDB/http_cloud-edge.stage.solas.magellanx.io_8080.indexeddb.leveldb')
   @step = 0
   @current_feature = scenario.respond_to?('scenario_outline') ? scenario.scenario_outline : scenario.feature
   @all_steps = ReportUtils.get_steps(@current_feature, scenario)

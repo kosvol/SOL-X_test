@@ -1,65 +1,74 @@
-Maint on Boiler and GE:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Hot oil spill", ["3 – Moderate", "4 – Major", "High Risk"]],
+    ["Hot surface", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["Steam leaks", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["3", "3", "3"],
+    ["4", "3", "3"],
     [
-      ["Hot oil spill", ["3 – Moderate", "4 – Major", "High Risk"]],
-      ["Hot surface", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-      ["Steam leaks", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-    ]
-  evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Hot oil spill",
-        "1. Fuel oil line to be isolated and verified to ensure no pressure
-        2. Fuel oil line valves to be shut and caution notice to be posted
-        3. Valves to be shut from DCS and caution notice to be posted
-        4. Competency and proper training of personnel",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Hot surface",
-        "1. Tool box meeting carried
-        2. Permit to work has to be follow.
-        3. LOTO has to be done
-        3. PPE matrix has to be follow
-        4. Involved persons has to be properly aware of the job scope",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Steam leaks",
-        "1. Steam Line to be isolated and verified to ensure no pressure
-        2. Steam line valves to be shut  and caution notice posted.
-        3. Valves to be shut from DCS and caution notice to be posted to avoid wrong operation",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Hot gases escape from furnaces",
-        "1. Proper maintenance of the equipments
-        2. Non-return flapper confirm sealing properly
-        3. Proper PPE to be ued at the time of removing the burner and fixing back",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Poor access",
-        "1. Tool box meeting carried out
-        2. Familiar with the location of the task
-        3. Supervision by responsible personnel
-        4. Additional personnel to help as need arises",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Wrong spare parts",
-        "1. Check for the availability of spare parts
-        2. Double confirm the part no and dimension of spare part
-        3. Supervision by responsible person
-        4. Machinery incharge engineer has to check spare parts.",
-        ["3 – Moderate", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "Hot oil spill",
-        "1. Use face shield
-        2. Slack bolts and nuts slowly",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-    ]
+      "High Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "High Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Hot oil spill",
+      "1. Fuel oil line to be isolated and verified to ensure no pressure
+      2. Fuel oil line valves to be shut and caution notice to be posted
+      3. Valves to be shut from DCS and caution notice to be posted
+      4. Competency and proper training of personnel",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Hot surface",
+      "1. Tool box meeting carried
+      2. Permit to work has to be follow.
+      3. LOTO has to be done
+      3. PPE matrix has to be follow
+      4. Involved persons has to be properly aware of the job scope",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Steam leaks",
+      "1. Steam Line to be isolated and verified to ensure no pressure
+      2. Steam line valves to be shut  and caution notice posted.
+      3. Valves to be shut from DCS and caution notice to be posted to avoid wrong operation",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Hot gases escape from furnaces",
+      "1. Proper maintenance of the equipments
+      2. Non-return flapper confirm sealing properly
+      3. Proper PPE to be ued at the time of removing the burner and fixing back",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Poor access",
+      "1. Tool box meeting carried out
+      2. Familiar with the location of the task
+      3. Supervision by responsible personnel
+      4. Additional personnel to help as need arises",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Wrong spare parts",
+      "1. Check for the availability of spare parts
+      2. Double confirm the part no and dimension of spare part
+      3. Supervision by responsible person
+      4. Machinery incharge engineer has to check spare parts.",
+      ["3 – Moderate", "2 - Minor", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "Hot oil spill",
+      "1. Use face shield
+      2. Slack bolts and nuts slowly",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+  ]

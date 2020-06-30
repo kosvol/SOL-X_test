@@ -65,7 +65,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I fill up section 1 with duration more than 2 hours
+    And I submit after filling up section 1 with duration more than 2 hours
     Then I should see correct approval details for maintenance duration more than 2 hours
     And I tear down created form
 
@@ -96,7 +96,7 @@ Feature: Section2ApprovalAuthority
     And I enter RA pin 1212
     And I select <level one permit> permit
     And I select <level two permit> permit for level 2
-    And I fill up section 1 with duration less than 2 hours
+    And I submit after filling up section 1 with duration less than 2 hours
     Then I should see correct approval details for maintenance duration less than 2 hours
     And I tear down created form
 

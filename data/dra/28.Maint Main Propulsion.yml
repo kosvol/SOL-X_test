@@ -1,67 +1,69 @@
-Maint Main Propulsion:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["System unable to reset", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["Erratic readings", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["Equipment failure", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["2", "2", "2"],
+    ["3", "3", "3"],
+    ["Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk", "Low Risk"],
+  ]
+evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
+existing_methods: [
     [
-      ["System unable to reset", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["Erratic readings", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["Equipment failure", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-    ]
-  evaluate_risk: ["Low Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "System unable to reset",
-        "1. Tool box meeting carried out.
-        2. Proper procedure for testing alam to be strictly follow
-        3. Vessel must not have any operation during testing.
-        4. E/R to be manned at all times until job completion.
-        5. Communication to be stablished at all times with OOW and EOW at all times.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Erratic readings",
-        "1. Tool box meeting carried out.
-        2. Proper testing procedure has to be follow.
-        3. Test all the shut down and trip alarm after finish the maintenance.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Equipment failure",
-        "1. Tool box meeting carried out.
-        2. Follow proper procedures as per instruction manual.
-        3. Spare to be ready prior commencing job.
-        4. Spare to be checked and test prior installation.
-        5. Proper tools to be used at all times during job.",
-        ["1 – Insignificant", "3 – Moderate", "Medium Risk"],
-      ],
-      [
-        "Crew Unfamiliarity",
-        "1. Tool box meeting carried out prior doing the job.
-        2. Scope job discussed and understood by all personnel involved
-        3. Supervision of responsible engineer at all time
-        4. Follow IDMS procedures for carry out critical equipment maintenance.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "ME remote control system malfunction",
-        "1. Tool box meeting carried out
-        2. Test M/E remote control system as per PMS.
-        3. M/E local control has been tested as per PMS.
-        4. M/E trips and shutdown alarm testes as per PMS..
-        5. Bridge should be inform before doiung any maintenance or testing.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Personnel Injury",
-        "1. Tool box meeting carried out.
-        2. PPE must be donned according to PPE matrix
-        3. Stop card or job interruption must be applied if unsafe practices performed",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "OHSAS health hazard",
-        "1. Tool box meeting carried out.
-        2. De-hydration: Ensure regular breaks and continuous hydration for the person working.
-        3. Comply with work and rest hour.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "System unable to reset",
+      "1. Tool box meeting carried out.
+      2. Proper procedure for testing alam to be strictly follow
+      3. Vessel must not have any operation during testing.
+      4. E/R to be manned at all times until job completion.
+      5. Communication to be stablished at all times with OOW and EOW at all times.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Erratic readings",
+      "1. Tool box meeting carried out.
+      2. Proper testing procedure has to be follow.
+      3. Test all the shut down and trip alarm after finish the maintenance.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Equipment failure",
+      "1. Tool box meeting carried out.
+      2. Follow proper procedures as per instruction manual.
+      3. Spare to be ready prior commencing job.
+      4. Spare to be checked and test prior installation.
+      5. Proper tools to be used at all times during job.",
+      ["1 – Insignificant", "3 – Moderate", "Medium Risk"],
+    ],
+    [
+      "Crew Unfamiliarity",
+      "1. Tool box meeting carried out prior doing the job.
+      2. Scope job discussed and understood by all personnel involved
+      3. Supervision of responsible engineer at all time
+      4. Follow IDMS procedures for carry out critical equipment maintenance.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "ME remote control system malfunction",
+      "1. Tool box meeting carried out
+      2. Test M/E remote control system as per PMS.
+      3. M/E local control has been tested as per PMS.
+      4. M/E trips and shutdown alarm testes as per PMS..
+      5. Bridge should be inform before doiung any maintenance or testing.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Personnel Injury",
+      "1. Tool box meeting carried out.
+      2. PPE must be donned according to PPE matrix
+      3. Stop card or job interruption must be applied if unsafe practices performed",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "OHSAS health hazard",
+      "1. Tool box meeting carried out.
+      2. De-hydration: Ensure regular breaks and continuous hydration for the person working.
+      3. Comply with work and rest hour.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

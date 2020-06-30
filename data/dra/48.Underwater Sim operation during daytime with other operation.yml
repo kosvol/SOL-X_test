@@ -1,175 +1,184 @@
-48.Underwater Sim operation during daytime with other operation:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Sea Chest Suction", ["2 - Minor", "3 – Moderate", "Low Risk"]],
     [
-      ["Sea Chest Suction", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      [
-        "Diver/personal fatigue and loss of life",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      ["Injury to divers", ["2 - Minor", "4 – Major", "Medium Risk"]],
-    ]
-  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Sea Chest Suction",
-        "1. Have tool box meeting.
-        2. Have EIC in place for all suction pipes.
-        3. Identify seachest that is not isolated and accertain safe distance.
-        4. Avoid divers from approaching seachest areas.
-        5. Minimise usage of equipment that requires seachest suction.
-        6. Establish clear communications between divers and team members.
-        7. Have extra support boats on stand-by.",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Diver/personal fatigue and loss of life",
-        "1. Comply with work / rest hours.
-        2. Check for signs of fatigue from the task performer and stand-by divers.
-        3. Obtain information from diving supervisor of divers work rest schedule and cut off period.
-        3. Approved Diving company engaged for the task.
-        4. Agree on underwater period for each diver to share the work load.
-        5. Records of diver going underwater to be taken and anticipate for divers to resurface.
-        6. Means of communication to be established and tried out prior divers going down
-        7. Tidal conditions to be communicated to divers
-        8. Divers to have lifelines
-        9. First aid box to be kept ready
-        10. Emergency contact details are within reach of team members.
-        11. Rescue party to be on stand-by for immediate deployment.
-        12. Utilise stop work policy.",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Injury to divers",
-        "1. Cease working aloft/overside task during diving operations.
-        2. Provide sufficient illumination to work area and it surrounding.
-        3. Identify means for seeking medical emergencies and its mode of transportation.
-        4. Have EIC in place to equipment or system while performing task.
-        5. Weather conditions to be ascertained and monitored throughout the operation
-        6. Small crafts to be warned off from work area.
-        7. Divers to equip with appropriate diving PPE for the task.
-        10. Divers to have life lines",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Inadvertent Turning of Ships Propeller or Rudder",
-        "1. Carry out tool box meeting.
-        2. Identify team members in the task.
-        3. Have EIC in place for the equipment.
-        4. Active permit to be posted on site.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Failure of Diving Equipments.",
-        "1. Review condition of diving equipment available during tool box meeting.
-        2. Equipment used to be certified intrinsically safe
-        3. Divers to have life lines
-        4. Approved diving company engaged for the operation.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Hypothermia",
-        "1. Protective Clothing to be worn
-        2. Period of exposure to water to be monitored and minimized accordingly.
-        3. Regular monitoring of water Temperature to be made.
-        4. Continues work to be avoided and body temperature to be monitored regularly.
-        5. TPA to be Standby for immediate use.
-        6. Weather to be closely monitored.
-        7. Atmosphere temperature to be closely monitored.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Lack of situational awareness",
-        "1. Carry out tool box meeting with team members.
-        2. Establish effective communication with team members.
-        3. Have a back up communication ready.
-        4. Use CCTV when it is practicable.
-        5. Comply with ILO work rest hours",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Unforeseen delays",
-        "1. Commercial window of opportunity verified between master and Operations.
-        2. Dive company to verify availability for entire anticipated range of dates assigned for the in water survey period.
-        3. In the absence of adequate time available dive ops will be postponed.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Falling Objects",
-        "1. No over side work or tasks in close proximity to ship's side rails to be undertaken during period of dive activity.
-        2. The anchor not in use is to be lashed in position.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Overboard discharging",
-        "1. Have tool box meeting.
-        2. Have EIC in place for all discharge pipes.
-        3. Identify overboard discharge pipe that is not isolated.
-        4. Avoid divers from approaching the discharge areas.
-        4. Minimise usage of equipment that requires overboard discharge.
-        5. Location of the SW overboard valve to be shared with divers prior operation.
-        6. Stand-by person in communication with diving supervisor in vicinity of discharge outlets.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Collision of ROV With passing by Traffic",
-        "1)  Work plan and safety meeting to be carried out prior commencement of operation.
-        2) Emergency signal agreed between vessel and rov.
-        3) Port clearance obtain from port authority.
-        4) Navigational broadcast warning on vhf.
-        5) bridge watch keeper  must warn all passing traffic and request for wide berth.
-        6) adequate clearance  achieved for rov moment
-        7) proper signal display by day and night
-        8) approaching  vessel for anchorage  must give warning and require to keep safe distance from vessel
-        9)  ship side to be clear to side which rov operating.
-        10) Rov will not operate to bunker barge side
-        11) in case of restricted visibility operation will be aborted.
-        12) Proper communication link between ship and rov leader.
-        31) Rov position and moment to be relayed ship all the time.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "ROV Loss of control due to working in strong tidal stream and adverse Weather.",
-        "1. Work plan and safety meeting to be carried out prior commence operation with diving team and ship personnel.
-        2. Confirm weather is within permissible limit before commencement of operation.
-        3. Weather to be monitored during entire operation.
-        4. If weather deteriorates, master to inform immediately rov.
-        5. Tidal condition to be determined and communicated to rov.
-        6. Advance wx forecast to be obtain and same to be discussed with rov leader.
-        7. Special precaution to be taken when change of tide and vessel swinging into current.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Damage to ROV operating near ship suction and outlet areas",
-        "1) Under water operation check list and permit to work completed before commencement of operation.
-        2) Warning sign displayed
-        3) All suction and discharge identified and position remain unchanged during operation.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "Sea Chest Suction",
-        "1. EIC Shut down all possible sea chest cooling suction - If cooling not possible to be stopped, coordinate closely with divers on the diving plans.
-        2. Diving operation to be carried out during daylight.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Diver/personal fatigue and loss of life",
-        "1. Good communications to be established between the divers underwater and the backup team in boat
-        2. Fresh permit to be prepared for work extending beyond 4 hours.
-        3. Diving operation shall not be carried out simultaneous to any other operation, no boats or barges shall be allowed to come alongside.
-        4. Cross check for the diving working hours with the diving supervisor.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Hypothermia",
-        "1. Good communications to be established between the divers underwater and the back up team in the boat",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        Unforeseen delays",
-        "1. If weather deteriorates, Master is to inform Chief Diver/ Officer in Charge of Diving Unit.
-        2. Non-essential Sea Chest and overboard valves to be closed and locked out/tagged out.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
+      "Diver/personal fatigue and loss of life",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    ["Injury to divers", ["2 - Minor", "4 – Major", "Medium Risk"]],
+    ["2", "2", "2"],
+    ["3", "4", "4"],
+    [
+      "Low Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Sea Chest Suction",
+      "1. Have tool box meeting.
+      2. Have EIC in place for all suction pipes.
+      3. Identify seachest that is not isolated and accertain safe distance.
+      4. Avoid divers from approaching seachest areas.
+      5. Minimise usage of equipment that requires seachest suction.
+      6. Establish clear communications between divers and team members.
+      7. Have extra support boats on stand-by.",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Diver/personal fatigue and loss of life",
+      "1. Comply with work / rest hours.
+      2. Check for signs of fatigue from the task performer and stand-by divers.
+      3. Obtain information from diving supervisor of divers work rest schedule and cut off period.
+      3. Approved Diving company engaged for the task.
+      4. Agree on underwater period for each diver to share the work load.
+      5. Records of diver going underwater to be taken and anticipate for divers to resurface.
+      6. Means of communication to be established and tried out prior divers going down
+      7. Tidal conditions to be communicated to divers
+      8. Divers to have lifelines
+      9. First aid box to be kept ready
+      10. Emergency contact details are within reach of team members.
+      11. Rescue party to be on stand-by for immediate deployment.
+      12. Utilise stop work policy.",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Injury to divers",
+      "1. Cease working aloft/overside task during diving operations.
+      2. Provide sufficient illumination to work area and it surrounding.
+      3. Identify means for seeking medical emergencies and its mode of transportation.
+      4. Have EIC in place to equipment or system while performing task.
+      5. Weather conditions to be ascertained and monitored throughout the operation
+      6. Small crafts to be warned off from work area.
+      7. Divers to equip with appropriate diving PPE for the task.
+      10. Divers to have life lines",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Inadvertent Turning of Ships Propeller or Rudder",
+      "1. Carry out tool box meeting.
+      2. Identify team members in the task.
+      3. Have EIC in place for the equipment.
+      4. Active permit to be posted on site.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Failure of Diving Equipments.",
+      "1. Review condition of diving equipment available during tool box meeting.
+      2. Equipment used to be certified intrinsically safe
+      3. Divers to have life lines
+      4. Approved diving company engaged for the operation.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Hypothermia",
+      "1. Protective Clothing to be worn
+      2. Period of exposure to water to be monitored and minimized accordingly.
+      3. Regular monitoring of water Temperature to be made.
+      4. Continues work to be avoided and body temperature to be monitored regularly.
+      5. TPA to be Standby for immediate use.
+      6. Weather to be closely monitored.
+      7. Atmosphere temperature to be closely monitored.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Lack of situational awareness",
+      "1. Carry out tool box meeting with team members.
+      2. Establish effective communication with team members.
+      3. Have a back up communication ready.
+      4. Use CCTV when it is practicable.
+      5. Comply with ILO work rest hours",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Unforeseen delays",
+      "1. Commercial window of opportunity verified between master and Operations.
+      2. Dive company to verify availability for entire anticipated range of dates assigned for the in water survey period.
+      3. In the absence of adequate time available dive ops will be postponed.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Falling Objects",
+      "1. No over side work or tasks in close proximity to ship's side rails to be undertaken during period of dive activity.
+      2. The anchor not in use is to be lashed in position.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Overboard discharging",
+      "1. Have tool box meeting.
+      2. Have EIC in place for all discharge pipes.
+      3. Identify overboard discharge pipe that is not isolated.
+      4. Avoid divers from approaching the discharge areas.
+      4. Minimise usage of equipment that requires overboard discharge.
+      5. Location of the SW overboard valve to be shared with divers prior operation.
+      6. Stand-by person in communication with diving supervisor in vicinity of discharge outlets.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Collision of ROV With passing by Traffic",
+      "1)  Work plan and safety meeting to be carried out prior commencement of operation.
+      2) Emergency signal agreed between vessel and rov.
+      3) Port clearance obtain from port authority.
+      4) Navigational broadcast warning on vhf.
+      5) bridge watch keeper  must warn all passing traffic and request for wide berth.
+      6) adequate clearance  achieved for rov moment
+      7) proper signal display by day and night
+      8) approaching  vessel for anchorage  must give warning and require to keep safe distance from vessel
+      9)  ship side to be clear to side which rov operating.
+      10) Rov will not operate to bunker barge side
+      11) in case of restricted visibility operation will be aborted.
+      12) Proper communication link between ship and rov leader.
+      31) Rov position and moment to be relayed ship all the time.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "ROV Loss of control due to working in strong tidal stream and adverse Weather.",
+      "1. Work plan and safety meeting to be carried out prior commence operation with diving team and ship personnel.
+      2. Confirm weather is within permissible limit before commencement of operation.
+      3. Weather to be monitored during entire operation.
+      4. If weather deteriorates, master to inform immediately rov.
+      5. Tidal condition to be determined and communicated to rov.
+      6. Advance wx forecast to be obtain and same to be discussed with rov leader.
+      7. Special precaution to be taken when change of tide and vessel swinging into current.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Damage to ROV operating near ship suction and outlet areas",
+      "1) Under water operation check list and permit to work completed before commencement of operation.
+      2) Warning sign displayed
+      3) All suction and discharge identified and position remain unchanged during operation.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "Sea Chest Suction",
+      "1. EIC Shut down all possible sea chest cooling suction - If cooling not possible to be stopped, coordinate closely with divers on the diving plans.
+      2. Diving operation to be carried out during daylight.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Diver/personal fatigue and loss of life",
+      "1. Good communications to be established between the divers underwater and the backup team in boat
+      2. Fresh permit to be prepared for work extending beyond 4 hours.
+      3. Diving operation shall not be carried out simultaneous to any other operation, no boats or barges shall be allowed to come alongside.
+      4. Cross check for the diving working hours with the diving supervisor.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Hypothermia",
+      "1. Good communications to be established between the divers underwater and the back up team in the boat",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      Unforeseen delays",
+      "1. If weather deteriorates, Master is to inform Chief Diver/ Officer in Charge of Diving Unit.
+      2. Non-essential Sea Chest and overboard valves to be closed and locked out/tagged out.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]

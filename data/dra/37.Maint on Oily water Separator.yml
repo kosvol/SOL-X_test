@@ -1,50 +1,59 @@
-Maint on Oily water Separator:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Accidental Oil Release", ["3 – Moderate", "4 – Major", "High Risk"]],
+    ["Damage to Equipment", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["Lifting heavy objects", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["3", "2", "2"],
+    ["4", "3", "3"],
     [
-      ["Damage to Equipment", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["Lifting heavy objects", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["Accidental Oil Release", ["3 – Moderate", "4 – Major", "High Risk"]],
-    ]
-  evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Damage to Equipment",
-        "1) Tool box meeting carried out.
-        2) Competent person involve in the job
-        3) Whlie boxing back see that no items or tools are left inside sepeartor.
-        4) No sharp edge tool has to be used when carrying out maintenance.",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Lifting heavy objects",
-        "1) Proper PPE to be worn at all times.
-        2) Correct lifting postures to be used.
-        3) Chain blocks & wire slings to be of the right capacity prior use.
-        4) Stay away from suspended heavy loads",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Accidental Oil Release",
-        "1) Ensure that the overboard valve is shut & padlocked.
-        2) Insert a blank in line prior commencing task.
-        3) Drain all water to Bilge hoding tk prior carrying task.
-        4) keep drain valves open during course of the job.
-        5) SOPEP equipment to be stand by",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Slip Trip &Fall",
-        "1) Proper PPE to be worn at all times,
-        2) Any oil spilled to be cleaned immediately
-        3) Personnel to work carefully when near OWS",
-        ["1 – Insignificant", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "Accidental Oil Release",
-        "1) All working personnel to be briefed about therelated valves and equipment
-        2) Lock Out Tag Out to be applied",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-    ]
+      "High Risk",
+      "Low Risk",
+      "Low Risk",
+      "High Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Damage to Equipment",
+      "1) Tool box meeting carried out.
+      2) Competent person involve in the job
+      3) Whlie boxing back see that no items or tools are left inside sepeartor.
+      4) No sharp edge tool has to be used when carrying out maintenance.",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Lifting heavy objects",
+      "1) Proper PPE to be worn at all times.
+      2) Correct lifting postures to be used.
+      3) Chain blocks & wire slings to be of the right capacity prior use.
+      4) Stay away from suspended heavy loads",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Accidental Oil Release",
+      "1) Ensure that the overboard valve is shut & padlocked.
+      2) Insert a blank in line prior commencing task.
+      3) Drain all water to Bilge hoding tk prior carrying task.
+      4) keep drain valves open during course of the job.
+      5) SOPEP equipment to be stand by",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Slip Trip &Fall",
+      "1) Proper PPE to be worn at all times,
+      2) Any oil spilled to be cleaned immediately
+      3) Personnel to work carefully when near OWS",
+      ["1 – Insignificant", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "Accidental Oil Release",
+      "1) All working personnel to be briefed about therelated valves and equipment
+      2) Lock Out Tag Out to be applied",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+  ]

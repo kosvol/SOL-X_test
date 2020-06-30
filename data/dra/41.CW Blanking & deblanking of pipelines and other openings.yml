@@ -1,69 +1,78 @@
-41.CW Blanking & deblanking of pipelines and other openings:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["OIL SPILL", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["ELECTRICAL EARTHING", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["TOXIC GAS INHALTION", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    ["3", "2", "2"],
+    ["3", "3", "3"],
     [
-      ["OIL SPILL", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-      ["ELECTRICAL EARTHING", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      ["TOXIC GAS INHALTION", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-    ]
-  evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "OIL SPILL",
-        "1. Responsible officer to supervise
-        2. Oil Spill equipment and half cut drums in readiness.
-        3. Hoses to be drained completely before disconnection.
-        4. Draining procedure to be discussed with Team & Supervise (blow back or by gravity)
-        5. Prior disconnection confirm line is empty and no oil is expected to come out upon removing.
-        6. After cargo operations all lines and pumps to be drained properly .
-        7. Drain valves to be opened prior disconnection.
-        8. Confirm pipeline completely empty prior disconnection.
-        9. Incase of Rain should not start the work.",
-        ["3 – Moderate", "3 – Moderate", "Medium Risk"],
-      ],
-      [
-        "ELECTRICAL EARTHING",
-        "1. Ensure means of electrical isolation at the ship/shore interface is provided by the terminal.
-        2. Avoid hose connection / disconnection when lightning is in the vicinity.
-        3. Obtain weather forecast.
-        4. Compare weather forecast with other stations or with different service providers.
-        5. Anticipate weather changes and plan work during clear period for the task.
-        6. Decide on a common weather restiction for the task.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "TOXIC GAS INHALTION",
-        "1. Obtain information on cargo vapours expected to dismanate from the line.
-        2. In case of sour crudes guidelines from MSDS to be followed and SCBA donned if necessary.
-        3. Monitoring of the gas atmosphere in the vicinity to be carried out with aid of PGM and a check for toxic and flammable gases to be carried out.
-        ",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "HAZARDOUS ATMOSPHERE",
-        "1. Ensure all the Lines are clean and well drained before opening
-        2. SOPEP Equipment readily available surrouning area
-        3. All scubber plugs are in placed.
-        4. Verified Oxygen content througout
-        5. Space free of H2S gas.
-        6. Confirmed flammalbe atmosphere absent
-        7. Each person performing the task should have propre PPE including PGM",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "HANDLING/LIFTING OF EQUIPMENT",
-        "1. Proper Handling and lifting of equipment
-        2. Do not over weight yourself while lifting
-        3. Use buddy system and help each other
-        4. If possible use Crane / Chain block",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "OIL SPILL",
-        "1. Routine maintenance of all valve connected to the pipe line system.
-        2. Ready means of connecting high air jet to clear minor obstructions in the smaller lines.
-        3. Ready means of connecting steam to clear the lines in needed in cold weather. ",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "OIL SPILL",
+      "1. Responsible officer to supervise
+      2. Oil Spill equipment and half cut drums in readiness.
+      3. Hoses to be drained completely before disconnection.
+      4. Draining procedure to be discussed with Team & Supervise (blow back or by gravity)
+      5. Prior disconnection confirm line is empty and no oil is expected to come out upon removing.
+      6. After cargo operations all lines and pumps to be drained properly .
+      7. Drain valves to be opened prior disconnection.
+      8. Confirm pipeline completely empty prior disconnection.
+      9. Incase of Rain should not start the work.",
+      ["3 – Moderate", "3 – Moderate", "Medium Risk"],
+    ],
+    [
+      "ELECTRICAL EARTHING",
+      "1. Ensure means of electrical isolation at the ship/shore interface is provided by the terminal.
+      2. Avoid hose connection / disconnection when lightning is in the vicinity.
+      3. Obtain weather forecast.
+      4. Compare weather forecast with other stations or with different service providers.
+      5. Anticipate weather changes and plan work during clear period for the task.
+      6. Decide on a common weather restiction for the task.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "TOXIC GAS INHALTION",
+      "1. Obtain information on cargo vapours expected to dismanate from the line.
+      2. In case of sour crudes guidelines from MSDS to be followed and SCBA donned if necessary.
+      3. Monitoring of the gas atmosphere in the vicinity to be carried out with aid of PGM and a check for toxic and flammable gases to be carried out.
+      ",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "HAZARDOUS ATMOSPHERE",
+      "1. Ensure all the Lines are clean and well drained before opening
+      2. SOPEP Equipment readily available surrouning area
+      3. All scubber plugs are in placed.
+      4. Verified Oxygen content througout
+      5. Space free of H2S gas.
+      6. Confirmed flammalbe atmosphere absent
+      7. Each person performing the task should have propre PPE including PGM",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "HANDLING/LIFTING OF EQUIPMENT",
+      "1. Proper Handling and lifting of equipment
+      2. Do not over weight yourself while lifting
+      3. Use buddy system and help each other
+      4. If possible use Crane / Chain block",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "OIL SPILL",
+      "1. Routine maintenance of all valve connected to the pipe line system.
+      2. Ready means of connecting high air jet to clear minor obstructions in the smaller lines.
+      3. Ready means of connecting steam to clear the lines in needed in cold weather. ",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 When (/^I change local time$/) do
+  sleep 2
+  $browser.navigate.refresh
   on(ShipLocalTimePage).adjust_ship_local_time
 end
 

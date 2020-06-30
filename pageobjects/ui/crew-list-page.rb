@@ -11,7 +11,7 @@ class CrewListPage < DashboardPage
   elements(:crew_pin_list, xpath: '//tbody/tr/td[6]')
   # elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
-  elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
+  # elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
   divs(:location_details, xpath: "//div[@data-testid='location']")
   button(:view_pin_btn, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
   button(:add_new_crew_btn, xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
@@ -20,7 +20,28 @@ class CrewListPage < DashboardPage
   element(:duplicate_crew, xpath: "//div[starts-with(@class,'Input__InputContainer')]/div")
   buttons(:rank_list_selection, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:rank_list_btn, xpath: "//button[@id='rank']")
+  element(:pin_text_field, xpath: "//div[@class='pin-code']")
   @@location_indicator = "//div[@data-testid='location-indicator']"
+
+  def is_rank_changed?
+    rank_list.each_with_index do |rank, _index|
+      next unless @@changed_rank === rank
+
+      break
+    end
+  end
+
+  def change_crew_rank
+    rank_list_btn
+    @@changed_rank = rank_list_selection_elements[0].text
+    rank_list_selection_elements[0].click
+    view_pin_btn
+  end
+
+  def is_pin_viewed?
+    pin_text_field_element.text != '••••'
+    # to add regex here
+  end
 
   def is_rank_correctly_displayed?(_current_rank)
     rank_list_btn
@@ -29,7 +50,13 @@ class CrewListPage < DashboardPage
     rank_list.each_with_index do |rank, index|
       next unless _current_rank === rank
 
-      return (rank_list_selection_elements[0].text === rank_list[index - 1]) && (rank_list_selection_elements[2].text === rank_list[index + 1])
+      if _current_rank != 'MAS'
+        return (rank_list_selection_elements[0].text === rank_list[index - 1]) && (rank_list_selection_elements[2].text === rank_list[index + 1])
+      end
+      if _current_rank === 'MAS'
+        return (rank_list_selection_elements[1].text === rank_list[index + 1])
+      end
+
       break
     end
   end
@@ -56,15 +83,15 @@ class CrewListPage < DashboardPage
     end
   end
 
-  def get_crew_details
-    crew_details = YAML.load_file('data/crew-details.yml')
+  # def get_crew_details
+  #   crew_details = YAML.load_file('data/crew-details.yml')
 
-    crew_details_elements.each_with_index.all? do |crew, _index|
-      Log.instance.info("Expected: #{crew.text.to_s.gsub!(/\s+/, ' ')}")
-      Log.instance.info("Actual: #{crew_details['crew'][_index]}")
-      crew.text.to_s.gsub!(/\s+/, ' ') === crew_details['crew'][_index]
-    end
-  end
+  #   crew_details_elements.each_with_index.all? do |crew, _index|
+  #     Log.instance.info("Expected: #{crew.text.to_s.gsub!(/\s+/, ' ')}")
+  #     Log.instance.info("Actual: #{crew_details['crew'][_index]}")
+  #     crew.text.to_s.gsub!(/\s+/, ' ') === crew_details['crew'][_index]
+  #   end
+  # end
 
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow

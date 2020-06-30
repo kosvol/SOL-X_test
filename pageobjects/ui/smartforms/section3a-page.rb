@@ -5,29 +5,86 @@ require './././support/env'
 class Section3APage
   include PageObject
 
-  elements(:hazard_cards, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div")
-  buttons(:delete_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/button")
-  buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
-  button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
+  # elements(:hazard_cards, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div")
+  # buttons(:delete_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/button")
+  # buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
+  # button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
   button(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[1]")
   button(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[2]")
-  text_fields(:identify_hazard, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/input")
-  text_areas(:existing_measure, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
-  buttons(:wo_applying_measures_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[3]/div/div/div/div/button")
-  buttons(:existing_control_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[5]/div/div/div/button")
-  elements(:risk_indicator, xpath: "//div[starts-with(@class,'Section__Description')]/div//div//div/div/div[3]")
+  # text_fields(:identify_hazard, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/input")
+  # text_areas(:existing_measure, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
+  # buttons(:wo_applying_measures_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[3]/div/div/div/div/button")
+  # buttons(:existing_control_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[5]/div/div/div/button")
+  # elements(:risk_indicator, xpath: "//div[starts-with(@class,'Section__Description')]/div//div//div/div/div[3]")
+  text_field(:dra_permit_number, xpath: "//input[@id='section3a_draNumber']")
+  buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
+  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+  spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
+  spans(:consequence, xpath: "//span[@data-testid='consequence']")
+  elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
+  @@risk_indicator = "//div[starts-with(@class,'RiskIndicator__Indicator')]"
+  button(:edit_hazards, xpath: "//div[starts-with(@class,'button-container')]/button")
 
-  def is_dra_contents
-    p "size: #{hazard_cards_elements.size}"
-    dra_contents = dra_mapping(@@selected_level2_permit)
-    get_identify_hazard_name
-    get_wo_applying_measure_risk
-    get_risk_indicator
-    get_existing_measure
-    get_existing_control_measure_risk
+  def is_likelihood_value?(_permit)
+    dra_contents = dra_mapping(_permit)
+    Log.instance.info("\n\nLikelihood Actual: #{get_top_3_likelihood_value}\n\n")
+    dra_contents['identify_hazard_name'][dra_contents['identify_hazard_name'].size - 3] === get_top_3_likelihood_value
+  end
+
+  def is_consequence_value?(_permit)
+    dra_contents = dra_mapping(_permit)
+    Log.instance.info("\n\nConsequence Actual: #{get_top_3_consequence_value}\n\n")
+    dra_contents['identify_hazard_name'][dra_contents['identify_hazard_name'].size - 2] === get_top_3_consequence_value
+  end
+
+  def is_risk_indicator?(_permit)
+    dra_contents = dra_mapping(_permit)
+    Log.instance.info("\n\nRisk Actual: #{get_all_risk_indicator_on_page_1}\n\n")
+    dra_contents['identify_hazard_name'].last === get_all_risk_indicator_on_page_1
+  end
+
+  def is_risk_indicator_color?(_permit)
+    dra_contents = dra_mapping(_permit)
+    tmp_boo = true
+    dra_contents['identify_hazard_name'][5].each_with_index do |risk, index|
+      case risk
+      when 'Low Risk'
+        tmp_boo &&= $browser.find_elements(:xpath, @@risk_indicator)[index].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+      when 'Medium Risk'
+        tmp_boo &&= $browser.find_elements(:xpath, @@risk_indicator)[index].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+      when 'High Risk'
+        tmp_boo &&= $browser.find_elements(:xpath, @@risk_indicator)[index].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+        end
+      break if tmp_boo === false
+    end
+    tmp_boo
   end
 
   private
+
+  def get_top_3_likelihood_value
+    tmp_arr = []
+    likelihood_elements.each do |likelihood|
+      tmp_arr << likelihood.text
+    end
+    tmp_arr
+  end
+
+  def get_top_3_consequence_value
+    tmp_arr = []
+    consequence_elements.each do |consequence|
+      tmp_arr << consequence.text
+    end
+    tmp_arr
+  end
+
+  def get_all_risk_indicator_on_page_1
+    tmp_arr = []
+    risk_indicator_elements.each do |risk_indicator|
+      tmp_arr << risk_indicator.text
+    end
+    tmp_arr
+  end
 
   def dra_mapping(permit)
     case permit
@@ -120,36 +177,36 @@ class Section3APage
     when 'Rigging of Pilot/Combination Ladder'
       yml_name = '46.RIGGING OF GANGWAY & PILOT LADDER'
     end
-    permits_arr = YAML.load_file("dra/#{yml_name}.yml")
+    permits_arr = YAML.load_file("data/dra/#{yml_name}.yml")
   end
 
-  def get_identify_hazard_name
-    identify_hazard_elements.each_with_index do |_element, _index|
-      Log.instance.info("Identify Hazard: #{_element.value}")
-    end
-  end
+  # def get_identify_hazard_name
+  #   identify_hazard_elements.each_with_index do |_element, _index|
+  #     Log.instance.info("Identify Hazard: #{_element.value}")
+  #   end
+  # end
 
-  def get_existing_measure
-    existing_measure_elements.each_with_index do |_element, _index|
-      Log.instance.info("\n\nExisting Measure: #{_element.text}\n\n")
-    end
-  end
+  # def get_existing_measure
+  #   existing_measure_elements.each_with_index do |_element, _index|
+  #     Log.instance.info("\n\nExisting Measure: #{_element.text}\n\n")
+  #   end
+  # end
 
-  def get_risk_indicator
-    risk_indicator_elements.each_with_index do |_element, _index|
-      Log.instance.info("Risk Indicator: #{_element.text}")
-    end
-  end
+  # def get_risk_indicator
+  #   risk_indicator_elements.each_with_index do |_element, _index|
+  #     Log.instance.info("Risk Indicator: #{_element.text}")
+  #   end
+  # end
 
-  def get_wo_applying_measure_risk
-    wo_applying_measures_btn_elements.each_with_index do |_element, _index|
-      Log.instance.info("Without Applying Measure Risk: #{_element.text}")
-    end
-  end
+  # def get_wo_applying_measure_risk
+  #   wo_applying_measures_btn_elements.each_with_index do |_element, _index|
+  #     Log.instance.info("Without Applying Measure Risk: #{_element.text}")
+  #   end
+  # end
 
-  def get_existing_control_measure_risk
-    existing_control_measure_btn_elements.each_with_index do |_element, _index|
-      Log.instance.info("Existing Control Measure Risk: #{_element.text}")
-    end
-  end
+  # def get_existing_control_measure_risk
+  #   existing_control_measure_btn_elements.each_with_index do |_element, _index|
+  #     Log.instance.info("Existing Control Measure Risk: #{_element.text}")
+  #   end
+  # end
 end

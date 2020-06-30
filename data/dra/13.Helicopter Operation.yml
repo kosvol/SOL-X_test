@@ -1,76 +1,85 @@
-Personnel Transfer by Transfer Basket:
-  identify_hazard_name:
+identify_hazard_name:
+  [
+    ["Fire hazard", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
+    ["Personnel injury", ["2 - Minor", "3 – Moderate", "Low Risk"]],
     [
-      ["Fire hazard", ["3 – Moderate", "3 – Moderate", "Medium Risk"]],
-      ["Personnel injury", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      [
-        "Misunderstanding due to improper communication",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-    ]
-  evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Fire hazard",
-        "1. Tool Box meeting carried out
-        2. Firefighting Apparatus prepared as per ICS Helicopter operation checklist
-        3. Fire line pressurized and foam station manned.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Personnel injury",
-        "1. Tool box meeting carried out and crew briefed
-        2. Experienced crew to be part of the deck party.
-        3. Expectation from deck crew to explained.
-        4. Risk of tail rotor striking and the static generated explained.
-        5. No lose objects to be in vicinity which can fly and injure any person.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Misunderstanding due to improper communication",
-        "1. Agree on common language for communication.
-        2. Use hand signal prescribed in COSWP & ICS
-        3. The signaller must stay insight to all team members.
-        4. Establish VHF communications with Helicopter and select a clear channel.
-        5. Utilise standard phrasses in Appendix B of ICS guide.",
-        ["2 - Minor", "2 - Minor", "Low Risk"],
-      ],
-      [
-        "Unfavorable weather conditions",
-        "1. Obtaine latest weather forecast and anticipate for weather changes.
-        2. Compare weather reports between vessel and helicopter base.
-        3. Vessel to provide lee when it is safe and practicable.
-        4. Agree on weather restrictions for helicopter operation.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Accidental release of vapors",
-        "1. Compliance with Helicopter operations checklist.
-        2. Maintain low pressure in all tanks.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Crash on Deck",
-        "1. Emergency response equipment kept in readiness.
-        2. FFA kept ready and fire line charged.
-        3. Emergency procedures established and briefing carried out.
-        4. Compliance with ICS helicopter guide.
-        5. Ensure no obstruction in clear zone for landing.
-        6. Ship's railing lowered.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Oil Spill",
-        "1. Oil Spill equipment kept in readiness
-        2. Cease all cargo transfer operations.
-        3. Emergency plan for Oil spill prepared.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Electrostatic Hazard",
-        "1. Winching wire not be handled before it touches the deck.
-        2. Helicopter equipment as per SOLAS and Helicopter guide to be kept ready.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: []
+      "Misunderstanding due to improper communication",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    ["3", "2", "2"],
+    ["3", "3", "2"],
+    [
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+      "Medium Risk",
+      "Low Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["Medium Risk", "Low Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Fire hazard",
+      "1. Tool Box meeting carried out
+      2. Firefighting Apparatus prepared as per ICS Helicopter operation checklist
+      3. Fire line pressurized and foam station manned.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Personnel injury",
+      "1. Tool box meeting carried out and crew briefed
+      2. Experienced crew to be part of the deck party.
+      3. Expectation from deck crew to explained.
+      4. Risk of tail rotor striking and the static generated explained.
+      5. No lose objects to be in vicinity which can fly and injure any person.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Misunderstanding due to improper communication",
+      "1. Agree on common language for communication.
+      2. Use hand signal prescribed in COSWP & ICS
+      3. The signaller must stay insight to all team members.
+      4. Establish VHF communications with Helicopter and select a clear channel.
+      5. Utilise standard phrasses in Appendix B of ICS guide.",
+      ["2 - Minor", "2 - Minor", "Low Risk"],
+    ],
+    [
+      "Unfavorable weather conditions",
+      "1. Obtaine latest weather forecast and anticipate for weather changes.
+      2. Compare weather reports between vessel and helicopter base.
+      3. Vessel to provide lee when it is safe and practicable.
+      4. Agree on weather restrictions for helicopter operation.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Accidental release of vapors",
+      "1. Compliance with Helicopter operations checklist.
+      2. Maintain low pressure in all tanks.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Crash on Deck",
+      "1. Emergency response equipment kept in readiness.
+      2. FFA kept ready and fire line charged.
+      3. Emergency procedures established and briefing carried out.
+      4. Compliance with ICS helicopter guide.
+      5. Ensure no obstruction in clear zone for landing.
+      6. Ship's railing lowered.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Oil Spill",
+      "1. Oil Spill equipment kept in readiness
+      2. Cease all cargo transfer operations.
+      3. Emergency plan for Oil spill prepared.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Electrostatic Hazard",
+      "1. Winching wire not be handled before it touches the deck.
+      2. Helicopter equipment as per SOLAS and Helicopter guide to be kept ready.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: []

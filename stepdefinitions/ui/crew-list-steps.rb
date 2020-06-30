@@ -103,3 +103,14 @@ end
 Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
   is_true(on(CrewListPage).is_rank_correctly_displayed?(_current_rank))
 end
+
+And (/^I change the crew rank$/) do
+  on(CrewListPage).change_crew_rank
+end
+
+Then (/^I should see pin review$/) do
+  is_true(on(CrewListPage).is_pin_viewed?)
+end
+
+And (/^I should see crew added with rank changed$/) do
+end

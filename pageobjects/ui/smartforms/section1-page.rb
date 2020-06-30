@@ -7,10 +7,13 @@ class Section1Page
 
   element(:heading_text, xpath: "//form[starts-with(@class,'FormFactory__Form')]/section/h2")
   elements(:all_labels, xpath: '//label')
-  buttons(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
+  button(:save_and_next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
   buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
-  @@previous_btns = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
-  @@maint_require_text = '//div[@id="1_subsection5"]'
+  button(:sea_state_btn, xpath: '//button[@id="seaState"]')
+  button(:wind_force_btn, xpath: '//button[@id="windforce"]')
+  elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+  @@save_and_next_btn = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
+  @@maint_require_text = '//div[@id="1_subsection6"]'
   @@wind_forces = '//button[@id="windforce"]'
   @@list_of_dd_values = "//ul[starts-with(@class,'UnorderedList-')]/li/button"
   @@sea_states = '//button[@id="seaState"]'
@@ -38,8 +41,8 @@ class Section1Page
 
   def fill_all_of_section_1_wo_duration
     fill_static_section1
-    BrowserActions.scroll_down($browser.find_elements(:xpath, @@previous_btns)[0])
-    previous_btn_elements[1].click
+    BrowserActions.scroll_down($browser.find_elements(:xpath, @@save_and_next_btn)[0])
+    save_and_next_btn
   end
 
   def fill_all_of_section_1_w_duration(_condition)
@@ -48,8 +51,8 @@ class Section1Page
     $browser.find_element(:xpath, @@maint_duration_dd).click
     sleep 1
     _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click
-    BrowserActions.scroll_down($browser.find_elements(:xpath, @@previous_btns)[0])
-    previous_btn_elements[1].click
+    BrowserActions.scroll_down($browser.find_elements(:xpath, @@save_and_next_btn)[0])
+    save_and_next_btn
   end
 
   private
@@ -57,6 +60,12 @@ class Section1Page
   def fill_static_section1
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
     select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
+    BrowserActions.scroll_down($browser.find_element(:xpath, @@wind_forces))
+    sea_state_btn
+    dd_list_value_elements[0].click
+    BrowserActions.scroll_down($browser.find_elements(:xpath, @@text_areas)[1])
+    wind_force_btn
+    dd_list_value_elements[0].click
     fill_text_area(@@text_areas, 'test')
   end
 

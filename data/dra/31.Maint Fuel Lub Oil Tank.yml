@@ -1,55 +1,64 @@
-Maint Fuel Lub Oil Tank:
-  identify_hazard_name:
+identify_hazard_name:
+  [
     [
-      ["Leak of control air", ["2 - Minor", "3 – Moderate", "Low Risk"]],
-      [
-        "Black out and loss of propulsion and steering",
-        ["3 – Moderate", "4 – Major", "High Risk"],
-      ],
-      [
-        "Quick closing system malfunction",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
-  existing_methods: [
-      [
-        "Leak of control air",
-        "1) Tool box meeting has to be carried out.
-        2) Testing of equipment has to be done before and after the maintenance.
-        3) Control air pressure has to be monitored
-        4) Control air pressure low alarm has to be checked .",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-      [
-        "Black out and loss of propulsion and steering",
-        "1) Tool box meeting carried out.
-        2) Master and Chief engg informed prior maintenance.
-        3) PTW and checklist has to complied.
-        4)DRA has to be carried out.",
-        ["2 - Minor", "4 – Major", "Medium Risk"],
-      ],
-      [
-        "Quick closing system malfunction",
-        "1) Tool box meeting carried out.
-        2) Maker's instruction has to be follow.
-        3) Vessel Suprintendent has to be inform.
-        4) Proper training conduted to crew and junior engineers.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-      [
-        "Hand/finger injury",
-        "1) Tool box meeting carried out.
-        2) Proper job scope discuss with all personnel. 3) Take five has to be follow.",
-        ["2 - Minor", "3 – Moderate", "Low Risk"],
-      ],
-    ]
-  additional_methods: [
-      [
-        "Black out and loss of propulsion and steering",
-        "1) Maintenance would not be carried out while main engine is running.
-        2) Sign to be placed on both FO and DO service tanks and in vicinity of activation point.
-        3) Proper tarining carried out for crew and junior engineer.",
-        ["1 – Insignificant", "4 – Major", "Low Risk"],
-      ],
-    ]
+      "Black out and loss of propulsion and steering",
+      ["3 – Moderate", "4 – Major", "High Risk"],
+    ],
+    ["Leak of control air", ["2 - Minor", "3 – Moderate", "Low Risk"]],
+    [
+      "Quick closing system malfunction",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    ["3", "2", "2"],
+    ["4", "3", "3"],
+    [
+      "High Risk",
+      "Low Risk",
+      "Low Risk",
+      "High Risk",
+      "Medium Risk",
+      "Low Risk",
+    ],
+  ]
+evaluate_risk: ["High Risk", "Medium Risk", "Low Risk"]
+existing_methods: [
+    [
+      "Black out and loss of propulsion and steering",
+      "1) Tool box meeting carried out.
+      2) Master and Chief engg informed prior maintenance.
+      3) PTW and checklist has to complied.
+      4)DRA has to be carried out.",
+      ["2 - Minor", "4 – Major", "Medium Risk"],
+    ],
+    [
+      "Leak of control air",
+      "1) Tool box meeting has to be carried out.
+      2) Testing of equipment has to be done before and after the maintenance.
+      3) Control air pressure has to be monitored
+      4) Control air pressure low alarm has to be checked .",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+    [
+      "Quick closing system malfunction",
+      "1) Tool box meeting carried out.
+      2) Maker's instruction has to be follow.
+      3) Vessel Suprintendent has to be inform.
+      4) Proper training conduted to crew and junior engineers.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+    [
+      "Hand/finger injury",
+      "1) Tool box meeting carried out.
+      2) Proper job scope discuss with all personnel. 3) Take five has to be follow.",
+      ["2 - Minor", "3 – Moderate", "Low Risk"],
+    ],
+  ]
+additional_methods: [
+    [
+      "Black out and loss of propulsion and steering",
+      "1) Maintenance would not be carried out while main engine is running.
+      2) Sign to be placed on both FO and DO service tanks and in vicinity of activation point.
+      3) Proper tarining carried out for crew and junior engineer.",
+      ["1 – Insignificant", "4 – Major", "Low Risk"],
+    ],
+  ]
