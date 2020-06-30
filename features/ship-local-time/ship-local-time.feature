@@ -4,21 +4,21 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
-  # Scenario: Verify base time is UTC
-  #   Given I launch sol-x portal
-  #   Then I should see base time is UTC
+  Scenario: Verify base time is UTC
+    Given I launch sol-x portal
+    Then I should see base time is UTC
 
-  # Scenario Outline: Verify only Captain and 2nd Officer can change ship time
-  #   Given I launch sol-x portal
-  #   When I change local time
-  #   And I enter pin <pin>
-  #   Then I should see ship local time updated
+  Scenario Outline: Verify only Captain and 2nd Officer can change ship time
+    Given I launch sol-x portal
+    When I change local time
+    And I enter pin <pin>
+    Then I should see ship local time updated
 
-  #   Examples:
-  #     | pin  |
-  #     | 1111 |
-  #     | 6666 |
-  #     | 5555 |
+    Examples:
+      | pin  |
+      | 1111 |
+      | 6666 |
+      | 5555 |
 
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
