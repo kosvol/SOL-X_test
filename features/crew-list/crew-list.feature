@@ -94,8 +94,8 @@ Feature: CrewList
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-  # @manual
-  # Scenario: Verify adhoc crew is added the next day T+1
+  @x1
+  Scenario: Verify user can add crew on an ad-hoc manner
 
   Scenario Outline: Verify captain can add crew into current vessel
     Given I launch sol-x portal
