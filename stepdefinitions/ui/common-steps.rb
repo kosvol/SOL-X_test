@@ -5,7 +5,7 @@ Given (/^I launch sol-x portal$/) do
   sleep 1
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
-  $browser.navigate.refresh
+  $browser.get(EnvironmentSelector.get_environment_url)
   sleep 1
   # puts "screen size: #{$browser.window_size}"
 end

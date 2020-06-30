@@ -4,21 +4,21 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
-  Scenario: Verify base time is UTC
-    Given I launch sol-x portal
-    Then I should see base time is UTC
+  # Scenario: Verify base time is UTC
+  #   Given I launch sol-x portal
+  #   Then I should see base time is UTC
 
-  Scenario Outline: Verify only Captain and 2nd Officer can change ship time
-    Given I launch sol-x portal
-    When I change local time
-    And I enter pin <pin>
-    Then I should see ship local time updated
+  # Scenario Outline: Verify only Captain and 2nd Officer can change ship time
+  #   Given I launch sol-x portal
+  #   When I change local time
+  #   And I enter pin <pin>
+  #   Then I should see ship local time updated
 
-    Examples:
-      | pin  |
-      | 1111 |
-      | 6666 |
-      | 5555 |
+  #   Examples:
+  #     | pin  |
+  #     | 1111 |
+  #     | 6666 |
+  #     | 5555 |
 
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
@@ -29,26 +29,26 @@ Feature: ShipLocalTime
     Examples:
       | pin  |
       | 1212 |
-      | 4444 |
-      | 7777 |
-      | 8888 |
-      | 9999 |
-      | 1010 |
-      | 1616 |
-      | 9780 |
-      | 0110 |
-      | 1313 |
-      | 1414 |
-      | 4092 |
-      | 1515 |
-      | 2323 |
-      | 2424 |
-      | 1717 |
-      | 1818 |
-      | 2020 |
-      | 2121 |
-      | 1919 |
-      | 0220 |
+# | 4444 |
+# | 7777 |
+# | 8888 |
+# | 9999 |
+# | 1010 |
+# | 1616 |
+# | 9780 |
+# | 0110 |
+# | 1313 |
+# | 1414 |
+# | 4092 |
+# | 1515 |
+# | 2323 |
+# | 2424 |
+# | 1717 |
+# | 1818 |
+# | 2020 |
+# | 2121 |
+# | 1919 |
+# | 0220 |
 
 # @manual
 # Scenario: Verify ship's local time only limit at -12 to +14
