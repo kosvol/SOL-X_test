@@ -11,17 +11,20 @@ end
 
 Then (/^I should see correct DRA page 1 risk indicator content$/) do
   selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  sleep 1
   is_true(on(Section3APage).is_risk_indicator?(selected_permit))
   is_true(on(Section3APage).is_risk_indicator_color?(selected_permit))
 end
 
 Then (/^I should see correct DRA page 1 likelihood content$/) do
   selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  sleep 1
   is_true(on(Section3APage).is_likelihood_value?(selected_permit))
 end
 
 Then (/^I should see correct DRA page 1 consequence content$/) do
   selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  sleep 1
   is_true(on(Section3APage).is_consequence_value?(selected_permit))
 end
 
