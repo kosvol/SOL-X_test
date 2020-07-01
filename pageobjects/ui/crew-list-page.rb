@@ -23,6 +23,22 @@ class CrewListPage < DashboardPage
   element(:pin_text_field, xpath: "//div[@class='pin-code']")
   @@location_indicator = "//div[@data-testid='location-indicator']"
 
+  def tear_down_ptw_form(_form_id)
+    rev_tag = ''
+    ServiceUtil.fauxton($obj_env_yml['sit_fauxton_forms']['get_user'], 'get', 'fauxton/get_forms')
+    ServiceUtil.get_response_body['rows'].each do |form|
+      if form['id'] === _form_id
+        rev_tag = form['value']['rev']
+        break
+      end
+    end
+    tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
+    tmp_payload['docs'][0]['_id'] = _form_id
+    tmp_payload['docs'][0]['_rev'] = rev_tag
+    JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
+    ServiceUtil.fauxton($obj_env_yml['sit_fauxton_forms']['delete_user'], 'post', 'fauxton/delete_form')
+  end
+
   def is_rank_changed?
     rank_list.each_with_index do |rank, _index|
       next unless @@changed_rank === rank
@@ -44,6 +60,7 @@ class CrewListPage < DashboardPage
   end
 
   def is_rank_correctly_displayed?(_current_rank)
+    sleep 1
     rank_list_btn
     rank_list = $sit_rank_and_pin_yml['ranks']
     sleep 1

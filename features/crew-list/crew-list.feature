@@ -43,7 +43,6 @@ Feature: CrewList
     Then I should see crew location details on crew screen
     And I unlink all crew from wearable
 
-  @x2
   Scenario Outline: Verify crew updated location is display on crew listing
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
@@ -95,7 +94,7 @@ Feature: CrewList
   # Scenario: Verify user can add crew on an ad-hoc manner
   #   Given I launch sol-x portal
   #   When I navigate to "Crew List" screen
-  #   And I add crew <crew_id> id
+  #   And I add crew
   #   And I change the crew rank
   #   Then I should see pin review
   #   And I should see crew added with rank changed

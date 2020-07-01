@@ -93,9 +93,16 @@ Then (/^I should see Retrieve My Data button disabled$/) do
   is_true(!is_enabled?(on(CrewListPage).retrieve_data_btn_element))
 end
 
-And (/^I add crew (.+) id$/) do |crewid|
+And (/^I add crew$/) do
   on(CrewListPage).add_new_crew_btn
-  on(CrewListPage).crew_id = crewid
+  on(CrewListPage).crew_id = 'Automation_User_001'
+  sleep 1
+  on(CrewListPage).retrieve_data_btn
+end
+
+And (/^I add crew (.+) id$/) do |_crew|
+  on(CrewListPage).add_new_crew_btn
+  on(CrewListPage).crew_id = _crew
   sleep 1
   on(CrewListPage).retrieve_data_btn
 end
@@ -112,5 +119,9 @@ Then (/^I should see pin review$/) do
   is_true(on(CrewListPage).is_pin_viewed?)
 end
 
-And (/^I should see crew added with rank changed$/) do
+# And (/^I should see crew added with rank changed$/) do
+# end
+
+And (/^I reset crew data$/) do
+  CrewListPage.tear_down_ptw_form
 end
