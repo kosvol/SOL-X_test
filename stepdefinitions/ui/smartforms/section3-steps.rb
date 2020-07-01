@@ -18,7 +18,6 @@ Then (/^I should see correct likelihood,consequence and risk indicator$/) do
   is_true(on(Section3APage).is_consequence_value?(selected_permit))
 end
 
-end
 Then (/^I should see correct DRA page 1 risk indicator content$/) do
   selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
   sleep 1
