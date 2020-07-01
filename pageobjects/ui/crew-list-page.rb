@@ -60,7 +60,6 @@ class CrewListPage < DashboardPage
   end
 
   def is_rank_correctly_displayed?(_current_rank)
-    sleep 1
     rank_list_btn
     rank_list = $sit_rank_and_pin_yml['ranks']
     sleep 1
