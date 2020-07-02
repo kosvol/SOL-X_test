@@ -1,0 +1,87 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "4A",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "toolBoxMeetingCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "openChecklistColdWorkOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistCriticalEquipMaintenance",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistEnclosedSpaceEntry",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "openChecklistHelicopterOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkOutsideDesignatedArea",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPersonnelTransferByBasket",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPumpRoomEntry",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistRotationalPortablePowerTools",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUnderwaterOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfCamera",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfOdmeInManualMode",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHeavyWeather",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistElectricalEquipmentAndCircuit",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkOnHazardousSubstances",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPressurePipelines",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkingAloftOverside",
+        "value": "\"na\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:47.940Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

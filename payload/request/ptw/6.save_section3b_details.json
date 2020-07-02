@@ -1,0 +1,55 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "3B",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "_3B_methodDetail",
+        "value": "\"\\\"General procedures for Enclosed Space Entry\\\"\""
+      },
+      {
+        "fieldId": "methodReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "inspectionCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "_3B_subsection5_atRisk",
+        "value": "[\"People\",\"Property\",\"Environment\"]"
+      },
+      {
+        "fieldId": "sentForReview",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "draReviewedBy",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "lastAssessmentDra",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "contingencyAndEvacuationPlans",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "availabilityOfNecessaryEmergencyEquipment",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "personnelTraining",
+        "value": "\"yes\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:31.939Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

@@ -1,0 +1,9 @@
+{
+  "_id": "Automation_User_001",
+  "accessGroups": ["RESPONSIBLE_AUTHORITY"],
+  "rank": "C/O",
+  "firstName": "Automation",
+  "lastName": "Crew",
+  "vesselId": "dev-vessel",
+  "clientId": "sol-x"
+}

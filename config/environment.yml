@@ -1,12 +1,12 @@
 ##Service
 dev:
   c2_preview: "http://cloud-edge.dev.solas.magellanx.io:8080"
-  service: "http://23.97.50.121:4000"
+  service: "http://cloud-edge.dev.solas.magellanx.io:4000/"
 
 sit:
   c2_preview: "http://cloud-edge.stage.solas.magellanx.io:8080"
   # c2_preview: "https://52.230.70.68:8443"
-  service: "http://52.230.70.68:4000"
+  service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
 
 uat:
   c2_preview: "http://104.215.192.113:8080"

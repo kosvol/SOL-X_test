@@ -1,0 +1,35 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "3D",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "planCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "draCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "draCarriedOutReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "safetyMeetingCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "officeApprovalRequired",
+        "value": "\"yes\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:43.939Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

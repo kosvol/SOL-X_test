@@ -1,0 +1,15 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "3C",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:33.941Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

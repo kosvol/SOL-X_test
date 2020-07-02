@@ -1,0 +1,23 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "2",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:09.942Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

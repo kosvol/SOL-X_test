@@ -1,0 +1,9 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/004",
+    "newStatus": "PENDING_MASTER_APPROVAL",
+    "submissionTimestamp": "2020-07-02T01:31:44.903Z"
+  },
+  "query": "mutation ($formId: ID!, $newStatus: FormStatusType!, $submissionTimestamp: DateTime!) {\n  updateFormStatus(formId: $formId, newStatus: $newStatus, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

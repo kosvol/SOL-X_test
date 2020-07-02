@@ -6,12 +6,12 @@ require 'fileutils'
 module ServiceUtil
   include HTTParty
   class << self
-    def post_graph_ql(which_json)
+    def post_graph_ql(which_json, _user)
       uri = EnvironmentSelector.get_graphql_environment_url('service')
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers('1111')))
+      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
       error_logging('Response Body: ', @@response)
       error_logging('Status Code: ', get_http_response_status_code)
       JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
