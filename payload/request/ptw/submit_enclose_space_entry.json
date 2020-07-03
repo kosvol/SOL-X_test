@@ -1,0 +1,419 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "0",
+    "answers": [
+      {
+        "fieldId": "permitType",
+        "value": "\"Enclosed Space Entry\""
+      },
+      {
+        "fieldId": "riskHazard",
+        "value": "{\"methodDescription\":\"General procedures for Enclosed Space Entry\",\"hazards\":[{\"identifiedHazard\":\"Oxygen deficiencies\",\"likelihood\":2,\"consequence\":4,\"existingMeasures\":\"1. Displace the atmosphere effectively by mechanical or natural means.\\n2. Ensure gas meters are calibrated as per PMS.\\n3. Carry extra multi gas meters if required.\\n4. Ensure authorized entrants are equipped with PGM.\\n5. Take adequate samples of athmosphere readings prior entry.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":4,\"additionalMeasures\":\"1. Anticipate weather changes and confirm its abort conditions\",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":4,\"disabled\":true},{\"identifiedHazard\":\"Toxic/Flammable gases\",\"likelihood\":2,\"consequence\":3,\"existingMeasures\":\"1. Enclosed space been tested and found safe for entry.\\n2. Representative cross-section of the atmosphere in the space.\\n3. Samples should be taken from several levels and through as many openings as possible.\\n4. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere gas test are obtained.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"additionalMeasures\":\"1. Gas meter shall be of appropriate type and calibrated.\\n2. Provide continuous ventilation during work process.\",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Communication failure\",\"likelihood\":2,\"consequence\":4,\"existingMeasures\":\"1. Equip each team member with a walkie talkie and select a clear channel to communicate.\\n2. Radio communication to be tested and battery fully charged prior entry.\\n3. Establish and observe reporting intervals strictly.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":4,\"additionalMeasures\":\"1. The frequency of communication checks between authorized entrants and standby person shall be agreed upon prior to entry.\\n2. Identify Back up communication channel.\\n3. Equip with portable VHF as back up. \",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":4,\"disabled\":true},{\"identifiedHazard\":\"Hot Surface\",\"existingMeasures\":\"1. Comply with PPE matrix.\\n2. Identify heated tanks and its adjacent bulkheads in the work area.\\n3. Buddy system looking out for each others safety.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Malfunction of PGM\",\"existingMeasures\":\"1. Authorized entrants shall enter and move inside enclosed spaces in pairs.\\n2. Regular service and maintenance on PGM.\\n3. Stand-by extra PGM\\n4. Carry another type of multi gas meter available.\",\"likelihoodAfterExistingMeasures\":3,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Corroded ladder\",\"existingMeasures\":\"1. Maintain 3 point contact.\\n2. Area to be well illuminated.\\n3. Stop work policy\\n4. Use another route for entry.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Slip and trip hazards\",\"existingMeasures\":\"1. Utilise 3 point contact method while climbing or decending.\\n2. Comply with PPE matrix.\\n3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.  \\n4. Supervision by experience personnel.\\n5. Establish communication between deck and bridge.\\n6. Work area well illuminated for the task.\\n7. Use anti skid paint in work areas and its surrounding.\",\"likelihoodAfterExistingMeasures\":3,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Lack of adequate ventilation\",\"existingMeasures\":\"1. Effective ventilation maintained continuously during the entry period.\\n2. Keep team members hydrated.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Rest hour non-compliance\",\"existingMeasures\":\"1. Proper rest prior stating of the job.\\n2. STCW/ILO rest hour requirement to be complied.\\n3. If job is extended due to unforeseen ideally, job aborted and restarted after proper rest.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Adverse effect of sea/weather on vessel movement\",\"existingMeasures\":\"1. Obtain weather forecast and arrange work in acceptable weather condition.\\n2. Weather and sea conditions to be monitored throughout the task.\\n3. No working overside while underway except for preparation for pilot embarkation/disembarkation.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true}]}"
+      },
+      {
+        "fieldId": "methodDetail",
+        "value": "\"\\\"General procedures for Enclosed Space Entry\\\"\""
+      },
+      {
+        "fieldId": "openChecklistEnclosedSpaceEntry",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "vesselShortName",
+        "value": "\"DEV\""
+      },
+      {
+        "fieldId": "formNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "section1_permitType",
+        "value": "\"Enclosed Space Entry\""
+      },
+      {
+        "fieldId": "locationOfVessel",
+        "value": "\"In Port\""
+      },
+      {
+        "fieldId": "conditionOfVessel",
+        "value": "\"Loaded\""
+      },
+      {
+        "fieldId": "cargoDetails",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "seaState",
+        "value": "\"1 : Calm (rippled)\""
+      },
+      {
+        "fieldId": "windforce",
+        "value": "\"5 : Fresh Breeze\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "locationOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      },
+      {
+        "fieldId": "vesselShortName",
+        "value": "\"DEV\""
+      },
+      {
+        "fieldId": "section3a_draNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "draCreatedDate",
+        "value": "{\"dateTime\":\"2020-07-02T04:45:55.939Z\",\"utcOffset\":0}"
+      },
+      {
+        "fieldId": "section3a_permitType",
+        "value": "\"Enclosed Space Entry\""
+      },
+      {
+        "fieldId": "methodDetail",
+        "value": "\"\\\"General procedures for Enclosed Space Entry\\\"\""
+      },
+      {
+        "fieldId": "riskHazard",
+        "value": "{\"methodDescription\":\"General procedures for Enclosed Space Entry\",\"hazards\":[{\"identifiedHazard\":\"Oxygen deficiencies\",\"likelihood\":2,\"consequence\":4,\"existingMeasures\":\"1. Displace the atmosphere effectively by mechanical or natural means.\\n2. Ensure gas meters are calibrated as per PMS.\\n3. Carry extra multi gas meters if required.\\n4. Ensure authorized entrants are equipped with PGM.\\n5. Take adequate samples of athmosphere readings prior entry.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":4,\"additionalMeasures\":\"1. Anticipate weather changes and confirm its abort conditions\",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":4,\"disabled\":true},{\"identifiedHazard\":\"Toxic/Flammable gases\",\"likelihood\":2,\"consequence\":3,\"existingMeasures\":\"1. Enclosed space been tested and found safe for entry.\\n2. Representative cross-section of the atmosphere in the space.\\n3. Samples should be taken from several levels and through as many openings as possible.\\n4. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere gas test are obtained.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"additionalMeasures\":\"1. Gas meter shall be of appropriate type and calibrated.\\n2. Provide continuous ventilation during work process.\",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Communication failure\",\"likelihood\":2,\"consequence\":4,\"existingMeasures\":\"1. Equip each team member with a walkie talkie and select a clear channel to communicate.\\n2. Radio communication to be tested and battery fully charged prior entry.\\n3. Establish and observe reporting intervals strictly.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":4,\"additionalMeasures\":\"1. The frequency of communication checks between authorized entrants and standby person shall be agreed upon prior to entry.\\n2. Identify Back up communication channel.\\n3. Equip with portable VHF as back up. \",\"likelihoodAfterAdditionalMeasures\":1,\"consequenceAfterAdditionalMeasures\":4,\"disabled\":true},{\"identifiedHazard\":\"Hot Surface\",\"existingMeasures\":\"1. Comply with PPE matrix.\\n2. Identify heated tanks and its adjacent bulkheads in the work area.\\n3. Buddy system looking out for each others safety.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Malfunction of PGM\",\"existingMeasures\":\"1. Authorized entrants shall enter and move inside enclosed spaces in pairs.\\n2. Regular service and maintenance on PGM.\\n3. Stand-by extra PGM\\n4. Carry another type of multi gas meter available.\",\"likelihoodAfterExistingMeasures\":3,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Corroded ladder\",\"existingMeasures\":\"1. Maintain 3 point contact.\\n2. Area to be well illuminated.\\n3. Stop work policy\\n4. Use another route for entry.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Slip and trip hazards\",\"existingMeasures\":\"1. Utilise 3 point contact method while climbing or decending.\\n2. Comply with PPE matrix.\\n3. Salt deposit to be hose down by fresh water and in cold weather ice to be removed.  \\n4. Supervision by experience personnel.\\n5. Establish communication between deck and bridge.\\n6. Work area well illuminated for the task.\\n7. Use anti skid paint in work areas and its surrounding.\",\"likelihoodAfterExistingMeasures\":3,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Lack of adequate ventilation\",\"existingMeasures\":\"1. Effective ventilation maintained continuously during the entry period.\\n2. Keep team members hydrated.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Rest hour non-compliance\",\"existingMeasures\":\"1. Proper rest prior stating of the job.\\n2. STCW/ILO rest hour requirement to be complied.\\n3. If job is extended due to unforeseen ideally, job aborted and restarted after proper rest.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true},{\"identifiedHazard\":\"Adverse effect of sea/weather on vessel movement\",\"existingMeasures\":\"1. Obtain weather forecast and arrange work in acceptable weather condition.\\n2. Weather and sea conditions to be monitored throughout the task.\\n3. No working overside while underway except for preparation for pilot embarkation/disembarkation.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true}]}"
+      },
+      {
+        "fieldId": "_3B_methodDetail",
+        "value": "\"\\\"General procedures for Enclosed Space Entry\\\"\""
+      },
+      {
+        "fieldId": "methodReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "inspectionCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "_3B_subsection5_atRisk",
+        "value": "[\"People\",\"Property\",\"Environment\"]"
+      },
+      {
+        "fieldId": "sentForReview",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "draReviewedBy",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "lastAssessmentDra",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "contingencyAndEvacuationPlans",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "availabilityOfNecessaryEmergencyEquipment",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "personnelTraining",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "planCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "draCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "draCarriedOutReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "safetyMeetingCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "officeApprovalRequired",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "toolBoxMeetingCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "openChecklistColdWorkOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistCriticalEquipMaintenance",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistEnclosedSpaceEntry",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "openChecklistHelicopterOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkOutsideDesignatedArea",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPersonnelTransferByBasket",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPumpRoomEntry",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistRotationalPortablePowerTools",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUnderwaterOp",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfCamera",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfOdmeInManualMode",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHeavyWeather",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistElectricalEquipmentAndCircuit",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkOnHazardousSubstances",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPressurePipelines",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkingAloftOverside",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_vesselShortName",
+        "value": "\"DEV\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_formNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_nameOfEnclosedSpace",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_detailedRiskAssessmentCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenCleanedWhereNecessary",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenVentilatedByMechanicalMeans",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheGasMetersBeenTestedPriorToUse",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_srNoOfEquipmentUsed",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenSegregated",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheEnclosedSpaceAtmosphereBeenTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForFrequentAtmosphereChecksToBeMade",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForTheSpaceToBeContinuouslyVentilated",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_areAccessAndIlluminationAdequate",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_isRescueAndResuscitationEquipmentAvailable",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasAResponsibleCrewBeenDesignatedToBeInConstantAttendance",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasTheOfficerOfTheWatchBeenAdvisedOfThePlannedEntry",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_hasASystemOfCommunicationBetweenAllPartiesBeenTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_areEmergencyAndEvacuationProceduresEstablished",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_isAllEquipmentUsedInGoodWorkingCondition",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_arePersonnelUsingPpe",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_isEntryLogAvailableForRecordingWhoIsInTheSpace",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_safetyBriefingToolBoxMeetingConducted",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_haveReceivedInstructionsOrPersmissionFromTheMaster",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_section1OfThisPermitHaBeenSatisfactorilyCompleted",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedAndUnderstandTheCommunicationProcedures",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedUponAReportingInterval",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_emergencyAndEvacuationProceduresHaveBeenUnderstood",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_iAmFamiliarWithTheBreathingApparatus",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_iAmAwareThatTheSpaceMustBeVacated",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_thoseEnteringTheSpaceAreaFamiliarWithAnyBreathingApparatus",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_guageAndCapacityOfAirSupply",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_pressureOfTheAirSupply",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_lowPressureAudibleAlarmIfFitted",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_faceMask",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_theMeansOfCommunicationHasBeenTested",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_allPersonnelEnteringTheSpaceHaveBeenProvidedWithRescueHarnesses",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_personalGasDetectorsHaveBeenTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "energyIsolationCertIssued",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "rar_roles_and_responsibilities",
+        "value": "[]"
+      },
+      {
+        "fieldId": "gasEquipment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "gasSrNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "gasInitialReading",
+        "value": "[]"
+      },
+      {
+        "fieldId": "responsibleAuthority_master",
+        "value": "{\"__typename\":\"SignatureWithLocation\",\"signedBy\":\"CDEV_SOLX0012\",\"signedOn\":{\"dateTime\":\"2020-07-02T04:47:42.943Z\",\"utcOffset\":0},\"signatureString\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADZwAAAH8CAYAAADvr4ukAAAgAElEQVR4Xuzdv2tleQHG4Xdx+6SxTsBW2EG3EiEp7SaF4nabzsJmrMTKDIvWdwpFuwRLFWZAxDJgLcT/IOWWKSwWbOT7egLjujszZ3KS3B/PhWEG5txzz3nO2344H8SHAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgk+YACAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAYAoIzOyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIEB4chS0AACAASURBVCBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKACgjNDIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEKCM4MgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQqIDgzBAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCogODMEAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgAoIzQyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBCgjODIEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKiA4MwQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQqIDgzBAIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoAKCM0MgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQoIzgyBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBCogODMEAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEKiA4MwQCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgV0X+G2S7yX5KMk/k/w5yWe7juL+CRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDYTQHB2W4+d3dNgAABAgQIECBAgAABAgQIECBAgAABAgQI/Ffg20muknzjSyB/TPLXJOegCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgsEsCgrNdetrulQABAgQIECBAgAABAgQIECBAgAABAgQIEPiywO+S/OQNLP9I8pfp/y+TjD8+BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ2FoBwdnWPlo3RoAAAQIECBAgQIAAAQIECBAgQIAAAQIECLyDwK+T/OIdjnv9kM+TfJHkX0n+luQ3Sa5nnsPhBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQWEsBwdlaPhYXRYAAAQIECBAgQIAAAQIECBAgQIAAAQIECDygwL+TfHjH37tKskryKsnNHc/l6wQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEHg0AcHZo9H7YQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGBNBD5O8vsk31noes6n8OzlQudzGgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECDyYgODswaj9EAECBAgQIECAAAECBAgQIECAAAECBAgQILDmAsdJfpDkrZ+a8QAAIABJREFUx0kOF7jW6yQjPrtIMv7tQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgbUXEJyt/SNygQQIECBAgAABAgQIECBAgAABAgQIECBAgMADC3wzyU+T/HLB3x1vOxvhmbeeLYjqVAQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQILC8gOFve1BkJECBAgAABAgQIECBAgAABAgQIECBAgACB7RD4bpKfJ/nRgrcz3nS2muKzmwXP61QECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBYREBwtgijkxAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJbLHC28NvOBtWIzc6TPJ/+vcV8bo0AAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgU0SEJxt0tNyrQQIECBAgAABAgQIECBAgAABAgQIECBAgMBjCXw/yd/v6cdvw7Px9jMfAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIPKqA4OxR+f04AQIECBAgQIAAAQIECBAgQIAAAQIECBAgsEECnyT5Q5IP7+maV0leJBGe3ROw0xIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg8HYBwdnbjRxBgAABAgQIECBAgAABAgQIECBAgAABAgQIELgV2E8ywrDjJAf3xHI2hWc393R+pyVAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMDXCgjOjIMAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMF9ghGcjOnuW5Gj+19/6jRGbnXvj2VudHECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwMICgrOFQZ2OAAECBAgQIECAAAECBAgQIECAAAECBAgQ2DmBwySn05/7eOuZN57t3KTcMAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIHHExCcPZ69XyZAgAABAgQIECBAgAABAgQIECBAgAABAgS2T2C89WzEZ58ufGvjjWerJM8XPq/TESBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBA4H8EBGcGQYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBYXmC89ewkybMkS7717DrJz5K8XP6SnZEAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQKJ4MwKCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQL3K/BkCs9GgLa30E9dTm87G3/7ECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYDEBwdlilE5EgAABAgQIECBAgAABAgQIECBAgAABAgQIEHijwP5rbz37aCGr8aaz8caz8eYzHwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECNxZQHB2Z0InIECAAAECBAgQIECAAAECBAgQIECAAAECBAjMFjh87a1nB7O//f9f+FOSXyW5WuBcTkGAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwA4LCM52+OG7dQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGAtBJ4kOZ3efnbX+Gy88exFksu1uDMXQYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAxgkIzjbukblgAgQIECBAgAABAgQIECBAgAABAgQIECBAYIsFjqfwbARoe3e4z/Gms/MpPrvDaXyVAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFdExCc7doTd78ECBAgQIAAAQIECBAgQIAAAQIECBAgQIDApgiMN5+dJBkR2tF7XvRNklWSiyTX73kOXyNAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYIcEBGc79LDdKgECBAgQIECAAAECBAgQIECAAAECBAgQILCxAvtTfHYboR3MvJMRnr2c3ng23n7mQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAga8UEJwZBgECBAgQIECAAAECBAgQIECAAAECBAgQIEBg8wRGePZJkh8m+dbMyx/h2XmSVzO/53ACBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBHZAQHC2Aw/ZLRIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJbLXCS5DTJ05l3eZ1kleQiyXgDmg8BAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQiODMCAgQIECBAgAABAgQIECBAgAABAgQIECBAgMB2CBwmOUvy6czbGbHZeOPZiyQjQvMhQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGCHBQRnO/zw3ToBAgQIECBAgAABAgQIECBAgAABAgQIECCwlQL70xvPRny2N/MOb8Ozq5nfczgBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAlsiIDjbkgfpNggQIECAAAECBAgQIECAAAECBAgQIECAAAECXyFwOsVnRzN1Lqe3nl3M/J7DCRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDYcAHB2YY/QJdPgAABAgQIECBAgAABAgQIECBAgAABAgQIEHgHgeMkz5I8fYdjXz/kOskqyQjPbmZ+1+EECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECGyggOBsAx+aSyZAgAABAgQIECBAgAABAgQIECBAgAABAgQIvKfAkyk8O0myN+McIzY7T/IiyYjQfAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ2FIBwdmWPli3RYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBB4g8D+FJ6dJjmYKTXCs/HGs8uZ33M4AQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIbICA424CH5BIJECBAgAABAgQIECBAgAABAgQIECBAgAABAvcoMKKz8edo5m9cJTlL8mrm9xxOgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMAaCwjO1vjhuDQCBAgQIECAAAECBAgQIECAAAECBAgQIECAwAMKHE9vPXs68zevk6ymt57dzPyuwwkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQWDMBwdmaPRCXQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBB4ZIHDKTwbbz3bm3EtIzY7T/I8ifBsBpxDCRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECKyTgOBsnZ6GayFAgAABAgQIECBAgAABAgQIECBAgAABAgQIrI/AfpIRnT1LcjDzsm7Ds/H2Mx8CBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBDZIQHC2QQ/LpRIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEHkngZArPjmb+/uX0xrPxtw8BAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAhsgIDjbgIfkEgkQIECAAAECBAgQIECAAAECBAgQIECAAAECayLwJMlZkqczr+cqySrJxczvOZwAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQcWEJw9MLifI0CAAAECBAgQIECAAAECBAgQIECAAAECBAhsgcD+FJ6dJv9p745xG9m2K4DuCRhk4liagTQDKTYMSD9zJvUIJAFODBj+FIyfOLEUOJcCAw7ZM5BzB0ydyTOQZ2Bcv2qbvx6lJptF1q2qVcDDa3QX7z1nnUo3TmY79PPe/O57ko8dfudVAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgSOJCBwdiRo1xAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIERihQgmcldHaf5GSH/krYrGw8exY820HNqwQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgSOICBwdgRkVxAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEJiBw3QTPLnbotQTPXprgWdl+5iFAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoGcBgbOeB+B6AgQIECBAgAABAgQIECBAgAABAgQIECBAgMDIBM6b4NnNjn2V4NljEsGzHeG8ToAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKBLAYGzLjWdRYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg8EPgNMltEz6b7cCybIJnqx1+41UCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBDoSEDjrCNIxBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECGwXmSa6TLJKc7GD01gTPyv89BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgcSUDg7EjQriFAgAABAgQIECBAgAABAgQIECBAgAABAgQIEPjf4Nl9kosdLATPdsDyKgECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIF9BQTO9hX0ewIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgV0FLpPcJrnZ4YclePacZLnDb7xKgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMCOAgJnO4J5nQABAgQIECBAgAABAgQIECBAgAABAgQIECBAoDOBeZJFEz6bbXnqe/Ob1y3f9xoBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAjsICJztgOVVAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBgwiU4Nl1EyQ72fKGVZKHJGXzmYcAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgY4EBM46gnQMAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAJwIleHaf5GLL00rg7CnJ9y3f9xoBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAl8ICJz5PAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBGoUuExym+Rmy+JK8Ow5yXLL971GgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMAGAYEznwUBAgQIECBAgAABAgQIECBAgAABAgQIECBAgEDNAvMkiyZ8Ntui0FWShyQlgOYhQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGBHAYGzHcG8ToAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0JtA2Xh2n+RsiwpK8KwE1b5v8a5XCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBBoBATOfAoECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJDEzhtwmQ3WxRegmePSZZbvOsVAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABApMXEDib/CcAgAABAgQIECBAgAABAgQIECBAgAABAgQIECAwWIF5s/GsbD2b/aQLwbPBjlnhBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECxxQQODumtrsIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQOJXDbhM/OfnJBCZ4tknw/VCHOJUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIDBkAYGzIU9P7QQIECBAgAABAgQIECBAgAABAgQIECBAgAABAm2B6yZ4dvETGsEz3w4BAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBDQICZz4LAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBMQqcN8Gzm580V4Jnj0mWY0TQEwECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFdBQTOdhXzPgECBAgQIECAAAECBAgQIECAAAECBAgQIECAwJAE5k3w7DbJyReFC54NaapqJUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQOJiAwNnBaB1MgAABAgQIECBAgAABAgQIECBAgAABAgQIECBQkUAJnl034bOzL+oSPKtoaEohQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBA4voDA2fHN3UiAAAECBAgQIECAAAECBAgQIECAAAECBAgQINCvwGUTPLv6ogzBs35n5HYCBAgQIECAAAECBAgQIECAAAECBAgQIECAAIGeBATOeoJ3LQECBAgQIECAAAECBAgQIECAAAECBAgQIECAQO8Cp03w7DbJ7JNqSvBskeR779UqgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMARBATOjoDsCgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgaoF5mvBs5NPKhU8q3qEiiNAgAABAgQIECBAgAABAgQIECBAgAABAgQIEOhKQOCsK0nnECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIjEGgbDu7T3L2STNvSZ6TLMfQrB4IECBAgAABAgQIECBAgAABAgQIECBAgAABAgQItAUEznwTBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBH4vcJ5kkeTqE5yy8exR8MynQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMDYBgbOxTVQ/BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECXQqcNhvPyuaz2YaDS/CsBNO+d3mpswgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAj0JSBw1pe8ewkQIECAAAECBAgQIECAAAECBAgQIECAAAECBIYkME9y3YTLTjYU/pbk2cazIY1UrQQIECBAgAABAgQIECBAgAABAgQIECBAgAABApsEBM58FwQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgR2E7hsgmcXG35m49lult4mQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCoTEDgrLKBKIcAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGAwAudJ7pPcbKj4P5L8ycazwcxSoQQIECBAgAABAgQIECBAgAABAgQIECBAgAABAo2AwJlPgQABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMB+AvMmeHab5KR1VNl49pTkdb8r/JoAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAcQQEzo7j7BYCBAgQIECAAAECBAgQIECAAAECBAgQIECAAIHxC5Tg2XWSf0ryl61239eCZx/jp9AhAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAUAUEzoY6OXUTIECAAAECBAgQIECAAAECBAgQIECAAAECBAjULHCZZJHkolVkCZuVjWePNRevNgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgekKCJxNd/Y6J0CAAAECBAgQIECAAAECBAgQIECAAAECBAgQOLzAeRM8u2pd9SN49pzExrPDz8ENBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECWwoInG0J5TUCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECewiUjWf3STYFz5bNxrP3Pc73UwIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQKdCAicdcLoEAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJbCZSNZyV4drPh7R/Bs9VWJ3mJAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwAEEBM4OgOpIAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAj8ROG2CZ7dJZq13Bc98PgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAr0JCJz1Ru9iAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAvlZ8OwlyXdOBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBI4lIHB2LGn3ECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEPhcYJ6kbDu7T3LSem2VZCF45vMhQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBA4hoDA2TGU3UGAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEBgO4GvgmfvTfDsdbujvEWAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEBgdwGBs93N/IIAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAMQSum4DZWeuyEjx7SvJ8jCLcQYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMC0BgbNpzVu3BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECwxMowbP7JBet0n8Ez8rGs4/htaViAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBGgUEzmqcipoIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQI/F7gs+BZCZv92HgmeObLIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQ2EtA4GwvPj8mQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgcHSBy2bj2VXr5hI2e0nynKRsP/MQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ2FlA4GxnMj8gQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgUIXAeZJFknbwrBT3Y+OZ4FkVo1IEAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGA4AgJnw5mVSgkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAhsEjhtgmc3G/6xbDx7tPHMh0OAAAECBAgQIECAAAECBAgQIECAAAECBAgQILCtgMDZtlLeI0CAAAECBAgQIECAAAECBAgQIECAAAECBAgQIFC3QAme3Se521Cm4Fnds1MdAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKAaAYGzakahEAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQKdCJTg2W2SP244bZnkwcazTpwdQoAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAYpYDA2SjHqikCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECmTcbz8rWs1nL460Jnq04ESBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEFgXEDjzPRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAYt4Dg2bjnqzsCBAgQIECAAAECBAgQIECAAAECBAgQIECAQKcCAmedcjqMAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAQNUCi2brmY1nVY9JcQQIECBAgAABAgQIECBAgAABAgQIECBAgACB/gQEzvqzdzMBAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBvgS+Cp49JnnrqzD3EiBAgAABAgQIECBAgAABAgQIECBAgAABAgQI9CsgcNavv9sJECBAgAABAgQIECBAgAABAgQIECBAgAABAgQI9Clw32w8O2kVUQJnD0lWfRbnbgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgeMLCJwd39yNBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBGoT+Cx4tkzybONZbeNSDwECBAgQIECAAAECBAgQIECAAAECBAgQIEDgcAICZ4ezdTIBAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBoQl8Fjx7aYJnNp4NbaLqJUCAAAECBAgQIECAAAECBAgQIECAAAECBAjsKCBwtiOY1wkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAhMQOCrjWcPSd4nYKBFAgQIECBAgAABAgQIECBAgAABAgQIECBAgMAkBQTOJjl2TRMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDYSkDwbCsmLxEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIExiMgcDaeWeqEAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwCEE5kmukzwlmbUueEnyaOPZIdidSYAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDoR0DgrB93txIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAYosBnG89KGK0Ezz6G2JSaCRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIE/l9A4MzXQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDALgJfbTxbJHm18WwXTu8SIECAAAECBAgQIECAAAECBAgQIECAAAECBOoSEDirax6qIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIDAkgU0bz8qWs5ckz4JnQxqlWgkQIECAAAECBAgQIECAAAECBAgQIECAAAECvwkInPkSCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDYR6BsPLtNUsJnJ2sHleDZUxM8K3/2ECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIDEBA4GwAQ1IiAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQEIlODZj41ns7V635vg2WsSwbMBDFKJBAgQIECAAAECBAgQIECAAAECBAgQIECAwLQFBM6mPX/dEyBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEOhaQPCsa1HnESBAgAABAgQIECBAgAABAgQIECBAgAABAgSOKCBwdkRsVxEgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBCYkEAJni2S3LV6XjV//31CFlolQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECAxGQOBsMKNSKAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIFBCnwVPHtMshxkV4omQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECIxUQOBspIPVFgECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIHKBErw7L75b7ZWW9l4JnhW2bCUQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECExXQOBsurPXOQECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIE+BE6b0NltkvXg2VuSpyTf+yjKnQQIECA+NaZMAAAgAElEQVRAgAABAgQIECBAgAABAgQIECBAgAABAr8JCJz5EggQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ6EPgR/DsrnX5stl4VjafeQgQIECAAAECBAgQIECAAAECBAgQIECAAAECBI4sIHB2ZHDXESBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECDwZwLzJIskm4JnD0neeREgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBxPQODseNZuIkCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEDgc4Gy8awEz66TzNZeKxvPBM98OQQIECBAgAABAgQIECBAgAABAgQIECBAgACBIwkInB0J2jUECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECGwlcN4Ez65ab/9bkr+z8WwrQy8RIECAAAECBAgQIECAAAECBAgQIECAAAECBH5ZQODsl+n8kAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBAwr82Hh2s3bHe5Ky8ewxyccB73Y0AQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGCyAgJnkx29xgkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgMQqBsPPvHJH/dqnaR5NXGs0HMUJEECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAgAQEzgY0LKUSIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQmLBA2Xj2lORqzaBsPHtpNp5NmEbrBAgQIECAAAECBAgQIECAAAECBAgQIECAAIHuBATOurN0EgECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAEChxe4bIJnZ2tXfSQpG8+eD3+9GwgQIECAAAECBAgQIECAAAECBAgQIECAAAEC4xYQOBv3fHVHgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYKwC10nuk1ysNVg2npUtaK9JSgjNQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgsKOAwNmOYF4nQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKAqgRI8KyGzk7WqVmvBs6qKVQwBAgQIECBAgAABAgQIECBAgAABAgQIECBAoHYBgbPaJ6Q+AgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgS2EdgUPCsbzx6SLLc5wDsECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQKJwJmvgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBMQncJlls2Hj2KHg2pjHrhQABAgQIECBAgAABAgQIECBAgAABAgQIEDiUgMDZoWSdS4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAXwLzJCV4di941tcI3EuAAAECBAgQIECAAAECBAgQIECAAAECBAgMVUDgbKiTUzcBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAj8TKMGzEjor/83WXl4l+Zak/N9DgAABAgQIECBAgAABAgQIECBAgAABAgQIECCwJiBw5nMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGDsAqdN6KxsPVsPni2TPCd5GzuA/ggQIECAAAECBAgQIECAAAECBAgQIECAAAEC2woInG0r5T0CBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBIYu8FXw7NHGs6GPV/0ECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAFwICZ10oOoMAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgSEJlODZIslNq+iXJA9JPobUjFoJECBAgAABAgQIECBAgAABAgQIECBAgAABAl0KCJx1qeksAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgSGJHDeBM+uWkWX4FnZePY+pGbUSoAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDoQkDgrAtFZxAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMGSBEjx7SnKx1kTZcvYjeGbj2ZCnq3YCBAgQIECAAAECBAgQIECAAAECBAgQIEBgJwGBs524vEyAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwIgFLpuNZ+3gWQmjPScRPBvx8LVGgAABAgQIECBAgAABAgQIECBAgAABAgQI/CYgcOZLIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwJ8LXCe537DxbNEEz3gRIECAAAECBAgQIECAAAECBAgQIECAAAECBEYrIHA22tFqjAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBPQVum41nJ2vnvDd/97rn2X5OgAABAgQIECBAgAABAgQIECBAgAABAgQIEKhSQOCsyrEoigABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBigTKtrPyXzt49i3JW0V1KoUAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgsLeAwNnehA4gQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGAiAosmeDZb63eV5EHwbCJfgDYJECBAgAABAgQIECBAgAABAgQIECBAgMAEBATOJjBkLRIgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0JnAPEkJnt21TlwmeUxSAmgeAgQIECBAgAABAgQIECBAgAABAgQIECBAgMBgBQTOBjs6hRMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0KPAaRM8u2nV8NJsPPvosTZXEyBAgAABAgQIECBAgAABAgQIECBAgAABAgR+WUDg7Jfp/JAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIpwbMSMrtYsyhhs/J3ZeOZ4JmPhAABAgQIECBAgAABAgQIECBAgAABAgQIEBiUgMDZoMalWAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEKhU4T/K0IXi2SPJcac3KIkCAAAECBAgQIECAAAECBAgQIECAAAECBAj8TkDgzEdBgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACB7gRuk9wnOVs78j3JtyRv3V3jJAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAYQQEzg7j6lQCBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBKYtUEJnZbvZbI1hleRB8GzaH4buCRAgQIAAAQIECBAgQIAAAQIECBAgQIBA7QICZ7VPSH0ECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECAxVYN6Ezu5aDbwkeUxSNp95CBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJVCQicVTUOxRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMEKB0yRPSa7WevtI8iN4Vv7sIUCAAAECBAgQIECAAAECBAgQIECAAAECBAhUISBwVsUYFEGAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwAQELpvg2dlaryVstkjyPIH+tUiAAAECBAgQIECAAAECBAgQIECAAAECBAgMQEDgbABDUiIBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAqMSuG5CZuvBs1WSxyTLUXWqGQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGBwAgJngxuZggkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQGIlA2Wx2n2S21s9bkockJYDmIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgcXUDg7OjkLiRAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMD/CcybbWd3LZOXZuPZOysCBAgQIECAAAECBAgQIECAAAECBAgQIECAwDEFBM6Oqe0uAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIbBY4TfKU5Grtnz+av3tOUv7sIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgcXEDg7ODELiBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMDWApdNyOxs7Rdly9lDkuXWp3iRAAECBAgQIECAAAECBAgQIECAAAECBAgQIPCLAgJnvwjnZwQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIEDigwG0TPJut3bFK8ih4dkB1RxMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIROPMRECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoE6BeZL7JCV8drJW4ksTPCubzzwECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgU4FBM465XQYAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEOhc4bYJnd62Tn5I8dH6bAwkQIECAAAECBAgQIECAAAECBAgQIECAAIFJCwicTXr8midAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYEAC50lKyOxireaPJoz2PUn5s4cAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgsJeAwNlefH5MgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBowtcN8Gzk7WbV0kekyyPXo0LCRAgQIAAAQIECBAgQIAAAQIECBAgQIAAgVEJCJyNapyaIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEBgQgL3SRZJZms9l+DZH5K8T8hBqwQIECBAgAABAgQIECBAgAABAgQIECBAgECHAgJnHWI6igABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAkcWOE1Sgmd3rXufkjwLnh15Gq4jQIAAAQIECBAgQIAAAQIECBAgQIAAAQIjEBA4G8EQtUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAwOQFSvDsX5L81ZrER7MBrQTPPAQIECBAgAABAgQIECBAgAABAgQIECBAgACBrQQEzrZi8hIBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQGIXCZpGw3O1ur9j3JtyRvg+hAkQQIECBAgAABAgQIECBAgAABAgQIECBAgECvAgJnvfK7nAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgcRuG2CZ7O105dJHpOsDnKjQwkQIECAAAECBAgQIECAAAECBAgQIECAAIFRCAicjWKMmiBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMDvBOZN6Oym9S9lA9pzkrL5zEOAAAECBAgQIECAAAECBAgQIECAAAECBAgQ+DMBgTMfBAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBMYtcN4Ezy7W2ixhsx/Bs3F3rzsCBAgQIECAAAECBAgQIECAAAECBAgQIEBgJwGBs524vEyAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIHBClw3IbOTtQ5K8OxbkrfBdqVwAgQIECBAgAABAgQIECBAgAABAgQIECBAoFMBgbNOOR1GgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACB6gUWSe6TzNYqLYGzEjwrATQPAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMGEBgbMJD1/rBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAhMVuA0SQme3bQEnpI8C55N9rvQOAECBAgQIECAAAECBAgQIECAAAECBAgQiMCZj4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQLTFThP8pLkbI3gowmjleCZhwABAgQIECBAgAABAgQIECBAgAABAgQIEJiYgMDZxAauXQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECGwQuG9CZrO1f1sleUyyJEaAAAECBAgQIECAAAECBAgQIECAAAECBAhMR0DgbDqz1ikBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgS+Epg3obO71ktvSb4lecdHgAABAgQIECBAgAABAgQIECBAgAABAgQIjF9A4Gz8M9YhAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIEdhE4T/KU5KL1o0WS5yQfuxzmXQIECBAgQIAAAQIECBAgQIAAAQIECBAgQGBYAgJnw5qXagkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIHAsgeskL0lmaxeWLWcljFaCZx4CBAgQIECAAAECBAgQIECAAAECBAgQIEBghAICZyMcqpYIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECDQoUDZbHbfCp6tkjwkeevwHkcRIECAAAECBAgQIECAAAECBAgQIECAAAECFQgInFUwBCUQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECgcoHTZrPZVavOsgHtMUnZfOYhQIAAAQIECBAgQIAAAQIECBAgQIAAAQIERiAgcDaCIWqBAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECRxK4boJnJ2v3fTR/V4JnHgIECBAgQIAAAQIECBAgQIAAAQIECBAgQGDgAgJnAx+g8gkQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIHBkgXmSRZK71r2rJA9J3o5cj+sIECBAgAABAgQIECBAgAABAgQIECBAgACBDgUEzjrEdBQBAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQmJHDZBM8uWj0vk3xLUjafeQgQIECAAAECBAgQIECAAAECBAgQIECAAIGBCQicDWxgyiVAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgEBlAvdN8Gy2VlcJm5UtaK+CZ5VNSzkECBAgQIAAAQIECBAgQIAAAQIECBAgQOAnAgJnPhECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQ2FfgNMlLkva2s7ckD0lW+17g9wQIECBAgAABAgQIECBAgAABAgQIECBAgMBxBATOjuPsFgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECExB4LbZbHbSavYpyaNtZ1P4BPRIgAABAgQIECBAgAABAgQIECBAgAABAkMXEDgb+gTVT4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgboE5klKwOymVdZ7Ezorm9A8BAgQIECAAAECBAgQIECAAAECBAgQIECAQKUCAmeVDkZZBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQGLjAeZISLjtr9fGW5CHJauD9KZ8AAQIECBAgQIAAAQIECBAgQIAAAQIECIxSQOBslGPVFAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBKoQKNvOFknuWtV8NGG0EjzzECBAgAABAgQIECBAgAABAgQIECBAgAABAhUJCJxVNAylECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYKQCn207+88kf2Pb2Uinri0CBAgQIECAAAECBAgQIECAAAECBAgQGKSAwNkgx6ZoAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIDFLgKcltklmr+vL3j0nK5jMPAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0KOAwFmP+K4mQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDABAUuk/xzkrL1bP15T/ItydsETbRMgAABAgQIECBAgAABAgQIECBAgAABAgSqERA4q2YUCiFAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgMBkBObNprMSPGs/L03wbDIYGiVAgAABAgQIECBAgAABAgQIECBAgAABAjUJCJzVNA21ECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAYFoCp0mWSc5abX8kuU/yOi0O3RIgQIAAAQIECBAgQIAAAQIECBAgQIAAgf4FBM76n4EKCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMHWBEi5bJJm1IN6SPCRZTR1I/wQIECBAgAABAgQIECBAgAABAgQIECBA4FgCAmfHknYPAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECHwlcJ7kKclF66Wy7az8/XOS8mcPAQIECBAgQIAAAQIECBAgQIAAAQIECBAgcEABgbMD4jqaAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBHYWuG0CZu1tZ2XLWdl2VraeeQgQIECAAAECBAgQIECAAAECBAgQIECAAIEDCQicHQjWsQQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECDwywLzJC9JrjacUP6+BM9sO/tlXj8kQIAAAQIECBAgQIAAAQIECBAgQIAAAQKfCwic+ToIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoFaB6yZ41t52VsJmiyTPtRauLgIECBAgQIAAAQIECBAgQIAAAQIECBAgMFQBgbOhTk7dBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQmIbAV9vO3pptZ6tpUOiSAAECBAgQIECAAAECBAgQIECAAAECBAgcXkDg7PDGbiBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACB/QXKtrOnJCcbjnppgmdl85mHAAECBAgQIECAAAECBAgQIECAAAECBAgQ2ENA4GwPPD8lQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgaMKlG1niyR3G24tYbNvSZZHrchlBAgQIECAAAECBAgQIECAAAECBAgQIEBgZAICZyMbqHYIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECAwAYHzJGWr2dmGXkvg7CHJ+wQctEiAAAECBAgQIECAAAECBAgQIECAAAECBDoXEDjrnNSBBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIHAkgbLt7I+f3FX+7TlJ2XzmIUCAAAECBAgQIECAAAECBAgQIECAAAECBLYUEDjbEsprBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIFClwFfbzlbNtrO3KitXFAECBAgQIECAAAECBAgQIECAAAECBAgQqFBA4KzCoSiJAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBHYW+Grb2UuSxyTvO5/qBwQIECBAgAABAgQIECBAgAABAgQIECBAYGICAmcTG7h2CRAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgMGKBsu1smeRkQ48lbPb3Sf51xP1rjQABAgQIECBAgAABAgQIECBAgAABAgQI7C0gcLY3oQMIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAoDKBpyR3n9RUAml/qKxe5RAgQIAAAQIECBAgQIAAAQIECBAgQIAAgWoEBM6qGYVCCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKBDgeskL0lmG84s286+JXnr8D5HESBAgAABAgQIECBAgAABAgQIECBAgACBUQgInI1ijJogQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgQ0C8yZ0dvWJTtmE9pjkgx4BAgQIECBAgAABAgQIECBAgAABAgQIECDwm4DAmS+BAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBMYu8LdJ/iHJX2xotGw7+0OS1dgR9EeAAAECBAgQIECAAAECBAgQIECAAAECBLYREDjbRsk7BAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIDB0gdMkyyRnnzTykuTBtrOhj1n9BAgQIECAAAECBAgQIECAAAECBAgQILCvgMDZvoJ+T4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQJDEnhKcvdJwR9JFkleBc+GNFK1EiBAgAABAgQIECBAgAABAgQIECBAgECXAgJnXWo6iwABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgSGIHCdpGw0m31S7Pta8GwI/aiRAAECBAgQIECAAAECBAgQIECAAAECBAh0JiBw1hmlgwgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIEBgQALzJnR29UXNgmcDGqhSCRAgQIAAAQIECBAgQIAAAQIECBAgQKAbAYGzbhydQoAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQLDFPjZtrPSVQmelY1oz0k+htmmqgkQIECAAAECBAgQIECAAAECBAgQIECAwHYCAmfbOXmLAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBMYrULadLZLcJpl90WYJmz0leW1CaOMV0RkBAgQIECBAgAABAgQIECBAgAABAgQITFZA4Gyyo9c4AQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECLQEzptNZmc/kSnBs29JlgQJECBAgAABAgQIECBAgAABAgQIECBAgMDYBATOxjZR/RAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIDAvgLXTfDsq21n/57kct+L/J4AAQIECBAgQIAAAQIECBAgQIAAAQIECNQmIHBW20TUQ4AAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQK1CDwlufukmP9OMq+lUHUQIECAAAECBAgQIECAAAECBAgQIECAAIGuBATOupJ0DgECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAiMUeCzbWffk5R/8xAgQIAAAQIECBAgQIAAAQIECBAgQIAAgVqpdA0AAA1jSURBVFEJCJyNapyaIUCAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAIEDCJRNZou1bWf/1YTNVge4y5EECBAgQIAAAQIECBAgQIAAAQIECBAgQKBXAYGzXvldToAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgXoEBM7qmYVKCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAg0KuAwFmv/C4nQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIBAPQICZ/XMQiUECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBDoVUDgrFd+lxMgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQKAeAYGzemahEgIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAA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\"}"
+      },
+      {
+        "fieldId": "showUpdatesNeeded",
+        "value": "\"false\""
+      },
+      {
+        "fieldId": "draCreatedDate",
+        "value": "{\"dateTime\":\"2020-07-02T04:45:55.939Z\",\"utcOffset\":0}"
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:45:55.939Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}
