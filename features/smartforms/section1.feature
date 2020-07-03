@@ -98,13 +98,13 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select <level one permit> permit
+    And I select <level_one_permit> permit
     And I select a level 2 permit randomly
     Then I should not see maintenance duration section and require text
     And I tear down created form
 
     Examples:
-      | level one permit                          |
+      | level_one_permit                          |
       | Cold Work                                 |
       | Enclosed Spaces Entry                     |
       | Helicopter Operations                     |

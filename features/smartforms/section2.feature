@@ -32,14 +32,14 @@ Feature: Section2ApprovalAuthority
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select <level one permit> permit
-    And I select <level two permit> permit for level 2
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
     And I fill up section 1
     Then I should see correct approval details for non-OA
     And I tear down created form
 
     Examples:
-      | level one permit                          | level two permit                                                        |
+      | level_one_permit                          | level_two_permit                                                        |
       | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)             |
       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    |
@@ -57,20 +57,21 @@ Feature: Section2ApprovalAuthority
       | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               |
       | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
       | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                      |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    |
 
-  Scenario Outline: Verify approval details are accurate if maintenance on critical equipment is more than 2 hours
+  Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select <level one permit> permit
-    And I select <level two permit> permit for level 2
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
     Then I should see correct approval details for maintenance duration more than 2 hours
     And I tear down created form
 
     Examples:
-      | level one permit               | level two permit                                                                              |
+      | level_one_permit               | level_two_permit                                                                              |
       | Critical Equipment Maintenance | Maintenance on Anchor                                                                         |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            |
       | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            |
@@ -89,19 +90,19 @@ Feature: Section2ApprovalAuthority
       | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            |
       | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  |
 
-  Scenario Outline: Verify approval details are accurate if maintenance on critical equipment is less than 2 hours
+  Scenario Outline: Verify OA is not require if maintenance on critical equipment is less than 2 hours
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select <level one permit> permit
-    And I select <level two permit> permit for level 2
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
     Then I should see correct approval details for maintenance duration less than 2 hours
     And I tear down created form
 
     Examples:
-      | level one permit               | level two permit                                                                              |
+      | level_one_permit               | level_two_permit                                                                              |
       | Critical Equipment Maintenance | Maintenance on Anchor                                                                         |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            |
       | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            |
@@ -125,14 +126,14 @@ Feature: Section2ApprovalAuthority
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select <level one permit> permit
-    And I select <level two permit> permit for level 2
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
     And I fill up section 1
     Then I should see correct approval details OA <office approval> and ship approval <ship approval>
     And I tear down created form
 
     Examples:
-      | level one permit                     | level two permit                                                                | ship approval | office approval                                                 |
+      | level_one_permit                     | level_two_permit                                                                | ship approval | office approval                                                 |
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Master        | Head, Fleet Operations                                          |
       | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Master        | Director, Fleet Operations                                      |
       | Underwater Operations                | Underwater Operation at night                                                   | Master        | Director, Fleet Operations                                      |
