@@ -6,7 +6,7 @@ require 'fileutils'
 module ServiceUtil
   include HTTParty
   class << self
-    def post_graph_ql(which_json, _user)
+    def post_graph_ql(which_json, _user = '1111')
       uri = EnvironmentSelector.get_graphql_environment_url('service')
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
