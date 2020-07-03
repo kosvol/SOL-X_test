@@ -21,7 +21,7 @@ Then (/^I should see a list of wind forces$/) do |_table|
 end
 
 Then (/^I should not see save and previous button exists$/) do
-  is_equal(on(Section1Page).previous_btn_elements.size, 1)
+  is_equal(on(Section1Page).save_and_next_btn_elements.size, 1)
 end
 
 Then (/^I (should|should not) see maintenance duration section and require text$/) do |condition|

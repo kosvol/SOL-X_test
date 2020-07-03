@@ -11,7 +11,6 @@ Feature: Section1
     And I enter RA pin 1212
     And I select a any permits
     Then I should see permit details are pre-filled
-  # And I tear down created form
 
   Scenario: Verify sea state dropdown input fields are correct
     Given I launch sol-x portal
@@ -124,7 +123,8 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Hotwork permit
+    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1
     Then I should see section 2
     And I tear down created form
@@ -136,13 +136,4 @@ Feature: Section1
     And I enter RA pin 1212
     And I select a any permits
     Then I should see display texts match
-
-# Scenario: Verify there is no Save and Previous button
-#   Given I launch sol-x portal
-#   When I navigate to "SmartForms" screen
-#   And I navigate to create new permit
-#   And I enter RA pin 1212
-#   And I select a any permits
-#   Then I should not see save and previous button exists
-#   And I tear down created form
 

@@ -22,7 +22,7 @@ class Section4APage
     checklist_name_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
-      BrowserActions.scroll_down(element_yes[_index])
+      BrowserActions.scroll_down_by_dist
       return (element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)') && (element_no[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
     end
   end
@@ -33,7 +33,7 @@ class Section4APage
     checklist_name_elements.each_with_index do |checklist, _index|
       next unless checklist.text === 'Work on Hazardous Substances'
 
-      BrowserActions.scroll_down(element_yes[_index])
+      BrowserActions.scroll_down_by_dist
       return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (element_no[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
     end
   end

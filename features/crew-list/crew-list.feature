@@ -130,7 +130,6 @@ Feature: CrewList
       | test_A020       | A 2/E        |
       | test_A021       | 3/E          |
       | test_A022       | A 3/E        |
-      | test_A030       | CGENG        |
       | CDEV_SOLX0023   | 4/E          |
       | CDEV_SOLX0024   | A 4/E        |
       | test_A025       | T/E          |
@@ -142,10 +141,8 @@ Feature: CrewList
       | CDEV_SOLX0020   | PMAN         |
       | test_A047       | FTR          |
       | test_A048       | OLR          |
-      | test_A049       | WPR          |
       | test_data_jun25 | CCK          |
       | test_b001       | 2CK          |
-      | test_A053       | STWD         |
       | test_A039       | FSTO         |
       | test_A042       | RDCRW        |
       | test_A046       | SPM          |

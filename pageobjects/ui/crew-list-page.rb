@@ -60,6 +60,7 @@ class CrewListPage < DashboardPage
   end
 
   def is_rank_correctly_displayed?(_current_rank)
+    sleep 1
     rank_list_btn
     rank_list = $sit_rank_and_pin_yml['ranks']
     sleep 1
@@ -113,14 +114,14 @@ class CrewListPage < DashboardPage
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     _element = $browser.find_element(:xpath, @@location_indicator)
-    BrowserActions.scroll_down(_element)
+    BrowserActions.scroll_down_by_dist
     color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     _element.css_value('background-color') === color
   end
 
   def is_location_details(_location = nil)
     _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
-    BrowserActions.scroll_down($browser.find_element(:xpath, @@location_indicator))
+    BrowserActions.scroll_down_by_dist
     location_details_elements.each do |location|
       next if location.text === ''
 

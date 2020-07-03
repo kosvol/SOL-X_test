@@ -38,22 +38,25 @@ Before do |scenario|
 end
 
 After do |scenario|
-  if scenario.failed?
-    begin
-      @log.info("Exception: #{scenario.exception}")
-      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-    rescue Exception => e
-      $extent_test.info(:fatal, 'Exception Raised', e, @browser)
-      # $living_test.info(:fatal, 'Exception Raised', e, @browser)
+  begin
+    if scenario.failed?
+      begin
+        @log.info("Exception: #{scenario.exception}")
+        $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+        # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+      rescue Exception => e
+        $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+        # $living_test.info(:fatal, 'Exception Raised', e, @browser)
+      end
+    elsif !scenario.failed?
+      # scenario.test_steps.each do |x, _index|
+      #   unless ['Before hook', 'AfterStep hook'].include? x.text
+      #     $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
+      #   end
     end
-    # else
-    # scenario.test_steps.each do |x, _index|
-    #   unless ['Before hook', 'AfterStep hook'].include? x.text
-    #     $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
-    #   end
-    # end
-
+  rescue Exception => e
+    $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+    # $living_test.info(:fatal, 'Exception Raised', e, @browser)
   end
   @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   @browser.quit

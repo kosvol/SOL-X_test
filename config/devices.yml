@@ -10,8 +10,8 @@ dashboard_chrome:
 
 tablet_chrome:
   platformName: "Android"
-  platformVersion: "7.1"
-  deviceName: "201902230863"
+  platformVersion: "8.1"
+  deviceName: "6572e096"
   app: ""
   port: 4723
   browserName: "Chrome"

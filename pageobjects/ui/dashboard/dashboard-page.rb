@@ -72,6 +72,7 @@ class DashboardPage < WearablePage
   end
 
   def get_map_zone_count(which_zone)
+    sleep 1
     exit if !area_count_elements[0].text === 1
     toggle_zone_filter(which_zone)
     case which_zone

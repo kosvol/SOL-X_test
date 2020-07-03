@@ -9,22 +9,11 @@ Feature: Section2ApprovalAuthority
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Hotwork permit
+    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1
     Then I should see section 2
     And I should see previous and next buttons
-    And I tear down created form
-
-  Scenario: Verify user can proceed to section 3a
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
-    And I navigate to create new permit
-    And I enter RA pin 1212
-    And I select a any permits
-    And I fill up section 1
-    Then I should see section 2
-    When I proceed to section 3a
-    Then I should see section 3a screen
     And I tear down created form
 
   Scenario Outline: Verify user can see the correct approval for non-OA
@@ -148,6 +137,7 @@ Feature: Section2ApprovalAuthority
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Hotwork permit
+    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1
     Then I should see ship and office approval text fields disabled

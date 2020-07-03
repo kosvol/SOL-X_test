@@ -12,7 +12,61 @@ Feature: Section6
 
   # Scenario: Verify name and signature still display even after navigating back to Sign and cancel out
 
-  # Scenario: Verify non-OA ptw display submit for master approval on button
+
+  Scenario Outline: Verify Gas Reader screen should be shown for these permits
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1212
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I fill up section 1
+    And I navigate to section 6
+    # Then
+    And I tear down created form
+
+    Examples:
+      | level_one_permit                     | level_two_permit                                                                |
+      | Hotwork                              | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     |
+      | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     |
+      | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
+      | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
+      | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+      | Enclosed Spaces Entry                | Enclosed Space Entry                                                            |
+      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
+
+  Scenario Outline: Verify non-OA ptw display submit for master approval on button
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1212
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I fill up section 1
+    And I navigate to section 6
+    Then I should see master approval button only
+    And I tear down created form
+
+    Examples:
+      | level_one_permit                          | level_two_permit                                                        |
+      | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)             |
+      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    |
+      | Working Aloft/Overside                    | Working Aloft / Overside                                                |
+      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                             |
+      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                   |
+      | Helicopter Operations                     | Helicopter Operation                                                    |
+      | Rotational Portable Power Tool            | Use of Portable Power Tools                                             |
+      | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                   |
+      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                      |
+      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
+      | Cold Work                                 | Cold Work - Cleaning Up of Spills                                       |
+      | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                      |
+      | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                     |
+      | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               |
+      | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
+      | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                      |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
     Given I launch sol-x portal

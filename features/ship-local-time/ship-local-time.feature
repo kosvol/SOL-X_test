@@ -29,7 +29,7 @@ Feature: ShipLocalTime
     Examples:
       | pin  |
       | 1212 |
-      | 4444 |
+      | 5912 |
       | 7777 |
       | 8888 |
       | 9999 |
