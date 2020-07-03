@@ -32,7 +32,7 @@ class BypassPage
     section2 = JSON.parse JsonUtil.read_json("ptw/#{_permit_type}")
     section2['variables']['formId'] = get_selected_permit
     section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_offset}}"
-    section['variables']['submissionTimestamp'] = get_current_date_time
+    section2['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file("ptw/mod_#{_permit_type}", section2)
     ServiceUtil.post_graph_ql("ptw/mod_#{_permit_type}", _user)
 
