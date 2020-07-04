@@ -48,8 +48,8 @@ And (/^I submit after filling up section 1 with duration (more|less) than 2 hour
   on(Section1Page).fill_all_of_section_1_w_duration(condition)
 end
 
-Then (/^I should see display texts match$/) do
-  section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_labels']
+Then (/^I should see display texts match for section1$/) do
+  section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section1_labels']
   page_elements = on(Section1Page).all_labels_elements
   if page_elements.size === 14
     section1_labels_arr.delete_at(section1_labels_arr.size - 2)

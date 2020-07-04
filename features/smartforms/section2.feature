@@ -141,3 +141,14 @@ Feature: Section2ApprovalAuthority
     And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1
     Then I should see ship and office approval text fields disabled
+
+  Scenario: Verify section2 screen text
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1212
+    And I select Hotwork permit
+    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
+    And I fill up section 1
+    Then I should see section 2
+    And I should see display texts match for section2

@@ -1,4 +1,4 @@
-default_labels:
+default_section1_labels:
   [
     "Name of Vessel:",
     "PTW No:",
@@ -16,3 +16,7 @@ default_labels:
     "Will the duration of this Maintenance be over 2 hours? (Required)",
     "Location of work:",
   ]
+
+default_section2_labels: ["Ship's Approval:", "Office Approval:"]
+
+default_section4_labels: []

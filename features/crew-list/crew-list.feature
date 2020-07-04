@@ -100,6 +100,8 @@ Feature: CrewList
   #   And I should see crew added with rank changed
   #   And I reset crew data
 
+  # Scenario: Verify newly added crew pin can be reviewed
+
   Scenario Outline: Verify captain can add crew into current vessel
     Given I launch sol-x portal
     When I navigate to "Crew List" screen

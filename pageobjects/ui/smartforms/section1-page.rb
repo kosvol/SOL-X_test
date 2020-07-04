@@ -24,7 +24,7 @@ class Section1Page
 
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
-    BrowserActions.scroll_down_by_dist
+    BrowserActions.scroll_down
     $browser.find_element(:xpath, @@maint_duration_dd)
     _element.text === 'Please answer question `Will the duration of this Maintenance be over 2 hours` before continuing.'
   rescue StandardError
@@ -52,7 +52,7 @@ class Section1Page
     $browser.find_element(:xpath, @@maint_duration_dd).click
     sleep 1
     _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click
-    BrowserActions.scroll_down_by_dist
+    BrowserActions.scroll_down
     save_and_next_btn_elements.first.click
   end
 
@@ -61,11 +61,11 @@ class Section1Page
   def fill_static_section1
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
     select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
-    BrowserActions.scroll_down_by_dist
+    BrowserActions.scroll_down
     sea_state_btn
     sleep 1
     dd_list_value_elements[0].click
-    BrowserActions.scroll_down_by_dist
+    BrowserActions.scroll_down
     wind_force_btn
     sleep 1
     dd_list_value_elements[0].click
@@ -86,7 +86,7 @@ class Section1Page
   def fill_text_area(_input, _text)
     _elements = $browser.find_elements(:xpath, _input)
     _elements.each do |element|
-      BrowserActions.scroll_down_by_dist
+      BrowserActions.scroll_down
       element.send_keys(_text)
     end
   end
@@ -101,7 +101,7 @@ class Section1Page
 
   def get_dd_list_values(_states, _dd_list)
     sleep 1
-    BrowserActions.scroll_down_by_dist
+    BrowserActions.scroll_down
     _element = $browser.find_element(:xpath, _states)
     sleep 1
     _element.click
@@ -109,7 +109,7 @@ class Section1Page
     _element = $browser.find_elements(:xpath, _dd_list)
     list_of_sea_states = []
     _element.each do |elem|
-      BrowserActions.scroll_down_by_dist
+      BrowserActions.scroll_down
       list_of_sea_states << elem.text
     end
     p ">>> #{list_of_sea_states}"

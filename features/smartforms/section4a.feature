@@ -1,5 +1,5 @@
-@section4AChecklist
-Feature: Section4AChecklist
+@section4AChecklistSelection
+Feature: Section4AChecklistSelection
   As a ...
   I want to ...
   So that ...
@@ -88,14 +88,6 @@ Feature: Section4AChecklist
       | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
       | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
       | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
-
-# Scenario: Verify checklist content are displayed correctly
-
-# Scenario: Verify checklist form is pre-populated with PTW permit number, data and time
-
-# Scenario: Verify master cannot enter pin on checklist
-
-# Scenario: Verify name and time is displayed after signing on checklist
 
 ### pending checklist to work on
 
