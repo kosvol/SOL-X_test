@@ -44,7 +44,7 @@ class Section4APage
     checklist_name_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
-      BrowserActions.scroll_down_by_distance(element_yes[_index])
+      BrowserActions.scroll_down(element_yes[_index])
       element_yes[_index].click
     end
   end
