@@ -20,8 +20,8 @@ Feature: Section4AChecklist
 
     Examples:
       | Rank  | pin  | level_one_permit                          | level_two_permit                                                                | checklist                                 |
-      | A/M   | 1212 | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     | Hot Work Within Designated Area           |
-      | C/O   | 5912 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
+      | A/M   | 1212 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
+      | C/O   | 5912 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
       | A C/O | 5555 | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
       | 2/O   | 6666 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7777 | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
@@ -36,16 +36,18 @@ Feature: Section4AChecklist
       | 4/E   | 2323 | Helicopter Operations                     | Helicopter Operation                                                            | Helicopter Operation Checklist            |
       | A 4/E | 2424 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
       | ETO   | 1717 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
-      | A/M   | 1212 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
-      | C/O   | 5912 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
-      | A C/O | 5555 | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | 2/O   | 6666 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
-      | A 2/O | 7777 | Cold Work                                 | Cold Work - Cleaning Up of Spills                                               | Cold Work Operation Checklist             |
-      | 3/O   | 8888 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | A 3/O | 9999 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
-      | C/E   | 9780 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
-      | A C/E | 0110 | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
-      | 2/E   | 1313 | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
+  # | A/M   | 1212 | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     | Hot Work Within Designated Area           |
+  # | C/O   | 5912 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
+  # | A/M   | 1212 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
+  # | C/O   | 5912 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
+  # | A C/O | 5555 | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
+  # | 2/O   | 6666 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
+  # | A 2/O | 7777 | Cold Work                                 | Cold Work - Cleaning Up of Spills                                               | Cold Work Operation Checklist             |
+  # | 3/O   | 8888 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
+  # | A 3/O | 9999 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
+  # | C/E   | 9780 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
+  # | A C/E | 0110 | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
+  # | 2/E   | 1313 | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
     Given I launch sol-x portal
@@ -83,12 +85,12 @@ Feature: Section4AChecklist
       | CCK    | 9082 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
       | 2CK    | 1455 | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
       | RDCRW  | 9946 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
-      | SPM    | 8188 | Cold Work                                 | Cold Work - Cleaning Up of Spills                                               | Cold Work Operation Checklist             |
+      | SPM    | 8188 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
       | FSTO   | 1041 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | Master | 1111 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
-      | 4/O    | 1010 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
-      | A 4/O  | 1537 | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
-      | 5/O    | 0099 | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
+  # | Master | 1111 | Cold Work                                 | Cold Work - Cleaning Up of Spills                             | Cold Work Operation Checklist             |
+  # | 4/O    | 1010 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
+  # | A 4/O  | 1537 | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
+  # | 5/O    | 0099 | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
     Given I launch sol-x portal
@@ -105,24 +107,24 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | Rank  | pin  | level_one_permit               | level_two_permit                                                                              | checklist                                |
-      | A 2/E | 1414 | Critical Equipment Maintenance | Maintenance on Anchor                                                                         | Critical Equipment Maintenance Checklist |
-      | 3/E   | 4092 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            | Critical Equipment Maintenance Checklist |
-      | A 3/E | 1515 | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
-      | 4/E   | 2323 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
-      | A 4/E | 2424 | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
-      | ETO   | 1717 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                                     | Critical Equipment Maintenance Checklist |
-      | A/M   | 1212 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
-      | C/O   | 5912 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
-      | A C/O | 5555 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-      | 2/O   | 6666 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
-      | A 2/O | 7777 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-      | 3/O   | 8888 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
-      | A 3/O | 9999 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
-      | C/E   | 9780 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-      | A C/E | 0110 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
-      | 2/E   | 1313 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
-      | A 2/E | 1414 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
+      | Rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
+      # | A 2/E | 1414 | Critical Equipment Maintenance | Maintenance on Anchor                                                                         | Critical Equipment Maintenance Checklist |
+      # | 3/E   | 4092 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            | Critical Equipment Maintenance Checklist |
+      # | A 3/E | 1515 | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
+      # | 4/E   | 2323 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
+      # | A 4/E | 2424 | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
+      | ETO  | 1717 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | Critical Equipment Maintenance Checklist |
+  # | A/M   | 1212 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
+  # | C/O   | 5912 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
+  # | A C/O | 5555 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
+  # | 2/O   | 6666 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
+  # | A 2/O | 7777 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
+  # | 3/O   | 8888 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
+  # | A 3/O | 9999 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
+  # | C/E   | 9780 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
+  # | A C/E | 0110 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
+  # | 2/E   | 1313 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
+  # | A 2/E | 1414 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for maintenance permits
     Given I launch sol-x portal
@@ -139,24 +141,24 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | Rank   | pin  | level_one_permit               | level_two_permit                                                                              | checklist                                |
-      | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor                                                                         | Critical Equipment Maintenance Checklist |
-      | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            | Critical Equipment Maintenance Checklist |
-      | A 4/O  | 1537 | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
-      | 5/O    | 0099 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
-      | D/C    | 1616 | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
-      | SAA    | 1203 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                                     | Critical Equipment Maintenance Checklist |
-      | BOS    | 1818 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
-      | A/B    | 2121 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
-      | O/S    | 1919 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-      | 5/E    | 6322 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
-      | E/C    | 9985 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-      | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
-      | ETR    | 1715 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
-      | T/E    | 1611 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-      | PMAN   | 2020 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
-      | OLR    | 0220 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
-      | FTR    | 9115 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
+      | Rank   | pin  | level_one_permit               | level_two_permit                   | checklist                                |
+      | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor              | Critical Equipment Maintenance Checklist |
+      | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
+# | A 4/O  | 1537 | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
+# | 5/O    | 0099 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
+# | D/C    | 1616 | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
+# | SAA    | 1203 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                                     | Critical Equipment Maintenance Checklist |
+# | BOS    | 1818 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
+# | A/B    | 2121 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
+# | O/S    | 1919 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
+# | 5/E    | 6322 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
+# | E/C    | 9985 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
+# | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
+# | ETR    | 1715 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
+# | T/E    | 1611 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
+# | PMAN   | 2020 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
+# | OLR    | 0220 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
+# | FTR    | 9115 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
 
 #   Scenario Outline: Verify checklist content are displayed correctly for maintenance permits
 #     Given I launch sol-x portal
