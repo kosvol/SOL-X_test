@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class Section1Page
+class Section1Page < SmartFormsPermissionPage
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
@@ -41,14 +41,11 @@ class Section1Page
 
   def fill_all_of_section_1_wo_duration
     fill_static_section1
-    # BrowserActions.scroll_down_by_dist
-    # sleep 1
     save_and_next_btn_elements.first.click
   end
 
   def fill_all_of_section_1_w_duration(_condition)
     fill_static_section1
-    # BrowserActions.scroll_down_by_dist
     $browser.find_element(:xpath, @@maint_duration_dd).click
     sleep 1
     _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click

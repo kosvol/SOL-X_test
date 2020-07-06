@@ -1,0 +1,7 @@
+{
+  "operationName": null,
+  "variables": {
+    "pin": "0220"
+  },
+  "query": "query ($pin: String!) {\n  validatePin(pin: $pin) {\n    _id\n    roles\n    crewMember {\n      rank\n      firstName\n      lastName\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

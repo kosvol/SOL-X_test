@@ -20,7 +20,7 @@ Feature: SmartFormsPermission
     Examples:
       | rank                       | pin  |
       | Addtional Master           | 1212 |
-      | Chief Officer              | 4444 |
+      | Chief Officer              | 5912 |
       | Additional Chief Officer   | 5555 |
       | Second Officer             | 6666 |
       | Additional Second Officer  | 7777 |
@@ -38,22 +38,21 @@ Feature: SmartFormsPermission
     Then I should see not authorize error message
 
     Examples:
-      | pin  |
-      | 1111 |
-      | 7777 |
-      | 8888 |
-      | 9999 |
-      | 1010 |
-      | 1616 |
-      | 4092 |
-      | 1515 |
-      | 2323 |
-      | 2424 |
-      | 1818 |
-      | 2020 |
-      | 2121 |
-      | 1919 |
-      | 0220 |
+      | rank   | pin  |
+      | Master | 1111 |
+      | 3/O    | 8888 |
+      | A 3/O  | 9999 |
+      | 4/O    | 1010 |
+      | D/C    | 1616 |
+      | 3/E    | 4092 |
+      | A 3/E  | 1515 |
+      | 4/E    | 2323 |
+      | A 4/E  | 2424 |
+      | BOS    | 1818 |
+      | PMAN   | 2020 |
+      | A/B    | 2121 |
+      | O/S    | 1919 |
+      | OLR    | 0220 |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal
@@ -106,6 +105,8 @@ Feature: SmartFormsPermission
     And I tear down created form
 
 # Scenario: Verify after click cancel on pin pad it will navigate back to permit selection screen
+
+# Scenario: Verify user cannot creation using non-existent PIN
 
 
 

@@ -56,7 +56,6 @@ class CrewListPage < DashboardPage
 
   def is_pin_viewed?
     pin_text_field_element.text != '••••'
-    # to add regex here
   end
 
   def is_rank_correctly_displayed?(_current_rank)

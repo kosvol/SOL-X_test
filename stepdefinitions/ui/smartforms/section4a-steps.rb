@@ -15,7 +15,6 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
-  step 'I press next for 4 times'
 end
 
 And ('I press next for {int} times') do |_times|
@@ -24,4 +23,17 @@ And ('I press next for {int} times') do |_times|
     BrowserActions.scroll_down
     on(Section4APage).next_btn
   end
+end
+
+And ('I sign checklist with respective checklist creator {int}') do |_pin|
+  step 'I press next for 1 times'
+  on(Section4APage).enter_pin_btn
+  @@entered_pin = _pin
+  on(PinPadPage).enter_pin(@@entered_pin)
+end
+
+Then (/^I should see signed details$/) do
+  step 'I get ship-local-time/base-get-current-time request payload'
+  step 'I hit graphql'
+  on(Section4APage).is_signed_user_details?(@@entered_pin)
 end

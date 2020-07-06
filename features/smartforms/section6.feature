@@ -22,6 +22,7 @@ Feature: Section6
     And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should see gas reader sections
     And I tear down created form
 
@@ -45,6 +46,7 @@ Feature: Section6
     And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should not see gas reader sections
     And I tear down created form
 
@@ -80,6 +82,7 @@ Feature: Section6
     And I submit after filling up section 1 with duration less than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should not see gas reader sections
     And I tear down created form
 
@@ -113,6 +116,7 @@ Feature: Section6
     And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should see master approval button only
     And I tear down created form
 
@@ -147,6 +151,7 @@ Feature: Section6
     And I submit after filling up section 1 with duration more than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should see master review button only
     And I tear down created form
 
@@ -180,6 +185,7 @@ Feature: Section6
     And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
+    And I press next for 4 times
     Then I should see master review button only
     And I tear down created form
 

@@ -10,8 +10,6 @@ class BrowserSetup
                  load_chrome(os)
                when 'ANDROID'
                  load_web_app(os, _noreset, _fullreset)
-               # when 'CHROME_MEW',"CHROME_MEW_HEADLESS"
-               #   load_chrome_mew(os)
                else
                  raise "Invalid Platform => #{platform} for the OS => #{os}"
       end
@@ -56,26 +54,6 @@ class BrowserSetup
       # windows
     end
   end
-
-  # def self.load_chrome_mew(os)
-  #   # p "*********************************************************"
-  #   # p "Test Started:: Invoking Chrome Mobile Emulation #{ENV['DEVICE']}..!"
-  #   $extent_test.assign_category("UIAutomation - Chrome Mobile Website[#{ENV['DEVICE']}]")
-  #   if os.casecmp('mac').zero?
-  #     options = Selenium::WebDriver::Chrome::Options.new
-  #     options.add_emulation(device_metrics: {widht: 1920, height:1080, pixelRatio: 1, touch: true}) if ENV['DEVICE'] === "dashboard"
-  #     options.add_emulation(device_metrics: {widht: 1200, height:1920, pixelRatio: 1, touch: true}) if ENV['DEVICE'] === "tablet"
-  #     if ENV['PLATFORM'] == "chrome_mew_headless"
-  #       options.add_argument("--headless")
-  #       caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions"], "useAutomationExtension" => false})
-  #     else
-  #       caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"args" => ["disable-extensions"], "useAutomationExtension" => false})
-  #     end
-  #   else
-  #     # windows
-  #   end
-  #   $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps,http_client: $client, options: options
-  # end
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'

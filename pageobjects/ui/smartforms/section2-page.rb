@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class Section2Page
+class Section2Page < Section1Page
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")

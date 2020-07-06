@@ -16,17 +16,22 @@ class Section6Page
   end
 
   def toggle_to_section(_select_permit, _which_section)
-    case _which_section
-    when '6'
-      x = 9
-    when '4a'
-      x = 5
-    when '3a'
-      x = 1
-    end
-    (1..x).each do |_i|
+    (1..get_total_steps_to_section6(_which_section)).each do |_i|
       sleep 1
       next_btn
+    end
+  end
+
+  private
+
+  def get_total_steps_to_section6(_which_section)
+    case _which_section
+    when '6'
+      9
+    when '4a'
+      5
+    when '3a'
+      1
     end
   end
 end

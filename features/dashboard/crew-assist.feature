@@ -61,7 +61,7 @@ Feature: CrewAssist
     Given I launch sol-x portal
     And I launch sol-x portal on another tab
     When I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 4444
+    And I acknowledge the assistance with pin 5912
     Then I should see crew assist dialog dismiss in both tab
     And I unlink all crew from wearable
 

@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class Section3APage
+class Section3APage < Section2Page
   include PageObject
 
   # elements(:hazard_cards, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div")
