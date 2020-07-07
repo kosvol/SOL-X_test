@@ -1,9 +1,10 @@
-labels:
-  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
+labels: ["Vessel Name:", "Date:", "Time", "PTW No:", "Location of work:"]
 
-subheaders: ["Work on Pressure Pipeline/Pressure Vessels"]
+subheaders: [""]
 
-checklist:
+section: []
+
+section1:
   [
     "Has a formal Risk Assessment been carried out and discussed?",
     "Have all persons been briefed on the requirements of the work?",
@@ -21,4 +22,6 @@ checklist:
     "Are the equipment tested/calibrated prior to use?",
   ]
 
-section: []
+section2: ["Vessel Name:", "Date:", "Time", "PTW No:", "Location of work:"]
+info_box: []
+warning_box: []

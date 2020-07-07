@@ -1,13 +1,14 @@
-labels:
-  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
+labels: ["Vessel Name:", "Date", "Time", "PTW No:", "Location of work:"]
 
 subheaders:
   [
-    "Use of Camera",
     "Additional points to be complied for use of the camera in Cargo/Bunker tanks",
+    "",
   ]
 
-checklist:
+section: []
+
+section1:
   [
     "1. Cargo tank IG Pressure is kept at the minimum (not more than 500 mm/wg).",
     "2. Detailed Risk Assessment has been carried out.",
@@ -29,4 +30,6 @@ checklist:
     "3. The tanks have been cleaned to Hot Work Standard.",
   ]
 
-section: []
+section2: ["Vessel Name:", "Date", "Time", "PTW No:", "Location of work:"]
+info_box: []
+warning_box: []

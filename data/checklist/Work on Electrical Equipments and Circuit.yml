@@ -7,9 +7,18 @@ labels:
     "2. Special precautions/conditions:",
   ]
 
-subheaders: []
+subheaders:
+  [
+    "Section 1",
+    "Additional checks in case of working on low voltage live circuits",
+    "Additional checks in case of working on High Voltage dead circuits",
+    "Section 2: To be completed by the ship's Safety Officer",
+    "",
+  ]
 
-checklist:
+section: []
+
+section1:
   [
     "1. A formal Risk Assessment has been produced and discussed",
     "2. Has the Permit to Work and Energy Isolation Certificate issued?",
@@ -43,4 +52,10 @@ checklist:
     "6. Is the Safety Standby Person wearing appropriate clothing and associated personal protective equipment?",
   ]
 
-section: []
+section2:
+  [
+    "1. The following personal protective to be worn:",
+    "2. Special precautions/conditions:",
+  ]
+info_box: []
+warning_box: []

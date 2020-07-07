@@ -10,7 +10,7 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select Hotwork permit
-    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
+    And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2
     And I should see previous and next buttons
@@ -29,7 +29,7 @@ Feature: Section2ApprovalAuthority
 
     Examples:
       | level_one_permit                          | level_two_permit                                                        |
-      | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)             |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     |
       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    |
       | Working Aloft/Overside                    | Working Aloft / Overside                                                |
@@ -138,7 +138,7 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select Hotwork permit
-    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
+    And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see ship and office approval text fields disabled
 
@@ -148,7 +148,7 @@ Feature: Section2ApprovalAuthority
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select Hotwork permit
-    And I select Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage) permit for level 2
+    And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2
     And I should see display texts match for section2

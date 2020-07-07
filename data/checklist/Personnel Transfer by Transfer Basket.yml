@@ -1,7 +1,6 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -13,7 +12,6 @@ labels:
 
 subheaders:
   [
-    "Personnel Transfer by Transfer Basket",
     "Part A: General",
     "Part B: Transfer Basket",
     "Part C: Crane Booms and Derricks to be Used For Personnel Transfer",
@@ -21,9 +19,12 @@ subheaders:
     "Part E: Personnel",
     "Part F: Transfer",
     "Part G: Emergency",
+    "",
   ]
 
-checklist:
+section: []
+
+section1:
   [
     "Location of Vessel:",
     "Is the personnel transfer really required at this point and agreed upon?",
@@ -62,4 +63,16 @@ checklist:
     "Have the following emergency contingencies been discussed? - Falling from the basket. - Recovery of the basket and personnel if lift fails and transfer is suspended mid air. - Free fall of basket/personnel. - Unexpected tipping of basket hanging upon deck object or fender on LSV.",
   ]
 
-section: []
+section2:
+  [
+    "Vessel Name:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Last inspection carried out on the basket:",
+    "Last load test:",
+    "Last inspection date:",
+    "How many meters is the outreach?",
+  ]
+info_box: []
+warning_box: []

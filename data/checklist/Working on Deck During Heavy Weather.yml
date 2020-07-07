@@ -1,9 +1,8 @@
-labels:
-  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
+labels: ["Vessel Name:", "Date", "Time", "PTW No:", "Location of work:"]
 
-subheaders: ["Work on Deck During Heavy Weather"]
-
-checklist:
+subheaders: [""]
+section: []
+section1:
   [
     "Detailed Risk Assessment carried out?",
     "Risk control measure discussed in Tool Box Meeting and understood by staff?",
@@ -17,4 +16,10 @@ checklist:
     "Are lifebuoy and line ready?",
   ]
 
-section: []
+section2: ["Vessel Name:", "Date", "Time", "PTW No:", "Location of work:"]
+
+info_box:
+  [
+    "No work shall be carried out by crew on deck during heavy weather unless it is absolutely necessary for the safety of the ship or crew.",
+  ]
+warning_box: []

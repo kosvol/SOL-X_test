@@ -1,23 +1,17 @@
-labels:
-  [
-    "Name of Vessel:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Description of work:",
-  ]
+labels: ["Name of Vessel:", "Date", "Time", "PTW No:", "Description of work:"]
 
 subheaders:
   [
-    "Helicopter Operation",
     "Part A: General",
     "Are the following items of equipment on hand?",
     "Part B: Landing",
-    "Part C: Additional Items for Checklist",
+    "Part C: Additional Items for section1",
+    "",
   ]
 
-checklist:
+section: []
+
+section1:
   [
     "A formal Risk Assessment has been carried out and discussed?",
     "Has maneuvering requirement been agreed with the helicopter?",
@@ -71,4 +65,6 @@ checklist:
     "Are all precautions have been taken to prevent vapor emission on deck during the operation?",
   ]
 
-section: []
+section2: ["Name of Vessel:", "Date", "Time", "PTW No:", "Description of work:"]
+info_box: []
+warning_box: []

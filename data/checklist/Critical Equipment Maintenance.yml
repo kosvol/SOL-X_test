@@ -1,7 +1,6 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -9,9 +8,10 @@ labels:
     "Reason for critical equipment maintenance",
   ]
 
-subheaders: []
+subheaders: [""]
 
-checklist:
+section: []
+section1:
   [
     "Detailed Risk Assessment carried out with mitigating factors as follows: a) Alternate back-up equipment/systems. b) Modification in operational procedures. c) Additional: emergency safety procedures.",
     "Permit to Work System complied with?",
@@ -26,4 +26,6 @@ checklist:
     "Is there any breach of laws, rules or regulations?",
   ]
 
-section: []
+section2: []
+info_box: []
+warning_box: []

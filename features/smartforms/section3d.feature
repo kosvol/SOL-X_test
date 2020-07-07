@@ -8,7 +8,9 @@ Feature: Section3DDRA
 
   Scenario: Verify reason text field not shown after selecting Yes on DRA carried out
 
-  Scenario: Verify master cannot sign on dra section 3d
+  Scenario: Verify only RA can sign on section 3d
+
+  Scenario: Verify non RA cannot sign on dra section 3d
 
   Scenario: Verify name of signer and signature display after signing
 

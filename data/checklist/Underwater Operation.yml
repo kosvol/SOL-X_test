@@ -1,7 +1,6 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -13,9 +12,11 @@ labels:
     "VHF/UHF Ch:",
   ]
 
-subheaders: []
+subheaders: [""]
 
-checklist:
+section: []
+
+section1:
   [
     "Location of Vessel:",
     "Permission has been obtained from office for the diving operation.",
@@ -58,4 +59,18 @@ checklist:
     'Ensure Bow Thruster is switched "OFF" and breaker is removed (if applicable).',
   ]
 
-section: []
+section2:
+  [
+    "Vessel Name:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Description of work:",
+    "Length OA/BP:",
+    "Drafts:",
+    "Fwd:",
+    "Aft:",
+    "VHF/UHF Ch:",
+  ]
+info_box: []
+warning_box: []

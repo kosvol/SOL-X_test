@@ -1,16 +1,17 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
     "Reason for ODME operation in Manual mode",
   ]
 
-subheaders: ["Use of ODME in Manual Mode", "PART A", "PART B"]
+subheaders: ["PART A", "PART B", ""]
 
-checklist:
+section: []
+
+section1:
   [
     "ODME Failure reported to VS and MS with intention to operate on Manual Mode",
     "Repair plans in place and arrangement made through approved Service Engineer",
@@ -39,4 +40,16 @@ checklist:
     "Check if manual mode process has been recorded in the Oil Record Book Part 2",
   ]
 
-section: []
+section2:
+  [
+    "Vessel Name:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Reason for ODME operation in Manual mode",
+  ]
+info_box: []
+warning_box:
+  [
+    "Please complete all required conditions below before confirming the above question:",
+  ]

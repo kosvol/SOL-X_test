@@ -12,12 +12,13 @@ labels:
 
 subheaders:
   [
-    "Cold Work Operation",
     "Section 1",
     "Section 2: Information and instructions to person(s) carrying out cold work (to be completed by the Safety Officer)",
+    "",
   ]
 
-checklist:
+section: []
+section1:
   [
     "1. Are there any other permits involved with this job? Please specify",
     "2.1 Has the equipment/pipeline been vented to the atmosphere?",
@@ -37,4 +38,14 @@ checklist:
     "7. Has the warning notice for work being carried out been posted at appropriate locations?",
   ]
 
-section: []
+section2:
+  [
+    "3.4 Others:",
+    "1. The following personal protective to be worn:",
+    "2. Pipeline/vessel contained following material in service:",
+    "3. Pipeline/vessel expected to contain the following hazardous material when opened",
+    "4. Special precautions / conditions:",
+  ]
+
+info_box: []
+warning_box: []

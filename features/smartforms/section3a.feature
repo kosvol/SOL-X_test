@@ -58,7 +58,7 @@ Feature: Section3ADRA
 # | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                                |
 # | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                                 |
 # | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)               |
-# | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                                   |
+# | Hotwork                                   | Hot Work Level-2 in Designated Area                                   |
 # | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                                   |
 # | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                                          |
 ### | Rigging of Pilot/Combination Ladder | Rigging of Pilot/Combination Ladder |
@@ -116,7 +116,7 @@ Feature: Section3ADRA
 #       | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                                |
 #       | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                                 |
 #       | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)               |
-#       | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                                   |
+#       | Hotwork                                   | Hot Work Level-2 in Designated Area                                   |
 #       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                                   |
 #       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                                          |
 #   ###| Rigging of Pilot/Combination Ladder       | Rigging of Pilot/Combination Ladder                                                           |
@@ -174,7 +174,7 @@ Feature: Section3ADRA
 #       | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                                |
 #       | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                                 |
 #       | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)               |
-#       | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                                   |
+#       | Hotwork                                   | Hot Work Level-2 in Designated Area                                   |
 #       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                                   |
 #       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                                          |
 # ### | Rigging of Pilot/Combination Ladder       | Rigging of Pilot/Combination Ladder                                                           |

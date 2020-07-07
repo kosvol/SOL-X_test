@@ -31,6 +31,7 @@ And (/^I tear down created form$/) do
 end
 
 When (/^I select (.+) permit$/) do |_permit|
+  sleep 1
   on(SmartFormsPermissionPage).click_permit_type_ddl
   on(SmartFormsPermissionPage).select_permit(_permit)
   # on(SmartFormsPermissionPage).list_permit_type_elements.each do |permit|

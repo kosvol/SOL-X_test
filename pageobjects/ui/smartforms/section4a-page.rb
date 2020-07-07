@@ -18,9 +18,12 @@ class Section4APage < Section3APage
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
   elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-  spans(:checklist_question, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  spans(:section1, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
   divs(:subsection1ESE, xpath: "//div[starts-with(@id,'4A_ESE_subsection')]")
+  elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
+  elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
 
   def get_checklist_label(_which_content, checklist = nil)
     case _which_content
@@ -34,14 +37,20 @@ class Section4APage < Section3APage
                      end
     when 'subheaders'
       web_elements = sub_headers_elements
-    when 'questions'
-      web_elements = checklist_question_elements
+    when 'section1'
+      web_elements = section1_elements
+    when 'section2'
+      web_elements = section2_elements
+    when 'info_box'
+      web_elements = info_box_elements
+    when 'warning_box'
+      web_elements = warning_box_elements
     end
     data_arr = []
     web_elements.each do |label|
       data_arr << label.text
     end
-    p ">> #{data_arr}"
+    # p ">> #{data_arr}"
     data_arr
   rescue StandardError
   end
@@ -59,7 +68,7 @@ class Section4APage < Section3APage
   # ##White rgba(255, 255, 255, 1)
   def is_checklist_preselected(_checklist)
     element_yes = get_yes_elements
-    checklist_question_elements.each_with_index do |checklist, _index|
+    section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -69,7 +78,7 @@ class Section4APage < Section3APage
 
   def is_hazardous_substance_checklist
     element_yes = get_yes_elements
-    checklist_question_elements.each_with_index do |checklist, _index|
+    section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === 'Work on Hazardous Substances'
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -79,7 +88,7 @@ class Section4APage < Section3APage
 
   def select_checklist(_checklist)
     element_yes = get_yes_elements
-    checklist_question_elements.each_with_index do |checklist, _index|
+    section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -91,6 +100,8 @@ class Section4APage < Section3APage
     case _checklist
     when 'Hot Work Outside Designated Area'
       YAML.load_file('data/checklist/Hot Work Outside Designated Area.yml')
+    when 'Hot Work Within Designated Area'
+      YAML.load_file('data/checklist/Hot Work Within Designated Area.yml')
     when 'Enclosed Space Entry Checklist'
       YAML.load_file('data/checklist/Enclosed Space Entry Checklist.yml')
     when 'Underwater Operation'

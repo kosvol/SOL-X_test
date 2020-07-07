@@ -28,7 +28,7 @@ Feature: Section6
 
     Examples:
       | level_one_permit                     | level_two_permit                                                                | checklist                        |
-      | Hotwork                              | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     | Hot Work Within Designated Area  |
+      | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
       | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
       | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
       | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
@@ -122,7 +122,7 @@ Feature: Section6
 
     Examples:
       | level_one_permit                          | level_two_permit                                                        | checklist                                 |
-      | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)             | Hot Work Within Designated Area           |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area           |
       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             | Hot Work Outside Designated Area          |
       | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    | Enclosed Space Entry Checklist            |
       | Working Aloft/Overside                    | Working Aloft / Overside                                                | Working Aloft/Overside                    |

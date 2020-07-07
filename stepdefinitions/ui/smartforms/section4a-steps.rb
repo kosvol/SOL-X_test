@@ -12,18 +12,18 @@ Then (/^I should see correct checklist content for (.+) checklist$/) do |_checkl
   on(Section4APage).select_checklist(_checklist)
   on(Section4APage).next_btn
   sleep 1
+  # on(Section4APage).get_checklist_label('section2', _checklist).each do |tmp|
+  #   p ">>> #{tmp}"
+  # end
+  # p ">>> #{on(Section4APage).get_checklist_label('section1', _checklist)}"
+
   is_equal(on(Section4APage).get_checklist_label('labels', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['labels'])
-  is_equal(on(Section4APage).get_checklist_label('sections', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section'])
-  # tmp = on(Section4APage).get_checklist_base_data(_checklist)['section']
-  # tmp.each_with_index do |_question, index|
-  #   # p ">>> #{on(Section4APage).get_checklist_label('sections', _checklist)[index]}"
-  #   is_equal(on(Section4APage).get_checklist_label('sections', _checklist)[index], tmp[index])
-  # end
   is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
-  # tmp = on(Section4APage).get_checklist_base_data(_checklist)['checklist']
-  # tmp.each_with_index do |_question, index|
-  #   is_equal(on(Section4APage).get_checklist_label('questions', _checklist)[index], tmp[index])
-  # end
+  is_equal(on(Section4APage).get_checklist_label('sections', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section'])
+  is_equal(on(Section4APage).get_checklist_label('section1', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section1'])
+  is_equal(on(Section4APage).get_checklist_label('section2', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section2'])
+  is_equal(on(Section4APage).get_checklist_label('info_box', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['info_box'])
+  is_equal(on(Section4APage).get_checklist_label('warning_box', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['warning_box'])
 end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|

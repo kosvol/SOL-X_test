@@ -1,7 +1,6 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -12,9 +11,9 @@ labels:
     "Last used date:",
   ]
 
-subheaders: ["Rotational Portable Power Tools (PPT)"]
+subheaders: [""]
 
-checklist:
+section1:
   [
     "Mode:",
     "Has the Operator been briefed and trained on the safe use of power tools?",
@@ -33,3 +32,17 @@ checklist:
   ]
 
 section: []
+section2:
+  [
+    "Vessel Name:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Location of work:",
+    "Description of work:",
+    "Equipment Serial No:",
+    "Last user:",
+    "Last used date:",
+  ]
+info_box: []
+warning_box: []

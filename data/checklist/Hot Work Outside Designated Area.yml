@@ -1,8 +1,8 @@
 labels: ["Name of Vessel:", "Location of work:", "Description of work:"]
 
-subheaders: ["Hot Work Outside Designated Area", "Section 1", "Section 2", ""]
+subheaders: ["Section 1", "Section 2", ""]
 
-checklist:
+section1:
   [
     "1. Is Personnel Protective Equipment available as per company guidelines, ISGOTT and Code of Safe working Practice recommendations?",
     "2. Has the hot work area been checked with a combustible gas indicator for hydrocarbon vapors?",
@@ -44,3 +44,14 @@ section:
     "Section 1 is to be completed at all times and Section 2 to be completed if applicable.",
     "The condition under which the operation takes place may change during the process. The changes may be such that safety can no longer be regarded as guaranteed. The party noticing or causing the unsafe condition is under an obligation to take all necessary actions, which may include stopping the operation, to re-establish safe conditions. The presence of the unsafe condition should be reported.",
   ]
+
+section2: []
+
+info_box:
+  [
+    "1. This checklist relates to any work involving temperature conditions, which are likely to be of sufficient intensity to cause ignition of combustible gases, vapor or liquids in, or adjacent to the area involved.\n2. Tests for combustible gas should be carried out immediately before commencement of hot work and at frequent intervals as long as the work is in progress.",
+    "Section 1 is to be completed at all times and Section 2 to be completed if applicable.",
+    "The condition under which the operation takes place may change during the process. The changes may be such that safety can no longer be regarded as guaranteed. The party noticing or causing the unsafe condition is under an obligation to take all necessary actions, which may include stopping the operation, to re-establish safe conditions. The presence of the unsafe condition should be reported.",
+  ]
+
+warning_box: []

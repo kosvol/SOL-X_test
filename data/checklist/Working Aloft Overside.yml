@@ -1,7 +1,6 @@
 labels:
   [
     "Vessel Name:",
-    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -11,13 +10,15 @@ labels:
 
 subheaders:
   [
-    "Working Aloft/Overside",
     "Working on Funnel",
     "Working near Radar Scanners/Radio Aerials/Whistle",
     "Working Overside",
+    "",
   ]
 
-checklist:
+section: []
+
+section1:
   [
     "Working aloft and outboard guidelines in COSWP Chapter 15 have been read, understood and complied.",
     "Has a Detailed Risk Assessment of the work been carried out?",
@@ -48,4 +49,14 @@ checklist:
     "Is someone standing by?",
   ]
 
-section: []
+section2:
+  [
+    "Vessel Name:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Location of work:",
+    "Equipment/Tools to be used:",
+  ]
+info_box: []
+warning_box: []

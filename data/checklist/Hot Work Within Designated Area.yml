@@ -1,24 +1,31 @@
-checklist:
+labels: []
+subheaders: []
+section: []
+section1:
   [
-    "The Engine Room Workshop has been inspected and authorised by Chief Engineer for Hot Work.",
-    "The engine room workshop continues to remain clean and tidy.",
-    "The welding and burning equipment is in good condition.",
-    "That place of work and surroundings has been cleaned for dust scale, sludge and sediment.",
-    "That all combustible material in the vicinity has been removed or satisfactorily covered up.",
-    "That proper and useable fire fighting equipment has been placed where work is to be carried out.",
-    "That proper protective clothing and gears are available for the person undertaking the job.",
-    "That the fire watchman is fully familiarized with the dangers involved in gas welding and burning.",
-    "That proper and adequate ventilation has been arranged.",
-    "That unauthorized personnel are kept away from the place of work.",
-    "That Duty Engineer is to be informed before commencing and after completion of hot work.",
-    "No Cargo or ballast operation, including venting of cargo tanks, tank cleaning in progress.",
-    "No bunker operations in progress, de-slopping or transferring of bunkers, sludge etc.",
-    "If in port or port Limits prior permission is obtained from shore authority.",
-    "The vessel is not alongside at any terminal or ship, including loading, discharging and STS operations.",
-    "Risk Assessment Completed and Risks discussed with personnel involved.",
-    "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",
+    "1. The Engine Room Workshop has been inspected and authorized by Chief Engineer for Hot Work.",
+    "2. The engine room workshop continues to remain clean and tidy.",
+    "3. The welding and burning equipment is in good condition.",
+    "4. Place of work and surroundings have been cleaned for dust scale, sludge and sediment.",
+    "5. All combustible material in the vicinity has been removed or satisfactorily covered up.",
+    "6. Proper and useable fire fighting equipment has been placed where work is to be carried out.",
+    "7. Proper protective clothing and gears are available for the person undertaking the job.",
+    "8. The fire watchman is fully familiarized with the dangers involved in gas welding and burning.",
+    "9. Proper and adequate ventilation has been arranged.",
+    "10. Unauthorized personnel are kept away from the place of work.",
+    "11. Duty Engineer is to be informed before commencing and after completion of hot work.",
+    "12. No Cargo or ballast operation, including venting of cargo tanks, tank cleaning in progress.",
+    "13. No bunker operations in progress, de-slopping or transferring of bunkers, sludge, etc.",
+    "14. If in port or port limits, prior permission is obtained from shore authority.",
+    "15. The vessel is not alongside at any terminal or ship, including loading, discharging and STS operations.",
+    "16. Risk Assessment Completed and Risks discussed with personnel involved.",
   ]
 
-subheaders: []
+# "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",
+section2: []
 
-section: []
+info_box: []
+warning_box:
+  [
+    "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",
+  ]

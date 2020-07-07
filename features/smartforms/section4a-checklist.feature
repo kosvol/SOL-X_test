@@ -37,7 +37,7 @@ Feature: Section4AChecklist
       | A 4/E | 2424 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
       | ETO   | 1717 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 
-  # | A/M   | 1212 | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     | Hot Work Within Designated Area           |
+  # | A/M   | 1212 | Hotwork                                   | Hot Work Level-2 in Designated Area                     | Hot Work Within Designated Area           |
   # | C/O   | 5912 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
   # | A/M   | 1212 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
   # | C/O   | 5912 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
@@ -66,7 +66,7 @@ Feature: Section4AChecklist
 
     Examples:
       | Rank   | pin  | level_one_permit                          | level_two_permit                                                                | checklist                                 |
-      | Master | 1111 | Hotwork                                   | Hot Work in E/R Workshop Level-2 (Loaded & Ballast Passage)                     | Hot Work Within Designated Area           |
+      | Master | 1111 | Hotwork                                   | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area           |
       | 4/O    | 1010 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
       | A 4/O  | 1537 | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
       | 5/O    | 0099 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
@@ -194,6 +194,7 @@ Feature: Section4AChecklist
 
     Examples:
       | level_one_permit                          | level_two_permit                                                        | checklist                                 |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area           |
       | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area          |
       | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    | Enclosed Space Entry Checklist            |
       | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                      |
