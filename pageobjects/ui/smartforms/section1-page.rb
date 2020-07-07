@@ -24,7 +24,7 @@ class Section1Page < SmartFormsPermissionPage
 
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
-    BrowserActions.scroll_down
+    BrowserActions.scroll_down(_element)
     $browser.find_element(:xpath, @@maint_duration_dd)
     _element.text === 'Please answer question `Will the duration of this Maintenance be over 2 hours` before continuing.'
   rescue StandardError
@@ -83,7 +83,7 @@ class Section1Page < SmartFormsPermissionPage
   def fill_text_area(_input, _text)
     _elements = $browser.find_elements(:xpath, _input)
     _elements.each do |element|
-      BrowserActions.scroll_down
+      BrowserActions.scroll_down(element)
       element.send_keys(_text)
     end
   end
@@ -106,7 +106,7 @@ class Section1Page < SmartFormsPermissionPage
     _element = $browser.find_elements(:xpath, _dd_list)
     list_of_sea_states = []
     _element.each do |elem|
-      BrowserActions.scroll_down
+      BrowserActions.scroll_down(elem)
       list_of_sea_states << elem.text
     end
     p ">>> #{list_of_sea_states}"

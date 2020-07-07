@@ -39,6 +39,6 @@ Then (/^I should see display texts match for section2$/) do
   section2_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section2_labels']
   page_elements = on(Section1Page).all_labels_elements
   page_elements.each_with_index do |label, _index|
-    is_equal(section1_labels_arr[_index], label.text)
+    is_equal(section2_labels_arr[_index], label.text)
   end
 end

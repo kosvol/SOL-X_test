@@ -23,8 +23,8 @@ World(AssertionUtil)
 PageObject.default_element_wait = 5
 PageObject.default_page_wait = 5
 
-$current_application = ENV['APPLICATION'].to_s
-$current_environment = ENV['ENVIRONMENT'].to_s
+$current_application = ENV['APPLICATION']
+$current_environment = ENV['ENVIRONMENT']
 
 $obj_env_yml = YAML.load_file('config/environment.yml')
 $sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')

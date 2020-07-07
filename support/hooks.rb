@@ -9,7 +9,7 @@ AfterConfiguration do |config|
   end
 
   $client = Selenium::WebDriver::Remote::Http::Default.new
-  $client.read_timeout = 120
+  $client.read_timeout = 60
   $tag = config.tag_expressions.join("'_'")
   $timestamp = Time.now.strftime('%Y_%m_%d-%IH_%MM_%SS_%LS_%p')
   $test_report = 'finalreport'
