@@ -32,6 +32,8 @@ class Section6Page
       5
     when '3a'
       1
+    when '3d'
+      4
     end
   end
 end
