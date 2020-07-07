@@ -1,0 +1,35 @@
+labels:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Location of work:",
+    "Description of work:",
+    "Equipment Serial No:",
+    "Last user:",
+    "Last used date:",
+  ]
+
+subheaders: ["Rotational Portable Power Tools (PPT)"]
+
+checklist:
+  [
+    "Mode:",
+    "Has the Operator been briefed and trained on the safe use of power tools?",
+    "Is the PPT right and fit for the task?",
+    "Are adequate PPE such as face shield, goggles, ear plugs and hand gloves provided?",
+    "Is the PPT connected using industrial grade plug and socket?",
+    "Is the PPT free from defects?",
+    "Is the air/hydraulic hose connection good?",
+    "Is there any modification done to any part of the PPT?",
+    "Has the safety cut-off/limit switch been tested?",
+    "Is the rotating or moving parts of equipment adequately guarded to prevent physical contact with the operator?",
+    "All cord-connected, electrically-operated tools and equipment are effectively grounded or of the approved double insulated type?",
+    "Is the abrasive wheel free from cracks or defects?",
+    "Is the speed marked on the disc at least as high as the speed marked on the tool?",
+    "Is the right disc (cutting/grinding) suitable for the job?",
+  ]
+
+section: []

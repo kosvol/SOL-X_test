@@ -1,0 +1,51 @@
+labels:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Location of work:",
+    "Equipment/Tools to be used:",
+  ]
+
+subheaders:
+  [
+    "Working Aloft/Overside",
+    "Working on Funnel",
+    "Working near Radar Scanners/Radio Aerials/Whistle",
+    "Working Overside",
+  ]
+
+checklist:
+  [
+    "Working aloft and outboard guidelines in COSWP Chapter 15 have been read, understood and complied.",
+    "Has a Detailed Risk Assessment of the work been carried out?",
+    "Has communication with the responsible officer been established?",
+    "Have warning notices been posted?",
+    "Are the planks or material of the staging/bosun's chair in good condition and defect free?",
+    "Has the staging/bosun's chair been load tested?",
+    "Has the staging/bosun's chair been anchored to a point strong enough to take the load?",
+    "Have means been made to minimize the movement of the staging/bosun's chair?",
+    "Has a safety net been rigged (if applicable)?",
+    "Are the ropes for gantlines and lifelines in good condition and long enough?",
+    "Are the blocks and other securing equipment of appropriate type?",
+    "Are all other equipment in good order?",
+    "Is the gantline clear of sharp edges when used?",
+    "Has the Duty Engineer been advised to reduce emission of steam, harmful gases and fumes?",
+    "Has the whistle been isolated (if applicable)?",
+    "All Radar Scanners isolated?",
+    "Have warning notices been placed to stop the use of ARPA/Radar/Radio?",
+    "Has the valve/switch for the FWD or AFT whistle been shut/isolated and changed over with the warning notices posted as appropriate?",
+    "No work will be carried out overside while vessel is underway (except whilst rigging pilot/combination ladders).",
+    "Has OOW/Engineer been advised? If work is done from 'Punts', then warning notices should be put up in the E/R, at the controls and on the Bridge (if this work is to be done at Stern area).",
+    "Are lifebouy and line ready?",
+    "Is lifejacket or lifevest worn?",
+    "Is PPE used as per PPE matrix and in good condition?",
+    "Is safety helmet worn?",
+    "Are safety harness and line attached to a strong point?",
+    "Is a bucket or container available to send up and lower tools?",
+    "Is someone standing by?",
+  ]
+
+section: []

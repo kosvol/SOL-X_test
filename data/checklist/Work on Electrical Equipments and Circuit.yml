@@ -1,0 +1,46 @@
+labels:
+  [
+    "Name of Vessel:",
+    "Location of work:",
+    "Description of work:",
+    "1. The following personal protective to be worn:",
+    "2. Special precautions/conditions:",
+  ]
+
+subheaders: []
+
+checklist:
+  [
+    "1. A formal Risk Assessment has been produced and discussed",
+    "2. Has the Permit to Work and Energy Isolation Certificate issued?",
+    "3. Has the power been switched off locally and at the main? Has the switch been locked and tagged out?",
+    "4. Have the fuses been removed and/or circuit breaker opened?",
+    "5. Have live wires and points been tested to ensure there is no electricity resident?",
+    "6. Have all capacitors drained/discharged?",
+    "7. Are workers competent to perform the required work scope?",
+    "8. Have dry insulating mats been placed at the work place?",
+    "9. Are workers wearing appropriate clothing and associated personal protective equipment? While working on Switchboard and live circuits the competent person shall wear flame retardant coveralls",
+    "10. Are the necessary first aid facilities provided and accessible, including resuscitation/defibrillation equipment?",
+    "11. Have personnel removed all wrist watches, rings, jewellery and other metal objects from their body?",
+    "12. Are portable ladder side rails insulated?",
+    "13. Are insulated hooks placed nearby for immediate use?",
+    "14. CO2 fire extinguisher placed near area of work?",
+    "1. Has the access in vicinity of work been restricted to persons involved in the work?",
+    "2. Hang or rest meter to minimize personal exposure",
+    "3. Is one hand in your pocket or behind your back while working? Remember to 'TEST BEFORE YOU TOUCH'.",
+    "4. All meters and tools are tested and in good condition",
+    "5. A competent stand-by person wearing PPE, ready to assist",
+    "6. All tools and measuring equipment are insulated",
+    "7. Is the area well lit and ventilated?",
+    "8. Probe tips have minimum amount of exposed metal",
+    "9. Are escape routes identified and all access clear of obstruction?",
+    "10. Is the stand-by person aware of the circuit isolation?",
+    "1. Has the equipment been made dead?",
+    "2. Has the absence of voltage from all conductors been verified using appropriate and approved high voltage detectors?",
+    "3. Has the equipment been Isolated and all steps taken to lock off live conductors, voltage transformers and dead conductors that may become live?",
+    "4. Have all points of disconnected High Voltage Supply been earthed?",
+    "5. Has the access in vicinity of work been restricted to persons involved in the work?",
+    "6. Is the Safety Standby Person wearing appropriate clothing and associated personal protective equipment?",
+  ]
+
+section: []

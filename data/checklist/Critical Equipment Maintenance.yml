@@ -1,0 +1,29 @@
+labels:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Name of equipment/systems/alarms",
+    "Reason for critical equipment maintenance",
+  ]
+
+subheaders: []
+
+checklist:
+  [
+    "Detailed Risk Assessment carried out with mitigating factors as follows: a) Alternate back-up equipment/systems. b) Modification in operational procedures. c) Additional: emergency safety procedures.",
+    "Permit to Work System complied with?",
+    "Will equipment require modification?",
+    "Is there a requirement to amend the Machinery Operating Manual?",
+    "Any additional training required for the maintenance work?",
+    "Required spare parts are available onboard?",
+    "Are there any safety implications?",
+    "Are there human factor (health) implications?",
+    "Are there any security implications?",
+    "Are there any environmental implications?",
+    "Is there any breach of laws, rules or regulations?",
+  ]
+
+section: []

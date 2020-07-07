@@ -11,10 +11,40 @@ class Section4APage < Section3APage
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
   @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
-  spans(:checklist_name, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/span")
   button(:enter_pin_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button[1]")
   element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
+
+  elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
+  elements(:sub_headers, xpath: '//h2')
+  elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
+  spans(:checklist_question, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
+  divs(:subsection1ESE, xpath: "//div[starts-with(@id,'4A_ESE_subsection')]")
+
+  def get_checklist_label(_which_content, checklist = nil)
+    case _which_content
+    when 'labels'
+      web_elements = label_text_elements
+    when 'sections'
+      web_elements = if checklist != 'Enclosed Space Entry Checklist'
+                       subsection1_elements
+                     else
+                       subsection1ESE_elements
+                     end
+    when 'subheaders'
+      web_elements = sub_headers_elements
+    when 'questions'
+      web_elements = checklist_question_elements
+    end
+    data_arr = []
+    web_elements.each do |label|
+      data_arr << label.text
+    end
+    p ">> #{data_arr}"
+    data_arr
+  rescue StandardError
+  end
 
   def is_signed_user_details?(_entered_pin)
     BrowserActions.scroll_down(rank_and_name_stamp)
@@ -29,7 +59,7 @@ class Section4APage < Section3APage
   # ##White rgba(255, 255, 255, 1)
   def is_checklist_preselected(_checklist)
     element_yes = get_yes_elements
-    checklist_name_elements.each_with_index do |checklist, _index|
+    checklist_question_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -39,7 +69,7 @@ class Section4APage < Section3APage
 
   def is_hazardous_substance_checklist
     element_yes = get_yes_elements
-    checklist_name_elements.each_with_index do |checklist, _index|
+    checklist_question_elements.each_with_index do |checklist, _index|
       next unless checklist.text === 'Work on Hazardous Substances'
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -49,11 +79,42 @@ class Section4APage < Section3APage
 
   def select_checklist(_checklist)
     element_yes = get_yes_elements
-    checklist_name_elements.each_with_index do |checklist, _index|
+    checklist_question_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
       element_yes[_index].click
+    end
+  end
+
+  def get_checklist_base_data(_checklist)
+    case _checklist
+    when 'Hot Work Outside Designated Area'
+      YAML.load_file('data/checklist/Hot Work Outside Designated Area.yml')
+    when 'Enclosed Space Entry Checklist'
+      YAML.load_file('data/checklist/Enclosed Space Entry Checklist.yml')
+    when 'Underwater Operation'
+      YAML.load_file('data/checklist/Underwater Operation.yml')
+    when 'Working Aloft/Overside'
+      YAML.load_file('data/checklist/Working Aloft Overside.yml')
+    when 'Work on Pressure Pipelines'
+      YAML.load_file('data/checklist/Work on pressure pipelines pressure vessels.yml')
+    when 'Use of ODME in Manual Mode'
+      YAML.load_file('data/checklist/ODME.yml')
+    when 'Personnel Transfer by Transfer Basket'
+      YAML.load_file('data/checklist/Personnel Transfer by Transfer Basket.yml')
+    when 'Helicopter Operation Checklist'
+      YAML.load_file('data/checklist/Helicopter Operation.yml')
+    when 'Work on Electrical Equipment and Circuits'
+      YAML.load_file('data/checklist/Work on Electrical Equipments and Circuit.yml')
+    when 'Rotational Portable Power Tools (PPT)'
+      YAML.load_file('data/checklist/Rotational Portable Power tools.yml')
+    when 'Use of Camera Checklist'
+      YAML.load_file('data/checklist/Use of Camera.yml')
+    when 'Work on Deck During Heavy Weather'
+      YAML.load_file('data/checklist/Working on Deck During Heavy Weather.yml')
+    when 'Cold Work Operation Checklist'
+      YAML.load_file('data/checklist/Cold Work.yml')
     end
   end
 

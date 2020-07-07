@@ -1,0 +1,32 @@
+labels:
+  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
+
+subheaders:
+  [
+    "Use of Camera",
+    "Additional points to be complied for use of the camera in Cargo/Bunker tanks",
+  ]
+
+checklist:
+  [
+    "1. Cargo tank IG Pressure is kept at the minimum (not more than 500 mm/wg).",
+    "2. Detailed Risk Assessment has been carried out.",
+    "3. If alongside terminal, terminal permission has been obtained.",
+    "4. Vessel is not engaged in tank cleaning, purging, gas-freeing or heavy weather ballasting operation.",
+    "5. No cargo, bunkering, tank cleaning operations and venting of gases is in progress.",
+    "6. Cargo tank atmosphere has O2 less than 8%",
+    "7. Ballast tanks/void spaces are free of HC gases.",
+    "8. Fire Extinguishers are ready for use.",
+    "9. Fire Main is pressurized and fire hoses are rigged for immediate use.",
+    "10. Combustible gas indicator reading is not more than 1% LEL at the location of work.",
+    "11. Camera has been inspected and found to be in good condition (not mobile phone).",
+    "12. All personnel are carrying Personal Gas Monitors (PGM).",
+    "13. Fixed Gas Monitoring Equipment is operational.",
+    "14. Site of work is clean and free of source of combustible vapour.",
+    "15. Safety briefing/toolbox meeting has been conducted.",
+    "1. The cargo/bunker tanks, where the camera is used, are ventilated thoroughly.",
+    "2. O2 content in the tanks is 21% and LEL is not more than 1%.",
+    "3. The tanks have been cleaned to Hot Work Standard.",
+  ]
+
+section: []

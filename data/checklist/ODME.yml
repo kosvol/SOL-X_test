@@ -1,0 +1,42 @@
+labels:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Reason for ODME operation in Manual mode",
+  ]
+
+subheaders: ["Use of ODME in Manual Mode", "PART A", "PART B"]
+
+checklist:
+  [
+    "ODME Failure reported to VS and MS with intention to operate on Manual Mode",
+    "Repair plans in place and arrangement made through approved Service Engineer",
+    "Discussion carried out with VS/MS for alignment to operate the ODME on Manual mode",
+    "DRA sent to VS/MS for review of Manual operation of ODME",
+    "Has the DRA been reviewed after Notification to the Head of Fleet Operation Department and DPA",
+    "VS/MS has received the Voyage Dispensation from Flag state on the basis of following Condition is met",
+    "An Oil discharge monitoring method must be manually operable",
+    "The vessel must provide documentary records in the Deck Log Book or the Oil Record Book or in the vessel's planned maintenance record that the system has been maintained in accordance with the manufacturer's recommendation's",
+    "The equipment has been utilized and records are available which verify the use of the unit during all ballast discharges prior to the present functional defect and that this defect has been duly recorded in the Oil record Book",
+    "Prior to arrival at the unloading port, the failure has been reported to the authorities ( Port state, and Classification Society)",
+    "Every reasonable effort has been made to repair the defective unit prior to the vessel departing from unloading port",
+    "DPA approval obtained for Manual operation of ODME and communicated to Master by email",
+    "ODME equipment calibrated?",
+    "Is ODME Paper roll and Printer cartridge sufficient to log the entire operation",
+    "MARPOL Annex I, Reg. 34.A Control of discharge of oil is being complied with",
+    "DRA reviewed prior commencement of operation",
+    "Associated ODME system lines flushed before operation",
+    "Minimum of 24 Hours Settling time allowed prior Decanting.",
+    "Decanting operation to be carried out during Daylight Hours only.",
+    "Confirm vessel not Rolling nor Pitching during Decanting operation.",
+    "Use Stripping pump only for a better control of discharge.",
+    "Person posted at overside discharge continuously and with communication established.",
+    "Person monitoring oil water Interface with communication established",
+    "Stop Discharge at two (2) meters Sounding of Interface or based on visual observation of quality of discharge",
+    "Check if manual mode process has been recorded in the Oil Record Book Part 2",
+  ]
+
+section: []

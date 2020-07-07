@@ -1,0 +1,65 @@
+labels:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Last inspection carried out on the basket:",
+    "Last load test:",
+    "Last inspection date:",
+    "How many meters is the outreach?",
+  ]
+
+subheaders:
+  [
+    "Personnel Transfer by Transfer Basket",
+    "Part A: General",
+    "Part B: Transfer Basket",
+    "Part C: Crane Booms and Derricks to be Used For Personnel Transfer",
+    "Part D: Weather",
+    "Part E: Personnel",
+    "Part F: Transfer",
+    "Part G: Emergency",
+  ]
+
+checklist:
+  [
+    "Location of Vessel:",
+    "Is the personnel transfer really required at this point and agreed upon?",
+    "Is the crane in good working condition?",
+    "Are the basket, hooks, and taglines in good condition?",
+    "Is there sufficient manpower available for the operation? (Signal man, Personnel for each tagline, Crane operator, Officer-in-charge for transfer)",
+    "All ropes attached (tag line and safety ropes) are clear, free from snagging?",
+    "Has the person to be transferred been appraised and are they ready to be transferred? (Not to exceed 2 persons at any time)",
+    "Confirm that no safety limit switches of the crane are bypassed",
+    "If the operation is at night, is adequate lighting available and can the crane operator see the hand signals from signal man? Also is the other vessel sufficiently lit?",
+    "Are adequate life rings/buoys with lights available at the rail and are personnel standing by?",
+    "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?",
+    "Is vessel movement in seaway acceptable for personnel transfer?",
+    "Has dry run with transfer basket been completed?",
+    "Has permission for transfer been given by Master/Duty Officer in CCR?",
+    "If more than one basket is available, has it been decided which basket is being used for transfer of personnel (SS/STBL to use work boat basket while transfer with workboat)?",
+    "Is the basket tested and maintained as per manufacturer's instruction?",
+    "Is the weight of the basket (including personnel and baggage) less than 50% of the SWL of crane?",
+    "Is the crane tested and maintained as per instructions?",
+    "Does the crane have a system to prevent free fall (secondary braking)?",
+    "Is the crane certified to allow personnel basket to be recovered in the event of main lifting failure?",
+    "Is the outreach of crane sufficient enough, taking into account the width of fenders and also any obstructions on deck, for which crane boom has to be at an angle to the ship side?",
+    "Is height, including the basket height and crane hook, enough to clear the rails safely for transfer?",
+    "Does the crane hook have a latch in place and is it free?",
+    "Are weather conditions (wind, visibility, sea condition) conducive for personnel transfer during the entire operation period?",
+    "Are weather and sea conditions such that the LSV master can hold station for transfer?",
+    "Are sufficient personnel available for the transfer? (Signal man, Personnel for each tagline, Crane operator, Officer-in-charge for transfer)",
+    "Is the crane operator trained in the usage of own vessel's crane and its limitations?",
+    "Have all personnel (crane operator, signal man and other staff) agreed that communication is by international hand signal and do all personnel have alternate means of communication as back-up (radio)?",
+    "Does the crane operator have clear view of the entire transfer? If not, the crane operator should only follow the signals from signal man and emergency stop signal from any one any time.",
+    "If operation is at night, is adequate lighting available, can the crane operator see the hand signals from signal man, and is the other vessel sufficiently lit?",
+    "Are adequate life rings/buoys with lights available at the rail and personnel available?",
+    "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?",
+    "Have all parties involved in transfer been briefed and transfer times during the entire operation agreed upon?",
+    "Is vessel movement in seaway acceptable for personnel transfer?",
+    "Have the following emergency contingencies been discussed? - Falling from the basket. - Recovery of the basket and personnel if lift fails and transfer is suspended mid air. - Free fall of basket/personnel. - Unexpected tipping of basket hanging upon deck object or fender on LSV.",
+  ]
+
+section: []
