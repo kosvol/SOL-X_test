@@ -122,9 +122,9 @@ Feature: Section4AChecklist
   # | A/M   | 1212 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
   # | C/O   | 5912 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
   # | A C/O | 5555 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-  # | 2/O   | 6666 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
+  # | 2/O   | 6666 | Critical Equipment Maintenance | Maintenance on magnetic compass                                          | Critical Equipment Maintenance Checklist |
   # | A 2/O | 7777 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-  # | 3/O   | 8888 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
+  # | 3/O   | 8888 | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
   # | A 3/O | 9999 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
   # | C/E   | 9780 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
   # | A C/E | 0110 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
@@ -157,9 +157,9 @@ Feature: Section4AChecklist
   # | BOS    | 1818 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
   # | A/B    | 2121 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
   # | O/S    | 1919 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-  # | 5/E    | 6322 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
+  # | 5/E    | 6322 | Critical Equipment Maintenance | Maintenance on magnetic compass                                          | Critical Equipment Maintenance Checklist |
   # | E/C    | 9985 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-  # | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
+  # | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
   # | ETR    | 1715 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
   # | T/E    | 1611 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
   # | PMAN   | 2020 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |

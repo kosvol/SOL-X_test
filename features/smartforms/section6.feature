@@ -4,14 +4,6 @@ Feature: Section6
   I want to ...
   So that ...
 
-  # Scenario: Verify user can view/edit EIC certificate after selecting Yes
-
-  # Scenario: Verify date and time is display after selecting Yes
-
-  # Scenario: Verify master cannot sign on EIC
-
-  # Scenario: Verify name and signature still display even after navigating back to Sign and cancel out
-
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -87,24 +79,24 @@ Feature: Section6
     And I tear down created form
 
     Examples:
-      | level_one_permit               | level_two_permit                                                                              | checklist                                |
-      | Critical Equipment Maintenance | Maintenance on Anchor                                                                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                                     | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
+      | level_one_permit               | level_two_permit                                                           | checklist                                |
+      | Critical Equipment Maintenance | Maintenance on Anchor                                                      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                 | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                  | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on magnetic compass                                            | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non-OA ptw display submit for master approval on button
     Given I launch sol-x portal
@@ -156,24 +148,24 @@ Feature: Section6
     And I tear down created form
 
     Examples:
-      | level_one_permit               | level_two_permit                                                                              | checklist                                |
-      | Critical Equipment Maintenance | Maintenance on Anchor                                                                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment                    | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                                    | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                                     | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Critical Equipment - Magnetic Compass                                          | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
+      | level_one_permit               | level_two_permit                                                           | checklist                                |
+      | Critical Equipment Maintenance | Maintenance on Anchor                                                      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                 | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                  | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on magnetic compass                                            | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify OA ptw display submit for master review on button
     Given I launch sol-x portal

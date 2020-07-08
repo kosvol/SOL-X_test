@@ -27,9 +27,9 @@ Feature: Section3ADRA
 # | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 # | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 # | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-# | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Magnetic Compass                                          |
+# | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 # | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-# | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device |
+# | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
 # | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 # | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 # | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
@@ -85,9 +85,9 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 #       | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-#       | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Magnetic Compass                                          |
+#       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-#       | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device |
+#       | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 #       | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
@@ -143,9 +143,9 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 #       | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-#       | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Magnetic Compass                                          |
+#       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-#       | Critical Equipment Maintenance            | Maintenance on Critical Equipment - Main Propulsion System - Shutdown Alarm & Tripping Device |
+#       | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 #       | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
