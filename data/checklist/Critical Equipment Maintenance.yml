@@ -1,6 +1,7 @@
 labels:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -26,6 +27,15 @@ section1:
     "Is there any breach of laws, rules or regulations?",
   ]
 
-section2: []
+section2:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Name of equipment/systems/alarms",
+    "Reason for critical equipment maintenance",
+  ]
 info_box: []
 warning_box: []

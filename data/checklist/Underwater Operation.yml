@@ -1,6 +1,7 @@
 labels:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -62,10 +63,10 @@ section1:
 section2:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
-    "Description of work:",
     "Length OA/BP:",
     "Drafts:",
     "Fwd:",

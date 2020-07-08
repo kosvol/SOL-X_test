@@ -1,4 +1,12 @@
-labels: ["Name of Vessel:", "Date", "Time", "PTW No:", "Description of work:"]
+labels:
+  [
+    "Name of Vessel:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Description of work:",
+  ]
 
 subheaders:
   [
@@ -65,6 +73,6 @@ section1:
     "Are all precautions have been taken to prevent vapor emission on deck during the operation?",
   ]
 
-section2: ["Name of Vessel:", "Date", "Time", "PTW No:", "Description of work:"]
+section2: ["Name of Vessel:", "Date:", "Date", "Time", "PTW No:"]
 info_box: []
 warning_box: []

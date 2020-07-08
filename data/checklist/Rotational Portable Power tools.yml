@@ -1,6 +1,7 @@
 labels:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -35,11 +36,10 @@ section: []
 section2:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
-    "Location of work:",
-    "Description of work:",
     "Equipment Serial No:",
     "Last user:",
     "Last used date:",

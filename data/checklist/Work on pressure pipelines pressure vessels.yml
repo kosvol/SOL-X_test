@@ -1,4 +1,5 @@
-labels: ["Vessel Name:", "Date:", "Time", "PTW No:", "Location of work:"]
+labels:
+  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
 
 subheaders: [""]
 
@@ -22,6 +23,6 @@ section1:
     "Are the equipment tested/calibrated prior to use?",
   ]
 
-section2: ["Vessel Name:", "Date:", "Time", "PTW No:", "Location of work:"]
+section2: ["Vessel Name:", "Date:", "Date", "Time", "PTW No:"]
 info_box: []
 warning_box: []

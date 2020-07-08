@@ -1,6 +1,7 @@
 labels:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -61,7 +62,16 @@ section:
     "THE PERMIT ASSOCIATED WITH THIS CHECKLIST IS RENDERED INVALID SHOULD VENTILATION OF THE SPACE STOP OR IF ANY OF THE CONDITIONS NOTED IN THIS CHECKLIST CHANGE.",
   ]
 
-section2: []
+section2:
+  [
+    "Vessel Name:",
+    "Date:",
+    "Date",
+    "Time",
+    "PTW No:",
+    "Name of enclosed space for entry:",
+    "Reporting interval, minutes:",
+  ]
 
 info_box:
   [

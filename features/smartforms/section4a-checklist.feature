@@ -209,7 +209,7 @@ Feature: Section4AChecklist
       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather         |
       | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist             |
 
-# rigging ladder checklist
-# pre checklist
+  # rigging ladder checklist
+  # pre checklist
 
-# Scenario: Verify checklist form is pre-populated with PTW permit number, data and time
+  Scenario: Verify checklist form is pre-populated with PTW permit number, data and time

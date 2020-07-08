@@ -1,6 +1,7 @@
 labels:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
@@ -52,10 +53,10 @@ section1:
 section2:
   [
     "Vessel Name:",
+    "Date:",
     "Date",
     "Time",
     "PTW No:",
-    "Location of work:",
     "Equipment/Tools to be used:",
   ]
 info_box: []
