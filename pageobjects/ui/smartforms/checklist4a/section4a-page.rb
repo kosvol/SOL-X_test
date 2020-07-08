@@ -25,6 +25,19 @@ class Section4APage < Section3APage
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
 
+  # index 1 is date, index 2 is time
+  elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
+  @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+
+  def is_checklist_details_prepopulated?
+    sleep 1
+
+    p ">>> #{checklist_date_and_time_elements[0].text}"
+    p ">>> #{checklist_date_and_time_elements[1].text}"
+    p ">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}"
+    ((checklist_date_and_time_elements[0].text === get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time) && (get_section1_filled_data[1] === BrowserActions.get_attribute_value(@@checklist_permit_number)))
+  end
+
   def get_checklist_label(_which_content, checklist = nil)
     case _which_content
     when 'labels'
@@ -58,11 +71,11 @@ class Section4APage < Section3APage
   def is_signed_user_details?(_entered_pin)
     BrowserActions.scroll_down(rank_and_name_stamp)
     sleep 1
-    time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    time_offset = get_current_time
     rank_and_name = get_user_details_by_pin(_entered_pin)
     p ">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}"
-    p ">> Date & Time #{Time.new.strftime('%d/%b/%Y')} #{main_clock_element.text} LT (GMT+#{time_offset})"
-    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{Time.new.strftime('%d/%b/%Y')} #{main_clock_element.text} LT (GMT+#{time_offset})" === date_and_time_stamp_element.text))
+    p ">> Date & Time #{get_current_date_format} #{time_offset}"
+    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
   # ##Blue rgba(24, 144, 255, 1)
@@ -132,7 +145,22 @@ class Section4APage < Section3APage
     end
   end
 
+  # put in common
+  def set_current_time
+    @@time = main_clock_element.text
+  end
+
   private
+
+  # put in common
+  def get_current_time
+    @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    "#{@@time} LT (GMT+#{@@time_offset})"
+  end
+
+  def get_current_date_format
+    Time.new.strftime('%d/%b/%Y').to_s
+  end
 
   def get_yes_elements
     $browser.find_elements(:xpath, @@yes_input)

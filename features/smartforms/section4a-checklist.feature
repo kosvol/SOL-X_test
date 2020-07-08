@@ -3,6 +3,8 @@ Feature: Section4AChecklist
   As a ...
   I want to ...
   So that ...
+  # rigging ladder checklist
+  # pre checklist
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
     Given I launch sol-x portal
@@ -180,7 +182,7 @@ Feature: Section4AChecklist
       | level_one_permit               | level_two_permit      | checklist                                |
       | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
 
-  Scenario Outline: Verify checklist content are displayed correctly for non maintenance permits
+  Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
@@ -189,13 +191,12 @@ Feature: Section4AChecklist
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
     And I navigate to section 4a
-    Then I should see correct checklist content for <checklist> checklist
+    And I select the matching <checklist> checklist
+    Then I should see permit number, date and time populated
     And I tear down created form
 
     Examples:
       | level_one_permit                          | level_two_permit                                                        | checklist                                 |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area           |
-      | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area          |
       | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    | Enclosed Space Entry Checklist            |
       | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                      |
       | Working Aloft/Overside                    | Working Aloft / Overside                                                | Working Aloft/Overside                    |
@@ -207,9 +208,20 @@ Feature: Section4AChecklist
       | Rotational Portable Power Tool            | Use of Portable Power Tools                                             | Rotational Portable Power Tools (PPT)     |
       | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                    | Use of Camera Checklist                   |
       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather         |
-      | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist             |
 
-  # rigging ladder checklist
-  # pre checklist
+  Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for maintenance permit
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1313
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I submit after filling up section 1 with duration more than 2 hours
+    And I navigate to section 4a
+    And I select the matching <checklist> checklist
+    Then I should see permit number, date and time populated
+    And I tear down created form
 
-  Scenario: Verify checklist form is pre-populated with PTW permit number, data and time
+    Examples:
+      | level_one_permit               | level_two_permit      | checklist                                |
+      | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |

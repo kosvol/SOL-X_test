@@ -20,6 +20,10 @@ module BrowserActions
       scroll_down_by_dist
     end
 
+    def get_attribute_value(xpath)
+      $browser.find_element(:xpath, xpath).attribute('value').to_s
+    end
+
     private
 
     def scroll_down_by_distance(_element)

@@ -33,11 +33,11 @@ Then (/^I (should|should not) see maintenance duration section and require text$
   end
 end
 
-And (/^I select a level 2 permit randomly$/) do
-  on(SmartFormsPermissionPage).get_random_permit.click
-  sleep 1
-  on(SmartFormsPermissionPage).save_btn
-end
+# And (/^I select a level 2 permit randomly$/) do
+#   on(SmartFormsPermissionPage).get_random_permit.click
+#   sleep 1
+#   on(SmartFormsPermissionPage).save_btn
+# end
 
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
   sleep 1
