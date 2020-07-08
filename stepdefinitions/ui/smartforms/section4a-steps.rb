@@ -43,6 +43,7 @@ And ('I sign checklist with respective checklist creator {int}') do |_pin|
   step 'I press next for 1 times'
   BrowserActions.scroll_down
   BrowserActions.scroll_down
+  BrowserActions.scroll_down
   on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)

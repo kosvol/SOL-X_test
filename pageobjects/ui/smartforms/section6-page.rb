@@ -12,7 +12,8 @@ class Section6Page
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
 
   def is_gas_reader_section?
-    total_sections_elements.size === 6
+    sleep 1
+    total_sections_elements.size >= 6
   end
 
   def toggle_to_section(_select_permit, _which_section)

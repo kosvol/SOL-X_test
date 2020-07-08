@@ -18,7 +18,10 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
   # @@section1_data_collector = []
-  # @@selected_level2_permit = ''
+
+  def reset_data_collector
+    @@section1_data_collector = [] # reset
+  end
 
   def set_selected_level2_permit(_permit)
     @@selected_level2_permit = _permit
@@ -47,24 +50,24 @@ class SmartFormsPermissionPage < ShipLocalTimePage
     @@section1_data_collector
   end
 
-  def select_random_level1_permit
-    @@section1_data_collector = [] # reset
-    click_permit_type_ddl
-    sleep 1
-    selected_permit_type = get_random_permit
-    selected_permit_type.click
-  end
+  # def select_random_level1_permit
+  #   @@section1_data_collector = [] # reset
+  #   click_permit_type_ddl
+  #   sleep 1
+  #   selected_permit_type = get_random_permit
+  #   selected_permit_type.click
+  # end
 
-  def select_random_level2_permit
-    sleep 1
-    unless list_permit_type_elements.empty?
-      selected_permit_type = get_random_permit
-      selected_permit_type.click
-    end
-    set_selected_level2_permit(ptw_id_element.text)
-    @@section1_data_collector << ptw_id_element.text
-    save_btn
-  end
+  # def select_random_level2_permit
+  #   sleep 1
+  #   unless list_permit_type_elements.empty?
+  #     selected_permit_type = get_random_permit
+  #     selected_permit_type.click
+  #   end
+  #   set_selected_level2_permit(ptw_id_element.text)
+  #   @@section1_data_collector << ptw_id_element.text
+  #   save_btn
+  # end
 
   def is_level_1_permit?(_table)
     base_permits = []
@@ -82,7 +85,6 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   end
 
   def select_permit(_permit)
-    @@section1_data_collector = [] # reset
     @@permit = _permit
     sleep 1
     list_permit_type_elements.each do |permit|
@@ -90,6 +92,7 @@ class SmartFormsPermissionPage < ShipLocalTimePage
 
       permit.click
       @@section1_data_collector << @@permit
+      @@section1_data_collector << ptw_id_element.text
       break
     end
   end

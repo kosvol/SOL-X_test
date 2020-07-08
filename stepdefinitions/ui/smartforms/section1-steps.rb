@@ -7,8 +7,8 @@ And (/^I select a any permits$/) do
 end
 
 Then (/^I should see permit details are pre-filled$/) do
-  is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[1])
-  is_equal(on(SmartFormsPermissionPage).form_number, on(SmartFormsPermissionPage).ptw_id_element.text)
+  is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[0])
+  is_equal(on(SmartFormsPermissionPage).form_number, on(SmartFormsPermissionPage).get_section1_filled_data[1])
   is_equal(on(SmartFormsPermissionPage).vessel_short_name, 'SIT')
 end
 
@@ -38,10 +38,6 @@ And (/^I select a level 2 permit randomly$/) do
   sleep 1
   on(SmartFormsPermissionPage).save_btn
 end
-
-# And (/^I submit after filling up section 1$/) do
-#   on(Section1Page).fill_all_of_section_1_wo_duration
-# end
 
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
   sleep 1

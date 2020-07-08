@@ -50,13 +50,14 @@ class Section4APage < Section3APage
     web_elements.each do |label|
       data_arr << label.text
     end
-    # p ">> #{data_arr}"
+    p ">> #{data_arr}"
     data_arr
   rescue StandardError
   end
 
   def is_signed_user_details?(_entered_pin)
     BrowserActions.scroll_down(rank_and_name_stamp)
+    sleep 1
     time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     rank_and_name = get_user_details_by_pin(_entered_pin)
     p ">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}"
@@ -102,6 +103,8 @@ class Section4APage < Section3APage
       YAML.load_file('data/checklist/Hot Work Outside Designated Area.yml')
     when 'Hot Work Within Designated Area'
       YAML.load_file('data/checklist/Hot Work Within Designated Area.yml')
+    when 'Critical Equipment Maintenance Checklist'
+      YAML.load_file('data/checklist/Critical Equipment Maintenance.yml')
     when 'Enclosed Space Entry Checklist'
       YAML.load_file('data/checklist/Enclosed Space Entry Checklist.yml')
     when 'Underwater Operation'
@@ -141,7 +144,7 @@ class Section4APage < Section3APage
 
   def get_user_details_by_pin(entered_pin)
     tmp_payload = JSON.parse JsonUtil.read_json('get_user_detail_by_pin')
-    tmp_payload['variables']['pin'] = entered_pin.to_s
+    tmp_payload['variables']['pin'] = format('%04d', entered_pin).to_s
     JsonUtil.create_request_file('mod_get_user_detail_by_pin', tmp_payload)
     ServiceUtil.post_graph_ql('mod_get_user_detail_by_pin')
     tmp_arr = []

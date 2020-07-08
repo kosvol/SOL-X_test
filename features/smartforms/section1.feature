@@ -9,7 +9,8 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
     Then I should see permit details are pre-filled
 
   Scenario: Verify sea state dropdown input fields are correct
@@ -17,7 +18,8 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
     Then I should see a list of sea states
       | 0 : Calm (glassy)     |
       | 1 : Calm (rippled)    |
@@ -36,7 +38,8 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
     Then I should see a list of wind forces
       | 0 : Calm             |
       | 1 : Light Air        |
@@ -58,7 +61,8 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
     Then I should not see save and previous button exists
     And I tear down created form
 
@@ -98,25 +102,25 @@ Feature: Section1
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select <level_one_permit> permit
-    And I select a level 2 permit randomly
+    And I select <level_two_permit> permit for level 2
     Then I should not see maintenance duration section and require text
     And I tear down created form
 
     Examples:
-      | level_one_permit                          |
-      | Cold Work                                 |
-      | Enclosed Spaces Entry                     |
-      | Helicopter Operations                     |
-      | Hotwork                                   |
-      | Personal Transfer By Transfer Basket      |
-      | Rotational Portable Power Tool            |
-      | Underwater Operations                     |
-      | Use of non-intrinsically safe Camera      |
-      | Use of ODME in Manual Mode                |
-      | Work on Electrical Equipment and Circuits |
-      | Work on Pressure Pipeline/Vessels         |
-      | Working Aloft/Overside                    |
-      | Working on Deck During Heavy Weather      |
+      | level_one_permit                          | level_two_permit                            |
+      | Cold Work                                 | Cold Work - Cleaning Up of Spills           |
+      | Enclosed Spaces Entry                     | Enclosed Spaces Entry                       |
+      | Helicopter Operations                     | Helicopter Operations                       |
+      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage) |
+      | Personal Transfer By Transfer Basket      | Personal Transfer By Transfer Basket        |
+      | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
+      | Underwater Operations                     | Underwater Operation at night               |
+      | Use of non-intrinsically safe Camera      | Use of non-intrinsically safe Camera        |
+      | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                  |
+      | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
+      | Work on Pressure Pipeline/Vessels         | Work on Pressure Pipeline/Vessels           |
+      | Working Aloft/Overside                    | Working Aloft/Overside                      |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather        |
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal
@@ -134,6 +138,7 @@ Feature: Section1
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter RA pin 1212
-    And I select a any permits
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
     Then I should see display texts match for section1
 
