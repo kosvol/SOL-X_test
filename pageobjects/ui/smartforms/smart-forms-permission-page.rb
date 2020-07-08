@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 require './././support/env'
-# require_relative 'dashboard/ship-local-time-page'
 
 class SmartFormsPermissionPage < ShipLocalTimePage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
   element(:select_permit_screen, xpath: "//label[@for='permitType']")
-  # element(:ptw_id, xpath: "//main[starts-with(@class,'CreateForm__PageContainer')]/div/h2")
   element(:ptw_id, xpath: "//section[starts-with(@class,'title')]/h3")
   button(:click_permit_type_ddl, xpath: "//button[@id='permitType']")
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")
@@ -17,7 +15,20 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
-  # @@section1_data_collector = []
+  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+
+  def set_current_time
+    @@time = main_clock_element.text
+  end
+
+  def get_current_time_format
+    @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    "#{@@time} LT (GMT+#{@@time_offset})"
+  end
+
+  def get_current_date_format
+    Time.new.strftime('%d/%b/%Y').to_s
+  end
 
   def reset_data_collector
     @@section1_data_collector = [] # reset
@@ -44,7 +55,7 @@ class SmartFormsPermissionPage < ShipLocalTimePage
     @@section1_data_collector << 'Created By A/M Atif Hayat at'
     clock_btn_element.click
     sleep 1
-    @@section1_data_collector << "#{Time.new.strftime('%d/%b/%Y')} #{utc_timezone_elements[1].text} LT (GMT+#{/\d+/.match(utc_time_text)})"
+    @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
     clock_btn_element.click
     p ">>> #{@@section1_data_collector}"
     @@section1_data_collector
@@ -91,10 +102,10 @@ class SmartFormsPermissionPage < ShipLocalTimePage
       next unless permit.text === @@permit
 
       permit.click
-      @@section1_data_collector << @@permit
-      @@section1_data_collector << ptw_id_element.text
       break
     end
+    @@section1_data_collector << @@permit
+    @@section1_data_collector << ptw_id_element.text
   end
 
   def get_random_permit

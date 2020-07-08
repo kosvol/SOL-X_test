@@ -52,7 +52,7 @@ end
 Then (/^I should see signed details$/) do
   step 'I get ship-local-time/base-get-current-time request payload'
   step 'I hit graphql'
-  on(Section4APage).set_current_time
+  on(SmartFormsPermissionPage).set_current_time
   on(Section4APage).is_signed_user_details?(@@entered_pin)
 end
 

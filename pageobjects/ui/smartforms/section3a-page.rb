@@ -18,7 +18,6 @@ class Section3APage < Section2Page
   # elements(:risk_indicator, xpath: "//div[starts-with(@class,'Section__Description')]/div//div//div/div/div[3]")
   text_field(:dra_permit_number, xpath: "//input[@id='section3a_draNumber']")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
-  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")

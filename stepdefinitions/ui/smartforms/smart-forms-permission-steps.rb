@@ -9,7 +9,7 @@ And (/^I navigate to create new permit$/) do
   sleep 1
   on(SmartFormsPermissionPage).click_create_permit_btn
   on(SmartFormsPermissionPage).reset_data_collector
-  on(Section4APage).set_current_time
+  on(SmartFormsPermissionPage).set_current_time
 end
 
 And ('I enter RA pin {int}') do |_pin|
@@ -29,7 +29,7 @@ And (/^I tear down created form$/) do
   begin
     SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
   rescue StandardError
-    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).get_section1_filled_data[2])
+    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).get_section1_filled_data[1])
   end
 end
 
