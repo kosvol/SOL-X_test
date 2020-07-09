@@ -17,3 +17,7 @@ When (/^I navigate to "(.+)" screen$/) do |which_section|
   sleep 1
   # $browser.navigate.refresh
 end
+
+And ('I sleep for {int} seconds') do |sec|
+  sleep sec
+end
