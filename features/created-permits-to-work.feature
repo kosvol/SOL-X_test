@@ -7,6 +7,7 @@ Feature: CreatedPermitToWork
   Scenario: Verify created permit is under Created Permit to Work
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
+    And I sleep for 2 seconds
     And I navigate to create new permit
     And I enter RA pin 1212
     And I select Hotwork permit
