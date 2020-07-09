@@ -49,7 +49,7 @@ Feature: SmartFormsPermission
       | 4/E    | 2323 |
       | A 4/E  | 2424 |
       | BOS    | 1818 |
-      | PMAN   | 2020 |
+      | PMN    | 2020 |
       | A/B    | 2121 |
       | O/S    | 1919 |
       | OLR    | 0220 |

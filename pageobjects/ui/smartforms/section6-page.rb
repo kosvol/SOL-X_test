@@ -35,6 +35,8 @@ class Section6Page
       1
     when '3d'
       4
+    when '4b'
+      7
     end
   end
 end

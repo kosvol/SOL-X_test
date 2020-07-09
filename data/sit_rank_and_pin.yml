@@ -31,7 +31,7 @@ ranks:
     "ETO",
     "ELC",
     "ETR",
-    "PMAN",
+    "PMN",
     "FTR",
     "OLR",
     "WPR",
@@ -65,7 +65,7 @@ ranks_sorted:
     "A 4/E",
     "ETO",
     "BOS",
-    "PMAN",
+    "PMN",
     "A/B",
     "O/S",
     "OLR",
@@ -152,7 +152,7 @@ BOS:
   ID: "SIT_SOLX0001"
   PIN: "1111"
 
-PMAN:
+PMN:
   ID: "SIT_SOLX0001"
   PIN: "1111"
 

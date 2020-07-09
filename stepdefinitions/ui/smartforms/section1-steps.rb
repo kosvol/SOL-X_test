@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-And (/^I select a any permits$/) do
-  sleep 1
-  on(SmartFormsPermissionPage).select_random_level1_permit
-  on(SmartFormsPermissionPage).select_random_level2_permit
-end
+# And (/^I select a any permits$/) do
+#   sleep 1
+#   on(SmartFormsPermissionPage).select_random_level1_permit
+#   on(SmartFormsPermissionPage).select_random_level2_permit
+# end
 
 Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[0])
@@ -63,4 +63,8 @@ And (/^I fill up section 1$/) do
   else
     on(Section1Page).fill_all_of_section_1_wo_duration
   end
+end
+
+And (/^I should not see copy text regarding maintenance hour$/) do
+  not_to_exists(on(Section2Page).maintenance_text_element)
 end

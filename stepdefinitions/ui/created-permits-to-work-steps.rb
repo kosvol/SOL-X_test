@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Then (/^I should see the newly created permit details listed on Created Permits to Work$/) do
-  step 'I get ship-local-time/base-get-current-time request payload'
-  step 'I hit graphql'
   # data collector; will evolve
   created_permit_data = on(SmartFormsPermissionPage).set_section1_filled_data
   is_equal(created_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)

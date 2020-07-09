@@ -61,6 +61,12 @@ class WearablePage
       @@list_of_crew_id = get_crews_id
     end
 
+    def set_list_of_crews_id(_define)
+      tmp = []
+      tmp << _define
+      @@list_of_crew_id = tmp
+    end
+
     def get_list_of_beacons_id_n_mac
       @@list_of_beacon = get_beacon_mac
     end

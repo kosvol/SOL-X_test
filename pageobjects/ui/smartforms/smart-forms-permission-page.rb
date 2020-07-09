@@ -22,6 +22,8 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   end
 
   def get_current_time_format
+    @which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(@which_json, '1111')
     @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     "#{@@time} LT (GMT+#{@@time_offset})"
   end
@@ -53,32 +55,11 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   def set_section1_filled_data
     # probably need to dynamic this created by
     @@section1_data_collector << 'Created By A/M Atif Hayat at'
-    clock_btn_element.click
     sleep 1
     @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
-    clock_btn_element.click
     p ">>> #{@@section1_data_collector}"
     @@section1_data_collector
   end
-
-  # def select_random_level1_permit
-  #   @@section1_data_collector = [] # reset
-  #   click_permit_type_ddl
-  #   sleep 1
-  #   selected_permit_type = get_random_permit
-  #   selected_permit_type.click
-  # end
-
-  # def select_random_level2_permit
-  #   sleep 1
-  #   unless list_permit_type_elements.empty?
-  #     selected_permit_type = get_random_permit
-  #     selected_permit_type.click
-  #   end
-  #   set_selected_level2_permit(ptw_id_element.text)
-  #   @@section1_data_collector << ptw_id_element.text
-  #   save_btn
-  # end
 
   def is_level_1_permit?(_table)
     base_permits = []

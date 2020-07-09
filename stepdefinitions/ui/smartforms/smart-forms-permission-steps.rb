@@ -27,9 +27,9 @@ end
 
 And (/^I tear down created form$/) do
   begin
-    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
-  rescue StandardError
     SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).get_section1_filled_data[1])
+  rescue StandardError
+    SmartFormDBPage.tear_down_ptw_form(on(SmartFormsPermissionPage).ptw_id_element.text)
   end
 end
 

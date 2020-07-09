@@ -140,7 +140,7 @@ Feature: CrewList
       | CDEV_SOLX0017   | ETO          |
       | test_A050       | ELC          |
       | test_A044       | ETR          |
-      | CDEV_SOLX0020   | PMAN         |
+      | CDEV_SOLX0020   | PMN          |
       | test_A047       | FTR          |
       | test_A048       | OLR          |
       | test_data_jun25 | CCK          |

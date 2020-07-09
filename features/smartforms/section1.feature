@@ -80,19 +80,19 @@ Feature: Section1
       | permit                                                                     |
       | Maintenance on Anchor                                                      |
       | Maintenance on Emergency Fire Pump                                         |
-      | Maintenance on Emergency Generator                                         |
-      | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
-      | Maintenance on Fire Detection Alarm System                                 |
-      | Maintenance on Fixed Fire Fighting System                                  |
-      | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
-      | Maintenance on Life/Rescue Boats and Davits                                |
-      | Maintenance on Lifeboat Engine                                             |
+      # | Maintenance on Emergency Generator                                         |
+      # | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+      # | Maintenance on Fire Detection Alarm System                                 |
+      # | Maintenance on Fixed Fire Fighting System                                  |
+      # | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
+      # | Maintenance on Life/Rescue Boats and Davits                                |
+      # | Maintenance on Lifeboat Engine                                             |
       | Maintenance on magnetic compass                                            |
       | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      |
       | Maintenance on Main propulsion system - shutdown alarm and tripping device |
-      | Maintenance on Oil Discharging Monitoring Equipment                        |
-      | Maintenance on Oil Mist Detector Monitoring System                         |
-      | Maintenance on Oily Water Separator                                        |
+      # | Maintenance on Oil Discharging Monitoring Equipment                        |
+      # | Maintenance on Oil Mist Detector Monitoring System                         |
+      # | Maintenance on Oily Water Separator                                        |
       | Maintenance on P/P Room Gas Detection Alarm System                         |
       | Maintenance on Radio Battery                                               |
 
@@ -107,20 +107,20 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | level_one_permit                          | level_two_permit                            |
-      | Cold Work                                 | Cold Work - Cleaning Up of Spills           |
-      | Enclosed Spaces Entry                     | Enclosed Spaces Entry                       |
-      | Helicopter Operations                     | Helicopter Operations                       |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage) |
-      | Personal Transfer By Transfer Basket      | Personal Transfer By Transfer Basket        |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
-      | Underwater Operations                     | Underwater Operation at night               |
-      | Use of non-intrinsically safe Camera      | Use of non-intrinsically safe Camera        |
-      | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                  |
-      | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
-      | Work on Pressure Pipeline/Vessels         | Work on Pressure Pipeline/Vessels           |
-      | Working Aloft/Overside                    | Working Aloft/Overside                      |
-      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather        |
+      | level_one_permit               | level_two_permit                            |
+      | Cold Work                      | Cold Work - Cleaning Up of Spills           |
+      # | Enclosed Spaces Entry          | Enclosed Spaces Entry                       |
+      | Helicopter Operations          | Helicopter Operations                       |
+      | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage) |
+      # | Personal Transfer By Transfer Basket      | Personal Transfer By Transfer Basket        |
+      | Rotational Portable Power Tool | Use of Portable Power Tools                 |
+      | Underwater Operations          | Underwater Operation at night               |
+  # | Use of non-intrinsically safe Camera      | Use of non-intrinsically safe Camera        |
+  # | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                  |
+  # | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
+  # | Work on Pressure Pipeline/Vessels         | Work on Pressure Pipeline/Vessels           |
+  # | Working Aloft/Overside                    | Working Aloft/Overside                      |
+  # | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather        |
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal
@@ -131,6 +131,18 @@ Feature: Section1
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2
+    And I tear down created form
+
+  Scenario: Verify user can fill up the form, save and proceed to next page for critical maintenance permit
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter RA pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
+    And I fill up section 1
+    Then I should see section 2
+    And I should not see copy text regarding maintenance hour
     And I tear down created form
 
   Scenario: Verify section1 screen text
