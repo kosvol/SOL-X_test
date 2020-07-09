@@ -9,11 +9,6 @@ And (/^I should see previous and next buttons$/) do
   to_exists(on(Section2Page).next_btn_element)
 end
 
-When (/^I proceed to section 3a$/) do
-  sleep 1
-  on(Section2Page).next_btn
-end
-
 Then (/^I should see correct approval details for non-OA$/) do
   is_equal(on(Section2Page).ship_approval, 'Master')
   is_equal(on(Section2Page).office_approval, 'N/A')

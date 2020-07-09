@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-# And (/^I select a any permits$/) do
-#   sleep 1
-#   on(SmartFormsPermissionPage).select_random_level1_permit
-#   on(SmartFormsPermissionPage).select_random_level2_permit
-# end
-
 Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[0])
   is_equal(on(SmartFormsPermissionPage).form_number, on(SmartFormsPermissionPage).get_section1_filled_data[1])
@@ -32,12 +26,6 @@ Then (/^I (should|should not) see maintenance duration section and require text$
     is_true(!on(Section1Page).is_maint_duration_dd_exists?)
   end
 end
-
-# And (/^I select a level 2 permit randomly$/) do
-#   on(SmartFormsPermissionPage).get_random_permit.click
-#   sleep 1
-#   on(SmartFormsPermissionPage).save_btn
-# end
 
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
   sleep 1
