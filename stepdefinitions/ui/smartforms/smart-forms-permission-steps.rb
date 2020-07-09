@@ -6,8 +6,8 @@ Then('I should see a list of available forms for selections') do |_table|
 end
 
 And (/^I navigate to create new permit$/) do
-  on(SmartFormsPermissionPage).set_current_time
   on(SmartFormsPermissionPage).click_create_permit_btn
+  on(SmartFormsPermissionPage).set_current_time
   on(SmartFormsPermissionPage).reset_data_collector
 end
 
