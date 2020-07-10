@@ -31,10 +31,9 @@ class Section4APage < Section3APage
 
   def is_checklist_details_prepopulated?
     sleep 1
-
-    p ">>> #{checklist_date_and_time_elements[0].text}"
-    p ">>> #{checklist_date_and_time_elements[1].text}"
-    p ">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}"
+    Log.instinace.info(">>> #{checklist_date_and_time_elements[0].text}")
+    Log.instinace.info(">>> #{checklist_date_and_time_elements[1].text}")
+    Log.instinace.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
     ((checklist_date_and_time_elements[0].text === get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
@@ -73,8 +72,8 @@ class Section4APage < Section3APage
     sleep 1
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    p ">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}"
-    p ">> Date & Time #{get_current_date_format} #{time_offset}"
+    Log.instinace.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+    Log.instinace.info(">> Date & Time #{get_current_date_format} #{time_offset}")
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 

@@ -73,12 +73,12 @@ Feature: CrewList
     And I enter a invalid master pin
     Then I should see not authorize error message
 
-  Scenario: Verify error message disappear after backspace on entered pin on view pin feature
-    Given I launch sol-x portal
-    When I navigate to "Crew List" screen
-    And I enter a non-existent pin
-    And I backspace on entered pin
-    Then I should not see invalid pin message
+  # Scenario: Verify error message disappear after backspace on entered pin on view pin feature
+  #   Given I launch sol-x portal
+  #   When I navigate to "Crew List" screen
+  #   And I enter a non-existent pin
+  #   And I backspace on entered pin
+  #   Then I should not see invalid pin message
 
   Scenario: Verify crew list is sorted in descending order of seniority
     Given I launch sol-x portal

@@ -13,7 +13,7 @@ class Section6Page
 
   def is_gas_reader_section?
     sleep 1
-    total_sections_elements.size >= 6
+    total_sections_elements.size >= 5
   end
 
   def toggle_to_section(_select_permit, _which_section)

@@ -71,7 +71,7 @@ Then (/^I sign first EIC as (competent person|non competent person) who is (.+) 
   step "I enter pin #{_pin.to_i}"
 end
 
-And (/^I should see rank and name$/) do
+And (/^I should see (.+) rank and name$/) do |_rank|
   is_equal(on(Section4BPage).eic_signer_name_elements.first.text, _rank)
 end
 

@@ -13,10 +13,11 @@ Then (/^I should see master review button only$/) do
 end
 
 Then (/^I should see master approval button only$/) do
-  is_equal(on(Section6Page).submit_btn_elements.size, '1')
   BrowserActions.scroll_down
   sleep 1
   BrowserActions.scroll_down
+  BrowserActions.scroll_down
+  is_equal(on(Section6Page).submit_btn_elements.size, '1')
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval")
 end
 

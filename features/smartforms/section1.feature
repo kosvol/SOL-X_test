@@ -80,19 +80,19 @@ Feature: Section1
       | permit                                                                     |
       | Maintenance on Anchor                                                      |
       | Maintenance on Emergency Fire Pump                                         |
-      # | Maintenance on Emergency Generator                                         |
-      # | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
-      # | Maintenance on Fire Detection Alarm System                                 |
-      # | Maintenance on Fixed Fire Fighting System                                  |
-      # | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
-      # | Maintenance on Life/Rescue Boats and Davits                                |
-      # | Maintenance on Lifeboat Engine                                             |
+      ## | Maintenance on Emergency Generator                                         |
+      ## | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+      ## | Maintenance on Fire Detection Alarm System                                 |
+      ## | Maintenance on Fixed Fire Fighting System                                  |
+      ## | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
+      ## | Maintenance on Life/Rescue Boats and Davits                                |
+      ## | Maintenance on Lifeboat Engine                                             |
       | Maintenance on magnetic compass                                            |
       | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      |
       | Maintenance on Main propulsion system - shutdown alarm and tripping device |
-      # | Maintenance on Oil Discharging Monitoring Equipment                        |
-      # | Maintenance on Oil Mist Detector Monitoring System                         |
-      # | Maintenance on Oily Water Separator                                        |
+      ## | Maintenance on Oil Discharging Monitoring Equipment                        |
+      ## | Maintenance on Oil Mist Detector Monitoring System                         |
+      ## | Maintenance on Oily Water Separator                                        |
       | Maintenance on P/P Room Gas Detection Alarm System                         |
       | Maintenance on Radio Battery                                               |
 

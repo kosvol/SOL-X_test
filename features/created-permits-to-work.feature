@@ -4,6 +4,11 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario: Verify past created permit should display permit id
     Given I launch sol-x portal
     When I navigate to "Created Permits to Work" screen

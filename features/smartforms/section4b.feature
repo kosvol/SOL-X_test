@@ -34,7 +34,7 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     Then I sign first EIC as competent person who is <rank> with pin <pin>
-    And I should see rank and name
+    And I should see <rank> rank and name
     And I tear down created form
 
     Examples:
