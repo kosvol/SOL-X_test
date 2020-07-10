@@ -6,6 +6,11 @@ Feature: Section4AChecklist
   # rigging ladder checklist
   # pre checklist
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

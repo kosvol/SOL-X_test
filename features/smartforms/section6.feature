@@ -4,6 +4,11 @@ Feature: Section6
   I want to ...
   So that ...
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

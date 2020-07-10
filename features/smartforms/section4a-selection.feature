@@ -4,6 +4,11 @@ Feature: Section4AChecklistSelection
   I want to ...
   So that ...
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario: Verify Work on Hazardous Substances checklist exists
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

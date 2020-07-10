@@ -4,6 +4,11 @@ Feature: Section3DDRA
   I want to ...
   So that ...
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

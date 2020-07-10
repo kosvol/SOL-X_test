@@ -4,6 +4,11 @@ Feature: Section3ADRA
   I want to ...
   So that ...
 
+  Scenario: Initialize the clock for automation
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+
   Scenario Outline: Verify DRAs page 1 likelihood,consequence and risk indicator contents match
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
