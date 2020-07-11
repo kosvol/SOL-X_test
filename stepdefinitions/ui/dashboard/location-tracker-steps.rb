@@ -4,6 +4,7 @@ Given (/^I unlink all crew from wearable$/) do
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   on(DashboardPage).unlink_all_crew_frm_wearable
+  sleep 2
 end
 
 Then (/^I should see inactive crew count is correct$/) do
@@ -84,7 +85,7 @@ When (/^I link wearable$/) do
   sleep 5
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  sleep 1
+  sleep 2
 end
 
 And (/^I toggle activity crew list$/) do
@@ -104,6 +105,7 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
+  sleep 2
 end
 
 And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|

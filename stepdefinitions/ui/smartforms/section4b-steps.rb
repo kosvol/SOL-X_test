@@ -11,6 +11,7 @@ And (/^I link wearable to a (RA|competent person|issue authority) (.+) and link 
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
+  sleep 2
 end
 
 Then (/^I sign EIC as (competent person|non competent person) (.+)$/) do |_condition, _pin|

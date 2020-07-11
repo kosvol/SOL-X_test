@@ -87,7 +87,7 @@ Feature: Section4AChecklist
       | ELC    | 9298 | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
       | ETR    | 1715 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
       | T/E    | 1611 | Helicopter Operations                     | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | PMN    | 2020 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
+      | PMN    | 5698 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
       | OLR    | 0220 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
       | FTR    | 9115 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
       | CCK    | 9082 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
@@ -167,7 +167,7 @@ Feature: Section4AChecklist
   # | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
   # | ETR    | 1715 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
   # | T/E    | 1611 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-  # | PMN   | 2020 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
+  # | PMN   | 5698 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
   # | OLR    | 0220 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
   # | FTR    | 9115 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
 

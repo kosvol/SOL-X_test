@@ -77,7 +77,7 @@ Feature: Section4BEIC
   # | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
   # | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
   # | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # | PMN                        | 2020 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+  # | PMN                        | 5698 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
@@ -198,7 +198,7 @@ Feature: Section4BEIC
       | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     | 4/E    | 2323 |
       | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits | A 4/E  | 2424 |
       | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             | BOS    | 1818 |
-      | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    | PMN    | 2020 |
+      | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    | PMN    | 5698 |
       | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  | A/B    | 2121 |
       | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     | O/S    | 1919 |
       | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            | OLR    | 0220 |
@@ -305,4 +305,4 @@ Feature: Section4BEIC
       | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-      | PMN                        | 2020 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+      | PMN                        | 5698 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
