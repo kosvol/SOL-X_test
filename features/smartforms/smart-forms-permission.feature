@@ -4,7 +4,7 @@ Feature: SmartFormsPermission
   I want to ...
   So that ...
 
-  Scenario: Verify permits filter displaying the right counts
+  Scenario: Verify permits filter displaying the right counts on smartform screen
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     Then I should see permits match backend results

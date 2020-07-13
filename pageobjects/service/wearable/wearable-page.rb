@@ -82,13 +82,15 @@ class WearablePage
     def get_one_wearable_id
       @@wearableid = ''
       tmp = @@list_of_wearables.sample
-      (tmp.size >= 32) && @@wearableid != tmp.to_s ? @@wearableid = tmp : get_one_wearable_id
+      (tmp.size >= 32) && (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
     end
 
     def get_crews_id
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
-        @@tmp_list << list['_id']
+        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_')
+          @@tmp_list << list['_id']
+        end
       end
       @@tmp_list
     end
