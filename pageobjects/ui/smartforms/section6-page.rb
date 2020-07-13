@@ -37,6 +37,8 @@ class Section6Page
       4
     when '4b'
       7
+    when '3b'
+      2
     end
   end
 end
