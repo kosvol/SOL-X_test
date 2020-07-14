@@ -7,12 +7,12 @@ class Section1Page < SmartFormsPermissionPage
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:all_labels, xpath: '//label')
-  buttons(:save_and_next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
+  buttons(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
   buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
-  @@save_and_next_btn = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
+  # @@save_and_next_btn = "//div[starts-with(@class,'FormNavigationFactory__Button')]/button"
   @@maint_require_text = '//div[@id="1_subsection6"]'
   @@wind_forces = '//button[@id="windforce"]'
   @@list_of_dd_values = "//ul[starts-with(@class,'UnorderedList-')]/li/button"
@@ -21,6 +21,23 @@ class Section1Page < SmartFormsPermissionPage
   @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
+
+  # submitted permit
+  # elements(:filled_data, xpath: '//input')
+  elements(:text_areas, xpath: '//textarea')
+
+  def get_filled_section1
+    tmp = []
+    filled_data = $browser.find_elements(:xpath, '//input')
+    tmp << filled_data[3].attribute('value')
+    tmp << filled_data[4].attribute('value')
+    tmp << text_areas_elements[0].text
+    tmp << filled_data[5].attribute('value')
+    tmp << filled_data[6].attribute('value')
+    tmp << text_areas_elements[1].text
+    tmp << text_areas_elements[2].text
+    tmp
+  end
 
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
@@ -41,7 +58,7 @@ class Section1Page < SmartFormsPermissionPage
 
   def fill_all_of_section_1_wo_duration
     fill_static_section1
-    save_and_next_btn_elements.first.click
+    next_btn_elements.first.click
   end
 
   def fill_all_of_section_1_w_duration(_condition)
@@ -53,7 +70,36 @@ class Section1Page < SmartFormsPermissionPage
     save_and_next_btn_elements.first.click
   end
 
+  def fill_default_section_1_wo_duration
+    fill_default_section1
+    next_btn_elements.first.click
+  end
+
+  def fill_default_section_1_w_duration(_condition)
+    fill_default_section1
+    $browser.find_element(:xpath, @@maint_duration_dd).click
+    sleep 1
+    _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click
+    BrowserActions.scroll_down
+    save_and_next_btn_elements.first.click
+  end
+
   private
+
+  def fill_default_section1
+    select_checkbox(@@location_check_btn, 'In Port')
+    select_checkbox(@@condition_check_btn, 'Loaded')
+    BrowserActions.scroll_down
+    sea_state_btn
+    sleep 1
+    dd_list_value_elements[0].click
+    BrowserActions.scroll_down
+    wind_force_btn
+    sleep 1
+    dd_list_value_elements[0].click
+    fill_text_area(@@text_areas, 'Test Automation')
+    BrowserActions.hide_keyboard
+  end
 
   def fill_static_section1
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)

@@ -17,6 +17,10 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
 
+  # pending approval permit
+  elements(:permit_filter, xpath: "//div[@role='list']/a")
+  buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
+
   def set_current_time
     @@time = main_clock_element.text
   end

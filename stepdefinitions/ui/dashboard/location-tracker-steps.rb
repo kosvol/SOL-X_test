@@ -30,25 +30,22 @@ Then (/^I should see active crew count is correct$/) do
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
-  # step 'I toggle activity crew list'
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end
 
 Then (/^I should see active crew details$/) do
-  # step 'I toggle activity crew list'
   is_true(on(DashboardPage).is_crew_location_detail_correct?('service'))
 end
 
 Then (/^I should see countdown starts at 15s$/) do
   step 'I link wearable'
-  # step 'I toggle activity crew list'
   sleep 12
   is_true(on(DashboardPage).is_last_seen.include?('secs'))
 end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
-  # step 'I toggle activity crew list'
+
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 

@@ -27,3 +27,9 @@ Then (/^I (should|should not) see gas reader sections$/) do |_condition|
     is_true(!on(Section6Page).is_gas_reader_section?)
   end
 end
+
+Then (/^I submit permit for Master Approval$/) do
+  on(Section6Page).submit_btn_elements[0].click
+  step 'I enter pin 1212'
+  on(Section3DPage).sign
+end

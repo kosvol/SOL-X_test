@@ -61,3 +61,9 @@ And (/^I navigate back to permit selection screen$/) do
   sleep 1
   on(SmartFormsPermissionPage).back_btn
 end
+
+And (/^I click on permits pending approval$/) do
+  sleep 1
+  on(Section6Page).back_home_elements[0].click
+  on(SmartFormsPermissionPage).permit_filter_elements[0].click
+end

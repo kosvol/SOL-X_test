@@ -1,0 +1,86 @@
+section1_without_duration:
+  [
+    "In Port",
+    "Loaded",
+    "Test Automation",
+    "0 : Calm (glassy)",
+    "0 : Calm",
+    "Test Automation",
+    "Test Automation",
+  ]
+
+section1_with_duration:
+  [
+    "In Port",
+    "Loaded",
+    "Test Automation",
+    "0 : Calm (glassy)",
+    "0 : Calm",
+    "Test Automation",
+    "Test Automation",
+  ]
+
+section2: ["Master", "N/A"]
+
+section3b: ["Test automation", "Yes", "People", "Yes", "Yes", "Yes", "Yes"]
+
+section3d: ["Yes", "Yes", "Yes", "Yes"]
+
+section4a:
+  [
+    "Yes",
+    "N/A",
+    "N/A",
+    "Yes",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+  ]
+
+checklist:
+  [
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+  ]

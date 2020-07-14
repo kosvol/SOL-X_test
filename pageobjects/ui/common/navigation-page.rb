@@ -15,7 +15,10 @@ class NavigationPage
 
   def select_nav_category(_category)
     drilled_ham_menu_elements.each do |category|
-      category.click if category.text.strip === _category.strip
+      if category.text.strip === _category.strip
+        category.click
+        break
+      end
     end
   end
 end

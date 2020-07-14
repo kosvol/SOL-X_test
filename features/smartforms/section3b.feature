@@ -24,7 +24,6 @@ Feature: Section3BDRA
   # | Enclosed Space Entry                  | Maintenance on Fixed Fire Fighting System | General procedure for Enclosed Space Entry                                                            |
   # | Underwater Operation                  | Maintenance on Fixed Fire Fighting System | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
 
-
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

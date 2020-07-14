@@ -8,9 +8,9 @@ Given (/^I launch sol-x portal$/) do
   # puts "screen size: #{$browser.window_size}"
 end
 
-When (/^I navigate to "(.+)" screen$/) do |which_section|
+When (/^I navigate to "(.+)" screen$/) do |_which_section|
   on(NavigationPage).tap_hamburger_menu
-  on(NavigationPage).select_nav_category(which_section)
+  on(NavigationPage).select_nav_category(_which_section)
   sleep 1
 end
 

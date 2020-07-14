@@ -17,7 +17,7 @@ Feature: ShipLocalTime
     Examples:
       | pin  |
       | 1111 |
-      | 6666 |
+      | 5545 |
 
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
@@ -35,7 +35,7 @@ Feature: ShipLocalTime
       | 9999 |
       | 1010 |
       | 1616 |
-      | 9780 |
+      | 7507 |
       | 0110 |
       | 1313 |
       | 1414 |
@@ -45,7 +45,7 @@ Feature: ShipLocalTime
       | 2424 |
       | 1717 |
       | 1818 |
-      | 5698 |
+      | 4236 |
       | 2121 |
       | 1919 |
       | 0220 |

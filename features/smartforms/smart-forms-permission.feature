@@ -9,6 +9,7 @@ Feature: SmartFormsPermission
     When I navigate to "SmartForms" screen
     Then I should see permits match backend results
 
+  @x2
   Scenario Outline: Verify only RA can create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -22,14 +23,15 @@ Feature: SmartFormsPermission
       | Addtional Master           | 1212 |
       | Chief Officer              | 5912 |
       | Additional Chief Officer   | 5555 |
-      | Second Officer             | 6666 |
+      | Second Officer             | 5545 |
       | Additional Second Officer  | 7777 |
-      | Chief Engineer             | 9780 |
+      | Chief Engineer             | 7507 |
       | Additional Chief Engineer  | 0110 |
       | Second Engineer            | 1313 |
       | Additional Second Engineer | 1414 |
       | Electro Technical Officer  | 1717 |
 
+  @x2
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -49,7 +51,7 @@ Feature: SmartFormsPermission
       | 4/E    | 2323 |
       | A 4/E  | 2424 |
       | BOS    | 1818 |
-      | PMN    | 5698 |
+      | PMN    | 4236 |
       | A/B    | 2121 |
       | O/S    | 1919 |
       | OLR    | 0220 |

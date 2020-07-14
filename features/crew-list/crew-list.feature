@@ -102,7 +102,7 @@ Feature: CrewList
 
   # Scenario: Verify newly added crew pin can be reviewed
 
-  Scenario Outline: Verify captain can add crew into current vessel
+  Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
     And I add crew <crew_id> id

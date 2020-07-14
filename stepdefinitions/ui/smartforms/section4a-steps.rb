@@ -51,15 +51,20 @@ And ('I sign checklist with respective checklist creator {int}') do |_pin|
 end
 
 Then (/^I should see signed details$/) do
-  # step 'I get ship-local-time/base-get-current-time request payload'
-  # step 'I hit graphql'
   on(SmartFormsPermissionPage).set_current_time
   on(Section4APage).is_signed_user_details?(@@entered_pin)
 end
 
 Then (/^I should see permit number, date and time populated$/) do
   step 'I press next for 1 times'
-  # step 'I get ship-local-time/base-get-current-time request payload'
-  # step 'I hit graphql'
   is_true(on(Section4APage).is_checklist_details_prepopulated?)
+end
+
+And (/^I fill up checklist yes, no, na$/) do
+  tmp = 0
+  (0..((on(Section3DPage).radio_btn_elements.size / 3) - 1)).each do |_i|
+    on(Section3DPage).radio_btn_elements[0 + tmp].click
+    # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp, 2 + tmp].sample].click
+    tmp += 3
+  end
 end

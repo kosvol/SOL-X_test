@@ -6,8 +6,6 @@ class Section4BPage < Section4APage
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
-  button(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[1]")
-  button(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[2]")
   elements(:yes_no_btn, xpath: "//input[@name='energyIsolationCertIssued']")
   button(:create_eic_btn, xpath: "//section[starts-with(@class, 'Section__SectionMain')]/div/div/label/button")
   button(:date_and_time_btn, xpath: '//button[@id="workSiteVisitSafetyChecksAndProcsCompletedOn"]')
@@ -25,8 +23,8 @@ class Section4BPage < Section4APage
   buttons(:subform_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button")
 
   def is_eic_details_prepopulated?
-    set_current_time
-    sleep 1
+    # set_current_time
+    # sleep 1
     Log.instance.info(">>> #{get_current_date_format}")
     Log.instance.info(">>> #{get_current_time_format}")
     Log.instance.info(">>> #{BrowserActions.get_attribute_value(@@eic_number).include? 'SIT/EIC/'}")

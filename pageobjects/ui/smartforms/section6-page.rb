@@ -2,14 +2,13 @@
 
 require './././support/env'
 
-class Section6Page
+class Section6Page < Section4BPage
   include PageObject
 
   button(:save_and_next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
-  button(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[1]")
-  button(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[2]")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
+  buttons(:back_home, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
 
   def is_gas_reader_section?
     sleep 1

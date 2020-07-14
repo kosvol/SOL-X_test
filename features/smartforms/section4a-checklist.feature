@@ -30,11 +30,11 @@ Feature: Section4AChecklist
       | A/M   | 1212 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
       | C/O   | 5912 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
       | A C/O | 5555 | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
-      | 2/O   | 6666 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
+      | 2/O   | 5545 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7777 | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
       | 3/O   | 8888 | Enclosed Spaces Entry                     | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist            |
       | A 3/O | 9999 | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
-      | C/E   | 9780 | Underwater Operations                     | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
+      | C/E   | 7507 | Underwater Operations                     | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
       | A C/E | 0110 | Underwater Operations                     | Underwater Operation at night                                                   | Underwater Operation                      |
       | 2/E   | 1313 | Working Aloft/Overside                    | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
       | A 2/E | 1414 | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
@@ -49,11 +49,11 @@ Feature: Section4AChecklist
   # | A/M   | 1212 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
   # | C/O   | 5912 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
   # | A C/O | 5555 | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-  # | 2/O   | 6666 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
+  # | 2/O   | 5545 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
   # | A 2/O | 7777 | Cold Work                                 | Cold Work - Cleaning Up of Spills                                               | Cold Work Operation Checklist             |
   # | 3/O   | 8888 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
   # | A 3/O | 9999 | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                             | Cold Work Operation Checklist             |
-  # | C/E   | 9780 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
+  # | C/E   | 7507 | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
   # | A C/E | 0110 | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
   # | 2/E   | 1313 | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                              | Cold Work Operation Checklist             |
 
@@ -87,7 +87,7 @@ Feature: Section4AChecklist
       | ELC    | 9298 | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
       | ETR    | 1715 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
       | T/E    | 1611 | Helicopter Operations                     | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | PMN    | 5698 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
+      | PMN    | 4236 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
       | OLR    | 0220 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
       | FTR    | 9115 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
       | CCK    | 9082 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
@@ -127,11 +127,11 @@ Feature: Section4AChecklist
   # | A/M   | 1212 | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         | Critical Equipment Maintenance Checklist |
   # | C/O   | 5912 | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                                   | Critical Equipment Maintenance Checklist |
   # | A C/O | 5555 | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                                                | Critical Equipment Maintenance Checklist |
-  # | 2/O   | 6666 | Critical Equipment Maintenance | Maintenance on magnetic compass                                          | Critical Equipment Maintenance Checklist |
+  # | 2/O   | 5545 | Critical Equipment Maintenance | Maintenance on magnetic compass                                          | Critical Equipment Maintenance Checklist |
   # | A 2/O | 7777 | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         | Critical Equipment Maintenance Checklist |
   # | 3/O   | 8888 | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
   # | A 3/O | 9999 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
-  # | C/E   | 9780 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
+  # | C/E   | 7507 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
   # | A C/E | 0110 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
   # | 2/E   | 1313 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
   # | A 2/E | 1414 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
@@ -167,7 +167,7 @@ Feature: Section4AChecklist
   # | ELC    | 9298 | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
   # | ETR    | 1715 | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                                           | Critical Equipment Maintenance Checklist |
   # | T/E    | 1611 | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                                            | Critical Equipment Maintenance Checklist |
-  # | PMN   | 5698 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
+  # | PMN   | 4236 | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                                           | Critical Equipment Maintenance Checklist |
   # | OLR    | 0220 | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                                            | Critical Equipment Maintenance Checklist |
   # | FTR    | 9115 | Critical Equipment Maintenance | Maintenance on Radio Battery                                                                  | Critical Equipment Maintenance Checklist |
 
