@@ -2,11 +2,9 @@
 
 require './././support/env'
 
-class Section4APage < Section3APage
+class Section4APage < Section3DPage
   include PageObject
 
-  button(:previous_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[1]")
-  button(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button[2]")
   elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
@@ -27,14 +25,24 @@ class Section4APage < Section3APage
 
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
-  @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+  text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
+  # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+
+  def get_filled_section4a
+    tmp = []
+    filled_data = $browser.find_elements(:xpath, '//input')
+    filled_data.each_with_index do |_data, index|
+      tmp << filled_data[index].attribute('value')
+    end
+    tmp
+  end
 
   def is_checklist_details_prepopulated?
     sleep 1
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text === get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text === get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def get_checklist_label(_which_content, checklist = nil)

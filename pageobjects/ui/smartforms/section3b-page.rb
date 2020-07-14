@@ -30,6 +30,15 @@ class Section3BPage < Section3APage
     !crew_list_elements.empty?
   end
 
+  def get_filled_section3b
+    tmp = []
+    filled_data = $browser.find_elements(:xpath, '//input')
+    filled_data.each_with_index do |_data, index|
+      tmp << filled_data[index].attribute('value')
+    end
+    tmp
+  end
+
   private
 
   def select_calendar

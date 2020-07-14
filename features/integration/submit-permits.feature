@@ -4,7 +4,6 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  @x1
   Scenario Outline: Submit permit successfully for Critical Maintenance Permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -26,18 +25,17 @@ Feature: SubmitPermit
     And I press next for 2 times
     Then I submit permit for Master Approval
     And I click on permits pending approval
-    And I review page 1 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I review page 2 of submitted permit
-    # And I press next for 1 times
-    # And I fill up section 4b
-    # And I fill up section 5
-    # And I fill up section 6
-    # And I submit permit for master review
+    And I review page 1 of submitted non maintenance permit
+    And I review page 2 of submitted non maintenance permit
+    And I review page 3a of submitted non maintenance permit
+    And I review page 3b of submitted non maintenance permit
+    And I review page 3c of submitted non maintenance permit
+    And I review page 3d of submitted non maintenance permit
+    And I review page 4a of submitted non maintenance permit
+    And I review page 4a checklist of submitted non maintenance permit
+    And I review page 4b of submitted non maintenance permit
+    And I review page 5 of submitted non maintenance permit
+    And I review page 6 of submitted non maintenance permit
 
     Examples:
       | level_one_permit      | level_two_permit     | checklist                      |

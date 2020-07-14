@@ -9,6 +9,19 @@ class Section6Page < Section4BPage
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
   buttons(:back_home, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
+  buttons(:date_and_time_btn, xpath: "//button[@id='gasLastCalibrationDate']")
+  div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
+  div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
+
+  def get_filled_section6
+    tmp = []
+    filled_data = $browser.find_elements(:xpath, '//input')
+    tmp << filled_data[0].attribute('value')
+    tmp << filled_data[1].attribute('value')
+    tmp << filled_data[2].attribute('value')
+    tmp << rank_and_name_stamp
+    tmp
+  end
 
   def is_gas_reader_section?
     sleep 1

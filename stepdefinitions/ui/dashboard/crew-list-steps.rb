@@ -119,6 +119,6 @@ Then (/^I should see pin review$/) do
   is_true(on(CrewListPage).is_pin_viewed?)
 end
 
-And (/^I reset crew data$/) do
-  CrewListPage.tear_down_ptw_form
-end
+# And (/^I reset crew data$/) do
+#   SmartFormDBPage.tear_down_ptw_form
+# end

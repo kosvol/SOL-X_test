@@ -1,0 +1,43 @@
+section1_without_duration:
+  [
+    "In Port",
+    "Loaded",
+    "Test Automation",
+    "0 : Calm (glassy)",
+    "0 : Calm",
+    "Test Automation",
+    "Test Automation",
+  ]
+
+section1_with_duration:
+  [
+    "In Port",
+    "Loaded",
+    "Test Automation",
+    "0 : Calm (glassy)",
+    "0 : Calm",
+    "Test Automation",
+    "Test Automation",
+  ]
+
+section2: ["Master", "N/A"]
+
+section3b:
+  [
+    "General procedures for Enclosed Space Entry",
+    Test automation",
+    "Yes",
+    "People",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+  ]
+
+section3d-yes: ["Yes", "Yes", "Yes", "Yes"]
+
+section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
+
+section4b: ["Yes"]
+
+section6: ["Yes", "", "", "A/M Atif Hayat"]

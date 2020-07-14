@@ -4,10 +4,10 @@ Feature: Section1
   I want to ...
   So that ...
 
-  Scenario: Initialize the clock for automation
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
-    And I navigate to create new permit
+  # Scenario: Initialize the clock for automation
+  #   Given I launch sol-x portal
+  #   When I navigate to "SmartForms" screen
+  #   And I navigate to create new permit
 
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal

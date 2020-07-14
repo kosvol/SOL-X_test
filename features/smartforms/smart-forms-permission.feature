@@ -9,7 +9,6 @@ Feature: SmartFormsPermission
     When I navigate to "SmartForms" screen
     Then I should see permits match backend results
 
-  @x2
   Scenario Outline: Verify only RA can create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -31,7 +30,6 @@ Feature: SmartFormsPermission
       | Additional Second Engineer | 1414 |
       | Electro Technical Officer  | 1717 |
 
-  @x2
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

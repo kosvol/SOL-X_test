@@ -4,12 +4,10 @@ Feature: Section4BEIC
   I want to ...
   So that ...
 
-  Scenario: Initialize the clock for automation
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
-    And I navigate to create new permit
-
-  # Scenario: Verify user can do a full submission
+  # Scenario: Initialize the clock for automation
+  #   Given I launch sol-x portal
+  #   When I navigate to "SmartForms" screen
+  #   And I navigate to create new permit
 
   Scenario: Verify data,time and EIC number is pre-populated
     Given I launch sol-x portal
