@@ -29,12 +29,12 @@ class BypassPage
     dra_permit_number = ServiceUtil.get_response_body['data']['createForm']['_id']
 
     ### save section 0
-    section2 = JSON.parse JsonUtil.read_json("ptw/#{_permit_type}")
+    section2 = JSON.parse JsonUtil.read_json('ptw/2.save_section0_details')
     section2['variables']['formId'] = get_selected_permit
     section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_offset}}"
     section2['variables']['submissionTimestamp'] = get_current_date_time
-    JsonUtil.create_request_file("ptw/mod_#{_permit_type}", section2)
-    ServiceUtil.post_graph_ql("ptw/mod_#{_permit_type}", _user)
+    JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
+    ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
 
     ### save sections
     save_different_form_section('3.save_section1_details', _user)

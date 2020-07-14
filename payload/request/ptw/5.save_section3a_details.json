@@ -10,7 +10,7 @@
       },
       {
         "fieldId": "vesselShortName",
-        "value": "\"DEV\""
+        "value": "\"SIT\""
       },
       {
         "fieldId": "section3a_draNumber",
@@ -23,10 +23,6 @@
       {
         "fieldId": "section3a_permitType",
         "value": "\"Enclosed Space Entry\""
-      },
-      {
-        "fieldId": "methodDetail",
-        "value": "\"\\\"General procedures for Enclosed Space Entry\\\"\""
       },
       {
         "fieldId": "riskHazard",

@@ -8,6 +8,7 @@ Feature: To bypass section 1 to 6
   # Scenario: To bypass section 6 for permit that don't requires gas reader update
   #   Given I trigger to bypass section6 via service with 1212 user
 
+  @xx
   Scenario Outline: To verify update gas reading button
     Given I submit permit <location> via service with 1212 user
 

@@ -18,7 +18,11 @@
       },
       {
         "fieldId": "inspectionCarriedOut",
-        "value": "\"no\""
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "workInspectionBy",
+        "value": "[\"SIT_SOLX0002\"]"
       },
       {
         "fieldId": "_3B_subsection5_atRisk",
@@ -34,7 +38,11 @@
       },
       {
         "fieldId": "lastAssessmentDra",
-        "value": "\"\""
+        "value": "\"1\""
+      },
+      {
+        "fieldId": "lastAssessment",
+        "value": "\"2020-07-14T16:00:00.000Z\""
       },
       {
         "fieldId": "contingencyAndEvacuationPlans",

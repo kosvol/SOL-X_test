@@ -4,7 +4,7 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  Scenario Outline: Submit permit successfully for Critical Maintenance Permit
+  Scenario Outline: Verify submitted permit data gets reflected for non-oa permit
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
@@ -23,6 +23,7 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I select yes to EIC
     And I press next for 2 times
+    # select gas reader?
     Then I submit permit for Master Approval
     And I click on permits pending approval
     And I review page 1 of submitted non maintenance permit
@@ -38,6 +39,21 @@ Feature: SubmitPermit
     And I review page 6 of submitted non maintenance permit
 
     Examples:
-      | level_one_permit      | level_two_permit     | checklist                      |
-      | Enclosed Spaces Entry | Enclosed Space Entry | Enclosed Space Entry Checklist |
-# | Hotwork               | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
+      | level_one_permit                          | level_two_permit                                    | checklist                      |
+      | Enclosed Spaces Entry                     | Enclosed Space Entry                                | Enclosed Space Entry Checklist |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                 |                                |
+      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)         |                                |
+      | Working Aloft/Overside                    | Working Aloft / Overside                            |                                |
+      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels         |                                |
+      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket               |                                |
+      | Helicopter Operations                     | Helicopter Operation                                |                                |
+      | Rotational Portable Power Tool            | Use of Portable Power Tools                         |                                |
+      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage  |                                |
+      | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines  |                                |
+      | Cold Work                                 | Working on Closed Electrical Equipment and Circuits |                                |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                |                                |
+
+# Scenario Outline: Verify submitted permit data gets reflected for oa permit
+
+# Scenario Outline: Verify submitted permit data gets reflected for oa permit if maintenance more than 2hours
+# Scenario Outline: Verify submitted permit data gets reflected for oa permit if maintenance less than 2hours
