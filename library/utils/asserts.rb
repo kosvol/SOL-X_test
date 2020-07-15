@@ -3,17 +3,9 @@
 require 'rspec/expectations'
 
 module AssertionUtil
-  # def is_textfield_length(element, acceptable_length)
-  #   element.text.length > acceptable_length ? (return false) : (return true)
-  # end
-
   # def is_selected?(element)
   #   element.selected?
   # end
-
-  def is_enabled?(element)
-    element.enabled?
-  end
 
   # def is_display(element)
   #   begin
@@ -22,6 +14,14 @@ module AssertionUtil
   #     return false
   #   end
   # end
+
+  def is_enabled(element)
+    expect(element.enabled?).to be true
+  end
+
+  def is_disabled(element)
+    expect(element.enabled?).to be false
+  end
 
   def is_equal(compare_to_text, equal_text)
     expect(compare_to_text.to_s).to eql equal_text.to_s
@@ -77,5 +77,4 @@ module AssertionUtil
   #       break
   #     end
   #   end
-  # end
 end

@@ -39,6 +39,11 @@ class Section1Page < SmartFormsPermissionPage
     tmp
   end
 
+  def is_fields_disabled?
+    filled_data = $browser.find_elements(:xpath, '//input')
+    filled_data[3].enabled? && filled_data[4].enabled? && filled_data[5].enabled? && filled_data[6].enabled? && text_areas_elements[0].enabled? && text_areas_elements[1].enabled? && text_areas_elements[2].enabled?
+  end
+
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
     BrowserActions.scroll_down(_element)
