@@ -34,7 +34,7 @@ end
 And ('I press next for {int} times') do |_times|
   (1.._times).each do |_i|
     sleep 1
-    BrowserActions.scroll_down
+    # BrowserActions.scroll_down
     on(Section4APage).next_btn
   end
 end
@@ -48,7 +48,7 @@ And ('I sign checklist with respective checklist creator {int}') do |_pin|
   step "I sign on section with #{_pin} pin"
 end
 
-And (/^I sign on section with (.+) pin$/) do |_pin|
+And ('I sign on section with {int} pin') do |_pin|
   on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)

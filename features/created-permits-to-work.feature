@@ -9,12 +9,12 @@ Feature: CreatedPermitToWork
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
 
-  Scenario: Verify past created permit should display permit id
-    Given I launch sol-x portal
-    When I navigate to "Created Permits to Work" screen
-    And I edit past created permit
-    And I enter RA pin 1212
-    Then I should see permit id populated
+  # Scenario: Verify past created permit should display permit id
+  #   Given I launch sol-x portal
+  #   When I navigate to "Created Permits to Work" screen
+  #   And I edit past created permit
+  #   And I enter RA pin 1212
+  #   Then I should see permit id populated
 
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal
@@ -61,7 +61,7 @@ Feature: CreatedPermitToWork
   #   | O/S    | 1919 |
   #   | OLR    | 0220 |
 
-  Scenario: Verify RA can edit all the fields in PTW Created State
+  # Scenario: Verify RA can edit all the fields in PTW Created State
 
 
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
@@ -81,7 +81,7 @@ Feature: CreatedPermitToWork
       | Second Engineer           | 1313 |
       | Electro Technical Officer | 1717 |
 
-  Scenario Outline: Verify Gas Tester 2 can edit gas reader on section 6
+  Scenario Outline: Verify Gas Tester 2 can edit gas reader on section 6 for permit on Created state
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
@@ -93,17 +93,17 @@ Feature: CreatedPermitToWork
     Then I should see gas reader section with fields enabled
 
     Examples:
-      | rank      | pin   |
-      | Master    | 1111  |
-      | A/M       | 1212  |
-      | C/O       | 5912  |
-      | A C/O     | 5555  |
-      | 2/O       | 5545  |
-      | A 2/O     | 7777  |
-      | 3/O       | 8888  |
-      | A 3/O     | 9999  |
-      | test_A009 | 4/O   |
-      | test_A010 | A 4/O |
+      | rank   | pin  |
+      | Master | 1111 |
+      | A/M    | 1212 |
+      | C/O    | 5912 |
+      | A C/O  | 5555 |
+      | 2/O    | 5545 |
+      | A 2/O  | 7777 |
+      | 3/O    | 8888 |
+      | A 3/O  | 9999 |
+      | 4/O    | 1010 |
+      | A 4/O  | 1537 |
 
   Scenario Outline: Verify checklist creator can only edit checklist fields in PTW Created State
     Given I launch sol-x portal
