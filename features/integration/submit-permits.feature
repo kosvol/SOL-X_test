@@ -39,19 +39,19 @@ Feature: SubmitPermit
     And I review page 6 of submitted non maintenance permit
 
     Examples:
-      | level_one_permit                          | level_two_permit                                    | checklist                      |
-      | Enclosed Spaces Entry                     | Enclosed Space Entry                                | Enclosed Space Entry Checklist |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                 |                                |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)         |                                |
-      | Working Aloft/Overside                    | Working Aloft / Overside                            |                                |
-      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels         |                                |
-      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket               |                                |
-      | Helicopter Operations                     | Helicopter Operation                                |                                |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                         |                                |
-      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage  |                                |
-      | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines  |                                |
-      | Cold Work                                 | Working on Closed Electrical Equipment and Circuits |                                |
-      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                |                                |
+      | level_one_permit                          | level_two_permit                                                | checklist                      |
+      | Enclosed Spaces Entry                     | Enclosed Space Entry                                            | Enclosed Space Entry Checklist |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                             |                                |
+      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                     |                                |
+      | Working Aloft/Overside                    | Working Aloft / Overside                                        |                                |
+      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                     |                                |
+      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                           |                                |
+      | Helicopter Operations                     | Helicopter Operation                                            |                                |
+      | Rotational Portable Power Tool            | Use of Portable Power Tools                                     |                                |
+      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage              |                                |
+      | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines              |                                |
+      | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits |                                |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                            |                                |
 
 # Scenario Outline: Verify submitted permit data gets reflected for oa permit
 

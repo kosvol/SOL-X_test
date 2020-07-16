@@ -70,7 +70,7 @@ Feature: Section3ADRA
 # # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard                       |
 # # | Cold Work                                 | Cold Work - Cleaning Up of Spills                                                             |
 # # | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                                            |
-# # | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                                           |
+# # | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits                                           |
 # # | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                                     |
 # # | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds                         |
 # # | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                                            |
@@ -128,7 +128,7 @@ Feature: Section3ADRA
 #       | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard                       |
 #       | Cold Work                                 | Cold Work - Cleaning Up of Spills                                                             |
 #       | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                                            |
-#       | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                                           |
+#       | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits                                           |
 #       | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                                     |
 #       | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds                         |
 #       | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                                            |
@@ -186,7 +186,7 @@ Feature: Section3ADRA
 #       | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard                       |
 #       | Cold Work                                 | Cold Work - Cleaning Up of Spills                                                             |
 #       | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                                            |
-#       | Cold Work                                 | Working on Closed Electrical Equipment and Circuits                                           |
+#       | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits                                           |
 #       | Cold Work                                 | Cold Work - Maintenance Work on Machinery                                                     |
 #       | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds                         |
 #       | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                                            |

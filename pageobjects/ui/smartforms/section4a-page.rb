@@ -23,10 +23,16 @@ class Section4APage < Section3DPage
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
 
+  elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
+
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+
+  def is_checklist_fields_disabled?
+    !(disabled_fields_elements.size === 0)
+  end
 
   def get_filled_section4a
     tmp = []

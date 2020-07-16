@@ -25,3 +25,29 @@ end
 Then (/^I should see permit id populated$/) do
   is_true(does_include(on(SmartFormsPermissionPage).form_number, 'SIT/PTW/'))
 end
+
+And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
+  on(CreatedPermitToWorkPage).edit_permit_btn_elements.first.click
+  step "I enter RA pin #{_pin}"
+end
+
+Then (/^I should see checklist section with fields enabled$/) do
+  on(Section1Page).next_btn_elements.first.click
+  step 'I press next for 5 times'
+  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  step 'I press next for 1 times'
+  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  is_enabled(on(Section4APage).enter_pin_btn_element)
+end
+
+Then (/^I should see gas reader section with fields enabled$/) do
+  on(Section1Page).next_btn_elements.first.click
+  step 'I press next for 9 times'
+  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+end
+
+Then (/^I should see EIC section with fields enabled$/) do
+  on(Section1Page).next_btn_elements.first.click
+  step 'I press next for 7 times'
+  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+end
