@@ -39,6 +39,9 @@ class Section4APage < Section3DPage
 
   def is_checklist_details_prepopulated?
     sleep 1
+    Log.instance.info("--- #{get_current_date_format}")
+    Log.instance.info("--- #{get_current_time_format}")
+    Log.instance.info("--- #{checklist_permit_number}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")

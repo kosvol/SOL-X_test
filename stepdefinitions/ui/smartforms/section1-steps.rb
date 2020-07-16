@@ -14,8 +14,8 @@ Then (/^I should see a list of wind forces$/) do |_table|
   is_true(on(Section1Page).is_wind_forces?(_table.raw))
 end
 
-Then (/^I should not see save and previous button exists$/) do
-  is_equal(on(Section1Page).save_and_next_btn_elements.size, 1)
+Then (/^I should not see previous button exists$/) do
+  is_equal(on(Section1Page).next_btn_elements[0].text, 'Save & Next')
 end
 
 Then (/^I (should|should not) see maintenance duration section and require text$/) do |condition|

@@ -68,7 +68,7 @@ Feature: Section1
     And I enter RA pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
-    Then I should not see save and previous button exists
+    Then I should not see previous button exists
     And I tear down created form
 
   Scenario Outline: Verify question input field exists
