@@ -61,8 +61,11 @@ Feature: CreatedPermitToWork
   #   | O/S    | 1919 |
   #   | OLR    | 0220 |
 
+  # Scenario: Verify PTW reader can only read PTW for permit in created state
+
   # Scenario: Verify RA can edit all the fields in PTW Created State
 
+  # Scenario: Verify Gas Tester 1 can edit section 6 gas reading for PRE, Enclosed workspace entry permit
 
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
     Given I launch sol-x portal
@@ -93,17 +96,21 @@ Feature: CreatedPermitToWork
     Then I should see gas reader section with fields enabled
 
     Examples:
-      | rank   | pin  |
-      | Master | 1111 |
-      | A/M    | 1212 |
-      | C/O    | 5912 |
-      | A C/O  | 5555 |
-      | 2/O    | 5545 |
-      | A 2/O  | 7777 |
-      | 3/O    | 8888 |
-      | A 3/O  | 9999 |
-      | 4/O    | 1010 |
-      | A 4/O  | 1537 |
+      | rank                       | pin  |
+      | Master                     | 1111 |
+      | A/M                        | 1212 |
+      | C/O                        | 5912 |
+      | A C/O                      | 5555 |
+      | 2/O                        | 5545 |
+      | A 2/O                      | 7777 |
+      | 3/O                        | 8888 |
+      | A 3/O                      | 9999 |
+      | Chief Engineer             | 7507 |
+      | Additional Chief Engineer  | 0110 |
+      | Second Engineer            | 1313 |
+      | Additional Second Engineer | 1414 |
+      | 3/E                        | 4092 |
+      | A 3/E                      | 1515 |
 
   Scenario Outline: Verify checklist creator can only edit checklist fields in PTW Created State
     Given I launch sol-x portal

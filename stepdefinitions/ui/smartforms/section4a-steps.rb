@@ -41,10 +41,10 @@ end
 
 And ('I sign checklist with respective checklist creator {int}') do |_pin|
   step 'I press next for 1 times'
-  # BrowserActions.scroll_down
-  # BrowserActions.scroll_down
-  # BrowserActions.scroll_down
-  # BrowserActions.scroll_down
+  BrowserActions.scroll_down
+  BrowserActions.scroll_down
+  BrowserActions.scroll_down
+  BrowserActions.scroll_down
   step "I sign on section with #{_pin} pin"
 end
 

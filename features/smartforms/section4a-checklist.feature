@@ -28,7 +28,7 @@ Feature: Section4AChecklist
     Examples:
       | Rank  | pin  | level_one_permit                          | level_two_permit                                                                | checklist                                 |
       | A/M   | 1212 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | C/O   | 5912 | Cold Work                                 | Cold Work - Cold Work - Working on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist             |
+      | C/O   | 5912 | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits                 | Cold Work Operation Checklist             |
       | A C/O | 5555 | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
       | 2/O   | 5545 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7777 | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |

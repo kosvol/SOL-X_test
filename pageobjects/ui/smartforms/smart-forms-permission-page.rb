@@ -33,7 +33,7 @@ class SmartFormsPermissionPage < ShipLocalTimePage
   end
 
   def get_current_date_format
-    Time.new.strftime('%d/%b/%Y').to_s
+    Time.new.strftime('%d/%b/%Y')
   end
 
   def reset_data_collector

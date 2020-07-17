@@ -43,6 +43,10 @@ class Section4APage < Section3DPage
     tmp
   end
 
+  def get_current_date_format
+    Time.new.strftime('%b/%Y')
+  end
+
   def is_checklist_details_prepopulated?
     sleep 1
     Log.instance.info("--- #{get_current_date_format}")
@@ -51,7 +55,7 @@ class Section4APage < Section3DPage
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text === get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def get_checklist_label(_which_content, checklist = nil)
