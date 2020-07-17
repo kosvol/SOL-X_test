@@ -84,7 +84,7 @@ Feature: CreatedPermitToWork
       | Second Engineer           | 1313 |
       | Electro Technical Officer | 1717 |
 
-  Scenario Outline: Verify Gas Tester 2 can edit gas reader on section 6 for permit on Created state
+  Scenario Outline: Verify AGT can edit gas reader on section 6 for permit on Created state
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
