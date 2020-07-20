@@ -1,19 +1,25 @@
 # frozen_string_literal: true
 
-And (/^I toggle likelihood (.+) and (.+) consequence matrix$/) do |likelihood, consequence|
-  on(Section3APage).toggle_likelihood_consequence_matrix(likelihood, consequence)
+And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
+  @measure = _measure
+  case _measure
+  when 'without applying measure'
+    on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
+  when 'existing control measure'
+    on(Section3APage).toggle_likelihood_consequence_matrix_existing_control_measure(likelihood, consequence)
+  end
 end
 
 Then (/^I should see risk as (.+) risk$/) do |_condition|
   case _condition
   when 'low'
-    is_true(on(Section3APage).is_risk_indicator_green?)
+    is_true(on(Section3APage).is_risk_indicator_green?(@measure))
   when 'medium'
-    is_true(on(Section3APage).is_risk_indicator_yellow?)
+    is_true(on(Section3APage).is_risk_indicator_yellow?(@measure))
   when 'high'
-    is_true(on(Section3APage).is_risk_indicator_red?)
+    is_true(on(Section3APage).is_risk_indicator_red?(@measure))
   when 'very high'
-    is_true(on(Section3APage).is_risk_indicator_veryred?)
+    is_true(on(Section3APage).is_risk_indicator_veryred?(@measure))
   end
 end
 
