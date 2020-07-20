@@ -34,7 +34,7 @@ Feature: Section4AChecklistSelection
     And I tear down created form
 
     Examples:
-      | level_one_permit               | level_two_permit                                                           | checklist                                |
+      | level_one_permit               | level_two_permit                                                         | checklist                                |
       # | Critical Equipment Maintenance | Maintenance on Anchor                                                      | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                         | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Emergency Generator                                         | Critical Equipment Maintenance Checklist |
@@ -43,14 +43,14 @@ Feature: Section4AChecklistSelection
       # | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                  | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on magnetic compass                                            | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                           | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on magnetic compass                                          | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                       | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist is pre-selected for non maintenance permits

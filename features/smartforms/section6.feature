@@ -94,7 +94,7 @@ Feature: Section6
   # | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on magnetic compass                                            | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
-  # | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
+  # | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |
@@ -163,7 +163,7 @@ Feature: Section6
       | Critical Equipment Maintenance | Maintenance on Lifeboat Engine  | Critical Equipment Maintenance Checklist |
       | Critical Equipment Maintenance | Maintenance on magnetic compass | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
-  # | Critical Equipment Maintenance | Maintenance on Main propulsion system - shutdown alarm and tripping device | Critical Equipment Maintenance Checklist |
+  # | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |

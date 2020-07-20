@@ -31,7 +31,7 @@ module BrowserActions
     end
 
     def scroll_down_by_dist
-      $browser.execute_script('window.scrollBy(0,350)', '')
+      $browser.execute_script('window.scrollBy(0,250)', '')
     end
   end
 end

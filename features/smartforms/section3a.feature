@@ -21,7 +21,90 @@ Feature: Section3ADRA
     Then I should see DRA number,Date and Time populated
     And I tear down created form
 
-  Scenario: Verify method description is populated
+  Scenario Outline: Verify risk matrix meets criteria for low risk
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix
+    Then I should see risk as low risk
+
+    Examples:
+      | likelihood | consequence |
+      | 1          | 1           |
+      | 1          | 2           |
+      | 1          | 3           |
+      | 1          | 4           |
+      | 2          | 1           |
+      | 2          | 2           |
+      | 2          | 3           |
+      | 3          | 1           |
+      | 3          | 2           |
+      | 4          | 1           |
+
+  Scenario Outline: Verify risk matrix meets criteria for medium risk
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix
+    Then I should see risk as medium risk
+
+    Examples:
+      | likelihood | consequence |
+      | 2          | 4           |
+      | 3          | 3           |
+      | 1          | 5           |
+      | 4          | 2           |
+      | 5          | 1           |
+
+  Scenario Outline: Verify risk matrix meets criteria for high risk
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix
+    Then I should see risk as high risk
+
+    Examples:
+      | likelihood | consequence |
+      | 2          | 5           |
+      | 3          | 5           |
+      | 3          | 4           |
+      | 4          | 4           |
+      | 4          | 3           |
+      | 5          | 2           |
+      | 5          | 3           |
+
+  Scenario Outline: Verify risk matrix meets criteria for very high risk
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix
+    Then I should see risk as very high risk
+
+    Examples:
+      | likelihood | consequence |
+      | 4          | 5           |
+      | 5          | 5           |
+      | 5          | 4           |
 
 #   Scenario Outline: Verify DRAs page 1 likelihood,consequence and risk indicator contents match
 #     Given I launch sol-x portal
@@ -48,7 +131,7 @@ Feature: Section3ADRA
 # # | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
 # # | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 # # | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-# # | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
+# # | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 # # | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 # # | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 # # | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
@@ -106,7 +189,7 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
 #       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-#       | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
+#       | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 #       | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
@@ -164,7 +247,7 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
 #       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
-#       | Critical Equipment Maintenance            | Maintenance on Main propulsion system - shutdown alarm and tripping device |
+#       | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Mist Detector Monitoring System                                            |
 #       | Critical Equipment Maintenance            | Maintenance on Oily Water Separator                                                           |
@@ -199,29 +282,6 @@ Feature: Section3ADRA
 # ### | Rigging of Pilot/Combination Ladder       | Rigging of Pilot/Combination Ladder                                                           |
 
 # Scenario: Verify Section 3A labels match
-
-# Scenario: Verify risk color changes as matrix
-
-# @x3
-# Scenario: Verify DRA number,Date and Time is populated
-#   Given I launch sol-x portal
-#   When I navigate to "SmartForms" screen
-#   And I navigate to create new permit
-#   And I enter pin 1212
-#   And I select Critical Equipment Maintenance permit
-#   And I select Maintenance on Anchor permit for level 2
-#   And I navigate to section 3a
-#   Then I should see DRA number,Date and Time populated
-
-# Scenario: Verify date and time fill is non-editabled
-#   Given I launch sol-x portal
-#   When I navigate to "SmartForms" screen
-#   And I navigate to create new permit
-#   And I enter pin 1212
-#   And I select Cold Work permit
-#   And I select Cold Work - Cleaning Up of Spills permit for level 2
-#   And I navigate to section 3a
-#   Then I should see Date and Time fields disabled
 
 # Scenario: Verify time is populated when navigating back from previous or next page
 

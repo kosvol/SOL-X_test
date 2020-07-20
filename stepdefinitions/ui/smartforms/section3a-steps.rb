@@ -1,5 +1,22 @@
 # frozen_string_literal: true
 
+And (/^I toggle likelihood (.+) and (.+) consequence matrix$/) do |likelihood, consequence|
+  on(Section3APage).toggle_likelihood_consequence_matrix(likelihood, consequence)
+end
+
+Then (/^I should see risk as (.+) risk$/) do |_condition|
+  case _condition
+  when 'low'
+    is_true(on(Section3APage).is_risk_indicator_green?)
+  when 'medium'
+    is_true(on(Section3APage).is_risk_indicator_yellow?)
+  when 'high'
+    is_true(on(Section3APage).is_risk_indicator_red?)
+  when 'very high'
+    is_true(on(Section3APage).is_risk_indicator_veryred?)
+  end
+end
+
 Then (/^I should see section 3a screen$/) do
   is_equal(on(Section2Page).heading_text_element.text, 'Section 3A: DRA - Method & Hazards')
 end
