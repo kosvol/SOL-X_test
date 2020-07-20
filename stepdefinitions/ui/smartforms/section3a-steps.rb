@@ -7,6 +7,8 @@ And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |like
     on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
   when 'existing control measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_existing_control_measure(likelihood, consequence)
+  when 'additional hazard'
+    on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   end
 end
 

@@ -115,6 +115,7 @@ class Section1Page < SmartFormsPermissionPage
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
     select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
     BrowserActions.scroll_down
+    BrowserActions.scroll_down
     sea_state_btn
     sleep 1
     dd_list_value_elements[0].click

@@ -191,6 +191,93 @@ Feature: Section3ADRA
       # | 5          | 5           |
       | 5          | 4           |
 
+  ### ------------------
+
+  Scenario Outline: Verify risk matrix meets criteria for low risk for additional hazard
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
+    Then I should see risk as low risk
+
+    Examples:
+      | likelihood | consequence |
+      # | 1          | 1           |
+      # | 1          | 2           |
+      # | 1          | 3           |
+      | 1          | 4           |
+  # | 2          | 1           |
+  # | 2          | 2           |
+  # | 2          | 3           |
+  # | 3          | 1           |
+  # | 3          | 2           |
+  # | 4          | 1           |
+
+  Scenario Outline: Verify risk matrix meets criteria for medium risk for additional hazard
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
+    Then I should see risk as medium risk
+
+    Examples:
+      | likelihood | consequence |
+      # | 2          | 4           |
+      # | 3          | 3           |
+      | 1          | 5           |
+  # | 4          | 2           |
+  # | 5          | 1           |
+
+  Scenario Outline: Verify risk matrix meets criteria for high risk for additional hazard
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
+    Then I should see risk as high risk
+
+    Examples:
+      | likelihood | consequence |
+      # | 2          | 5           |
+      # | 3          | 5           |
+      # | 3          | 4           |
+      # | 4          | 4           |
+      # | 4          | 3           |
+      | 5          | 2           |
+  # | 5          | 3           |
+
+  Scenario Outline: Verify risk matrix meets criteria for very high risk for additional hazard
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
+    Then I should see risk as very high risk
+
+    Examples:
+      | likelihood | consequence |
+      # | 4          | 5           |
+      # | 5          | 5           |
+      | 5          | 4           |
+
 #   Scenario Outline: Verify DRAs page 1 likelihood,consequence and risk indicator contents match
 #     Given I launch sol-x portal
 #     When I navigate to "SmartForms" screen
