@@ -13,7 +13,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should see permit details are pre-filled
@@ -22,7 +22,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should see a list of sea states
@@ -42,7 +42,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should see a list of wind forces
@@ -65,7 +65,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should not see previous button exists
@@ -75,7 +75,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Critical Equipment Maintenance permit
     And I select <permit> permit for level 2
     Then I should see maintenance duration section and require text
@@ -105,7 +105,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     Then I should not see maintenance duration section and require text
@@ -131,7 +131,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Hotwork permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
@@ -142,7 +142,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill up section 1
@@ -154,7 +154,7 @@ Feature: Section1
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should see display texts match for section1

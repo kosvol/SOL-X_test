@@ -35,6 +35,10 @@ module AssertionUtil
     expect(compare_element).to be true
   end
 
+  def is_false(compare_element)
+    expect(compare_element).to be false
+  end
+
   def does_include(compare_to_text, include_text)
     expect(compare_to_text).to include include_text
   end

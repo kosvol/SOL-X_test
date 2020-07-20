@@ -18,8 +18,9 @@ Then (/^I should see correct permit details$/) do
   is_equal(on(SmartFormsPermissionPage).vessel_short_name, 'SIT')
 end
 
-And (/^I edit past created permit$/) do
-  on(CreatedPermitToWorkPage).edit_permit_btn_elements[1].click
+And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_rank, _pin|
+  on(CreatedPermitToWorkPage).select_created_permit
+  step "I enter pin #{_pin}"
 end
 
 Then (/^I should see permit id populated$/) do
@@ -28,26 +29,45 @@ end
 
 And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
   on(CreatedPermitToWorkPage).edit_permit_btn_elements.first.click
-  step "I enter RA pin #{_pin}"
+  step "I enter pin #{_pin}"
 end
 
 Then (/^I should see checklist section with fields enabled$/) do
   on(Section1Page).next_btn_elements.first.click
   step 'I press next for 5 times'
-  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  is_false(on(Section4APage).is_checklist_fields_disabled?)
   step 'I press next for 1 times'
-  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  is_false(on(Section4APage).is_checklist_fields_disabled?)
   is_enabled(on(Section4APage).enter_pin_btn_element)
 end
 
 Then (/^I should see gas reader section with fields enabled$/) do
   on(Section1Page).next_btn_elements.first.click
   step 'I press next for 9 times'
-  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
   on(Section1Page).next_btn_elements.first.click
   step 'I press next for 7 times'
-  is_true(!on(Section4APage).is_checklist_fields_disabled?)
+  is_false(on(Section4APage).is_checklist_fields_disabled?)
+end
+
+Then (/^I should see all section fields enabled$/) do
+  is_true(on(Section1Page).is_fields_enabled?)
+  on(Section1Page).next_btn_elements.first.click
+end
+
+Then (/^I should see all section fields disabled$/) do
+  is_false(on(Section1Page).is_fields_enabled?)
+  # on(Section1Page).next_btn_elements.first.click
+end
+
+Then (/^I should see deleted permit deleted$/) do
+  is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)
+end
+
+And (/^I delete the permit created$/) do
+  on(CreatedPermitToWorkPage).delete_created_permit.click
+  step 'I enter pin 1111'
 end

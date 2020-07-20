@@ -15,7 +15,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -48,7 +48,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -80,7 +80,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -98,7 +98,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -117,7 +117,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -133,7 +133,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -159,7 +159,7 @@ Feature: Section4AChecklist
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours

@@ -39,9 +39,14 @@ class Section1Page < SmartFormsPermissionPage
     tmp
   end
 
-  def is_fields_disabled?
+  def is_fields_enabled?
+    bool = true
     filled_data = $browser.find_elements(:xpath, '//input')
-    filled_data[3].enabled? && filled_data[4].enabled? && filled_data[5].enabled? && filled_data[6].enabled? && text_areas_elements[0].enabled? && text_areas_elements[1].enabled? && text_areas_elements[2].enabled?
+    filled_data.each do |field|
+      bool &&= field.enabled?
+    end
+    bool
+    # filled_data[3].enabled? && filled_data[4].enabled? && filled_data[5].enabled? && filled_data[6].enabled? && text_areas_elements[0].enabled? && text_areas_elements[1].enabled? && text_areas_elements[2].enabled?
   end
 
   def is_maint_duration_dd_exists?

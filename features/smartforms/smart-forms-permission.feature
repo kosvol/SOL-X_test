@@ -13,7 +13,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin <pin>
+    And I enter pin <pin>
     Then I should see smart form landing screen
     And I tear down created form
 
@@ -34,7 +34,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin <pin>
+    And I enter pin <pin>
     Then I should see not authorize error message
 
     Examples:
@@ -58,7 +58,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     Then I should see a list of available forms for selections
       | Cold Work                                 |
       | Critical Equipment Maintenance            |
@@ -81,7 +81,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     When I select <permit> permit
     Then I should see second level permits details
     And I tear down created form
@@ -98,7 +98,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I navigate to level 2 permits
     And I navigate back to permit selection screen
     Then I should see smart form landing screen

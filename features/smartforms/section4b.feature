@@ -13,7 +13,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1313
+    And I enter pin 1313
     And I select Hotwork permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1
@@ -28,7 +28,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -49,7 +49,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -81,7 +81,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -102,7 +102,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -123,7 +123,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -144,7 +144,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -173,7 +173,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -205,7 +205,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -225,7 +225,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -250,7 +250,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -261,7 +261,6 @@ Feature: Section4BEIC
     And I should see signed details
     And I should see signature
     And I tear down created form
-
 
     Examples:
       | rank | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
@@ -277,7 +276,7 @@ Feature: Section4BEIC
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
-    And I enter RA pin 1212
+    And I enter pin 1212
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1

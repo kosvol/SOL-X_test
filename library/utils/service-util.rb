@@ -30,7 +30,7 @@ module ServiceUtil
       if _trans_method === 'delete'
         @@response = HTTParty.delete(_uri, { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      error_logging('Response Body: ', @@response)
+      # error_logging('Response Body: ', @@response)
       error_logging('Status Code: ', get_http_response_status_code)
       JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
     end

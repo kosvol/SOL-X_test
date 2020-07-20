@@ -11,9 +11,9 @@ And (/^I navigate to create new permit$/) do
   on(SmartFormsPermissionPage).reset_data_collector
 end
 
-And ('I enter RA pin {int}') do |_pin|
-  on(PinPadPage).enter_pin(_pin)
-end
+# And ('I enter RA pin {int}') do |_pin|
+#   on(PinPadPage).enter_pin(_pin)
+# end
 
 Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
   if _condition === 'should'
