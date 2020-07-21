@@ -1,0 +1,27 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "SIT/PTW/2020/315",
+    "sectionId": "0",
+    "answers": [
+      {
+        "fieldId": "permitType",
+        "value": "\"Use of Non-Intrinsically Safe Camera\""
+      },
+      {
+        "fieldId": "riskHazard",
+        "value": "{\"methodDescription\":\"Standard procedures for use of non-intrinsically safe camera\",\"hazards\":[{\"identifiedHazard\":\"Presence of flammable vapors\",\"likelihood\":2,\"consequence\":2,\"existingMeasures\":\"1. Toolbox meeting carried out.\\n2. Comply with Permit to Work Certificate and its LOA.\\n3. Maintain low cargo tank pressure.\\n4. Check the presence of hc at location of work and its adjacent spaces.\\n5. Use of camera within cargo tanks and bunker tanks, additional precautions shall be taken. Prior usage of Camera, the space shall be prepared to Hot Work Standard.\\n6. Prevent operations such as gas free, tank cleaning, cargo venting.\\n7. Check camera must be in good condition.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Terminal restrictions\",\"likelihood\":2,\"consequence\":2,\"existingMeasures\":\"1. Obtain permission from terminal prior use of camera.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":2,\"disabled\":true},{\"identifiedHazard\":\"Accidental fall of camera creating spark\",\"likelihood\":2,\"consequence\":3,\"existingMeasures\":\"1. Secure Camera Using Strap And Check Strap Condition To Avoid Any Falling On Deck.\\n2. Secure The Camera First Before Taking Shots.\\n3. Handle camera with both hands.\\n4. Place Camera In Case When Not In Use.\\n5. Accertain weather condition for use of camera.\",\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"disabled\":true}]}"
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"MS/VS\""
+      },
+      {
+        "fieldId": "openChecklistUseOfCamera",
+        "value": "\"yes\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-21T05:42:02.850Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $sectionId: String!, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, sectionId: $sectionId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

@@ -12,6 +12,7 @@ class Section4APage < Section3DPage
   button(:enter_pin_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button[1]")
   element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
+  elements(:textarea, xpath: '//textarea')
 
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
@@ -29,6 +30,13 @@ class Section4APage < Section3DPage
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+
+  def fill_textarea
+    textarea_elements.each do |text_area|
+      text_area.send_keys('Test Automation')
+    end
+  rescue StandardError
+  end
 
   def is_checklist_fields_disabled?
     !(disabled_fields_elements.size === 0)

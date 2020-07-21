@@ -9,6 +9,8 @@ Feature: Section4BEIC
   #   When I navigate to "SmartForms" screen
   #   And I navigate to create new permit
 
+  # Scenario: Verify EIC data time is pre populated
+
   Scenario: Verify data,time and EIC number is pre-populated
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
@@ -61,21 +63,21 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | rank             | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-      | Addtional Master | 1212 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  # | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  # | Second Officer             | 5545 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
-  # | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  # | Chief Engineer             | 7507 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-  # | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # | Additional Second Engineer | 1414 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
-  # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  # | 3/O                        | 8888 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
-  # | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  # | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-  # | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+      | rank                       | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
+      | Addtional Master           | 1212 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
+      | Second Officer             | 5545 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
+      | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
+      | Chief Engineer             | 7507 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
+      | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+      | Additional Second Engineer | 1414 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+      | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | 3/O                        | 8888 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
+      | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
+      | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
+      | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
+      | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+      | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal

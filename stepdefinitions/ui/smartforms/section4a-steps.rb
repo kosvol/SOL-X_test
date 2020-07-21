@@ -34,7 +34,7 @@ end
 And ('I press next for {int} times') do |_times|
   (1.._times).each do |_i|
     sleep 1
-    # BrowserActions.scroll_down
+    BrowserActions.scroll_down
     on(Section4APage).next_btn
   end
 end
@@ -66,6 +66,7 @@ end
 
 And (/^I fill up checklist yes, no, na$/) do
   tmp = 0
+  on(Section4APage).fill_textarea
   (0..((on(Section3DPage).radio_btn_elements.size / 3) - 1)).each do |_i|
     on(Section3DPage).radio_btn_elements[0 + tmp].click
     # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp, 2 + tmp].sample].click

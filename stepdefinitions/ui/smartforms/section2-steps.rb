@@ -26,8 +26,8 @@ Then (/^I should see correct approval details OA (.+) and ship approval (.+)$/) 
 end
 
 Then (/^I should see ship and office approval text fields disabled$/) do
-  is_true(!is_enabled(on(Section2Page).ship_approval_element))
-  is_true(!is_enabled(on(Section2Page).office_approval_element))
+  is_disabled(on(Section2Page).ship_approval_element)
+  is_disabled(on(Section2Page).office_approval_element)
 end
 
 Then (/^I should see display texts match for section2$/) do

@@ -15,10 +15,6 @@
       {
         "fieldId": "openChecklistEnclosedSpaceEntry",
         "value": "\"yes\""
-      },
-      {
-        "fieldId": "draCreatedDate",
-        "value": "{\"dateTime\":\"2020-07-02T04:45:55.939Z\",\"utcOffset\":0}"
       }
     ],
     "submissionTimestamp": "2020-07-02T04:45:55.939Z"

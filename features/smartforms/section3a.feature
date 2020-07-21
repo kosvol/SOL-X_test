@@ -191,8 +191,6 @@ Feature: Section3ADRA
       # | 5          | 5           |
       | 5          | 4           |
 
-  ### ------------------
-
   Scenario Outline: Verify risk matrix meets criteria for low risk for additional hazard
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen

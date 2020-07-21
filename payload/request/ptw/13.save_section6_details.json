@@ -9,6 +9,10 @@
         "value": "\"\""
       },
       {
+        "fieldId": "gasReaderRequired",
+        "value": "\"yes\""
+      },
+      {
         "fieldId": "gasEquipment",
         "value": "\"\""
       },

@@ -46,6 +46,8 @@ class Section1Page < SmartFormsPermissionPage
       bool &&= field.enabled?
     end
     bool
+  rescue StandardError
+    false
     # filled_data[3].enabled? && filled_data[4].enabled? && filled_data[5].enabled? && filled_data[6].enabled? && text_areas_elements[0].enabled? && text_areas_elements[1].enabled? && text_areas_elements[2].enabled?
   end
 

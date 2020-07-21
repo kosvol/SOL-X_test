@@ -54,12 +54,12 @@ Then (/^I should see EIC section with fields enabled$/) do
 end
 
 Then (/^I should see all section fields enabled$/) do
-  is_true(on(Section1Page).is_fields_enabled?)
-  on(Section1Page).next_btn_elements.first.click
+  is_false(on(Section1Page).is_fields_enabled?)
+  # on(Section1Page).next_btn_elements.first.click
 end
 
 Then (/^I should see all section fields disabled$/) do
-  is_false(on(Section1Page).is_fields_enabled?)
+  is_true(on(Section1Page).is_fields_enabled?)
   # on(Section1Page).next_btn_elements.first.click
 end
 

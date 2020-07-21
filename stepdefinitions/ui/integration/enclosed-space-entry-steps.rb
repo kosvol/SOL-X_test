@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 And (/^I review page 1 of submitted non maintenance permit$/) do
-  on(SmartFormsPermissionPage).master_approval_elements[0].click
+  tmp = on(SmartFormsPermissionPage).get_section1_filled_data
+  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(tmp[1])
+  match_element.click
   step 'I enter pin 1111'
   @@form_data = YAML.load_file('data/filled-form-data/non-maintenance-forms-data.yml')
   p ">>> #{on(Section1Page).get_filled_section1}"
   is_equal(on(Section1Page).get_filled_section1, @@form_data['section1_without_duration'])
 end
 
-And (/^I review page 2 of submitted non maintenance permit$/) do
+And (/^I review page 2 of submitted non oa permit$/) do
   on(Section1Page).next_btn_elements.first.click
+  sleep 1
   is_equal(on(Section2Page).ship_approval, 'Master')
   is_equal(on(Section2Page).office_approval, 'N/A')
 end
