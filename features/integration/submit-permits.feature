@@ -25,7 +25,8 @@ Feature: SubmitPermit
     And I press next for 2 times
     # select gas reader?
     Then I submit permit for Master Approval
-    And I click on permits pending approval
+    And I click on back to home
+    And I click on pending approval filter
     And I review page 1 of submitted non maintenance permit
     And I review page 2 of submitted non oa permit
     And I review page 3a of submitted non maintenance permit
