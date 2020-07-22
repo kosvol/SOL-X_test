@@ -6,6 +6,15 @@ Feature: ActivePermit
 
   # Scenario: Verify user land on section 6 after clicking on Update Reader on active permit
   # Scenario: Verify in view mode all section is disabled
+  # Scenario: Verify section 8 EIC can only be signed by Issue authority
+  # Scenario: Verify section 8 EIC can only be signed by EIC competent person
+
+  Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
+  Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
+  Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
+  Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
+  Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
+  Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for OA permit
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
@@ -68,7 +77,7 @@ Feature: ActivePermit
       | Enclosed Space Entry              | submit_enclose_space_entry   | A 4/E | 2424 |
       | Hotwork                           | submit_hotwork               | ETO   | 1717 |
 
-  Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for on OA permit
+  Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
     And I launch sol-x portal
     And I click on active filter
