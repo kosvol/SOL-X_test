@@ -5,7 +5,7 @@ require './././support/env'
 class BypassPage
   include PageObject
 
-  def trigger_forms_submission(_permit_type = nil, _user, _state, eic)
+  def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json('ptw/0.create_form_ptw')
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
@@ -46,8 +46,7 @@ class BypassPage
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
     save_different_form_section('10.save_section4a_ese_details', _user)
 
-    # save_different_form_section('11.save_section4b_details', _user)
-    ### save section 4b
+    ### section 4b ###
     section2 = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
     section2['variables']['formId'] = get_selected_permit
     section2['variables']['submissionTimestamp'] = get_current_date_time
@@ -62,8 +61,23 @@ class BypassPage
     ServiceUtil.post_graph_ql('ptw/mod_11.save_section4b_details', _user)
 
     save_different_form_section('12.save_section5_details', _user)
-    save_different_form_section('13.save_section6_details', _user)
-    ### submit
+
+    ### section 6 ###
+    section2 = JSON.parse JsonUtil.read_json('ptw/13.save_section6_details')
+    section2['variables']['formId'] = get_selected_permit
+    section2['variables']['submissionTimestamp'] = get_current_date_time
+    if _gas === 'gas_yes'
+      section2['variables']['answers'][1].to_h['value'] = '"yes"'
+    elsif _gas === 'gas_no'
+      section2['variables']['answers'][1].to_h['value'] = '"no"'
+      section2['variables']['answers'].delete_at(2)
+      section2['variables']['answers'].delete_at(2)
+      section2['variables']['answers'].delete_at(2)
+    end
+    JsonUtil.create_request_file('ptw/mod_13.save_section6_details', section2)
+    ServiceUtil.post_graph_ql('ptw/mod_13.save_section6_details', _user)
+
+    ### SUBMIT ###
     save_different_form_section(payload_mapper(_permit_type, '14'), _user)
 
     if _state === 'active'
