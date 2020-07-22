@@ -67,6 +67,14 @@ And (/^I click on back to home$/) do
   on(Section6Page).back_home_elements[0].click
 end
 
-And (/^I click on pending approval filter$/) do
-  on(SmartFormsPermissionPage).permit_filter_elements[0].click
+And (/^I click on (.+) filter$/) do |state|
+  if state === 'pending approval'
+    on(SmartFormsPermissionPage).permit_filter_elements[0].click
+  elsif state === 'update needed'
+    on(SmartFormsPermissionPage).permit_filter_elements[1].click
+  elsif state === 'active'
+    on(SmartFormsPermissionPage).permit_filter_elements[2].click
+  elsif state === 'pending withdrawal'
+    on(SmartFormsPermissionPage).permit_filter_elements[3].click
+  end
 end

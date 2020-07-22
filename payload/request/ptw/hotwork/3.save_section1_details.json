@@ -1,0 +1,59 @@
+{
+  "operationName": null,
+  "variables": {
+    "formId": "DEV/PTW/2020/045",
+    "sectionId": "1",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "showUpdatesNeeded",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "vesselShortName",
+        "value": "\"SIT\""
+      },
+      {
+        "fieldId": "formNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "section1_permitType",
+        "value": "\"Hot Work Level-2 in Designated Area\""
+      },
+      {
+        "fieldId": "locationOfVessel",
+        "value": "\"In Port\""
+      },
+      {
+        "fieldId": "conditionOfVessel",
+        "value": "\"Loaded\""
+      },
+      {
+        "fieldId": "cargoDetails",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "seaState",
+        "value": "\"1 : Calm (rippled)\""
+      },
+      {
+        "fieldId": "windforce",
+        "value": "\"5 : Fresh Breeze\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "locationOfWork",
+        "value": "\"Test Automation\""
+      }
+    ],
+    "submissionTimestamp": "2020-07-02T04:46:07.939Z"
+  },
+  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+}

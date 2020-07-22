@@ -31,7 +31,7 @@ Feature: Section6
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
   # PRE gas reader
 
-  Scenario Outline: Verify Gas Reader screen should not be shown for these permits
+  Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit

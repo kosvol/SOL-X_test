@@ -5,7 +5,7 @@ Feature: Section7
   So that ...
 
   Scenario Outline: Verify only Master can approve and send form for update for non oa permit
-    Given I submit permit <permit_payload> via service with 1212 user
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
     And I launch sol-x portal
     And I click on pending approval filter
     And I click on permit for master approval
@@ -17,7 +17,7 @@ Feature: Section7
       | Enclosed Space Entry | submit_enclose_space_entry |
 
   Scenario Outline: Verify only Master can approve and send form for update for oa permit
-    Given I submit permit <permit_payload> via service with 1212 user
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
     And I launch sol-x portal
     And I click on pending approval filter
     And I click on permit for master review
@@ -29,7 +29,7 @@ Feature: Section7
       | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
   Scenario Outline: Verify non Master cannot open permit pending Master Review
-    Given I submit permit <permit_payload> via service with 1212 user
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
     And I launch sol-x portal
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank and <pin> pin
@@ -49,7 +49,7 @@ Feature: Section7
       | Electro Technical Officer  | 1717 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
   Scenario Outline: Verify non master cannot open permit pending Master Approval
-    Given I submit permit <permit_payload> via service with 1212 user
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
     And I launch sol-x portal
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank and <pin> pin

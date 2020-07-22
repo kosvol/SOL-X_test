@@ -19,7 +19,7 @@ Then (/^I should see correct permit details$/) do
 end
 
 And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_rank, _pin|
-  on(CreatedPermitToWorkPage).select_created_permit
+  on(CreatedPermitToWorkPage).select_created_permit_with_param(on(CreatedPermitToWorkPage).get_section1_filled_data[1])
   step "I enter pin #{_pin}"
 end
 

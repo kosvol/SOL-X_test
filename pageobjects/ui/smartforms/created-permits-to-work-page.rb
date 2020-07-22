@@ -30,14 +30,14 @@ class CreatedPermitToWorkPage < SmartFormsPermissionPage
     end
   end
 
-  def select_created_permit
-    parent_container_elements.each_with_index do |_permit, _index|
-      if ptw_id_elements[_index].text === get_section1_filled_data[1]
-        edit_permit_btn_elements[_index].click
-        break
-      end
-    end
-  end
+  # def select_created_permit
+  #   parent_container_elements.each_with_index do |_permit, _index|
+  #     if ptw_id_elements[_index].text === get_section1_filled_data[1]
+  #       edit_permit_btn_elements[_index].click
+  #       break
+  #     end
+  #   end
+  # end
 
   def select_created_permit_with_param(_permit_id)
     parent_container_elements.each_with_index do |_permit, _index|
