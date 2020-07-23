@@ -17,10 +17,16 @@ module ServiceUtil
       JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
     end
 
-    def fauxton(_uri, _trans_method, _json_payload)
-      content_body = JsonUtil.read_json(_json_payload)
+    def fauxton(_uri, _trans_method, _json_payload = '')
+      content_body = _json_payload
+      if _json_payload != '' && _json_payload.size < 15
+        content_body = JsonUtil.read_json(_json_payload)
+      end
       error_logging('URI: ', _uri)
       error_logging('Request Body: ', content_body)
+      if _trans_method === 'put'
+        @@response = HTTParty.put(_uri, { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+      end
       if _trans_method === 'post'
         @@response = HTTParty.post(_uri, { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
@@ -30,7 +36,7 @@ module ServiceUtil
       if _trans_method === 'delete'
         @@response = HTTParty.delete(_uri, { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      # error_logging('Response Body: ', @@response)
+      error_logging('Response Body: ', @@response)
       error_logging('Status Code: ', get_http_response_status_code)
       JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
     end

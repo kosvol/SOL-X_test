@@ -4,7 +4,6 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  @x1
   Scenario Outline: Verify submitted permit data gets reflected for non-oa permit
     Given I launch sol-x portal
     And I navigate to create new permit
@@ -40,9 +39,9 @@ Feature: SubmitPermit
     And I review page 6 of submitted non maintenance permit
 
     Examples:
-      | level_one_permit | level_two_permit                    | checklist                       |
-      # | Enclosed Spaces Entry | Enclosed Space Entry | Enclosed Space Entry Checklist |
-      | Hotwork          | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
+      | level_one_permit      | level_two_permit     | checklist                      |
+      | Enclosed Spaces Entry | Enclosed Space Entry | Enclosed Space Entry Checklist |
+# | Hotwork          | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
 # | Hotwork          | Hot Work Level-1 (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
 # | Working Aloft/Overside                    | Working Aloft / Overside                           | Working Aloft/Overside                    |
 # | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels        | Work on Pressure Pipelines                |

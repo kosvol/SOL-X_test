@@ -22,7 +22,9 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
 end
 
 And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
+  sleep 1
   on(Section1Page).next_btn_elements.first.click
+  sleep 1
   step 'I press next for 9 times'
   _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_reading_btn_element) : is_disabled(on(Section6Page).add_gas_reading_btn_element)
 end
@@ -30,9 +32,9 @@ end
 Then (/^I (should|should not) see EIC normalize extra questions$/) do |_condition|
   sleep 1
   if _condition === 'should'
-    is_equal($browser.find_elements(:xpath, '//input').size, '23')
+    is_equal($browser.find_elements(:xpath, '//input').size, '25')
   end
   if _condition === 'should not'
-    is_equal($browser.find_elements(:xpath, '//input').size, '13')
+    is_equal($browser.find_elements(:xpath, '//input').size, '15')
   end
 end

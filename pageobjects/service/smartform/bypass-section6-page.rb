@@ -97,6 +97,23 @@ class BypassPage
     end
   end
 
+  def set_oa_permit_to_pending_office_appr
+    submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_active['variables']['formId'] = get_selected_permit
+    submit_active['variables']['newStatus'] = 'PENDING_OFFICE_APPROVAL'
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
+  end
+
+  def set_oa_permit_to_active_state
+    url = "http://52.230.70.68:5984/forms/#{get_selected_permit.gsub('/', '%2F')}?conflicts=true"
+    ServiceUtil.fauxton(url, 'get')
+    permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
+    permit_payload['status'] = 'ACTIVE'
+    ServiceUtil.fauxton(url, 'put', permit_payload.to_json)
+  end
+
   def get_selected_permit
     @@selected_level2_permit
   end
@@ -211,6 +228,25 @@ class BypassPage
         'hotwork/9.save_section4a_details'
       when '14'
         'hotwork/14.submit_for_master_approval'
+      end
+    when 'submit_underwater_simultaneous'
+      case _step
+      when '1'
+        'ptw/underwater-sim/1.date_with_offset'
+      when '2'
+        'ptw/underwater-sim/2.save_section0_details'
+      when '3'
+        'underwater-sim/3.save_section1_details'
+      when '4'
+        'underwater-sim/4.save_section2_details'
+      when '3a'
+        'underwater-sim/5.save_section3a_details'
+      when '3b'
+        'underwater-sim/6.save_section3b_details'
+      when '4a'
+        'underwater-sim/9.save_section4a_details'
+      when '14'
+        'underwater-sim/14.submit_for_master_approval'
       end
     end
   end

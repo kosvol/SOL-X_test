@@ -22,6 +22,10 @@ Then (/^I should see master approval button only$/) do
 end
 
 Then (/^I (should|should not) see gas reader sections$/) do |_condition|
+  sleep 1
+  on(Section1Page).next_btn_elements.first.click
+  sleep 1
+  step 'I press next for 9 times'
   is_true(on(Section6Page).is_gas_reader_section?) if _condition === 'should'
   if _condition === 'should not'
     is_true(!on(Section6Page).is_gas_reader_section?)

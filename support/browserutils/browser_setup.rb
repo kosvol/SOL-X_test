@@ -30,7 +30,7 @@ class BrowserSetup
       options.add_argument('--disable-web-security')
       options.add_argument('--allow-running-insecure-content')
       options.add_argument('--ignore-certificate-errors')
-      options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080')
+      options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080')
       # if ENV['DEVICE'] === 'dashboard' || ENV['DEVICE'] === 'tablet'
       #   options.add_argument('--user-data-dir=/data/user/0/com.android.chrome/app_chrome/Default/')
       # else

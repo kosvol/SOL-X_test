@@ -10,11 +10,94 @@ Feature: ActivePermit
   # Scenario: Verify section 8 EIC can only be signed by EIC competent person
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should see Add Gas Reading button enabled
+
+    Examples:
+      | permit_types       | permit_payload                 | rank   | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
+      | underwater         | submit_underwater_simultaneous | A/M    | 1212 |
+
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to active state with gas reading not require
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should not see gas reader sections
+
+    Examples:
+      | permit_types       | permit_payload                 | rank   | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
+      | underwater         | submit_underwater_simultaneous | A/M    | 1212 |
+
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should see Add Gas Reading button disabled
+
+    Examples:
+      | permit_types       | permit_payload                 | rank  | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | 4/E   | 2323 |
+      | underwater         | submit_underwater_simultaneous | A 4/E | 2424 |
+      | underwater         | submit_underwater_simultaneous | ETO   | 1717 |
+
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    And I terminate permit with <rank> rank and <pin> pin
+    Then I should not see EIC normalize extra questions
+
+    Examples:
+      | permit_types       | permit_payload                 | rank          | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 1212 |
+      | underwater         | submit_underwater_simultaneous | Chief Officer | 5912 |
+
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    And I terminate permit with <rank> rank and <pin> pin
+    Then I should see EIC normalize extra questions
+
+    Examples:
+      | permit_types       | permit_payload                 | rank          | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 1212 |
+      | underwater         | submit_underwater_simultaneous | Chief Officer | 5912 |
+
+  Scenario Outline: Verify View button display when permit does not require Gas Permit for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state and no gas reading
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    Then I should see View as button text
+
+    Examples:
+      | permit_types       | permit_payload                 |
+      | intrinsical camera | submit_non_intrinsical_camera  |
+      | underwater         | submit_underwater_simultaneous |
+
   Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state
+    And I set oa permit to active state
+    And I launch sol-x portal
+    And I click on active filter
+    Then I should see Update Readings as button text
+
+    Examples:
+      | permit_types       | permit_payload                 |
+      | intrinsical camera | submit_non_intrinsical_camera  |
+      | underwater         | submit_underwater_simultaneous |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
@@ -122,6 +205,19 @@ Feature: ActivePermit
     And I launch sol-x portal
     And I click on active filter
     Then I should see Update Readings as button text
+
+    Examples:
+      | permit_types                      | permit_payload               |
+      | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill |
+      | Enclosed Space Entry              | submit_enclose_space_entry   |
+      | Enclosed Space Entry              | submit_enclose_space_entry   |
+      | Hotwork                           | submit_hotwork               |
+
+  Scenario Outline: Verify View button display when permit does not require Gas Permit for non OA permit
+    Given I submit permit <permit_payload> via service with 1212 user and set to active state and no gas reading
+    And I launch sol-x portal
+    And I click on active filter
+    Then I should see View as button text
 
     Examples:
       | permit_types                      | permit_payload               |
