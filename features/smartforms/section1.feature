@@ -112,18 +112,18 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | level_one_permit               | level_two_permit                            |
-      | Cold Work                      | Cold Work - Cleaning Up of Spills           |
+      | level_one_permit                  | level_two_permit                            |
+      | Cold Work                         | Cold Work - Cleaning Up of Spills           |
       # | Enclosed Spaces Entry          | Enclosed Spaces Entry                       |
-      | Helicopter Operations          | Helicopter Operations                       |
-      | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage) |
+      | Helicopter Operations             | Helicopter Operations                       |
+      | Hotwork                           | Hot Work Level-1 (Loaded & Ballast Passage) |
       # | Personal Transfer By Transfer Basket      | Personal Transfer By Transfer Basket        |
-      | Rotational Portable Power Tool | Use of Portable Power Tools                 |
-      | Underwater Operations          | Underwater Operation at night               |
-  # | Use of non-intrinsically safe Camera      | Use of non-intrinsically safe Camera        |
-  # | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                  |
-  # | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
-  # | Work on Pressure Pipeline/Vessels         | Work on Pressure Pipeline/Vessels           |
+      | Rotational Portable Power Tool    | Use of Portable Power Tools                 |
+      | Underwater Operations             | Underwater Operation at night               |
+      # | Use of non-intrinsically safe Camera      | Use of non-intrinsically safe Camera        |
+      # | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                  |
+      # | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
+      | Work on Pressure Pipeline/Vessels | Work on Pressure Pipeline/Vessels           |
   # | Working Aloft/Overside                    | Working Aloft/Overside                      |
   # | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather        |
 
