@@ -90,7 +90,7 @@ end
 
 Then (/^I should see Retrieve My Data button disabled$/) do
   on(CrewListPage).add_new_crew_btn
-  is_enabled(on(CrewListPage).retrieve_data_btn_element)
+  is_disabled(on(CrewListPage).retrieve_data_btn_element)
 end
 
 And (/^I add crew$/) do

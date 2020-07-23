@@ -51,19 +51,19 @@ class Section4APage < Section3DPage
     tmp
   end
 
-  def get_current_date_format
+  def get_current_date_mm_yyyy_format
     Time.new.strftime('%b/%Y')
   end
 
   def is_checklist_details_prepopulated?
     sleep 1
-    Log.instance.info("--- #{get_current_date_format}")
+    Log.instance.info("--- #{get_current_date_mm_yyyy_format}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{checklist_permit_number}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def get_checklist_label(_which_content, checklist = nil)
@@ -102,8 +102,8 @@ class Section4APage < Section3DPage
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-    Log.instance.info(">> Date & Time #{get_current_date_format} #{time_offset}")
-    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_format} #{time_offset})" === date_and_time_stamp_element.text))
+    Log.instance.info(">> Date & Time #{get_current_date_mm_yyyy_format} #{time_offset}")
+    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
   # ##Blue rgba(24, 144, 255, 1)

@@ -28,13 +28,3 @@ And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
   step 'I press next for 9 times'
   _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_reading_btn_element) : is_disabled(on(Section6Page).add_gas_reading_btn_element)
 end
-
-Then (/^I (should|should not) see EIC normalize extra questions$/) do |_condition|
-  sleep 1
-  if _condition === 'should'
-    is_equal($browser.find_elements(:xpath, '//input').size, '25')
-  end
-  if _condition === 'should not'
-    is_equal($browser.find_elements(:xpath, '//input').size, '15')
-  end
-end

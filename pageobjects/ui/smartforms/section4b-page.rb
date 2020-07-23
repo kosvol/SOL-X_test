@@ -37,6 +37,6 @@ class Section4BPage < Section4APage
     Log.instance.info(">>> #{get_current_date_format}")
     Log.instance.info(">>> #{get_current_time_format}")
     Log.instance.info(">>> #{BrowserActions.get_attribute_value(@@eic_number).include? 'SIT/EIC/'}")
-    ((eic_date_and_time_elements[0].text === get_current_date_format) && (eic_date_and_time_elements[1].text === get_current_time_format) && (BrowserActions.get_attribute_value(@@eic_number).include? 'SIT/EIC/'))
+    ((eic_date_and_time_elements[0].text === get_current_date_mm_yyyy_format) && (eic_date_and_time_elements[1].text === get_current_time_format) && (BrowserActions.get_attribute_value(@@eic_number).include? 'SIT/EIC/'))
   end
 end

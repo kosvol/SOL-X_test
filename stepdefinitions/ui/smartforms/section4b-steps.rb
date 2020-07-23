@@ -14,8 +14,8 @@ And (/^I link wearable to a (RA|competent person|issue authority) (.+) and link 
   sleep 2
 end
 
-Then (/^I sign EIC as (competent person|non competent person) (.+)$/) do |_condition, _pin|
-  step 'I select yes to EIC certification'
+Then (/^I sign EIC as (competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
+  # step 'I select yes to EIC certification'
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
@@ -25,8 +25,8 @@ Then (/^I sign EIC as (competent person|non competent person) (.+)$/) do |_condi
   step 'I sign on canvas' if _condition === 'competent person'
 end
 
-Then (/^I sign EIC as (issuing authority|non issuing authority) (.+)$/) do |_condition, _pin|
-  step 'I select yes to EIC certification'
+Then (/^I sign EIC as (issuing authority|non issuing authority) with pin (.+)$/) do |_condition, _pin|
+  # step 'I select yes to EIC certification'
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down

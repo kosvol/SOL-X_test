@@ -42,10 +42,10 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | rank       | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-      | C/O Leong  | 5912 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-      | 2/E Choryi | 1313 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-      | ETO Ilmi   | 1717 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
+      | rank              | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
+      | C/O Alister Leong | 5912 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | 2/E Poon Choryi   | 1313 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
+      | ETO Reza Ilmi     | 1717 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
 
   Scenario Outline: Verify non competent person cannot sign as competent person on first EIC signing
     Given I launch sol-x portal
@@ -112,7 +112,8 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    Then I sign EIC as competent person 5912
+    And I select yes to EIC certification
+    Then I sign EIC as competent person with pin 5912
     And I should see signed details
     And I should see location <location_stamp> stamp
     And I tear down created form
@@ -133,7 +134,8 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    Then I sign EIC as issuing authority 7507
+    And I select yes to EIC certification
+    Then I sign EIC as issuing authority with pin 7507
     And I should see signed details
     And I should see location <location_stamp> stamp
     And I tear down created form
@@ -214,7 +216,8 @@ Feature: Section4BEIC
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    Then I sign EIC as issuing authority <pin>
+    And I select yes to EIC certification
+    Then I sign EIC as issuing authority with pin <pin>
     And I should see signed details
     And I should see signature
     And I tear down created form
@@ -234,7 +237,8 @@ Feature: Section4BEIC
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    Then I sign EIC as non issuing authority <pin>
+    And I select yes to EIC certification
+    Then I sign EIC as non issuing authority with pin <pin>
     And I should see not authorize error message
     And I tear down created form
 
@@ -259,7 +263,8 @@ Feature: Section4BEIC
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    Then I sign EIC as competent person <pin>
+    And I select yes to EIC certification
+    Then I sign EIC as competent person with pin <pin>
     And I should see signed details
     And I should see signature
     And I tear down created form
@@ -285,7 +290,8 @@ Feature: Section4BEIC
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    Then I sign EIC as non competent person <pin>
+    And I select yes to EIC certification
+    Then I sign EIC as non competent person with pin <pin>
     And I should see not authorize error message
     And I tear down created form
 

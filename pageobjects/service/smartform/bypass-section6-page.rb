@@ -248,6 +248,25 @@ class BypassPage
       when '14'
         'underwater-sim/14.submit_for_master_approval'
       end
+    when 'submit_work_on_pressure_line'
+      case _step
+      when '1'
+        'ptw/work-pressure-line/1.date_with_offset'
+      when '2'
+        'ptw/work-pressure-line/2.save_section0_details'
+      when '3'
+        'work-pressure-line/3.save_section1_details'
+      when '4'
+        'work-pressure-line/4.save_section2_details'
+      when '3a'
+        'work-pressure-line/5.save_section3a_details'
+      when '3b'
+        'work-pressure-line/6.save_section3b_details'
+      when '4a'
+        'work-pressure-line/9.save_section4a_details'
+      when '14'
+        'work-pressure-line/14.submit_for_master_approval'
+      end
     end
   end
 end
