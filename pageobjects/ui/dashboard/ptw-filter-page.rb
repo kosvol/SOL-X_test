@@ -11,6 +11,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
   span(:pending_termination, xpath: "//span[@data-testid='pendingTermination-stat']")
 
   def does_permit_counter_match
+    get_permits_counter
     (@@total_pending_approval.to_s === pending_approval) && (@@total_update_needed.to_s === pending_update) && (@@total_active.to_s === active) && (@@total_terminal.to_s === pending_termination)
   end
 
