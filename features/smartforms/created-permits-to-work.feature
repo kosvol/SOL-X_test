@@ -9,6 +9,11 @@ Feature: CreatedPermitToWork
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
 
+  # Scenario: Verify correct total list of created permit
+  #   Given I launch sol-x portal
+  #   When I navigate to "Created Permits to Work" screen
+  #   Then I should see the total permits in CREATED state match backend results
+
   # Scenario: Verify past created permit should display permit id
   #   Given I launch sol-x portal
   #   When I navigate to "Created Permits to Work" screen
@@ -148,7 +153,7 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4092 | Underwater Operations                     | Underwater Operation at night               |
       | A 3/E                      | 1515 | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
 
-  Scenario Outline: Verify checklist creator can only edit checklist fields in PTW Created State
+  Scenario Outline: Verify checklist creator can only edit checklist,eic and gas reader in PTW Created State
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
     And I navigate to create new permit
@@ -158,26 +163,18 @@ Feature: CreatedPermitToWork
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
     Then I should see checklist section with fields enabled
+    And I should see eic selection fields enabled
+    And I should see gas reading section with fields enabled
     When I sign on section with <pin> pin
     Then I should see signed details
     And I tear down created form
 
     Examples:
       | rank  | pin  |
-      | A/M   | 1212 |
-      | C/O   | 5912 |
-      | A C/O | 5555 |
-      | 2/O   | 5545 |
-      | A 2/O | 7777 |
       | 3/O   | 8888 |
       | A 3/O | 9999 |
-      | C/E   | 7507 |
-      | A C/E | 0110 |
-      | 2/E   | 1313 |
-      | A 2/E | 1414 |
       | 3/E   | 4092 |
       | A 3/E | 1515 |
       | 4/E   | 2323 |
       | A 4/E | 2424 |
-      | ETO   | 1717 |
 

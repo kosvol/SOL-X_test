@@ -5,6 +5,7 @@ require './././support/env'
 class Section6Page < Section4BPage
   include PageObject
 
+  elements(:gas_yes_no, xpath: "//input[@name='gasReaderRequired']")
   button(:save_and_next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
   button(:add_gas_reading_btn, xpath: "//div[starts-with(@class,'FormFieldGasReaderFactory__Container-')]/div/div/button")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")

@@ -1,0 +1,3 @@
+{
+  "query": "query {\n    formStats{\n        closed\n    }\n}"
+}

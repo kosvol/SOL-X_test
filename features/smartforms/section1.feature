@@ -6,12 +6,10 @@ Feature: Section1
 
   # Scenario: Initialize the clock for automation
   #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
   #   And I navigate to create new permit
 
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
@@ -20,7 +18,6 @@ Feature: Section1
 
   Scenario: Verify sea state dropdown input fields are correct
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
@@ -40,7 +37,6 @@ Feature: Section1
 
   Scenario: Verify wind force dropdown input fields are correct
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
@@ -63,7 +59,6 @@ Feature: Section1
 
   Scenario: Verify there is no Previous button
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
@@ -73,7 +68,6 @@ Feature: Section1
 
   Scenario Outline: Verify question input field exists
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -103,7 +97,6 @@ Feature: Section1
 
   Scenario Outline: Verify question input field does not exists in permits
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -129,7 +122,6 @@ Feature: Section1
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -140,7 +132,6 @@ Feature: Section1
 
   Scenario: Verify user can fill up the form, save and proceed to next page for critical maintenance permit
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -152,7 +143,6 @@ Feature: Section1
 
   Scenario: Verify section1 screen text
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit

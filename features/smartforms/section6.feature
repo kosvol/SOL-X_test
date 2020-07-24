@@ -4,7 +4,7 @@ Feature: Section6
   I want to ...
   So that ...
 
-  Scenario: Verify user is able to save Gas Reading contents with toxic gas
+  # Scenario: Verify user is able to save Gas Reading contents with toxic gas
 
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal

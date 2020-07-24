@@ -41,6 +41,18 @@ Then (/^I should see checklist section with fields enabled$/) do
   is_enabled(on(Section4APage).enter_pin_btn_element)
 end
 
+And (/^I should see eic selection fields enabled$/) do
+  step 'I press next for 1 times'
+  is_enabled(on(Section4BPage).yes_no_btn_elements[0])
+  is_enabled(on(Section4BPage).yes_no_btn_elements[1])
+end
+
+And (/^I should see gas reading section with fields enabled$/) do
+  step 'I press next for 2 times'
+  is_enabled(on(Section6Page).gas_yes_no_elements[0])
+  is_enabled(on(Section6Page).gas_yes_no_elements[1])
+end
+
 Then (/^I should see gas reader section with fields enabled$/) do
   on(Section1Page).next_btn_elements.first.click
   step 'I press next for 9 times'
@@ -70,4 +82,21 @@ end
 And (/^I delete the permit created$/) do
   on(CreatedPermitToWorkPage).delete_created_permit.click
   step 'I enter pin 1111'
+end
+
+Then (/^I should see the total permits in CREATED state match backend results$/) do
+  sleep 1
+  BrowserActions.scroll_down
+  sleep 1
+  BrowserActions.scroll_down
+  sleep 1
+  BrowserActions.scroll_down
+  sleep 1
+  BrowserActions.scroll_down
+  sleep 1
+  BrowserActions.scroll_down
+  sleep 1
+  step 'I get forms-filter/get-created-permits request payload'
+  step 'I hit graphql'
+  is_equal(ServiceUtil.get_response_body['data']['form']['edges'].to_a.size, on(CreatedPermitToWorkPage).parent_container_elements.size)
 end
