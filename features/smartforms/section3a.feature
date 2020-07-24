@@ -299,7 +299,7 @@ Feature: Section3ADRA
 # # | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 # # | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 # # | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-# # | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
+# # | Critical Equipment Maintenance            | Maintenance on Magnetic Compass                                          |
 # # | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
 # # | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 # # | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
@@ -357,7 +357,7 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 #       | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-#       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
+#       | Critical Equipment Maintenance            | Maintenance on Magnetic Compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
 #       | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |
@@ -415,7 +415,7 @@ Feature: Section3ADRA
 #       | Critical Equipment Maintenance            | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel                         |
 #       | Critical Equipment Maintenance            | Maintenance on Life/Rescue Boats and Davits                                                   |
 #       | Critical Equipment Maintenance            | Maintenance on Lifeboat Engine                                                                |
-#       | Critical Equipment Maintenance            | Maintenance on magnetic compass                                          |
+#       | Critical Equipment Maintenance            | Maintenance on Magnetic Compass                                          |
 #       | Critical Equipment Maintenance            | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device                         |
 #       | Critical Equipment Maintenance            | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
 #       | Critical Equipment Maintenance            | Maintenance on Oil Discharging Monitoring Equipment                                           |

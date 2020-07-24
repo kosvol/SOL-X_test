@@ -6,12 +6,11 @@ Feature: Section2ApprovalAuthority
 
   # Scenario: Initialize the clock for automation
   #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #
   #   And I navigate to create new permit
 
   Scenario: Verify user can see previous and next button
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -23,7 +22,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify user can see the correct approval for non-OA
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -55,7 +53,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -75,7 +72,7 @@ Feature: Section2ApprovalAuthority
       | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
       | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                |
       | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             |
-      | Critical Equipment Maintenance | Maintenance on magnetic compass                                            |
+      | Critical Equipment Maintenance | Maintenance on Magnetic Compass                                            |
       | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      |
       | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device   |
       | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        |
@@ -86,7 +83,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify OA is not require if maintenance on critical equipment is less than 2 hours
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -106,7 +102,7 @@ Feature: Section2ApprovalAuthority
       | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
       | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                |
       | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             |
-      | Critical Equipment Maintenance | Maintenance on magnetic compass                                            |
+      | Critical Equipment Maintenance | Maintenance on Magnetic Compass                                            |
       | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      |
       | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device   |
       | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        |
@@ -117,7 +113,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify user can see the correct approval authority
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -139,7 +134,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario: Verify ship and office approval text field is disabled
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -149,7 +143,6 @@ Feature: Section2ApprovalAuthority
 
   Scenario: Verify section2 screen text
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit

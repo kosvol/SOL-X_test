@@ -92,7 +92,7 @@ Feature: Section6
   # | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
-  # | Critical Equipment Maintenance | Maintenance on magnetic compass                                            | Critical Equipment Maintenance Checklist |
+  # | Critical Equipment Maintenance | Maintenance on Magnetic Compass                                            | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
@@ -161,7 +161,7 @@ Feature: Section6
       # | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
       # | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
       | Critical Equipment Maintenance | Maintenance on Lifeboat Engine  | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on magnetic compass | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Magnetic Compass | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
   # | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |

@@ -19,7 +19,7 @@ module ServiceUtil
 
     def fauxton(_uri, _trans_method, _json_payload = '')
       content_body = _json_payload
-      if _json_payload != '' && _json_payload.size < 15
+      if _json_payload != '' && _json_payload.size < 20
         content_body = JsonUtil.read_json(_json_payload)
       end
       error_logging('URI: ', _uri)

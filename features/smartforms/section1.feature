@@ -92,7 +92,7 @@ Feature: Section1
       ## | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
       ## | Maintenance on Life/Rescue Boats and Davits                                |
       ## | Maintenance on Lifeboat Engine                                             |
-      | Maintenance on magnetic compass                                          |
+      | Maintenance on Magnetic Compass                                          |
       | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device    |
       | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
       ## | Maintenance on Oil Discharging Monitoring Equipment                        |
