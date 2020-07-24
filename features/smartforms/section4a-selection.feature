@@ -5,13 +5,11 @@ Feature: Section4AChecklistSelection
   So that ...
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
 
   Scenario: Verify Work on Hazardous Substances checklist exists
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -22,8 +20,7 @@ Feature: Section4AChecklistSelection
     And I tear down created form
 
   Scenario Outline: Verify checklist is pre-selected for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -54,8 +51,7 @@ Feature: Section4AChecklistSelection
   # | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist is pre-selected for non maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit

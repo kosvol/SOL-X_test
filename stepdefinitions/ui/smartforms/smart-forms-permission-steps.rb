@@ -11,10 +11,6 @@ And (/^I navigate to create new permit$/) do
   on(SmartFormsPermissionPage).reset_data_collector
 end
 
-# And ('I enter RA pin {int}') do |_pin|
-#   on(PinPadPage).enter_pin(_pin)
-# end
-
 Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
   if _condition === 'should'
     is_true(on(SmartFormsPermissionPage).ptw_id_element.text.include?('SIT/PTW/'))
@@ -33,7 +29,7 @@ And (/^I tear down created form$/) do
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 1
+  sleep 2
   on(SmartFormsPermissionPage).click_permit_type_ddl
   on(SmartFormsPermissionPage).select_permit(_permit)
   # on(SmartFormsPermissionPage).list_permit_type_elements.each do |permit|

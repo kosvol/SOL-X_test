@@ -5,15 +5,13 @@ Feature: Section4BEIC
   So that ...
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
 
   # Scenario: Verify EIC data time is pre populated
 
   Scenario: Verify data,time and EIC number is pre-populated
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select Hotwork permit
@@ -27,8 +25,7 @@ Feature: Section4BEIC
     And I tear down created form
 
   Scenario Outline: Verify only competent person can sign as competent person on first EIC signing
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -48,8 +45,7 @@ Feature: Section4BEIC
       | ETO Reza Ilmi     | 1717 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
 
   Scenario Outline: Verify non competent person cannot sign as competent person on first EIC signing
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -81,7 +77,6 @@ Feature: Section4BEIC
 
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -102,7 +97,6 @@ Feature: Section4BEIC
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -124,7 +118,6 @@ Feature: Section4BEIC
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -145,8 +138,7 @@ Feature: Section4BEIC
       | SIT_SOLX0002 | SIT_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 | IG Platform 2  | Rotational Portable Power Tool | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify only RA can sign on responsible authority
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -174,8 +166,7 @@ Feature: Section4BEIC
       | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             | Electro Technical Officer  | 1717 |
 
   Scenario Outline: Verify non RA cannot sign on responsible authority
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -206,8 +197,7 @@ Feature: Section4BEIC
       | OLR    | 0220 | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            |
 
   Scenario Outline: Verify only chief engineer can sign as issuing authority
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -227,8 +217,7 @@ Feature: Section4BEIC
       | C/E  | 7507 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non chief engineer cannot sign as issuing authority
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -253,8 +242,7 @@ Feature: Section4BEIC
       | Second Officer | 5545 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify only competent person can sign as competent person
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -280,8 +268,7 @@ Feature: Section4BEIC
       | C/O  | 5912 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify non competent person cannot sign as competent person
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit

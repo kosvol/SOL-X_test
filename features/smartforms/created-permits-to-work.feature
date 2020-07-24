@@ -5,25 +5,23 @@ Feature: CreatedPermitToWork
   So that ...
 
   Scenario: Initialize the clock for automation
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
 
   # Scenario: Verify correct total list of created permit
-  #   Given I launch sol-x portal
+  #   Given I launch sol-x portal without unlinking wearable
   #   When I navigate to "Created Permits to Work" screen
   #   Then I should see the total permits in CREATED state match backend results
 
   # Scenario: Verify past created permit should display permit id
-  #   Given I launch sol-x portal
+  #   Given I launch sol-x portal without unlinking wearable
   #   When I navigate to "Created Permits to Work" screen
   #   And I edit past created permit
   #   And I enter pin 1212
   #   Then I should see permit id populated
 
   Scenario: Verify created permit data matched on edit screen for Permit Details
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Use of ODME in Manual Mode permit
@@ -35,8 +33,7 @@ Feature: CreatedPermitToWork
     And I tear down created form
 
   Scenario: Verify created permit is under Created Permit to Work
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -46,8 +43,7 @@ Feature: CreatedPermitToWork
     And I tear down created form
 
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -58,8 +54,7 @@ Feature: CreatedPermitToWork
     And I tear down created form
 
   Scenario Outline: Verify PTW reader can only read PTW for permit in created state
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -83,8 +78,7 @@ Feature: CreatedPermitToWork
   # | O/S   | 1919 |
 
   Scenario Outline: Verify RA can edit all the fields in PTW Created State
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -109,8 +103,7 @@ Feature: CreatedPermitToWork
   # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
 
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -126,8 +119,7 @@ Feature: CreatedPermitToWork
       | Electro Technical Officer | 1717 |
 
   Scenario Outline: Verify AGT can edit gas reader on section 6 for permit on Created state
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -154,8 +146,7 @@ Feature: CreatedPermitToWork
       | A 3/E                      | 1515 | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
 
   Scenario Outline: Verify checklist creator can only edit checklist,eic and gas reader in PTW Created State
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit

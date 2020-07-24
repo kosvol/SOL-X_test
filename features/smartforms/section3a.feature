@@ -5,13 +5,11 @@ Feature: Section3ADRA
   So that ...
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
 
   Scenario: Verify permit number date and time is pre-filled in section 3a
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -22,8 +20,7 @@ Feature: Section3ADRA
     And I tear down created form
 
   Scenario Outline: Verify risk matrix meets criteria for low risk for without applying measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -47,8 +44,7 @@ Feature: Section3ADRA
       | 4          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for without applying measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -67,8 +63,7 @@ Feature: Section3ADRA
       | 5          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for high risk for without applying measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -89,8 +84,7 @@ Feature: Section3ADRA
       | 5          | 3           |
 
   Scenario Outline: Verify risk matrix meets criteria for very high risk for without applying measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -107,8 +101,7 @@ Feature: Section3ADRA
       | 5          | 4           |
 
   Scenario Outline: Verify risk matrix meets criteria for low risk for existing control measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -132,8 +125,7 @@ Feature: Section3ADRA
       | 4          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for existing control measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -152,8 +144,7 @@ Feature: Section3ADRA
       | 5          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for high risk for existing control measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -174,8 +165,7 @@ Feature: Section3ADRA
   # | 5          | 3           |
 
   Scenario Outline: Verify risk matrix meets criteria for very high risk for existing control measure
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -192,8 +182,7 @@ Feature: Section3ADRA
       | 5          | 4           |
 
   Scenario Outline: Verify risk matrix meets criteria for low risk for additional hazard
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -217,8 +206,7 @@ Feature: Section3ADRA
   # | 4          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for additional hazard
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -237,8 +225,7 @@ Feature: Section3ADRA
   # | 5          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for high risk for additional hazard
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -259,8 +246,7 @@ Feature: Section3ADRA
   # | 5          | 3           |
 
   Scenario Outline: Verify risk matrix meets criteria for very high risk for additional hazard
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -277,8 +263,7 @@ Feature: Section3ADRA
       | 5          | 4           |
 
 #   Scenario Outline: Verify DRAs page 1 likelihood,consequence and risk indicator contents match
-#     Given I launch sol-x portal
-#     When I navigate to "SmartForms" screen
+#     Given I launch sol-x portal without unlinking wearable
 #     And I navigate to create new permit
 #     And I enter pin 1212
 #     And I select <level_one_permit> permit
@@ -336,8 +321,7 @@ Feature: Section3ADRA
 # ### | Rigging of Pilot/Combination Ladder | Rigging of Pilot/Combination Ladder |
 
 #   Scenario Outline: Verify DRAs page 1 consequence content match
-#     Given I launch sol-x portal
-#     When I navigate to "SmartForms" screen
+#     Given I launch sol-x portal without unlinking wearable
 #     And I navigate to create new permit
 #     And I enter pin 1212
 #     And I select <level_one_permit> permit
@@ -394,8 +378,7 @@ Feature: Section3ADRA
 #   ###| Rigging of Pilot/Combination Ladder       | Rigging of Pilot/Combination Ladder                                                           |
 
 #   Scenario Outline: Verify DRAs page 1 risk indicator content match
-#     Given I launch sol-x portal
-#     When I navigate to "SmartForms" screen
+#     Given I launch sol-x portal without unlinking wearable
 #     And I navigate to create new permit
 #     And I enter pin 1212
 #     And I select <level_one_permit> permit

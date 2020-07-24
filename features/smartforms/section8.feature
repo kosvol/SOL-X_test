@@ -7,7 +7,7 @@ Feature: Section8
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should not see EIC normalize extra questions
@@ -20,7 +20,7 @@ Feature: Section8
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should see EIC normalize extra questions
@@ -32,7 +32,7 @@ Feature: Section8
 
   Scenario Outline: Verify user should see two additional question when terminating Work on Pressure Pipeline permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should see EIC extra questions for work on pressure pipe permit
@@ -90,7 +90,7 @@ Feature: Section8
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should not see EIC normalize extra questions
@@ -110,7 +110,7 @@ Feature: Section8
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should see EIC normalize extra questions

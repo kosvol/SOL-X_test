@@ -6,7 +6,7 @@ Feature: Section7
 
   Scenario Outline: Verify only Master can approve and send form for update for non oa permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master approval
     And I press next for 10 times
@@ -18,7 +18,7 @@ Feature: Section7
 
   Scenario Outline: Verify only Master can approve and send form for update for oa permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master review
     And I press next for 9 times
@@ -30,7 +30,7 @@ Feature: Section7
 
   Scenario Outline: Verify non Master cannot open permit pending Master Review
     Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank and <pin> pin
     Then I should see not authorize error message
@@ -50,7 +50,7 @@ Feature: Section7
 
   Scenario Outline: Verify non master cannot open permit pending Master Approval
     Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank and <pin> pin
     Then I should see not authorize error message

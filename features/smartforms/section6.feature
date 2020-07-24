@@ -7,8 +7,7 @@ Feature: Section6
   # Scenario: Verify user is able to save Gas Reading contents with toxic gas
 
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -32,8 +31,7 @@ Feature: Section6
   # PRE gas reader
 
   Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -68,8 +66,7 @@ Feature: Section6
       | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                                            | Use of ODME in Manual Mode                |
 
   Scenario Outline: Verify Gas Reader screen should not be shown for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -102,8 +99,7 @@ Feature: Section6
   # | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non-OA ptw display submit for master approval on button
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -137,8 +133,7 @@ Feature: Section6
       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather         |
 
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -171,8 +166,7 @@ Feature: Section6
   # | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify OA ptw display submit for master review on button
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit

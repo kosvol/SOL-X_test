@@ -20,20 +20,20 @@ Feature: ActivePermit
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
 
     Examples:
-      | permit_types       | permit_payload                 | rank   | pin  |
-      | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
-      | underwater         | submit_underwater_simultaneous | A/M    | 1212 |
+      | permit_types | permit_payload                 | rank | pin  |
+      # | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
+      | underwater   | submit_underwater_simultaneous | A/M  | 1212 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with gas reading not require
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections
@@ -46,7 +46,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled
@@ -60,7 +60,7 @@ Feature: ActivePermit
   Scenario Outline: Verify View button display when permit does not require Gas Permit for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state and no gas reading
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     Then I should see View as button text
 
@@ -72,7 +72,7 @@ Feature: ActivePermit
   Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state
     And I set oa permit to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     Then I should see Update Readings as button text
 
@@ -83,7 +83,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
@@ -107,7 +107,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with gas reading not require
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections
@@ -131,7 +131,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled
@@ -144,7 +144,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     Then I should see Update Readings as button text
 
@@ -157,7 +157,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify View button display when permit does not require Gas Permit for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state and no gas reading
-    And I launch sol-x portal
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     Then I should see View as button text
 

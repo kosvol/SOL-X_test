@@ -8,6 +8,12 @@ Given (/^I launch sol-x portal$/) do
   # puts "screen size: #{$browser.window_size}"
 end
 
+Given (/^I launch sol-x portal without unlinking wearable$/) do
+  $browser.get(EnvironmentSelector.get_environment_url)
+  sleep 3
+  # puts "screen size: #{$browser.window_size}"
+end
+
 When (/^I navigate to "(.+)" screen$/) do |_which_section|
   on(NavigationPage).tap_hamburger_menu
   on(NavigationPage).select_nav_category(_which_section)

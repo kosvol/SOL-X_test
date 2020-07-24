@@ -7,13 +7,11 @@ Feature: Section4AChecklist
   # pre checklist
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -45,8 +43,7 @@ Feature: Section4AChecklist
       | ETO   | 1717 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -77,8 +74,7 @@ Feature: Section4AChecklist
       | FSTO   | 1041 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -95,8 +91,7 @@ Feature: Section4AChecklist
       | ETO  | 1717 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -114,8 +109,7 @@ Feature: Section4AChecklist
       | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist content are displayed correctly for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -130,8 +124,7 @@ Feature: Section4AChecklist
       | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -156,8 +149,7 @@ Feature: Section4AChecklist
       | Working on Deck During Heavy Weather | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather     |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for maintenance permit
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313
     And I select <level_one_permit> permit
@@ -172,4 +164,4 @@ Feature: Section4AChecklist
       | level_one_permit               | level_two_permit      | checklist                                |
       | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
 
-  Scenario: Verify checklist content labels
+# Scenario: Verify checklist content labels

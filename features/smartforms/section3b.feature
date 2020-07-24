@@ -16,13 +16,13 @@ Feature: Section3BDRA
     Then I should see method description <method_desc> populated
 
     Examples:
-      | level_one_permit                      | level_two_permit                          | method_desc                                                                                           |
-      | Critical Equipment Maintenance        | Maintenance on Fixed Fire Fighting System | Standard procedure for Maintenance on Emergency Fire Pump                                             |
-      | Cold Work                             | Maintenance on Fixed Fire Fighting System | Standard procedure for Cleaning Up of Spills                                                          |
-      | Hot Work                              | Maintenance on Fixed Fire Fighting System | General / Standard Hot Work Procedure                                                                 |
-      | Personnel Transfer by Transfer Basket | Maintenance on Fixed Fire Fighting System | Standard procedure for Personnel Transfer by Transfer Basket                                          |
-      | Enclosed Space Entry                  | Maintenance on Fixed Fire Fighting System | General procedure for Enclosed Space Entry                                                            |
-      | Underwater Operation                  | Maintenance on Fixed Fire Fighting System | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
+      | level_one_permit                     | level_two_permit                                                      | method_desc                                                                                           |
+      | Critical Equipment Maintenance       | Maintenance on Fire Detection Alarm System                            | Standard procedure for Maintenance on Emergency Fire Pump                                             |
+      | Cold Work                            | Cold Work - Connecting and Disconnecting Pipelines                    | Standard procedure for Cleaning Up of Spills                                                          |
+      | Hotwork                              | Hot Work Level-2 in Designated Area                                   | General / Standard Hot Work Procedure                                                                 |
+      | Personal Transfer By Transfer Basket | Maintenance on Fixed Fire Fighting System                             | Standard procedure for Personnel Transfer by Transfer Basket                                          |
+      | Enclosed Space Entry                 | Maintenance on Fixed Fire Fighting System                             | General procedure for Enclosed Space Entry                                                            |
+      | Underwater Operations                | Simultaneous underwater operation during daytime with other operation | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
 
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
     Given I launch sol-x portal

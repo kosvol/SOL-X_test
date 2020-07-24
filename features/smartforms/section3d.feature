@@ -5,13 +5,29 @@ Feature: Section3DDRA
   So that ...
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
-  #   When I navigate to "SmartForms" screen
+  #   Given I launch sol-x portal without unlinking wearable
+  #
   #   And I navigate to create new permit
 
-  Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
+  Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Hotwork permit
+    And I select Hot Work Level-2 in Designated Area permit for level 2
+    And I fill up section 1
+    And I navigate to section 3d
+    And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
+    And I sign DRA section 3d with RA pin 1212
+    Then I should see signed details
+    And I should see location <location_stamp> stamp
+
+    Examples:
+      | user         | zoneid                     | mac               | location_stamp   |
+      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+
+  Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin <pin>
     And I select <level_one_permit> permit
@@ -20,7 +36,6 @@ Feature: Section3DDRA
     And I navigate to section 3d
     And I sign DRA section 3d with RA pin <pin>
     Then I should see signed details
-    # And I should see location stamp pre-selected
 
     Examples:
       | level_one_permit                          | level_two_permit                                                           | rank                       | pin  |
@@ -38,8 +53,7 @@ Feature: Section3DDRA
       | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 5912
     And I select <level_one_permit> permit
@@ -56,8 +70,7 @@ Feature: Section3DDRA
       | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for non maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin <pin>
     And I select <level_one_permit> permit
@@ -85,8 +98,7 @@ Feature: Section3DDRA
       | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 | 1919       |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
-    Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 5912
     And I select <level_one_permit> permit

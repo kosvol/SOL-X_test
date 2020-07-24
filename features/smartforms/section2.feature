@@ -5,12 +5,12 @@ Feature: Section2ApprovalAuthority
   So that ...
 
   # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal
+  #   Given I launch sol-x portal without unlinking wearable
   #
   #   And I navigate to create new permit
 
   Scenario: Verify user can see previous and next button
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -21,7 +21,7 @@ Feature: Section2ApprovalAuthority
     And I tear down created form
 
   Scenario Outline: Verify user can see the correct approval for non-OA
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -52,7 +52,7 @@ Feature: Section2ApprovalAuthority
       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -82,7 +82,7 @@ Feature: Section2ApprovalAuthority
       | Critical Equipment Maintenance | Maintenance on Radio Battery                                               |
 
   Scenario Outline: Verify OA is not require if maintenance on critical equipment is less than 2 hours
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -112,7 +112,7 @@ Feature: Section2ApprovalAuthority
       | Critical Equipment Maintenance | Maintenance on Radio Battery                                               |
 
   Scenario Outline: Verify user can see the correct approval authority
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
@@ -133,7 +133,7 @@ Feature: Section2ApprovalAuthority
       | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Master        | Director, Fleet Operations (shore Approving Authority)          |
 
   Scenario: Verify ship and office approval text field is disabled
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
@@ -142,7 +142,7 @@ Feature: Section2ApprovalAuthority
     Then I should see ship and office approval text fields disabled
 
   Scenario: Verify section2 screen text
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Hotwork permit
