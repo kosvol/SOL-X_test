@@ -19,7 +19,8 @@ Then (/^I should see correct permit details$/) do
 end
 
 And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_rank, _pin|
-  on(CreatedPermitToWorkPage).select_created_permit_with_param(on(CreatedPermitToWorkPage).get_section1_filled_data[1])
+  sleep 1
+  on(CreatedPermitToWorkPage).select_created_permit_with_param(on(CreatedPermitToWorkPage).get_section1_filled_data[1]).click
   step "I enter pin #{_pin}"
 end
 
@@ -71,7 +72,7 @@ Then (/^I should see all section fields enabled$/) do
 end
 
 Then (/^I should see all section fields disabled$/) do
-  is_true(on(Section1Page).is_fields_enabled?)
+  is_true(!on(Section1Page).is_fields_enabled?)
   # on(Section1Page).next_btn_elements.first.click
 end
 

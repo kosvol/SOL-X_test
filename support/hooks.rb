@@ -65,9 +65,13 @@ After do |scenario|
 end
 
 AfterStep do |scenario|
-  $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-  # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-  @step += 1
+  begin
+    $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
+    # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
+    @step += 1
+  rescue Exception => e
+    $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+  end
 end
 
 at_exit do

@@ -77,10 +77,10 @@ Feature: CreatedPermitToWork
       | A 3/E  | 1515 |
       | 4/O    | 1010 |
       | A 4/O  | 1537 |
-      | BOS    | 1818 |
-      | PMN    | 4236 |
-      | A/B    | 2121 |
-      | O/S    | 1919 |
+  # | BOS   | 1818 |
+  # | PMN   | 4236 |
+  # | A/B   | 2121 |
+  # | O/S   | 1919 |
 
   Scenario Outline: Verify RA can edit all the fields in PTW Created State
     Given I launch sol-x portal
