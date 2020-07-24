@@ -64,35 +64,18 @@ Feature: CreatedPermitToWork
     Then I should see all section fields disabled
 
     Examples:
-      | rank                       | pin  |
-      | Master                     | 1111 |
-      | A/M                        | 1212 |
-      | C/O                        | 5912 |
-      | A C/O                      | 5555 |
-      | 2/O                        | 5545 |
-      | A 2/O                      | 7777 |
-      | 3/O                        | 8888 |
-      | A 3/O                      | 9999 |
-      | Chief Engineer             | 7507 |
-      | Additional Chief Engineer  | 0110 |
-      | Second Engineer            | 1313 |
-      | Additional Second Engineer | 1414 |
-      | 3/E                        | 4092 |
-      | A 3/E                      | 1515 |
-      | 4/O                        | 1010 |
-      | A 4/O                      | 1537 |
-      | Chief Officer              | 5912 |
-      | Additional Chief Officer   | 5555 |
-      | Second Officer             | 5545 |
-      | Additional Second Officer  | 7777 |
-      | Chief Engineer             | 7507 |
-      | Additional Chief Engineer  | 0110 |
-      | Second Engineer            | 1313 |
-      | Additional Second Engineer | 1414 |
-      | 3/E                        | 4092 |
-      | A 3/E                      | 1515 |
-      | 4/E                        | 2323 |
-      | A 4/E                      | 2424 |
+      | rank   | pin  |
+      | Master | 1111 |
+      | 3/O    | 8888 |
+      | A 3/O  | 9999 |
+      | 3/E    | 4092 |
+      | A 3/E  | 1515 |
+      | 4/O    | 1010 |
+      | A 4/O  | 1537 |
+      | BOS    | 1818 |
+      | PMN    | 4236 |
+      | A/B    | 2121 |
+      | O/S    | 1919 |
 
   Scenario Outline: Verify RA can edit all the fields in PTW Created State
     Given I launch sol-x portal
