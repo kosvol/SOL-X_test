@@ -8,14 +8,98 @@ Feature: ActivePermit
   # Scenario: Verify in view mode all section is disabled
 
   Scenario: Verify all underwater permit only valid for 4 hours
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Underwater Operations permit
+    And I select Simultaneous underwater operation during daytime with other operation permit for level 2
+    And I fill up section 1
+    When I press next for 9 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I set oa permit to active state
+    And I click on active filter
+    Then I should see permit valid for 4 hours
 
   Scenario: Verify all maintenance permit with long duration no then permit valid for 2 hours
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I submit after filling up section 1 with duration less than 2 hours
+    When I press next for 9 times
+    Then I submit permit for Master Approval
+    When I click on back to home
+    And I set oa permit to active state
+    And I click on active filter
+    Then I should see permit valid for 2 hours
 
   Scenario: Verify all maintenance permit with long duration yes then permit valid for 8 hours
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I submit after filling up section 1 with duration more than 2 hours
+    When I press next for 9 times
+    Then I submit permit for Master Approval
+    When I click on back to home
+    And I set oa permit to active state
+    And I click on active filter
+    Then I should see permit valid for 8 hours
 
-  Scenario: Verify RoL permit validity will be based on user selection
+  Scenario Outline: Verify RoL permit validity will be based on user selection
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Rigging of Pilot/Combination Ladder permit
+    And I select Rigging of Pilot/Combination Ladder permit for level 2
+    When I press next from section 1
+    Then I submit permit for Master Approval
+    When I click on back to home
+    And I set rol permit to active state with <duration> duration
+    And I click on active filter
+    Then I should see permit valid for <duration> hours
 
-  Scenario: Verify all other permits valid for 8 hour
+    Examples:
+      | duration |
+      | 1        |
+      | 2        |
+      | 3        |
+      | 4        |
+      | 5        |
+      | 6        |
+      | 7        |
+      | 8        |
+
+  Scenario Outline: Verify all other permits valid for 8 hour
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I fill up section 1
+    When I press next for 9 times
+    Then I submit permit for Master Approval
+    When I click on back to home
+    And I set oa permit to active state
+    And I click on active filter
+    Then I should see permit valid for 8 hours
+
+    Examples:
+      | level_one_permit                          | level_two_permit                                                        |
+      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     |
+      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    |
+      | Working Aloft/Overside                    | Working Aloft / Overside                                                |
+      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                             |
+      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                   |
+      | Helicopter Operations                     | Helicopter Operation                                                    |
+      | Rotational Portable Power Tool            | Use of Portable Power Tools                                             |
+      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                      |
+      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state

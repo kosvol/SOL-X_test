@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class SmartFormsPermissionPage < ShipLocalTimePage
+class SmartFormsPermissionPage < BypassPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
@@ -90,9 +90,10 @@ class SmartFormsPermissionPage < ShipLocalTimePage
     end
     @@section1_data_collector << @@permit
     @@section1_data_collector << ptw_id_element.text
+    set_permit_id(ptw_id_element.text)
   end
 
-  def get_random_permit
+  def get_random_pesrmit
     permit = list_permit_type_elements.sample
     @@section1_data_collector << permit.text
     permit.text === 'Rigging of Pilot/Combination Ladder' ? get_random_permit : permit

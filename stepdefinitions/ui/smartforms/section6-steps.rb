@@ -32,7 +32,7 @@ Then (/^I (should|should not) see gas reader sections$/) do |_condition|
   end
 end
 
-Then (/^I submit permit for Master Approval$/) do
+Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   on(Section6Page).submit_btn_elements[0].click
   step 'I enter pin 1212'
   on(Section3DPage).sign
