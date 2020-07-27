@@ -38,19 +38,19 @@ Feature: Section3DDRA
     Then I should see signed details
 
     Examples:
-      | level_one_permit                          | level_two_permit                                                           | rank                       | pin  |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 1212 |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 5912 |
-      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Additional Chief Officer   | 5555 |
-      | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 5545 |
-      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7777 |
-      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 7507 |
-      | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 0110 |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 1313 |
-      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 1414 |
-      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 1717 |
-      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                       | Additional Second Engineer | 1414 |
-      | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 |
+      | level_one_permit               | level_two_permit                                                           | rank                      | pin  |
+      | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Addtional Master          | 1212 |
+      | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer             | 5912 |
+      | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Additional Chief Officer  | 5555 |
+      # | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 5545 |
+      # | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7777 |
+      # | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 7507 |
+      # | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 0110 |
+      | Rotational Portable Power Tool | Use of Portable Power Tools                                                | Second Engineer           | 1313 |
+      # | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 1414 |
+      | Cold Work                      | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer | 1717 |
+      # | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                       | Additional Second Engineer | 1414 |
+      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer | 1717 |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -82,20 +82,20 @@ Feature: Section3DDRA
     # And I should see location stamp pre-selected
 
     Examples:
-      | level_one_permit                          | level_two_permit                                                           | ra_rank                    | pin  | non_ra_pin |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 1212 | 1111       |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 5912 | 8888       |
-      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Additional Chief Officer   | 5555 | 9999       |
-      | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 5545 | 1010       |
-      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7777 | 1616       |
-      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 7507 | 4092       |
-      | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 0110 | 1515       |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 1313 | 2323       |
-      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 1414 | 2424       |
-      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 1717 | 1818       |
-      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                       | Additional Second Engineer | 1414 | 4236       |
-      | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 | 2121       |
-      | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 | 1919       |
+      | level_one_permit                          | level_two_permit                                   | ra_rank                    | pin  | non_ra_pin |
+      # | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 1212 | 1111       |
+      # | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 5912 | 8888       |
+      # | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Additional Chief Officer   | 5555 | 9999       |
+      | Working Aloft/Overside                    | Working Aloft / Overside                           | Second Officer             | 5545 | 1010       |
+      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels        | Additional Second Officer  | 7777 | 1616       |
+      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket              | Chief Engineer             | 7507 | 4092       |
+      | Helicopter Operations                     | Helicopter Operation                               | Additional Chief Engineer  | 0110 | 1515       |
+      # | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 1313 | 2323       |
+      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage | Additional Second Engineer | 1414 | 2424       |
+      # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 1717 | 1818       |
+      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather               | Additional Second Engineer | 1414 | 4236       |
+  # | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 | 2121       |
+  # | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 1717 | 1919       |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
