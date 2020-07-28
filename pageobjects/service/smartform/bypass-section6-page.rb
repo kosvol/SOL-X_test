@@ -131,6 +131,23 @@ class BypassPage
     ServiceUtil.post_graph_ql('ptw/mod-approve-rol')
   end
 
+  def submit_permit_for_termination_wo_eic_normalization(_status)
+    submit_active = JSON.parse JsonUtil.read_json('ptw/17.submit-for-termination-wo-eic-normalization')
+    submit_active['variables']['formId'] = get_permit_id
+    submit_active['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format}}"
+    submit_active['variables']['answers'][3].to_h['value'] = "\"#{_status}\""
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod-17.submit-for-termination-wo-eic-normalization')
+
+    submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_active['variables']['formId'] = get_permit_id
+    submit_active['variables']['newStatus'] = 'PENDING_TERMINATION'
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
+  end
+
   def get_permit_id
     @@selected_level2_permit
   end

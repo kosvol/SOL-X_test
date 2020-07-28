@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I click on permit for master (.+)$/) do |_approve_or_review|
-  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(on(BypassPage).get_selected_permit)
+  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(on(BypassPage).get_permit_id)
   match_element.click
   step 'I enter pin 1111'
   sleep 1

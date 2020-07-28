@@ -8,7 +8,7 @@ Feature: ActivePermit
   # Scenario: Verify in view mode all section is disabled
 
   Scenario: Verify all underwater permit only valid for 4 hours
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Underwater Operations permit
@@ -22,7 +22,7 @@ Feature: ActivePermit
     Then I should see permit valid for 4 hours
 
   Scenario: Verify all maintenance permit with long duration no then permit valid for 2 hours
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -36,7 +36,7 @@ Feature: ActivePermit
     Then I should see permit valid for 2 hours
 
   Scenario: Verify all maintenance permit with long duration yes then permit valid for 8 hours
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Critical Equipment Maintenance permit
@@ -50,7 +50,7 @@ Feature: ActivePermit
     Then I should see permit valid for 8 hours
 
   Scenario Outline: Verify RoL permit validity will be based on user selection
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select Rigging of Pilot/Combination Ladder permit
@@ -74,7 +74,7 @@ Feature: ActivePermit
       | 8        |
 
   Scenario Outline: Verify all other permits valid for 8 hour
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
     And I select <level_one_permit> permit
