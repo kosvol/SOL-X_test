@@ -10,7 +10,7 @@ Feature: Section7
     And I click on pending approval filter
     And I click on permit for master approval
     And I press next for 10 times
-    Then I should see approve and request update button
+    Then I should see approve and request update buttons
 
     Examples:
       | permit_types         | permit_payload             |
@@ -22,7 +22,7 @@ Feature: Section7
     And I click on pending approval filter
     And I click on permit for master review
     And I press next for 9 times
-    Then I should see submit for office approval and request update button
+    Then I should see submit for office approval and request update buttons
 
     Examples:
       | permit_types                         | permit_payload                |

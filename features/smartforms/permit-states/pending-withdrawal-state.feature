@@ -1,5 +1,5 @@
-@pending-approval
-Feature: PendingApproval
+@pending-withdrawal
+Feature: PendingWithdrawal
   As a ...
   I want to ...
   So that ...
@@ -12,7 +12,7 @@ Feature: PendingApproval
     Then I should <status> as task status
 
     Examples:
-      | permit_types                      | permit_payload               | status    |
-      | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Completed |
-      | Enclosed Space Entry              | submit_enclose_space_entry   | Continue  |
+      | permit_types         | permit_payload             | status   |
+      # | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Completed |
+      | Enclosed Space Entry | submit_enclose_space_entry | Continue |
 # | Hotwork                           | submit_hotwork               | Suspended |

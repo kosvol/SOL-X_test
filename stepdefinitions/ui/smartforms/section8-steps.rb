@@ -2,7 +2,8 @@
 
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
   BrowserActions.scroll_down
-  sleep 1
+  sleep 3
+  is_equal(on(Section8Page).rank_name_and_date_elements.last.text,on(Section8Page).get_signed_date_time)
   is_equal(on(Section8Page).rank_name_and_date_elements.first.text, _rank)
 end
 

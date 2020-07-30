@@ -98,15 +98,15 @@ Feature: Section8
     Examples:
       | permit_types                      | permit_payload               | rank                     | pin  |
       | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | A/M                      | 1212 |
-      # | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
+      ## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
       | Hotwork                           | submit_hotwork               | Additional Chief Officer | 5555 |
-  # | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
-  # | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-  # | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
-  # | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 0110 |
-  # | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
-  # | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Engineer | 1414 |
-  # | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |
+  ## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
+  ## | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
+  ## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+  ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 0110 |
+  ## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
+  ## | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Engineer | 1414 |
+  ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state
@@ -119,11 +119,11 @@ Feature: Section8
       | permit_types                      | permit_payload               | rank          | pin  |
       | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | A/M           | 1212 |
       | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
-# | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Chief Officer   | 5555 |
-# | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
-# | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-# | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
-# | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Chief Engineer  | 0110 |
-# | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
-# | Enclosed Space Entry              | submit_enclose_space_entry   | Additional Second Engineer | 1414 |
-# | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |
+## | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Chief Officer   | 5555 |
+## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
+## | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
+## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+## | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Additional Chief Engineer  | 0110 |
+## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
+## | Enclosed Space Entry              | submit_enclose_space_entry   | Additional Second Engineer | 1414 |
+## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |

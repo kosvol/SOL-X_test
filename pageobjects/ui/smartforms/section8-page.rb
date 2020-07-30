@@ -10,6 +10,7 @@ class Section8Page < Section7Page
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp)
     sleep 1
+    set_current_time
     time_offset = get_current_time_format
     "#{get_current_date_format} #{time_offset}"
   end
