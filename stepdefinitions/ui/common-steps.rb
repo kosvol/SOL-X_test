@@ -23,3 +23,7 @@ end
 And ('I sleep for {int} seconds') do |sec|
   sleep sec
 end
+
+And (/^I click on back arrow$/) do
+  on(SmartFormsPermissionPage).back_arrow_element.click
+end

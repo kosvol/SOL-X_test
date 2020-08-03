@@ -5,7 +5,8 @@ require './././support/env'
 class NavigationPage
   include PageObject
 
-  element(:hamburger_menu, xpath: "//section[@class='title']//button//*[local-name()='svg']")
+  # element(:hamburger_menu, xpath: "//section[@class='title']//button//*[local-name()='svg']")
+  element(:hamburger_menu, xpath: "//button/*[@data-testid='hamburger']")
   list_items(:drilled_ham_menu, xpath: '//ul[1]//li')
 
   def tap_hamburger_menu

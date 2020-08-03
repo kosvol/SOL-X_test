@@ -15,6 +15,7 @@ class SmartFormsPermissionPage < BypassPage
   text_field(:form_number, xpath: '//*[@id="formNumber"]')
   text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+  element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
 
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
@@ -81,7 +82,7 @@ class SmartFormsPermissionPage < BypassPage
 
   def select_permit(_permit)
     @@permit = _permit
-    sleep 1
+    sleep 2
     list_permit_type_elements.each do |permit|
       next unless permit.text === @@permit
 

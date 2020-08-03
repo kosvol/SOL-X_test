@@ -149,7 +149,7 @@ class BypassPage
   end
 
   def get_permit_id
-    @@selected_level2_permit
+    @@permit_id
   end
 
   def get_current_time_format
@@ -172,7 +172,7 @@ class BypassPage
   end
 
   def set_permit_id(_permit)
-    @@selected_level2_permit = _permit
+    @@permit_id = _permit
   end
 
   def save_different_form_section(_which_json, _user)
