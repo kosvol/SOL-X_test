@@ -76,7 +76,7 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | permit                                             |
+      | permit                          |
       # | Maintenance on Anchor                                                    |
       # | Maintenance on Emergency Fire Pump                                       |
       ## | Maintenance on Emergency Generator                                         |
@@ -86,13 +86,13 @@ Feature: Section1
       ## | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
       ## | Maintenance on Life/Rescue Boats and Davits                                |
       ## | Maintenance on Lifeboat Engine                                             |
-      | Maintenance on Magnetic Compass                    |
-      # | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device    |
-      # | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
-      ## | Maintenance on Oil Discharging Monitoring Equipment                        |
-      ## | Maintenance on Oil Mist Detector Monitoring System                         |
-      ## | Maintenance on Oily Water Separator                                        |
-      | Maintenance on P/P Room Gas Detection Alarm System |
+      | Maintenance on Magnetic Compass |
+  # | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device    |
+  # | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
+  ## | Maintenance on Oil Discharging Monitoring Equipment                        |
+  ## | Maintenance on Oil Mist Detector Monitoring System                         |
+  ## | Maintenance on Oily Water Separator                                        |
+  # | Maintenance on P/P Room Gas Detection Alarm System |
   # | Maintenance on Radio Battery                                             |
 
   Scenario Outline: Verify question input field does not exists in permits

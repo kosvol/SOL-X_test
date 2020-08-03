@@ -22,19 +22,20 @@ class Section1Page < SmartFormsPermissionPage
   @@text_areas = '//textarea'
 
   # submitted permit
-  # elements(:filled_data, xpath: '//input')
-  elements(:text_areas, xpath: '//textarea')
+  elements(:filled_data, xpath: '//input')
+  elements(:generic_answer, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
 
   def get_filled_section1
+    sleep 1
     tmp = []
     filled_data = $browser.find_elements(:xpath, '//input')
     tmp << filled_data[3].attribute('value')
     tmp << filled_data[4].attribute('value')
-    tmp << text_areas_elements[0].text
+    tmp << generic_answer_elements[0].text
     tmp << filled_data[5].attribute('value')
     tmp << filled_data[6].attribute('value')
-    tmp << text_areas_elements[1].text
-    tmp << text_areas_elements[2].text
+    tmp << generic_answer_elements[1].text
+    tmp << generic_answer_elements[2].text
     tmp
   end
 

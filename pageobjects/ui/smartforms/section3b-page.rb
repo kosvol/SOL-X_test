@@ -6,7 +6,8 @@ class Section3BPage < Section3APage
   include PageObject
 
   element(:method_reason, id: 'methodReason')
-  text_field(:method_detail, id: '_3B_methodDetail')
+  element(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
+  # text_field(:method_detail, id: '_3B_methodDetail')
   element(:last_assessment, id: 'lastAssessmentDra')
   text_field(:dra_reviewed_by, id: 'draReviewedBy')
   button(:work_side_inspected_by, id: 'workInspectionBy')

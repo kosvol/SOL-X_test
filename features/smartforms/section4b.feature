@@ -61,19 +61,19 @@ Feature: Section4BEIC
     Examples:
       | rank                       | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
       | Addtional Master           | 1212 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-      | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
+      # | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       | Second Officer             | 5545 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
-      | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
+      # | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | Chief Engineer             | 7507 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-      | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+      # | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 1414 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
-      | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 8888 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-      | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
+      # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
       | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-      | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
+      # | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-      | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+  # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
@@ -182,18 +182,18 @@ Feature: Section4BEIC
     Examples:
       | rank   | pin  | level_one_permit                          | level_two_permit                                                           | checklist                                 |
       | Master | 1111 | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area           |
-      | 3/O    | 8888 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area          |
+      # | 3/O    | 8888 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area          |
       | A 3/O  | 9999 | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist            |
-      | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
+      # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
       | D/C    | 1616 | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  |
-      | 3/E    | 4092 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
+      # | 3/E    | 4092 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
       | A 3/E  | 1515 | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            |
-      | 4/E    | 2323 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     |
+      # | 4/E    | 2323 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     |
       | A 4/E  | 2424 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits |
-      | BOS    | 1818 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             |
+      # | BOS    | 1818 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             |
       | PMN    | 4236 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
       | A/B    | 2121 | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  |
-      | O/S    | 1919 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
+      # | O/S    | 1919 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
       | OLR    | 0220 | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            |
 
   Scenario Outline: Verify only chief engineer can sign as issuing authority
@@ -285,16 +285,16 @@ Feature: Section4BEIC
     Examples:
       | rank                       | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
       | Addtional Master           | 1212 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-      | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
+      # | Additional Chief Officer   | 5555 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       | Second Officer             | 5545 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
-      | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
+      # | Additional Second Officer  | 7777 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | Chief Engineer             | 7507 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-      | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+      # | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 1414 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
-      | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 8888 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-      | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
+      # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist           |
       | A 3/E                      | 1515 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-      | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
+      # | 4/E                        | 2323 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | BOS                        | 1818 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-      | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+# | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |

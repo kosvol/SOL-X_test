@@ -5,7 +5,7 @@ And (/^I fill up section 3b$/) do
 end
 
 Then (/^I should see method description (.+) populated$/) do |method_desc|
-  is_equal(on(Section3BPage).method_detail, method_desc)
+  is_equal(on(Section3BPage).method_detail_element.text, method_desc)
 end
 
 Then (/^I should see By: Master after clicking Yes on Is DRA sent to office$/) do

@@ -17,7 +17,7 @@ Feature: Section3BDRA
 
     Examples:
       | level_one_permit                     | level_two_permit                                                      | method_desc                                                                                           |
-      | Critical Equipment Maintenance       | Maintenance on Fire Detection Alarm System                            | Standard procedure for Maintenance on Emergency Fire Pump                                             |
+      | Critical Equipment Maintenance       | Maintenance on Fire Detection Alarm System                            | Standard Procedure for Maintenance on Fire Detection Alarm System                                     |
       | Cold Work                            | Cold Work - Connecting and Disconnecting Pipelines                    | Standard procedure for Cleaning Up of Spills                                                          |
       | Hotwork                              | Hot Work Level-2 in Designated Area                                   | General / Standard Hot Work Procedure                                                                 |
       | Personal Transfer By Transfer Basket | Maintenance on Fixed Fire Fighting System                             | Standard procedure for Personnel Transfer by Transfer Basket                                          |
