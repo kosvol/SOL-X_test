@@ -4,55 +4,159 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  Scenario Outline: Verify submitted permit data gets reflected for non-oa permit
-    Given I launch sol-x portal
+  Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3b
     And I fill up section 3b
-    And I press next for 2 times
-    # And I fill up section 3c
+    And I press next for 1 times
+    And I fill up section 3c
+    And I press next for 1 times
     And I fill up section 3d
-    And I press next for 2 times
-    # And I fill up section 4a
+    And I press next for 1 times
+    And I fill up section 4a
+    And I press next for 1 times
     And I fill up checklist yes, no, na
     And I press next for 1 times
     And I select yes to EIC
-    And I press next for 2 times
+    And I press next for 1 times
+    And I fill up section 5
+    And I press next for 1 times
     # select gas reader?
     Then I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I review page 1 of submitted non maintenance permit
-    And I review page 2 of submitted non oa permit
-    And I review page 3a of submitted non maintenance permit
-    And I review page 3b of submitted non maintenance permit
-    And I review page 3c of submitted non maintenance permit
-    And I review page 3d of submitted non maintenance permit
-    And I review page 4a of submitted non maintenance permit
-    And I review page 4a checklist of submitted non maintenance permit
-    And I review page 4b of submitted non maintenance permit
-    And I review page 5 of submitted non maintenance permit
-    And I review page 6 of submitted non maintenance permit
+    And I review page 1 of submitted enclose workspace permit
+    And I review page 2 of submitted enclose workspace permit
+    And I review page 3a of submitted enclose workspace permit
+    And I review page 3b of submitted enclose workspace permit
+    And I review page 3c of submitted enclose workspace permit
+    And I review page 3d of submitted enclose workspace permit
+    And I review page 4a of submitted enclose workspace permit
+    And I review page 4a checklist of submitted enclose workspace permit
+    And I review page 4b of submitted enclose workspace permit
+    And I review page 5 of submitted enclose workspace permit
+  # And I review page 6 of submitted enclose workspace permit
 
-    Examples:
-      | level_one_permit      | level_two_permit     | checklist                      |
-      | Enclosed Spaces Entry | Enclosed Space Entry | Enclosed Space Entry Checklist |
-# | Hotwork          | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
-# | Hotwork          | Hot Work Level-1 (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-# | Working Aloft/Overside                    | Working Aloft / Overside                           | Working Aloft/Overside                    |
-# | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels        | Work on Pressure Pipelines                |
-# | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket              | Personnel Transfer by Transfer Basket     |
-# | Helicopter Operations                     | Helicopter Operation                               | Helicopter Operation Checklist            |
-# | Rotational Portable Power Tool            | Use of Portable Power Tools                        | Rotational Portable Power Tools (PPT)     |
-# | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage | Work on Electrical Equipment and Circuits |
-# | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines | Cold Work Operation Checklist             |
-# | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather               | Work on Deck During Heavy Weather         |
+  Scenario: Verify submitted permit data gets reflected for Cold Work - Connecting and Disconnecting Pipelines
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Cold Work permit
+    And I select Cold Work - Connecting and Disconnecting Pipelines permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 3b
+    And I fill up section 3b
+    And I press next for 1 times
+    And I fill up section 3c
+    And I press next for 1 times
+    And I fill up section 3d
+    And I press next for 1 times
+    And I fill up section 4a
+    And I press next for 1 times
+    And I fill up checklist yes, no, na
+    And I select PPE equipment
+    And I press next for 1 times
+    And I select yes to EIC
+    And I press next for 1 times
+    And I fill up section 5
+    And I press next for 1 times
+    # select gas reader?
+    Then I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I review page 1 of submitted cold work permit
+    And I review page 2 of submitted cold work permit
+    And I review page 3a of submitted cold work permit
+    And I review page 3b of submitted cold work permit
+    And I review page 3c of submitted cold work permit
+    And I review page 3d of submitted cold work permit
+    And I review page 4a of submitted cold work permit
+    And I review page 4a checklist of submitted cold work permit
+    And I review page 4b of submitted cold work permit
+    And I review page 5 of submitted cold work permit
+  # And I review page 6 of submitted cold work permit
 
-# Scenario Outline: Verify submitted permit data gets reflected for oa permit
+  Scenario: Verify submitted permit data gets reflected for Hot Work
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Hotwork permit
+    And I select Hot Work Level-2 in Designated Area permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 3b
+    And I fill up section 3b
+    And I press next for 1 times
+    And I fill up section 3c
+    And I press next for 1 times
+    And I fill up section 3d
+    And I press next for 1 times
+    And I fill up section 4a
+    And I press next for 1 times
+    And I fill up checklist yes, no, na
+    And I press next for 1 times
+    And I select yes to EIC
+    And I press next for 1 times
+    And I fill up section 5
+    And I press next for 1 times
+    # select gas reader?
+    Then I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I review page 1 of submitted hot work permit
+    And I review page 2 of submitted hot work permit
+    And I review page 3a of submitted hot work permit
+    And I review page 3b of submitted hot work permit
+    And I review page 3c of submitted hot work permit
+    And I review page 3d of submitted hot work permit
+    And I review page 4a of submitted hot work permit
+    And I review page 4a checklist of submitted hot work permit
+    And I review page 4b of submitted hot work permit
+    And I review page 5 of submitted hot work permit
+  # And I review page 6 of submitted hot work permit
 
-# Scenario Outline: Verify submitted permit data gets reflected as oa permit if maintenance more than 2hours
-# Scenario Outline: Verify submitted permit data gets reflected as non-a permit if maintenance less than 2hours
+  @x4
+  Scenario: Verify work on hazardous substance checklist can be opened in read only mode
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Hotwork permit
+    And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 3b
+    And I fill up section 3b
+    And I press next for 1 times
+    And I fill up section 3c
+    And I press next for 1 times
+    And I fill up section 3d
+    And I press next for 1 times
+    And I fill up section 4a
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Hazardous Substances checklist
+    And I press next for 1 times
+    And I fill up checklist yes, no, na
+    And I select PPE equipment
+    And I press next for 1 times
+    And I select yes to EIC
+    And I press next for 1 times
+    And I fill up section 5
+    And I press next for 1 times
+    # select gas reader?
+    Then I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I review page 1 of submitted hot work with hazard permit
+    And I review page 2 of submitted hot work with hazard permit
+    And I review page 3a of submitted hot work with hazard permit
+    And I review page 3b of submitted hot work with hazard permit
+    And I review page 3c of submitted hot work with hazard permit
+    And I review page 3d of submitted hot work with hazard permit
+    And I review page 4a of submitted hot work with hazard permit
+    And I review page 4a checklist of submitted hot work with hazard permit
+    And I review page 4b of submitted hot work with hazard permit
+    And I review page 5 of submitted hot work with hazard permit
+# And I review page 6 of submitted non maintenance permit

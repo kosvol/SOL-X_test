@@ -5,7 +5,7 @@ section1_without_duration:
     "Test Automation",
     "0 : Calm (glassy)",
     "0 : Calm",
-    "Test Automation",
+    "Test AutomationTest Automation",
     "Test AutomationTest Automation",
   ]
 
@@ -35,9 +35,9 @@ section6: ["Yes", "", "", "A/M Atif Hayat"]
 section4a:
   [
     "Yes",
-    "N/A",
-    "N/A",
     "Yes",
+    "N/A",
+    "N/A",
     "N/A",
     "N/A",
     "N/A",

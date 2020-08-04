@@ -32,9 +32,6 @@ When (/^I select (.+) permit$/) do |_permit|
   sleep 2
   on(SmartFormsPermissionPage).click_permit_type_ddl
   on(SmartFormsPermissionPage).select_permit(_permit)
-  # on(SmartFormsPermissionPage).list_permit_type_elements.each do |permit|
-  #   p ">>> #{permit.text}"
-  # end
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
@@ -59,7 +56,7 @@ And (/^I navigate back to permit selection screen$/) do
 end
 
 And (/^I click on back to home$/) do
-  sleep 1
+  sleep 2
   on(Section6Page).back_home_elements[0].click
 end
 

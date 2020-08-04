@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+And (/^I fill up section 4a$/) do
+  sleep 1
+  on(Section4APage).tool_box_elements.first.click
+end
+
 Then (/^I should see correct checklist (.+) pre-selected$/) do |_checklist|
   is_true(on(Section4APage).is_checklist_preselected(_checklist))
 end
@@ -12,13 +17,8 @@ Then (/^I should see correct checklist content for (.+) checklist$/) do |_checkl
   on(Section4APage).select_checklist(_checklist)
   on(Section4APage).next_btn
   sleep 1
-  # on(Section4APage).get_checklist_label('section2', _checklist).each do |tmp|
-  #   p ">>> #{tmp}"
-  # end
-  # p ">>> #{on(Section4APage).get_checklist_label('section1', _checklist)}"
-
   is_equal(on(Section4APage).get_checklist_label('labels', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['labels'])
-  # is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
+  is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
   is_equal(on(Section4APage).get_checklist_label('sections', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section'])
   is_equal(on(Section4APage).get_checklist_label('section1', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section1'])
   is_equal(on(Section4APage).get_checklist_label('section2', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section2'])
@@ -66,10 +66,24 @@ end
 
 And (/^I fill up checklist yes, no, na$/) do
   tmp = 0
-  on(Section4APage).fill_textarea
+
   (0..((on(Section3DPage).radio_btn_elements.size / 3) - 1)).each do |_i|
     on(Section3DPage).radio_btn_elements[0 + tmp].click
     # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp, 2 + tmp].sample].click
     tmp += 3
   end
+  begin
+    on(Section4APage).fill_textarea
+  rescue StandardError
+  end
+end
+
+And (/^I select PPE equipment$/) do
+  BrowserActions.scroll_up
+  BrowserActions.scroll_up
+  on(Section4APage).select_ppe_equipment
+end
+
+And (/^I uncheck the pre-selected checklist$/) do
+  on(Section4APage).uncheck_all_checklist
 end

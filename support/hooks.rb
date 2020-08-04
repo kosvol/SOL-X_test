@@ -55,7 +55,7 @@ After do |scenario|
       #   end
     end
   rescue Exception => e
-    $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception Raised', e, @browser)
     # $living_test.info(:fatal, 'Exception Raised', e, @browser)
   end
   @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
@@ -66,11 +66,15 @@ end
 
 AfterStep do |scenario|
   begin
-    $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-    # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-    @step += 1
+    if !scenario.failed?
+      $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
+      # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
+      @step += 1
+    else
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario, @browser)
+    end
   rescue Exception => e
-    $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception Raised', e, @browser)
   end
 end
 

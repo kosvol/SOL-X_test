@@ -58,7 +58,7 @@ And (/^I should not see copy text regarding maintenance hour$/) do
 end
 
 And (/^I fill up section 1 with default value$/) do
-  sleep 1
+  sleep 2
   permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
   if permits_arr.include? on(SmartFormsPermissionPage).get_selected_level2_permit
     on(Section1Page).fill_default_section_1_w_duration(%w[more less].sample)

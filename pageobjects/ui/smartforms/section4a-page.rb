@@ -5,6 +5,7 @@ require './././support/env'
 class Section4APage < Section3DPage
   include PageObject
 
+  elements(:tool_box, xpath: '//input')
   elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
@@ -23,13 +24,27 @@ class Section4APage < Section3DPage
   divs(:subsection1ESE, xpath: "//div[starts-with(@id,'4A_ESE_subsection')]")
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
-
   elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
+  button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+  button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+
+  def select_ppe_equipment
+    BrowserActions.hide_keyboard
+    begin
+      ppe_btn
+    rescue StandardError
+      ppe1_btn
+    end
+    sleep 1
+    member_name_btn_elements.first.click
+    cancel_and_confirm_btn_elements.last.click
+    sleep 1
+  end
 
   def fill_textarea
     textarea_elements.each do |text_area|
@@ -64,6 +79,18 @@ class Section4APage < Section3DPage
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
     ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+  end
+
+  def uncheck_all_checklist
+    element_yes = get_yes_elements
+    section1_elements.each_with_index do |_checklist, _index|
+      next if _index === 0
+
+      BrowserActions.scroll_down(element_yes[_index])
+      if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
+        get_na_elements[_index].click
+      end
+    end
   end
 
   def get_checklist_label(_which_content, checklist = nil)
