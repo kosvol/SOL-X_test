@@ -4,8 +4,7 @@ Feature: Section6
   I want to ...
   So that ...
 
-  # Scenario: Verify user is able to save Gas Reading contents with toxic gas
-
+  @x1
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -13,22 +12,23 @@ Feature: Section6
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
-    And I navigate to section 4a
-    And I select the matching <checklist> checklist
-    And I press next for 4 times
+    And I navigate to section 6
     Then I should see gas reader sections
     And I tear down created form
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                | checklist                        |
-      | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-      | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
-      | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      | Enclosed Spaces Entry                | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist   |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
+      | level_one_permit | level_two_permit                              | checklist                        |
+      # | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+      # | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
+      # | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
+      | Hotwork          | Hot Work Level-2 outside E/R (Loaded Passage) | Hot Work Outside Designated Area |
+  # | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+  # | Enclosed Spaces Entry                | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist   |
+  # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
+
   # PRE gas reader
+
+  # Scenario: Verify user is able to save Gas Reading contents with toxic gas
 
   Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
     Given I launch sol-x portal without unlinking wearable
@@ -39,7 +39,6 @@ Feature: Section6
     And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
-    And I press next for 4 times
     Then I should not see gas reader sections
     And I tear down created form
 

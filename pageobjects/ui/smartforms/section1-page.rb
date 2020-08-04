@@ -144,6 +144,7 @@ class Section1Page < SmartFormsPermissionPage
     _elements = $browser.find_elements(:xpath, _input)
     _elements.each do |element|
       BrowserActions.scroll_down(element)
+      sleep 1
       element.send_keys(_text)
     end
   end

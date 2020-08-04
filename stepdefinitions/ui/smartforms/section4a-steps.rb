@@ -31,10 +31,10 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-And ('I press next for {int} times') do |_times|
-  (1.._times).each do |_i|
+And (/^I press next for (.+) times$/) do |_times|
+  (1.._times.to_i).each do |_i|
     sleep 1
-    BrowserActions.scroll_down
+    # BrowserActions.scroll_down
     on(Section4APage).next_btn
   end
 end

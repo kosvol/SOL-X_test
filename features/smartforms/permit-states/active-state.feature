@@ -120,7 +120,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
-    Then I should not see gas reader sections
+    Then I should not see gas reader sections on active permit
 
     Examples:
       | permit_types | permit_payload                 | rank | pin  |
@@ -194,7 +194,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
-    Then I should not see gas reader sections
+    Then I should not see gas reader sections on active permit
 
     Examples:
       | permit_types                      | permit_payload               | rank   | pin  |

@@ -274,7 +274,6 @@ Feature: Section3ADRA
       # | 5          | 5           |
       | 5          | 4           |
 
-  @x1
   Scenario: Verify evaluation risk matrix meets criteria for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

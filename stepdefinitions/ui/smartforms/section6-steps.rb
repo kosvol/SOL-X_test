@@ -23,13 +23,18 @@ end
 
 Then (/^I (should|should not) see gas reader sections$/) do |_condition|
   sleep 1
-  on(Section1Page).next_btn_elements.first.click
-  sleep 1
-  step 'I press next for 9 times'
   is_true(on(Section6Page).is_gas_reader_section?) if _condition === 'should'
   if _condition === 'should not'
     is_true(!on(Section6Page).is_gas_reader_section?)
   end
+end
+
+Then (/^I (should|should not) see gas reader sections on active permit$/) do |_condition|
+  sleep 1
+  on(Section1Page).next_btn_elements.first.click
+  sleep 1
+  step 'I press next for 9 times'
+  step "I #{_condition} see gas reader sections"
 end
 
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|

@@ -27,12 +27,12 @@ class Section6Page < Section4BPage
 
   def is_gas_reader_section?
     sleep 1
-    total_sections_elements.size >= 5
+    total_sections_elements.size >= 4
   end
 
   def toggle_to_section(_select_permit, _which_section)
     (1..get_total_steps_to_section6(_which_section)).each do |_i|
-      sleep 1
+      sleep 2
       next_btn
     end
   end
