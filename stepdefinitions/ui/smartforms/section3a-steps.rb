@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1, _risk2|
+  on(Section3APage).evaluation_matrix(_risk, _risk1, _risk2)
+end
+
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
   @measure = _measure
   case _measure

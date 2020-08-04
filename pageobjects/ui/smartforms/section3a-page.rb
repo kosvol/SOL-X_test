@@ -21,8 +21,8 @@ class Section3APage < Section2Page
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
   @@risk_indicator = "//div[starts-with(@class,'RiskIndicator__Indicator')]"
-  buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'sc-')]/div[starts-with(@class,'ComboButtonMultiselect__Container-')][1]/div/button")
-  buttons(:consequence_btn, xpath: "//div[starts-with(@class,'sc-')]/div[starts-with(@class,'ComboButtonMultiselect__Container-')][2]/div/button")
+  buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
+  buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
   elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   buttons(:confirm_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[2]")
@@ -61,11 +61,15 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    view_edit_hazard
+    begin
+      view_edit_hazard
+    rescue StandardError
+    end
     sleep 1
     BrowserActions.scroll_down
     BrowserActions.scroll_down
     BrowserActions.scroll_down
+    sleep 1
     add_measure_btn_elements[0].click
     BrowserActions.scroll_down
     sleep 1
@@ -82,60 +86,57 @@ class Section3APage < Section2Page
 
   def is_risk_indicator_green?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    # case _measure
-    # when 'without applying measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(118, 210, 117, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(118, 210, 117, 1)'
-    # when 'existing control measure'
-    #   risk_indicators[1].css_value('background-color') === 'rgba(118, 210, 117, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(118, 210, 117, 1)'
-    # when 'additional hazard'
-    risk_indicators[0].css_value('background-color') === 'rgba(118, 210, 117, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(118, 210, 117, 1)'
-    risk_indicators[1].css_value('background-color') === 'rgba(118, 210, 117, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(118, 210, 117, 1)'
-    risk_indicators[2].css_value('background-color') === 'rgba(118, 210, 117, 1)' && risk_indicators[risk_indicators.size - 1].css_value('background-color') === 'rgba(118, 210, 117, 1)'
-    # end
+    case _measure
+    when 'without applying measure'
+      risk_indicators[0].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+    when 'existing control measure'
+      risk_indicators[1].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+    when 'additional hazard'
+      risk_indicators[2].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+    end
   end
 
   def is_risk_indicator_yellow?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    # case _measure
-    # when 'without applying measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    # when 'existing control measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    #   risk_indicators[1].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    # when 'additional hazard'
-    risk_indicators[0].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    risk_indicators[1].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    risk_indicators[2].css_value('background-color') === 'rgba(242, 204, 84, 1)' && risk_indicators[risk_indicators.size - 1].css_value('background-color') === 'rgba(242, 204, 84, 1)'
-    # end
+    case _measure
+    when 'without applying measure'
+      risk_indicators[0].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+    when 'existing control measure'
+      risk_indicators[1].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+    when 'additional hazard'
+      risk_indicators[2].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+    end
   end
 
   def is_risk_indicator_red?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    # case _measure
-    # when 'without applying measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    # when 'existing control measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    #   risk_indicators[1].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    # when 'additional hazard'
-    risk_indicators[0].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    risk_indicators[1].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    risk_indicators[2].css_value('background-color') === 'rgba(216, 75, 75, 1)' && risk_indicators[risk_indicators.size - 1].css_value('background-color') === 'rgba(216, 75, 75, 1)'
-    # end
+    case _measure
+    when 'without applying measure'
+      risk_indicators[0].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+    when 'existing control measure'
+      risk_indicators[1].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+    when 'additional hazard'
+      risk_indicators[2].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+    end
   end
 
   def is_risk_indicator_veryred?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    # case _measure
-    # when 'without applying measure'
-    #   risk_indicators[0].css_value('background-color') === 'rgba(160, 16, 35, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(160, 16, 35, 1)'
-    # when 'existing control measure'
-    #   risk_indicators[1].css_value('background-color') === 'rgba(160, 16, 35, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(160, 16, 35, 1)'
-    # when 'additional hazard'
-    risk_indicators[0].css_value('background-color') === 'rgba(160, 16, 35, 1)' && risk_indicators[risk_indicators.size - 3].css_value('background-color') === 'rgba(160, 16, 35, 1)'
-    risk_indicators[1].css_value('background-color') === 'rgba(160, 16, 35, 1)' && risk_indicators[risk_indicators.size - 2].css_value('background-color') === 'rgba(160, 16, 35, 1)'
-    risk_indicators[2].css_value('background-color') === 'rgba(160, 16, 35, 1)' && risk_indicators[risk_indicators.size - 1].css_value('background-color') === 'rgba(160, 16, 35, 1)'
-    # end
+    case _measure
+    when 'without applying measure'
+      risk_indicators[0].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+    when 'existing control measure'
+      risk_indicators[1].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+    when 'additional hazard'
+      risk_indicators[2].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+    end
+  end
+
+  def evaluation_matrix(color, _color1, _color2)
+    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    risk_indicators[risk_indicators.size - 3].css_value('background-color') === get_color_code(color)
+    risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1)
+    risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2)
   end
 
   # def is_likelihood_value?(_permit)
@@ -175,6 +176,18 @@ class Section3APage < Section2Page
 
   private
 
+  def get_color_code(color)
+    case color
+    when 'low'
+      'rgba(118, 210, 117, 1)'
+    when 'medium'
+      'rgba(242, 204, 84, 1)'
+    when 'high'
+      'rgba(216, 75, 75, 1)'
+    when 'very high'
+      'rgba(160, 16, 35, 1)'
+    end
+  end
   # def get_top_3_likelihood_value
   #   tmp_arr = []
   #   likelihood_elements.each do |likelihood|

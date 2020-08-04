@@ -119,7 +119,6 @@ Feature: SubmitPermit
     And I review page 5 of submitted hot work permit
   # And I review page 6 of submitted hot work permit
 
-  @x4
   Scenario: Verify work on hazardous substance checklist can be opened in read only mode
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

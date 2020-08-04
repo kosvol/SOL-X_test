@@ -29,6 +29,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as low risk
+    And I should see correct risk evaluation medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -53,6 +54,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as medium risk
+    And I should see correct risk evaluation medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -72,6 +74,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as high risk
+    And I should see correct risk evaluation high,low,low
 
     Examples:
       | likelihood | consequence |
@@ -93,6 +96,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as very high risk
+    And I should see correct risk evaluation very high,low,low
 
     Examples:
       | likelihood | consequence |
@@ -110,6 +114,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as low risk
+    And I should see correct risk evaluation very medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -134,6 +139,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as medium risk
+    And I should see correct risk evaluation very medium,medium,low
 
     Examples:
       | likelihood | consequence |
@@ -153,6 +159,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as high risk
+    And I should see correct risk evaluation very medium,high,low
 
     Examples:
       | likelihood | consequence |
@@ -174,6 +181,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as very high risk
+    And I should see correct risk evaluation very medium,very high,low
 
     Examples:
       | likelihood | consequence |
@@ -191,6 +199,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as low risk
+    And I should see correct risk evaluation very medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -215,6 +224,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as medium risk
+    And I should see correct risk evaluation very medium,low,medium
 
     Examples:
       | likelihood | consequence |
@@ -234,6 +244,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as high risk
+    And I should see correct risk evaluation very medium,low,high
 
     Examples:
       | likelihood | consequence |
@@ -255,12 +266,28 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as very high risk
+    And I should see correct risk evaluation very medium,low,very high
 
     Examples:
       | likelihood | consequence |
       # | 4          | 5           |
       # | 5          | 5           |
       | 5          | 4           |
+
+  @x1
+  Scenario: Verify evaluation risk matrix meets criteria for additional hazard
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I toggle likelihood 5 and 5 consequence matrix for existing control measure
+    And I should see correct risk evaluation very medium,very high,very high
+    And I toggle likelihood 1 and 1 consequence matrix for additional hazard
+    And I should see correct risk evaluation very medium,very high,low
+
 
 #   Scenario Outline: Verify DRAs page 1 likelihood,consequence and risk indicator contents match
 #     Given I launch sol-x portal without unlinking wearable
@@ -433,10 +460,6 @@ Feature: Section3ADRA
 #       | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                                   |
 #       | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                                          |
 # ### | Rigging of Pilot/Combination Ladder       | Rigging of Pilot/Combination Ladder                                                           |
-
-# Scenario: Verify Section 3A labels match
-
-# Scenario: Verify time is populated when navigating back from previous or next page
 
 # Scenario: Verify add risk button
 
