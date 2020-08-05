@@ -7,7 +7,7 @@ And (/^I sign DRA section 3d with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   sleep 1
-  on(Section3DPage).sign if _condition === 'RA'
+  step 'I sign on canvas' if _condition === 'RA'
 end
 
 And (/^I fill up section 3d$/) do

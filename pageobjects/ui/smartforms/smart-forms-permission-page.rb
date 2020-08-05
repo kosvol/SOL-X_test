@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class SmartFormsPermissionPage < BypassPage
+class SmartFormsPermissionPage < CommonPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
@@ -91,7 +91,7 @@ class SmartFormsPermissionPage < BypassPage
     end
     @@section1_data_collector << @@permit
     @@section1_data_collector << ptw_id_element.text
-    set_permit_id(ptw_id_element.text)
+    CommonPage.set_permit_id(ptw_id_element.text)
   end
 
   def get_random_pesrmit

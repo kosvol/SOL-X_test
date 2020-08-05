@@ -16,12 +16,14 @@ class Section3BPage < Section3APage
   elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content')]/div/ul/li")
 
   def fill_section_3b
-    method_reason_element.send_keys('Test automation')
+    BrowserActions.enter_text(method_reason_element, 'Test automation')
+    # method_reason_element.send_keys('Test automation')
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click
     # date
-    last_assessment_element.send_keys('Test automation')
+    BrowserActions.enter_text(last_assessment_element, 'Test automation')
+    # last_assessment_element.send_keys('Test automation')
     radio_btn_elements[9].click
     radio_btn_elements[12].click
     radio_btn_elements[15].click

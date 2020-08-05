@@ -59,7 +59,7 @@ After do |scenario|
     # $living_test.info(:fatal, 'Exception Raised', e, @browser)
   end
   @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
-  @browser.quit
+  $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
 end

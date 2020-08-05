@@ -5,5 +5,5 @@ And (/^I terminate the permit via service with (.+) status$/) do |_status|
 end
 
 Then (/^I should (.+) as task status$/) do |_status|
-  is_equal(on(PendingWithdrawalPage).get_task_status_text(on(ActiveStatePage).get_permit_index(on(BypassPage).get_permit_id)), _status)
+  is_equal(on(PendingWithdrawalPage).get_task_status_text(on(ActiveStatePage).get_permit_index(CommonPage.get_permit_id)), _status)
 end

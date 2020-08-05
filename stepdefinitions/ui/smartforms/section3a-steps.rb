@@ -73,3 +73,22 @@ Then (/^I should see Date and Time fields disabled$/) do
   is_true(!is_enabled?(on(Section3APage).date_and_time_fields_elements[0]))
   is_true(!is_enabled?(on(Section3APage).date_and_time_fields_elements[1]))
 end
+
+And (/^I add a additional hazard$/) do
+  on(Section3APage).add_additional_hazard
+end
+
+Then (/^I should see additional hazard data save$/) do
+  on(Section3APage).previous_btn
+  on(Section3APage).next_btn
+  on(Section3APage).next_btn
+  on(Section3APage).previous_btn
+  is_true(on(Section3APage).is_additional_hazard_saved)
+end
+
+And (/^I add a new hazard$/) do
+  on(Section3APage).add_new_hazard
+end
+
+Then (/^I should see new hazard data save$/) do
+end

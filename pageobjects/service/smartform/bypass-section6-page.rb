@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage
+class BypassPage < SmartFormsPermissionPage
   include PageObject
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
@@ -11,18 +11,18 @@ class BypassPage
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
-    set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+    CommonPage.set_permit_id_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
     add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
-    add_time_offset_to_ptw['variables']['id'] = get_permit_id
+    add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
     JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
     ServiceUtil.post_graph_ql('ptw/1.mod_date_with_offset', _user)
     @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
 
     ### init dra form
     init_dra = JSON.parse JsonUtil.read_json('ptw/0.create_form_dra')
-    init_dra['variables']['parentFormId'] = get_permit_id
+    init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
     init_dra['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
@@ -30,7 +30,7 @@ class BypassPage
 
     ### save section 0
     section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
-    section2['variables']['formId'] = get_permit_id
+    section2['variables']['formId'] = CommonPage.get_permit_id
     section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     section2['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
@@ -48,7 +48,7 @@ class BypassPage
 
     ### section 4b ###
     section2 = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
-    section2['variables']['formId'] = get_permit_id
+    section2['variables']['formId'] = CommonPage.get_permit_id
     section2['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
       section2['variables']['answers'][1].to_h['value'] = '"yes"'
@@ -64,7 +64,7 @@ class BypassPage
 
     ### section 6 ###
     section2 = JSON.parse JsonUtil.read_json('ptw/13.save_section6_details')
-    section2['variables']['formId'] = get_permit_id
+    section2['variables']['formId'] = CommonPage.get_permit_id
     section2['variables']['submissionTimestamp'] = get_current_date_time
     if _gas === 'gas_yes'
       section2['variables']['answers'][1].to_h['value'] = '"yes"'
@@ -82,16 +82,20 @@ class BypassPage
 
     if _state === 'active'
       submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-      submit_active['variables']['formId'] = get_permit_id
+      submit_active['variables']['formId'] = CommonPage.get_permit_id
       submit_active['variables']['submissionTimestamp'] = get_current_date_time
       JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
       ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
 
       submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
-      submit_active['variables']['formId'] = get_permit_id
+      submit_active['variables']['formId'] = CommonPage.get_permit_id
       submit_active['variables']['submissionTimestamp'] = get_current_date_time
       submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-      submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+      if _permit_type != 'submit_underwater_simultaneou'
+        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
+      else
+        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
+      end
       JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
       ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
     end
@@ -99,7 +103,7 @@ class BypassPage
 
   def set_oa_permit_to_pending_office_appr
     submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-    submit_active['variables']['formId'] = get_permit_id
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['newStatus'] = 'PENDING_OFFICE_APPROVAL'
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
@@ -107,25 +111,52 @@ class BypassPage
   end
 
   def set_oa_permit_to_active_state
-    url = "http://52.230.70.68:5984/forms/#{get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = "http://52.230.70.68:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = 'ACTIVE'
     ServiceUtil.fauxton(url, 'put', permit_payload.to_json)
+
+    submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status')
+  end
+
+  def set_non_oa_permit_to_active_state
+    submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    set_current_time
+    reset_data_collector
+    @@created_permit_data = set_section1_filled_data
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
+
+    submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status')
   end
 
   def set_rol_to_active(_duration)
     submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-    submit_active['variables']['formId'] = get_permit_id
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
 
     submit_active = JSON.parse JsonUtil.read_json('ptw/rol/approve-rol')
-    submit_active['variables']['formId'] = get_permit_id
-    submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format}}"
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
     submit_active['variables']['answers'][6].to_h['value'] = "\"#{_duration}\""
-    submit_active['variables']['answers'][8].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_format}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-approve-rol', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-approve-rol')
@@ -133,26 +164,22 @@ class BypassPage
 
   def submit_permit_for_termination_wo_eic_normalization(_status)
     submit_active = JSON.parse JsonUtil.read_json('ptw/17.submit-for-termination-wo-eic-normalization')
-    submit_active['variables']['formId'] = get_permit_id
-    submit_active['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format}}"
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
     submit_active['variables']['answers'][3].to_h['value'] = "\"#{_status}\""
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-17.submit-for-termination-wo-eic-normalization')
 
     submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-    submit_active['variables']['formId'] = get_permit_id
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['newStatus'] = 'PENDING_TERMINATION'
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
   end
 
-  def get_permit_id
-    @@permit_id
-  end
-
-  def get_current_time_format
+  def get_current_time_format_non_format
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
@@ -162,7 +189,11 @@ class BypassPage
 
   def cal_new_offset_time
     @current_time = Time.now.utc.strftime('%H')
-    time_w_offset = @current_time.to_i + @get_offset
+    begin
+      time_w_offset = @current_time.to_i + @get_offset.to_i
+    rescue StandardError
+      time_w_offset = @current_time.to_i + get_current_time_format_non_format.to_i
+    end
     count_hour = if time_w_offset >= 24
                    (time_w_offset - 24).abs
                  else
@@ -171,13 +202,9 @@ class BypassPage
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
-  def set_permit_id(_permit)
-    @@permit_id = _permit
-  end
-
   def save_different_form_section(_which_json, _user)
     section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
-    section['variables']['formId'] = get_permit_id
+    section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file("ptw/mod#{_which_json.sub('/', '')}", section)
     ServiceUtil.post_graph_ql("ptw/mod#{_which_json.sub('/', '')}", _user)
@@ -189,6 +216,10 @@ class BypassPage
 
   def get_current_date_time
     Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
+  end
+
+  def get_issued_time
+    @@issued_time = Time.now.utc.strftime('H:%M')
   end
 
   def get_current_date_time_cal(_duration)

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 And (/^I click on permit for master (.+)$/) do |_approve_or_review|
-  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(on(BypassPage).get_permit_id)
+  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id)
   match_element.click
   step 'I enter pin 1111'
   sleep 1
-  on(Section1Page).next_btn_elements.first.click
+  step 'I press next from section 1'
 end
 
 Then (/^I should see approve and request update buttons$/) do

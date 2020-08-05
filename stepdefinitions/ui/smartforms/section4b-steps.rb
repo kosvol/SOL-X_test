@@ -48,11 +48,6 @@ When (/^I select yes to EIC certification$/) do
   sleep 1
 end
 
-Then (/^I sign on canvas$/) do
-  sleep 1
-  on(Section3DPage).sign
-end
-
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   on(Section4BPage).yes_no_btn_elements[0].click
   BrowserActions.scroll_down

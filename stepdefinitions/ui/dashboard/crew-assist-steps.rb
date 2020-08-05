@@ -33,7 +33,8 @@ end
 
 And (/^I acknowledge the assistance with pin (.+)$/) do |pin|
   on(CrewAssistPage).acknowledge_btn
-  on(PinPadPage).enter_pin(pin)
+  step "I enter pin #{pin}"
+  # on(PinPadPage).enter_pin(pin)
 end
 
 Then (/^I should see crew assist dialog dismiss in both tab$/) do

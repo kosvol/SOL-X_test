@@ -4,7 +4,6 @@ Feature: Section6
   I want to ...
   So that ...
 
-  @x1
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -17,14 +16,14 @@ Feature: Section6
     And I tear down created form
 
     Examples:
-      | level_one_permit | level_two_permit                              | checklist                        |
-      # | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-      # | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
-      # | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hotwork          | Hot Work Level-2 outside E/R (Loaded Passage) | Hot Work Outside Designated Area |
-  # | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-  # | Enclosed Spaces Entry                | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist   |
-  # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
+      | level_one_permit                     | level_two_permit                                                                | checklist                        |
+      | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+      | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
+      | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
+      | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
+      | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      | Enclosed Spaces Entry                | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist   |
+      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
 
   # PRE gas reader
 

@@ -9,12 +9,13 @@ class Section3APage < Section2Page
   button(:view_edit_hazard, xpath: "//div[starts-with(@class,'Card-')]/div/button")
   # buttons(:delete_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/button")
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
-  # button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
+  button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
   # text_fields(:identify_hazard, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/input")
-  # text_areas(:existing_measure, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
+  text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   # buttons(:wo_applying_measures_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[3]/div/div/div/div/button")
   # buttons(:existing_control_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[5]/div/div/div/button")
   # elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+  button(:save_and_close, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer-')]/button")
   text_field(:dra_permit_number, xpath: "//input[@id='section3a_draNumber']")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
@@ -26,6 +27,25 @@ class Section3APage < Section2Page
   elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   buttons(:confirm_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[2]")
+
+  def is_additional_hazard_saved
+    view_edit_hazard
+    description_elements[2].text === 'Test Automation'
+  end
+
+  def add_new_hazard
+    sleep 1
+    # toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
+    BrowserActions.enter_text(description_elements[2], 'Test Automation')
+    save_and_close
+  end
+
+  def add_additional_hazard
+    sleep 1
+    toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
+    BrowserActions.enter_text(description_elements[2], 'Test Automation')
+    save_and_close
+  end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_hazard
@@ -61,10 +81,7 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    begin
-      view_edit_hazard
-    rescue StandardError
-    end
+    click_add_additional_hazard
     sleep 1
     BrowserActions.scroll_down
     BrowserActions.scroll_down
@@ -175,6 +192,11 @@ class Section3APage < Section2Page
   # end
 
   private
+
+  def click_add_additional_hazard
+    view_edit_hazard
+  rescue StandardError
+  end
 
   def get_color_code(color)
     case color

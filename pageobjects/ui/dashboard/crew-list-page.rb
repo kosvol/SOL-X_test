@@ -121,7 +121,8 @@ class CrewListPage < DashboardPage
 
   def is_location_details(_location = nil)
     _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
-    BrowserActions.scroll_down
+    _element = $browser.find_element(:xpath, @@location_indicator)
+    BrowserActions.scroll_down(_element)
     location_details_elements.each do |location|
       next if location.text === ''
 

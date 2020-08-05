@@ -19,7 +19,7 @@ And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 2 of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.first.click
+  step 'I press next from section 1'
   sleep 1
   is_equal(on(Section2Page).ship_approval, 'Master')
   is_equal(on(Section2Page).office_approval, 'N/A')

@@ -2,6 +2,11 @@
 
 module BrowserActions
   class << self
+    def enter_text(field, _text)
+      field.send_keys(_text)
+      hide_keyboard
+    end
+
     def hide_keyboard
       $browser.hide_keyboard if %w[Android].include? ENV['PLATFORM']
     end

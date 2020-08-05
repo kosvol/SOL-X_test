@@ -13,7 +13,6 @@ Then (/^I should see (.+) permits listing match counter$/) do |_which_filter|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  sleep 1
   step 'I get forms-filter/smart-form-filter request payload'
   step 'I hit graphql'
   on(PtwFilterPage).get_permits_counter

@@ -34,7 +34,7 @@ class Section4APage < Section3DPage
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
 
   def select_ppe_equipment
-    BrowserActions.hide_keyboard
+    # BrowserActions.hide_keyboard
     begin
       ppe_btn
     rescue StandardError
@@ -48,7 +48,8 @@ class Section4APage < Section3DPage
 
   def fill_textarea
     textarea_elements.each do |text_area|
-      text_area.send_keys('Test Automation')
+      BrowserActions.enter_text(text_area, 'Test automation')
+      # text_area.send_keys('Test Automation')
     end
   rescue StandardError
   end

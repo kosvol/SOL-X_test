@@ -15,7 +15,7 @@ end
 
 Then (/^I should see correct checklist content for (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
-  on(Section4APage).next_btn
+  step 'I press next for 1 times'
   sleep 1
   is_equal(on(Section4APage).get_checklist_label('labels', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['labels'])
   is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
@@ -29,14 +29,6 @@ end
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
   on(Section4APage).select_checklist(_checklist)
-end
-
-And (/^I press next for (.+) times$/) do |_times|
-  (1.._times.to_i).each do |_i|
-    sleep 1
-    # BrowserActions.scroll_down
-    on(Section4APage).next_btn
-  end
 end
 
 And ('I sign checklist with respective checklist creator {int}') do |_pin|

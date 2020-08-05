@@ -31,7 +31,7 @@ end
 
 Then (/^I (should|should not) see gas reader sections on active permit$/) do |_condition|
   sleep 1
-  on(Section1Page).next_btn_elements.first.click
+  step 'I press next from section 1'
   sleep 1
   step 'I press next for 9 times'
   step "I #{_condition} see gas reader sections"
@@ -40,5 +40,7 @@ end
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   on(Section6Page).submit_btn_elements[0].click
   step 'I enter pin 1212'
-  on(Section3DPage).sign
+  step 'I sign on canvas'
+  # data collector; will evolve
+  @@created_permit_data = on(SmartFormsPermissionPage).set_section1_filled_data
 end

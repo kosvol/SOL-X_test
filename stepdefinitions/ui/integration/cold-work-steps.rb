@@ -12,7 +12,7 @@
 # end
 
 # And (/^I review page 2 of submitted cold work permit$/) do
-#   on(Section1Page).next_btn_elements.first.click
+#   step 'I press next from section 1'
 #   sleep 1
 #   is_equal(on(Section2Page).ship_approval, 'Master')
 #   is_equal(on(Section2Page).office_approval, 'N/A')

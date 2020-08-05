@@ -8,7 +8,8 @@ class CreatedPermitToWorkPage < SmartFormsPermissionPage
   elements(:parent_container, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li")
   spans(:ptw_id, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li/span")
   spans(:created_by, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li/div/div/div/span[1]")
-  spans(:created_date_time, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li/div/div/div/span[2]")
+  spans(:created_date_time, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li/div/div/div[1]/span[2]")
+  spans(:issued_date_time, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li/div/div/div[2]/span[2]")
   buttons(:edit_permit_btn, xpath: '//button[@data-testid="action-button"]')
   buttons(:delete_permit_btn, xpath: "//ul[@class='note-row']/li[@class='button-container'][2]/button")
 
