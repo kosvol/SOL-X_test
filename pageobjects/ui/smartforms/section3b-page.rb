@@ -17,13 +17,11 @@ class Section3BPage < Section3APage
 
   def fill_section_3b
     BrowserActions.enter_text(method_reason_element, 'Test automation')
-    # method_reason_element.send_keys('Test automation')
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click
     # date
     BrowserActions.enter_text(last_assessment_element, 'Test automation')
-    # last_assessment_element.send_keys('Test automation')
     radio_btn_elements[9].click
     radio_btn_elements[12].click
     radio_btn_elements[15].click
@@ -33,11 +31,10 @@ class Section3BPage < Section3APage
     !crew_list_elements.empty?
   end
 
-  def get_filled_section3b
+  def get_filled_section
     tmp = []
-    filled_data = $browser.find_elements(:xpath, '//input')
-    filled_data.each_with_index do |_data, index|
-      tmp << filled_data[index].attribute('value')
+    generic_data_elements.each_with_index do |_data, index|
+      tmp << generic_data_elements[index].text
     end
     tmp
   end

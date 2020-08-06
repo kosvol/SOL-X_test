@@ -15,16 +15,6 @@ class Section6Page < Section4BPage
   div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
 
-  def get_filled_section6
-    tmp = []
-    filled_data = $browser.find_elements(:xpath, '//input')
-    tmp << filled_data[0].attribute('value')
-    tmp << filled_data[1].attribute('value')
-    tmp << filled_data[2].attribute('value')
-    tmp << rank_and_name_stamp
-    tmp
-  end
-
   def is_gas_reader_section?
     sleep 1
     total_sections_elements.size >= 4

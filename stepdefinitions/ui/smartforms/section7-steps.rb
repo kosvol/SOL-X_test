@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 And (/^I click on permit for master (.+)$/) do |_approve_or_review|
-  match_element = on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id)
-  match_element.click
+  on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
+  # match_element.click
   step 'I enter pin 1111'
   sleep 1
   step 'I press next from section 1'

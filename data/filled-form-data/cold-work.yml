@@ -1,5 +1,7 @@
 section1_without_duration:
   [
+    "SIT",
+    ""
     "In Port",
     "Loaded",
     "Test Automation",
@@ -13,16 +15,20 @@ section2: ["Master", "N/A"]
 
 section3b:
   [
+    "",
     "Test automation",
     "Yes",
     "People",
     "Yes",
     "Master",
+    "N/A",
     "Test automation",
     "Yes",
     "Yes",
     "Yes",
   ]
+
+section3c: "MAS Daniel Alcantara"
 
 section3d-yes: ["Yes", "Yes", "Yes", "Yes"]
 
@@ -30,7 +36,8 @@ section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
 
 section4b: ["Yes"]
 
-section6: ["Yes", "", "", "A/M Atif Hayat"]
+section6: ["N/A"]
+# ["Yes", "", "", "A/M Atif Hayat"]
 
 section4a:
   [
@@ -79,7 +86,6 @@ checklist:
     "Yes",
     "Yes",
     "Yes",
-    "",
     "Yes",
     "Yes",
     "Yes",

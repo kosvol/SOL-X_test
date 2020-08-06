@@ -22,15 +22,6 @@ class Section4BPage < Section4APage
   # index first: competent, second: issuer, save and close
   buttons(:subform_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button")
 
-  def get_filled_section4b
-    tmp = []
-    filled_data = $browser.find_elements(:xpath, '//input')
-    filled_data.each_with_index do |_data, index|
-      tmp << filled_data[index].attribute('value')
-    end
-    tmp
-  end
-
   def is_eic_details_prepopulated?
     # set_current_time
     # sleep 1

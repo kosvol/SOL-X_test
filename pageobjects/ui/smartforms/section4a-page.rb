@@ -26,6 +26,7 @@ class Section4APage < Section3DPage
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
   elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
+  text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
   button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
   button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
   # index 1 is date, index 2 is time
@@ -34,7 +35,6 @@ class Section4APage < Section3DPage
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
 
   def select_ppe_equipment
-    # BrowserActions.hide_keyboard
     begin
       ppe_btn
     rescue StandardError
@@ -49,22 +49,12 @@ class Section4APage < Section3DPage
   def fill_textarea
     textarea_elements.each do |text_area|
       BrowserActions.enter_text(text_area, 'Test automation')
-      # text_area.send_keys('Test Automation')
     end
   rescue StandardError
   end
 
   def is_checklist_fields_disabled?
     !(disabled_fields_elements.size === 0)
-  end
-
-  def get_filled_section4a
-    tmp = []
-    filled_data = $browser.find_elements(:xpath, '//input')
-    filled_data.each_with_index do |_data, index|
-      tmp << filled_data[index].attribute('value')
-    end
-    tmp
   end
 
   def get_current_date_mm_yyyy_format

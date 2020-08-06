@@ -6,7 +6,7 @@ class Section3CPage < Section3BPage
   include PageObject
 
   button(:dra_team_btn, id: 'dra_team')
-  span(:dra_team_name, xpath: "//button[@id='dra_team']/span")
+  elements(:dra_team_name, xpath: "//*[starts-with(@class,'ComboButtonMultiselect__Answer-')]")
   buttons(:member_name_btn, xpath: '//ul/li/button')
   buttons(:cancel_and_confirm_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
 

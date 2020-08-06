@@ -66,6 +66,7 @@ And (/^I fill up checklist yes, no, na$/) do
   end
   begin
     on(Section4APage).fill_textarea
+    on(Section4APage).interval = '1'
   rescue StandardError
   end
 end

@@ -9,6 +9,7 @@ And (/^I navigate to create new permit$/) do
   on(SmartFormsPermissionPage).click_create_permit_btn
   on(SmartFormsPermissionPage).set_current_time
   on(SmartFormsPermissionPage).reset_data_collector
+  sleep 1
 end
 
 Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
@@ -29,7 +30,7 @@ And (/^I tear down created form$/) do
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 3
+  sleep 1
   on(SmartFormsPermissionPage).click_permit_type_ddl
   on(SmartFormsPermissionPage).select_permit(_permit)
 end

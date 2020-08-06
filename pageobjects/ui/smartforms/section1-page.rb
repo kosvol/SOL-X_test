@@ -8,7 +8,7 @@ class Section1Page < SmartFormsPermissionPage
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:all_labels, xpath: '//label')
   buttons(:next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
-  # buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+  buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
@@ -20,35 +20,31 @@ class Section1Page < SmartFormsPermissionPage
   @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
-
-  # submitted permit
-  elements(:filled_data, xpath: '//input')
-  elements(:generic_answer, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
+  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
 
   def get_filled_section1
     sleep 1
     tmp = []
-    filled_data = $browser.find_elements(:xpath, '//input')
-    tmp << filled_data[3].attribute('value')
-    tmp << filled_data[4].attribute('value')
-    tmp << generic_answer_elements[0].text
-    tmp << filled_data[5].attribute('value')
-    tmp << filled_data[6].attribute('value')
-    tmp << generic_answer_elements[1].text
-    tmp << generic_answer_elements[2].text
+    tmp << generic_data_elements[0].text
+    tmp << generic_data_elements[2].text
+    tmp << generic_data_elements[3].text
+    tmp << generic_data_elements[4].text
+    tmp << generic_data_elements[5].text
+    tmp << generic_data_elements[6].text
+    tmp << generic_data_elements[7].text
+    tmp << generic_data_elements[8].text
+    tmp << generic_data_elements[9].text
     tmp
   end
 
   def is_fields_enabled?
     bool = true
-    filled_data = $browser.find_elements(:xpath, '//input')
-    filled_data.each do |field|
+    generic_data_elements.each do |field|
       bool &&= field.enabled?
     end
     bool
   rescue StandardError
     false
-    # filled_data[3].enabled? && filled_data[4].enabled? && filled_data[5].enabled? && filled_data[6].enabled? && text_areas_elements[0].enabled? && text_areas_elements[1].enabled? && text_areas_elements[2].enabled?
   end
 
   def is_maint_duration_dd_exists?

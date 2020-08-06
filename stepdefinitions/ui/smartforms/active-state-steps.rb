@@ -16,11 +16,9 @@ end
 And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
   if _update_or_terminate === 'update active'
-    update_reading_or_view_btn = on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id)
-    update_reading_or_view_btn.click
+    on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   elsif _update_or_terminate === 'terminate'
-    termination_btn = on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id)
-    termination_btn.click
+    on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click
   end
   step "I enter pin #{_pin}"
 end

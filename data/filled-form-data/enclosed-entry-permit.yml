@@ -1,28 +1,34 @@
 section1_without_duration:
   [
+    "SIT",
+    "Enclosed Space Entry",
     "In Port",
     "Loaded",
     "Test Automation",
     "0 : Calm (glassy)",
     "0 : Calm",
     "Test Automation",
-    "Test AutomationTest Automation",
+    "Test Automation",
   ]
 
 section2: ["Master", "N/A"]
 
 section3b:
   [
+    "General procedures for Enclosed Space Entry",
     "Test automation",
     "Yes",
     "People",
     "Yes",
     "Master",
+    "N/A",
     "Test automation",
     "Yes",
     "Yes",
     "Yes",
   ]
+
+section3c: "MAS Daniel Alcantara"
 
 section3d-yes: ["Yes", "Yes", "Yes", "Yes"]
 
@@ -30,7 +36,7 @@ section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
 
 section4b: ["Yes"]
 
-section6: ["Yes", "", "", "A/M Atif Hayat"]
+section6: ["Yes", "N/A", "N/A", "N/A"]
 
 section4a:
   [
@@ -57,6 +63,8 @@ section4a:
 checklist:
   [
     "SIT",
+    "Test automation",
+    "Test automation",
     "Yes",
     "Yes",
     "Yes",
@@ -79,7 +87,6 @@ checklist:
     "Yes",
     "Yes",
     "Yes",
-    "",
     "Yes",
     "Yes",
     "Yes",
