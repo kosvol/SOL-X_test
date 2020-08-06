@@ -20,7 +20,6 @@ class Section1Page < SmartFormsPermissionPage
   @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
-  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
 
   def get_filled_section1
     sleep 1

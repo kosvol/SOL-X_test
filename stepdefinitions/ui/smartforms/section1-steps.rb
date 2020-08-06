@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then (/^I should see permit details are pre-filled$/) do
-  is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[0])
+  is_equal(on(SmartFormsPermissionPage).generic_data_elements[2].text, on(SmartFormsPermissionPage).get_section1_filled_data[0])
   is_equal(on(SmartFormsPermissionPage).form_number, on(SmartFormsPermissionPage).get_section1_filled_data[1])
   is_equal(on(SmartFormsPermissionPage).vessel_short_name, 'SIT')
 end
