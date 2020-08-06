@@ -11,12 +11,8 @@ class SmartFormsPermissionPage < CommonPage
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")
   button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
-  # text_field(:permit_type, xpath: '//*[@id="section1_permitType"]')
-  text_field(:form_number, xpath: '//*[@id="formNumber"]')
-  text_field(:vessel_short_name, xpath: '//*[@id="vesselShortName"]')
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
-  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
 
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
@@ -53,18 +49,18 @@ class SmartFormsPermissionPage < CommonPage
     click_create_permit_btn_element.click
   end
 
-  def get_section1_filled_data
-    @@section1_data_collector
-  end
+  # def get_section1_filled_data
+  #   @@section1_data_collector
+  # end
 
-  def set_section1_filled_data
-    # probably need to dynamic this created by
-    @@section1_data_collector << 'Created By A/M Atif Hayat at'
-    sleep 1
-    @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
-    p ">>> #{@@section1_data_collector}"
-    @@section1_data_collector
-  end
+  # def set_section1_filled_data
+  #   # probably need to dynamic this created by
+  #   @@section1_data_collector << 'Created By A/M Atif Hayat at'
+  #   sleep 1
+  #   @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
+  #   p ">>> #{@@section1_data_collector}"
+  #   @@section1_data_collector
+  # end
 
   def is_level_1_permit?(_table)
     base_permits = []

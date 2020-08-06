@@ -43,5 +43,5 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   step 'I sign on canvas'
   # data collector; will evolve
   on(SmartFormsPermissionPage).reset_data_collector
-  @@created_permit_data = on(SmartFormsPermissionPage).set_section1_filled_data
+  @@created_permit_data = on(Section1Page).set_section1_filled_data
 end
