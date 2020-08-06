@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class CreatedPermitToWorkPage < SmartFormsPermissionPage
+class CreatedPermitToWorkPage < Section1Page
   include PageObject
 
   elements(:parent_container, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li")

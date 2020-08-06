@@ -12,7 +12,7 @@ And (/^I want to edit the newly created permit$/) do
 end
 
 Then (/^I should see correct permit details$/) do
-  is_equal(on(SmartFormsPermissionPage).permit_type, on(SmartFormsPermissionPage).get_section1_filled_data[2])
+  is_equal(on(SmartFormsPermissionPage).permit_type, on(Section1Page).get_section1_filled_data[2])
   is_equal(on(SmartFormsPermissionPage).form_number, on(SmartFormsPermissionPage).ptw_id_element.text)
   is_equal(on(SmartFormsPermissionPage).vessel_short_name, 'SIT')
 end

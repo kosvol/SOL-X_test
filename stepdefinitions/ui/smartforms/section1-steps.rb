@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Then (/^I should see permit details are pre-filled$/) do
-  is_equal(on(Section1Page).generic_data_elements[2].text, on(SmartFormsPermissionPage).get_section1_filled_data[0])
-  is_equal(on(Section1Page).generic_data_elements[1].text, on(SmartFormsPermissionPage).get_section1_filled_data[1])
+  is_equal(on(Section1Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[0])
+  is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
 end
 
