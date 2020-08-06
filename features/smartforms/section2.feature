@@ -43,7 +43,7 @@ Feature: Section2ApprovalAuthority
       | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
-      | Cold Work                                                     | Cold Work - Cleaning Up of Spills                                       |
+      | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
       | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
       | Cold Work                                                     | Cold Work - Working on Closed Electrical Equipment and Circuits         |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |

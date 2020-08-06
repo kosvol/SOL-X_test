@@ -13,6 +13,6 @@ Feature: PendingWithdrawal
 
     Examples:
       | permit_types         | permit_payload             | status   |
-      # | Cold Work - Cleaning Up of Spills | submit_cold_work_clean_spill | Completed |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Completed |
       | Enclosed Space Entry | submit_enclose_space_entry | Continue |
 # | Hotwork                           | submit_hotwork               | Suspended |

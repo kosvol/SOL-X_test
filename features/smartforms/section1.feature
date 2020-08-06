@@ -106,7 +106,7 @@ Feature: Section1
 
     Examples:
       | level_one_permit                                                                  | level_two_permit                                              |
-      | Cold Work                                                                         | Cold Work - Cleaning Up of Spills                             |
+      | Cold Work                                                                         | Cold Work - Cleaning Up of Spill                              |
       | Enclosed Spaces Entry                                                             | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                                             | Helicopter Operations                                         |
       | Hotwork                                                                           | Hot Work Level-1 (Loaded & Ballast Passage)                   |
@@ -141,11 +141,11 @@ Feature: Section1
     And I should not see copy text regarding maintenance hour
     And I tear down created form
 
-  Scenario: Verify section1 screen text
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 1212
-    And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
-    Then I should see display texts match for section1
+# Scenario: Verify section1 screen text
+#   Given I launch sol-x portal without unlinking wearable
+#   And I navigate to create new permit
+#   And I enter pin 1212
+#   And I select Use of ODME in Manual Mode permit
+#   And I select Use of ODME in Manual Mode permit for level 2
+#   Then I should see display texts match for section1
 

@@ -51,7 +51,7 @@ Feature: Section6
       # | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Tools (PPT)     |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                    | Work on Electrical Equipment and Circuits – Low/High Voltage |
       # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard | Cold Work Operation Checklist             |
-      # | Cold Work                                 | Cold Work - Cleaning Up of Spills                                       | Cold Work Operation Checklist             |
+      # | Cold Work                                 | Cold Work - Cleaning Up of Spill                                       | Cold Work Operation Checklist             |
       # | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Working on Closed Electrical Equipment and Circuits       | Cold Work Operation Checklist                                 |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                             | Cold Work Operation Checklist                                 |
@@ -122,7 +122,7 @@ Feature: Section6
       # | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools | Rotational Portable Power Tools (PPT)     |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Work on Electrical Equipment and Circuits – Low/High Voltage |
       # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard | Cold Work Operation Checklist             |
-      # | Cold Work                                 | Cold Work - Cleaning Up of Spills                                       | Cold Work Operation Checklist             |
+      # | Cold Work                                 | Cold Work - Cleaning Up of Spill                                       | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines              | Cold Work Operation Checklist                                 |
       | Cold Work                                                     | Cold Work - Working on Closed Electrical Equipment and Circuits | Cold Work Operation Checklist                                 |
       # | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist             |

@@ -138,13 +138,13 @@ Feature: CreatedPermitToWork
     Examples:
       | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
       | Master                     | 1111 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A/M                        | 1212 | Cold Work                                                     | Cold Work - Cleaning Up of Spills                             |
+      | A/M                        | 1212 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
       | C/O                        | 5912 | Underwater Operations                                         | Underwater Operation at night                                 |
       | A C/O                      | 5555 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
       | 2/O                        | 5545 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | A 2/O                      | 7777 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
       | 3/O                        | 8888 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A 3/O                      | 9999 | Cold Work                                                     | Cold Work - Cleaning Up of Spills                             |
+      | A 3/O                      | 9999 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
       | Chief Engineer             | 7507 | Underwater Operations                                         | Underwater Operation at night                                 |
       | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
       | Second Engineer            | 1313 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
