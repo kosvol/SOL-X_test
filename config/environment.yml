@@ -8,6 +8,10 @@ sit:
   # c2_preview: "https://52.230.70.68:8443"
   service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
 
+sits:
+  c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
+  service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
+
 uat:
   c2_preview: "http://104.215.192.113:8080"
   service: "http://104.215.192.11:4000"
