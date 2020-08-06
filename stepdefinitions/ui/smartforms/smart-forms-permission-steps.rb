@@ -30,15 +30,16 @@ And (/^I tear down created form$/) do
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 1
+  # sleep 1
   on(SmartFormsPermissionPage).click_permit_type_ddl
   on(SmartFormsPermissionPage).select_permit(_permit)
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
   on(SmartFormsPermissionPage).set_selected_level2_permit(_permit)
+  sleep 1
   on(SmartFormsPermissionPage).select_permit(on(SmartFormsPermissionPage).get_selected_level2_permit)
-  sleep 2
+  sleep 1
   on(SmartFormsPermissionPage).save_btn
 end
 
