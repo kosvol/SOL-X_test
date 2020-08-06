@@ -124,25 +124,25 @@ Feature: ActivePermit
     Then I should see permit valid for 8 hours
 
     Examples:
-      | level_one_permit                          | level_two_permit                                                        |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                                     |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                             |
-      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                    |
-      | Working Aloft/Overside                    | Working Aloft / Overside                                                |
-      | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                             |
-      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                   |
-      | Helicopter Operations                     | Helicopter Operation                                                    |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                                             |
-      | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                   |
-      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                      |
-      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
-      | Cold Work                                 | Cold Work - Cleaning Up of Spills                                       |
-      | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                      |
-      | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits         |
-      | Cold Work                                 | Cold Work - Maintenance Work on Machinery                               |
-      | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
-      | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                      |
-      | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                    |
+      | level_one_permit                                              | level_two_permit                                                        |
+      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     |
+      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                    |
+      | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
+      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
+      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |
+      | Helicopter Operations                                         | Helicopter Operation                                                    |
+      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                             |
+      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
+      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
+      | Cold Work                                                     | Cold Work - Cleaning Up of Spills                                       |
+      | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
+      | Cold Work                                                     | Cold Work - Working on Closed Electrical Equipment and Circuits         |
+      | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
+      | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
+      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Area                      |
+      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending office approval state

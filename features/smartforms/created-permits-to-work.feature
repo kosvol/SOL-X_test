@@ -136,21 +136,21 @@ Feature: CreatedPermitToWork
     Then I should see gas reader section with fields enabled
 
     Examples:
-      | rank                       | pin  | level_one_permit                          | level_two_permit                            |
-      | Master                     | 1111 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage) |
-      | A/M                        | 1212 | Cold Work                                 | Cold Work - Cleaning Up of Spills           |
-      | C/O                        | 5912 | Underwater Operations                     | Underwater Operation at night               |
-      | A C/O                      | 5555 | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
-      | 2/O                        | 5545 | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
-      | A 2/O                      | 7777 | Hotwork                                   | Hot Work Level-2 in Designated Area         |
-      | 3/O                        | 8888 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage) |
-      | A 3/O                      | 9999 | Cold Work                                 | Cold Work - Cleaning Up of Spills           |
-      | Chief Engineer             | 7507 | Underwater Operations                     | Underwater Operation at night               |
-      | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry                     | Enclosed Spaces Entry                       |
-      | Second Engineer            | 1313 | Work on Electrical Equipment and Circuits | Work on Electrical Equipment and Circuits   |
-      | Additional Second Engineer | 1414 | Hotwork                                   | Hot Work Level-2 in Designated Area         |
-      | 3/E                        | 4092 | Underwater Operations                     | Underwater Operation at night               |
-      | A 3/E                      | 1515 | Rotational Portable Power Tool            | Use of Portable Power Tools                 |
+      | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
+      | Master                     | 1111 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | A/M                        | 1212 | Cold Work                                                     | Cold Work - Cleaning Up of Spills                             |
+      | C/O                        | 5912 | Underwater Operations                                         | Underwater Operation at night                                 |
+      | A C/O                      | 5555 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
+      | 2/O                        | 5545 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | A 2/O                      | 7777 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
+      | 3/O                        | 8888 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | A 3/O                      | 9999 | Cold Work                                                     | Cold Work - Cleaning Up of Spills                             |
+      | Chief Engineer             | 7507 | Underwater Operations                                         | Underwater Operation at night                                 |
+      | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
+      | Second Engineer            | 1313 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | Additional Second Engineer | 1414 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
+      | 3/E                        | 4092 | Underwater Operations                                         | Underwater Operation at night                                 |
+      | A 3/E                      | 1515 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
 
   Scenario Outline: Verify checklist creator can only edit checklist,eic and gas reader in PTW Created State
     Given I launch sol-x portal without unlinking wearable

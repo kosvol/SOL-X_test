@@ -24,23 +24,23 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | Rank  | pin  | level_one_permit                          | level_two_permit                                                                | checklist                                 |
-      | A/M   | 1212 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | C/O   | 5912 | Cold Work                                 | Cold Work - Working on Closed Electrical Equipment and Circuits                 | Cold Work Operation Checklist             |
-      | A C/O | 5555 | Hotwork                                   | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
-      | 2/O   | 5545 | Hotwork                                   | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
-      | A 2/O | 7777 | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      | 3/O   | 8888 | Enclosed Spaces Entry                     | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist            |
-      | A 3/O | 9999 | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
-      | C/E   | 7507 | Underwater Operations                     | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
-      | A C/E | 0110 | Underwater Operations                     | Underwater Operation at night                                                   | Underwater Operation                      |
-      | 2/E   | 1313 | Working Aloft/Overside                    | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
-      | A 2/E | 1414 | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
-      | 3/E   | 4092 | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | A 3/E | 1515 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | 4/E   | 2323 | Helicopter Operations                     | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | A 4/E | 2424 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
-      | ETO   | 1717 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
+      | Rank  | pin  | level_one_permit                                              | level_two_permit                                                                | checklist                                                     |
+      | A/M   | 1212 | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist                                 |
+      | C/O   | 5912 | Cold Work                                                     | Cold Work - Working on Closed Electrical Equipment and Circuits                 | Cold Work Operation Checklist                                 |
+      | A C/O | 5555 | Hotwork                                                       | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area                              |
+      | 2/O   | 5545 | Hotwork                                                       | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area                              |
+      | A 2/O | 7777 | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
+      | 3/O   | 8888 | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist                                |
+      | A 3/O | 9999 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
+      | C/E   | 7507 | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                                          |
+      | A C/E | 0110 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
+      | 2/E   | 1313 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                                        |
+      | A 2/E | 1414 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
+      | 3/E   | 4092 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                                    |
+      | A 3/E | 1515 | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
+      | 4/E   | 2323 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
+      | A 4/E | 2424 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | ETO   | 1717 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)                         |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -56,22 +56,22 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | Rank   | pin  | level_one_permit                          | level_two_permit                                                                | checklist                                 |
-      | Master | 1111 | Hotwork                                   | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area           |
-      | D/C    | 1616 | Hotwork                                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      | SAA    | 1203 | Enclosed Spaces Entry                     | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist            |
-      | BOS    | 1818 | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
-      | 5/E    | 6322 | Working Aloft/Overside                    | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
-      | E/C    | 9985 | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
-      | ELC    | 9298 | Use of ODME in Manual Mode                | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | ETR    | 1715 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | T/E    | 1611 | Helicopter Operations                     | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | PMN    | 4236 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
-      | FTR    | 9115 | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
-      | CCK    | 9082 | Use of non-intrinsically safe Camera      | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
-      | 2CK    | 1455 | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | RDCRW  | 9946 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
-      | FSTO   | 1041 | Cold Work                                 | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
+      | Rank   | pin  | level_one_permit                                              | level_two_permit                                                                | checklist                                                     |
+      | Master | 1111 | Hotwork                                                       | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area                               |
+      | D/C    | 1616 | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
+      | SAA    | 1203 | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist                                |
+      | BOS    | 1818 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
+      | 5/E    | 6322 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                                        |
+      | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
+      | ELC    | 9298 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                                    |
+      | ETR    | 1715 | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
+      | T/E    | 1611 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
+      | PMN    | 4236 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | FTR    | 9115 | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)                         |
+      | CCK    | 9082 | Use of non-intrinsically safe Camera                          | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                                       |
+      | 2CK    | 1455 | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather                             |
+      | RDCRW  | 9946 | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist                                 |
+      | FSTO   | 1041 | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist                                 |
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable

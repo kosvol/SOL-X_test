@@ -153,17 +153,17 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | level_one_permit                          | level_two_permit                                                           | checklist                                 | rank                       | pin  |
-      | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area           | Addtional Master           | 1212 |
-      | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area          | Chief Officer              | 5912 |
-      | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist            | Additional Chief Officer   | 5555 |
-      | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    | Second Officer             | 5545 |
-      | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  | Additional Second Officer  | 7777 |
-      | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     | Chief Engineer             | 7507 |
-      | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            | Additional Chief Engineer  | 0110 |
-      | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     | Second Engineer            | 1313 |
-      | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits | Additional Second Engineer | 1414 |
-      | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             | Electro Technical Officer  | 1717 |
+      | level_one_permit                                              | level_two_permit                                                           | checklist                                                     | rank                       | pin  |
+      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area                               | Addtional Master           | 1212 |
+      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area                              | Chief Officer              | 5912 |
+      | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist                                | Additional Chief Officer   | 5555 |
+      | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        | Second Officer             | 5545 |
+      | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      | Additional Second Officer  | 7777 |
+      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket                         | Chief Engineer             | 7507 |
+      | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                | Additional Chief Engineer  | 0110 |
+      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)                         | Second Engineer            | 1313 |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage | Additional Second Engineer | 1414 |
+      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist                                 | Electro Technical Officer  | 1717 |
 
   Scenario Outline: Verify non RA cannot sign on responsible authority
     Given I launch sol-x portal without unlinking wearable
@@ -180,21 +180,21 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | rank   | pin  | level_one_permit                          | level_two_permit                                                           | checklist                                 |
-      | Master | 1111 | Hotwork                                   | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area           |
+      | rank   | pin  | level_one_permit                                              | level_two_permit                                                           | checklist                                                     |
+      | Master | 1111 | Hotwork                                                       | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area                               |
       # | 3/O    | 8888 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area          |
-      | A 3/O  | 9999 | Enclosed Spaces Entry                     | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist            |
+      | A 3/O  | 9999 | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                       | Enclosed Space Entry Checklist                                |
       # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
-      | D/C    | 1616 | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  |
+      | D/C    | 1616 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
       # | 3/E    | 4092 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
-      | A 3/E  | 1515 | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            |
+      | A 3/E  | 1515 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
       # | 4/E    | 2323 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     |
-      | A 4/E  | 2424 | Work on Electrical Equipment and Circuits | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits |
+      | A 4/E  | 2424 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
       # | BOS    | 1818 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             |
-      | PMN    | 4236 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
-      | A/B    | 2121 | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist  |
+      | PMN    | 4236 | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        |
+      | A/B    | 2121 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
       # | O/S    | 1919 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
-      | OLR    | 0220 | Helicopter Operations                     | Helicopter Operation                                                       | Helicopter Operation Checklist            |
+      | OLR    | 0220 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
 
   Scenario Outline: Verify only chief engineer can sign as issuing authority
     Given I launch sol-x portal without unlinking wearable

@@ -69,21 +69,21 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter pin 1212
     Then I should see a list of available forms for selections
-      | Cold Work                                 |
-      | Critical Equipment Maintenance            |
-      | Enclosed Spaces Entry                     |
-      | Helicopter Operations                     |
-      | Hotwork                                   |
-      | Personal Transfer By Transfer Basket      |
-      | Rigging of Pilot/Combination Ladder       |
-      | Rotational Portable Power Tool            |
-      | Underwater Operations                     |
-      | Use of non-intrinsically safe Camera      |
-      | Use of ODME in Manual Mode                |
-      | Work on Electrical Equipment and Circuits |
-      | Work on Pressure Pipeline/Vessels         |
-      | Working Aloft/Overside                    |
-      | Working on Deck During Heavy Weather      |
+      | Cold Work                                                     |
+      | Critical Equipment Maintenance                                |
+      | Enclosed Spaces Entry                                         |
+      | Helicopter Operations                                         |
+      | Hotwork                                                       |
+      | Personal Transfer By Transfer Basket                          |
+      | Rigging of Pilot/Combination Ladder                           |
+      | Rotational Portable Power Tool                                |
+      | Underwater Operations                                         |
+      | Use of non-intrinsically safe Camera                          |
+      | Use of ODME in Manual Mode                                    |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | Work on Pressure Pipeline/Vessels                             |
+      | Working Aloft/Overside                                        |
+      | Working on Deck During Heavy Weather                          |
     And I tear down created form
 
   Scenario Outline: Verify user see the correct second level permits
