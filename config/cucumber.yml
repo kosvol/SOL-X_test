@@ -6,6 +6,7 @@ mac_chrome_tablet_dev: --profile dir --profile html --profile xml --profile json
 mac_chrome_dev_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
 mac_chrome_dev_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet
 
+mac_chrome_dashboard_sits_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
