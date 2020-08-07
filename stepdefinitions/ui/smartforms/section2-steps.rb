@@ -10,24 +10,28 @@ And (/^I should see previous and next buttons$/) do
 end
 
 Then (/^I should see correct approval details for non-OA$/) do
-  is_equal(on(Section2Page).ship_approval, 'Master')
-  is_equal(on(Section2Page).office_approval, 'N/A')
+  is_equal(on(Section2Page).generic_data_elements[0].text, 'Master')
+  is_equal(on(Section2Page).generic_data_elements[1].text, 'N/A')
 end
 
 Then (/^I should see correct approval details for maintenance duration (more|less) than 2 hours$/) do |_condition|
-  is_equal(on(Section2Page).ship_approval, 'Master')
-  is_equal(on(Section2Page).office_approval, 'VS') if _condition === 'more'
-  is_equal(on(Section2Page).office_approval, 'N/A') if _condition === 'less'
+  is_equal(on(Section2Page).generic_data_elements[0].text, 'Master')
+  if _condition === 'more'
+    is_equal(on(Section2Page).generic_data_elements[1].text, 'VS')
+  end
+  if _condition === 'less'
+    is_equal(on(Section2Page).generic_data_elements[1].text, 'N/A')
+  end
 end
 
 Then (/^I should see correct approval details OA (.+) and ship approval (.+)$/) do |oa, sa|
-  is_equal(on(Section2Page).ship_approval, sa)
-  is_equal(on(Section2Page).office_approval, oa)
+  is_equal(on(Section2Page).generic_data_elements[0].text, sa)
+  is_equal(on(Section2Page).generic_data_elements[1].text, oa)
 end
 
 Then (/^I should see ship and office approval text fields disabled$/) do
-  is_disabled(on(Section2Page).ship_approval_element)
-  is_disabled(on(Section2Page).office_approval_element)
+  is_disabled(on(Section2Page).on(Section2Page).generic_data_elements[0])
+  is_disabled(on(Section2Page).on(Section2Page).generic_data_elements[1])
 end
 
 Then (/^I should see display texts match for section2$/) do

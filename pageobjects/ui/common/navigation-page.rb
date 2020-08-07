@@ -5,12 +5,13 @@ require './././support/env'
 class NavigationPage
   include PageObject
 
-  # element(:hamburger_menu, xpath: "//section[@class='title']//button//*[local-name()='svg']")
-  element(:hamburger_menu, xpath: "//button/*[@data-testid='hamburger']")
+  button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
+  # element(:hamburger_menu, xpath: "//button/*[@data-testid='hamburger']")
   list_items(:drilled_ham_menu, xpath: '//ul[1]//li')
 
   def tap_hamburger_menu
-    hamburger_menu_element.click
+    sleep 1
+    hamburger_menu
     sleep 1 # too fast pausing for screenshot
   end
 

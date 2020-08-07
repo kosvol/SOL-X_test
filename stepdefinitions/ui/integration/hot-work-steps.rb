@@ -4,8 +4,8 @@
 # And (/^I review page 2 of submitted hot work permit$/) do
 #   step 'I press next from section 1'
 #   sleep 1
-#   is_equal(on(Section2Page).ship_approval, 'Master')
-#   is_equal(on(Section2Page).office_approval, 'N/A')
+#   is_equal(on(Section2Page).generic_data_elements[0].text, 'Master')
+#   is_equal(on(Section2Page).generic_data_elements[1].text 'N/A')
 # end
 
 # And (/^I review page 3a of submitted hot work permit$/) do
