@@ -9,8 +9,8 @@ Feature: To bypass section 1 to 6
     Given I submit permit <location> via service with 1212 user
 
     Examples:
-      | permit_types         | location                   |
-      | Enclosed Space Entry | submit_enclose_space_entry |
+      | permit_types          | location                   |
+      | Enclosed Spaces Entry | submit_enclose_space_entry |
 # | Use of Non-Intrinsically Safe Camera                                            | non_intrinsical_camera     |
 # | Hot Work Level-2 outside E/R (Ballast Passage)                                  | outside_er_ballast         |
 # | Hot Work Level-2 outside E/R (Loaded Passage)                                   | outside_er_loaded          |

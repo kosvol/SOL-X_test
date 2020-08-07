@@ -34,7 +34,7 @@ Feature: Section2ApprovalAuthority
       | level_one_permit                                              | level_two_permit                                                        |
       | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     |
       | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             |
-      | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                    |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |

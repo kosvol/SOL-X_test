@@ -85,7 +85,7 @@ Feature: Section8
     Examples:
       | permit_types                     | permit_payload               | rank              | pin  | user         | zoneid                     | mac               | location_stamp   |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 5912 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
-      | Enclosed Space Entry             | submit_enclose_space_entry   | 2/E Poon Choryi   | 1313 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 2/E Poon Choryi   | 1313 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
       | Hotwork                          | submit_hotwork               | ETO Reza Ilmi     | 1717 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
@@ -98,11 +98,11 @@ Feature: Section8
     Examples:
       | permit_types                     | permit_payload               | rank                     | pin  |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 1212 |
-      ## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
+      ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
       | Hotwork                          | submit_hotwork               | Additional Chief Officer | 5555 |
   ## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-  ## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+  ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
   ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 0110 |
   ## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 1414 |
@@ -118,12 +118,12 @@ Feature: Section8
     Examples:
       | permit_types                     | permit_payload               | rank          | pin  |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M           | 1212 |
-      | Enclosed Space Entry             | submit_enclose_space_entry   | Chief Officer | 5912 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Chief Officer | 5912 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 5555 |
 ## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-## | Enclosed Space Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 0110 |
 ## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
-## | Enclosed Space Entry              | submit_enclose_space_entry   | Additional Second Engineer | 1414 |
+## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 1414 |
 ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |

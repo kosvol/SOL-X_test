@@ -22,7 +22,7 @@ Feature: Section6
       | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
       | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
       | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      | Enclosed Spaces Entry                | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist   |
+      | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist  |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
 
   # PRE gas reader
@@ -113,7 +113,7 @@ Feature: Section6
       | level_one_permit                                              | level_two_permit                                                | checklist                                                     |
       | Hotwork                                                       | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                               |
       | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                              |
-      | Enclosed Spaces Entry                                         | Enclosed Space Entry                                            | Enclosed Space Entry Checklist                                |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                           | Enclosed Spaces Entry Checklist                               |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                        | Working Aloft/Overside                                        |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                    |
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                         |

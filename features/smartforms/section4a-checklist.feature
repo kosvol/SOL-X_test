@@ -30,7 +30,7 @@ Feature: Section4AChecklist
       | A C/O | 5555 | Hotwork                                                       | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area                              |
       | 2/O   | 5545 | Hotwork                                                       | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area                              |
       | A 2/O | 7777 | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
-      | 3/O   | 8888 | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist                                |
+      | 3/O   | 8888 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist                               |
       | A 3/O | 9999 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
       | C/E   | 7507 | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                                          |
       | A C/E | 0110 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
@@ -59,7 +59,7 @@ Feature: Section4AChecklist
       | Rank   | pin  | level_one_permit                                              | level_two_permit                                                                | checklist                                                     |
       | Master | 1111 | Hotwork                                                       | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area                               |
       | D/C    | 1616 | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
-      | SAA    | 1203 | Enclosed Spaces Entry                                         | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist                                |
+      | SAA    | 1203 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist                               |
       | BOS    | 1818 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
       | 5/E    | 6322 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                                        |
       | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
@@ -137,7 +137,7 @@ Feature: Section4AChecklist
 
     Examples:
       | level_one_permit                     | level_two_permit                                                        | checklist                             |
-      | Enclosed Spaces Entry                | Enclosed Space Entry                                                    | Enclosed Space Entry Checklist        |
+      | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                   | Enclosed Spaces Entry Checklist       |
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                  |
       | Working Aloft/Overside               | Working Aloft / Overside                                                | Working Aloft/Overside                |
       | Work on Pressure Pipeline/Vessels    | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines            |

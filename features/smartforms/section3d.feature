@@ -41,7 +41,7 @@ Feature: Section3DDRA
       | level_one_permit               | level_two_permit                                                           | rank                      | pin  |
       | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Addtional Master          | 1212 |
       | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer             | 5912 |
-      | Enclosed Spaces Entry          | Enclosed Space Entry                                                       | Additional Chief Officer  | 5555 |
+      | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Additional Chief Officer  | 5555 |
       # # | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 5545 |
       # # | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7777 |
       # # | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 7507 |
@@ -85,7 +85,7 @@ Feature: Section3DDRA
       | level_one_permit                                              | level_two_permit                                   | ra_rank                    | pin  | non_ra_pin |
       | Hotwork                                                       | Hot Work Level-2 in Designated Area                | Addtional Master           | 1212 | 1111       |
       | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)        | Chief Officer              | 5912 | 8888       |
-      | Enclosed Spaces Entry                                         | Enclosed Space Entry                               | Additional Chief Officer   | 5555 | 9999       |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                              | Additional Chief Officer   | 5555 | 9999       |
       | Working Aloft/Overside                                        | Working Aloft / Overside                           | Second Officer             | 5545 | 1010       |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels        | Additional Second Officer  | 7777 | 1616       |
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket              | Chief Engineer             | 7507 | 4092       |

@@ -12,7 +12,7 @@ Feature: PendingWithdrawal
     Then I should <status> as task status
 
     Examples:
-      | permit_types         | permit_payload             | status   |
+      | permit_types          | permit_payload             | status   |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Completed |
-      | Enclosed Space Entry | submit_enclose_space_entry | Continue |
+      | Enclosed Spaces Entry | submit_enclose_space_entry | Continue |
 # | Hotwork                           | submit_hotwork               | Suspended |

@@ -13,8 +13,8 @@ Feature: Section7
     Then I should see approve and request update buttons
 
     Examples:
-      | permit_types         | permit_payload             |
-      | Enclosed Space Entry | submit_enclose_space_entry |
+      | permit_types          | permit_payload             |
+      | Enclosed Spaces Entry | submit_enclose_space_entry |
 
   Scenario Outline: Verify only Master can approve and send form for update for oa permit
     Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
@@ -57,13 +57,13 @@ Feature: Section7
 
 #   Examples:
 #     | rank                       | pin  | permit_types         | permit_payload             |
-#     | Addtional Master           | 1212 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Chief Officer              | 5912 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Additional Chief Officer   | 5555 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Second Officer             | 5545 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Additional Second Officer  | 7777 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Chief Engineer             | 7507 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Additional Chief Engineer  | 0110 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Second Engineer            | 1313 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Additional Second Engineer | 1414 | Enclosed Space Entry | submit_enclose_space_entry |
-#     | Electro Technical Officer  | 1717 | Enclosed Space Entry | submit_enclose_space_entry |
+#     | Addtional Master           | 1212 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Chief Officer              | 5912 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Chief Officer   | 5555 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Second Officer             | 5545 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Second Officer  | 7777 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Chief Engineer             | 7507 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Second Engineer            | 1313 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Second Engineer | 1414 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Electro Technical Officer  | 1717 | Enclosed Spaces Entry | submit_enclose_space_entry |

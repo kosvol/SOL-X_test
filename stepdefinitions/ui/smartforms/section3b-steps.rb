@@ -17,7 +17,7 @@ end
 Then (/^I should not see By: Master after clicking No on Is DRA sent to office$/) do
   on(Section3BPage).radio_btn_elements[7].click
   BrowserActions.scroll_down
-  not_to_exists(on(Section3BPage).dra_reviewed_by_element)
+  not_to_exists(on(Section3BPage).generic_data_elements[1])
 end
 
 Then (/^I should see crew drop down list after clicking Yes on Inspection carried out$/) do
