@@ -12,7 +12,7 @@
 #   on(Section1Page).next_btn_elements.last.click
 #   does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
 #   does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
-#   does_include(on(Section3APage).dra_permit_number, 'SIT/DRA')
+#   does_include(on(Section3APage).generic_data_elements[1].text, 'SIT/DRA')
 # end
 
 # And (/^I review page 3b of submitted hot work permit$/) do

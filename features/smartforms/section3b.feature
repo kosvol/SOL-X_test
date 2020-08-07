@@ -18,10 +18,10 @@ Feature: Section3BDRA
     Examples:
       | level_one_permit                     | level_two_permit                                                      | method_desc                                                                                           |
       | Critical Equipment Maintenance       | Maintenance on Fire Detection Alarm System                            | Standard Procedure for Maintenance on Fire Detection Alarm System                                     |
-      | Cold Work                            | Cold Work - Connecting and Disconnecting Pipelines                    | Standard procedure for Cleaning Up of Spills                                                          |
+      | Cold Work                            | Cold Work - Connecting and Disconnecting Pipelines                    | Standard procedures for connecting and disconnecting pipelines                                        |
       | Hotwork                              | Hot Work Level-2 in Designated Area                                   | General / Standard Hot Work Procedure                                                                 |
-      | Personal Transfer By Transfer Basket | Maintenance on Fixed Fire Fighting System                             | Standard procedure for Personnel Transfer by Transfer Basket                                          |
-      | Enclosed Space Entry                 | Maintenance on Fixed Fire Fighting System                             | General procedure for Enclosed Space Entry                                                            |
+      | Personal Transfer By Transfer Basket | Personal Transfer By Transfer Basket                                  | Standard procedure for Personnel Transfer by Transfer Basket                                          |
+      | Enclosed Space Entry                 | Enclosed Space Entry                                                  | General procedure for Enclosed Space Entry                                                            |
       | Underwater Operations                | Simultaneous underwater operation during daytime with other operation | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
 
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office

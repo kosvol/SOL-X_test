@@ -64,7 +64,7 @@ end
 Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
   on(Section4BPage).set_current_time
-  is_true(on(Section3APage).dra_permit_number.include?('SIT/DRA/'))
+  does_include(on(Section3APage).generic_data_elements[1].text, 'SIT/DRA')
   is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(SmartFormsPermissionPage).get_current_date_format)
   is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(SmartFormsPermissionPage).get_current_time_format)
 end

@@ -16,7 +16,7 @@ class Section3APage < Section2Page
   # buttons(:existing_control_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[5]/div/div/div/button")
   # elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
   button(:save_and_close, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer-')]/button")
-  text_field(:dra_permit_number, xpath: "//input[@id='section3a_draNumber']")
+  # text_field(:dra_permit_number, xpath: "//input[@id='section3a_draNumber']")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
