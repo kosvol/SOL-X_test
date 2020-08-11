@@ -39,9 +39,7 @@ end
 
 And (/^I view pin$/) do
   step 'I click on view pin button'
-  sleep 1
   on(PinPadPage).enter_pin(1111)
-  sleep 1
 end
 
 Then (/^I should see pin reviewed$/) do
@@ -67,7 +65,7 @@ And (/^I backspace on entered pin$/) do
 end
 
 Then (/^I should not see invalid pin message$/) do
-  is_equal(on(PinPadPage).error_msg_element.text, 'Please Enter Your PIN')
+  is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
 end
 
 Then (/^I should see not authorize error message$/) do
@@ -119,6 +117,6 @@ Then (/^I should see pin review$/) do
   is_true(on(CrewListPage).is_pin_viewed?)
 end
 
-# And (/^I reset crew data$/) do
-#   SmartFormDBPage.tear_down_ptw_form
-# end
+Then (/^I should see count down start from 10 seconds$/) do
+  is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 9 secs')
+end

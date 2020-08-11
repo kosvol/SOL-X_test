@@ -4,6 +4,12 @@ Feature: CrewList
   I want to ...
   So that ...
 
+  Scenario: Verify count down timer not started after clicking of View pin
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I view pin
+    Then I should see count down start from 10 seconds
+
   Scenario: Verify table column headers are correct
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
@@ -73,12 +79,11 @@ Feature: CrewList
     And I enter a invalid master pin
     Then I should see not authorize error message
 
-  # Scenario: Verify error message disappear after backspace on entered pin on view pin feature
-  #   Given I launch sol-x portal
-  #   When I navigate to "Crew List" screen
-  #   And I enter a non-existent pin
-  #   And I backspace on entered pin
-  #   Then I should not see invalid pin message
+  Scenario: Verify error message disappear after backspace on entered pin on view pin feature
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen
+    And I enter a non-existent pin
+    Then I should not see invalid pin message
 
   Scenario: Verify crew list is sorted in descending order of seniority
     Given I launch sol-x portal
@@ -109,45 +114,45 @@ Feature: CrewList
     Then I should see rank listing for <current_rank> showing 1 rank before and after
 
     Examples:
-      | crew_id         | current_rank |
-      | CDEV_SOLX0001   | MAS          |
-      | test_002        | A/M          |
-      | CDEV_TEST0001   | C/O          |
-      | CDEV_SOLX0005   | A C/O        |
-      | CDEV_SOLX0006   | 2/O          |
-      | CDEV_SOLX0007   | A 2/O        |
-      | CDEV_SOLX0008   | 3/O          |
-      | CDEV_SOLX0009   | A 3/O        |
-      | test_A009       | 4/O          |
-      | test_A010       | A 4/O        |
-      | test_A041       | 5/O          |
-      | CDEV_SOLX0016   | D/C          |
-      | CDEV_SOLX0018   | BOS          |
-      | CDEV_SOLX0021   | A/B          |
-      | test_A043       | O/S          |
-      | test_A015       | SAA          |
-      | test_A017       | C/E          |
-      | test_A018       | A C/E        |
-      | test_A019       | 2/E          |
-      | test_A020       | A 2/E        |
-      | test_A021       | 3/E          |
-      | test_A022       | A 3/E        |
-      | CDEV_SOLX0023   | 4/E          |
-      | CDEV_SOLX0024   | A 4/E        |
-      | test_A025       | T/E          |
-      | test_A040       | 5/E          |
-      | test_A029       | E/C          |
-      | CDEV_SOLX0017   | ETO          |
-      | test_A050       | ELC          |
-      | test_A044       | ETR          |
-      | CDEV_SOLX0020   | PMN          |
-      | test_A047       | FTR          |
-      | test_A048       | OLR          |
-      | test_data_jun25 | CCK          |
-      | test_b001       | 2CK          |
-      | test_A039       | FSTO         |
-      | test_A042       | RDCRW        |
-      | test_A046       | SPM          |
+      | crew_id       | current_rank |
+      | CDEV_SOLX0001 | MAS          |
+      | test_002      | A/M          |
+      | CDEV_TEST0001 | C/O          |
+      | CDEV_SOLX0005 | A C/O        |
+      | CDEV_SOLX0006 | 2/O          |
+      | CDEV_SOLX0007 | A 2/O        |
+      | CDEV_SOLX0008 | 3/O          |
+      | CDEV_SOLX0009 | A 3/O        |
+      | test_A009     | 4/O          |
+      | test_A010     | A 4/O        |
+      | test_A041     | 5/O          |
+      | CDEV_SOLX0016 | D/C          |
+      | CDEV_SOLX0018 | BOS          |
+      | CDEV_SOLX0021 | A/B          |
+      | test_A043     | O/S          |
+      # | test_A015       | SAA          |
+      # | test_A017       | C/E          |
+      | test_A018     | A C/E        |
+      | test_A019     | 2/E          |
+      | test_A020     | A 2/E        |
+      | test_A021     | 3/E          |
+      | test_A022     | A 3/E        |
+      | CDEV_SOLX0023 | 4/E          |
+      | CDEV_SOLX0024 | A 4/E        |
+      | test_A025     | T/E          |
+      | test_A040     | 5/E          |
+      | test_A029     | E/C          |
+      | CDEV_SOLX0017 | ETO          |
+      | test_A050     | ELC          |
+      | test_A044     | ETR          |
+      | CDEV_SOLX0020 | PMN          |
+      | test_A047     | FTR          |
+      | test_A048     | OLR          |
+      # | test_data_jun25 | CCK          |
+      | test_b001     | 2CK          |
+  # | test_A039     | FSTO         |
+  # | test_A042     | RDCRW        |
+  # | test_A046     | SPM          |
 
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     Given I launch sol-x portal
