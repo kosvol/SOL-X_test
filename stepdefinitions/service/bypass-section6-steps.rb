@@ -41,3 +41,7 @@ end
 And (/^I set non oa permit to active state$/) do
   on(BypassPage).set_non_oa_permit_to_active_state
 end
+
+Given (/^I clear forms table$/) do
+  SmartFormDBPage.clear_forms_table
+end
