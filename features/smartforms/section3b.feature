@@ -4,6 +4,19 @@ Feature: Section3BDRA
   I want to ...
   So that ...
 
+  # Scenario Outline: Verify All Permit - DRA section B - DRA number and Date of Last Assessment to be pre-populated - Created state
+
+  Scenario: Verify Work site inspection Yes name list display all crews
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 1212
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1
+    And I navigate to section 3b
+    Then I should see work site inspected by crew member list display all crews
+
   Scenario Outline: Verify method name is populated
     Given I launch sol-x portal
     When I navigate to "SmartForms" screen
