@@ -29,7 +29,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank                       | pin  |
-      # | Master                     | 1111 |
+      | Master                     | 1111 |
       | Addtional Master           | 1212 |
       | Chief Officer              | 5912 |
       | Additional Chief Officer   | 5555 |

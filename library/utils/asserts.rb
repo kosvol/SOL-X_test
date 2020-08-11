@@ -49,12 +49,10 @@ module AssertionUtil
 
   def not_to_exists(element)
     expect(element).not_to exist
-  rescue StandardError
   end
 
   def to_exists(element)
     expect(element).to exist
-  rescue StandardError
   end
 
   # def is_not_visible(element)

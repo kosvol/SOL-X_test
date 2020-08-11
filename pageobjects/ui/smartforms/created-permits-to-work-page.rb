@@ -32,6 +32,7 @@ class CreatedPermitToWorkPage < Section1Page
   end
 
   def select_created_permit_with_param(_permit_id)
+    sleep 1
     edit_permit_btn_elements[get_permit_index(_permit_id)]
   end
 

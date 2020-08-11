@@ -36,7 +36,9 @@ section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
 
 section4b: ["Yes"]
 
-section6: ["Yes", "N/A", "N/A", "N/A"]
+section6:
+  ["N/A"]
+  # ["Yes", "N/A", "N/A", "N/A"]
 
 section4a:
   [

@@ -1,21 +1,21 @@
 section1_without_duration:
   [
     "SIT",
-    ""
+    "Cold Work - Connecting and Disconnecting Pipelines",
     "In Port",
     "Loaded",
     "Test Automation",
     "0 : Calm (glassy)",
     "0 : Calm",
-    "Test AutomationTest Automation",
-    "Test AutomationTest Automation",
+    "Test AutomationTest automation",
+    "Test AutomationTest automation",
   ]
 
 section2: ["Master", "N/A"]
 
 section3b:
   [
-    "",
+    "Standard procedures for connecting and disconnecting pipelines",
     "Test automation",
     "Yes",
     "People",
@@ -60,6 +60,32 @@ section4a:
     "N/A",
     "N/A",
   ]
+  # [
+  #   "SIT",
+  #   "Test AutomationTest automation",
+  #   "Test AutomationTest automation",
+  #   "Yes",
+  #   "Test automation",
+  #   "Yes",
+  #   "Yes",
+  #   "Yes",
+  #   "Yes",
+  #   "Yes",
+  #   "Yes",
+  #   "Yes",
+  #   "Test automation",
+  #   "Yes",
+  #   "No",
+  #   "N/A",
+  #   "Yes",
+  #   "No",
+  #   "N/A",
+  #   "N/A",
+  #   "N/A",
+  #   "Test automation",
+  #   "Test automation",
+  #   "Test automation",
+  # ]
 
 checklist:
   [

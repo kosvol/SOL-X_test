@@ -45,7 +45,7 @@ After do |scenario|
         $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
         # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
       rescue Exception => e
-        $extent_test.info(:fatal, 'Exception Raised', e, @browser)
+        $extent_test.info(:fail, 'Exception Raised', e, @browser)
         # $living_test.info(:fatal, 'Exception Raised', e, @browser)
       end
     elsif !scenario.failed?

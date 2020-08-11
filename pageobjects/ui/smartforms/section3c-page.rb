@@ -11,6 +11,7 @@ class Section3CPage < Section3BPage
   buttons(:cancel_and_confirm_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
 
   def select_dra_team_member
+    sleep 1
     dra_team_btn
     sleep 1
     member_name_btn_elements.first.click

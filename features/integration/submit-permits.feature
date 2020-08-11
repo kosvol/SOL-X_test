@@ -42,6 +42,7 @@ Feature: SubmitPermit
     And I review page 5 of submitted enclose workspace permit
     And I review page 6 of submitted enclose workspace permit
 
+  @x4
   Scenario: Verify submitted permit data gets reflected for Cold Work - Connecting and Disconnecting Pipelines
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

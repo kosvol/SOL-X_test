@@ -4,6 +4,8 @@ Feature: Section8
   I want to ...
   So that ...
 
+  Scenario: Verify date and time fields are automatically filled
+
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
     And I set oa permit to active state

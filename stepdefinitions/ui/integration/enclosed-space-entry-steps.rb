@@ -29,7 +29,7 @@ And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
   does_include(on(Section3APage).generic_data_elements[0].text, 'SIT')
   does_include(on(Section3APage).generic_data_elements[1].text, 'SIT/DRA')
-  does_include(on(Section3APage).generic_data_elements[3].text, 'General procedures for Enclosed Space Entry')
+  is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
 end
 
 And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
@@ -39,7 +39,7 @@ end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
   on(Section1Page).next_btn_elements.last.click
-  sleep 1
+  sleep 3
   is_equal(on(Section3CPage).dra_team_name_elements.first.text, @@form_data['section3c'])
 end
 
