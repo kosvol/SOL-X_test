@@ -27,6 +27,10 @@ module BrowserActions
       $browser.find_element(:xpath, xpath).attribute('value').to_s
     end
 
+    def get_year
+      Time.now.strftime('%Y')
+    end
+
     private
 
     def scroll_to_element(_element)

@@ -37,7 +37,7 @@ end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
   sleep 1
-  on(SmartFormsPermissionPage).select_permit(on(SmartFormsPermissionPage).get_selected_level2_permit)
+  on(SmartFormsPermissionPage).select_permit(_permit)
   sleep 1
   on(SmartFormsPermissionPage).save_btn
   sleep 1
