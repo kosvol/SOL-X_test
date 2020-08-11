@@ -36,11 +36,12 @@ When (/^I select (.+) permit$/) do |_permit|
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
-  on(SmartFormsPermissionPage).set_selected_level2_permit(_permit)
   sleep 1
   on(SmartFormsPermissionPage).select_permit(on(SmartFormsPermissionPage).get_selected_level2_permit)
   sleep 1
   on(SmartFormsPermissionPage).save_btn
+  sleep 1
+  on(SmartFormsPermissionPage).set_selected_level2_permit(_permit)
 end
 
 Then (/^I should see second level permits details$/) do
