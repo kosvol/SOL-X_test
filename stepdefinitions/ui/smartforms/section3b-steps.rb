@@ -42,5 +42,5 @@ Then (/^I should see work site inspected by crew member list display all crews$/
   on(Section3BPage).radio_btn_elements.first.click
   on(Section3BPage).work_side_inspected_by
   sleep 1
-  is_true(on(Section3BPage).is_last_crew?)
+  is_true(on(Section3BPage).is_last_crew?(0))
 end
