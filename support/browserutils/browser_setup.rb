@@ -16,9 +16,9 @@ class BrowserSetup
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
-    $browser.manage.timeouts.script_timeout = 15
-    $browser.manage.timeouts.page_load = 15
-    $browser.manage.timeouts.implicit_wait = 15
+    $browser.manage.timeouts.script_timeout = 35
+    # $browser.manage.timeouts.page_load = 30
+    $browser.manage.timeouts.implicit_wait = 30
     $browser
   end
 

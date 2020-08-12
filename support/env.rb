@@ -20,8 +20,8 @@ World(Appium)
 World(BrowserActions)
 World(AssertionUtil)
 
-PageObject.default_element_wait = 5
-PageObject.default_page_wait = 5
+# PageObject.default_element_wait = 5
+# PageObject.default_page_wait = 5
 
 $current_application = ENV['APPLICATION']
 $current_environment = ENV['ENVIRONMENT']
