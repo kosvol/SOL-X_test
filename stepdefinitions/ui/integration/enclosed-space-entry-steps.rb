@@ -41,6 +41,7 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   p ">> #{base_data}"
   p "-- #{capture_data}"
   capture_data.delete_at(6)
+  capture_data.delete_at(6)
   begin
     does_include(on(Section3BPage).last_assessment_date_element.text, "/#{BrowserActions.get_year}")
     does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")

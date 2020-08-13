@@ -24,8 +24,6 @@ Before('@skip') do
 end
 
 Before do |scenario|
-  # system('rm -rf /Users/slo-gx/Library/Application Support/Google/Chrome/Default/IndexedDB/http_cloud-edge.dev.solas.magellanx.io_8080.indexeddb.leveldb')
-  # system('rm -rf /Users/slo-gx/Library/Application Support/Google/Chrome/Default/IndexedDB/http_cloud-edge.stage.solas.magellanx.io_8080.indexeddb.leveldb')
   @step = 0
   @current_feature = scenario.respond_to?('scenario_outline') ? scenario.scenario_outline : scenario.feature
   @all_steps = ReportUtils.get_steps(@current_feature, scenario)
@@ -40,19 +38,16 @@ end
 After do |scenario|
   begin
     if scenario.failed?
-      begin
-        @log.info("Exception: #{scenario.exception}")
-        $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-        # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      rescue Exception => e
-        $extent_test.info(:fail, 'Exception Raised', e, @browser)
-        # $living_test.info(:fatal, 'Exception Raised', e, @browser)
-      end
-    elsif !scenario.failed?
-      # scenario.test_steps.each do |x, _index|
-      #   unless ['Before hook', 'AfterStep hook'].include? x.text
-      #     $living_test.info(:skip, "Step: #{x.text}", '', '', @browser)
-      #   end
+      # begin
+      @log.info("Exception: #{scenario.exception}")
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+      # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+      # rescue Exception => e
+      #   $extent_test.info(:fail, 'Exception Raised', e, @browser)
+      #   # $living_test.info(:fatal, 'Exception Raised', e, @browser)
+      # end
+    else
+      $extent_test.info(:fail, 'Exception Raised', e, @browser)
     end
   rescue Exception => e
     $extent_test.info(:fail, 'Exception Raised', e, @browser)
