@@ -33,6 +33,8 @@ class Section4APage < Section3DPage
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
+  button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
+  span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
   def select_ppe_equipment
     begin

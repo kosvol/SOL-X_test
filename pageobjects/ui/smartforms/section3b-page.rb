@@ -7,6 +7,7 @@ class Section3BPage < Section3APage
 
   element(:method_reason, id: 'methodReason')
   element(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
+  element(:last_assessment_date, id: 'lastAssessment')
   element(:last_assessment, id: 'lastAssessmentDra')
   # text_field(:dra_reviewed_by, id: 'draReviewedBy')
   button(:work_side_inspected_by, id: 'workInspectionBy')
