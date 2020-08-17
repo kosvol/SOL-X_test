@@ -66,7 +66,7 @@ Feature: Section1
     Then I should not see previous button exists
     And I tear down created form
 
-  Scenario Outline: Verify question input field exists
+  Scenario Outline: Verify question input field exists for critical maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212

@@ -5,6 +5,7 @@ Feature: Section3BDRA
   So that ...
 
   # Scenario Outline: Verify All Permit - DRA section B - DRA number and Date of Last Assessment to be pre-populated - Created state
+  # Scenario: Verify last assessment is pre-populated
 
   Scenario: Verify Work site inspection Yes name list display all crews
     Given I launch sol-x portal
@@ -36,6 +37,7 @@ Feature: Section3BDRA
       | Personal Transfer By Transfer Basket | Personal Transfer By Transfer Basket                                  | Standard procedures for personnel Transfer by Transfer Basket                                         |
       | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                 | General procedures for Enclosed Space Entry                                                           |
       | Underwater Operations                | Simultaneous underwater operation during daytime with other operation | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
+  # to add more
 
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
     Given I launch sol-x portal

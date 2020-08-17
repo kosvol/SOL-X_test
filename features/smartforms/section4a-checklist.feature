@@ -90,7 +90,7 @@ Feature: Section4AChecklist
       | Rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
       | ETO  | 1717 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | Critical Equipment Maintenance Checklist |
 
-  Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for maintenance permits
+  Scenario Outline: Verify non checklist creator signature cannot signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1313

@@ -37,7 +37,7 @@ Feature: LocationTracking
     And I should not see Pump Room location indicator
     And I unlink all crew from wearable
 
-  Scenario Outline: Verify active crew member location changed after 30s
+  Scenario Outline: Verify active crew member location changed
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
     And I update location to new zone <new_zoneid> and mac <new_mac>

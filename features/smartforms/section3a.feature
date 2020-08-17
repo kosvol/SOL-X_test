@@ -34,15 +34,15 @@ Feature: Section3ADRA
     Examples:
       | likelihood | consequence |
       | 1          | 1           |
-  # | 1          | 2           |
-  # | 1          | 3           |
-  # | 1          | 4           |
-  # | 2          | 1           |
-  # | 2          | 2           |
-  # | 2          | 3           |
-  # | 3          | 1           |
-  # | 3          | 2           |
-  # | 4          | 1           |
+      | 1          | 2           |
+      | 1          | 3           |
+      | 1          | 4           |
+      | 2          | 1           |
+      | 2          | 2           |
+      | 2          | 3           |
+      | 3          | 1           |
+      | 3          | 2           |
+      | 4          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
@@ -59,10 +59,10 @@ Feature: Section3ADRA
     Examples:
       | likelihood | consequence |
       | 2          | 4           |
-  # | 3          | 3           |
-  # | 1          | 5           |
-  # | 4          | 2           |
-  # | 5          | 1           |
+      | 3          | 3           |
+      | 1          | 5           |
+      | 4          | 2           |
+      | 5          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for high risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
@@ -79,12 +79,12 @@ Feature: Section3ADRA
     Examples:
       | likelihood | consequence |
       | 2          | 5           |
-  # | 3          | 5           |
-  # | 3          | 4           |
-  # | 4          | 4           |
-  # | 4          | 3           |
-  # | 5          | 2           |
-  # | 5          | 3           |
+      | 3          | 5           |
+      | 3          | 4           |
+      | 4          | 4           |
+      | 4          | 3           |
+      | 5          | 2           |
+      | 5          | 3           |
 
   Scenario Outline: Verify risk matrix meets criteria for very high risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
@@ -101,8 +101,8 @@ Feature: Section3ADRA
     Examples:
       | likelihood | consequence |
       | 4          | 5           |
-  # | 5          | 5           |
-  # | 5          | 4           |
+      | 5          | 5           |
+      | 5          | 4           |
 
   Scenario Outline: Verify risk matrix meets criteria for low risk for existing control measure
     Given I launch sol-x portal without unlinking wearable
@@ -285,7 +285,7 @@ Feature: Section3ADRA
     And I toggle likelihood 5 and 5 consequence matrix for existing control measure
     And I should see correct risk evaluation very medium,very high,very high
     And I toggle likelihood 1 and 1 consequence matrix for additional hazard
-    And I should see correct risk evaluation very medium,very high,low
+    Then I should see correct risk evaluation very medium,very high,low
 
   Scenario: Verify added additional hazard is saved
     Given I launch sol-x portal without unlinking wearable

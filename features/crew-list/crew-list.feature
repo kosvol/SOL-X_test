@@ -30,13 +30,13 @@ Feature: CrewList
   #   When I navigate to "Crew List" screen
   #   Then I should see all crew details match
 
-  Scenario: Verify location pin turn green below 30s
+  Scenario: Verify location pin turn green below 5 minutes
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
     Then I should see crew list location indicator is green below 5 minutes
     And I unlink all crew from wearable
 
-  Scenario: Verify location pin turn yellow after 30s
+  Scenario: Verify location pin turn yellow after 5 minutes
     Given I launch sol-x portal
     When I navigate to "Crew List" screen
     Then I should see crew list location indicator is yellow after 5 minutes
