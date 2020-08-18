@@ -47,8 +47,8 @@ class WearablePage
       @tmp = ServiceUtil.get_response_body['data']['wearables']
       @tmp.each do |wearable|
         if wearable['_id'] === @@wearableid
-          Log.instance.info("\n\n>>>>> #{wearable['location'].to_h['name']} #{@@beacon[1]}\n\n")
-          return (wearable['userId'] === @@crewid) && (wearable['location'].to_h['name'] === @@beacon[1])
+          Log.instance.info("\n\n>>>>> #{wearable['location'].to_h['zone']['name']} #{@@beacon[1]}\n\n")
+          return (wearable['userId'] === @@crewid) && (wearable['location'].to_h['zone']['name'] === @@beacon[1])
         end
       end
     end
@@ -98,7 +98,7 @@ class WearablePage
     def get_wearables_id
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['wearables'].each do |list|
-        next unless ServiceUtil.get_response_body['data']['crewMember'].nil?
+        next unless ServiceUtil.get_response_body['crewMember'].nil?
 
         @@tmp_list << list['_id']
       end
