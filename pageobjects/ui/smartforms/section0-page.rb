@@ -68,6 +68,7 @@ class SmartFormsPermissionPage < CommonPage
     _table.each do |permit|
       base_permits << permit.first
     end
+    p ">> #{base_permits}"
     base_permits === get_app_permits
   end
 
@@ -105,6 +106,7 @@ class SmartFormsPermissionPage < CommonPage
     list_permit_type_elements.each do |permit|
       app_permits << permit.text
     end
+    p ">> #{app_permits}"
     app_permits
   end
 end

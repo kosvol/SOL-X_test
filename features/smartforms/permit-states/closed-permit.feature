@@ -8,8 +8,8 @@ Feature: ClosedPermit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
-    And I select Rigging of Pilot/Combination Ladder permit
-    And I select Rigging of Pilot/Combination Ladder permit for level 2
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
     # And I fill ROL permit
     And I press next from section 1
     Then I submit permit for Master Approval

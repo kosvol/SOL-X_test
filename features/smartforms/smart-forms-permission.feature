@@ -29,7 +29,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank                       | pin  |
-      | Master                     | 1111 |
+      # | Master                     | 1111 |
       | Addtional Master           | 1212 |
       | Chief Officer              | 5912 |
       | Additional Chief Officer   | 5555 |
@@ -75,7 +75,7 @@ Feature: SmartFormsPermission
       | Helicopter Operations                                         |
       | Hotwork                                                       |
       | Personal Transfer By Transfer Basket                          |
-      | Rigging of Pilot/Combination Ladder                           |
+      | Rigging of Gangway & Pilot Ladder                             |
       | Rotational Portable Power Tool                                |
       | Underwater Operations                                         |
       | Use of non-intrinsically safe Camera                          |

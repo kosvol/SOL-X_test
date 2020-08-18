@@ -93,4 +93,4 @@ Feature: Section4AChecklistSelection
 ### pending checklist to work on
 
 # Pump Room Entry Checklist
-# | Rigging of Pilot/Combination Ladder | Rigging of Pilot/Combination Ladder |
+# | Rigging of Gangway & Pilot Ladder | Rigging of Gangway & Pilot Ladder |
