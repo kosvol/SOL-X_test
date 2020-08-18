@@ -56,54 +56,30 @@ Feature: CreatedPermitToWork
     Then I should see deleted permit deleted
     And I tear down created form
 
-  Scenario Outline: Verify PTW reader can only read PTW for permit in created state
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 1212
-    And I select Hotwork permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
-    And I should see form is at reading mode for <rank> rank and <pin> pin
-    Then I should see all section fields disabled
+  # Scenario Outline: Verify PTW reader can only read PTW for permit in created state
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 1212
+  #   And I select Hotwork permit
+  #   And I select Hot Work Level-2 in Designated Area permit for level 2
+  #   And I click on back arrow
+  #   And I navigate to "Created Permits to Work" screen
+  #   And I should see form is at reading mode for <rank> rank and <pin> pin
+  #   Then I should see all section fields disabled
 
-    Examples:
-      | rank   | pin  |
-      | Master | 1111 |
-      | 3/O    | 8888 |
-      | A 3/O  | 9999 |
-      | 3/E    | 4092 |
-      | A 3/E  | 1515 |
-      | 4/O    | 1010 |
-      | A 4/O  | 1537 |
+  #   Examples:
+  #     | rank   | pin  |
+  #     | Master | 1111 |
+  # | 3/O    | 8888 |
+  # | A 3/O  | 9999 |
+  # | 3/E    | 4092 |
+  # | A 3/E  | 1515 |
+  # | 4/O    | 1010 |
+  # | A 4/O  | 1537 |
   ## | BOS   | 1818 |
   ## | PMN   | 4236 |
   ## | A/B   | 2121 |
   ## | O/S   | 1919 |
-
-  Scenario Outline: Verify RA can edit all the fields in PTW Created State
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 1212
-    And I select Hotwork permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
-    And I edit ptw with rank <rank> and <pin> pin
-    Then I should see all section fields enabled
-
-    Examples:
-      | rank                       | pin  |
-      | Addtional Master           | 1212 |
-      | Chief Officer              | 5912 |
-      | Additional Chief Officer   | 5555 |
-      | Second Officer             | 5545 |
-      | Additional Second Officer  | 7777 |
-      | Chief Engineer             | 7507 |
-      | Additional Chief Engineer  | 0110 |
-      | Second Engineer            | 1313 |
-      | Additional Second Engineer | 1414 |
-      | Electro Technical Officer  | 1717 |
 
   # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
 
@@ -152,7 +128,7 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4092 | Underwater Operations                                         | Underwater Operation at night                                 |
       | A 3/E                      | 1515 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
 
-  Scenario Outline: Verify checklist creator can only edit checklist,eic and gas reader in PTW Created State
+  Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 1212
@@ -163,9 +139,6 @@ Feature: CreatedPermitToWork
     And I edit ptw with rank <rank> and <pin> pin
     Then I should see checklist section with fields enabled
     And I should see eic selection fields enabled
-    And I should see gas reading section with fields enabled
-    When I sign on section with <pin> pin
-    Then I should see signed details
     And I tear down created form
 
     Examples:

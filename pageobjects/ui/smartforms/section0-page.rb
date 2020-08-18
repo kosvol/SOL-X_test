@@ -13,6 +13,7 @@ class SmartFormsPermissionPage < CommonPage
   buttons(:list_permit_type, xpath: '//ul/li/button')
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
+  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
 
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
