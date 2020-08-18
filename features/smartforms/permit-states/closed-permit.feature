@@ -7,7 +7,7 @@ Feature: ClosedPermit
   Scenario: Verify termination date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     # And I fill ROL permit

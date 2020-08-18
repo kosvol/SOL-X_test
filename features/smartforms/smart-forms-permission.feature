@@ -30,16 +30,16 @@ Feature: SmartFormsPermission
     Examples:
       | rank                       | pin  |
       # | Master                     | 1111 |
-      | Addtional Master           | 1212 |
-      | Chief Officer              | 5912 |
-      | Additional Chief Officer   | 5555 |
-      | Second Officer             | 5545 |
-      | Additional Second Officer  | 7777 |
-      | Chief Engineer             | 7507 |
-      | Additional Chief Engineer  | 0110 |
-      | Second Engineer            | 1313 |
-      | Additional Second Engineer | 1414 |
-      | Electro Technical Officer  | 1717 |
+      | Addtional Master           | 9015 |
+      | Chief Officer              | 8383 |
+      | Additional Chief Officer   | 2761 |
+      | Second Officer             | 6268 |
+      | Additional Second Officer  | 7865 |
+      | Chief Engineer             | 5122 |
+      # | Additional Chief Engineer  | 0110 |
+      | Second Engineer            | 2523 |
+      | Additional Second Engineer | 3030 |
+      | Electro Technical Officer  | 0856 |
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
@@ -50,24 +50,24 @@ Feature: SmartFormsPermission
     Examples:
       | rank   | pin  |
       | Master | 1111 |
-      | 3/O    | 8888 |
-      | A 3/O  | 9999 |
-      | 4/O    | 1010 |
-      | D/C    | 1616 |
-      | 3/E    | 4092 |
-      | A 3/E  | 1515 |
-      | 4/E    | 2323 |
-      | A 4/E  | 2424 |
-      | BOS    | 1818 |
-      | PMN    | 4236 |
-      | A/B    | 2121 |
-      | O/S    | 1919 |
-      | OLR    | 0220 |
+      | 3/O    | 0159 |
+      | A 3/O  | 2674 |
+      # | 4/O    | 1010 |
+      | D/C    | 2317 |
+      | 3/E    | 4844 |
+      | A 3/E  | 6727 |
+      | 4/E    | 1311 |
+      | A 4/E  | 9997 |
+      | BOS    | 1018 |
+      # | PMN    | 4236 |
+      | A/B    | 6316 |
+      | O/S    | 7669 |
+      | OLR    | 0450 |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     Then I should see a list of available forms for selections
       | Cold Work                                                     |
       | Critical Equipment Maintenance                                |
@@ -89,7 +89,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     When I select <permit> permit
     Then I should see second level permits details
     And I tear down created form
@@ -105,7 +105,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I navigate to level 2 permits
     And I navigate back to permit selection screen
     Then I should see smart form landing screen

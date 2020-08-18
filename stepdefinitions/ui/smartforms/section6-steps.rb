@@ -40,7 +40,7 @@ end
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
   on(Section6Page).submit_btn_elements[0].click
-  step 'I enter pin 1212'
+  step 'I enter pin 9015'
   step 'I sign on canvas'
   # data collector; will evolve
   on(SmartFormsPermissionPage).reset_data_collector

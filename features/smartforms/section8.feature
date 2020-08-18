@@ -7,7 +7,7 @@ Feature: Section8
   Scenario: Verify date and time fields are automatically filled
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
     And I set oa permit to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
@@ -16,11 +16,11 @@ Feature: Section8
 
     Examples:
       | permit_types       | permit_payload                 | rank          | pin  |
-      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 1212 |
-      | underwater         | submit_underwater_simultaneous | Chief Officer | 5912 |
+      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 9015 |
+      | underwater         | submit_underwater_simultaneous | Chief Officer | 8383 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I set oa permit to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
@@ -29,11 +29,11 @@ Feature: Section8
 
     Examples:
       | permit_types       | permit_payload                 | rank          | pin  |
-      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 1212 |
-      | underwater         | submit_underwater_simultaneous | Chief Officer | 5912 |
+      | intrinsical camera | submit_non_intrinsical_camera  | A/M           | 9015 |
+      | underwater         | submit_underwater_simultaneous | Chief Officer | 8383 |
 
   Scenario Outline: Verify user should see two additional question when terminating Work on Pressure Pipeline permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
@@ -41,10 +41,10 @@ Feature: Section8
 
     Examples:
       | permit_types          | permit_payload               | rank | pin  |
-      | Work on Pressure Line | submit_work_on_pressure_line | A/M  | 1212 |
+      | Work on Pressure Line | submit_work_on_pressure_line | A/M  | 9015 |
 
   Scenario Outline: Verify section 8 EIC can only be signed by RA for non oa permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
     And I click on active filter
     And I terminate permit with <rank> rank and <terminator_pin> pin
@@ -56,10 +56,10 @@ Feature: Section8
 
     Examples:
       | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user         | zoneid                     | mac               | location_stamp   |
-      | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 5912           | A/M Atif Hayat | 1212 | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
     And I click on active filter
     And I terminate permit with <rank> rank and <terminator_pin> pin
@@ -71,10 +71,10 @@ Feature: Section8
 
     Examples:
       | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user         | zoneid                     | mac               | location_stamp   |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 5912           | C/E Alex Pisarev | 7507 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 5122 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
@@ -86,12 +86,12 @@ Feature: Section8
 
     Examples:
       | permit_types                     | permit_payload               | rank              | pin  | user         | zoneid                     | mac               | location_stamp   |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 5912 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 2/E Poon Choryi   | 1313 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
-      | Hotwork                          | submit_hotwork               | ETO Reza Ilmi     | 1717 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 2/E Poon Choryi   | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Hotwork                          | submit_hotwork               | ETO Reza Ilmi     | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state with EIC not require
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
@@ -99,19 +99,19 @@ Feature: Section8
 
     Examples:
       | permit_types                     | permit_payload               | rank                     | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 1212 |
-      ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Officer | 5912 |
-      | Hotwork                          | submit_hotwork               | Additional Chief Officer | 5555 |
-  ## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
-  ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-  ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 9015 |
+      ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Officer | 8383 |
+      | Hotwork                          | submit_hotwork               | Additional Chief Officer | 2761 |
+  ## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
+  ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
+  ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
   ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 0110 |
-  ## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
-  ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 1414 |
-  ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |
+  ## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
+  ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 3030 |
+  ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for non OA permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to active state
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
@@ -119,13 +119,13 @@ Feature: Section8
 
     Examples:
       | permit_types                     | permit_payload               | rank          | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M           | 1212 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Chief Officer | 5912 |
-## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 5555 |
-## | Hotwork                           | submit_hotwork               | Second Officer             | 5545 |
-## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7777 |
-## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 7507 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M           | 9015 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Chief Officer | 8383 |
+## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 2761 |
+## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
+## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
+## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 0110 |
-## | Hotwork                           | submit_hotwork               | Second Engineer            | 1313 |
-## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 1414 |
-## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 1717 |
+## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
+## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 3030 |
+## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |

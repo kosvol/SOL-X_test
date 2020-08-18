@@ -53,7 +53,7 @@ end
 
 And (/^I enter a invalid master pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin(1212)
+  on(PinPadPage).enter_pin(9015)
 end
 
 And (/^I click on view pin button$/) do

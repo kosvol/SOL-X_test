@@ -11,7 +11,7 @@ Feature: Section4AChecklistSelection
   Scenario: Verify Work on Hazardous Substances checklist exists
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -22,7 +22,7 @@ Feature: Section4AChecklistSelection
   Scenario Outline: Verify checklist is pre-selected for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -53,7 +53,7 @@ Feature: Section4AChecklistSelection
   Scenario Outline: Verify checklist is pre-selected for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1

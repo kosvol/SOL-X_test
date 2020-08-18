@@ -12,7 +12,7 @@ Feature: Section2ApprovalAuthority
   Scenario: Verify user can see previous and next button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Hotwork permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
@@ -23,7 +23,7 @@ Feature: Section2ApprovalAuthority
   Scenario Outline: Verify user can see the correct approval for non-OA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -54,7 +54,7 @@ Feature: Section2ApprovalAuthority
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -84,7 +84,7 @@ Feature: Section2ApprovalAuthority
   Scenario Outline: Verify OA is not require if maintenance on critical equipment is less than 2 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
@@ -114,7 +114,7 @@ Feature: Section2ApprovalAuthority
   Scenario Outline: Verify user can see the correct approval authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -135,7 +135,7 @@ Feature: Section2ApprovalAuthority
   Scenario: Verify ship and office approval text field is disabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Hotwork permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
@@ -144,7 +144,7 @@ Feature: Section2ApprovalAuthority
   Scenario: Verify section2 screen text
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Hotwork permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1

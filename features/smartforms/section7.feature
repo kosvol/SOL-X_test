@@ -5,7 +5,7 @@ Feature: Section7
   So that ...
 
   Scenario Outline: Verify only Master can approve and send form for update for non oa permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master approval
@@ -17,7 +17,7 @@ Feature: Section7
       | Enclosed Spaces Entry | submit_enclose_space_entry |
 
   Scenario Outline: Verify only Master can approve and send form for update for oa permit
-    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master review
@@ -29,7 +29,7 @@ Feature: Section7
       | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
   Scenario Outline: Verify non Master cannot open permit pending Master Review
-    Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank and <pin> pin
@@ -37,19 +37,19 @@ Feature: Section7
 
     Examples:
       | rank                       | pin  | permit_types                         | permit_payload                |
-      | Addtional Master           | 1212 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Chief Officer              | 5912 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Additional Chief Officer   | 5555 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Second Officer             | 5545 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Additional Second Officer  | 7777 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Chief Engineer             | 7507 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Additional Chief Engineer  | 0110 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Second Engineer            | 1313 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Additional Second Engineer | 1414 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Electro Technical Officer  | 1717 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Addtional Master           | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Chief Officer              | 8383 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Additional Chief Officer   | 2761 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Second Officer             | 6268 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Additional Second Officer  | 7865 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Chief Engineer             | 5122 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | Additional Chief Engineer  | 0110 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | Electro Technical Officer  | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
 # Scenario Outline: Verify non master cannot open permit pending Master Approval
-#   Given I submit permit <permit_payload> via service with 1212 user and set to pending approval state
+#   Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
 #   And I launch sol-x portal without unlinking wearable
 #   And I click on pending approval filter
 #   And I open a permit pending Master Approval with <rank> rank and <pin> pin
@@ -57,13 +57,13 @@ Feature: Section7
 
 #   Examples:
 #     | rank                       | pin  | permit_types         | permit_payload             |
-#     | Addtional Master           | 1212 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Chief Officer              | 5912 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Additional Chief Officer   | 5555 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Second Officer             | 5545 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Additional Second Officer  | 7777 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Chief Engineer             | 7507 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Addtional Master           | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Chief Officer              | 8383 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Chief Officer   | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Second Officer             | 6268 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Second Officer  | 7865 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Chief Engineer             | 5122 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Second Engineer            | 1313 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Additional Second Engineer | 1414 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Electro Technical Officer  | 1717 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Second Engineer            | 2523 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Second Engineer | 3030 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Electro Technical Officer  | 0856 | Enclosed Spaces Entry | submit_enclose_space_entry |

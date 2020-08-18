@@ -7,7 +7,7 @@ Feature: Section6
   Scenario Outline: Verify Gas Reader screen should be shown for these permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -32,7 +32,7 @@ Feature: Section6
   Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -66,7 +66,7 @@ Feature: Section6
   Scenario Outline: Verify Gas Reader screen should not be shown for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
@@ -99,7 +99,7 @@ Feature: Section6
   Scenario Outline: Verify non-OA ptw display submit for master approval on button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -133,7 +133,7 @@ Feature: Section6
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
@@ -166,7 +166,7 @@ Feature: Section6
   Scenario Outline: Verify OA ptw display submit for master review on button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1

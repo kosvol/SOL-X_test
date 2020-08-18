@@ -8,7 +8,7 @@ Feature: SubmitPermit
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -47,7 +47,7 @@ Feature: SubmitPermit
   Scenario: Verify submitted permit data gets reflected for Cold Work - Connecting and Disconnecting Pipelines
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Cold Work permit
     And I select Cold Work - Connecting and Disconnecting Pipelines permit for level 2
     And I fill up section 1 with default value
@@ -86,7 +86,7 @@ Feature: SubmitPermit
   Scenario: Verify submitted permit data gets reflected for Hot Work
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Hotwork permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1 with default value
@@ -124,7 +124,7 @@ Feature: SubmitPermit
   Scenario: Verify work on hazardous substance checklist can be opened in read only mode
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Hotwork permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1 with default value

@@ -85,10 +85,10 @@ Feature: CrewList
     And I enter a non-existent pin
     Then I should not see invalid pin message
 
-  Scenario: Verify crew list is sorted in descending order of seniority
-    Given I launch sol-x portal
-    When I navigate to "Crew List" screen
-    Then I should see crews are sorted by descending order on seniority
+  # Scenario: Verify crew list is sorted in descending order of seniority
+  #   Given I launch sol-x portal
+  #   When I navigate to "Crew List" screen
+  #   Then I should see crews are sorted by descending order on seniority
 
   # @manual
   # Scenario: Verify Email notification sent to the assign crew
@@ -123,8 +123,8 @@ Feature: CrewList
       | CDEV_SOLX0007 | A 2/O        |
       | CDEV_SOLX0008 | 3/O          |
       | CDEV_SOLX0009 | A 3/O        |
-      | test_A009     | 4/O          |
-      | test_A010     | A 4/O        |
+      # | test_A009     | 4/O          |
+      # | test_A010     | A 4/O        |
       | test_A041     | 5/O          |
       | CDEV_SOLX0016 | D/C          |
       | CDEV_SOLX0018 | BOS          |
@@ -132,7 +132,7 @@ Feature: CrewList
       | test_A043     | O/S          |
       # | test_A015       | SAA          |
       # | test_A017       | C/E          |
-      | test_A018     | A C/E        |
+      # | test_A018     | A C/E        |
       | test_A019     | 2/E          |
       | test_A020     | A 2/E        |
       | test_A021     | 3/E          |
@@ -145,7 +145,7 @@ Feature: CrewList
       | CDEV_SOLX0017 | ETO          |
       | test_A050     | ELC          |
       | test_A044     | ETR          |
-      | CDEV_SOLX0020 | PMN          |
+      # | CDEV_SOLX0020 | PMN          |
       | test_A047     | FTR          |
       | test_A048     | OLR          |
       # | test_data_jun25 | CCK          |

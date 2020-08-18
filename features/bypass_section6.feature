@@ -6,7 +6,7 @@ Feature: To bypass section 1 to 6
 
   @xx
   Scenario Outline: To verify update gas reading button
-    Given I submit permit <location> via service with 1212 user
+    Given I submit permit <location> via service with 9015 user
 
     Examples:
       | permit_types          | location                   |

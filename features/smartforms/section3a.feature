@@ -11,7 +11,7 @@ Feature: Section3ADRA
   Scenario: Verify permit number date and time is pre-filled in section 3a
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -22,7 +22,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for low risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -47,7 +47,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for medium risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -67,7 +67,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for high risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -89,7 +89,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for very high risk for without applying measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -107,7 +107,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for low risk for existing control measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -132,7 +132,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for medium risk for existing control measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -152,7 +152,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for high risk for existing control measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -174,7 +174,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for very high risk for existing control measure
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -192,7 +192,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for low risk for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -217,7 +217,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for medium risk for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -237,7 +237,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for high risk for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -259,7 +259,7 @@ Feature: Section3ADRA
   Scenario Outline: Verify risk matrix meets criteria for very high risk for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -277,7 +277,7 @@ Feature: Section3ADRA
   Scenario: Verify evaluation risk matrix meets criteria for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -290,7 +290,7 @@ Feature: Section3ADRA
   Scenario: Verify added additional hazard is saved
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 1212
+    And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
@@ -302,7 +302,7 @@ Feature: Section3ADRA
 # Scenario: Verify added new hazard is saved
 #   Given I launch sol-x portal without unlinking wearable
 #   And I navigate to create new permit
-#   And I enter pin 1212
+#   And I enter pin 9015
 #   And I select Critical Equipment Maintenance permit
 #   And I select Maintenance on Anchor permit for level 2
 #   And I fill up section 1
