@@ -17,10 +17,9 @@ class CreatedPermitToWorkPage < Section1Page
     parent_container_elements.each_with_index do |_permit, _index|
       if ptw_id_elements[_index].text === get_section1_filled_data[1]
         return false
-      else
-        return true
       end
     end
+    true
   end
 
   def delete_created_permit

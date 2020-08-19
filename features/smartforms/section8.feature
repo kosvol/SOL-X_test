@@ -48,9 +48,9 @@ Feature: Section8
     And I launch sol-x portal
     And I click on active filter
     And I terminate permit with <rank> rank and <terminator_pin> pin
-    And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
+    And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I sign EIC section 8 with RA <pin>
-    And I should see <rank> rank and name for section 8
+    Then I should see <rank> rank and name for section 8
     And I should see signed date and time for section 8
     And I should see location <location_stamp> stamp
 
@@ -63,7 +63,7 @@ Feature: Section8
     And I launch sol-x portal
     And I click on active filter
     And I terminate permit with <rank> rank and <terminator_pin> pin
-    And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
+    And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
     Then I sign EIC as issuing authority with pin <pin>
     And I should see <rank> rank and name for section 8
     And I should see signed date and time for section 8

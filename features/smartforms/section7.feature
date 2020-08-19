@@ -16,7 +16,7 @@ Feature: Section7
       | permit_types          | permit_payload             |
       | Enclosed Spaces Entry | submit_enclose_space_entry |
 
-  Scenario Outline: Verify only Master can approve and send form for update for oa permit
+  Scenario Outline: Verify only Master can review and send form for update for oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
