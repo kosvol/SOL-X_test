@@ -148,5 +148,5 @@ Feature: CreatedPermitToWork
       | 3/E   | 4844 |
       | A 3/E | 6727 |
       | 4/E   | 1311 |
-      | A 4/E | 9997 |
+      | A 4/E | 6894 |
 

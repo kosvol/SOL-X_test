@@ -37,7 +37,7 @@ Feature: Section4AChecklist
       | 3/E   | 4844 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                                    |
       | A 3/E | 6727 | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
       | 4/E   | 1311 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
-      | A 4/E | 9997 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | A 4/E | 6894 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | ETO   | 0856 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)                         |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits

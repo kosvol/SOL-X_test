@@ -185,7 +185,7 @@ Feature: Section4BEIC
   # | 3/E    | 4844 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
   # | A 3/E  | 6727 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
   # | 4/E    | 1311 | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     |
-  # | A 4/E  | 9997 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
+  # | A 4/E  | 6894 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
   # | BOS    | 1018 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             |
   # | PMN    | 4236 | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        |
   # | A/B    | 6316 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |

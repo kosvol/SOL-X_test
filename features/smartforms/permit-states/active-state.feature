@@ -181,7 +181,7 @@ Feature: ActivePermit
     Examples:
       | permit_types | permit_payload                 | rank | pin  |
       # | intrinsical camera | submit_non_intrinsical_camera  | 4/E   | 1311 |
-      # | underwater         | submit_underwater_simultaneous | A 4/E | 9997 |
+      # | underwater         | submit_underwater_simultaneous | A 4/E | 6894 |
       | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
   Scenario Outline: Verify View button display when permit does not require Gas Permit for OA permit
@@ -266,7 +266,7 @@ Feature: ActivePermit
     Examples:
       | permit_types                     | permit_payload               | rank | pin  |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 4/E  | 1311 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 4/E | 9997 |
+  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 4/E | 6894 |
   # | Hotwork                           | submit_hotwork               | ETO   | 0856 |
 
   Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for non OA permit
