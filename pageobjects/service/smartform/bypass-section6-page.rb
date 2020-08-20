@@ -223,8 +223,9 @@ class BypassPage < SmartFormsPermissionPage
   end
 
   def get_current_date_time_cal(_duration)
-    tmp = (Time.now + (60 * 60 * _duration.to_i)).utc.strftime('%H')
-    Time.now.utc.strftime("%Y-%m-%dT#{tmp}:%M:%S.901Z")
+    # tmp = (Time.now + (60 * 60 * _duration.to_i)).utc.strftime('%H')
+    # Time.now.utc.strftime("%Y-%m-%dT#{tmp}:%M:%S.901Z")
+    (Time.now + (60 * 60 * _duration.to_i)).utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
   end
 
   def payload_mapper(permit_name, _step)

@@ -34,6 +34,14 @@ class SmartFormsPermissionPage < CommonPage
     Time.new.strftime('%d/%b/%Y')
   end
 
+  def get_current_date_format_with_offset
+    which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(which_json, '1111')
+    time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
+    # Time.new.strftime('%d/%b/%Y')
+  end
+
   def reset_data_collector
     @@section1_data_collector = [] # reset
   end
