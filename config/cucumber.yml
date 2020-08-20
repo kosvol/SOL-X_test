@@ -16,7 +16,9 @@ mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --pro
 mac_chrome_sits_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=tablet
 
 android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
+android_chrome_dashboard_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=dashboard
 android_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+android_chrome_tablet_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=tablet
 
 android_chrome_dashboard_dev: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
 android_chrome_tablet_dev: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet
