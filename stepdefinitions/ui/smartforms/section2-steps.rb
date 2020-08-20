@@ -30,8 +30,8 @@ Then (/^I should see correct approval details OA (.+) and ship approval (.+)$/) 
 end
 
 Then (/^I should see ship and office approval text fields disabled$/) do
-  is_disabled(on(Section2Page).on(Section2Page).generic_data_elements[0])
-  is_disabled(on(Section2Page).on(Section2Page).generic_data_elements[1])
+  is_disabled(on(Section2Page).generic_data_elements[0])
+  is_disabled(on(Section2Page).generic_data_elements[1])
 end
 
 Then (/^I should see display texts match for section2$/) do
