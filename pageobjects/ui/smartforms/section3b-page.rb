@@ -16,12 +16,11 @@ class Section3BPage < Section3APage
   elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content')]/div/ul/li")
 
   def is_last_crew?(_exit)
-    p ">>> #{_exit}"
     return false if _exit === 10
 
     BrowserActions.scroll_down
-    p "--- #{crew_list_elements[13].text}"
-    crew_list_elements[13].text != 'RDCRW rdcrw auto' ? is_last_crew?(_exit.to_i + 1) : (return true)
+    p "--- #{crew_list_elements.last.text}"
+    crew_list_elements.last.text != 'OLR Thaian Oliveira' ? is_last_crew?(_exit.to_i + 1) : (return true)
   end
 
   def fill_section_3b
