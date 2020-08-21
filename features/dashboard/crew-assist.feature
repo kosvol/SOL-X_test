@@ -36,7 +36,7 @@ Feature: CrewAssist
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
     When I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 9015
+    And I acknowledge the assistance with pin 1111
     Then I should not see crew assist dialog
     When I refresh the browser
     Then I should not see crew assist dialog

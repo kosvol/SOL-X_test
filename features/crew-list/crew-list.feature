@@ -119,12 +119,12 @@ Feature: CrewList
       | test_002      | A/M          |
       | CDEV_TEST0001 | C/O          |
       | CDEV_SOLX0005 | A C/O        |
-      | CDEV_SOLX0006 | 2/O          |
+      # | CDEV_SOLX0006 | 2/O          |
       | CDEV_SOLX0007 | A 2/O        |
       | CDEV_SOLX0008 | 3/O          |
       | CDEV_SOLX0009 | A 3/O        |
-      # | test_A009     | 4/O          |
-      # | test_A010     | A 4/O        |
+      | test_A009     | 4/O          |
+      | test_A010     | A 4/O        |
       | test_A041     | 5/O          |
       | CDEV_SOLX0016 | D/C          |
       | CDEV_SOLX0018 | BOS          |

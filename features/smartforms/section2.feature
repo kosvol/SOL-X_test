@@ -4,11 +4,6 @@ Feature: Section2ApprovalAuthority
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #
-  #   And I navigate to create new permit
-
   Scenario: Verify user can see previous and next button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -131,15 +126,6 @@ Feature: Section2ApprovalAuthority
       | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Master        | MS/VS                                                           |
       | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Master        | Director, Fleet Operations (shore Approving Authority)          |
-
-  Scenario: Verify ship and office approval text field is disabled
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Hotwork permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I fill up section 1
-    Then I should see ship and office approval text fields disabled
 
   Scenario: Verify section2 screen text
     Given I launch sol-x portal without unlinking wearable

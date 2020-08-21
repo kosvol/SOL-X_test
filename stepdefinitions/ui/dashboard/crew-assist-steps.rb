@@ -58,6 +58,7 @@ And (/^I dismiss enter pin screen$/) do
 end
 
 Then (/^I should not see crew assist dialog$/) do
+  sleep 1
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)
 end
 
