@@ -52,7 +52,7 @@ And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   on(Section4BPage).yes_no_btn_elements[0].click
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4APage).enter_pin_btn
+  on(Section4APage).sign_btn
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if _condition === 'RA'

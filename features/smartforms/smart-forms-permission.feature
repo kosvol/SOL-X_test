@@ -36,10 +36,12 @@ Feature: SmartFormsPermission
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
       | Chief Engineer             | 5122 |
-      # | Additional Chief Engineer  | 0110 |
+      | Additional Chief Engineer  | 2761 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |
       | Electro Technical Officer  | 0856 |
+      | 3/O                        | 0159 |
+      | A 3/O                      | 2674 |
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
@@ -50,8 +52,6 @@ Feature: SmartFormsPermission
     Examples:
       | rank   | pin  |
       | Master | 1111 |
-      | 3/O    | 0159 |
-      | A 3/O  | 2674 |
       # | 4/O    | 1010 |
       | D/C    | 2317 |
       | 3/E    | 4844 |

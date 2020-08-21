@@ -31,7 +31,7 @@ Feature: Section4AChecklist
       | 3/O   | 0159 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist                               |
       | A 3/O | 2674 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
       | C/E   | 5122 | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                                          |
-      # | A C/E | 0110 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
+      # | A C/E | 2761 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
       | 2/E   | 2523 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                                        |
       | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
       | 3/E   | 4844 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                                    |
@@ -54,14 +54,14 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | Rank   | pin  | level_one_permit           | level_two_permit                                                        | checklist                       |
-      | Master | 1111 | Hotwork                    | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area |
-      # | D/C    | 2317 | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
-      # | SAA    | 1203 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist                               |
-      | BOS    | 1018 | Underwater Operations      | Underwater Operation during daytime without any simultaneous operations | Underwater Operation            |
-      | 5/E    | 6322 | Working Aloft/Overside     | Working Aloft / Overside                                                | Working Aloft/Overside          |
-      # | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
-      | ELC    | 9298 | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode      |
+      | Rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
+      | Master | 1111 | Hotwork               | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+      | D/C    | 2317 | Hotwork               | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      | SAA    | 6445 | Enclosed Spaces Entry | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist  |
+      | BOS    | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
+  # | 5/E    | 6322 | Working Aloft/Overside     | Working Aloft / Overside                                                | Working Aloft/Overside          |
+  # | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
+  # | ELC    | 9298 | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode      |
   # | ETR    | 1715 | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
   # | T/E    | 1611 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
   # | PMN    | 4236 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |

@@ -45,7 +45,7 @@ Feature: Section3DDRA
   # # | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 6268 |
   # # | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865 |
   # # | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122 |
-  # # | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 0110 |
+  # # | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 2761 |
   # | Rotational Portable Power Tool | Use of Portable Power Tools                                                | Second Engineer           | 2523 |
   # # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030 |
   # | Cold Work                      | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer | 0856 |
@@ -89,7 +89,7 @@ Feature: Section3DDRA
   # | Working Aloft/Overside                                        | Working Aloft / Overside                           | Second Officer             | 6268 | 1010       |
   # | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels        | Additional Second Officer  | 7865 | 2317       |
   # | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket              | Chief Engineer             | 5122 | 4844       |
-  # | Helicopter Operations                                         | Helicopter Operation                               | Additional Chief Engineer  | 0110 | 6727       |
+  # | Helicopter Operations                                         | Helicopter Operation                               | Additional Chief Engineer  | 2761 | 6727       |
   # # | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 2523 | 1311       |
   # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | Additional Second Engineer | 3030 | 0703       |
   # # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 0856 | 1018       |

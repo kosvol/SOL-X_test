@@ -10,7 +10,6 @@ class Section4APage < Section3DPage
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
   @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
-  button(:enter_pin_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button[1]")
   element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
@@ -67,11 +66,12 @@ class Section4APage < Section3DPage
     sleep 1
     Log.instance.info("--- #{get_current_date_mm_yyyy_format}")
     Log.instance.info("--- #{get_current_time_format}")
-    Log.instance.info("--- #{checklist_permit_number}")
+    Log.instance.info("--- #{generic_data_elements[1].text}")
+    # Log.instance.info("--- #{checklist_permit_number}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
-    Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === checklist_permit_number)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    # Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === generic_data_elements[1].text)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def uncheck_all_checklist

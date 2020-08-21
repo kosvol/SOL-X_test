@@ -38,7 +38,7 @@ Then (/^I should see checklist section with fields enabled$/) do
   is_false(on(Section4APage).is_checklist_fields_disabled?)
   step 'I press next for 1 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
-  is_enabled(on(Section4APage).enter_pin_btn_element)
+  is_enabled(on(Section4APage).sign_btn_element)
 end
 
 And (/^I should see eic selection fields enabled$/) do

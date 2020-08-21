@@ -43,7 +43,7 @@ Feature: Section7
       | Second Officer             | 6268 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Additional Second Officer  | 7865 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Chief Engineer             | 5122 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      # | Additional Chief Engineer  | 0110 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | Additional Chief Engineer  | 2761 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Electro Technical Officer  | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -63,7 +63,7 @@ Feature: Section7
 #     | Second Officer             | 6268 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Second Officer  | 7865 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Chief Engineer             | 5122 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Additional Chief Engineer  | 0110 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Chief Engineer  | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Second Engineer            | 2523 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Second Engineer | 3030 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Electro Technical Officer  | 0856 | Enclosed Spaces Entry | submit_enclose_space_entry |

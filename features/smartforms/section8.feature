@@ -105,7 +105,7 @@ Feature: Section8
   ## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
   ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
-  ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 0110 |
+  ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 2761 |
   ## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 3030 |
   ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |
@@ -125,7 +125,7 @@ Feature: Section8
 ## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
-## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 0110 |
+## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 2761 |
 ## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 3030 |
 ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |

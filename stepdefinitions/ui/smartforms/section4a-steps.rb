@@ -41,7 +41,7 @@ And ('I sign checklist with respective checklist creator {int}') do |_pin|
 end
 
 And ('I sign on section with {int} pin') do |_pin|
-  on(Section4APage).enter_pin_btn
+  on(Section4APage).sign_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
 end

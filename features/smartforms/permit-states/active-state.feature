@@ -226,7 +226,7 @@ Feature: ActivePermit
   # | Enclosed Spaces Entry              | submit_enclose_space_entry   | 3/O                        | 0159 |
   # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 0110 |
+  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   # | Hotwork                           | submit_hotwork               | Additional Second Engineer | 3030 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
@@ -250,7 +250,7 @@ Feature: ActivePermit
   # | Enclosed Spaces Entry              | submit_enclose_space_entry   | 3/O                        | 0159 |
   # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 0110 |
+  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   # | Hotwork                           | submit_hotwork               | Additional Second Engineer | 3030 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |

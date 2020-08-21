@@ -11,13 +11,17 @@ class SmartFormsPermissionPage < CommonPage
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")
   button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
-  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
-  element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
-  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
-
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
+
+  ### common locator
+  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+  element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
+  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  button(:sign_btn, xpath: "//button[contains(.,'Sign')]")
+  button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
+  button(:done_btn, xpath: "//button[contains(.,'Done')]")
 
   def set_current_time
     @@time = main_clock_element.text

@@ -45,6 +45,7 @@ end
 
 And (/^I fill up section 1$/) do
   sleep 1
+  on(Section4BPage).set_current_time
   permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
   if permits_arr.include? on(SmartFormsPermissionPage).get_selected_level2_permit
     on(Section1Page).fill_all_of_section_1_w_duration(%w[more less].sample)

@@ -3,7 +3,7 @@
 And (/^I sign DRA section 3d with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4APage).enter_pin_btn
+  on(Section4APage).sign_btn
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   sleep 1

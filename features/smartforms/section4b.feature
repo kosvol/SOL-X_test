@@ -61,7 +61,7 @@ Feature: Section4BEIC
   #     | Second Officer             | 6268 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
   #     # | Additional Second Officer  | 7865 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
   #     | Chief Engineer             | 5122 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-  #     # | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+  #     # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
   #     | Additional Second Engineer | 3030 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
   #     # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
   #     | 3/O                        | 0159 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
@@ -133,34 +133,6 @@ Feature: Section4BEIC
       | user         | zoneid                     | mac               | location_stamp | level_one_permit               | level_two_permit            | checklist                             |
       | SIT_SOLX0002 | SIT_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 | IG Platform 2  | Rotational Portable Power Tool | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
-  Scenario Outline: Verify only RA can sign on responsible authority
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I fill up section 1
-    And I navigate to section 4a
-    And I select the matching <checklist> checklist
-    And I press next for 2 times
-    And I sign EIC section 4b with RA pin <pin>
-    Then I should see signed details
-    And I should see signature
-    And I tear down created form
-
-    Examples:
-      | level_one_permit | level_two_permit                    | checklist                       | rank             | pin  |
-      | Hotwork          | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area | Addtional Master | 9015 |
-  # | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area                              | Chief Officer              | 8383 |
-  # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist                               | Additional Chief Officer   | 2761 |
-  # | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        | Second Officer             | 6268 |
-  # | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      | Additional Second Officer  | 7865 |
-  # | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket                         | Chief Engineer             | 5122 |
-  # | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                | Additional Chief Engineer  | 0110 |
-  # | Rotational Portable Power Tool                                | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)                         | Second Engineer            | 2523 |
-  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage | Additional Second Engineer | 3030 |
-  # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist                                 | Electro Technical Officer  | 0856 |
-
   Scenario Outline: Verify non RA cannot sign on responsible authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -176,10 +148,8 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | rank  | pin  | level_one_permit      | level_two_permit      | checklist                       |
-      # | Master | 1111 | Hotwork                                                       | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area                               |
-      # | 3/O    | 0159 | Hotwork                                   | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area          |
-      | A 3/O | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Spaces Entry Checklist |
+      | rank   | pin  | level_one_permit | level_two_permit                    | checklist                       |
+      | Master | 1111 | Hotwork          | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
   # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
   # | D/C    | 2317 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
   # | 3/E    | 4844 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
@@ -285,7 +255,7 @@ Feature: Section4BEIC
       | Second Officer             | 6268 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
       # | Additional Second Officer  | 7865 | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | Chief Engineer             | 5122 | Rotational Portable Power Tool | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-      # | Additional Chief Engineer  | 0110 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
+      # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 3030 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
       # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 0159 | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
