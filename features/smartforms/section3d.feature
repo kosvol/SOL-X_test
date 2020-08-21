@@ -91,7 +91,7 @@ Feature: Section3DDRA
   # | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket              | Chief Engineer             | 5122 | 4844       |
   # | Helicopter Operations                                         | Helicopter Operation                               | Additional Chief Engineer  | 0110 | 6727       |
   # # | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 2523 | 1311       |
-  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | Additional Second Engineer | 3030 | 6894       |
+  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | Additional Second Engineer | 3030 | 0703       |
   # # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 0856 | 1018       |
   # | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather               | Additional Second Engineer | 3030 | 4236       |
   # | Critical Equipment Maintenance            | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Electro Technical Officer  | 0856 | 6316       |
