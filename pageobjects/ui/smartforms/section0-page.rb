@@ -19,6 +19,7 @@ class SmartFormsPermissionPage < CommonPage
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   button(:sign_btn, xpath: "//button[contains(.,'Sign')]")
   button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
   button(:done_btn, xpath: "//button[contains(.,'Done')]")

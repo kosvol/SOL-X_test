@@ -29,7 +29,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank                       | pin  |
-      # | Master                     | 1111 |
+      | Master                     | 1111 |
       | Addtional Master           | 9015 |
       | Chief Officer              | 8383 |
       | Additional Chief Officer   | 2761 |
@@ -110,6 +110,3 @@ Feature: SmartFormsPermission
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
     And I tear down created form
-
-
-

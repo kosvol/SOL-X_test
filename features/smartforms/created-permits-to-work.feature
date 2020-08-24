@@ -142,11 +142,21 @@ Feature: CreatedPermitToWork
     And I tear down created form
 
     Examples:
-      | rank  | pin  |
-      | 3/O   | 0159 |
-      | A 3/O | 2674 |
-      | 3/E   | 4844 |
-      | A 3/E | 6727 |
-      | 4/E   | 1311 |
-      | A 4/E | 0703 |
-
+      | rank                       | pin  |
+      | 3/O                        | 0159 |
+      | A 3/O                      | 2674 |
+      | 3/E                        | 4844 |
+      | A 3/E                      | 6727 |
+      | 4/E                        | 1311 |
+      | A 4/E                      | 0703 |
+      | Master                     | 1111 |
+      | Addtional Master           | 9015 |
+      | Chief Officer              | 8383 |
+      | Additional Chief Officer   | 2761 |
+      | Second Officer             | 6268 |
+      | Additional Second Officer  | 7865 |
+      | Chief Engineer             | 5122 |
+      | Additional Chief Engineer  | 2761 |
+      | Second Engineer            | 2523 |
+      | Additional Second Engineer | 3030 |
+      | Electro Technical Officer  | 0856 |

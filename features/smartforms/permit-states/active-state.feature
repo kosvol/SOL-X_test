@@ -51,7 +51,7 @@ Feature: ActivePermit
   #   And I click on active filter
   #   Then I should see permit valid for 4 hours
 
-  Scenario: Verify all maintenance permit with long duration no then permit valid for 2 hours
+  Scenario: Verify all maintenance permit with duration less than 2 hours should have 2 hours validity
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -67,7 +67,7 @@ Feature: ActivePermit
     And I click on active filter
     Then I should see permit valid for 2 hours
 
-  # Scenario: Verify all maintenance permit with long duration yes then permit valid for 8 hours
+  # Scenario: Verify all maintenance permit with duration more than 2 hours should have 8 hours validity
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
   #   And I enter pin 9015
@@ -166,9 +166,9 @@ Feature: ActivePermit
     Then I should not see gas reader sections on active permit
 
     Examples:
-      | permit_types | permit_payload                 | rank | pin  |
-      # | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
-      | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
+      | permit_types | permit_payload                 | rank  | pin  |
+      # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
+      | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -180,11 +180,10 @@ Feature: ActivePermit
 
     Examples:
       | permit_types | permit_payload                 | rank | pin  |
-      # | intrinsical camera | submit_non_intrinsical_camera  | 4/E   | 1311 |
       # | underwater         | submit_underwater_simultaneous | A 4/E | 0703 |
       | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
-  Scenario Outline: Verify View button display when permit does not require Gas Permit for OA permit
+  Scenario Outline: Verify View button display when permit does not require Gas Reading for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
     And I set oa permit to active state
     And I launch sol-x portal without unlinking wearable
@@ -196,7 +195,7 @@ Feature: ActivePermit
       | intrinsical camera | submit_non_intrinsical_camera |
   # | underwater         | submit_underwater_simultaneous |
 
-  Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for OA permit
+  Scenario Outline: Verify Update Reading button display when permit requires Gas Reading for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     And I set oa permit to active state
     And I launch sol-x portal without unlinking wearable
@@ -208,7 +207,7 @@ Feature: ActivePermit
       # | intrinsical camera | submit_non_intrinsical_camera  |
       | underwater   | submit_underwater_simultaneous |
 
-  Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for non OA permit
+  Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
@@ -216,21 +215,18 @@ Feature: ActivePermit
     Then I should see Add Gas Reading button enabled
 
     Examples:
-      | permit_types                     | permit_payload               | rank   | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Master | 1111 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A/M                        | 9015 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | C/O                        | 8383 |
-  # | Hotwork                           | submit_hotwork               | A C/O                      | 2761 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | 3/O                        | 0159 |
-  # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-  # | Hotwork                           | submit_hotwork               | Additional Second Engineer | 3030 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-  # | Hotwork                           | submit_hotwork               | A 3/E                      | 6727 |
+      | permit_types                     | permit_payload               | rank                       | pin  |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
+      | Hotwork                          | submit_hotwork               | A 3/O                      | 2674 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
+      | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
+      | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
+      | Hotwork                          | submit_hotwork               | 4/E                        | 1313 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -240,21 +236,17 @@ Feature: ActivePermit
     Then I should not see gas reader sections on active permit
 
     Examples:
-      | permit_types                     | permit_payload               | rank   | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Master | 1111 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A/M                        | 9015 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | C/O                        | 8383 |
-  # | Hotwork                           | submit_hotwork               | A C/O                      | 2761 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | 3/O                        | 0159 |
-  # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-  # | Hotwork                           | submit_hotwork               | Additional Second Engineer | 3030 |
-  # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-  # | Hotwork                           | submit_hotwork               | A 3/E                      | 6727 |
+      | permit_types                     | permit_payload               | rank                       | pin  |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
+      # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
+      # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
+      | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
+      | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -264,9 +256,8 @@ Feature: ActivePermit
     Then I should see Add Gas Reading button disabled
 
     Examples:
-      | permit_types                     | permit_payload               | rank | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 4/E  | 1311 |
-  # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 4/E | 0703 |
+      | permit_types          | permit_payload             | rank  | pin  |
+      | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
   # | Hotwork                           | submit_hotwork               | ETO   | 0856 |
 
   Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for non OA permit
