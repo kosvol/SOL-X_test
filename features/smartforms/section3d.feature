@@ -83,7 +83,7 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit | level_two_permit                    | ra_rank          | pin  | non_ra_pin |
-      | Hotwork          | Hot Work Level-2 in Designated Area | Addtional Master | 9015 | 1111       |
+      | Hotwork          | Hot Work Level-2 in Designated Area | Addtional Master | 9015 | 6727       |
   # | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)        | Chief Officer              | 8383 | 0159       |
   # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                              | Additional Chief Officer   | 2761 | 2674       |
   # | Working Aloft/Overside                                        | Working Aloft / Overside                           | Second Officer             | 6268 | 1010       |

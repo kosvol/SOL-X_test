@@ -11,7 +11,7 @@ class BypassPage < SmartFormsPermissionPage
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
-    CommonPage.set_permit_id_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+    CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
     add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
