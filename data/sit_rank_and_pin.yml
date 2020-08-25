@@ -1,6 +1,5 @@
 RAs:
   [
-    "MAS",
     "A/M",
     "C/O",
     "A C/O",
@@ -14,6 +13,12 @@ RAs:
     "A 2/E",
     "ETO",
   ]
+
+DRASigners: ["MAS"]
+
+ChecklistSigners: [""]
+
+Section6Signers: [""]
 
 ranks:
   [

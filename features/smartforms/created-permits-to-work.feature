@@ -149,7 +149,6 @@ Feature: CreatedPermitToWork
       | A 3/E                      | 6727 |
       | 4/E                        | 1311 |
       | A 4/E                      | 0703 |
-      | Master                     | 1111 |
       | Addtional Master           | 9015 |
       | Chief Officer              | 8383 |
       | Additional Chief Officer   | 2761 |
