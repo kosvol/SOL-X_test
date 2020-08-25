@@ -32,6 +32,7 @@ end
 When (/^I select (.+) permit$/) do |_permit|
   # sleep 1
   on(SmartFormsPermissionPage).click_permit_type_ddl
+  sleep 1
   on(SmartFormsPermissionPage).select_permit(_permit)
 end
 

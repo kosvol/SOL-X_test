@@ -193,3 +193,30 @@ Feature: Section6
       | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
       | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |
+
+
+  Scenario Outline: Verify gas reading can disable and enable
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I fill up section 1
+    And I navigate to section 6
+    Then I should see gas reader sections
+    And  I press the N/A button to disable gas testing
+    Then I should see warning label
+    And  I should not see gas_equipment_input
+    And  I should not see gas_sr_number_input
+    And  I should not see gas_last_calibration_button
+
+    And I press the Yes button to enable gas testing
+    Then I should not see warning label
+    And  I should see gas_equipment_input
+    And  I should see gas_sr_number_input
+    And  I should see gas_last_calibration_button
+    And I tear down created form
+
+    Examples:
+      | level_one_permit      | level_two_permit     |
+      | Helicopter Operations | Helicopter Operation |

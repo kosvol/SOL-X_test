@@ -15,6 +15,15 @@ class Section6Page < Section4BPage
   div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
 
+  element(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
+
+  @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"
+  @@gas_equipment_input =  "//input[@id='gasEquipment']"
+  @@gas_sr_number_input = "//input[@id='gasSrNumber']"
+  @@gas_last_calibration_button = "//button[@id='gasLastCalibrationDate']"
+  @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
+
+
   def is_gas_reader_section?
     sleep 1
     total_sections_elements.size >= 4
@@ -26,6 +35,39 @@ class Section6Page < Section4BPage
       next_btn
     end
   end
+
+  def gas_testing_switcher(value)
+    select_checkbox(@@gas_yes_no_btn, value)
+  end
+
+  def is_gas_equipment_input_exist?
+    $browser.find_element(:xpath, @@gas_equipment_input)
+    true
+  rescue StandardError
+    false
+  end
+
+  def is_gas_sr_number_input_exist?
+    $browser.find_element(:xpath, @@gas_equipment_input)
+    true
+  rescue StandardError
+    false
+  end
+
+  def is_last_calibration_btn_exits?
+    $browser.find_element(:xpath, @@gas_last_calibration_button)
+    true
+  rescue StandardError
+    false
+  end
+
+  def is_info_box_disable_gas_exist?
+    $browser.find_element(:xpath, @@inf_box_disable_gas)
+    true
+  rescue StandardError
+    false
+  end
+
 
   private
 

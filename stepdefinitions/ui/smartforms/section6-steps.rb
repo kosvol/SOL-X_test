@@ -46,3 +46,37 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   on(SmartFormsPermissionPage).reset_data_collector
   @@created_permit_data = on(Section1Page).set_section1_filled_data
 end
+
+
+And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, type|
+  on(Section6Page).gas_testing_switcher(key)
+end
+
+Then(/^I (should|should not) see warning label$/) do |_condition|
+  info_text = "You have selected to disable gas testing for this permit."
+  is_equal(on(Section6Page).info_box_disable_gas, info_text) if _condition === 'should'
+  if _condition === 'should not'
+    is_equal(on(Section6Page).is_info_box_disable_gas_exist?, false )
+  end
+end
+
+And(/^I (should|should not) see gas_equipment_input$/) do |_condition|
+  is_equal(on(Section6Page).is_gas_equipment_input_exist?, true) if _condition === 'should'
+  if _condition === 'should not'
+    is_equal(on(Section6Page).is_gas_equipment_input_exist?, false )
+  end
+end
+
+And(/^I (should|should not) see gas_sr_number_input$/) do |_condition|
+  is_equal(on(Section6Page).is_gas_sr_number_input_exist?, true) if _condition === 'should'
+  if _condition === 'should not'
+    is_equal(on(Section6Page).is_gas_sr_number_input_exist?, false )
+  end
+end
+
+And(/^I (should|should not) see gas_last_calibration_button$/) do |_condition|
+  is_equal(on(Section6Page).is_last_calibration_btn_exits?, true) if _condition === 'should'
+  if _condition === 'should not'
+    is_equal(on(Section6Page).is_last_calibration_btn_exits?, false )
+  end
+end
