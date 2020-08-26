@@ -47,36 +47,49 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   @@created_permit_data = on(Section1Page).set_section1_filled_data
 end
 
-
-And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, type|
+And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
   on(Section6Page).gas_testing_switcher(key)
 end
 
 Then(/^I (should|should not) see warning label$/) do |_condition|
-  info_text = "You have selected to disable gas testing for this permit."
-  is_equal(on(Section6Page).info_box_disable_gas, info_text) if _condition === 'should'
+  info_text = 'You have selected to disable gas testing for this permit.'
+  if _condition === 'should'
+    is_equal(on(Section6Page).info_box_disable_gas, info_text)
+  end
   if _condition === 'should not'
-    is_equal(on(Section6Page).is_info_box_disable_gas_exist?, false )
+    is_equal(on(Section6Page).is_info_box_disable_gas_exist?, false)
   end
 end
 
 And(/^I (should|should not) see gas_equipment_input$/) do |_condition|
-  is_equal(on(Section6Page).is_gas_equipment_input_exist?, true) if _condition === 'should'
+  if _condition === 'should'
+    to_exists(on(Section6Page).gas_equipment_input_element)
+    # is_equal(on(Section6Page).is_gas_equipment_input_exist?, true)
+  end
   if _condition === 'should not'
-    is_equal(on(Section6Page).is_gas_equipment_input_exist?, false )
+    not_to_exists(on(Section6Page).gas_equipment_input_element)
+    # is_equal(on(Section6Page).is_gas_equipment_input_exist?, false)
   end
 end
 
 And(/^I (should|should not) see gas_sr_number_input$/) do |_condition|
-  is_equal(on(Section6Page).is_gas_sr_number_input_exist?, true) if _condition === 'should'
+  if _condition === 'should'
+    to_exists(on(Section6Page).gas_sr_number_input_element)
+    # is_equal(on(Section6Page).is_gas_sr_number_input_exist?, true)
+  end
   if _condition === 'should not'
-    is_equal(on(Section6Page).is_gas_sr_number_input_exist?, false )
+    not_to_exists(on(Section6Page).gas_sr_number_input_element)
+    # is_equal(on(Section6Page).is_gas_sr_number_input_exist?, false)
   end
 end
 
 And(/^I (should|should not) see gas_last_calibration_button$/) do |_condition|
-  is_equal(on(Section6Page).is_last_calibration_btn_exits?, true) if _condition === 'should'
+  if _condition === 'should'
+    to_exists(on(Section6Page).gas_last_calibration_button_element)
+    # is_equal(on(Section6Page).is_last_calibration_btn_exits?, true)
+  end
   if _condition === 'should not'
-    is_equal(on(Section6Page).is_last_calibration_btn_exits?, false )
+    not_to_exists(on(Section6Page).gas_last_calibration_button_element)
+    # is_equal(on(Section6Page).is_last_calibration_btn_exits?, false)
   end
 end

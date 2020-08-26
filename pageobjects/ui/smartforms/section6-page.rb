@@ -18,11 +18,13 @@ class Section6Page < Section4BPage
   element(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
 
   @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"
-  @@gas_equipment_input =  "//input[@id='gasEquipment']"
-  @@gas_sr_number_input = "//input[@id='gasSrNumber']"
-  @@gas_last_calibration_button = "//button[@id='gasLastCalibrationDate']"
+  text_field(:gas_equipment_input, xpath: "//input[@id='gasEquipment']")
+  text_field(:gas_sr_number_input, xpath: "//input[@id='gasSrNumber']")
+  element(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
+  # @@gas_equipment_input = "//input[@id='gasEquipment']"
+  # @@gas_sr_number_input = "//input[@id='gasSrNumber']"
+  # @@gas_last_calibration_button = "//button[@id='gasLastCalibrationDate']"
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
-
 
   def is_gas_reader_section?
     sleep 1
@@ -40,26 +42,28 @@ class Section6Page < Section4BPage
     select_checkbox(@@gas_yes_no_btn, value)
   end
 
-  def is_gas_equipment_input_exist?
-    $browser.find_element(:xpath, @@gas_equipment_input)
-    true
-  rescue StandardError
-    false
-  end
+  # def is_gas_equipment_input_exist?
+  #   # $browser.find_element(:xpath, @@gas_equipment_input)
+  #   gas_equipment_input_element.text
+  #   true
+  # rescue StandardError
+  #   false
+  # end
 
-  def is_gas_sr_number_input_exist?
-    $browser.find_element(:xpath, @@gas_equipment_input)
-    true
-  rescue StandardError
-    false
-  end
+  # def is_gas_sr_number_input_exist?
+  #   # $browser.find_element(:xpath, @@gas_equipment_input)
+  #   gas_sr_number_input_element.text
+  #   true
+  # rescue StandardError
+  #   false
+  # end
 
-  def is_last_calibration_btn_exits?
-    $browser.find_element(:xpath, @@gas_last_calibration_button)
-    true
-  rescue StandardError
-    false
-  end
+  # def is_last_calibration_btn_exits?
+  #   $browser.find_element(:xpath, @@gas_last_calibration_button)
+  #   true
+  # rescue StandardError
+  #   false
+  # end
 
   def is_info_box_disable_gas_exist?
     $browser.find_element(:xpath, @@inf_box_disable_gas)
@@ -67,7 +71,6 @@ class Section6Page < Section4BPage
   rescue StandardError
     false
   end
-
 
   private
 
