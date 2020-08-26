@@ -122,11 +122,13 @@ Feature: CreatedPermitToWork
       | 3/O                        | 0159 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
       | A 3/O                      | 2674 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
       | Chief Engineer             | 5122 | Underwater Operations                                         | Underwater Operation at night                                 |
-      # | Additional Chief Engineer  | 2761 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
+      | Additional Chief Engineer  | 4725 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
       | Second Engineer            | 2523 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Additional Second Engineer | 3030 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
       | 3/E                        | 4844 | Underwater Operations                                         | Underwater Operation at night                                 |
       | A 3/E                      | 6727 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
+      | 4/E                        | 1311 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
+
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable

@@ -21,3 +21,5 @@ Feature: PendingApproval
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     Then I should see Office Approval button
+
+  Scenario: Verify submitted by details are populated
