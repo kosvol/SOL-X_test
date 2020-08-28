@@ -77,7 +77,8 @@ class BrowserSetup
           deviceName: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
           newCommandTimeout: 420,
-          chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080,https://cloud-edge.stage.solas.magellanx.io:8443', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           # :fullReset => fullreset,
           noReset: noreset
         },
