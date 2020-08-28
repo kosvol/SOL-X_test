@@ -65,7 +65,7 @@ class BrowserSetup
               elsif ENV['DEVICE'] === 'tablet'
                 YAML.load_file('config/devices.yml')['tablet_chrome']
               else
-                ENV['DEVICE']
+                YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
               end
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
