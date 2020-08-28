@@ -60,11 +60,13 @@ class BrowserSetup
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'
-    if ENV['DEVICE'] === 'dashboard'
-      @device = YAML.load_file('config/devices.yml')['dashboard_chrome']
-    elsif ENV['DEVICE'] === 'tablet'
-      @device = YAML.load_file('config/devices.yml')['tablet_chrome']
-    end
+    @device = if ENV['DEVICE'] === 'dashboard'
+                YAML.load_file('config/devices.yml')['dashboard_chrome']
+              elsif ENV['DEVICE'] === 'tablet'
+                YAML.load_file('config/devices.yml')['tablet_chrome']
+              else
+                ENV['DEVICE']
+              end
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
       {

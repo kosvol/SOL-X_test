@@ -17,3 +17,13 @@ tablet_chrome:
   browserName: "Chrome"
   isHeadless: true
   noReset: false
+
+ue_tablet_chrome:
+  platformName: "Android"
+  platformVersion: "8.1"
+  deviceName: "4aa590af"
+  app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false
