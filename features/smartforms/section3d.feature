@@ -83,8 +83,8 @@ Feature: Section3DDRA
     Examples:
       | level_one_permit                                              | level_two_permit                                                           | ra_rank                    | pin  | non_ra_rank | non_ra_pin |
       | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 9015 | A 3/E       | 6727       |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 | 3/O         | 0159       |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 | A 3/O       | 2674       |
+      # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 | 3/O         | 0159       |
+      # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 | A 3/O       | 2674       |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865 | D/C         | 2317       |
       | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122 | 3/E         | 4844       |
       | Helicopter Operations                                         | Helicopter Operation                                                       | Additional Chief Engineer  | 2761 | A 3/E       | 6727       |

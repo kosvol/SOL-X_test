@@ -30,7 +30,7 @@ Critical Equipment Maintenance:
     "Maintenance on Radio Battery",
   ]
 
-Hotwork:
+Hot Work:
   [
     "Hot Work Level-1 (Loaded & Ballast Passage)",
     "Hot Work Level-2 in Designated Area",
@@ -39,7 +39,7 @@ Hotwork:
     "Hot Work Level-2 outside E/R (Loaded Passage)",
   ]
 
-Rotational Portable Power Tool:
+Rotational Portable Power Tools:
   [
     "Use of Hydro blaster/working with High-pressure tools",
     "Use of Portable Power Tools",

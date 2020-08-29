@@ -34,7 +34,7 @@ Feature: Section3BDRA
       | Critical Equipment Maintenance        | Maintenance on Fire Detection Alarm System                            | Standard Procedure for Maintenance on Fire Detection Alarm System                                     |
       | Cold Work                             | Cold Work - Connecting and Disconnecting Pipelines                    | Standard procedures for connecting and disconnecting pipelines                                        |
       | Hot Work                              | Hot Work Level-2 in Designated Area                                   | General / Standard Hot Work Procedure                                                                 |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer By Transfer Basket                                 | Standard procedures for personnel Transfer by Transfer Basket                                         |
+      | Personnel Transfer By Transfer Basket | Personnel Transfer By Transfer Basket                                 | Standard procedures for Personnel Transfer by Transfer Basket                                         |
       | Enclosed Spaces Entry                 | Enclosed Spaces Entry                                                 | General procedures for Enclosed Space Entry                                                           |
       | Underwater Operations                 | Simultaneous underwater operation during daytime with other operation | Standard/General procedures for Simultaneous underwater operation during daytime with other operation |
   # to add more
