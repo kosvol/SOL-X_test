@@ -152,14 +152,14 @@ Feature: Section4BEIC
       | Master | 1111 | Hot Work         | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
   # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
   # | D/C    | 2317 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
-  # | 3/E    | 4844 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
+  # | 3/E    | 4844 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
   # | A 3/E  | 6727 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
   # | 4/E    | 1311 | Rotational Portable Power Tools            | Use of Portable Power Tools                                                | Rotational Portable Power Toolss (PPT)     |
   # | A 4/E  | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
   # | BOS    | 1018 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Cold Work Operation Checklist             |
   # | PMN    | 4236 | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        |
   # | A/B    | 6316 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
-  # | O/S    | 7669 | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
+  # | O/S    | 7669 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
   # | OLR    | 0450 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
 
   # Scenario Outline: Verify only chief engineer can sign as issuing authority

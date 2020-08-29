@@ -32,7 +32,7 @@ Feature: Section2ApprovalAuthority
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
-      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
       | Helicopter Operations                                         | Helicopter Operation                                                    |
       | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
       | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |

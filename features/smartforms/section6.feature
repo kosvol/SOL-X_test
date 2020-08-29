@@ -52,7 +52,7 @@ Feature: Section6
   #     | level_one_permit                                              | level_two_permit                                                      | checklist                                                     |
   #     | Working Aloft/Overside                                        | Working Aloft / Overside                                              | Working Aloft/Overside                                        |
   #     | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                           | Work on Pressure Pipelines                                    |
-  #     | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                 | Personnel Transfer by Transfer Basket                         |
+  #     | Personnel Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                 | Personnel Transfer by Transfer Basket                         |
   #     | Helicopter Operations                                         | Helicopter Operation                                                  | Helicopter Operation Checklist                                |
   #     | Rotational Portable Power Tools                                | Use of Portable Power Tools                                           | Rotational Portable Power Toolss (PPT)                         |
   #     # | Rotational Portable Power Tools            | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Toolss (PPT)     |
@@ -123,7 +123,7 @@ Feature: Section6
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   | Enclosed Spaces Entry Checklist                               |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                | Working Aloft/Overside                                        |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines                                    |
-      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket                         |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket                         |
       | Helicopter Operations                                         | Helicopter Operation                                                    | Helicopter Operation Checklist                                |
       | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             | Rotational Portable Power Toolss (PPT)                        |
       | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Toolss (PPT)                        |

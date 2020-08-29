@@ -110,7 +110,7 @@ Feature: Section1
       | Enclosed Spaces Entry                                                             | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                                             | Helicopter Operations                                         |
       | Hot Work                                                                          | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | Personal Transfer By Transfer Basket                                              | Personal Transfer By Transfer Basket                          |
+      | Personnel Transfer By Transfer Basket                                             | Personnel Transfer By Transfer Basket                         |
       | Rotational Portable Power Tools                                                   | Use of Portable Power Tools                                   |
       | Underwater Operations                                                             | Underwater Operation at night                                 |
       | Use of non-intrinsically safe Camera                                              | Use of non-intrinsically safe Camera                          |

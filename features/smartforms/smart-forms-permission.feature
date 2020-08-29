@@ -64,6 +64,7 @@ Feature: SmartFormsPermission
       | O/S    | 7669 |
       | OLR    | 0450 |
 
+  @x32
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -74,7 +75,7 @@ Feature: SmartFormsPermission
       | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                         |
       | Hot Work                                                      |
-      | Personal Transfer By Transfer Basket                          |
+      | Personnel Transfer By Transfer Basket                         |
       | Rigging of Gangway & Pilot Ladder                             |
       | Rotational Portable Power Tools                               |
       | Underwater Operations                                         |
