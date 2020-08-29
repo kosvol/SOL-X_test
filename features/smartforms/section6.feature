@@ -24,11 +24,11 @@ Feature: Section6
 
   #   Examples:
   #     | level_one_permit                     | level_two_permit                                                                | checklist                        |
-  #     | Hotwork                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-  #     | Hotwork                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
-  #     | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-  #     | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
-  #     | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+  #     | Hot Work                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+  #     | Hot Work                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
+  #     | Hot Work                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
+  #     | Hot Work                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
+  #     | Hot Work                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
   #     | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist  |
   #     | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
 
@@ -54,8 +54,8 @@ Feature: Section6
   #     | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                           | Work on Pressure Pipelines                                    |
   #     | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                 | Personnel Transfer by Transfer Basket                         |
   #     | Helicopter Operations                                         | Helicopter Operation                                                  | Helicopter Operation Checklist                                |
-  #     | Rotational Portable Power Tool                                | Use of Portable Power Tools                                           | Rotational Portable Power Tools (PPT)                         |
-  #     # | Rotational Portable Power Tool            | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Tools (PPT)     |
+  #     | Rotational Portable Power Tools                                | Use of Portable Power Tools                                           | Rotational Portable Power Toolss (PPT)                         |
+  #     # | Rotational Portable Power Tools            | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Toolss (PPT)     |
   #     | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                    | Work on Electrical Equipment and Circuits – Low/High Voltage |
   #     # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard | Cold Work Operation Checklist             |
   #     # | Cold Work                                 | Cold Work - Cleaning Up of Spill                                       | Cold Work Operation Checklist             |
@@ -118,15 +118,15 @@ Feature: Section6
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                        | checklist                                                     |
-      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area                               |
-      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             | Hot Work Outside Designated Area                              |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area                               |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             | Hot Work Outside Designated Area                              |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   | Enclosed Spaces Entry Checklist                               |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                | Working Aloft/Overside                                        |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines                                    |
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket                         |
       | Helicopter Operations                                         | Helicopter Operation                                                    | Helicopter Operation Checklist                                |
-      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                             | Rotational Portable Power Tools (PPT)                         |
-      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Tools (PPT)                         |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             | Rotational Portable Power Toolss (PPT)                        |
+      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Toolss (PPT)                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard | Cold Work Operation Checklist                                 |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        | Cold Work Operation Checklist                                 |
@@ -188,8 +188,8 @@ Feature: Section6
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
       | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Underwater Operation             |
       | Underwater Operations                | Underwater Operation at night                                                   | Underwater Operation             |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
-      | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
+      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
+      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
       | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |

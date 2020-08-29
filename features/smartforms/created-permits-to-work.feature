@@ -37,7 +37,7 @@ Feature: CreatedPermitToWork
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
@@ -48,7 +48,7 @@ Feature: CreatedPermitToWork
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
@@ -60,7 +60,7 @@ Feature: CreatedPermitToWork
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
   #   And I enter pin 9015
-  #   And I select Hotwork permit
+  #   And I select Hot Work permit
   #   And I select Hot Work Level-2 in Designated Area permit for level 2
   #   And I click on back arrow
   #   And I navigate to "Created Permits to Work" screen
@@ -87,7 +87,7 @@ Feature: CreatedPermitToWork
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
@@ -113,28 +113,28 @@ Feature: CreatedPermitToWork
 
     Examples:
       | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
-      | Master                     | 1111 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | Master                     | 1111 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
       | A/M                        | 9015 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
       | C/O                        | 8383 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A C/O                      | 2761 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
+      | A C/O                      | 2761 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
       | 2/O                        | 6268 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | A 2/O                      | 7865 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
-      | 3/O                        | 0159 | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | A 2/O                      | 7865 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
+      | 3/O                        | 0159 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
       | A 3/O                      | 2674 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
       | Chief Engineer             | 5122 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | Additional Chief Engineer  | 4725 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
+      | Additional Chief Engineer  | 8555 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
       | Second Engineer            | 2523 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Additional Second Engineer | 3030 | Hotwork                                                       | Hot Work Level-2 in Designated Area                           |
+      | Additional Second Engineer | 3030 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
       | 3/E                        | 4844 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A 3/E                      | 6727 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
-      | 4/E                        | 1311 | Rotational Portable Power Tool                                | Use of Portable Power Tools                                   |
+      | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
 
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen

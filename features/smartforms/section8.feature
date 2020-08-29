@@ -88,7 +88,7 @@ Feature: Section8
       | permit_types                     | permit_payload               | rank              | pin  | user         | zoneid                     | mac               | location_stamp   |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | 2/E Poon Choryi   | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
-      | Hotwork                          | submit_hotwork               | ETO Reza Ilmi     | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Hot Work                         | submit_Hot Work              | ETO Reza Ilmi     | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
@@ -101,14 +101,14 @@ Feature: Section8
       | permit_types                     | permit_payload               | rank                     | pin  |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 9015 |
       ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Officer | 8383 |
-      | Hotwork                          | submit_hotwork               | Additional Chief Officer | 2761 |
-  ## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
+      | Hot Work                         | submit_Hot Work              | Additional Chief Officer | 2761 |
+  ## | Hot Work                           | submit_Hot Work               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
   ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
-  ## | Hotwork                           | submit_hotwork               | Additional Chief Engineer  | 2761 |
-  ## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
+  ## | Hot Work                           | submit_Hot Work               | Additional Chief Engineer  | 2761 |
+  ## | Hot Work                           | submit_Hot Work               | Second Engineer            | 2523 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 3030 |
-  ## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |
+  ## | Hot Work                           | submit_Hot Work               | Electro Technical Officer  | 0856 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -122,10 +122,10 @@ Feature: Section8
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M           | 9015 |
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | Chief Officer | 8383 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 2761 |
-## | Hotwork                           | submit_hotwork               | Second Officer             | 6268 |
+## | Hot Work                           | submit_Hot Work               | Second Officer             | 6268 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 2761 |
-## | Hotwork                           | submit_hotwork               | Second Engineer            | 2523 |
+## | Hot Work                           | submit_Hot Work               | Second Engineer            | 2523 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 3030 |
-## | Hotwork                           | submit_hotwork               | Electro Technical Officer  | 0856 |
+## | Hot Work                           | submit_Hot Work               | Electro Technical Officer  | 0856 |

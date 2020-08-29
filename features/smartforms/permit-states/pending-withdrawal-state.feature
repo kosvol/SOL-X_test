@@ -15,4 +15,4 @@ Feature: PendingWithdrawal
       | permit_types          | permit_payload             | status   |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Completed |
       | Enclosed Spaces Entry | submit_enclose_space_entry | Continue |
-# | Hotwork                           | submit_hotwork               | Suspended |
+# | Hot Work                           | submit_Hot Work               | Suspended |

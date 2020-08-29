@@ -63,11 +63,11 @@ Feature: Section4AChecklistSelection
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                                | checklist                                                     |
-      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area                               |
-      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area                              |
-      | Hotwork                                                       | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area                              |
-      | Hotwork                                                       | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area                              |
-      | Hotwork                                                       | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area                               |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area                              |
+      | Hot Work                                                      | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area                              |
+      | Hot Work                                                      | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area                              |
+      | Hot Work                                                      | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist                               |
       | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
       | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                                          |
@@ -78,8 +78,8 @@ Feature: Section4AChecklistSelection
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
       | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)                         |
-      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)                         |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                     | Rotational Portable Power Toolss (PPT)                        |
+      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Toolss (PPT)                        |
       | Use of non-intrinsically safe Camera                          | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                                       |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather                             |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist                                 |

@@ -13,7 +13,7 @@ Feature: Section3DDRA
     Given I launch sol-x portal
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     And I navigate to section 3d
@@ -39,14 +39,14 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit      | level_two_permit      | rank                     | pin  |
-      # | Hotwork                        | Hot Work Level-2 in Designated Area                                        | Addtional Master          | 9015 |
-      # | Hotwork                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer             | 8383 |
+      # | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Addtional Master          | 9015 |
+      # | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer             | 8383 |
       | Enclosed Spaces Entry | Enclosed Spaces Entry | Additional Chief Officer | 2761 |
   # # | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Second Officer             | 6268 |
   # # | Work on Pressure Pipeline/Vessels         | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865 |
   # # | Personal Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122 |
   # # | Helicopter Operations                     | Helicopter Operation                                                       | Additional Chief Engineer  | 2761 |
-  # | Rotational Portable Power Tool | Use of Portable Power Tools                                                | Second Engineer           | 2523 |
+  # | Rotational Portable Power Tools | Use of Portable Power Tools                                                | Second Engineer           | 2523 |
   # # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030 |
   # | Cold Work                      | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer | 0856 |
   # # | Working on Deck During Heavy Weather      | Working on Deck During Heavy Weather                                       | Additional Second Engineer | 3030 |
@@ -83,14 +83,14 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit | level_two_permit                    | ra_rank          | pin  | non_ra_pin |
-      | Hotwork          | Hot Work Level-2 in Designated Area | Addtional Master | 9015 | 6727       |
-  # | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)        | Chief Officer              | 8383 | 0159       |
+      | Hot Work         | Hot Work Level-2 in Designated Area | Addtional Master | 9015 | 6727       |
+  # | Hot Work                                                       | Hot Work Level-1 (Loaded & Ballast Passage)        | Chief Officer              | 8383 | 0159       |
   # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                              | Additional Chief Officer   | 2761 | 2674       |
   # | Working Aloft/Overside                                        | Working Aloft / Overside                           | Second Officer             | 6268 | 1010       |
   # | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels        | Additional Second Officer  | 7865 | 2317       |
   # | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket              | Chief Engineer             | 5122 | 4844       |
   # | Helicopter Operations                                         | Helicopter Operation                               | Additional Chief Engineer  | 2761 | 6727       |
-  # # | Rotational Portable Power Tool            | Use of Portable Power Tools                                                | Second Engineer            | 2523 | 1311       |
+  # # | Rotational Portable Power Tools            | Use of Portable Power Tools                                                | Second Engineer            | 2523 | 1311       |
   # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | Additional Second Engineer | 3030 | 0703       |
   # # | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 0856 | 1018       |
   # | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather               | Additional Second Engineer | 3030 | 4236       |

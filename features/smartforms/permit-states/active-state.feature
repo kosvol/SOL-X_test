@@ -124,15 +124,15 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                        |
-      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     |
-      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
       | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |
       | Helicopter Operations                                         | Helicopter Operation                                                    |
-      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                             |
-      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
+      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
@@ -194,14 +194,14 @@ Feature: ActivePermit
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-  #   | Hotwork                          | submit_hotwork               | A 3/O                      | 2674 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/O                      | 2674 |
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-  #   | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
+  #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-  #   | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
-  #   | Hotwork                          | submit_hotwork               | 4/E                        | 1313 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
+  #   | Hot Work                          | submit_Hot Work               | 4/E                        | 1313 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
   # Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -215,13 +215,13 @@ Feature: ActivePermit
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
   #   # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-  #   # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
+  #   # | Hot Work                           | submit_Hot Work               | A 3/O                      | 2674 |
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-  #   | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
+  #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
   #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-  #   | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
 #   Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -233,4 +233,4 @@ Feature: ActivePermit
 #   Examples:
 #     | permit_types          | permit_payload             | rank  | pin  |
 #     | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
-# # | Hotwork                           | submit_hotwork               | ETO   | 0856 |
+# # | Hot Work                           | submit_Hot Work               | ETO   | 0856 |

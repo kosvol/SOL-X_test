@@ -109,9 +109,9 @@ Feature: Section1
       | Cold Work                                                                         | Cold Work - Cleaning Up of Spill                              |
       | Enclosed Spaces Entry                                                             | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                                             | Helicopter Operations                                         |
-      | Hotwork                                                                           | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | Hot Work                                                                          | Hot Work Level-1 (Loaded & Ballast Passage)                   |
       | Personal Transfer By Transfer Basket                                              | Personal Transfer By Transfer Basket                          |
-      | Rotational Portable Power Tool                                                    | Use of Portable Power Tools                                   |
+      | Rotational Portable Power Tools                                                   | Use of Portable Power Tools                                   |
       | Underwater Operations                                                             | Underwater Operation at night                                 |
       | Use of non-intrinsically safe Camera                                              | Use of non-intrinsically safe Camera                          |
       | Use of ODME in Manual Mode                                                        | Use of ODME in Manual Mode                                    |
@@ -124,7 +124,7 @@ Feature: Section1
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2

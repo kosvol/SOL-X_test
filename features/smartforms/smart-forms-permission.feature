@@ -73,10 +73,10 @@ Feature: SmartFormsPermission
       | Critical Equipment Maintenance                                |
       | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                         |
-      | Hotwork                                                       |
+      | Hot Work                                                      |
       | Personal Transfer By Transfer Basket                          |
       | Rigging of Gangway & Pilot Ladder                             |
-      | Rotational Portable Power Tool                                |
+      | Rotational Portable Power Tools                               |
       | Underwater Operations                                         |
       | Use of non-intrinsically safe Camera                          |
       | Use of ODME in Manual Mode                                    |
@@ -95,12 +95,12 @@ Feature: SmartFormsPermission
     And I tear down created form
 
     Examples:
-      | permit                         |
-      | Cold Work                      |
-      | Critical Equipment Maintenance |
-      | Hotwork                        |
-      | Rotational Portable Power Tool |
-      | Underwater Operations          |
+      | permit                          |
+      | Cold Work                       |
+      | Critical Equipment Maintenance  |
+      | Hot Work                        |
+      | Rotational Portable Power Tools |
+      | Underwater Operations           |
 
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable
