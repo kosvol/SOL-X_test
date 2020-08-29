@@ -39,6 +39,7 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                           | rank                       | pin  |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Master                     | 1111 |
       | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 9015 |
       | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 |
