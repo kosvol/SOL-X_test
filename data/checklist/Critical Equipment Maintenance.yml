@@ -1,10 +1,8 @@
 labels:
   [
-    "Vessel Name:",
-    "Date:",
+    "Created On:",
     "Date",
     "Time",
-    "PTW No:",
     "Name of equipment/systems/alarms",
     "Reason for critical equipment maintenance",
   ]

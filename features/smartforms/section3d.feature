@@ -29,7 +29,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin <pin>
+    And I enter pin <ra_pin>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
@@ -38,20 +38,20 @@ Feature: Section3DDRA
     Then I should see signed details
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                           | rank                       | pin  |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Master                     | 1111 |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 9015 |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 |
-      | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Second Officer             | 6268 |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865 |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122 |
-      | Helicopter Operations                                         | Helicopter Operation                                                       | Additional Chief Engineer  | 2761 |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                | Second Engineer            | 2523 |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030 |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 0856 |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                       | 3/O                        | 0159 |
-      | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | A 3/O                      | 2674 |
+      | level_one_permit                                              | level_two_permit                                                           | rank                       | ra_pin | pin  |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Master                     | 9015   | 1111 |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                        | Addtional Master           | 9015   | 9015 |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383   | 8383 |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761   | 2761 |
+      | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Second Officer             | 6268   | 6268 |
+      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865   | 7865 |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122   | 5122 |
+      | Helicopter Operations                                         | Helicopter Operation                                                       | Additional Chief Engineer  | 2761   | 2761 |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                | Second Engineer            | 2523   | 2523 |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030   | 3030 |
+      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard    | Electro Technical Officer  | 0856   | 0856 |
+      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                       | 3/O                        | 0159   | 0159 |
+      | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | A 3/O                      | 2674   | 2674 |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
