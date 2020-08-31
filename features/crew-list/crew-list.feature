@@ -148,8 +148,8 @@ Feature: CrewList
       # | CDEV_SOLX0020 | PMN          |
       | test_A047     | FTR          |
       | test_A048     | OLR          |
-      # | test_data_jun25 | CCK          |
-      | test_b001     | 2CK          |
+  # | test_data_jun25 | CCK          |
+  # | test_b001     | 2CK          |
   # | test_A039     | FSTO         |
   # | test_A042     | RDCRW        |
   # | test_A046     | SPM          |

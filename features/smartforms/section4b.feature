@@ -111,6 +111,8 @@ Feature: Section4BEIC
     Examples:
       | user         | zoneid                     | mac               | location_stamp   | level_one_permit                | level_two_permit            | checklist                              |
       | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Toolss (PPT) |
+      | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Toolss (PPT) |
+      | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Toolss (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal

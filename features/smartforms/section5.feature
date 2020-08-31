@@ -13,6 +13,6 @@ Feature: Section5RA
     And I fill up section 1
     And I navigate to section 5
 
-  Scenario: Verify user can see a list of roles
+# Scenario: Verify user can see a list of roles
 
-  Scenario: Verify user can sign on responsiblity and reflected as roles for the crew
+# Scenario: Verify user can sign on responsiblity and reflected as roles for the crew
