@@ -13,6 +13,7 @@ class Section4BPage < Section4APage
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]")
   element(:signature, xpath: "//div[@class='signature']/img")
   span(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/button/span")
+  # span(:location_stamp, xpath: "//p[starts-with(@class,'Input__Answer')]")
 
   # sub form
   elements(:eic_date_and_time, xpath: "//button[@id='eic_eicCreatedDate']")

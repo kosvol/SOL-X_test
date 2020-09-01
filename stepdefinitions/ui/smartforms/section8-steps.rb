@@ -15,17 +15,17 @@ end
 Then (/^I (should|should not) see EIC normalize extra questions$/) do |_condition|
   sleep 1
   if _condition === 'should'
-    is_equal($browser.find_elements(:xpath, '//input').size, '25')
+    is_equal($browser.find_elements(:xpath, '//input').size, '27')
   end
   if _condition === 'should not'
-    is_equal($browser.find_elements(:xpath, '//input').size, '15')
+    is_equal($browser.find_elements(:xpath, '//input').size, '17')
   end
 end
 
 Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
-  is_equal($browser.find_elements(:xpath, '//input').size, '19')
+  is_equal($browser.find_elements(:xpath, '//input').size, '21')
   rescue
-  is_equal($browser.find_elements(:xpath, '//input').size, '29')
+  is_equal($browser.find_elements(:xpath, '//input').size, '31')
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
