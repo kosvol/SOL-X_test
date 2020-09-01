@@ -60,7 +60,7 @@ Feature: Section4BEIC
   #     # | Additional Chief Officer   | 2761 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
   #     | Second Officer             | 6268 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
   #     # | Additional Second Officer  | 7865 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     | Chief Engineer             | 5122 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)    |
+  #     | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)    |
   #     # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
   #     | Additional Second Engineer | 3030 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
   #     # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
@@ -126,7 +126,7 @@ Feature: Section4BEIC
     And I press next for 2 times
     And I link wearable to a issue authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
-    Then I sign EIC as issuing authority with pin 5122
+    Then I sign EIC as issuing authority with pin 8248
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
@@ -154,7 +154,7 @@ Feature: Section4BEIC
       | Master | 1111 | Hot Work         | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
   # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
   # | D/C    | 2317 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
-  # | 3/E    | 4844 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
+  # | 3/E    | 4685 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
   # | A 3/E  | 6727 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
   # | 4/E    | 1311 | Rotational Portable Power Tools            | Use of Portable Power Tools                                                | Rotational Portable Power Toolss (PPT)     |
   # | A 4/E  | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
@@ -182,7 +182,7 @@ Feature: Section4BEIC
 
   #   Examples:
   #     | rank | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-  #     | C/E  | 5122 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+  #     | C/E  | 8248 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
@@ -256,7 +256,7 @@ Feature: Section4BEIC
       # | Additional Chief Officer   | 2761 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       | Second Officer             | 6268 | Enclosed Spaces Entry           | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
       # | Additional Second Officer  | 7865 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-      | Chief Engineer             | 5122 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)   |
+      | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)   |
       # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
       # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |

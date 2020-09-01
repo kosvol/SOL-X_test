@@ -71,7 +71,7 @@ Feature: Section8
 
     Examples:
       | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user         | zoneid                     | mac               | location_stamp   |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 5122 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -104,7 +104,7 @@ Feature: Section8
       | Hot Work                         | submit_Hot Work              | Additional Chief Officer | 2761 |
   ## | Hot Work                           | submit_Hot Work               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
-  ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
+  ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
   ## | Hot Work                           | submit_Hot Work               | Additional Chief Engineer  | 2761 |
   ## | Hot Work                           | submit_Hot Work               | Second Engineer            | 2523 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 3030 |
@@ -124,7 +124,7 @@ Feature: Section8
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 2761 |
 ## | Hot Work                           | submit_Hot Work               | Second Officer             | 6268 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
-## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 5122 |
+## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 2761 |
 ## | Hot Work                           | submit_Hot Work               | Second Engineer            | 2523 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 3030 |

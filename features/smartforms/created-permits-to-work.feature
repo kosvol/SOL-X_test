@@ -72,7 +72,7 @@ Feature: CreatedPermitToWork
   #     | Master | 1111 |
   # | 3/O    | 0159 |
   # | A 3/O  | 2674 |
-  # | 3/E    | 4844 |
+  # | 3/E    | 4685 |
   # | A 3/E  | 6727 |
   # | 4/O    | 1010 |
   # | A 4/O  | 1537 |
@@ -112,22 +112,22 @@ Feature: CreatedPermitToWork
     Then I should see gas reader section with fields enabled
 
     Examples:
-      | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
-      | Master                     | 1111 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A/M                        | 9015 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
-      | C/O                        | 8383 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A C/O                      | 2761 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | 2/O                        | 6268 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | A 2/O                      | 7865 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
-      | 3/O                        | 0159 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A 3/O                      | 2674 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
-      | Chief Engineer             | 5122 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | Additional Chief Engineer  | 8555 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
-      | Second Engineer            | 2523 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Additional Second Engineer | 3030 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
-      | 3/E                        | 4844 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | rank                       | pin      | level_one_permit                                              | level_two_permit                                              |
+      | Master                     | 1111     | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | A/M                        | 9015     | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
+      | C/O                        | 8383     | Underwater Operations                                         | Underwater Operation at night                                 |
+      | A C/O                      | 2761     | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | 2/O                        | 6268     | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | A 2/O                      | 7865     | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
+      | 3/O                        | 0159     | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | A 3/O                      | 2674     | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
+      | Chief Engineer             | 8248     | Underwater Operations                                         | Underwater Operation at night                                 |
+      | Additional Chief Engineer  | 46851121 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
+      | Second Engineer            | 2523     | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | Additional Second Engineer | 3030     | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
+      | 3/E                        | 4685     | Underwater Operations                                         | Underwater Operation at night                                 |
+      | A 3/E                      | 6727     | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | 4/E                        | 1311     | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
 
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
@@ -147,7 +147,7 @@ Feature: CreatedPermitToWork
       | rank                       | pin  |
       | 3/O                        | 0159 |
       | A 3/O                      | 2674 |
-      | 3/E                        | 4844 |
+      | 3/E                        | 4685 |
       | A 3/E                      | 6727 |
       | 4/E                        | 1311 |
       | A 4/E                      | 0703 |
@@ -156,7 +156,7 @@ Feature: CreatedPermitToWork
       | Additional Chief Officer   | 2761 |
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
-      | Chief Engineer             | 5122 |
+      | Chief Engineer             | 8248 |
       | Additional Chief Engineer  | 2761 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |

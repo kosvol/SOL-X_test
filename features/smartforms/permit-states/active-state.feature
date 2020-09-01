@@ -195,11 +195,11 @@ Feature: ActivePermit
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
   #   | Hot Work                          | submit_Hot Work               | A 3/O                      | 2674 |
-  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
-  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
   #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
   #   | Hot Work                          | submit_Hot Work               | 4/E                        | 1313 |
 
@@ -216,11 +216,11 @@ Feature: ActivePermit
   #   # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
   #   # | Hot Work                           | submit_Hot Work               | A 3/O                      | 2674 |
-  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
   #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
-  #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
+  #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
   #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit

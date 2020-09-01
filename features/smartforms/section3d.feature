@@ -45,7 +45,7 @@ Feature: Section3DDRA
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761   | 2761 |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Second Officer             | 6268   | 6268 |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865   | 7865 |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122   | 5122 |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 8248   | 8248 |
       | Helicopter Operations                                         | Helicopter Operation                                                       | Additional Chief Engineer  | 2761   | 2761 |
       | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                | Second Engineer            | 2523   | 2523 |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030   | 3030 |
@@ -87,7 +87,7 @@ Feature: Section3DDRA
       # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 | 3/O         | 0159       |
       # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 | A 3/O       | 2674       |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                | Additional Second Officer  | 7865 | D/C         | 2317       |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 5122 | 3/E         | 4844       |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                      | Chief Engineer             | 8248 | 3/E         | 4685       |
       | Helicopter Operations                                         | Helicopter Operation                                                       | Additional Chief Engineer  | 2761 | A 3/E       | 6727       |
       | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                | Second Engineer            | 2523 | 4/E         | 1311       |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Additional Second Engineer | 3030 | A 4/E       | 0703       |
