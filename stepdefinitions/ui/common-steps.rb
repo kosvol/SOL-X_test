@@ -43,7 +43,11 @@ And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
     sleep 1.5
     # BrowserActions.scroll_down
-    on(Section4APage).next_btn
+    begin
+      on(Section4APage).next_btn
+    rescue StandardError
+      on(Section4APage).save_and_next_btn
+    end
   end
 end
 

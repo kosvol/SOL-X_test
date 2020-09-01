@@ -23,6 +23,10 @@ class SmartFormsPermissionPage < CommonPage
   button(:sign_btn, xpath: "//button[contains(.,'Sign')]")
   button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
   button(:done_btn, xpath: "//button[contains(.,'Done')]")
+  button(:previous_btn, xpath: "//button[contains(.,'Previous')]")
+  button(:close_btn, xpath: "//button[contains(.,'Close')]")
+  button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
+  button(:next_btn, xpath: "//button[contains(.,'Next')]")
 
   def set_current_time
     @@time = main_clock_element.text
