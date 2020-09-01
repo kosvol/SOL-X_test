@@ -10,7 +10,7 @@ Feature: Section7
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master approval
-    And I press next for 10 times
+    And I press next for 11 times
     Then I should see approve and request update buttons
 
     Examples:
@@ -23,7 +23,7 @@ Feature: Section7
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master review
-    And I press next for 9 times
+    And I press next for 10 times
     Then I should see submit for office approval and request update buttons
 
     Examples:

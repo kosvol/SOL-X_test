@@ -5,7 +5,6 @@ And (/^I click on permit for master (.+)$/) do |_approve_or_review|
   # match_element.click
   step 'I enter pin 1111'
   sleep 1
-  step 'I press next from section 1'
 end
 
 Then (/^I (should|should not) see approve and request update buttons$/) do |_condition|
