@@ -86,7 +86,7 @@ Feature: SubmitPermit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3b
@@ -124,7 +124,7 @@ Feature: SubmitPermit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3b

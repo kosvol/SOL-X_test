@@ -6,7 +6,7 @@ Cold Work:
     "Cold Work - Maintenance on Closed Electrical Equipment and Circuits",
     "Cold Work - Maintenance Work on Machinery",
     "Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds",
-    "Cold Work - Working in Hazardous or Dangerous Area",
+    "Cold Work - Working in Hazardous or Dangerous Areas",
   ]
 
 Critical Equipment Maintenance:
@@ -30,7 +30,7 @@ Critical Equipment Maintenance:
     "Maintenance on Radio Battery",
   ]
 
-Hotwork:
+Hot Work:
   [
     "Hot Work Level-1 (Loaded & Ballast Passage)",
     "Hot Work Level-2 in Designated Area",
@@ -39,7 +39,7 @@ Hotwork:
     "Hot Work Level-2 outside E/R (Loaded Passage)",
   ]
 
-Rotational Portable Power Tool:
+Rotational Portable Power Tools:
   [
     "Use of Hydro blaster/working with High-pressure tools",
     "Use of Portable Power Tools",

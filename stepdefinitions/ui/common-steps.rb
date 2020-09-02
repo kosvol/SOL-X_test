@@ -42,12 +42,11 @@ end
 And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
     sleep 1.5
-    # BrowserActions.scroll_down
-    on(Section4APage).next_btn
+    on(SmartFormsPermissionPage).click_next
   end
 end
 
-When (/^I press next from section 1$/) do
-  sleep 1
-  on(Section1Page).next_btn_elements.first.click
-end
+# When (/^I press next from section 1$/) do
+#   sleep 1
+#   on(Section1Page).next_btn_elements.first.click
+# end

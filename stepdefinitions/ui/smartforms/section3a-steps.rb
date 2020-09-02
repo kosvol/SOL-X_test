@@ -81,9 +81,13 @@ end
 
 Then (/^I should see additional hazard data save$/) do
   on(Section3APage).previous_btn
+  sleep 1
   on(Section3APage).next_btn
+  sleep 1
   on(Section3APage).next_btn
+  sleep 1
   on(Section3APage).previous_btn
+  sleep 1
   is_true(on(Section3APage).is_additional_hazard_saved)
 end
 

@@ -50,7 +50,7 @@ Then (/^I should see second level permits details$/) do
 end
 
 And (/^I navigate to level 2 permits$/) do
-  step "I select #{['Cold Work', 'Critical Equipment Maintenance', 'Hotwork', 'Rotational Portable Power Tool', 'Underwater Operations'].sample} permit"
+  step "I select #{['Cold Work', 'Critical Equipment Maintenance', 'Hot Work', 'Rotational Portable Power Tools', 'Underwater Operations'].sample} permit"
 end
 
 And (/^I navigate back to permit selection screen$/) do

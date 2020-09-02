@@ -33,8 +33,8 @@ And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
 end
 
 Then (/^I should see checklist section with fields enabled$/) do
-  step 'I press next from section 1'
-  step 'I press next for 5 times'
+  # step 'I press next from section 1'
+  step 'I press next for 6 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
   step 'I press next for 1 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
@@ -54,14 +54,14 @@ And (/^I should see gas reading section with fields enabled$/) do
 end
 
 Then (/^I should see gas reader section with fields enabled$/) do
-  step 'I press next from section 1'
-  step 'I press next for 9 times'
+  # step 'I press next from section 1'
+  step 'I press next for 10 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
-  step 'I press next from section 1'
-  step 'I press next for 7 times'
+  # step 'I press next from section 1'
+  step 'I press next for 9 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 

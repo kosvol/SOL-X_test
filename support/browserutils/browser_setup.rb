@@ -60,11 +60,13 @@ class BrowserSetup
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'
-    if ENV['DEVICE'] === 'dashboard'
-      @device = YAML.load_file('config/devices.yml')['dashboard_chrome']
-    elsif ENV['DEVICE'] === 'tablet'
-      @device = YAML.load_file('config/devices.yml')['tablet_chrome']
-    end
+    @device = if ENV['DEVICE'] === 'dashboard'
+                YAML.load_file('config/devices.yml')['dashboard_chrome']
+              elsif ENV['DEVICE'] === 'tablet'
+                YAML.load_file('config/devices.yml')['tablet_chrome']
+              else
+                YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+              end
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
       {
@@ -75,7 +77,8 @@ class BrowserSetup
           deviceName: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
           newCommandTimeout: 420,
-          chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080,https://cloud-edge.stage.solas.magellanx.io:8443', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           # :fullReset => fullreset,
           noReset: noreset
         },

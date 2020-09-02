@@ -37,11 +37,17 @@ And ('I sign checklist with respective checklist creator {int}') do |_pin|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  step "I sign on section with #{_pin} pin"
+  step "I sign on checklist with #{_pin} pin"
 end
 
 And ('I sign on section with {int} pin') do |_pin|
   on(Section4APage).sign_btn
+  @@entered_pin = _pin
+  on(PinPadPage).enter_pin(@@entered_pin)
+end
+
+And ('I sign on checklist with {int} pin') do |_pin|
+  on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
 end

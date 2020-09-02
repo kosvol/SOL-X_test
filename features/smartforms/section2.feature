@@ -8,7 +8,7 @@ Feature: Section2ApprovalAuthority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2
@@ -27,15 +27,15 @@ Feature: Section2ApprovalAuthority
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                        |
-      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     |
-      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
-      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
       | Helicopter Operations                                         | Helicopter Operation                                                    |
-      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                             |
-      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
+      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
@@ -43,7 +43,7 @@ Feature: Section2ApprovalAuthority
       | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
       | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
-      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Area                      |
+      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
@@ -121,9 +121,9 @@ Feature: Section2ApprovalAuthority
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Master        | Head, Fleet Operations                                          |
       | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Master        | Director, Fleet Operations                                      |
       | Underwater Operations                | Underwater Operation at night                                                   | Master        | Director, Fleet Operations                                      |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
-      | Hotwork                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
-      | Hotwork                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
+      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
+      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
+      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Master        | MS/VS                                                           |
       | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Master        | Director, Fleet Operations (shore Approving Authority)          |
 
@@ -131,7 +131,7 @@ Feature: Section2ApprovalAuthority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hotwork permit
+    And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I fill up section 1
     Then I should see section 2

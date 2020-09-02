@@ -34,7 +34,7 @@ Feature: SmartFormsPermission
       | Additional Chief Officer   | 2761 |
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
-      | Chief Engineer             | 5122 |
+      | Chief Engineer             | 8248 |
       | Additional Chief Engineer  | 2761 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |
@@ -53,7 +53,7 @@ Feature: SmartFormsPermission
       | Master | 1111 |
       # | 4/O    | 1010 |
       | D/C    | 2317 |
-      | 3/E    | 4844 |
+      | 3/E    | 4685 |
       | A 3/E  | 6727 |
       | 4/E    | 1311 |
       | A 4/E  | 0703 |
@@ -72,10 +72,10 @@ Feature: SmartFormsPermission
       | Critical Equipment Maintenance                                |
       | Enclosed Spaces Entry                                         |
       | Helicopter Operations                                         |
-      | Hotwork                                                       |
-      | Personal Transfer By Transfer Basket                          |
+      | Hot Work                                                      |
+      | Personnel Transfer By Transfer Basket                         |
       | Rigging of Gangway & Pilot Ladder                             |
-      | Rotational Portable Power Tool                                |
+      | Rotational Portable Power Tools                               |
       | Underwater Operations                                         |
       | Use of non-intrinsically safe Camera                          |
       | Use of ODME in Manual Mode                                    |
@@ -94,12 +94,12 @@ Feature: SmartFormsPermission
     And I tear down created form
 
     Examples:
-      | permit                         |
-      | Cold Work                      |
-      | Critical Equipment Maintenance |
-      | Hotwork                        |
-      | Rotational Portable Power Tool |
-      | Underwater Operations          |
+      | permit                          |
+      | Cold Work                       |
+      | Critical Equipment Maintenance  |
+      | Hot Work                        |
+      | Rotational Portable Power Tools |
+      | Underwater Operations           |
 
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable

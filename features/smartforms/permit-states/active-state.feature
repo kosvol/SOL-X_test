@@ -15,11 +15,11 @@ Feature: ActivePermit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
     When I press next for 9 times
-    Then I submit permit for Master Approval
-    When I click on back to home
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I approve maintenance permit
-    When I click on back to home
+    And I click on back to home
     And I click on active filter
     Then I should see issue date display
 
@@ -29,10 +29,9 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
-    # And I fill ROL permit
     And I press next from section 1
-    Then I submit permit for Master Approval
-    When I click on back to home
+    And I submit permit for Master Approval
+    And I click on back to home
     And I set rol permit to active state with 1 duration
     And I click on active filter
     Then I should see issue date display
@@ -58,12 +57,12 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
-    When I press next for 9 times
-    Then I submit permit for Master Approval
-    When I click on back to home
+    And I press next for 9 times
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I approve maintenance permit
-    When I click on back to home
+    And I click on back to home
     And I click on active filter
     Then I should see permit valid for 2 hours
 
@@ -114,26 +113,26 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
-    When I press next for 9 times
-    Then I submit permit for Master Approval
-    When I click on back to home
+    And I press next for 9 times
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I approve maintenance permit
-    When I click on back to home
+    And I click on back to home
     And I click on active filter
     Then I should see permit valid for 8 hours
 
     Examples:
       | level_one_permit                                              | level_two_permit                                                        |
-      | Hotwork                                                       | Hot Work Level-2 in Designated Area                                     |
-      | Hotwork                                                       | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
-      | Personal Transfer By Transfer Basket                          | Personnel Transfer by Transfer Basket                                   |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
       | Helicopter Operations                                         | Helicopter Operation                                                    |
-      | Rotational Portable Power Tool                                | Use of Portable Power Tools                                             |
-      | Rotational Portable Power Tool                                | Use of Hydro blaster/working with High-pressure tools                   |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
+      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
@@ -145,143 +144,93 @@ Feature: ActivePermit
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
-    And I set oa permit to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button enabled
+  # Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+  # And I set oa permit to active state
+  # And I launch sol-x portal without unlinking wearable
+  # And I click on active filter
+  # And I update active permit with <rank> rank and <pin> pin
+  # Then I should see Add Gas Reading button enabled
 
-    Examples:
-      | permit_types | permit_payload                 | rank | pin  |
-      # | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
-      | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
+  # Examples:
+  #   | permit_types | permit_payload                 | rank | pin  |
+  #   # | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
+  #   | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
-    And I set oa permit to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should not see gas reader sections on active permit
+  # Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
+  # And I set oa permit to active state
+  # And I launch sol-x portal without unlinking wearable
+  # And I click on active filter
+  # And I update active permit with <rank> rank and <pin> pin
+  # Then I should not see gas reader sections on active permit
 
-    Examples:
-      | permit_types | permit_payload                 | rank  | pin  |
-      # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
-      | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
+  # Examples:
+  #   | permit_types | permit_payload                 | rank  | pin  |
+  #   # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
+  #   | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I set oa permit to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button disabled
+  # Given I submit permit <permit_payload> via service with 9015 user and set to active state
+  # And I set oa permit to active state
+  # And I launch sol-x portal without unlinking wearable
+  # And I click on active filter
+  # And I update active permit with <rank> rank and <pin> pin
+  # Then I should see Add Gas Reading button disabled
 
-    Examples:
-      | permit_types | permit_payload                 | rank | pin  |
-      # | underwater         | submit_underwater_simultaneous | A 4/E | 0703 |
-      | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
-
-  Scenario Outline: Verify View button display when permit does not require Gas Reading for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
-    And I set oa permit to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    Then I should see View as button text
-
-    Examples:
-      | permit_types       | permit_payload                |
-      | intrinsical camera | submit_non_intrinsical_camera |
-  # | underwater         | submit_underwater_simultaneous |
-
-  Scenario Outline: Verify Update Reading button display when permit requires Gas Reading for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
-    And I set oa permit to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    Then I should see Update Readings as button text
-
-    Examples:
-      | permit_types | permit_payload                 |
-      # | intrinsical camera | submit_non_intrinsical_camera  |
-      | underwater   | submit_underwater_simultaneous |
+  # Examples:
+  #   | permit_types | permit_payload                 | rank | pin  |
+  #   # | underwater         | submit_underwater_simultaneous | A 4/E | 0703 |
+  #   | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button enabled
+  # Given I submit permit <permit_payload> via service with 9015 user and set to active state
+  # And I launch sol-x portal without unlinking wearable
+  # And I click on active filter
+  # And I update active permit with <rank> rank and <pin> pin
+  # Then I should see Add Gas Reading button enabled
 
-    Examples:
-      | permit_types                     | permit_payload               | rank                       | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-      | Hotwork                          | submit_hotwork               | A 3/O                      | 2674 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-      | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-      | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
-      | Hotwork                          | submit_hotwork               | 4/E                        | 1313 |
+  # Examples:
+  #   | permit_types                     | permit_payload               | rank                       | pin  |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
+  #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
+  #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/O                      | 2674 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
+  #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
+  #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
+  #   | Hot Work                          | submit_Hot Work               | 4/E                        | 1313 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should not see gas reader sections on active permit
+  # Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
+  # And I launch sol-x portal without unlinking wearable
+  # And I click on active filter
+  # And I update active permit with <rank> rank and <pin> pin
+  # Then I should not see gas reader sections on active permit
 
-    Examples:
-      | permit_types                     | permit_payload               | rank                       | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
-      # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-      # | Hotwork                           | submit_hotwork               | A 3/O                      | 2674 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 5122 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-      | Hotwork                          | submit_hotwork               | Additional Second Engineer | 3030 |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4844 |
-      | Hotwork                          | submit_hotwork               | A 3/E                      | 6727 |
+  # Examples:
+  #   | permit_types                     | permit_payload               | rank                       | pin  |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
+  #   # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
+  #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
+  #   # | Hot Work                           | submit_Hot Work               | A 3/O                      | 2674 |
+  #   | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
+  #   | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+  #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
+  #   | Hot Work                          | submit_Hot Work               | Additional Second Engineer | 3030 |
+  #   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
+  #   | Hot Work                          | submit_Hot Work               | A 3/E                      | 6727 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button disabled
+#   Given I submit permit <permit_payload> via service with 9015 user and set to active state
+#   And I launch sol-x portal without unlinking wearable
+#   And I click on active filter
+#   And I update active permit with <rank> rank and <pin> pin
+#   Then I should see Add Gas Reading button disabled
 
-    Examples:
-      | permit_types          | permit_payload             | rank  | pin  |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
-  # | Hotwork                           | submit_hotwork               | ETO   | 0856 |
-
-  Scenario Outline: Verify Update Reading button display when permit requires Gas Permit for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    Then I should see Update Readings as button text
-
-    Examples:
-      | permit_types | permit_payload |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill |
-      # | Enclosed Spaces Entry              | submit_enclose_space_entry   |
-      # | Enclosed Spaces Entry              | submit_enclose_space_entry   |
-      | Hotwork      | submit_hotwork |
-
-  Scenario Outline: Verify View button display when permit does not require Gas Permit for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state and no gas reading
-    And I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    Then I should see View as button text
-
-    Examples:
-      | permit_types | permit_payload |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill |
-      # | Enclosed Spaces Entry              | submit_enclose_space_entry   |
-      # | Enclosed Spaces Entry              | submit_enclose_space_entry   |
-      | Hotwork      | submit_hotwork |
+#   Examples:
+#     | permit_types          | permit_payload             | rank  | pin  |
+#     | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
+# # | Hot Work                           | submit_Hot Work               | ETO   | 0856 |

@@ -6,7 +6,8 @@ class Section3APage < Section2Page
   include PageObject
 
   # elements(:hazard_cards, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div")
-  button(:view_edit_hazard, xpath: "//div[starts-with(@class,'Card-')]/div/button")
+  # button(:view_edit_btn, xpath: "//div[starts-with(@class,'Card-')]/div/button")
+  button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
   # buttons(:delete_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[1]/div/button")
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
@@ -29,7 +30,7 @@ class Section3APage < Section2Page
   buttons(:confirm_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[2]")
 
   def is_additional_hazard_saved
-    view_edit_hazard
+    view_edit_btn
     description_elements[2].text === 'Test Automation'
   end
 
@@ -42,13 +43,14 @@ class Section3APage < Section2Page
 
   def add_additional_hazard
     sleep 1
+    view_edit_btn
     toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
     BrowserActions.enter_text(description_elements[2], 'Test Automation')
     save_and_close
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
-    view_edit_hazard
+    view_edit_btn
     sleep 1
     BrowserActions.scroll_down
     sleep 1
@@ -64,7 +66,7 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
-    view_edit_hazard
+    view_edit_btn
     sleep 1
     BrowserActions.scroll_down
     BrowserActions.scroll_down
@@ -194,7 +196,7 @@ class Section3APage < Section2Page
   private
 
   def click_add_additional_hazard
-    view_edit_hazard
+    view_edit_btn
   rescue StandardError
   end
 

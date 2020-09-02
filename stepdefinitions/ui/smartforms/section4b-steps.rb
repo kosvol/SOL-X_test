@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And (/^I link wearable to a (RA|competent person|issue authority) (.+) and link to zoneid (.+) and mac (.+)$/) do |_condition, _user, zoneid, mac|
+And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and link to zoneid (.+) and mac (.+)$/) do |_condition, _user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -59,7 +59,7 @@ And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
 end
 
 And (/^I should see location (.+) stamp$/) do |_location|
-  is_equal(on(Section4BPage).location_stamp, _location)
+  is_equal(on(Section4BPage).location_stamp_element.text, _location)
 end
 
 And (/^I should see signature$/) do
