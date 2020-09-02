@@ -12,9 +12,9 @@ And (/^I want to edit the newly created permit$/) do
 end
 
 Then (/^I should see correct permit details$/) do
-  is_equal(on(SmartFormsPermissionPage).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[2])
-  is_equal(on(SmartFormsPermissionPage).generic_data_elements[1].text, on(SmartFormsPermissionPage).ptw_id_element.text)
-  is_equal(on(SmartFormsPermissionPage).generic_data_elements[0].text, 'SIT')
+  is_equal(on(Section0Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[2])
+  is_equal(on(Section0Page).generic_data_elements[1].text, on(Section0Page).ptw_id_element.text)
+  is_equal(on(Section0Page).generic_data_elements[0].text, 'SIT')
 end
 
 And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_rank, _pin|
@@ -24,7 +24,7 @@ And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_r
 end
 
 Then (/^I should see permit id populated$/) do
-  is_true(does_include(on(SmartFormsPermissionPage).form_number, 'SIT/PTW/'))
+  is_true(does_include(on(Section0Page).form_number, 'SIT/PTW/'))
 end
 
 And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|

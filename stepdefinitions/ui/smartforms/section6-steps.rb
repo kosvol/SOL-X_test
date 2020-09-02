@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I navigate to section (.+)$/) do |_which_section|
-  on(Section6Page).toggle_to_section(on(SmartFormsPermissionPage).get_selected_level2_permit, _which_section)
+  on(Section6Page).toggle_to_section(on(Section0Page).get_selected_level2_permit, _which_section)
 end
 
 Then (/^I should see master review button only$/) do
@@ -43,7 +43,7 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   step 'I enter pin 9015'
   step 'I sign on canvas'
   # data collector; will evolve
-  on(SmartFormsPermissionPage).reset_data_collector
+  on(Section0Page).reset_data_collector
   @@created_permit_data = on(Section1Page).set_section1_filled_data
 end
 

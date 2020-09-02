@@ -35,7 +35,7 @@ Then (/^I should see section 3a screen$/) do
 end
 
 Then (/^I should see correct likelihood,consequence and risk indicator$/) do
-  selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  selected_permit = on(Section0Page).get_selected_level2_permit
   sleep 1
   is_true(on(Section3APage).is_risk_indicator?(selected_permit))
   is_true(on(Section3APage).is_risk_indicator_color?(selected_permit))
@@ -44,20 +44,20 @@ Then (/^I should see correct likelihood,consequence and risk indicator$/) do
 end
 
 Then (/^I should see correct DRA page 1 risk indicator content$/) do
-  selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  selected_permit = on(Section0Page).get_selected_level2_permit
   sleep 1
   is_true(on(Section3APage).is_risk_indicator?(selected_permit))
   is_true(on(Section3APage).is_risk_indicator_color?(selected_permit))
 end
 
 Then (/^I should see correct DRA page 1 likelihood content$/) do
-  selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  selected_permit = on(Section0Page).get_selected_level2_permit
   sleep 1
   is_true(on(Section3APage).is_likelihood_value?(selected_permit))
 end
 
 Then (/^I should see correct DRA page 1 consequence content$/) do
-  selected_permit = on(SmartFormsPermissionPage).get_selected_level2_permit
+  selected_permit = on(Section0Page).get_selected_level2_permit
   sleep 1
   is_true(on(Section3APage).is_consequence_value?(selected_permit))
 end
@@ -66,8 +66,8 @@ Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
   # on(Section4BPage).set_current_time
   does_include(on(Section3APage).generic_data_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}/")
-  is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(SmartFormsPermissionPage).get_current_date_format_with_offset)
-  is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(SmartFormsPermissionPage).get_current_time_format)
+  is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(Section0Page).get_current_date_format_with_offset)
+  is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(Section0Page).get_current_time_format)
 end
 
 Then (/^I should see Date and Time fields disabled$/) do

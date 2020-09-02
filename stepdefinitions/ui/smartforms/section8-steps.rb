@@ -8,7 +8,7 @@ And (/^I should see (.+) rank and name for section 8$/) do |_rank|
 end
 
 And (/^I should see signed date and time for section 8$/) do
-  on(SmartFormsPermissionPage).set_current_time
+  on(Section0Page).set_current_time
   is_equal(on(Section8Page).rank_name_and_date_elements.last.text, on(Section8Page).get_signed_date_time)
 end
 

@@ -25,7 +25,7 @@ And ('I sleep for {int} seconds') do |sec|
 end
 
 And (/^I click on back arrow$/) do
-  on(SmartFormsPermissionPage).back_arrow_element.click
+  on(Section0Page).back_arrow_element.click
 end
 
 Then (/^I sign on canvas$/) do
@@ -42,11 +42,6 @@ end
 And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
     sleep 1.5
-    on(SmartFormsPermissionPage).click_next
+    on(Section0Page).click_next
   end
 end
-
-# When (/^I press next from section 1$/) do
-#   sleep 1
-#   on(Section1Page).next_btn_elements.first.click
-# end

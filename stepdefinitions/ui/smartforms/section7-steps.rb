@@ -32,6 +32,6 @@ Then (/^I (should|should not) see submit for office approval and request update 
 end
 
 And (/^I open a permit pending Master (.+) with (.+) rank and (.+) pin$/) do |_approve_or_review, _rank, _pin|
-  on(SmartFormsPermissionPage).master_approval_elements[0].click
+  on(Section0Page).master_approval_elements[0].click
   step "I enter pin #{_pin}"
 end

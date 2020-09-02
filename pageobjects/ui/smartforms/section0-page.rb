@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class SmartFormsPermissionPage < CommonPage
+class Section0Page < CommonPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")

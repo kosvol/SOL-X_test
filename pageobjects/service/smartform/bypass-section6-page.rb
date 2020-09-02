@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage < SmartFormsPermissionPage
+class BypassPage < Section0Page
   include PageObject
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
