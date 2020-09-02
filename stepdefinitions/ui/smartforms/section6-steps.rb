@@ -64,32 +64,23 @@ end
 And(/^I (should|should not) see gas_equipment_input$/) do |_condition|
   if _condition === 'should'
     to_exists(on(Section6Page).gas_equipment_input_element)
-    # is_equal(on(Section6Page).is_gas_equipment_input_exist?, true)
-  end
-  if _condition === 'should not'
+  elsif _condition === 'should not'
     not_to_exists(on(Section6Page).gas_equipment_input_element)
-    # is_equal(on(Section6Page).is_gas_equipment_input_exist?, false)
   end
 end
 
 And(/^I (should|should not) see gas_sr_number_input$/) do |_condition|
   if _condition === 'should'
     to_exists(on(Section6Page).gas_sr_number_input_element)
-    # is_equal(on(Section6Page).is_gas_sr_number_input_exist?, true)
-  end
-  if _condition === 'should not'
+  elsif _condition === 'should not'
     not_to_exists(on(Section6Page).gas_sr_number_input_element)
-    # is_equal(on(Section6Page).is_gas_sr_number_input_exist?, false)
   end
 end
 
 And(/^I (should|should not) see gas_last_calibration_button$/) do |_condition|
   if _condition === 'should'
     to_exists(on(Section6Page).gas_last_calibration_button_element)
-    # is_equal(on(Section6Page).is_last_calibration_btn_exits?, true)
-  end
-  if _condition === 'should not'
+  elsif _condition === 'should not'
     not_to_exists(on(Section6Page).gas_last_calibration_button_element)
-    # is_equal(on(Section6Page).is_last_calibration_btn_exits?, false)
   end
 end
