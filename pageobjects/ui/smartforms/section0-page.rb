@@ -32,6 +32,12 @@ class SmartFormsPermissionPage < CommonPage
     @@time = main_clock_element.text
   end
 
+  def click_next
+    next_btn
+  rescue StandardError
+    save_and_next_btn
+  end
+
   def get_current_time_format
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')

@@ -24,7 +24,7 @@ And (/^I review page 2 of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   sleep 1
   does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
   does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
@@ -34,7 +34,7 @@ And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   base_data = @@form_data['section3b']
   capture_data = on(Section3BPage).get_filled_section
   base_data.delete_at(6)
@@ -54,26 +54,26 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   sleep 4
   is_equal(on(Section3CPage).dra_team_name_elements.first.text, @@form_data['section3c'])
 end
 
 And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   sleep 1
   p "--- #{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
 end
 
 And (/^I review page 4a of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   p "+++ #{on(Section4APage).get_filled_section}"
   is_equal(on(Section4APage).get_filled_section, @@form_data['section4a'])
 end
 
 And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   sleep 1
   does_include(on(Section4APage).checklist_date_element.text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).checklist_time_element.text, 'LT (GMT+')
@@ -86,17 +86,17 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
 end
 
 And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   ### PENDING
 end
 
 And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
-  on(Section1Page).next_btn_elements.last.click
+  on(SmartFormsPermissionPage).click_next
   p "<><><> #{on(Section6Page).get_filled_section}"
   is_equal(on(Section6Page).get_filled_section, @@form_data['section6'])
   does_include(on(Section6Page).rank_and_name_stamp, 'A/M Atif Hayat')
