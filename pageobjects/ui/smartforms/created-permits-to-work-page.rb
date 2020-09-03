@@ -40,7 +40,7 @@ class CreatedPermitToWorkPage < Section1Page
       next unless ptw_id_elements[_index].text === _permit_id
 
       p ">> #{ptw_id_elements[_index].text}"
-      return _index
+      return _index.to_i
       # break
     end
   end

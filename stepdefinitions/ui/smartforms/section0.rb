@@ -61,7 +61,7 @@ end
 
 And (/^I click on back to home$/) do
   sleep 2
-  on(Section6Page).back_to_home_btn_elements[0].click
+  on(Section6Page).back_to_home_btn
 end
 
 And (/^I click on (.+) filter$/) do |state|

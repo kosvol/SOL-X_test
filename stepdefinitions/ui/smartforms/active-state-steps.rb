@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Then (/^I should see issue date display$/) do
-  is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT+')
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
+  # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
 
 Then (/^I should see (.+) as button text$/) do |update_or_view|
@@ -37,8 +39,9 @@ Then (/^I should see permit valid for (.+) hours$/) do |_duration|
 end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
+  step 'I click on pending approval filter'
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
-  step 'I press next from section 1'
+  step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
   step 'I sign on canvas'
@@ -47,8 +50,7 @@ end
 
 And (/^I approve maintenance permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
-  step 'I press next from section 1'
-  step 'I press next for 10 times'
+  step 'I press next for 11 times'
   sleep 1
   on(Section7Page).non_oa_buttons_elements[0].click
   step 'I enter pin 1111'
