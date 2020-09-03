@@ -140,7 +140,7 @@ Feature: ActivePermit
       | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
       | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
-      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Area                      |
+      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit

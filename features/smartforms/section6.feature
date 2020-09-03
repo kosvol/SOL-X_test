@@ -63,7 +63,7 @@ Feature: Section6
   #     | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits       | Cold Work Operation Checklist                                 |
   #     | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                             | Cold Work Operation Checklist                                 |
   #     # | Cold Work                                 | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist             |
-  #     # | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Area                      | Cold Work Operation Checklist             |
+  #     # | Cold Work                                 | Cold Work - Working in Hazardous or Dangerous Areas                      | Cold Work Operation Checklist             |
   #     | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                  | Work on Deck During Heavy Weather                             |
   #     # | Underwater Operations                     | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                      |
   #     | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation | Underwater Operation                                          |
@@ -134,7 +134,7 @@ Feature: Section6
       | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
       | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Area                      | Cold Work Operation Checklist                                 |
+      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     | Cold Work Operation Checklist                                 |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather                             |
 
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
