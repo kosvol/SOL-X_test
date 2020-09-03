@@ -16,6 +16,7 @@ class Section0Page < CommonPage
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
 
   ### common locator
+  elements(:labels_scrapper, xpath: "//*[local-name()='h3' or local-name()='h2' or local-name()='h4' or local-name()='label']")
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
