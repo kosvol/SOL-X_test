@@ -11,3 +11,7 @@ Then (/^I (should|should not) see terminate permit to work and request update bu
     is_equal(on(Section7Page).previous_btn_element.text, 'Previous')
   end
 end
+
+Then (/^I should see date and time pre-fill on section (.+)$/) do |_section|
+  is_true(on(Section9Page).is_termination_date_time_filled?)
+end

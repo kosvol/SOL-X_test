@@ -80,4 +80,21 @@ Feature: Section9
       | permit_types          | permit_payload             | status    |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Completed |
       | Enclosed Spaces Entry | submit_enclose_space_entry | Completed |
-# | Hot Work                           | submit_Hot Work               | Suspended |
+  # | Hot Work                           | submit_Hot Work               | Suspended |
+
+  Scenario Outline: Verify date and time are pre-fill
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
+    And I sleep for 1 seconds
+    And I launch sol-x portal without unlinking wearable
+    And I set oa permit to ACTIVE state
+    And I set oa permit to PENDING_TERMINATION state
+    And I click on pending withdrawal filter
+    And I click on permit for review and termination
+    Then I should see date and time pre-fill on section 9
+
+    Examples:
+      | permit_types          | permit_payload             |
+      | Enclosed Spaces Entry | submit_enclose_space_entry |
+
+# Scenario: Verify permit is removed from Pending Withdrawal filter after update requested
+# Scenario: Verify permit is removed from Pending Withdrawal filter after manual termination

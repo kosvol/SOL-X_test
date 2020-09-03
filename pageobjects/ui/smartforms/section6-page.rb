@@ -42,29 +42,6 @@ class Section6Page < Section4BPage
     select_checkbox(@@gas_yes_no_btn, value)
   end
 
-  # def is_gas_equipment_input_exist?
-  #   # $browser.find_element(:xpath, @@gas_equipment_input)
-  #   gas_equipment_input_element.text
-  #   true
-  # rescue StandardError
-  #   false
-  # end
-
-  # def is_gas_sr_number_input_exist?
-  #   # $browser.find_element(:xpath, @@gas_equipment_input)
-  #   gas_sr_number_input_element.text
-  #   true
-  # rescue StandardError
-  #   false
-  # end
-
-  # def is_last_calibration_btn_exits?
-  #   $browser.find_element(:xpath, @@gas_last_calibration_button)
-  #   true
-  # rescue StandardError
-  #   false
-  # end
-
   def is_info_box_disable_gas_exist?
     $browser.find_element(:xpath, @@inf_box_disable_gas)
     true
