@@ -37,19 +37,19 @@ Feature: ActivePermit
     And I click on active filter
     Then I should see issue date display
 
-  Scenario: Verify all underwater permit only valid for 4 hours
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Underwater Operations permit
-    And I select Simultaneous underwater operation during daytime with other operation permit for level 2
-    And I fill up section 1
-    When I press next for 9 times
-    Then I submit permit for Master Review
-    When I click on back to home
-    And I set oa permit to active state
-    And I click on active filter
-    Then I should see permit valid for 4 hours
+  # Scenario: Verify all underwater permit only valid for 4 hours
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Underwater Operations permit
+  #   And I select Simultaneous underwater operation during daytime with other operation permit for level 2
+  #   And I fill up section 1
+  #   When I press next for 9 times
+  #   Then I submit permit for Master Review
+  #   When I click on back to home
+  #   And I set oa permit to ACTIVE state
+  #   And I click on active filter
+  #   Then I should see permit valid for 4 hours
 
   Scenario: Verify all maintenance permit with duration less than 2 hours should have 2 hours validity
     Given I launch sol-x portal without unlinking wearable
