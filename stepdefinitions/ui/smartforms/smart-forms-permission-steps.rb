@@ -61,10 +61,11 @@ end
 
 And (/^I click on back to home$/) do
   sleep 2
-  on(Section6Page).back_home_elements[0].click
+  on(Section6Page).back_to_home_btn_elements[0].click
 end
 
 And (/^I click on (.+) filter$/) do |state|
+  sleep 1
   if state === 'pending approval'
     on(Section0Page).permit_filter_elements[0].click
   elsif state === 'update needed'

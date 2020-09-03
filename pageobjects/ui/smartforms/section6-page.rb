@@ -10,7 +10,7 @@ class Section6Page < Section4BPage
   button(:add_gas_reading_btn, xpath: "//div[starts-with(@class,'FormFieldGasReaderFactory__Container-')]/div/div/button")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
-  buttons(:back_home, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
+  # buttons(:back_home, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
   buttons(:date_and_time_btn, xpath: "//button[@id='gasLastCalibrationDate']")
   div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")

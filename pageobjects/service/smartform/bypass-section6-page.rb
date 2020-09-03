@@ -110,11 +110,11 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
   end
 
-  def set_oa_permit_to_active_state
+  def set_oa_permit_to_active_state(status)
     url = "http://52.230.70.68:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
-    permit_payload['status'] = 'ACTIVE'
+    permit_payload['status'] = status
     ServiceUtil.fauxton(url, 'put', permit_payload.to_json)
 
     submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')

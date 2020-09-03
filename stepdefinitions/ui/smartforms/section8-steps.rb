@@ -33,8 +33,18 @@ And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4BPage).subform_btn_elements[2].click
+  on(Section8Page).submit_termination_btn_elements.first.click
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas'
+  on(Section8Page).back_to_home_btn
+end
+
+And (/^I manually put the permit to pending termination state$/) do
+  sleep 1
+  on(Section0Page).submit_termination_btn_elements.first.click
+  on(PinPadPage).enter_pin("9015")
+  sleep 1
+  on(Section8Page).task_status_completed_element.click
+  step 'I sign EIC section 8 with RA 9015'
 end

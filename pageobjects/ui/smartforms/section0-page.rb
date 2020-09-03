@@ -28,6 +28,9 @@ class Section0Page < CommonPage
   button(:close_btn, xpath: "//button[contains(.,'Close')]")
   button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
+  buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit for Termination')]")
+  buttons(:update_reading_btn, xpath: "//button[contains(.,'Update Readings')]")
+  button(:back_to_home_btn, xpath: "//button[contains(.,'Back to Home')]")
 
   def set_current_time
     @@time = main_clock_element.text

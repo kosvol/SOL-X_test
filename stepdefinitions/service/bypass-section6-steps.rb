@@ -34,8 +34,8 @@ Given (/^I submit permit (.+) via service with (.+) user and set to active state
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_no')
 end
 
-And (/^I set oa permit to active state$/) do
-  on(BypassPage).set_oa_permit_to_active_state
+And (/^I set oa permit to (.+) state$/) do |_status|
+  on(BypassPage).set_oa_permit_to_active_state(_status)
 end
 
 And (/^I set non oa permit to active state$/) do

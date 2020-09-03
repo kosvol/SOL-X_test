@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And (/^I click on permit for master (.+)$/) do |_approve_or_review|
+And (/^I click on permit for (.+)$/) do |_status|
   on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   # match_element.click
   step 'I enter pin 1111'
@@ -31,7 +31,7 @@ Then (/^I (should|should not) see submit for office approval and request update 
   end
 end
 
-And (/^I open a permit pending Master (.+) with (.+) rank and (.+) pin$/) do |_approve_or_review, _rank, _pin|
+And (/^I open a permit (.+) with (.+) rank and (.+) pin$/) do |_status, _rank, _pin|
   on(Section0Page).master_approval_elements[0].click
   step "I enter pin #{_pin}"
 end
