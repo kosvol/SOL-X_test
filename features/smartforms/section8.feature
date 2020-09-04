@@ -8,29 +8,29 @@ Feature: Section8
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
-    And I set oa permit to active state
+    And I set oa permit to ACTIVE state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should not see EIC normalize extra questions
 
     Examples:
-      | permit_types | permit_payload                 | rank          | pin  |
-      # | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
-      | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
+      | permit_types       | permit_payload                | rank | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
+  # | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I set oa permit to active state
+    And I set oa permit to ACTIVE state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     Then I should see EIC normalize extra questions
 
     Examples:
-      | permit_types       | permit_payload                | rank | pin  |
-      | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
-  # | underwater         | submit_underwater_simultaneous | Chief Officer | 8383 |
+      | permit_types | permit_payload                 | rank          | pin  |
+      # | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
+      | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
 
   Scenario Outline: Verify user should see two additional question when terminating Work on Pressure Pipeline permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
@@ -58,7 +58,6 @@ Feature: Section8
       | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user         | zoneid                     | mac               | location_stamp   |
       | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
-  @x11
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
