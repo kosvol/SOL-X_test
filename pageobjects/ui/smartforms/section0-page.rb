@@ -6,6 +6,7 @@ class Section0Page < CommonPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
+  elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//button[@id='permitType']")
   button(:back_btn, xpath: "//div[@class='action']/button[starts-with(@class,'Button__ButtonStyled')]")

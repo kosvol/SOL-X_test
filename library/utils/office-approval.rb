@@ -5,9 +5,9 @@ require 'httparty'
 module OfficeApproval
   class << self
     def get_office_approval_link(form_id, role, name)
+      puts "form id >> #{form_id}"
       event_id = get_event_id(form_id)
       staff_id = get_staff_id(role, name)
-
       format($obj_env_yml['office_approval']['format_link'], form_id, event_id, staff_id)
     end
 
@@ -19,8 +19,7 @@ module OfficeApproval
                                 headers: { 'Content-Type' => 'application/json' },
                                 body: { selector: { formId: form_id } }.to_json
                               })
-
-      JSON(request.response.body)['docs'][0]['_id']
+      (JSON.parse request.to_s)['docs'][0]['_id']
     end
 
     def get_staff_id(role, name)
@@ -34,8 +33,7 @@ module OfficeApproval
                                   }
                                 }.to_json
                               })
-
-      JSON(request.response.body)['docs'][0]['_id']
+      (JSON.parse request.to_s)['docs'][0]['_id']
     end
   end
 end

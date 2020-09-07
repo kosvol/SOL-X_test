@@ -45,3 +45,8 @@ And (/^I press next for (.+) times$/) do |_times|
     on(Section0Page).click_next
   end
 end
+
+And (/^I set oa permit to active state via manual office approval$/) do
+  CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements.last.text)
+  puts ">> #{OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation')}"
+end
