@@ -9,3 +9,12 @@ Then (/^I should see (.+) button$/) do |state|
     is_equal(on(PendingStatePage).get_button_text, 'Master Review')
   end
 end
+
+Then (/^I should see the newly pending approval permit details listed on Pending Approval filter$/) do
+  @@pending_approval_permit_data = on(PendingStatePage).set_section1_filled_data
+  p ">> #{@@pending_approval_permit_data}"
+  # does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "SIT/PTW/#{BrowserActions.get_year}/")
+  is_equal(@@pending_approval_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
+  is_equal(@@pending_approval_permit_data[4], on(CreatedPermitToWorkPage).created_by_elements.first.text)
+  is_equal(@@pending_approval_permit_data[5], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+end

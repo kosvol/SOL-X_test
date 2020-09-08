@@ -1,3 +1,5 @@
 {
-  "query": "query currentTime {currentTime {secondsSinceEpoch utcOffset}}"
+  "operationName": null,
+  "variables": {},
+  "query": "{\n  currentTime {\n    secondsSinceEpoch\n    utcOffset\n    __typename\n  }\n}\n"
 }
