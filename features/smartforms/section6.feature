@@ -4,12 +4,10 @@ Feature: Section6
   I want to ...
   So that ...
 
-  # [Section 6] - Verify user can select yes/na for gas reader
   # [Section 6] - Verify user can add gas reading
   # [Section 6] - Verify added gas reading is display
   # [Section 6] - Verify user can delete added toxic gas
   # [Section 6] - Verify new gas reading without the initial tosic gas will show '-' on the row
-  # [Section 6] - Verify gas reading equipment fields display
 
   # Scenario Outline: Verify Gas Reader screen should be shown for these permits
   #   Given I launch sol-x portal without unlinking wearable
@@ -31,10 +29,6 @@ Feature: Section6
   #     | Hot Work                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
   #     | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist  |
   #     | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
-
-  # PRE gas reader
-
-  # Scenario: Verify user is able to save Gas Reading contents with toxic gas
 
   # Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
   #   Given I launch sol-x portal without unlinking wearable
