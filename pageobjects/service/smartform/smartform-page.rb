@@ -6,7 +6,7 @@ class SmartFormDBPage
       rev_tag = ''
       ServiceUtil.fauxton($obj_env_yml['sit_fauxton_forms']['get_forms'], 'get', 'fauxton/get_forms')
       ServiceUtil.get_response_body['rows'].each do |form|
-        if form['id'] === _form_id
+        if form['id'] === _form_id && (!form['id'].include? '_design')
           rev_tag = form['value']['rev']
           break
         end
@@ -22,6 +22,8 @@ class SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.fauxton($obj_env_yml['sit_fauxton_forms']['get_forms'], 'get', 'fauxton/get_forms')
       ServiceUtil.get_response_body['rows'].each do |form|
+        next if form['id'].include? '_design'
+
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
