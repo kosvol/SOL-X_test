@@ -27,9 +27,7 @@ end
 
 And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
   sleep 1
-  step 'I press next from section 1'
-  sleep 1
-  step 'I press next for 9 times'
+  step 'I press next for 10 times'
   _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_reading_btn_element) : is_disabled(on(Section6Page).add_gas_reading_btn_element)
 end
 

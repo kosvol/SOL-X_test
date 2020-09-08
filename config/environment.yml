@@ -22,6 +22,10 @@ sit_fauxton_forms:
   get_user: "http://52.230.70.68:5984/users/_all_docs?skip=0&limit=1000"
   delete_user: "http://52.230.70.68:5984/users/_bulk_docs"
 
+ldev_fauxton_forms:
+  delete_form: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_bulk_docs"
+  get_forms: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_all_docs?skip=0&limit=10000"
+
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:

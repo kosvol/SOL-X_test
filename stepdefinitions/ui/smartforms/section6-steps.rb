@@ -31,9 +31,7 @@ end
 
 Then (/^I (should|should not) see gas reader sections on active permit$/) do |_condition|
   sleep 1
-  step 'I press next from section 1'
-  sleep 1
-  step 'I press next for 9 times'
+  step 'I press next for 10 times'
   step "I #{_condition} see gas reader sections"
 end
 
