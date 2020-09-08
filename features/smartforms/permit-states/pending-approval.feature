@@ -4,6 +4,8 @@ Feature: PendingApprovalPermit
   I want to ...
   So that ...
 
+  # Scenario: Verify submitted time
+
   Scenario: Verify user should see Master Approval button
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
