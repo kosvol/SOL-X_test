@@ -5,4 +5,6 @@ Feature: Clear forms table
   So that ...
 
   Scenario: To clear forms table
-    Given I clear forms table
+    # Given I clear forms table
+    # And I clear oa event table
+    And I clear gas reader entries
