@@ -63,6 +63,7 @@ class Section4APage < Section3DPage
   end
 
   def is_checklist_details_prepopulated?
+    set_current_time
     sleep 1
     Log.instance.info("--- #{get_current_date_mm_yyyy_format}")
     Log.instance.info("--- #{get_current_time_format}")

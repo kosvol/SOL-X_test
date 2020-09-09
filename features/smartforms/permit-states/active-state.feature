@@ -7,6 +7,8 @@ Feature: ActivePermit
   # Scenario: Verify user land on section 6 after clicking on Update Reader on active permit
   # Scenario: Verify in view mode all section is disabled
 
+  # Scenario: Verify non PTW reader cannot open PTW
+
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -197,14 +199,14 @@ Feature: ActivePermit
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-      | Hot Work                         | submit_Hot Work              | A 3/O                      | 2674 |
+      | Hot Work                         | submit_hotwork               | A 3/O                      | 2674 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-      | Hot Work                         | submit_Hot Work              | Additional Second Engineer | 3030 |
+      | Hot Work                         | submit_hotwork               | Additional Second Engineer | 3030 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
-      | Hot Work                         | submit_Hot Work              | A 3/E                      | 6727 |
-      | Hot Work                         | submit_Hot Work              | 4/E                        | 1313 |
+      | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
+      | Hot Work                         | submit_hotwork               | 4/E                        | 1313 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -218,13 +220,13 @@ Feature: ActivePermit
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
       # # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
       | Enclosed Spaces Entry | submit_enclose_space_entry | 3/O  | 0159 |
-  # # | Hot Work                           | submit_Hot Work               | A 3/O                      | 2674 |
+  # # | Hot Work                           | submit_hotwork               | A 3/O                      | 2674 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
   # | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-  # | Hot Work                         | submit_Hot Work              | Additional Second Engineer | 3030 |
+  # | Hot Work                         | submit_hotwork              | Additional Second Engineer | 3030 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
-  # | Hot Work                         | submit_Hot Work              | A 3/E                      | 6727 |
+  # | Hot Work                         | submit_hotwork              | A 3/E                      | 6727 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -236,4 +238,4 @@ Feature: ActivePermit
     Examples:
       | permit_types          | permit_payload             | rank  | pin  |
       | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
-# | Hot Work                           | submit_Hot Work               | ETO   | 0856 |
+# | Hot Work                           | submit_hotwork               | ETO   | 0856 |

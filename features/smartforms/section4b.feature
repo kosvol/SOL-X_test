@@ -103,7 +103,7 @@ Feature: Section4BEIC
     And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
-    Then I sign EIC as competent person with pin 8383
+    Then I sign EIC as competent person with pin <pin>
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
