@@ -44,6 +44,7 @@ end
 
 Given (/^I clear forms table$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_forms')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
 end
 
 And (/^I clear gas reader entries$/) do
