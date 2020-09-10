@@ -4,10 +4,6 @@ Feature: Section3ADRA
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-
   Scenario: Verify permit number date and time is pre-filled in section 3a
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -298,8 +294,15 @@ Feature: Section3ADRA
     And I add a additional hazard
     Then I should see additional hazard data save
 
-# Scenario: Verify add risk button
+  # Scenario: Verify edit risk button
 
-# Scenario: Verify edit risk button
-
-# Scenario: Verify delete risk button
+  Scenario: Verify delete risk button
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I fill up section 1
+    And I navigate to section 3a
+    And I delete a hazard
+    Then I should see hazard deleted

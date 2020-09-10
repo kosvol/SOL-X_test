@@ -20,18 +20,21 @@ class Section3APage < Section2Page
   elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   buttons(:confirm_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[2]")
+  buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
+  # elements(:identified_hazard_row, xpath: "//div[starts-with(@class,'row-wrapper')]")
+  elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
   def is_additional_hazard_saved
     view_edit_btn
     description_elements[2].text === 'Test Automation'
   end
 
-  def add_new_hazard
-    sleep 1
-    # toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
-    BrowserActions.enter_text(description_elements[2], 'Test Automation')
-    save_and_close
-  end
+  # def add_new_hazard
+  #   sleep 1
+  #   # toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
+  #   BrowserActions.enter_text(description_elements[2], 'Test Automation')
+  #   save_and_close
+  # end
 
   def add_additional_hazard
     sleep 1
