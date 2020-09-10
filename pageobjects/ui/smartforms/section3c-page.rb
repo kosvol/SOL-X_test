@@ -5,8 +5,9 @@ require './././support/env'
 class Section3CPage < Section3BPage
   include PageObject
 
-  button(:dra_team_btn, id: 'dra_team')
-  elements(:dra_team_name, xpath: "//*[starts-with(@class,'Input__Answer-')]")
+  button(:dra_team_btn, id: 'team')
+  elements(:dra_team_name, xpath: "//*[starts-with(@class,'values-area disabled')]/ul/li")
+  # elements(:dra_team_name, xpath: "//*[starts-with(@class,'Input__Answer-')]")
   buttons(:member_name_btn, xpath: '//ul/li/button')
   buttons(:cancel_and_confirm_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
 
