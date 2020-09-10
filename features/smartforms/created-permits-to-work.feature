@@ -4,9 +4,9 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
-  Scenario: Initialize the clock for automation
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+  # Scenario: Initialize the clock for automation
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
 
   # Scenario: Verify correct total list of created permit
   #   Given I launch sol-x portal without unlinking wearable
