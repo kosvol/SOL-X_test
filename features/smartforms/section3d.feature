@@ -4,11 +4,6 @@ Feature: Section3DDRA
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #
-  #   And I navigate to create new permit
-
   Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
     And I navigate to create new permit

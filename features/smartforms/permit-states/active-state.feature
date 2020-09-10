@@ -4,10 +4,7 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
-  # Scenario: Verify user land on section 6 after clicking on Update Reader on active permit
   # Scenario: Verify in view mode all section is disabled
-
-  # Scenario: Verify non PTW reader cannot open PTW
 
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
