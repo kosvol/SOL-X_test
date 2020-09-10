@@ -31,6 +31,14 @@ module BrowserActions
       Time.now.strftime('%Y')
     end
 
+    def scroll_down_by_custom_dist(_distance)
+      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    end
+
+    def scroll_up_by_custom_dist(_distance)
+      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    end
+
     private
 
     def scroll_to_element(_element)

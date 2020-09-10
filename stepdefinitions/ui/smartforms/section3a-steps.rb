@@ -91,9 +91,9 @@ Then (/^I should see additional hazard data save$/) do
   is_true(on(Section3APage).is_additional_hazard_saved)
 end
 
-# And (/^I add a new hazard$/) do
-#   on(Section3APage).add_new_hazard
-# end
+And (/^I add a new hazard$/) do
+  on(Section3APage).add_new_hazard
+end
 
 And (/^I delete a hazard$/) do
   on(Section3APage).view_edit_btn
@@ -105,4 +105,18 @@ Then (/^I should see hazard deleted$/) do
   is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
   is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')
+end
+
+Then (/^I should see added new hazard$/) do
+  on(Section3APage).previous_btn
+  sleep 1
+  on(Section3APage).next_btn
+  sleep 1
+  on(Section3APage).next_btn
+  sleep 1
+  on(Section3APage).previous_btn
+  sleep 1
+  on(Section3APage).view_edit_btn
+  on(Section3APage).multiple_scroll(16)
+  is_true(on(Section3APage).is_new_hazard_added?)
 end

@@ -20,7 +20,7 @@ class Section3BPage < Section3APage
 
     BrowserActions.scroll_down
     p "--- #{crew_list_elements.last.text}"
-    crew_list_elements.last.text != 'A 5/E Cs Ow' ? is_last_crew?(_exit.to_i + 1) : (return true)
+    crew_list_elements.last.text != 'PMN Pump Man' ? is_last_crew?(_exit.to_i + 1) : (return true)
   end
 
   def fill_section_3b
