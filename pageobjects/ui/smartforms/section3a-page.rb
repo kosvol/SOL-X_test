@@ -7,7 +7,8 @@ class Section3APage < Section2Page
 
   button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
-  buttons(:add_additional_measure_btn, xpath: "//button[contains(.,'Add Additional Measures')]")
+  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
+  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_and_close, xpath: "//button[contains(.,'Save DRA')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
@@ -80,8 +81,9 @@ class Section3APage < Section2Page
   end
 
   def add_additional_hazard
+    # sleep 1
+    # view_edit_btn
     sleep 1
-    view_edit_btn
     toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
     BrowserActions.enter_text(description_elements[2], 'Test Automation')
     save_and_close
@@ -120,11 +122,12 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    view_edit_btn
+    # view_edit_btn
+    # sleep 1
+    # multiple_scroll(3)
     sleep 1
-    multiple_scroll(3)
-    sleep 1
-    add_additional_measure_btn_elements.first.click
+    # begin
+    add_additional_measure_btn_elements[1].click
     BrowserActions.scroll_down
     sleep 1
     likelihood_btn_elements[2].click

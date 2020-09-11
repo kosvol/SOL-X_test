@@ -293,6 +293,7 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I add a additional hazard
     Then I should see additional hazard data save
 
@@ -315,5 +316,6 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I add a new hazard
     Then I should see added new hazard

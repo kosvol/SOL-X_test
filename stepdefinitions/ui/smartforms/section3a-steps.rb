@@ -79,6 +79,10 @@ And (/^I add a additional hazard$/) do
   on(Section3APage).add_additional_hazard
 end
 
+And (/^I click on View Edit Hazard$/) do
+  on(Section3APage).view_edit_btn
+end
+
 Then (/^I should see additional hazard data save$/) do
   on(Section3APage).previous_btn
   sleep 1
