@@ -13,14 +13,12 @@ class Section3APage < Section2Page
   button(:save_and_close, xpath: "//button[contains(.,'Save DRA')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
-  # button(:add_hazard_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
-  # button(:save_and_close, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer-')]/button")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
-  @@risk_indicator = "//div[starts-with(@class,'RiskIndicator__Indicator')]"
+  # @@risk_indicator = "//div[starts-with(@class,'RiskIndicator__Indicator')]"
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
   elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
@@ -38,15 +36,13 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 1
     BrowserActions.scroll_down_by_custom_dist(800)
-    multiple_scroll(12)
+    BrowserActions.scroll_click(add_hazard_btn_element)
     sleep 3
-    add_hazard_btn_element.click
     BrowserActions.scroll_up_by_custom_dist(-400)
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
     toggle_likelihood_consequence_matrix_add_hazard(1, 1)
-
     save_and_close
   end
 
@@ -56,25 +52,29 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
+    BrowserActions.scroll_click(likelihood_btn_elements[(likelihood_btn_elements.size - 2)])
+    # likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
     level_to_choose_elements[80].click
     confirm_btn_elements[16].click
     sleep 1
-    consequence_btn_elements[(consequence_btn_elements.size - 2)].click
+    BrowserActions.scroll_click(consequence_btn_elements[(consequence_btn_elements.size - 2)])
+    # consequence_btn_elements[(consequence_btn_elements.size - 2)].click
     sleep 1
     level_to_choose_elements[85].click
     confirm_btn_elements[17].click
     sleep 1
 
-    multiple_scroll(2)
+    # multiple_scroll(2)
     # for existing control measure
-    likelihood_btn_elements.last.click
+    BrowserActions.scroll_click(likelihood_btn_elements.last)
+    # likelihood_btn_elements.last.click
     sleep 1
     level_to_choose_elements[90].click
     confirm_btn_elements[18].click
     sleep 1
-    consequence_btn_elements.last.click
+    BrowserActions.scroll_click(consequence_btn_elements.last)
+    # consequence_btn_elements.last.click
     sleep 1
     level_to_choose_elements[95].click
     confirm_btn_elements[19].click
@@ -92,51 +92,34 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 1
-    BrowserActions.scroll_down
-    sleep 1
-    likelihood_btn_elements.first.click
+    # BrowserActions.scroll_down
+    # sleep 1
+    BrowserActions.scroll_click(likelihood_btn_elements[1])
     sleep 1
     level_to_choose_elements[(_likelihood.to_i - 1)].click
     confirm_btn_elements.first.click
-    sleep 1
-    consequence_btn_elements.first.click
-    sleep 1
+    # sleep 1
+    BrowserActions.scroll_click(consequence_btn_elements[1])
     level_to_choose_elements[(_consequence.to_i + 4)].click
     confirm_btn_elements[1].click
   end
 
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 1
-    multiple_scroll(3)
-    sleep 1
-    likelihood_btn_elements[1].click
-    sleep 1
+    BrowserActions.scroll_click(likelihood_btn_elements[1])
     level_to_choose_elements[(_likelihood.to_i + 9)].click
     confirm_btn_elements[2].click
-    sleep 1
-    consequence_btn_elements[1].click
-    sleep 1
+    BrowserActions.scroll_click(consequence_btn_elements[1])
     level_to_choose_elements[(_consequence.to_i + 14)].click
     confirm_btn_elements[3].click
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    # view_edit_btn
-    # sleep 1
-    # multiple_scroll(3)
-    sleep 1
-    # begin
-    add_additional_measure_btn_elements[1].click
-    BrowserActions.scroll_down
-    sleep 1
-    likelihood_btn_elements[2].click
-    sleep 1
+    BrowserActions.scroll_click(add_additional_measure_btn_elements[1])
+    BrowserActions.scroll_click(likelihood_btn_elements[2])
     level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
     confirm_btn_elements[confirm_btn_elements.size - 2].click
-    sleep 1
-    consequence_btn_elements[2].click
-    sleep 1
+    BrowserActions.scroll_click(consequence_btn_elements[2])
     level_to_choose_elements[((level_to_choose_elements.size - 6) + _consequence.to_i)].click
     confirm_btn_elements.last.click
   end
@@ -196,19 +179,7 @@ class Section3APage < Section2Page
     risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2)
   end
 
-  def multiple_scroll(_number_of_times)
-    (1.._number_of_times).each do |_i|
-      sleep 2
-      BrowserActions.scroll_down
-    end
-  end
-
   private
-
-  # def click_add_additional_hazard
-  #   view_edit_btn
-  # rescue StandardError
-  # end
 
   def get_color_code(color)
     case color

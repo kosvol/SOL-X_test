@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I navigate to section (.+)$/) do |_which_section|
-  on(Section6Page).toggle_to_section(on(Section0Page).get_selected_level2_permit, _which_section)
+  on(Section6Page).toggle_to_section(_which_section)
 end
 
 Then (/^I should see master review button only$/) do

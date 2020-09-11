@@ -121,6 +121,6 @@ Then (/^I should see added new hazard$/) do
   on(Section3APage).previous_btn
   sleep 1
   on(Section3APage).view_edit_btn
-  on(Section3APage).multiple_scroll(16)
+  BrowserActions.scroll_click(on(Section3APage).description_elements.last)
   is_true(on(Section3APage).is_new_hazard_added?)
 end

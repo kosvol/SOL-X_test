@@ -195,6 +195,7 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as low risk
     And I should see correct risk evaluation very medium,low,low
@@ -220,6 +221,7 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as medium risk
     And I should see correct risk evaluation very medium,low,medium
@@ -240,6 +242,7 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as high risk
     And I should see correct risk evaluation very medium,low,high
@@ -262,6 +265,7 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
+    And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as very high risk
     And I should see correct risk evaluation very medium,low,very high
@@ -316,6 +320,5 @@ Feature: Section3ADRA
     And I select Maintenance on Anchor permit for level 2
     And I fill up section 1
     And I navigate to section 3a
-    And I click on View Edit Hazard
     And I add a new hazard
     Then I should see added new hazard

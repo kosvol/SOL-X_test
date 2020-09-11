@@ -2,6 +2,15 @@
 
 module BrowserActions
   class << self
+    def scroll_click(_elem)
+      sleep 1
+      _elem.click
+    rescue StandardError
+      scroll_down
+      _elem.click
+      sleep 1
+    end
+
     def enter_text(field, _text)
       field.send_keys(_text)
       hide_keyboard
