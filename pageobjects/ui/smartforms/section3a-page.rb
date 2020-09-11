@@ -40,7 +40,7 @@ class Section3APage < Section2Page
     multiple_scroll(12)
     sleep 3
     add_hazard_btn_element.click
-    BrowserActions.scroll_up_by_custom_dist(-500)
+    BrowserActions.scroll_up_by_custom_dist(-400)
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
@@ -120,7 +120,7 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    click_add_additional_hazard
+    # click_add_additional_hazard
     # sleep 1
     # BrowserActions.scroll_down
     # BrowserActions.scroll_down
@@ -204,10 +204,10 @@ class Section3APage < Section2Page
 
   private
 
-  def click_add_additional_hazard
-    view_edit_btn
-  rescue StandardError
-  end
+  # def click_add_additional_hazard
+  #   view_edit_btn
+  # rescue StandardError
+  # end
 
   def get_color_code(color)
     case color
