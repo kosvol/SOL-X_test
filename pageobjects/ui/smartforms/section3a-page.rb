@@ -125,6 +125,7 @@ class Section3APage < Section2Page
     # BrowserActions.scroll_down
     # BrowserActions.scroll_down
     # BrowserActions.scroll_down
+    view_edit_btn
     sleep 1
     add_additional_measure_btn_elements.first.click
     BrowserActions.scroll_down
