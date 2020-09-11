@@ -203,7 +203,7 @@ Feature: ActivePermit
       | Hot Work                         | submit_hotwork               | Additional Second Engineer | 3030 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
       | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
-      | Hot Work                         | submit_hotwork               | 4/E                        | 1313 |
+      | Hot Work                         | submit_hotwork               | 4/E                        | 1311 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require

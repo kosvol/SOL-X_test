@@ -37,6 +37,7 @@ end
 
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
+  on(Section0Page).set_current_time
   on(Section6Page).submit_btn_elements[0].click
   step 'I enter pin 9015'
   step 'I sign on canvas'
