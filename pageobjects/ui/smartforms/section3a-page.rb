@@ -53,36 +53,29 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
     BrowserActions.scroll_click(likelihood_btn_elements[(likelihood_btn_elements.size - 2)])
-    # likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
     level_to_choose_elements[80].click
     confirm_btn_elements[16].click
     sleep 1
     BrowserActions.scroll_click(consequence_btn_elements[(consequence_btn_elements.size - 2)])
-    # consequence_btn_elements[(consequence_btn_elements.size - 2)].click
     sleep 1
     level_to_choose_elements[85].click
     confirm_btn_elements[17].click
     sleep 1
 
-    # multiple_scroll(2)
     # for existing control measure
     BrowserActions.scroll_click(likelihood_btn_elements.last)
-    # likelihood_btn_elements.last.click
     sleep 1
     level_to_choose_elements[90].click
     confirm_btn_elements[18].click
     sleep 1
     BrowserActions.scroll_click(consequence_btn_elements.last)
-    # consequence_btn_elements.last.click
     sleep 1
     level_to_choose_elements[95].click
     confirm_btn_elements[19].click
   end
 
   def add_additional_hazard
-    # sleep 1
-    # view_edit_btn
     sleep 1
     toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
     BrowserActions.enter_text(description_elements[2], 'Test Automation')
@@ -92,14 +85,12 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 1
-    # BrowserActions.scroll_down
-    # sleep 1
-    BrowserActions.scroll_click(likelihood_btn_elements[1])
+    BrowserActions.scroll_click(likelihood_btn_elements[0])
     sleep 1
     level_to_choose_elements[(_likelihood.to_i - 1)].click
     confirm_btn_elements.first.click
-    # sleep 1
-    BrowserActions.scroll_click(consequence_btn_elements[1])
+    sleep 1
+    BrowserActions.scroll_click(consequence_btn_elements[0])
     level_to_choose_elements[(_consequence.to_i + 4)].click
     confirm_btn_elements[1].click
   end
@@ -126,49 +117,53 @@ class Section3APage < Section2Page
 
   def is_risk_indicator_green?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    green_color = get_color_code('low')
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+      risk_indicators[0].css_value('background-color') === green_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+      risk_indicators[1].css_value('background-color') === green_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === 'rgba(118, 210, 117, 1)'
+      risk_indicators[2].css_value('background-color') === green_color
     end
   end
 
   def is_risk_indicator_yellow?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    yellow_color = get_color_code('medium')
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+      risk_indicators[0].css_value('background-color') === yellow_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+      risk_indicators[1].css_value('background-color') === yellow_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === 'rgba(242, 204, 84, 1)'
+      risk_indicators[2].css_value('background-color') === yellow_color
     end
   end
 
   def is_risk_indicator_red?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    red_color = get_color_code('high')
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+      risk_indicators[0].css_value('background-color') === red_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+      risk_indicators[1].css_value('background-color') === red_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === 'rgba(216, 75, 75, 1)'
+      risk_indicators[2].css_value('background-color') === red_color
     end
   end
 
   def is_risk_indicator_veryred?(_measure)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    very_red_color = get_color_code('very high')
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+      risk_indicators[0].css_value('background-color') === very_red_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+      risk_indicators[1].css_value('background-color') === very_red_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === 'rgba(160, 16, 35, 1)'
+      risk_indicators[2].css_value('background-color') === very_red_color
     end
   end
 
