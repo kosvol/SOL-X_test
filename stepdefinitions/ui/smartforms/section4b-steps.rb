@@ -34,6 +34,7 @@ Then (/^I sign EIC as (issuing authority|non issuing authority) with pin (.+)$/)
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if _condition === 'issuing authority'
+  on(Section0Page).set_current_time
 end
 
 When (/^I select yes to EIC$/) do

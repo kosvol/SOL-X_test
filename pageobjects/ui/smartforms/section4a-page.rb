@@ -23,7 +23,8 @@ class Section4APage < Section3DPage
   divs(:subsection1ESE, xpath: "//div[starts-with(@id,'4A_ESE_subsection')]")
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
-  elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
+  text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
+  # elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
   text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
   button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
@@ -63,7 +64,6 @@ class Section4APage < Section3DPage
   end
 
   def is_checklist_details_prepopulated?
-    set_current_time
     sleep 1
     Log.instance.info("--- #{get_current_date_mm_yyyy_format}")
     Log.instance.info("--- #{get_current_time_format}")

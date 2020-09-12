@@ -134,17 +134,17 @@ Feature: Section4AChecklist
     And I tear down created form
 
     Examples:
-      | level_one_permit                      | level_two_permit                                                        | checklist                              |
-      | Enclosed Spaces Entry                 | Enclosed Spaces Entry                                                   | Enclosed Spaces Entry Checklist        |
-      | Underwater Operations                 | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                   |
-      | Working Aloft/Overside                | Working Aloft / Overside                                                | Working Aloft/Overside                 |
-      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines             |
-      | Use of ODME in Manual Mode            | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode             |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket  |
-      | Helicopter Operations                 | Helicopter Operation                                                    | Helicopter Operation Checklist         |
-      | Rotational Portable Power Tools       | Use of Portable Power Tools                                             | Rotational Portable Power Toolss (PPT) |
-      | Use of non-intrinsically safe Camera  | Use of Non-Intrinsically Safe Camera                                    | Use of Camera Checklist                |
-      | Working on Deck During Heavy Weather  | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather      |
+      | level_one_permit      | level_two_permit      | checklist                       |
+      | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Spaces Entry Checklist |
+  # | Underwater Operations                 | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                   |
+  # | Working Aloft/Overside                | Working Aloft / Overside                                                | Working Aloft/Overside                 |
+  # | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines             |
+  # | Use of ODME in Manual Mode            | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode             |
+  # | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket  |
+  # | Helicopter Operations                 | Helicopter Operation                                                    | Helicopter Operation Checklist         |
+  # | Rotational Portable Power Tools       | Use of Portable Power Tools                                             | Rotational Portable Power Toolss (PPT) |
+  # | Use of non-intrinsically safe Camera  | Use of Non-Intrinsically Safe Camera                                    | Use of Camera Checklist                |
+  # | Working on Deck During Heavy Weather  | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather      |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for maintenance permit
     Given I launch sol-x portal without unlinking wearable

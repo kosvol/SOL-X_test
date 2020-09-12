@@ -7,7 +7,6 @@ end
 
 And (/^I navigate to create new permit$/) do
   on(Section0Page).click_create_permit_btn
-  on(Section0Page).set_current_time
   on(Section0Page).reset_data_collector
   sleep 1
 end
@@ -34,6 +33,7 @@ When (/^I select (.+) permit$/) do |_permit|
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_permit(_permit)
+  on(Section0Page).set_current_time
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|

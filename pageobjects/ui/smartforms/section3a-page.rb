@@ -84,7 +84,7 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 1
+    sleep 2
     BrowserActions.scroll_click(likelihood_btn_elements[0])
     sleep 1
     level_to_choose_elements[(_likelihood.to_i - 1)].click
