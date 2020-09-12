@@ -100,6 +100,7 @@ And (/^I add a new hazard$/) do
 end
 
 And (/^I delete a hazard$/) do
+  sleep 1
   on(Section3APage).view_edit_btn
   on(Section3APage).delete_btn_elements.first.click
   on(Section3APage).save_and_close

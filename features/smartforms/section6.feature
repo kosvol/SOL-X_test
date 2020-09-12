@@ -9,27 +9,6 @@ Feature: Section6
   # [Section 6] - Verify user can delete added toxic gas
   # [Section 6] - Verify new gas reading without the initial tosic gas will show '-' on the row
 
-  # Scenario Outline: Verify Gas Reader screen should be shown for these permits
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1
-  #   And I navigate to section 6
-  #   Then I should see gas reader sections
-  #   And I tear down created form
-
-  #   Examples:
-  #     | level_one_permit                     | level_two_permit                                                                | checklist                        |
-  #     | Hot Work                              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-  #     | Hot Work                              | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area |
-  #     | Hot Work                              | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-  #     | Hot Work                              | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
-  #     | Hot Work                              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-  #     | Enclosed Spaces Entry                | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry Checklist  |
-  #     | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
-
   # Scenario Outline: Verify Gas Reader screen should not be shown for these permits by default
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
@@ -208,7 +187,6 @@ Feature: Section6
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
     And I navigate to section 6
-    Then I should see gas reader sections
     And  I press the N/A button to disable gas testing
     Then I should see warning label
     And  I should not see gas_equipment_input

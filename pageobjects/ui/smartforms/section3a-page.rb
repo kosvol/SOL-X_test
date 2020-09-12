@@ -97,9 +97,12 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
+    sleep 1
     BrowserActions.scroll_click(likelihood_btn_elements[1])
+    sleep 1
     level_to_choose_elements[(_likelihood.to_i + 9)].click
     confirm_btn_elements[2].click
+    sleep 1
     BrowserActions.scroll_click(consequence_btn_elements[1])
     level_to_choose_elements[(_consequence.to_i + 14)].click
     confirm_btn_elements[3].click
