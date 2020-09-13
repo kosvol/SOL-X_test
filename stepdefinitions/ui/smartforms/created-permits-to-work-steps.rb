@@ -62,19 +62,20 @@ end
 
 Then (/^I should see EIC section with fields enabled$/) do
   # step 'I press next from section 1'
-  step 'I press next for 9 times'
-  is_false(on(Section4APage).is_checklist_fields_disabled?)
+  step 'I press next for 8 times'
+  is_equal(on(Section4APage).disabled_fields_elements.size, '2')
+  # is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 
-Then (/^I should see all section fields enabled$/) do
-  is_false(on(Section1Page).is_fields_enabled?)
-  # step 'I press next from section 1'
-end
+# Then (/^I should see all section fields enabled$/) do
+#   is_false(on(Section1Page).is_fields_enabled?)
+#   # step 'I press next from section 1'
+# end
 
-Then (/^I should see all section fields disabled$/) do
-  is_true(!on(Section1Page).is_fields_enabled?)
-  # step 'I press next from section 1'
-end
+# Then (/^I should see all section fields disabled$/) do
+#   is_true(!on(Section1Page).is_fields_enabled?)
+#   # step 'I press next from section 1'
+# end
 
 Then (/^I should see deleted permit deleted$/) do
   is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)

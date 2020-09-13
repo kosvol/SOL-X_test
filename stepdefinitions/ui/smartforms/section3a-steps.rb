@@ -79,6 +79,10 @@ And (/^I add a additional hazard$/) do
   on(Section3APage).add_additional_hazard
 end
 
+And (/^I click on View Edit Hazard$/) do
+  on(Section3APage).view_edit_btn
+end
+
 Then (/^I should see additional hazard data save$/) do
   on(Section3APage).previous_btn
   sleep 1
@@ -95,5 +99,29 @@ And (/^I add a new hazard$/) do
   on(Section3APage).add_new_hazard
 end
 
-Then (/^I should see new hazard data save$/) do
+And (/^I delete a hazard$/) do
+  sleep 1
+  on(Section3APage).view_edit_btn
+  on(Section3APage).delete_btn_elements.first.click
+  on(Section3APage).save_and_close
+end
+
+Then (/^I should see hazard deleted$/) do
+  is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
+  is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
+  is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')
+end
+
+Then (/^I should see added new hazard$/) do
+  on(Section3APage).previous_btn
+  sleep 1
+  on(Section3APage).next_btn
+  sleep 1
+  on(Section3APage).next_btn
+  sleep 1
+  on(Section3APage).previous_btn
+  sleep 1
+  on(Section3APage).view_edit_btn
+  BrowserActions.scroll_click(on(Section3APage).description_elements.last)
+  is_true(on(Section3APage).is_new_hazard_added?)
 end

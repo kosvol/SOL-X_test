@@ -46,7 +46,7 @@ class CrewListPage < DashboardPage
   def is_rank_correctly_displayed?(_current_rank)
     sleep 1
     rank_list_btn
-    rank_list = $sit_rank_and_pin_yml['ranks']
+    rank_list = $sit_rank_and_pin_yml['ranks_sorted']
     sleep 1
     rank_list.each_with_index do |rank, index|
       next unless _current_rank === rank

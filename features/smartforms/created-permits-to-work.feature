@@ -4,9 +4,9 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
-  Scenario: Initialize the clock for automation
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+  # Scenario: Initialize the clock for automation
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
 
   # Scenario: Verify correct total list of created permit
   #   Given I launch sol-x portal without unlinking wearable
@@ -55,31 +55,6 @@ Feature: CreatedPermitToWork
     And I delete the permit created
     Then I should see deleted permit deleted
     And I tear down created form
-
-  # Scenario Outline: Verify PTW reader can only read PTW for permit in created state
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select Hot Work permit
-  #   And I select Hot Work Level-2 in Designated Area permit for level 2
-  #   And I click on back arrow
-  #   And I navigate to "Created Permits to Work" screen
-  #   And I should see form is at reading mode for <rank> rank and <pin> pin
-  #   Then I should see all section fields disabled
-
-  #   Examples:
-  #     | rank   | pin  |
-  #     | Master | 1111 |
-  # | 3/O    | 0159 |
-  # | A 3/O  | 2674 |
-  # | 3/E    | 4685 |
-  # | A 3/E  | 6727 |
-  # | 4/O    | 1010 |
-  # | A 4/O  | 1537 |
-  ## | BOS   | 1018 |
-  ## | PMN   | 4236 |
-  ## | A/B   | 6316 |
-  ## | O/S   | 7669 |
 
   # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
 

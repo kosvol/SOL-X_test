@@ -2,6 +2,15 @@
 
 module BrowserActions
   class << self
+    def scroll_click(_elem)
+      sleep 1
+      _elem.click
+    rescue StandardError
+      scroll_down
+      _elem.click
+      sleep 1
+    end
+
     def enter_text(field, _text)
       field.send_keys(_text)
       hide_keyboard
@@ -29,6 +38,14 @@ module BrowserActions
 
     def get_year
       Time.now.strftime('%Y')
+    end
+
+    def scroll_down_by_custom_dist(_distance)
+      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    end
+
+    def scroll_up_by_custom_dist(_distance)
+      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
     end
 
     private

@@ -43,5 +43,18 @@ And (/^I set non oa permit to active state$/) do
 end
 
 Given (/^I clear forms table$/) do
-  SmartFormDBPage.clear_forms_table
+  SmartFormDBPage.get_table_data('fauxton', 'get_forms')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
+end
+
+And (/^I clear gas reader entries$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_gas_reader_entries')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_gas_entries')
+  SmartFormDBPage.get_table_data('oa_db', 'get_gas_reader_entries')
+  SmartFormDBPage.delete_table_row('oa_db', 'delete_gas_entries')
+end
+
+And (/^I clear oa event table$/) do
+  SmartFormDBPage.get_table_data('oa_db', 'get_oa_event')
+  SmartFormDBPage.delete_table_row('oa_db', 'delete_oa_event')
 end

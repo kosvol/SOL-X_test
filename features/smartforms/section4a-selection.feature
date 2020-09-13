@@ -4,10 +4,6 @@ Feature: Section4AChecklistSelection
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-
   Scenario: Verify Work on Hazardous Substances checklist exists
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -89,8 +85,3 @@ Feature: Section4AChecklistSelection
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                             | Cold Work Operation Checklist             |
-
-### pending checklist to work on
-
-# Pump Room Entry Checklist
-# | Rigging of Gangway & Pilot Ladder | Rigging of Gangway & Pilot Ladder |

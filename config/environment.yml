@@ -16,11 +16,23 @@ uat:
   c2_preview: "http://104.215.192.113:8080"
   service: "http://104.215.192.11:4000"
 
-sit_fauxton_forms:
-  delete_form: "http://52.230.70.68:5984/forms/_bulk_docs"
-  get_forms: "http://52.230.70.68:5984/forms/_all_docs?skip=0&limit=10000"
-  get_user: "http://52.230.70.68:5984/users/_all_docs?skip=0&limit=1000"
-  delete_user: "http://52.230.70.68:5984/users/_bulk_docs"
+fauxton:
+  base_sit_url: "http://admin:magellanx@52.230.70.68:5984"
+  base_dev_url: "http://admin:magellanx@23.97.50.121:5984"
+  delete_form: "/forms/_bulk_docs"
+  delete_gas_entries: "/gas_reader_entry/_bulk_docs"
+  get_forms: "/forms/_all_docs?skip=0&limit=10000"
+  get_user: "/users/_all_docs?skip=0&limit=1000"
+  delete_user: "/users/_bulk_docs"
+  get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
+
+oa_db:
+  base_sit_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
+  base_dev_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
+  delete_oa_event: "/office_approval_events/_bulk_docs"
+  delete_gas_entries: "/gas_reader_entry/_bulk_docs"
+  get_oa_event: "/office_approval_events/_all_docs?skip=0&limit=10000"
+  get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
 
 ldev_fauxton_forms:
   delete_form: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_bulk_docs"

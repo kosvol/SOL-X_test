@@ -26,7 +26,7 @@ Then (/^I should see active crew count is correct$/) do
   step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
-  sleep 1
+  sleep 3
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   sleep 1

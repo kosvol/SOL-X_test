@@ -29,7 +29,7 @@ class Section1Page < Section0Page
     # probably need to dynamic this created by
     @@section1_data_collector << 'Created By A/M Atif Hayat at'
     sleep 1
-    @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
+    @@section1_data_collector << "#{get_current_date_format_with_offset} #{get_current_time_format}"
     p ">>> #{@@section1_data_collector}"
     @@section1_data_collector
   end
@@ -87,13 +87,12 @@ class Section1Page < Section0Page
     $browser.find_element(:xpath, @@maint_duration_dd).click
     sleep 1
     _condition === 'more' ? dd_list_value_elements[0].click : dd_list_value_elements[1].click
-    BrowserActions.scroll_down
-    click_next
+    BrowserActions.scroll_click(click_next_element)
   end
 
   def fill_default_section_1_wo_duration
     fill_default_section1
-    click_next
+    BrowserActions.scroll_click(click_next_element)
   end
 
   def fill_default_section_1_w_duration(_condition)
@@ -101,23 +100,24 @@ class Section1Page < Section0Page
     $browser.find_element(:xpath, @@maint_duration_dd).click
     sleep 1
     _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click
-    BrowserActions.scroll_down
-    click_next
+    BrowserActions.scroll_click(click_next_element)
   end
 
   private
 
+  def select_sea_and_wind_state
+    BrowserActions.scroll_click(sea_state_btn_element)
+    dd_list_value_elements[0].click
+    BrowserActions.scroll_click(wind_force_btn_element)
+    BrowserActions.scroll
+    sleep 1
+    dd_list_value_elements[0].click
+  end
+
   def fill_default_section1
     select_checkbox(@@location_check_btn, 'In Port')
     select_checkbox(@@condition_check_btn, 'Loaded')
-    BrowserActions.scroll_down
-    sea_state_btn
-    sleep 1
-    dd_list_value_elements[0].click
-    BrowserActions.scroll_down
-    wind_force_btn
-    sleep 1
-    dd_list_value_elements[0].click
+    select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
     BrowserActions.hide_keyboard
   end
@@ -125,15 +125,7 @@ class Section1Page < Section0Page
   def fill_static_section1
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
     select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
-    BrowserActions.scroll_down
-    BrowserActions.scroll_down
-    sea_state_btn
-    sleep 1
-    dd_list_value_elements[0].click
-    BrowserActions.scroll_down
-    wind_force_btn
-    sleep 1
-    dd_list_value_elements[0].click
+    select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
     BrowserActions.hide_keyboard
   end
@@ -149,11 +141,10 @@ class Section1Page < Section0Page
   end
 
   def fill_text_area(_input, _text)
-    _elements = $browser.find_elements(:xpath, _input)
-    _elements.each do |element|
-      BrowserActions.scroll_down(element)
-      sleep 1
-      element.send_keys(_text)
+    tmp_elements = $browser.find_elements(:xpath, _input)
+    tmp_elements.each do |_element|
+      BrowserActions.scroll_click(_element)
+      _element.send_keys(_text)
     end
   end
 
@@ -168,10 +159,8 @@ class Section1Page < Section0Page
   def get_dd_list_values(_states, _dd_list)
     sleep 1
     BrowserActions.scroll_down
-    _element = $browser.find_element(:xpath, _states)
-    sleep 1
-    _element.click
-    sleep 1
+    tmp_element = $browser.find_element(:xpath, _states)
+    BrowserActions.scroll_click(tmp_element)
     _element = $browser.find_elements(:xpath, _dd_list)
     drop_down_list_values = []
     _element.each do |elem|

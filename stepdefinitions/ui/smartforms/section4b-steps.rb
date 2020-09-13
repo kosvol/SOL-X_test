@@ -11,7 +11,7 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and lin
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
-  sleep 2
+  sleep 4
 end
 
 Then (/^I sign EIC as (competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
@@ -34,6 +34,7 @@ Then (/^I sign EIC as (issuing authority|non issuing authority) with pin (.+)$/)
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if _condition === 'issuing authority'
+  on(Section0Page).set_current_time
 end
 
 When (/^I select yes to EIC$/) do

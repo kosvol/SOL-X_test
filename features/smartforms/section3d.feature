@@ -4,11 +4,6 @@ Feature: Section3DDRA
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #
-  #   And I navigate to create new permit
-
   Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
     And I navigate to create new permit
@@ -23,8 +18,8 @@ Feature: Section3DDRA
     And I should see location <location_stamp> stamp
 
     Examples:
-      | user         | zoneid                     | mac               | location_stamp   |
-      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | user         | zoneid                     | mac               | location_stamp |
+      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable

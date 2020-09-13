@@ -17,7 +17,7 @@ And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
 end
 
 And (/^I review page 2 of submitted (.+) permit$/) do |_permit_type|
-  step 'I press next from section 1'
+  step 'I press next for 1 times'
   sleep 1
   is_equal(on(Section2Page).generic_data_elements[0].text, 'Master')
   is_equal(on(Section2Page).generic_data_elements[1].text, 'N/A')

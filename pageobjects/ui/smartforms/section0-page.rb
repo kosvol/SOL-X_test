@@ -77,19 +77,6 @@ class Section0Page < CommonPage
     click_create_permit_btn_element.click
   end
 
-  # def get_section1_filled_data
-  #   @@section1_data_collector
-  # end
-
-  # def set_section1_filled_data
-  #   # probably need to dynamic this created by
-  #   @@section1_data_collector << 'Created By A/M Atif Hayat at'
-  #   sleep 1
-  #   @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
-  #   p ">>> #{@@section1_data_collector}"
-  #   @@section1_data_collector
-  # end
-
   def is_level_1_permit?(_table)
     base_permits = []
     _table.each do |permit|

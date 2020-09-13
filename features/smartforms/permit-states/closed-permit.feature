@@ -15,6 +15,7 @@ Feature: ClosedPermit
     Then I submit permit for Master Approval
     When I click on back to home
     And I set rol permit to active state with 1 duration
+    When I click on back to home
     And I click on active filter
     And I terminate the permit
     Then I should see termination date display
