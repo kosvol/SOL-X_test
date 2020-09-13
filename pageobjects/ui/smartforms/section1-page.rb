@@ -105,13 +105,19 @@ class Section1Page < Section0Page
 
   private
 
-  def fill_default_section1
-    select_checkbox(@@location_check_btn, 'In Port')
-    select_checkbox(@@condition_check_btn, 'Loaded')
+  def select_sea_and_wind_state
     BrowserActions.scroll_click(sea_state_btn_element)
     dd_list_value_elements[0].click
     BrowserActions.scroll_click(wind_force_btn_element)
+    BrowserActions.scroll
+    sleep 1
     dd_list_value_elements[0].click
+  end
+
+  def fill_default_section1
+    select_checkbox(@@location_check_btn, 'In Port')
+    select_checkbox(@@condition_check_btn, 'Loaded')
+    select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
     BrowserActions.hide_keyboard
   end
@@ -119,12 +125,7 @@ class Section1Page < Section0Page
   def fill_static_section1
     select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
     select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
-    BrowserActions.scroll_click(sea_state_btn_element)
-    sleep 1
-    dd_list_value_elements[0].click
-    BrowserActions.scroll_click(wind_force_btn_element)
-    sleep 1
-    dd_list_value_elements[0].click
+    select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
     BrowserActions.hide_keyboard
   end
