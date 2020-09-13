@@ -20,57 +20,6 @@ Feature: Section4BEIC
     Then I should see EIC permit number, date and time populated
     And I tear down created form
 
-  # Scenario Outline: Verify only competent person can sign as competent person on first EIC signing
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1
-  #   And I navigate to section 4a
-  #   And I select the matching <checklist> checklist
-  #   And I press next for 2 times
-  #   Then I sign first EIC as competent person who is <rank> with pin <pin>
-  #   And I should see <rank> rank and name
-  #   And I tear down created form
-
-  #   Examples:
-  #     | rank              | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-  #     | C/O Alister Leong | 8383 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     | 2/E Poon Choryi   | 2523 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     | ETO Reza Ilmi     | 0856 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
-
-  # Scenario Outline: Verify non competent person cannot sign as competent person on first EIC signing
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1
-  #   And I navigate to section 4a
-  #   And I select the matching <checklist> checklist
-  #   And I press next for 2 times
-  #   Then I sign first EIC as competent person who is <rank> with pin <pin>
-  #   And I should see not authorize error message
-  #   And I tear down created form
-
-  #   Examples:
-  #     | rank                       | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-  #     | Addtional Master           | 9015 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     # | Additional Chief Officer   | 2761 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     | Second Officer             | 6268 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
-  #     # | Additional Second Officer  | 7865 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)    |
-  #     # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  #     | Additional Second Engineer | 3030 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
-  #     # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     | 3/O                        | 0159 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                       | Enclosed Spaces Entry Checklist           |
-  #     | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     # | 4/E                        | 1311 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)    |
-  #     | BOS                        | 1018 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
-
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
     And I navigate to create new permit
