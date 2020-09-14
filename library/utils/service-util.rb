@@ -41,6 +41,15 @@ module ServiceUtil
       JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
     end
 
+    def get_office_approval_link(form_id, _role, _name)
+      puts "form id >> #{form_id}"
+      fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
+      fauxton($obj_env_yml['office_approval']['get_staff_id'], 'post', { selector: { role: role, name: name } }.to_json.to_s)
+      # event_id = get_event_id(form_id)
+      # staff_id = get_staff_id(role, name)
+      format($obj_env_yml['office_approval']['format_link'], form_id, event_id, staff_id)
+    end
+
     def get_error_code
       # init error code mapping
       $error_code_yml = YAML.load_file('data/error_code.yml')

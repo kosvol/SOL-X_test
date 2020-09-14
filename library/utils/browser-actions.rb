@@ -4,12 +4,15 @@ module BrowserActions
   class << self
     def scroll_click(_elem)
       sleep 1
-      scroll_down
+      # scroll_down
+      scroll_down_by_custom_dist(100)
+      sleep 1
       _elem.click
       sleep 1
     rescue StandardError
       p 'Scrolling.....'
-      scroll_down
+      scroll_down_by_custom_dist(100)
+      sleep 1
       _elem.click
       sleep 1
     end
