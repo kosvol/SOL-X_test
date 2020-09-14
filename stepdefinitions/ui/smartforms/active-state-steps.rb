@@ -44,14 +44,13 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
   step 'I sign on canvas'
-  # on(BypassPage).set_rol_to_active(_duration)
 end
 
-And (/^I approve maintenance permit$/) do
+And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 11 times'
   sleep 1
-  on(Section7Page).non_oa_buttons_elements[0].click
+  on(Section7Page).activate_permit_btn
   step 'I enter pin 1111'
   on(Section7Page).activate_permit
 end
