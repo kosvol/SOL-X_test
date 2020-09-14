@@ -12,7 +12,7 @@ class PendingStatePage < CreatedPermitToWorkPage
     # probably need to dynamic this created by
     @@section1_data_collector << 'Submitted By A/M Atif Hayat at'
     sleep 1
-    @@section1_data_collector << "#{get_current_date_format} #{get_current_time_format}"
+    @@section1_data_collector << "#{get_current_date_format_with_offset} #{get_current_time_format}"
     p ">>> #{@@section1_data_collector}"
     @@section1_data_collector
   end
