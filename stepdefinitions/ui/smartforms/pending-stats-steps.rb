@@ -15,8 +15,8 @@ Then (/^I should see the newly pending approval permit details listed on Pending
   p ">> #{@@pending_approval_permit_data}"
   # does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "SIT/PTW/#{BrowserActions.get_year}/")
   is_equal(@@pending_approval_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
-  is_equal(@@pending_approval_permit_data[4], on(CreatedPermitToWorkPage).created_by_elements.first.text)
-  is_equal(@@pending_approval_permit_data[5], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  is_equal(@@pending_approval_permit_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
+  is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
 
 And (/^I set oa permit to office approval state manually$/) do
