@@ -113,6 +113,13 @@ class Section0Page < CommonPage
     permit.text === 'Rigging of Pilot/Combination Ladder' ? get_random_permit : permit
   end
 
+  def scroll_multiple_times(times)
+    for i in 1..times do
+      BrowserActions.scroll_down
+      sleep 1
+    end
+  end
+  
   private
 
   def get_app_permits

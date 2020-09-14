@@ -36,9 +36,10 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 1
     BrowserActions.scroll_down_by_custom_dist(800)
-    BrowserActions.scroll_click(add_hazard_btn_element)
-    sleep 3
-    BrowserActions.scroll_up_by_custom_dist(-400)
+    scroll_multiple_times(12)
+    add_hazard_btn_element.click
+    sleep 2
+    # BrowserActions.scroll_up_by_custom_dist(-50)
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
@@ -52,24 +53,34 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    BrowserActions.scroll_click(likelihood_btn_elements[(likelihood_btn_elements.size - 2)])
+    # BrowserActions.scroll_click(likelihood_btn_elements[(likelihood_btn_elements.size - 2)])
+    scroll_multiple_times(1)
+    likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
+    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[80].click
     confirm_btn_elements[16].click
     sleep 1
-    BrowserActions.scroll_click(consequence_btn_elements[(consequence_btn_elements.size - 2)])
-    sleep 1
+    # BrowserActions.scroll_click(consequence_btn_elements[(consequence_btn_elements.size - 2)])
+    consequence_btn_elements[(consequence_btn_elements.size - 2)].click
+    # BrowserActions.scroll_down
+    sleep 2
     level_to_choose_elements[85].click
     confirm_btn_elements[17].click
     sleep 1
 
     # for existing control measure
-    BrowserActions.scroll_click(likelihood_btn_elements.last)
+    scroll_multiple_times(1)
+    likelihood_btn_elements.last.click
+    # BrowserActions.scroll_click(likelihood_btn_elements.last)
+    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[90].click
     confirm_btn_elements[18].click
     sleep 1
-    BrowserActions.scroll_click(consequence_btn_elements.last)
+    consequence_btn_elements.last.click
+    # BrowserActions.scroll_click(consequence_btn_elements.last)
+    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[95].click
     confirm_btn_elements[19].click
@@ -85,12 +96,13 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 2
-    BrowserActions.scroll_click(likelihood_btn_elements[0])
+    scroll_multiple_times(2)
+    likelihood_btn_elements[0].click
     sleep 1
     level_to_choose_elements[(_likelihood.to_i - 1)].click
     confirm_btn_elements.first.click
     sleep 1
-    BrowserActions.scroll_click(consequence_btn_elements[0])
+    consequence_btn_elements[0].click
     level_to_choose_elements[(_consequence.to_i + 4)].click
     confirm_btn_elements[1].click
   end
@@ -98,22 +110,25 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 1
-    BrowserActions.scroll_click(likelihood_btn_elements[1])
+    scroll_multiple_times(3)
+    likelihood_btn_elements[1].click
     sleep 1
     level_to_choose_elements[(_likelihood.to_i + 9)].click
     confirm_btn_elements[2].click
     sleep 1
-    BrowserActions.scroll_click(consequence_btn_elements[1])
+    consequence_btn_elements[1].click
     level_to_choose_elements[(_consequence.to_i + 14)].click
     confirm_btn_elements[3].click
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    BrowserActions.scroll_click(add_additional_measure_btn_elements[1])
-    BrowserActions.scroll_click(likelihood_btn_elements[2])
+    scroll_multiple_times(3)
+    add_additional_measure_btn_elements[1].click
+    scroll_multiple_times(2)
+    likelihood_btn_elements[2].click
     level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
     confirm_btn_elements[confirm_btn_elements.size - 2].click
-    BrowserActions.scroll_click(consequence_btn_elements[2])
+    consequence_btn_elements[2].click
     level_to_choose_elements[((level_to_choose_elements.size - 6) + _consequence.to_i)].click
     confirm_btn_elements.last.click
   end
@@ -176,7 +191,7 @@ class Section3APage < Section2Page
     risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1)
     risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2)
   end
-
+  
   private
 
   def get_color_code(color)
