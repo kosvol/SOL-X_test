@@ -83,10 +83,9 @@ class Section1Page < Section0Page
 
   def fill_all_of_section_1_w_duration(_condition)
     fill_static_section1
-    sleep 1
-    $browser.find_element(:xpath, @@maint_duration_dd).click
-    sleep 1
-    _condition === 'more' ? dd_list_value_elements[0].click : dd_list_value_elements[1].click
+    BrowserActions.scroll_click($browser.find_element(:xpath, @@maint_duration_dd))
+    # $browser.find_element(:xpath, @@maint_duration_dd).click
+    _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
     BrowserActions.scroll_click(click_next_element)
   end
 
@@ -97,9 +96,8 @@ class Section1Page < Section0Page
 
   def fill_default_section_1_w_duration(_condition)
     fill_default_section1
-    $browser.find_element(:xpath, @@maint_duration_dd).click
-    sleep 1
-    _condition === 'more' ? duration_btn_elements[0].click : duration_btn_elements[1].click
+    BrowserActions.scroll_click($browser.find_element(:xpath, @@maint_duration_dd))
+    _condition === 'more' ? BrowserActions.scroll_click(duration_btn_elements[0]) : BrowserActions.scroll_click(duration_btn_elements[1])
     BrowserActions.scroll_click(click_next_element)
   end
 
@@ -107,11 +105,9 @@ class Section1Page < Section0Page
 
   def select_sea_and_wind_state
     BrowserActions.scroll_click(sea_state_btn_element)
-    dd_list_value_elements[0].click
+    BrowserActions.scroll_click(dd_list_value_elements[0])
     BrowserActions.scroll_click(wind_force_btn_element)
-    BrowserActions.scroll
-    sleep 1
-    dd_list_value_elements[0].click
+    BrowserActions.scroll_click(dd_list_value_elements[0])
   end
 
   def fill_default_section1
@@ -132,9 +128,9 @@ class Section1Page < Section0Page
 
   def select_checkbox(_input, _location)
     _elements = $browser.find_elements(:xpath, _input)
-    _elements.each do |element|
-      if element.text === _location
-        element.click
+    _elements.each do |_element|
+      if _element.text === _location
+        BrowserActions.scroll_click(_element)
         break
       end
     end
