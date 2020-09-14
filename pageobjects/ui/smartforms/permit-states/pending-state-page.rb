@@ -5,6 +5,9 @@ require './././support/env'
 class PendingStatePage < CreatedPermitToWorkPage
   include PageObject
 
+  buttons(:master_review_btn, xpath: "//button[contains(.,'Master Review')]")
+  button(:submit_for_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
+
   def set_section1_filled_data
     # probably need to dynamic this created by
     @@section1_data_collector << 'Submitted By A/M Atif Hayat at'

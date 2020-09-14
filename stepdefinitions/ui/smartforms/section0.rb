@@ -30,10 +30,10 @@ end
 
 When (/^I select (.+) permit$/) do |_permit|
   # sleep 1
+  on(Section0Page).set_current_time
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_permit(_permit)
-  on(Section0Page).set_current_time
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
@@ -62,7 +62,6 @@ end
 And (/^I click on back to home$/) do
   sleep 2
   on(Section6Page).back_to_home_btn
-  on(Section0Page).set_current_time
 end
 
 And (/^I click on (.+) filter$/) do |state|

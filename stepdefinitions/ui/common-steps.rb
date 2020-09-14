@@ -48,5 +48,5 @@ end
 
 And (/^I set oa permit to active state via manual office approval$/) do
   CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements.last.text)
-  puts ">> #{ServiceUtil.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation')}"
+  puts ">> #{OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation')}"
 end

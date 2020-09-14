@@ -18,3 +18,11 @@ Then (/^I should see the newly pending approval permit details listed on Pending
   is_equal(@@pending_approval_permit_data[4], on(CreatedPermitToWorkPage).created_by_elements.first.text)
   is_equal(@@pending_approval_permit_data[5], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
+
+And (/^I set oa permit to office approval state manually$/) do
+  on(PendingStatePage).master_review_btn_elements.first.click
+  step 'I enter pin 1111'
+  step 'I press next for 10 times'
+  on(PendingStatePage).submit_for_oa_btn
+  step 'I click on back to home'
+end

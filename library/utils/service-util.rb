@@ -19,6 +19,7 @@ module ServiceUtil
 
     def fauxton(_uri, _trans_method, _json_payload = '')
       content_body = _json_payload
+      # switch
       if _json_payload != '' && _json_payload.size < 20
         content_body = JsonUtil.read_json(_json_payload)
       end
@@ -38,16 +39,10 @@ module ServiceUtil
       end
       error_logging('Response Body: ', @@response)
       error_logging('Status Code: ', get_http_response_status_code)
-      JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
-    end
-
-    def get_office_approval_link(form_id, _role, _name)
-      puts "form id >> #{form_id}"
-      fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
-      fauxton($obj_env_yml['office_approval']['get_staff_id'], 'post', { selector: { role: role, name: name } }.to_json.to_s)
-      # event_id = get_event_id(form_id)
-      # staff_id = get_staff_id(role, name)
-      format($obj_env_yml['office_approval']['format_link'], form_id, event_id, staff_id)
+      unless _json_payload.include? '{'
+        JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
+      end
+      @@response
     end
 
     def get_error_code
