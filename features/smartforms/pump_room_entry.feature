@@ -69,3 +69,20 @@ Feature: PumpRoomEntry
       | Are the persons entering the pump room familiar with the emergency alarm meant for  CO2 / Foam flooding?                         |
       | Are the persons entering the pump room familiar with the location of the emergency trips for the cargo pumps?                    |
       | Is the pumproom bilge dry?                                                                                                       |
+
+
+    Scenario Outline: Verify alert message is hidden after the select duration
+      Given  I launch sol-x portal
+      And I navigate to create new PRE
+      And I enter pin 8383
+      Then I should see alert message "Please select the start time and duration before submitting."
+      And Button "Submit for Approval" should be disabled
+      Then I select Permit Duration <duration>
+      And I should not see alert message "Please select the start time and duration before submitting."
+      And Button "Submit for Approval" should not be disabled
+
+      Examples:
+        | duration |
+        | 4 hours  |
+        | 6 hours  |
+        | 8 hours  |
