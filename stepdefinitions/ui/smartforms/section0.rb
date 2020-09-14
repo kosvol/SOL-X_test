@@ -28,23 +28,6 @@ And (/^I tear down created form$/) do
   end
 end
 
-When (/^I select (.+) permit$/) do |_permit|
-  # sleep 1
-  on(Section0Page).set_current_time
-  on(Section0Page).click_permit_type_ddl
-  sleep 1
-  on(Section0Page).select_permit(_permit)
-end
-
-When (/^I select (.+) permit for level 2$/) do |_permit|
-  sleep 1
-  on(Section0Page).select_permit(_permit)
-  sleep 1
-  on(Section0Page).save_btn
-  sleep 1
-  on(Section0Page).set_selected_level2_permit(_permit)
-end
-
 Then (/^I should see second level permits details$/) do
   is_true(on(Section0Page).is_level_2_permits?)
 end

@@ -93,14 +93,17 @@ class Section0Page < CommonPage
     base_permits === get_app_permits
   end
 
-  def select_permit(_permit)
+  def select_level1_permit(_permit)
     @@permit = _permit
     sleep 2
-    list_permit_type_elements.each do |permit|
-      next unless permit.text === @@permit
+    select_permit
+  end
 
-      permit.click
-      break
+  def select_level2_permit(_permit)
+    @@permit = _permit
+    sleep 2
+    if !(["Enclosed Space Entry","Helicopter Operation","Personnel Transfer by Transfer Basket","Rigging of Gangway & Pilot Ladder","Use of Non-Intrinsically Safe Camera","Use of ODME in Manual Mode","Work on Electrical Equipment and Circuits – Low/High Voltage","Work on Pressure Pipeline/Vessels","Working Aloft / Overside","Working on Deck During Heavy Weather"].include? _permit)
+      select_permit
     end
     @@section1_data_collector << @@permit
     @@section1_data_collector << ptw_id_element.text
@@ -121,6 +124,15 @@ class Section0Page < CommonPage
   end
   
   private
+
+  def select_permit
+    list_permit_type_elements.each do |permit|
+      next unless permit.text === @@permit
+
+      permit.click
+      break
+    end
+  end
 
   def get_app_permits
     app_permits = []

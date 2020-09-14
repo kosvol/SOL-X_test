@@ -45,3 +45,20 @@ And (/^I press next for (.+) times$/) do |_times|
     on(Section0Page).click_next
   end
 end
+
+When (/^I select (.+) permit$/) do |_permit|
+  # sleep 1
+  on(Section0Page).set_current_time
+  on(Section0Page).click_permit_type_ddl
+  sleep 1
+  on(Section0Page).select_level1_permit(_permit)
+end
+
+When (/^I select (.+) permit for level 2$/) do |_permit|
+  sleep 1
+  on(Section0Page).select_level2_permit(_permit)
+  sleep 1
+  on(Section0Page).save_btn
+  sleep 1
+  on(Section0Page).set_selected_level2_permit(_permit)
+end
