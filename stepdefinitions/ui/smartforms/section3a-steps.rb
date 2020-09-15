@@ -64,7 +64,6 @@ end
 
 Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
-  # on(Section4BPage).set_current_time
   does_include(on(Section3APage).generic_data_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}/")
   is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(Section0Page).get_current_date_format_with_offset)
   is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(Section0Page).get_current_time_format)
@@ -102,11 +101,14 @@ end
 And (/^I delete a hazard$/) do
   sleep 1
   on(Section3APage).view_edit_btn
+  sleep 1
   on(Section3APage).delete_btn_elements.first.click
+  sleep 1
   on(Section3APage).save_and_close
 end
 
 Then (/^I should see hazard deleted$/) do
+  on(Section3APage).scroll_multiple_times(1)
   is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
   is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')

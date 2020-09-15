@@ -122,7 +122,7 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    scroll_multiple_times(3)
+    scroll_multiple_times(1)
     add_additional_measure_btn_elements[1].click
     scroll_multiple_times(2)
     likelihood_btn_elements[2].click

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 Then (/^I should see the newly created permit details listed on Created Permits to Work$/) do
-  @@created_permit_data = on(Section1Page).set_section1_filled_data
+  on(Section1Page).set_section1_filled_data
   # does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "SIT/PTW/#{BrowserActions.get_year}/")
-  is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
-  is_equal(@@created_permit_data[4], on(CreatedPermitToWorkPage).created_by_elements.first.text)
-  is_equal(@@created_permit_data[5], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  is_equal(on(Section1Page).get_section1_filled_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
+  is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
+  is_equal(on(Section1Page).get_section1_filled_data[4], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
 
 And (/^I want to edit the newly created permit$/) do
@@ -13,8 +13,9 @@ And (/^I want to edit the newly created permit$/) do
 end
 
 Then (/^I should see correct permit details$/) do
-  is_equal(on(Section0Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[2])
-  is_equal(on(Section0Page).generic_data_elements[1].text, on(Section0Page).ptw_id_element.text)
+  on(Section1Page).set_section1_filled_data
+  is_equal(on(Section0Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[0])
+  is_equal(on(Section0Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
   is_equal(on(Section0Page).generic_data_elements[0].text, 'SIT')
 end
 

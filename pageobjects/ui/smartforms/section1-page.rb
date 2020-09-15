@@ -31,6 +31,7 @@ class Section1Page < Section0Page
     sleep 1
     @@section1_data_collector << "#{get_current_date_format_with_offset} #{get_current_time_format}"
     p ">>> #{@@section1_data_collector}"
+    Log.instance.info(@@section1_data_collector)
     @@section1_data_collector
   end
 
