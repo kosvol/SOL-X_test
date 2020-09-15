@@ -6,8 +6,6 @@ Feature: ActivePermit
 
   # Scenario: Verify in view mode all section is disabled
 
-  # Scenario: Verify master can send for oa approval twice
-
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -51,6 +49,7 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
     Then I should see permit valid for 4 hours
@@ -84,6 +83,7 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
     Then I should see permit valid for 8 hours
@@ -153,6 +153,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    When I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
@@ -165,6 +166,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    When I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
@@ -177,6 +179,7 @@ Feature: ActivePermit
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    When I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin

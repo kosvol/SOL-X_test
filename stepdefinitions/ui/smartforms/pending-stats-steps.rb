@@ -26,3 +26,23 @@ And (/^I set oa permit to office approval state manually$/) do
   on(PendingStatePage).submit_for_oa_btn
   step 'I click on back to home'
 end
+
+And (/^Master request for oa permit update$/) do
+  on(PendingStatePage).master_approval_btn_elements.first.click
+  step 'I enter pin 1111'
+  step 'I press next for 11 times'
+  on(PendingStatePage).set_update_comment
+  step 'I click on back to home'
+end
+
+And (/^I reapprove the updated permit$/) do
+  step 'I click on update needed filter'
+  on(PendingStatePage).edit_update_btn_element.first.click
+  step 'I enter pin 9015'
+  step 'I press next for 10 times'
+  on(PendingStatePage).submit_master_approval_btn
+  step 'I enter pin 9015'
+  step 'I sign on canvas'
+  sleep 1
+  step 'I click on back to home'
+end

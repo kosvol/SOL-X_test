@@ -53,17 +53,13 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    # BrowserActions.scroll_click(likelihood_btn_elements[(likelihood_btn_elements.size - 2)])
     scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
-    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[80].click
     confirm_btn_elements[16].click
     sleep 1
-    # BrowserActions.scroll_click(consequence_btn_elements[(consequence_btn_elements.size - 2)])
     consequence_btn_elements[(consequence_btn_elements.size - 2)].click
-    # BrowserActions.scroll_down
     sleep 2
     level_to_choose_elements[85].click
     confirm_btn_elements[17].click
@@ -72,15 +68,11 @@ class Section3APage < Section2Page
     # for existing control measure
     scroll_multiple_times(1)
     likelihood_btn_elements.last.click
-    # BrowserActions.scroll_click(likelihood_btn_elements.last)
-    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[90].click
     confirm_btn_elements[18].click
     sleep 1
     consequence_btn_elements.last.click
-    # BrowserActions.scroll_click(consequence_btn_elements.last)
-    # BrowserActions.scroll_down
     sleep 1
     level_to_choose_elements[95].click
     confirm_btn_elements[19].click
