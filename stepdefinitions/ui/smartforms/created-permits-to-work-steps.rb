@@ -5,7 +5,7 @@ Then (/^I should see the newly created permit details listed on Created Permits 
   # does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "SIT/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
-  is_equal(on(Section1Page).get_section1_filled_data[4], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  is_equal(on(Section1Page).get_section1_filled_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
 
 And (/^I want to edit the newly created permit$/) do
