@@ -29,7 +29,7 @@ Feature: SubmitPermit
     And I navigate to OA link
     And I set oa permit to active state via manual office approval
     And I click on active filter
-    Then I should see permit valid for 8 hours
+  # Then I should see permit valid for 8 hours
 
   @x1
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
