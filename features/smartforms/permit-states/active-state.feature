@@ -6,6 +6,8 @@ Feature: ActivePermit
 
   # Scenario: Verify in view mode all section is disabled
 
+  # Scenario: Verify master can send for oa approval twice
+
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -69,22 +71,22 @@ Feature: ActivePermit
     And I click on active filter
     Then I should see permit valid for 2 hours
 
-  # Scenario: Verify all maintenance permit with duration more than 2 hours should have 8 hours validity
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select Critical Equipment Maintenance permit
-  #   And I select Maintenance on Magnetic Compass permit for level 2
-  #   And I submit after filling up section 1 with duration more than 2 hours
-  #   When I press next for 9 times
-  #   Then I submit permit for Master Review
-  #   When I click on back to home
-  #   And I click on pending approval filter
-  #   And I set oa permit to office approval state manually
-  #   And I click on pending approval filter
-  #   And I set oa permit to active state via manual office approval
-  #   And I click on active filter
-  #   Then I should see permit valid for 8 hours
+  Scenario: Verify all maintenance permit with duration more than 2 hours should have 8 hours validity
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I submit after filling up section 1 with duration more than 2 hours
+    When I press next for 9 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I click on pending approval filter
+    And I set oa permit to active state via manual office approval
+    And I click on active filter
+    Then I should see permit valid for 8 hours
 
   Scenario Outline: Verify RoL permit validity will be based on user selection
     Given I launch sol-x portal without unlinking wearable
@@ -149,44 +151,41 @@ Feature: ActivePermit
   # | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
   # | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
-  # Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
-  # Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
-  # And I set oa permit to active state
-  # And I launch sol-x portal without unlinking wearable
-  # And I click on active filter
-  # And I update active permit with <rank> rank and <pin> pin
-  # Then I should see Add Gas Reading button enabled
+  Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    And I set oa permit to active state via manual office approval
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should see Add Gas Reading button enabled
 
-  # Examples:
-  #   | permit_types | permit_payload                 | rank | pin  |
-  #   # | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
-  #   | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
+    Examples:
+      | permit_types       | permit_payload                | rank   | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera | Master | 1111 |
+  # | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
 
-  # Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
-  # Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
-  # And I set oa permit to active state
-  # And I launch sol-x portal without unlinking wearable
-  # And I click on active filter
-  # And I update active permit with <rank> rank and <pin> pin
-  # Then I should not see gas reader sections on active permit
+  Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    And I set oa permit to active state via manual office approval
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should not see gas reader sections on active permit
 
-  # Examples:
-  #   | permit_types | permit_payload                 | rank  | pin  |
-  #   # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
-  #   | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
+    Examples:
+      | permit_types | permit_payload                 | rank  | pin  |
+      # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
+      | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
 
-  # Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
-  #   Given I submit permit <permit_payload> via service with 9015 user and set to active state
-  #   And I set oa permit to active state
-  #   And I launch sol-x portal without unlinking wearable
-  #   And I click on active filter
-  #   And I update active permit with <rank> rank and <pin> pin
-  #   Then I should see Add Gas Reading button disabled
+  Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    And I set oa permit to active state via manual office approval
+    And I click on active filter
+    And I update active permit with <rank> rank and <pin> pin
+    Then I should see Add Gas Reading button disabled
 
-  #   Examples:
-  #     | permit_types | permit_payload                 | rank | pin  |
-  #     # | underwater         | submit_underwater_simultaneous | A 4/E | 0703 |
-  #     | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
+    Examples:
+      | permit_types | permit_payload                 | rank  | pin  |
+      | underwater   | submit_underwater_simultaneous | A 4/E | 0703 |
+  # | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
