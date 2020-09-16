@@ -62,3 +62,39 @@ And(/^I (should|should not) see Reporting interval$/) do |_condition|
     is_true(on(PumpRoomEntry).is_interval_period_displayed?)
   end
 end
+
+Then(/^I press the "([^"]*)" button$/) do |button|
+  if button == "Add Gas Test Record"
+    on(PumpRoomEntry).send(:add_gas_record_btn)
+  elsif button == "Continue"
+    on(PumpRoomEntry).press_the_button("Continue")
+  elsif button == "Add Toxic Gas"
+    on(PumpRoomEntry).press_the_button("Add Toxic Gas")
+  end
+end
+
+And(/^I should see the section "([^"]*)"$/) do |section|
+  is_true(on(PumpRoomEntry).is_section?(section))
+end
+
+And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
+  if _condition === 'disabled'
+    is_false(on(PumpRoomEntry).is_button_enabled?(button))
+  end
+
+  if _condition === 'enabled'
+    is_true(on(PumpRoomEntry).is_button_enabled?(button))
+  end
+end
+
+And(/^I fill up "([^"]*)"$/) do |section|
+  is_true(on(PumpRoomEntry).fill_up_section?(section))
+end
+
+And(/^I should see a new row with filled data$/) do
+  is_true(on(PumpRoomEntry).how_many_rows == 1)
+end
+
+Then(/^I should be able to delete the record$/) do
+  is_true(on(PumpRoomEntry).delete_added_row)
+end
