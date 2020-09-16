@@ -48,16 +48,15 @@ And (/^I click on back to home$/) do
 end
 
 And (/^I click on (.+) filter$/) do |state|
-  sleep 1
   if state === 'pending approval'
-    on(Section0Page).permit_filter_elements[0].click
+    BrowserActions.click_element(on(Section0Page).permit_filter_elements[0])
     sleep 1
     CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
   elsif state === 'update needed'
-    on(Section0Page).permit_filter_elements[1].click
+    BrowserActions.click_element(on(Section0Page).permit_filter_elements[1])
   elsif state === 'active'
-    on(Section0Page).permit_filter_elements[2].click
+    BrowserActions.click_element(on(Section0Page).permit_filter_elements[2])
   elsif state === 'pending withdrawal'
-    on(Section0Page).permit_filter_elements[3].click
+    BrowserActions.click_element(on(Section0Page).permit_filter_elements[3])
   end
 end

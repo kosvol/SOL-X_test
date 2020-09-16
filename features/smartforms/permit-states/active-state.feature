@@ -154,7 +154,7 @@ Feature: ActivePermit
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
@@ -167,7 +167,7 @@ Feature: ActivePermit
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections on active permit
@@ -180,7 +180,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled
