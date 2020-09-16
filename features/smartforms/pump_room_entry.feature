@@ -12,15 +12,15 @@ Feature: PumpRoomEntry
     And I tear down created form
 
     Examples:
-      | rank                       | pin  |
-      | Chief Officer              | 8383 |
-      | Additional Chief Officer   | 2761 |
-      | Second Officer             | 6268 |
-      | Additional Second Officer  | 7865 |
-      | 3/O                        | 0159 |
-      | A 3/O                      | 2674 |
+      | rank                      | pin  |
+      | Chief Officer             | 8383 |
+      | Additional Chief Officer  | 2761 |
+      | Second Officer            | 6268 |
+      | Additional Second Officer | 7865 |
+      | 3/O                       | 0159 |
+      | A 3/O                     | 2674 |
 
-  Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
+  Scenario Outline: Verify non Pump Room Entry RO cannot create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin <pin>
@@ -67,32 +67,32 @@ Feature: PumpRoomEntry
       | Is the pumproom bilge dry?                                                                                                       |
 
 
-    Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
-      Given  I launch sol-x portal
-      And I navigate to create new PRE
-      And I enter pin 8383
-      Then I should see alert message "Please select the start time and duration before submitting."
-      And Button "Submit for Approval" should be disabled
-      Then I select Permit Duration <duration>
-      And I should not see alert message "Please select the start time and duration before submitting."
-      And Button "Submit for Approval" should not be disabled
+  Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
+    Given I launch sol-x portal
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I should see alert message "Please select the start time and duration before submitting."
+    And I should see button "Submit for Approval" should be disabled
+    Then I select Permit Duration <duration>
+    And I should not see alert message "Please select the start time and duration before submitting."
+    And I should see Button "Submit for Approval" should not be disabled
 
-      Examples:
-        | duration |
-        | 4 hours  |
-        | 6 hours  |
-        | 8 hours  |
+    Examples:
+      | duration |
+      | 4 hours  |
+      | 6 hours  |
+      | 8 hours  |
 
   Scenario: Verify user able to fill Date of Last Calibration
-    Given  I launch sol-x portal
+    Given I launch sol-x portal
     And I navigate to create new PRE
     And I enter pin 8383
     Then I select current day for field "Date of Last Calibration"
 
   Scenario: Verify user able to see reporting interval when YES is selected
-    Given  I launch sol-x portal
+    Given I launch sol-x portal
     And I navigate to create new PRE
     And I enter pin 8383
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
-    And  I should see Reporting interval
+    And I should see Reporting interval

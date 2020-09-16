@@ -52,7 +52,7 @@ class PumpRoomEntry
   end
 
   def select_permit_duration(duration)
-    BrowserActions.scroll_down(permit_validation) #scroll+click
+    BrowserActions.scroll_click(permit_validation_element) #<--- this is how you use this method; you can change for the rest
     sleep 1
     xpath_str = @@permit_duration%[duration]
     @browser.find_element('xpath', xpath_str).click
@@ -65,7 +65,7 @@ class PumpRoomEntry
 
   def is_selected_date?(button)
     if button == 'Date of Last Calibration'
-      BrowserActions.scroll_down(last_calibration_btn)
+      BrowserActions.scroll_down(last_calibration_btn) #<-- this scroll_down is not very good;
       current_day_button_btn
       last_calibration_btn_element.text == Time.now.strftime('%d/%b/%Y')
     end
