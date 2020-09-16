@@ -12,7 +12,7 @@ Feature: SubmitPermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
-    When I press next for 9 times
+    When I press next for 10 times
     Then I submit permit for Master Review
     When I click on back to home
     And I click on pending approval filter
@@ -27,9 +27,12 @@ Feature: SubmitPermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
-  # Then I should see permit valid for 8 hours
+    Then I should see permit valid for 8 hours
 
   @x1
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry

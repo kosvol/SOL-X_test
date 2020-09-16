@@ -6,32 +6,6 @@ Feature: ActivePermit
 
   # Scenario: Verify in view mode all section is disabled
 
-  #To Remove From Here
-  Scenario: Verify master can send for oa approval twice
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Magnetic Compass permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
-    When I press next for 9 times
-    Then I submit permit for Master Review
-    When I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I navigate to OA link
-    And I should see comment reset
-    And I add comment on oa permit
-    And I approve oa permit via oa link manually
-    And I click on pending approval filter
-    And Master request for oa permit update
-    And I reapprove the updated permit
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I navigate to OA link
-    And I set oa permit to active state via manual office approval
-    And I click on active filter
-
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -39,7 +13,7 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
-    When I press next for 9 times
+    When I press next for 10 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -54,7 +28,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
-    When I press next for 1 times
+    When I press next for 2 times
     And I submit permit for Master Approval
     And I click on back to home
     And I set rol permit to active state with 1 duration
@@ -69,7 +43,7 @@ Feature: ActivePermit
     And I select Underwater Operations permit
     And I select Simultaneous underwater operation during daytime with other operation permit for level 2
     And I fill up section 1
-    When I press next for 9 times
+    When I press next for 10 times
     Then I submit permit for Master Review
     When I click on back to home
     And I click on pending approval filter
@@ -87,7 +61,7 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration less than 2 hours
-    And I press next for 9 times
+    And I press next for 10 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -103,7 +77,7 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I submit after filling up section 1 with duration more than 2 hours
-    When I press next for 9 times
+    When I press next for 10 times
     Then I submit permit for Master Review
     When I click on back to home
     And I click on pending approval filter
@@ -147,7 +121,7 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1
-    And I press next for 9 times
+    And I press next for 10 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter

@@ -4,18 +4,13 @@ end
 
 And (/^I approve oa permit via oa link manually$/) do
   # $browser.get("http://office-approval.dev.solas.magellanx.io/approve-page/01EJ7WE70DY9C3FCCEM7S80FR7?staffId=410ab5c6feb3d2f1b030b9d9ce036138")
+  sleep 1
   BrowserActions.scroll_click(on(OAPage).approve_permit_btn_element)
   on(OAPage).set_to_time
   on(OAPage).set_to_date_plus_one_day(on(OAPage).issue_to_date_btn_element.text)
   BrowserActions.scroll_click(on(OAPage).submit_permit_approval_btn_element)
+  sleep 1
   $browser.get(EnvironmentSelector.get_environment_url)
-end
-
-And (/^I set oa permit to active state via manual office approval$/) do
-  step 'I approve oa permit via oa link manually'
-  step 'I click on pending approval filter'
-  step 'I approve permit'
-  step 'I click on back to home'
 end
 
 And (/^I should see comment reset$/) do

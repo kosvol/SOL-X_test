@@ -11,7 +11,7 @@ class PendingStatePage < CreatedPermitToWorkPage
   button(:submit_for_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
   button(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
   buttons(:edit_update_btn, xpath: "//button[contains(.,'Edit/Update')]")
-  button(:submit_master_approval_btn, xpath: "//button[contains(.,'Submit for Master's Approval')]")
+  button(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
   element(:update_comment_box, id: 'updatesNeededComment')
   
   def set_update_comment

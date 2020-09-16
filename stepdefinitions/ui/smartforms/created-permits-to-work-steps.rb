@@ -36,7 +36,7 @@ end
 
 Then (/^I should see checklist section with fields enabled$/) do
   # step 'I press next from section 1'
-  step 'I press next for 6 times'
+  step 'I navigate to section 4a'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
   step 'I press next for 1 times'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
@@ -57,13 +57,13 @@ end
 
 Then (/^I should see gas reader section with fields enabled$/) do
   # step 'I press next from section 1'
-  step 'I press next for 10 times'
+  step 'I navigate to section 6'
   is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
   # step 'I press next from section 1'
-  step 'I press next for 8 times'
+  step 'I navigate to section 4b'
   is_equal(on(Section4APage).disabled_fields_elements.size, '2')
   # is_false(on(Section4APage).is_checklist_fields_disabled?)
 end

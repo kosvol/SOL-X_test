@@ -114,9 +114,10 @@ class Section3APage < Section2Page
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
-    scroll_multiple_times(1)
+    sleep 1
+    @@swap_flag === "evaluation_matrix" ? scroll_multiple_times(1) : scroll_multiple_times(4)
     add_additional_measure_btn_elements[1].click
-    scroll_multiple_times(2)
+    scroll_multiple_times(1)
     likelihood_btn_elements[2].click
     level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
     confirm_btn_elements[confirm_btn_elements.size - 2].click
@@ -179,9 +180,7 @@ class Section3APage < Section2Page
 
   def evaluation_matrix(color, _color1, _color2)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    risk_indicators[risk_indicators.size - 3].css_value('background-color') === get_color_code(color)
-    risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1)
-    risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2)
+    (risk_indicators[risk_indicators.size - 3].css_value('background-color') === get_color_code(color) && risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1) && risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2))
   end
   
   private

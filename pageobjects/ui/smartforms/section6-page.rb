@@ -54,17 +54,17 @@ class Section6Page < Section4BPage
   def get_total_steps_to_section6(_which_section)
     case _which_section
     when '6'
-      9
+      10
     when '4a'
-      5
+      6
     when '3a'
-      1
-    when '3d'
-      4
-    when '4b'
-      7
-    when '3b'
       2
+    when '3b'
+      3
+    when '3d'
+      5
+    when '4b'
+      8
     end
   end
 end

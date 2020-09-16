@@ -50,8 +50,8 @@ end
 And (/^I click on (.+) filter$/) do |state|
   sleep 1
   if state === 'pending approval'
-    sleep 2
     on(Section0Page).permit_filter_elements[0].click
+    sleep 1
     CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
   elsif state === 'update needed'
     on(Section0Page).permit_filter_elements[1].click
