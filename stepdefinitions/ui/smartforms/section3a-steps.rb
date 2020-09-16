@@ -84,15 +84,8 @@ And (/^I click on View Edit Hazard$/) do
 end
 
 Then (/^I should see additional hazard data save$/) do
-  on(Section3APage).previous_btn
-  sleep 1
-  on(Section3APage).next_btn
-  sleep 1
-  on(Section3APage).next_btn
-  sleep 1
-  on(Section3APage).previous_btn
-  sleep 1
-  is_true(on(Section3APage).is_additional_hazard_saved)
+  on(Section3APage).navigate_front_back
+  is_true(on(Section3APage).is_additional_hazard_saved?)
 end
 
 And (/^I add a new hazard$/) do
@@ -116,16 +109,8 @@ Then (/^I should see hazard deleted$/) do
 end
 
 Then (/^I should see added new hazard$/) do
-  on(Section3APage).previous_btn
-  sleep 1
-  on(Section3APage).next_btn
-  sleep 1
-  on(Section3APage).next_btn
-  sleep 1
-  on(Section3APage).previous_btn
-  sleep 1
-  on(Section3APage).view_edit_btn
-  sleep 1
+  on(Section3APage).navigate_front_back
+  BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   on(Section3APage).scroll_multiple_times(15)
   is_true(on(Section3APage).is_new_hazard_added?)
 end

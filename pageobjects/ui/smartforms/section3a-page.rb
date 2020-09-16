@@ -27,7 +27,15 @@ class Section3APage < Section2Page
   # elements(:identified_hazard_row, xpath: "//div[starts-with(@class,'row-wrapper')]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  def is_additional_hazard_saved
+  def navigate_front_back
+    BrowserActions.scroll_click(previous_btn_element)
+    BrowserActions.scroll_click(next_btn_element)
+    BrowserActions.scroll_click(next_btn_element)
+    BrowserActions.scroll_click(previous_btn_element)
+    sleep 1
+  end
+
+  def is_additional_hazard_saved?
     view_edit_btn
     description_elements[2].text === 'Test Automation'
   end

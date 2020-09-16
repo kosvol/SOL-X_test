@@ -65,6 +65,8 @@ class Section6Page < Section4BPage
       5
     when '4b'
       8
+    when '2'
+      1
     end
   end
 end

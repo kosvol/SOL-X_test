@@ -79,31 +79,30 @@ class Section1Page < Section0Page
 
   def fill_all_of_section_1_wo_duration
     fill_static_section1
-    # click_next
   end
 
   def fill_all_of_section_1_w_duration(_condition)
+    sleep 1
     fill_static_section1
-    # BrowserActions.scroll_click($browser.find_element(:xpath, @@maint_duration_dd))
     $browser.find_element(:xpath, @@maint_duration_dd).click
     _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
-    # BrowserActions.scroll_click(click_next_element)
-    # click_next
+  end
+
+  def set_maintenance_duration(_condition)
+    $browser.find_element(:xpath, @@maint_duration_dd).click
+    _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
   end
 
   def fill_default_section_1_wo_duration
+    sleep 1
     fill_default_section1
-    # BrowserActions.scroll_click(click_next_element)
-    # click_next
   end
 
   def fill_default_section_1_w_duration(_condition)
+    sleep 1
     fill_default_section1
-    # BrowserActions.scroll_click($browser.find_element(:xpath, @@maint_duration_dd))
     $browser.find_element(:xpath, @@maint_duration_dd).click
     _condition === 'more' ? BrowserActions.scroll_click(duration_btn_elements[0]) : BrowserActions.scroll_click(duration_btn_elements[1])
-    # BrowserActions.scroll_click(click_next_element)
-    # click_next
   end
 
   private

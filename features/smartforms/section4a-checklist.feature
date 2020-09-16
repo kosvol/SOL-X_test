@@ -14,7 +14,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    # And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -46,7 +46,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    # And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -77,7 +77,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -94,7 +94,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -112,7 +112,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist content for <checklist> checklist
     And I tear down created form
@@ -127,7 +127,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    # And I fill up section 1
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated
@@ -152,7 +152,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated
