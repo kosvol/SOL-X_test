@@ -55,7 +55,7 @@ end
 
 And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
-    sleep 1.5
+    sleep 1
     on(Section0Page).click_next
   end
 end

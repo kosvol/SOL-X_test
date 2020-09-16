@@ -28,7 +28,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
-    When I press next for 2 times
+    When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I set rol permit to active state with 1 duration
@@ -50,7 +50,10 @@ Feature: ActivePermit
     And I set oa permit to office approval state manually
     And I click on pending approval filter
     And I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
     Then I should see permit valid for 4 hours
 
@@ -82,9 +85,11 @@ Feature: ActivePermit
     When I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
-    And I click on pending approval filter
     And I navigate to OA link
-    And I set oa permit to active state via manual office approval
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
     Then I should see permit valid for 8 hours
 
@@ -155,6 +160,9 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
     And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
@@ -168,6 +176,9 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
     And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections on active permit
@@ -181,6 +192,9 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     When I navigate to OA link
     And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
     And I click on active filter
     And I update active permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled

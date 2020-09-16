@@ -26,7 +26,7 @@ class OAPage < Section9Page
   Test Automation"
   
   def navigate_to_oa_link
-    sleep 360
+    sleep 400
     $browser.get(OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s)
   end
 
