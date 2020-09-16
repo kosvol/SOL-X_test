@@ -285,9 +285,9 @@ Feature: Section3ADRA
     And I fill up section 1
     And I navigate to section 3a
     And I toggle likelihood 5 and 5 consequence matrix for existing control measure
-    And I should see correct risk evaluation very medium,very high,very high
+    And I should see correct risk evaluation medium,very high,very high
     And I toggle likelihood 1 and 1 consequence matrix for additional hazard
-    Then I should see correct risk evaluation very medium,very high,low
+    Then I should see correct risk evaluation medium,very high,low
 
   Scenario: Verify added additional hazard is saved
     Given I launch sol-x portal without unlinking wearable

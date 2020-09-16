@@ -61,6 +61,14 @@ class Section0Page < CommonPage
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
 
+  def get_current_time_format_with_offset(_offset)
+    # which_json = 'ship-local-time/base-get-current-time'
+    # ServiceUtil.post_graph_ql(which_json, '1111')
+    # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
+    # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
+  end
+
   def reset_data_collector
     @@section1_data_collector = [] # reset
   end
@@ -93,14 +101,17 @@ class Section0Page < CommonPage
     base_permits === get_app_permits
   end
 
-  def select_permit(_permit)
+  def select_level1_permit(_permit)
     @@permit = _permit
     sleep 2
-    list_permit_type_elements.each do |permit|
-      next unless permit.text === @@permit
+    select_permit
+  end
 
-      permit.click
-      break
+  def select_level2_permit(_permit)
+    @@permit = _permit
+    sleep 2
+    if !(["Enclosed Space Entry","Helicopter Operation","Personnel Transfer by Transfer Basket","Rigging of Gangway & Pilot Ladder","Use of Non-Intrinsically Safe Camera","Use of ODME in Manual Mode","Work on Electrical Equipment and Circuits – Low/High Voltage","Work on Pressure Pipeline/Vessels","Working Aloft / Overside","Working on Deck During Heavy Weather"].include? _permit)
+      select_permit
     end
     @@section1_data_collector << @@permit
     @@section1_data_collector << ptw_id_element.text
@@ -113,7 +124,23 @@ class Section0Page < CommonPage
     permit.text === 'Rigging of Pilot/Combination Ladder' ? get_random_permit : permit
   end
 
+  def scroll_multiple_times(times)
+    for i in 1..times do
+      BrowserActions.scroll_down
+      sleep 1
+    end
+  end
+  
   private
+
+  def select_permit
+    list_permit_type_elements.each do |permit|
+      next unless permit.text === @@permit
+
+      permit.click
+      break
+    end
+  end
 
   def get_app_permits
     app_permits = []

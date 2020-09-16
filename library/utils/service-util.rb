@@ -19,6 +19,7 @@ module ServiceUtil
 
     def fauxton(_uri, _trans_method, _json_payload = '')
       content_body = _json_payload
+      # switch
       if _json_payload != '' && _json_payload.size < 20
         content_body = JsonUtil.read_json(_json_payload)
       end
@@ -38,7 +39,10 @@ module ServiceUtil
       end
       error_logging('Response Body: ', @@response)
       error_logging('Status Code: ', get_http_response_status_code)
-      JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
+      unless _json_payload.include? '{'
+        JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
+      end
+      @@response
     end
 
     def get_error_code

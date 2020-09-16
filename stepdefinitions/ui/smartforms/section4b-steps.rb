@@ -14,26 +14,15 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and lin
   sleep 4
 end
 
-Then (/^I sign EIC as (competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
-  # step 'I select yes to EIC certification'
+Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4BPage).subform_btn_elements[0].click
+  on(Section4BPage).subform_btn_elements[0].click if _condition === 'competent person'
+  on(Section4BPage).subform_btn_elements[1].click if _condition === 'issuing authority'
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
-  step 'I sign on canvas' if _condition === 'competent person'
-end
-
-Then (/^I sign EIC as (issuing authority|non issuing authority) with pin (.+)$/) do |_condition, _pin|
-  # step 'I select yes to EIC certification'
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  on(Section4BPage).subform_btn_elements[1].click
-  @@entered_pin = _pin.to_i
-  on(PinPadPage).enter_pin(@@entered_pin)
-  step 'I sign on canvas' if _condition === 'issuing authority'
+  step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
   on(Section0Page).set_current_time
 end
 

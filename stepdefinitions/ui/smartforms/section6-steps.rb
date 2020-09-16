@@ -21,17 +21,17 @@ Then (/^I should see master approval button only$/) do
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval")
 end
 
-# Then (/^I (should|should not) see gas reader sections$/) do |_condition|
-#   sleep 1
-#   is_true(on(Section6Page).is_gas_reader_section?) if _condition === 'should'
-#   if _condition === 'should not'
-#     is_true(!on(Section6Page).is_gas_reader_section?)
-#   end
-# end
+Then (/^I (should|should not) see gas reader sections$/) do |_condition|
+  sleep 1
+  is_true(on(Section6Page).is_gas_reader_section?) if _condition === 'should'
+  if _condition === 'should not'
+    is_true(!on(Section6Page).is_gas_reader_section?)
+  end
+end
 
 Then (/^I (should|should not) see gas reader sections on active permit$/) do |_condition|
   sleep 1
-  step 'I press next for 10 times'
+  step 'I navigate to section 6'
   step "I #{_condition} see gas reader sections"
 end
 

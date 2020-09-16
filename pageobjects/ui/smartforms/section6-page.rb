@@ -28,7 +28,7 @@ class Section6Page < Section4BPage
 
   def is_gas_reader_section?
     sleep 1
-    total_sections_elements.size >= 3
+    total_sections_elements.size > 3
   end
 
   def toggle_to_section(_which_section)
@@ -54,17 +54,17 @@ class Section6Page < Section4BPage
   def get_total_steps_to_section6(_which_section)
     case _which_section
     when '6'
-      9
+      10
     when '4a'
-      5
+      6
     when '3a'
-      1
-    when '3d'
-      4
-    when '4b'
-      7
-    when '3b'
       2
+    when '3b'
+      3
+    when '3d'
+      5
+    when '4b'
+      8
     end
   end
 end
