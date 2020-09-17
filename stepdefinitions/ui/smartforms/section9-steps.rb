@@ -12,6 +12,7 @@ Then (/^I (should|should not) see terminate permit to work and request update bu
   end
 end
 
-Then (/^I should see date and time pre-fill on section (.+)$/) do |_section|
+Then (/^I should see date and time pre-fill on section 9$/) do
+  on(Section0Page).set_current_time
   is_true(on(Section9Page).is_termination_date_time_filled?)
 end

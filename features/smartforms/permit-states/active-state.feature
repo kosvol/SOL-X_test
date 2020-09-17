@@ -186,7 +186,7 @@ Feature: ActivePermit
     Examples:
       | permit_types | permit_payload                 | rank  | pin  |
       # | intrinsical camera | submit_non_intrinsical_camera  | C/O | 3903 |
-      | underwater   | submit_underwater_simultaneous | A C/O | 6698 |
+      | underwater   | submit_underwater_simultaneous | A C/O | 2761 |
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
