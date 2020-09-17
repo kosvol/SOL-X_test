@@ -96,3 +96,21 @@ Feature: PumpRoomEntry
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
     And  I should see Reporting interval
+
+  Scenario: Verify user can add Gas Test Record
+    Given I launch sol-x portal
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I press the "Add Gas Test Record" button
+    And I should see the section "Gas test Record"
+    And (for pre) I should see the disabled "Continue" button
+    And I fill up "Gas test Record"
+    Then (for pre) I should see the enabled "Continue" button
+    And I press the "Continue" button
+    Then I should see the section "Other Toxic Gases"
+    And (for pre) I should see the disabled "Add Toxic Gas" button
+    Then I fill up "Other Toxic Gases"
+    And (for pre) I should see the enabled "Add Toxic Gas" button
+    Then I press the "Add Toxic Gas" button
+    And I should see a new row with filled data
+    Then I should be able to delete the record
