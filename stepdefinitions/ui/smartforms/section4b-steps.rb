@@ -18,8 +18,8 @@ Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4BPage).subform_btn_elements[0].click if _condition === 'competent person'
-  on(Section4BPage).subform_btn_elements[1].click if _condition === 'issuing authority'
+  on(Section4BPage).subform_btn_elements[0].click if ["competent person","non competent person"].include? _condition
+  on(Section4BPage).subform_btn_elements[1].click if ["issuing authority","non issuing authority"].include? _condition
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
