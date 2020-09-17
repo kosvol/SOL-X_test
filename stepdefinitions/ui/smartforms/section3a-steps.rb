@@ -8,6 +8,7 @@ end
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
   sleep 1
   @measure = _measure
+  @@swap_flag = "non_evaluation_matrix"
   case _measure
   when 'without applying measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
