@@ -1,3 +1,4 @@
+@Pump-Room-Entry
 Feature: PumpRoomEntry
   As a ...
   I want to ...
@@ -102,15 +103,36 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I press the "Add Gas Test Record" button
-    And I should see the section "Gas test Record"
+    And I should see the page "Gas Test Record"
     And (for pre) I should see the disabled "Continue" button
-    And I fill up "Gas test Record"
+    And I fill up "Gas Test Record"
     Then (for pre) I should see the enabled "Continue" button
     And I press the "Continue" button
-    Then I should see the section "Other Toxic Gases"
+    Then I should see the page "Other Toxic Gases"
     And (for pre) I should see the disabled "Add Toxic Gas" button
     Then I fill up "Other Toxic Gases"
     And (for pre) I should see the enabled "Add Toxic Gas" button
     Then I press the "Add Toxic Gas" button
     And I should see a new row with filled data
-    Then I should be able to delete the record
+    And I should be able to delete the record
+
+    Then I fill up "Other Toxic Gases"
+    And I press the "Add Toxic Gas" button
+    And I press the "Review & Sign" button
+    Then I should see the page "Review Your Gas Test Record"
+
+            # And I should be able to return on previous pages
+            # Then I press the "Back" button
+            # And I should see the section "Other Toxic Gases"
+            # Then I press the "Back" button
+            # And I should see the section "Gas test Record"
+            # Then I should be able to return on Review Your Gas Test Record => BUG SOL-5246
+
+    And (for pre) I should see the enabled "Enter PIN & Submit" button
+    Then (for pre) I sign on canvas
+    And I press the "Enter PIN & Submit" button
+    And I sign on Gas Test Record with 9999 pin
+
+            #TThen I should see the page "Gas Test Record Successfully Submitted"
+            #Then I should "Gas Reading" table
+            #Then I should not see the "Add Gas Test Record" button

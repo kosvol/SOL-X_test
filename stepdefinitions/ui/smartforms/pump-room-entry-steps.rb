@@ -64,17 +64,11 @@ And(/^I (should|should not) see Reporting interval$/) do |_condition|
 end
 
 Then(/^I press the "([^"]*)" button$/) do |button|
-  if button == "Add Gas Test Record"
-    on(PumpRoomEntry).send(:add_gas_record_btn)
-  elsif button == "Continue"
-    on(PumpRoomEntry).press_the_button("Continue")
-  elsif button == "Add Toxic Gas"
-    on(PumpRoomEntry).press_the_button("Add Toxic Gas")
-  end
+  on(PumpRoomEntry).press_the_button(button)
 end
 
-And(/^I should see the section "([^"]*)"$/) do |section|
-  is_true(on(PumpRoomEntry).is_section?(section))
+And(/^I should see the page "([^"]*)"$/) do |section|
+  is_true(on(PumpRoomEntry).is_page?(section))
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
@@ -95,6 +89,16 @@ And(/^I should see a new row with filled data$/) do
   is_true(on(PumpRoomEntry).how_many_rows == 1)
 end
 
-Then(/^I should be able to delete the record$/) do
+And(/^I should be able to delete the record$/) do
   is_true(on(PumpRoomEntry).delete_added_row)
+end
+
+Then(/^\(for pre\) I sign on canvas$/) do
+  on(PumpRoomEntry).sign
+end
+
+
+And('I sign on Gas Test Record with {int} pin') do |_pin|
+  on(PinPadPage).enter_pin(_pin)
+  p "f"
 end

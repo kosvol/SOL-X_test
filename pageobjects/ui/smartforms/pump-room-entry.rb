@@ -1,6 +1,6 @@
 require './././support/env'
 
-class PumpRoomEntry
+class PumpRoomEntry < Section1Page
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
@@ -10,7 +10,6 @@ class PumpRoomEntry
   elements(:radio_button_list, xpath: "//span[@class = 'content']/..")
 
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
-  button(:add_gas_record_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
   button(:permit_validation, xpath: "//button[@id='permitValidDuration']")
 
   button(:last_calibration_btn, id: 'gasLastCalibrationDate')
@@ -18,13 +17,13 @@ class PumpRoomEntry
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
-  @@alert_text =  "//div[contains(.,'%s')]"
+  @@alert_text = "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
   @@button = "//*[contains(text(),'%s')]//.."
-  @@radio_buttons =  "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
+  @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
-  @@gas_test_record_section = "//h2[contains(text(),'Gas Test Record')]"
-  @@other_toxic_gases_section = "//h2[contains(text(),'Other Toxic Gases')]"
+
+  @@gas_test_page = "//h2[contains(text(),'%s')]"
   @@row_other_toxic_gas = "//li[starts-with(@class,'GasReadingListItem')]"
 
   def click_create_pump_room_entry
@@ -56,12 +55,12 @@ class PumpRoomEntry
   def select_permit_duration(duration)
     BrowserActions.scroll_down(permit_validation) #scroll+click
     sleep 1
-    xpath_str = @@permit_duration%[duration]
+    xpath_str = @@permit_duration % [duration]
     @browser.find_element('xpath', xpath_str).click
   end
 
   def is_button_enabled?(button_text)
-    xpath_str = @@button%[button_text]
+    xpath_str = @@button % [button_text]
     @browser.find_element('xpath', xpath_str).enabled?
   end
 
@@ -74,7 +73,7 @@ class PumpRoomEntry
   end
 
   def select_answer(answer, question)
-    xpath_str = @@radio_buttons%[question]
+    xpath_str = @@radio_buttons % [question]
     select_checkbox(xpath_str, answer)
   end
 
@@ -84,18 +83,15 @@ class PumpRoomEntry
     false
   end
 
-  def is_section?(section)
-    if section == "Gas test Record"
-      @browser.find_element("xpath", @@gas_test_record_section).displayed?
-    elsif section == "Other Toxic Gases"
-      @browser.find_element("xpath", @@other_toxic_gases_section).displayed?
-    end
+  def is_page?(page)
+    xpath_str = @@gas_test_page % [page]
+    @browser.find_element("xpath", xpath_str).displayed?
   rescue StandardError
     false
   end
 
   def press_the_button(button)
-    xpath_str = @@button%[button]
+    xpath_str = @@button % [button]
     @browser.find_element("xpath", xpath_str).click
   end
 
@@ -108,7 +104,7 @@ class PumpRoomEntry
   end
 
   def fill_up_section?(section)
-    if section == "Gas test Record"
+    if section == "Gas Test Record"
       o2_id = 'o2'
       hc_id = 'hc'
       h2s_id = "h2s"
@@ -159,17 +155,14 @@ class PumpRoomEntry
     how_many_rows == 0
   end
 
-  private
-
-  def select_checkbox(where, value)
-    elements = $browser.find_elements(:xpath, where)
-    elements.each do |element|
-      if element.text === value
-        element.click
-        break
-      end
-    end
+  def sign
+    tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
+    $browser.action.click(tmp).perform
+    sleep 1
   end
+
+
+  private
 
   def xpath_fast_check(xpath)
     #x = "//div[@id='PRE_SECTION_1_subsection24']"
