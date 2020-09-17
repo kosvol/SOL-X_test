@@ -7,11 +7,12 @@ class Section3APage < Section2Page
 
   button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
-  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
-  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_and_close, xpath: "//button[contains(.,'Save DRA')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
+  
+  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
+  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
