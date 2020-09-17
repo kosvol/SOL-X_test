@@ -11,7 +11,6 @@
 /testreport/documentation
 /testreport/xmlreports
 /payload/response/*
-/payload/request/*/mod-*
 /payload/request/*/mod*
 /payload/request/*/*.mod*
 Gemfile.lock

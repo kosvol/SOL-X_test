@@ -12,7 +12,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     Then I should see DRA number,Date and Time populated
     And I tear down created form
@@ -23,7 +23,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as low risk
@@ -48,7 +48,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as medium risk
@@ -68,7 +68,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as high risk
@@ -90,7 +90,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for without applying measure
     Then I should see risk as very high risk
@@ -108,11 +108,11 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as low risk
-    And I should see correct risk evaluation very medium,low,low
+    And I should see correct risk evaluation medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -133,11 +133,11 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as medium risk
-    And I should see correct risk evaluation very medium,medium,low
+    And I should see correct risk evaluation medium,medium,low
 
     Examples:
       | likelihood | consequence |
@@ -153,11 +153,11 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as high risk
-    And I should see correct risk evaluation very medium,high,low
+    And I should see correct risk evaluation medium,high,low
 
     Examples:
       | likelihood | consequence |
@@ -175,11 +175,11 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as very high risk
-    And I should see correct risk evaluation very medium,very high,low
+    And I should see correct risk evaluation medium,very high,low
 
     Examples:
       | likelihood | consequence |
@@ -193,12 +193,12 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as low risk
-    And I should see correct risk evaluation very medium,low,low
+    And I should see correct risk evaluation medium,low,low
 
     Examples:
       | likelihood | consequence |
@@ -219,12 +219,12 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as medium risk
-    And I should see correct risk evaluation very medium,low,medium
+    And I should see correct risk evaluation medium,low,medium
 
     Examples:
       | likelihood | consequence |
@@ -240,12 +240,12 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as high risk
-    And I should see correct risk evaluation very medium,low,high
+    And I should see correct risk evaluation medium,low,high
 
     Examples:
       | likelihood | consequence |
@@ -263,12 +263,12 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I click on View Edit Hazard
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for additional hazard
     Then I should see risk as very high risk
-    And I should see correct risk evaluation very medium,low,very high
+    And I should see correct risk evaluation medium,low,very high
 
     Examples:
       | likelihood | consequence |
@@ -282,7 +282,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I toggle likelihood 5 and 5 consequence matrix for existing control measure
     And I should see correct risk evaluation medium,very high,very high
@@ -295,7 +295,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I click on View Edit Hazard
     And I add a additional hazard
@@ -307,7 +307,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I delete a hazard
     Then I should see hazard deleted
@@ -318,7 +318,7 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill up section 1
+    And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I add a new hazard
     Then I should see added new hazard

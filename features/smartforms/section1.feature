@@ -126,7 +126,7 @@ Feature: Section1
     And I enter pin 9015
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I fill up section 1
+    And I navigate to section 2
     Then I should see section 2
     And I tear down created form
 
@@ -137,6 +137,7 @@ Feature: Section1
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill up section 1
+    And I navigate to section 2
     Then I should see section 2
     And I should not see copy text regarding maintenance hour
     And I tear down created form

@@ -20,14 +20,6 @@ Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
   end
 end
 
-And (/^I tear down created form$/) do
-  begin
-    SmartFormDBPage.tear_down_ptw_form(on(Section1Page).get_section1_filled_data[1])
-  rescue StandardError
-    SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
-  end
-end
-
 Then (/^I should see second level permits details$/) do
   is_true(on(Section0Page).is_level_2_permits?)
 end
@@ -40,11 +32,6 @@ And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
   sleep 1
   on(Section0Page).back_btn
-end
-
-And (/^I click on back to home$/) do
-  sleep 2
-  on(Section6Page).back_to_home_btn
 end
 
 And (/^I click on (.+) filter$/) do |state|

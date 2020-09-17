@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class ROLPage < Section7Page
+class ROLPage < Section9Page
   include PageObject
 
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')

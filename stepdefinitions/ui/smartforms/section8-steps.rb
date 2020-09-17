@@ -36,7 +36,7 @@ And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas'
-  on(Section8Page).back_to_home_btn
+  step 'I click on back to home'
 end
 
 And (/^I manually put the permit to pending termination state$/) do

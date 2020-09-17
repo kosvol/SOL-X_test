@@ -16,7 +16,7 @@ class OAPage < Section9Page
   element(:hours_23_btn, id: 'issuedToTime__hourTimePicker__23')
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
-  element(:enter_comment_box, xpath: "//textarea")
+  # element(:enter_comment_box, xpath: "//textarea")
   text_field(:name_box, id: 'user-name')
   button(:rank_dd_list, id: 'rank')
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
@@ -26,7 +26,7 @@ class OAPage < Section9Page
   Test Automation"
   
   def navigate_to_oa_link
-    sleep 360
+    sleep 400
     $browser.get(OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s)
   end
 

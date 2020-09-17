@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+Then (/^I should see display texts match for section1$/) do
+  on(Section0Page).labels_scrapper_elements.each do |elem|
+    p ">> #{elem.text}"
+  end
+  # section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section1_labels']
+  # page_elements = on(Section1Page).all_labels_elements
+  # if page_elements.size === 14
+  #   section1_labels_arr.delete_at(section1_labels_arr.size - 2)
+  # end
+  # page_elements.each_with_index do |label, _index|
+  #   is_equal(section1_labels_arr[_index], label.text)
+  # end
+end
+
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   sleep 1
@@ -41,7 +55,7 @@ end
 
 And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
-    sleep 1.5
+    sleep 1
     on(Section0Page).click_next
   end
 end
@@ -61,4 +75,17 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   on(Section0Page).save_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
+end
+
+And (/^I click on back to home$/) do
+  sleep 2
+  on(Section6Page).back_to_home_btn
+end
+
+And (/^I tear down created form$/) do
+  begin
+    SmartFormDBPage.tear_down_ptw_form(on(Section1Page).get_section1_filled_data[1])
+  rescue StandardError
+    SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
+  end
 end

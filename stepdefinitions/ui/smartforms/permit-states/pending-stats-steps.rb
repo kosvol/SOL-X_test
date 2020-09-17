@@ -23,7 +23,7 @@ And (/^I set oa permit to office approval state manually$/) do
   on(PendingStatePage).master_review_btn_elements.first.click
   step 'I enter pin 1111'
   step 'I navigate to section 6'
-  on(PendingStatePage).submit_for_oa_btn
+  on(PendingStatePage).submit_for_oa_btn_elements.first.click
   step 'I click on back to home'
 end
 
@@ -40,7 +40,7 @@ And (/^I reapprove the updated permit$/) do
   BrowserActions.click_element(on(PendingStatePage).edit_update_btn_elements.first)
   step 'I enter pin 9015'
   step 'I navigate to section 6'
-  BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_element)
+  BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
   step 'I enter pin 9015'
   step 'I sign on canvas'
   step 'I click on back to home'

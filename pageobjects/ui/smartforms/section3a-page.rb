@@ -7,11 +7,12 @@ class Section3APage < Section2Page
 
   button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
-  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
-  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_and_close, xpath: "//button[contains(.,'Save DRA')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
+  
+  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
+  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
@@ -27,7 +28,15 @@ class Section3APage < Section2Page
   # elements(:identified_hazard_row, xpath: "//div[starts-with(@class,'row-wrapper')]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  def is_additional_hazard_saved
+  def navigate_front_back
+    BrowserActions.scroll_click(previous_btn_elements.first)
+    BrowserActions.scroll_click(next_btn_element)
+    BrowserActions.scroll_click(next_btn_element)
+    BrowserActions.scroll_click(previous_btn_elements.first)
+    sleep 1
+  end
+
+  def is_additional_hazard_saved?
     view_edit_btn
     description_elements[2].text === 'Test Automation'
   end

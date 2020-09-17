@@ -35,7 +35,7 @@ Feature: SmartFormsPermission
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
       | Chief Engineer             | 8248 |
-      | Additional Chief Engineer  | 2761 |
+      | Additional Chief Engineer  | 1122 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |
       | Electro Technical Officer  | 0856 |
