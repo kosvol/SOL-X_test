@@ -5,7 +5,8 @@ Then (/^I should see section 2$/) do
 end
 
 And (/^I should see previous and next buttons$/) do
-  to_exists(on(Section2Page).previous_btn_element)
+  is_equal(on(Section2Page).previous_btn_elements.size,1)
+  to_exists(on(Section2Page).previous_btn_elements.first)
   to_exists(on(Section2Page).next_btn_element)
 end
 

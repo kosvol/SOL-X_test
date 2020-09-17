@@ -28,10 +28,10 @@ class Section3APage < Section2Page
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
   def navigate_front_back
-    BrowserActions.scroll_click(previous_btn_element)
+    BrowserActions.scroll_click(previous_btn_elements.first)
     BrowserActions.scroll_click(next_btn_element)
     BrowserActions.scroll_click(next_btn_element)
-    BrowserActions.scroll_click(previous_btn_element)
+    BrowserActions.scroll_click(previous_btn_elements.first)
     sleep 1
   end
 
