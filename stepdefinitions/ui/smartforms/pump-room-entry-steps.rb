@@ -100,5 +100,4 @@ end
 
 And('I sign on Gas Test Record with {int} pin') do |_pin|
   on(PinPadPage).enter_pin(_pin)
-  p "f"
 end
