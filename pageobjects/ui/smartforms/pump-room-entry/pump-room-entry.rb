@@ -10,7 +10,7 @@ class PumpRoomEntry < Section1Page
   elements(:radio_button_list, xpath: "//span[@class = 'content']/..")
 
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
-  button(:permit_validation, xpath: "//button[@id='permitValidDuration']")
+  button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
 
   button(:last_calibration_btn, id: 'gasLastCalibrationDate')
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
@@ -53,8 +53,10 @@ class PumpRoomEntry < Section1Page
   end
 
   def select_permit_duration(duration)
-    BrowserActions.scroll_down(permit_validation) #scroll+click
+    p 'd'
+    BrowserActions.scroll_click(permit_validation_btn_element)
     sleep 1
+    BrowserActions.scroll_down()
     xpath_str = @@permit_duration % [duration]
     @browser.find_element('xpath', xpath_str).click
   end
@@ -66,7 +68,7 @@ class PumpRoomEntry < Section1Page
 
   def is_selected_date?(button)
     if button == 'Date of Last Calibration'
-      BrowserActions.scroll_down(last_calibration_btn)
+      BrowserActions.scroll_click(last_calibration_btn_element)
       current_day_button_btn
       last_calibration_btn_element.text == Time.now.strftime('%d/%b/%Y')
     end
