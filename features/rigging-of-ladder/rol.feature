@@ -55,8 +55,16 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on active filter
     Then I open rol permit with rank <rank> and <pin> pin
+    When I press next for 1 times
     Then I should not see permit duration selectable
-    When I put the permit to termination state with <pin> pin
+    When I put the permit to termination state
+    And I review termination permit with <pin> pin
+    Then I should not see permit duration selectable
+    When I put the permit to pending termination update status
+    And I click on back to home
+    And I click on update needed filter
+    Then I edit rol permit with rank <rank> and <pin> pin
+    When I press previous for 1 times
     Then I should not see permit duration selectable
 
     Examples:

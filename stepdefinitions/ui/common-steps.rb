@@ -53,10 +53,10 @@ And ('I enter pin {int}') do |pin|
   sleep 1
 end
 
-And (/^I press next for (.+) times$/) do |_times|
+And (/^I press (next|previous) for (.+) times$/) do |_condition,_times|
   (1.._times.to_i).each do |_i|
     sleep 1
-    on(Section0Page).click_next
+    _condition === "next" ? on(Section0Page).click_next : on(CommonButton).previous_btn_elements.first.click
   end
 end
 

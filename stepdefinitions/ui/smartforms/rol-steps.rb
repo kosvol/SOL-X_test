@@ -20,30 +20,41 @@ Then (/^I should not see extra buttons$/) do
   is_equal(on(PendingStatePage).save_and_close_btn_elements.size,1)
 end
 
-Then (/^I open rol permit with rank (.+) and (.+) pin$/) do |_rank,_pin|
-  on(ActiveStatePage).view_btn_elements.first.click
+Then (/^I (open|edit) rol permit with rank (.+) and (.+) pin$/) do |_condition,_rank,_pin|
+  _condition === "open" ? on(ActiveStatePage).view_btn_elements.first.click : on(PendingStatePage).edit_update_btn_elements.first.click
   step "I enter pin #{_pin}"
-  step 'I press next for 1 times'
 end
 
 Then (/^I should not see permit duration selectable$/) do
   not_to_exists(on(ROLPage).rol_duration_element)
 end
 
-When (/^I put the permit to termination state with (.+) pin$/) do |_pin|
-  on(Section0Page).save_and_close_btn_elements.first.click
-  on(Section0Page).close_btn
+When (/^I put the permit to termination state/) do
+  step 'I click on back arrow'
   step 'I click on active filter'
-  on(ActiveStatePage).view_btn_elements.first.click
-  step "I enter pin 9015"
+  step "I open rol permit with rank A/M and 9015 pin"
   step 'I press next for 2 times'
-  on(Section0Page).submit_termination_btn_elments.first.click
+  on(Section0Page).submit_termination_btn_elements.first.click
   step "I enter pin 9015"
   step 'I sign on canvas'
   sleep 1
   step 'I click on back to home'
+end
+
+And (/^I review termination permit with (.+) pin$/) do |_pin|
   step 'I click on pending withdrawal filter'
   on(Section0Page).review_and_terminate_btn_elements.first.click
   step "I enter pin #{_pin}"
-  on(Section0Page).previous_btn_elements.first.click
+  step 'I press previous for 1 times'
+end
+
+When (/^I put the permit to pending termination update status$/) do
+  step 'I click on back arrow'
+  step 'I click on pending withdrawal filter'
+  on(Section0Page).review_and_terminate_btn_elements.first.click
+  step "I enter pin 1111"
+  on(ROLPage).request_update_btn
+  sleep 2
+  BrowserActions.enter_text(on(Section0Page).enter_comment_box_element,"Test Automation")
+  on(Section0Page).submit_update_btn
 end
