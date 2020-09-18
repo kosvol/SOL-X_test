@@ -8,11 +8,10 @@ class Section3APage < Section2Page
   button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
-  button(:save_and_close, xpath: "//button[contains(.,'Save DRA')]")
+  button(:save_dra, xpath: "//button[contains(.,'Save DRA')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
-  
-  buttons(:add_additional_measure_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
-  # elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
+  elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")  
+
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
@@ -53,7 +52,7 @@ class Section3APage < Section2Page
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
     toggle_likelihood_consequence_matrix_add_hazard(1, 1)
-    save_and_close
+    save_dra
   end
 
   def is_new_hazard_added?
@@ -91,7 +90,7 @@ class Section3APage < Section2Page
     sleep 1
     toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
     BrowserActions.enter_text(description_elements[2], 'Test Automation')
-    save_and_close
+    save_dra
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
@@ -124,9 +123,13 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 1
-    @@swap_flag === "evaluation_matrix" ? scroll_multiple_times(1) : scroll_multiple_times(4)
-    add_additional_measure_btn_elements[1].click
-    scroll_multiple_times(1)
+    begin
+      scroll_multiple_times(1) if @@swap_flag === "evaluation_matrix"
+    rescue StandardError
+      scroll_multiple_times(4)
+    end
+    add_additional_measure_btn_elements[0].click
+    # scroll_multiple_times(1)
     likelihood_btn_elements[2].click
     level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
     confirm_btn_elements[confirm_btn_elements.size - 2].click

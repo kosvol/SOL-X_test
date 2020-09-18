@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1, _risk2|
-  @@swap_flag = "evaluation_matrix"
   is_true(on(Section3APage).evaluation_matrix(_risk, _risk1, _risk2))
 end
 
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
   sleep 1
   @measure = _measure
-  @@swap_flag = "non_evaluation_matrix"
   case _measure
   when 'without applying measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
   when 'existing control measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_existing_control_measure(likelihood, consequence)
   when 'additional hazard'
+    on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
+  when 'additional hazard follow through'
+    @@swap_flag = "evaluation_matrix"
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   end
 end
@@ -99,10 +100,11 @@ And (/^I delete a hazard$/) do
   sleep 1
   on(Section3APage).delete_btn_elements.first.click
   sleep 1
-  on(Section3APage).save_and_close
+  on(Section3APage).save_dra
 end
 
 Then (/^I should see hazard deleted$/) do
+  sleep 1
   on(Section3APage).scroll_multiple_times(1)
   is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')

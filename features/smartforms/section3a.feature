@@ -137,7 +137,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as medium risk
-    And I should see correct risk evaluation medium,medium,low
+    And I should see correct risk evaluation medium,medium,medium
 
     Examples:
       | likelihood | consequence |
@@ -157,7 +157,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as high risk
-    And I should see correct risk evaluation medium,high,low
+    And I should see correct risk evaluation medium,high,high
 
     Examples:
       | likelihood | consequence |
@@ -179,7 +179,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood <likelihood> and <consequence> consequence matrix for existing control measure
     Then I should see risk as very high risk
-    And I should see correct risk evaluation medium,very high,low
+    And I should see correct risk evaluation medium,very high,very high
 
     Examples:
       | likelihood | consequence |
@@ -286,7 +286,7 @@ Feature: Section3ADRA
     And I navigate to section 3a
     And I toggle likelihood 5 and 5 consequence matrix for existing control measure
     And I should see correct risk evaluation medium,very high,very high
-    And I toggle likelihood 1 and 1 consequence matrix for additional hazard
+    And I toggle likelihood 1 and 1 consequence matrix for additional hazard follow through
     Then I should see correct risk evaluation medium,very high,low
 
   Scenario: Verify added additional hazard is saved
