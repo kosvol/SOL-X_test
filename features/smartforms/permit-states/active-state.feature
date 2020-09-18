@@ -172,8 +172,9 @@ Feature: ActivePermit
       | intrinsical camera | submit_non_intrinsical_camera | Master | 1111 |
   # | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
 
+  @x16
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
+    Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
     When I navigate to OA link
     And I approve oa permit via oa link manually
     And I click on pending approval filter
