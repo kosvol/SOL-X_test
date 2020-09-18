@@ -42,7 +42,6 @@ Feature: RiggingOfLadder
 
   Scenario: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
 
-  @x15
   Scenario Outline: Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -61,17 +60,17 @@ Feature: RiggingOfLadder
     Then I should not see permit duration selectable
 
     Examples:
-      | rank | pin  |
-      | A/B  | 6316 |
-  # | OLR   | 0450 |
-  # | BOS   | 1018 |
-  # | PMN   | 8984 |
-  # | ETR   | 2829 |
-  # | T/E   | 6829 |
-  # | A T/E | 1873 |
-  # | ELC   | 7022 |
-  # | O/S   | 7669 |
-  # | D/C   | 2317 |
+      | rank  | pin  |
+      | A/B   | 6316 |
+      | OLR   | 0450 |
+      | BOS   | 1018 |
+      | PMN   | 8984 |
+      | ETR   | 2829 |
+      | T/E   | 6829 |
+      | A T/E | 1873 |
+      | ELC   | 7022 |
+      | O/S   | 7669 |
+      | D/C   | 2317 |
 
   Scenario: shoud not SOL-5210 -  RA, Checklist Creator and other Crew ranks (except Captain=MAS) can edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
 

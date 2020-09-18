@@ -18,8 +18,8 @@ Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|
   BrowserActions.scroll_down
   BrowserActions.scroll_down
   BrowserActions.scroll_down
-  on(Section4BPage).subform_btn_elements[0].click if ["competent person","non competent person"].include? _condition
-  on(Section4BPage).subform_btn_elements[1].click if ["issuing authority","non issuing authority"].include? _condition
+  on(Section4BPage).sign_btn_elements.first.click if ["competent person","non competent person"].include? _condition
+  on(Section4BPage).sign_btn_elements.last.click if ["issuing authority","non issuing authority"].include? _condition
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
@@ -40,9 +40,9 @@ end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   on(Section4BPage).yes_no_btn_elements[0].click
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  on(Section4APage).sign_btn
+  # BrowserActions.scroll_down
+  # BrowserActions.scroll_down
+  BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if _condition === 'RA'
@@ -56,12 +56,12 @@ And (/^I should see signature$/) do
   to_exists(on(Section4BPage).signature_element)
 end
 
-Then (/^I sign first EIC as (competent person|non competent person) who is (.+) with pin (.+)$/) do |_condition, _rank, _pin|
-  step 'I select yes to EIC certification'
-  BrowserActions.scroll_down
-  on(Section4BPage).competent_enter_pin
-  step "I enter pin #{_pin.to_i}"
-end
+# Then (/^I sign first EIC as (competent person|non competent person) who is (.+) with pin (.+)$/) do |_condition, _rank, _pin|
+#   step 'I select yes to EIC certification'
+#   BrowserActions.scroll_down
+#   on(Section4BPage).competent_enter_pin
+#   step "I enter pin #{_pin.to_i}"
+# end
 
 And (/^I should see (.+) rank and name$/) do |_rank|
   is_equal(on(Section4BPage).eic_signer_name_elements.first.text, _rank)

@@ -7,7 +7,8 @@ class Section5Page < Section4BPage
 
   button(:roles_and_resp_btn, xpath: "//div[starts-with(@class,'values-area')]/button")
   # span(:dra_team_name, xpath: "//button[@id='dra_team']/span")
-  button(:sign_btn, xpath: "//li[@data-testid='responsibility-box']/button")
+  buttons(:sign_btn, xpath: "//button[contains(.,'Enter PIN & Sign')]")
+  # button(:sign_btn, xpath: "//li[@data-testid='responsibility-box']/button")
   # buttons(:cancel_and_confirm_btn, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]")
 
   def select_roles_and_responsibility
