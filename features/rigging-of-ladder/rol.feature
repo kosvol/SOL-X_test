@@ -4,7 +4,7 @@ Feature: RiggingOfLadder
   I want to ...
   So that ...
 
-  Scenario Outline: Active RoL permit should only have 'View' and 'Submit Termination' button created via 3/O and A 3/O
+  Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin <pin>
@@ -23,7 +23,7 @@ Feature: RiggingOfLadder
       | 3/O   | 0159 |
       | A 3/O | 2674 |
 
-  Scenario: Verify no extra buttons during pending update state
+  Scenario: SOL-5099 Verify no extra buttons during pending update state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -53,7 +53,7 @@ Feature: RiggingOfLadder
     And I review termination permit with 1111 pin
     Then I should not see extra previous and close button
 
-  Scenario Outline: Verify duration is not selectable on active permit, pending termination, termination update needed states
+  Scenario Outline: SOL-5189 Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 8383
@@ -92,7 +92,7 @@ Feature: RiggingOfLadder
       | O/S   | 7669 |
       | D/C   | 2317 |
 
-  Scenario Outline: Verify RA, Checklist Creator and other Crew ranks (except Captain=MAS) can edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
+  Scenario Outline: SOL-5210 Verify RA, Checklist Creator and other Crew ranks cannot edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 8383
@@ -115,6 +115,6 @@ Feature: RiggingOfLadder
       | 4/E   | 1311 |
       | A 4/E | 0703 |
 
-  Scenario: Verify data capture across status
+# Scenario: Verify data capture across status
 
-  Scenario: Verify ROL section labels
+# Scenario: Verify ROL section labels
