@@ -39,8 +39,19 @@ Feature: RiggingOfLadder
     And I click on update needed filter
     Then I should not see extra buttons
 
-
   Scenario: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 8383
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    When I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I set rol permit to active state with 1 duration
+    When I put the permit to termination state
+    And I review termination permit with 1111 pin
+    Then I should not see extra previous and close button
 
   Scenario Outline: Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
@@ -59,6 +70,7 @@ Feature: RiggingOfLadder
     Then I should not see permit duration selectable
     When I put the permit to termination state
     And I review termination permit with <pin> pin
+    And I press previous for 1 times
     Then I should not see permit duration selectable
     When I put the permit to pending termination update status
     And I click on back to home
@@ -80,11 +92,28 @@ Feature: RiggingOfLadder
       | O/S   | 7669 |
       | D/C   | 2317 |
 
-  Scenario: shoud not SOL-5210 -  RA, Checklist Creator and other Crew ranks (except Captain=MAS) can edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
+  Scenario Outline: Verify RA, Checklist Creator and other Crew ranks (except Captain=MAS) can edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 8383
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    When I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    When I press next for 1 times
+    Then I should not see permit duration selectable
 
-  Scenario: Verify DRA (FR-S05) is display
-
-  Scenario: should not - Permit Validity block is active when review the form as RA from the Pending Approval state
+    Examples:
+      | rank  | pin  |
+      | A/M   | 9015 |
+      | A/B   | 6316 |
+      | 3/E   | 4685 |
+      | A 3/E | 6727 |
+      | 4/E   | 1311 |
+      | A 4/E | 0703 |
 
   Scenario: Verify data capture across status
 

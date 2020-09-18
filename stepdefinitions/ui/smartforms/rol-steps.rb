@@ -20,6 +20,11 @@ Then (/^I should not see extra buttons$/) do
   is_equal(on(PendingStatePage).save_and_close_btn_elements.size,1)
 end
 
+Then (/^I should not see extra previous and close button$/) do
+  is_equal(on(PendingStatePage).previous_btn_elements.size,1)
+  is_equal(on(PendingStatePage).close_btn_elements.size,1)
+end
+
 Then (/^I (open|edit) rol permit with rank (.+) and (.+) pin$/) do |_condition,_rank,_pin|
   _condition === "open" ? on(ActiveStatePage).view_btn_elements.first.click : on(PendingStatePage).edit_update_btn_elements.first.click
   step "I enter pin #{_pin}"
@@ -45,7 +50,6 @@ And (/^I review termination permit with (.+) pin$/) do |_pin|
   step 'I click on pending withdrawal filter'
   on(Section0Page).review_and_terminate_btn_elements.first.click
   step "I enter pin #{_pin}"
-  step 'I press previous for 1 times'
 end
 
 When (/^I put the permit to pending termination update status$/) do
