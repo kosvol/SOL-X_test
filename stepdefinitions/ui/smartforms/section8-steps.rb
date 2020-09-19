@@ -41,7 +41,7 @@ end
 
 And (/^I manually put the permit to pending termination state$/) do
   sleep 1
-  on(Section0Page).submit_termination_btn_elements.first.click
+  on(Section0Page).submit_termination_btn1_elements.first.click
   on(PinPadPage).enter_pin("9015")
   sleep 1
   on(Section8Page).task_status_completed_element.click

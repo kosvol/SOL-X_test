@@ -10,7 +10,6 @@ Feature: Section3DDRA
     And I enter pin 9015
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I set maintenance during more than 2 hours
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I sign DRA section 3d with RA pin 9015

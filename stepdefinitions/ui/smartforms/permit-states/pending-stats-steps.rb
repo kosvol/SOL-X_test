@@ -2,11 +2,11 @@
 
 Then (/^I should see (.+) button$/) do |state|
   if state === 'Office Approval'
-    is_equal(on(PendingStatePage).get_button_text, 'Office Approval')
+    is_equal(on(PendingStatePage).office_approval_btn_elements.first.text, 'Office Approval')
   elsif state === 'Master Approval'
-    is_equal(on(PendingStatePage).get_button_text, 'Master Approval')
+    is_equal(on(PendingStatePage).master_approval_btn_elements.first.text, 'Master Approval')
   elsif state === 'Master Review'
-    is_equal(on(PendingStatePage).get_button_text, 'Master Review')
+    is_equal(on(PendingStatePage).master_review_btn_elements.first.text, 'Master Review')
   end
 end
 
