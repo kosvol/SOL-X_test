@@ -62,8 +62,3 @@ When (/^I put the permit to pending termination update status$/) do
   BrowserActions.enter_text(on(Section0Page).enter_comment_box_element,"Test Automation")
   on(Section0Page).submit_update_btn
 end
-
-Then (/^I should see all ROL checklist questions$/) do |_table|
-  step 'I press next for 1 times'
-  is_true(on(PumpRoomEntry).are_questions?(_table.raw))
-end

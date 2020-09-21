@@ -90,6 +90,7 @@ And (/^I uncheck the pre-selected checklist$/) do
 end
 
 Then (/^I should see (.+) checklist questions$/) do |checklist|
+  step 'I press next for 1 times'
   base_data = YAML.load_file("data/checklist/#{checklist}.yml")['questions']
   on(Section4APage).section1_elements.each_with_index do |_element,_index|
     is_equal(_element.text,base_data[_index])
