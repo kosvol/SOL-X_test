@@ -4,6 +4,8 @@ Feature: RiggingOfLadder
   I want to ...
   So that ...
 
+  # Scenario: Verify data capture across status
+
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -115,8 +117,6 @@ Feature: RiggingOfLadder
       | 4/E   | 1311 |
       | A 4/E | 0703 |
 
-  # Scenario: Verify data capture across status
-
   Scenario: Verify ROL section labels
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -124,7 +124,6 @@ Feature: RiggingOfLadder
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     Then I should see all ROL checklist questions
-      | Description of boarding arrangement:                                                                       |
       | Has information obtained from pilot station or agent for rigging arrangement?                              |
       | Working outboard guidelines in COSWP Chapter 15 read, understood and complied?                             |
       | Has consideration made for reduction of speed or making lee by alteration due to severe weather condition? |
