@@ -6,7 +6,6 @@ Feature: Section4AChecklist
 
   # Scenario: Verify user should see description of work pre-filled with what is filled in section 1
 
-  @x16
   Scenario: Verify checklist quesetions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -101,7 +100,6 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -133,7 +131,6 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -193,28 +190,12 @@ Feature: Section4AChecklist
       | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
   # | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 
-  # Scenario Outline: Verify checklist content are displayed correctly for maintenance permits
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 2523
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I set maintenance during more than 2 hours
-  #   And I navigate to section 4a
-  #   Then I should see correct checklist content for <checklist> checklist
-  #   And I tear down created form
-
-  #   Examples:
-  #     | level_one_permit               | level_two_permit      | checklist                                |
-  #     | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
-
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated

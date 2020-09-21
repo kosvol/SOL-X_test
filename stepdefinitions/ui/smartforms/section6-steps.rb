@@ -38,7 +38,7 @@ end
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
   on(Section0Page).set_current_time
-  on(Section6Page).submit_btn_elements[0].click
+  BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
   step 'I enter pin 9015'
   step 'I sign on canvas'
   # data collector; will evolve

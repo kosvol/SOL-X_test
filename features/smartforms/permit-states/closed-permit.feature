@@ -11,11 +11,11 @@ Feature: ClosedPermit
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     # And I fill ROL permit
-    When I press next for 2 times
+    When I press next for 1 times
     Then I submit permit for Master Approval
     When I click on back to home
     And I set rol permit to active state with 1 duration
     When I click on back to home
     And I click on active filter
     And I terminate the permit
-    Then I should see termination date display
+    Then I should see termination date display ### not complete

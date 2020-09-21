@@ -12,7 +12,6 @@ Feature: Section4BEIC
     And I enter pin 2523
     And I select Hot Work permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching Hot Work Outside Designated Area checklist
     And I press next for 2 times
@@ -26,7 +25,6 @@ Feature: Section4BEIC
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 2 times
@@ -113,26 +111,6 @@ Feature: Section4BEIC
   # | O/S    | 7669 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
   # | OLR    | 0450 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
 
-  # Scenario Outline: Verify only chief engineer can sign as issuing authority
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1 with default value
-  #   And I navigate to section 4a
-  #   And I select the matching <checklist> checklist
-  #   And I press next for 2 times
-  #   And I select yes to EIC certification
-  #   Then I sign EIC as issuing authority with pin <pin>
-  #   And I should see signed details
-  #   And I should see signature
-  #   And I tear down created form
-
-  #   Examples:
-  #     | rank | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-  #     | C/E  | 8248 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-
   Scenario Outline: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -157,32 +135,6 @@ Feature: Section4BEIC
       | 2/E            | 2523 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)   |
       | ETO            | 0856 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Second Officer | 6268 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
-
-  # Scenario Outline: Verify only competent person can sign as competent person
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select <level_one_permit> permit
-  #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1 with default value
-  #   And I navigate to section 4a
-  #   And I select the matching <checklist> checklist
-  #   And I press next for 2 times
-  #   And I select yes to EIC certification
-  #   Then I sign EIC as competent person with pin <pin>
-  #   And I should see signed details
-  #   And I should see signature
-  #   And I tear down created form
-
-  #   Examples:
-  #     | rank | pin  | level_one_permit               | level_two_permit                                                           | checklist                                |
-  #     | C/O  | 8383 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     | 2/E  | 2523 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     | ETO  | 0856 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                      | Enclosed Spaces Entry Checklist          |
-  #     | C/O  | 8383 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     | 2/E  | 2523 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Toolss (PPT)    |
-  #     | ETO  | 0856 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  #     | C/O  | 8383 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
   Scenario Outline: Verify non competent person cannot sign as competent person
     Given I launch sol-x portal without unlinking wearable
