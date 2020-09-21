@@ -28,6 +28,8 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
+  BrowserActions.scroll_up
+  BrowserActions.scroll_up
   on(Section4APage).select_checklist(_checklist)
 end
 
@@ -85,4 +87,9 @@ end
 
 And (/^I uncheck the pre-selected checklist$/) do
   on(Section4APage).uncheck_all_checklist
+end
+
+Then (/^I should see (.+) checklist questions$/) do |checklist|
+  base_data = YAML.load_file("data/checklist/#{checklist}.yml")['questions']
+  is_true(on(PumpRoomEntry).are_questions?(base_data))
 end

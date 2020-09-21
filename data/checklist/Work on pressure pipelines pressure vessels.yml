@@ -1,28 +1,21 @@
-labels:
-  ["Vessel Name:", "Date:", "Date", "Time", "PTW No:", "Location of work:"]
-
-subheaders: [""]
-
-section: []
-
-section1:
+questions:
   [
     "Has a formal Risk Assessment been carried out and discussed?",
-    "Have all persons been briefed on the requirements of the work?",
-    "Are all persons competent to carry out the work?",
-    "Have all personnel been provided with the Personal Protective Equipment necessary for the task being undertaken?",
-    "Is the part of the system to be worked upon effectively Isolated by closing the appropriate valves?",
-    "Are Isolation Valves secured or locked in closed position and suitably labelled to prevent them being inadvertently opened?",
-    "Has pressure been bled off the part of the system to be worked on by opening Drain Cocks or Vents as appropriate and ensuring that pressure remains off?",
-    "Has the pipeline/pressure vessel drained of any liquid or oil?",
-    "Have personnel been instructed to slacken Nuts and Bolts slowly before breaking the joint, not to remove Bolts completely, and to stand clear of the path that will be followed by the release of any Residual Pressure in the system?",
-    "Has a copy of this Permit been posted at the place of work?",
-    "Has the atmosphere in the pipeline/pressure vessel been tested for flammable/toxic gases?",
-    "Have precautions been taken to avoid the hazards of Static Electricity particularly when removing components?",
-    "Have precautions to avoid Toxic Vapour Emission Release or Inhalation been taken?",
-    "Are the equipment tested/calibrated prior to use?",
+"Have all persons been briefed on the requirements of the work?",
+"Are all persons competent to carry out the work?",
+"Have all personnel been provided with the Personal Protective Equipment necessary for the task being undertaken?",
+"Is the part of the system to be worked upon effectively Isolated by closing the appropriate valves?",
+"Are Isolation Valves secured or locked in closed position and suitably labelled to prevent them being inadvertently opened?",
+"Has pressure been bled off the part of the system to be worked on by opening Drain Cocks or Vents as appropriate and ensuring that pressure remains off?",
+"Has the pipeline/pressure vessel drained of any liquid or oil?",
+"Have personnel been instructed to slacken Nuts and Bolts slowly before breaking the joint, not to remove Bolts completely, and to stand clear of the path that will be followed by the release of any Residual Pressure in the system?",
+"Has a copy of this Permit been posted at the place of work?",
+"Have all the valves and pipes been re-secured properly on the completion of the work?",
+"Has the section of pipe or vessel to be worked upon been purged with inert gas or gas freed?",
+"Has the atmosphere in the pipeline/pressure vessel been tested for flammable/toxic gases?",
+"Have precautions been taken to avoid the hazards of Static Electricity particularly when removing components?",
+"Have precautions to avoid Toxic Vapour Emission Release or Inhalation been taken?",
+"Are the equipment tested/calibrated prior to use?",
   ]
-
-section2: ["Vessel Name:", "Date:", "Date", "Time", "PTW No:"]
 info_box: []
 warning_box: []

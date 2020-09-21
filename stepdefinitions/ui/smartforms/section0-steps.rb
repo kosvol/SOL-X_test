@@ -2,7 +2,8 @@
 
 Then('I should see a list of available forms for selections') do |_table|
   on(Section0Page).click_permit_type_ddl
-  is_true(on(Section0Page).is_level_1_permit?(_table.raw))
+  on(CommonFormsPage).are_questions?(_table.raw)
+  # is_true(on(Section0Page).is_level_1_permit?(_table.raw))
 end
 
 And (/^I navigate to create new permit$/) do
@@ -21,7 +22,8 @@ Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
 end
 
 Then (/^I should see second level permits details$/) do
-  is_true(on(Section0Page).is_level_2_permits?)
+  base_permits = YAML.load_file('data/permits.yml')[@@permit]
+  on(CommonFormsPage).are_questions?(base_permits)
 end
 
 And (/^I navigate to level 2 permits$/) do

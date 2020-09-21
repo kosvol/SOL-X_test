@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class CommonButton < CommonPage
+class CommonFormsPage < CommonPage
   include PageObject
 
   ### common locator
@@ -29,4 +29,37 @@ class CommonButton < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:enter_comment_box, xpath: "//textarea")
   
+  def are_questions?(table)
+    table.all? do |question|
+      xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
+      @browser.find_element('xpath', xpath_str).displayed?
+    end
+  end
+
+  def get_current_time_format
+    @which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(@which_json, '1111')
+    @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    "#{@@time} LT (GMT+#{@@time_offset})"
+  end
+
+  def get_current_date_format
+    Time.new.strftime('%d/%b/%Y')
+  end
+
+  def get_current_date_format_with_offset
+    which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(which_json, '1111')
+    time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
+  end
+
+  def get_current_time_format_with_offset(_offset)
+    # which_json = 'ship-local-time/base-get-current-time'
+    # ServiceUtil.post_graph_ql(which_json, '1111')
+    # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
+    # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
+  end
+
 end

@@ -1,7 +1,4 @@
-labels: []
-subheaders: []
-section: []
-section1:
+questions:
   [
     "1. The Engine Room Workshop has been inspected and authorized by Chief Engineer for Hot Work.",
     "2. The engine room workshop continues to remain clean and tidy.",
@@ -20,12 +17,7 @@ section1:
     "15. The vessel is not alongside at any terminal or ship, including loading, discharging and STS operations.",
     "16. Risk Assessment Completed and Risks discussed with personnel involved.",
   ]
-
-# "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",
-section2: []
-
-info_box: []
 warning_box:
   [
-    "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",
+    "Any discrepancy or abnormalities noted shall be reported to the PIC immediately.",,
   ]

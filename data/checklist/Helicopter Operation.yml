@@ -1,25 +1,13 @@
-labels:
-  [
-    "Name of Vessel:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Description of work:",
-  ]
-
 subheaders:
   [
     "Part A: General",
-    "Are the following items of equipment on hand?",
+    "Are the following items of equipment on hand?",,
     "Part B: Landing",
     "Part C: Additional Items for section1",
     "",
   ]
 
-section: []
-
-section1:
+questions:
   [
     "A formal Risk Assessment has been carried out and discussed?",
     "Has maneuvering requirement been agreed with the helicopter?",
@@ -40,20 +28,20 @@ section1:
     "Has a separate rescue party been detailed with protective clothing?",
     "Are the fire hoses and foam nozzles pointing away from the operating area in case of inadvertent discharge?",
     "Is a man overboard rescue boat ready for lowering?",
-    "Red emergency signaling lamp/signalling flags/ marshalling batons",
-    "Large axe",
-    "Crowbar",
-    "Adjustable wrench",
-    "Fire resistant blanket",
-    "60 cm bolt/wire cutters",
-    "Grab or salving hook",
-    "Heavy duty hacksaw, complete with six spare blades",
-    "Ladder",
-    "Lifeline, 5 mm diameter x 15 m in length",
-    "Side cutting pliers",
-    "Set of assorted screwdrivers",
-    "Harness knife complete with sheath",
-    "First aid kit",
+    "Red emergency signaling lamp/signalling flags/ marshalling batons"
+    "Large axe"
+    "Crowbar"
+    "Adjustable wrench"
+    "Fire resistant blanket"
+    "60 cm bolt/wire cutters"
+    "Grab or salving hook"
+    "Heavy duty hacksaw, complete with six spare blades"
+    "Ladder"
+    "Lifeline, 5 mm diameter x 15 m in length"
+    "Side cutting pliers"
+    "Set of assorted screwdrivers"
+    "Harness knife complete with sheath"
+    "First aid kit"
     "Has the correct lighting (including special navigation lights) been switched on prior to night operations?",
     "Is the deck party ready, wearing brightly coloured tabards (waistcoats) and protective helmets, and are all passengers clear of the operating area?",
     "Has the hook handler been equipped with helmet, strong rubber gloves and rubber soled shoes to avoid the danger of static discharge?",
@@ -70,9 +58,5 @@ section1:
     "Ships not fitted with an inert gas system: has pressure been released from tanks within 30 minutes of commencement of helicopter operations?",
     "Ships fitted with an inert gas system: has pressure in cargo tanks been reduced to slight positive pressure?",
     "Have all cargo tank openings been secured following venting operations?",
-    "Are all precautions have been taken to prevent vapor emission on deck during the operation?",
+    "Have all precautions been taken to prevent vapour emission on deck during the operation?",
   ]
-
-section2: ["Name of Vessel:", "Date:", "Date", "Time", "PTW No:"]
-info_box: []
-warning_box: []

@@ -1,36 +1,15 @@
-labels:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Location of work:",
-    "Equipment/Tools to be used:",
-  ]
-
-subheaders:
-  [
-    "Working on Funnel",
-    "Working near Radar Scanners/Radio Aerials/Whistle",
-    "Working Overside",
-    "",
-  ]
-
-section: []
-
-section1:
+questions:
   [
     "Working aloft and outboard guidelines in COSWP Chapter 15 have been read, understood and complied.",
     "Has a Detailed Risk Assessment of the work been carried out?",
-    "Has communication with the responsible officer been established?",
+    "Has communication with the responsible officer been established? Responsible person should perform a hazard evaluation at each work site before any work is initiated.",
     "Have warning notices been posted?",
     "Are the planks or material of the staging/bosun's chair in good condition and defect free?",
-    "Has the staging/bosun's chair been load tested?",
-    "Has the staging/bosun's chair been anchored to a point strong enough to take the load?",
+    "Has the rope of staging/bosun chair been visually inspected for signs of wear and tear?",
+    "Does the rope have a SWL certificate?",
     "Have means been made to minimize the movement of the staging/bosun's chair?",
     "Has a safety net been rigged (if applicable)?",
-    "Are the ropes for gantlines and lifelines in good condition and long enough?",
+    "Are the ropes for gantlines and lifelines in good condition and long enough? (condition and SWL to be considered)",
     "Are the blocks and other securing equipment of appropriate type?",
     "Are all other equipment in good order?",
     "Is the gantline clear of sharp edges when used?",
@@ -47,17 +26,5 @@ section1:
     "Is safety helmet worn?",
     "Are safety harness and line attached to a strong point?",
     "Is a bucket or container available to send up and lower tools?",
-    "Is someone standing by?",
+    "Is someone standing by? (The practice of holding rope with one hand and making the lowering hitch with the other is dangerous. Require someone standing by to tend the lines.)",
   ]
-
-section2:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Equipment/Tools to be used:",
-  ]
-info_box: []
-warning_box: []

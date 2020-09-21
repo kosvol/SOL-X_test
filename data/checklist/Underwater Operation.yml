@@ -1,23 +1,4 @@
-labels:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Description of work:",
-    "Length OA/BP:",
-    "Drafts:",
-    "Fwd:",
-    "Aft:",
-    "VHF/UHF Ch:",
-  ]
-
-subheaders: [""]
-
-section: []
-
-section1:
+questions:
   [
     "Location of Vessel:",
     "Permission has been obtained from office for the diving operation.",
@@ -40,7 +21,8 @@ section1:
     "Emergency Response Plan discussed and agreed.",
     "Safety Meeting held and job scope/technical aspect clarified.",
     "Divers additional safety request or instructions agreed.",
-    'Deck Officer (in way of diving location) on standby to handle diving boat communication, mooring lines etc, code flag "A" has been hoisted.',
+    "Is Deck Officer (in way of diving location) on standby to handle diving boat communication, mooring lines, etc?",
+    'Has Code flag "A" been hoisted?',
     "Walkie-talkie radios and communications between diving boat, Deck/Bridge and Engine Room have been tested.",
     "Weather forecast has been obtained and is suitable for the work period.",
     "Sea condition has been checked and found acceptable for the work.",
@@ -59,19 +41,3 @@ section1:
     "Port control has been informed of the starting of diving works.",
     'Ensure Bow Thruster is switched "OFF" and breaker is removed (if applicable).',
   ]
-
-section2:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Length OA/BP:",
-    "Drafts:",
-    "Fwd:",
-    "Aft:",
-    "VHF/UHF Ch:",
-  ]
-info_box: []
-warning_box: []

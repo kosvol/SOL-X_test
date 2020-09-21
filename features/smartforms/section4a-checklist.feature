@@ -3,10 +3,91 @@ Feature: Section4AChecklist
   As a ...
   I want to ...
   So that ...
-  # rigging ladder checklist
-  # pre checklist
 
   # Scenario: Verify user should see description of work pre-filled with what is filled in section 1
+
+  Scenario: Verify checklist quesetions
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 2523
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 4a
+    And I press next for 1 times
+    Then I should see Enclosed Spaces Entry Checklist checklist questions
+  # And I should see info boxes
+  # And I should see warning box
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Hot Work Outside Designated Area checklist
+  # And I press next for 1 times
+  # Then I should see Hot Work Outside Designated Area checklist questions
+  # And I should see info boxes
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Underwater Operation checklist
+  # And I press next for 1 times
+  # Then I should see Underwater Operation checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Working Aloft/Overside checklist
+  # And I press next for 1 times
+  # Then I should see Working Aloft/Overside checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Work on Pressure Pipelines checklist
+  # And I press next for 1 times
+  # Then I should see Work on Pressure Pipelines checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Use of ODME in Manual Mode checklist
+  # And I press next for 1 times
+  # Then I should see Use of ODME in Manual Mode checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Personnel Transfer by Transfer Basket checklist
+  # And I press next for 1 times
+  # Then I should see Personnel Transfer by Transfer Basket checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Helicopter Operation Checklist checklist
+  # And I press next for 1 times
+  # Then I should see Helicopter Operation checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Rotational Portable Power Tools (PPT) checklist
+  # And I press next for 1 times
+  # Then I should see Rotational Portable Power Tools (PPT) checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Work on Electrical Equipment and Circuits checklist
+  # And I press next for 1 times
+  # Then I should see Work on Electrical Equipment and Circuits checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Critical Equipment Maintenance Checklist checklist
+  # And I press next for 1 times
+  # Then I should see Critical Equipment Maintenance checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Work on Deck During Heavy Weather checklist
+  # And I press next for 1 times
+  # Then I should see Work on Deck During Heavy Weather checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Use of Camera Checklist checklist
+  # And I press next for 1 times
+  # Then I should see Use of Camera checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Hot Work Within Designated Area checklist
+  # And I press next for 1 times
+  # Then I should see Hot Work Within Designated Area checklist questions
+  # And I press previous for 1 times
+  # And I uncheck the pre-selected checklist
+  # And I select the matching Work on Hazardous Substances checklist
+  # And I press next for 1 times
+  # Then I should see Work on Hazardous Substances checklist questions
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -106,20 +187,20 @@ Feature: Section4AChecklist
       | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
   # | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 
-  Scenario Outline: Verify checklist content are displayed correctly for maintenance permits
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 2523
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
-    And I navigate to section 4a
-    Then I should see correct checklist content for <checklist> checklist
-    And I tear down created form
+  # Scenario Outline: Verify checklist content are displayed correctly for maintenance permits
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 2523
+  #   And I select <level_one_permit> permit
+  #   And I select <level_two_permit> permit for level 2
+  #   And I set maintenance during more than 2 hours
+  #   And I navigate to section 4a
+  #   Then I should see correct checklist content for <checklist> checklist
+  #   And I tear down created form
 
-    Examples:
-      | level_one_permit               | level_two_permit      | checklist                                |
-      | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
+  #   Examples:
+  #     | level_one_permit               | level_two_permit      | checklist                                |
+  #     | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
     Given I launch sol-x portal without unlinking wearable
@@ -161,5 +242,3 @@ Feature: Section4AChecklist
     Examples:
       | level_one_permit               | level_two_permit      | checklist                                |
       | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
-
-# Scenario: Verify checklist content labels
