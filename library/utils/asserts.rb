@@ -3,17 +3,6 @@
 require 'rspec/expectations'
 
 module AssertionUtil
-  # def is_selected?(element)
-  #   element.selected?
-  # end
-
-  # def is_display(element)
-  #   begin
-  #     element.displayed?
-  #   rescue
-  #     return false
-  #   end
-  # end
 
   def is_enabled(element)
     expect(element.enabled?).to be true
