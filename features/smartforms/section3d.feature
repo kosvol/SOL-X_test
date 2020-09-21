@@ -26,7 +26,7 @@ Feature: Section3DDRA
     And I enter pin <ra_pin>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
     And I navigate to section 3d
     And I sign DRA section 3d with RA pin <pin>
     Then I should see signed details
@@ -69,7 +69,7 @@ Feature: Section3DDRA
     And I enter pin <pin>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
     And I navigate to section 3d
     And I sign DRA section 3d with non RA pin <non_ra_pin>
     Then I should see not authorize error message

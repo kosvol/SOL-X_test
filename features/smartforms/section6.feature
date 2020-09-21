@@ -15,7 +15,7 @@ Feature: Section6
   #   And I enter pin 9015
   #   And I select <level_one_permit> permit
   #   And I select <level_two_permit> permit for level 2
-  #   And I fill up section 1
+  #   And I fill up section 1 with default value
   #   And I navigate to section 4a
   #   And I select the matching <checklist> checklist
   #   Then I should not see gas reader sections
@@ -82,7 +82,7 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 4 times
@@ -115,7 +115,7 @@ Feature: Section6
     And I enter pin 9015
     And I select Cold Work permit
     And I select Cold Work - Working in Hazardous or Dangerous Areas permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching Cold Work Operation Checklist checklist
     And I press next for 5 times
@@ -161,7 +161,7 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I press next for 4 times
@@ -185,7 +185,7 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 6
     And  I press the N/A button to disable gas testing
     Then I should see warning label

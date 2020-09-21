@@ -18,13 +18,10 @@ class Section3APage < Section2Page
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
-  # @@risk_indicator = "//div[starts-with(@class,'RiskIndicator__Indicator')]"
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
   elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
-  # buttons(:confirm_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[2]")
-  # elements(:identified_hazard_row, xpath: "//div[starts-with(@class,'row-wrapper')]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
   def navigate_front_back
@@ -47,7 +44,6 @@ class Section3APage < Section2Page
     scroll_multiple_times(12)
     add_hazard_btn_element.click
     sleep 2
-    # BrowserActions.scroll_up_by_custom_dist(-50)
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
@@ -135,55 +131,16 @@ class Section3APage < Section2Page
     confirm_btn_elements.last.click
   end
 
-  def is_risk_indicator_green?(_measure)
+  def is_risk_indicator_color?(_measure,_status)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    green_color = get_color_code('low')
+    base_color = get_color_code(_status)
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === green_color
+      risk_indicators[0].css_value('background-color') === base_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === green_color
+      risk_indicators[1].css_value('background-color') === base_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === green_color
-    end
-  end
-
-  def is_risk_indicator_yellow?(_measure)
-    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    yellow_color = get_color_code('medium')
-    case _measure
-    when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === yellow_color
-    when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === yellow_color
-    when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === yellow_color
-    end
-  end
-
-  def is_risk_indicator_red?(_measure)
-    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    red_color = get_color_code('high')
-    case _measure
-    when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === red_color
-    when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === red_color
-    when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === red_color
-    end
-  end
-
-  def is_risk_indicator_veryred?(_measure)
-    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    very_red_color = get_color_code('very high')
-    case _measure
-    when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === very_red_color
-    when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === very_red_color
-    when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === very_red_color
+      risk_indicators[2].css_value('background-color') === base_color
     end
   end
 

@@ -27,22 +27,12 @@ Then (/^I (should|should not) see maintenance duration section and require text$
 end
 
 And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
-  on(Section1Page).fill_all_of_section_1_w_duration(condition)
+  on(Section1Page).fill_default_section_1
+  step "I set maintenance during #{condition} than 2 hours"
 end
 
 And (/^I set maintenance during (more|less) than 2 hours$/) do |condition|
   on(Section1Page).set_maintenance_duration(condition)
-end
-
-And (/^I fill up section 1$/) do
-  sleep 1
-  # on(Section4BPage).set_current_time
-  permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
-  if permits_arr.include? on(Section0Page).get_selected_level2_permit
-    on(Section1Page).fill_all_of_section_1_w_duration(%w[more less].sample)
-  else
-    on(Section1Page).fill_all_of_section_1_wo_duration
-  end
 end
 
 And (/^I should not see copy text regarding maintenance hour$/) do
@@ -51,9 +41,8 @@ end
 
 And (/^I fill up section 1 with default value$/) do
   permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
+  on(Section1Page).fill_default_section_1
   if permits_arr.include? on(Section0Page).get_selected_level2_permit
-    on(Section1Page).fill_default_section_1_w_duration(%w[more less].sample)
-  else
-    on(Section1Page).fill_default_section_1_wo_duration
+    on(Section1Page).set_maintenance_duration(%w[more less].sample)
   end
 end

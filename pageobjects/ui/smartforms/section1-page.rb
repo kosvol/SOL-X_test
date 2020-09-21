@@ -12,10 +12,8 @@ class Section1Page < Section0Page
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+
   @@maint_require_text = '//div[@id="1_subsection6"]'
-  @@wind_forces = '//button[@id="windforce"]'
-  @@list_of_dd_values = "//ul[starts-with(@class,'UnorderedList-')]/li/button"
-  @@sea_states = '//button[@id="seaState"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
   @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
@@ -63,29 +61,17 @@ class Section1Page < Section0Page
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
     BrowserActions.scroll_down(_element)
-    $browser.find_element(:xpath, @@maint_duration_dd)
     _element.text === 'Please answer question `Will the duration of this Maintenance be over 2 hours` before continuing.'
   rescue StandardError
     false
   end
 
   def is_sea_states?(_table)
-    get_dd_list_values(@@sea_states, @@list_of_dd_values) === serialize_table_input(_table)
+    get_dd_list_values(sea_state_btn_element) === serialize_table_input(_table)
   end
 
   def is_wind_forces?(_table)
-    get_dd_list_values(@@wind_forces, @@list_of_dd_values) === serialize_table_input(_table)
-  end
-
-  def fill_all_of_section_1_wo_duration
-    fill_static_section1
-  end
-
-  def fill_all_of_section_1_w_duration(_condition)
-    sleep 1
-    fill_static_section1
-    $browser.find_element(:xpath, @@maint_duration_dd).click
-    _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
+    get_dd_list_values(wind_force_btn_element) === serialize_table_input(_table)
   end
 
   def set_maintenance_duration(_condition)
@@ -93,16 +79,9 @@ class Section1Page < Section0Page
     _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
   end
 
-  def fill_default_section_1_wo_duration
+  def fill_default_section_1
     sleep 1
     fill_default_section1
-  end
-
-  def fill_default_section_1_w_duration(_condition)
-    sleep 1
-    fill_default_section1
-    $browser.find_element(:xpath, @@maint_duration_dd).click
-    _condition === 'more' ? BrowserActions.scroll_click(duration_btn_elements[0]) : BrowserActions.scroll_click(duration_btn_elements[1])
   end
 
   private
@@ -122,13 +101,13 @@ class Section1Page < Section0Page
     BrowserActions.hide_keyboard
   end
 
-  def fill_static_section1
-    select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
-    select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
-    select_sea_and_wind_state
-    fill_text_area(@@text_areas, 'Test Automation')
-    BrowserActions.hide_keyboard
-  end
+  # def fill_static_section1
+  #   select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
+  #   select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
+  #   select_sea_and_wind_state
+  #   fill_text_area(@@text_areas, 'Test Automation')
+  #   BrowserActions.hide_keyboard
+  # end
 
   def select_checkbox(_input, _location)
     _elements = $browser.find_elements(:xpath, _input)
@@ -156,16 +135,13 @@ class Section1Page < Section0Page
     serialized_input
   end
 
-  def get_dd_list_values(_states, _dd_list)
+  def get_dd_list_values(_states)
     sleep 1
-    BrowserActions.scroll_down
-    tmp_element = $browser.find_element(:xpath, _states)
-    BrowserActions.scroll_click(tmp_element)
-    _element = $browser.find_elements(:xpath, _dd_list)
+    BrowserActions.scroll_click(_states)
     drop_down_list_values = []
-    _element.each do |elem|
-      BrowserActions.scroll_down(elem)
-      drop_down_list_values << elem.text
+    dd_list_value_elements.each do |_elem|
+      BrowserActions.scroll_down(_elem)
+      drop_down_list_values << _elem.text
     end
     p ">>> #{drop_down_list_values}"
     drop_down_list_values

@@ -52,7 +52,7 @@ Feature: Section4AChecklistSelection
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     And I tear down created form

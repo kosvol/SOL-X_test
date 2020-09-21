@@ -95,7 +95,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -127,7 +127,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     And I sign checklist with respective checklist creator <pin>
@@ -208,7 +208,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated

@@ -42,7 +42,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select Underwater Operations permit
     And I select Simultaneous underwater operation during daytime with other operation permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
     When I press next for 10 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -125,7 +125,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
     And I press next for 10 times
     And I submit permit for Master Approval
     And I click on back to home

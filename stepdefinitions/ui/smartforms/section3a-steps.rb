@@ -23,46 +23,18 @@ end
 Then (/^I should see risk as (.+) risk$/) do |_condition|
   case _condition
   when 'low'
-    is_true(on(Section3APage).is_risk_indicator_green?(@measure))
+    is_true(on(Section3APage).is_risk_indicator_color?(@measure,"low"))
   when 'medium'
-    is_true(on(Section3APage).is_risk_indicator_yellow?(@measure))
+    is_true(on(Section3APage).is_risk_indicator_color?(@measure,"medium"))
   when 'high'
-    is_true(on(Section3APage).is_risk_indicator_red?(@measure))
+    is_true(on(Section3APage).is_risk_indicator_color?(@measure,"high"))
   when 'very high'
-    is_true(on(Section3APage).is_risk_indicator_veryred?(@measure))
+    is_true(on(Section3APage).is_risk_indicator_color?(@measure,"very high"))
   end
 end
 
 Then (/^I should see section 3a screen$/) do
   is_equal(on(Section2Page).heading_text_element.text, 'Section 3A: DRA - Method & Hazards')
-end
-
-Then (/^I should see correct likelihood,consequence and risk indicator$/) do
-  selected_permit = on(Section0Page).get_selected_level2_permit
-  sleep 1
-  is_true(on(Section3APage).is_risk_indicator?(selected_permit))
-  is_true(on(Section3APage).is_risk_indicator_color?(selected_permit))
-  is_true(on(Section3APage).is_likelihood_value?(selected_permit))
-  is_true(on(Section3APage).is_consequence_value?(selected_permit))
-end
-
-Then (/^I should see correct DRA page 1 risk indicator content$/) do
-  selected_permit = on(Section0Page).get_selected_level2_permit
-  sleep 1
-  is_true(on(Section3APage).is_risk_indicator?(selected_permit))
-  is_true(on(Section3APage).is_risk_indicator_color?(selected_permit))
-end
-
-Then (/^I should see correct DRA page 1 likelihood content$/) do
-  selected_permit = on(Section0Page).get_selected_level2_permit
-  sleep 1
-  is_true(on(Section3APage).is_likelihood_value?(selected_permit))
-end
-
-Then (/^I should see correct DRA page 1 consequence content$/) do
-  selected_permit = on(Section0Page).get_selected_level2_permit
-  sleep 1
-  is_true(on(Section3APage).is_consequence_value?(selected_permit))
 end
 
 Then (/^I should see DRA number,Date and Time populated$/) do

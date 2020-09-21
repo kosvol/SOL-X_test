@@ -4,10 +4,6 @@ Feature: Section1
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -136,7 +132,7 @@ Feature: Section1
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
     And I navigate to section 2
     Then I should see section 2
     And I should not see copy text regarding maintenance hour
