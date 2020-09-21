@@ -91,5 +91,8 @@ end
 
 Then (/^I should see (.+) checklist questions$/) do |checklist|
   base_data = YAML.load_file("data/checklist/#{checklist}.yml")['questions']
-  is_true(on(PumpRoomEntry).are_questions?(base_data))
+  on(Section4APage).section1_elements.each_with_index do |_element,_index|
+    is_equal(_element.text,base_data[_index])
+    # p "#{_element.text}"
+  end
 end

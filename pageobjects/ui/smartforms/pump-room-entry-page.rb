@@ -1,6 +1,6 @@
 require './././support/env'
 
-class PumpRoomEntry
+class PumpRoomEntry < Section9Page
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
@@ -29,12 +29,12 @@ class PumpRoomEntry
     create_new_pre_btn
   end
 
-  def are_questions?(table)
-    table.all? do |question|
-      xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
-      @browser.find_element('xpath', xpath_str).displayed?
-    end
-  end
+  # def are_questions?(table)
+  #   table.all? do |question|
+  #     xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
+  #     @browser.find_element('xpath', xpath_str).displayed?
+  #   end
+  # end
 
   def has_three_types_answers?(table)
     table.all? do |question|

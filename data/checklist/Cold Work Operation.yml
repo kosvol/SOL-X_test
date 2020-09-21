@@ -1,17 +1,13 @@
 questions:
   [
     "1. Are there any other permits involved with this job? Please specify",
-    "2. The equipment/pipeline has been prepared as follows:",
     "2.1 Has the equipment/pipeline been vented to the atmosphere?",
     "2.2 Has the equipment/pipeline been drained?",
     "2.3 Has the equipment/pipeline been washed?",
     "2.4 Has the equipment/pipeline been purged?",
-    "3. The equipment/pipeline has been isolated as follows?",
     "3.1 Lines blanked",
     "3.2 Lines disconnected",
     "3.3 Valves closed",
-    "3.4 Others:",
-    "4. Is equipment free from:",
     "4.1 Oil",
     "4.2 Gas",
     "4.3 H2S",
@@ -20,10 +16,6 @@ questions:
     "5. Is surrounding area free from hazards?",
     "6. If work is to be performed on electrical equipment has that equipment been isolated?",
     "7. Has the warning notice for work being carried out been posted at appropriate locations?",
-    "1. The following personal protective to be worn:",
-    "2. Pipeline/vessel contained following material in service:",
-    "3. Pipeline/vessel expected to contain the following hazardous material when opened:",
-    "4. Special precautions/conditions:",
   ]
 
 info_box: []
