@@ -124,11 +124,7 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 1
-    begin
-      scroll_multiple_times(1) if @@swap_flag === "evaluation_matrix"
-    rescue StandardError
-      scroll_multiple_times(4)
-    end
+    @@swap_flag === "evaluation_matrix" ? scroll_multiple_times(1) : scroll_multiple_times(4)
     add_additional_measure_btn_elements[0].click
     # scroll_multiple_times(1)
     likelihood_btn_elements[2].click

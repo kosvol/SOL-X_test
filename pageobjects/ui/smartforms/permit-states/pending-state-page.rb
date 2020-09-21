@@ -30,7 +30,7 @@ class PendingStatePage < Section9Page
     @@section1_data_collector
   end
 
-  def get_button_text
-    edit_permit_btn_elements.first.text
-  end
+  # def get_button_text
+  #   edit_permit_btn_elements.first.text
+  # end
 end
