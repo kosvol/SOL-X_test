@@ -115,6 +115,29 @@ Feature: RiggingOfLadder
       | 4/E   | 1311 |
       | A 4/E | 0703 |
 
-# Scenario: Verify data capture across status
+  # Scenario: Verify data capture across status
 
-# Scenario: Verify ROL section labels
+  Scenario: Verify ROL section labels
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 8383
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    Then I should see all ROL checklist questions
+      | Description of boarding arrangement:                                                                       |
+      | Has information obtained from pilot station or agent for rigging arrangement?                              |
+      | Working outboard guidelines in COSWP Chapter 15 read, understood and complied?                             |
+      | Has consideration made for reduction of speed or making lee by alteration due to severe weather condition? |
+      | Has the ladder arrangement verified by responsible officer and rigged as per IMO requirement?              |
+      | Has tool box meeting carried out with task performers and explained the rigging arrangement?               |
+      | Are all crew involved in the operation familiar with gangway safe operating limit?                         |
+      | Has communication with the responsible officer been established ?                                          |
+      | Are the ropes for gantlines and lifelines in good condition and long enough?                               |
+      | PPE used as per PPE matrix and in good condition?                                                          |
+      | Lifebuoy and line ready?                                                                                   |
+      | Has safety harness and line securing arrangement to a strong point available?                              |
+      | Life vest worn by personnel working overside? (Life vest to be fitted with self igniting light)            |
+      | Is sufficient illumination available to complete the task in hours of darkness?                            |
+      | Is heaving line available to transfer personnel baggage?                                                   |
+      | Is the access point free of obstruction and safety walkway provided?                                       |
+      | Is the ladder made fast with shipside during rigging combination ladder?                                   |

@@ -6,6 +6,7 @@ class ROLPage < Section9Page
   include PageObject
 
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
+  element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_subsection19"]')
   buttons(:durations, xpath: "//div[@data-testid='dropdown-overlay-container']/div/ul[starts-with(@class,'UnorderedList-sc-')]/li/button")
 
   def submit_rol_permit_w_duration(_duration)
