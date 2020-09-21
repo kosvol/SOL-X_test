@@ -45,6 +45,12 @@ office_approval:
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
 
+maria_db:
+  mariadb_host: "safevue-mariadb-dev.mariadb.database.azure.com"
+  mariadb_user: "safevue@safevue-mariadb-dev"
+  mariadb_pass: "64d58dba2c535612841489d69a4d9998"
+  Emariadb_database: "replication"
+
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##
 # "False" - Takes screenshot only for failures ##
