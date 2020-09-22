@@ -6,12 +6,9 @@ Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
 end
 
-Then (/^I should see a list of sea states$/) do |_table|
-  is_true(on(Section1Page).is_sea_states?(_table.raw))
-end
-
-Then (/^I should see a list of wind forces$/) do |_table|
-  is_true(on(Section1Page).is_wind_forces?(_table.raw))
+Then (/^I should see a list of (sea states|wind forces)$/) do |_state,_table|
+  is_true(on(Section1Page).is_sea_states?(_table.raw)) if _state === "sea states"
+  is_true(on(Section1Page).is_wind_forces?(_table.raw)) if _state === "wind forces"
 end
 
 Then (/^I should not see previous button exists$/) do
@@ -26,7 +23,7 @@ Then (/^I (should|should not) see maintenance duration section and require text$
   end
 end
 
-And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
+And (/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).fill_default_section_1
   step "I set maintenance during #{condition} than 2 hours"
 end

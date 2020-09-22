@@ -16,10 +16,10 @@ class Section0Page < CommonFormsPage
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
 
-  def click_next
-    next_btn
-  rescue StandardError
-    save_and_next_btn
+  def is_level_1_permit?
+    list_permit_type_elements.each do |_element|
+      
+    end
   end
 
   def reset_data_collector

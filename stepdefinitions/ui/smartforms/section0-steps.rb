@@ -2,8 +2,9 @@
 
 Then('I should see a list of available forms for selections') do |_table|
   on(Section0Page).click_permit_type_ddl
-  on(CommonFormsPage).are_questions?(_table.raw)
-  # is_true(on(Section0Page).is_level_1_permit?(_table.raw))
+  _table.raw.each_with_index do |_element,_index|
+      is_equal(_element.first,on(Section0Page).list_permit_type_elements[_index].text)
+  end
 end
 
 And (/^I navigate to create new permit$/) do
@@ -12,22 +13,13 @@ And (/^I navigate to create new permit$/) do
   sleep 1
 end
 
-Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
-  if _condition === 'should'
+Then (/^I should see smart form landing screen$/) do
     is_true(on(Section0Page).ptw_id_element.text.include?('SIT/PTW/'))
-  end
-  if _condition === 'should not'
-
-  end
 end
 
 Then (/^I should see second level permits details$/) do
   base_permits = YAML.load_file('data/permits.yml')[CommonPage.get_permit_id]
   on(CommonFormsPage).are_questions?(base_permits)
-end
-
-And (/^I navigate to level 2 permits$/) do
-  step "I select #{['Cold Work', 'Critical Equipment Maintenance', 'Hot Work', 'Rotational Portable Power Tools', 'Underwater Operations'].sample} permit"
 end
 
 And (/^I navigate back to permit selection screen$/) do

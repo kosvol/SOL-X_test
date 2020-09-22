@@ -29,6 +29,12 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:enter_comment_box, xpath: "//textarea")
   
+  def click_next
+    next_btn
+  rescue StandardError
+    save_and_next_btn
+  end
+  
   def set_current_time
     @@time = main_clock_element.text
   end

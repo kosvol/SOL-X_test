@@ -49,7 +49,7 @@ Feature: Section6
   #   And I enter pin 9015
   #   And I select <level_one_permit> permit
   #   And I select <level_two_permit> permit for level 2
-  #   And I submit after filling up section 1 with duration less than 2 hours
+  #   And I fill section 1 of maintenance permit with duration less than 2 hours
   #   And I navigate to section 4a
   #   And I select the matching <checklist> checklist
   #   And I press next for 4 times

@@ -105,7 +105,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I navigate to level 2 permits
+    And I select Hot Work permit
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
     And I tear down created form
