@@ -15,14 +15,14 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I press next for 1 times
     Then I should see Enclosed Spaces Entry Checklist checklist questions
-    # And I should see info boxes
-    # And I should see warning box
+    And I should see info boxes
+    And I should see warning boxes
     And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Hot Work Outside Designated Area checklist
     And I press next for 1 times
     Then I should see Hot Work Outside Designated Area checklist questions
-    # And I should see info boxes
+    And I should see info boxes
     And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Underwater Operation checklist

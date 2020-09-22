@@ -90,9 +90,26 @@ And (/^I uncheck the pre-selected checklist$/) do
 end
 
 Then (/^I should see (.+) checklist questions$/) do |checklist|
-  base_data = YAML.load_file("data/checklist/#{checklist}.yml")['questions']
+  @@checklist = checklist
+  base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
   on(Section4APage).section1_elements.each_with_index do |_element,_index|
     is_equal(_element.text,base_data[_index])
     # p "#{_element.text}"
+  end
+end
+
+And (/^I should see (info|warning) boxes$/) do |which_box|
+  if which_box === "info" 
+    box_obj = on(Section4APage).info_box_elements
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
+  elsif which_box === "warning" 
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['warning_box']
+    box_obj = on(Section4APage).warning_box_elements
+  end
+
+  box_obj.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
+    is_equal(_element.text,base_data[_index])
   end
 end
