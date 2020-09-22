@@ -51,6 +51,13 @@ maria_db:
   mariadb_pass: "64d58dba2c535612841489d69a4d9998"
   Emariadb_database: "replication"
 
+pin_management:
+  sit:
+    db: "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
+    vessel: "sit-vessel"
+  dev:
+
+
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##
 # "False" - Takes screenshot only for failures ##
