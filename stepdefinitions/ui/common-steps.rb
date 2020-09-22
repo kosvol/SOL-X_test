@@ -61,8 +61,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition,_times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  # sleep 1
-  on(Section0Page).set_current_time
+  on(CommonFormsPage).set_current_time
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)

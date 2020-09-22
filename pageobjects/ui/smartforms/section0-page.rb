@@ -16,10 +16,6 @@ class Section0Page < CommonFormsPage
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
 
-  def set_current_time
-    @@time = main_clock_element.text
-  end
-
   def click_next
     next_btn
   rescue StandardError
@@ -43,18 +39,18 @@ class Section0Page < CommonFormsPage
   end
 
   def select_level1_permit(_permit)
-    @@permit = _permit
+    CommonPage.set_permit_id(_permit)
     sleep 2
     select_permit
   end
 
   def select_level2_permit(_permit)
-    @@permit = _permit
+    CommonPage.set_permit_id(_permit)
     sleep 2
     if !(["Enclosed Space Entry","Helicopter Operation","Personnel Transfer by Transfer Basket","Rigging of Gangway & Pilot Ladder","Use of Non-Intrinsically Safe Camera","Use of ODME in Manual Mode","Work on Electrical Equipment and Circuits – Low/High Voltage","Work on Pressure Pipeline/Vessels","Working Aloft / Overside","Working on Deck During Heavy Weather"].include? _permit)
       select_permit
     end
-    @@section1_data_collector << @@permit
+    @@section1_data_collector << CommonPage.get_permit_id
     @@section1_data_collector << ptw_id_element.text
     CommonPage.set_permit_id(ptw_id_element.text)
   end
@@ -70,7 +66,7 @@ class Section0Page < CommonFormsPage
 
   def select_permit
     list_permit_type_elements.each do |permit|
-      next unless permit.text === @@permit
+      next unless permit.text === CommonPage.get_permit_id
       permit.click
       break
     end

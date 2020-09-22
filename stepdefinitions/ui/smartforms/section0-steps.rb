@@ -22,7 +22,7 @@ Then (/^I (should|should not) see smart form landing screen$/) do |_condition|
 end
 
 Then (/^I should see second level permits details$/) do
-  base_permits = YAML.load_file('data/permits.yml')[@@permit]
+  base_permits = YAML.load_file('data/permits.yml')[CommonPage.get_permit_id]
   on(CommonFormsPage).are_questions?(base_permits)
 end
 

@@ -29,6 +29,10 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:enter_comment_box, xpath: "//textarea")
   
+  def set_current_time
+    @@time = main_clock_element.text
+  end
+
   def are_questions?(table)
     table.all? do |question|
       xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
