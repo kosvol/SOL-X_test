@@ -39,6 +39,13 @@ And ('I enter pin {int}') do |pin|
   sleep 1
 end
 
+And(/^I enter pin for rank (.*)$/) do |rank|
+  #@@entered_pin = pin
+  on(PinPadPage).enter_pin_for_rank(rank)
+  sleep 1
+end
+
+
 And (/^I press next for (.+) times$/) do |_times|
   (1.._times.to_i).each do |_i|
     sleep 1.5
