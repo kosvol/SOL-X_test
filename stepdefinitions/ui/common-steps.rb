@@ -40,7 +40,7 @@ And ('I enter pin {int}') do |pin|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  #@@entered_pin = pin
+  #@@entered_pin  >> moved into enter_pin_for_rank
   on(PinPadPage).enter_pin_for_rank(rank)
   sleep 1
 end

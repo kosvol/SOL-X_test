@@ -26,6 +26,7 @@ class PinPadPage
     member_id = get_member_id(rank)
     pin_by_id = get_pin_by_id(member_id).to_i
     puts "pin >> #{pin_by_id}"
+    @@entered_pin = pin_by_id
     enter_pin(pin_by_id)
   end
 
