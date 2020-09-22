@@ -38,7 +38,8 @@ end
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
   on(CommonFormsPage).set_current_time
-  BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+  BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first) if _approval_or_review === "Approval"
+  BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first) if _approval_or_review === "Review"
   step 'I enter pin 9015'
   step 'I sign on canvas'
   # data collector; will evolve

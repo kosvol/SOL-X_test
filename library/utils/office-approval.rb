@@ -11,7 +11,7 @@ module OfficeApproval
       puts "form id >> #{form_id}"
       puts "event id >> #{event_id}"
       puts "staff id >> #{staff_id}"
-      $obj_env_yml['office_approval']['format_link'] % [form_id, event_id, staff_id]
+      $obj_env_yml['office_approval']['format_link'] % [event_id, form_id, staff_id]
     end
 
     private

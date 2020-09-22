@@ -36,7 +36,7 @@ class OAPage < Section9Page
   end
 
   def set_to_date_plus_one_day(_current_date)
-    BrowserActions.enter_text(issue_to_date_btn_element,"#{((Date.strptime("15/09/2020","%d/%m/%Y").to_date)+1).strftime("%d/%m/%Y")}")
+    BrowserActions.enter_text(issue_to_date_btn_element,"#{(Date.today+1).strftime("%d/%m/%Y")}")
   end
 
   def is_comment_box_reset?

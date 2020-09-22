@@ -37,7 +37,7 @@ Then (/^I should see permit valid for (.+) hours$/) do |_duration|
 end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
-  sleep 3
+  sleep 2
   step 'I click on pending approval filter'
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
