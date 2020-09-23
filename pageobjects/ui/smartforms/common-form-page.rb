@@ -39,13 +39,6 @@ class CommonFormsPage < CommonPage
     @@time = main_clock_element.text
   end
 
-  def are_questions?(table)
-    table.all? do |question|
-      xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
-      @browser.find_element('xpath', xpath_str).displayed?
-    end
-  end
-
   def get_current_time_format
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')

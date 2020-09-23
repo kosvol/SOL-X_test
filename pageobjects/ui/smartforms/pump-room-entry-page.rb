@@ -17,6 +17,7 @@ class PumpRoomEntry < Section9Page
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
+  elements(:all_inputs, xpath: "//input[starts-with(@name,'pre_section2_pumpRoomEntry')]")
 
   @@alert_text =  "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
@@ -29,20 +30,13 @@ class PumpRoomEntry < Section9Page
     create_new_pre_btn
   end
 
-  # def are_questions?(table)
+  # def has_three_types_answers?(table)
   #   table.all? do |question|
-  #     xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
-  #     @browser.find_element('xpath', xpath_str).displayed?
+  #     xpath_str = @@radio_buttons % [question[0]]
+  #     elements = $browser.find_elements('xpath', xpath_str)
+  #     elements.size === 3
   #   end
   # end
-
-  def has_three_types_answers?(table)
-    table.all? do |question|
-      xpath_str = @@radio_buttons % [question[0]]
-      elements = $browser.find_elements('xpath', xpath_str)
-      elements.size === 3
-    end
-  end
 
   def is_alert_text_visible?(alert_text)
     xpath_str = @@alert_text % [alert_text]
