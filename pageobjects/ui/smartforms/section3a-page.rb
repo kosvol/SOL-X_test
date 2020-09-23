@@ -84,7 +84,6 @@ class Section3APage < Section2Page
 
   def add_additional_hazard
     sleep 1
-    @@swap_flag = '' #reset
     toggle_likelihood_consequence_matrix_addition_hazard(1, 1)
     BrowserActions.enter_text(description_elements[2], 'Test Automation')
     save_dra
