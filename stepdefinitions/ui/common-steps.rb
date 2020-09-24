@@ -78,7 +78,7 @@ end
 
 And (/^I click on back to home$/) do
   sleep 2
-  on(Section6Page).back_to_home_btn
+  on(Section6Page).back_to_home_btn_element.click
 end
 
 And (/^I tear down created form$/) do
