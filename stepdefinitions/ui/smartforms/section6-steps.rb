@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 Then (/^I should see master (approval|review) button only$/) do |_condition|
-  BrowserActions.scroll_down
-  sleep 1
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).submit_btn_elements.size, '1')
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval") if _condition === "approval"
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review") if _condition === "review"
@@ -121,8 +119,7 @@ And (/^I will see popup dialog$/) do
 end
 
 Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condition|
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).gas_reading_table_elements[1].text,"Initial") if _condition === "with"
   is_equal(on(Section6Page).gas_reading_table_elements[1].text,"2nd Reading") if _condition === "without"
   is_equal(on(Section6Page).gas_reading_table_elements[2].text,"#{on(Section6Page).get_current_date_format} #{on(Section6Page).get_current_time_format}")

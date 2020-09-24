@@ -28,17 +28,13 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
-  BrowserActions.scroll_up
-  BrowserActions.scroll_up
+  on(Section3APage).scroll_multiple_times(2)
   on(Section4APage).select_checklist(_checklist)
 end
 
 And ('I sign checklist with respective checklist creator {int}') do |_pin|
   step 'I press next for 1 times'
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(4)
   step "I sign on checklist with #{_pin} pin"
 end
 

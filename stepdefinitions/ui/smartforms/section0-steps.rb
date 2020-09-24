@@ -31,6 +31,7 @@ And (/^I navigate back to permit selection screen$/) do
 end
 
 And (/^I click on (.+) filter$/) do |state|
+  sleep 2
   if state === 'pending approval'
     BrowserActions.click_element(on(Section0Page).permit_filter_elements[0])
     sleep 1

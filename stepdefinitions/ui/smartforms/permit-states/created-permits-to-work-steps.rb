@@ -88,16 +88,7 @@ And (/^I delete the permit created$/) do
 end
 
 Then (/^I should see the total permits in CREATED state match backend results$/) do
-  sleep 1
-  BrowserActions.scroll_down
-  sleep 1
-  BrowserActions.scroll_down
-  sleep 1
-  BrowserActions.scroll_down
-  sleep 1
-  BrowserActions.scroll_down
-  sleep 1
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(5)
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'

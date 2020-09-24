@@ -123,4 +123,5 @@ Feature: RiggingOfLadder
     And I enter pin 8383
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    When I press next for 1 times
     Then I should see ROL checklist questions

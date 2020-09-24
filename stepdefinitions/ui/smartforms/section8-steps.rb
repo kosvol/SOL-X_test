@@ -44,10 +44,7 @@ Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(4)
   on(Section8Page).submit_termination_btn_elements.first.click
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
