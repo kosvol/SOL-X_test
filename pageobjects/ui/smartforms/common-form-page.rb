@@ -31,6 +31,13 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:enter_comment_box, xpath: "//textarea")
   
+  def scroll_multiple_times(times)
+    for i in 1..times do
+      BrowserActions.scroll_down
+      sleep 1
+    end
+  end
+  
   def click_next
     next_btn
   rescue StandardError

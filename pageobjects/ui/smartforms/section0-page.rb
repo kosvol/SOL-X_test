@@ -53,13 +53,6 @@ class Section0Page < CommonFormsPage
     @@section1_data_collector << ptw_id_element.text
     CommonPage.set_permit_id(ptw_id_element.text)
   end
-
-  def scroll_multiple_times(times)
-    for i in 1..times do
-      BrowserActions.scroll_down
-      sleep 1
-    end
-  end
   
   private
 
