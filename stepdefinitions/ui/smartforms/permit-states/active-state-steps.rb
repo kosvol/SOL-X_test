@@ -22,6 +22,7 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   elsif _update_or_terminate === 'terminate'
     on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click
   end
+  sleep 1
   step "I enter pin #{_pin}"
 end
 
@@ -50,7 +51,12 @@ And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 11 times'
   sleep 1
+  step 'I sign the permit for submission to pending state'
+end
+
+And (/^I sign the permit for submission to pending state$/) do
   on(Section7Page).activate_permit_btn
   step 'I enter pin 1111'
   on(Section7Page).activate_permit
 end
+

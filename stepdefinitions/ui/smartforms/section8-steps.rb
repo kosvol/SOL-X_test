@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+Then (/^I should see all extra section8 questions$/) do
+  on(Section8Page).normalization_pipe_question1
+  on(Section8Page).normalization_pipe_question2
+  on(Section8Page).normalization_elec_question1
+  on(Section8Page).normalization_elec_question2
+  on(Section8Page).normalization_crit_question1
+  on(Section8Page).normalization_crit_question2
+  on(Section8Page).normalization_crit_question3
+  is_equal($browser.find_elements(:xpath, '//input').size, '36')
+end
+
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
   BrowserActions.scroll_down
   sleep 3
@@ -15,6 +26,11 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
   sleep 1
   if _condition === 'should'
     is_equal($browser.find_elements(:xpath, '//input').size, '27')
+    on(Section8Page).normalization_questions1
+    on(Section8Page).normalization_questions2
+    on(Section8Page).normalization_questions3
+    on(Section8Page).normalization_questions4
+    on(Section8Page).normalization_questions5
   end
   if _condition === 'should not'
     is_equal($browser.find_elements(:xpath, '//input').size, '17')
@@ -22,9 +38,9 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
 end
 
 Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
+  on(Section8Page).normalization_pipe_question1
+  on(Section8Page).normalization_pipe_question2
   is_equal($browser.find_elements(:xpath, '//input').size, '21')
-  rescue
-  is_equal($browser.find_elements(:xpath, '//input').size, '31')
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|

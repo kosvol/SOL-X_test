@@ -6,6 +6,28 @@ Feature: Section8
 
   # Scenario: Verify date and time fields are automatically filled
 
+  Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Work on Pressure Pipeline/Vessels permit
+    And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I navigate to section 4a
+    And I select the matching Critical Equipment Maintenance Checklist checklist
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 6 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 13 times
+    And I sign the permit for submission to pending state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see all extra section8 questions
+
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
     And I set oa permit to ACTIVE state
