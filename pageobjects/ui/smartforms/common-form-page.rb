@@ -12,6 +12,8 @@ class CommonFormsPage < CommonPage
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   buttons(:sign_btn, xpath: "//button[contains(.,'Sign')]")
+  button(:back_btn, xpath: "//button[contains(.,'Back')]")
+  button(:cancel_btn, xpath: "//button[contains(.,'Cancel')]")
   button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
   button(:done_btn, xpath: "//button[contains(.,'Done')]")
   buttons(:previous_btn, xpath: "//button[contains(.,'Previous')]")
@@ -63,6 +65,25 @@ class CommonFormsPage < CommonPage
     # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
     # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
+  end
+
+  def get_total_steps_to_section6(_which_section)
+    case _which_section
+    when '6'
+      10
+    when '4a'
+      6
+    when '3a'
+      2
+    when '3b'
+      3
+    when '3d'
+      5
+    when '4b'
+      8
+    when '2'
+      1
+    end
   end
 
 end

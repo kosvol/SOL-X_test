@@ -88,3 +88,7 @@ And (/^I tear down created form$/) do
     SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
   end
 end
+
+And (/^I navigate to section (.+)$/) do |_which_section|
+  on(Section6Page).toggle_to_section(_which_section)
+end
