@@ -32,13 +32,13 @@ module BrowserActions
     end
 
     def scroll_up(element = nil)
-      scroll_to_elementent(element)
+      scroll_to_element(element)
     rescue StandardError
       scroll_up_by_dist
     end
 
     def scroll_down(element = nil)
-      scroll_to_elementent(element)
+      scroll_to_element(element)
     rescue StandardError
       scroll_down_by_dist
     end
@@ -61,8 +61,8 @@ module BrowserActions
 
     private
 
-    def scroll_to_elementent(_elementent)
-      $browser.action.move_to(_elementent).perform
+    def scroll_to_element(_element)
+      $browser.action.move_to(_element).perform
     end
 
     def scroll_down_by_dist

@@ -28,7 +28,8 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
-  on(Section3APage).scroll_multiple_times(2)
+  on(Section3APage).scroll_multiple_times(4)
+  sleep 1
   on(Section4APage).select_checklist(_checklist)
 end
 
@@ -89,8 +90,9 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
   @@checklist = checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
   on(Section4APage).section1_elements.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
     is_equal(_element.text,base_data[_index])
-    # p "#{_element.text}"
   end
 end
 

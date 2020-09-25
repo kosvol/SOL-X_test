@@ -51,7 +51,9 @@ Then (/^I should see Date and Time fields disabled$/) do
 end
 
 And (/^I add a additional hazard$/) do
-  on(Section3APage).add_additional_hazard
+  step 'I toggle likelihood 1 and 1 consequence matrix for additional hazard'
+  BrowserActions.enter_text(on(Section3APage).description_elements[2], 'Test Automation')
+  on(Section3APage).save_dra
 end
 
 And (/^I click on View Edit Hazard$/) do

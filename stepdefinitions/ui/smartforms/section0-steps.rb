@@ -8,13 +8,14 @@ Then('I should see a list of available forms for selections') do |_table|
 end
 
 And (/^I navigate to create new permit$/) do
+  sleep 1
   on(Section0Page).click_create_permit_btn
   on(Section0Page).reset_data_collector
   sleep 1
 end
 
 Then (/^I should see smart form landing screen$/) do
-    is_true(on(Section0Page).ptw_id_element.text.include?('SIT/PTW/'))
+  is_true(on(Section0Page).select_permit_type_element.text.include?('Select Permit Type'))
 end
 
 Then (/^I should see second level permits details$/) do
@@ -27,7 +28,7 @@ end
 And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
   sleep 1
-  on(Section0Page).back_btn
+  on(Section0Page).close_btn_elements.first.click
 end
 
 And (/^I click on (.+) filter$/) do |state|

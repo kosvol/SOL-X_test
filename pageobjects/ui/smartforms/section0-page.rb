@@ -14,6 +14,7 @@ class Section0Page < CommonFormsPage
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
+  element(:select_permit_type, xpath: "//label[contains(.,'Select Permit Type')]")
 
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|

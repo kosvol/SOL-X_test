@@ -13,6 +13,7 @@ Feature: Section4BEIC
     And I select Hot Work permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching Hot Work Outside Designated Area checklist
     And I press next for 2 times
     And I select yes to EIC certification
@@ -26,6 +27,7 @@ Feature: Section4BEIC
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
@@ -35,8 +37,8 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | user         | zoneid                     | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                       |
-      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Spaces Entry Checklist |
+      | user         | zoneid                     | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                      |
+      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
@@ -46,6 +48,7 @@ Feature: Section4BEIC
     And I select <level_two_permit> permit for level 2
     # And I fill up section 1 with default value
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
@@ -69,6 +72,7 @@ Feature: Section4BEIC
     And I select <level_two_permit> permit for level 2
     # And I fill up section 1 with default value
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a issue authority <user> and link to zoneid <zoneid> and mac <mac>
@@ -90,6 +94,7 @@ Feature: Section4BEIC
     And I select <level_two_permit> permit for level 2
     # And I fill up section 1 with default value
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I sign EIC section 4b with non RA pin <pin>
@@ -119,6 +124,7 @@ Feature: Section4BEIC
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I select yes to EIC certification
@@ -144,6 +150,7 @@ Feature: Section4BEIC
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
+    And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I select yes to EIC certification
