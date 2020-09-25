@@ -84,12 +84,12 @@ class DashboardPage < WearablePage
       area_count_elements[2].text
     when 'Funnel Stack'
       area_count_elements[3].text
-    when 'Upper Deck'
+    when 'Main Deck'
       area_count_elements[4].text
-    when 'Accomm.'
-      area_count_elements[5].text
+    # when 'Accomm.'
+    #   area_count_elements[5].text
     when 'Nav. Bridge'
-      area_count_elements[6].text
+      area_count_elements[7].text
     end
   end
 

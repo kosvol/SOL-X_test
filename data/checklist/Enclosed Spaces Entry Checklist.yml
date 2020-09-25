@@ -1,24 +1,4 @@
-labels:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Name of enclosed space for entry:",
-    "Description of work:",
-    "Reporting interval, minutes:",
-  ]
-
-subheaders:
-  [
-    "Section 1: Pre-entry Preparation",
-    "Section 2: Pre-entry Checks",
-    "Section 3: Breathing Apparatus and Other Equipment",
-    "",
-  ]
-
-section1:
+questions:
   [
     "1. Has a Detailed Risk Assessment been carried out?",
     "2. Has the space been cleaned where necessary?",
@@ -55,30 +35,13 @@ section1:
     "5. Personal Gas Detectors being used by persons entering the enclosed space have been tested.",
   ]
 
-section:
-  [
-    "1. In order to obtain a representative cross- section of the space's atmosphere, samples should be taken from several levels and through as many openings as possible. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere tests are taken.\n2. Tests for specific toxic contaminants, such as benzene or hydrogen sulphide, must be undertaken depending on the nature of the previous contents of the space.Refer to the MSDS of the previous contents of the space and test for specific toxic gas.\n3. Prior entry, the toxic gas concentration should not be more than 50% OEL(Occupational Exposure Limit).The term OEL includes Permissible Exposure Limit(PEL), Maximum Admissible Concentration(MAC) and Threshold Limit Value(TLV)\n4. Individual checklist is to be made for each space to be entered.",
-    "1. In order to obtain a representative cross- section of the space's atmosphere, samples should be taken from several levels and through as many openings as possible. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere tests are taken.\n2. Tests for specific toxic contaminants, such as benzene or hydrogen sulphide, must be undertaken depending on the nature of the previous contents of the space.Refer to the MSDS of the previous contents of the space and test for specific toxic gas.\n3. Prior entry, the toxic gas concentration should not be more than 50% OEL(Occupational Exposure Limit).The term OEL includes Permissible Exposure Limit(PEL), Maximum Admissible Concentration(MAC) and Threshold Limit Value(TLV)",
-    "THE PERMIT ASSOCIATED WITH THIS CHECKLIST IS RENDERED INVALID SHOULD VENTILATION OF THE SPACE STOP OR IF ANY OF THE CONDITIONS NOTED IN THIS CHECKLIST CHANGE.",
-  ]
-
-section2:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Name of enclosed space for entry:",
-    "Reporting interval, minutes:",
-  ]
-
 info_box:
   [
     "1. In order to obtain a representative cross- section of the space's atmosphere, samples should be taken from several levels and through as many openings as possible. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere tests are taken.\n2. Tests for specific toxic contaminants, such as benzene or hydrogen sulphide, must be undertaken depending on the nature of the previous contents of the space.Refer to the MSDS of the previous contents of the space and test for specific toxic gas.\n3. Prior entry, the toxic gas concentration should not be more than 50% OEL(Occupational Exposure Limit).The term OEL includes Permissible Exposure Limit(PEL), Maximum Admissible Concentration(MAC) and Threshold Limit Value(TLV)\n4. Individual checklist is to be made for each space to be entered.",
     "1. In order to obtain a representative cross- section of the space's atmosphere, samples should be taken from several levels and through as many openings as possible. Ventilation should be stopped for about 10 minutes before the pre-entry atmosphere tests are taken.\n2. Tests for specific toxic contaminants, such as benzene or hydrogen sulphide, must be undertaken depending on the nature of the previous contents of the space.Refer to the MSDS of the previous contents of the space and test for specific toxic gas.\n3. Prior entry, the toxic gas concentration should not be more than 50% OEL(Occupational Exposure Limit).The term OEL includes Permissible Exposure Limit(PEL), Maximum Admissible Concentration(MAC) and Threshold Limit Value(TLV)",
   ]
+
 warning_box:
   [
-    THE PERMIT ASSOCIATED WITH THIS CHECKLIST IS RENDERED INVALID SHOULD VENTILATION OF THE SPACE STOP OR IF ANY OF THE CONDITIONS NOTED IN THIS CHECKLIST CHANGE.,
+    "ALERT\nTHE PERMIT ASSOCIATED WITH THIS CHECKLIST IS RENDERED INVALID SHOULD VENTILATION OF THE SPACE STOP OR IF ANY OF THE CONDITIONS NOTED IN THIS CHECKLIST CHANGE.",
   ]

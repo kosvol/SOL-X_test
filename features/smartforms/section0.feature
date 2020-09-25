@@ -28,6 +28,7 @@ Feature: SmartFormsPermission
     And I tear down created form
 
     Examples:
+<<<<<<< HEAD
       | rank  | pin  |
       | A/M   | 9015 |
       | C/O   | 8383 |
@@ -41,6 +42,21 @@ Feature: SmartFormsPermission
       | ETO   | 0856 |
       | 3/O   | 0159 |
       | A 3/O | 2674 |
+=======
+      | rank                       | pin  |
+      | Addtional Master           | 9015 |
+      | Chief Officer              | 8383 |
+      | Additional Chief Officer   | 2761 |
+      | Second Officer             | 6268 |
+      | Additional Second Officer  | 7865 |
+      | Chief Engineer             | 8248 |
+      | Additional Chief Engineer  | 1122 |
+      | Second Engineer            | 2523 |
+      | Additional Second Engineer | 3030 |
+      | Electro Technical Officer  | 0856 |
+      | 3/O                        | 0159 |
+      | A 3/O                      | 2674 |
+>>>>>>> master
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
@@ -105,7 +121,7 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I navigate to level 2 permits
+    And I select Hot Work permit
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
     And I tear down created form

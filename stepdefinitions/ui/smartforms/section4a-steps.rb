@@ -28,20 +28,19 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
+  on(Section3APage).scroll_multiple_times(4)
+  sleep 1
   on(Section4APage).select_checklist(_checklist)
 end
 
 And ('I sign checklist with respective checklist creator {int}') do |_pin|
   step 'I press next for 1 times'
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
+  on(Section3APage).scroll_multiple_times(4)
   step "I sign on checklist with #{_pin} pin"
 end
 
 And ('I sign on section with {int} pin') do |_pin|
-  on(Section4APage).sign_btn
+  BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
 end
@@ -53,7 +52,7 @@ And ('I sign on checklist with {int} pin') do |_pin|
 end
 
 Then (/^I should see signed details$/) do
-  on(Section0Page).set_current_time
+  on(CommonFormsPage).set_current_time
   on(Section4APage).is_signed_user_details?(@@entered_pin)
 end
 
@@ -85,4 +84,30 @@ end
 
 And (/^I uncheck the pre-selected checklist$/) do
   on(Section4APage).uncheck_all_checklist
+end
+
+Then (/^I should see (.+) checklist questions$/) do |checklist|
+  @@checklist = checklist
+  base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+  on(Section4APage).section1_elements.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
+    is_equal(_element.text,base_data[_index])
+  end
+end
+
+And (/^I should see (info|warning) boxes$/) do |which_box|
+  if which_box === "info" 
+    box_obj = on(Section4APage).info_box_elements
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
+  elsif which_box === "warning" 
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['warning_box']
+    box_obj = on(Section4APage).warning_box_elements
+  end
+
+  box_obj.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
+    is_equal(_element.text,base_data[_index])
+  end
 end

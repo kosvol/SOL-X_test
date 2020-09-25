@@ -44,7 +44,7 @@ ldev_fauxton_forms:
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:
-  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=%s&eventId=%s&staffId=%s"
+  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
 

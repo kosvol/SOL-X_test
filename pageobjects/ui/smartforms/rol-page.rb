@@ -2,18 +2,21 @@
 
 require './././support/env'
 
-class ROLPage < Section7Page
+class ROLPage < Section9Page
   include PageObject
 
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
-  buttons(:durations, xpath: "//div[@data-testid='dropdown-overlay-container']/div/ul[starts-with(@class,'UnorderedList-sc-')]/li/button")
+  element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_subsection19"]')
+  @@duration = "//button[contains(.,'%s')]"
 
   def submit_rol_permit_w_duration(_duration)
     BrowserActions.scroll_down(rol_duration_element)
     sleep 1
+    BrowserActions.scroll_down
+    sleep 1
     rol_duration
     sleep 1
-    durations_elements[(_duration.to_i - 1)].click
+    @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"]).click
     sleep 1
     submit_btn_elements.first.click
   end

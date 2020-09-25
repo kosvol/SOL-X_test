@@ -1,0 +1,22 @@
+questions:
+  [
+    "1. Are there any other permits involved with this job? Please specify",
+    "2.1 Has the equipment/pipeline been vented to the atmosphere?",
+    "2.2 Has the equipment/pipeline been drained?",
+    "2.3 Has the equipment/pipeline been washed?",
+    "2.4 Has the equipment/pipeline been purged?",
+    "3.1 Lines blanked",
+    "3.2 Lines disconnected",
+    "3.3 Valves closed",
+    "4.1 Oil",
+    "4.2 Gas",
+    "4.3 H2S",
+    "4.4 Steam",
+    "4.5 Pressure",
+    "5. Is surrounding area free from hazards?",
+    "6. If work is to be performed on electrical equipment has that equipment been isolated?",
+    "7. Has the warning notice for work being carried out been posted at appropriate locations?",
+  ]
+
+info_box: []
+warning_box: []

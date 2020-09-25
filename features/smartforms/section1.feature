@@ -4,10 +4,6 @@ Feature: Section1
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -105,20 +101,20 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | level_one_permit                                                                  | level_two_permit                                              |
-      | Cold Work                                                                         | Cold Work - Cleaning Up of Spill                              |
-      | Enclosed Spaces Entry                                                             | Enclosed Spaces Entry                                         |
-      | Helicopter Operations                                                             | Helicopter Operations                                         |
-      | Hot Work                                                                          | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | Personnel Transfer By Transfer Basket                                             | Personnel Transfer By Transfer Basket                         |
-      | Rotational Portable Power Tools                                                   | Use of Portable Power Tools                                   |
-      | Underwater Operations                                                             | Underwater Operation at night                                 |
-      | Use of non-intrinsically safe Camera                                              | Use of non-intrinsically safe Camera                          |
-      | Use of ODME in Manual Mode                                                        | Use of ODME in Manual Mode                                    |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Work on Pressure Pipeline/Vessels                                                 | Work on Pressure Pipeline/Vessels                             |
-      | Working Aloft/Overside                                                            | Working Aloft/Overside                                        |
-      | Working on Deck During Heavy Weather                                              | Working on Deck During Heavy Weather                          |
+      | level_one_permit                                              | level_two_permit                                              |
+      | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
+      | Helicopter Operations                                         | Helicopter Operations                                         |
+      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
+      | Personnel Transfer By Transfer Basket                         | Personnel Transfer By Transfer Basket                         |
+      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | Underwater Operations                                         | Underwater Operation at night                                 |
+      | Use of non-intrinsically safe Camera                          | Use of non-intrinsically safe Camera                          |
+      | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                    |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | Work on Pressure Pipeline/Vessels                             | Work on Pressure Pipeline/Vessels                             |
+      | Working Aloft/Overside                                        | Working Aloft/Overside                                        |
+      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                          |
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal without unlinking wearable
@@ -126,7 +122,7 @@ Feature: Section1
     And I enter pin 9015
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I fill up section 1
+    And I navigate to section 2
     Then I should see section 2
     And I tear down created form
 
@@ -136,7 +132,8 @@ Feature: Section1
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
-    And I fill up section 1
+    And I fill up section 1 with default value
+    And I navigate to section 2
     Then I should see section 2
     And I should not see copy text regarding maintenance hour
     And I tear down created form

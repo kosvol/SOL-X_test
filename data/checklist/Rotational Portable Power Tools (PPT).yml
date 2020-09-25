@@ -1,20 +1,4 @@
-labels:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Location of work:",
-    "Description of work:",
-    "Equipment Serial No:",
-    "Last user:",
-    "Last used date:",
-  ]
-
-subheaders: [""]
-
-section1:
+questions:
   [
     "Mode:",
     "Has the Operator been briefed and trained on the safe use of power tools?",
@@ -30,19 +14,6 @@ section1:
     "Is the abrasive wheel free from cracks or defects?",
     "Is the speed marked on the disc at least as high as the speed marked on the tool?",
     "Is the right disc (cutting/grinding) suitable for the job?",
-  ]
-
-section: []
-section2:
-  [
-    "Vessel Name:",
-    "Date:",
-    "Date",
-    "Time",
-    "PTW No:",
-    "Equipment Serial No:",
-    "Last user:",
-    "Last used date:",
   ]
 info_box: []
 warning_box: []
