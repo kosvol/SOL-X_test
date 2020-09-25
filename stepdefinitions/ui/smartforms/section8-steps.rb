@@ -26,11 +26,11 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
   sleep 1
   if _condition === 'should'
     is_equal($browser.find_elements(:xpath, '//input').size, '27')
-    on(Section8Page).normalization_questions1
-    on(Section8Page).normalization_questions2
-    on(Section8Page).normalization_questions3
-    on(Section8Page).normalization_questions4
-    on(Section8Page).normalization_questions5
+    on(Section8Page).normalization_question1
+    on(Section8Page).normalization_question2
+    on(Section8Page).normalization_question3
+    on(Section8Page).normalization_question4
+    on(Section8Page).normalization_question5
   end
   if _condition === 'should not'
     is_equal($browser.find_elements(:xpath, '//input').size, '17')

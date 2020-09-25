@@ -9,11 +9,11 @@ end
 
 Then (/^I (should|should not) see approve and request update buttons$/) do |_condition|
   if _condition === 'should'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 8)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 4)
     is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[1].text, 'Request Updates')
   elsif _condition === 'should not'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 7)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 3)
     is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
   end
