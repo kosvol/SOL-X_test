@@ -23,11 +23,26 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify only RA can create permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see smart form landing screen
     And I tear down created form
 
     Examples:
+<<<<<<< HEAD
+      | rank  | pin  |
+      | A/M   | 9015 |
+      | C/O   | 8383 |
+      | A C/O | 2761 |
+      | 2/O   | 6268 |
+      | A 2/O | 7865 |
+      | C/E   | 8248 |
+      | A C/E | 2761 |
+      | 2/E   | 2523 |
+      | A 2/E | 3030 |
+      | ETO   | 0856 |
+      | 3/O   | 0159 |
+      | A 3/O | 2674 |
+=======
       | rank                       | pin  |
       | Addtional Master           | 9015 |
       | Chief Officer              | 8383 |
@@ -41,6 +56,7 @@ Feature: SmartFormsPermission
       | Electro Technical Officer  | 0856 |
       | 3/O                        | 0159 |
       | A 3/O                      | 2674 |
+>>>>>>> master
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable

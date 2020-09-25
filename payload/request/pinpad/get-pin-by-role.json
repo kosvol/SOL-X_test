@@ -1,0 +1,5 @@
+{
+  "operationName": null,
+  "variables": {},
+  "query": "query {\n  users {\n    _id\n    crewMember {\n      rank\n    }\n    pin\n  }\n}\n"
+}
