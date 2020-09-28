@@ -9,7 +9,6 @@ class Section3APage < Section2Page
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_dra, xpath: "//button[contains(.,'Save DRA')]")
-  buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")  
 
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")

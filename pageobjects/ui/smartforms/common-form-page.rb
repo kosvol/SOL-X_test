@@ -20,6 +20,7 @@ class CommonFormsPage < CommonPage
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
   button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
+  buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
   buttons(:update_reading_btn, xpath: "//button[contains(.,'Update Readings')]")
@@ -84,6 +85,8 @@ class CommonFormsPage < CommonPage
       2
     when '3b'
       3
+    when '3c'
+      4
     when '3d'
       5
     when '4b'
