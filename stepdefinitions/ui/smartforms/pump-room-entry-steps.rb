@@ -5,7 +5,7 @@ end
 
 Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).ptw_id_element.text.include?('PRE/TEMP/'))
+    is_true(on(PumpRoomEntry).ptw_id_element.text.include?('SIT/PRE/'))
   end
   if _condition === 'should not'
 
@@ -100,4 +100,20 @@ end
 
 And('I sign on Gas Test Record with {int} pin') do |_pin|
   on(PinPadPage).enter_pin(_pin)
+end
+
+Then(/^I fill up PRE. Duration ([^"]*)$/) do|_duration|
+  on(PumpRoomEntry).fill_up_pre(_duration)
+end
+
+
+And(/^\(for pre\) I submit permit for Officer Approval$/) do
+  @@pre_number = on(PumpRoomEntry).get_pre_no
+  step 'I press the "Submit for Approval" button'
+  step 'I enter pin 8383'
+  step '(for pre) I sign on canvas'
+  step 'I press the "Done" button'
+  sleep 1
+  step 'I should see the page "Successfully Submitted"'
+  step 'I press the "Back to Home" button'
 end

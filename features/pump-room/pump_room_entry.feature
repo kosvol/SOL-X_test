@@ -136,3 +136,15 @@ Feature: PumpRoomEntry
             #TThen I should see the page "Gas Test Record Successfully Submitted"
             #Then I should "Gas Reading" table
             #Then I should not see the "Add Gas Test Record" button
+
+
+  Scenario: Verify PRE will be activated at the specified time
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4
+    And (for pre) I submit permit for Officer Approval
+
+
+
+

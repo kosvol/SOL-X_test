@@ -11,12 +11,16 @@ class PumpRoomEntry < Section1Page
 
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
+  button(:data_picker_btn, xpath: "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']]")
 
   button(:last_calibration_btn, id: 'gasLastCalibrationDate')
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
+  button(:submit_for_approval_btn, xpath: "//span[contains(text(),'Submit for Approval')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
+  @@pre_id ="//h4[contains(text(),'PRE No:')]/following::p"
+  @@text_areas = '//textarea'
   @@alert_text = "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
   @@button = "//*[contains(text(),'%s')]//.."
@@ -25,6 +29,39 @@ class PumpRoomEntry < Section1Page
 
   @@gas_test_page = "//h2[contains(text(),'%s')]"
   @@row_other_toxic_gas = "//li[starts-with(@class,'GasReadingListItem')]"
+
+  def get_pre_no
+    @browser.find_element(:xpath, @@pre_id).text
+  end
+
+  def fill_up_pre(duration)
+    fill_static_pre
+    select_start_time(20, 40)
+    select_permit_duration(duration)
+  end
+
+  def fill_static_pre
+    fill_text_area(@@text_areas, 'Test Automation')
+    select_checkbox(@@radio_buttons%["Location of vesse"], ['At Sea', 'In Port'].sample)
+  end
+
+  def select_start_time(hh, mm)
+    picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']"
+    picker_hh = "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]" % [hh]
+    picker_mm = "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]" % [mm]
+    @browser.find_element(:xpath, picker).click
+    sleep 1
+    BrowserActions.scroll_down
+    BrowserActions.scroll_down
+    @browser.find_element(:xpath, picker_hh).click
+    sleep 1
+    @browser.find_element(:xpath, picker_mm).click
+    sleep 1
+
+    # x = "//label[contains(text(),'Is the pumproom bilge dry?')]"
+    # scr = %(document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())%[x]
+    # @browser.execute_script(scr)  #click empty space to close picker
+  end
 
   def click_create_pump_room_entry
     create_new_pre_btn
@@ -53,7 +90,6 @@ class PumpRoomEntry < Section1Page
   end
 
   def select_permit_duration(duration)
-    p 'd'
     BrowserActions.scroll_click(permit_validation_btn_element)
     sleep 1
     BrowserActions.scroll_down()
