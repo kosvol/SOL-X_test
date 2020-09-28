@@ -11,7 +11,6 @@ And (/^I navigate to create new permit$/) do
   sleep 1
   on(Section0Page).click_create_permit_btn
   on(Section0Page).reset_data_collector
-  sleep 1
 end
 
 Then (/^I should see smart form landing screen$/) do
