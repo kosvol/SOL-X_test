@@ -6,6 +6,7 @@ class PumpRoomEntry < Section1Page
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
 
   elements(:all_labels, xpath: '//label')
+
   element(:all_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]")
   elements(:radio_button_list, xpath: "//span[@class = 'content']/..")
 
@@ -58,9 +59,8 @@ class PumpRoomEntry < Section1Page
     @browser.find_element(:xpath, picker_mm).click
     sleep 1
 
-    # x = "//label[contains(text(),'Is the pumproom bilge dry?')]"
-    # scr = %(document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())%[x]
-    # @browser.execute_script(scr)  #click empty space to close picker
+    x = %(document.evaluate("//h2[contains(text(),'Permit Validity')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+    @browser.execute_script(x)  #click on empty space to close picker
   end
 
   def click_create_pump_room_entry
