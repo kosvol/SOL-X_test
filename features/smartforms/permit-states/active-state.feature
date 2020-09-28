@@ -4,8 +4,6 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
-  # Scenario: Verify in view mode all section is disabled
-
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -99,7 +97,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
-    When I press next from section 1
+    When I press next for 1 times
     Then I submit permit for Master Approval
     When I click on back to home
     And I click on pending approval filter
