@@ -4,6 +4,7 @@ Feature: Section3CDRA
   I want to ...
   So that ...
 
-  Scenario: [Section 3c] - Verify user can select multiple DRA members
-  Scenario: [Section 3c] - Verify user can unselect all DRA team member
-  Scenario: [Section 3c] - Verify user can remove specific DRA team member
+  Scenario: Verify ra user is automatically selected
+  Scenario: Verify user can select additional dra team member
+  Scenario: Verify user can remove specific DRA team member via cross
+  Scenario: Verify user can remove specific DRA team member via deselecting from menu

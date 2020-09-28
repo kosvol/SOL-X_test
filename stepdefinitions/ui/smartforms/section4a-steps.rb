@@ -28,8 +28,6 @@ end
 
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
-  on(Section3APage).scroll_multiple_times(4)
-  sleep 1
   on(Section4APage).select_checklist(_checklist)
 end
 

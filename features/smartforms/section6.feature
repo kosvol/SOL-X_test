@@ -74,10 +74,7 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I select the matching <checklist> checklist
-    And I press next for 4 times
+    And I navigate to section 6
     Then I should see master approval button only
     And I tear down created form
 
@@ -85,33 +82,31 @@ Feature: Section6
       | level_one_permit                                              | level_two_permit                                                        | checklist                                                     |
       | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area                               |
       | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             | Hot Work Outside Designated Area                              |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   | Enclosed Spaces Entry Checklist                               |
+      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   | Enclosed Space Entry Checklist                                |
       | Working Aloft/Overside                                        | Working Aloft / Overside                                                | Working Aloft/Overside                                        |
       | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines                                    |
       | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   | Personnel Transfer by Transfer Basket                         |
       | Helicopter Operations                                         | Helicopter Operation                                                    | Helicopter Operation Checklist                                |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             | Rotational Portable Power Toolss (PPT)                        |
+      # | Rotational Portable Power Tools      | Use of Portable Power Tools                 | Rotational Portable Power Toolss (PPT) |
       | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Toolss (PPT)                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
-      | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
+      # | Cold Work                            | Cold Work - Cleaning Up of Spill            | Cold Work Operation Checklist          |
+      # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist                                 |
+      # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
+      # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
+      # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    | Work on Deck During Heavy Weather                             |
 
-  Scenario Outline: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
+  Scenario: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
     And I select Cold Work permit
     And I select Cold Work - Working in Hazardous or Dangerous Areas permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 4a
-    And I select the matching Cold Work Operation Checklist checklist
-    And I press next for 5 times
-    Then I should see master approval button only
+    Then I should see correct checklist Cold Work Operation Checklist pre-selected
+    And I should see correct checklist Work on Hazardous Substances pre-selected
     And I tear down created form
 
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
@@ -121,9 +116,7 @@ Feature: Section6
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I set maintenance during more than 2 hours
-    And I navigate to section 4a
-    And I select the matching <checklist> checklist
-    And I press next for 4 times
+    And I navigate to section 6
     Then I should see master review button only
     And I tear down created form
 
@@ -153,10 +146,7 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I select the matching <checklist> checklist
-    And I press next for 4 times
+    And I navigate to section 6
     Then I should see master review button only
     And I tear down created form
 
@@ -177,7 +167,6 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 6
     And  I press the N/A button to disable gas testing
     Then I should see warning label
