@@ -4,7 +4,8 @@ class PumpRoomEntry < Section1Page
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
-
+  element(:activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
+  element(:pre_id, xpath: "//h4[contains(text(),'PRE No:')]/following::p")
   elements(:all_labels, xpath: '//label')
 
   element(:all_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]")
@@ -16,7 +17,7 @@ class PumpRoomEntry < Section1Page
 
   button(:last_calibration_btn, id: 'gasLastCalibrationDate')
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
-  button(:submit_for_approval_btn, xpath: "//span[contains(text(),'Submit for Approval')]")
+  button( :arrow_back_btn, xpath: "//*[@data-testid = 'arrow']//parent::button")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
@@ -30,6 +31,10 @@ class PumpRoomEntry < Section1Page
 
   @@gas_test_page = "//h2[contains(text(),'%s')]"
   @@row_other_toxic_gas = "//li[starts-with(@class,'GasReadingListItem')]"
+  @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
+  @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
+  @@active_link = "strong[contains(text(),'Pump Room Entry Permit')]"
+  @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
   def get_pre_no
     @browser.find_element(:xpath, @@pre_id).text
@@ -37,7 +42,6 @@ class PumpRoomEntry < Section1Page
 
   def fill_up_pre(duration)
     fill_static_pre
-    select_start_time(20, 40)
     select_permit_duration(duration)
   end
 
@@ -46,10 +50,14 @@ class PumpRoomEntry < Section1Page
     select_checkbox(@@radio_buttons%["Location of vesse"], ['At Sea', 'In Port'].sample)
   end
 
-  def select_start_time(hh, mm)
+  def select_start_time_to_activate(delay)
+    set_current_time #@@time
+    hh, mm = add_minutes(delay)
+
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']"
     picker_hh = "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]" % [hh]
     picker_mm = "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]" % [mm]
+
     @browser.find_element(:xpath, picker).click
     sleep 1
     BrowserActions.scroll_down
@@ -58,13 +66,29 @@ class PumpRoomEntry < Section1Page
     sleep 1
     @browser.find_element(:xpath, picker_mm).click
     sleep 1
-
     x = %(document.evaluate("//h2[contains(text(),'Permit Validity')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
     @browser.execute_script(x)  #click on empty space to close picker
   end
 
-  def click_create_pump_room_entry
-    create_new_pre_btn
+  def open_current_pre
+    approval_button = "//span[contains(text(),'%s')]//following::button[1]"%[@@pre_number]
+    @browser.find_element(:xpath, @@pending_approval_pre_link).click
+    @browser.find_element(:xpath, approval_button).click
+  end
+
+  def current_form_is_scheduled?
+    @browser.find_element(:xpath, @@scheduled_link).click
+    @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
+  end
+
+  def current_form_is_active?
+    ttt  = activity_pre_element.text
+    active_on_homepage = @browser.find_element(:xpath, "//*[contains(text(),'Pump Room Entry Permit')]/parent::span").text == "Pump Room Entry Permit Active"
+
+    @browser.find_element(:xpath, @@active_link).click
+    active_list = @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
+
+    active_on_homepage && active_list
   end
 
   def are_questions?(table)
@@ -201,6 +225,18 @@ class PumpRoomEntry < Section1Page
 
 
   private
+  def add_minutes(add_mm)
+    hh, mm = @@time.split(":")
+    mm = mm.to_i
+    hh = hh.to_i
+
+    mm = mm+add_mm
+    if mm >= 60
+      mm = mm-60
+      hh = hh+1
+    end
+    return format('%02d', hh), format('%02d', mm)
+  end
 
   def xpath_fast_check(xpath)
     #x = "//div[@id='PRE_SECTION_1_subsection24']"

@@ -142,8 +142,11 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
+    Then I activate the current PRE form
+    And I should see the current PRE in the "Scheduled" list
+    Then I should see that the current form has become active after 2 minutes
 
 
 

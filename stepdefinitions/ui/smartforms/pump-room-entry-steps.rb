@@ -1,5 +1,5 @@
 And(/^I navigate to create new PRE$/) do
-  on(PumpRoomEntry).click_create_pump_room_entry
+  on(PumpRoomEntry).create_new_pre_btn
   sleep 1
 end
 
@@ -102,13 +102,14 @@ And('I sign on Gas Test Record with {int} pin') do |_pin|
   on(PinPadPage).enter_pin(_pin)
 end
 
-Then(/^I fill up PRE. Duration ([^"]*)$/) do|_duration|
+Then('I fill up PRE. Duration {int}. Delay to activate {int}') do|_duration, delay|
   on(PumpRoomEntry).fill_up_pre(_duration)
+  on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
 
 And(/^\(for pre\) I submit permit for Officer Approval$/) do
-  @@pre_number = on(PumpRoomEntry).get_pre_no
+  @@pre_number = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
   step 'I enter pin 8383'
   step '(for pre) I sign on canvas'
@@ -116,4 +117,30 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   sleep 1
   step 'I should see the page "Successfully Submitted"'
   step 'I press the "Back to Home" button'
+end
+
+And('I activate the current PRE form') do
+  on(PumpRoomEntry).open_current_pre
+  step 'I enter pin 8383'
+  sleep 1
+  step 'I press the "Approve for Activation" button'
+  sleep 1
+  step 'I enter pin 8383'
+  step '(for pre) I sign on canvas'
+  step 'I press the "Done" button'
+  step 'I press the "Back to Home" button'
+  sleep 1
+end
+
+And(/^I should see the current PRE in the "([^"]*)" list$/) do |arg|
+  sleep 1
+  is_true(on(PumpRoomEntry).current_form_is_scheduled?)
+  sleep 1
+  on(PumpRoomEntry).arrow_back_btn
+end
+
+Then(/^I should see that the current form has become active after 2 minutes$/) do
+  sleep 200
+  is_true(on(PumpRoomEntry).current_form_is_active?)
+  sleep 1
 end
