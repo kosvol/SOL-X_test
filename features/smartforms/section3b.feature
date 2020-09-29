@@ -14,7 +14,6 @@ Feature: Section3BDRA
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    # And I fill up section 1 with default value
     And I navigate to section 3b
     Then I should see work site inspected by crew member list display all crews
 

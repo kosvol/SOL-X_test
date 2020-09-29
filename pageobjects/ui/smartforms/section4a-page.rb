@@ -51,7 +51,7 @@ class Section4APage < Section3DPage
     end
     sleep 1
     member_name_btn_elements.first.click
-    cancel_and_confirm_btn_elements.last.click
+    confirm_btn_elements.last.click
     sleep 1
   end
 
@@ -115,7 +115,7 @@ class Section4APage < Section3DPage
     end
   end
 
-  def is_hazardous_substance_checklist
+  def is_hazardous_substance_checklist?
     element_yes = get_yes_elements
     section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === 'Work on Hazardous Substances'

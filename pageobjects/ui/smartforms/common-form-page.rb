@@ -91,6 +91,8 @@ class CommonFormsPage < CommonPage
       5
     when '4b'
       8
+    when '5'
+      9
     when '2'
       1
     end
