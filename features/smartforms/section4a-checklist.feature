@@ -14,7 +14,7 @@ Feature: Section4AChecklist
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
     And I press next for 1 times
-    Then I should see Enclosed Space Entry Checklist checklist questions
+    Then I should see Enclosed Spaces Entry Checklist checklist questions
     And I should see info boxes
     And I should see warning boxes
     And I press previous for 1 times

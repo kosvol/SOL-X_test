@@ -28,7 +28,7 @@ Feature: LocationTracking
     When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
     And I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:80:00:00
     Then I should see Full Ship location indicator showing 2 on location pin
-    And I should see Engine Room location indicator showing 2 on location pin
+    And I should see Main Deck location indicator showing 2 on location pin
     And I unlink all crew from wearable
 
   Scenario: Verify location pin not visible on zone not linked by wearable

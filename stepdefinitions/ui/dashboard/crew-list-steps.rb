@@ -118,5 +118,9 @@ Then (/^I should see pin review$/) do
 end
 
 Then (/^I should see count down start from 10 seconds$/) do
-  is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 8 secs')
+  begin
+    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 8 secs')
+  rescue
+    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 7 secs')
+  end
 end
