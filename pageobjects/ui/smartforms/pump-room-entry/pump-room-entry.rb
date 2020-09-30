@@ -21,7 +21,6 @@ class PumpRoomEntry < Section1Page
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
-  @@pre_id ="//h4[contains(text(),'PRE No:')]/following::p"
   @@text_areas = '//textarea'
   @@alert_text = "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
@@ -33,12 +32,9 @@ class PumpRoomEntry < Section1Page
   @@row_other_toxic_gas = "//li[starts-with(@class,'GasReadingListItem')]"
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
-  @@active_link = "strong[contains(text(),'Pump Room Entry Permit')]"
+  @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
-  def get_pre_no
-    @browser.find_element(:xpath, @@pre_id).text
-  end
 
   def fill_up_pre(duration)
     fill_static_pre
@@ -82,11 +78,11 @@ class PumpRoomEntry < Section1Page
   end
 
   def current_form_is_active?
-    ttt  = activity_pre_element.text
     active_on_homepage = @browser.find_element(:xpath, "//*[contains(text(),'Pump Room Entry Permit')]/parent::span").text == "Pump Room Entry Permit Active"
 
     @browser.find_element(:xpath, @@active_link).click
     active_list = @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
+    arrow_back_btn
 
     active_on_homepage && active_list
   end
@@ -223,8 +219,37 @@ class PumpRoomEntry < Section1Page
     sleep 1
   end
 
+  def reduce_time_activity( finish_in_x_minutes)
+
+    time_to_finish = get_current_time+60*finish_in_x_minutes
+    web_pre_id = @@pre_number.gsub('/', '%2F')
+    url = "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/%s?conflicts=true"
+    url = url % [web_pre_id]
+
+    request = HTTParty.get(url, {
+        headers: {}})
+    full_form = (JSON.parse request.to_s)
+
+    full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
+
+    request = HTTParty.put(url, {
+        headers: {'Content-Type': 'application/json'},
+        body: full_form.to_json})
+    (JSON.parse request.to_s)
+  end
+
+  def  is_pre_auto_terminaded?
+    el = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"%[@@pre_number]
+    @browser.find_element(:xpath, el).displayed?
+  end
 
   private
+  def get_current_time
+      @which_json = 'ship-local-time/base-get-current-time'
+      ServiceUtil.post_graph_ql(@which_json, '1111')
+      ServiceUtil.get_response_body['data']['currentTime']["secondsSinceEpoch"]
+  end
+
   def add_minutes(add_mm)
     hh, mm = @@time.split(":")
     mm = mm.to_i

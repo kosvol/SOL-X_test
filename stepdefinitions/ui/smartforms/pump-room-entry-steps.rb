@@ -140,7 +140,21 @@ And(/^I should see the current PRE in the "([^"]*)" list$/) do |arg|
 end
 
 Then(/^I should see that the current form has become active after 2 minutes$/) do
-  sleep 200
+  sleep 100
   is_true(on(PumpRoomEntry).current_form_is_active?)
   sleep 1
+end
+
+And('I set the activity end time in {int} minutes') do |minutes|
+  on(PumpRoomEntry).reduce_time_activity(minutes)
+  sleep 90
+end
+
+Then(/^I should see current PRE in list Closed P\/R Entries$/) do
+  step 'I navigate to "Closed P/R Entries" screen'
+  sleep 1
+end
+
+Then(/^I should see current PRE is auto terminated$/) do
+  is_true(on(PumpRoomEntry).is_pre_auto_terminaded?)
 end
