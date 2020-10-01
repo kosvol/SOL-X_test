@@ -115,7 +115,6 @@ Feature: PumpRoomEntry
     Then I press the "Add Toxic Gas" button
     And I should see a new row with filled data
     And I should be able to delete the record
-
     Then I fill up "Other Toxic Gases"
     And I press the "Add Toxic Gas" button
     And I press the "Review & Sign" button

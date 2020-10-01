@@ -2,6 +2,7 @@ require './././support/env'
 
 class PumpRoomEntry < Section1Page
   include PageObject
+  include GasReading
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
@@ -13,9 +14,7 @@ class PumpRoomEntry < Section1Page
 
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
-  button(:data_picker_btn, xpath: "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']]")
 
-  button(:last_calibration_btn, id: 'gasLastCalibrationDate')
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button( :arrow_back_btn, xpath: "//*[@data-testid = 'arrow']//parent::button")
 
@@ -31,7 +30,6 @@ class PumpRoomEntry < Section1Page
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
   @@gas_test_page = "//h2[contains(text(),'%s')]"
-  @@row_other_toxic_gas = "//li[starts-with(@class,'GasReadingListItem')]"
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]"
@@ -168,64 +166,6 @@ class PumpRoomEntry < Section1Page
 
   def check_filled_data?(type, selector, test_data)
     @browser.find_element(type, selector).value == test_data
-  end
-
-  def fill_up_section?(section)
-    if section == "Gas Test Record"
-      o2_id = 'o2'
-      hc_id = 'hc'
-      h2s_id = "h2s"
-      co_id = "co"
-
-      test_data_o2 = "20.9"
-      test_data_hc_id = "1"
-      test_data_h2s_id = "5"
-      test_data_co_id = "25"
-      fill_text_input('id', o2_id, test_data_o2)
-      fill_text_input('id', hc_id, test_data_hc_id)
-      fill_text_input('id', h2s_id, test_data_h2s_id)
-      fill_text_input('id', co_id, test_data_co_id)
-
-      check_filled_data?('id', o2_id, test_data_o2) && check_filled_data?('id', hc_id, test_data_hc_id) &&
-          check_filled_data?('id', h2s_id, test_data_h2s_id) && check_filled_data?('id', co_id, test_data_co_id)
-
-    elsif section == "Other Toxic Gases"
-      gas_name_id = "gasName"
-      threshold_id = "threshold"
-      reading_id = "reading"
-      unit_id = "unit"
-
-      test_data_gas_name = "benzene"
-      test_data_threshold = "25"
-      test_data_reading = "5"
-      test_data_unit = "PPM"
-
-      fill_text_input('id', gas_name_id, test_data_gas_name)
-      fill_text_input('id', threshold_id, test_data_threshold)
-      fill_text_input('id', reading_id, test_data_reading)
-      fill_text_input('id', unit_id, test_data_unit)
-
-      check_filled_data?('id', gas_name_id, test_data_gas_name) && check_filled_data?('id', threshold_id, test_data_threshold) &&
-          check_filled_data?('id', reading_id, test_data_reading) && check_filled_data?('id', unit_id, test_data_unit)
-    end
-  end
-
-  def how_many_rows
-    @browser.find_elements(:xpath, @@row_other_toxic_gas).size
-  end
-
-  def delete_added_row
-    stage1 = "//button[@aria-label = 'Delete']"
-    stage2 = "//span[contains(text(),'Remove')]"
-    @browser.find_element(:xpath, stage1).click
-    @browser.find_element(:xpath, stage2).click
-    how_many_rows == 0
-  end
-
-  def sign
-    tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
-    $browser.action.click(tmp).perform
-    sleep 1
   end
 
   def reduce_time_activity( finish_in_x_minutes)

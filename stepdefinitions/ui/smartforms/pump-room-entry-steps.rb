@@ -85,16 +85,18 @@ And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_c
   end
 end
 
-And(/^I fill up "([^"]*)"$/) do |section|
-  is_true(on(PumpRoomEntry).fill_up_section?(section))
+And('I fill up {string}') do |section|
+  on(PumpRoomEntry).fill_up_section(section)
 end
 
 And(/^I should see a new row with filled data$/) do
-  is_true(on(PumpRoomEntry).how_many_rows == 1)
+  #is_true(on(PumpRoomEntry).how_many_rows == 1)
+  is_equal(on(PumpRoomEntry).toxic_gas_rows_elements.size, 1.to_s)
 end
 
 And(/^I should be able to delete the record$/) do
-  is_true(on(PumpRoomEntry).delete_added_row)
+  on(PumpRoomEntry).toxic_gas_del_row
+  is_equal(on(PumpRoomEntry).toxic_gas_rows, 0)
 end
 
 Then(/^\(for pre\) I sign on canvas$/) do
