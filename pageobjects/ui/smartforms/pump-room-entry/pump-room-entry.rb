@@ -4,7 +4,7 @@ class PumpRoomEntry < Section1Page
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
-  element(:activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
+  element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
   element(:pre_id, xpath: "//h4[contains(text(),'PRE No:')]/following::p")
   elements(:all_labels, xpath: '//label')
 
@@ -21,6 +21,8 @@ class PumpRoomEntry < Section1Page
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
+
+  @@any_text = "//*[contains(text(),'%s')]"
   @@text_areas = '//textarea'
   @@alert_text = "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
@@ -78,13 +80,13 @@ class PumpRoomEntry < Section1Page
   end
 
   def current_form_is_active?
-    active_on_homepage = @browser.find_element(:xpath, "//*[contains(text(),'Pump Room Entry Permit')]/parent::span").text == "Pump Room Entry Permit Active"
+    active_on_homepage = current_activity_pre_element.text == "Pump Room Entry Permit Active"
 
     @browser.find_element(:xpath, @@active_link).click
-    active_list = @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
+    active_in_list = @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
     arrow_back_btn
 
-    active_on_homepage && active_list
+    active_on_homepage && active_in_list
   end
 
   def are_questions?(table)
@@ -104,6 +106,13 @@ class PumpRoomEntry < Section1Page
 
   def is_alert_text_visible?(alert_text)
     xpath_str = @@alert_text % [alert_text]
+    @browser.find_element('xpath', xpath_str).displayed?
+  rescue StandardError
+    false
+  end
+
+  def is_text_on_page?(text)
+    xpath_str = @@any_text % [text]
     @browser.find_element('xpath', xpath_str).displayed?
   rescue StandardError
     false
@@ -238,7 +247,7 @@ class PumpRoomEntry < Section1Page
     (JSON.parse request.to_s)
   end
 
-  def  is_pre_auto_terminaded?
+  def  is_pre_auto_terminated?
     el = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"%[@@pre_number]
     @browser.find_element(:xpath, el).displayed?
   end

@@ -131,22 +131,26 @@ Feature: PumpRoomEntry
     And (for pre) I should see the enabled "Enter PIN & Submit" button
     Then (for pre) I sign on canvas
     And I press the "Enter PIN & Submit" button
-    And I sign on Gas Test Record with 9999 pin
+    And I sign on Gas Test Record with 8383 pin
+    And I should see the table on the page with entered gas data
 
             #TThen I should see the page "Gas Test Record Successfully Submitted"
             #Then I should "Gas Reading" table
             #Then I should not see the "Add Gas Test Record" button
 
 
-  Scenario: Verify PRE will be activated at the specified time
+  Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    Then I fill up PRE. Duration 4. Delay to activate 1
     And (for pre) I submit permit for Officer Approval
     Then I activate the current PRE form
     And I should see the current PRE in the "Scheduled" list
     Then I should see that the current form has become active after 2 minutes
+    And I set the activity end time in 1 minutes
+    When I navigate to "Closed P/R Entries" screen
+    Then I should see current PRE is auto terminated
 
 
 

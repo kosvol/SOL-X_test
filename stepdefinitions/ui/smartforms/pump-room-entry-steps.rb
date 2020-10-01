@@ -71,6 +71,10 @@ And(/^I should see the page "([^"]*)"$/) do |section|
   is_true(on(PumpRoomEntry).is_page?(section))
 end
 
+And ('I should see the text {string}') do |text|
+  is_true(on(PumpRoomEntry).is_text_on_page?(text))
+end
+
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
   if _condition === 'disabled'
     is_false(on(PumpRoomEntry).is_button_enabled?(button))
@@ -100,6 +104,11 @@ end
 
 And('I sign on Gas Test Record with {int} pin') do |_pin|
   on(PinPadPage).enter_pin(_pin)
+  sleep 1
+  step "I should see the text 'Gas Test Record Successfully Submitted'"
+  sleep 1
+  step 'I press the "Done" button'
+  sleep 1
 end
 
 Then('I fill up PRE. Duration {int}. Delay to activate {int}') do|_duration, delay|
@@ -156,5 +165,9 @@ Then(/^I should see current PRE in list Closed P\/R Entries$/) do
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
-  is_true(on(PumpRoomEntry).is_pre_auto_terminaded?)
+  is_true(on(PumpRoomEntry).is_pre_auto_terminated?)
+end
+
+And(/^I should see the table on the page with entered gas data$/) do
+  pending
 end
