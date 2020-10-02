@@ -29,5 +29,5 @@ questions:
 
 warning_box:
   [
-    "Please complete all required conditions below before confirming the above question:",
+    "Alert\nPlease complete all required conditions below before confirming the above question:",
   ]

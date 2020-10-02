@@ -27,6 +27,8 @@ class Section4APage < Section3DPage
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
 
+  divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
+
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
 

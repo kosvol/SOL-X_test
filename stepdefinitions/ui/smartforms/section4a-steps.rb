@@ -94,13 +94,16 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
   end
 end
 
-And (/^I should see (info|warning) boxes$/) do |which_box|
+And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
   if which_box === "info" 
     box_obj = on(Section4APage).info_box_elements
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
   elsif which_box === "warning" 
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['warning_box']
     box_obj = on(Section4APage).warning_box_elements
+  elsif which_box === "heavy" 
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['heavy']
+    box_obj = on(Section4APage).heavy_weather_note_elements
   end
 
   box_obj.each_with_index do |_element,_index|

@@ -43,6 +43,7 @@ Feature: Section4AChecklist
     And I select the matching Use of ODME in Manual Mode checklist
     And I press next for 1 times
     Then I should see Use of ODME in Manual Mode checklist questions
+    And I should see warning boxes
     And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Personnel Transfer by Transfer Basket checklist
@@ -73,6 +74,7 @@ Feature: Section4AChecklist
     And I select the matching Work on Deck During Heavy Weather checklist
     And I press next for 1 times
     Then I should see Work on Deck During Heavy Weather checklist questions
+    And I should see heavy boxes
     And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Use of Camera Checklist checklist
@@ -83,6 +85,7 @@ Feature: Section4AChecklist
     And I select the matching Hot Work Within Designated Area checklist
     And I press next for 1 times
     Then I should see Hot Work Within Designated Area checklist questions
+    And I should see warning boxes
     And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Work on Hazardous Substances checklist

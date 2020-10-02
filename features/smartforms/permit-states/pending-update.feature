@@ -8,7 +8,7 @@ Feature: PendingUpdate
 
   Scenario: Verify only section 9 fields are enabled when editing from pending termination state
 
-  Scenario: Verify RoL permit issue date is display
+  Scenario: Verify checklist creator can edit rol checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -27,7 +27,7 @@ Feature: PendingUpdate
     And I should see rol checklist questions fields enabled
     And I tear down created form
 
-  Scenario Outline: Verify checklist creator can edit checklist during active state
+  Scenario Outline: Verify checklist creator can edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -56,7 +56,7 @@ Feature: PendingUpdate
       | 4/E   | 1311 |
       | A 4/E | 0703 |
 
-  Scenario: Verify non checklist creator cannot edit checklist during active state
+  Scenario: Verify non checklist creator cannot edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
