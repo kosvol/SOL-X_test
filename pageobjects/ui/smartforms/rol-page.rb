@@ -6,6 +6,7 @@ class ROLPage < Section9Page
   include PageObject
 
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
+  buttons(:boarding_ddl, xpath: '//button[@id="cl_riggingOfLadder_boardingArrangement"]')
   element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_subsection19"]')
   @@duration = "//button[contains(.,'%s')]"
 

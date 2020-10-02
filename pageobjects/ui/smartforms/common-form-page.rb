@@ -25,7 +25,7 @@ class CommonFormsPage < CommonPage
   buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
   buttons(:update_reading_btn, xpath: "//button[contains(.,'Update Readings')]")
   button(:back_to_home_btn, xpath: "//button[contains(.,'Back to Home')]")
-  button(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
+  buttons(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
   buttons(:save_and_close_btn, xpath: "//button[contains(.,'Save & Close')]")
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
@@ -79,6 +79,8 @@ class CommonFormsPage < CommonPage
     case _which_section
     when '6'
       10
+    when '7'
+      11
     when '4a'
       6
     when '3a'

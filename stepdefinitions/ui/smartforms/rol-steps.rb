@@ -5,9 +5,14 @@ end
 
 And (/^I request update for permit$/) do
   step 'I press next for 1 times'
-  on(Section7Page).update_btn
+  begin
+    on(Section7Page).update_btn
+  rescue 
+    on(Section7Page).request_update_btn
+  end
+  sleep 1
   BrowserActions.enter_text(on(Section0Page).enter_comment_box_element,"Test Automation")
-  on(Section0Page).submit_update_btn
+  on(Section0Page).submit_update_btn_elements.first.click
 end
 
 Then (/^I should not see extra buttons$/) do
@@ -62,5 +67,5 @@ When (/^I put the permit to pending termination update status$/) do
   on(ROLPage).request_update_btn
   sleep 2
   BrowserActions.enter_text(on(Section0Page).enter_comment_box_element,"Test Automation")
-  on(Section0Page).submit_update_btn
+  on(Section0Page).submit_update_btn_elements.first.click
 end

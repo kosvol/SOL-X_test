@@ -18,7 +18,7 @@ class PendingStatePage < Section9Page
     request_update_btn
     sleep 1
     BrowserActions.enter_text(update_comment_box_element,"Test Automation")
-    submit_update_btn
+    submit_update_btn_elements.first.click
   end
 
   def set_section1_filled_data

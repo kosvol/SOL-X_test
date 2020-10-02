@@ -109,3 +109,30 @@ And (/^I should see (info|warning) boxes$/) do |which_box|
     is_equal(_element.text,base_data[_index])
   end
 end
+
+Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_or_not,_condition|
+  if _should_or_not === "should"
+    is_equal(on(Section4APage).tool_box_elements.size,36) if _condition === "selections"
+    if _condition === "questions"
+      is_equal(on(Section4APage).tool_box_elements.size,100)
+      is_equal(on(Section4APage).textarea_elements.size,2)
+    end
+  end
+  if _should_or_not === "should not"
+    is_equal(on(Section4APage).tool_box_elements.size,0) if _condition === "selections"
+    if _condition === "questions"
+      is_equal(on(Section4APage).tool_box_elements.size,1)
+      is_equal(on(Section4APage).textarea_elements.size,0)
+    end
+  end
+end
+
+Then (/^I should see rol checklist questions fields enabled$/) do
+  is_equal(on(Section4APage).tool_box_elements.size,48)
+  is_equal(on(ROLPage).boarding_ddl_elements.size,1)
+end
+
+And (/^I should not see enter pin button$/) do
+  sleep 1
+  is_disabled(on(Section4APage).enter_pin_btn_element)
+end

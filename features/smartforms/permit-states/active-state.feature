@@ -4,6 +4,8 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
+  Scenario: Verify all sections disabled for ptw reader
+
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
