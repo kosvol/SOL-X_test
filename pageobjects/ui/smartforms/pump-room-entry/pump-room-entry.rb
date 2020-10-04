@@ -66,25 +66,14 @@ class PumpRoomEntry < Section1Page
     @browser.execute_script(x)  #click on empty space to close picker
   end
 
-  def open_current_pre
-    approval_button = "//span[contains(text(),'%s')]//following::button[1]"%[@@pre_number]
-    @browser.find_element(:xpath, @@pending_approval_pre_link).click
-    @browser.find_element(:xpath, approval_button).click
+
+  def press_button_for_current_PRE(button)
+    xpath_str = "//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]"%[@@pre_number, button]
+    @browser.find_element(:xpath, xpath_str).click
   end
 
-  def current_form_is_scheduled?
-    @browser.find_element(:xpath, @@scheduled_link).click
+  def is_current_pre_in_list?
     @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
-  end
-
-  def current_form_is_active?
-    active_on_homepage = current_activity_pre_element.text == "Pump Room Entry Permit Active"
-
-    @browser.find_element(:xpath, @@active_link).click
-    active_in_list = @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
-    arrow_back_btn
-
-    active_on_homepage && active_in_list
   end
 
   def are_questions?(table)
@@ -192,7 +181,18 @@ class PumpRoomEntry < Section1Page
     @browser.find_element(:xpath, el).displayed?
   end
 
+  def navigate_for_pre(item)
+    if item === "Active PRE"
+      @browser.find_element(:xpath, @@active_link).click
+    elsif item === "Scheduled"
+      @browser.find_element(:xpath, @@scheduled_link).click
+    elsif item === "Pending approval PRE"
+      @browser.find_element(:xpath, @@pending_approval_pre_link).click
+    end
+  end
+
   private
+
   def get_current_time
       @which_json = 'ship-local-time/base-get-current-time'
       ServiceUtil.post_graph_ql(@which_json, '1111')

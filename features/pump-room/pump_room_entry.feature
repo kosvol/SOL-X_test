@@ -146,10 +146,25 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     Then I activate the current PRE form
     And I should see the current PRE in the "Scheduled" list
-    Then I should see that the current form has become active after 2 minutes
+    When I wait to activate PRE. Delay 120
+    Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
     When I navigate to "Closed P/R Entries" screen
     Then I should see current PRE is auto terminated
+
+
+  Scenario: Verify PRE can be terminated manually
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    Then I activate the current PRE form
+    And I should see the current PRE in the "Scheduled" list
+    When I wait to activate PRE. Delay 120
+    And I should see the current PRE in the "Active PRE" list
+    Then I terminate the PRE
+    And I should see the current PRE in the "Closed PRE" list
 
 
 

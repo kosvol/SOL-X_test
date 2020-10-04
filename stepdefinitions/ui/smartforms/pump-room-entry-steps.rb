@@ -43,7 +43,6 @@ And(/^Button "([^"]*)" (should|should not) be disabled$/) do |button_text, _cond
 end
 
 
-
 Then(/^I select current day for field "([^"]*)"$/) do |button|
   is_true(on(PumpRoomEntry).is_selected_date?(button))
 end
@@ -113,7 +112,7 @@ And('I sign on Gas Test Record with {int} pin') do |_pin|
   sleep 1
 end
 
-Then('I fill up PRE. Duration {int}. Delay to activate {int}') do|_duration, delay|
+Then('I fill up PRE. Duration {int}. Delay to activate {int}') do |_duration, delay|
   on(PumpRoomEntry).fill_up_pre(_duration)
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
@@ -131,7 +130,8 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
 end
 
 And('I activate the current PRE form') do
-  on(PumpRoomEntry).open_current_pre
+  step '(for per) I navigate to "Pending approval PRE" list'
+  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin 8383'
   sleep 1
   step 'I press the "Approve for Activation" button'
@@ -143,27 +143,36 @@ And('I activate the current PRE form') do
   sleep 1
 end
 
-And(/^I should see the current PRE in the "([^"]*)" list$/) do |arg|
-  sleep 1
-  is_true(on(PumpRoomEntry).current_form_is_scheduled?)
-  sleep 1
-  on(PumpRoomEntry).arrow_back_btn
+And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
+  if list === "Scheduled"
+    step '(for per) I navigate to "Scheduled" list'
+    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    on(PumpRoomEntry).arrow_back_btn
+  end
+
+  if list === 'Active PRE'
+    step '(for per) I navigate to "Active PRE" list'
+    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    on(PumpRoomEntry).arrow_back_btn
+  end
+
+  if list === 'Closed PRE'
+    step 'I navigate to "Closed P/R Entries" screen'
+    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    on(PumpRoomEntry).arrow_back_btn
+  end
+
 end
 
-Then(/^I should see that the current form has become active after 2 minutes$/) do
-  sleep 100
-  is_true(on(PumpRoomEntry).current_form_is_active?)
-  sleep 1
-end
+# Then(/^I should see that the current form has become active after 2 minutes$/) do
+#   sleep 100
+#   is_true(on(PumpRoomEntry).current_form_is_active?)
+#   sleep 1
+# end
 
 And('I set the activity end time in {int} minutes') do |minutes|
   on(PumpRoomEntry).reduce_time_activity(minutes)
   sleep 90
-end
-
-Then(/^I should see current PRE in list Closed P\/R Entries$/) do
-  step 'I navigate to "Closed P/R Entries" screen'
-  sleep 1
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
@@ -172,4 +181,24 @@ end
 
 And(/^I should see the table on the page with entered gas data$/) do
   pending
+end
+
+Then(/^\(for per\) I navigate to "([^"]*)" list$/) do |item|
+  # at the moment we haven't button via sandwich menu for Active PRE, Scheduled PRE, Pending Approval PER
+  on(PumpRoomEntry).navigate_for_pre(item)
+end
+
+When('I wait to activate PRE. Delay {int}') do |delay|
+  sleep delay
+end
+
+Then(/^I terminate the PRE$/) do
+  step '(for per) I navigate to "Active PRE" list'
+  on(PumpRoomEntry).press_button_for_current_PRE("Submit for Termination")
+  step 'I enter pin 8383'
+  step 'I press the "Terminate" button'
+  step 'I enter pin 8383'
+  step '(for pre) I sign on canvas'
+  step 'I press the "Done" button'
+  step 'I press the "Back to Home" button'
 end
