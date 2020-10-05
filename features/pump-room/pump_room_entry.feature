@@ -4,7 +4,6 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -69,7 +68,7 @@ Feature: PumpRoomEntry
 
 
     Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
-      Given  I launch sol-x portal
+      Given  I launch sol-x portal without unlinking wearable
       And I navigate to create new PRE
       And I enter pin 8383
       Then I should see alert message "Please select the start time and duration before submitting."
@@ -84,22 +83,25 @@ Feature: PumpRoomEntry
         | 6 hours  |
         | 8 hours  |
 
+
   Scenario: Verify user able to fill Date of Last Calibration
-    Given  I launch sol-x portal
+    Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
     Then I select current day for field "Date of Last Calibration"
 
+
   Scenario: Verify user able to see reporting interval when YES is selected
-    Given  I launch sol-x portal
+    Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
     And  I should see Reporting interval
 
+
   Scenario: Verify user can add Gas Test Record
-    Given I launch sol-x portal
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
     Then I press the "Add Gas Test Record" button
@@ -127,8 +129,9 @@ Feature: PumpRoomEntry
             # And I should see the section "Gas test Record"
             # Then I should be able to return on Review Your Gas Test Record => BUG SOL-5246
 
-    And (for pre) I should see the enabled "Enter PIN & Submit" button
+    And (for pre) I should see the disabled "Enter PIN & Submit" button
     Then (for pre) I sign on canvas
+    And (for pre) I should see the enabled "Enter PIN & Submit" button
     And I press the "Enter PIN & Submit" button
     And I sign on Gas Test Record with 8383 pin
     And I should see the table on the page with entered gas data

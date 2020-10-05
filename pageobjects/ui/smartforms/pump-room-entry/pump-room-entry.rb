@@ -72,7 +72,7 @@ class PumpRoomEntry < Section1Page
 
   def are_questions?(table)
     table.all? do |question|
-      is_element_displayed?("question", question[0])
+      is_element_displayed?("xpath", question[0], 'text')
     end
   end
 
@@ -84,18 +84,18 @@ class PumpRoomEntry < Section1Page
     end
   end
 
-  def is_element_displayed?(by, value, element = "")
-    if element == "alert_text"
+  def is_element_displayed?(by, value, like = "")
+    if like == "alert_text"
       alert_text = "//div[contains(.,'%s')]"
-      str = alert_text % [value]
-    elsif element == "text"
+      value = alert_text % [value]
+    elsif like == "text"
       any_text = "//*[contains(text(),'%s')]"
-      str = any_text % [value]
-    elsif "auto_terminated"
-      str = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
+      value = any_text % [value]
+    elsif like == "auto_terminated"
+      value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
     end
 
-    @browser.find_element(by, str).displayed?
+    @browser.find_element(by, value).displayed?
   rescue StandardError
     false
   end
@@ -113,14 +113,6 @@ class PumpRoomEntry < Section1Page
     @browser.find_element('xpath', xpath_str).enabled?
   end
 
-  def is_selected_date?(button)
-    if button == 'Date of Last Calibration'
-      BrowserActions.scroll_click(last_calibration_btn_element)
-      current_day_button_btn
-      last_calibration_btn_element.text == Time.now.strftime('%d/%b/%Y')
-    end
-  end
-
   def select_answer(answer, question)
     xpath_str = @@radio_buttons % [question]
     select_checkbox(xpath_str, answer)
@@ -130,7 +122,6 @@ class PumpRoomEntry < Section1Page
     xpath_str = @@button % [button]
     el = @browser.find_element("xpath", xpath_str)
     BrowserActions.scroll_click(el)
-
 
   end
 

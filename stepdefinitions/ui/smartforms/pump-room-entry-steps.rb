@@ -44,7 +44,11 @@ end
 
 
 Then(/^I select current day for field "([^"]*)"$/) do |button|
-  is_true(on(PumpRoomEntry).is_selected_date?(button))
+  on(PumpRoomEntry).last_calibration_btn
+  sleep 1
+  on(PumpRoomEntry).current_day_button_btn
+  sleep 1
+  is_true(on(PumpRoomEntry).last_calibration_btn_element.text == Time.now.strftime('%d/%b/%Y'))
 end
 
 
@@ -127,6 +131,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   step 'I press the "Done" button'
   sleep 1
   step 'I should see the page "Successfully Submitted"'
+  sleep 1
   step 'I press the "Back to Home" button'
 end
 
@@ -138,8 +143,11 @@ And('I activate the current PRE form') do
   step 'I press the "Approve for Activation" button'
   sleep 1
   step 'I enter pin 8383'
+  sleep 1
   step '(for pre) I sign on canvas'
   step 'I press the "Done" button'
+  step 'I should see the page "Permit Successfully Scheduled for Activation"'
+  sleep 1
   step 'I press the "Back to Home" button'
   sleep 1
 end
@@ -195,6 +203,8 @@ Then(/^I terminate the PRE$/) do
   step 'I enter pin 8383'
   step '(for pre) I sign on canvas'
   step 'I press the "Done" button'
+  step "I should see the text 'Permit Has Been Closed'"
+  sleep 1
   step 'I press the "Back to Home" button'
 end
 
@@ -208,6 +218,7 @@ Then(/^I request update needed$/) do
   step 'I press the "Submit" button'
   sleep 1
   step "I should see the text 'Your Updates Have Been Successfully Requested'"
+  sleep 1
   step 'I press the "Back to Home" button'
 end
 
