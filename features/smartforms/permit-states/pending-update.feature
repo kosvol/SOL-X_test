@@ -4,9 +4,9 @@ Feature: PendingUpdate
   I want to ...
   So that ...
 
-  Scenario: Verify all sections fields are enabled when editing from pending approval state
+  # Scenario: Verify all sections fields are enabled when editing from pending approval state for RA
 
-  Scenario: Verify only section 9 fields are enabled when editing from pending termination state
+  # Scenario: Verify only section 9 fields are enabled when editing from pending termination state for all users
 
   Scenario: Verify checklist creator can edit rol checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
