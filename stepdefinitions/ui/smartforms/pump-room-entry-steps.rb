@@ -20,11 +20,11 @@ end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).is_alert_text_visible?(alert))
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", alert, "alert_text"))
   end
 
   if _condition === 'should not'
-    is_false(on(PumpRoomEntry).is_alert_text_visible?(alert))
+    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", alert, "alert_text"))
   end
 end
 
@@ -53,12 +53,13 @@ Then(/^I click (Yes|No|N\/A) to answer the question "(.*)"$/) do |answer, questi
 end
 
 And(/^I (should|should not) see Reporting interval$/) do |_condition|
+  id = "pre_section2_reportingIntervalPeriod"
   if _condition === 'should not'
-    is_false(on(PumpRoomEntry).is_interval_period_displayed?)
+    is_false(on(PumpRoomEntry).is_element_displayed?("id", id))
   end
 
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).is_interval_period_displayed?)
+    is_true(on(PumpRoomEntry).is_element_displayed?("id", id))
   end
 end
 
@@ -67,11 +68,11 @@ Then(/^I press the "([^"]*)" button$/) do |button|
 end
 
 And(/^I should see the page "([^"]*)"$/) do |section|
-  is_true(on(PumpRoomEntry).is_page?(section))
+  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", section, "text"))
 end
 
 And ('I should see the text {string}') do |text|
-  is_true(on(PumpRoomEntry).is_text_on_page?(text))
+  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, "text"))
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
@@ -146,19 +147,19 @@ end
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
   if list === "Scheduled"
     step '(for per) I navigate to "Scheduled" list'
-    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
     on(PumpRoomEntry).arrow_back_btn
   end
 
   if list === 'Active PRE'
     step '(for per) I navigate to "Active PRE" list'
-    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
     on(PumpRoomEntry).arrow_back_btn
   end
 
   if list === 'Closed PRE'
     step 'I navigate to "Closed P/R Entries" screen'
-    is_true(on(PumpRoomEntry).is_current_pre_in_list?)
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
     on(PumpRoomEntry).arrow_back_btn
   end
 
@@ -176,7 +177,7 @@ And('I set the activity end time in {int} minutes') do |minutes|
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
-  is_true(on(PumpRoomEntry).is_pre_auto_terminated?)
+  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "auto_terminated"))
 end
 
 And(/^I should see the table on the page with entered gas data$/) do

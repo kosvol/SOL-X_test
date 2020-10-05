@@ -21,15 +21,14 @@ class PumpRoomEntry < Section1Page
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
 
-  @@any_text = "//*[contains(text(),'%s')]"
+
   @@text_areas = '//textarea'
-  @@alert_text = "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
   @@button = "//*[contains(text(),'%s')]//.."
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
-  @@gas_test_page = "//h2[contains(text(),'%s')]"
+
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]"
@@ -72,14 +71,9 @@ class PumpRoomEntry < Section1Page
     @browser.find_element(:xpath, xpath_str).click
   end
 
-  def is_current_pre_in_list?
-    @browser.find_element(:xpath, "//span[contains(text(),'%s')]"%[@@pre_number]).displayed?
-  end
-
   def are_questions?(table)
     table.all? do |question|
-      xpath_str = "//span[contains(text(), '%s')]" % [question[0]]
-      @browser.find_element('xpath', xpath_str).displayed?
+      is_element_displayed?("question", question[0])
     end
   end
 
@@ -91,16 +85,18 @@ class PumpRoomEntry < Section1Page
     end
   end
 
-  def is_alert_text_visible?(alert_text)
-    xpath_str = @@alert_text % [alert_text]
-    @browser.find_element('xpath', xpath_str).displayed?
-  rescue StandardError
-    false
-  end
+  def is_element_displayed?(by, value, element = "")
+    if element == "alert_text"
+      alert_text = "//div[contains(.,'%s')]"
+      str = alert_text % [value]
+    elsif element == "text"
+      any_text = "//*[contains(text(),'%s')]"
+      str = any_text % [value]
+    elsif "auto_terminated"
+      str = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
+    end
 
-  def is_text_on_page?(text)
-    xpath_str = @@any_text % [text]
-    @browser.find_element('xpath', xpath_str).displayed?
+    @browser.find_element(by, str).displayed?
   rescue StandardError
     false
   end
@@ -129,19 +125,6 @@ class PumpRoomEntry < Section1Page
   def select_answer(answer, question)
     xpath_str = @@radio_buttons % [question]
     select_checkbox(xpath_str, answer)
-  end
-
-  def is_interval_period_displayed?
-    @browser.find_element('id', @@interval_period_id).displayed?
-  rescue StandardError
-    false
-  end
-
-  def is_page?(page)
-    xpath_str = @@gas_test_page % [page]
-    @browser.find_element("xpath", xpath_str).displayed?
-  rescue StandardError
-    false
   end
 
   def press_the_button(button)
@@ -176,11 +159,6 @@ class PumpRoomEntry < Section1Page
     (JSON.parse request.to_s)
   end
 
-  def  is_pre_auto_terminated?
-    el = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"%[@@pre_number]
-    @browser.find_element(:xpath, el).displayed?
-  end
-
   def navigate_for_pre(item)
     if item === "Active PRE"
       @browser.find_element(:xpath, @@active_link).click
@@ -211,10 +189,4 @@ class PumpRoomEntry < Section1Page
     end
     return format('%02d', hh), format('%02d', mm)
   end
-
-  def xpath_fast_check(xpath)
-    #x = "//div[@id='PRE_SECTION_1_subsection24']"
-    #test_str = %(return document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;)%[x]
-  end
-
 end
