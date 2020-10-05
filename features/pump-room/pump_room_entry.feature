@@ -167,5 +167,15 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Closed PRE" list
 
 
+  Scenario: Verify Update needed text can be input and displayed after
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    Then I request update needed
+    And (for pre) I should see update needed message
+
+
 
 

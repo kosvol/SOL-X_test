@@ -165,12 +165,6 @@ And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
 
 end
 
-# Then(/^I should see that the current form has become active after 2 minutes$/) do
-#   sleep 100
-#   is_true(on(PumpRoomEntry).current_form_is_active?)
-#   sleep 1
-# end
-
 And('I set the activity end time in {int} minutes') do |minutes|
   on(PumpRoomEntry).reduce_time_activity(minutes)
   sleep 90
@@ -202,4 +196,25 @@ Then(/^I terminate the PRE$/) do
   step '(for pre) I sign on canvas'
   step 'I press the "Done" button'
   step 'I press the "Back to Home" button'
+end
+
+Then(/^I request update needed$/) do
+  step '(for per) I navigate to "Pending approval PRE" list'
+  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
+  step 'I enter pin 2761'
+  sleep 1
+  step 'I press the "Updates Needed" button'
+  on(PumpRoomEntry).fill_text_input("id", "updatesNeededComment", "Auto test. Update Needed")
+  step 'I press the "Submit" button'
+  sleep 1
+  step "I should see the text 'Your Updates Have Been Successfully Requested'"
+  step 'I press the "Back to Home" button'
+end
+
+And(/^\(for pre\) I should see update needed message$/) do
+  step 'I navigate to "Updates Needed P/R Entries" screen'
+  on(PumpRoomEntry).press_button_for_current_PRE("Edit/Update")
+  step 'I enter pin 8383'
+  step "I should see the text 'Comments from Approving Authority'"
+  step "I should see the text 'Auto test. Update Needed'"
 end

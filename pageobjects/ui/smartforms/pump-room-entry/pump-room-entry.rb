@@ -21,10 +21,9 @@ class PumpRoomEntry < Section1Page
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
 
 
-
   @@text_areas = '//textarea'
   @@permit_duration = "//button[contains(text(),'%s')]"
-  @@button = "//*[contains(text(),'%s')]//.."
+  @@button = "//span[contains(text(),'%s')]//.."
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
@@ -129,7 +128,10 @@ class PumpRoomEntry < Section1Page
 
   def press_the_button(button)
     xpath_str = @@button % [button]
-    @browser.find_element("xpath", xpath_str).click
+    el = @browser.find_element("xpath", xpath_str)
+    BrowserActions.scroll_click(el)
+
+
   end
 
   def fill_text_input(type, selector, text)
