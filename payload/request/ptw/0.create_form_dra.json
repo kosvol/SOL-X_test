@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "DRA",
-    "templateVersion": 2,
+    "templateVersion": 3,
     "parentFormId": "DEV/PTW/2020/009",
     "submissionTimestamp": "2020-07-02T02:22:53.944Z"
   },

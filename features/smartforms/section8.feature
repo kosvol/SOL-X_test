@@ -107,10 +107,10 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types          | permit_payload             | rank            | pin  | user         | zoneid                     | mac               | location_stamp |
+      | permit_types | permit_payload | rank          | pin  | user         | zoneid                     | mac               | location_stamp |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
-  # | Hot Work                         | submit_hotwork              | ETO Reza Ilmi     | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
+      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
