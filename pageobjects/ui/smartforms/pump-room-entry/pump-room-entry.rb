@@ -1,20 +1,14 @@
 require './././support/env'
 
-class PumpRoomEntry < Section1Page
+class PumpRoomEntry < Section9Page
   include PageObject
   include GasReading
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
   element(:pre_id, xpath: "//h4[contains(text(),'PRE No:')]/following::p")
-  elements(:all_labels, xpath: '//label')
-
-  element(:all_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]")
-  elements(:radio_button_list, xpath: "//span[@class = 'content']/..")
-
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
-
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button( :arrow_back_btn, xpath: "//*[@data-testid = 'arrow']//parent::button")
 

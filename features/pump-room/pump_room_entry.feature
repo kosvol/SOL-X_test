@@ -1,4 +1,4 @@
-@Pump-Room-Entry
+@xxx
 Feature: PumpRoomEntry
   As a ...
   I want to ...
@@ -134,10 +134,11 @@ Feature: PumpRoomEntry
     And (for pre) I should see the enabled "Enter PIN & Submit" button
     And I press the "Enter PIN & Submit" button
     And I sign on Gas Test Record with 8383 pin
-    And I should see the table on the page with entered gas data
+
 
             #TThen I should see the page "Gas Test Record Successfully Submitted"
             #Then I should "Gas Reading" table
+            #And I should see the table on the page with entered gas data
             #Then I should not see the "Add Gas Test Record" button
 
 
