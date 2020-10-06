@@ -76,7 +76,7 @@ class PumpRoomEntry < Section9Page
     end
   end
 
-  def is_element_displayed?(by, value, like = "")
+  def is_element_displayed?(by, value, like = "", fast = nil)
     if like == "alert_text"
       alert_text = "//div[contains(.,'%s')]"
       value = alert_text % [value]
@@ -86,10 +86,17 @@ class PumpRoomEntry < Section9Page
     elsif like == "auto_terminated"
       value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
     elsif like == "label_h3"
-      value = "//h3[contains(text(),'%s')]"%[value]
+      value = "//h3[contains(text(),'%s')]" % [value]
+    elsif like == "button"
+      value = @@button % [value]
     end
 
-    @browser.find_element(by, value).displayed?
+    if fast.nil?
+      @browser.find_element(by, value).displayed?
+    else
+      js = %(return document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) % [value]
+      !@browser.execute_script(js).nil?
+    end
   rescue StandardError
     false
   end

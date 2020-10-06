@@ -208,6 +208,39 @@ Feature: PumpRoomEntry
     Then I request update needed
     And (for pre) I should see update needed message
 
+  Scenario: Verify creator PRE cannot request update needed
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    Then I open the current PRE with status Pending approval. Pin: 8383
+    And (for pre) I should see the disabled "Updates Needed" button
+
+  Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    Then (table) Buttons should be missing for the following role:
+      | Master                     | 1111 |
+      | Addtional Master           | 9015 |
+      | Chief Engineer             | 8248 |
+      | Second Engineer            | 2523 |
+      | Electro Technical Officer  | 0856 |
+      | Additional Second Engineer | 3030 |
+      | D/C                        | 2317 |
+      | 3/E                        | 4685 |
+      | A 3/E                      | 6727 |
+      | 4/E                        | 1311 |
+      | A 4/E                      | 0703 |
+      | BOS                        | 1018 |
+      | A/B                        | 6316 |
+      | O/S                        | 7669 |
+      | OLR                        | 0450 |
+
+
 
 
 

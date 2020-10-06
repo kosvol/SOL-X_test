@@ -240,3 +240,24 @@ end
 And(/^Get PRE id$/) do
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
 end
+
+Then('I open the current PRE with status Pending approval. Pin: {int}') do |pin|
+  step '(for per) I navigate to "Pending approval PRE" list'
+  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
+  step 'I enter pin %s' % [pin]
+  sleep 1
+end
+
+Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
+  # table is a table.hashes.keys # => [:Chief Officer, :8383]
+  roles.raw.each do |role|
+    pin = role[1]
+    p role
+    step 'I open the current PRE with status Pending approval. Pin: %s' % [pin]
+    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", "Approve for Activation", "button", true))
+    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", "Updates Needed", "button", true))
+
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", "Close", "button", true))
+    step 'I click on back arrow'
+  end
+end
