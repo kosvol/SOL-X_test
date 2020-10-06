@@ -64,7 +64,7 @@ Feature: RiggingOfLadder
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    # And I click on pending approval filter
+    And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
