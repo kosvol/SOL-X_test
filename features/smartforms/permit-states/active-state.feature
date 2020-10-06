@@ -31,6 +31,7 @@ Feature: ActivePermit
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
+    And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
@@ -147,7 +148,7 @@ Feature: ActivePermit
   # | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
   # | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
   # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
-  # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
+  # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings |
   # | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
   # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
   # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |

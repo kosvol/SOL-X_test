@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 
+# Then (/^I should see all section fields enabled$/) do
+#   is_false(on(Section1Page).is_fields_enabled?)
+#   # step 'I press next from section 1'
+# end
+
+# Then (/^I should see all section fields disabled$/) do
+#   is_true(!on(Section1Page).is_fields_enabled?)
+#   # step 'I press next from section 1'
+# end
+
 Then (/^I should see display texts match for section1$/) do
   on(Section0Page).labels_scrapper_elements.each do |elem|
     p ">> #{elem.text}"

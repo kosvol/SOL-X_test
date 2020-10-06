@@ -6,6 +6,7 @@ class Section3DPage < Section3CPage
   include PageObject
 
   element(:signing_canvas, xpath: '//canvas[@data-testid="signature-canvas"]')
+  element(:signature, xpath: "//div[@class='signature']/img")
 
   def sign
     sign_for_gas

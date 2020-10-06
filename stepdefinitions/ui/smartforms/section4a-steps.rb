@@ -31,12 +31,6 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-And ('I sign checklist with respective checklist creator {int}') do |_pin|
-  step 'I press next for 1 times'
-  on(Section3APage).scroll_multiple_times(4)
-  step "I sign on checklist with #{_pin} pin"
-end
-
 And ('I sign on section with {int} pin') do |_pin|
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   @@entered_pin = _pin
@@ -44,14 +38,17 @@ And ('I sign on section with {int} pin') do |_pin|
 end
 
 And ('I sign on checklist with {int} pin') do |_pin|
+  on(Section3APage).scroll_multiple_times(4)
   on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
+  step 'I sign on canvas'
 end
 
 Then (/^I should see signed details$/) do
   on(CommonFormsPage).set_current_time
   on(Section4APage).is_signed_user_details?(@@entered_pin)
+  is_true(on(Section4APage).is_signature_pad?)
 end
 
 Then (/^I should see permit number, date and time populated$/) do
@@ -119,6 +116,7 @@ Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_o
     if _condition === "questions"
       is_equal(on(Section4APage).tool_box_elements.size,100)
       is_equal(on(Section4APage).textarea_elements.size,2)
+      is_enabled(on(Section4APage).enter_pin_btn_element)
     end
   end
   if _should_or_not === "should not"

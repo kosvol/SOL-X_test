@@ -37,7 +37,8 @@ Then (/^I (open|edit) rol permit with rank (.+) and (.+) pin$/) do |_condition,_
 end
 
 Then (/^I should not see permit duration selectable$/) do
-  on(Section3APage).scroll_multiple_times(7)
+  sleep 1
+  on(Section3APage).scroll_multiple_times(14)
   not_to_exists(on(ROLPage).rol_duration_element)
 end
 

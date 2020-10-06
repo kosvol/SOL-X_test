@@ -11,7 +11,6 @@ class Section4BPage < Section4APage
   button(:date_and_time_btn, xpath: '//button[@id="workSiteVisitSafetyChecksAndProcsCompletedOn"]')
   elements(:time_picker, xpath: "//div[@class='picker']")
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]")
-  element(:signature, xpath: "//div[@class='signature']/img")
   span(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/button/span")
 
   # sub form

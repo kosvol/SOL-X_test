@@ -104,17 +104,20 @@ Feature: CreatedPermitToWork
       | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
       | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
 
-
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hot Work permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
-    Then I should see checklist section with fields enabled
+    And I navigate to section 4a
+    Then I should see checklist selections fields enabled
+    When I press next for 1 times
+    Then I should see checklist questions fields enabled
+    When I press next for 1 times
     And I should see eic selection fields enabled
     And I tear down created form
 

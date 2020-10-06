@@ -122,7 +122,7 @@ Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condit
   on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).gas_reading_table_elements[1].text,"Initial") if _condition === "with"
   is_equal(on(Section6Page).gas_reading_table_elements[1].text,"2nd Reading") if _condition === "without"
-  is_equal(on(Section6Page).gas_reading_table_elements[2].text,"#{on(Section6Page).get_current_date_format} #{on(Section6Page).get_current_time_format}")
+  is_equal(on(Section6Page).gas_reading_table_elements[2].text,"#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")
   is_equal(on(Section6Page).gas_reading_table_elements[3].text,"1 %")
   is_equal(on(Section6Page).gas_reading_table_elements[4].text,"2 % LEL")
   is_equal(on(Section6Page).gas_reading_table_elements[5].text,"3 PPM")

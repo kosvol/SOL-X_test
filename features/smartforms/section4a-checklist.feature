@@ -105,28 +105,29 @@ Feature: Section4AChecklist
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
-    When I sign checklist with respective checklist creator <pin>
+    When I press next for 1 times
+    And I sign on checklist with <pin> pin
     Then I should see signed details
     And I tear down created form
 
     Examples:
-      | Rank  | pin  | level_one_permit                                              | level_two_permit                                                                | checklist                                                     |
-      | A/M   | 9015 | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist                                 |
-      | C/O   | 8383 | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist                                 |
-      | A C/O | 2761 | Hot Work                                                      | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area                              |
-      | 2/O   | 6268 | Hot Work                                                      | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area                              |
-      | A 2/O | 7865 | Hot Work                                                      | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area                              |
-      | 3/O   | 0159 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist                                |
-      | A 3/O | 2674 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                                          |
-      | C/E   | 8248 | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                                          |
+      | Rank  | pin  | level_one_permit                                              | level_two_permit                                                                | checklist                                 |
+      | A/M   | 9015 | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
+      | C/O   | 8383 | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
+      | A C/O | 2761 | Hot Work                                                      | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
+      | 2/O   | 6268 | Hot Work                                                      | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
+      | A 2/O | 7865 | Hot Work                                                      | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
+      | 3/O   | 0159 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
+      | A 3/O | 2674 | Underwater Operations                                         | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
+      | C/E   | 8248 | Underwater Operations                                         | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
       # | A C/E | 2761 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
-      | 2/E   | 2523 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                                        |
-      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
-      | 3/E   | 4685 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                                    |
-      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket                         |
-      | 4/E   | 1311 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist                                |
-      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | ETO   | 0856 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)                         |
+      | 2/E   | 2523 | Working Aloft/Overside                                        | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
+      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
+      | 3/E   | 4685 | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
+      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
+      | 4/E   | 1311 | Helicopter Operations                                         | Helicopter Operation                                                            | Helicopter Operation Checklist            |
+      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
+      | ETO   | 0856 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -136,7 +137,8 @@ Feature: Section4AChecklist
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
     And I select the matching <checklist> checklist
-    And I sign checklist with respective checklist creator <pin>
+    When I press next for 1 times
+    And I sign on checklist with <pin> pin
     Then I should see not authorize error message
     And I tear down created form
 
@@ -155,7 +157,7 @@ Feature: Section4AChecklist
   # | FTR    | 9115 | Rotational Portable Power Tools                                | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)                         |
   # | CCK    | 9082 | Use of non-intrinsically safe Camera                          | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                                       |
   # | 2CK    | 1455 | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather                             |
-  # | RDCRW  | 9946 | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist                                 |
+  # | RDCRW  | 9946 | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings         | Cold Work Operation Checklist                                 |
   # | FSTO   | 1041 | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist                                 |
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
@@ -167,7 +169,8 @@ Feature: Section4AChecklist
     And I set maintenance during more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
-    When I sign checklist with respective checklist creator <pin>
+    When I press next for 1 times
+    And I sign on checklist with <pin> pin
     Then I should see signed details
     And I tear down created form
 
@@ -184,7 +187,8 @@ Feature: Section4AChecklist
     And I set maintenance during more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
-    When I sign checklist with respective checklist creator <pin>
+    When I press next for 1 times
+    And I sign on checklist with <pin> pin
     Then I should see not authorize error message
     And I tear down created form
 

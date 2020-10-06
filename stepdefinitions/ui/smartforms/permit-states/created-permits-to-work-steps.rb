@@ -34,17 +34,7 @@ And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
   step "I enter pin #{_pin}"
 end
 
-Then (/^I should see checklist section with fields enabled$/) do
-  # step 'I press next from section 1'
-  step 'I navigate to section 4a'
-  is_false(on(Section4APage).is_checklist_fields_disabled?)
-  step 'I press next for 1 times'
-  is_false(on(Section4APage).is_checklist_fields_disabled?)
-  is_enabled(on(Section4APage).enter_pin_btn_element)
-end
-
 And (/^I should see eic selection fields enabled$/) do
-  step 'I press next for 1 times'
   is_enabled(on(Section4BPage).yes_no_btn_elements[0])
   is_enabled(on(Section4BPage).yes_no_btn_elements[1])
 end
@@ -62,21 +52,10 @@ Then (/^I should see gas reader section with fields enabled$/) do
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
-  # step 'I press next from section 1'
   step 'I navigate to section 4b'
   is_equal(on(Section4APage).disabled_fields_elements.size, '2')
   # is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
-
-# Then (/^I should see all section fields enabled$/) do
-#   is_false(on(Section1Page).is_fields_enabled?)
-#   # step 'I press next from section 1'
-# end
-
-# Then (/^I should see all section fields disabled$/) do
-#   is_true(!on(Section1Page).is_fields_enabled?)
-#   # step 'I press next from section 1'
-# end
 
 Then (/^I should see deleted permit deleted$/) do
   is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)

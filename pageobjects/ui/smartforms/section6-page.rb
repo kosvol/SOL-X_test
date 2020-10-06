@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class Section6Page < Section4BPage
+class Section6Page < Section5Page
   include PageObject
 
   button(:remove_toxic_btn, xpath: "//button[contains(.,'Remove')]")

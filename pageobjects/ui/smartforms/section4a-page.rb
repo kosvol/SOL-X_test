@@ -105,6 +105,15 @@ class Section4APage < Section3DPage
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
+  def is_signature_pad?
+    begin
+      signature_element
+      true
+    rescue
+      false
+    end
+  end
+
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)
   def is_checklist_preselected(_checklist)
@@ -128,7 +137,8 @@ class Section4APage < Section3DPage
   end
 
   def select_checklist(_checklist)
-    BrowserActions.scroll_up_by_custom_dist(1000)
+    sleep 1
+    BrowserActions.scroll_up_by_custom_dist(-400)
     element_yes = get_yes_elements
     section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist

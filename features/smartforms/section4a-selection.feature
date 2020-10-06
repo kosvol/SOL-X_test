@@ -78,7 +78,7 @@ Feature: Section4AChecklistSelection
       | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
       | Use of non-intrinsically safe Camera                          | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
+      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings                 | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                                | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
