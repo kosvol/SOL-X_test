@@ -6,6 +6,34 @@ Feature: ActivePermit
 
   # Scenario: Verify all sections disabled for ptw reader
 
+  Scenario: Verify section 8 buttons display are correct
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I update permit with 5/E rank and 0311 pin
+    And I navigate to section 8
+    Then I should see previous and next buttons
+    And I tear down created form
+
+  Scenario: Verify section 8 Competent Person sign button is disable for read only user
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I update permit with 5/E rank and 0311 pin
+    And I navigate to section 8
+    Then I should see competent persong sign button disabled
+    And I tear down created form
+
+  # PENDING NO FLOW
+  # Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
+  #   Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+  #   And I launch sol-x portal without unlinking wearable
+  #   And I click on active filter
+  #   And I update permit with 5/E rank and 0311 pin
+  #   And I navigate to section 8
+  #   Then I should see competent persong sign button disabled
+  #   And I tear down created form
+
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -165,7 +193,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
 
     Examples:
@@ -181,7 +209,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections on active permit
 
     Examples:
@@ -197,7 +225,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -209,7 +237,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button enabled
 
     Examples:
@@ -230,7 +258,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should not see gas reader sections on active permit
 
     Examples:
@@ -250,7 +278,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update active permit with <rank> rank and <pin> pin
+    And I update permit with <rank> rank and <pin> pin
     Then I should see Add Gas Reading button disabled
 
     Examples:

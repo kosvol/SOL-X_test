@@ -64,6 +64,7 @@ Feature: RiggingOfLadder
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
+    # And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
@@ -74,7 +75,8 @@ Feature: RiggingOfLadder
     And I review termination permit with <pin> pin
     And I press previous for 1 times
     Then I should not see permit duration selectable
-    When I put the permit to pending termination update status
+    When I click on back arrow
+    And I put the permit to pending termination update status
     And I click on back to home
     And I click on update needed filter
     Then I edit rol permit with rank <rank> and <pin> pin
@@ -124,3 +126,26 @@ Feature: RiggingOfLadder
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
     Then I should see ROL checklist questions
+
+  Scenario: Verify termination page display previous and close buttons for read only user
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 8383
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    When I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I set rol permit to active state with 1 duration
+    And I click on back to home
+    And I click on active filter
+    Then I open rol permit with rank A/M and 9015 pin
+    When I press next for 2 times
+    And I submit permit for termination
+    And I enter pin 9015
+    And I sign on canvas
+    And I click on back to home
+    And I review termination permit with 0311 pin
+    Then I should see previous and next buttons
+    And I tear down created form

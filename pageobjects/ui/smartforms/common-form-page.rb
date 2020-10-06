@@ -81,6 +81,8 @@ class CommonFormsPage < CommonPage
       10
     when '7'
       11
+    when '8'
+      13
     when '4a'
       6
     when '3a'

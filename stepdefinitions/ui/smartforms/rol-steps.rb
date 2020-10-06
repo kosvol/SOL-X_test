@@ -42,6 +42,10 @@ Then (/^I should not see permit duration selectable$/) do
   not_to_exists(on(ROLPage).rol_duration_element)
 end
 
+And (/^I submit permit for termination$/) do
+  on(Section0Page).submit_termination_btn_elements.first.click
+end
+
 When (/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
@@ -61,7 +65,6 @@ And (/^I review termination permit with (.+) pin$/) do |_pin|
 end
 
 When (/^I put the permit to pending termination update status$/) do
-  step 'I click on back arrow'
   step 'I click on pending withdrawal filter'
   on(Section0Page).review_and_terminate_btn_elements.first.click
   step "I enter pin 1111"

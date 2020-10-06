@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+Then (/^I (should|should not) see competent persong sign button disabled$/) do |_condition|
+  is_enabled(on(Section8Page).competent_person_btn_element) if _condition === "should not"
+  is_disabled(on(Section8Page).competent_person_btn_element) if _condition === "should"
+end
+
 Then (/^I should see issue date display$/) do
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT+')
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
@@ -17,7 +22,7 @@ end
 
 And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
-  if _update_or_terminate === 'update active'
+  if _update_or_terminate === 'update'
     on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   elsif _update_or_terminate === 'terminate'
     on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click

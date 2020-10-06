@@ -4,6 +4,19 @@ Feature: Section9
   I want to ...
   So that ...
 
+  # Scenario: Verify permit is removed from Pending Withdrawal filter after update requested
+  # Scenario: Verify permit is removed from Pending Withdrawal filter after manual termination
+
+  Scenario: Verify section 9 buttons display are correct via pending termination state
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
+    And I launch sol-x portal without unlinking wearable
+    And I set non oa permit to ACTIVE state
+    And I set non oa permit to PENDING_TERMINATION state
+    And I click on pending withdrawal filter
+    And I open a permit pending termination with 5/E rank and 0311 pin
+    Then I should see previous and next buttons
+    And I tear down created form
+
   Scenario Outline: Verify Master can see terminate and update buttons for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I sleep for 1 seconds
@@ -95,6 +108,3 @@ Feature: Section9
     Examples:
       | permit_types          | permit_payload             |
       | Enclosed Spaces Entry | submit_enclose_space_entry |
-
-# Scenario: Verify permit is removed from Pending Withdrawal filter after update requested
-# Scenario: Verify permit is removed from Pending Withdrawal filter after manual termination

@@ -20,6 +20,20 @@ Feature: CreatedPermitToWork
   #   And I enter pin 9015
   #   Then I should see permit id populated
 
+  Scenario: Verify section 6 buttons display are correct
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    And I click on back arrow
+    And I navigate to "Created Permits to Work" screen
+    And I want to edit the newly created permit
+    And I enter pin 0311
+    And I navigate to section 6
+    Then I should see previous and next buttons
+    And I tear down created form
+
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
