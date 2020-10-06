@@ -10,10 +10,8 @@ class PumpRoomEntry < Section9Page
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
-  button( :arrow_back_btn, xpath: "//*[@data-testid = 'arrow']//parent::button")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-
 
   @@text_areas = '//textarea'
   @@permit_duration = "//button[contains(text(),'%s')]"
@@ -87,6 +85,8 @@ class PumpRoomEntry < Section9Page
       value = any_text % [value]
     elsif like == "auto_terminated"
       value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
+    elsif like = "label_h3"
+      value = "//h3[contains(text(),'%s')]"%[value]
     end
 
     @browser.find_element(by, value).displayed?

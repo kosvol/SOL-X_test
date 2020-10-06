@@ -75,8 +75,8 @@ And(/^I should see the page "([^"]*)"$/) do |section|
   is_true(on(PumpRoomEntry).is_element_displayed?("xpath", section, "text"))
 end
 
-And ('I should see the text {string}') do |text|
-  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, "text"))
+And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
+  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, like))
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
@@ -156,19 +156,19 @@ And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
   if list === "Scheduled"
     step '(for per) I navigate to "Scheduled" list'
     is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    on(PumpRoomEntry).arrow_back_btn
+    step 'I click on back arrow'
   end
 
   if list === 'Active PRE'
     step '(for per) I navigate to "Active PRE" list'
     is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    on(PumpRoomEntry).arrow_back_btn
+    step 'I click on back arrow'
   end
 
   if list === 'Closed PRE'
     step 'I navigate to "Closed P/R Entries" screen'
     is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    on(PumpRoomEntry).arrow_back_btn
+    step 'I click on back arrow'
   end
 
 end

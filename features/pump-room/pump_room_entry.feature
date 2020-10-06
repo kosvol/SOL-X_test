@@ -4,6 +4,25 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  Scenario: Verify menu items are displayed in hamburger menu
+    Given I launch sol-x portal without unlinking wearable
+    Then  I navigate to "Created P/R Entries" screen
+    And I should see the label 'Created P/R Entries'
+    And I click on back arrow
+
+    Then  I navigate to "Updates Needed P/R Entries" screen
+    And I should see the label 'Updates Needed P/R Entries'
+    And I click on back arrow
+
+    Then  I navigate to "Closed P/R Entries" screen
+    And I should see the label 'Closed P/R Entries'
+    And I click on back arrow
+
+    Then  I navigate to "Deleted P/R Entries" screen
+    And I should see the label 'Deleted P/R Entries'
+    And I click on back arrow
+
+
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
