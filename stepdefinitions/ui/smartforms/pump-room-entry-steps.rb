@@ -171,6 +171,12 @@ And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
     step 'I click on back arrow'
   end
 
+  if list === 'Created PRE'
+    step 'I navigate to "Created P/R Entries" screen'
+    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
+    step 'I click on back arrow'
+  end
+
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|
@@ -228,4 +234,9 @@ And(/^\(for pre\) I should see update needed message$/) do
   step 'I enter pin 8383'
   step "I should see the text 'Comments from Approving Authority'"
   step "I should see the text 'Auto test. Update Needed'"
+end
+
+
+And(/^Get PRE id$/) do
+  @@pre_number = on(PumpRoomEntry).pre_id_element.text
 end

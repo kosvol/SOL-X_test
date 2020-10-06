@@ -85,7 +85,7 @@ class PumpRoomEntry < Section9Page
       value = any_text % [value]
     elsif like == "auto_terminated"
       value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
-    elsif like = "label_h3"
+    elsif like == "label_h3"
       value = "//h3[contains(text(),'%s')]"%[value]
     end
 

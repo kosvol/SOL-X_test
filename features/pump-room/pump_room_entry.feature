@@ -23,6 +23,15 @@ Feature: PumpRoomEntry
     And I click on back arrow
 
 
+  Scenario: Verify Created PRE is displayed in Created PRE list
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And Get PRE id
+    Then I press the "Close" button
+    And I should see the current PRE in the "Created PRE" list
+
+
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -198,6 +207,8 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     Then I request update needed
     And (for pre) I should see update needed message
+
+
 
 
 
