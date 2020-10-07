@@ -261,3 +261,13 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
     step 'I click on back arrow'
   end
 end
+
+And(/^Navigate to PRE Display$/) do
+  on(NavigationPage).tap_hamburger_menu
+  on(NavigationPage).select_nav_category("Settings")
+  sleep 1
+  step 'I press the "Pump Room Display" button'
+  sleep 1
+  step 'I press the "Enter Pin & Apply" button'
+  sleep 1
+end

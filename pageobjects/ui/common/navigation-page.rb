@@ -8,6 +8,7 @@ class NavigationPage
   button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
   # element(:hamburger_menu, xpath: "//button/*[@data-testid='hamburger']")
   list_items(:drilled_ham_menu, xpath: '//ul[1]//li')
+  @@setting_link = "//a[contains(text(),'Settings')]"
 
   def tap_hamburger_menu
     sleep 1
@@ -16,6 +17,10 @@ class NavigationPage
   end
 
   def select_nav_category(_category)
+    if _category == 'Settings'
+      @browser.find_element(:xpath, @@setting_link).click
+      return
+    end
     drilled_ham_menu_elements.each do |category|
       if category.text.strip === _category.strip
         category.click
