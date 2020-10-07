@@ -138,7 +138,7 @@ class Section4APage < Section3DPage
 
   def select_checklist(_checklist)
     sleep 1
-    BrowserActions.scroll_up_by_custom_dist(-400)
+    BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
     section1_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist

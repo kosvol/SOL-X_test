@@ -31,12 +31,20 @@ class OAPage < Section9Page
   end
 
   def set_to_time
-    BrowserActions.scroll_click(issue_to_time_btn_element)
-    BrowserActions.scroll_click(hours_23_btn_element)
+    sleep 1
+    BrowserActions.scroll_down(issue_to_time_btn_element)
+    @browser.find_element(:xpath, "//input[contains(@id,'issuedToTime')]").clear
+    BrowserActions.enter_text(issue_to_time_btn_element,"23:59")
   end
 
   def set_to_date_plus_one_day(_current_date)
+    # BrowserActions.scroll_down(issue_to_date_btn_element)
+    # _tmp = @browser.find_element(:xpath, "//input[contains(@id,'issuedToDate')]")
+    # _tmp.clear
+    # issue_to_date_btn_element.click
+    # sleep 1
     BrowserActions.enter_text(issue_to_date_btn_element,"#{(Date.today+1).strftime("%d/%m/%Y")}")
+    # BrowserActions.hide_keyboard
   end
 
   def is_comment_box_reset?

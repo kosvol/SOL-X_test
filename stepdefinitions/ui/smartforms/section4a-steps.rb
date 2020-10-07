@@ -42,7 +42,6 @@ And ('I sign on checklist with {int} pin') do |_pin|
   on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
-  step 'I sign on canvas'
 end
 
 Then (/^I should see signed details$/) do

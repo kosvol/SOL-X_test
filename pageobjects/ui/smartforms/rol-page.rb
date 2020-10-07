@@ -17,7 +17,9 @@ class ROLPage < Section9Page
     sleep 1
     rol_duration
     sleep 1
-    @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"]).click
+    tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"])
+    BrowserActions.scroll_down(tmp_hour)
+    tmp_hour.click
     sleep 1
     submit_btn_elements.first.click
   end

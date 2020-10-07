@@ -55,7 +55,7 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I select yes to EIC
     And I press next for 1 times
-    And I fill up section 5
+    # And I fill up section 5
     And I press next for 1 times
     # select gas reader?
     Then I submit permit for Master Approval
