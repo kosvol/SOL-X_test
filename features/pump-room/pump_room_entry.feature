@@ -241,6 +241,25 @@ Feature: PumpRoomEntry
       | OLR                        | 0450 |
 
 
+  Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin <pin>
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    Then I open the current PRE with status Pending approval. Pin: <pin>
+    And (for pre) I should see the <condition> "Approve for Activation" button
+
+    Examples:
+      | rank                      | pin  | condition |
+      | Chief Officer             | 8383 | enabled   |
+      | Additional Chief Officer  | 2761 | disabled  |
+      | Second Officer            | 6268 | disabled  |
+      | Additional Second Officer | 7865 | disabled  |
+      | 3/O                       | 0159 | disabled  |
+      | A 3/O                     | 2674 | disabled  |
+
+
 
 
 

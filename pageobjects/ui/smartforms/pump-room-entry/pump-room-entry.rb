@@ -104,14 +104,17 @@ class PumpRoomEntry < Section9Page
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
     sleep 1
-    BrowserActions.scroll_down()
+    BrowserActions.scroll_down
     xpath_str = @@permit_duration % [duration]
     @browser.find_element('xpath', xpath_str).click
   end
 
   def is_button_enabled?(button_text)
     xpath_str = @@button % [button_text]
-    @browser.find_element('xpath', xpath_str).enabled?
+    el = @browser.find_element('xpath', xpath_str)
+    BrowserActions.scroll_down(el)
+    BrowserActions.scroll_down
+    el.enabled?
   end
 
   def select_answer(answer, question)
