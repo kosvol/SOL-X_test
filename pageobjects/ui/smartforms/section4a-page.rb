@@ -21,8 +21,9 @@ class Section4APage < Section3DPage
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
-  spans(:section1, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
-  
+  spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+
   divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
@@ -86,7 +87,7 @@ class Section4APage < Section3DPage
 
   def uncheck_all_checklist
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |_checklist, _index|
+    list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
       BrowserActions.scroll_down(element_yes[_index])
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
@@ -118,7 +119,7 @@ class Section4APage < Section3DPage
   # ##White rgba(255, 255, 255, 1)
   def is_checklist_preselected(_checklist)
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
+    list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -140,7 +141,7 @@ class Section4APage < Section3DPage
     sleep 1
     BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
+    list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])

@@ -86,7 +86,8 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
   on(Section4APage).section1_elements.each_with_index do |_element,_index|
     p "#{_element.text}"
     p "#{base_data[_index]}"
-    is_equal(_element.text,base_data[_index])
+    # is_equal(_element.text,base_data[_index])
+    does_include(_element.text,base_data[_index])
   end
 end
 
