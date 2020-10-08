@@ -22,7 +22,7 @@ Feature: PumpRoomEntry
     And I should see the label 'Deleted P/R Entries'
     And I click on back arrow
 
-
+  @x1234
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -40,13 +40,13 @@ Feature: PumpRoomEntry
     And I tear down created form
 
     Examples:
-      | rank                       | pin  |
-      | Chief Officer              | 8383 |
-      | Additional Chief Officer   | 2761 |
-      | Second Officer             | 6268 |
-      | Additional Second Officer  | 7865 |
-      | 3/O                        | 0159 |
-      | A 3/O                      | 2674 |
+      | rank                      | pin  |
+      | Chief Officer             | 8383 |
+      | Additional Chief Officer  | 2761 |
+      | Second Officer            | 6268 |
+      | Additional Second Officer | 7865 |
+      | 3/O                       | 0159 |
+      | A 3/O                     | 2674 |
 
   Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
     Given I launch sol-x portal without unlinking wearable
@@ -95,21 +95,21 @@ Feature: PumpRoomEntry
       | Is the pumproom bilge dry?                                                                                                       |
 
 
-    Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
-      Given  I launch sol-x portal without unlinking wearable
-      And I navigate to create new PRE
-      And I enter pin 8383
-      Then I should see alert message "Please select the start time and duration before submitting."
-      And Button "Submit for Approval" should be disabled
-      Then I select Permit Duration <duration>
-      And I should not see alert message "Please select the start time and duration before submitting."
-      And Button "Submit for Approval" should not be disabled
+  Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
+    Given  I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I should see alert message "Please select the start time and duration before submitting."
+    And Button "Submit for Approval" should be disabled
+    Then I select Permit Duration <duration>
+    And I should not see alert message "Please select the start time and duration before submitting."
+    And Button "Submit for Approval" should not be disabled
 
-      Examples:
-        | duration |
-        | 4 hours  |
-        | 6 hours  |
-        | 8 hours  |
+    Examples:
+      | duration |
+      | 4 hours  |
+      | 6 hours  |
+      | 8 hours  |
 
 
   Scenario: Verify user able to fill Date of Last Calibration
@@ -150,12 +150,12 @@ Feature: PumpRoomEntry
     And I press the "Review & Sign" button
     Then I should see the page "Review Your Gas Test Record"
 
-            # And I should be able to return on previous pages
-            # Then I press the "Back" button
-            # And I should see the section "Other Toxic Gases"
-            # Then I press the "Back" button
-            # And I should see the section "Gas test Record"
-            # Then I should be able to return on Review Your Gas Test Record => BUG SOL-5246
+    # And I should be able to return on previous pages
+    # Then I press the "Back" button
+    # And I should see the section "Other Toxic Gases"
+    # Then I press the "Back" button
+    # And I should see the section "Gas test Record"
+    # Then I should be able to return on Review Your Gas Test Record => BUG SOL-5246
 
     And (for pre) I should see the disabled "Enter PIN & Submit" button
     Then (for pre) I sign on canvas
@@ -164,10 +164,10 @@ Feature: PumpRoomEntry
     And I sign on Gas Test Record with 8383 pin
 
 
-            #TThen I should see the page "Gas Test Record Successfully Submitted"
-            #Then I should "Gas Reading" table
-            #And I should see the table on the page with entered gas data
-            #Then I should not see the "Add Gas Test Record" button
+  #TThen I should see the page "Gas Test Record Successfully Submitted"
+  #Then I should "Gas Reading" table
+  #And I should see the table on the page with entered gas data
+  #Then I should not see the "Add Gas Test Record" button
 
 
   Scenario: Verify PRE will be activated and auto terminated at the specified time
