@@ -154,30 +154,7 @@ And('I activate the current PRE form') do
 end
 
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
-  if list === "Scheduled"
-    step '(for per) I navigate to "Scheduled" list'
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    step 'I click on back arrow'
-  end
-
-  if list === 'Active PRE'
-    step '(for per) I navigate to "Active PRE" list'
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    step 'I click on back arrow'
-  end
-
-  if list === 'Closed PRE'
-    step 'I navigate to "Closed P/R Entries" screen'
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    step 'I click on back arrow'
-  end
-
-  if list === 'Created PRE'
-    step 'I navigate to "Created P/R Entries" screen'
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
-    step 'I click on back arrow'
-  end
-
+  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|

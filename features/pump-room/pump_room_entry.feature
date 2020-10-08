@@ -29,6 +29,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     And Get PRE id
     Then I press the "Close" button
+    When I navigate to "Created P/R Entries" screen
     And I should see the current PRE in the "Created PRE" list
 
 
@@ -177,8 +178,10 @@ Feature: PumpRoomEntry
     Then I fill up PRE. Duration 4. Delay to activate 1
     And (for pre) I submit permit for Officer Approval
     Then I activate the current PRE form
+    When (for per) I navigate to "Scheduled" list
     And I should see the current PRE in the "Scheduled" list
     When I wait to activate PRE. Delay 120
+    And (for per) I navigate to "Active PRE" list
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
     When I navigate to "Closed P/R Entries" screen
@@ -192,10 +195,13 @@ Feature: PumpRoomEntry
     Then I fill up PRE. Duration 4. Delay to activate 1
     And (for pre) I submit permit for Officer Approval
     Then I activate the current PRE form
+    When (for per) I navigate to "Scheduled" list
     And I should see the current PRE in the "Scheduled" list
     When I wait to activate PRE. Delay 120
+    And (for per) I navigate to "Active PRE" list
     And I should see the current PRE in the "Active PRE" list
     Then I terminate the PRE
+    When I navigate to "Closed P/R Entries" screen
     And I should see the current PRE in the "Closed PRE" list
 
 
