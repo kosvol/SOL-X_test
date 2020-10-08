@@ -31,7 +31,7 @@ Feature: CreatedPermitToWork
     And I want to edit the newly created permit
     And I enter pin 0311
     And I navigate to section 6
-    Then I should see previous and next buttons
+    Then I should see previous and close buttons
     And I tear down created form
 
   Scenario: Verify created permit data matched on edit screen for Permit Details

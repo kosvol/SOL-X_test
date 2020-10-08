@@ -12,7 +12,7 @@ Feature: ActivePermit
     And I click on active filter
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 8
-    Then I should see previous and next buttons
+    Then I should see previous and close buttons
     And I tear down created form
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user

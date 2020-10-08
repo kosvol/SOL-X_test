@@ -14,7 +14,7 @@ Feature: Section9
     And I set non oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I open a permit pending termination with 5/E rank and 0311 pin
-    Then I should see previous and next buttons
+    Then I should see previous and close buttons
     And I tear down created form
 
   Scenario Outline: Verify Master can see terminate and update buttons for non oa permit

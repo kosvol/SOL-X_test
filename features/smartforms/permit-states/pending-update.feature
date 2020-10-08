@@ -29,7 +29,7 @@ Feature: PendingUpdate
     And I click on update needed filter
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 6
-    Then I should see previous and next buttons
+    Then I should see previous and close buttons
     And I tear down created form
 
   Scenario: Verify checklist creator can edit rol checklist during active state via pending approval

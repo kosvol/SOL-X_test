@@ -127,15 +127,15 @@ class Section4APage < Section3DPage
     end
   end
 
-  def is_hazardous_substance_checklist?
-    element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === 'Work on Hazardous Substances'
+  # def is_hazardous_substance_checklist?
+  #   element_yes = get_yes_elements
+  #   list_of_checklist_elements.each_with_index do |checklist, _index|
+  #     next unless checklist.text === 'Work on Hazardous Substances'
 
-      BrowserActions.scroll_down(element_yes[_index])
-      return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
-    end
-  end
+  #     BrowserActions.scroll_down(element_yes[_index])
+  #     return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
+  #   end
+  # end
 
   def select_checklist(_checklist)
     sleep 1

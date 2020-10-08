@@ -147,5 +147,5 @@ Feature: RiggingOfLadder
     And I sign on canvas
     And I click on back to home
     And I review termination permit with 0311 pin
-    Then I should see previous and next buttons
+    Then I should see previous and close buttons
     And I tear down created form
