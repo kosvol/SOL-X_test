@@ -61,7 +61,8 @@ Then (/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color
 end
 
 Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
-  is_equal(on(DashboardPage).get_map_zone_count(zone), count)
+  is_equal(on(DashboardPage).get_map_zone_count(zone,count), "#{zone} (#{count})")
+  on(DashboardPage).toggle_zone_filter(zone)
 end
 
 When (/^I link wearable$/) do
@@ -80,7 +81,8 @@ When (/^I link wearable$/) do
   step 'I get wearable-simulator/mod-update-wearable-location request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
-  sleep 5
+  step 'I hit graphql'
+  sleep 3
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   sleep 2
@@ -102,6 +104,7 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
   step 'I hit graphql'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
+  step 'I hit graphql'
   step 'I hit graphql'
   sleep 2
 end

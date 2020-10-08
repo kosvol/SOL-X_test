@@ -11,15 +11,18 @@ class DashboardPage < WearablePage
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'CrewStatusToggle__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[4]')
-  spans(:area_count, xpath: "//span[@class='count']")
   spans(:permits_count, xpath: '//span[@class="stat"]')
   div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")
+  button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
+  @@ship_area = "//li/button[contains(.,'%s')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
   @@location_pin = "//a[@data-testid='location-pin']"
 
   def get_location_pin_text(location)
+    area_dd
     toggle_zone_filter(location)
+    sleep 1
     begin
       location_pin_txt
     rescue StandardError
@@ -40,7 +43,6 @@ class DashboardPage < WearablePage
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
-    # toggle_crew_activity_list
     color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     $browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
     $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
@@ -71,26 +73,11 @@ class DashboardPage < WearablePage
     last_seen_element.text
   end
 
-  def get_map_zone_count(which_zone)
+  def get_map_zone_count(which_zone,total_crew)
+    area_dd
     sleep 1
-    exit if !area_count_elements[0].text === 1
-    toggle_zone_filter(which_zone)
-    case which_zone
-    when 'Full Ship'
-      area_count_elements[0].text
-    when 'Engine Room'
-      area_count_elements[1].text
-    when 'Pump Room'
-      area_count_elements[2].text
-    when 'Funnel Stack'
-      area_count_elements[3].text
-    when 'Main Deck'
-      area_count_elements[4].text
-    when 'Lower Accomm.'
-      area_count_elements[5].text
-    when 'Nav. Bridge'
-      area_count_elements[7].text
-    end
+    xpath_str = @@ship_area%["#{which_zone} (#{total_crew})"]
+    return @browser.find_element('xpath', xpath_str).text
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)
@@ -117,30 +104,17 @@ class DashboardPage < WearablePage
     crew_details
   end
 
+  def toggle_zone_filter(which_zone)
+    xpath_str = @@ship_area%[which_zone]
+    sleep 1
+    @browser.find_element('xpath', xpath_str).click
+  end
+
   private
 
   def get_beacon_location
     @@list_of_beacon.each do |beacon|
       return beacon[1] if beacon.first === @@beacon.first
-    end
-  end
-
-  def toggle_zone_filter(which_zone)
-    case which_zone
-    when 'Full Ship'
-      area_count_elements[0].click
-    when 'Engine Room'
-      area_count_elements[1].click
-    when 'Pump Room'
-      area_count_elements[2].click
-    when 'Funnel Stack'
-      area_count_elements[3].click
-    when 'Main Deck'
-      area_count_elements[4].click
-    when 'Accomm.'
-      area_count_elements[5].click
-    when 'Nav. Bridge'
-      area_count_elements[6].click
     end
   end
 end

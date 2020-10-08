@@ -119,8 +119,8 @@ end
 
 Then (/^I should see count down start from 10 seconds$/) do
   begin
-    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 8 secs')
+    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 8 s...')
   rescue
-    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 7 secs')
+    is_equal(on(CrewListPage).countdown_elements[0].text, 'Hiding in 7 s...')
   end
 end

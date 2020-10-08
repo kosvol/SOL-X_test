@@ -39,7 +39,6 @@ class BrowserSetup
         options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
       end
       # end
-
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')
 
       begin
