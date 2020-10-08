@@ -17,6 +17,10 @@
         "value": "\"\""
       },
       {
+        "fieldId": "draCreatedDate",
+        "value": "{\"dateTime\":\"2020-10-05T07:57:07.795Z\",\"utcOffset\":7}"
+      },
+      {
         "fieldId": "section3a_permitType",
         "value": "\"Cold Work - Cleaning Up of Spills\""
       },

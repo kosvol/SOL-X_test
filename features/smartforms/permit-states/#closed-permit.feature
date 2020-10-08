@@ -18,4 +18,4 @@ Feature: ClosedPermit
     When I click on back to home
     And I click on active filter
     And I terminate the permit
-    Then I should see termination date display
+    Then I should see termination date display ### not complete

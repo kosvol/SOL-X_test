@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 2,
+    "templateVersion": 3,
     "submissionTimestamp": "2020-07-02T11:17:26.901Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"

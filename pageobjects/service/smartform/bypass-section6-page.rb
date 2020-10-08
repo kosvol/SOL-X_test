@@ -39,26 +39,42 @@ class BypassPage < Section0Page
     ### save sections
     save_different_form_section(payload_mapper(_permit_type, '3'), _user)
     save_different_form_section(payload_mapper(_permit_type, '4'), _user)
-    save_different_form_section(payload_mapper(_permit_type, '3a'), _user)
+
+    ### section 3a ###
+    section3a = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '3a'))
+    section3a['variables']['formId'] = CommonPage.get_permit_id
+    section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    section3a['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_5.save_section3a_details', section3a)
+    ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
+    ### end ### 
+
     save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
     save_different_form_section('7.save_section3c_details', _user)
     save_different_form_section('8.save_section3d_details', _user)
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
-    save_different_form_section('10.save_section4a_ese_details', _user)
+    
+    ### section 4ac ###
+    section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
+    section4ac['variables']['formId'] = CommonPage.get_permit_id
+    section4ac['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
+    ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
     ### section 4b ###
-    section2 = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
-    section2['variables']['formId'] = CommonPage.get_permit_id
-    section2['variables']['submissionTimestamp'] = get_current_date_time
+    section4b = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
+    section4b['variables']['formId'] = CommonPage.get_permit_id
+    section4b['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
-      section2['variables']['answers'][1].to_h['value'] = '"yes"'
-      section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+      section4b['variables']['answers'][1].to_h['value'] = '"yes"'
+      section4b['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     elsif eic === 'eic_no'
-      section2['variables']['answers'][1].to_h['value'] = '"no"'
-      section2['variables']['answers'].pop
+      section4b['variables']['answers'][1].to_h['value'] = '"no"'
+      section4b['variables']['answers'].pop
     end
-    JsonUtil.create_request_file('ptw/mod_11.save_section4b_details', section2)
+    JsonUtil.create_request_file('ptw/mod_11.save_section4b_details', section4b)
     ServiceUtil.post_graph_ql('ptw/mod_11.save_section4b_details', _user)
+    ### end ###
 
     save_different_form_section('12.save_section5_details', _user)
 
@@ -241,11 +257,13 @@ class BypassPage < Section0Page
       when '4'
         'camera/4.save_section2_details'
       when '3a'
-        'camera/5.save_section3a_details'
+        'ptw/camera/5.save_section3a_details'
       when '3b'
         'camera/6.save_section3b_details'
       when '4a'
         'camera/9.save_section4a_details'
+      when '4ac'
+        'ptw/camera/10.save_section4a_checklist_details'
       when '14'
         'camera/14.submit_for_master_approval'
       end
@@ -260,11 +278,13 @@ class BypassPage < Section0Page
       when '4'
         'enclosed-workspace/4.save_section2_details'
       when '3a'
-        'enclosed-workspace/5.save_section3a_details'
+        'ptw/enclosed-workspace/5.save_section3a_details'
       when '3b'
         'enclosed-workspace/6.save_section3b_details'
       when '4a'
         'enclosed-workspace/9.save_section4a_details'
+      when '4ac'
+        'ptw/enclosed-workspace/10.save_section4a_checklist_details'
       when '14'
         'enclosed-workspace/14.submit_for_master_approval'
       end
@@ -279,11 +299,13 @@ class BypassPage < Section0Page
       when '4'
         'cold-work-cleaning-spill/4.save_section2_details'
       when '3a'
-        'cold-work-cleaning-spill/5.save_section3a_details'
+        'ptw/cold-work-cleaning-spill/5.save_section3a_details'
       when '3b'
         'cold-work-cleaning-spill/6.save_section3b_details'
       when '4a'
         'cold-work-cleaning-spill/9.save_section4a_details'
+      when '4ac'
+        'ptw/cold-work-cleaning-spill/10.save_section4a_checklist_details'
       when '14'
         'cold-work-cleaning-spill/14.submit_for_master_approval'
       end
@@ -298,11 +320,13 @@ class BypassPage < Section0Page
       when '4'
         'hotwork/4.save_section2_details'
       when '3a'
-        'hotwork/5.save_section3a_details'
+        'ptw/hotwork/5.save_section3a_details'
       when '3b'
         'hotwork/6.save_section3b_details'
       when '4a'
         'hotwork/9.save_section4a_details'
+      when '4ac'
+        'ptw/hotwork/10.save_section4a_checklist_details'
       when '14'
         'hotwork/14.submit_for_master_approval'
       end
@@ -317,11 +341,13 @@ class BypassPage < Section0Page
       when '4'
         'underwater-sim/4.save_section2_details'
       when '3a'
-        'underwater-sim/5.save_section3a_details'
+        'ptw/underwater-sim/5.save_section3a_details'
       when '3b'
         'underwater-sim/6.save_section3b_details'
       when '4a'
         'underwater-sim/9.save_section4a_details'
+      when '4ac'
+        'ptw/underwater-sim/10.save_section4a_checklist_details'
       when '14'
         'underwater-sim/14.submit_for_master_approval'
       end
@@ -336,11 +362,13 @@ class BypassPage < Section0Page
       when '4'
         'work-pressure-line/4.save_section2_details'
       when '3a'
-        'work-pressure-line/5.save_section3a_details'
+        'ptw/work-pressure-line/5.save_section3a_details'
       when '3b'
         'work-pressure-line/6.save_section3b_details'
       when '4a'
         'work-pressure-line/9.save_section4a_details'
+      when '4ac'
+        'ptw/work-pressure-line/10.save_section4a_checklist_details'
       when '14'
         'work-pressure-line/14.submit_for_master_approval'
       end

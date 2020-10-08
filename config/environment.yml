@@ -2,19 +2,22 @@
 dev:
   c2_preview: "http://cloud-edge.dev.solas.magellanx.io:8080"
   service: "http://cloud-edge.dev.solas.magellanx.io:4000/"
-
+  master_pin: "9707"
 sit:
   c2_preview: "http://cloud-edge.stage.solas.magellanx.io:8080"
   # c2_preview: "https://52.230.70.68:8443"
   service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
+  master_pin: "1111"
 
 sits:
   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
   service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
+  master_pin:
 
 uat:
   c2_preview: "http://104.215.192.113:8080"
   service: "http://104.215.192.11:4000"
+  master_pin:
 
 fauxton:
   base_sit_url: "http://admin:magellanx@52.230.70.68:5984"
@@ -41,7 +44,7 @@ ldev_fauxton_forms:
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:
-  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=%s&eventId=%s&staffId=%s"
+  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
 
@@ -50,6 +53,13 @@ maria_db:
   mariadb_user: "safevue@safevue-mariadb-dev"
   mariadb_pass: "64d58dba2c535612841489d69a4d9998"
   Emariadb_database: "replication"
+
+pin_management:
+  sit:
+    db: "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
+    vessel: "sit-vessel"
+  dev:
+
 
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##

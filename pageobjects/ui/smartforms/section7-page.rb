@@ -8,6 +8,7 @@ class Section7Page < Section6Page
   buttons(:non_oa_buttons, xpath: "//form[starts-with(@class,'FormComponent__Form-')]//button")
   button(:submit_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
   button(:update_btn, xpath: "//button[contains(.,'Updates Needed')]")
+  button(:activate_permit_btn, xpath: "//button[contains(.,'Activate Permit To Work')]")
 
   def activate_permit
     sign

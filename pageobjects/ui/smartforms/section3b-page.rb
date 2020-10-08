@@ -9,7 +9,6 @@ class Section3BPage < Section3APage
   element(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
   element(:last_assessment_date, id: 'lastAssessment')
   element(:last_assessment, id: 'lastAssessmentDra')
-  # text_field(:dra_reviewed_by, id: 'draReviewedBy')
   button(:work_side_inspected_by, id: 'workInspectionBy')
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]") # select, in class have current text
   elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")

@@ -1,0 +1,119 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "SIT/PTW/2020/024",
+    "sectionId": "4A_CW",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "cl_coldWork_vesselShortName",
+        "value": "\"SIT\""
+      },
+      {
+        "fieldId": "cl_coldWork_formNumber",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "locationOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_areThereAnyOtherPermitsInvolved",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_areThereAnyOtherPermitsInvolved_Specify",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenVented",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenDrained",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenWashed",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenPurged",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_linesBlanked",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_linesDisconnected",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_valvesClosed",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_othersInput",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_oil",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_gas",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_H2S",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_steam",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_pressure",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_isSurroundingAreaFreeFromHazards",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasEquipmentBeenIsolated",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasWarningNoticeBeenPosted",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_followingPersonProtectiveToBeWorn",
+        "value": "[\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_safetyOverall\"]"
+      },
+      {
+        "fieldId": "cl_coldWork_pipelineContainedFollowingMaterial",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_pipelineExpectedToContainTheFollowingHazardousMaterial",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_specialPrecautions",
+        "value": "\"Test Automation\""
+      }
+    ],
+    "submissionTimestamp": "2020-10-05T07:21:11.834Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $sectionId: String!, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, sectionId: $sectionId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

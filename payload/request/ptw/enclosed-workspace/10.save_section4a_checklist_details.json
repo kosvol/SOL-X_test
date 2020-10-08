@@ -1,7 +1,7 @@
 {
-  "operationName": null,
+  "operationName": "UpdateFormAnswers",
   "variables": {
-    "formId": "DEV/PTW/2020/045",
+    "formId": "SIT/PTW/2020/022",
     "sectionId": "4A_ESE",
     "answers": [
       {
@@ -26,7 +26,7 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_detailedRiskAssessmentCarriedOut",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenCleanedWhereNecessary",
@@ -34,7 +34,7 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenVentilatedByMechanicalMeans",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheGasMetersBeenTestedPriorToUse",
@@ -42,11 +42,11 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_srNoOfEquipmentUsed",
-        "value": "\"\""
+        "value": "\"1234\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenSegregated",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheEnclosedSpaceAtmosphereBeenTested",
@@ -54,11 +54,11 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForFrequentAtmosphereChecksToBeMade",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForTheSpaceToBeContinuouslyVentilated",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_areAccessAndIlluminationAdequate",
@@ -66,15 +66,15 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isRescueAndResuscitationEquipmentAvailable",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasAResponsibleCrewBeenDesignatedToBeInConstantAttendance",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheOfficerOfTheWatchBeenAdvisedOfThePlannedEntry",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasASystemOfCommunicationBetweenAllPartiesBeenTested",
@@ -82,15 +82,15 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_areEmergencyAndEvacuationProceduresEstablished",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isAllEquipmentUsedInGoodWorkingCondition",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_arePersonnelUsingPpe",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isEntryLogAvailableForRecordingWhoIsInTheSpace",
@@ -98,15 +98,15 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_safetyBriefingToolBoxMeetingConducted",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveReceivedInstructionsOrPersmissionFromTheMaster",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_section1OfThisPermitHaBeenSatisfactorilyCompleted",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedAndUnderstandTheCommunicationProcedures",
@@ -114,15 +114,19 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedUponAReportingInterval",
-        "value": "\"no\""
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_enclosedSpacesEntry_reportingIntervalMinutes",
+        "value": "1"
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_emergencyAndEvacuationProceduresHaveBeenUnderstood",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iAmFamiliarWithTheBreathingApparatus",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iAmAwareThatTheSpaceMustBeVacated",
@@ -130,15 +134,15 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_thoseEnteringTheSpaceAreaFamiliarWithAnyBreathingApparatus",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
-        "fieldId": "cl_enclosedSpacesEntry_guageAndCapacityOfAirSupply",
-        "value": "\"na\""
+        "fieldId": "cl_enclosedSpacesEntry_gaugeAndCapacityOfAirSupply",
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_pressureOfTheAirSupply",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_lowPressureAudibleAlarmIfFitted",
@@ -146,22 +150,22 @@
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_faceMask",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_theMeansOfCommunicationHasBeenTested",
-        "value": "\"na\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_allPersonnelEnteringTheSpaceHaveBeenProvidedWithRescueHarnesses",
-        "value": "\"no\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_personalGasDetectorsHaveBeenTested",
         "value": "\"yes\""
       }
     ],
-    "submissionTimestamp": "2020-07-02T04:47:31.941Z"
+    "submissionTimestamp": "2020-10-05T07:18:01.834Z"
   },
-  "query": "mutation ($formId: ID!, $sectionId: String!, $answers: [SerializedFormAnswerInput!]!, $submissionTimestamp: DateTime) {\n  updateFormAnswers(formId: $formId, sectionId: $sectionId, answers: $answers, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $sectionId: String!, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, sectionId: $sectionId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }

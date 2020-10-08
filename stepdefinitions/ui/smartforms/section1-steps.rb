@@ -6,12 +6,9 @@ Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
 end
 
-Then (/^I should see a list of sea states$/) do |_table|
-  is_true(on(Section1Page).is_sea_states?(_table.raw))
-end
-
-Then (/^I should see a list of wind forces$/) do |_table|
-  is_true(on(Section1Page).is_wind_forces?(_table.raw))
+Then (/^I should see a list of (sea states|wind forces)$/) do |_state,_table|
+  is_true(on(Section1Page).is_sea_states?(_table.raw)) if _state === "sea states"
+  is_true(on(Section1Page).is_wind_forces?(_table.raw)) if _state === "wind forces"
 end
 
 Then (/^I should not see previous button exists$/) do
@@ -21,40 +18,18 @@ end
 Then (/^I (should|should not) see maintenance duration section and require text$/) do |condition|
   if condition === 'should'
     is_true(on(Section1Page).is_maint_duration_dd_exists?)
-  end
-  if condition === 'should not'
+  elsif condition === 'should not'
     is_true(!on(Section1Page).is_maint_duration_dd_exists?)
   end
 end
 
-And (/^I submit after filling up section 1 with duration (more|less) than 2 hours$/) do |condition|
-  sleep 1
-  on(Section1Page).fill_all_of_section_1_w_duration(condition)
+And (/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
+  on(Section1Page).fill_default_section_1
+  step "I set maintenance during #{condition} than 2 hours"
 end
 
-Then (/^I should see display texts match for section1$/) do
-  on(Section0Page).labels_scrapper_elements.each do |elem|
-    p ">> #{elem.text}"
-  end
-  # section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section1_labels']
-  # page_elements = on(Section1Page).all_labels_elements
-  # if page_elements.size === 14
-  #   section1_labels_arr.delete_at(section1_labels_arr.size - 2)
-  # end
-  # page_elements.each_with_index do |label, _index|
-  #   is_equal(section1_labels_arr[_index], label.text)
-  # end
-end
-
-And (/^I fill up section 1$/) do
-  sleep 1
-  # on(Section4BPage).set_current_time
-  permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
-  if permits_arr.include? on(Section0Page).get_selected_level2_permit
-    on(Section1Page).fill_all_of_section_1_w_duration(%w[more less].sample)
-  else
-    on(Section1Page).fill_all_of_section_1_wo_duration
-  end
+And (/^I set maintenance during (more|less) than 2 hours$/) do |condition|
+  on(Section1Page).set_maintenance_duration(condition)
 end
 
 And (/^I should not see copy text regarding maintenance hour$/) do
@@ -62,11 +37,9 @@ And (/^I should not see copy text regarding maintenance hour$/) do
 end
 
 And (/^I fill up section 1 with default value$/) do
-  sleep 2
   permits_arr = YAML.load_file('data/permits.yml')['Critical Equipment Maintenance']
+  on(Section1Page).fill_default_section_1
   if permits_arr.include? on(Section0Page).get_selected_level2_permit
-    on(Section1Page).fill_default_section_1_w_duration(%w[more less].sample)
-  else
-    on(Section1Page).fill_default_section_1_wo_duration
+    on(Section1Page).set_maintenance_duration(%w[more less].sample)
   end
 end

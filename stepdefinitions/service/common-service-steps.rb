@@ -5,7 +5,7 @@ Given (/^I get (.+) request payload$/) do |request_payload_locality|
 end
 
 When (/^I hit graphql$/) do
-  ServiceUtil.post_graph_ql(@which_json, '1111')
+  ServiceUtil.post_graph_ql(@which_json, $master_pin)
 end
 
 Then (/^I should see error message (.+)$/) do |err_msg|

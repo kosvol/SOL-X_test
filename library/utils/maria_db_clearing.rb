@@ -1,27 +1,27 @@
-require 'mysql2'
-module MariaDB_clearing
-  class << self
+# require 'mysql2'
+# module MariaDB_clearing
+#   class << self
 
-    begin
-      mariadb_host = $obj_env_yml['maria_db']['mariadb_host']
-      mariadb_user = $obj_env_yml['maria_db']['mariadb_user']
-      mariadb_pass = $obj_env_yml['maria_db']['mariadb_pass']
-      mariadb_database = $obj_env_yml['maria_db']['mariadb_database']
+#     begin
+#       mariadb_host = $obj_env_yml['maria_db']['mariadb_host']
+#       mariadb_user = $obj_env_yml['maria_db']['mariadb_user']
+#       mariadb_pass = $obj_env_yml['maria_db']['mariadb_pass']
+#       mariadb_database = $obj_env_yml['maria_db']['mariadb_database']
 
-      connect = Mysql2::Client.new(:host => mariadb_host,
-                                   :username => mariadb_user,
-                                   :password => mariadb_pass,
-                                   :database => mariadb_database)
+#       connect = Mysql2::Client.new(:host => mariadb_host,
+#                                    :username => mariadb_user,
+#                                    :password => mariadb_pass,
+#                                    :database => mariadb_database)
 
-      connect.query("DELETE FROM replication.form where (vesselId = 'sit-vessel' and status = 'CLOSED'")
-      puts "The query has affected #{connect.affected_rows} rows"
+#       connect.query("DELETE FROM replication.form where (vesselId = 'sit-vessel' and status = 'CLOSED'")
+#       puts "The query has affected #{connect.affected_rows} rows"
 
-    rescue Mysql2::Error => e
-      puts e.errno
-      puts e.error
+#     rescue Mysql2::Error => e
+#       puts e.errno
+#       puts e.error
 
-    ensure
-      connect&.close
-    end
-  end
-end
+#     ensure
+#       connect&.close
+#     end
+#   end
+# end

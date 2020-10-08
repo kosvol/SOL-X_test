@@ -9,9 +9,9 @@ Then (/^I should see correct checklist (.+) pre-selected$/) do |_checklist|
   is_true(on(Section4APage).is_checklist_preselected(_checklist))
 end
 
-Then (/^I should see Work on Hazardous Substances checklist exists and uncheck$/) do
-  is_true(on(Section4APage).is_hazardous_substance_checklist)
-end
+# Then (/^I should see Work on Hazardous Substances checklist exists and uncheck$/) do
+#   is_true(on(Section4APage).is_hazardous_substance_checklist?)
+# end
 
 Then (/^I should see correct checklist content for (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
@@ -31,30 +31,23 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-And ('I sign checklist with respective checklist creator {int}') do |_pin|
-  step 'I press next for 1 times'
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  BrowserActions.scroll_down
-  step "I sign on checklist with #{_pin} pin"
-end
-
 And ('I sign on section with {int} pin') do |_pin|
-  on(Section4APage).sign_btn
+  BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
 end
 
 And ('I sign on checklist with {int} pin') do |_pin|
+  on(Section3APage).scroll_multiple_times(4)
   on(Section4APage).enter_pin_btn
   @@entered_pin = _pin
   on(PinPadPage).enter_pin(@@entered_pin)
 end
 
 Then (/^I should see signed details$/) do
-  on(Section0Page).set_current_time
+  on(CommonFormsPage).set_current_time
   on(Section4APage).is_signed_user_details?(@@entered_pin)
+  is_true(on(Section4APage).is_signature_pad?)
 end
 
 Then (/^I should see permit number, date and time populated$/) do
@@ -85,4 +78,66 @@ end
 
 And (/^I uncheck the pre-selected checklist$/) do
   on(Section4APage).uncheck_all_checklist
+end
+
+Then (/^I should see (.+) checklist questions$/) do |checklist|
+  @@checklist = checklist
+  base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+  on(Section4APage).section1_elements.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
+    # is_equal(_element.text,base_data[_index])
+    begin
+      does_include(_element.text,base_data[_index])
+    rescue
+      does_include(_element.text,"SIT/PTW/202")
+    end
+  end
+end
+
+And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
+  if which_box === "info" 
+    box_obj = on(Section4APage).info_box_elements
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
+  elsif which_box === "warning" 
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['warning_box']
+    box_obj = on(Section4APage).warning_box_elements
+  elsif which_box === "heavy" 
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['heavy']
+    box_obj = on(Section4APage).heavy_weather_note_elements
+  end
+
+  box_obj.each_with_index do |_element,_index|
+    p "#{_element.text}"
+    p "#{base_data[_index]}"
+    is_equal(_element.text,base_data[_index])
+  end
+end
+
+Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_or_not,_condition|
+  if _should_or_not === "should"
+    is_equal(on(Section4APage).tool_box_elements.size,36) if _condition === "selections"
+    if _condition === "questions"
+      is_equal(on(Section4APage).tool_box_elements.size,100)
+      is_equal(on(Section4APage).textarea_elements.size,2)
+      is_enabled(on(Section4APage).enter_pin_btn_element)
+    end
+  end
+  if _should_or_not === "should not"
+    is_equal(on(Section4APage).tool_box_elements.size,0) if _condition === "selections"
+    if _condition === "questions"
+      is_equal(on(Section4APage).tool_box_elements.size,1)
+      is_equal(on(Section4APage).textarea_elements.size,0)
+    end
+  end
+end
+
+Then (/^I should see rol checklist questions fields enabled$/) do
+  is_equal(on(Section4APage).tool_box_elements.size,48)
+  is_equal(on(ROLPage).boarding_ddl_elements.size,1)
+end
+
+And (/^I should not see enter pin button$/) do
+  sleep 1
+  is_disabled(on(Section4APage).enter_pin_btn_element)
 end

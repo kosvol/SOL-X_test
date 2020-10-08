@@ -12,10 +12,11 @@ Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   end
 end
 
-
 Then(/^I should see all questions for PRE and three answers each$/) do |_table|
-  is_true(on(PumpRoomEntry).are_questions?(_table.raw))
-  is_true(on(PumpRoomEntry).has_three_types_answers?(_table.raw))
+  on(Section4APage).section1_elements.each_with_index do |_element,_index|
+    is_equal(_element.text,_table.raw[_index].first)
+  end
+  is_equal(on(PumpRoomEntry).all_inputs_elements.size,39)
 end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|

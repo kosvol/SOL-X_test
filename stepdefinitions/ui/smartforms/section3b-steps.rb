@@ -12,16 +12,12 @@ Then (/^I should see By: Master after clicking Yes on Is DRA sent to office$/) d
   on(Section3BPage).radio_btn_elements[6].click
   BrowserActions.scroll_down
   is_equal(on(Section3BPage).generic_data_elements[1].text, 'Master')
+  is_equal(on(Section3BPage).generic_data_elements.size,2)
 end
 
 Then (/^I should not see By: Master after clicking No on Is DRA sent to office$/) do
   on(Section3BPage).radio_btn_elements[7].click
-  BrowserActions.scroll_down
-  # begin
-  #   tmp_element = on(Section3BPage).generic_data_elements[1]
-  #   not_to_exists(on(Section3BPage).generic_data_elements[1])
-  # rescue StandardError
-  # end
+  is_equal(on(Section3BPage).generic_data_elements.size,1)
 end
 
 Then (/^I should see crew drop down list after clicking Yes on Inspection carried out$/) do

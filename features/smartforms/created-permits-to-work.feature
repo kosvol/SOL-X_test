@@ -20,6 +20,20 @@ Feature: CreatedPermitToWork
   #   And I enter pin 9015
   #   Then I should see permit id populated
 
+  Scenario: Verify section 6 buttons display are correct
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    And I click on back arrow
+    And I navigate to "Created Permits to Work" screen
+    And I want to edit the newly created permit
+    And I enter pin 0311
+    And I navigate to section 6
+    Then I should see previous and close buttons
+    And I tear down created form
+
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -104,17 +118,20 @@ Feature: CreatedPermitToWork
       | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
       | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
 
-
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Hot Work permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
-    Then I should see checklist section with fields enabled
+    And I navigate to section 4a
+    Then I should see checklist selections fields enabled
+    When I press next for 1 times
+    Then I should see checklist questions fields enabled
+    When I press next for 1 times
     And I should see eic selection fields enabled
     And I tear down created form
 

@@ -2,15 +2,19 @@
 
 require './././support/env'
 
-class Section6Page < Section4BPage
+class Section6Page < Section5Page
   include PageObject
 
+  button(:remove_toxic_btn, xpath: "//button[contains(.,'Remove')]")
+  span(:gas_reader_by, xpath: "//span[contains(.,'By MAS Daniel Alcantara')]")
+  button(:add_gas_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
+  button(:add_toic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
+  button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
+  button(:enter_pin_and_submit_btn, xpath: "//button[contains(.,'Enter PIN & Submit')]")
+  button(:continue_btn, xpath: "//button[contains(.,'Continue')]")
   elements(:gas_yes_no, xpath: "//input[@name='gasReaderRequired']")
-  # button(:save_and_next_btn, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
-  button(:add_gas_reading_btn, xpath: "//div[starts-with(@class,'FormFieldGasReaderFactory__Container-')]/div/div/button")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
-  # buttons(:back_home, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
   buttons(:date_and_time_btn, xpath: "//button[@id='gasLastCalibrationDate']")
   div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
@@ -20,15 +24,40 @@ class Section6Page < Section4BPage
   @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"
   text_field(:gas_equipment_input, xpath: "//input[@id='gasEquipment']")
   text_field(:gas_sr_number_input, xpath: "//input[@id='gasSrNumber']")
+  text_field(:o2_input, xpath: "//input[@id='o2']")
+  text_field(:hc_input, xpath: "//input[@id='hc']")
+  text_field(:h2s_input, xpath: "//input[@id='h2s']")
+  text_field(:co_input, xpath: "//input[@id='co']")
+  text_field(:gas_name_input, xpath: "//input[@id='gasName']")
+  text_field(:threshold_input, xpath: "//input[@id='threshold']")
+  text_field(:reading_input, xpath: "//input[@id='reading']")
+  text_field(:unit_input, xpath: "//input[@id='unit']")
+
+  elements(:gas_reading_table, xpath: "//div[starts-with(@class,'cell')]")
+  elements(:toxic_gas_reading, xpath: "//li[@data-testid='gas-reader-list-item']//span")
+
   element(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
-  # @@gas_equipment_input = "//input[@id='gasEquipment']"
-  # @@gas_sr_number_input = "//input[@id='gasSrNumber']"
-  # @@gas_last_calibration_button = "//button[@id='gasLastCalibrationDate']"
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
+
+  def add_all_gas_readings
+    normal_gas_readings
+    sleep 1
+    gas_name_input_element.send_keys("Test")
+    threshold_input_element.send_keys("20")
+    reading_input_element.send_keys("1.5")
+    unit_input_element.send_keys("cc")
+    add_toic_gas_btn
+    sleep 1
+  end
+
+  def add_normal_gas_readings
+    normal_gas_readings
+    sleep 1
+  end
 
   def is_gas_reader_section?
     sleep 1
-    total_sections_elements.size >= 3
+    total_sections_elements.size > 3
   end
 
   def toggle_to_section(_which_section)
@@ -51,20 +80,13 @@ class Section6Page < Section4BPage
 
   private
 
-  def get_total_steps_to_section6(_which_section)
-    case _which_section
-    when '6'
-      9
-    when '4a'
-      5
-    when '3a'
-      1
-    when '3d'
-      4
-    when '4b'
-      7
-    when '3b'
-      2
-    end
+  def normal_gas_readings
+    add_gas_btn
+    sleep 1
+    o2_input_element.send_keys("1")
+    hc_input_element.send_keys("2")
+    h2s_input_element.send_keys("3")
+    co_input_element.send_keys("4")
+    continue_btn
   end
 end

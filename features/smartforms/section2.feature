@@ -6,53 +6,53 @@ Feature: Section2ApprovalAuthority
 
   Scenario: Verify user can see previous and next button
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I fill up section 1
-    Then I should see section 2
-    And I should see previous and next buttons
+    And I navigate to section 2
+    Then I should see previous and next buttons
     And I tear down created form
 
   Scenario Outline: Verify user can see the correct approval for non-OA
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    And I navigate to section 2
     Then I should see correct approval details for non-OA
     And I tear down created form
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                        |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                                     |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
-      | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
-      | Helicopter Operations                                         | Helicopter Operation                                                    |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
-      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard |
-      | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
-      | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
-      | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
-      | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
-      | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
-      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
+      | level_one_permit | level_two_permit                    |
+      | Hot Work         | Hot Work Level-2 in Designated Area |
+  # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+  # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
+  # | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
+  # | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
+  # | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
+  # | Helicopter Operations                                         | Helicopter Operation                                                    |
+  # | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
+  # | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
+  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
+  # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings |
+  # | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
+  # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
+  # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
+  # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
+  # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
+  # | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
+  # | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
+    And I navigate to section 2
     Then I should see correct approval details for maintenance duration more than 2 hours
     And I tear down created form
 
@@ -78,11 +78,12 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify OA is not require if maintenance on critical equipment is less than 2 hours
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration less than 2 hours
+    And I set maintenance during less than 2 hours
+    And I navigate to section 2
     Then I should see correct approval details for maintenance duration less than 2 hours
     And I tear down created form
 
@@ -108,11 +109,11 @@ Feature: Section2ApprovalAuthority
 
   Scenario Outline: Verify user can see the correct approval authority
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    And I navigate to section 2
     Then I should see correct approval details OA <office approval> and ship approval <ship approval>
     And I tear down created form
 
@@ -129,10 +130,10 @@ Feature: Section2ApprovalAuthority
 
   Scenario: Verify section2 screen text
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I fill up section 1
+    And I navigate to section 2
     Then I should see section 2
     And I should see display texts match for section2

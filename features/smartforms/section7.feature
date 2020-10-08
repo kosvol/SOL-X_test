@@ -16,6 +16,7 @@ Feature: Section7
     Examples:
       | permit_types          | permit_payload             |
       | Enclosed Spaces Entry | submit_enclose_space_entry |
+  # | underwater            | submit_underwater_simultaneous |
 
   Scenario Outline: Verify Master can review and update button for oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state

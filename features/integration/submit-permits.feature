@@ -4,6 +4,36 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
+  @x13
+  Scenario: Verify master can send for oa approval twice
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I fill section 1 of maintenance permit with duration more than 2 hours
+    When I press next for 10 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I should see comment reset
+    And I add comment on oa permit
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And Master request for oa permit update
+    And I reapprove the updated permit
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
+    And I click on active filter
+    Then I should see permit valid for 8 hours
+
   @x1
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
     Given I launch sol-x portal without unlinking wearable
@@ -25,7 +55,7 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I select yes to EIC
     And I press next for 1 times
-    And I fill up section 5
+    # And I fill up section 5
     And I press next for 1 times
     # select gas reader?
     Then I submit permit for Master Approval

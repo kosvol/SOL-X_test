@@ -20,4 +20,12 @@ class PinPadPage
   def backspace_once
     pin_pad_elements[10].click
   end
+
+  def get_pin_code(users, rank)
+    users.each do |user|
+      if user["crewMember"]["rank"] == rank
+        return user['pin'].to_i
+      end
+    end
+  end
 end

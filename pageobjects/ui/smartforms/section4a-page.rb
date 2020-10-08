@@ -17,12 +17,22 @@ class Section4APage < Section3DPage
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
   elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-  spans(:section1, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
-  divs(:subsection1ESE, xpath: "//div[starts-with(@id,'4A_ESE_subsection')]")
+
+  spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+
+  divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
+  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
+  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
+
+  divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
+
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
+
   text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
   # elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
@@ -44,7 +54,7 @@ class Section4APage < Section3DPage
     end
     sleep 1
     member_name_btn_elements.first.click
-    cancel_and_confirm_btn_elements.last.click
+    confirm_btn_elements.last.click
     sleep 1
   end
 
@@ -77,44 +87,13 @@ class Section4APage < Section3DPage
 
   def uncheck_all_checklist
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |_checklist, _index|
+    list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
-
       BrowserActions.scroll_down(element_yes[_index])
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
         get_na_elements[_index].click
       end
     end
-  end
-
-  def get_checklist_label(_which_content, checklist = nil)
-    case _which_content
-    when 'labels'
-      web_elements = label_text_elements
-    when 'sections'
-      web_elements = if checklist != 'Enclosed Space Entry Checklist'
-                       subsection1_elements
-                     else
-                       subsection1ESE_elements
-                     end
-    when 'subheaders'
-      web_elements = sub_headers_elements
-    when 'section1'
-      web_elements = section1_elements
-    when 'section2'
-      web_elements = section2_elements
-    when 'info_box'
-      web_elements = info_box_elements
-    when 'warning_box'
-      web_elements = warning_box_elements
-    end
-    data_arr = []
-    web_elements.each do |label|
-      data_arr << label.text
-    end
-    p ">> #{data_arr}"
-    data_arr
-  rescue StandardError
   end
 
   def is_signed_user_details?(_entered_pin)
@@ -127,11 +106,20 @@ class Section4APage < Section3DPage
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
+  def is_signature_pad?
+    begin
+      signature_element
+      true
+    rescue
+      false
+    end
+  end
+
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)
   def is_checklist_preselected(_checklist)
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
+    list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
@@ -139,58 +127,25 @@ class Section4APage < Section3DPage
     end
   end
 
-  def is_hazardous_substance_checklist
-    element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === 'Work on Hazardous Substances'
+  # def is_hazardous_substance_checklist?
+  #   element_yes = get_yes_elements
+  #   list_of_checklist_elements.each_with_index do |checklist, _index|
+  #     next unless checklist.text === 'Work on Hazardous Substances'
 
-      BrowserActions.scroll_down(element_yes[_index])
-      return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
-    end
-  end
+  #     BrowserActions.scroll_down(element_yes[_index])
+  #     return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
+  #   end
+  # end
 
   def select_checklist(_checklist)
+    sleep 1
+    BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
-    section1_elements.each_with_index do |checklist, _index|
+    list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index])
       element_yes[_index].click
-    end
-  end
-
-  def get_checklist_base_data(_checklist)
-    case _checklist
-    when 'Hot Work Outside Designated Area'
-      YAML.load_file('data/checklist/Hot Work Outside Designated Area.yml')
-    when 'Hot Work Within Designated Area'
-      YAML.load_file('data/checklist/Hot Work Within Designated Area.yml')
-    when 'Critical Equipment Maintenance Checklist'
-      YAML.load_file('data/checklist/Critical Equipment Maintenance.yml')
-    when 'Enclosed Space Entry Checklist'
-      YAML.load_file('data/checklist/Enclosed Space Entry Checklist.yml')
-    when 'Underwater Operation'
-      YAML.load_file('data/checklist/Underwater Operation.yml')
-    when 'Working Aloft/Overside'
-      YAML.load_file('data/checklist/Working Aloft Overside.yml')
-    when 'Work on Pressure Pipelines'
-      YAML.load_file('data/checklist/Work on pressure pipelines pressure vessels.yml')
-    when 'Use of ODME in Manual Mode'
-      YAML.load_file('data/checklist/ODME.yml')
-    when 'Personnel Transfer by Transfer Basket'
-      YAML.load_file('data/checklist/Personnel Transfer by Transfer Basket.yml')
-    when 'Helicopter Operation Checklist'
-      YAML.load_file('data/checklist/Helicopter Operation.yml')
-    when 'Work on Electrical Equipment and Circuits'
-      YAML.load_file('data/checklist/Work on Electrical Equipments and Circuit.yml')
-    when 'Rotational Portable Power Tools (PPT)'
-      YAML.load_file('data/checklist/Rotational Portable Power tools.yml')
-    when 'Use of Camera Checklist'
-      YAML.load_file('data/checklist/Use of Camera.yml')
-    when 'Work on Deck During Heavy Weather'
-      YAML.load_file('data/checklist/Working on Deck During Heavy Weather.yml')
-    when 'Cold Work Operation Checklist'
-      YAML.load_file('data/checklist/Cold Work.yml')
     end
   end
 

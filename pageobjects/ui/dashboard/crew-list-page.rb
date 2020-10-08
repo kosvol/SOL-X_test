@@ -98,9 +98,8 @@ class CrewListPage < DashboardPage
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
-    _element = $browser.find_element(:xpath, @@location_indicator)
+    _element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
-    BrowserActions.scroll_down
     color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     _element.css_value('background-color') === color
   end

@@ -6,6 +6,28 @@ Feature: Section8
 
   # Scenario: Verify date and time fields are automatically filled
 
+  Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
+    Given I launch sol-x portal
+    When I navigate to "SmartForms" screen
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Work on Pressure Pipeline/Vessels permit
+    And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I navigate to section 4a
+    And I select the matching Critical Equipment Maintenance Checklist checklist
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 6 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 13 times
+    And I sign the permit for submission to pending state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see all extra section8 questions
+
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
     And I set oa permit to ACTIVE state
@@ -85,10 +107,10 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types          | permit_payload             | rank            | pin  | user         | zoneid                     | mac               | location_stamp |
+      | permit_types | permit_payload | rank          | pin  | user         | zoneid                     | mac               | location_stamp |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
-  # | Hot Work                         | submit_hotwork              | ETO Reza Ilmi     | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
+      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

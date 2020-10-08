@@ -18,6 +18,10 @@
       },
       {
         "fieldId": "draCreatedDate",
+        "value": "{\"dateTime\":\"2020-10-05T07:57:07.795Z\",\"utcOffset\":7}"
+      },
+      {
+        "fieldId": "draCreatedDate",
         "value": "{\"dateTime\":\"2020-07-23T03:07:00.907Z\",\"utcOffset\":1}"
       },
       {

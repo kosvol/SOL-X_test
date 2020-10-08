@@ -6,6 +6,7 @@ class ActiveStatePage < CreatedPermitToWorkPage
   include PageObject
 
   spans(:permit_validity_timer, xpath: "//span[@data-testid='time-left']")
+  buttons(:view_btn, xpath: "//button[contains(.,'View')]")
 
   def get_permit_validity_period(_index)
     permit_validity_timer_elements[_index].text

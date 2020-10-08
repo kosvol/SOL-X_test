@@ -10,8 +10,8 @@ Feature: PendingApprovalPermit
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I submit after filling up section 1 with duration less than 2 hours
-    When I press next for 9 times
+    And I fill section 1 of maintenance permit with duration less than 2 hours
+    When I press next for 10 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter

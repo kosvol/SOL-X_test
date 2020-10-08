@@ -4,16 +4,16 @@ Feature: Section4AChecklistSelection
   I want to ...
   So that ...
 
-  Scenario: Verify Work on Hazardous Substances checklist exists
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Anchor permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
-    And I navigate to section 4a
-    Then I should see Work on Hazardous Substances checklist exists and uncheck
-    And I tear down created form
+  # Scenario: Verify Work on Hazardous Substances checklist exists
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Critical Equipment Maintenance permit
+  #   And I select Maintenance on Anchor permit for level 2
+  #   And I set maintenance during more than 2 hours
+  #   And I navigate to section 4a
+  # Then I should see Work on Hazardous Substances checklist exists and uncheck
+  # And I tear down created form
 
   Scenario Outline: Verify checklist is pre-selected for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -21,7 +21,7 @@ Feature: Section4AChecklistSelection
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I submit after filling up section 1 with duration more than 2 hours
+    And I set maintenance during more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     And I tear down created form
@@ -52,7 +52,7 @@ Feature: Section4AChecklistSelection
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1
+    # And I fill up section 1 with default value
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     And I tear down created form
@@ -78,10 +78,11 @@ Feature: Section4AChecklistSelection
       | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
       | Use of non-intrinsically safe Camera                          | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
       | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings Onboard         | Cold Work Operation Checklist             |
+      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings                 | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                                | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
       | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                             | Cold Work Operation Checklist             |
+      | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                             | Work on Hazardous Substances              |

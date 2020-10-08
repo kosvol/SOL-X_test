@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+Then (/^I (should|should not) see competent persong sign button disabled$/) do |_condition|
+  is_enabled(on(Section8Page).competent_person_btn_element) if _condition === "should not"
+  is_disabled(on(Section8Page).competent_person_btn_element) if _condition === "should"
+end
+
 Then (/^I should see issue date display$/) do
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT+')
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
@@ -17,18 +22,19 @@ end
 
 And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
-  if _update_or_terminate === 'update active'
+  if _update_or_terminate === 'update'
     on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   elsif _update_or_terminate === 'terminate'
     on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click
   end
+  sleep 1
   step "I enter pin #{_pin}"
 end
 
 And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
   sleep 1
-  step 'I press next for 10 times'
-  _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_reading_btn_element) : is_disabled(on(Section6Page).add_gas_reading_btn_element)
+  step 'I navigate to section 6'
+  _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
 end
 
 Then (/^I should see permit valid for (.+) hours$/) do |_duration|
@@ -37,21 +43,24 @@ Then (/^I should see permit valid for (.+) hours$/) do |_duration|
 end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
-  sleep 3
-  step 'I click on pending approval filter'
+  sleep 2
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
   step 'I sign on canvas'
-  # on(BypassPage).set_rol_to_active(_duration)
 end
 
-And (/^I approve maintenance permit$/) do
+And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 11 times'
   sleep 1
-  on(Section7Page).non_oa_buttons_elements[0].click
+  step 'I sign the permit for submission to pending state'
+end
+
+And (/^I sign the permit for submission to pending state$/) do
+  on(Section7Page).activate_permit_btn
   step 'I enter pin 1111'
   on(Section7Page).activate_permit
 end
+
