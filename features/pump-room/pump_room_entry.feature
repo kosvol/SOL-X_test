@@ -22,7 +22,7 @@ Feature: PumpRoomEntry
     And I should see the label 'Deleted P/R Entries'
     And I click on back arrow
 
-  @x1234
+
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
