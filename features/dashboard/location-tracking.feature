@@ -31,7 +31,6 @@ Feature: LocationTracking
     And I should see Main Deck location indicator showing 2 on location pin
     And I unlink all crew from wearable
 
-  # @x11
   # Scenario: Verify location pin not visible on zone not linked by wearable
   #   Given I launch sol-x portal
   #   When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:B0:00:00

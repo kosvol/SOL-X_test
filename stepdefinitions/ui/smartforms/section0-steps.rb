@@ -39,6 +39,7 @@ And (/^I click on (.+) filter$/) do |state|
   elsif state === 'update needed'
     BrowserActions.click_element(on(Section0Page).permit_filter_elements[1])
   elsif state === 'active'
+    sleep 2
     BrowserActions.click_element(on(Section0Page).permit_filter_elements[2])
   elsif state === 'pending withdrawal'
     BrowserActions.click_element(on(Section0Page).permit_filter_elements[3])
