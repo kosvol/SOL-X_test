@@ -12,11 +12,10 @@ Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   end
 end
 
-Then(/^I should see all questions for PRE and three answers each$/) do |_table|
-  on(Section4APage).section1_elements.each_with_index do |_element,_index|
-    is_equal(_element.text,_table.raw[_index].first)
+Then(/^I should see all questions for PRE$/) do |_table|
+  on(PumpRoomEntry).questions_elements.each_with_index do |_element, _index|
+    is_equal(_element.text, _table.raw[_index].first)
   end
-  is_equal(on(PumpRoomEntry).all_inputs_elements.size,39)
 end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|
@@ -155,6 +154,7 @@ end
 
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
   is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
+  step 'I click on back arrow'
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|
