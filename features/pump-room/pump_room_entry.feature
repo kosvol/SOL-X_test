@@ -78,22 +78,8 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I should see all questions for PRE and three answers each
-      | Has the exhaust ventilation system been switched on and running for at least 15 mins?                                            |
-      | Are all the Pump room lights switched on?                                                                                        |
-      | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?                              |
-      | Has communication with the responsible officer been established?                                                                 |
-      | Has the exhaust uptake been set to draw air from the lowest point in the pump room?                                              |
-      | Is the Emergency evacuation harness ready for use?                                                                               |
-      | Have the personal monitors for persons entering the pump room been checked for readiness?                                        |
-      | Are the personnel entering the pump room aware of the locations of the ELSA / EEBD and familiar with its use?                    |
-      | Are the personnel entering the pump room aware of the reporting interval?                                                        |
-      | Are emergency and evacuation procedures established and understood by the Person(s) entering the pump room?                      |
-      | Have the names of the person(s) entering the pump room been recorded in the Port operations log together with the time of entry? |
-      | Are the person(s) entering the pump room aware that after exiting the space a report to the responsible officer must be made?    |
-      | Are the persons entering the pump room familiar with the emergency alarm meant for  CO2 / Foam flooding?                         |
-      | Are the persons entering the pump room familiar with the location of the emergency trips for the cargo pumps?                    |
-      | Is the pumproom bilge dry?                                                                                                       |
+    Then I should see the right order of elements
+
 
 
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
