@@ -7,6 +7,8 @@ Feature: LocationTracking
   # @skip
   # Scenario: Verify wearable is single sign on
 
+  Scenario: Verify PRE active tab is green with active PRE
+
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inactive crew count is correct
