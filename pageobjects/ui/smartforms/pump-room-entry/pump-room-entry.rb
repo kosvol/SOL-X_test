@@ -22,7 +22,7 @@ class PumpRoomEntry < Section9Page
 
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
-  @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
+  @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
 
