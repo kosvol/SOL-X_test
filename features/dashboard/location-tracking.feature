@@ -7,7 +7,15 @@ Feature: LocationTracking
   # @skip
   # Scenario: Verify wearable is single sign on
 
+  Scenario: Verify PRE active tab is grey with inactive PRE
+    Given I launch sol-x portal
+    Then I should not see PRE tab active on dashboard
+
   Scenario: Verify PRE active tab is green with active PRE
+    Given I launch sol-x portal
+    When I submit a scheduled PRE permit
+    And I sleep for 160 seconds
+    Then I should see PRE tab active on dashboard
 
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
@@ -32,12 +40,6 @@ Feature: LocationTracking
     Then I should see Full Ship location indicator showing 2 on location pin
     And I should see Main Deck location indicator showing 2 on location pin
     And I unlink all crew from wearable
-
-  # Scenario: Verify location pin not visible on zone not linked by wearable
-  #   Given I launch sol-x portal
-  #   When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:B0:00:00
-  #   And I should not see Pump Room location indicator
-  #   And I unlink all crew from wearable
 
   Scenario Outline: Verify active crew member location changed
     Given I launch sol-x portal

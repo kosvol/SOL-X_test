@@ -137,3 +137,18 @@ end
 And (/^I should not see (.+) location indicator$/) do |_location|
   is_true(!on(DashboardPage).get_location_pin_text(_location))
 end
+
+When (/^I submit a scheduled PRE permit$/) do
+  on(BypassPage).trigger_pre_submission("1111")
+end
+
+Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
+  p ">> #{on(DashboardPage).pre_indicator}"
+  if _condition === "should"
+    is_equal(on(DashboardPage).pre_indicator,"Active")
+    is_true(on(DashboardPage).is_pre_indicator_color?("active"))
+  elsif _condition === "should not"
+    is_equal(on(DashboardPage).pre_indicator,"Not Active")
+    is_true(on(DashboardPage).is_pre_indicator_color?("inactive"))
+  end
+end

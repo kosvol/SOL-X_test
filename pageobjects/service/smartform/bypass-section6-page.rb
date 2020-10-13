@@ -5,6 +5,36 @@ require './././support/env'
 class BypassPage < Section0Page
   include PageObject
 
+  def trigger_pre_submission(_user)
+    create_form_pre = JSON.parse JsonUtil.read_json('pre/01.create-pre-form')
+    create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('pre/mod-01.create-pre-form', create_form_pre)
+    ServiceUtil.post_graph_ql('pre/mod-01.create-pre-form', _user)
+    CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+
+    ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
+    @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
+    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre['variables']['answers'][27]['value'] = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+    update_form_pre['variables']['answers'][28]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset("4")}\",\"utcOffset\":#{@get_offset}}"
+    JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
+    ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
+
+    update_form_pre = JSON.parse JsonUtil.read_json('pre/03.update-form-status')
+    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/03.update-form-status', update_form_pre)
+    ServiceUtil.post_graph_ql('pre/03.update-form-status', _user)
+
+    update_form_pre = JSON.parse JsonUtil.read_json('pre/04.update-form-status')
+    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/04.update-form-status', update_form_pre)
+    ServiceUtil.post_graph_ql('pre/04.update-form-status', _user)
+  end
+
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json('ptw/0.create_form_ptw')
@@ -203,10 +233,10 @@ class BypassPage < Section0Page
 
   private
 
-  def cal_new_offset_time
+  def cal_new_hour_offset_time(_offset)
     @current_time = Time.now.utc.strftime('%H')
     begin
-      time_w_offset = @current_time.to_i + @get_offset.to_i
+      time_w_offset = @current_time.to_i + _offset.to_i
     rescue StandardError
       time_w_offset = @current_time.to_i + get_current_time_format_non_format.to_i
     end
@@ -218,6 +248,17 @@ class BypassPage < Section0Page
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
+  def cal_new_minutes_offset_time
+    @current_minute = Time.now.utc.strftime('%M')
+    current_minute = @current_minute.to_i + 2
+    if current_minute > 60
+      current_minute = current_minute - 60
+      current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
+    else
+      current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
+    end
+  end
+
   def save_different_form_section(_which_json, _user)
     section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
     section['variables']['formId'] = CommonPage.get_permit_id
@@ -226,8 +267,12 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql("ptw/mod#{_which_json.sub('/', '')}", _user)
   end
 
-  def get_current_date_time_with_offset
-    Time.now.utc.strftime("%Y-%m-%dT#{cal_new_offset_time}:%M:%S.901Z")
+  def get_current_hours_time_with_offset(_offset)
+    Time.now.utc.strftime("%Y-%m-%dT#{cal_new_hour_offset_time(_offset)}:%M:%S.901Z")
+  end
+
+  def get_current_minutes_time_with_offset
+    Time.now.utc.strftime("%Y-%m-%dT%H:#{cal_new_minutes_offset_time}:%S.901Z")
   end
 
   def get_current_date_time
