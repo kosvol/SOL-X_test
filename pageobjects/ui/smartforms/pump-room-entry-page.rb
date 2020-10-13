@@ -17,8 +17,7 @@ class PumpRoomEntry < Section9Page
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-
-  elements(:questions, xpath: "//div/span")
+  elements(:all_inputs, xpath: "//input[starts-with(@name,'pre_section2_pumpRoomEntry')]")
 
   @@alert_text =  "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
