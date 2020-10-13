@@ -183,6 +183,7 @@ Feature: PumpRoomEntry
     Then I activate the current PRE form
     When (for per) I navigate to "Scheduled" list
     And I should see the current PRE in the "Scheduled" list
+    And I click on back arrow
     When I wait to activate PRE. Delay 120
     And (for per) I navigate to "Active PRE" list
     And I should see the current PRE in the "Active PRE" list
