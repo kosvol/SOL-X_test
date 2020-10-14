@@ -160,7 +160,6 @@ end
 
 And('I set the activity end time in {int} minutes') do |minutes|
   on(PumpRoomEntry).reduce_time_activity(minutes)
-  sleep 90
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
@@ -249,4 +248,25 @@ And(/^Navigate to PRE Display$/) do
   sleep 1
   step 'I press the "Enter Pin & Apply" button'
   sleep 1
+end
+
+
+Then (/^I should see (green|red) background color$/) do |condition|
+  background_color = @browser.find_element(:xpath, "//*[@id='root']/main").css_value('background-color')
+  if condition == "green"
+    green = "rgba(67, 160, 71, 1)"
+    is_equal(background_color, green)
+
+  elsif condition == "red"
+    red = "rgba(216, 75, 75, 1)"
+    is_equal(background_color, red)
+  end
+end
+
+And(/^I should see (Active|Terminated) PRE status on screen$/) do |condition|
+  if condition == "Active"
+    is_equal(@browser.find_element(:xpath, "//*[contains(text(),'Permit')]").text, "Permit Activated")
+  elsif condition == "Terminated"
+    is_equal(@browser.find_element(:xpath, "//*[contains(text(),'Permit')]").text, "Permit Terminated")
+  end
 end

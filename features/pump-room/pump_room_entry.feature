@@ -166,10 +166,13 @@ Feature: PumpRoomEntry
     Then I activate the current PRE form
     When (for per) I navigate to "Scheduled" list
     And I should see the current PRE in the "Scheduled" list
+    And I click on back arrow
     When I wait to activate PRE. Delay 120
     And (for per) I navigate to "Active PRE" list
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
+    And I sleep for 90 seconds
+    And I click on back arrow
     When I navigate to "Closed P/R Entries" screen
     Then I should see current PRE is auto terminated
 
@@ -291,6 +294,29 @@ Feature: PumpRoomEntry
       | Chief Officer   | 8383 |
       | Chief Engineer  | 8248 |
       | Second Engineer | 2523 |
+
+  Scenario: Verify the PRED background color and buttons depends on the activity PRE
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    When I activate the current PRE form
+    And I wait to activate PRE. Delay 120
+    Then Navigate to PRE Display
+    And I enter pin 8383
+    And I should see Active PRE status on screen
+    And I should see green background color
+    And (for pre) I should see the enabled "Home" button
+    And (for pre) I should see the enabled "Entry Log" button
+    And (for pre) I should see the enabled "Permit" button
+    Then I set the activity end time in 1 minutes
+    And I sleep for 90 seconds
+    And I should see red background color
+    And I should see Terminated PRE status on screen
+    And (for pre) I should see the enabled "Home" button
+    And (for pre) I should see the disabled "Entry Log" button
+    And (for pre) I should see the disabled "Permit" button
 
 
 
