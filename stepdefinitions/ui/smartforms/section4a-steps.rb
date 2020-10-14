@@ -90,7 +90,7 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
     begin
       does_include(_element.text,base_data[_index])
     rescue
-      does_include(_element.text,"SIT/PTW/202")
+      does_include(_element.text,"PTW/TEMP/")
     end
   end
 end
