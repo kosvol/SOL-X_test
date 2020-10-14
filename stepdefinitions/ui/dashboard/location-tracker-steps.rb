@@ -139,7 +139,7 @@ And (/^I should not see (.+) location indicator$/) do |_location|
 end
 
 When (/^I submit a scheduled PRE permit$/) do
-  on(BypassPage).trigger_pre_submission("1111")
+  on(BypassPage).trigger_pre_submission("8383")
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
