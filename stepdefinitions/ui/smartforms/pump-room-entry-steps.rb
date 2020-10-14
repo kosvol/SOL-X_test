@@ -12,11 +12,12 @@ Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   end
 end
 
-Then(/^I should see all questions for PRE and three answers each$/) do |_table|
-  on(Section4APage).section1_elements.each_with_index do |_element,_index|
-    is_equal(_element.text,_table.raw[_index].first)
+Then(/^I should see the right order of elements$/) do
+
+  base_data = YAML.load_file("data/pre/pump-room-entries.yml")['questions']
+  on(PumpRoomEntry).form_structure_elements.each_with_index do |_element,_index|
+    is_equal(_element.text,base_data[_index])
   end
-  is_equal(on(PumpRoomEntry).all_inputs_elements.size,39)
 end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|

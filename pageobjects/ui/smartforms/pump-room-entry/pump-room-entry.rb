@@ -12,6 +12,8 @@ class PumpRoomEntry < Section9Page
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
+  elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'SIT/'))]")
+
 
   @@text_areas = '//textarea'
   @@permit_duration = "//button[contains(text(),'%s')]"
@@ -22,7 +24,7 @@ class PumpRoomEntry < Section9Page
 
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
-  @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]"
+  @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
 
