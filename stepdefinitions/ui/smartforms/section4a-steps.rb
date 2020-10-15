@@ -87,11 +87,11 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
     p "#{_element.text}"
     p "#{base_data[_index]}"
     # is_equal(_element.text,base_data[_index])
-    begin
+    # begin
       does_include(_element.text,base_data[_index])
-    rescue
-      does_include(_element.text,"PTW/TEMP/")
-    end
+    # rescue
+      # does_include(_element.text,"PTW/TEMP/")
+    # end
   end
 end
 
