@@ -14,10 +14,21 @@ class DashboardPage < WearablePage
   spans(:permits_count, xpath: '//span[@class="stat"]')
   div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
+  span(:pre_indicator, xpath: "//span[starts-with(@class,'PREIndicator__Status-')]")
   @@ship_area = "//li/button[contains(.,'%s')]"
+  @@pre_indicator = "//span[starts-with(@class,'PREIndicator__Status-')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
   @@location_pin = "//a[@data-testid='location-pin']"
+
+  def is_pre_indicator_color?(_condition)
+    tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
+    if _condition.downcase === "active"
+      tmp.css_value('color').to_s === "rgba(0, 112, 26, 1)"
+    elsif _condition.downcase === "inactive"
+      tmp.css_value('color').to_s === "rgba(104, 110, 119, 1)"
+    end
+  end
 
   def get_location_pin_text(location)
     area_dd
