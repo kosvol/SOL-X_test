@@ -307,16 +307,16 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     And I should see Active PRE status on screen
     And I should see green background color
-    And (for pre) I should see the enabled "Home" button
-    And (for pre) I should see the enabled "Entry Log" button
-    And (for pre) I should see the enabled "Permit" button
+    And (for pre) I should see the enabled "Home" element
+    And (for pre) I should see the enabled "Entry Log" element
+    And (for pre) I should see the enabled "Permit" element
     Then I set the activity end time in 1 minutes
     And I sleep for 90 seconds
     And I should see red background color
     And I should see Terminated PRE status on screen
-    And (for pre) I should see the enabled "Home" button
-    And (for pre) I should see the disabled "Entry Log" button
-    And (for pre) I should see the disabled "Permit" button
+    And (for pre) I should see the enabled "Home" element
+    And (for pre) I should see the disabled "Entry Log" element
+    And (for pre) I should see the disabled "Permit" element
 
 
 

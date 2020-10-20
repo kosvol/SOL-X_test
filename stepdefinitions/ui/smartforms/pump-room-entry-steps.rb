@@ -81,13 +81,24 @@ And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
   is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, like))
 end
 
-And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
-  if _condition === 'disabled'
-    is_false(on(PumpRoomEntry).is_button_enabled?(button))
-  end
+And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" (button|element)$/) do |_condition, button, type|
+  if type == button
+    if _condition === 'disabled'
+      is_false(on(PumpRoomEntry).is_button_enabled?(button))
+    end
 
-  if _condition === 'enabled'
-    is_true(on(PumpRoomEntry).is_button_enabled?(button))
+    if _condition === 'enabled'
+      is_true(on(PumpRoomEntry).is_button_enabled?(button))
+    end
+
+  elsif type == "element"
+    if _condition === 'disabled'
+      is_false(on(PumpRoomEntry).is_element_disabled_by_att?(button))
+    end
+
+    if _condition === 'enabled'
+      is_true(on(PumpRoomEntry).is_element_disabled_by_att?(button))
+    end
   end
 end
 
