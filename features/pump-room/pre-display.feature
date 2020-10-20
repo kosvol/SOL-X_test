@@ -44,8 +44,7 @@ Feature: PumpRoomEntry
       | Second Engineer | 2523 |
 
 
-  @xxx3
-  Scenario: Verify the PRED background color and buttons depends on the activity PRE
+  Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
@@ -61,6 +60,8 @@ Feature: PumpRoomEntry
     And (for pred) I should see the enabled "Entry Log" button
     And (for pred) I should see the enabled "Permit" button
     And (for pred) I should see warning box for activated status
+    Then I press the "Entry Log" button
+    And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
     Then I set the activity end time in 1 minutes
     And I sleep for 90 seconds
     And I should see red background color

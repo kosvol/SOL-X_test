@@ -6,6 +6,7 @@ class PreDisplay < PumpRoomEntry
 
   element('warning_box', xpath: "//div[starts-with(@class,'WarningBox')]")
   element('permit_status', xpath: "//*[contains(text(),'Permit')]")
+  element('info_gas_testing_is_missing', xpath: "//div[starts-with(@class,'GasTesting')]")
 
   #@browser.find_element(:xpath, "//div[starts-with(@class,'WarningBox')]").text
 
@@ -20,7 +21,5 @@ class PreDisplay < PumpRoomEntry
   rescue StandardError
     false
   end
-
-
 
 end

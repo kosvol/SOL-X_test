@@ -41,3 +41,10 @@ end
 And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
     is_equal(on(PreDisplay).permit_status_element.text, status)
 end
+
+And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do
+  box_text = on(PreDisplay).info_gas_testing_is_missing_element.text
+  base_data_text = YAML.load_file("data/pre/pre-display.yml")['gas_reading_is_missing'].first
+  is_equal(box_text, base_data_text)
+end
+

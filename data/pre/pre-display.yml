@@ -1,3 +1,5 @@
 warning_box_activated: ["Important!\nCall the watch officer & report that you are about to enter.\nUpdate gas reading by tapping on Gas Testing below."]
 
 warning_box_deactivated: ["Do Not Enter!\nCall the watch officer.\nReport that you need a new permit."]
+
+gas_reading_is_missing: ["Please Terminate This Permit and\nCreate A New Permit\nInitial gas reading for this permit is missing."]
