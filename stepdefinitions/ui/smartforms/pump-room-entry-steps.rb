@@ -82,6 +82,7 @@ And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" (button|element)$/) do |_condition, button, type|
+  #element - instead 'button' for a situation when the method enabled? don't work correctly
   if type == button
     if _condition === 'disabled'
       is_false(on(PumpRoomEntry).is_button_enabled?(button))
