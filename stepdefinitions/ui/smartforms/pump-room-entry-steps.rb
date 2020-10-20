@@ -81,9 +81,7 @@ And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
   is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, like))
 end
 
-And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" (button|element)$/) do |_condition, button, type|
-  #element - instead 'button' for a situation when the method enabled? don't work correctly
-  if type == button
+And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
     if _condition === 'disabled'
       is_false(on(PumpRoomEntry).is_button_enabled?(button))
     end
@@ -91,16 +89,6 @@ And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" (button|element)
     if _condition === 'enabled'
       is_true(on(PumpRoomEntry).is_button_enabled?(button))
     end
-
-  elsif type == "element"
-    if _condition === 'disabled'
-      is_false(on(PumpRoomEntry).is_element_disabled_by_att?(button))
-    end
-
-    if _condition === 'enabled'
-      is_true(on(PumpRoomEntry).is_element_disabled_by_att?(button))
-    end
-  end
 end
 
 And('I fill up {string}') do |section|
@@ -252,33 +240,4 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   end
 end
 
-And(/^Navigate to PRE Display$/) do
-  on(NavigationPage).tap_hamburger_menu
-  on(NavigationPage).select_nav_category("Settings")
-  sleep 1
-  step 'I press the "Pump Room Display" button'
-  sleep 1
-  step 'I press the "Enter Pin & Apply" button'
-  sleep 1
-end
 
-
-Then (/^I should see (green|red) background color$/) do |condition|
-  background_color = @browser.find_element(:xpath, "//*[@id='root']/main").css_value('background-color')
-  if condition == "green"
-    green = "rgba(67, 160, 71, 1)"
-    is_equal(background_color, green)
-
-  elsif condition == "red"
-    red = "rgba(216, 75, 75, 1)"
-    is_equal(background_color, red)
-  end
-end
-
-And(/^I should see (Active|Terminated) PRE status on screen$/) do |condition|
-  if condition == "Active"
-    is_equal(@browser.find_element(:xpath, "//*[contains(text(),'Permit')]").text, "Permit Activated")
-  elsif condition == "Terminated"
-    is_equal(@browser.find_element(:xpath, "//*[contains(text(),'Permit')]").text, "Permit Terminated")
-  end
-end
