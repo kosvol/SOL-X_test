@@ -80,7 +80,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition,_times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)
@@ -110,4 +110,8 @@ end
 
 And (/^I navigate to section (.+)$/) do |_which_section|
   on(Section6Page).toggle_to_section(_which_section)
+end
+
+And (/^I set time$/) do
+  on(CommonFormsPage).set_current_time
 end

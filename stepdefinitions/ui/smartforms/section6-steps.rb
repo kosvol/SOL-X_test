@@ -23,7 +23,7 @@ end
 
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
   BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first) if _approval_or_review === "Approval"
   BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first) if _approval_or_review === "Review"
   step 'I enter pin 9015'
@@ -72,10 +72,11 @@ And(/^I (should|should not) see gas_last_calibration_button$/) do |_condition|
 end
 
 Then (/^I should see gas reading still exists$/) do
-    is_equal(on(Section6Page).o2_input_element.text,"1")
-    is_equal(on(Section6Page).hc_input_element.text,"2")
-    is_equal(on(Section6Page).h2s_input_element.text,"3")
-    is_equal(on(Section6Page).co_input_element.text,"4")
+  sleep 1
+  is_equal(on(Section6Page).o2_input,"1")
+  is_equal(on(Section6Page).hc_input,"2")
+  is_equal(on(Section6Page).h2s_input,"3")
+  is_equal(on(Section6Page).co_input,"4")
 end
 
 Then (/^I should be able to continue to next page$/) do
@@ -109,8 +110,6 @@ And (/^I add (all|only normal) gas readings$/) do |_condition|
   on(Section6Page).review_sign_btn
   on(Section3DPage).sign_for_gas
   on(Section6Page).enter_pin_and_submit_btn
-  step 'I enter pin 1111'
-  on(Section6Page).set_current_time
 end
 
 And (/^I will see popup dialog$/) do

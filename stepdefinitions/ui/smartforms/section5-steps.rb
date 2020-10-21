@@ -38,7 +38,7 @@ And (/^I sign on role$/) do
   on(Section5Page).sign_btn_elements.first.click
   step "I enter pin 9015"
   step 'I sign on canvas'
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
 end
 
 Then (/^I should see signed role details$/) do

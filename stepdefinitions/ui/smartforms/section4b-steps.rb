@@ -20,7 +20,7 @@ Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
 end
 
 When (/^I select yes to EIC$/) do
@@ -30,7 +30,7 @@ end
 
 When (/^I select yes to EIC certification$/) do
   on(Section4BPage).yes_no_btn_elements[0].click
-  on(Section4BPage).set_current_time
+  step 'I set time'
   on(Section4BPage).create_eic_btn
   sleep 1
 end

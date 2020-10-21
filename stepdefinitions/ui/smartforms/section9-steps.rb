@@ -13,6 +13,6 @@ Then (/^I (should|should not) see terminate permit to work and request update bu
 end
 
 Then (/^I should see date and time pre-fill on section 9$/) do
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
   is_true(on(Section9Page).is_termination_date_time_filled?)
 end

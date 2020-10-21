@@ -37,6 +37,8 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
+    And I enter pin 9015
+    And I set time
     And I will see popup dialog
     Then I should see gas reading display with toxic gas
     And I tear down created form
@@ -52,7 +54,7 @@ Feature: Section6
     And I am able to delete toxic gas inputs
     And I tear down created form
 
-  Scenario: Verify new gas reading without the initial tosic gas will show '-' on the row
+  Scenario Outline: Verify AGT can add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -61,6 +63,40 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
+    And I enter pin <pin>
+    And I set time
+    Then I will see popup dialog
+
+    Examples:
+      | rank                       | pin  |
+      | Master                     | 1111 |
+      | Additional Master          | 9015 |
+      | Chief Officer              | 8383 |
+      | Additional Chief  Officer  | 2761 |
+      | Second Officer             | 6268 |
+      | Additional Second Officer  | 7865 |
+      | Third Officer              | 0159 |
+      | Additional Third Officer   | 2674 |
+      | Chief Engineer             | 8248 |
+      | Additional Chief Engineer  | 1122 |
+      | Second Engineer            | 2523 |
+      | Additional Second Engineer | 3030 |
+      | Third Engineer             | 3038 |
+      | Additional Third Engineer  | 6727 |
+      | Fourth Engineer            | 1311 |
+      | A/B                        | 6316 |
+
+  Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I add all gas readings
+    And I enter pin 9015
+    And I set time
     And I will see popup dialog
     Then I should see gas reading display with toxic gas
     And I add only normal gas readings

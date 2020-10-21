@@ -37,8 +37,8 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | user         | zoneid                     | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                      |
-      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | user         | zoneid                     | mac               | location_stamp   | level_one_permit      | level_two_permit      | checklist                      |
+      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
@@ -58,10 +58,10 @@ Feature: Section4BEIC
     And I tear down created form
 
     Examples:
-      | user         | pin  | zoneid                     | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | SIT_SOLX0004 | 8383 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | SIT_SOLX0013 | 2523 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | SIT_SOLX0017 | 0856 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user         | pin  | zoneid                     | mac               | location_stamp   | level_one_permit                | level_two_permit            | checklist                             |
+      | SIT_SOLX0004 | 8383 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | SIT_SOLX0013 | 2523 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | SIT_SOLX0017 | 0856 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal

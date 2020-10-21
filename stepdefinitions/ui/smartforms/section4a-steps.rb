@@ -45,7 +45,7 @@ And ('I sign on checklist with {int} pin') do |_pin|
 end
 
 Then (/^I should see signed details$/) do
-  on(CommonFormsPage).set_current_time
+  step 'I set time'
   on(Section4APage).is_signed_user_details?(@@entered_pin)
   is_true(on(Section4APage).is_signature_pad?)
 end
