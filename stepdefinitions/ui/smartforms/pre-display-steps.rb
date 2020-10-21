@@ -1,11 +1,9 @@
 And(/^Navigate to PRE Display$/) do
   on(NavigationPage).tap_hamburger_menu
   on(NavigationPage).select_nav_category("Settings")
-  sleep 1
   step 'I press the "Pump Room Display" button'
-  sleep 1
+  sleep 0.5
   step 'I press the "Enter Pin & Apply" button'
-  sleep 1
 end
 
 And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
@@ -21,7 +19,7 @@ end
 And (/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|
   if which_box === "warning"
     box_text = on(PreDisplay).warning_box_element.text
-    base_data_text = YAML.load_file("data/pre/pre-display.yml")['warning_box_' + status].first
+    base_data_text = YAML.load_file("data/pre/pre-display.yml")['warning_box'][status]
     is_equal(box_text, base_data_text)
   end
 end
@@ -44,7 +42,7 @@ end
 
 And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do
   box_text = on(PreDisplay).info_gas_testing_is_missing_element.text
-  base_data_text = YAML.load_file("data/pre/pre-display.yml")['gas_reading_is_missing'].first
+  base_data_text = YAML.load_file("data/pre/pre-display.yml")['gas_reading_is_missing']
   is_equal(box_text, base_data_text)
 end
 
