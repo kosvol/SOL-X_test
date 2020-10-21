@@ -8,7 +8,11 @@ class Section5Page < Section4BPage
   button(:roles_and_resp_btn, xpath: "//div[starts-with(@class,'values-area')]/button")
   buttons(:roles_btn, xpath: '//ul/li/button')
   elements(:responsibility_box, xpath: "//li[@data-testid='responsibility-box']")
+  elements(:non_crew_checkbox, xpath: "//li[@data-testid='responsibility-box']/div/label/span")
+  text_field(:other_name, xpath: "//input[@id='otherName']")
+  text_field(:other_company, xpath: "//input[@id='otherCompany']")
   buttons(:sign_btn, xpath: "//button[contains(.,'Enter PIN & Sign')]")
+  span(:non_crew_copy_text, xpath: "//span[contains(.,'Ship Staff to use PIN for non-crew member to enter signature')]")
   elements(:roles_name, xpath: '//li/h3')
   spans(:signed_details, xpath: "//div/span")
 
@@ -37,10 +41,10 @@ class Section5Page < Section4BPage
     false
   end
 
-  def select_roles_and_responsibility(_total_roles)
+  def select_roles_and_responsibility(_roles)
     roles_and_resp_btn
     sleep 1
-    for i in 0..(_total_roles.to_i-1)
+    for i in 0..(_roles.to_i-1)
       roles_btn_elements[i].click
     end
     sleep 1

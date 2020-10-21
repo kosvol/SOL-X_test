@@ -15,7 +15,7 @@ class CommonFormsPage < CommonPage
   button(:back_btn, xpath: "//button[contains(.,'Back')]")
   button(:cancel_btn, xpath: "//button[contains(.,'Cancel')]")
   button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
-  button(:done_btn, xpath: "//button[contains(.,'Done')]")
+  buttons(:done_btn, xpath: "//button[contains(.,'Done')]")
   buttons(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
   button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")

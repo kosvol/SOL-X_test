@@ -114,7 +114,7 @@ end
 
 And (/^I will see popup dialog$/) do
   is_equal(on(Section6Page).gas_reader_by,"By MAS Daniel Alcantara")
-  on(Section6Page).done_btn
+  on(Section6Page).done_btn_elements.last.click
 end
 
 Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condition|
