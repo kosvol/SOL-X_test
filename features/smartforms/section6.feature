@@ -54,6 +54,25 @@ Feature: Section6
     And I am able to delete toxic gas inputs
     And I tear down created form
 
+  Scenario Outline: Verify non AGT can add gas readings
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I add all gas readings
+    And I enter pin <pin>
+    Then I should see not authorize error message
+
+    Examples:
+      | rank  | pin  |
+      | A/B   | 6316 |
+      | 4/O   | 8078 |
+      | A 4/O | 0752 |
+      | BOS   | 1018 |
+
   Scenario Outline: Verify AGT can add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -84,7 +103,6 @@ Feature: Section6
       | Third Engineer             | 3038 | By 3/E Crew Test Engineer |
       | Additional Third Engineer  | 6727 | By A 3/E James Pike       |
       | Fourth Engineer            | 1311 | By 4/E Tori Kuncoro       |
-      | A/B                        | 6316 | By A/B Suren Wirasinha    |
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
