@@ -31,6 +31,21 @@ module GasReading
       :unit => "PPM"
   }
 
+  def parse_gas_data
+    #from pages with gas reading
+    names = @browser.find_elements(:xpath, "//div[@data-testid='gas-header']")
+    arr_name = []
+    names.each do |name|
+      arr_name.push(name.text)
+    end
+
+    values = @browser.find_elements(:xpath, "//div[@data-testid='gas-reading']")
+    arr_values = []
+    values.each do |value|
+      arr_values.push(value.text)
+    end
+    Hash[arr_name.zip(arr_values)]
+  end
 
   def fill_up_section(section)
     if section == "Gas Test Record"

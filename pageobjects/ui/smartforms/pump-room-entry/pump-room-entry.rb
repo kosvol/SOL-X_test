@@ -16,8 +16,9 @@ class PumpRoomEntry < Section9Page
 
 
   @@text_areas = '//textarea'
-  @@permit_duration = "//button[contains(text(),'%s')]"
+  @@permit_duration = "//button[contains(text(),'%s hours')]"
   @@button = "//span[contains(text(),'%s')]//.."
+
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
@@ -118,6 +119,7 @@ class PumpRoomEntry < Section9Page
     BrowserActions.scroll_down
     el.enabled?
   end
+
 
   def select_answer(answer, question)
     xpath_str = @@radio_buttons % [question]
