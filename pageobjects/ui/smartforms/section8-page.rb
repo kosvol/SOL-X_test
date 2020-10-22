@@ -9,6 +9,7 @@ class Section8Page < Section7Page
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
+  button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
 
   span(:normalization_question1, xpath: "//span[contains(.,'Work completed. PTW cancellation (if applicable).')]")
   span(:normalization_question2, xpath: "//span[contains(.,'Relevant Departments personnel informed as applicable')]")
