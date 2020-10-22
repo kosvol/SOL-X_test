@@ -15,8 +15,8 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and lin
 end
 
 Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
-  BrowserActions.scroll_click(on(Section4BPage).competent_person_btn_element) if ["competent person","non competent person"].include? _condition
-  BrowserActions.scroll_click(on(Section4BPage).issuing_authority_btn_element) if ["issuing authority","non issuing authority"].include? _condition
+  BrowserActions.scroll_click(on(Section8Page).competent_person_btn_element) if ["competent person","non competent person"].include? _condition
+  BrowserActions.scroll_click(on(Section8Page).issuing_authority_btn_element) if ["issuing authority","non issuing authority"].include? _condition
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
