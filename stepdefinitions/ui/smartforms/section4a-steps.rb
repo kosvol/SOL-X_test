@@ -83,7 +83,7 @@ end
 Then (/^I should see (.+) checklist questions$/) do |checklist|
   @@checklist = checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  on(Section4APage).section1_elements.each_with_index do |_element,_index|
+  on(Section4APage).rol_checklist_elements.each_with_index do |_element,_index|
     p "#{_element.text}"
     p "#{base_data[_index]}"
     # is_equal(_element.text,base_data[_index])

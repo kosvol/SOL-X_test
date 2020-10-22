@@ -23,6 +23,7 @@ class Section4APage < Section3DPage
 
   spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+  elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
 
   divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
