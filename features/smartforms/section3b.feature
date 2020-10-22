@@ -5,6 +5,7 @@ Feature: Section3BDRA
   So that ...
 
   # Scenario Outline: Verify All Permit - DRA section B - DRA number and Date of Last Assessment to be pre-populated - Created state
+
   # Scenario: Verify last assessment is pre-populated
 
   Scenario: Verify Work site inspection Yes name list display all crews

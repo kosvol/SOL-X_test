@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-Then (/^I (should|should not) see competent persong sign button disabled$/) do |_condition|
+Then (/^I (should|should not) see competent person sign button disabled$/) do |_condition|
+  sleep 1
   is_enabled(on(Section8Page).competent_person_btn_element) if _condition === "should not"
   is_disabled(on(Section8Page).competent_person_btn_element) if _condition === "should"
 end

@@ -21,7 +21,7 @@ Feature: ActivePermit
     And I click on active filter
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 8
-    Then I should see competent persong sign button disabled
+    Then I should see competent person sign button disabled
     And I tear down created form
 
   # PENDING NO FLOW
@@ -253,7 +253,6 @@ Feature: ActivePermit
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
       | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
       | Hot Work                         | submit_hotwork               | 4/E                        | 1311 |
-      | Hot Work                         | submit_hotwork               | A/B                        | 6316 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -275,6 +274,7 @@ Feature: ActivePermit
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
   # | Hot Work                         | submit_hotwork              | A 3/E                      | 6727 |
 
+  @x12
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
@@ -285,4 +285,5 @@ Feature: ActivePermit
     Examples:
       | permit_types          | permit_payload             | rank  | pin  |
       | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
+      | Hot Work              | submit_hotwork             | A/B   | 6316 |
 # | Hot Work                           | submit_hotwork               | ETO   | 0856 |

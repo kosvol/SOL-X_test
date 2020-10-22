@@ -55,8 +55,9 @@ end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  sleep 4
-  is_equal(on(Section3CPage).dra_team_name_elements.first.text, @@form_data['section3c'])
+  sleep 2
+  is_equal(on(Section3CPage).master_element.text, @@form_data['section3c'][0])
+  is_equal(on(Section3CPage).am_element.text, @@form_data['section3c'][1])
 end
 
 And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|

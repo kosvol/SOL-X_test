@@ -117,7 +117,6 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4685 | Underwater Operations                                         | Underwater Operation at night                                 |
       | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
       | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | A/B                        | 6316 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
