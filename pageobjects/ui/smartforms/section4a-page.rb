@@ -17,13 +17,14 @@ class Section4APage < Section3DPage
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
   elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-  
+
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
   spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
+  element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
 
   divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
@@ -90,6 +91,7 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
+
       BrowserActions.scroll_down(element_yes[_index])
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
         get_na_elements[_index].click
@@ -108,12 +110,10 @@ class Section4APage < Section3DPage
   end
 
   def is_signature_pad?
-    begin
-      signature_element
-      true
-    rescue
-      false
-    end
+    signature_element
+    true
+  rescue StandardError
+    false
   end
 
   # ##Blue rgba(24, 144, 255, 1)
