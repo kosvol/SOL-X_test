@@ -123,5 +123,5 @@ Feature: Section5
       | 2/E   | 2523 | 2/E Poon Choryi        |
       | A 2/E | 3030 | A 2/E Hyman Huang      |
       | 3/E   | 3038 | 3/E Crew Test Engineer |
-      | A 3/E | 6727 | A 3/E James Pikes      |
+      | A 3/E | 6727 | A 3/E James Pike       |
       | 4/E   | 1311 | 4/E Tori Kuncoro       |

@@ -112,8 +112,8 @@ And (/^I add (all|only normal) gas readings$/) do |_condition|
   on(Section6Page).enter_pin_and_submit_btn
 end
 
-And (/^I will see popup dialog$/) do
-  is_equal(on(Section6Page).gas_reader_by,"By MAS Daniel Alcantara")
+And (/^I will see popup dialog with (.+) crew rank and name$/) do |_rank_name|
+  is_equal(on(Section6Page).gas_reader_by,_rank_name)
   on(Section6Page).done_btn_elements.last.click
 end
 
