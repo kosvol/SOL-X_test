@@ -4,7 +4,6 @@ Feature: Section7
   I want to ...
   So that ...
 
-  @x11
   Scenario Outline: Verify Master can see approve and update buttons for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I sleep for 1 seconds
