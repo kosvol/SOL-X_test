@@ -21,7 +21,7 @@ Feature: ActivePermit
     And I click on active filter
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 8
-    Then I should see competent person sign button disabled
+    Then I should not see competent person sign button exists
     And I tear down created form
 
   # PENDING NO FLOW

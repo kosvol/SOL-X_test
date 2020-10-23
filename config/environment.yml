@@ -56,7 +56,7 @@ maria_db:
 
 pin_management:
   sit:
-    db: "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
+    db: "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
     vessel: "sit-vessel"
   dev:
 

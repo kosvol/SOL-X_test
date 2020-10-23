@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
-Then (/^I (should|should not) see competent person sign button disabled$/) do |_condition|
+Then (/^I (should|should not) see competent person sign button exists$/) do |_condition|
   sleep 1
-  is_enabled(on(Section8Page).competent_person_btn_element) if _condition === "should not"
-  is_disabled(on(Section8Page).competent_person_btn_element) if _condition === "should"
+  if _condition === 'should not'
+    not_to_exists(on(Section8Page).competent_person_btn_element)
+  end
+  if _condition === 'should'
+    to_exists(on(Section8Page).competent_person_btn_element)
+  end
 end
 
 Then (/^I should see issue date display$/) do
@@ -64,4 +68,3 @@ And (/^I sign the permit for submission to pending state$/) do
   step 'I enter pin 1111'
   on(Section7Page).activate_permit
 end
-
