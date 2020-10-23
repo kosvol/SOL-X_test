@@ -25,6 +25,22 @@ class Section8Page < Section7Page
   span(:normalization_pipe_question1, xpath: "//span[contains(.,'Have all Valves and Pipes been re-secured properly on completion of the work?')]")
   span(:normalization_pipe_question2, xpath: "//span[contains(.,'Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?')]")
 
+  def sign_eic_or_issuer(_condition)
+    if ['competent person', 'non competent person'].include? _condition
+      begin
+        BrowserActions.scroll_click(competent_person_btn_element.click)
+      rescue StandardError
+        BrowserActions.scroll_click(sign_btn_elements.first)
+      end
+    end
+    if ['issuing authority', 'non issuing authority'].include? _condition
+      begin
+        BrowserActions.scroll_click(issuing_authority_btn_element.click)
+      rescue StandardError
+        BrowserActions.scroll_click(sign_btn_elements.last)
+      end
+    end
+  end
 
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp)

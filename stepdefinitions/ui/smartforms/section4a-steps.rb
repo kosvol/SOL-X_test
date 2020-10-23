@@ -9,10 +9,6 @@ Then (/^I should see correct checklist (.+) pre-selected$/) do |_checklist|
   is_true(on(Section4APage).is_checklist_preselected(_checklist))
 end
 
-# Then (/^I should see Work on Hazardous Substances checklist exists and uncheck$/) do
-#   is_true(on(Section4APage).is_hazardous_substance_checklist?)
-# end
-
 Then (/^I should see correct checklist content for (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
   step 'I press next for 1 times'
@@ -80,12 +76,12 @@ And (/^I uncheck the pre-selected checklist$/) do
   on(Section4APage).uncheck_all_checklist
 end
 
-Then (/^I should see (.+) checklist questions$/) do |checklist|
-  @@checklist = checklist
+Then (/^I should see (.+) checklist questions$/) do |_checklist|
+  @@checklist = _checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  on(Section4APage).rol_checklist_elements.each_with_index do |_element, _index|
+  on(Section4APage).get_checklist_locator(@@checklist).each_with_index do |_element, _index|
     p _element.text.to_s
-    p (base_data[_index]).to_s
+    p base_data[_index].to_s
     # is_equal(_element.text,base_data[_index])
     # begin
     does_include(_element.text, base_data[_index])
@@ -93,7 +89,9 @@ Then (/^I should see (.+) checklist questions$/) do |checklist|
     # does_include(_element.text,"PTW/TEMP/")
     # end
   end
-  is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
+  if @@checklist === 'ROL'
+    is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
+  end
 end
 
 And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
