@@ -3,8 +3,12 @@
 Then (/^I should see master (approval|review) button only$/) do |_condition|
   on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).submit_btn_elements.size, '1')
-  is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval") if _condition === "approval"
-  is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review") if _condition === "review"
+  if _condition === 'approval'
+    is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval")
+  end
+  if _condition === 'review'
+    is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review")
+  end
 end
 
 Then (/^I (should|should not) see gas reader sections$/) do |_condition|
@@ -24,8 +28,12 @@ end
 Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   sleep 1
   step 'I set time'
-  BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first) if _approval_or_review === "Approval"
-  BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first) if _approval_or_review === "Review"
+  if _approval_or_review === 'Approval'
+    BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+  end
+  if _approval_or_review === 'Review'
+    BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
+  end
   step 'I enter pin 9015'
   step 'I sign on canvas'
   # data collector; will evolve
@@ -73,18 +81,18 @@ end
 
 Then (/^I should see gas reading still exists$/) do
   sleep 1
-  is_equal(on(Section6Page).o2_input,"1")
-  is_equal(on(Section6Page).hc_input,"2")
-  is_equal(on(Section6Page).h2s_input,"3")
-  is_equal(on(Section6Page).co_input,"4")
+  is_equal(on(Section6Page).o2_input, '1')
+  is_equal(on(Section6Page).hc_input, '2')
+  is_equal(on(Section6Page).h2s_input, '3')
+  is_equal(on(Section6Page).co_input, '4')
 end
 
 Then (/^I should be able to continue to next page$/) do
   sleep 1
-  on(Section6Page).o2_input="123"
-  on(Section6Page).hc_input="123"
-  on(Section6Page).h2s_input="123"
-  on(Section6Page).co_input="123"
+  on(Section6Page).o2_input = '123'
+  on(Section6Page).hc_input = '123'
+  on(Section6Page).h2s_input = '123'
+  on(Section6Page).co_input = '123'
   is_enabled(on(Section6Page).continue_btn_element)
 end
 
@@ -105,38 +113,47 @@ And (/^I add all gas readings and cancel from pin screen$/) do
 end
 
 And (/^I add (all|only normal) gas readings$/) do |_condition|
-  on(Section6Page).add_all_gas_readings if _condition === "all"
-  on(Section6Page).add_normal_gas_readings if _condition === "only normal"
+  on(Section6Page).add_all_gas_readings if _condition === 'all'
+  on(Section6Page).add_normal_gas_readings if _condition === 'only normal'
   on(Section6Page).review_sign_btn
   on(Section3DPage).sign_for_gas
   on(Section6Page).enter_pin_and_submit_btn
 end
 
 And (/^I will see popup dialog with (.+) crew rank and name$/) do |_rank_name|
-  is_equal(on(Section6Page).gas_reader_by,_rank_name)
+  is_equal(on(Section6Page).get_gas_added_by(_rank_name).text, _rank_name)
+  # is_equal(on(Section6Page).gas_reader_by,_rank_name)
   on(Section6Page).done_btn_elements.last.click
 end
 
 Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condition|
   on(Section3APage).scroll_multiple_times(2)
-  is_equal(on(Section6Page).gas_reading_table_elements[1].text,"Initial") if _condition === "with"
-  is_equal(on(Section6Page).gas_reading_table_elements[1].text,"2nd Reading") if _condition === "without"
-  is_equal(on(Section6Page).gas_reading_table_elements[2].text,"#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")
-  is_equal(on(Section6Page).gas_reading_table_elements[3].text,"1 %")
-  is_equal(on(Section6Page).gas_reading_table_elements[4].text,"2 % LEL")
-  is_equal(on(Section6Page).gas_reading_table_elements[5].text,"3 PPM")
-  is_equal(on(Section6Page).gas_reading_table_elements[6].text,"4 PPM")
-  is_equal(on(Section6Page).gas_reading_table_elements[7].text,"1.5 CC") if _condition === "with"
-  is_equal(on(Section6Page).gas_reading_table_elements[7].text,"- ") if _condition === "without"
-  is_equal(on(Section6Page).gas_reading_table_elements[8].text,"MAS Daniel Alcantara")
+  if _condition === 'with'
+    is_equal(on(Section6Page).gas_reading_table_elements[1].text, 'Initial')
+  end
+  if _condition === 'without'
+    is_equal(on(Section6Page).gas_reading_table_elements[1].text, '2nd Reading')
+  end
+  is_equal(on(Section6Page).gas_reading_table_elements[2].text, "#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")
+  is_equal(on(Section6Page).gas_reading_table_elements[3].text, '1 %')
+  is_equal(on(Section6Page).gas_reading_table_elements[4].text, '2 % LEL')
+  is_equal(on(Section6Page).gas_reading_table_elements[5].text, '3 PPM')
+  is_equal(on(Section6Page).gas_reading_table_elements[6].text, '4 PPM')
+  if _condition === 'with'
+    is_equal(on(Section6Page).gas_reading_table_elements[7].text, '1.5 CC')
+  end
+  if _condition === 'without'
+    is_equal(on(Section6Page).gas_reading_table_elements[7].text, '- ')
+  end
+  is_equal(on(Section6Page).gas_reading_table_elements[8].text, 'A/M Atif Hayat')
 end
 
 And (/^I am able to delete toxic gas inputs$/) do
   on(Section6Page).add_all_gas_readings
   sleep 1
-  is_equal(on(Section6Page).toxic_gas_reading_elements.size,4)
+  is_equal(on(Section6Page).toxic_gas_reading_elements.size, 4)
   on(Section6Page).toxic_gas_reading_elements.last.click
   on(Section6Page).remove_toxic_btn
   sleep 1
-  is_equal(on(Section6Page).toxic_gas_reading_elements.size,0)
+  is_equal(on(Section6Page).toxic_gas_reading_elements.size, 0)
 end

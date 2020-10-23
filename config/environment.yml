@@ -4,14 +4,14 @@ dev:
   service: "http://cloud-edge.dev.solas.magellanx.io:4000/"
   master_pin: "9707"
 sit:
-  c2_preview: "http://cloud-edge.stage.solas.magellanx.io:8080"
+  c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8080"
   # c2_preview: "https://52.230.70.68:8443"
-  service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
+  service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
   master_pin: "1111"
 
 sits:
   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
-  service: "http://cloud-edge.stage.solas.magellanx.io:4000/"
+  service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
   master_pin:
 
 uat:
@@ -59,7 +59,6 @@ pin_management:
     db: "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
     vessel: "sit-vessel"
   dev:
-
 
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##
