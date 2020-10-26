@@ -20,8 +20,8 @@ uat:
   master_pin:
 
 fauxton:
-  base_sit_url: "http://admin:magellanx@52.230.70.68:5984"
-  base_dev_url: "http://admin:magellanx@23.97.50.121:5984"
+  base_sit_url: "https://admin:magellanx@52.230.70.68:5984"
+  base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
   delete_form: "/forms/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
   get_forms: "/forms/_all_docs?skip=0&limit=10000"
