@@ -22,7 +22,8 @@ class Section4BPage < Section4APage
     sleep 1
     Log.instance.info(">>> #{eic_date_and_time_elements[1].text} vs #{get_current_time_format}")
     Log.instance.info(">>> #{eic_date_and_time_elements[0].text} vs #{get_current_date_format_with_offset}")
-    Log.instance.info(">>> #{generic_data_elements[1].text.include? "SIT/EIC/#{BrowserActions.get_year}"}")
-    ((eic_date_and_time_elements[0].text === get_current_date_format_with_offset) && (eic_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'SIT/EIC/'))
+    # Log.instance.info(">>> #{generic_data_elements[1].text.include? "SIT/EIC/#{BrowserActions.get_year}"}")
+    # Log.instance.info(">>> #{generic_data_elements[1].text.include? 'EIC/TEMP'/}")
+    ((eic_date_and_time_elements[0].text === get_current_date_format_with_offset) && (eic_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'EIC/TEMP/'))
   end
 end
