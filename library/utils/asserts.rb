@@ -3,7 +3,6 @@
 require 'rspec/expectations'
 
 module AssertionUtil
-
   def is_enabled(element)
     expect(element.enabled?).to be true
   end

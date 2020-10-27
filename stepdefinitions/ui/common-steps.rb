@@ -66,16 +66,15 @@ end
 And(/^I enter pin for rank (.*)$/) do |rank|
   step 'I get pinpad/get-pin-by-role request payload'
   step 'I hit graphql'
-  @@entered_pin  = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body["data"]['users'], rank)
+  @@entered_pin = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
   on(PinPadPage).enter_pin(@@entered_pin)
   sleep 1
 end
 
-
-And (/^I press (next|previous) for (.+) times$/) do |_condition,_times|
+And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   (1.._times.to_i).each do |_i|
     sleep 1
-    _condition === "next" ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
+    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
   end
 end
 

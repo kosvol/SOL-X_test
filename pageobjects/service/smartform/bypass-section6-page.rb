@@ -18,7 +18,7 @@ class BypassPage < Section0Page
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][27]['value'] = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
-    update_form_pre['variables']['answers'][28]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset("4")}\",\"utcOffset\":#{@get_offset}}"
+    update_form_pre['variables']['answers'][28]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset('4')}\",\"utcOffset\":#{@get_offset}}"
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
@@ -77,13 +77,13 @@ class BypassPage < Section0Page
     section3a['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_5.save_section3a_details', section3a)
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
-    ### end ### 
+    ### end ###
 
     save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
     save_different_form_section('7.save_section3c_details', _user)
     save_different_form_section('8.save_section3d_details', _user)
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
-    
+
     ### section 4ac ###
     section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
     section4ac['variables']['formId'] = CommonPage.get_permit_id
@@ -157,7 +157,7 @@ class BypassPage < Section0Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = "http://52.230.70.68:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -252,7 +252,7 @@ class BypassPage < Section0Page
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 2
     if current_minute > 60
-      current_minute = current_minute - 60
+      current_minute -= 60
       current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
     else
       current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
