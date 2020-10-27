@@ -17,5 +17,13 @@ class CommonPage
     def get_permit_id
       @@permit_id
     end
+
+    def set_dra_permit_id(_dra_permit)
+      @@dra_permit_id = _dra_permit
+    end
+
+    def get_dra_permit_id
+      @@dra_permit_id
+    end
   end
 end

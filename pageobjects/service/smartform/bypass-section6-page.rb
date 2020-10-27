@@ -56,7 +56,8 @@ class BypassPage < Section0Page
     init_dra['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
-    dra_permit_number = ServiceUtil.get_response_body['data']['createForm']['_id']
+    # dra_permit_number = ServiceUtil.get_response_body['data']['createForm']['_id']
+    CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### save section 0
     section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
@@ -126,25 +127,40 @@ class BypassPage < Section0Page
     ### SUBMIT ###
     save_different_form_section(payload_mapper(_permit_type, '14'), _user)
 
+    ### put to states
     if _state === 'active'
-      submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-      submit_active['variables']['formId'] = CommonPage.get_permit_id
-      submit_active['variables']['submissionTimestamp'] = get_current_date_time
-      JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
-      ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
-
-      submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
-      submit_active['variables']['formId'] = CommonPage.get_permit_id
-      submit_active['variables']['submissionTimestamp'] = get_current_date_time
-      submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-      if _permit_type != 'submit_underwater_simultaneou'
-        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
-      else
-        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
-      end
-      JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
-      ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
+      submit_active = set_permit_status('ACTIVE')
+      submit_permit_for_status_change(submit_active, _user, _permit_type)
+      set_update_require_for_permit(_permit_type, _user)
     end
+    ### End submit states
+  end
+
+  def submit_permit_for_status_change(_submit_active, _user, _permit_type)
+    _submit_active['variables']['formId'] = CommonPage.get_permit_id
+    _submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', _submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
+  end
+
+  def set_update_require_for_permit(_permit_type, _user)
+    _update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    _update_permit['variables']['formId'] = CommonPage.get_permit_id
+    _update_permit['variables']['submissionTimestamp'] = get_current_date_time
+    _update_permit['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    if _permit_type != 'submit_underwater_simultaneou'
+      _update_permit['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
+    else
+      _update_permit['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
+    end
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', _update_permit)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
+  end
+
+  def set_permit_status(_status)
+    submit_status = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_status['variables']['newStatus'] = _status
+    submit_status
   end
 
   def set_oa_permit_to_pending_office_appr

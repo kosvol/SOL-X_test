@@ -4,9 +4,25 @@ Feature: Section3BDRA
   I want to ...
   So that ...
 
-  # Scenario Outline: Verify All Permit - DRA section B - DRA number and Date of Last Assessment to be pre-populated - Created state
-
-  # Scenario: Verify last assessment is pre-populated
+  Scenario: Verify last assessment is pre-populated
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click on Submit for Termination
+    And I enter pin 9015
+    And I submit permit for termination
+    And I enter pin 9015
+    And I sign on canvas
+    And I click on back to home
+    And I click on pending withdrawal filter
+    And I terminate the permit
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 3b
+    Then I should see dra number and last assessment date populated
+    And I tear down created form
 
   Scenario: Verify Work site inspection Yes name list display all crews
     Given I launch sol-x portal

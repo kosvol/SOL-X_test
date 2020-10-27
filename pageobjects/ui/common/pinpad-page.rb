@@ -23,9 +23,7 @@ class PinPadPage
 
   def get_pin_code(users, rank)
     users.each do |user|
-      if user["crewMember"]["rank"] == rank
-        return user['pin'].to_i
-      end
+      return user['pin'].to_i if user['crewMember']['rank'] == rank
     end
   end
 end

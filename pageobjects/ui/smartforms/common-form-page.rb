@@ -30,21 +30,21 @@ class CommonFormsPage < CommonPage
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
-  element(:enter_comment_box, xpath: "//textarea")
-  
+  element(:enter_comment_box, xpath: '//textarea')
+
   def scroll_multiple_times(times)
-    for i in 1..times do
+    (1..times).each do |_i|
       BrowserActions.scroll_down
       sleep 1
     end
   end
-  
+
   def click_next
     next_btn
   rescue StandardError
     save_and_next_btn
   end
-  
+
   def set_current_time
     @@time = main_clock_element.text
   end
@@ -101,5 +101,4 @@ class CommonFormsPage < CommonPage
       1
     end
   end
-
 end

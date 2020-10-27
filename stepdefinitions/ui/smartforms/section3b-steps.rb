@@ -8,16 +8,25 @@ Then (/^I should see method description (.+) populated$/) do |method_desc|
   is_equal(on(Section3BPage).method_detail_element.text, method_desc)
 end
 
+And (/^I click on Submit for Termination$/) do
+  on(Section0Page).submit_termination_btn1_elements.first.click
+end
+
+Then (/^I should see dra number and last assessment date populated$/) do
+  is_equal(on(Section3BPage).last_assessment, CommonPage.get_dra_permit_id)
+  is_equal(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).get_current_date_format)
+end
+
 Then (/^I should see By: Master after clicking Yes on Is DRA sent to office$/) do
   on(Section3BPage).radio_btn_elements[6].click
   BrowserActions.scroll_down
   is_equal(on(Section3BPage).generic_data_elements[1].text, 'Master')
-  is_equal(on(Section3BPage).generic_data_elements.size,2)
+  is_equal(on(Section3BPage).generic_data_elements.size, 2)
 end
 
 Then (/^I should not see By: Master after clicking No on Is DRA sent to office$/) do
   on(Section3BPage).radio_btn_elements[7].click
-  is_equal(on(Section3BPage).generic_data_elements.size,1)
+  is_equal(on(Section3BPage).generic_data_elements.size, 1)
 end
 
 Then (/^I should see crew drop down list after clicking Yes on Inspection carried out$/) do

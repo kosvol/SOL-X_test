@@ -9,6 +9,7 @@ class Section9Page < Section8Page
   divs(:rank_name_and_date, xpath: "//div[starts-with(@class,'Cell__Content-')]/div")
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
+  button(:submit_permit_termination_btn, xpath: "//button[contains(.,'Terminate Permit To Work')]")
 
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp)
