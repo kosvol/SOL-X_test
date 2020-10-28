@@ -60,6 +60,10 @@ class CommonFormsPage < CommonPage
     Time.new.strftime('%d/%b/%Y')
   end
 
+  def get_current_date_and_time
+    "#{get_current_date_format_with_offset} #{get_current_time_format}"
+  end
+
   def get_current_date_format_with_offset
     which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(which_json, '1111')

@@ -8,9 +8,9 @@ Feature: PendingUpdate
 
   # Scenario: Verify only section 9 fields are enabled when editing from pending termination state for all users
 
-  Scenario: Verify section 6 buttons display are correct via pending termination state
+  # Scenario: Verify section 6 buttons display are correct via pending termination state
 
-  Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
+  # Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
 
   Scenario: Verify section 6 buttons display are correct via pending master approval state
     Given I launch sol-x portal without unlinking wearable

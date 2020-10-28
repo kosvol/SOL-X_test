@@ -24,7 +24,7 @@ And (/^I set oa permit to office approval state manually$/) do
   on(PendingStatePage).master_review_btn_elements.first.click
   step 'I enter pin 1111'
   step 'I navigate to section 6'
-  on(PendingStatePage).submit_for_oa_btn_elements.first.click
+  on(PendingStatePage).submit_oa_btn
   step 'I click on back to home'
 end
 
@@ -34,6 +34,12 @@ And (/^Master request for oa permit update$/) do
   step 'I press next for 11 times'
   on(PendingStatePage).set_update_comment
   step 'I click on back to home'
+end
+
+Then (/^I should be able to open permit as master without seeing blank screen$/) do
+  on(PendingStatePage).master_approval_btn_elements.first.click
+  step 'I enter pin 1111'
+  is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
 end
 
 And (/^I reapprove the updated permit$/) do

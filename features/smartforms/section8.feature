@@ -4,9 +4,7 @@ Feature: Section8
   I want to ...
   So that ...
 
-  # Scenario: Verify date and time fields are automatically filled
-
-  Scenario: Verify competent and issuing authority detail display on read only mode if not signed
+  # Scenario: Verify competent and issuing authority detail display on read only mode if not signed
 
   Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
     Given I launch sol-x portal

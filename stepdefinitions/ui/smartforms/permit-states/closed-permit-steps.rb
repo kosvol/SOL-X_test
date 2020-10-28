@@ -11,4 +11,6 @@ And (/^I terminate the permit$/) do
 end
 
 Then (/^I should see termination date display$/) do
+  step 'I set time'
+  is_equal(on(CommonFormsPage).get_current_date_and_time.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
 end
