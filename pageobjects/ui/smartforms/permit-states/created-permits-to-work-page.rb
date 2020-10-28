@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class CreatedPermitToWorkPage < Section1Page
+class CreatedPermitToWorkPage < Section9Page
   include PageObject
 
   elements(:parent_container, xpath: "//ul[starts-with(@class,'FormsList__Container')]/li")

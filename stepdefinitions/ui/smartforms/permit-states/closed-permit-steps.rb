@@ -14,3 +14,9 @@ Then (/^I should see termination date display$/) do
   step 'I set time'
   is_equal(on(CommonFormsPage).get_current_date_and_time.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
 end
+
+And (/^I should be able to view close permit$/) do
+  on(ActiveStatePage).view_btn_elements.first.click
+  step 'I enter pin 1111'
+  is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
+end

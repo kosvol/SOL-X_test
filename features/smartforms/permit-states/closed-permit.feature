@@ -18,4 +18,5 @@ Feature: ClosedPermit
     And I terminate the permit
     And I navigate to "Closed Permits to Work" screen
     Then I should see termination date display
+    And I should be able to view close permit
 
