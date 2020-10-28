@@ -5,7 +5,6 @@ dev:
   master_pin: "9707"
 sit:
   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8080"
-  # c2_preview: "https://52.230.70.68:8443"
   service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
   master_pin: "1111"
 
