@@ -11,6 +11,7 @@ Then (/^I should see (.+) button$/) do |state|
 end
 
 Then (/^I should see the newly pending approval permit details listed on Pending Approval filter$/) do
+  step 'I set time'
   @@pending_approval_permit_data = on(PendingStatePage).set_section1_filled_data
   p ">> #{@@pending_approval_permit_data}"
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "SIT/PTW/#{BrowserActions.get_year}/")
