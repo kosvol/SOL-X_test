@@ -12,7 +12,7 @@ Feature: PendingUpdate
 
   # Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
 
-  Scenario: Verify section 6 buttons display are correct via pending master approval state
+  Scenario: Verify section 6 buttons display are correct via pending master approval state as a reader
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
