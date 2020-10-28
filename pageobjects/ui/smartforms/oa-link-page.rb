@@ -13,14 +13,15 @@ class OAPage < Section9Page
   button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
   elements(:date_time_from, id: 'date-from')
   elements(:date_time_to, id: 'date-to')
+  elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
   button(:designation, id: 'designation')
   button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
+
   element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
 
-  # element(:hours_23_btn, id: 'issuedToTime__hourTimePicker__23')
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
   # element(:enter_comment_box, xpath: "//textarea")
@@ -40,16 +41,24 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    # set from time
+    ### set from time
     date_time_from_elements[1].click
     hour_from_picker_elements[0].click
     minute_from_picker_elements[1].click
-    # set to time
+    ### set to time
     dismiss_picker_element.click
     date_time_to_elements[1].click
     hour_from_picker_elements[23].click
     minute_from_picker_elements[59].click
     dismiss_picker_element.click
+    date_time_to_elements[0].click
+    ### select calander + 1 day
+    to_date_calender_elements.each_with_index do |_element, _index|
+      if _element.attribute('class').include? 'selected'
+        to_date_calender_elements[_index + 1].click
+        break
+      end
+    end
   end
 
   def set_to_date_plus_one_day(_current_date)

@@ -5,7 +5,7 @@ And (/^I navigate to OA link$/) do
 end
 
 And (/^I approve oa permit via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ENA3AZXQT7XGP62SHQQNJXTV?staffId=e5e5f7ec4f0835cb8cc2e81773077616')
+  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ENP6QNGZ28A0RCC57Z0XX4FR?staffId=5df1d1a6f800912085e81962a603a15b')
   sleep 2
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox

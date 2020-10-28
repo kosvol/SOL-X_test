@@ -10,6 +10,8 @@ class Section8Page < Section7Page
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
   button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
+  @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
+  @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
 
   span(:normalization_question1, xpath: "//span[contains(.,'Work completed. PTW cancellation (if applicable).')]")
   span(:normalization_question2, xpath: "//span[contains(.,'Relevant Departments personnel informed as applicable')]")
@@ -27,17 +29,17 @@ class Section8Page < Section7Page
 
   def sign_eic_or_issuer(_condition)
     if ['competent person', 'non competent person'].include? _condition
-      begin
-        BrowserActions.scroll_click(competent_person_btn_element.click)
-      rescue StandardError
+      if @browser.find_element(:xpath, @@competent_person_btn).displayed?
+        BrowserActions.scroll_click(competent_person_btn_element)
+      else
         BrowserActions.scroll_click(sign_btn_elements.first)
       end
     end
     if ['issuing authority', 'non issuing authority'].include? _condition
-      begin
-        BrowserActions.scroll_click(issuing_authority_btn_element.click)
-      rescue StandardError
-        BrowserActions.scroll_click(sign_btn_elements.last)
+      if @browser.find_element(:xpath, @@issuing_authority_btn).displayed?
+        BrowserActions.scroll_click(issuing_authority_btn_element)
+      else
+        BrowserActions.scroll_click(sign_btn_elements.first)
       end
     end
   end
