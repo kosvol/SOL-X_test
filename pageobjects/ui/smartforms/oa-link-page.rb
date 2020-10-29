@@ -59,6 +59,7 @@ class OAPage < Section9Page
         break
       end
     end
+    sleep 1
   end
 
   def set_to_date_plus_one_day(_current_date)
