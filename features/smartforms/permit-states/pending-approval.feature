@@ -4,6 +4,8 @@ Feature: PendingApprovalPermit
   I want to ...
   So that ...
 
+  # Scenario: Verify all screen is in read only mode when open up by any crew while in pending state
+
   Scenario: Verify SOL-5474
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

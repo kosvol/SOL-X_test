@@ -35,5 +35,5 @@
     ],
     "submissionTimestamp": "2020-07-23T08:01:46.906Z"
   },
-  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $sectionId: String!, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, sectionId: $sectionId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $sectionId: String!, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }

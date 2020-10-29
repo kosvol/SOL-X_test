@@ -1,5 +1,5 @@
 {
-  "operationName": "UpdateFormAnswers",
+  "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
     "templateVersion": 3,
@@ -18,7 +18,7 @@
         "value": "\"yes\""
       }
     ],
-    "submissionTimestamp": "2020-10-05T07:57:07.795Z"
+    "submissionTimestamp": "2020-10-29T05:35:34.881Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }

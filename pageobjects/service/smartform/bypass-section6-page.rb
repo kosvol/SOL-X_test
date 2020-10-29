@@ -37,7 +37,7 @@ class BypassPage < Section0Page
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     ### init ptw form
-    create_form_ptw = JSON.parse JsonUtil.read_json('ptw/0.create_form_ptw')
+    create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
@@ -51,12 +51,11 @@ class BypassPage < Section0Page
     @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
 
     ### init dra form
-    init_dra = JSON.parse JsonUtil.read_json('ptw/0.create_form_dra')
+    init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
     init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
     init_dra['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
-    # dra_permit_number = ServiceUtil.get_response_body['data']['createForm']['_id']
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### save section 0
@@ -74,7 +73,7 @@ class BypassPage < Section0Page
     ### section 3a ###
     section3a = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '3a'))
     section3a['variables']['formId'] = CommonPage.get_permit_id
-    section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    # section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     section3a['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_5.save_section3a_details', section3a)
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
@@ -309,6 +308,10 @@ class BypassPage < Section0Page
     case permit_name
     when 'submit_non_intrinsical_camera'
       case _step
+      when '0'
+        'ptw/camera/0.create_form_ptw'
+      when '00'
+        'ptw/camera/0.create_form_dra'
       when '1'
         'ptw/camera/1.date_with_offset'
       when '2'
@@ -330,6 +333,10 @@ class BypassPage < Section0Page
       end
     when 'submit_enclose_space_entry'
       case _step
+      when '0'
+        'ptw/enclosed-workspace/0.create_form_ptw'
+      when '00'
+        'ptw/enclosed-workspace/0.create_form_dra'
       when '1'
         'ptw/enclosed-workspace/1.date_with_offset'
       when '2'
@@ -351,6 +358,10 @@ class BypassPage < Section0Page
       end
     when 'submit_cold_work_clean_spill'
       case _step
+      when '0'
+        'ptw/cold-work-cleaning-spill/0.create_form_ptw'
+      when '00'
+        'ptw/cold-work-cleaning-spill/0.create_form_dra'
       when '1'
         'ptw/cold-work-cleaning-spill/1.date_with_offset'
       when '2'
@@ -372,6 +383,10 @@ class BypassPage < Section0Page
       end
     when 'submit_hotwork'
       case _step
+      when '0'
+        'ptw/hotwork/0.create_form_ptw'
+      when '00'
+        'ptw/hotwork/0.create_form_dra'
       when '1'
         'ptw/hotwork/1.date_with_offset'
       when '2'
@@ -393,6 +408,10 @@ class BypassPage < Section0Page
       end
     when 'submit_underwater_simultaneous'
       case _step
+      when '0'
+        'ptw/underwater-sim/0.create_form_ptw'
+      when '00'
+        'ptw/underwater-sim/0.create_form_dra'
       when '1'
         'ptw/underwater-sim/1.date_with_offset'
       when '2'
@@ -414,6 +433,10 @@ class BypassPage < Section0Page
       end
     when 'submit_work_on_pressure_line'
       case _step
+      when '0'
+        'ptw/work-pressure-line/0.create_form_ptw'
+      when '00'
+        'ptw/work-pressure-line/0.create_form_dra'
       when '1'
         'ptw/work-pressure-line/1.date_with_offset'
       when '2'

@@ -7,6 +7,8 @@ Feature: LocationTracking
   # @skip
   # Scenario: Verify wearable is single sign on
 
+  Scenario: Verify max wearable logins display correct total number of users
+
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I launch sol-x portal
     Then I should not see PRE tab active on dashboard
