@@ -86,8 +86,10 @@ When (/^I select (.+) permit$/) do |_permit|
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
-  sleep 1
-  on(Section0Page).select_level2_permit(_permit)
+  begin
+    on(Section0Page).select_level2_permit(_permit)
+  rescue StandardError
+  end
   sleep 1
   on(Section0Page).save_btn
   sleep 1
