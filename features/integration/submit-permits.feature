@@ -34,7 +34,7 @@ Feature: SubmitPermit
     And I click on active filter
     Then I should see permit valid for 8 hours
 
-  @x1
+  @smoke-test
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
