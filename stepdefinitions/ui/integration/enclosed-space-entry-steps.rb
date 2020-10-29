@@ -25,11 +25,12 @@ end
 
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
+  step 'I set time'
   sleep 1
-  does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
-  does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
-  does_include(on(Section3APage).generic_data_elements[0].text, 'SIT')
-  does_include(on(Section3APage).generic_data_elements[1].text, 'SIT/DRA')
+  does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
+  does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
+  # does_include(on(Section3APage).method_detail_elements[2].text, 'LT (GMT+')
+  does_include(on(Section3APage).method_detail_elements[3].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
 end
 

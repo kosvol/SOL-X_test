@@ -5,7 +5,7 @@ And (/^I fill up section 3b$/) do
 end
 
 Then (/^I should see method description (.+) populated$/) do |method_desc|
-  is_equal(on(Section3BPage).method_detail_element.text, method_desc)
+  is_equal(on(Section3BPage).method_detail_elements.first.text, method_desc)
 end
 
 And (/^I click on Submit for Termination$/) do
