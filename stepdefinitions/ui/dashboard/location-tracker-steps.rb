@@ -92,7 +92,7 @@ And (/^I toggle activity crew list$/) do
   on(DashboardPage).toggle_crew_activity_list
 end
 
-When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
+When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -103,8 +103,9 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
-  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
+  step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
   step 'I hit graphql'
+  sleep 1
   step 'I hit graphql'
   sleep 2
 end

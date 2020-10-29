@@ -3,6 +3,7 @@ dev:
   c2_preview: "http://cloud-edge.dev.solas.magellanx.io:8080"
   service: "http://cloud-edge.dev.solas.magellanx.io:4000/"
   master_pin: "9707"
+
 sit:
   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8080"
   service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
