@@ -91,7 +91,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   rescue StandardError
   end
   sleep 1
-  on(Section0Page).save_btn
+  on(Section0Page).save_and_next_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
 end
