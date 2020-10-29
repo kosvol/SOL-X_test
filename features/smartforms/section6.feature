@@ -54,7 +54,7 @@ Feature: Section6
     And I am able to delete toxic gas inputs
     And I tear down created form
 
-  Scenario Outline: Verify non AGT can add gas readings
+  Scenario Outline: Verify non AGT cannot add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -85,6 +85,7 @@ Feature: Section6
     And I enter pin <pin>
     And I set time
     Then I will see popup dialog with <rank_name> crew rank and name
+    And I should see submit button enabled
 
     Examples:
       | rank                       | pin  | rank_name                 |

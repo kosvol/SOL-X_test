@@ -157,3 +157,8 @@ And (/^I am able to delete toxic gas inputs$/) do
   sleep 1
   is_equal(on(Section6Page).toxic_gas_reading_elements.size, 0)
 end
+
+And (/^I should see submit button enabled$/) do
+  on(CommonFormsPage).done_btn_elements.first.click
+  is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
+end

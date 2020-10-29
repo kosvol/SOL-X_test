@@ -31,6 +31,8 @@ class CommonFormsPage < CommonPage
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:enter_comment_box, xpath: '//textarea')
+  buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
+  buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
 
   def scroll_multiple_times(times)
     (1..times).each do |_i|

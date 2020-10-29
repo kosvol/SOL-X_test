@@ -9,9 +9,7 @@ class PendingStatePage < Section9Page
   buttons(:master_approval_btn, xpath: "//button[contains(.,'Master Approval')]")
   buttons(:office_approval_btn, xpath: "//button[contains(.,'Office Approval')]")
   # buttons(:submit_for_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
-  buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:edit_update_btn, xpath: "//button[contains(.,'Edit/Update')]")
-  buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
   element(:update_comment_box, id: 'updatesNeededComment')
 
   def set_update_comment
