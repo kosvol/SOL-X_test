@@ -2,13 +2,18 @@
 
 Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(Section1Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[0])
-  is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
+  does_include(on(Section3APage).generic_data_elements[1].text, 'PTW/TEMP/')
+  # is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
 end
 
-Then (/^I should see a list of (sea states|wind forces)$/) do |_state,_table|
-  is_true(on(Section1Page).is_sea_states?(_table.raw)) if _state === "sea states"
-  is_true(on(Section1Page).is_wind_forces?(_table.raw)) if _state === "wind forces"
+Then (/^I should see a list of (sea states|wind forces)$/) do |_state, _table|
+  if _state === 'sea states'
+    is_true(on(Section1Page).is_sea_states?(_table.raw))
+  end
+  if _state === 'wind forces'
+    is_true(on(Section1Page).is_wind_forces?(_table.raw))
+  end
 end
 
 Then (/^I should not see previous button exists$/) do

@@ -4,6 +4,8 @@ Feature: Section3DDRA
   I want to ...
   So that ...
 
+  # Scenario: Verify signature component do not show blank screen after clicking cancel on pinpad
+
   Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
     And I navigate to create new permit

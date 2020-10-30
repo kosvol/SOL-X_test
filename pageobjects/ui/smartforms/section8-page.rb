@@ -30,14 +30,18 @@ class Section8Page < Section7Page
   def sign_eic_or_issuer(_condition)
     if ['competent person', 'non competent person'].include? _condition
       tmp = @browser.find_elements(:xpath, @@competent_person_btn)
+      if tmp.size === 1
+        BrowserActions.scroll_click(tmp.first)
+      elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_elements.first)
+      end
     elsif ['issuing authority', 'non issuing authority'].include? _condition
       tmp = @browser.find_elements(:xpath, @@issuing_authority_btn)
-    end
-
-    if tmp.size === 1
-      BrowserActions.scroll_click(tmp[1])
-    elsif tmp.size === 0
-      BrowserActions.scroll_click(sign_btn_elements.first)
+      if tmp.size === 1
+        BrowserActions.scroll_click(tmp.first)
+      elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_elements.last)
+      end
     end
   end
 

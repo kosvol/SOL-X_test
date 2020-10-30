@@ -164,7 +164,7 @@ Feature: Section4BEIC
       | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
-      # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Master                     | 1111 | Critical Equipment Maintenance  | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 0159 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                       | Enclosed Space Entry Checklist           |
       | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |

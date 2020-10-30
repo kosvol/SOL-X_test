@@ -93,7 +93,7 @@ class Section4APage < Section3DPage
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     # Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === generic_data_elements[1].text)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'PTW/TEMP/')) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def uncheck_all_checklist

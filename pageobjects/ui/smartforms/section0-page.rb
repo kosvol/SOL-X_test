@@ -9,12 +9,11 @@ class Section0Page < CommonFormsPage
   elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//button[contains(.,'Select')]")
-  # button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
-  element(:select_permit_type, xpath: "//label[contains(.,'Select Permit Type')]")
+  element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
 
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|
