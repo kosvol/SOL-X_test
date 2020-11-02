@@ -81,7 +81,7 @@ And (/^I delete a hazard$/) do
 end
 
 Then (/^I should see hazard deleted$/) do
-  sleep 1
+  sleep 2
   on(Section3APage).scroll_multiple_times(1)
   is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
