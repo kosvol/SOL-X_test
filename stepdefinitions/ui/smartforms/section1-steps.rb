@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Then (/^I should see navigation dropdown$/) do
+  to_exists(on(Section1Page).s1_navigation_dropdown_element)
+end
+
 Then (/^I should see permit details are pre-filled$/) do
   is_equal(on(Section1Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[0])
   does_include(on(Section3APage).generic_data_elements[1].text, 'PTW/TEMP/')

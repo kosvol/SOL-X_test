@@ -12,6 +12,7 @@ class Section1Page < Section0Page
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+  element(:s1_navigation_dropdown, xpath: "//h3[contains(.,'Section 1: Task Description')]")
 
   @@maint_require_text = '//div[@id="1_subsection6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'

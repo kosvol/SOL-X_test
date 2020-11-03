@@ -4,6 +4,14 @@ Feature: Section1
   I want to ...
   So that ...
 
+  Scenario: Verify navigation dropdown is display on section 0
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    Then I should see navigation dropdown
+
   Scenario: Verify permits details are pre-filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -137,12 +145,4 @@ Feature: Section1
     Then I should see section 2
     And I should not see copy text regarding maintenance hour
     And I tear down created form
-
-# Scenario: Verify section1 screen text
-#   Given I launch sol-x portal without unlinking wearable
-#   And I navigate to create new permit
-#   And I enter pin 9015
-#   And I select Use of ODME in Manual Mode permit
-#   And I select Use of ODME in Manual Mode permit for level 2
-#   Then I should see display texts match for section1
 
