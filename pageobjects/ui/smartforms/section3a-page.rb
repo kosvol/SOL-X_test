@@ -14,7 +14,7 @@ class Section3APage < Section2Page
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   elements(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
-  # buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
+  buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")

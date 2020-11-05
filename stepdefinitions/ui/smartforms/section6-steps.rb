@@ -41,6 +41,13 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   # @@created_permit_data = on(Section1Page).set_section1_filled_data
 end
 
+Then (/^I submit smoke test permit$/) do
+  sleep 1
+  BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+  step 'I enter pin 9015'
+  step 'I sign on canvas'
+end
+
 And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
   on(Section6Page).gas_testing_switcher(key)
 end

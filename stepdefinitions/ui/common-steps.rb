@@ -79,10 +79,10 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  step 'I set time'
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)
+  step 'I set time'
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
@@ -97,8 +97,9 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
+  sleep 1
   on(Section6Page).back_to_home_btn_element.click
+  sleep 3
 end
 
 And (/^I tear down created form$/) do

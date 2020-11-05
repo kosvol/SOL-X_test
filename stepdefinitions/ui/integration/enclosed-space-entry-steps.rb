@@ -25,12 +25,13 @@ end
 
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  step 'I set time'
   sleep 1
   does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
   does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
-  does_include(on(Section3APage).method_detail_elements[2].text, 'LT (GMT+')
-  does_include(on(Section3APage).method_detail_elements[3].text, 'Enclosed Space Entry')
+  does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT+')
+  # does_include(on(Section3APage).date_and_time_fields_elements[1].text, on(CommonFormsPage).get_current_time_format)
+  does_include(on(Section3APage).method_detail_elements[2].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
 end
 
@@ -90,6 +91,18 @@ end
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
+  on(Section4BPage).view_eic_btn
+  sleep 1
+  tmp = on(Section4BPage).get_filled_section
+  tmp.delete_at(1)
+  tmp.delete_at(3)
+  p "++ #{@@form_data['section4b_eic']}"
+  p "-- #{tmp}"
+  is_equal(tmp, @@form_data['section4b_eic'])
+  step 'I should see signed details'
+  on(CommonFormsPage).close_btn_elements.first.click
+  sleep 1
+  step 'I should see signed details'
 end
 
 And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|

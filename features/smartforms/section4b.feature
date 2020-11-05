@@ -32,6 +32,7 @@ Feature: Section4BEIC
     And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I sign EIC section 4b with RA pin 9015
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
@@ -53,6 +54,7 @@ Feature: Section4BEIC
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
     Then I sign EIC as competent person with pin <pin>
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
@@ -76,6 +78,7 @@ Feature: Section4BEIC
     And I link wearable to a issue authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
     Then I sign EIC as issuing authority with pin 8248
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
