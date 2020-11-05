@@ -67,6 +67,7 @@ And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   p "--- #{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
+  step 'I should map to partial sign details'
 end
 
 And (/^I review page 4a of submitted (.+) permit$/) do |_permit_type|
@@ -83,9 +84,11 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section4APage).generic_data_elements[1].text, 'SIT/PTW')
   extract = on(Section4APage).get_filled_section
   extract.delete_at(1)
-  # extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
+
+  is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
+  step 'I should map to partial sign details'
 end
 
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
@@ -99,9 +102,11 @@ And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   p "++ #{@@form_data['section4b_eic']}"
   p "-- #{tmp}"
   is_equal(tmp, @@form_data['section4b_eic'])
+  step 'I set time'
   step 'I should see signed details'
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 1
+  step 'I set time'
   step 'I should see signed details'
 end
 

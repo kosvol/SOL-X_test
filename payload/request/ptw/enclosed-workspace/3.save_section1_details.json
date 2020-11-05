@@ -12,18 +12,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "formNumber",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "section1_permitType",
-        "value": "\"Enclosed Space Entry\""
-      },
-      {
         "fieldId": "locationOfVessel",
         "value": "\"In Port\""
       },

@@ -13,18 +13,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "formNumber",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "section1_permitType",
-        "value": "\"Underwater Operation during daytime without any simultaneous operations\""
-      },
-      {
         "fieldId": "locationOfVessel",
         "value": "\"In Port\""
       },

@@ -1,7 +1,6 @@
 {
   "operationName": "UpdateFormAnswers",
   "variables": {
-    "formType": "PTW",
     "templateVersion": 3,
     "permitType": "Enclosed Space Entry",
     "answers": [

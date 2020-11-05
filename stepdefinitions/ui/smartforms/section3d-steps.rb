@@ -16,4 +16,5 @@ And (/^I fill up section 3d$/) do
     # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp].sample].click
     tmp += 2
   end
+  step 'I sign DRA section 3d with RA pin 9015'
 end

@@ -13,18 +13,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "formNumber",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "section1_permitType",
-        "value": "\"Cold Work - Cleaning Up of Spills\""
-      },
-      {
         "fieldId": "locationOfVessel",
         "value": "\"In Port\""
       },

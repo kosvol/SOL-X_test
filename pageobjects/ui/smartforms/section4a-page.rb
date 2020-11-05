@@ -6,6 +6,7 @@ class Section4APage < Section3DPage
   include PageObject
 
   elements(:tool_box, xpath: '//input')
+  text_field(:equipment_used, xpath: "//input[@id='cl_enclosedSpacesEntry_srNoOfEquipmentUsed']")
   elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
@@ -13,6 +14,7 @@ class Section4APage < Section3DPage
   element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
+  # elements(:enclosed_space_interval_filled_data, xpath: '//input')
 
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
@@ -116,6 +118,16 @@ class Section4APage < Section3DPage
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_mm_yyyy_format} #{time_offset}")
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
+  end
+
+  def is_partial_signed_user_details_mapped?(_entered_pin)
+    BrowserActions.scroll_down(rank_and_name_stamp)
+    sleep 1
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+    Log.instance.info(">> #{get_current_date_format_with_offset}")
+    # Log.instance.info("UI >>#{date_and_time_stamp_element.text}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
   end
 
   def is_signature_pad?

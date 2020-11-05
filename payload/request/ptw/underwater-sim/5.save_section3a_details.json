@@ -9,24 +9,12 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "section3a_draNumber",
-        "value": "\"\""
-      },
-      {
         "fieldId": "draCreatedDate",
         "value": "{\"dateTime\":\"2020-10-05T07:57:07.795Z\",\"utcOffset\":7}"
       },
       {
         "fieldId": "draCreatedDate",
         "value": "{\"dateTime\":\"2020-07-23T03:07:00.907Z\",\"utcOffset\":1}"
-      },
-      {
-        "fieldId": "section3a_permitType",
-        "value": "\"Underwater Operation during daytime without any simultaneous operations\""
       },
       {
         "fieldId": "riskHazard",

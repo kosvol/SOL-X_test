@@ -10,18 +10,14 @@
 #   # step 'I press next from section 1'
 # end
 
+Then (/^I should map to partial sign details$/) do
+  is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
+end
+
 Then (/^I should see display texts match for section1$/) do
   on(Section0Page).labels_scrapper_elements.each do |elem|
     p ">> #{elem.text}"
   end
-  # section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section1_labels']
-  # page_elements = on(Section1Page).all_labels_elements
-  # if page_elements.size === 14
-  #   section1_labels_arr.delete_at(section1_labels_arr.size - 2)
-  # end
-  # page_elements.each_with_index do |label, _index|
-  #   is_equal(section1_labels_arr[_index], label.text)
-  # end
 end
 
 Given (/^I launch sol-x portal$/) do
@@ -99,7 +95,6 @@ end
 And (/^I click on back to home$/) do
   sleep 1
   on(Section6Page).back_to_home_btn_element.click
-  sleep 3
 end
 
 And (/^I tear down created form$/) do

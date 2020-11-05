@@ -13,18 +13,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "formNumber",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "section1_permitType",
-        "value": "\"Use of Non-Intrinsically Safe Camera\""
-      },
-      {
         "fieldId": "locationOfVessel",
         "value": "\"In Port\""
       },

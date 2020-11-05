@@ -9,20 +9,8 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "section3a_draNumber",
-        "value": "\"\""
-      },
-      {
         "fieldId": "draCreatedDate",
         "value": "{\"dateTime\":\"2020-10-05T07:57:07.795Z\",\"utcOffset\":7}"
-      },
-      {
-        "fieldId": "section3a_permitType",
-        "value": "\"Use of Non-Intrinsically Safe Camera\""
       },
       {
         "fieldId": "riskHazard",

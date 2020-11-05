@@ -60,9 +60,12 @@ And (/^I fill up checklist yes, no, na$/) do
   end
   begin
     on(Section4APage).fill_textarea
+    on(Section4APage).equipment_used = '1234'
     on(Section4APage).interval = '1'
   rescue StandardError
   end
+  step 'I sign on checklist with 9015 pin'
+  step 'I sign on canvas'
 end
 
 And (/^I select PPE equipment$/) do

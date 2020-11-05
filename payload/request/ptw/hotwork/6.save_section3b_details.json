@@ -9,10 +9,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "_3B_methodDetail",
-        "value": "\"General / Standard Hot Work Procedure\""
-      },
-      {
         "fieldId": "methodReason",
         "value": "\"Test Automation\""
       },
@@ -26,11 +22,7 @@
       },
       {
         "fieldId": "sentForReview",
-        "value": "\"no\""
-      },
-      {
-        "fieldId": "draReviewedBy",
-        "value": "\"Master\""
+        "value": "\"yes\""
       },
       {
         "fieldId": "lastAssessmentDra",

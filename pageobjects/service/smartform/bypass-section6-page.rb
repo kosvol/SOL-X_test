@@ -59,12 +59,12 @@ class BypassPage < Section0Page
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### save section 0
-    section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
-    section2['variables']['formId'] = CommonPage.get_permit_id
-    section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-    section2['variables']['submissionTimestamp'] = get_current_date_time
-    JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
-    ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
+    # section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
+    # section2['variables']['formId'] = CommonPage.get_permit_id
+    # section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    # section2['variables']['submissionTimestamp'] = get_current_date_time
+    # JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
+    # ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
 
     ### save sections
     save_different_form_section(payload_mapper(_permit_type, '3'), _user)

@@ -9,10 +9,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "_3B_methodDetail",
-        "value": "\"Underwater Operation during daytime without any simultaneous operations\""
-      },
-      {
         "fieldId": "methodReason",
         "value": "\"Test Automation\""
       },
@@ -27,10 +23,6 @@
       {
         "fieldId": "sentForReview",
         "value": "\"yes\""
-      },
-      {
-        "fieldId": "draReviewedBy",
-        "value": "\"Master\""
       },
       {
         "fieldId": "lastAssessmentDra",

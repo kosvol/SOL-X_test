@@ -8,14 +8,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "cl_enclosedSpacesEntry_vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "cl_enclosedSpacesEntry_formNumber",
-        "value": "\"\""
-      },
-      {
         "fieldId": "cl_enclosedSpacesEntry_nameOfEnclosedSpace",
         "value": "\"Test Automation\""
       },

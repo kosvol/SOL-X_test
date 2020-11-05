@@ -4,35 +4,37 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  @x13
-  Scenario: Verify master can send for oa approval twice
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    When I press next for 10 times
-    Then I submit permit for Master Review
-    When I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I navigate to OA link
-    And I should see comment reset
-    And I add comment on oa permit
-    And I approve oa permit via oa link manually
-    And I click on pending approval filter
-    And Master request for oa permit update
-    And I reapprove the updated permit
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
-    And I click on pending approval filter
-    And I approve permit
-    And I click on back to home
-    And I click on active filter
-    Then I should see permit valid for 8 hours
+  Scenario: Verify ROL smoke test
+
+  # @x13
+  # Scenario: Verify master can send for oa approval twice
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Critical Equipment Maintenance permit
+  #   And I select Maintenance on Magnetic Compass permit for level 2
+  #   And I fill section 1 of maintenance permit with duration more than 2 hours
+  #   When I press next for 10 times
+  #   Then I submit permit for Master Review
+  #   When I click on back to home
+  #   And I click on pending approval filter
+  #   And I set oa permit to office approval state manually
+  #   And I navigate to OA link
+  #   And I should see comment reset
+  #   And I add comment on oa permit
+  #   And I approve oa permit via oa link manually
+  #   And I click on pending approval filter
+  #   And Master request for oa permit update
+  #   And I reapprove the updated permit
+  #   And I click on pending approval filter
+  #   And I set oa permit to office approval state manually
+  #   And I navigate to OA link
+  #   And I approve oa permit via oa link manually
+  #   And I click on pending approval filter
+  #   And I approve permit
+  #   And I click on back to home
+  #   And I click on active filter
+  #   Then I should see permit valid for 8 hours
 
   @smoke-test-1
   Scenario:  Submit permit data Enclosed Spaces Entry
@@ -62,6 +64,7 @@ Feature: SubmitPermit
     # fill gas reader?
     And I submit smoke test permit
     And I click on back to home
+    And I sleep for 5 seconds
   # And I click on pending approval filter
   # And I review page 1 of submitted enclose workspace permit
   # And I review page 2 of submitted enclose workspace permit

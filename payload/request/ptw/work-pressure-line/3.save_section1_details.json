@@ -13,18 +13,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "vesselShortName",
-        "value": "\"SIT\""
-      },
-      {
-        "fieldId": "formNumber",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "section1_permitType",
-        "value": "\"Work on pressure pipelines/pressure vessels\""
-      },
-      {
         "fieldId": "locationOfVessel",
         "value": "\"At Sea\""
       },
