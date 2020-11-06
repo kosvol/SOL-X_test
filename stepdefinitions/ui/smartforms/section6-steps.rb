@@ -130,7 +130,6 @@ end
 And (/^I will see popup dialog with (.+) crew rank and name$/) do |_rank_name|
   is_equal(on(Section6Page).get_gas_added_by(_rank_name).text, _rank_name)
   # is_equal(on(Section6Page).gas_reader_by,_rank_name)
-  on(Section6Page).done_btn_elements.last.click
 end
 
 Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condition|
