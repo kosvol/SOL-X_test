@@ -39,6 +39,7 @@ end
 
 And (/^I set maintenance during (more|less) than 2 hours$/) do |condition|
   on(Section1Page).set_maintenance_duration(condition)
+  sleep 1
 end
 
 And (/^I should not see copy text regarding maintenance hour$/) do
