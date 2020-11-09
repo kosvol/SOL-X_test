@@ -11,25 +11,13 @@ Then (/^I should see inactive crew count is correct$/) do
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
   step 'I toggle activity crew list'
-  sleep 2
+  sleep 3
   is_equal(on(DashboardPage).inactive_status_element.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
 end
 
 Then (/^I should see active crew count is correct$/) do
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  step 'I get a list of wearable id'
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I get a list of crews'
-  step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
-  step 'I manipulate wearable requeset payload'
-  step 'I hit graphql'
-  sleep 3
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  sleep 1
+  step 'I link wearable'
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end
@@ -65,7 +53,7 @@ Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
   on(DashboardPage).toggle_zone_filter(zone)
 end
 
-When (/^I link wearable$/) do
+And (/^I link crew to wearable$/) do
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -75,6 +63,10 @@ When (/^I link wearable$/) do
   step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
+end
+
+When (/^I link wearable$/) do
+  step 'I link crew to wearable'
   step 'I get wearable-simulator/base-get-beacons-details request payload'
   step 'I hit graphql'
   step 'I get list of beacons detail'
@@ -93,15 +85,7 @@ And (/^I toggle activity crew list$/) do
 end
 
 When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  step 'I get a list of wearable id'
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I get a list of crews'
-  step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
-  step 'I manipulate wearable requeset payload'
-  step 'I hit graphql'
+  step 'I link crew to wearable'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
   step 'I hit graphql'
