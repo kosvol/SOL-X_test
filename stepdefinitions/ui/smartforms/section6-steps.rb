@@ -165,6 +165,10 @@ And (/^I am able to delete toxic gas inputs$/) do
 end
 
 And (/^I should see submit button enabled$/) do
-  on(CommonFormsPage).done_btn_elements.first.click
+  step 'I dismiss gas reader dialog box'
   is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
+end
+
+And (/^I dismiss gas reader dialog box$/) do
+  on(CommonFormsPage).done_btn_elements.first.click
 end

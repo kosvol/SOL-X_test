@@ -118,6 +118,7 @@ Feature: Section6
     And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     Then I should see gas reading display with toxic gas
+    When I dismiss gas reader dialog box
     And I add only normal gas readings
     And I enter pin 9015
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
