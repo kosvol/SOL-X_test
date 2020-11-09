@@ -27,3 +27,13 @@ ue_tablet_chrome:
   browserName: "Chrome"
   isHeadless: true
   noReset: false
+
+ue_dashboard_chrome:
+  platformName: "Android"
+  platformVersion: "5.1"
+  deviceName: "5200dbcec0ae1455"
+  app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false

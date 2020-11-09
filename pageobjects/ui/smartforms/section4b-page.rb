@@ -7,6 +7,10 @@ class Section4BPage < Section4APage
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:yes_no_btn, xpath: "//input[@name='energyIsolationCertIssued']")
+  text_field(:loto, xpath: "//input[@id='eicPreWork_confirmationAndAcceptance_lotoNumber']")
+
+  button(:save_eic, xpath: "//button[contains(.,'Save EIC')]")
+  button(:view_eic_btn, xpath: "//button[contains(.,'View/Edit Energy Isolation Certificate')]")
   button(:create_eic_btn, xpath: "//button[contains(.,'Create Energy Isolation Certificate')]")
   button(:date_and_time_btn, xpath: '//button[@id="workSiteVisitSafetyChecksAndProcsCompletedOn"]')
   elements(:time_picker, xpath: "//div[@class='picker']")
@@ -22,7 +26,8 @@ class Section4BPage < Section4APage
     sleep 1
     Log.instance.info(">>> #{eic_date_and_time_elements[1].text} vs #{get_current_time_format}")
     Log.instance.info(">>> #{eic_date_and_time_elements[0].text} vs #{get_current_date_format_with_offset}")
-    Log.instance.info(">>> #{generic_data_elements[1].text.include? "SIT/EIC/#{BrowserActions.get_year}"}")
-    ((eic_date_and_time_elements[0].text === get_current_date_format_with_offset) && (eic_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'SIT/EIC/'))
+    # Log.instance.info(">>> #{generic_data_elements[1].text.include? "SIT/EIC/#{BrowserActions.get_year}"}")
+    # Log.instance.info(">>> #{generic_data_elements[1].text.include? 'EIC/TEMP'/}")
+    ((eic_date_and_time_elements[0].text === get_current_date_format_with_offset) && (eic_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'EIC/TEMP/'))
   end
 end

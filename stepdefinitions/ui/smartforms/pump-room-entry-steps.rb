@@ -82,13 +82,13 @@ And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
-  if _condition === 'disabled'
-    is_false(on(PumpRoomEntry).is_button_enabled?(button))
-  end
+    if _condition === 'disabled'
+      is_false(on(PumpRoomEntry).is_button_enabled?(button))
+    end
 
-  if _condition === 'enabled'
-    is_true(on(PumpRoomEntry).is_button_enabled?(button))
-  end
+    if _condition === 'enabled'
+      is_true(on(PumpRoomEntry).is_button_enabled?(button))
+    end
 end
 
 And('I fill up {string}') do |section|
@@ -160,7 +160,6 @@ end
 
 And('I set the activity end time in {int} minutes') do |minutes|
   on(PumpRoomEntry).reduce_time_activity(minutes)
-  sleep 90
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
@@ -241,12 +240,4 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   end
 end
 
-And(/^Navigate to PRE Display$/) do
-  on(NavigationPage).tap_hamburger_menu
-  on(NavigationPage).select_nav_category("Settings")
-  sleep 1
-  step 'I press the "Pump Room Display" button'
-  sleep 1
-  step 'I press the "Enter Pin & Apply" button'
-  sleep 1
-end
+

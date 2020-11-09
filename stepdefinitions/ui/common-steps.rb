@@ -10,25 +10,21 @@
 #   # step 'I press next from section 1'
 # end
 
+Then (/^I should map to partial sign details$/) do
+  is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
+end
+
 Then (/^I should see display texts match for section1$/) do
   on(Section0Page).labels_scrapper_elements.each do |elem|
     p ">> #{elem.text}"
   end
-  # section1_labels_arr = YAML.load_file('data/screen-labels.yml')['default_section1_labels']
-  # page_elements = on(Section1Page).all_labels_elements
-  # if page_elements.size === 14
-  #   section1_labels_arr.delete_at(section1_labels_arr.size - 2)
-  # end
-  # page_elements.each_with_index do |label, _index|
-  #   is_equal(section1_labels_arr[_index], label.text)
-  # end
 end
 
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
-  sleep 1
-  $browser.get(EnvironmentSelector.get_environment_url)
   sleep 5
+  $browser.get(EnvironmentSelector.get_environment_url)
+  sleep 2
   # puts "screen size: #{$browser.window_size}"
 end
 
@@ -66,37 +62,38 @@ end
 And(/^I enter pin for rank (.*)$/) do |rank|
   step 'I get pinpad/get-pin-by-role request payload'
   step 'I hit graphql'
-  @@entered_pin  = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body["data"]['users'], rank)
+  @@entered_pin = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
   on(PinPadPage).enter_pin(@@entered_pin)
   sleep 1
 end
 
-
-And (/^I press (next|previous) for (.+) times$/) do |_condition,_times|
+And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   (1.._times.to_i).each do |_i|
     sleep 1
-    _condition === "next" ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
+    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
   end
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  on(CommonFormsPage).set_current_time
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)
+  step 'I set time'
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
+  begin
+    on(Section0Page).select_level2_permit(_permit)
+  rescue StandardError
+  end
   sleep 1
-  on(Section0Page).select_level2_permit(_permit)
-  sleep 1
-  on(Section0Page).save_btn
+  on(Section0Page).save_and_next_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
+  sleep 1
   on(Section6Page).back_to_home_btn_element.click
 end
 
@@ -110,4 +107,8 @@ end
 
 And (/^I navigate to section (.+)$/) do |_which_section|
   on(Section6Page).toggle_to_section(_which_section)
+end
+
+And (/^I set time$/) do
+  on(CommonFormsPage).set_current_time
 end

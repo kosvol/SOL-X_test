@@ -6,6 +6,7 @@ class Section4APage < Section3DPage
   include PageObject
 
   elements(:tool_box, xpath: '//input')
+  text_field(:equipment_used, xpath: "//input[@id='cl_enclosedSpacesEntry_srNoOfEquipmentUsed']")
   elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
@@ -13,16 +14,19 @@ class Section4APage < Section3DPage
   element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
+  # elements(:enclosed_space_interval_filled_data, xpath: '//input')
 
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
   elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-  
+
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
   spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+  elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
+  element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
 
   divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
   divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
@@ -45,6 +49,15 @@ class Section4APage < Section3DPage
   # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
   button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
+
+  def get_checklist_locator(_checklist)
+    tmp = if _checklist != 'ROL'
+            section1_elements
+          else
+            rol_checklist_elements
+          end
+    tmp
+  end
 
   def select_ppe_equipment
     begin
@@ -82,13 +95,14 @@ class Section4APage < Section3DPage
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     # Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (get_section1_filled_data[1] === generic_data_elements[1].text)) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'PTW/TEMP/')) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def uncheck_all_checklist
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
+
       BrowserActions.scroll_down(element_yes[_index])
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
         get_na_elements[_index].click
@@ -106,13 +120,21 @@ class Section4APage < Section3DPage
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
+  def is_partial_signed_user_details_mapped?(_entered_pin)
+    BrowserActions.scroll_down(rank_and_name_stamp)
+    sleep 1
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+    Log.instance.info(">> #{get_current_date_format_with_offset}")
+    # Log.instance.info("UI >>#{date_and_time_stamp_element.text}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
+  end
+
   def is_signature_pad?
-    begin
-      signature_element
-      true
-    rescue
-      false
-    end
+    signature_element
+    true
+  rescue StandardError
+    false
   end
 
   # ##Blue rgba(24, 144, 255, 1)
@@ -126,16 +148,6 @@ class Section4APage < Section3DPage
       return (element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
     end
   end
-
-  # def is_hazardous_substance_checklist?
-  #   element_yes = get_yes_elements
-  #   list_of_checklist_elements.each_with_index do |checklist, _index|
-  #     next unless checklist.text === 'Work on Hazardous Substances'
-
-  #     BrowserActions.scroll_down(element_yes[_index])
-  #     return (checklist.text === 'Work on Hazardous Substances') && (element_yes[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)')
-  #   end
-  # end
 
   def select_checklist(_checklist)
     sleep 1

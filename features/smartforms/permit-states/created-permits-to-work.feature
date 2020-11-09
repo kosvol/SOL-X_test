@@ -20,6 +20,8 @@ Feature: CreatedPermitToWork
   #   And I enter pin 9015
   #   Then I should see permit id populated
 
+  # # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
+
   Scenario: Verify section 6 buttons display are correct
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -70,8 +72,6 @@ Feature: CreatedPermitToWork
     Then I should see deleted permit deleted
     And I tear down created form
 
-  # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
-
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -89,7 +89,7 @@ Feature: CreatedPermitToWork
       | Second Engineer           | 2523 |
       | Electro Technical Officer | 0856 |
 
-  Scenario Outline: Verify AGT can edit gas reader on section 6 for permit on Created state
+  Scenario Outline: Verify AGT can add gas reading on section 6 for permit on Created state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015

@@ -7,7 +7,7 @@ section1_without_duration:
     "Test Automation",
     "0 : Calm (glassy)",
     "0 : Calm",
-    "Test Automation",
+    "Test AutomationTest automation",
     "Test Automation",
   ]
 
@@ -28,7 +28,7 @@ section3b:
     "Yes",
   ]
 
-section3c: "MAS Daniel Alcantara"
+section3c: ["MAS Daniel Alcantara", "A/M Atif Hayat"]
 
 section3d-yes: ["Yes", "Yes", "Yes", "Yes"]
 
@@ -36,9 +36,33 @@ section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
 
 section4b: ["Yes"]
 
-section6:
-  ["N/A"]
-  # ["Yes", "N/A", "N/A", "N/A"]
+section4b_eic:
+  [
+    "SIT",
+    "Test AutomationTest automationTest automation",
+    "Yes",
+    "Test automation",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "Yes",
+    "1234",
+  ]
+
+section6: ["Yes", "N/A", "N/A", "N/A"]
 
 section4a:
   [
@@ -66,12 +90,12 @@ checklist:
   [
     "SIT",
     "Test automation",
-    "Test automation",
+    "Test AutomationTest automation",
     "Yes",
     "Yes",
     "Yes",
     "Yes",
-    "N/A",
+    "1234",
     "Yes",
     "Yes",
     "Yes",

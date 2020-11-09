@@ -14,7 +14,7 @@ class CrewListPage < DashboardPage
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
   # elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
   divs(:location_details, xpath: "//div[@data-testid='location']")
-  button(:view_pin_btn, xpath: "//button[starts-with(@class, 'Button__ButtonStyled')]")
+  button(:view_pin_btn, xpath: "//button[contains(.,'View PINs')]")
   button(:add_new_crew_btn, xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
   text_field(:crew_id, xpath: "//input[starts-with(@class, 'Input-')]")
   button(:retrieve_data_btn, xpath: "//div[starts-with(@class,'NewCrewDialog__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")

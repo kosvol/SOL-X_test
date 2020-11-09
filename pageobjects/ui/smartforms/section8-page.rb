@@ -9,6 +9,9 @@ class Section8Page < Section7Page
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
+  button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
+  @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
+  @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
 
   span(:normalization_question1, xpath: "//span[contains(.,'Work completed. PTW cancellation (if applicable).')]")
   span(:normalization_question2, xpath: "//span[contains(.,'Relevant Departments personnel informed as applicable')]")
@@ -24,6 +27,23 @@ class Section8Page < Section7Page
   span(:normalization_pipe_question1, xpath: "//span[contains(.,'Have all Valves and Pipes been re-secured properly on completion of the work?')]")
   span(:normalization_pipe_question2, xpath: "//span[contains(.,'Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?')]")
 
+  def sign_eic_or_issuer(_condition)
+    if ['competent person', 'non competent person'].include? _condition
+      tmp = @browser.find_elements(:xpath, @@competent_person_btn)
+      if tmp.size === 1
+        BrowserActions.scroll_click(tmp.first)
+      elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_elements.first)
+      end
+    elsif ['issuing authority', 'non issuing authority'].include? _condition
+      tmp = @browser.find_elements(:xpath, @@issuing_authority_btn)
+      if tmp.size === 1
+        BrowserActions.scroll_click(tmp.first)
+      elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_elements.last)
+      end
+    end
+  end
 
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp)

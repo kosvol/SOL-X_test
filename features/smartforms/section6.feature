@@ -37,7 +37,9 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
-    And I will see popup dialog
+    And I enter pin 9015
+    And I set time
+    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     Then I should see gas reading display with toxic gas
     And I tear down created form
 
@@ -52,7 +54,7 @@ Feature: Section6
     And I am able to delete toxic gas inputs
     And I tear down created form
 
-  Scenario: Verify new gas reading without the initial tosic gas will show '-' on the row
+  Scenario Outline: Verify non AGT cannot add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -61,10 +63,65 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
-    And I will see popup dialog
+    And I enter pin <pin>
+    Then I should see not authorize error message
+
+    Examples:
+      | rank  | pin  |
+      | A/B   | 6316 |
+      | 4/O   | 8078 |
+      | A 4/O | 0752 |
+      | BOS   | 1018 |
+
+  Scenario Outline: Verify AGT can add gas readings
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I add all gas readings
+    And I enter pin <pin>
+    And I set time
+    Then I will see popup dialog with <rank_name> crew rank and name
+    And I should see submit button enabled
+
+    Examples:
+      | rank                       | pin  | rank_name                 |
+      | Master                     | 1111 | By MAS Daniel Alcantara   |
+      | Additional Master          | 9015 | By A/M Atif Hayat         |
+      | Chief Officer              | 8383 | By C/O Alister Leong      |
+      | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh        |
+      | Second Officer             | 6268 | By 2/O Paul Keng Teoh     |
+      | Additional Second Officer  | 7865 | By A 2/O Qasim Khan       |
+      | Third Officer              | 0159 | By 3/O Tim Kinzer         |
+      | Additional Third Officer   | 2674 | By A 3/O Aakash Seth      |
+      | Chief Engineer             | 8248 | By C/E Alex Pisarev       |
+      | Additional Chief Engineer  | 1122 | By A C/E Cs Ow            |
+      | Second Engineer            | 2523 | By 2/E Poon Choryi        |
+      | Additional Second Engineer | 3030 | By A 2/E Hyman Huang      |
+      | Third Engineer             | 3038 | By 3/E Crew Test Engineer |
+      | Additional Third Engineer  | 6727 | By A 3/E James Pike       |
+      | Fourth Engineer            | 1311 | By 4/E Tori Kuncoro       |
+
+  Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I add all gas readings
+    And I enter pin 9015
+    And I set time
+    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     Then I should see gas reading display with toxic gas
+    When I dismiss gas reader dialog box
     And I add only normal gas readings
-    And I will see popup dialog
+    And I enter pin 9015
+    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     Then I should see gas reading display without toxic gas
     And I tear down created form
 

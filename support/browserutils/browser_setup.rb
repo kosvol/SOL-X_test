@@ -31,7 +31,7 @@ class BrowserSetup
       options.add_argument('--allow-running-insecure-content')
       options.add_argument('--ignore-certificate-errors')
       # options.add_argument('--incognito')
-      options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080,https://cloud-edge.stage.solas.magellanx.io:8443')
+      # options.add_argument('--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080,https://cloud-edge.stage.solas.magellanx.io:8443')
       # if ENV['DEVICE'] === 'dashboard' || ENV['DEVICE'] === 'tablet'
       #   options.add_argument('--user-data-dir=/data/user/0/com.android.chrome/app_chrome/Default/')
       # else
@@ -39,7 +39,7 @@ class BrowserSetup
         options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
       end
       # end
-      ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=1920,1080') : options.add_argument('--window-size=720,1280')
+      ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
 
       begin
         if ENV['PLATFORM'] === 'chrome_headless'
@@ -75,7 +75,9 @@ class BrowserSetup
           platformVersion: (@device['platformVersion']).to_s,
           deviceName: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
-          newCommandTimeout: 420,
+          newCommandTimeout: 2400,
+          adbExecTimeout: 40000,
+          deviceReadyTimeout: 5,
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           # :fullReset => fullreset,

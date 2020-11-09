@@ -23,10 +23,10 @@ class DashboardPage < WearablePage
 
   def is_pre_indicator_color?(_condition)
     tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
-    if _condition.downcase === "active"
-      tmp.css_value('color').to_s === "rgba(0, 112, 26, 1)"
-    elsif _condition.downcase === "inactive"
-      tmp.css_value('color').to_s === "rgba(104, 110, 119, 1)"
+    if _condition.downcase === 'active'
+      tmp.css_value('color').to_s === 'rgba(0, 112, 26, 1)'
+    elsif _condition.downcase === 'inactive'
+      tmp.css_value('color').to_s === 'rgba(104, 110, 119, 1)'
     end
   end
 
@@ -43,7 +43,7 @@ class DashboardPage < WearablePage
 
   def unlink_all_crew_frm_wearable
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
-      next if wearable['crewMember'].nil?
+      next if wearable['userId'].nil?
 
       WearablePage.set_wearable_id(wearable['_id'])
       WearablePage.swap_payload('wearable-simulator/mod-unlink-crew-to-wearable')
@@ -84,11 +84,11 @@ class DashboardPage < WearablePage
     last_seen_element.text
   end
 
-  def get_map_zone_count(which_zone,total_crew)
+  def get_map_zone_count(which_zone, total_crew)
     area_dd
     sleep 1
-    xpath_str = @@ship_area%["#{which_zone} (#{total_crew})"]
-    return @browser.find_element('xpath', xpath_str).text
+    xpath_str = format(@@ship_area, "#{which_zone} (#{total_crew})")
+    @browser.find_element('xpath', xpath_str).text
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)
@@ -116,7 +116,7 @@ class DashboardPage < WearablePage
   end
 
   def toggle_zone_filter(which_zone)
-    xpath_str = @@ship_area%[which_zone]
+    xpath_str = format(@@ship_area, which_zone)
     sleep 1
     @browser.find_element('xpath', xpath_str).click
   end

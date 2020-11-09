@@ -32,13 +32,14 @@ Feature: Section4BEIC
     And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I sign EIC section 4b with RA pin 9015
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
 
     Examples:
-      | user         | zoneid                     | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                      |
-      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | user         | zoneid                     | mac               | location_stamp   | level_one_permit      | level_two_permit      | checklist                      |
+      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
@@ -53,15 +54,16 @@ Feature: Section4BEIC
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
     Then I sign EIC as competent person with pin <pin>
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
 
     Examples:
-      | user         | pin  | zoneid                     | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | SIT_SOLX0004 | 8383 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | SIT_SOLX0013 | 2523 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | SIT_SOLX0017 | 0856 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user         | pin  | zoneid                     | mac               | location_stamp   | level_one_permit                | level_two_permit            | checklist                             |
+      | SIT_SOLX0004 | 8383 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | SIT_SOLX0013 | 2523 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | SIT_SOLX0017 | 0856 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
@@ -76,6 +78,7 @@ Feature: Section4BEIC
     And I link wearable to a issue authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
     Then I sign EIC as issuing authority with pin 8248
+    And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
     And I tear down created form
@@ -164,7 +167,7 @@ Feature: Section4BEIC
       | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       # | Additional Chief Engineer  | 2761 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
       | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
-      # | Master                     | 1111 | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Master                     | 1111 | Critical Equipment Maintenance  | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 0159 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                       | Enclosed Space Entry Checklist           |
       | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |

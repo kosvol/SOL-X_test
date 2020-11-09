@@ -83,12 +83,14 @@ class ReportUtils
 
   def self.make_folder_documentation(folder_name)
     Dir.mkdir("testreport/#{folder_name}")
+    Dir.mkdir("testreport/#{folder_name}/livingdoc")
+    Dir.mkdir("testreport/#{folder_name}/livingdoc/screenshots")
     Dir['testreport/*'].each do |subfolder|
       if %w[testreport/css testreport/img testreport/livingdoc].include? subfolder.to_s
         FileUtils.cp_r(subfolder, "testreport/#{folder_name}/")
       end
     end
-    FileUtils.cp_r('testreport/reports/screenshots/', "testreport/#{folder_name}/livingdoc/")
+    FileUtils.cp_r('testreport/reports/screenshots/', "testreport/#{folder_name}/livingdoc/screenshots/")
   end
 
   def self.clear_folder

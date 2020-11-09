@@ -58,8 +58,8 @@ Feature: CrewList
     And I unlink all crew from wearable
 
     Examples:
-      | zone        | zoneid                     | mac               | new_zone    | new_zoneid                 | new_mac           |
-      | Engine Room | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Aft Station | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+      | zone        | zoneid                     | mac               | new_zone         | new_zoneid                 | new_mac           |
+      | Engine Room | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room Bottom | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
   Scenario: Verify crew pin is shown after tapping on view pin with captain's pin
     Given I launch sol-x portal
@@ -85,10 +85,10 @@ Feature: CrewList
     And I enter a non-existent pin
     Then I should not see invalid pin message
 
-  Scenario: Verify crew list is sorted in descending order of seniority
-    Given I launch sol-x portal
-    When I navigate to "Crew List" screen
-    Then I should see crews are sorted by descending order on seniority
+  # Scenario: Verify crew list is sorted in descending order of seniority
+  #   Given I launch sol-x portal
+  #   When I navigate to "Crew List" screen
+  #   Then I should see crews are sorted by descending order on seniority
 
   # @manual
   # Scenario: Verify Email notification sent to the assign crew

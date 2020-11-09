@@ -11,25 +11,13 @@ Then (/^I should see inactive crew count is correct$/) do
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
   step 'I toggle activity crew list'
-  sleep 2
+  sleep 3
   is_equal(on(DashboardPage).inactive_status_element.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
 end
 
 Then (/^I should see active crew count is correct$/) do
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  step 'I get a list of wearable id'
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I get a list of crews'
-  step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
-  step 'I manipulate wearable requeset payload'
-  step 'I hit graphql'
-  sleep 3
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  sleep 1
+  step 'I link wearable'
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end
@@ -61,11 +49,11 @@ Then (/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color
 end
 
 Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
-  is_equal(on(DashboardPage).get_map_zone_count(zone,count), "#{zone} (#{count})")
+  is_equal(on(DashboardPage).get_map_zone_count(zone, count), "#{zone} (#{count})")
   on(DashboardPage).toggle_zone_filter(zone)
 end
 
-When (/^I link wearable$/) do
+And (/^I link crew to wearable$/) do
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -75,6 +63,10 @@ When (/^I link wearable$/) do
   step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
+end
+
+When (/^I link wearable$/) do
+  step 'I link crew to wearable'
   step 'I get wearable-simulator/base-get-beacons-details request payload'
   step 'I hit graphql'
   step 'I get list of beacons detail'
@@ -92,19 +84,12 @@ And (/^I toggle activity crew list$/) do
   on(DashboardPage).toggle_crew_activity_list
 end
 
-When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
-  step 'I get wearable-simulator/base-get-wearable-details request payload'
-  step 'I hit graphql'
-  step 'I get a list of wearable id'
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I get a list of crews'
-  step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
-  step 'I manipulate wearable requeset payload'
-  step 'I hit graphql'
+When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
+  step 'I link crew to wearable'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
-  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
+  step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
   step 'I hit graphql'
+  sleep 1
   step 'I hit graphql'
   sleep 2
 end
@@ -139,16 +124,16 @@ And (/^I should not see (.+) location indicator$/) do |_location|
 end
 
 When (/^I submit a scheduled PRE permit$/) do
-  on(BypassPage).trigger_pre_submission("8383")
+  on(BypassPage).trigger_pre_submission('8383')
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
   p ">> #{on(DashboardPage).pre_indicator}"
-  if _condition === "should"
-    is_equal(on(DashboardPage).pre_indicator,"Active")
-    is_true(on(DashboardPage).is_pre_indicator_color?("active"))
-  elsif _condition === "should not"
-    is_equal(on(DashboardPage).pre_indicator,"Not Active")
-    is_true(on(DashboardPage).is_pre_indicator_color?("inactive"))
+  if _condition === 'should'
+    is_equal(on(DashboardPage).pre_indicator, 'Active')
+    is_true(on(DashboardPage).is_pre_indicator_color?('active'))
+  elsif _condition === 'should not'
+    is_equal(on(DashboardPage).pre_indicator, 'Not Active')
+    is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
 end

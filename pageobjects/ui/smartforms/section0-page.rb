@@ -8,17 +8,15 @@ class Section0Page < CommonFormsPage
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-  button(:click_permit_type_ddl, xpath: "//button[@id='permitType']")
-  button(:save_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/button[starts-with(@class,'Button__ButtonStyled')]")
+  button(:click_permit_type_ddl, xpath: "//button[contains(.,'Select')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
-  element(:select_permit_type, xpath: "//label[contains(.,'Select Permit Type')]")
+  element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
 
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|
-      
     end
   end
 
@@ -47,19 +45,20 @@ class Section0Page < CommonFormsPage
   def select_level2_permit(_permit)
     CommonPage.set_permit_id(_permit)
     sleep 2
-    if !(["Enclosed Space Entry","Helicopter Operation","Personnel Transfer by Transfer Basket","Rigging of Gangway & Pilot Ladder","Use of Non-Intrinsically Safe Camera","Use of ODME in Manual Mode","Work on Electrical Equipment and Circuits – Low/High Voltage","Work on Pressure Pipeline/Vessels","Working Aloft / Overside","Working on Deck During Heavy Weather"].include? _permit)
+    unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
       select_permit
     end
     @@section1_data_collector << CommonPage.get_permit_id
     @@section1_data_collector << ptw_id_element.text
     CommonPage.set_permit_id(ptw_id_element.text)
   end
-  
+
   private
 
   def select_permit
     list_permit_type_elements.each do |permit|
       next unless permit.text === CommonPage.get_permit_id
+
       permit.click
       break
     end

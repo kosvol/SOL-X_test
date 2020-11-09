@@ -9,10 +9,11 @@ class Section3APage < Section2Page
   element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_dra, xpath: "//button[contains(.,'Save DRA')]")
-  elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")  
+  elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
 
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
+  elements(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
@@ -111,7 +112,7 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
-    @@swap_flag === "evaluation_matrix" ? scroll_multiple_times(1) : scroll_multiple_times(4)
+    @@swap_flag === 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
     add_additional_measure_btn_elements[0].click
     # scroll_multiple_times(1)
     likelihood_btn_elements[2].click
@@ -122,7 +123,7 @@ class Section3APage < Section2Page
     confirm_btn_elements.last.click
   end
 
-  def is_risk_indicator_color?(_measure,_status)
+  def is_risk_indicator_color?(_measure, _status)
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
     base_color = get_color_code(_status)
     case _measure
@@ -139,7 +140,7 @@ class Section3APage < Section2Page
     risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
     (risk_indicators[risk_indicators.size - 3].css_value('background-color') === get_color_code(color) && risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1) && risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2))
   end
-  
+
   private
 
   def get_color_code(color)

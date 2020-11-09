@@ -167,10 +167,13 @@ Feature: PumpRoomEntry
     Then I activate the current PRE form
     When (for per) I navigate to "Scheduled" list
     And I should see the current PRE in the "Scheduled" list
+    And I click on back arrow
     When I wait to activate PRE. Delay 120
     And (for per) I navigate to "Active PRE" list
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
+    And I sleep for 90 seconds
+    And I click on back arrow
     When I navigate to "Closed P/R Entries" screen
     Then I should see current PRE is auto terminated
 
@@ -254,44 +257,6 @@ Feature: PumpRoomEntry
       | A 3/O                     | 2674 | disabled  |
 
 
-  Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
-    Given I launch sol-x portal without unlinking wearable
-    And Navigate to PRE Display
-    And I enter pin <pin>
-    Then I should see not authorize error message
-
-    Examples:
-      | role                       | pin  |
-      | Second Officer             | 6268 |
-      | Additional Second Officer  | 7865 |
-      | 3/O                        | 0159 |
-      | A 3/O                      | 2674 |
-      | Addtional Master           | 9015 |
-      | Electro Technical Officer  | 0856 |
-      | Additional Second Engineer | 3030 |
-      | D/C                        | 2317 |
-      | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
-      | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
-      | BOS                        | 1018 |
-      | A/B                        | 6316 |
-      | O/S                        | 7669 |
-      | OLR                        | 0450 |
-
-
-  Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display
-    Given I launch sol-x portal without unlinking wearable
-    And Navigate to PRE Display
-    And I enter pin <pin>
-    Then I should see the label 'Pump Room Entry Display'
-
-    Examples:
-      | role            | pin  |
-      | Master          | 1111 |
-      | Chief Officer   | 8383 |
-      | Chief Engineer  | 8248 |
-      | Second Engineer | 2523 |
 
 
 

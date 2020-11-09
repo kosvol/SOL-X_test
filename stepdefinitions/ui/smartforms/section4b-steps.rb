@@ -15,12 +15,12 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and lin
 end
 
 Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
-  BrowserActions.scroll_click(on(Section4BPage).sign_btn_elements.first) if ["competent person","non competent person"].include? _condition
-  BrowserActions.scroll_click(on(Section4BPage).sign_btn_elements.last) if ["issuing authority","non issuing authority"].include? _condition
+  on(Section8Page).sign_eic_or_issuer(_condition)
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
-  step 'I sign on canvas' if (_condition === 'issuing authority' || _condition === 'competent person')
-  on(CommonFormsPage).set_current_time
+  if _condition === 'issuing authority' || _condition === 'competent person'
+    step 'I sign on canvas'
+  end
 end
 
 When (/^I select yes to EIC$/) do
@@ -30,7 +30,7 @@ end
 
 When (/^I select yes to EIC certification$/) do
   on(Section4BPage).yes_no_btn_elements[0].click
-  on(Section4BPage).set_current_time
+  step 'I set time'
   on(Section4BPage).create_eic_btn
   sleep 1
 end
@@ -57,4 +57,22 @@ end
 
 Then (/^I should see EIC permit number, date and time populated$/) do
   is_true(on(Section4BPage).is_eic_details_prepopulated?)
+end
+
+And (/^I fill up EIC certificate$/) do
+  on(Section4BPage).create_eic_btn
+  sleep 1
+  on(Section4BPage).fill_textarea
+  tmp = 0
+  (0..((42 / 2) - 1)).each do |_i|
+    on(Section3DPage).radio_btn_elements[0 + tmp].click
+    tmp += 2
+  end
+  on(Section4BPage).loto = '1234'
+  # sign
+  step 'I sign EIC as competent person with pin 8383'
+  step 'I sign EIC as issuing authority with pin 8248'
+  on(Section4BPage).save_eic
+  sleep 1
+  step 'I sign EIC section 4b with RA pin 9015'
 end

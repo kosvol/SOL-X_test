@@ -12,6 +12,7 @@ class Section1Page < Section0Page
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
+  element(:s1_navigation_dropdown, xpath: "//h3[contains(.,'Section 1: Task Description')]")
 
   @@maint_require_text = '//div[@id="1_subsection6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
@@ -27,7 +28,7 @@ class Section1Page < Section0Page
     # probably need to dynamic this created by
     @@section1_data_collector << 'Created By A/M Atif Hayat at'
     sleep 1
-    @@section1_data_collector << "#{get_current_date_format_with_offset} #{get_current_time_format}"
+    @@section1_data_collector << get_current_date_and_time.to_s
     p ">>> #{@@section1_data_collector}"
     Log.instance.info(@@section1_data_collector)
     @@section1_data_collector

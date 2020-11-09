@@ -53,3 +53,75 @@ Feature: Section5
     And I select 1 role from list
     And I sign on role
     Then I should see signed role details
+
+  Scenario: Verify same user can sign for multiple roles
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 2 role from list
+    And I sign on both roles with same user
+    Then I should see signed role details
+
+  Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I check non crew member checkbox
+    Then I should see sign button disabled
+
+  Scenario: Verify Enter Pin and Sign button is enabled if name and company fields filled
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I fill up non crew details
+    Then I should see sign button enabled
+
+  Scenario: Verify ship staff copy text display after name and company fields filled
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I fill up non crew details
+    Then I should see non crew copy text
+
+  Scenario Outline: Verify only sponsor crews can sign
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I fill up non crew details
+    And I sign on role with sponsor crew <pin> pin
+    Then I should see non crew details
+    And I should see supervise by <supervized> detail and Test Automation Company detail
+
+    Examples:
+      | rank  | pin  | supervized             |
+      | C/O   | 8383 | C/O Alister Leong      |
+      | A C/O | 2761 | A C/O Nigel Koh        |
+      | 2/O   | 6268 | 2/O Paul Keng Teoh     |
+      | A 2/O | 7865 | A 2/O Qasim Khan       |
+      | 3/O   | 0159 | 3/O Tim Kinzer         |
+      | C/E   | 8248 | C/E Alex Pisarev       |
+      | A C/E | 1122 | A C/E Cs Ow            |
+      | 2/E   | 2523 | 2/E Poon Choryi        |
+      | A 2/E | 3030 | A 2/E Hyman Huang      |
+      | 3/E   | 3038 | 3/E Crew Test Engineer |
+      | A 3/E | 6727 | A 3/E James Pike       |
+      | 4/E   | 1311 | 4/E Tori Kuncoro       |

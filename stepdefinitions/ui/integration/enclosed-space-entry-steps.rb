@@ -26,10 +26,12 @@ end
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
-  does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
-  does_include(on(Section3APage).generic_data_elements[0].text, 'SIT')
-  does_include(on(Section3APage).generic_data_elements[1].text, 'SIT/DRA')
+  does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
+  does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
+  does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT+')
+  # does_include(on(Section3APage).date_and_time_fields_elements[1].text, on(CommonFormsPage).get_current_time_format)
+  does_include(on(Section3APage).method_detail_elements[2].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
 end
 
@@ -55,8 +57,9 @@ end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  sleep 4
-  is_equal(on(Section3CPage).dra_team_name_elements.first.text, @@form_data['section3c'])
+  sleep 2
+  is_equal(on(Section3CPage).master_element.text, @@form_data['section3c'][0])
+  is_equal(on(Section3CPage).am_element.text, @@form_data['section3c'][1])
 end
 
 And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
@@ -64,6 +67,7 @@ And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   p "--- #{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
+  step 'I should map to partial sign details'
 end
 
 And (/^I review page 4a of submitted (.+) permit$/) do |_permit_type|
@@ -80,14 +84,30 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section4APage).generic_data_elements[1].text, 'SIT/PTW')
   extract = on(Section4APage).get_filled_section
   extract.delete_at(1)
-  # extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
+
+  is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
+  step 'I should map to partial sign details'
 end
 
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
+  on(Section4BPage).view_eic_btn
+  sleep 1
+  tmp = on(Section4BPage).get_filled_section
+  tmp.delete_at(1)
+  tmp.delete_at(3)
+  p "++ #{@@form_data['section4b_eic']}"
+  p "-- #{tmp}"
+  is_equal(tmp, @@form_data['section4b_eic'])
+  step 'I set time'
+  step 'I should see signed details'
+  on(CommonFormsPage).close_btn_elements.first.click
+  sleep 1
+  step 'I set time'
+  step 'I should see signed details'
 end
 
 And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|

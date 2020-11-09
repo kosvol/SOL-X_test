@@ -15,7 +15,7 @@ class CommonFormsPage < CommonPage
   button(:back_btn, xpath: "//button[contains(.,'Back')]")
   button(:cancel_btn, xpath: "//button[contains(.,'Cancel')]")
   button(:clear_btn, xpath: "//button[contains(.,'Clear')]")
-  button(:done_btn, xpath: "//button[contains(.,'Done')]")
+  buttons(:done_btn, xpath: "//button[contains(.,'Done')]")
   buttons(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
   button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
@@ -30,21 +30,23 @@ class CommonFormsPage < CommonPage
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
-  element(:enter_comment_box, xpath: "//textarea")
-  
+  element(:enter_comment_box, xpath: '//textarea')
+  buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
+  buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
+
   def scroll_multiple_times(times)
-    for i in 1..times do
+    (1..times).each do |_i|
       BrowserActions.scroll_down
       sleep 1
     end
   end
-  
+
   def click_next
     next_btn
   rescue StandardError
     save_and_next_btn
   end
-  
+
   def set_current_time
     @@time = main_clock_element.text
   end
@@ -58,6 +60,10 @@ class CommonFormsPage < CommonPage
 
   def get_current_date_format
     Time.new.strftime('%d/%b/%Y')
+  end
+
+  def get_current_date_and_time
+    "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end
 
   def get_current_date_format_with_offset
@@ -101,5 +107,4 @@ class CommonFormsPage < CommonPage
       1
     end
   end
-
 end

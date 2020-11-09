@@ -18,7 +18,7 @@ class BypassPage < Section0Page
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][27]['value'] = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
-    update_form_pre['variables']['answers'][28]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset("4")}\",\"utcOffset\":#{@get_offset}}"
+    update_form_pre['variables']['answers'][28]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset('4')}\",\"utcOffset\":#{@get_offset}}"
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
@@ -37,7 +37,7 @@ class BypassPage < Section0Page
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     ### init ptw form
-    create_form_ptw = JSON.parse JsonUtil.read_json('ptw/0.create_form_ptw')
+    create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
@@ -51,20 +51,20 @@ class BypassPage < Section0Page
     @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
 
     ### init dra form
-    init_dra = JSON.parse JsonUtil.read_json('ptw/0.create_form_dra')
+    init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
     init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
     init_dra['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
-    dra_permit_number = ServiceUtil.get_response_body['data']['createForm']['_id']
+    CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### save section 0
-    section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
-    section2['variables']['formId'] = CommonPage.get_permit_id
-    section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-    section2['variables']['submissionTimestamp'] = get_current_date_time
-    JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
-    ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
+    # section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
+    # section2['variables']['formId'] = CommonPage.get_permit_id
+    # section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    # section2['variables']['submissionTimestamp'] = get_current_date_time
+    # JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
+    # ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
 
     ### save sections
     save_different_form_section(payload_mapper(_permit_type, '3'), _user)
@@ -73,17 +73,17 @@ class BypassPage < Section0Page
     ### section 3a ###
     section3a = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '3a'))
     section3a['variables']['formId'] = CommonPage.get_permit_id
-    section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    # section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     section3a['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_5.save_section3a_details', section3a)
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
-    ### end ### 
+    ### end ###
 
     save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
     save_different_form_section('7.save_section3c_details', _user)
     save_different_form_section('8.save_section3d_details', _user)
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
-    
+
     ### section 4ac ###
     section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
     section4ac['variables']['formId'] = CommonPage.get_permit_id
@@ -126,25 +126,40 @@ class BypassPage < Section0Page
     ### SUBMIT ###
     save_different_form_section(payload_mapper(_permit_type, '14'), _user)
 
+    ### put to states
     if _state === 'active'
-      submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
-      submit_active['variables']['formId'] = CommonPage.get_permit_id
-      submit_active['variables']['submissionTimestamp'] = get_current_date_time
-      JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
-      ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
-
-      submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
-      submit_active['variables']['formId'] = CommonPage.get_permit_id
-      submit_active['variables']['submissionTimestamp'] = get_current_date_time
-      submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-      if _permit_type != 'submit_underwater_simultaneou'
-        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
-      else
-        submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
-      end
-      JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
-      ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
+      submit_active = set_permit_status('ACTIVE')
+      submit_permit_for_status_change(submit_active, _user, _permit_type)
+      set_update_require_for_permit(_permit_type, _user)
     end
+    ### End submit states
+  end
+
+  def submit_permit_for_status_change(_submit_active, _user, _permit_type)
+    _submit_active['variables']['formId'] = CommonPage.get_permit_id
+    _submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', _submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
+  end
+
+  def set_update_require_for_permit(_permit_type, _user)
+    _update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    _update_permit['variables']['formId'] = CommonPage.get_permit_id
+    _update_permit['variables']['submissionTimestamp'] = get_current_date_time
+    _update_permit['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    if _permit_type != 'submit_underwater_simultaneou'
+      _update_permit['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
+    else
+      _update_permit['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
+    end
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', _update_permit)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
+  end
+
+  def set_permit_status(_status)
+    submit_status = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_status['variables']['newStatus'] = _status
+    submit_status
   end
 
   def set_oa_permit_to_pending_office_appr
@@ -157,7 +172,7 @@ class BypassPage < Section0Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = "http://52.230.70.68:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -252,7 +267,7 @@ class BypassPage < Section0Page
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 2
     if current_minute > 60
-      current_minute = current_minute - 60
+      current_minute -= 60
       current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
     else
       current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
@@ -293,6 +308,10 @@ class BypassPage < Section0Page
     case permit_name
     when 'submit_non_intrinsical_camera'
       case _step
+      when '0'
+        'ptw/camera/0.create_form_ptw'
+      when '00'
+        'ptw/camera/0.create_form_dra'
       when '1'
         'ptw/camera/1.date_with_offset'
       when '2'
@@ -314,6 +333,10 @@ class BypassPage < Section0Page
       end
     when 'submit_enclose_space_entry'
       case _step
+      when '0'
+        'ptw/enclosed-workspace/0.create_form_ptw'
+      when '00'
+        'ptw/enclosed-workspace/0.create_form_dra'
       when '1'
         'ptw/enclosed-workspace/1.date_with_offset'
       when '2'
@@ -335,6 +358,10 @@ class BypassPage < Section0Page
       end
     when 'submit_cold_work_clean_spill'
       case _step
+      when '0'
+        'ptw/cold-work-cleaning-spill/0.create_form_ptw'
+      when '00'
+        'ptw/cold-work-cleaning-spill/0.create_form_dra'
       when '1'
         'ptw/cold-work-cleaning-spill/1.date_with_offset'
       when '2'
@@ -356,6 +383,10 @@ class BypassPage < Section0Page
       end
     when 'submit_hotwork'
       case _step
+      when '0'
+        'ptw/hotwork/0.create_form_ptw'
+      when '00'
+        'ptw/hotwork/0.create_form_dra'
       when '1'
         'ptw/hotwork/1.date_with_offset'
       when '2'
@@ -377,6 +408,10 @@ class BypassPage < Section0Page
       end
     when 'submit_underwater_simultaneous'
       case _step
+      when '0'
+        'ptw/underwater-sim/0.create_form_ptw'
+      when '00'
+        'ptw/underwater-sim/0.create_form_dra'
       when '1'
         'ptw/underwater-sim/1.date_with_offset'
       when '2'
@@ -398,6 +433,10 @@ class BypassPage < Section0Page
       end
     when 'submit_work_on_pressure_line'
       case _step
+      when '0'
+        'ptw/work-pressure-line/0.create_form_ptw'
+      when '00'
+        'ptw/work-pressure-line/0.create_form_dra'
       when '1'
         'ptw/work-pressure-line/1.date_with_offset'
       when '2'

@@ -15,15 +15,16 @@ Feature: RiggingOfLadder
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
+    And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
     Then I should see view and termination buttons
 
     Examples:
-      | rank  | pin  |
-      | 3/O   | 0159 |
-      | A 3/O | 2674 |
+      | rank | pin  |
+      | 3/O  | 0159 |
+  # | A 3/O | 2674 |
 
   Scenario: SOL-5099 Verify no extra buttons during pending update state
     Given I launch sol-x portal without unlinking wearable
@@ -50,6 +51,7 @@ Feature: RiggingOfLadder
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
+    And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     When I put the permit to termination state
     And I review termination permit with 1111 pin

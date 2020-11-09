@@ -9,7 +9,12 @@ Given (/^I submit permit (.+) via service with (.+) user and set to pending appr
 end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to active state$/) do |_permit_type, _user|
+  @@permit_type = _permit_type
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_yes')
+end
+
+When (/^I set permit to close$/) do
+  on(BypassPage).submit_permit_for_status_change(on(BypassPage).set_permit_status('CLOSED'), '1111', @@permit_type)
 end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to active state with EIC not require$/) do |_permit_type, _user|
@@ -34,7 +39,7 @@ Given (/^I submit permit (.+) via service with (.+) user and set to active state
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_no')
 end
 
-And (/^I set (.+) permit to (.+) state$/) do |_condition,_status|
+And (/^I set (.+) permit to (.+) state$/) do |_condition, _status|
   on(BypassPage).set_oa_permit_to_active_state(_status)
 end
 

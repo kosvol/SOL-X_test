@@ -11,7 +11,7 @@ class Section3DPage < Section3CPage
   def sign
     sign_for_gas
     sleep 1
-    done_btn
+    done_btn_elements.first.click
   end
 
   def sign_for_gas

@@ -108,6 +108,7 @@ Feature: Section4AChecklist
     When I press next for 1 times
     And I sign on checklist with <pin> pin
     And I sign on canvas
+    And I set time
     Then I should see signed details
     And I tear down created form
 
@@ -173,6 +174,7 @@ Feature: Section4AChecklist
     When I press next for 1 times
     And I sign on checklist with <pin> pin
     And I sign on canvas
+    And I set time
     Then I should see signed details
     And I tear down created form
 

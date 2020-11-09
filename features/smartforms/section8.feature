@@ -4,7 +4,7 @@ Feature: Section8
   I want to ...
   So that ...
 
-  # Scenario: Verify date and time fields are automatically filled
+  # Scenario: Verify competent and issuing authority detail display on read only mode if not signed
 
   Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
     Given I launch sol-x portal
@@ -72,9 +72,6 @@ Feature: Section8
     And I terminate permit with <rank> rank and <terminator_pin> pin
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I sign EIC section 8 with RA <pin>
-    # Then I should see <rank> rank and name for section 8
-    # And I should see signed date and time for section 8
-    # And I should see location <location_stamp> stamp
 
     Examples:
       | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user         | zoneid                     | mac               | location_stamp |
@@ -87,13 +84,14 @@ Feature: Section8
     And I terminate permit with <rank> rank and <terminator_pin> pin
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
     Then I sign EIC as issuing authority with pin <pin>
+    And I set time
     And I should see <rank> rank and name for section 8
     And I should see signed date and time for section 8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user         | zoneid                     | mac               | location_stamp |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user         | zoneid                     | mac               | location_stamp   |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | SIT_SOLX0002 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -102,15 +100,16 @@ Feature: Section8
     And I terminate permit with <rank> rank and <pin> pin
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     Then I sign EIC as competent person with pin <pin>
+    And I set time
     And I should see <rank> rank and name for section 8
     And I should see signed date and time for section 8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types | permit_payload | rank          | pin  | user         | zoneid                     | mac               | location_stamp |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
-      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
-      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | permit_types | permit_payload | rank          | pin  | user         | zoneid                     | mac               | location_stamp   |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | SIT_SOLX0004 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | SIT_SOLX0013 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom    |
+      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | SIT_SOLX0017 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

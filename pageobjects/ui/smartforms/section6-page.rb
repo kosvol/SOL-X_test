@@ -6,7 +6,6 @@ class Section6Page < Section5Page
   include PageObject
 
   button(:remove_toxic_btn, xpath: "//button[contains(.,'Remove')]")
-  span(:gas_reader_by, xpath: "//span[contains(.,'By MAS Daniel Alcantara')]")
   button(:add_gas_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
   button(:add_toic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
   button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
@@ -18,6 +17,7 @@ class Section6Page < Section5Page
   buttons(:date_and_time_btn, xpath: "//button[@id='gasLastCalibrationDate']")
   div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
+  @@gas_added_by = "//span[contains(.,'%s')]"
 
   element(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
 
@@ -39,13 +39,17 @@ class Section6Page < Section5Page
   element(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
 
+  def get_gas_added_by(_agt)
+    @browser.find_element(:xpath, format(@@gas_added_by, _agt))
+  end
+
   def add_all_gas_readings
     normal_gas_readings
     sleep 1
-    gas_name_input_element.send_keys("Test")
-    threshold_input_element.send_keys("20")
-    reading_input_element.send_keys("1.5")
-    unit_input_element.send_keys("cc")
+    gas_name_input_element.send_keys('Test')
+    threshold_input_element.send_keys('20')
+    reading_input_element.send_keys('1.5')
+    unit_input_element.send_keys('cc')
     add_toic_gas_btn
     sleep 1
   end
@@ -83,10 +87,10 @@ class Section6Page < Section5Page
   def normal_gas_readings
     add_gas_btn
     sleep 1
-    o2_input_element.send_keys("1")
-    hc_input_element.send_keys("2")
-    h2s_input_element.send_keys("3")
-    co_input_element.send_keys("4")
+    o2_input_element.send_keys('1')
+    hc_input_element.send_keys('2')
+    h2s_input_element.send_keys('3')
+    co_input_element.send_keys('4')
     continue_btn
   end
 end
