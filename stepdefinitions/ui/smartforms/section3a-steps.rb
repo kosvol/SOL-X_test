@@ -40,7 +40,6 @@ end
 
 Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
-  step 'I set time'
   does_include(on(Section3APage).generic_data_elements[1].text, 'DRA/TEMP/')
   is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(Section0Page).get_current_date_format_with_offset)
   is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(Section0Page).get_current_time_format)
@@ -81,11 +80,11 @@ And (/^I delete a hazard$/) do
 end
 
 Then (/^I should see hazard deleted$/) do
-  sleep 2
-  on(Section3APage).scroll_multiple_times(1)
-  is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
+  sleep 3
+  on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
   is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')
+  is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')
 end
 
 Then (/^I should see added new hazard$/) do
