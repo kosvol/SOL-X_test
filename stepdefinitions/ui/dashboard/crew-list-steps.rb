@@ -57,6 +57,7 @@ And (/^I enter a invalid master pin$/) do
 end
 
 And (/^I click on view pin button$/) do
+  sleep 1
   on(CrewListPage).view_pin_btn
 end
 
