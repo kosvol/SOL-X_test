@@ -39,7 +39,7 @@ end
 
 And (/^I view pin$/) do
   step 'I click on view pin button'
-  # on(PinPadPage).enter_pin(1111)
+  on(PinPadPage).enter_pin(1111)
 end
 
 Then (/^I should see pin reviewed$/) do
