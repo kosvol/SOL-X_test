@@ -17,6 +17,7 @@ Feature: Section4BEIC
     And I select the matching Hot Work Outside Designated Area checklist
     And I press next for 2 times
     And I select yes to EIC certification
+    And I set time
     Then I should see EIC permit number, date and time populated
     And I tear down created form
 

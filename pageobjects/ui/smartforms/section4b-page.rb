@@ -22,7 +22,6 @@ class Section4BPage < Section4APage
   elements(:eic_signer_name, xpath: "//div[starts-with(@class,'Section__Description')]/div[2]")
 
   def is_eic_details_prepopulated?
-    # set_current_time
     sleep 1
     Log.instance.info(">>> #{eic_date_and_time_elements[1].text} vs #{get_current_time_format}")
     Log.instance.info(">>> #{eic_date_and_time_elements[0].text} vs #{get_current_date_format_with_offset}")
