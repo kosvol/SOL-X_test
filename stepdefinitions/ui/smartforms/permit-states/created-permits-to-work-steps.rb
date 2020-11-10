@@ -36,6 +36,7 @@ And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
 end
 
 And (/^I should see eic selection fields enabled$/) do
+  sleep 1
   is_enabled(on(Section4BPage).yes_no_btn_elements[0])
   is_enabled(on(Section4BPage).yes_no_btn_elements[1])
 end
