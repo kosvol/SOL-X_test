@@ -9,6 +9,12 @@ And (/^I (select|delete) (.+) role from list$/) do |_condition, _roles|
   end
 end
 
+And (/^I fill up section 5$/) do
+  step 'I select 1 role from list'
+  step 'I fill up non crew details'
+  step 'I sign on role with sponsor crew 8383 pin'
+end
+
 And (/^I sign on listed role$/) do
   BrowserActions.scroll_click(on(Section5Page).sign_btn_role_elements.first)
   on(PinPadPage).enter_pin(9015)

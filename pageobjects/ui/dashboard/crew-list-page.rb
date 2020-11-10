@@ -80,6 +80,7 @@ class CrewListPage < DashboardPage
   end
 
   def is_pin_hidden?
+    sleep 1
     crew_pin_list_elements.all? do |pin|
       pin.text === '••••'
     end

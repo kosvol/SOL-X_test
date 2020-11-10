@@ -5,7 +5,7 @@ And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1,
 end
 
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
-  sleep 1
+  sleep 2
   @measure = _measure
   @@swap_flag = ''
   case _measure

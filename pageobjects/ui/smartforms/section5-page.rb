@@ -15,6 +15,8 @@ class Section5Page < Section4BPage
   span(:non_crew_copy_text, xpath: "//span[contains(.,'Ship Staff to use PIN for non-crew member to enter signature')]")
   elements(:roles_name, xpath: '//li/h3')
   spans(:signed_details, xpath: '//div/span')
+  elements(:get_filled_roles_responsibility, xpath: "//*[starts-with(@class,'Input__Answer')]")
+  elements(:get_filled_crew_details, xpath: "//div/span")
 
   @@list_of_roles = ['Authorized Entrant 1', 'Authorized Entrant 2', 'Authorized Entrant 3', 'Authorized Entrant 4', 'Authorized Gas Tester', 'Diving Supervisor', 'Fire Watch 1', 'Fire Watch 2', 'Responsible for Safety', 'Standby Person', 'Task Leader', 'Task Performer 1', 'Task Performer 2', 'Task Performer 3', 'Task Performer 4', 'Task Performer - Assisting for Hot Work', 'Task Performer - Carrying out Hot Work', 'Task Performer - Diver (Underwater Operation)', 'Task Performer - Working Aloft', 'Task Performer - Working Overside']
 

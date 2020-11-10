@@ -316,9 +316,9 @@ Feature: Section3ADRA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Anchor permit for level 2
-    And I set maintenance during more than 2 hours
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    # And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I add a new hazard
     Then I should see added new hazard

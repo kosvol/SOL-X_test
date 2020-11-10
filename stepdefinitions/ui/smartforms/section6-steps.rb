@@ -44,6 +44,7 @@ end
 Then (/^I submit smoke test permit$/) do
   sleep 1
   BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+  sleep 1
   step 'I enter pin 9015'
   step 'I sign on canvas'
 end
@@ -122,6 +123,7 @@ end
 And (/^I add (all|only normal) gas readings$/) do |_condition|
   on(Section6Page).add_all_gas_readings if _condition === 'all'
   on(Section6Page).add_normal_gas_readings if _condition === 'only normal'
+  sleep 1
   on(Section6Page).review_sign_btn
   on(Section3DPage).sign_for_gas
   on(Section6Page).enter_pin_and_submit_btn
