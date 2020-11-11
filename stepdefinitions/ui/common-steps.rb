@@ -36,6 +36,7 @@ end
 
 When (/^I navigate to "(.+)" screen$/) do |_which_section|
   on(NavigationPage).tap_hamburger_menu
+  sleep 1
   on(NavigationPage).select_nav_category(_which_section)
   sleep 1
 end

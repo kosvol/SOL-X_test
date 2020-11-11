@@ -36,8 +36,8 @@ Feature: SubmitPermit
   #   And I click on active filter
   #   Then I should see permit valid for 8 hours
 
-  @smoke-test-1
-  Scenario:  Submit permit data Enclosed Spaces Entry
+  @pending-approval-smoke-test-1
+  Scenario: Submit permit data Enclosed Spaces Entry into pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
@@ -70,7 +70,45 @@ Feature: SubmitPermit
     And I click on back to home
     And I sleep for 5 seconds
 
-  @smoke-test-2
+  @active-smoke-test-1
+  Scenario: Submit permit data Enclosed Spaces Entry into active
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 3a
+    And I add a new hazard
+    And I press next for 1 times
+    And I set time
+    And I fill up section 3b
+    And I press next for 1 times
+    And I fill up section 3c
+    And I press next for 1 times
+    And I fill up section 3d
+    And I press next for 1 times
+    And I fill up section 4a
+    And I press next for 1 times
+    And I fill up checklist yes, no, na
+    And I press next for 1 times
+    And I select yes to EIC
+    And I fill up EIC certificate
+    And I press next for 1 times
+    And I fill up section 5
+    And I press next for 1 times
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And I submit smoke test permit
+    And I click on back to home
+    And I sleep for 5 seconds
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
+    And I sleep for 5 seconds
+
+  @pending-approval-smoke-test-2
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
     Given I launch sol-x portal without unlinking wearable
     And I click on pending approval filter

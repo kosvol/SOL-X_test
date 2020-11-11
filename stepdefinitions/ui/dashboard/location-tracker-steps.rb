@@ -127,6 +127,10 @@ When (/^I submit a scheduled PRE permit$/) do
   on(BypassPage).trigger_pre_submission('8383')
 end
 
+Then (/^I should see 25 crews link to dashboard$/) do
+  is_equal(on(DashboardPage).crew_list_elements.size,25)
+end
+
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
   p ">> #{on(DashboardPage).pre_indicator}"
   if _condition === 'should'

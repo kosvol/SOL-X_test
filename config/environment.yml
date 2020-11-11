@@ -16,7 +16,7 @@ sits:
 
 uat:
   c2_preview: "http://104.215.192.113:8080"
-  service: "http://104.215.192.11:4000"
+  service: "http://104.215.192.113:4000"
   master_pin:
 
 fauxton:
