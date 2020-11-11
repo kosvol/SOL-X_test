@@ -60,10 +60,10 @@ And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 11 times'
   sleep 1
-  step 'I sign the permit for submission to pending state'
+  step 'I sign the permit for submission to active state'
 end
 
-And (/^I sign the permit for submission to pending state$/) do
+And (/^I sign the permit for submission to active state$/) do
   on(Section7Page).activate_permit_btn
   step 'I enter pin 1111'
   on(Section7Page).activate_permit
