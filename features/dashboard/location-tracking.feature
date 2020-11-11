@@ -7,11 +7,6 @@ Feature: LocationTracking
   # @skip
   # Scenario: Verify wearable is single sign on
 
-  @link-25-wearables
-  Scenario: Verify max wearable logins display correct total number of users
-    Given I launch sol-x portal
-    Then I should see 25 crews link to dashboard
-
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I launch sol-x portal
     Then I should not see PRE tab active on dashboard
