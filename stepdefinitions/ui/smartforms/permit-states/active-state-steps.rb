@@ -38,7 +38,6 @@ end
 
 And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
   sleep 1
-  step 'I navigate to section 6'
   _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
 end
 

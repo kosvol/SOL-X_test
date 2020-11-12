@@ -194,6 +194,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button enabled
 
     Examples:
@@ -226,6 +227,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -238,6 +240,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button enabled
 
     Examples:
@@ -280,6 +283,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:
