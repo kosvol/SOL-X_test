@@ -39,6 +39,12 @@ class Section6Page < Section5Page
   element(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
 
+  def is_gas_reading_fields_enabled?
+    gas_equipment_input_element.text
+    gas_sr_number_input_element.text
+    gas_yes_no_elements.size === 2
+  end
+
   def get_gas_added_by(_agt)
     @browser.find_element(:xpath, format(@@gas_added_by, _agt))
   end

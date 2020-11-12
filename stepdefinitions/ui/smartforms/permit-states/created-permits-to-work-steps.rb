@@ -49,7 +49,7 @@ end
 
 Then (/^I should see gas reader section with fields enabled$/) do
   step 'I navigate to section 6'
-  is_false(on(Section4APage).is_checklist_fields_disabled?)
+  is_true(on(Section6Page).is_gas_reading_fields_enabled?)
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
