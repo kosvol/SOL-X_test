@@ -75,7 +75,7 @@ class BrowserSetup
           platformVersion: (@device['platformVersion']).to_s,
           deviceName: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
-          automationName: UiAutomator2,
+          automationName: "UiAutomator2",
           newCommandTimeout: 10000,
           adbExecTimeout: 60000,
           deviceReadyTimeout: 5,
