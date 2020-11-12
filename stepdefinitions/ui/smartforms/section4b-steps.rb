@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and link to zoneid (.+) and mac (.+)$/) do |_condition, _user, zoneid, mac|
+And (/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, _user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
