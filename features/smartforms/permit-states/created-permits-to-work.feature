@@ -95,10 +95,13 @@ Feature: CreatedPermitToWork
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
     And I click on back arrow
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
-    Then I should see gas reader section with fields enabled
+    And I navigate to section 6
+    Then I should see Add Gas Reading button enabled
 
     Examples:
       | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
