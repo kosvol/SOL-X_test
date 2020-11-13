@@ -102,6 +102,7 @@ Feature: CreatedPermitToWork
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 6
+    And I sleep for 1 seconds
     Then I should see Add Gas Reading button enabled
 
     Examples:
