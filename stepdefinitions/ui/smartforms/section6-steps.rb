@@ -50,6 +50,7 @@ Then (/^I submit smoke test permit$/) do
 end
 
 And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
+  sleep 1
   on(Section6Page).gas_testing_switcher(key)
 end
 
