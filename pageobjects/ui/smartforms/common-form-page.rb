@@ -55,7 +55,7 @@ class CommonFormsPage < CommonPage
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-    "#{@@time} LT (GMT+#{@@time_offset})"
+    "#{@@time} LT (GMT#{@@time_offset})"
   end
 
   def get_current_date_format

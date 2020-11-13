@@ -87,7 +87,6 @@ Feature: CreatedPermitToWork
       | Second Engineer           | 2523 |
       | Electro Technical Officer | 0856 |
 
-  @debug
   Scenario Outline: Verify AGT can add gas reading on section 6 for permit on Created state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
