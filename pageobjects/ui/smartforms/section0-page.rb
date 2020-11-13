@@ -43,6 +43,7 @@ class Section0Page < CommonFormsPage
   end
 
   def select_level2_permit(_permit)
+    sleep 1
     CommonPage.set_permit_id(_permit)
     sleep 2
     unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
