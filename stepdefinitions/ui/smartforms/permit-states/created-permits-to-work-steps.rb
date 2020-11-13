@@ -54,11 +54,13 @@ Then (/^I should see EIC section with fields enabled$/) do
 end
 
 Then (/^I should see deleted permit deleted$/) do
+  sleep 1
   is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)
 end
 
 And (/^I delete the permit created$/) do
-  on(CreatedPermitToWorkPage).delete_created_permit.click
+  CommonPage.set_permit_id(on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
+  on(CreatedPermitToWorkPage).delete_permit_btn_elements.first.click
   step 'I enter pin 1111'
 end
 
