@@ -106,22 +106,22 @@ Feature: CreatedPermitToWork
     Then I should see Add Gas Reading button enabled
 
     Examples:
-      | rank   | pin  | level_one_permit      | level_two_permit      |
-      | Master | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 2/O                        | 6268 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 2/O                      | 7865 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Additional Chief Engineer  | 1122 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | rank                       | pin  | level_one_permit      | level_two_permit      |
+      | Master                     | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 2/O                        | 6268 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 2/O                      | 7865 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Additional Chief Engineer  | 1122 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
