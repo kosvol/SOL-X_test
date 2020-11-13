@@ -56,6 +56,7 @@ end
 
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
+  sleep 1
   on(PinPadPage).enter_pin(pin)
   sleep 1
 end
