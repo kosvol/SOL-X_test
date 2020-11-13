@@ -96,6 +96,7 @@ Feature: CreatedPermitToWork
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
+    And I sleep for 1 seconds
     And I press the Yes button to enable gas testing
     And I click on back arrow
     And I sleep for 3 seconds
@@ -107,53 +108,53 @@ Feature: CreatedPermitToWork
     Examples:
       | rank   | pin  | level_one_permit      | level_two_permit      |
       | Master | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 2/O                        | 6268 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 2/O                      | 7865 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Additional Chief Engineer  | 1122 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-  # | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | 2/O                        | 6268 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | A 2/O                      | 7865 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | Additional Chief Engineer  | 1122 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+# | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
-  Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
-    And I edit ptw with rank <rank> and <pin> pin
-    And I navigate to section 4a
-    Then I should see checklist selections fields enabled
-    When I press next for 1 times
-    Then I should see checklist questions fields enabled
-    When I press next for 1 times
-    And I should see eic selection fields enabled
-    And I tear down created form
+# Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
+#   Given I launch sol-x portal without unlinking wearable
+#   And I navigate to create new permit
+#   And I enter pin 9015
+#   And I select Enclosed Spaces Entry permit
+#   And I select Enclosed Spaces Entry permit for level 2
+#   And I click on back arrow
+#   And I navigate to "Created Permits to Work" screen
+#   And I edit ptw with rank <rank> and <pin> pin
+#   And I navigate to section 4a
+#   Then I should see checklist selections fields enabled
+#   When I press next for 1 times
+#   Then I should see checklist questions fields enabled
+#   When I press next for 1 times
+#   And I should see eic selection fields enabled
+#   And I tear down created form
 
-    Examples:
-      | rank                       | pin  |
-      | 3/O                        | 0159 |
-      | A 3/O                      | 2674 |
-      | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
-      | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
-      | Addtional Master           | 9015 |
-      | Chief Officer              | 8383 |
-      | Additional Chief Officer   | 2761 |
-      | Second Officer             | 6268 |
-      | Additional Second Officer  | 7865 |
-      | Chief Engineer             | 8248 |
-      | Additional Chief Engineer  | 2761 |
-      | Second Engineer            | 2523 |
-      | Additional Second Engineer | 3030 |
-      | Electro Technical Officer  | 0856 |
+#   Examples:
+#     | rank                       | pin  |
+#     | 3/O                        | 0159 |
+#     | A 3/O                      | 2674 |
+#     | 3/E                        | 4685 |
+#     | A 3/E                      | 6727 |
+#     | 4/E                        | 1311 |
+#     | A 4/E                      | 0703 |
+#     | Addtional Master           | 9015 |
+#     | Chief Officer              | 8383 |
+#     | Additional Chief Officer   | 2761 |
+#     | Second Officer             | 6268 |
+#     | Additional Second Officer  | 7865 |
+#     | Chief Engineer             | 8248 |
+#     | Additional Chief Engineer  | 2761 |
+#     | Second Engineer            | 2523 |
+#     | Additional Second Engineer | 3030 |
+#     | Electro Technical Officer  | 0856 |
