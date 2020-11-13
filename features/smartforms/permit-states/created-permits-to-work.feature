@@ -98,6 +98,7 @@ Feature: CreatedPermitToWork
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I click on back arrow
+    And I sleep for 3 seconds
     And I navigate to "Created Permits to Work" screen
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 6
