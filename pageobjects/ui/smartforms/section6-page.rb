@@ -78,7 +78,12 @@ class Section6Page < Section5Page
   end
 
   def gas_testing_switcher(value)
-    select_checkbox(@@gas_yes_no_btn, value)
+    if value === "Yes"
+      gas_yes_no_elements.first.click
+    else
+      gas_yes_no_elements.last.click
+    end
+    # select_checkbox(@@gas_yes_no_btn, value)
   end
 
   def is_info_box_disable_gas_exist?
