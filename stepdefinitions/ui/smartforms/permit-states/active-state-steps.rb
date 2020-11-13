@@ -41,7 +41,7 @@ And (/^I should see gas reading section enabled$/) do
   is_enabled(on(Section6Page).gas_last_calibration_button_element)
   is_enabled(on(Section6Page).gas_equipment_input_element)
   is_enabled(on(Section6Page).gas_sr_number_input_element)
-  step 'I should see Add Gas Reading button enabled'
+  is_enabled(on(Section6Page).add_gas_btn_element)
 end
 
 And (/^I should see Add Gas Reading button disabled$/) do
