@@ -36,9 +36,22 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   step "I enter pin #{_pin}"
 end
 
-And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
+And (/^I should see gas reading section enabled$/) do
+  is_equal(on(Section6Page).gas_yes_no_elements.size,2)
+  is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  is_enabled(on(Section6Page).gas_equipment_input_element)
+  is_enabled(on(Section6Page).gas_sr_number_input_element)
+  step 'I should see Add Gas Reading button enabled'
+end
+
+And (/^I should see Add Gas Reading button disabled$/) do
   sleep 1
-  _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+  is_equal(on(Section6Page).gas_yes_no_elements.size,0)
+  not_to_exists(on(Section6Page).gas_last_calibration_button_element)
+  not_to_exists(on(Section6Page).gas_equipment_input_element)
+  not_to_exists(on(Section6Page).gas_sr_number_input_element)
+  # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+  is_disabled(on(Section6Page).add_gas_btn_element)
 end
 
 Then (/^I should see permit valid for (.+) hours$/) do |_duration|

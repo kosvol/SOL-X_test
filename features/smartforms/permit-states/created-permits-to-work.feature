@@ -102,7 +102,7 @@ Feature: CreatedPermitToWork
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 6
     And I sleep for 1 seconds
-    Then I should see Add Gas Reading button enabled
+    Then I should see gas reading section enabled
 
     Examples:
       | rank                       | pin  | level_one_permit      | level_two_permit      |
