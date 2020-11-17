@@ -41,11 +41,11 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   base_data = @@form_data['section3b']
   capture_data = on(Section3BPage).get_filled_section
-  base_data.delete_at(6)
-  base_data.delete_at(6)
+  # base_data.delete_at(6)
+  # base_data.delete_at(6)
   p ">> #{base_data}"
   p "-- #{capture_data}"
-  capture_data.delete_at(6)
+  # capture_data.delete_at(6)
   begin
     does_include(on(Section3BPage).last_assessment_date_element.text, "/#{BrowserActions.get_year}")
     does_include(on(Section3BPage).generic_data_elements[5].text, "SIT/DRA/#{BrowserActions.get_year}")
@@ -55,6 +55,7 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   end
   p "=== #{capture_data}"
   is_equal(capture_data, base_data)
+  is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
 end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|

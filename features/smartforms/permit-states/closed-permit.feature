@@ -16,7 +16,7 @@ Feature: ClosedPermit
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit
-    And I navigate to "Closed Permits to Work" screen
+    And I navigate to "Withdrawn" screen
     Then I should see termination date display
     And I should be able to view close permit
 

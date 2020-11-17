@@ -8,7 +8,7 @@ Feature: Section8
 
   Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Work on Pressure Pipeline/Vessels permit
