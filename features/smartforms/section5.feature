@@ -119,7 +119,7 @@ Feature: Section5
       | A 2/O | 7865 | A 2/O Qasim Khan       |
       | 3/O   | 0159 | 3/O Tim Kinzer         |
       | C/E   | 8248 | C/E Alex Pisarev       |
-      | A C/E | 1122 | A C/E Cs Ow            |
+      | A C/E | 9264 | A C/E Cs Ow            |
       | 2/E   | 2523 | 2/E Poon Choryi        |
       | A 2/E | 3030 | A 2/E Hyman Huang      |
       | 3/E   | 3038 | 3/E Crew Test Engineer |

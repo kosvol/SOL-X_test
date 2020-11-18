@@ -34,19 +34,19 @@ Feature: Section3DDRA
     Then I should see signed details
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                | rank                       | ra_pin | pin  |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                             | Master                     | 9015   | 1111 |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                             | Addtional Master           | 9015   | 9015 |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                     | Chief Officer              | 8383   | 8383 |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                           | Additional Chief Officer   | 2761   | 2761 |
-      | Working Aloft/Overside                                        | Working Aloft / Overside                                        | Second Officer             | 6268   | 6268 |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                     | Additional Second Officer  | 7865   | 7865 |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                           | Chief Engineer             | 8248   | 8248 |
-      | Helicopter Operations                                         | Helicopter Operation                                            | Additional Chief Engineer  | 2761   | 2761 |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                     | Second Engineer            | 2523   | 2523 |
+      | level_one_permit                                             | level_two_permit                                                | rank                       | ra_pin | pin  |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Master                     | 9015   | 1111 |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Addtional Master           | 9015   | 9015 |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                     | Chief Officer              | 8383   | 8383 |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                           | Additional Chief Officer   | 2761   | 2761 |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                                        | Second Officer             | 6268   | 6268 |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Additional Second Officer  | 7865   | 7865 |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Chief Engineer             | 8248   | 8248 |
+      | Helicopter Operations                                        | Helicopter Operation                                            | Additional Chief Engineer  | 9264   | 9264 |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | Second Engineer            | 2523   | 2523 |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Additional Second Engineer | 3030   | 3030 |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856   | 0856 |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                            | 3/O                        | 0159   | 0159 |
+      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856   | 0856 |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                            | 3/O                        | 0159   | 0159 |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -77,16 +77,16 @@ Feature: Section3DDRA
     Then I should see not authorize error message
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                | ra_rank                    | pin  | non_ra_rank | non_ra_pin |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                             | Addtional Master           | 9015 | A 3/E       | 6727       |
+      | level_one_permit                                             | level_two_permit                                                | ra_rank                    | pin  | non_ra_rank | non_ra_pin |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Addtional Master           | 9015 | A 3/E       | 6727       |
       # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                                | Chief Officer              | 8383 | 3/O         | 0159       |
       # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                      | Additional Chief Officer   | 2761 | A 3/O       | 2674       |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                     | Additional Second Officer  | 7865 | D/C         | 2317       |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                           | Chief Engineer             | 8248 | 3/E         | 4685       |
-      | Helicopter Operations                                         | Helicopter Operation                                            | Additional Chief Engineer  | 2761 | A 3/E       | 6727       |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                     | Second Engineer            | 2523 | 4/E         | 1311       |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Additional Second Officer  | 7865 | D/C         | 2317       |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Chief Engineer             | 8248 | 3/E         | 4685       |
+      | Helicopter Operations                                        | Helicopter Operation                                            | Additional Chief Engineer  | 9264 | A 3/E       | 6727       |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | Second Engineer            | 2523 | 4/E         | 1311       |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Additional Second Engineer | 3030 | A 4/E       | 0703       |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856 | BOS         | 1018       |
+      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856 | BOS         | 1018       |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable

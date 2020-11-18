@@ -101,7 +101,7 @@ Feature: Section6
       | Third Officer              | 0159 | By 3/O Tim Kinzer         |
       | Additional Third Officer   | 2674 | By A 3/O Aakash Seth      |
       | Chief Engineer             | 8248 | By C/E Alex Pisarev       |
-      | Additional Chief Engineer  | 1122 | By A C/E Cs Ow            |
+      | Additional Chief Engineer  | 9264 | By A C/E Cs Ow            |
       | Second Engineer            | 2523 | By 2/E Poon Choryi        |
       | Additional Second Engineer | 3030 | By A 2/E Hyman Huang      |
       | Third Engineer             | 3038 | By 3/E Crew Test Engineer |
@@ -139,24 +139,24 @@ Feature: Section6
     And I tear down created form
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                | checklist                                                     |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                               |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                              |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                           | Enclosed Space Entry Checklist                                |
-      | Working Aloft/Overside                                        | Working Aloft / Overside                                        | Working Aloft/Overside                                        |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                    |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                         |
-      | Helicopter Operations                                         | Helicopter Operation                                            | Helicopter Operation Checklist                                |
+      | level_one_permit                                             | level_two_permit                                                | checklist                                                    |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                              |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                             |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                           | Enclosed Space Entry Checklist                               |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                                        | Working Aloft/Overside                                       |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                   |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                        |
+      | Helicopter Operations                                        | Helicopter Operation                                            | Helicopter Operation Checklist                               |
       # | Rotational Portable Power Tools      | Use of Portable Power Tools                 | Rotational Portable Power Tools (PPT) |
-      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools           | Rotational Portable Power Tools (PPT)                         |
+      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools           | Rotational Portable Power Tools (PPT)                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Cold Work Operation Checklist                                 |
+      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Cold Work Operation Checklist                                |
       # | Cold Work                            | Cold Work - Cleaning Up of Spill            | Cold Work Operation Checklist          |
       # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather                             |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather                            |
 
   Scenario: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
     Given I launch sol-x portal without unlinking wearable

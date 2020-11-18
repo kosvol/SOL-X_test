@@ -35,7 +35,7 @@ Feature: SmartFormsPermission
       | 2/O   | 6268 |
       | A 2/O | 7865 |
       | C/E   | 8248 |
-      | A C/E | 2761 |
+      | A C/E | 9264 |
       | 2/E   | 2523 |
       | A 2/E | 3030 |
       | ETO   | 0856 |
@@ -68,21 +68,21 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter pin 9015
     Then I should see a list of available forms for selections
-      | Cold Work                                                     |
-      | Critical Equipment Maintenance                                |
-      | Enclosed Spaces Entry                                         |
-      | Helicopter Operations                                         |
-      | Hot Work                                                      |
-      | Personnel Transfer By Transfer Basket                         |
-      | Rigging of Gangway & Pilot Ladder                             |
-      | Rotational Portable Power Tools                               |
-      | Underwater Operations                                         |
-      | Use of non-intrinsically safe Camera                          |
-      | Use of ODME in Manual Mode                                    |
+      | Cold Work                                                    |
+      | Critical Equipment Maintenance                               |
+      | Enclosed Spaces Entry                                        |
+      | Helicopter Operations                                        |
+      | Hot Work                                                     |
+      | Personnel Transfer By Transfer Basket                        |
+      | Rigging of Gangway & Pilot Ladder                            |
+      | Rotational Portable Power Tools                              |
+      | Underwater Operations                                        |
+      | Use of non-intrinsically safe Camera                         |
+      | Use of ODME in Manual Mode                                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Work on Pressure Pipeline/Vessels                             |
-      | Working Aloft/Overside                                        |
-      | Working on Deck During Heavy Weather                          |
+      | Work on Pressure Pipeline/Vessels                            |
+      | Working Aloft/Overside                                       |
+      | Working on Deck During Heavy Weather                         |
     And I tear down created form
 
   Scenario Outline: Verify user see the correct second level permits
