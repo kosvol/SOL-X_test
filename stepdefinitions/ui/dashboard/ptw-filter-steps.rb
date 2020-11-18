@@ -8,7 +8,7 @@ end
 
 Then (/^I should see (.+) permits listing match counter$/) do |_which_filter|
   sleep 1
-  on(Section3APage).scroll_multiple_times(20)
+  on(Section3APage).scroll_multiple_times(25)
   step 'I get forms-filter/smart-form-filter request payload'
   step 'I hit graphql'
   on(PtwFilterPage).get_permits_counter

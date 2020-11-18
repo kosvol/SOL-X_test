@@ -25,6 +25,7 @@ And (/^I set oa permit to office approval state manually$/) do
   step 'I enter pin 1111'
   step 'I navigate to section 6'
   on(PendingStatePage).submit_oa_btn
+  sleep 1
   step 'I click on back to home'
 end
 
