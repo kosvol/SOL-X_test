@@ -54,6 +54,9 @@ class BrowserSetup
       end
     else
       # windows
+      Selenium::WebDriver::Chrome.driver_path = File.join(File.absolute_path('../', File.dirname(__FILE__)), '/drivers/chromedriver.exe')
+      caps=Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })#"chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
+      $browser = Selenium::WebDriver.for :remote, url: 'http://10.65.42.253:4444/wd/hub', desired_capabilities: caps,http_client: $client
     end
   end
 
