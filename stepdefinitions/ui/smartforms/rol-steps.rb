@@ -1,5 +1,22 @@
 # frozen_string_literal: true
 
+And (/^I fill rol permit$/) do
+  step 'I add a new hazard'
+  on(ROLPage).fill_rol_forms
+  step 'I sign DRA section 3d with RA pin 9015'
+  step 'I set time'
+  step 'I should see signed details'
+  step 'I press next for 1 times'
+  sleep 1
+  on(ROLPage).fill_rol_checklist
+end
+
+And (/^I open up active rol permit$/) do
+  sleep 1
+  on(ROLPage).update_reading_btn_elements.first.click
+  # on(ActiveStatePage).view_btn_elements.first.click
+end
+
 Then (/^I should see view and termination buttons$/) do
   is_equal(on(ActiveStatePage).view_btn_elements[0].text, 'View')
   is_equal(on(ActiveStatePage).submit_termination_btn1_elements[0].text, 'Submit for Termination')

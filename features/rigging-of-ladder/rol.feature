@@ -4,8 +4,6 @@ Feature: RiggingOfLadder
   I want to ...
   So that ...
 
-  # Scenario: Verify data capture across status
-
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

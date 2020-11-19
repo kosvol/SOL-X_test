@@ -73,26 +73,26 @@ class Section3APage < Section2Page
     scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
-    level_to_choose_elements[230].click
-    confirm_btn_elements[46].click
+    level_to_choose_elements[level_to_choose_elements.size-20].click
+    confirm_btn_elements[confirm_btn_elements.size-4].click
     sleep 1
     consequence_btn_elements[(consequence_btn_elements.size - 2)].click
     sleep 2
-    level_to_choose_elements[235].click
-    confirm_btn_elements[47].click
+    level_to_choose_elements[level_to_choose_elements.size-15].click
+    confirm_btn_elements[confirm_btn_elements.size-3].click
     sleep 1
 
     # for existing control measure
     scroll_multiple_times(1)
     likelihood_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[240].click
-    confirm_btn_elements[48].click
+    level_to_choose_elements[level_to_choose_elements.size-10].click
+    confirm_btn_elements[confirm_btn_elements.size-2].click
     sleep 1
     consequence_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[245].click
-    confirm_btn_elements[49].click
+    level_to_choose_elements[level_to_choose_elements.size-5].click
+    confirm_btn_elements[confirm_btn_elements.size-1].click
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)

@@ -76,6 +76,33 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step 'I sign on canvas'
 end
 
+Then (/^I should see data persisted on page 1$/) do
+  sleep 1
+  @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
+  tmp = on(Section3DPage).get_filled_section
+  does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
+  tmp.delete_at(1)
+  p ">> #{tmp}"
+  is_equal(on(Section3APage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  is_equal(tmp,@@rol_data['page1'])
+end
+
+And (/^I should see data persisted on page 2$/) do
+  tmp = on(Section3DPage).get_filled_section
+  does_include(tmp[1],"SIT/PTW/#{BrowserActions.get_year}/")
+  # data cleanse after first assertion
+  tmp.delete_at(1)
+  p ">> #{tmp}"
+  is_equal(on(ROLPage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(ROLPage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  on(Section3APage).scroll_multiple_times(15)
+  is_equal(on(ROLPage).issued_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(ROLPage).issued_date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  is_equal(on(ROLPage).valid_until_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  is_equal(tmp,@@rol_data['page2'])
+end
+
 And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 11 times'

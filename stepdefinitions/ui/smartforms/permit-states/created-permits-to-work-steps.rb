@@ -65,9 +65,9 @@ And (/^I delete the permit created$/) do
 end
 
 Then (/^I should see the total permits in CREATED state match backend results$/) do
-  on(Section3APage).scroll_multiple_times(5)
+  on(Section3APage).scroll_multiple_times(15)
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'
-  is_equal(ServiceUtil.get_response_body['data']['form']['edges'].to_a.size, on(CreatedPermitToWorkPage).parent_container_elements.size)
+  is_equal(ServiceUtil.get_response_body['data']['formStats']['created'], on(CreatedPermitToWorkPage).parent_container_elements.size)
 end
