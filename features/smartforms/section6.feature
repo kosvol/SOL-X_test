@@ -101,7 +101,7 @@ Feature: Section6
       | Third Officer              | 0159 | By 3/O Tim Kinzer         |
       | Additional Third Officer   | 2674 | By A 3/O Aakash Seth      |
       | Chief Engineer             | 8248 | By C/E Alex Pisarev       |
-      | Additional Chief Engineer  | 9264 | By A C/E Cs Ow            |
+      | Additional Chief Engineer  | 1122 | By A C/E Cs Ow            |
       | Second Engineer            | 2523 | By 2/E Poon Choryi        |
       | Additional Second Engineer | 3030 | By A 2/E Hyman Huang      |
       | Third Engineer             | 3038 | By 3/E Crew Test Engineer |
@@ -120,11 +120,13 @@ Feature: Section6
     And I enter pin 9015
     And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
-    Then I should see gas reading display with toxic gas
     When I dismiss gas reader dialog box
+    Then I should see gas reading display with toxic gas
     And I add only normal gas readings
     And I enter pin 9015
+    And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    When I dismiss gas reader dialog box
     Then I should see gas reading display without toxic gas
     And I tear down created form
 
