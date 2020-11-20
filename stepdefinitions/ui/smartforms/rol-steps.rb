@@ -18,8 +18,8 @@ And (/^I open up active rol permit$/) do
 end
 
 Then (/^I should see view and termination buttons$/) do
-  is_equal(on(ActiveStatePage).view_btn_elements[0].text, 'View')
-  is_equal(on(ActiveStatePage).submit_termination_btn1_elements[0].text, 'Submit for Termination')
+  is_equal(on(ActiveStatePage).first_permit_buttons_elements.first.text, 'View')
+  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'Submit for Termination')
 end
 
 And (/^I request update for permit$/) do

@@ -34,7 +34,7 @@ Feature: RiggingOfLadder
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    Then I open rol permit with rank Master and 1111 pin
     And I request update for permit
     And I click on back to home
     And I click on update needed filter

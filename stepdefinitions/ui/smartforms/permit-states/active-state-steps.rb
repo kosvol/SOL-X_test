@@ -69,7 +69,8 @@ end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   sleep 2
-  step 'I open a permit pending Master Approval with Master rank and 1111 pin'
+  step 'I open rol permit with rank Master and 1111 pin'
+  # step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
