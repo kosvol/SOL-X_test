@@ -76,6 +76,7 @@ class BrowserSetup
           platformName: (@device['platformName']).to_s,
           platformVersion: (@device['platformVersion']).to_s,
           deviceName: (@device['deviceName']).to_s,
+          udid: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
           automationName: 'UiAutomator2',
           newCommandTimeout: 10000,
