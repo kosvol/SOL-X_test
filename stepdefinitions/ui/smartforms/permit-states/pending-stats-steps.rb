@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Then (/^I should be navigated back to pending approacl screen$/) do
+  is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
+end
+
 Then (/^I should see (.+) button$/) do |state|
   if state === 'Office Approval'
     is_equal(on(PendingStatePage).office_approval_btn_elements.first.text, 'Office Approval')

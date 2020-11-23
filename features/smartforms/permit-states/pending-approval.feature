@@ -6,6 +6,14 @@ Feature: PendingApprovalPermit
 
   # Scenario: Verify all screen is in read only mode when open up by any crew while in pending state
 
+  Scenario: Verify user is brough back to listing screen after cancelling from pinpad
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
+    And I launch sol-x portal without unlinking wearable
+    And I click on pending approval filter
+    And I click on permit for master approval
+    And I dismiss enter pin screen
+    Then I should be navigated back to pending approacl screen
+
   Scenario: Verify SOL-5474
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

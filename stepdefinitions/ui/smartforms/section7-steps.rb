@@ -3,7 +3,7 @@
 And (/^I click on permit for (.+)$/) do |_status|
   on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   # match_element.click
-  step 'I enter pin 1111'
+  # step 'I enter pin 1111'
   sleep 1
 end
 
