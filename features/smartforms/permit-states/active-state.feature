@@ -235,6 +235,14 @@ Feature: ActivePermit
       | underwater   | submit_underwater_simultaneous | A 4/E | 0703 |
   # | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
+  Scenario: Verify user is brough back to listing screen after cancelling from pinpad
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click on permit for Update Readings
+    And I dismiss enter pin screen
+    Then I should be navigated back to pending approval screen
+
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable

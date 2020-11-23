@@ -12,7 +12,7 @@ Feature: PendingApprovalPermit
     And I click on pending approval filter
     And I click on permit for master approval
     And I dismiss enter pin screen
-    Then I should be navigated back to pending approacl screen
+    Then I should be navigated back to pending approval screen
 
   Scenario: Verify SOL-5474
     Given I launch sol-x portal without unlinking wearable

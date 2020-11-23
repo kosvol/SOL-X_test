@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Then (/^I should be navigated back to pending approacl screen$/) do
+Then (/^I should be navigated back to pending approval screen$/) do
   is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
 end
 
