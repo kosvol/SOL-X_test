@@ -54,8 +54,8 @@ class BrowserSetup
       end
     else
       # windows
-      caps=Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },"chromeOptions" => {w3c: false})#"chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
-      $browser = Selenium::WebDriver.for :remote, :url => "http://10.100.1.84:4444/wd/hub", desired_capabilities: caps,http_client: $client
+      caps=Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },"chromeOptions" => {w3c: false,args: [ "start-maximized" ]})#"chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
+      $browser = Selenium::WebDriver.for :remote, :url => "http://10.100.1.84:4444/wd/hub", desired_capabilities: caps,http_client: $client, options: options
     end
   end
 
