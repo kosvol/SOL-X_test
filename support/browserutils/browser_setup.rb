@@ -55,7 +55,7 @@ class BrowserSetup
     else
       # windows
       caps=Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },"chromeOptions" => {w3c: false})#"chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
-      $browser = Selenium::WebDriver.for :remote, :url => "http://192.168.0.100:4444/wd/hub", desired_capabilities: caps,http_client: $client
+      $browser = Selenium::WebDriver.for :remote, :url => "http://10.100.1.84:4444/wd/hub", desired_capabilities: caps,http_client: $client
     end
   end
 
@@ -93,6 +93,6 @@ class BrowserSetup
         },
         appium_lib: { port: @device['port'], wait: 180 }
       }
-    Appium::Driver.new(opts, true).start_driver
+      Appium::Driver.new(opts, true).start_driver
+    end
   end
-end
