@@ -11,7 +11,7 @@ Then (/^I (should|should not) see competent person sign button exists$/) do |_co
 end
 
 Then (/^I should see issue date display$/) do
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT+')
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT')
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
   # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
@@ -69,8 +69,7 @@ end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   sleep 2
-  step 'I open rol permit with rank Master and 1111 pin'
-  # step 'I open a permit pending Master Approval with Master rank and 1111 pin'
+  step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
