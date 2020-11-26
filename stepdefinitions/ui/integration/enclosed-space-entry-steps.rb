@@ -29,7 +29,7 @@ And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
   does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
   does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT+')
+  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT')
   # does_include(on(Section3APage).date_and_time_fields_elements[1].text, on(CommonFormsPage).get_current_time_format)
   does_include(on(Section3APage).method_detail_elements[2].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
