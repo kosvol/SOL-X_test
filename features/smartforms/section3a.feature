@@ -312,6 +312,7 @@ Feature: Section3ADRA
     And I delete a hazard
     Then I should see hazard deleted
 
+  @x12
   Scenario: Verify user can add new hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

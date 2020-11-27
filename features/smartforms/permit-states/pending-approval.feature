@@ -14,7 +14,7 @@ Feature: PendingApprovalPermit
     And I dismiss enter pin screen
     Then I should be navigated back to pending approval screen
 
-  Scenario: Verify SOL-5474
+  Scenario: Verify SOL-5474 - Fix Blank Screen when user accesses OA permits from Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015

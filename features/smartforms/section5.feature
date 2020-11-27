@@ -4,6 +4,7 @@ Feature: Section5
   I want to ...
   So that ...
 
+  @x11
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities from drop down
     Given I launch sol-x portal
     And I navigate to create new permit
