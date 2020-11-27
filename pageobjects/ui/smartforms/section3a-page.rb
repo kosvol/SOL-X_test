@@ -24,9 +24,10 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
   elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
-  
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
   @@add_hazard_btn = "//span[contains(.,'Add Hazard')]"
 
@@ -45,10 +46,12 @@ class Section3APage < Section2Page
 
   def is_new_hazard_added?
     # view_edit_btn
-    p ">> #{hazard_risk_details_elements[10].text}"
+    p ">> #{hazard_risk_details_elements[23].text}"
+    p ">> #{hazard_risk_details_elements[24].text}"
     p ">> #{ecm_details_elements[10].text}"
-    (hazard_risk_details_elements[10].text === "Test Automation" && ecm_details_elements[10].text === "Test Automation" )#&& hazard_risk_details_elements[57].text === "1 - Remotely Likely" && hazard_risk_details_elements[58].text === "1 - Insignificant" && hazard_risk_details_elements[59].text === "1 - Remotely Likely" && hazard_risk_details_elements[60].text === "1 - Insignificant" && hazard_existing_control_details_elements.last.text === "Test Automation")
-
+    p ">> #{ih_details_elements[10].text}"
+    (ih_details_elements[10].text === "Test Automation" && ecm_details_elements[10].text === "Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    
   end
 
   def add_new_hazard
