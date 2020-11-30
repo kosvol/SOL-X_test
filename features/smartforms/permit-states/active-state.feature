@@ -134,7 +134,9 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set rol permit to active state with <duration> duration
     And I click on back to home
+    And I sleep for 3 seconds
     And I click on active filter
+    And I sleep for 3 seconds
     Then I should see permit valid for <duration> hours
 
     Examples:

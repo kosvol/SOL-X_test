@@ -13,8 +13,8 @@ end
 
 And (/^I open up active rol permit$/) do
   sleep 1
-  on(ROLPage).update_reading_btn_elements.first.click
-  # on(ActiveStatePage).view_btn_elements.first.click
+  # on(ROLPage).update_reading_btn_elements.first.click
+  on(ActiveStatePage).view_btn_elements.first.click
 end
 
 Then (/^I should see view and termination buttons$/) do

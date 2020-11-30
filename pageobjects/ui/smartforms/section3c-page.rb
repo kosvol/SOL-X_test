@@ -9,7 +9,7 @@ class Section3CPage < Section3BPage
   spans(:dra_team_name_list, xpath: "//button[@id='team']/span")
   element(:master, xpath: "//li[starts-with(@aria-label,'MAS Daniel Alcantara')]")
   element(:am, xpath: "//li[starts-with(@aria-label,'A/M Atif Hayat')]")
-  buttons(:member_name_btn, xpath: '//ul/li/button')
+  buttons(:member_name_btn, xpath: '//div[starts-with(@class,"items")]/ul/li/button')
 
   def select_dra_team_member
     sleep 1

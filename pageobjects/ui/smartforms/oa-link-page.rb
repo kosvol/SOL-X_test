@@ -53,13 +53,13 @@ class OAPage < Section9Page
     dismiss_picker_element.click
     date_time_to_elements[0].click
     ### select calander + 1 day
-    to_date_calender_elements.each_with_index do |_element, _index|
-      if _element.attribute('class').include? 'selected'
-        to_date_calender_elements[_index + 1].click
-        break
-      end
-    end
-    sleep 1
+    # to_date_calender_elements.each_with_index do |_element, _index|
+    #   if _element.attribute('class').include? 'selected'
+    #     to_date_calender_elements[_index + 1].click
+    #     break
+    #   end
+    # end
+    # sleep 1
   end
 
   def set_to_date_plus_one_day(_current_date)

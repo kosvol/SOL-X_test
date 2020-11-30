@@ -7,6 +7,7 @@ class ROLPage < Section9Page
 
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
   buttons(:boarding_ddl, xpath: '//button[@id="cl_riggingOfLadder_boardingArrangement"]')
+  buttons(:boarding_value, xpath: '//ul/li/button')
   element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_subsection19"]')
   elements(:rol_inputs, xpath: '//input')
   button(:current_date, xpath: "//button[contains(@class,'current')]")
@@ -40,7 +41,7 @@ class ROLPage < Section9Page
   def fill_rol_checklist
     boarding_ddl_elements.first.click
     sleep 1
-    member_name_btn_elements.first.click
+    boarding_value_elements.first.click
     
     tmp = 0
     (0..((radio_btn_elements.size / 3) - 1)).each do |_i|
