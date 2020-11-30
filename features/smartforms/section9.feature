@@ -88,6 +88,7 @@ Feature: Section9
     And I set oa permit to ACTIVE state
     And I click on active filter
     And I manually put the permit to pending termination state
+    And I click on back to home
     And I click on pending withdrawal filter
     Then I should <status> as task status
 
