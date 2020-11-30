@@ -7,7 +7,7 @@ Feature: Section8
   # Scenario: Verify competent and issuing authority detail display on read only mode if not signed
   # Scenario: Verify only RA can fill section 8 for termination
 
-  Scenario Outline: Verify extra section8 questions shown for pipe permit
+  Scenario: Verify extra section8 questions shown for pipe permit
     Given I launch sol-x portal
     And I navigate to create new permit
     And I enter pin 9015
@@ -26,7 +26,7 @@ Feature: Section8
     And I terminate permit with A/M rank and 9015 pin
     Then I should see extra section8 questions for pipe permit
 
-  Scenario Outline: Verify extra section8 questions shown for electrical permit
+  Scenario: Verify extra section8 questions shown for electrical permit
     Given I launch sol-x portal
     And I navigate to create new permit
     And I enter pin 9015
