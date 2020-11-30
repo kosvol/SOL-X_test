@@ -57,9 +57,9 @@ class Section5Page < Section4BPage
   def delete_roles_and_responsibility(_total_roles)
     roles_and_resp_btn
     sleep 1
-    (_total_roles.to_i..((_total_roles.to_i + _total_roles.to_i) - 1)).each do |i|
-      roles_btn_elements[i].click
-    end
+    # (_total_roles.to_i..((_total_roles.to_i + _total_roles.to_i) - 1)).each do |i|
+      roles_btn_elements[_total_roles.to_i+1].click
+    # end
     sleep 1
     confirm_btn_elements.last.click
     sleep 1

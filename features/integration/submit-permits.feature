@@ -4,9 +4,6 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  # Scenario: Verify ROL smoke test
-
-  # @x13
   # Scenario: Verify master can send for oa approval twice
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
