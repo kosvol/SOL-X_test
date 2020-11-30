@@ -57,7 +57,7 @@ And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas'
-  sleep 1
+  sleep 2
   step 'I click on back to home'
 end
 
