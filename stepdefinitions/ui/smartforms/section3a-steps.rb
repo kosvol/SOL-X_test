@@ -90,6 +90,6 @@ end
 Then (/^I should see added new hazard$/) do
   on(Section3APage).navigate_front_back
   BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
-  on(Section3APage).scroll_multiple_times(25)
+  on(Section3APage).scroll_multiple_times(30)
   is_true(on(Section3APage).is_new_hazard_added?)
 end
