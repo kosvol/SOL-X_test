@@ -90,7 +90,7 @@ class Section3APage < Section2Page
     sleep 1
 
     # for existing control measure
-    scroll_multiple_times(1)
+    scroll_multiple_times(2)
     likelihood_btn_elements.last.click
     sleep 1
     level_to_choose_elements[level_to_choose_elements.size-10].click
