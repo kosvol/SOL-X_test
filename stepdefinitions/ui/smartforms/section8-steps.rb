@@ -1,14 +1,22 @@
 # frozen_string_literal: true
 
-Then (/^I should see all extra section8 questions$/) do
+Then (/^I should see extra section8 questions for pipe permit$/) do
   on(Section8Page).normalization_pipe_question1
   on(Section8Page).normalization_pipe_question2
-  on(Section8Page).normalization_elec_question1
-  on(Section8Page).normalization_elec_question2
+  is_equal($browser.find_elements(:xpath, '//input').size, '23')
+end
+
+Then (/^I should see extra section8 questions for critical maintenance permit$/) do
   on(Section8Page).normalization_crit_question1
   on(Section8Page).normalization_crit_question2
   on(Section8Page).normalization_crit_question3
-  is_equal($browser.find_elements(:xpath, '//input').size, '36')
+  is_equal($browser.find_elements(:xpath, '//input').size, '26')
+end
+
+Then (/^I should see extra section8 questions for electrical permit$/) do
+  on(Section8Page).normalization_elec_question1
+  on(Section8Page).normalization_elec_question2
+  is_equal($browser.find_elements(:xpath, '//input').size, '23')
 end
 
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
@@ -49,6 +57,7 @@ And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
   @@entered_pin = _pin.to_i
   on(PinPadPage).enter_pin(@@entered_pin)
   step 'I sign on canvas'
+  sleep 2
   step 'I click on back to home'
 end
 

@@ -5,28 +5,105 @@ Feature: Section8
   So that ...
 
   # Scenario: Verify competent and issuing authority detail display on read only mode if not signed
+  # Scenario: Verify only RA can fill section 8 for termination
 
-  Scenario: Verify extra section8 questions shown for crit,electrical and pipe permit
+  Scenario: Verify extra section8 questions shown for pipe permit
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
     And I navigate to section 4a
-    And I select the matching Critical Equipment Maintenance Checklist checklist
-    And I select the matching Work on Electrical Equipment and Circuits checklist
-    And I press next for 6 times
+    And I press next for 4 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
     And I open a permit pending Master Approval with Master rank and 1111 pin
-    And I press next for 13 times
-    And I sign the permit for submission to pending state
+    And I press next for 11 times
+    And I sign the permit for submission to active state
     And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
-    Then I should see all extra section8 questions
+    Then I should see extra section8 questions for pipe permit
+
+  Scenario: Verify extra section8 questions shown for electrical permit
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
+    And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
+    And I navigate to section 4a
+    And I press next for 4 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 11 times
+    And I sign the permit for submission to active state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see extra section8 questions for electrical permit
+
+  Scenario: Verify extra section8 questions shown for crit
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Anchor permit for level 2
+    And I set maintenance during less than 2 hours
+    And I navigate to section 4a
+    And I press next for 4 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 11 times
+    And I sign the permit for submission to active state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see extra section8 questions for critical maintenance permit
+
+  Scenario: Verify extra section8 questions shown when Critical Equipment Maintenance Checklist selected
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 4a
+    And I select the matching Critical Equipment Maintenance Checklist checklist
+    And I press next for 5 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 12 times
+    And I sign the permit for submission to active state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see extra section8 questions for critical maintenance permit
+
+  Scenario: Verify extra section8 questions shown when Work on Electrical Equipment and Circuits
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 4a
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 5 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 12 times
+    And I sign the permit for submission to active state
+    And I click on back to home
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see extra section8 questions for electrical permit
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
@@ -77,6 +154,7 @@ Feature: Section8
       | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user         | zoneid                     | mac               | location_stamp |
       | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
+  @x12
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
@@ -126,7 +204,7 @@ Feature: Section8
   ## | Hot Work                           | submit_hotwork               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
   ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
-  ## | Hot Work                           | submit_hotwork               | Additional Chief Engineer  | 2761 |
+  ## | Hot Work                           | submit_hotwork               | Additional Chief Engineer  | 9264 |
   ## | Hot Work                           | submit_hotwork               | Second Engineer            | 2523 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Engineer | 3030 |
   ## | Hot Work                           | submit_hotwork               | Electro Technical Officer  | 0856 |
@@ -146,7 +224,7 @@ Feature: Section8
 ## | Hot Work                           | submit_hotwork               | Second Officer             | 6268 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
-## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 2761 |
+## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Engineer  | 9264 |
 ## | Hot Work                           | submit_hotwork               | Second Engineer            | 2523 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Additional Second Engineer | 3030 |
 ## | Hot Work                           | submit_hotwork               | Electro Technical Officer  | 0856 |

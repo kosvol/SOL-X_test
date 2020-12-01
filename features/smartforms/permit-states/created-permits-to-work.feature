@@ -4,23 +4,17 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
-  # Scenario: Initialize the clock for automation
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-
-  # Scenario: Verify correct total list of created permit
-  #   Given I launch sol-x portal without unlinking wearable
-  #   When I navigate to "Created Permits to Work" screen
-  #   Then I should see the total permits in CREATED state match backend results
+  Scenario: Verify correct total list of created permit
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to "Created" screen
+    Then I should see the total permits in CREATED state match backend results
 
   # Scenario: Verify past created permit should display permit id
   #   Given I launch sol-x portal without unlinking wearable
-  #   When I navigate to "Created Permits to Work" screen
+  #   When I navigate to "Created" screen
   #   And I edit past created permit
   #   And I enter pin 9015
   #   Then I should see permit id populated
-
-  # # Scenario: Verify Gas Tester 2 can edit section 6 gas reading for PRE
 
   Scenario: Verify section 6 buttons display are correct
     Given I launch sol-x portal without unlinking wearable
@@ -29,7 +23,7 @@ Feature: CreatedPermitToWork
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     And I want to edit the newly created permit
     And I enter pin 0311
     And I navigate to section 6
@@ -43,7 +37,7 @@ Feature: CreatedPermitToWork
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     And I want to edit the newly created permit
     And I enter pin 9015
     Then I should see correct permit details
@@ -56,7 +50,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     Then I should see the newly created permit details listed on Created Permits to Work
     And I tear down created form
 
@@ -67,7 +61,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     And I delete the permit created
     Then I should see deleted permit deleted
     And I tear down created form
@@ -79,7 +73,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     And I edit ptw with rank <rank> and <pin> pin
     Then I should see EIC section with fields enabled
 
@@ -95,28 +89,34 @@ Feature: CreatedPermitToWork
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
+    And I navigate to section 6
+    And I sleep for 1 seconds
+    And I press the Yes button to enable gas testing
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I sleep for 3 seconds
+    And I navigate to "Created" screen
     And I edit ptw with rank <rank> and <pin> pin
-    Then I should see gas reader section with fields enabled
+    And I navigate to section 6
+    And I sleep for 1 seconds
+    Then I should see gas reading section enabled
 
     Examples:
-      | rank                       | pin  | level_one_permit                                              | level_two_permit                                              |
-      | Master                     | 1111 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A/M                        | 9015 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
-      | C/O                        | 8383 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A C/O                      | 2761 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | 2/O                        | 6268 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | A 2/O                      | 7865 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
-      | 3/O                        | 0159 | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | A 3/O                      | 2674 | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
-      | Chief Engineer             | 8248 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | Additional Chief Engineer  | 1122 | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
-      | Second Engineer            | 2523 | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Additional Second Engineer | 3030 | Hot Work                                                      | Hot Work Level-2 in Designated Area                           |
-      | 3/E                        | 4685 | Underwater Operations                                         | Underwater Operation at night                                 |
-      | A 3/E                      | 6727 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | 4/E                        | 1311 | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
+      | rank                       | pin  | level_one_permit      | level_two_permit      |
+      | Master                     | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 2/O                        | 6268 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 2/O                      | 7865 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Additional Chief Engineer  | 9264 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
@@ -125,7 +125,7 @@ Feature: CreatedPermitToWork
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I click on back arrow
-    And I navigate to "Created Permits to Work" screen
+    And I navigate to "Created" screen
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 4a
     Then I should see checklist selections fields enabled
@@ -149,7 +149,7 @@ Feature: CreatedPermitToWork
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
       | Chief Engineer             | 8248 |
-      | Additional Chief Engineer  | 2761 |
+      | Additional Chief Engineer  | 9264 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |
       | Electro Technical Officer  | 0856 |

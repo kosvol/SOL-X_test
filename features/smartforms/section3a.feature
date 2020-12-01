@@ -318,7 +318,6 @@ Feature: Section3ADRA
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    # And I set maintenance during more than 2 hours
     And I navigate to section 3a
     And I add a new hazard
     Then I should see added new hazard

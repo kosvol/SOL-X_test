@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And (/^I link wearable to a (RA|competent person|issuing authority) (.+) and link to zoneid (.+) and mac (.+)$/) do |_condition, _user, zoneid, mac|
+And (/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, _user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -64,11 +64,37 @@ And (/^I fill up EIC certificate$/) do
   on(Section4BPage).create_eic_btn
   sleep 1
   on(Section4BPage).fill_textarea
-  tmp = 0
-  (0..((42 / 2) - 1)).each do |_i|
-    on(Section3DPage).radio_btn_elements[0 + tmp].click
-    tmp += 2
-  end
+  # tmp = 0
+  on(Section3DPage).radio_btn_elements[0].click
+  on(Section3DPage).radio_btn_elements[2].click #select LOTO
+  sleep 1
+  on(Section3DPage).radio_btn_elements[4].click
+  on(Section3DPage).radio_btn_elements[4].click
+  on(Section3DPage).radio_btn_elements[6].click
+  on(Section3DPage).radio_btn_elements[8].click #select Electrical Isolation
+  sleep 1
+  on(Section3DPage).radio_btn_elements[10].click
+  on(Section3DPage).radio_btn_elements[10].click
+  on(Section3DPage).radio_btn_elements[12].click
+  on(Section3DPage).radio_btn_elements[14].click #select Physical Isolation
+  sleep 1
+  on(Section3DPage).radio_btn_elements[16].click
+  on(Section3DPage).radio_btn_elements[16].click
+  on(Section3DPage).radio_btn_elements[18].click
+  on(Section3DPage).radio_btn_elements[20].click
+  on(Section3DPage).radio_btn_elements[22].click
+  on(Section3DPage).radio_btn_elements[24].click
+  on(Section3DPage).radio_btn_elements[26].click #select Confirmation and Acceptance
+  sleep 1
+  on(Section3DPage).radio_btn_elements[28].click
+  on(Section3DPage).radio_btn_elements[28].click
+  on(Section3DPage).radio_btn_elements[30].click
+  on(Section3DPage).radio_btn_elements[32].click
+  on(Section3DPage).radio_btn_elements[34].click
+  # (0..((on(Section3DPage).radio_btn_elements.size / 2) - 1)).each do |_i|
+  #   on(Section3DPage).radio_btn_elements[0 + tmp].click
+  #   tmp += 2
+  # end
   on(Section4BPage).loto = '1234'
   # sign
   step 'I sign EIC as competent person with pin 8383'

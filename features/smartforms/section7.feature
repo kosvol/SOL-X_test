@@ -10,6 +10,7 @@ Feature: Section7
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master approval
+    And I enter pin 1111
     And I press next for 11 times
     Then I should see approve and request update buttons
 
@@ -24,6 +25,7 @@ Feature: Section7
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master review
+    And I enter pin 1111
     And I press next for 10 times
     Then I should see submit for office approval and request update buttons
 
@@ -47,7 +49,7 @@ Feature: Section7
   # | Second Officer             | 6268 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Additional Second Officer  | 7865 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Chief Engineer             | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-  # | Additional Chief Engineer  | 1122 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # | Additional Chief Engineer  | 9264 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Electro Technical Officer  | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -68,7 +70,7 @@ Feature: Section7
 #     | Second Officer             | 6268 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Second Officer  | 7865 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Chief Engineer             | 8248 | Enclosed Spaces Entry | submit_enclose_space_entry |
-#     | Additional Chief Engineer  | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
+#     | Additional Chief Engineer  | 9264 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Second Engineer            | 2523 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Second Engineer | 3030 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Electro Technical Officer  | 0856 | Enclosed Spaces Entry | submit_enclose_space_entry |

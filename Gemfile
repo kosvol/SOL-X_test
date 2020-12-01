@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "cucumber", "3.1.2"
+gem "bundler", "2.1.4"
 gem "solargraph"
 gem "page-object", "2.2.6"
 gem "require_all", "~> 1.4.0"

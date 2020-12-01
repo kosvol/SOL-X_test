@@ -54,6 +54,8 @@ class BrowserSetup
       end
     else
       # windows
+      caps=Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },"chromeOptions" => {w3c: false,args: [ "start-maximized" ]})#"chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
+      $browser = Selenium::WebDriver.for :remote, :url => "http://10.100.1.84:4444/wd/hub", desired_capabilities: caps,http_client: $client, options: options
     end
   end
 
@@ -74,17 +76,23 @@ class BrowserSetup
           platformName: (@device['platformName']).to_s,
           platformVersion: (@device['platformVersion']).to_s,
           deviceName: (@device['deviceName']).to_s,
+          udid: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
-          newCommandTimeout: 2400,
-          adbExecTimeout: 40000,
-          deviceReadyTimeout: 5,
+          automationName: 'UiAutomator2',
+          newCommandTimeout: 10000,
+          adbExecTimeout: 200000,
+          skipUnlock: true,
+          unlockType: 'pin',
+          unlockKey: '1111',
+          skipLogcatCapture: true,
+          recreateChromeDriverSessions: true,
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
           # :fullReset => fullreset,
           noReset: noreset
         },
-        appium_lib: { port: @device['port'], wait: 60 }
+        appium_lib: { port: @device['port'], wait: 180 }
       }
-    Appium::Driver.new(opts, true).start_driver
+      Appium::Driver.new(opts, true).start_driver
+    end
   end
-end

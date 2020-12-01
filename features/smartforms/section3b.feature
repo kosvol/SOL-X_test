@@ -26,7 +26,7 @@ Feature: Section3BDRA
 
   Scenario: Verify Work site inspection Yes name list display all crews
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
@@ -36,7 +36,7 @@ Feature: Section3BDRA
 
   Scenario Outline: Verify method name is populated
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select <level_one_permit> permit
@@ -57,7 +57,7 @@ Feature: Section3BDRA
 
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
@@ -68,7 +68,7 @@ Feature: Section3BDRA
 
   Scenario: Verify By: Master is not display after clicking No on is DRA sent to office
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
@@ -79,7 +79,7 @@ Feature: Section3BDRA
 
   Scenario: Verify crew drop down is displayed after clicking Yes on inspection carried out
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
@@ -91,7 +91,7 @@ Feature: Section3BDRA
 
   Scenario: Verify crew drop down is not displayed after clicking No on inspection carried out
     Given I launch sol-x portal
-    When I navigate to "SmartForms" screen
+    # When I navigate to "SmartForms" screen
     And I navigate to create new permit
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit

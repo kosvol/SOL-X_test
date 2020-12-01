@@ -4,7 +4,21 @@ Feature: RiggingOfLadder
   I want to ...
   So that ...
 
-  # Scenario: Verify data capture across status
+  # Scenario Outline: RA can submit Rigging of ladder permit
+  #   Examples:
+  #     | rank  | pin  |
+  #     | A/M   | 9015 |
+  #     | C/O   | 8383 |
+  #     | A C/O | 2761 |
+  #     | 2/O   | 6268 |
+  #     | A 2/O | 7865 |
+  #     | C/E   | 8248 |
+  #     | A C/E | 9264 |
+  #     | 2/E   | 2523 |
+  #     | A 2/E | 3030 |
+  #     | ETO   | 0856 |
+  #     | 3/O   | 0159 |
+  #     | A 3/O | 2674 |
 
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable

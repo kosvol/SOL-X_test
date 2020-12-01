@@ -4,9 +4,6 @@ Feature: SubmitPermit
   I want to ...
   So that ...
 
-  # Scenario: Verify ROL smoke test
-
-  # @x13
   # Scenario: Verify master can send for oa approval twice
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
@@ -48,6 +45,8 @@ Feature: SubmitPermit
     And I add a new hazard
     And I press next for 1 times
     And I set time
+    And I should see crew drop down list after clicking Yes on Inspection carried out
+    And I select 1 role from list
     And I fill up section 3b
     And I press next for 1 times
     And I fill up section 3c
@@ -82,6 +81,8 @@ Feature: SubmitPermit
     And I add a new hazard
     And I press next for 1 times
     And I set time
+    And I should see crew drop down list after clicking Yes on Inspection carried out
+    And I select 1 role from list
     And I fill up section 3b
     And I press next for 1 times
     And I fill up section 3c

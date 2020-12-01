@@ -11,7 +11,7 @@ Then (/^I (should|should not) see competent person sign button exists$/) do |_co
 end
 
 Then (/^I should see issue date display$/) do
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT+')
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT')
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
   # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
@@ -36,10 +36,30 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   step "I enter pin #{_pin}"
 end
 
-And (/^I should see Add Gas Reading button (.+)$/) do |_enable_or_disable|
+And (/^I should see gas reading section enabled$/) do
+  is_equal(on(Section6Page).gas_yes_no_elements.size,2)
+  is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  is_enabled(on(Section6Page).gas_equipment_input_element)
+  is_enabled(on(Section6Page).gas_sr_number_input_element)
+  is_enabled(on(Section6Page).add_gas_btn_element)
+end
+
+And (/^I should see gas reading section enabled in active state$/) do
+  # is_equal(on(Section6Page).gas_yes_no_elements.size,2)
+  # is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  # is_enabled(on(Section6Page).gas_equipment_input_element)
+  # is_enabled(on(Section6Page).gas_sr_number_input_element)
+  is_enabled(on(Section6Page).add_gas_btn_element)
+end
+
+And (/^I should see Add Gas Reading button disabled$/) do
   sleep 1
-  step 'I navigate to section 6'
-  _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+  is_equal(on(Section6Page).gas_yes_no_elements.size,0)
+  not_to_exists(on(Section6Page).gas_last_calibration_button_element)
+  not_to_exists(on(Section6Page).gas_equipment_input_element)
+  not_to_exists(on(Section6Page).gas_sr_number_input_element)
+  # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+  is_disabled(on(Section6Page).add_gas_btn_element)
 end
 
 Then (/^I should see permit valid for (.+) hours$/) do |_duration|
@@ -54,6 +74,33 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I enter pin 1111'
   step 'I sign on canvas'
+end
+
+Then (/^I should see data persisted on page 1$/) do
+  sleep 1
+  @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
+  tmp = on(Section3DPage).get_filled_section
+  does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
+  tmp.delete_at(1)
+  p ">> #{tmp}"
+  is_equal(on(Section3APage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  is_equal(tmp,@@rol_data['page1'])
+end
+
+And (/^I should see data persisted on page 2$/) do
+  tmp = on(Section3DPage).get_filled_section
+  does_include(tmp[1],"SIT/PTW/#{BrowserActions.get_year}/")
+  # data cleanse after first assertion
+  tmp.delete_at(1)
+  p ">> #{tmp}"
+  is_equal(on(ROLPage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(ROLPage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  on(Section3APage).scroll_multiple_times(15)
+  is_equal(on(ROLPage).issued_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  does_include(on(ROLPage).issued_date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  is_equal(on(ROLPage).valid_until_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
+  is_equal(tmp,@@rol_data['page2'])
 end
 
 And (/^I approve permit$/) do

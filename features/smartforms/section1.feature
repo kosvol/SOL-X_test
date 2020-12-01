@@ -80,24 +80,24 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | permit                          |
-      # | Maintenance on Anchor                                                    |
-      # | Maintenance on Emergency Fire Pump                                       |
-      ## | Maintenance on Emergency Generator                                         |
-      ## | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
-      ## | Maintenance on Fire Detection Alarm System                                 |
-      ## | Maintenance on Fixed Fire Fighting System                                  |
-      ## | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
-      ## | Maintenance on Life/Rescue Boats and Davits                                |
-      ## | Maintenance on Lifeboat Engine                                             |
-      | Maintenance on Magnetic Compass |
-  # | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device    |
-  # | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device |
-  ## | Maintenance on Oil Discharging Monitoring Equipment                        |
-  ## | Maintenance on Oil Mist Detector Monitoring System                         |
-  ## | Maintenance on Oily Water Separator                                        |
-  # | Maintenance on P/P Room Gas Detection Alarm System |
-  # | Maintenance on Radio Battery                                             |
+      | permit                                                                     |
+      | Maintenance on Anchor                                                      |
+      | Maintenance on Emergency Fire Pump                                         |
+      | Maintenance on Emergency Generator                                         |
+      | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+      | Maintenance on Fire Detection Alarm System                                 |
+      | Maintenance on Fixed Fire Fighting System                                  |
+      | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      |
+      | Maintenance on Life/Rescue Boats and Davits                                |
+      | Maintenance on Lifeboat Engine                                             |
+      | Maintenance on Magnetic Compass                                            |
+      | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      |
+      | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device   |
+      | Maintenance on Oil Discharging Monitoring Equipment                        |
+      | Maintenance on Oil Mist Detector Monitoring System                         |
+      | Maintenance on Oily Water Separator                                        |
+      | Maintenance on P/P Room Gas Detection Alarm System                         |
+      | Maintenance on Radio Battery                                               |
 
   Scenario Outline: Verify question input field does not exists in permits
     Given I launch sol-x portal without unlinking wearable
@@ -109,20 +109,20 @@ Feature: Section1
     And I tear down created form
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                              |
-      | Cold Work                                                     | Cold Work - Cleaning Up of Spill                              |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                         |
-      | Helicopter Operations                                         | Helicopter Operations                                         |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                   |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer By Transfer Basket                         |
-      | Rotational Portable Power Tools                               | Use of Portable Power Tools                                   |
-      | Underwater Operations                                         | Underwater Operation at night                                 |
-      | Use of non-intrinsically safe Camera                          | Use of non-intrinsically safe Camera                          |
-      | Use of ODME in Manual Mode                                    | Use of ODME in Manual Mode                                    |
+      | level_one_permit                                             | level_two_permit                                             |
+      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                             |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                        |
+      | Helicopter Operations                                        | Helicopter Operations                                        |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                  |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer By Transfer Basket                        |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                  |
+      | Underwater Operations                                        | Underwater Operation at night                                |
+      | Use of non-intrinsically safe Camera                         | Use of non-intrinsically safe Camera                         |
+      | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Work on Pressure Pipeline/Vessels                             | Work on Pressure Pipeline/Vessels                             |
-      | Working Aloft/Overside                                        | Working Aloft/Overside                                        |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                          |
+      | Work on Pressure Pipeline/Vessels                            | Work on Pressure Pipeline/Vessels                            |
+      | Working Aloft/Overside                                       | Working Aloft/Overside                                       |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                         |
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal without unlinking wearable

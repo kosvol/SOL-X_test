@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Then (/^I should be navigated back to pending approval screen$/) do
+  is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
+end
+
 Then (/^I should see (.+) button$/) do |state|
   if state === 'Office Approval'
     is_equal(on(PendingStatePage).office_approval_btn_elements.first.text, 'Office Approval')
@@ -25,6 +29,7 @@ And (/^I set oa permit to office approval state manually$/) do
   step 'I enter pin 1111'
   step 'I navigate to section 6'
   on(PendingStatePage).submit_oa_btn
+  sleep 1
   step 'I click on back to home'
 end
 

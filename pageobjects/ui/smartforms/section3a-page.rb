@@ -24,7 +24,10 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'Hazard__Container')]//p")
+  elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
   @@add_hazard_btn = "//span[contains(.,'Add Hazard')]"
 
@@ -42,10 +45,13 @@ class Section3APage < Section2Page
   end
 
   def is_new_hazard_added?
-    view_edit_btn
-    p ">> #{hazard_risk_details_elements[56].text}"
-    (hazard_risk_details_elements[56].text === "Test Automation" && hazard_risk_details_elements[57].text === "1 - Remotely Likely" && hazard_risk_details_elements[58].text === "1 - Insignificant" && hazard_risk_details_elements[59].text === "1 - Remotely Likely" && hazard_risk_details_elements[60].text === "1 - Insignificant" && hazard_existing_control_details_elements.last.text === "Test Automation")
-
+    # view_edit_btn
+    p ">> #{hazard_risk_details_elements[23].text}"
+    p ">> #{hazard_risk_details_elements[24].text}"
+    p ">> #{ecm_details_elements[10].text}"
+    p ">> #{ih_details_elements[10].text}"
+    (ih_details_elements[10].text === "Test Automation" && ecm_details_elements[10].text === "Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    
   end
 
   def add_new_hazard
@@ -55,6 +61,7 @@ class Section3APage < Section2Page
     BrowserActions.scroll_down(tmp)
     sleep 1
     BrowserActions.scroll_down_by_custom_dist(300)
+    scroll_multiple_times(1)
     add_hazard_btn_element.click
     sleep 2
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
@@ -70,29 +77,29 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    scroll_multiple_times(1)
+    # scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
-    level_to_choose_elements[230].click
-    confirm_btn_elements[46].click
+    level_to_choose_elements[level_to_choose_elements.size-20].click
+    confirm_btn_elements[confirm_btn_elements.size-4].click
     sleep 1
     consequence_btn_elements[(consequence_btn_elements.size - 2)].click
     sleep 2
-    level_to_choose_elements[235].click
-    confirm_btn_elements[47].click
+    level_to_choose_elements[level_to_choose_elements.size-15].click
+    confirm_btn_elements[confirm_btn_elements.size-3].click
     sleep 1
 
     # for existing control measure
     scroll_multiple_times(1)
     likelihood_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[240].click
-    confirm_btn_elements[48].click
+    level_to_choose_elements[level_to_choose_elements.size-10].click
+    confirm_btn_elements[confirm_btn_elements.size-2].click
     sleep 1
     consequence_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[245].click
-    confirm_btn_elements[49].click
+    level_to_choose_elements[level_to_choose_elements.size-5].click
+    confirm_btn_elements[confirm_btn_elements.size-1].click
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)

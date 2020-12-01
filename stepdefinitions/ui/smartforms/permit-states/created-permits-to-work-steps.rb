@@ -47,11 +47,6 @@ And (/^I should see gas reading section with fields enabled$/) do
   is_enabled(on(Section6Page).gas_yes_no_elements[1])
 end
 
-Then (/^I should see gas reader section with fields enabled$/) do
-  step 'I navigate to section 6'
-  is_false(on(Section4APage).is_checklist_fields_disabled?)
-end
-
 Then (/^I should see EIC section with fields enabled$/) do
   step 'I navigate to section 4b'
   is_equal(on(Section4APage).disabled_fields_elements.size, '2')
@@ -59,18 +54,20 @@ Then (/^I should see EIC section with fields enabled$/) do
 end
 
 Then (/^I should see deleted permit deleted$/) do
+  sleep 1
   is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)
 end
 
 And (/^I delete the permit created$/) do
-  on(CreatedPermitToWorkPage).delete_created_permit.click
+  CommonPage.set_permit_id(on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
+  on(CreatedPermitToWorkPage).delete_permit_btn_elements.first.click
   step 'I enter pin 1111'
 end
 
 Then (/^I should see the total permits in CREATED state match backend results$/) do
-  on(Section3APage).scroll_multiple_times(5)
+  on(Section3APage).scroll_multiple_times(15)
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'
-  is_equal(ServiceUtil.get_response_body['data']['form']['edges'].to_a.size, on(CreatedPermitToWorkPage).parent_container_elements.size)
+  is_equal(ServiceUtil.get_response_body['data']['formStats']['created'], on(CreatedPermitToWorkPage).parent_container_elements.size)
 end

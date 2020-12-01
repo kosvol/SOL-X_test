@@ -29,10 +29,11 @@ And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
   does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
   does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT+')
+  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT')
   # does_include(on(Section3APage).date_and_time_fields_elements[1].text, on(CommonFormsPage).get_current_time_format)
   does_include(on(Section3APage).method_detail_elements[2].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
+  BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   is_true(on(Section3APage).is_new_hazard_added?)
   on(Section3APage).close_btn_elements.first.click
 end
@@ -41,11 +42,11 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   base_data = @@form_data['section3b']
   capture_data = on(Section3BPage).get_filled_section
-  base_data.delete_at(6)
-  base_data.delete_at(6)
+  # base_data.delete_at(6)
+  # base_data.delete_at(6)
   p ">> #{base_data}"
   p "-- #{capture_data}"
-  capture_data.delete_at(6)
+  # capture_data.delete_at(6)
   begin
     does_include(on(Section3BPage).last_assessment_date_element.text, "/#{BrowserActions.get_year}")
     does_include(on(Section3BPage).generic_data_elements[5].text, "SIT/DRA/#{BrowserActions.get_year}")
@@ -55,6 +56,7 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   end
   p "=== #{capture_data}"
   is_equal(capture_data, base_data)
+  is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
 end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|

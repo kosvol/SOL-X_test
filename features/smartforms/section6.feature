@@ -4,6 +4,8 @@ Feature: Section6
   I want to ...
   So that ...
 
+  Scenario: Verify gas reading submit button disabled before signing
+
   Scenario: Verify gas reading don't get cleared after cancel from signing
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -118,11 +120,13 @@ Feature: Section6
     And I enter pin 9015
     And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
-    Then I should see gas reading display with toxic gas
     When I dismiss gas reader dialog box
+    Then I should see gas reading display with toxic gas
     And I add only normal gas readings
     And I enter pin 9015
+    And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    When I dismiss gas reader dialog box
     Then I should see gas reading display without toxic gas
     And I tear down created form
 
@@ -137,24 +141,24 @@ Feature: Section6
     And I tear down created form
 
     Examples:
-      | level_one_permit                                              | level_two_permit                                                | checklist                                                     |
-      | Hot Work                                                      | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                               |
-      | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                              |
-      | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                           | Enclosed Space Entry Checklist                                |
-      | Working Aloft/Overside                                        | Working Aloft / Overside                                        | Working Aloft/Overside                                        |
-      | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                    |
-      | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                         |
-      | Helicopter Operations                                         | Helicopter Operation                                            | Helicopter Operation Checklist                                |
+      | level_one_permit                                             | level_two_permit                                                | checklist                                                    |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                              |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                             |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                           | Enclosed Space Entry Checklist                               |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                                        | Working Aloft/Overside                                       |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                   |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                        |
+      | Helicopter Operations                                        | Helicopter Operation                                            | Helicopter Operation Checklist                               |
       # | Rotational Portable Power Tools      | Use of Portable Power Tools                 | Rotational Portable Power Tools (PPT) |
-      | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools           | Rotational Portable Power Tools (PPT)                         |
+      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools           | Rotational Portable Power Tools (PPT)                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Cold Work Operation Checklist                                 |
+      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Cold Work Operation Checklist                                |
       # | Cold Work                            | Cold Work - Cleaning Up of Spill            | Cold Work Operation Checklist          |
       # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
-      | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather                             |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather                            |
 
   Scenario: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
     Given I launch sol-x portal without unlinking wearable

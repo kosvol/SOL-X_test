@@ -134,7 +134,9 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set rol permit to active state with <duration> duration
     And I click on back to home
+    And I sleep for 3 seconds
     And I click on active filter
+    And I sleep for 3 seconds
     Then I should see permit valid for <duration> hours
 
     Examples:
@@ -194,7 +196,8 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button enabled
+    And I navigate to section 6
+    Then I should see gas reading section enabled in active state
 
     Examples:
       | permit_types       | permit_payload                | rank   | pin  |
@@ -226,6 +229,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -233,12 +237,21 @@ Feature: ActivePermit
       | underwater   | submit_underwater_simultaneous | A 4/E | 0703 |
   # | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
+  Scenario: Verify user is brough back to listing screen after cancelling from pinpad
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click on permit for Update Readings
+    And I dismiss enter pin screen
+    Then I should be navigated back to pending approval screen
+
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    Then I should see Add Gas Reading button enabled
+    And I navigate to section 6
+    Then I should see gas reading section enabled in active state
 
     Examples:
       | permit_types                     | permit_payload               | rank                       | pin  |
@@ -247,12 +260,13 @@ Feature: ActivePermit
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
       | Hot Work                         | submit_hotwork               | A 3/O                      | 2674 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 9264 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
       | Hot Work                         | submit_hotwork               | Additional Second Engineer | 3030 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
       | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
       | Hot Work                         | submit_hotwork               | 4/E                        | 1311 |
+      | Hot Work                         | submit_hotwork               | Master                     | 1111 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -262,24 +276,24 @@ Feature: ActivePermit
     Then I should not see gas reader sections on active permit
 
     Examples:
-      | permit_types          | permit_payload             | rank | pin  |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
+      | permit_types                     | permit_payload               | rank   | pin  |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Master | 1111 |
       # # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | 3/O  | 0159 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O    | 0159 |
   # # | Hot Work                           | submit_hotwork               | A 3/O                      | 2674 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
-  # | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 2761 |
+  # | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 9264 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   # | Hot Work                         | submit_hotwork              | Additional Second Engineer | 3030 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
   # | Hot Work                         | submit_hotwork              | A 3/E                      | 6727 |
 
-  @x12
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:

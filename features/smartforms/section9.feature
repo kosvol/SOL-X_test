@@ -25,6 +25,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
+    And I enter pin 1111
     Then I should see terminate permit to work and request update buttons
 
     Examples:
@@ -39,6 +40,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
+    And I enter pin 1111
     Then I should see terminate permit to work and request update buttons
 
     Examples:
@@ -62,7 +64,7 @@ Feature: Section9
       | 4/E                       | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | A 4/E                     | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Chief Engineer  | 1122 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      ## | Additional Chief Engineer  | 9264 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Electro Technical Officer | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -103,6 +105,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
+    And I enter pin 1111
     Then I should see date and time pre-fill on section 9
 
     Examples:

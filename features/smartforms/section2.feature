@@ -25,25 +25,25 @@ Feature: Section2ApprovalAuthority
     And I tear down created form
 
     Examples:
-      | level_one_permit | level_two_permit                    |
-      | Hot Work         | Hot Work Level-2 in Designated Area |
-  # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
-  # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
-  # | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
-  # | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                             |
-  # | Personnel Transfer By Transfer Basket                         | Personnel Transfer by Transfer Basket                                   |
-  # | Helicopter Operations                                         | Helicopter Operation                                                    |
-  # | Rotational Portable Power Tools                               | Use of Portable Power Tools                                             |
-  # | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
-  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                      |
-  # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings |
-  # | Cold Work                                                     | Cold Work - Cleaning Up of Spill                                        |
-  # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
-  # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
-  # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
-  # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
-  # | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
-  # | Working on Deck During Heavy Weather                          | Working on Deck During Heavy Weather                                    |
+      | level_one_permit                                             | level_two_permit                                                      |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                                   |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                           |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                 |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                                              |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                           |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                 |
+      | Helicopter Operations                                        | Helicopter Operation                                                  |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                           |
+      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools                 |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                    |
+      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
+      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
+      | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
+      | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
+      | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
+      | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
+      | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                   |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                                  |
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal without unlinking wearable

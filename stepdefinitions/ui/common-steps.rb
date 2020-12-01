@@ -56,6 +56,7 @@ end
 
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
+  sleep 1
   on(PinPadPage).enter_pin(pin)
   sleep 1
 end
@@ -76,6 +77,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
+  sleep 1
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)
@@ -91,6 +93,9 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   on(Section0Page).save_and_next_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
+  sleep 1
+  # p "-- #{on(Section0Page).ptw_id_element.text}"
+  # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
 end
 
 And (/^I click on back to home$/) do
