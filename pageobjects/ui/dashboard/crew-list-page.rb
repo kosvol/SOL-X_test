@@ -10,9 +10,7 @@ class CrewListPage < DashboardPage
   elements(:crew_list, xpath: '//*/tbody/tr')
   elements(:crew_pin_list, xpath: '//tbody/tr/td[6]')
   spans(:countdown, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]/span")
-  # elements(:crew_pin_list, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr/td[6]")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
-  # elements(:crew_details, xpath: "//tbody[starts-with(@class, 'CrewList__TableBody')]/tr")
   divs(:location_details, xpath: "//div[@data-testid='location']")
   button(:view_pin_btn, xpath: "//button[contains(.,'View PINs')]")
   button(:add_new_crew_btn, xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
@@ -85,16 +83,6 @@ class CrewListPage < DashboardPage
       pin.text === '••••'
     end
   end
-
-  # def get_crew_details
-  #   crew_details = YAML.load_file('data/crew-details.yml')
-
-  #   crew_details_elements.each_with_index.all? do |crew, _index|
-  #     Log.instance.info("Expected: #{crew.text.to_s.gsub!(/\s+/, ' ')}")
-  #     Log.instance.info("Actual: #{crew_details['crew'][_index]}")
-  #     crew.text.to_s.gsub!(/\s+/, ' ') === crew_details['crew'][_index]
-  #   end
-  # end
 
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow

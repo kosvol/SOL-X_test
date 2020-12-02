@@ -84,7 +84,7 @@ Then (/^I should see data persisted on page 1$/) do
   tmp.delete_at(1)
   p ">> #{tmp}"
   is_equal(on(Section3APage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
   is_equal(tmp,@@rol_data['page1'])
 end
 
@@ -95,10 +95,10 @@ And (/^I should see data persisted on page 2$/) do
   tmp.delete_at(1)
   p ">> #{tmp}"
   is_equal(on(ROLPage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(ROLPage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  does_include(on(ROLPage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
   on(Section3APage).scroll_multiple_times(15)
   is_equal(on(ROLPage).issued_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(ROLPage).issued_date_and_time_fields_elements.last.text, on(CommonFormsPage).get_offset_zone)
+  does_include(on(ROLPage).issued_date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
   is_equal(on(ROLPage).valid_until_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
   is_equal(tmp,@@rol_data['page2'])
 end

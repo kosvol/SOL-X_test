@@ -53,7 +53,7 @@ class CommonFormsPage < CommonPage
   end
 
   def get_current_time_format
-      "#{@@time}#{get_offset_zone}"
+      "#{@@time}#{get_timezone}"
   end
 
   # def get_current_date_format
@@ -111,9 +111,7 @@ class CommonFormsPage < CommonPage
     end
   end
 
-  def get_offset_zone
-    # @which_json = 'ship-local-time/base-get-current-time'
-    # ServiceUtil.post_graph_ql(@which_json, '1111')
+  def get_timezone
     @@time_offset = get_current_time_offset
     if @@time_offset.to_s[0] != "-"
       " LT (GMT+#{@@time_offset})"
