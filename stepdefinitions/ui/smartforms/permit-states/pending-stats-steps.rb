@@ -11,6 +11,8 @@ Then (/^I should see (.+) button$/) do |state|
     is_equal(on(PendingStatePage).master_approval_btn_elements.first.text, 'Master Approval')
   elsif state === 'Master Review'
     is_equal(on(PendingStatePage).master_review_btn_elements.first.text, 'Master Review')
+  elsif state === 'View EIC certification'
+    is_equal(on(Section4BPage).view_eic_btn_element.text, 'View/Edit Energy Isolation Certificate')
   end
 end
 
