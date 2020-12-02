@@ -5,11 +5,13 @@ require './././support/env'
 class CommonFormsPage < CommonPage
   include PageObject
 
-  ### common locator
   elements(:labels_scrapper, xpath: "//*[local-name()='h3' or local-name()='h2' or local-name()='h4' or local-name()='label']")
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  element(:enter_comment_box, xpath: '//textarea')
+
+  ### buttons ###
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   buttons(:sign_btn, xpath: "//button[contains(.,'Sign')]")
   button(:back_btn, xpath: "//button[contains(.,'Back')]")
@@ -30,7 +32,6 @@ class CommonFormsPage < CommonPage
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
-  element(:enter_comment_box, xpath: '//textarea')
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
 
@@ -52,38 +53,36 @@ class CommonFormsPage < CommonPage
   end
 
   def get_current_time_format
-    # @which_json = 'ship-local-time/base-get-current-time'
-    # ServiceUtil.post_graph_ql(@which_json, '1111')
-    # @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-    # if @@time_offset.to_s[0] != "-"
       "#{@@time}#{get_offset_zone}"
-    # else
-      # "#{@@time} LT (GMT#{@@time_offset})"
-    # end
   end
 
-  def get_current_date_format
-    Time.new.strftime('%d/%b/%Y')
-  end
+  # def get_current_date_format
+  #   Time.new.strftime('%d/%b/%Y')
+  # end
 
   def get_current_date_and_time
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end
 
   def get_current_date_format_with_offset
-    which_json = 'ship-local-time/base-get-current-time'
-    ServiceUtil.post_graph_ql(which_json, '1111')
-    time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    time_offset = get_current_time_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
 
-  def get_current_time_format_with_offset(_offset)
-    # which_json = 'ship-local-time/base-get-current-time'
-    # ServiceUtil.post_graph_ql(which_json, '1111')
-    # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-    (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
-    # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
+  # def get_current_time_format_non_format
+  def get_current_time_offset
+    @which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(@which_json, '1111')
+    ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
   end
+
+  # def get_current_time_format_with_offset(_offset)
+  #   # which_json = 'ship-local-time/base-get-current-time'
+  #   # ServiceUtil.post_graph_ql(which_json, '1111')
+  #   # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+  #   (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
+  #   # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
+  # end
 
   def get_total_steps_to_section6(_which_section)
     case _which_section
@@ -113,9 +112,9 @@ class CommonFormsPage < CommonPage
   end
 
   def get_offset_zone
-    @which_json = 'ship-local-time/base-get-current-time'
-    ServiceUtil.post_graph_ql(@which_json, '1111')
-    @@time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    # @which_json = 'ship-local-time/base-get-current-time'
+    # ServiceUtil.post_graph_ql(@which_json, '1111')
+    @@time_offset = get_current_time_offset
     if @@time_offset.to_s[0] != "-"
       " LT (GMT+#{@@time_offset})"
     else

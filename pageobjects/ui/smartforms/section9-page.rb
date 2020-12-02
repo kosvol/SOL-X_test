@@ -16,7 +16,7 @@ class Section9Page < Section8Page
     sleep 1
     set_current_time
     time_offset = get_current_time_format
-    "#{get_current_date_format} #{time_offset}"
+    "#{get_current_date_format_with_offset} #{time_offset}"
   end
 
   def is_termination_date_time_filled?

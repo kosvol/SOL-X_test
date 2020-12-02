@@ -181,8 +181,8 @@ class BypassPage < Section0Page
     submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
-    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
-    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{get_current_time_offset}}"
     JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status')
   end
@@ -200,8 +200,8 @@ class BypassPage < Section0Page
     submit_active = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
-    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
-    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{get_current_time_offset}}"
     JsonUtil.create_request_file('ptw/mod_16.update-active-status', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status')
   end
@@ -215,9 +215,9 @@ class BypassPage < Section0Page
 
     submit_active = JSON.parse JsonUtil.read_json('ptw/rol/approve-rol')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
-    submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][6].to_h['value'] = "\"#{_duration}\""
-    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-approve-rol', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-approve-rol')
@@ -226,7 +226,7 @@ class BypassPage < Section0Page
   def submit_permit_for_termination_wo_eic_normalization(_status)
     submit_active = JSON.parse JsonUtil.read_json('ptw/17.submit-for-termination-wo-eic-normalization')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
-    submit_active['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_format_non_format}}"
+    submit_active['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][3].to_h['value'] = "\"#{_status}\""
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
@@ -240,12 +240,6 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
   end
 
-  def get_current_time_format_non_format
-    @which_json = 'ship-local-time/base-get-current-time'
-    ServiceUtil.post_graph_ql(@which_json, '1111')
-    ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-  end
-
   private
 
   def cal_new_hour_offset_time(_offset)
@@ -253,7 +247,7 @@ class BypassPage < Section0Page
     begin
       time_w_offset = @current_time.to_i + _offset.to_i
     rescue StandardError
-      time_w_offset = @current_time.to_i + get_current_time_format_non_format.to_i
+      time_w_offset = @current_time.to_i + get_current_time_offset.to_i
     end
     count_hour = if time_w_offset >= 24
                    (time_w_offset - 24).abs
