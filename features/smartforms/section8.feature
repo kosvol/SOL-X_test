@@ -7,6 +7,28 @@ Feature: Section8
   # Scenario: Verify competent and issuing authority detail display on read only mode if not signed
   # Scenario: Verify only RA can fill section 8 for termination
 
+  Scenario: Verify task commenced at should be populated with permit activated time
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Work on Pressure Pipeline/Vessels permit
+    And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 11 times
+    And I sign the permit for submission to active state
+    And I click on back to home
+    And I set time
+    And I click on active filter
+    And I terminate permit with A/M rank and 9015 pin
+    Then I should see task commenced data and time populated with permit activated date and timestamp
+
   Scenario: Verify extra section8 questions shown for pipe permit
     Given I launch sol-x portal
     And I navigate to create new permit
@@ -14,7 +36,9 @@ Feature: Section8
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
     And I navigate to section 4a
-    And I press next for 4 times
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -33,7 +57,9 @@ Feature: Section8
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
     And I navigate to section 4a
-    And I press next for 4 times
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -53,7 +79,9 @@ Feature: Section8
     And I select Maintenance on Anchor permit for level 2
     And I set maintenance during less than 2 hours
     And I navigate to section 4a
-    And I press next for 4 times
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -73,7 +101,16 @@ Feature: Section8
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
-    And I press next for 5 times
+    And I press next for 1 times
+    And I sign on checklist with 8383 pin
+    And I sign on canvas
+    And I press next for 1 times
+    And I sign on checklist with 8383 pin
+    And I sign on canvas
+    And I press next for 1 times
+    And I sleep for 1 seconds
+    And I fill up section 5
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -93,7 +130,16 @@ Feature: Section8
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
-    And I press next for 5 times
+    And I press next for 1 times
+    And I sign on checklist with 8383 pin
+    And I sign on canvas
+    And I press next for 1 times
+    And I sign on checklist with 8383 pin
+    And I sign on canvas
+    And I press next for 1 times
+    And I sleep for 1 seconds
+    And I fill up section 5
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter

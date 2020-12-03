@@ -41,7 +41,10 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
-    When I press next for 10 times
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -72,7 +75,10 @@ Feature: ActivePermit
     And I select Underwater Operations permit
     And I select Simultaneous underwater operation during daytime with other operation permit for level 2
     And I fill up section 1 with default value
-    When I press next for 10 times
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
     And I click on pending approval filter
@@ -93,7 +99,10 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I press next for 10 times
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -109,7 +118,10 @@ Feature: ActivePermit
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
-    When I press next for 10 times
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
     And I click on pending approval filter
@@ -157,7 +169,10 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
-    And I press next for 10 times
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter

@@ -27,6 +27,7 @@ end
 
 And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
+  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
   if _update_or_terminate === 'update'
     on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   elsif _update_or_terminate === 'terminate'

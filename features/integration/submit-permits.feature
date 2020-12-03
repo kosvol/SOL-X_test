@@ -67,7 +67,7 @@ Feature: SubmitPermit
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
-    And I sleep for 5 seconds
+    And I sleep for 8 seconds
 
   @active-smoke-test-1
   Scenario: Submit permit data Enclosed Spaces Entry into active

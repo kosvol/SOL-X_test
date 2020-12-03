@@ -40,7 +40,10 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I navigate to section 6
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -80,7 +83,10 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I navigate to section 6
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
@@ -110,7 +116,10 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I navigate to section 6
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter

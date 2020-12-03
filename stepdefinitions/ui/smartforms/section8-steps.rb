@@ -69,3 +69,8 @@ And (/^I manually put the permit to pending termination state$/) do
   on(Section8Page).task_status_completed_element.click
   step 'I sign EIC section 8 with RA 9015'
 end
+
+Then (/^I should see task commenced data and time populated with permit activated date and timestamp$/) do
+  does_include(@@issued_date_and_time, on(Section8Page).task_commerce_at_elements.first.text)
+  does_include(@@issued_date_and_time, on(Section8Page).task_commerce_at_elements.last.text)
+end

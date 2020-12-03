@@ -12,6 +12,7 @@ class Section8Page < Section7Page
   button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
   @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
   @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
+  buttons(:task_commerce_at, xpath: "//button[@id='taskCommencedAt']")
 
   span(:normalization_question1, xpath: "//span[contains(.,'Work completed. PTW cancellation (if applicable).')]")
   span(:normalization_question2, xpath: "//span[contains(.,'Relevant Departments personnel informed as applicable')]")
