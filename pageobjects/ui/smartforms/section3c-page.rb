@@ -15,7 +15,7 @@ class Section3CPage < Section3BPage
     sleep 1
     dra_team_btn
     sleep 1
-    member_name_btn_elements[1].click
+    member_name_btn_elements[0].click
     confirm_btn_elements.last.click
     sleep 1
   end

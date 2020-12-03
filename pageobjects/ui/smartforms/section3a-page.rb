@@ -24,7 +24,8 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  # elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  elements(:ih_details, xpath: "//div[contains(@class,'row-container')]/p")
   elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
 

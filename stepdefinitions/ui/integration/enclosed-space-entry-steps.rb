@@ -42,14 +42,14 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   base_data = @@form_data['section3b']
   capture_data = on(Section3BPage).get_filled_section
-  # base_data.delete_at(6)
-  # base_data.delete_at(6)
+  base_data.delete_at(6)
+  base_data.delete_at(6)
   p ">> #{base_data}"
   p "-- #{capture_data}"
   # capture_data.delete_at(6)
   begin
-    does_include(on(Section3BPage).last_assessment_date_element.text, "/#{BrowserActions.get_year}")
-    does_include(on(Section3BPage).generic_data_elements[5].text, "SIT/DRA/#{BrowserActions.get_year}")
+    does_include(on(Section3BPage).last_assessment_date_element.text, CommonFormsPage.get_current_date_format_with_offset)
+    does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")
   rescue StandardError
     puts '>> Probably First RUN !!!!'
     capture_data.delete_at(6)
@@ -116,7 +116,7 @@ end
 
 And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  is_equal(on(Section5Page).get_fislled_roles_responsibility_elements.first.text, "Authorized Entrant 1")
+  is_equal(on(Section5Page).get_filled_roles_responsibility_elements.first.text, "Authorized Entrant 1")
   is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, "C/O Alister Leong")
   is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, "Test Automation")
   does_include(on(Section5Page).get_filled_crew_details_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)

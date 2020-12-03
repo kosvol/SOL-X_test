@@ -143,7 +143,8 @@ Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condit
   if _condition === 'without'
     is_equal(on(Section6Page).gas_reading_table_elements[1].text, '2nd Reading')
   end
-  is_equal(on(Section6Page).gas_reading_table_elements[2].text, "#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")
+  # is_equal(on(Section6Page).gas_reading_table_elements[2].text, "#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")
+  does_include(on(Section6Page).gas_reading_table_elements[2].text, "#{on(CommonFormsPage).get_timezone}")
   is_equal(on(Section6Page).gas_reading_table_elements[3].text, '1 %')
   is_equal(on(Section6Page).gas_reading_table_elements[4].text, '2 % LEL')
   is_equal(on(Section6Page).gas_reading_table_elements[5].text, '3 PPM')
