@@ -80,7 +80,7 @@ class BrowserSetup
           isHeadless: @device['isHeadless'],
           automationName: 'UiAutomator2',
           newCommandTimeout: 10000,
-          adbExecTimeout: 200000,
+          adbExecTimeout: 500000,
           skipUnlock: true,
           unlockType: 'pin',
           unlockKey: '1111',
