@@ -32,7 +32,7 @@ When (/^I select yes to EIC certification$/) do
   on(Section4BPage).yes_no_btn_elements[0].click
   step 'I set time'
   on(Section4BPage).create_eic_btn
-  sleep 1
+  sleep 2
 end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
