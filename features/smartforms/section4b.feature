@@ -76,7 +76,7 @@ Feature: Section4BEIC
     And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    And I link wearable to a issue authority <user> and link to zoneid <zoneid> and mac <mac>
+    And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC certification
     Then I sign EIC as issuing authority with pin 8248
     And I set time
