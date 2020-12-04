@@ -79,7 +79,7 @@ class BrowserSetup
           udid: (@device['deviceName']).to_s,
           isHeadless: @device['isHeadless'],
           automationName: 'UiAutomator2',
-          newCommandTimeout: 10000,
+          newCommandTimeout: 50000,
           adbExecTimeout: 500000,
           skipUnlock: true,
           unlockType: 'pin',
