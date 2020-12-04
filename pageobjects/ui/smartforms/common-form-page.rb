@@ -30,7 +30,7 @@ class CommonFormsPage < CommonPage
   buttons(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
   buttons(:save_and_close_btn, xpath: "//button[contains(.,'Save & Close')]")
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
-  buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Terminate')]")
+  buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review and Withdraw')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
