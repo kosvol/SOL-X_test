@@ -61,8 +61,7 @@ class Section3APage < Section2Page
     tmp = $browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
     sleep 1
-    BrowserActions.scroll_down_by_custom_dist(800)
-    scroll_multiple_times(1)
+    scroll_multiple_times(8)
     add_hazard_btn_element.click
     sleep 2
     BrowserActions.enter_text(description_elements.last, 'Test Automation')

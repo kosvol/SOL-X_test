@@ -55,7 +55,7 @@ And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
 end
 
 Then(/^I (should|should not) see warning label$/) do |_condition|
-  info_text = 'You have selected to disable gas testing for this permit.'
+  info_text = "Gas Testing Disabled\nYou have selected to disable gas testing for this permit."
   if _condition === 'should'
     is_equal(on(Section6Page).info_box_disable_gas, info_text)
   end

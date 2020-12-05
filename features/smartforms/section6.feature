@@ -88,7 +88,10 @@ Feature: Section6
     And I enter pin 9015
     And I select Helicopter Operations permit
     And I select Helicopter Operations permit for level 2
-    And I navigate to section 6
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And I press the Yes button to enable gas testing
     And I add all gas readings
     And I enter pin <pin>
@@ -235,7 +238,10 @@ Feature: Section6
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I navigate to section 6
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
     And  I press the N/A button to disable gas testing
     Then I should see warning label
     And  I should not see gas_equipment_input

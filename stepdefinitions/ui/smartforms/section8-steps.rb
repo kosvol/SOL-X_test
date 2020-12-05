@@ -3,19 +3,34 @@
 Then (/^I should see extra section8 questions for pipe permit$/) do
   on(Section8Page).normalization_pipe_question1
   on(Section8Page).normalization_pipe_question2
-  is_equal($browser.find_elements(:xpath, '//input').size, '23')
+  tmp = $browser.find_elements(:xpath, '//div/span')
+  @@section8_questions = YAML.load_file('data/section8.yml')
+  tmp.each do |_elem|
+    does_include(@@section8_questions["pipe"],_elem.text)
+  end
+  is_equal($browser.find_elements(:xpath, '//input').size, '21')
 end
 
 Then (/^I should see extra section8 questions for critical maintenance permit$/) do
   on(Section8Page).normalization_crit_question1
   on(Section8Page).normalization_crit_question2
   on(Section8Page).normalization_crit_question3
+  tmp = $browser.find_elements(:xpath, '//div/span')
+  @@section8_questions = YAML.load_file('data/section8.yml')
+  tmp.each do |_elem|
+    does_include(@@section8_questions["critical"],_elem.text)
+  end
   is_equal($browser.find_elements(:xpath, '//input').size, '26')
 end
 
 Then (/^I should see extra section8 questions for electrical permit$/) do
   on(Section8Page).normalization_elec_question1
   on(Section8Page).normalization_elec_question2
+  tmp = $browser.find_elements(:xpath, '//div/span')
+  @@section8_questions = YAML.load_file('data/section8.yml')
+  tmp.each do |_elem|
+    does_include(@@section8_questions["electrical"],_elem.text)
+  end
   is_equal($browser.find_elements(:xpath, '//input').size, '23')
 end
 

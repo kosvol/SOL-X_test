@@ -1,0 +1,42 @@
+pipe:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Have all Valves and Pipes been re-secured properly on completion of the work?",
+    "Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?",
+    "Master notified on task status:",
+  ]
+
+electrical:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Has the grounding been removed prior reconnecting power to the system?",
+    "Has the newly installed and/or repaired High Voltage Equipment been subjected to a High Voltage test?",
+    "Master notified on task status:",
+  ]
+
+critical:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Is the test/trial completed and performance is satisfactory?",
+    "Equipment/procedures restore to normal?",
+    "All personnel/operator have been informed of the restoration?",
+    "Master notified on task status:",
+  ]
