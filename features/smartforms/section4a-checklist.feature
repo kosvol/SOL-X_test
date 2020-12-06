@@ -233,8 +233,8 @@ Feature: Section4AChecklist
     And I select <level_two_permit> permit for level 2
     And I set maintenance during more than 2 hours
     And I navigate to section 4a
-    And I select the matching <checklist> checklist
     And I set time
+    And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated
     And I tear down created form
 

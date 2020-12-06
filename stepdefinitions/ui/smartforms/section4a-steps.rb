@@ -86,12 +86,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   on(Section4APage).get_checklist_locator(@@checklist).each_with_index do |_element, _index|
     p _element.text.to_s
     p base_data[_index].to_s
-    # is_equal(_element.text,base_data[_index])
-    # begin
     does_include(_element.text, base_data[_index])
-    # rescue
-    # does_include(_element.text,"PTW/TEMP/")
-    # end
   end
   if @@checklist === 'ROL'
     is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')

@@ -1,11 +1,11 @@
 questions:
   [
-    "Preparations and checks to be carried out by the Officer in Charge of work to be performed.",
     "SIT",
     "Created On:",
     "Date",
     "Time",
-    "PTW/TEMP/",
+    "PTW/TEMP/1607242493",
+    "Preparations and checks to be carried out by the Officer in Charge of work to be performed.",
     "1. Has a formal Risk Assessment been produced and discussed?",
     "Yes",
     "No",
@@ -51,6 +51,7 @@ questions:
     "15. Are there any toxic fumes present at work place?",
     "Yes",
     "No",
+    "To be completed by the ship's Safety Officer",
     "The following personal protective equipment to be worn:",
     "Special precautions/conditions:",
     "",
