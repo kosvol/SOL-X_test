@@ -258,7 +258,7 @@ Feature: ActivePermit
     And I click on active filter
     And I click on permit for Update Readings
     And I dismiss enter pin screen
-    Then I should be navigated back to pending approval screen
+    Then I should be navigated back to active screen
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reading is needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state

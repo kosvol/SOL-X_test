@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-Then (/^I should be navigated back to pending approval screen$/) do
-  is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
+Then (/^I should be navigated back to (.*) screen$/) do |which_screen|
+  if which_screen === "pending approval"
+    is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
+  elsif which_screen === "active"
+    is_equal(on(Section0Page).ptw_id_element.text,"Active")
+  end
 end
 
 Then (/^I should see (.+) button$/) do |state|
