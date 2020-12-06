@@ -6,7 +6,7 @@ class Section3APage < Section2Page
   include PageObject
 
   button(:view_edit_btn, xpath: "//button[contains(.,'View/Edit Hazards')]")
-  element(:add_hazard_btn, xpath: "//span[contains(.,'Add Hazard')]")
+  button(:add_hazard_btn, xpath: "//button[contains(.,'Add Hazard')]")
   buttons(:delete_btn, xpath: "//button[contains(.,'Delete')]")
   button(:save_dra, xpath: "//button[contains(.,'Save DRA')]")
   elements(:add_additional_measure_btn, xpath: "//span[contains(.,'Add Additional Measures')]")
@@ -24,13 +24,13 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  # elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
-  elements(:ih_details, xpath: "//div[contains(@class,'row-container')]/p")
+  elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  # elements(:ih_details, xpath: "//div[contains(@class,'row-container')]/p")
   elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
-  @@add_hazard_btn = "//span[contains(.,'Add Hazard')]"
+  @@add_hazard_btn = "//button/span[contains(.,'Add Hazard')]"
 
   def navigate_front_back
     BrowserActions.scroll_click(previous_btn_elements.first)
@@ -55,15 +55,17 @@ class Section3APage < Section2Page
     
   end
 
-  def add_new_hazard
-    view_edit_btn
-    sleep 1
+  def scroll_to_new_hazard
     tmp = $browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
-    sleep 1
-    scroll_multiple_times(8)
-    add_hazard_btn_element.click
+    scroll_multiple_times(2)
+  end
+
+  def add_new_hazard
+    view_edit_btn
     sleep 2
+    scroll_to_new_hazard
+    add_hazard_btn
     BrowserActions.enter_text(description_elements.last, 'Test Automation')
     BrowserActions.enter_text(description_elements[(description_elements.size - 2)], 'Test Automation')
     sleep 1
