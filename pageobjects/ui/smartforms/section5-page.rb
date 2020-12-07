@@ -44,6 +44,7 @@ class Section5Page < Section4BPage
   end
 
   def select_roles_and_responsibility(_roles)
+    sleep 1
     roles_and_resp_btn
     sleep 1
     (0..(_roles.to_i - 1)).each do |i|
