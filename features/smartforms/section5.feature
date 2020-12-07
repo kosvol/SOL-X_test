@@ -125,3 +125,19 @@ Feature: Section5
       | 3/E   | 3038 | 3/E Crew Test Engineer |
       | A 3/E | 6727 | A 3/E James Pike       |
       | 4/E   | 1311 | 4/E Tori Kuncoro       |
+
+  Scenario Outline: Verify non sponsor crews cannot sign
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I fill up non crew details
+    And I sign on role with non sponsor crew <pin> pin
+    Then I should see not authorize error message
+
+    Examples:
+      | rank   | pin  |
+      | Master | 1111 |

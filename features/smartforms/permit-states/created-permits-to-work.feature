@@ -51,6 +51,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created" screen
+    And I set time
     Then I should see the newly created permit details listed on Created Permits to Work
     And I tear down created form
 

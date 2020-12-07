@@ -44,6 +44,11 @@ Then (/^I should see a list of roles$/) do
   is_true(on(Section5Page).is_list_of_roles?)
 end
 
+And (/^I sign on role with non sponsor crew (.*) pin$/) do |_pin|
+  on(Section5Page).sign_btn_role_elements.first.click
+  step "I enter pin #{_pin}"
+end
+
 And (/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
   step 'I enter pin 9015'
