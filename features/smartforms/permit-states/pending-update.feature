@@ -12,27 +12,27 @@ Feature: PendingUpdate
 
   # Scenario: Verify AGT can add gas reading
 
-  @skip
-  Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
-    # Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
-    When I launch sol-x portal without unlinking wearable
-    And I click on active filter
-    And I click on Submit for Termination
-    And I enter pin 9015
-    And I submit permit for termination
-    And I enter pin 9015
-    And I sign on canvas
-    And I click on back to home
-    And I click on pending withdrawal filter
-    And I update permit with Master rank and 1111 pin
-    And I request update for permit
-    And I click on back to home
-    And I click on update needed filter
-    And I update permit with PMAN rank and 4656 pin
-    And I navigate to section 4b
-  # And I navigate to "Withdrawn" screen
-  # Then I should see termination date display
-  # And I should be able to view close permit
+  # @skip
+  # Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
+  #   # Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+  #   When I launch sol-x portal without unlinking wearable
+  #   And I click on active filter
+  #   And I click on Submit for Termination
+  #   And I enter pin 9015
+  #   And I submit permit for termination
+  #   And I enter pin 9015
+  #   And I sign on canvas
+  #   And I click on back to home
+  #   And I click on pending withdrawal filter
+  #   And I update permit with Master rank and 1111 pin
+  #   And I request update for permit
+  #   And I click on back to home
+  #   And I click on update needed filter
+  #   And I update permit with PMAN rank and 4656 pin
+  #   And I navigate to section 4b
+  # # And I navigate to "Withdrawn" screen
+  # # Then I should see termination date display
+  # # And I should be able to view close permit
 
   Scenario: Verify section 6 buttons display are correct via pending master approval state as a reader
     Given I launch sol-x portal without unlinking wearable

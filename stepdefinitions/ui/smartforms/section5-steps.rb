@@ -13,6 +13,7 @@ And (/^I fill up section 5$/) do
   step 'I select 1 role from list'
   step 'I fill up non crew details'
   step 'I sign on role with sponsor crew 8383 pin'
+  step 'I select 1 role from list'
 end
 
 And (/^I sign on listed role$/) do
