@@ -99,9 +99,9 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I click on back to home$/) do
-  sleep 1
-  on(Section6Page).back_to_home_btn_element.click
   sleep 2
+  on(Section6Page).back_to_home_btn_element.click
+  sleep 1
 end
 
 And (/^I tear down created form$/) do
