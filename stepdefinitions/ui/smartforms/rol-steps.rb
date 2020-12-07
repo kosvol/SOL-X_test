@@ -23,7 +23,6 @@ Then (/^I should see view and termination buttons$/) do
 end
 
 And (/^I request update for permit$/) do
-  step 'I press next for 1 times'
   begin
     on(Section7Page).update_btn
   rescue StandardError
