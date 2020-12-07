@@ -171,8 +171,13 @@ And(/^I should see the table on the page with entered gas data$/) do
 end
 
 Then(/^\(for per\) I navigate to "([^"]*)" list$/) do |item|
-  # at the moment we haven't button via sandwich menu for Active PRE, Scheduled PRE, Pending Approval PER
-  on(PumpRoomEntry).navigate_for_pre(item)
+  if item == "Created"
+    on(NavigationPage).tap_hamburger_menu
+    @browser.find_element(:xpath, "//h3[contains(text(),'Pump Room Entry')]/following::*[contains(text(),'Created')]").click
+  else
+    # at the moment we haven't button via sandwich menu for Active PRE, Scheduled PRE, Pending Approval PER
+    on(PumpRoomEntry).navigate_for_pre(item)
+  end
 end
 
 When('I wait to activate PRE. Delay {int}') do |delay|
@@ -241,3 +246,25 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
 end
 
 
+And(/^I get a temporary number and writing it down$/) do
+  @temp_id = on(PumpRoomEntry).pre_id_element.text
+  is_equal(@temp_id.include?("TEMP"), true)
+
+  @browser.find_element(:id, "pre_section1_pumpRoomEntry_reasonForEntry").send_keys(@temp_id)
+  step 'I press the "Save" button'
+  sleep 1
+  step 'I press the "Close" button'
+  sleep 1
+end
+
+Then(/^I getting a permanent number from indexedDB$/) do
+  @@pre_number =  WorkWithIndexeddb.get_id_from_indexeddb(@browser, @temp_id)
+  is_equal(@@pre_number.include?("PRE"), true)
+end
+
+Then(/^I edit pre and should see the old number previously written down$/) do
+  on(PumpRoomEntry).press_button_for_current_PRE("Edit")
+  step 'I enter pin 8383'
+  sleep 1
+  is_equal(@browser.find_element(:id, "pre_section1_pumpRoomEntry_reasonForEntry").text, @temp_id)
+end

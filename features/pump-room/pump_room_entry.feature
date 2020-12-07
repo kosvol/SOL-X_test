@@ -256,7 +256,18 @@ Feature: PumpRoomEntry
       | 3/O                       | 0159 | disabled  |
       | A 3/O                     | 2674 | disabled  |
 
-
+ @indexedDB
+   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And I get a temporary number and writing it down
+    Then I sleep for 3 seconds
+    And I should see the text 'Permit Updated'
+    Then I getting a permanent number from indexedDB
+    And (for per) I navigate to "Created" list
+    And I should see the current PRE in the "Created" list
+    Then I edit pre and should see the old number previously written down
 
 
 
