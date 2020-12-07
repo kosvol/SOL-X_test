@@ -52,7 +52,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I sign on role
-    Then I should see signed role details
+    Then I should see signed role details with 9015 pin
 
   Scenario: Verify same user can sign for multiple roles
     Given I launch sol-x portal
@@ -63,7 +63,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 2 role from list
     And I sign on both roles with same user
-    Then I should see signed role details
+    Then I should see signed role details with 9015 pin
 
   Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
     Given I launch sol-x portal
@@ -141,3 +141,18 @@ Feature: Section5
     Examples:
       | rank   | pin  |
       | Master | 1111 |
+
+  Scenario Outline: Verify crew can sign
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 5
+    And I select 1 role from list
+    And I sign on role with sponsor crew <pin> pin
+    Then I should see signed role details with <pin> pin
+
+    Examples:
+      | rank | pin  | supervized        |
+      | C/O  | 8383 | C/O Alister Leong |

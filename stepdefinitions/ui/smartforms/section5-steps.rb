@@ -69,8 +69,8 @@ And (/^I sign on both roles with same user$/) do
   on(Section3DPage).done_btn_elements.last.click
 end
 
-Then (/^I should see signed role details$/) do
-  is_true(on(Section5Page).is_role_signed_user_details?('9015'))
+Then (/^I should see signed role details with (.*) pin$/) do |_pin|
+  is_true(on(Section5Page).is_role_signed_user_details?(_pin))
 end
 
 And (/^I fill up non crew details$/) do
@@ -98,6 +98,7 @@ Then (/^I should see sign button (disabled|enabled)$/) do |_condition|
 end
 
 And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
+  @@entered_pin = _pin
   on(Section5Page).sign_btn_role_elements.first.click
   step "I enter pin #{_pin}"
   step 'I sign on canvas'
