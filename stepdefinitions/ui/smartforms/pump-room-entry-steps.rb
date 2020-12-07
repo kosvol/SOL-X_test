@@ -250,7 +250,7 @@ And(/^I get a temporary number and writing it down$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   is_equal(@temp_id.include?("TEMP"), true)
 
-  @browser.find_element(:id, "pre_section1_pumpRoomEntry_reasonForEntry").send_keys(@temp_id)
+  on(PumpRoomEntry).reasonForEntry_element.send_keys(@temp_id)
   step 'I press the "Save" button'
   sleep 1
   step 'I press the "Close" button'
@@ -266,5 +266,5 @@ Then(/^I edit pre and should see the old number previously written down$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Edit")
   step 'I enter pin 8383'
   sleep 1
-  is_equal(@browser.find_element(:id, "pre_section1_pumpRoomEntry_reasonForEntry").text, @temp_id)
+  is_equal(on(PumpRoomEntry).reasonForEntry_element.text, @temp_id)
 end

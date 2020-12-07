@@ -18,6 +18,7 @@ class PumpRoomEntry < Section9Page
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   elements(:all_inputs, xpath: "//input[starts-with(@name,'pre_section2_pumpRoomEntry')]")
+  element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
 
   @@alert_text =  "//div[contains(.,'%s')]"
   @@permit_duration = "//button[contains(text(),'%s')]"
