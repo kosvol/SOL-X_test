@@ -258,7 +258,7 @@ And(/^I get a temporary number and writing it down$/) do
 end
 
 Then(/^I getting a permanent number from indexedDB$/) do
-  @@pre_number =  WorkWithIndexeddb.get_id_from_indexeddb(@browser, @temp_id)
+  @@pre_number =  WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
   is_equal(@@pre_number.include?("PRE"), true)
 end
 
