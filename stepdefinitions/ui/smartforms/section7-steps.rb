@@ -20,6 +20,7 @@ Then (/^I (should|should not) see approve and request update buttons$/) do |_con
 end
 
 Then (/^I (should|should not) see submit for office approval and request update buttons$/) do |_condition|
+  on(Section3APage).scroll_multiple_times(3)
   if _condition === 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     is_equal(on(Section7Page).submit_oa_btn_element.text, 'Submit for Office Approval')

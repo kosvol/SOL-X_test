@@ -8,9 +8,9 @@ Feature: Section6
 
   Scenario: Verify warning message displays
 
-  Scenario: Verify submit button is disable before compulsory fields filled
-
   Scenario: Verify copy text display when gas selection is N/A
+
+  Scenario: Verify submit button is disable before compulsory fields filled
 
   Scenario: Verify gas reading don't get cleared after cancel from signing
     Given I launch sol-x portal without unlinking wearable
