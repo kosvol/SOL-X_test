@@ -35,7 +35,7 @@ end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 6
+  sleep 2
   # puts "screen size: #{$browser.window_size}"
 end
 
@@ -92,6 +92,7 @@ When (/^I select (.+) permit$/) do |_permit|
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
+  @via_service_or_not = false
   begin
     on(Section0Page).select_level2_permit(_permit)
   rescue StandardError
@@ -115,7 +116,9 @@ And (/^I click on back to home$/) do
 end
 
 And (/^I set permit id$/) do
-  CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
+  if @via_service_or_not === false
+    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
+  end
 end
 
 And (/^I tear down created form$/) do

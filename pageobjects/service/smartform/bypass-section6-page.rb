@@ -36,6 +36,7 @@ class BypassPage < Section0Page
   end
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
+    @via_service_or_not = true
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
