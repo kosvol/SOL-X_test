@@ -4,9 +4,6 @@ Feature: LocationTracking
   I want to ...
   So that ...
 
-  # @skip
-  # Scenario: Verify wearable is single sign on
-
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I launch sol-x portal
     Then I should not see PRE tab active on dashboard
