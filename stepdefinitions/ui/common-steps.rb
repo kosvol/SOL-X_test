@@ -96,19 +96,17 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
     on(Section0Page).select_level2_permit(_permit)
   rescue StandardError
   end
-  sleep 1
   on(Section0Page).save_and_next_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
   step 'I set time'
   @temp_id = on(Section0Page).ptw_id_element.text
-  sleep 1
   # p "-- #{on(Section0Page).ptw_id_element.text}"
   # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
 end
 
 And (/^I click on back to home$/) do
-  sleep 3
+  sleep 2
   on(Section6Page).back_to_home_btn_element.click
   sleep 3
   step 'I set permit id'
