@@ -10,6 +10,16 @@
 #   # step 'I press next from section 1'
 # end
 
+Then (/^I get perm permit id via temp id$/) do
+  @temp_id = on(Section0Page).ptw_id_element.text
+  p "-- #{@temp_id}"
+  
+end
+
+Then (/^I print$/) do
+  p ">> #{WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)}"
+end
+
 Then (/^I should map to partial sign details$/) do
   is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
 end
