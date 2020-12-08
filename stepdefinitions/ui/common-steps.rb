@@ -52,6 +52,8 @@ end
 
 And (/^I click on back arrow$/) do
   on(Section0Page).back_arrow_element.click
+  sleep 3
+  step 'I set permit id'
 end
 
 Then (/^I sign on canvas$/) do
@@ -108,7 +110,12 @@ end
 And (/^I click on back to home$/) do
   sleep 2
   on(Section6Page).back_to_home_btn_element.click
-  sleep 1
+  sleep 3
+  step 'I set permit id'
+end
+
+And (/^I set permit id$/) do
+  CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
 end
 
 And (/^I tear down created form$/) do

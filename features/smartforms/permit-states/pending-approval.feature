@@ -15,7 +15,6 @@ Feature: PendingApprovalPermit
     And I click on permit for master approval
     And I enter pin <pin>
     And I navigate to section 3a
-    And I navigate to section 4b
     Then I should not be able to edit DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification

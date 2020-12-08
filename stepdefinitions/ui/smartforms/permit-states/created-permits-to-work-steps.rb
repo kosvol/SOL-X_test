@@ -9,7 +9,8 @@ Then (/^I should see the newly created permit details listed on Created Permits 
 end
 
 And (/^I want to edit the newly created permit$/) do
-  on(CreatedPermitToWorkPage).edit_permit_btn_elements[0].click
+  # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
+  on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
 end
 
 Then (/^I should see correct permit details$/) do

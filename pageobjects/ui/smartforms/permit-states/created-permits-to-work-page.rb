@@ -39,7 +39,8 @@ class CreatedPermitToWorkPage < Section9Page
     parent_container_elements.each_with_index do |_permit, _index|
       next unless ptw_id_elements[_index].text === _permit_id
 
-      p ">> #{ptw_id_elements[_index].text}"
+      p ">> #{_permit_id}"
+      p "-- #{_index}"
       return _index.to_i
       # break
     end
