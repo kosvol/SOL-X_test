@@ -8,8 +8,7 @@ module WorkWithIndexeddb
       sleep 2
       $browser.execute_script("db = openRequest.result")
       $browser.execute_script("res = db.transaction(['idMap'], 'readonly').objectStore('idMap').get('%s')"%temp_id)
-      id = $browser.execute_script("return res.result['formId']")
-      return id
+      $browser.execute_script("return res.result['formId']")
     end
   end
 end
