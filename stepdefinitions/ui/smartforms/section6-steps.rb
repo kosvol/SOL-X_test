@@ -1,5 +1,23 @@
 # frozen_string_literal: true
 
+Then (/^I should see submit button disabled$/) do
+  is_disabled(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+end
+
+Then (/^I should see gas reading copy text$/) do
+  p ">> #{on(Section6Page).gas_notes_element.text}"
+end
+
+Then (/^I should see incomplete fields warning message display$/) do
+  is_equal(on(Section6Page).info_warning_boxes_elements.first.text,"Please Complete The Following Sections")
+  is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
+end
+
+And (/^I should see incomplete signature field warning message display$/) do
+  is_equal(on(Section6Page).info_warning_boxes_elements[2].text,"This permit has required fields missing. To submit it for approval, please sign at the following sections")
+  is_equal(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
+end
+
 Then (/^I should see master (approval|review) button only$/) do |_condition|
   on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).submit_btn_elements.size, '1')

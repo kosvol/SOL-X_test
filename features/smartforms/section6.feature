@@ -4,13 +4,36 @@ Feature: Section6
   I want to ...
   So that ...
 
-  Scenario: Verify gas reading submit button disabled before signing
+  Scenario: Verify incomplete fields warning message displays
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 3c
+    And I uncheck dra member
+    And I press next for 6 times
+    Then I should see incomplete fields warning message display
+    And I should see incomplete signature field warning message display
 
-  Scenario: Verify warning message displays
-
-  Scenario: Verify copy text display when gas selection is N/A
+  Scenario: Verify copy text display when gas selection is yes
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    Then I should see gas reading copy text
 
   Scenario: Verify submit button is disable before compulsory fields filled
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Helicopter Operations permit
+    And I select Helicopter Operations permit for level 2
+    And I navigate to section 6
+    Then I should see submit button disabled
 
   Scenario: Verify gas reading don't get cleared after cancel from signing
     Given I launch sol-x portal without unlinking wearable

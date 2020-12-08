@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+And (/^I uncheck dra member$/) do
+  on(Section3CPage).dra_team_btn
+  on(Section3CPage).member_name_btn_elements[1].click
+  on(Section3CPage).confirm_btn_elements.first.click
+end
+
 And (/^I fill up section 3c$/) do
   on(Section3CPage).select_dra_team_member
 end

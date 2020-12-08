@@ -22,6 +22,8 @@ class Section6Page < Section5Page
   element(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
 
   @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"
+  elements(:info_warning_boxes, xpath: "//div[starts-with(@class,'InfoBox__')]/*")
+  element(:gas_notes, xpath: "//div[starts-with(@class,'WarningBox__')]/*")
   text_field(:gas_equipment_input, xpath: "//input[@id='gasEquipment']")
   text_field(:gas_sr_number_input, xpath: "//input[@id='gasSrNumber']")
   text_field(:o2_input, xpath: "//input[@id='o2']")
