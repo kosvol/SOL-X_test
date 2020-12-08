@@ -64,9 +64,9 @@ end
 And (/^I fill up EIC certificate$/) do
   on(Section4BPage).create_eic_btn
   sleep 1
+  on(Section3DPage).radio_btn_elements[0].click
   on(Section4BPage).fill_textarea
   # tmp = 0
-  on(Section3DPage).radio_btn_elements[0].click
   on(Section3DPage).radio_btn_elements[2].click #select LOTO
   sleep 1
   on(Section3DPage).radio_btn_elements[4].click

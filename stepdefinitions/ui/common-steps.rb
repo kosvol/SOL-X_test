@@ -108,7 +108,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
+  sleep 3
   on(Section6Page).back_to_home_btn_element.click
   sleep 3
   step 'I set permit id'
@@ -152,6 +152,7 @@ When (/^I fill a full permit$/) do
   step 'I press next for 1 times'
   step 'I fill up section 5'
   step 'I press next for 1 times'
+  on(Section3APage).scroll_multiple_times(3)
   step 'I submit smoke test permit'
   step 'I click on back to home'
   step 'I sleep for 4 seconds'
