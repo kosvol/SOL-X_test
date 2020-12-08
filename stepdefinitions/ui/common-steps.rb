@@ -128,3 +128,18 @@ And (/^I fill up compulsory fields$/) do
     sleep 1
     step 'I fill up section 5'
 end
+
+When (/^I fill a full permit$/) do
+  step 'I navigate to section 4a'
+  step 'I press next for 1 times'
+  step 'I fill up checklist yes, no, na'
+  step 'I press next for 1 times'
+  step 'I select yes to EIC'
+  step 'I fill up EIC certificate'
+  step 'I press next for 1 times'
+  step 'I fill up section 5'
+  step 'I press next for 1 times'
+  step 'I submit smoke test permit'
+  step 'I click on back to home'
+  step 'I sleep for 4 seconds'
+end

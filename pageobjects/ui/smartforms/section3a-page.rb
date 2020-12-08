@@ -30,6 +30,9 @@ class Section3APage < Section2Page
   elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
+
+  elements(:total_textarea, xpath: "//textarea")
+  elements(:total_p, xpath: "//p")
   @@add_hazard_btn = "//button/span[contains(.,'Add Hazard')]"
 
   def navigate_front_back

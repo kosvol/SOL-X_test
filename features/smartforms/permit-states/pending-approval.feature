@@ -4,7 +4,32 @@ Feature: PendingApprovalPermit
   I want to ...
   So that ...
 
-  # Scenario: Verify all screen is in read only mode when open up by any crew while in pending state
+  Scenario Outline: Verify RA and checklist only creator should not be able to edit DRA and EIC when pending master approval
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new permit
+    And I enter pin <creator_pin>
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill a full permit
+    And I click on pending approval filter
+    And I click on permit for master approval
+    And I enter pin <pin>
+    And I navigate to section 3a
+    And I navigate to section 4b
+    Then I should not be able to edit DRA
+    When I press next for 6 times
+    Then I should not be able to edit EIC certification
+
+    Examples:
+      | rank | creator_pin | pin  |
+      | A/M  | 9264        | 9015 |
+      | 3/E  | 2523        | 4685 |
+      | PMAN | 3030        | 4656 |
+  # | A 3/E | 6727 |
+  # | 4/E   | 1311 |
+  # | A 4/E | 0703 |
+
+  # Scenario: Verify RA should not be able to edit DRA and EIC when pending master review
 
   Scenario: Verify view EIC certification exists if EIC certification form not filled
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state

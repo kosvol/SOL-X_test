@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+Then (/^I should not be able to edit DRA$/) do
+  step 'I click on View Edit Hazard'
+  on(Section3APage).delete_btn_elements.each do |_elem|
+    is_disabled(_elem)
+  end
+  sleep 1
+  is_equal(on(Section3APage).total_p_elements.size,58)
+  on(CommonFormsPage).close_btn_elements.first.click
+end
+
+Then (/^I should not be able to edit EIC certification$/) do
+  on(Section4BPage).create_eic_btn
+  is_equal(on(Section3APage).total_p_elements.size,28)
+  on(CommonFormsPage).close_btn_elements.first.click
+end
+
 Then (/^I should be navigated back to (.*) screen$/) do |which_screen|
   if which_screen === "pending approval"
     is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
