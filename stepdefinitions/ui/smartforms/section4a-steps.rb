@@ -120,7 +120,7 @@ Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_o
     if _condition === 'questions'
       is_equal(on(Section4APage).tool_box_elements.size, 100)
       is_equal(on(Section4APage).textarea_elements.size, 2)
-      is_enabled(on(Section4APage).enter_pin_btn_element)
+      # is_enabled(on(Section4APage).enter_pin_btn_element)
     end
   end
   if _should_or_not === 'should not'

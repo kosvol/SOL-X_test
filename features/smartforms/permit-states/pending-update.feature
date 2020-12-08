@@ -133,5 +133,5 @@ Feature: PendingUpdate
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
     And I should not see checklist questions fields enabled
-    And I should not see enter pin button
+    # And I should not see enter pin button
     And I tear down created form
