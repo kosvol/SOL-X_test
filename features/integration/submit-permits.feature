@@ -67,7 +67,7 @@ Feature: SubmitPermit
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
-    And I sleep for 8 seconds
+    And I sleep for 4 seconds
 
   @active-smoke-test-1
   Scenario: Submit permit data Enclosed Spaces Entry into active
@@ -103,11 +103,11 @@ Feature: SubmitPermit
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
-    And I sleep for 5 seconds
+    And I sleep for 3 seconds
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
-    And I sleep for 5 seconds
+    And I sleep for 3 seconds
 
   @pending-approval-smoke-test-2
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry

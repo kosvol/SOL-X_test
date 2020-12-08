@@ -10,14 +10,9 @@
 #   # step 'I press next from section 1'
 # end
 
-Then (/^I get perm permit id via temp id$/) do
-  @temp_id = on(Section0Page).ptw_id_element.text
-  p "-- #{@temp_id}"
-  
-end
-
 Then (/^I print$/) do
   p ">> #{WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)}"
+  CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
 end
 
 Then (/^I should map to partial sign details$/) do
@@ -104,6 +99,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
   step 'I set time'
+  @temp_id = on(Section0Page).ptw_id_element.text
   sleep 1
   # p "-- #{on(Section0Page).ptw_id_element.text}"
   # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
