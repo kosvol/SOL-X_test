@@ -93,6 +93,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   on(Section0Page).save_and_next_btn
   sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
+  step 'I set time'
   sleep 1
   # p "-- #{on(Section0Page).ptw_id_element.text}"
   # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
