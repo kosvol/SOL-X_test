@@ -8,7 +8,8 @@ class Section0Page < CommonFormsPage
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-  button(:click_permit_type_ddl, xpath: "//button[contains(.,'Select')]")
+  button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
+  # button(:click_permit_type_ddl, xpath: "//button[contains(.,'Select')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
@@ -38,14 +39,14 @@ class Section0Page < CommonFormsPage
 
   def select_level1_permit(_permit)
     CommonPage.set_permit_id(_permit)
-    sleep 2
+    sleep 1
     select_permit
   end
 
   def select_level2_permit(_permit)
     sleep 1
     CommonPage.set_permit_id(_permit)
-    sleep 2
+    sleep 1
     unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
       select_permit
     end

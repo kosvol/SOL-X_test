@@ -65,7 +65,6 @@ And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
   sleep 1
   on(PinPadPage).enter_pin(pin)
-  sleep 1
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
@@ -84,7 +83,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 1
+  sleep 2
   on(Section0Page).click_permit_type_ddl
   sleep 1
   on(Section0Page).select_level1_permit(_permit)
