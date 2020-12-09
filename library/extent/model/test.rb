@@ -85,7 +85,7 @@ module RelevantCodes
             finalize(node)
           end
         end
-
+        p "log status >>>>>>>>>>> #{@status}"
         if @arr.include?("fatal")
           @status = "fatal"
         elsif @arr.include?("fail")
@@ -101,7 +101,7 @@ module RelevantCodes
         elsif @arr.include?("info")
           @status = "pass"
         else
-          @status = "skip"
+          @status = "pass"
         end
       end
     end
