@@ -74,7 +74,6 @@ class Section6Page < Section5Page
 
   def toggle_to_section(_which_section)
     (1..get_total_steps_to_section6(_which_section)).each do |_i|
-      sleep 2
       click_next
     end
   end

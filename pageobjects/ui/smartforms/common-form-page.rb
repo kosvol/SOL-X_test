@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require './././support/env'
+require './././library/utils/asserts'
 
 class CommonFormsPage < CommonPage
   include PageObject
@@ -43,6 +44,7 @@ class CommonFormsPage < CommonPage
   end
 
   def click_next
+    sleep 1
     next_btn
   rescue StandardError
     save_and_next_btn

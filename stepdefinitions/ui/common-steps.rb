@@ -83,9 +83,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 2
-  on(Section0Page).click_permit_type_ddl
-  sleep 1
+  poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
   step 'I set time'
 end
@@ -97,7 +95,6 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   rescue StandardError
   end
   on(Section0Page).save_and_next_btn
-  sleep 1
   on(Section0Page).set_selected_level2_permit(_permit)
   step 'I set time'
   @temp_id = on(Section0Page).ptw_id_element.text
