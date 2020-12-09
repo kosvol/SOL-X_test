@@ -140,6 +140,11 @@ And (/^I add all gas readings and cancel from pin screen$/) do
 end
 
 And (/^I add (all|only normal) gas readings$/) do |_condition|
+  on(Section6Page).gas_equipment_input="Test Automation"
+  on(Section6Page).gas_sr_number_input="Test Automation"
+  on(Section6Page).gas_last_calibration_button
+  sleep 1
+  on(Section6Page).current_day
   on(Section6Page).add_all_gas_readings if _condition === 'all'
   on(Section6Page).add_normal_gas_readings if _condition === 'only normal'
   sleep 1

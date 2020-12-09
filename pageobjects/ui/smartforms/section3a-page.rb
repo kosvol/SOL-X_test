@@ -24,8 +24,8 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  elements(:ih_details, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
-  # elements(:ih_details, xpath: "//div[contains(@class,'row-container')]/p")
+  elements(:ih_details1, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  elements(:ih_details2, xpath: "//div[contains(@class,'row-container')]/p")
   elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
 
@@ -53,8 +53,13 @@ class Section3APage < Section2Page
     p ">> #{hazard_risk_details_elements[23].text}"
     p ">> #{hazard_risk_details_elements[24].text}"
     p ">> #{ecm_details_elements[10].text}"
-    p ">> #{ih_details_elements[10].text}"
-    (ih_details_elements[10].text === "Test Automation" && ecm_details_elements[10].text === "Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    begin
+      tmp = ih_details1_elements[10].text
+    rescue
+      tmp = ih_details2_elements[10].text
+    end
+    p ">> #{tmp}"
+    (tmp === "Test Automation" && ecm_details_elements[10].text === "Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     
   end
 

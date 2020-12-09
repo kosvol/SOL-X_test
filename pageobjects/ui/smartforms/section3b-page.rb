@@ -8,9 +8,10 @@ class Section3BPage < Section3APage
   element(:method_reason, id: 'methodReason')
   element(:last_assessment_date, id: 'lastAssessment')
   text_field(:last_assessment, id: 'lastAssessmentDra')
+  button(:current_day, xpath: "//button[contains(@class,'current')]")
   button(:work_side_inspected_by, id: 'workInspectionBy')
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
-  button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]") # select, in class have current text
+  # button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]") # select, in class have current text
   elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
   elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content')]/div/ul/li")
 
@@ -24,6 +25,9 @@ class Section3BPage < Section3APage
 
   def fill_section_3b
     BrowserActions.enter_text(method_reason_element, 'Test automation')
+    last_assessment_date_element.click
+    sleep 1
+    current_day
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click

@@ -38,7 +38,7 @@ class Section6Page < Section5Page
   elements(:gas_reading_table, xpath: "//div[starts-with(@class,'cell')]")
   elements(:toxic_gas_reading, xpath: "//li[@data-testid='gas-reader-list-item']//span")
 
-  element(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
+  button(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
 
   def is_gas_reading_fields_enabled?
