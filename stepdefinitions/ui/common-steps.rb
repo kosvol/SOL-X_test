@@ -35,7 +35,7 @@ end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 2
+  sleep 3
   # puts "screen size: #{$browser.window_size}"
 end
 
@@ -83,6 +83,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
+  sleep 1
   poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
   step 'I set time'
