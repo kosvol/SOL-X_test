@@ -52,8 +52,8 @@ end
 
 And (/^I click on back arrow$/) do
   on(Section0Page).back_arrow_element.click
-  sleep 1
-  # step 'I set permit id'
+  sleep 2
+  step 'I set permit id'
 end
 
 Then (/^I sign on canvas$/) do
@@ -98,6 +98,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   on(Section0Page).save_and_next_btn
   on(Section0Page).set_selected_level2_permit(_permit)
   step 'I set time'
+  sleep 1
   @temp_id = on(Section0Page).ptw_id_element.text
   # p "-- #{on(Section0Page).ptw_id_element.text}"
   # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
@@ -112,6 +113,7 @@ end
 
 And (/^I set permit id$/) do
   if @via_service_or_not === false
+    p "Temp ID >> #{@temp_id}"
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
   end
 end
