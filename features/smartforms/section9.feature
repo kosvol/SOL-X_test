@@ -15,7 +15,7 @@ Feature: Section9
     And I click on pending withdrawal filter
     And I open a permit pending termination with 5/E rank and 0311 pin
     Then I should see previous and close buttons
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify Master can see terminate and update buttons for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state

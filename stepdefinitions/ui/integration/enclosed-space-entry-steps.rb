@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
-  on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
+  on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   step 'I enter pin 1111'
   if _permit_type === 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-form-data/enclosed-entry-permit.yml')
@@ -92,7 +93,6 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
-
   is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
   step 'I should map to partial sign details'
 end

@@ -13,7 +13,7 @@ Feature: ActivePermit
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 8
     Then I should see previous and close buttons
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
@@ -22,7 +22,7 @@ Feature: ActivePermit
     And I update permit with 5/E rank and 0311 pin
     And I navigate to section 8
     Then I should not see competent person sign button exists
-    And I tear down created form
+  #And I tear down created form
 
   # PENDING NO FLOW
   # Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
@@ -32,7 +32,7 @@ Feature: ActivePermit
   #   And I update permit with 5/E rank and 0311 pin
   #   And I navigate to section 8
   #   Then I should see competent persong sign button disabled
-  #   And I tear down created form
+  #   #And I tear down created form
 
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable

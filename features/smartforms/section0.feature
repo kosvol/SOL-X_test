@@ -25,7 +25,7 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter pin for rank <rank>
     Then I should see smart form landing screen
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | rank  | pin  |
@@ -83,7 +83,7 @@ Feature: SmartFormsPermission
       | Work on Pressure Pipeline/Vessels                            |
       | Working Aloft/Overside                                       |
       | Working on Deck During Heavy Weather                         |
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable
@@ -91,7 +91,7 @@ Feature: SmartFormsPermission
     And I enter pin 9015
     When I select <permit> permit
     Then I should see second level permits details
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | permit                          |
@@ -108,4 +108,4 @@ Feature: SmartFormsPermission
     And I select Hot Work permit
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
-    And I tear down created form
+#And I tear down created form

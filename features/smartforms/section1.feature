@@ -37,7 +37,7 @@ Feature: Section1
       | 7 : High              |
       | 8 : Very High         |
       | 9 : Phenomenal        |
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify wind force dropdown input fields are correct
     Given I launch sol-x portal without unlinking wearable
@@ -59,7 +59,7 @@ Feature: Section1
       | 10 : Storm           |
       | 11 : Violent Storm   |
       | 12 : Hurricane Force |
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify there is no Previous button
     Given I launch sol-x portal without unlinking wearable
@@ -68,7 +68,7 @@ Feature: Section1
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     Then I should not see previous button exists
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify question input field exists for critical maintenance permit
     Given I launch sol-x portal without unlinking wearable
@@ -77,7 +77,7 @@ Feature: Section1
     And I select Critical Equipment Maintenance permit
     And I select <permit> permit for level 2
     Then I should see maintenance duration section and require text
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | permit                                                                     |
@@ -106,7 +106,7 @@ Feature: Section1
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     Then I should not see maintenance duration section and require text
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | level_one_permit                                             | level_two_permit                                             |
@@ -132,7 +132,7 @@ Feature: Section1
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 2
     Then I should see section 2
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify user can fill up the form, save and proceed to next page for critical maintenance permit
     Given I launch sol-x portal without unlinking wearable
@@ -144,5 +144,5 @@ Feature: Section1
     And I navigate to section 2
     Then I should see section 2
     And I should not see copy text regarding maintenance hour
-    And I tear down created form
+#And I tear down created form
 

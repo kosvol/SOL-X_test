@@ -45,7 +45,7 @@ Feature: Section6
     And I press the Yes button to enable gas testing
     And I add all gas readings and cancel from pin screen
     Then I should see gas reading still exists
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify gas reading dead flow not exists
     Given I launch sol-x portal without unlinking wearable
@@ -57,7 +57,7 @@ Feature: Section6
     And I press the Yes button to enable gas testing
     And I add all gas readings and back from signing screen
     Then I should be able to continue to next page
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify user can add gas reading
     Given I launch sol-x portal without unlinking wearable
@@ -73,7 +73,7 @@ Feature: Section6
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas
-    And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify user can delete added toxic gas
     Given I launch sol-x portal without unlinking wearable
@@ -84,7 +84,7 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I am able to delete toxic gas inputs
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify non AGT cannot add gas readings
     Given I launch sol-x portal without unlinking wearable
@@ -160,7 +160,7 @@ Feature: Section6
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display without toxic gas
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify non-OA ptw display submit for master approval on button
     Given I launch sol-x portal without unlinking wearable
@@ -170,7 +170,7 @@ Feature: Section6
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
     Then I should see master approval button only
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | level_one_permit                                             | level_two_permit                                                | checklist                                                    |
@@ -201,7 +201,7 @@ Feature: Section6
     And I navigate to section 4a
     Then I should see correct checklist Cold Work Operation Checklist pre-selected
     And I should see correct checklist Work on Hazardous Substances pre-selected
-    And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
     Given I launch sol-x portal without unlinking wearable
@@ -212,7 +212,7 @@ Feature: Section6
     And I set maintenance during more than 2 hours
     And I navigate to section 6
     Then I should see master review button only
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | level_one_permit               | level_two_permit                                                           | checklist                                |
@@ -242,7 +242,7 @@ Feature: Section6
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
     Then I should see master review button only
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | level_one_permit                     | level_two_permit                                                                | checklist                        |
@@ -275,7 +275,7 @@ Feature: Section6
     And  I should see gas_equipment_input
     And  I should see gas_sr_number_input
     And  I should see gas_last_calibration_button
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | level_one_permit      | level_two_permit     |

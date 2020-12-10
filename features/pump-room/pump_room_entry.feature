@@ -39,7 +39,7 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin <pin>
     Then I should see PRE landing screen
-    And I tear down created form
+    #And I tear down created form
 
     Examples:
       | rank                      | pin  |
@@ -256,8 +256,8 @@ Feature: PumpRoomEntry
       | 3/O                       | 0159 | disabled  |
       | A 3/O                     | 2674 | disabled  |
 
- @indexedDB
-   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
+  @indexedDB
+  Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383

@@ -165,4 +165,4 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I review termination permit with 0311 pin
     Then I should see previous and close buttons
-    And I tear down created form
+#And I tear down created form
