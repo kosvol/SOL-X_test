@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+And (/^I should see rol info box$/) do
+  is_equal(on(ROLPage).foot_note_element.text,"1. Deck officer shall be the Responsible Officer to supervise the task and be responsible for safety.\n2. This permit shall be issued for one side (port/Stbd) boarding arrangement only. Its not valid for both side.\n3. This permit shall be issued while rigging ship's gangway/MOT if working overside by personnel is involved.")
+end
+
 And (/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms

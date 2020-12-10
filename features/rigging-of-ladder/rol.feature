@@ -143,6 +143,7 @@ Feature: RiggingOfLadder
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
     Then I should see ROL checklist questions
+    And I should see rol info box
 
   Scenario: Verify termination page display previous and close buttons for read only user
     Given I launch sol-x portal without unlinking wearable
