@@ -34,8 +34,10 @@ class OAPage < Section9Page
   Test Automation"
 
   def navigate_to_oa_link
-    sleep 400
-    $browser.get(OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s)
+    sleep 10
+    tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
+    p "OA Link : #{tmp}"
+    $browser.get(tmp)
   end
 
   def set_from_to_details
@@ -52,6 +54,7 @@ class OAPage < Section9Page
     minute_from_picker_elements[59].click
     dismiss_picker_element.click
     date_time_to_elements[0].click
+    current_day
     ### select calander + 1 day
     # to_date_calender_elements.each_with_index do |_element, _index|
     #   if _element.attribute('class').include? 'selected'
