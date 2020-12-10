@@ -60,7 +60,6 @@ Feature: Section3DDRA
     Then I should see signed details
     # And I should see location stamp pre-selected
 
-
     Examples:
       | level_one_permit               | level_two_permit                                                           |
       | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |

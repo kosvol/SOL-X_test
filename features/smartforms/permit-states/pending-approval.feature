@@ -30,15 +30,15 @@ Feature: PendingApprovalPermit
 
   # Scenario: Verify RA should not be able to edit DRA and EIC when pending master review
 
-  @skip
-  Scenario: Verify view EIC certification exists if EIC certification form not filled
-    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
-    And I launch sol-x portal without unlinking wearable
-    And I click on pending approval filter
-    And I click on permit for master approval
-    And I enter pin 1111
-    And I navigate to section 4b
-    Then I should see View EIC certification button
+  # @skip
+  # Scenario: Verify view EIC certification exists if EIC certification form not filled
+  #   Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
+  #   And I launch sol-x portal without unlinking wearable
+  #   And I click on pending approval filter
+  #   And I click on permit for master approval
+  #   And I enter pin 1111
+  #   And I navigate to section 4b
+  #   Then I should see View EIC certification button
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state

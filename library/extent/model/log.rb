@@ -13,6 +13,7 @@ module RelevantCodes
       end
 
       def get_status
+        p "Get status in log >>> #{@status.to_s}"
         return @status.to_s
       end
 

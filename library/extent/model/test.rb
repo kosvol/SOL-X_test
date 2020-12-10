@@ -19,7 +19,6 @@ module RelevantCodes
       def initialize(name, description)
         @name = name.strip
         @description = description.nil? || description == "" ? "" : description.strip
-        @status = "fail"
 
         @child_node = false
         @has_ended = false
@@ -85,7 +84,8 @@ module RelevantCodes
             finalize(node)
           end
         end
-        p "log status >>>>>>>>>>> #{@status}"
+
+        p "Status array >>> #{@arr}"
         if @arr.include?("fatal")
           @status = "fatal"
         elsif @arr.include?("fail")
@@ -101,7 +101,7 @@ module RelevantCodes
         elsif @arr.include?("info")
           @status = "pass"
         else
-          @status = "pass"
+          @status = "warning"
         end
       end
     end
