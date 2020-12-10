@@ -14,7 +14,6 @@ Feature: LocationTracking
     And I sleep for 160 seconds
     Then I should see PRE tab active on dashboard
 
-  @debug
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inactive crew count is correct
