@@ -52,8 +52,8 @@ end
 
 And (/^I click on back arrow$/) do
   on(Section0Page).back_arrow_element.click
-  sleep 3
-  step 'I set permit id'
+  sleep 1
+  # step 'I set permit id'
 end
 
 Then (/^I sign on canvas$/) do
@@ -107,7 +107,7 @@ And (/^I click on back to home$/) do
   sleep 2
   on(Section6Page).back_to_home_btn_element.click
   sleep 3
-  step 'I set permit id'
+  # step 'I set permit id'
 end
 
 And (/^I set permit id$/) do
