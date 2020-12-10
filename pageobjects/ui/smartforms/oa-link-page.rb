@@ -7,6 +7,8 @@ class OAPage < Section9Page
   include PageObject
 
   button(:approve_permit_btn, xpath: "//button[contains(.,'Approve This Permit')]")
+  button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")
+  element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
   button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments (1)')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")

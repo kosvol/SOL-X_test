@@ -34,6 +34,29 @@ Feature: PendingUpdate
   # # Then I should see termination date display
   # # And I should be able to view close permit
 
+  Scenario: Verify user is able to update permit after Office request for update
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I request the permit for update via oa link manually
+    And I click on update needed filter
+    And I update permit with A/M rank and 9015 pin
+    And I navigate to section 3a
+    And I click on View Edit Hazard
+    Then I should see DRA content editable
+
   Scenario: Verify section 6 buttons display are correct via pending master approval state as a reader
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

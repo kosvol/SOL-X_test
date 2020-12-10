@@ -11,6 +11,7 @@ class CommonFormsPage < CommonPage
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
+  elements(:enter_comment_boxes, xpath: '//textarea')
 
   ### buttons ###
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")

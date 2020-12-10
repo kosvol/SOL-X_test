@@ -4,6 +4,12 @@ And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1,
   is_true(on(Section3APage).evaluation_matrix(_risk, _risk1, _risk2))
 end
 
+Then (/^I should see DRA content editable$/) do
+  sleep 1
+  is_equal(on(CommonFormsPage).enter_comment_boxes_elements.size,12)
+  to_exists(on(Section3APage).save_dra_element)
+end
+
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
   sleep 2
   @measure = _measure

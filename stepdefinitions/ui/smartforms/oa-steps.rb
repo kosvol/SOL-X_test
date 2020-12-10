@@ -4,8 +4,22 @@ And (/^I navigate to OA link$/) do
   on(OAPage).navigate_to_oa_link
 end
 
+And (/^I request the permit for update via oa link manually$/) do
+  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ES5NYNPXEPZY4PNE187C5HBY?formId=SIT/PTW/2020/161&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
+  sleep 1
+  on(OAPage).update_permit_btn
+  sleep 1
+  on(OAPage).update_comments_element.send_keys("Test Automation Update")
+  on(OAPage).set_designation
+  sleep 1
+  on(OAPage).update_permit_btn
+  sleep 1
+  $browser.get(EnvironmentSelector.get_environment_url)
+  sleep 2
+end
+
 And (/^I approve oa permit via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ENP6QNGZ28A0RCC57Z0XX4FR?staffId=5df1d1a6f800912085e81962a603a15b')
+  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ES5NYNPXEPZY4PNE187C5HBY?formId=SIT/PTW/2020/161&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
   sleep 2
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox
