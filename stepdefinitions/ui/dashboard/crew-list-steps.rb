@@ -38,8 +38,8 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  step 'I click on view pin button'
   sleep 1
+  step 'I click on view pin button'
   on(PinPadPage).enter_pin(1111)
   sleep 1
 end
@@ -59,6 +59,7 @@ And (/^I enter a invalid master pin$/) do
 end
 
 And (/^I click on view pin button$/) do
+  sleep 1
   poll_exists_and_click(on(CrewListPage).view_pin_btn_element)
   # on(CrewListPage).view_pin_btn
 end
