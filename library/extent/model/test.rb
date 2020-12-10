@@ -85,7 +85,7 @@ module RelevantCodes
           end
         end
 
-        p "Status array >>> #{@arr}"
+        # p "Status array >>> #{@arr}"
         if @arr.include?("fatal")
           @status = "fatal"
         elsif @arr.include?("fail")
