@@ -100,8 +100,8 @@ Feature: PendingUpdate
     Then I should see checklist selections fields enabled
     And I press next for 1 times
     And I should see checklist questions fields enabled
-    When I sign on checklist with <pin> pin
-    And I sign on canvas
+    # When I sign on checklist with <pin> pin
+    # And I sign on canvas
     #And I tear down created form
 
     Examples:
