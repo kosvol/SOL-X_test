@@ -37,3 +37,13 @@ ue_dashboard_chrome:
   browserName: "Chrome"
   isHeadless: true
   noReset: false
+
+thinktouch_android_ue_dashboard_chrome:
+  platformName: "Android"
+  platformVersion: "9.1"
+  deviceName: "10.100.1.72:5555"
+  app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false

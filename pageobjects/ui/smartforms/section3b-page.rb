@@ -8,7 +8,8 @@ class Section3BPage < Section3APage
   element(:method_reason, id: 'methodReason')
   element(:last_assessment_date, id: 'lastAssessment')
   text_field(:last_assessment, id: 'lastAssessmentDra')
-  button(:current_day, xpath: "//button[contains(@class,'current')]")
+  # button(:current_day, xpath: "//button[contains(@class,'current')]")
+  buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
   button(:work_side_inspected_by, id: 'workInspectionBy')
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
   # button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]") # select, in class have current text
