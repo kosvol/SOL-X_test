@@ -36,6 +36,14 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
+  buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
+
+  def select_todays_date_from_calendar
+    on(Section6Page).current_day_elements.each_with_index do |_element,_index|
+      _element.click if _element.attribute('class').include? 'current'
+      break
+    end
+  end
 
   def scroll_multiple_times(times)
     (1..times).each do |_i|

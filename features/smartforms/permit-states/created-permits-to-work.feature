@@ -28,7 +28,7 @@ Feature: CreatedPermitToWork
     And I enter pin 0311
     And I navigate to section 6
     Then I should see previous and close buttons
-    #And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
@@ -41,7 +41,7 @@ Feature: CreatedPermitToWork
     And I want to edit the newly created permit
     And I enter pin 9015
     Then I should see correct permit details
-    #And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify created permit is under Created Permit to Work
     Given I launch sol-x portal without unlinking wearable
@@ -51,9 +51,8 @@ Feature: CreatedPermitToWork
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
     And I navigate to "Created" screen
-    And I set time
     Then I should see the newly created permit details listed on Created Permits to Work
-    #And I tear down created form
+  #And I tear down created form
 
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
     Given I launch sol-x portal without unlinking wearable
@@ -65,7 +64,7 @@ Feature: CreatedPermitToWork
     And I navigate to "Created" screen
     And I delete the permit created
     Then I should see deleted permit deleted
-    #And I tear down created form
+  #And I tear down created form
 
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
     Given I launch sol-x portal without unlinking wearable
