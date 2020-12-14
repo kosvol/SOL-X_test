@@ -5,15 +5,21 @@ And (/^I navigate to OA link$/) do
 end
 
 And (/^I request the permit for update via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ES5NYNPXEPZY4PNE187C5HBY?formId=SIT/PTW/2020/161&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
+  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ESGW6HZJKSHC55M7BPRZSV7K?formId=SIT/PTW/2020/034&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
   sleep 1
   on(OAPage).update_permit_btn
   sleep 1
-  on(OAPage).update_comments_element.send_keys("Test Automation Update")
   on(OAPage).set_designation
   sleep 1
-  on(OAPage).update_permit_btn
+  BrowserActions.enter_text(on(OAPage).update_comments_element,"Test Automation Update")
   sleep 1
+  # on(OAPage).xxx_element.click
+  # Appium::TouchAction.new($browser).swipe(start_x:0, start_y: 300, offset_x: 0, offset_y: 320, duration: 70).perform
+  sleep 2
+  x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+  @browser.execute_script(x)
+  # on(OAPage).update_permit_span_element.click
+  sleep 3
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
 end
@@ -27,6 +33,8 @@ And (/^I approve oa permit via oa link manually$/) do
   on(OAPage).set_designation
   sleep 1
   on(OAPage).submit_permit_approval_btn
+  # x = %(document.evaluate("//button[contains(.,'Approve This Permit to Work')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+  # @browser.execute_script(x)
   sleep 1
   $browser.get(EnvironmentSelector.get_environment_url)
 end

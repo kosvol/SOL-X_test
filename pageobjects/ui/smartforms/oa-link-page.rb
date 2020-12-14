@@ -19,6 +19,7 @@ class OAPage < Section9Page
   elements(:date_time_to, id: 'date-to')
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
   button(:designation, id: 'designation')
+  # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
   button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
@@ -102,7 +103,7 @@ class OAPage < Section9Page
 
   def set_designation
     designation
-    sleep 1
+    sleep 2
     set_vs_designation
   end
 
