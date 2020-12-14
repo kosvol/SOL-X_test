@@ -64,6 +64,7 @@ And (/^I sign on both roles with same user$/) do
   step 'I sign on role'
   on(Section5Page).sign_btn_role_elements.last.click
   step 'I enter pin 9015'
+  sleep 1
   on(Section3DPage).sign_for_gas
   sleep 1
   on(Section3DPage).done_btn_elements.last.click

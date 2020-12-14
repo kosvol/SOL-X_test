@@ -39,9 +39,11 @@ class CommonFormsPage < CommonPage
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
 
   def select_todays_date_from_calendar
-    on(Section6Page).current_day_elements.each_with_index do |_element,_index|
-      _element.click if _element.attribute('class').include? 'current'
-      break
+    current_day_elements.each_with_index do |_element,_index|
+      if _element.attribute('class').include? 'current'
+        _element.click 
+        break
+      end
     end
   end
 
