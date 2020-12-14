@@ -12,8 +12,10 @@ class CommonFormsPage < CommonPage
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
+  buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
+  elements(:wifi_popup_smartform, xpath: "//div[starts-with(@class,'OfflineInfoCard__')]")
 
-  ### buttons ###
+  ### buttons by text ###
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   buttons(:sign_btn, xpath: "//button[contains(.,'Sign')]")
   button(:back_btn, xpath: "//button[contains(.,'Back')]")
@@ -36,7 +38,6 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
-  buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
 
   def select_todays_date_from_calendar(advance_days=0)
     current_day_elements.each_with_index do |_element,_index|

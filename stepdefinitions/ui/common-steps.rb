@@ -10,6 +10,10 @@
 #   # step 'I press next from section 1'
 # end
 
+And (/^I turn off wifi$/) do
+  BrowserActions.turn_wifi_off_on
+end
+
 Then (/^I print$/) do
   p ">> #{WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)}"
   CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))

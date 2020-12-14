@@ -16,7 +16,8 @@ class Section4BPage < Section4APage
   elements(:time_picker, xpath: "//div[@class='picker']")
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]")
   span(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/button/span")
-
+  elements(:wifi_popup, xpath: "//div[starts-with(@class,'PreemptiveOfflineInfo__')]")
+  
   # sub form
   elements(:eic_date_and_time, xpath: "//button[@id='eic_eicCreatedDate']")
   elements(:eic_signer_name, xpath: "//div[starts-with(@class,'Section__Description')]/div[2]")

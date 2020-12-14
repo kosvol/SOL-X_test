@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+Then (/^I should see wifi popup display for (.*)$/) do |which_category|
+  # p ">> #{on(Section4BPage).wifi_popup_elements[2].text}"
+  if which_category === "EIC"
+    is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"Due to a Wi-Fi issue, you are doing this Energy Isolation Certificate in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
+  elsif which_category === "section 6"
+    is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"Due to a Wi-Fi issue, you are doing this Section 6: Gas Testing/Equipment in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
+  elsif which_category === "smartform"
+    on(Section0Page).back_arrow_element.click
+    sleep 3
+    # p ">> #{on(CommonFormsPage).wifi_popup_smartform_elements[0].text}"
+    is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,"Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
+  end
+end
+
 And (/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, _user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'

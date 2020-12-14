@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+Then (/^I should see fields disabled$/) do
+  is_equal(on(Section3APage).total_p_elements.size,58)
+  is_disabled(on(Section3APage).delete_btn_elements.first)
+end
+
 And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1, _risk2|
   is_true(on(Section3APage).evaluation_matrix(_risk, _risk1, _risk2))
 end

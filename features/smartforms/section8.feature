@@ -200,7 +200,6 @@ Feature: Section8
       | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user         | zoneid                     | mac               | location_stamp |
       | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
-  @x12
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
