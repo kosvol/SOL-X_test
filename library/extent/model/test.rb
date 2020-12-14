@@ -101,7 +101,7 @@ module RelevantCodes
         elsif @arr.include?("info")
           @status = "pass"
         else
-          @status = "warning"
+          @status = "fail"
         end
       end
     end
