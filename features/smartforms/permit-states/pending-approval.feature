@@ -23,7 +23,7 @@ Feature: PendingApprovalPermit
       | rank | creator_pin | pin  |
       | A/M  | 9264        | 9015 |
       | 3/E  | 2523        | 4685 |
-      | PMAN | 3030        | 4656 |
+      | PMAN | 3030        | 4421 |
   # | A 3/E | 6727 |
   # | 4/E   | 1311 |
   # | A 4/E | 0703 |
