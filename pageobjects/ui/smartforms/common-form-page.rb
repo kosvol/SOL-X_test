@@ -38,10 +38,10 @@ class CommonFormsPage < CommonPage
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
 
-  def select_todays_date_from_calendar
+  def select_todays_date_from_calendar(advance_days=0)
     current_day_elements.each_with_index do |_element,_index|
       if _element.attribute('class').include? 'current'
-        _element.click 
+        current_day_elements[_index+advance_days].click 
         break
       end
     end

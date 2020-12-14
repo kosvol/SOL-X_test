@@ -59,13 +59,14 @@ class OAPage < Section9Page
 
     sleep 1
     p ">> #{current_day_elements.size}"
-    current_day_elements.each_with_index do |_element,_index|
-      next if !_element.attribute('class').include? 'current'
-      next if !_element.attribute('class').include? 'current'
-        p ">> #{_index+1}"
-        current_day_elements[_index+1].click
-        break
-    end
+    select_todays_date_from_calendar(2)
+    # current_day_elements.each_with_index do |_element,_index|
+    #   next if !_element.attribute('class').include? 'current'
+    #   next if !_element.attribute('class').include? 'current'
+    #     p ">> #{_index+1}"
+    #     current_day_elements[_index+1].click
+    #     break
+    # end
   end
 
   def set_to_date_plus_one_day(_current_date)
