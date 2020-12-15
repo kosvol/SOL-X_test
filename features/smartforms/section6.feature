@@ -101,8 +101,8 @@ Feature: Section6
     Examples:
       | rank  | pin  |
       | A/B   | 6316 |
-      | 4/O   | 8078 |
-      | A 4/O | 0752 |
+      | 4/O   | 2637 |
+      | A 4/O | 5574 |
       | BOS   | 1018 |
 
   Scenario Outline: Verify AGT can add gas readings
@@ -123,22 +123,22 @@ Feature: Section6
     And I should see submit button enabled
 
     Examples:
-      | rank                       | pin  | rank_name                 |
-      | Master                     | 1111 | By MAS Daniel Alcantara   |
-      | Additional Master          | 9015 | By A/M Atif Hayat         |
-      | Chief Officer              | 8383 | By C/O Alister Leong      |
-      | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh        |
-      | Second Officer             | 6268 | By 2/O Paul Keng Teoh     |
-      | Additional Second Officer  | 7865 | By A 2/O Qasim Khan       |
-      | Third Officer              | 0159 | By 3/O Tim Kinzer         |
-      | Additional Third Officer   | 2674 | By A 3/O Aakash Seth      |
-      | Chief Engineer             | 8248 | By C/E Alex Pisarev       |
-      | Additional Chief Engineer  | 1122 | By A C/E Cs Ow            |
-      | Second Engineer            | 2523 | By 2/E Poon Choryi        |
-      | Additional Second Engineer | 3030 | By A 2/E Hyman Huang      |
-      | Third Engineer             | 3038 | By 3/E Crew Test Engineer |
-      | Additional Third Engineer  | 6727 | By A 3/E James Pike       |
-      | Fourth Engineer            | 1311 | By 4/E Tori Kuncoro       |
+      | rank                       | pin  | rank_name               |
+      | Master                     | 1111 | By MAS Daniel Alcantara |
+      | Additional Master          | 9015 | By A/M Atif Hayat       |
+      | Chief Officer              | 8383 | By C/O Alister Leong    |
+      | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh      |
+      | Second Officer             | 6268 | By 2/O Paul Keng Teoh   |
+      | Additional Second Officer  | 7865 | By A 2/O Qasim Khan     |
+      | Third Officer              | 0159 | By 3/O Tim Kinzer       |
+      | Additional Third Officer   | 2674 | By A 3/O Aakash Seth    |
+      | Chief Engineer             | 8248 | By C/E Alex Pisarev     |
+      | Additional Chief Engineer  | 5718 | By A C/E A C/E Xiaowei  |
+      | Second Engineer            | 2523 | By 2/E Poon Choryi      |
+      | Additional Second Engineer | 3030 | By A 2/E Hyman Huang    |
+      | Third Engineer             | 4685 | By 3/E Cs Ow            |
+      | Additional Third Engineer  | 6727 | By A 3/E James Pike     |
+      | Fourth Engineer            | 1311 | By 4/E Tori Kuncoro     |
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
