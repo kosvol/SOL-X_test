@@ -36,15 +36,16 @@ Before do |scenario|
   @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM']) # ,false,true) if @reset_flag_counter == 0
   ### set wifi to always on
   $wifi_on_off = `adb shell settings get global wifi_on`
+  p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
   if $wifi_on_off.strip === "0"
     @browser.toggle_wifi 
     sleep 10
   end
-  while $wifi_on_off.strip === "0"
-    sleep 1
-    $wifi_on_off = `adb shell settings get global wifi_on`
-    p "WIFI Status: #{$wifi_on_off}"
-  end
+  # while $wifi_on_off.strip === "0"
+  #   sleep 1
+  #   $wifi_on_off = `adb shell settings get global wifi_on`
+    
+  # end
 end
 
 After do |scenario|

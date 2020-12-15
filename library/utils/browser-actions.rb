@@ -6,7 +6,7 @@ module BrowserActions
     def turn_wifi_off_on
       # wifi_on_off = `adb shell settings get global wifi_on`
       $browser.toggle_wifi# if wifi_on_off.strip === "1"
-      sleep 6
+      sleep 10
     end
 
     def click_element(_element)
