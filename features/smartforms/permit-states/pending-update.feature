@@ -75,7 +75,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 5/E rank and 0311 pin
+    And I update permit with 5/E rank and 7551 pin
     And I navigate to section 6
     Then I should see previous and close buttons
   #And I tear down created form
@@ -151,7 +151,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 3/E rank and 0311 pin
+    And I update permit with 3/E rank and 7551 pin
     And I navigate to section 4a
     Then I should not see checklist selections fields enabled
     And I press next for 1 times

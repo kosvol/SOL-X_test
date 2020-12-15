@@ -122,7 +122,7 @@ Feature: Section4AChecklist
       | 3/O   | 0159 | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
       | A 3/O | 2674 | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
       | C/E   | 8248 | Underwater Operations                                        | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
-      # | A C/E | 9264 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
+      # | A C/E | 5718 | Underwater Operations                                         | Underwater Operation at night                                                   | Underwater Operation                                          |
       | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
       | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
       | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |

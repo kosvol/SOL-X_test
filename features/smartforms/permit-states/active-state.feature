@@ -10,7 +10,7 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with 5/E rank and 0311 pin
+    And I update permit with 5/E rank and 7551 pin
     And I navigate to section 8
     Then I should see previous and close buttons
   #And I tear down created form
@@ -19,7 +19,7 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with 5/E rank and 0311 pin
+    And I update permit with 5/E rank and 7551 pin
     And I navigate to section 8
     Then I should not see competent person sign button exists
   #And I tear down created form
@@ -29,7 +29,7 @@ Feature: ActivePermit
   #   Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
   #   And I launch sol-x portal without unlinking wearable
   #   And I click on active filter
-  #   And I update permit with 5/E rank and 0311 pin
+  #   And I update permit with 5/E rank and 7551 pin
   #   And I navigate to section 8
   #   Then I should see competent persong sign button disabled
   #   #And I tear down created form
@@ -275,7 +275,7 @@ Feature: ActivePermit
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
       | Hot Work                         | submit_hotwork               | A 3/O                      | 2674 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 9264 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 5718 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
       | Hot Work                         | submit_hotwork               | Additional Second Engineer | 3030 |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
@@ -297,7 +297,7 @@ Feature: ActivePermit
       | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O    | 0159 |
   # # | Hot Work                           | submit_hotwork               | A 3/O                      | 2674 |
   # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
-  # | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 9264 |
+  # | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 5718 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
   # | Hot Work                         | submit_hotwork              | Additional Second Engineer | 3030 |
   # # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |

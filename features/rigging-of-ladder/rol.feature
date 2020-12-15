@@ -13,7 +13,7 @@ Feature: RiggingOfLadder
   #     | 2/O   | 6268 |
   #     | A 2/O | 7865 |
   #     | C/E   | 8248 |
-  #     | A C/E | 9264 |
+  #     | A C/E | 5718 |
   #     | 2/E   | 2523 |
   #     | A 2/E | 3030 |
   #     | ETO   | 0856 |
@@ -164,6 +164,6 @@ Feature: RiggingOfLadder
     And I enter pin 9015
     And I sign on canvas
     And I click on back to home
-    And I review termination permit with 0311 pin
+    And I review termination permit with 7551 pin
     Then I should see previous and close buttons
 #And I tear down created form

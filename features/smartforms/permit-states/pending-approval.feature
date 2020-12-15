@@ -21,7 +21,7 @@ Feature: PendingApprovalPermit
 
     Examples:
       | rank | creator_pin | pin  |
-      | A/M  | 9264        | 9015 |
+      | A/M  | 5718        | 9015 |
       | 3/E  | 2523        | 4685 |
       | PMAN | 3030        | 4421 |
   # | A 3/E | 6727 |

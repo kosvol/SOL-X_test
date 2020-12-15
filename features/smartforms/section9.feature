@@ -13,7 +13,7 @@ Feature: Section9
     And I set non oa permit to ACTIVE state
     And I set non oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
-    And I open a permit pending termination with 5/E rank and 0311 pin
+    And I open a permit pending termination with 5/E rank and 7551 pin
     Then I should see previous and close buttons
   #And I tear down created form
 
@@ -64,7 +64,7 @@ Feature: Section9
       | 4/E                       | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | A 4/E                     | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Chief Engineer  | 9264 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      ## | Additional Chief Engineer  | 5718 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | Electro Technical Officer | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |

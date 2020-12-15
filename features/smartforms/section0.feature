@@ -35,7 +35,7 @@ Feature: SmartFormsPermission
       | 2/O   | 6268 |
       | A 2/O | 7865 |
       | C/E   | 8248 |
-      | A C/E | 9264 |
+      | A C/E | 5718 |
       | 2/E   | 2523 |
       | A 2/E | 3030 |
       | ETO   | 0856 |

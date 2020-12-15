@@ -25,7 +25,7 @@ Feature: CreatedPermitToWork
     And I click on back arrow
     And I navigate to "Created" screen
     And I want to edit the newly created permit
-    And I enter pin 0311
+    And I enter pin 7551
     And I navigate to section 6
     Then I should see previous and close buttons
   #And I tear down created form
@@ -111,7 +111,7 @@ Feature: CreatedPermitToWork
       | 3/O                        | 0159 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A 3/O                      | 2674 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | Chief Engineer             | 8248 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | Additional Chief Engineer  | 9264 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Additional Chief Engineer  | 5718 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | Second Engineer            | 2523 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | Additional Second Engineer | 3030 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
@@ -149,7 +149,7 @@ Feature: CreatedPermitToWork
       | Second Officer             | 6268 |
       | Additional Second Officer  | 7865 |
       | Chief Engineer             | 8248 |
-      | Additional Chief Engineer  | 9264 |
+      | Additional Chief Engineer  | 5718 |
       | Second Engineer            | 2523 |
       | Additional Second Engineer | 3030 |
       | Electro Technical Officer  | 0856 |
