@@ -69,17 +69,6 @@ After do |scenario|
   $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
-  ### toggle wifi
-  $wifi_on_off = `adb shell settings get global wifi_on`
-  if $wifi_on_off.strip === "0"
-    @browser.toggle_wifi
-    sleep 10
-  end
-  while $wifi_on_off.strip === "0"
-    sleep 1
-    $wifi_on_off = `adb shell settings get global wifi_on`
-    p "WIFI Status: #{$wifi_on_off}"
-  end
 end
 
 AfterStep do |scenario|

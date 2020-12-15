@@ -14,6 +14,7 @@ Feature: Offline Mode
     And I navigate to section 3a
     And I click on View Edit Hazard
     Then I should see fields disabled
+    And I turn off wifi
 
   Scenario: Verify Wifi popup display when during no wifi on EIC certification screen
     Given I launch sol-x portal without unlinking wearable
@@ -25,6 +26,7 @@ Feature: Offline Mode
     And I navigate to section 4b
     And I select yes to EIC certification
     Then I should see wifi popup display for EIC
+    And I turn off wifi
 
   Scenario: Verify Wifi popup display when during no wifi on section 6 screen
     Given I launch sol-x portal without unlinking wearable
@@ -35,6 +37,7 @@ Feature: Offline Mode
     And I turn off wifi
     And I navigate to section 6
     Then I should see wifi popup display for section 6
+    And I turn off wifi
 
   Scenario: Verify offline popup display when offline on smartform screen
     Given I launch sol-x portal without unlinking wearable
@@ -44,4 +47,4 @@ Feature: Offline Mode
     And I select Enclosed Spaces Entry permit for level 2
     And I turn off wifi
     Then I should see wifi popup display for smartform
-
+    And I turn off wifi
