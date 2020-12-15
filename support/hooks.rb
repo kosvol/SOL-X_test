@@ -17,7 +17,6 @@ AfterConfiguration do |config|
   $extent = RelevantCodes::ExtentReports.new('testreport/reports/extent_report.html')
   # $living_documentation = RelevantCodes::ExtentReports.new('testreport/documentation/livingdoc/living_documentation.html')
   $examples_count = 0
-  $wifi_on_off = `adb shell settings get global wifi_on`
 end
 
 Before('@skip') do
@@ -33,11 +32,18 @@ Before do |scenario|
   ReportUtils.output_tag(scenario, $extent_test)
   @log = Log.instance.start_new(scenario.name.gsub(' ', '_'))
   @log.instance_variable_set(:@cucumber_world, self)
+  ### end toggle wifi
   @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM']) # ,false,true) if @reset_flag_counter == 0
-  # set wifi to always on
+  ### set wifi to always on
+  $wifi_on_off = `adb shell settings get global wifi_on`
   if $wifi_on_off.strip === "0"
-    $browser.toggle_wifi 
-    sleep 7
+    @browser.toggle_wifi 
+    sleep 10
+  end
+  while $wifi_on_off.strip === "0"
+    sleep 1
+    $wifi_on_off = `adb shell settings get global wifi_on`
+    p "WIFI Status: #{$wifi_on_off}"
   end
 end
 
@@ -63,6 +69,17 @@ After do |scenario|
   $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
+  ### toggle wifi
+  $wifi_on_off = `adb shell settings get global wifi_on`
+  if $wifi_on_off.strip === "0"
+    @browser.toggle_wifi
+    sleep 10
+  end
+  while $wifi_on_off.strip === "0"
+    sleep 1
+    $wifi_on_off = `adb shell settings get global wifi_on`
+    p "WIFI Status: #{$wifi_on_off}"
+  end
 end
 
 AfterStep do |scenario|
