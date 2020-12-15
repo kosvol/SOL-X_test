@@ -28,7 +28,7 @@ class BrowserSetup
     p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
     if $wifi_on_off.strip === "0"
     $browser.toggle_wifi 
-    sleep 10
+    sleep 15
   end
     $browser
   end
