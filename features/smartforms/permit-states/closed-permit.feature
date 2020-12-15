@@ -15,8 +15,8 @@ Feature: ClosedPermit
     And I sign on canvas
     And I click on back to home
     And I click on pending withdrawal filter
-    And I set time
     And I terminate the permit
+    And I set time
     And I navigate to "Withdrawn" screen
     Then I should see termination date display
     And I should be able to view close permit
