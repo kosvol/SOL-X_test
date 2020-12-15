@@ -78,9 +78,15 @@ AfterStep do |scenario|
   rescue Exception => e
     $extent_test.info(:fail, 'Exception Raised', e, @browser)
   end
+  $wifi_on_off = `adb shell settings get global wifi_on`
 end
 
 at_exit do
+  # set wifi to always on
+  if $wifi_on_off.strip === "0"
+    $browser.toggle_wifi 
+    sleep 3
+  end
   $extent.append_desc(Formatter::HtmlFormatter.examples)
   # $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report
