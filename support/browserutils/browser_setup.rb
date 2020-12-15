@@ -22,7 +22,9 @@ class BrowserSetup
 
 
     ### set wifi to always on
-    $wifi_on_off = `adb shell settings get global wifi_on`
+    get_device_id = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]["deviceName"].to_s
+    $wifi_on_off = `adb -s #{get_device_id} shell settings get global wifi_on`
+    # $wifi_on_off = `adb shell settings get global wifi_on`
     p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
     if $wifi_on_off.strip === "0"
     $browser.toggle_wifi 
