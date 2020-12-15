@@ -19,17 +19,6 @@ class BrowserSetup
     $browser.manage.timeouts.script_timeout = 35
     # $browser.manage.timeouts.page_load = 30
     $browser.manage.timeouts.implicit_wait = 30
-
-
-    ### set wifi to always on
-    get_device_id = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]["deviceName"].to_s
-    $wifi_on_off = `adb -s #{get_device_id} shell settings get global wifi_on`
-    # $wifi_on_off = `adb shell settings get global wifi_on`
-    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
-    if $wifi_on_off.strip === "0"
-    $browser.toggle_wifi 
-    sleep 15
-  end
     $browser
   end
 
@@ -79,6 +68,16 @@ class BrowserSetup
               else
                 YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
               end
+
+    ### set wifi to always on
+    # get_device_id = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]["deviceName"].to_s
+    $wifi_on_off = `adb -s #{@device} shell settings get global wifi_on`
+    # $wifi_on_off = `adb shell settings get global wifi_on`
+    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
+    if $wifi_on_off.strip === "0"
+      $browser.toggle_wifi 
+      sleep 15
+    end
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
       {

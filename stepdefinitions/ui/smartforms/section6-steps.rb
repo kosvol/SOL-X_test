@@ -27,6 +27,7 @@ Then (/^I should see master (approval|review) button only$/) do |_condition|
   if _condition === 'review'
     is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review")
   end
+  step 'I should not see extra previous and close button'
 end
 
 Then (/^I (should|should not) see gas reader sections$/) do |_condition|
