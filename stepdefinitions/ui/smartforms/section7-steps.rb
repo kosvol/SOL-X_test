@@ -34,10 +34,6 @@ Then (/^I (should|should not) see submit for office approval and request update 
   end
 end
 
-And (/^I should not see close button$/) do
-  is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
-end
-
 And (/^I open a permit (.+) with (.+) rank and (.+) pin$/) do |_status, _rank, _pin|
   sleep 1
   on(Section0Page).master_approval_elements[0].click
