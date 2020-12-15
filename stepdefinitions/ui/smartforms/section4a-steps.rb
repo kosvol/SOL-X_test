@@ -41,7 +41,6 @@ And ('I sign on checklist with {int} pin') do |_pin|
 end
 
 Then (/^I should see signed details$/) do
-  BrowserActions.scroll_down
   on(Section4APage).is_signed_user_details?(@@entered_pin)
   is_true(on(Section4APage).is_signature_pad?)
 end
