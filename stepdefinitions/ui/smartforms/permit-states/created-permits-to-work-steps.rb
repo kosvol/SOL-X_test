@@ -27,9 +27,9 @@ end
 #   step "I enter pin #{_pin}"
 # end
 
-Then (/^I should see permit id populated$/) do
-  is_true(does_include(on(Section0Page).form_number, 'SIT/PTW/'))
-end
+# Then (/^I should see permit id populated$/) do
+#   is_true(does_include(on(Section0Page).form_number, 'SIT/PTW/'))
+# end
 
 And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
   step 'I want to edit the newly created permit'

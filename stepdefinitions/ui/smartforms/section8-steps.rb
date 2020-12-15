@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+Then (/^I should not see issuing and competence authority button$/) do
+  sleep 1
+  is_equal(on(Section5Page).sign_btn_role_elements.size,0)
+end
+
+Then (/^I should see section 8 in read only mode$/) do
+  is_equal(on(Section3APage).total_p_elements.size,18)
+end
+
 Then (/^I should see extra section8 questions for pipe permit$/) do
   on(Section8Page).normalization_pipe_question1
   on(Section8Page).normalization_pipe_question2

@@ -9,13 +9,6 @@ Feature: CreatedPermitToWork
     When I navigate to "Created" screen
     Then I should see the total permits in CREATED state match backend results
 
-  # Scenario: Verify past created permit should display permit id
-  #   Given I launch sol-x portal without unlinking wearable
-  #   When I navigate to "Created" screen
-  #   And I edit past created permit
-  #   And I enter pin 9015
-  #   Then I should see permit id populated
-
   Scenario: Verify section 6 buttons display are correct
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
