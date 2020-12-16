@@ -141,8 +141,11 @@ end
 And (/^I fill up compulsory fields$/) do
     step 'I sign on checklist with 8383 pin'
     step 'I sign on canvas'
-    step 'I press next for 2 times'
+    step 'I press next for 1 times'
     sleep 1
+    step 'I select yes to EIC'
+    step 'I fill up EIC certificate'
+    step 'I press next for 1 times'
     step 'I fill up section 5'
 end
 

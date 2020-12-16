@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 And (/^I navigate to OA link$/) do
+  sleep 1
   on(OAPage).navigate_to_oa_link
 end
 
 And (/^I request the permit for update via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ESGW6HZJKSHC55M7BPRZSV7K?formId=SIT/PTW/2020/034&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
+  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ESNCV64360TJGE4H1BX7GRFQ?formId=SIT/PTW/2020/046&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
   sleep 1
   on(OAPage).update_permit_btn
   sleep 1

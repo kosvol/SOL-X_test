@@ -16,7 +16,8 @@ Feature: Section4BEIC
     And I uncheck the pre-selected checklist
     And I select the matching Hot Work Outside Designated Area checklist
     And I press next for 2 times
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     And I set time
     Then I should see EIC permit number, date and time populated
   #And I tear down created form
@@ -53,7 +54,8 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     Then I sign EIC as competent person with pin <pin>
     And I set time
     And I should see signed details
@@ -77,7 +79,8 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     Then I sign EIC as issuing authority with pin 8248
     And I set time
     And I should see signed details
@@ -128,7 +131,8 @@ Feature: Section4BEIC
     And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     And I sign EIC as non issuing authority with pin <pin>
     Then I should see not authorize error message
     #And I tear down created form
@@ -154,7 +158,8 @@ Feature: Section4BEIC
     And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     And I sign EIC as non competent person with pin <pin>
     Then I should see not authorize error message
     #And I tear down created form

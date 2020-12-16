@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Then (/^I should not see comment box exists$/) do
+  not_to_exists(on(PendingStatePage).update_comment_box_element)
+end
+
 Then (/^I should see wifi popup display for (.*)$/) do |which_category|
   # p ">> #{on(Section4BPage).wifi_popup_elements[2].text}"
   if which_category === "EIC"
@@ -44,12 +48,20 @@ When (/^I select yes to EIC$/) do
   on(Section4BPage).yes_no_btn_elements[0].click
 end
 
-When (/^I select yes to EIC certification$/) do
-  step 'I select yes to EIC'
-  # on(Section4BPage).yes_no_btn_elements[0].click
-  step 'I set time'
+# When (/^I select yes to EIC certification$/) do
+#   step 'I select yes to EIC'
+#   # on(Section4BPage).yes_no_btn_elements[0].click
+#   step 'I set time'
+#   step 'I click on create EIC certification button'
+#   sleep 2
+# end
+
+And (/^I click on create EIC certification button$/) do
   on(Section4BPage).create_eic_btn
-  sleep 2
+end
+
+And (/^I click on view EIC certification button$/) do
+  on(Section4BPage).view_eic_btn
 end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
@@ -78,7 +90,7 @@ Then (/^I should see EIC permit number, date and time populated$/) do
 end
 
 And (/^I fill up EIC certificate$/) do
-  on(Section4BPage).create_eic_btn
+  step 'I click on create EIC certification button'
   sleep 1
   on(Section3DPage).radio_btn_elements[0].click
   on(Section4BPage).fill_textarea

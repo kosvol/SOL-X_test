@@ -24,7 +24,8 @@ Feature: Offline Mode
     And I select Enclosed Spaces Entry permit for level 2
     And I turn off wifi
     And I navigate to section 4b
-    And I select yes to EIC certification
+    And I select yes to EIC
+    And I click on create EIC certification button
     Then I should see wifi popup display for EIC
     And I turn off wifi
 
