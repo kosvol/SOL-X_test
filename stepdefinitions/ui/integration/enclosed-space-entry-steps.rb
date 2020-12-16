@@ -48,9 +48,10 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   p ">> #{base_data}"
   p "-- #{capture_data}"
   capture_data.delete_at(6)
-  does_include(on(Section3BPage).last_assessment_date_element.text, CommonFormsPage.get_current_date_format_with_offset)
+  does_include(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).get_current_date_format_with_offset)
   begin
-    does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")
+    # does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")
+    does_include(on(Section3BPage).generic_data_elements[6].text, "Test automation")
   rescue StandardError
     puts '>> Probably First RUN !!!!'
     # does_include(on(Section3BPage).last_assessment_date_element.text, CommonFormsPage.get_current_date_format_with_offset)
@@ -87,7 +88,7 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
   does_include(on(Section4APage).checklist_date_element.text, "/#{BrowserActions.get_year}")
-  does_include(on(Section4APage).checklist_time_element.text, 'LT (GMT+')
+  does_include(on(Section4APage).checklist_time_element.text, 'LT (GMT')
   does_include(on(Section4APage).generic_data_elements[1].text, 'SIT/PTW')
   extract = on(Section4APage).get_filled_section
   extract.delete_at(1)
@@ -122,7 +123,7 @@ And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
   is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, "C/O Alister Leong")
   is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, "Test Automation")
   does_include(on(Section5Page).get_filled_crew_details_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section5Page).get_filled_crew_details_elements[2].text, " LT (GMT+")
+  does_include(on(Section5Page).get_filled_crew_details_elements[2].text, " LT (GMT")
   is_equal(on(Section5Page).get_filled_crew_details_elements[3].text, "Test Automation Company")
 end
 
@@ -130,10 +131,11 @@ And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   p "<><><> #{on(Section6Page).get_filled_section}"
   is_equal(on(Section6Page).get_filled_section, @@form_data['section6'])
+  is_equal(on(Section6Page).date_and_time_btn_elements.first.text,on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(Section6Page).rank_and_name_stamp, 'A/M Atif Hayat')
-  does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT+')
+  does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT')
   does_include(on(Section6Page).date_and_time_stamp, '/')
   step 'I should see gas reading display with toxic gas'
-  # does_include(on(Section6Page).date_and_time_btn_elements[0].text, 'LT (GMT+')
+  # does_include(on(Section6Page).date_and_time_btn_elements[0].text, 'LT (GMT')
   # does_include(on(Section6Page).date_and_time_btn_elements[1].text, '/')
 end

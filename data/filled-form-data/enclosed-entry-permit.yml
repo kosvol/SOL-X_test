@@ -65,7 +65,7 @@ section4b_eic:
     "1234",
   ]
 
-section6: ["Yes", "N/A", "N/A", "N/A"]
+section6: ["Yes", "Test Automation", "Test Automation"]
 
 section4a:
   [

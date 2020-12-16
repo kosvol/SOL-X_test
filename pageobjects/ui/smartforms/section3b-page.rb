@@ -27,7 +27,7 @@ class Section3BPage < Section3APage
     BrowserActions.enter_text(method_reason_element, 'Test automation')
     last_assessment_date_element.click
     sleep 1
-    current_day
+    select_todays_date_from_calendar
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click
