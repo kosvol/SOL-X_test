@@ -4,7 +4,7 @@ Then (/^I should not see comment box exists$/) do
   not_to_exists(on(PendingStatePage).update_comment_box_element)
 end
 
-Then (/^I should see wifi popup display for (.*)$/) do |which_category|
+Then (/^I should see wifi inconsistent popup display for (.*)$/) do |which_category|
   # p ">> #{on(Section4BPage).wifi_popup_elements[2].text}"
   if which_category === "EIC"
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
@@ -17,6 +17,24 @@ Then (/^I should see wifi popup display for (.*)$/) do |which_category|
     sleep 3
     # p ">> #{on(CommonFormsPage).wifi_popup_smartform_elements[0].text}"
     is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,"Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
+  elsif which_category === "section 8"
+    is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"Due to a Wi-Fi issue, you are doing this Section 8: Task Status & EIC Normalisation in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
+  end
+end
+
+Then (/^I should see wifi restore popup display for EIC$/) do
+  if which_category === "EIC"
+    is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Energy Isolation Certification so other crew members will be able to access it in other devices.")
+  elsif which_category === "section 6"
+    is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6:Gas Testing/Equipment so other crew members will be able to access it in other devices.")
+  # elsif which_category === "smartform"
+  #   on(Section0Page).back_arrow_element.click
+  #   sleep 3 Permit 
+  #   # p ">> #{on(CommonFormsPage).wifi_popup_smartform_elements[0].text}"
+  #   is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,"Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
   end
 end
 

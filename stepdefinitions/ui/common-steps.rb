@@ -10,7 +10,7 @@
 #   # step 'I press next from section 1'
 # end
 
-And (/^I turn off wifi$/) do
+And (/^I turn (off|on) wifi$/) do
   BrowserActions.turn_wifi_off_on
 end
 
