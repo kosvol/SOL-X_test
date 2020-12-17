@@ -107,7 +107,7 @@ Feature: RiggingOfLadder
       | BOS  | 1018 |
       | PMN  | 4637 |
       | ETR  | 6877 |
-      | T/E  | 5626 |
+      | T/E  | 6109 |
       | ELC  | 2719 |
       | O/S  | 7669 |
       | D/C  | 2317 |

@@ -10,6 +10,30 @@ Feature: PendingUpdate
 
   # Scenario: Verify AGT can add gas reading
 
+  # Scenario: [PTW][Pending Master Approval/Review] - Comment is not saved for the EIC when requesting the form for updates
+  # Create a new PTW form (except "Rigging of Ladder");
+  # Navigate to Section 4B and create the EIC;
+  # Submit the form for Master's Approval (Master's Review for OA forms);
+  # Open the form as the captain from the Pending Approval filter;
+  # Navigate to Section 7 (Section 6 for OA forms);
+  # Click on "Request Updates";
+  # Enter a comment;
+  # Navigate to Section 4B;
+  # Click on "View/Edit Energy Isolation Certificate".
+
+  # The comment that has been entered before is not saved for the EIC. As a result, Checklist Creator ranks will not be able to see the comment on the EIC screen when open the form from the Updates Needed filter.
+
+  # Scenario: [PTW][Pending Master Approval/Review] - Comment text box is missing at the top of the individual DRA screen when requesting for updates
+  #   Create a new PTW form (except "Rigging of Gangway & Pilot ladder");
+  #   Submit the form for Master's Approval (Master's Review for OA form);
+  #   Open the form as the Master from the Pending Approval section;
+  #   Navigate to Section 7 (section 6 for OA form);
+  #   Click on "Updates Needed" at the bottom of the screen;
+  #   Navigate to Section 3A;
+  #   Click on "View/Edit Hazards".
+
+  #   Comment dialog is missing at the top of the individual DRA screen.
+
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

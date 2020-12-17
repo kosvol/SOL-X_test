@@ -11,7 +11,7 @@ Then (/^I should not be able to edit DRA$/) do
 end
 
 Then (/^I should not be able to edit EIC certification$/) do
-  on(Section4BPage).create_eic_btn
+  on(Section4BPage).view_eic_btn
   is_equal(on(Section3APage).total_p_elements.size,28)
   on(CommonFormsPage).close_btn_elements.first.click
 end
