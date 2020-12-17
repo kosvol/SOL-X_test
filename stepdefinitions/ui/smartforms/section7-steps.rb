@@ -8,7 +8,7 @@ And (/^I click on permit for (.+)$/) do |_status|
 end
 
 Then (/^I (should|should not) see approve and request update buttons$/) do |_condition|
-  on(Section3APage).scroll_multiple_times(3)
+  on(Section3APage).scroll_multiple_times(4)
   if _condition === 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 4)
     is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')

@@ -53,6 +53,12 @@ Then (/^I should not see extra previous and close button$/) do
   is_equal(on(PendingStatePage).close_btn_elements.size, 1)
 end
 
+Then (/^I should not see extra previous and save button$/) do
+  on(Section3APage).scroll_multiple_times(7)
+  is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
+  is_equal(on(CommonFormsPage).save_btn_elements.size, 1)
+end
+
 Then (/^I (open|edit) rol permit with rank (.+) and (.+) pin$/) do |_condition, _rank, _pin|
   _condition === 'open' ? on(ActiveStatePage).view_btn_elements.first.click : on(PendingStatePage).edit_update_btn_elements.first.click
   step "I enter pin #{_pin}"
