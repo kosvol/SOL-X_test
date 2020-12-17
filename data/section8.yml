@@ -9,6 +9,11 @@ pipe:
     "Space secured and house keeping completed:",
     "Have all Valves and Pipes been re-secured properly on completion of the work?",
     "Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?",
+    "Work completed. PTW cancellation (if applicable).",
+    "Relevant Departments personnel informed as applicable",
+    "LOTO and Warning Tag removed from Equipments / Power Supply / Control Unit / Valves",
+    "Mentioned equipments has been normalized",
+    "Normalization of energy isolation completed:",
     "Master notified on task status:",
   ]
 
@@ -23,6 +28,11 @@ electrical:
     "Space secured and house keeping completed:",
     "Has the grounding been removed prior reconnecting power to the system?",
     "Has the newly installed and/or repaired High Voltage Equipment been subjected to a High Voltage test?",
+    "Work completed. PTW cancellation (if applicable).",
+    "Relevant Departments personnel informed as applicable",
+    "LOTO and Warning Tag removed from Equipments / Power Supply / Control Unit / Valves",
+    "Mentioned equipments has been normalized",
+    "Normalization of energy isolation completed:",
     "Master notified on task status:",
   ]
 
@@ -38,5 +48,10 @@ critical:
     "Is the test/trial completed and performance is satisfactory?",
     "Equipment/procedures restore to normal?",
     "All personnel/operator have been informed of the restoration?",
+    "Work completed. PTW cancellation (if applicable).",
+    "Relevant Departments personnel informed as applicable",
+    "LOTO and Warning Tag removed from Equipments / Power Supply / Control Unit / Valves",
+    "Mentioned equipments has been normalized",
+    "Normalization of energy isolation completed:",
     "Master notified on task status:",
   ]
