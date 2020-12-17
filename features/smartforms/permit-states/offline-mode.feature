@@ -4,6 +4,10 @@ Feature: Offline Mode
   I want to ...
   So that ...
 
+  Scenario: Verify submission during offline screen display after permit submission
+
+  Scenario: Verify Wifi popup display when during no wifi on section 8 screen
+
   Scenario: Verify DRA sub screen loaded fine during offline mode while on created state
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
