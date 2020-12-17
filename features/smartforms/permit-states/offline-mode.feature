@@ -4,8 +4,6 @@ Feature: Offline Mode
   I want to ...
   So that ...
 
-  Scenario: Verify submission during offline screen display after permit submission
-
   Scenario: Verify Wifi popup display when during no wifi on section 8 screen
     Given I submit permit submit_work_on_pressure_line via service with 9015 user and set to active state with EIC not require
     And I launch sol-x portal without unlinking wearable
