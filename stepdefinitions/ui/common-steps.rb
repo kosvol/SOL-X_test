@@ -12,6 +12,7 @@
 
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
+  sleep 2
 end
 
 Then (/^I print$/) do
