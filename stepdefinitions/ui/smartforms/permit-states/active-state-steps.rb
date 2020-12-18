@@ -85,6 +85,8 @@ Then (/^I should see data persisted on page 1$/) do
   tmp = on(Section3DPage).get_filled_section
   does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
   tmp.delete_at(1)
+  does_include(tmp[8], "Test Automation")
+  tmp.delete_at(8)
   p ">> #{tmp}"
   is_equal(on(Section3APage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
   does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
