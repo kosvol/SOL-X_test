@@ -70,10 +70,6 @@ class CommonFormsPage < CommonPage
       "#{@@time}#{get_timezone}"
   end
 
-  # def get_current_date_format
-  #   Time.new.strftime('%d/%b/%Y')
-  # end
-
   def get_current_date_and_time
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end
@@ -83,20 +79,11 @@ class CommonFormsPage < CommonPage
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
 
-  # def get_current_time_format_non_format
   def get_current_time_offset
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
   end
-
-  # def get_current_time_format_with_offset(_offset)
-  #   # which_json = 'ship-local-time/base-get-current-time'
-  #   # ServiceUtil.post_graph_ql(which_json, '1111')
-  #   # time_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-  #   (Time.now + (60 * 60 * _offset)).strftime('%H:%M')
-  #   # (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H:%M')
-  # end
 
   def get_total_steps_to_section6(_which_section)
     case _which_section

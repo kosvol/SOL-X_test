@@ -81,10 +81,6 @@ class Section3APage < Section2Page
     save_dra
   end
 
-  # def is_new_hazard_added?
-  #   (description_elements.last.text === 'Test Automation') && (description_elements[(description_elements.size - 2)].text === 'Test Automation')
-  # end
-
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
     # scroll_multiple_times(1)

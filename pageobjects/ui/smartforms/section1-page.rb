@@ -102,14 +102,6 @@ class Section1Page < Section0Page
     BrowserActions.hide_keyboard
   end
 
-  # def fill_static_section1
-  #   select_checkbox(@@location_check_btn, ['At Sea', 'In Port', 'Anchorage'].sample)
-  #   select_checkbox(@@condition_check_btn, %w[Loaded Ballast Other].sample)
-  #   select_sea_and_wind_state
-  #   fill_text_area(@@text_areas, 'Test Automation')
-  #   BrowserActions.hide_keyboard
-  # end
-
   def select_checkbox(_input, _location)
     _elements = $browser.find_elements(:xpath, _input)
     _elements.each do |_element|

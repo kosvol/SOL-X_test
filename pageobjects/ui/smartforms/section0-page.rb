@@ -9,9 +9,7 @@ class Section0Page < CommonFormsPage
   elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
-  # button(:click_permit_type_ddl, xpath: "//button[contains(.,'Select')]")
   buttons(:list_permit_type, xpath: '//ul/li/button')
-  # pending approval permit
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
   element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")

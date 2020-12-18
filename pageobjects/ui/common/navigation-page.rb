@@ -6,7 +6,6 @@ class NavigationPage
   include PageObject
 
   button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
-  # element(:hamburger_menu, xpath: "//button/*[@data-testid='hamburger']")
   @@setting_link = "//a[contains(text(),'%s')]"
 
   def tap_hamburger_menu
