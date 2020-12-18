@@ -40,7 +40,6 @@ Feature: PendingApprovalPermit
   #   And I navigate to section 4b
   #   Then I should see View EIC certification button
 
-  @debug
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
