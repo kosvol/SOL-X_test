@@ -25,7 +25,7 @@ Feature: Offline Mode
     And I select yes to EIC
     And I click on create EIC certification button
     Then I should see wifi inconsistent popup display for EIC
-    And I turn on wifi
+    # And I turn on wifi
     Then I should see wifi restore popup display for EIC
     And I turn off wifi
 
@@ -39,7 +39,7 @@ Feature: Offline Mode
     And I turn off wifi
     And I navigate to section 6
     Then I should see wifi inconsistent popup display for section 6
-    And I turn on wifi
+    # And I turn on wifi
     Then I should see wifi restore popup display for EIC
     And I turn off wifi
 
