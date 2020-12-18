@@ -10,8 +10,8 @@ Then (/^I should see section 8 in read only mode$/) do
 end
 
 Then (/^I should see extra section8 questions for pipe permit$/) do
-  to_exists(on(Section8Page).normalization_pipe_question1)
-  to_exists(on(Section8Page).normalization_pipe_question2)
+  to_exists(on(Section8Page).normalization_pipe_question1_element)
+  to_exists(on(Section8Page).normalization_pipe_question2_element)
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -22,9 +22,9 @@ Then (/^I should see extra section8 questions for pipe permit$/) do
 end
 
 Then (/^I should see extra section8 questions for critical maintenance permit$/) do
-  to_exists(on(Section8Page).normalization_crit_question1)
-  to_exists(on(Section8Page).normalization_crit_question2)
-  to_exists(on(Section8Page).normalization_crit_question3)
+  to_exists(on(Section8Page).normalization_crit_question1_element)
+  to_exists(on(Section8Page).normalization_crit_question2_element)
+  to_exists(on(Section8Page).normalization_crit_question3_element)
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -34,8 +34,8 @@ Then (/^I should see extra section8 questions for critical maintenance permit$/)
 end
 
 Then (/^I should see extra section8 questions for electrical permit$/) do
-  to_exists(on(Section8Page).normalization_elec_question1)
-  to_exists(on(Section8Page).normalization_elec_question2)
+  to_exists(on(Section8Page).normalization_elec_question1_element)
+  to_exists(on(Section8Page).normalization_elec_question2_element)
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -59,11 +59,11 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
   sleep 1
   if _condition === 'should'
     is_equal($browser.find_elements(:xpath, '//input').size, '27')
-    on(Section8Page).normalization_question1
-    on(Section8Page).normalization_question2
-    on(Section8Page).normalization_question3
-    on(Section8Page).normalization_question4
-    on(Section8Page).normalization_question5
+    to_exists(on(Section8Page).normalization_question1_element)
+    to_exists(on(Section8Page).normalization_question2_element)
+    to_exists(on(Section8Page).normalization_question3_element)
+    to_exists(on(Section8Page).normalization_question4_element)
+    to_exists(on(Section8Page).normalization_question5_element)
   end
   if _condition === 'should not'
     is_equal($browser.find_elements(:xpath, '//input').size, '17')
@@ -71,9 +71,9 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
 end
 
 Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
-  on(Section8Page).normalization_pipe_question1
-  on(Section8Page).normalization_pipe_question2
-  is_equal($browser.find_elements(:xpath, '//input').size, '21')
+  to_exists(on(Section8Page).normalization_pipe_question1_element)
+  to_exists(on(Section8Page).normalization_pipe_question2_element)
+  is_equal($browser.find_elements(:xpath, '//input').size, '31')
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
