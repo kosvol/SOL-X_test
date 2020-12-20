@@ -40,7 +40,7 @@ Feature: Offline Mode
     And I navigate to section 6
     Then I should see wifi inconsistent popup display for section 6
     # And I turn on wifi
-    Then I should see wifi restore popup display for EIC
+    Then I should see wifi restore popup display for section 6
     And I turn off wifi
 
   Scenario: Verify DRA sub screen loaded fine during offline mode while on created state
