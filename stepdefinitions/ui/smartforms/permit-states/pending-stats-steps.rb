@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Then (/^I should not be able to edit DRA$/) do
+  sleep 1
   step 'I click on View Edit Hazard'
   on(Section3APage).delete_btn_elements.each do |_elem|
     is_disabled(_elem)
@@ -14,7 +15,7 @@ Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
   poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   is_equal(on(Section3APage).total_p_elements.size,28)
-  on(CommonFormsPage).close_btn_elements.first.click
+  # on(CommonFormsPage).close_btn_elements.first.click
 end
 
 Then (/^I should be navigated back to (.*) screen$/) do |which_screen|

@@ -162,6 +162,7 @@ When (/^I fill a full permit$/) do
   step 'I press next for 1 times'
   on(Section3APage).scroll_multiple_times(3)
   step 'I submit smoke test permit'
+  step 'I sleep for 2 seconds'
   step 'I click on back to home'
-  step 'I sleep for 4 seconds'
+  step 'I sleep for 3 seconds'
 end
