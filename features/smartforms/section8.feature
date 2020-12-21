@@ -129,11 +129,12 @@ Feature: Section8
     And I sign on checklist with 8383 pin
     And I sign on canvas
     And I press next for 1 times
-    And I sign on checklist with 8383 pin
-    And I sign on canvas
-    And I press next for 2 times
-    And I sleep for 1 seconds
-    And I fill up section 5
+    And I fill up compulsory fields
+    # And I sign on checklist with 8383 pin
+    # And I sign on canvas
+    # And I press next for 2 times
+    # And I sleep for 1 seconds
+    # And I fill up section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -158,11 +159,12 @@ Feature: Section8
     And I sign on checklist with 8383 pin
     And I sign on canvas
     And I press next for 1 times
-    And I sign on checklist with 8383 pin
-    And I sign on canvas
-    And I press next for 2 times
-    And I sleep for 1 seconds
-    And I fill up section 5
+    And I fill up compulsory fields
+    # And I sign on checklist with 8383 pin
+    # And I sign on canvas
+    # And I press next for 2 times
+    # And I sleep for 1 seconds
+    # And I fill up section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home

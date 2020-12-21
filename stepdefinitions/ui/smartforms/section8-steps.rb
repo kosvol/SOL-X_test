@@ -30,7 +30,7 @@ Then (/^I should see extra section8 questions for critical maintenance permit$/)
   tmp.each do |_elem|
     does_include(@@section8_questions["critical"],_elem.text)
   end
-  is_equal($browser.find_elements(:xpath, '//input').size, '26')
+  is_equal($browser.find_elements(:xpath, '//input').size, '36')
 end
 
 Then (/^I should see extra section8 questions for electrical permit$/) do
@@ -41,7 +41,7 @@ Then (/^I should see extra section8 questions for electrical permit$/) do
   tmp.each do |_elem|
     does_include(@@section8_questions["electrical"],_elem.text)
   end
-  is_equal($browser.find_elements(:xpath, '//input').size, '23')
+  is_equal($browser.find_elements(:xpath, '//input').size, '33')
 end
 
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
@@ -73,7 +73,7 @@ end
 Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
-  is_equal($browser.find_elements(:xpath, '//input').size, '31')
+  is_equal($browser.find_elements(:xpath, '//input').size, '21')
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
