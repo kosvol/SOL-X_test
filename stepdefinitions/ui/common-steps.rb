@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-# Then (/^I should see all section fields enabled$/) do
-#   is_false(on(Section1Page).is_fields_enabled?)
-#   # step 'I press next from section 1'
-# end
-
-# Then (/^I should see all section fields disabled$/) do
-#   is_true(!on(Section1Page).is_fields_enabled?)
-#   # step 'I press next from section 1'
-# end
+Then (/^I print all text$/) do
+  tmp = $browser.find_elements(:xpath, "//html/body")
+  tmp.each do |_t|
+    p ">> #{_t.text}"
+  end
+end
 
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on

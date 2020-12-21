@@ -6,7 +6,6 @@ require './././library/utils/asserts'
 class CommonFormsPage < CommonPage
   include PageObject
   
-  elements(:labels_scrapper, xpath: "//*[local-name()='h3' or local-name()='h2' or local-name()='h4' or local-name()='label'] or local-name()='div/div/span']")
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
