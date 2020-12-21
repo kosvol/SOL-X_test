@@ -13,6 +13,11 @@ class Section8Page < Section7Page
   @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
   @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
   buttons(:task_commerce_at, xpath: "//button[@id='taskCommencedAt']")
+  
+  span(:default_section8_question1, xpath: "//span[contains(.,'Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):')]")
+  span(:default_section8_question2, xpath: "//span[contains(.,'Fire/Safety checks conducted on adjacent compartments, where applicable:')]")
+  span(:default_section8_question3, xpath: "//span[contains(.,'All personnel, materials and equipments have been withdrawn:')]")
+  span(:default_section8_question4, xpath: "//span[contains(.,'Space secured and house keeping completed:')]")
 
   span(:normalization_question1, xpath: "//span[contains(.,'Work completed. PTW cancellation (if applicable).')]")
   span(:normalization_question2, xpath: "//span[contains(.,'Relevant Departments personnel informed as applicable')]")

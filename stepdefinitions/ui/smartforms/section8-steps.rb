@@ -12,6 +12,7 @@ end
 Then (/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
+  step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -25,6 +26,7 @@ Then (/^I should see extra section8 questions for critical maintenance permit$/)
   to_exists(on(Section8Page).normalization_crit_question1_element)
   to_exists(on(Section8Page).normalization_crit_question2_element)
   to_exists(on(Section8Page).normalization_crit_question3_element)
+  step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -36,6 +38,7 @@ end
 Then (/^I should see extra section8 questions for electrical permit$/) do
   to_exists(on(Section8Page).normalization_elec_question1_element)
   to_exists(on(Section8Page).normalization_elec_question2_element)
+  step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8.yml')
   tmp.each do |_elem|
@@ -55,6 +58,13 @@ And (/^I should see signed date and time for section 8$/) do
   is_equal(on(Section8Page).rank_name_and_date_elements.last.text, on(Section8Page).get_signed_date_time)
 end
 
+Then (/^I should see default section 8 questions$/) do 
+  to_exists(on(Section8Page).default_section8_question1_element)
+  to_exists(on(Section8Page).default_section8_question2_element)
+  to_exists(on(Section8Page).default_section8_question3_element)
+  to_exists(on(Section8Page).default_section8_question4_element)
+end
+
 Then (/^I (should|should not) see EIC normalize extra questions$/) do |_condition|
   sleep 1
   if _condition === 'should'
@@ -64,9 +74,15 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
     to_exists(on(Section8Page).normalization_question3_element)
     to_exists(on(Section8Page).normalization_question4_element)
     to_exists(on(Section8Page).normalization_question5_element)
+    step 'I should see default section 8 questions'
   end
   if _condition === 'should not'
     is_equal($browser.find_elements(:xpath, '//input').size, '17')
+    not_to_exists(on(Section8Page).normalization_question1_element)
+    not_to_exists(on(Section8Page).normalization_question2_element)
+    not_to_exists(on(Section8Page).normalization_question3_element)
+    not_to_exists(on(Section8Page).normalization_question4_element)
+    not_to_exists(on(Section8Page).normalization_question5_element)
   end
 end
 
@@ -74,6 +90,7 @@ Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
   is_equal($browser.find_elements(:xpath, '//input').size, '21')
+  step 'I should see default section 8 questions'
 end
 
 And (/^I sign EIC section 8 with RA (.+)$/) do |_pin|
