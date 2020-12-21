@@ -20,6 +20,8 @@ Feature: RiggingOfLadder
   #     | 3/O   | 0159 |
   #     | A 3/O | 2674 |
 
+  Scenario: Verify no duplicate previous and close button when viewing permit with checklist creator only crew via pending update
+
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
