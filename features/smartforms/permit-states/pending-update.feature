@@ -20,7 +20,6 @@ Feature: PendingUpdate
   # Enter a comment;
   # Navigate to Section 4B;
   # Click on "View/Edit Energy Isolation Certificate".
-
   # The comment that has been entered before is not saved for the EIC. As a result, Checklist Creator ranks will not be able to see the comment on the EIC screen when open the form from the Updates Needed filter.
 
   # Scenario: [PTW][Pending Master Approval/Review] - Comment text box is missing at the top of the individual DRA screen when requesting for updates
@@ -31,7 +30,6 @@ Feature: PendingUpdate
   #   Click on "Updates Needed" at the bottom of the screen;
   #   Navigate to Section 3A;
   #   Click on "View/Edit Hazards".
-
   #   Comment dialog is missing at the top of the individual DRA screen.
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
