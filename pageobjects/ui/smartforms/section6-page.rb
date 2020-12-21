@@ -7,7 +7,7 @@ class Section6Page < Section5Page
 
   button(:remove_toxic_btn, xpath: "//button[contains(.,'Remove')]")
   button(:add_gas_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
-  button(:add_toic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
+  button(:add_toxic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
   button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
   button(:enter_pin_and_submit_btn, xpath: "//button[contains(.,'Enter PIN & Submit')]")
   button(:continue_btn, xpath: "//button[contains(.,'Continue')]")
@@ -58,7 +58,8 @@ class Section6Page < Section5Page
     threshold_input_element.send_keys('20')
     reading_input_element.send_keys('1.5')
     unit_input_element.send_keys('cc')
-    add_toic_gas_btn
+    sleep 1
+    add_toxic_gas_btn
     sleep 1
   end
 
