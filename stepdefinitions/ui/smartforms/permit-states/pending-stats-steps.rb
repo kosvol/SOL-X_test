@@ -20,9 +20,9 @@ end
 
 Then (/^I should be navigated back to (.*) screen$/) do |which_screen|
   if which_screen === "pending approval"
-    is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval")
+    is_equal(on(Section0Page).ptw_id_element.text,"Pending Approval Permits to Work")
   elsif which_screen === "active"
-    is_equal(on(Section0Page).ptw_id_element.text,"Active")
+    is_equal(on(Section0Page).ptw_id_element.text,"Active Permits to Work")
   end
 end
 
