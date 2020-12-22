@@ -7,7 +7,7 @@ class Section1Page < Section0Page
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:all_labels, xpath: '//label')
-  buttons(:btn_list, xpath: "//div[starts-with(@class,'FormNavigationFactory__Button')]/button")
+  buttons(:btn_list, xpath: "//nav[starts-with(@class,'FormNavigationFactory__Button')]/button")
   buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')

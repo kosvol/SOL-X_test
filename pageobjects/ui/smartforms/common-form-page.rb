@@ -114,7 +114,7 @@ class CommonFormsPage < CommonPage
   def get_timezone
     @@time_offset = get_current_time_offset
     if @@time_offset.to_s[0] != "-"
-      " LT (GMT#{@@time_offset})"
+      " LT (GMT+#{@@time_offset})"
     else
       " LT (GMT#{@@time_offset})"
     end
