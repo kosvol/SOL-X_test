@@ -52,9 +52,10 @@ module AssertionUtil
     end
 
     def wait_until_is_visible(element)
-      wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-      wait.until { element.displayed? }
-      expect(element).to be_visible
+      # wait = Selenium::WebDriver::Wait.new(:timeout => 15)
+      # wait.until { element.displayed? }
+      # expect(element).to be_visible
+      sleep 3 until element.exists?
     end
 
     # def select_from_dropdown(dropdown_list,which_type)

@@ -16,6 +16,14 @@ class BrowserSetup
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
+    if ENV['PLATFORM'].upcase === 'ANDROID'
+      $wifi_on_off = `adb -s $DEVICEID shell settings get global wifi_on`
+      p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
+      if $wifi_on_off.strip === "0"
+        $browser.toggle_wifi 
+        sleep 8
+      end
+    end
     $browser.manage.timeouts.script_timeout = 35
     # $browser.manage.timeouts.page_load = 30
     $browser.manage.timeouts.implicit_wait = 30
@@ -71,13 +79,12 @@ class BrowserSetup
 
     ### set wifi to always on
     # get_device_id = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]["deviceName"].to_s
-    $wifi_on_off = `adb -s #{@device} shell settings get global wifi_on`
+    # puts system("adb -s 4aa590af shell settings get global wifi_on")
+    # `adb -s #{@device} shell settings get global wifi_on`
+    # system("bash -c 'adb -s #{@device} shell settings get global wifi_on'")
+    # `adb -s #{@device} shell settings get global wifi_on`
     # $wifi_on_off = `adb shell settings get global wifi_on`
-    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
-    if $wifi_on_off.strip === "0"
-      $browser.toggle_wifi 
-      sleep 15
-    end
+    
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
       {
