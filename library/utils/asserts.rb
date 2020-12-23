@@ -44,6 +44,7 @@ module AssertionUtil
     end
 
     def poll_exists_and_click(element)
+      wait_until_is_visible(element)
       (expect(element).to exist) ? element.click : poll_exists_and_click(element)
     end
 
