@@ -31,7 +31,7 @@ Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   sleep 4
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 4
+  sleep 10
   # puts "screen size: #{$browser.window_size}"
 end
 

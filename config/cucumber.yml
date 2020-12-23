@@ -22,7 +22,7 @@ android_chrome_tablet_sit: --profile dir --profile html --profile xml --profile 
 android_chrome_tablet_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_tablet_chrome
 
 android_chrome_tablet_dev_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet_chrome
-android_chrome_tablet_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet_chrome DEVICEID=4aa590af
+android_chrome_tablet_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet_chrome
 android_chrome_dashboard_dev: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard_chrome
 android_chrome_tablet_dev: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet_chrome
 
