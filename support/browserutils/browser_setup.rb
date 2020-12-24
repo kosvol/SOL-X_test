@@ -68,15 +68,6 @@ class BrowserSetup
               else
                 YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
               end
-
-    ### set wifi to always on
-    # get_device_id = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]["deviceName"].to_s
-    $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
-    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
-    if $wifi_on_off.strip === "0"
-      $browser.toggle_wifi 
-      sleep 8
-    end
     
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     opts =
@@ -103,6 +94,15 @@ class BrowserSetup
         },
         appium_lib: { port: @device['port'], wait: 180 }
       }
-      Appium::Driver.new(opts, true).start_driver
+      browser = Appium::Driver.new(opts, true).start_driver
+
+      ### set wifi to always on
+      $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
+      p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
+      if $wifi_on_off.strip === "0"
+        browser.toggle_wifi 
+        sleep 8
+      end
+      browser
     end
   end
