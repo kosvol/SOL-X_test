@@ -7,20 +7,20 @@ Feature: PumpRoomEntry
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
-    Then  I navigate to "Created P/R Entries" screen
-    And I should see the label 'Created P/R Entries'
+    Then  I navigate to "Created" screen for PRE
+    And I should see the label 'Created Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Updates Needed P/R Entries" screen
-    And I should see the label 'Updates Needed P/R Entries'
+    Then  I navigate to "Updates Needed" screen in "Show More" for PRE
+    And I should see the label 'Updates Needed Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Closed P/R Entries" screen
-    And I should see the label 'Closed P/R Entries'
+    Then  I navigate to "Terminated" screen
+    And I should see the label 'Terminated Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Deleted P/R Entries" screen
-    And I should see the label 'Deleted P/R Entries'
+    Then  I navigate to "Deleted" screen for PRE
+    And I should see the label 'Deleted Pump Room Entries'
     And I click on back arrow
 
 
@@ -30,7 +30,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     And Get PRE id
     Then I press the "Close" button
-    When I navigate to "Created P/R Entries" screen
+    When I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created PRE" list
 
 
@@ -157,24 +157,25 @@ Feature: PumpRoomEntry
   #And I should see the table on the page with entered gas data
   #Then I should not see the "Add Gas Test Record" button
 
-
+@xxx
   Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
     Then I activate the current PRE form
-    When (for per) I navigate to "Scheduled" list
+    When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
     When I wait to activate PRE. Delay 120
-    And (for per) I navigate to "Active PRE" list
+    And I navigate to "Active" screen for PRE
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
-    And I sleep for 90 seconds
     And I click on back arrow
-    When I navigate to "Closed P/R Entries" screen
+    And I sleep for 90 seconds
+    When I navigate to "Terminated" screen for PRE
     Then I should see current PRE is auto terminated
 
 
@@ -185,14 +186,14 @@ Feature: PumpRoomEntry
     Then I fill up PRE. Duration 4. Delay to activate 1
     And (for pre) I submit permit for Officer Approval
     Then I activate the current PRE form
-    When (for per) I navigate to "Scheduled" list
+    When I navigate to "Scheduled" screen in "Show More" for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
     When I wait to activate PRE. Delay 120
-    And (for per) I navigate to "Active PRE" list
+    And I navigate to "Active" screen in "Show More" for PRE
     And I should see the current PRE in the "Active PRE" list
     Then I terminate the PRE
-    When I navigate to "Closed P/R Entries" screen
+    When I navigate to "Terminated" screen for PRE
     And I should see the current PRE in the "Closed PRE" list
 
 
@@ -265,7 +266,7 @@ Feature: PumpRoomEntry
     Then I sleep for 3 seconds
     And I should see the text 'Permit Updated'
     Then I getting a permanent number from indexedDB
-    And (for per) I navigate to "Created" list
+    And I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
 

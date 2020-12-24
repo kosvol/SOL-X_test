@@ -145,7 +145,7 @@ class PumpRoomEntry < Section9Page
 
     time_to_finish = get_current_time+60*finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
-    url = "http://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/%s?conflicts=true"
+    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/%s?conflicts=true"
     url = url % [web_pre_id]
 
     request = HTTParty.get(url, {
@@ -160,15 +160,15 @@ class PumpRoomEntry < Section9Page
     (JSON.parse request.to_s)
   end
 
-  def navigate_for_pre(item)
-    if item === "Active PRE"
-      @browser.find_element(:xpath, @@active_link).click
-    elsif item === "Scheduled"
-      @browser.find_element(:xpath, @@scheduled_link).click
-    elsif item === "Pending approval PRE"
-      @browser.find_element(:xpath, @@pending_approval_pre_link).click
-    end
-  end
+  # def navigate_for_pre(item)
+  #   if item === "Active PRE"
+  #     @browser.find_element(:xpath, @@active_link).click
+  #   elsif item === "Scheduled"
+  #     @browser.find_element(:xpath, @@scheduled_link).click
+  #   elsif item === "Pending approval PRE"
+  #     @browser.find_element(:xpath, @@pending_approval_pre_link).click
+  #   end
+  # end
 
   private
 
