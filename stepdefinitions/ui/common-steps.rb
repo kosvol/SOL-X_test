@@ -9,7 +9,6 @@ end
 
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
-  # sleep 1
 end
 
 Then (/^I should map to partial sign details$/) do
@@ -24,22 +23,20 @@ end
 
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
-  sleep 4
   $browser.get(EnvironmentSelector.get_environment_url)
-  wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  # sleep 10
+  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   # puts "screen size: #{$browser.window_size}"
 end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  # sleep 5
+  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   # puts "screen size: #{$browser.window_size}"
 end
 
 When (/^I navigate to "(.+)" screen$/) do |_which_section|
-  on(NavigationPage).tap_hamburger_menu
+  BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+  # on(NavigationPage).tap_hamburger_menu
   sleep 1
   on(NavigationPage).select_nav_category(_which_section)
   sleep 1
@@ -76,16 +73,14 @@ end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   (1.._times.to_i).each do |_i|
-    sleep 1
-    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
+    # sleep 1
+    _condition === 'next' ? BrowserActions.poll_exists_and_click(on(Section0Page).click_next_element) : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
   end
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 1
-  poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
+  BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
-  step 'I set time'
 end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
@@ -94,18 +89,14 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
     on(Section0Page).select_level2_permit(_permit)
   rescue StandardError
   end
-  on(Section0Page).save_and_next_btn
+  BrowserActions.poll_exists_and_click(on(Section0Page).save_and_next_btn_element)
   on(Section0Page).set_selected_level2_permit(_permit)
   step 'I set time'
-  sleep 1
   @temp_id = on(Section0Page).ptw_id_element.text
-  # p "-- #{on(Section0Page).ptw_id_element.text}"
-  # p ">> #{on(CommonFormsPage).get_permit_id_from_access_indexedb(on(Section0Page).ptw_id_element.text)}"
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
-  on(Section6Page).back_to_home_btn_element.click
+  BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
   sleep 5
   # step 'I set permit id'
 end

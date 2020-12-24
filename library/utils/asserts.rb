@@ -43,19 +43,8 @@ module AssertionUtil
       expect(element).to exist
     end
 
-    def poll_exists_and_click(element)
-      wait_until_is_visible(element)
-      (expect(element).to exist) ? element.click : poll_exists_and_click(element)
-    end
-
     def is_not_visible(element)
       expect(element).not_to be_visible
-    end
-
-    def wait_until_is_visible(element)
-      # wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-      # wait.until { element.displayed? }
-      sleep 1 until element.exists?
     end
 
     # def select_from_dropdown(dropdown_list,which_type)

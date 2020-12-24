@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 Then('I should see a list of available forms for selections') do |_table|
-  on(Section0Page).click_permit_type_ddl
+  BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
+  # on(Section0Page).click_permit_type_ddl
   _table.raw.each_with_index do |_element, _index|
     is_equal(_element.first, on(Section0Page).list_permit_type_elements[_index].text)
   end
 end
 
 And (/^I navigate to create new permit$/) do
-  sleep 1
-  on(Section0Page).click_create_permit_btn
+  BrowserActions.poll_exists_and_click(on(Section0Page).click_create_permit_btn_element)
   on(Section0Page).reset_data_collector
 end
 
@@ -26,26 +26,24 @@ end
 
 And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
-  sleep 1
-  on(Section0Page).close_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
+  # sleep 1
+  # on(Section0Page).close_btn_elements.first.click
 end
 
 And (/^I click on (.+) filter$/) do |state|
-  sleep 2
   if state === 'pending approval'
-    BrowserActions.click_element(on(Section0Page).permit_filter_elements[0])
-    sleep 1
+    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[0])
     # this is use to pick up correct permit id due to temp id usage during creation
     begin
       CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
     rescue StandardError
     end
   elsif state === 'update needed'
-    BrowserActions.click_element(on(Section0Page).permit_filter_elements[1])
+    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[1])
   elsif state === 'active'
-    sleep 2
-    BrowserActions.click_element(on(Section0Page).permit_filter_elements[2])
+    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
   elsif state === 'pending withdrawal'
-    BrowserActions.click_element(on(Section0Page).permit_filter_elements[3])
+    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
   end
 end

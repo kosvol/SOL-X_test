@@ -13,7 +13,7 @@ end
 
 Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
-  poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
+  BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   is_equal(on(Section3APage).total_p_elements.size,28)
   # on(CommonFormsPage).close_btn_elements.first.click
 end

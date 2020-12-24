@@ -25,8 +25,8 @@ end
 
 Then (/^I should see wifi restore popup display for (.*)$/) do |which_category|
   step 'I turn on wifi'
-  sleep 4
-  wait_until_is_visible(on(Section4BPage).wifi_popup_elements[1])
+  # sleep 4
+  BrowserActions.wait_until_is_visible(on(Section4BPage).wifi_popup_elements[1])
   if which_category === "EIC"
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Energy Isolation Certificate so other crew members will be able to access it in other devices.")

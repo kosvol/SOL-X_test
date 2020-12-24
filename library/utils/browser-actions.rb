@@ -3,6 +3,17 @@
 module BrowserActions
   class << self
 
+    ### new methods
+
+    def poll_exists_and_click(element)
+      (wait_until_is_visible(element)) ? element.click : poll_exists_and_click(element)
+    end
+
+    def wait_until_is_visible(element)
+      $wait.until { element.exists? }
+      # sleep 1 until element.exists?
+    end
+
     def turn_wifi_off_on
       # wifi_on_off = `adb shell settings get global wifi_on`
       $browser.toggle_wifi# if wifi_on_off.strip === "1"
@@ -10,23 +21,18 @@ module BrowserActions
       sleep 8
     end
 
-    def click_element(_element)
-      sleep 1
-      _element.click
-    end
+    ### end
 
     def scroll_click(_element)
       sleep 1
       # scroll_down
       scroll_down_by_custom_dist(100)
-      sleep 1
-      _element.click
+      poll_exists_and_click(_element)
       sleep 1
     rescue StandardError
       p 'Scrolling.....'
       scroll_down_by_custom_dist(100)
-      sleep 1
-      _element.click
+      poll_exists_and_click(_element)
       sleep 1
     end
 

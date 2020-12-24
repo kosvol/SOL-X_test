@@ -31,12 +31,12 @@ class Section0Page < CommonFormsPage
     @@selected_level2_permit
   end
 
-  def click_create_permit_btn
-    click_create_permit_btn_element.click
-  end
+  # def click_create_permit_btn
+  #   click_create_permit_btn_element.click
+  # end
 
   def select_level1_permit(_permit)
-    CommonPage.set_permit_id(_permit)
+    CommonPage.set_permit_id(_permit)  ### this might be redundant already
     sleep 1
     select_permit
   end
@@ -44,7 +44,6 @@ class Section0Page < CommonFormsPage
   def select_level2_permit(_permit)
     sleep 1
     CommonPage.set_permit_id(_permit)
-    sleep 1
     unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
       select_permit
     end
@@ -56,9 +55,9 @@ class Section0Page < CommonFormsPage
   private
 
   def select_permit
+    BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
     list_permit_type_elements.each do |permit|
       next unless permit.text === CommonPage.get_permit_id
-
       permit.click
       break
     end
