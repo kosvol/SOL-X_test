@@ -19,8 +19,10 @@ class NavigationPage
   def select_nav_category(_category, pre = false, show_more = false)
     if show_more and pre
       @browser.find_elements(:xpath, @@show_more)[1].click
+      sleep 1
     elsif show_more
       @browser.find_elements(:xpath, @@show_more)[0].click
+      sleep 1
     end
 
     if !pre
