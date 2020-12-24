@@ -41,7 +41,7 @@ Given (/^I launch sol-x portal without unlinking wearable$/) do
   # puts "screen size: #{$browser.window_size}"
 end
 
-When (/^I navigate to "(.+)" screen(.+)/) do |_which_section, _additional|
+When (/^I navigate to "(.+)" screen(|.+)$/) do |_which_section, _additional|
   pre = _additional.include? "for PRE"
   additional_items = _additional.include? "Show More"
 
