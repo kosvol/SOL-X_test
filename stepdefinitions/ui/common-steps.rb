@@ -12,11 +12,6 @@ And (/^I turn (off|on) wifi$/) do |on_or_off|
   # sleep 1
 end
 
-Then (/^I print$/) do
-  p ">> #{WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)}"
-  CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
-end
-
 Then (/^I should map to partial sign details$/) do
   is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
 end
@@ -31,13 +26,15 @@ Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   sleep 4
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 10
+  wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  # sleep 10
   # puts "screen size: #{$browser.window_size}"
 end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 5
+  wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  # sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
