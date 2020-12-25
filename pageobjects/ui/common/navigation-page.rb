@@ -17,12 +17,20 @@ class NavigationPage
   end
 
   def select_nav_category(_category, pre = false, show_more = false)
-    if show_more and pre
-      @browser.find_elements(:xpath, @@show_more)[1].click
-      sleep 1
-    elsif show_more
-      @browser.find_elements(:xpath, @@show_more)[0].click
-      sleep 1
+    unless @already_opened_show_more_for_pre
+      if show_more and pre
+        @already_opened_show_more_for_pre = true
+        @browser.find_elements(:xpath, @@show_more)[1].click
+        sleep 1
+      end
+    end
+
+    unless @already_opened_show_more
+      if show_more and !pre
+        @already_opened_show_more = true
+        @browser.find_elements(:xpath, @@show_more)[0].click
+        sleep 1
+      end
     end
 
     if !pre
