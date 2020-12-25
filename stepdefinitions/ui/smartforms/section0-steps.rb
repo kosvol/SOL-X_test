@@ -2,7 +2,6 @@
 
 Then('I should see a list of available forms for selections') do |_table|
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
-  # on(Section0Page).click_permit_type_ddl
   _table.raw.each_with_index do |_element, _index|
     is_equal(_element.first, on(Section0Page).list_permit_type_elements[_index].text)
   end
@@ -27,8 +26,6 @@ end
 And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
   BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
-  # sleep 1
-  # on(Section0Page).close_btn_elements.first.click
 end
 
 And (/^I click on (.+) filter$/) do |state|

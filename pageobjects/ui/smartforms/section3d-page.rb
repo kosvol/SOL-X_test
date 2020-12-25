@@ -9,10 +9,9 @@ class Section3DPage < Section3CPage
   element(:signature, xpath: "//div[@class='signature']/img")
 
   def sign
+    sleep 1
     sign_for_gas
-    # sleep 1
     BrowserActions.poll_exists_and_click(done_btn_elements.first)
-    # done_btn_elements.first.click
   end
 
   def sign_for_gas

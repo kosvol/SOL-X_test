@@ -13,6 +13,7 @@ class CommonFormsPage < CommonPage
   elements(:enter_comment_boxes, xpath: '//textarea')
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
   elements(:wifi_popup_smartform, xpath: "//div[starts-with(@class,'OfflineInfoCard__')]")
+  element(:is_dashboard_screen, xpath: "//h2[contains(.,'Crew Finder')]")
 
   ### buttons by text ###
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
@@ -37,7 +38,7 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
-
+  
   def select_todays_date_from_calendar(advance_days=0)
     current_day_elements.each_with_index do |_element,_index|
       if _element.attribute('class').include? 'current'
@@ -56,9 +57,9 @@ class CommonFormsPage < CommonPage
 
   def click_next
     sleep 1
-    next_btn
+    BrowserActions.poll_exists_and_click(next_btn_element)
   rescue StandardError
-    save_and_next_btn
+    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
   end
 
   def set_current_time

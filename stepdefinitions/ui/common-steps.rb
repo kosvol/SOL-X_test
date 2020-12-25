@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-Then (/^I print all text$/) do
-  tmp = $browser.find_elements(:xpath, "//html/body")
-  tmp.each do |_t|
-    p ">> #{_t.text}"
-  end
-end
+# Then (/^I print all text$/) do
+#   tmp = $browser.find_elements(:xpath, "//html/body")
+#   tmp.each do |_t|
+#     p ">> #{_t.text}"
+#   end
+# end
 
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
@@ -24,20 +24,26 @@ end
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)
-  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  rescue 
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  end
   # puts "screen size: #{$browser.window_size}"
 end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  rescue 
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  end
   # puts "screen size: #{$browser.window_size}"
 end
 
 When (/^I navigate to "(.+)" screen$/) do |_which_section|
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
-  # on(NavigationPage).tap_hamburger_menu
-  sleep 1
   on(NavigationPage).select_nav_category(_which_section)
   sleep 1
 end
@@ -53,13 +59,11 @@ And (/^I click on back arrow$/) do
 end
 
 Then (/^I sign on canvas$/) do
-  sleep 1
   on(Section3DPage).sign
 end
 
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
-  sleep 1
   on(PinPadPage).enter_pin(pin)
 end
 
@@ -73,8 +77,7 @@ end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   (1.._times.to_i).each do |_i|
-    # sleep 1
-    _condition === 'next' ? BrowserActions.poll_exists_and_click(on(Section0Page).click_next_element) : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
+    _condition === 'next' ? on(Section0Page).click_next : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
   end
 end
 
@@ -85,19 +88,13 @@ end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
-  begin
-    on(Section0Page).select_level2_permit(_permit)
-  rescue StandardError
-  end
-  BrowserActions.poll_exists_and_click(on(Section0Page).save_and_next_btn_element)
-  on(Section0Page).set_selected_level2_permit(_permit)
-  step 'I set time'
+  on(Section0Page).select_level2_permit_and_next(_permit)
   @temp_id = on(Section0Page).ptw_id_element.text
 end
 
 And (/^I click on back to home$/) do
   BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
-  sleep 5
+  sleep 4
   # step 'I set permit id'
 end
 
