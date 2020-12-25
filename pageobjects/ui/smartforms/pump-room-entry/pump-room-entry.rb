@@ -12,11 +12,11 @@ class PumpRoomEntry < Section9Page
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-  elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'SIT/'))]")
+  elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
 
 
   @@text_areas = '//textarea'
-  @@permit_duration = "//button[contains(text(),'%s hours')]"
+  @@permit_duration = "//button[contains(text(),'%s')]"
   @@button = "//span[contains(text(),'%s')]//.."
 
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
@@ -159,16 +159,6 @@ class PumpRoomEntry < Section9Page
         body: full_form.to_json})
     (JSON.parse request.to_s)
   end
-
-  # def navigate_for_pre(item)
-  #   if item === "Active PRE"
-  #     @browser.find_element(:xpath, @@active_link).click
-  #   elsif item === "Scheduled"
-  #     @browser.find_element(:xpath, @@scheduled_link).click
-  #   elsif item === "Pending approval PRE"
-  #     @browser.find_element(:xpath, @@pending_approval_pre_link).click
-  #   end
-  # end
 
   private
 
