@@ -93,9 +93,9 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I click on back to home$/) do
-  BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
+  sleep 1
+  on(Section6Page).back_to_home_btn
   sleep 4
-  # step 'I set permit id'
 end
 
 And (/^I set permit id$/) do

@@ -46,15 +46,19 @@ module BrowserActions
     end
 
     def scroll_up(_element = nil)
-      scroll_to__element(_element)
-    rescue StandardError
-      scroll_up_by_dist
+      begin
+        scroll_to_element(_element)
+      rescue StandardError
+        scroll_up_by_dist
+      end
     end
 
     def scroll_down(_element = nil)
-      scroll_to_element(_element)
-    rescue StandardError
-      scroll_down_by_dist
+      begin
+        scroll_to_element(_element)
+      rescue StandardError
+        scroll_down_by_dist
+      end
     end
 
     def get_attribute_value(xpath)
@@ -75,7 +79,7 @@ module BrowserActions
 
     private
 
-    def scroll_to__element(_element)
+    def scroll_to_element(_element)
       $browser.action.move_to(_element).perform
     end
 
