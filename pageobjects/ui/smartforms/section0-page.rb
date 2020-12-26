@@ -32,6 +32,7 @@ class Section0Page < CommonFormsPage
     BrowserActions.poll_exists_and_click(save_and_next_btn_element)
     set_selected_level2_permit(_permit)
     set_current_time
+    sleep 1
   end
 
   def select_level1_permit(_permit)
