@@ -18,7 +18,7 @@ class BypassPage < Section0Page
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][25]['value'] = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
-    update_form_pre['variables']['answers'][26]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset(@get_offset)}\",\"utcOffset\":#{@get_offset}}"
+    update_form_pre['variables']['answers'][26]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
