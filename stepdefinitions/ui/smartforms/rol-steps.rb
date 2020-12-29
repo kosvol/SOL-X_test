@@ -50,7 +50,7 @@ Then (/^I should not see extra buttons$/) do
 end
 
 Then (/^I should not see extra previous and close button$/) do
-  on(Section3APage).scroll_multiple_times(7)
+  on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
   is_equal(on(PendingStatePage).close_btn_elements.size, 1)
 end

@@ -18,7 +18,7 @@ module BrowserActions
       # wifi_on_off = `adb shell settings get global wifi_on`
       $browser.toggle_wifi# if wifi_on_off.strip === "1"
       p "WIFI turned on/off"
-      sleep 8
+      sleep 9
     end
 
     ### end
