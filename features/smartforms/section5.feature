@@ -62,7 +62,9 @@ Feature: Section5
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
     And I select 2 role from list
-    And I sign on both roles with same user
+    And I sign on role
+    Then I should see signed role details with 9015 pin
+    When I sign on next role with same user
     Then I should see signed role details with 9015 pin
 
   Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
