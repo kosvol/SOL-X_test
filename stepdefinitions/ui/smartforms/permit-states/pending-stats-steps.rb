@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+Then (/^I should see Note from (.*)$/) do |_requested_from|
+  p ">> #{on(PendingStatePage).action_required_note_elements[5].text}"
+  if _requested_from === "Office"
+    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See Notes from Office")
+  elsif _requested_from === "Master"
+    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See notes from Master")
+  end
+end
+
 Then (/^I should see correct OA submission text$/) do
   on(PendingStatePage).submit_oa_btn
   sleep 1

@@ -77,12 +77,12 @@ end
 #   sleep 2
 # end
 
-And (/^I click on create EIC certification button$/) do
-  on(Section4BPage).create_eic_btn
-end
-
-And (/^I click on view EIC certification button$/) do
-  on(Section4BPage).view_eic_btn
+And (/^I click on (.*) EIC certification button$/) do |_which_type|
+  if _which_type === "create"
+    on(Section4BPage).create_eic_btn
+  elsif _which_type === "view"
+    on(Section4BPage).view_eic_btn
+  end
 end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
