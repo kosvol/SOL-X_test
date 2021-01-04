@@ -32,7 +32,7 @@ Then (/^I should see wifi restore popup display for (.*)$/) do |which_category|
   elsif which_category === "section 6"
     sleep 2
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
-    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6:Gas Testing/Equipment so other crew members will be able to access it in other devices.")
+    is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6: Gas Testing/Equipment so other crew members will be able to access it in other devices.")
   # elsif which_category === "smartform"
   #   on(Section0Page).back_arrow_element.click
   #   sleep 3 Permit 
