@@ -53,8 +53,7 @@ And ('I sleep for {int} seconds') do |sec|
 end
 
 And (/^I click on back arrow$/) do
-  on(Section0Page).back_arrow_element.click
-  sleep 2
+  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
   step 'I set permit id'
 end
 

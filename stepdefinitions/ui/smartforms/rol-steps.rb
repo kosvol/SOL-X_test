@@ -52,7 +52,8 @@ end
 Then (/^I should not see extra previous and close button$/) do
   on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
-  is_equal(on(PendingStatePage).close_btn_elements.size, 1)
+  is_equal(on(PendingStatePage).close_btn_elements.first.text, "Close")
+  is_not_visible(on(PendingStatePage).close_btn_elements.last)
 end
 
 Then (/^I should not see extra previous and save button$/) do
