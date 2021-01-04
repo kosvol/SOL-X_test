@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+Then (/^I should not see competent and issuing person sign button exists$/) do
+  on(Section3APage).scroll_multiple_times(8)
+  is_equal(on(Section5Page).sign_btn_role_elements.size,0)
+end
 
 Then (/^I (should|should not) see competent person sign button exists$/) do |_condition|
   sleep 1

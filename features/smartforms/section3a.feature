@@ -4,8 +4,6 @@ Feature: Section3ADRA
   I want to ...
   So that ...
 
-  # Scenario: Verify edit risk button
-
   Scenario: Verify permit number date and time is pre-filled in section 3a
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

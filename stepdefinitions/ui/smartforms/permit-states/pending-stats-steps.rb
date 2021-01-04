@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+Then (/^I should see correct OA submission text$/) do
+  on(PendingStatePage).submit_oa_btn
+  sleep 1
+  is_equal(on(Section3APage).total_p_elements.first.text,"The relevant authority will review this permit.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard.")
+end
+
 Then (/^I should not be able to edit DRA$/) do
   sleep 1
   step 'I click on View Edit Hazard'

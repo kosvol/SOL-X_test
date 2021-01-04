@@ -10,6 +10,10 @@ Feature: PendingUpdate
 
   # Scenario: Verify AGT can add gas reading
 
+  Scenario: Verify update note shows from Master if request update via non OA
+
+  Scenario: Verify update note shows from Office if request update via OA office
+
   # Scenario: [PTW][Pending Master Approval/Review] - Comment is not saved for the EIC when requesting the form for updates
   # Create a new PTW form (except "Rigging of Ladder");
   # Navigate to Section 4B and create the EIC;
