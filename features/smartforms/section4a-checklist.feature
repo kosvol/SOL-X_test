@@ -6,7 +6,6 @@ Feature: Section4AChecklist
 
   # Scenario: Verify user should see description of work pre-filled with what is filled in section 1
 
-  # @x11
   # Scenario: Test
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
