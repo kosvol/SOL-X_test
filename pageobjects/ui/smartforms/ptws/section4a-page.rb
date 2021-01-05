@@ -131,12 +131,12 @@ class Section4APage < Section3DPage
     ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
   end
 
-  def is_signature_pad?
-    signature_element
-    true
-  rescue StandardError
-    false
-  end
+  # def is_signature_pad?
+  #   signature_element
+  #   true
+  # rescue StandardError
+  #   false
+  # end
 
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)

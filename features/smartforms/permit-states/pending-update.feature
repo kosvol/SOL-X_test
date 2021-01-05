@@ -14,8 +14,7 @@ Feature: PendingUpdate
     And I click on Submit for Termination
     And I enter pin 9015
     And I submit permit for termination
-    And I enter pin 9015
-    And I sign on canvas
+    And I sign on canvas with 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
     And I request terminating permit to be updated
@@ -217,9 +216,6 @@ Feature: PendingUpdate
     Then I should see checklist selections fields enabled
     And I press next for 1 times
     And I should see checklist questions fields enabled
-    # When I sign on checklist with <pin> pin
-    # And I sign on canvas
-    #And I tear down created form
 
     Examples:
       | rank  | pin  |

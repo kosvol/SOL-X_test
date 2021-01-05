@@ -21,8 +21,7 @@ end
 
 And (/^I sign on listed role$/) do
   BrowserActions.scroll_click(on(Section5Page).sign_btn_role_elements.first)
-  on(PinPadPage).enter_pin(9015)
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   sleep 1
 end
 
@@ -55,8 +54,7 @@ end
 
 And (/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   step 'I set time'
 end
 
@@ -66,8 +64,7 @@ And (/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
   step 'I enter pin 9015'
   sleep 1
-  on(Section3DPage).sign_for_gas
-  
+  on(SignaturePage).sign_for_gas
   sleep 1
   on(Section3DPage).done_btn_elements.last.click
 end
@@ -103,8 +100,7 @@ end
 And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
   @@entered_pin = _pin
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I enter pin #{_pin}"
-  step 'I sign on canvas'
+  step "I sign on canvas with #{_pin} pin"
   step 'I set time'
 end
 

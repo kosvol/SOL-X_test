@@ -180,8 +180,7 @@ Feature: RiggingOfLadder
     Then I open rol permit with rank A/M and 9015 pin
     When I press next for 2 times
     And I submit permit for termination
-    And I enter pin 9015
-    And I sign on canvas
+    And I sign on canvas with 9015 pin
     And I click on back to home
     And I review termination permit with 7551 pin
     Then I should see previous and close buttons

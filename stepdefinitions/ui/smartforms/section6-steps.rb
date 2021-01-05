@@ -58,8 +58,7 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   if _approval_or_review === 'Review'
     BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
   end
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   # data collector; will evolve
   # on(Section0Page).reset_data_collector
   # @@created_permit_data = on(Section1Page).set_section1_filled_data
@@ -69,8 +68,7 @@ Then (/^I submit smoke test permit$/) do
   sleep 1
   BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
   sleep 1
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
 end
 
 And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
@@ -140,7 +138,7 @@ end
 And (/^I add all gas readings and cancel from pin screen$/) do
   on(Section6Page).add_all_gas_readings
   on(Section6Page).review_sign_btn
-  on(Section3DPage).sign_for_gas
+  on(SignaturePage).sign_for_gas
   on(Section6Page).enter_pin_and_submit_btn
   on(Section6Page).cancel_btn
 end
@@ -155,7 +153,7 @@ And (/^I add (all|only normal) gas readings$/) do |_condition|
   on(Section6Page).add_normal_gas_readings if _condition === 'only normal'
   sleep 1
   on(Section6Page).review_sign_btn
-  on(Section3DPage).sign_for_gas
+  on(SignaturePage).sign_for_gas
   on(Section6Page).enter_pin_and_submit_btn
 end
 

@@ -57,10 +57,8 @@ end
 
 Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
   on(Section8Page).sign_eic_or_issuer(_condition)
-  @@entered_pin = _pin.to_i
-  on(PinPadPage).enter_pin(@@entered_pin)
   if _condition === 'issuing authority' || _condition === 'competent person'
-    step 'I sign on canvas'
+    step "I sign on canvas with #{_pin} pin"
   end
 end
 
@@ -89,9 +87,8 @@ And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   sleep 1
   on(Section4BPage).yes_no_btn_elements[0].click
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  @@entered_pin = _pin.to_i
-  on(PinPadPage).enter_pin(@@entered_pin)
-  step 'I sign on canvas' if _condition === 'RA'
+  step "I enter pin #{_pin}"
+  on(SignaturePage).sign_and_done if _condition === 'RA'
 end
 
 And (/^I should see location (.+) stamp$/) do |_location|

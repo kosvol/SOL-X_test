@@ -75,8 +75,9 @@ And (/^I click on back arrow$/) do
   step 'I set permit id'
 end
 
-Then (/^I sign on canvas$/) do
-  on(Section3DPage).sign
+Then (/^I sign on canvas with (.*) pin$/) do |_pin|
+  step "I enter pin #{_pin}"
+  on(SignaturePage).sign_and_done
 end
 
 And ('I enter pin {int}') do |pin|
@@ -142,7 +143,6 @@ end
 
 And (/^I fill up compulsory fields$/) do
     step 'I sign on checklist with 8383 pin'
-    step 'I sign on canvas'
     step 'I press next for 1 times'
     sleep 1
     step 'I select yes to EIC'
@@ -172,7 +172,6 @@ When (/^I fill a full OA permit$/) do
   step 'I fill up section 1 with default value'
   step 'I press next for 7 times'
   step 'I sign on checklist with 9015 pin'
-  step 'I sign on canvas'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
   step 'I fill up EIC certificate'

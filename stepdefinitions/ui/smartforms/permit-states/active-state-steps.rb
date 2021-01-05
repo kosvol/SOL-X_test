@@ -79,8 +79,7 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
-  step 'I enter pin 1111'
-  step 'I sign on canvas'
+  step "I sign on canvas with 1111 pin"
 end
 
 Then (/^I should see data persisted on page 1$/) do
