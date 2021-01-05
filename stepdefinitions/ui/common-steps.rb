@@ -7,6 +7,24 @@
 #   end
 # end
 
+Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condition|
+  if _condition === 'disabled'
+    case _which_button
+    when "Add Gas"
+      is_disabled(on(Section6Page).add_gas_btn_element)
+    when "submit"
+      is_disabled(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+    when "sign"
+      is_disabled(on(Section5Page).sign_btn_role_elements.first)
+    end
+  elsif _condition === 'enabled'
+    case _which_button
+    when "sign"
+      is_enabled(on(Section5Page).sign_btn_role_elements.first)
+    end
+  end
+end
+
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end

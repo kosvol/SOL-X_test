@@ -91,14 +91,14 @@ And (/^I check non crew member checkbox$/) do
   on(Section5Page).non_crew_checkbox_elements.first.click
 end
 
-Then (/^I should see sign button (disabled|enabled)$/) do |_condition|
-  if _condition === 'disabled'
-    is_disabled(on(Section5Page).sign_btn_role_elements.first)
-  end
-  if _condition === 'enabled'
-    is_enabled(on(Section5Page).sign_btn_role_elements.first)
-  end
-end
+# Then (/^I should see sign button (disabled|enabled)$/) do |_condition|
+#   if _condition === 'disabled'
+#     is_disabled(on(Section5Page).sign_btn_role_elements.first)
+#   end
+#   if _condition === 'enabled'
+#     is_enabled(on(Section5Page).sign_btn_role_elements.first)
+#   end
+# end
 
 And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
   @@entered_pin = _pin

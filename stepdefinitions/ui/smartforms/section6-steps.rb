@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-Then (/^I should see (.*) disabled$/) do |_which_button|
-  case _which_button
-  when "Add Gas button"
-    is_disabled(on(Section6Page).add_gas_btn_element)
-  when "submit button"
-    is_disabled(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
-  end
-end
+# Then (/^I should see (.*) disabled$/) do |_which_button|
+#   case _which_button
+#   when "Add Gas button"
+#     is_disabled(on(Section6Page).add_gas_btn_element)
+#   when "submit button"
+#     is_disabled(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
+#   end
+# end
 
 Then (/^I should see gas reading copy text$/) do
   p ">> #{on(Section6Page).gas_notes_element.text}"
