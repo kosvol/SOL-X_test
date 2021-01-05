@@ -9,6 +9,7 @@ class SignaturePage < CommonFormsPage
   element(:signature, xpath: "//div[@class='signature']/img")
 
   def sign_and_done
+    sleep 1
     sign_for_gas
     BrowserActions.poll_exists_and_click(done_btn_elements.first)
   end

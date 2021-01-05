@@ -18,6 +18,7 @@ end
 Then (/^I should not be able to edit DRA$/) do
   sleep 1
   step 'I click on View Edit Hazard'
+  on(Section3APage).scroll_multiple_times(2)
   on(Section3APage).delete_btn_elements.each do |_elem|
     is_disabled(_elem)
   end

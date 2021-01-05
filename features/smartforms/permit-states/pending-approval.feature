@@ -4,6 +4,16 @@ Feature: PendingApprovalPermit
   I want to ...
   So that ...
 
+  # @skip
+  # Scenario: Verify view EIC certification exists if EIC certification form not filled
+  #   Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
+  #   And I launch sol-x portal without unlinking wearable
+  #   And I click on pending approval filter
+  #   And I click on permit for master approval
+  #   And I enter pin 1111
+  #   And I navigate to section 4b
+  #   Then I should see View EIC certification button
+
   Scenario: Verify submission text is correct after submitting to Office
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
@@ -24,9 +34,6 @@ Feature: PendingApprovalPermit
     And I select Use of non-intrinsically safe Camera permit
     And I select Use of non-intrinsically safe Camera permit for level 2
     And I fill a full OA permit
-    And I sleep for 2 seconds
-    And I click on back to home
-    And I sleep for 3 seconds
     And I click on pending approval filter
     And I click on permit for master approval
     And I enter pin 9015
@@ -34,16 +41,6 @@ Feature: PendingApprovalPermit
     Then I should not be able to edit DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification
-
-  # @skip
-  # Scenario: Verify view EIC certification exists if EIC certification form not filled
-  #   Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
-  #   And I launch sol-x portal without unlinking wearable
-  #   And I click on pending approval filter
-  #   And I click on permit for master approval
-  #   And I enter pin 1111
-  #   And I navigate to section 4b
-  #   Then I should see View EIC certification button
 
   Scenario Outline: Verify RA and checklist only creator should not be able to edit DRA and EIC when pending master approval
     Given I launch sol-x portal without unlinking wearable
