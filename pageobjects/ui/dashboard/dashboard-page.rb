@@ -68,6 +68,7 @@ class DashboardPage < WearablePage
   end
 
   def is_crew_location_detail_correct?(ui_or_service, _new_zone = nil)
+    sleep 2
     tmp = get_active_crew_details(ui_or_service, _new_zone)
     Log.instance.info("\n\n#{tmp}")
     get_ui_active_crew_details.all? do |crew|
