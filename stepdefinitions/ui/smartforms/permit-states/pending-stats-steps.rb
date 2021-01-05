@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+Then (/^I should see Note from (.*)$/) do |_requested_from|
+  p ">> #{on(PendingStatePage).action_required_note_elements[5].text}"
+  if _requested_from === "Office"
+    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See Notes from Office")
+  elsif _requested_from === "Master"
+    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See notes from Master")
+  end
+end
+
+Then (/^I should see correct OA submission text$/) do
+  on(PendingStatePage).submit_oa_btn
+  sleep 1
+  is_equal(on(Section3APage).total_p_elements.first.text,"The relevant authority will review this permit.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard.")
+end
+
 Then (/^I should not be able to edit DRA$/) do
   sleep 1
   step 'I click on View Edit Hazard'
@@ -13,7 +28,8 @@ end
 
 Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
-  poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
+  BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
+  on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section3APage).total_p_elements.size,28)
   # on(CommonFormsPage).close_btn_elements.first.click
 end
@@ -79,7 +95,6 @@ And (/^I reapprove the updated permit$/) do
   step 'I enter pin 9015'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   step 'I click on back to home'
 end

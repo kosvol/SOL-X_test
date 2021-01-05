@@ -40,7 +40,6 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin <pin>
     Then I should see PRE landing screen
-    #And I tear down created form
 
     Examples:
       | rank                      | pin  |

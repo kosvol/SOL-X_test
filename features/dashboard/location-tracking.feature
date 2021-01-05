@@ -11,7 +11,7 @@ Feature: LocationTracking
   Scenario: Verify PRE active tab is green with active PRE
     Given I launch sol-x portal
     When I submit a scheduled PRE permit
-    And I sleep for 160 seconds
+    And I sleep for 170 seconds
     Then I should see PRE tab active on dashboard
 
   Scenario: Verify inactive crew count is correct

@@ -107,10 +107,8 @@ Feature: Section4AChecklist
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
     And I sign on checklist with <pin> pin
-    And I sign on canvas
     And I set time
     Then I should see signed details
-    #And I tear down created form
 
     Examples:
       | Rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
@@ -140,9 +138,8 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     When I press next for 1 times
-    And I sign on checklist with <pin> pin
+    And I sign on checklist with invalid <pin> pin
     Then I should see not authorize error message
-    #And I tear down created form
 
     Examples:
       | Rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
@@ -173,10 +170,8 @@ Feature: Section4AChecklist
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
     And I sign on checklist with <pin> pin
-    And I sign on canvas
     And I set time
     Then I should see signed details
-    #And I tear down created form
 
     Examples:
       | Rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
@@ -192,9 +187,8 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with <pin> pin
+    And I sign on checklist with invalid <pin> pin
     Then I should see not authorize error message
-    #And I tear down created form
 
     Examples:
       | Rank   | pin  | level_one_permit               | level_two_permit      | checklist                                |
@@ -210,7 +204,6 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     And I should see permit number, date and time populated
-    #And I tear down created form
 
     Examples:
       | level_one_permit      | level_two_permit      | checklist                      |
@@ -236,7 +229,6 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated
-    #And I tear down created form
 
     Examples:
       | level_one_permit               | level_two_permit      | checklist                                |

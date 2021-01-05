@@ -10,6 +10,7 @@ class PinPadPage
   element(:error_msg, xpath: "//section[@class='pin-indicators-section']/h2")
 
   def enter_pin(pin)
+    sleep 1
     format('%04d', pin).to_s.split('').each do |num|
       index = num.to_i === 0 ? 10 : num
       p index.to_i

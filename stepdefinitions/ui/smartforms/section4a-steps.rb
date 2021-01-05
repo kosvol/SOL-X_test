@@ -29,20 +29,23 @@ end
 
 And ('I sign on section with {int} pin') do |_pin|
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  @@entered_pin = _pin
-  on(PinPadPage).enter_pin(@@entered_pin)
+  step "I enter pin #{_pin}"
 end
 
 And ('I sign on checklist with {int} pin') do |_pin|
   on(Section3APage).scroll_multiple_times(4)
   on(Section4APage).enter_pin_btn
-  @@entered_pin = _pin
-  on(PinPadPage).enter_pin(@@entered_pin)
+  step "I sign on canvas with #{_pin} pin"
+end
+
+And ('I sign on checklist with invalid {int} pin') do |_pin|
+  on(Section3APage).scroll_multiple_times(4)
+  on(Section4APage).enter_pin_btn
 end
 
 Then (/^I should see signed details$/) do
   on(Section4APage).is_signed_user_details?(@@entered_pin)
-  is_true(on(Section4APage).is_signature_pad?)
+  is_true(on(SignaturePage).is_signature_pad?)
 end
 
 Then (/^I should see permit number, date and time populated$/) do
@@ -65,7 +68,6 @@ And (/^I fill up checklist yes, no, na$/) do
   rescue StandardError
   end
   step 'I sign on checklist with 9015 pin'
-  step 'I sign on canvas'
 end
 
 And (/^I select PPE equipment$/) do

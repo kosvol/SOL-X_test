@@ -1,5 +1,5 @@
 And(/^Navigate to PRE Display$/) do
-  on(NavigationPage).tap_hamburger_menu
+  BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
   on(NavigationPage).select_nav_category("Settings")
   step 'I press the "Pump Room Display" button'
   sleep 0.5

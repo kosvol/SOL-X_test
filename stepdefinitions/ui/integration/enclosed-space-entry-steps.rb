@@ -101,6 +101,7 @@ end
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
+  sleep 1
   on(Section4BPage).view_eic_btn
   sleep 1
   tmp = on(Section4BPage).get_filled_section

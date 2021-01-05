@@ -26,7 +26,7 @@ Then (/^I should see view and termination buttons$/) do
   is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'Submit for Termination')
 end
 
-And (/^I request update for permit$/) do
+And (/^I request for update without submitting$/) do
   begin
     on(Section7Page).update_btn
   rescue StandardError
@@ -34,6 +34,10 @@ And (/^I request update for permit$/) do
   end
   sleep 1
   BrowserActions.enter_text(on(Section0Page).enter_comment_box_element, 'Test Automation')
+end
+
+And (/^I request update for permit$/) do
+  step 'I request for update without submitting'
   on(Section0Page).submit_update_btn_elements.first.click
 end
 
@@ -50,9 +54,10 @@ Then (/^I should not see extra buttons$/) do
 end
 
 Then (/^I should not see extra previous and close button$/) do
-  on(Section3APage).scroll_multiple_times(7)
+  on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
-  is_equal(on(PendingStatePage).close_btn_elements.size, 1)
+  is_equal(on(PendingStatePage).close_btn_elements.first.text, "Close")
+  is_not_visible(on(PendingStatePage).close_btn_elements.last)
 end
 
 Then (/^I should not see extra previous and save button$/) do
@@ -82,8 +87,7 @@ When (/^I put the permit to termination state/) do
   step 'I open rol permit with rank A/M and 9015 pin'
   step 'I press next for 2 times'
   on(Section0Page).submit_termination_btn_elements.first.click
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   sleep 1
   step 'I click on back to home'
 end

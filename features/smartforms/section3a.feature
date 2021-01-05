@@ -4,8 +4,6 @@ Feature: Section3ADRA
   I want to ...
   So that ...
 
-  # Scenario: Verify edit risk button
-
   Scenario: Verify permit number date and time is pre-filled in section 3a
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -15,7 +13,6 @@ Feature: Section3ADRA
     And I set maintenance during more than 2 hours
     And I navigate to section 3a
     Then I should see DRA number,Date and Time populated
-  #And I tear down created form
 
   Scenario Outline: Verify risk matrix meets criteria for low risk for without applying measure
     Given I launch sol-x portal without unlinking wearable

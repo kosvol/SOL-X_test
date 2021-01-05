@@ -3,10 +3,11 @@
 And (/^I sign DRA section 3d with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   step 'I set time'
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  @@entered_pin = _pin.to_i
-  on(PinPadPage).enter_pin(@@entered_pin)
-  sleep 1
-  step 'I sign on canvas' if _condition === 'RA'
+  # @@entered_pin = _pin.to_i
+  # on(PinPadPage).enter_pin(@@entered_pin)
+  # sleep 1
+  step "I enter pin #{_pin}"
+  on(SignaturePage).sign_and_done if _condition === 'RA'
 end
 
 And (/^I fill up section 3d$/) do

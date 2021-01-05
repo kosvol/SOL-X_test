@@ -12,7 +12,6 @@ Feature: Section2ApprovalAuthority
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 2
     Then I should see previous and next buttons
-  #And I tear down created form
 
   Scenario Outline: Verify user can see the correct approval for non-OA
     Given I launch sol-x portal without unlinking wearable
@@ -22,7 +21,6 @@ Feature: Section2ApprovalAuthority
     And I select <level_two_permit> permit for level 2
     And I navigate to section 2
     Then I should see correct approval details for non-OA
-    #And I tear down created form
 
     Examples:
       | level_one_permit                                             | level_two_permit                                                      |
@@ -54,7 +52,6 @@ Feature: Section2ApprovalAuthority
     And I set maintenance during more than 2 hours
     And I navigate to section 2
     Then I should see correct approval details for maintenance duration more than 2 hours
-    #And I tear down created form
 
     Examples:
       | level_one_permit               | level_two_permit                                                           |
@@ -85,7 +82,6 @@ Feature: Section2ApprovalAuthority
     And I set maintenance during less than 2 hours
     And I navigate to section 2
     Then I should see correct approval details for maintenance duration less than 2 hours
-    #And I tear down created form
 
     Examples:
       | level_one_permit               | level_two_permit                                                           |
@@ -115,7 +111,6 @@ Feature: Section2ApprovalAuthority
     And I select <level_two_permit> permit for level 2
     And I navigate to section 2
     Then I should see correct approval details OA <office approval> and ship approval <ship approval>
-    #And I tear down created form
 
     Examples:
       | level_one_permit                     | level_two_permit                                                                | ship approval | office approval                                                 |

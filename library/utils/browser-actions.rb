@@ -3,30 +3,36 @@
 module BrowserActions
   class << self
 
+    ### new methods
+
+    def poll_exists_and_click(_element)
+      (wait_until_is_visible(_element)) ? _element.click : poll_exists_and_click(_element)
+    end
+
+    def wait_until_is_visible(_element)
+      $wait.until { _element.exists? }
+      # sleep 1 until _element.exists?
+    end
+
     def turn_wifi_off_on
       # wifi_on_off = `adb shell settings get global wifi_on`
       $browser.toggle_wifi# if wifi_on_off.strip === "1"
       p "WIFI turned on/off"
-      sleep 8
+      sleep 9
     end
 
-    def click_element(_element)
-      sleep 1
-      _element.click
-    end
+    ### end
 
     def scroll_click(_element)
       sleep 1
-      # scroll_down
       scroll_down_by_custom_dist(100)
-      sleep 1
-      _element.click
-      sleep 1
-    rescue StandardError
-      p 'Scrolling.....'
-      scroll_down_by_custom_dist(100)
-      sleep 1
-      _element.click
+      begin
+        _element.click
+      rescue StandardError
+        p 'Scrolling.....'
+        scroll_down_by_custom_dist(100)
+        _element.click
+      end
       sleep 1
     end
 
@@ -39,20 +45,24 @@ module BrowserActions
       $browser.hide_keyboard if %w[Android].include? ENV['PLATFORM']
     end
 
-    def scroll_up(element = nil)
-      scroll_to_element(element)
-    rescue StandardError
-      scroll_up_by_dist
+    def scroll_up(_element = nil)
+      begin
+        scroll_to_element(_element)
+      rescue StandardError
+        scroll_up_by_dist
+      end
     end
 
-    def scroll_down(element = nil)
-      scroll_to_element(element)
-    rescue StandardError
-      scroll_down_by_dist
+    def scroll_down(_element = nil)
+      begin
+        scroll_to_element(_element)
+      rescue StandardError
+        scroll_down_by_dist
+      end
     end
 
     def get_attribute_value(xpath)
-      $browser.find_elementent(:xpath, xpath).attribute('value').to_s
+      $browser.find_elemente(:xpath, xpath).attribute('value').to_s
     end
 
     def get_year

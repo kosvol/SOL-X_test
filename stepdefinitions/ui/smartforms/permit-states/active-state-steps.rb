@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+Then (/^I should not see competent and issuing person sign button exists$/) do
+  on(Section3APage).scroll_multiple_times(8)
+  is_equal(on(Section5Page).sign_btn_role_elements.size,0)
+end
 
 Then (/^I (should|should not) see competent person sign button exists$/) do |_condition|
   sleep 1
@@ -75,8 +79,7 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
-  step 'I enter pin 1111'
-  step 'I sign on canvas'
+  step "I sign on canvas with 1111 pin"
 end
 
 Then (/^I should see data persisted on page 1$/) do

@@ -11,8 +11,7 @@ Feature: Section3BDRA
     And I click on Submit for Termination
     And I enter pin 9015
     And I submit permit for termination
-    And I enter pin 9015
-    And I sign on canvas
+    And I sign on canvas with 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit
@@ -22,7 +21,6 @@ Feature: Section3BDRA
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 3b
     Then I should see dra number and last assessment date populated
-  #And I tear down created form
 
   Scenario: Verify Work site inspection Yes name list display all crews
     Given I launch sol-x portal

@@ -16,7 +16,8 @@ class Section1Page < Section0Page
 
   @@maint_require_text = '//div[@id="1_subsection6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
-  @@location_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][1]/div/label"
+  
+  @@location_check_btn = "//span[contains(.,'%s')]"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
 
@@ -103,13 +104,15 @@ class Section1Page < Section0Page
   end
 
   def select_checkbox(_input, _location)
-    _elements = $browser.find_elements(:xpath, _input)
-    _elements.each do |_element|
-      if _element.text === _location
+    p ">> #{_input % [_location]}"
+    _element = $browser.find_element(:xpath, "#{_input % [_location]}")
+    p "-- #{_element.text}"
+    # _elements.each do |_element|
+      # if _element.text === _location
         BrowserActions.scroll_click(_element)
-        break
-      end
-    end
+        # break
+      # end
+    # end
   end
 
   def fill_text_area(_input, _text)

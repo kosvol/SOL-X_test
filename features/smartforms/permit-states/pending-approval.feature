@@ -4,31 +4,36 @@ Feature: PendingApprovalPermit
   I want to ...
   So that ...
 
-  Scenario Outline: Verify RA and checklist only creator should not be able to edit DRA and EIC when pending master approval
+  Scenario: Verify submission text is correct after submitting to Office
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
-    And I enter pin <creator_pin>
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill a full permit
+    And I enter pin 8383
+    And I select Use of non-intrinsically safe Camera permit
+    And I select Use of non-intrinsically safe Camera permit for level 2
+    And I fill a full OA permit
     And I click on pending approval filter
     And I click on permit for master approval
-    And I enter pin <pin>
+    And I enter pin 1111
+    And I navigate to section 6
+    Then I should see correct OA submission text
+
+  Scenario: Verify RA should not be able to edit EIC when pending master review
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new permit
+    And I enter pin 8383
+    And I select Use of non-intrinsically safe Camera permit
+    And I select Use of non-intrinsically safe Camera permit for level 2
+    And I fill a full OA permit
+    And I sleep for 2 seconds
+    And I click on back to home
+    And I sleep for 3 seconds
+    And I click on pending approval filter
+    And I click on permit for master approval
+    And I enter pin 9015
     And I navigate to section 3a
     Then I should not be able to edit DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification
-
-    Examples:
-      | rank | creator_pin | pin  |
-      | A/M  | 5718        | 9015 |
-      | 3/E  | 2523        | 4685 |
-      | PMAN | 3030        | 4421 |
-  # | A 3/E | 6727 |
-  # | 4/E   | 1311 |
-  # | A 4/E | 0703 |
-
-  # Scenario: Verify RA should not be able to edit DRA and EIC when pending master review
 
   # @skip
   # Scenario: Verify view EIC certification exists if EIC certification form not filled
@@ -39,6 +44,29 @@ Feature: PendingApprovalPermit
   #   And I enter pin 1111
   #   And I navigate to section 4b
   #   Then I should see View EIC certification button
+
+  Scenario Outline: Verify RA and checklist only creator should not be able to edit DRA and EIC when pending master approval
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new permit
+    And I enter pin <creator_pin>
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill a full enclosed workspace permit
+    And I click on pending approval filter
+    And I click on permit for master approval
+    And I enter pin <pin>
+    And I navigate to section 3a
+    Then I should not be able to edit DRA
+    When I press next for 6 times
+    Then I should not be able to edit EIC certification
+
+    Examples:
+      | rank   | creator_pin | pin  |
+      | A/M    | 5718        | 9015 |
+      | 3/E    | 2523        | 4685 |
+      | PMAN   | 3030        | 4421 |
+      | Master | 3030        | 1111 |
+
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state

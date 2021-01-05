@@ -10,11 +10,13 @@ class NavigationPage
   @@root_PRE = "//h3[contains(text(),'Pump Room Entry')]/following::a[contains(text(),'%s')]"
   @@show_more = "//button[contains(text(),'Show More')]"
 
-  def tap_hamburger_menu
-    sleep 1
-    hamburger_menu
-    sleep 1 # too fast pausing for screenshot
-  end
+  # def tap_hamburger_menu
+  #   sleep 1
+  #   hamburger_menu
+  #   sleep 1 # too fast pausing for screenshot
+  # end
+  
+  ##### to refactor
 
   def select_nav_category(_category, pre = false, show_more = false)
     unless @already_opened_show_more_for_pre
@@ -38,5 +40,10 @@ class NavigationPage
     else
       @browser.find_element(:xpath, @@root_PRE%[_category]).click
     end
+  end
+
+  def select_nav_category(_category)
+    sleep 1
+    @browser.find_element(:xpath, @@setting_link%[_category]).click
   end
 end

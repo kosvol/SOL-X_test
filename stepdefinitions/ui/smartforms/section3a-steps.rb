@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+Then (/^I should see request update comment box$/) do
+  to_exists(on(Section0Page).enter_comment_box_element)
+  is_equal(on(Section0Page).enter_comment_box_element.text,'Test Automation')
+end
+
 Then (/^I should see fields disabled$/) do
   is_equal(on(Section3APage).total_p_elements.size,58)
   is_disabled(on(Section3APage).delete_btn_elements.first)

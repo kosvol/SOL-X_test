@@ -21,8 +21,7 @@ end
 
 And (/^I sign on listed role$/) do
   BrowserActions.scroll_click(on(Section5Page).sign_btn_role_elements.first)
-  on(PinPadPage).enter_pin(9015)
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   sleep 1
 end
 
@@ -55,17 +54,17 @@ end
 
 And (/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step 'I enter pin 9015'
-  step 'I sign on canvas'
+  step "I sign on canvas with 9015 pin"
   step 'I set time'
 end
 
-And (/^I sign on both roles with same user$/) do
-  step 'I sign on role'
+And (/^I sign on next role with same user$/) do
+  # step 'I sign on role'
+  step 'I set time'
   on(Section5Page).sign_btn_role_elements.last.click
   step 'I enter pin 9015'
   sleep 1
-  on(Section3DPage).sign_for_gas
+  on(SignaturePage).sign_for_gas
   sleep 1
   on(Section3DPage).done_btn_elements.last.click
 end
@@ -89,20 +88,19 @@ And (/^I check non crew member checkbox$/) do
   on(Section5Page).non_crew_checkbox_elements.first.click
 end
 
-Then (/^I should see sign button (disabled|enabled)$/) do |_condition|
-  if _condition === 'disabled'
-    is_disabled(on(Section5Page).sign_btn_role_elements.first)
-  end
-  if _condition === 'enabled'
-    is_enabled(on(Section5Page).sign_btn_role_elements.first)
-  end
-end
+# Then (/^I should see sign button (disabled|enabled)$/) do |_condition|
+#   if _condition === 'disabled'
+#     is_disabled(on(Section5Page).sign_btn_role_elements.first)
+#   end
+#   if _condition === 'enabled'
+#     is_enabled(on(Section5Page).sign_btn_role_elements.first)
+#   end
+# end
 
 And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
   @@entered_pin = _pin
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I enter pin #{_pin}"
-  step 'I sign on canvas'
+  step "I sign on canvas with #{_pin} pin"
   step 'I set time'
 end
 

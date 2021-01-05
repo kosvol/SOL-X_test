@@ -62,7 +62,7 @@ class OAPage < Section9Page
 
     sleep 1
     p ">> #{current_day_elements.size}"
-    select_todays_date_from_calendar(2)
+    select_todays_date_from_calendar(1)
   end
 
   def set_to_date_plus_one_day(_current_date)

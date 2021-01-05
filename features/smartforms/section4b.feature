@@ -20,7 +20,6 @@ Feature: Section4BEIC
     And I click on create EIC certification button
     And I set time
     Then I should see EIC permit number, date and time populated
-  #And I tear down created form
 
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
@@ -37,7 +36,6 @@ Feature: Section4BEIC
     And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
-    #And I tear down created form
 
     Examples:
       | user         | zoneid                     | mac               | location_stamp   | level_one_permit      | level_two_permit      | checklist                      |
@@ -60,7 +58,6 @@ Feature: Section4BEIC
     And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
-    #And I tear down created form
 
     Examples:
       | user         | pin  | zoneid                     | mac               | location_stamp   | level_one_permit                | level_two_permit            | checklist                             |
@@ -85,7 +82,6 @@ Feature: Section4BEIC
     And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
-    #And I tear down created form
 
     Examples:
       | user         | zoneid                     | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
@@ -103,7 +99,6 @@ Feature: Section4BEIC
     And I press next for 2 times
     And I sign EIC section 4b with non RA pin <pin>
     Then I should see not authorize error message
-    #And I tear down created form
 
     Examples:
       | rank   | pin  | level_one_permit | level_two_permit                    | checklist                       |
@@ -135,7 +130,6 @@ Feature: Section4BEIC
     And I click on create EIC certification button
     And I sign EIC as non issuing authority with pin <pin>
     Then I should see not authorize error message
-    #And I tear down created form
 
     Examples:
       | rank           | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |
@@ -162,7 +156,6 @@ Feature: Section4BEIC
     And I click on create EIC certification button
     And I sign EIC as non competent person with pin <pin>
     Then I should see not authorize error message
-    #And I tear down created form
 
     Examples:
       | rank                       | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |

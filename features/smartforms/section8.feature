@@ -11,8 +11,7 @@ Feature: Section8
     And I click on Submit for Termination
     And I enter pin 9015
     And I submit permit for termination
-    And I enter pin 9015
-    And I sign on canvas
+    And I sign on canvas with 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
     And I update permit with Master rank and 1111 pin
@@ -127,14 +126,8 @@ Feature: Section8
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
     And I sign on checklist with 8383 pin
-    And I sign on canvas
     And I press next for 1 times
     And I fill up compulsory fields
-    # And I sign on checklist with 8383 pin
-    # And I sign on canvas
-    # And I press next for 2 times
-    # And I sleep for 1 seconds
-    # And I fill up section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -157,14 +150,8 @@ Feature: Section8
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times
     And I sign on checklist with 8383 pin
-    And I sign on canvas
     And I press next for 1 times
     And I fill up compulsory fields
-    # And I sign on checklist with 8383 pin
-    # And I sign on canvas
-    # And I press next for 2 times
-    # And I sleep for 1 seconds
-    # And I fill up section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home

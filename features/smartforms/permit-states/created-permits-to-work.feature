@@ -21,7 +21,6 @@ Feature: CreatedPermitToWork
     And I enter pin 7551
     And I navigate to section 6
     Then I should see previous and close buttons
-  #And I tear down created form
 
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
@@ -34,7 +33,6 @@ Feature: CreatedPermitToWork
     And I want to edit the newly created permit
     And I enter pin 9015
     Then I should see correct permit details
-  #And I tear down created form
 
   Scenario: Verify created permit is under Created Permit to Work
     Given I launch sol-x portal without unlinking wearable
@@ -45,7 +43,6 @@ Feature: CreatedPermitToWork
     And I click on back arrow
     And I navigate to "Created" screen
     Then I should see the newly created permit details listed on Created Permits to Work
-  #And I tear down created form
 
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
     Given I launch sol-x portal without unlinking wearable
@@ -57,7 +54,6 @@ Feature: CreatedPermitToWork
     And I navigate to "Created" screen
     And I delete the permit created
     Then I should see deleted permit deleted
-  #And I tear down created form
 
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
     Given I launch sol-x portal without unlinking wearable
@@ -126,7 +122,6 @@ Feature: CreatedPermitToWork
     Then I should see checklist questions fields enabled
     When I press next for 1 times
     And I should see eic selection fields enabled
-    #And I tear down created form
 
     Examples:
       | rank                       | pin  |
