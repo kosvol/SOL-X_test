@@ -11,7 +11,6 @@ class Section7Page < Section6Page
   button(:activate_permit_btn, xpath: "//button[contains(.,'Activate Permit To Work')]")
 
   def activate_permit
-    sign
     set_current_time
     reset_data_collector
     @@created_permit_data = set_section1_filled_data
