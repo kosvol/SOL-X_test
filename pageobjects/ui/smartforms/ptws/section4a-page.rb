@@ -5,7 +5,10 @@ require './././support/env'
 class Section4APage < Section3DPage
   include PageObject
 
+  elements(:occurrence, xpath: "(//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')])[1]/div[2]/label")
   elements(:tool_box, xpath: '//input')
+  elements(:input_type_text, xpath: "//input[@type='text']")
+  elements(:input_type_number, xpath: "//input[@type='number']")
   text_field(:equipment_used, xpath: "//input[@id='cl_enclosedSpacesEntry_srNoOfEquipmentUsed']")
   elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
@@ -59,23 +62,44 @@ class Section4APage < Section3DPage
     tmp
   end
 
+  ### hack
   def select_ppe_equipment
     begin
       ppe_btn
     rescue StandardError
-      ppe1_btn
     end
-    sleep 1
-    member_name_btn_elements.first.click
-    confirm_btn_elements.last.click
-    sleep 1
+
+    begin
+      ppe1_btn
+    rescue StandardError
+    end
+
+    begin
+      sleep 1
+      member_name_btn_elements.first.click
+      confirm_btn_elements.last.click
+      sleep 1
+    rescue StandardError
+    end
   end
 
-  def fill_textarea
-    textarea_elements.each do |text_area|
-      BrowserActions.enter_text(text_area, 'Test automation')
+  def fill_textarea(_elems,_input)
+    begin
+      _elems.each do |text_area|
+      BrowserActions.enter_text(text_area, _input)
     end
-  rescue StandardError
+    rescue StandardError
+      p "Error: #{StandardError}"
+    end
+  end
+
+  def fill_up_checkbox_inputs
+    tmp = 0
+    spacer = occurrence_elements.size
+    (0..((radio_btn_elements.size / spacer) - 1)).each do |_i|
+      radio_btn_elements[0 + tmp].click
+      tmp += spacer
+    end
   end
 
   def is_checklist_fields_disabled?
@@ -121,21 +145,14 @@ class Section4APage < Section3DPage
     (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
   end
 
-  def is_partial_signed_user_details_mapped?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp)
-    sleep 1
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-    Log.instance.info(">> #{get_current_date_format_with_offset}")
-    # Log.instance.info("UI >>#{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
-  end
-
-  # def is_signature_pad?
-  #   signature_element
-  #   true
-  # rescue StandardError
-  #   false
+  # def is_partial_signed_user_details_mapped?(_entered_pin)
+  #   BrowserActions.scroll_down(rank_and_name_stamp)
+  #   sleep 1
+  #   rank_and_name = get_user_details_by_pin(_entered_pin)
+  #   Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+  #   Log.instance.info(">> #{get_current_date_format_with_offset}")
+  #   # Log.instance.info("UI >>#{date_and_time_stamp_element.text}")
+  #   ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
   # end
 
   # ##Blue rgba(24, 144, 255, 1)

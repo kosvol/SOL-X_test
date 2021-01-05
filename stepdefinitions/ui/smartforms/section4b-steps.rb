@@ -111,7 +111,7 @@ And (/^I fill up EIC certificate$/) do
   step 'I click on create EIC certification button'
   sleep 1
   on(Section3DPage).radio_btn_elements[0].click
-  on(Section4BPage).fill_textarea
+  on(Section4BPage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
   # tmp = 0
   on(Section3DPage).radio_btn_elements[2].click #select LOTO
   sleep 1

@@ -55,7 +55,8 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I fill up section 4a
     And I press next for 1 times
-    And I fill up checklist yes, no, na
+    And I fill up checklist
+    And I sign on checklist with 9015 pin
     And I press next for 1 times
     And I select yes to EIC
     And I fill up EIC certificate
@@ -91,7 +92,8 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I fill up section 4a
     And I press next for 1 times
-    And I fill up checklist yes, no, na
+    And I fill up checklist
+    And I sign on checklist with 9015 pin
     And I press next for 1 times
     And I select yes to EIC
     And I fill up EIC certificate

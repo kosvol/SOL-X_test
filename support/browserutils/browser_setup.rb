@@ -16,10 +16,10 @@ class BrowserSetup
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
-    $wait = Selenium::WebDriver::Wait.new(:timeout => 15)
-    $browser.manage.timeouts.script_timeout = 15
+    $wait = Selenium::WebDriver::Wait.new(:timeout => 8)
+    $browser.manage.timeouts.script_timeout = 8
     # $browser.manage.timeouts.page_load = 30
-    $browser.manage.timeouts.implicit_wait = 15
+    $browser.manage.timeouts.implicit_wait = 8
     $browser
   end
 
