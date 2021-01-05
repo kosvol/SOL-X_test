@@ -5,10 +5,7 @@ end
 
 Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).ptw_id_element.text.include?('SIT/PRE/'))
-  end
-  if _condition === 'should not'
-
+    is_true(on(PumpRoomEntry).heading_text == "Section 1: Pump Room Entry Permit" )
   end
 end
 
@@ -127,6 +124,7 @@ end
 
 And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
+  @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
   step 'I enter pin 8383'
   step '(for pre) I sign on canvas'
@@ -138,7 +136,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
 end
 
 And('I activate the current PRE form') do
-  step '(for per) I navigate to "Pending approval PRE" list'
+  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin 8383'
   sleep 1
@@ -148,6 +146,7 @@ And('I activate the current PRE form') do
   sleep 1
   step '(for pre) I sign on canvas'
   step 'I press the "Done" button'
+  sleep 1
   step 'I should see the page "Permit Successfully Scheduled for Activation"'
   sleep 1
   step 'I press the "Back to Home" button'
@@ -159,7 +158,8 @@ And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|
-  on(PumpRoomEntry).reduce_time_activity(minutes)
+  status = on(PumpRoomEntry).reduce_time_activity(minutes)
+  is_equal(status['ok'], 'true')
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
@@ -170,22 +170,13 @@ And(/^I should see the table on the page with entered gas data$/) do
   pending
 end
 
-Then(/^\(for per\) I navigate to "([^"]*)" list$/) do |item|
-  if item == "Created"
-    on(NavigationPage).tap_hamburger_menu
-    @browser.find_element(:xpath, "//h3[contains(text(),'Pump Room Entry')]/following::*[contains(text(),'Created')]").click
-  else
-    # at the moment we haven't button via sandwich menu for Active PRE, Scheduled PRE, Pending Approval PER
-    on(PumpRoomEntry).navigate_for_pre(item)
-  end
-end
 
 When('I wait to activate PRE. Delay {int}') do |delay|
   sleep delay
 end
 
 Then(/^I terminate the PRE$/) do
-  step '(for per) I navigate to "Active PRE" list'
+  step 'I navigate to "Active" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Submit for Termination")
   step 'I enter pin 8383'
   step 'I press the "Terminate" button'
@@ -198,7 +189,7 @@ Then(/^I terminate the PRE$/) do
 end
 
 Then(/^I request update needed$/) do
-  step '(for per) I navigate to "Pending approval PRE" list'
+  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin 2761'
   sleep 1
@@ -212,7 +203,7 @@ Then(/^I request update needed$/) do
 end
 
 And(/^\(for pre\) I should see update needed message$/) do
-  step 'I navigate to "Updates Needed P/R Entries" screen'
+  step 'I navigate to "Updates Needed" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Edit/Update")
   step 'I enter pin 8383'
   step "I should see the text 'Comments from Approving Authority'"
@@ -221,11 +212,12 @@ end
 
 
 And(/^Get PRE id$/) do
+  @temp_id = on(PumpRoomEntry).pre_id_element.text
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
 end
 
 Then('I open the current PRE with status Pending approval. Pin: {int}') do |pin|
-  step '(for per) I navigate to "Pending approval PRE" list'
+  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin %s' % [pin]
   sleep 1

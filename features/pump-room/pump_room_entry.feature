@@ -7,20 +7,20 @@ Feature: PumpRoomEntry
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
-    Then  I navigate to "Created P/R Entries" screen
-    And I should see the label 'Created P/R Entries'
+    Then  I navigate to "Created" screen for PRE
+    And I should see the label 'Created Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Updates Needed P/R Entries" screen
-    And I should see the label 'Updates Needed P/R Entries'
+    Then  I navigate to "Updates Needed" screen in "Show More" for PRE
+    And I should see the label 'Updates Needed Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Closed P/R Entries" screen
-    And I should see the label 'Closed P/R Entries'
+    Then  I navigate to "Terminated" screen
+    And I should see the label 'Terminated Pump Room Entries'
     And I click on back arrow
 
-    Then  I navigate to "Deleted P/R Entries" screen
-    And I should see the label 'Deleted P/R Entries'
+    Then  I navigate to "Deleted" screen for PRE
+    And I should see the label 'Deleted Pump Room Entries'
     And I click on back arrow
 
 
@@ -30,8 +30,9 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     And Get PRE id
     Then I press the "Close" button
-    When I navigate to "Created P/R Entries" screen
-    And I should see the current PRE in the "Created PRE" list
+    And I getting a permanent number from indexedDB
+    And I navigate to "Created" screen for PRE
+    Then I should see the current PRE in the "Created PRE" list
 
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
@@ -82,8 +83,7 @@ Feature: PumpRoomEntry
     Then I should see the right order of elements
 
 
-
-  Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
+    Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
@@ -162,19 +162,20 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
     Then I activate the current PRE form
-    When (for per) I navigate to "Scheduled" list
+    When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
     When I wait to activate PRE. Delay 120
-    And (for per) I navigate to "Active PRE" list
+    And I navigate to "Active" screen for PRE
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
-    And I sleep for 90 seconds
     And I click on back arrow
-    When I navigate to "Closed P/R Entries" screen
+    And I sleep for 90 seconds
+    When I navigate to "Terminated" screen for PRE
     Then I should see current PRE is auto terminated
 
 
@@ -183,16 +184,22 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 1
+    And Get PRE id
     And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
     Then I activate the current PRE form
-    When (for per) I navigate to "Scheduled" list
+    And I sleep for 5 seconds
+    When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
     When I wait to activate PRE. Delay 120
-    And (for per) I navigate to "Active PRE" list
+    And I navigate to "Active" screen for PRE
     And I should see the current PRE in the "Active PRE" list
+    And I click on back arrow
+    And I sleep for 1 seconds
     Then I terminate the PRE
-    When I navigate to "Closed P/R Entries" screen
+    And I sleep for 1 seconds
+    When I navigate to "Terminated" screen for PRE
     And I should see the current PRE in the "Closed PRE" list
 
 
@@ -201,7 +208,10 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 1
+    And Get PRE id
     And (for pre) I submit permit for Officer Approval
+    And I sleep for 5 seconds
+    And I getting a permanent number from indexedDB
     Then I request update needed
     And (for pre) I should see update needed message
 
@@ -210,7 +220,10 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 1
+    And Get PRE id
     And (for pre) I submit permit for Officer Approval
+    And I sleep for 5 seconds
+    And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: 8383
     And (for pre) I should see the disabled "Updates Needed" button
 
@@ -219,7 +232,10 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 1
+    And Get PRE id
     And (for pre) I submit permit for Officer Approval
+    And I sleep for 5 seconds
+    And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
       | Master                     | 1111 |
       | Addtional Master           | 9015 |
@@ -236,14 +252,16 @@ Feature: PumpRoomEntry
       | A/B                        | 6316 |
       | O/S                        | 7669 |
       | OLR                        | 0450 |
-
-
+@xxx
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin <pin>
     Then I fill up PRE. Duration 4. Delay to activate 1
+    And Get PRE id
     And (for pre) I submit permit for Officer Approval
+    And I sleep for 5 seconds
+    And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: <pin>
     And (for pre) I should see the <condition> "Approve for Activation" button
 
@@ -265,7 +283,7 @@ Feature: PumpRoomEntry
     Then I sleep for 3 seconds
     And I should see the text 'Permit Updated'
     Then I getting a permanent number from indexedDB
-    And (for per) I navigate to "Created" list
+    And I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
 
