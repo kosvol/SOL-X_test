@@ -52,22 +52,22 @@ And (/^I should see gas reading section enabled$/) do
 end
 
 And (/^I should see gas reading section enabled in active state$/) do
-  # is_equal(on(Section6Page).gas_yes_no_elements.size,2)
-  # is_enabled(on(Section6Page).gas_last_calibration_button_element)
-  # is_enabled(on(Section6Page).gas_equipment_input_element)
-  # is_enabled(on(Section6Page).gas_sr_number_input_element)
+  is_equal(on(Section6Page).gas_yes_no_elements.size,2)
+  is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  is_enabled(on(Section6Page).gas_equipment_input_element)
+  is_enabled(on(Section6Page).gas_sr_number_input_element)
   is_enabled(on(Section6Page).add_gas_btn_element)
 end
 
-And (/^I should see Add Gas Reading button disabled$/) do
-  sleep 1
-  is_equal(on(Section6Page).gas_yes_no_elements.size,0)
-  not_to_exists(on(Section6Page).gas_last_calibration_button_element)
-  not_to_exists(on(Section6Page).gas_equipment_input_element)
-  not_to_exists(on(Section6Page).gas_sr_number_input_element)
-  # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
-  is_disabled(on(Section6Page).add_gas_btn_element)
-end
+# And (/^I should see Add Gas Reading button disabled$/) do
+#   sleep 1
+#   is_equal(on(Section6Page).gas_yes_no_elements.size,0)
+#   not_to_exists(on(Section6Page).gas_last_calibration_button_element)
+#   not_to_exists(on(Section6Page).gas_equipment_input_element)
+#   not_to_exists(on(Section6Page).gas_sr_number_input_element)
+#   # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+#   is_disabled(on(Section6Page).add_gas_btn_element)
+# end
 
 Then (/^I should see permit valid for (.+) hours$/) do |_duration|
   permit_validity_timer = on(ActiveStatePage).get_permit_validity_period(on(ActiveStatePage).get_permit_index(CommonPage.get_permit_id))
@@ -120,6 +120,6 @@ end
 
 And (/^I sign the permit for submission to active state$/) do
   on(Section7Page).activate_permit_btn
-  step 'I enter pin 1111'
+  step "I sign on canvas with 1111 pin"
   on(Section7Page).activate_permit
 end
