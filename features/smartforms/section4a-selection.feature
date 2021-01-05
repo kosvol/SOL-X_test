@@ -13,7 +13,6 @@ Feature: Section4AChecklistSelection
     And I set maintenance during more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
-    #And I tear down created form
 
     Examples:
       | level_one_permit               | level_two_permit                                                           | checklist                                |
@@ -44,7 +43,6 @@ Feature: Section4AChecklistSelection
     # And I fill up section 1 with default value
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
-    #And I tear down created form
 
     Examples:
       | level_one_permit                                             | level_two_permit                                                                | checklist                                 |

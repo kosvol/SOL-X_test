@@ -171,7 +171,6 @@ Feature: PendingUpdate
     And I update permit with 5/E rank and 7551 pin
     And I navigate to section 6
     Then I should see previous and close buttons
-  #And I tear down created form
 
   Scenario: Verify checklist creator can edit rol checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
@@ -191,7 +190,6 @@ Feature: PendingUpdate
     And I update permit with A 3/E rank and 6727 pin
     And I press next for 1 times
     And I should see rol checklist questions fields enabled
-  #And I tear down created form
 
   Scenario Outline: Verify checklist creator can edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
@@ -247,4 +245,3 @@ Feature: PendingUpdate
     And I press next for 1 times
     And I should not see checklist questions fields enabled
 # And I should not see enter pin button
-#And I tear down created form

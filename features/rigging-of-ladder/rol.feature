@@ -184,4 +184,3 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I review termination permit with 7551 pin
     Then I should see previous and close buttons
-#And I tear down created form

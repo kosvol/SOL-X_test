@@ -12,7 +12,6 @@ Feature: Section3CDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
     Then I should see dra member prefilled
-  #And I tear down created form
 
   Scenario: Verify user can select additional dra team member
     Given I launch sol-x portal
@@ -23,7 +22,6 @@ Feature: Section3CDRA
     And I navigate to section 3c
     And I add additional dra member
     Then I should see list of dra member
-  #And I tear down created form
 
   Scenario: Verify user can remove specific DRA team member via cross
     Given I launch sol-x portal
@@ -35,7 +33,6 @@ Feature: Section3CDRA
     And I add additional dra member
     And I remove one of the member via clicking on cross
     Then I should see dra member removed
-  #And I tear down created form
 
   Scenario: Verify user can remove specific DRA team member via deselecting from menu
     Given I launch sol-x portal
@@ -47,7 +44,6 @@ Feature: Section3CDRA
     And I add additional dra member
     And I remove one of the member from list
     Then I should see dra member removed
-  #And I tear down created form
 
   Scenario: Verify user can see a list of crew sorted descending order by rank
     Given I launch sol-x portal
@@ -57,7 +53,6 @@ Feature: Section3CDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
     And I should see a list of crew
-  #And I tear down created form
 
   Scenario: Verify user selection stays selected after toggling through sections
     Given I launch sol-x portal
@@ -73,4 +68,3 @@ Feature: Section3CDRA
     And I press next for 1 times
     And I press previous for 1 times
     Then I should see list of dra member
-#And I tear down created form
