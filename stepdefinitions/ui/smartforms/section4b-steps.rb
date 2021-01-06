@@ -25,13 +25,13 @@ end
 
 Then (/^I should see wifi restore popup display for (.*)$/) do |which_category|
   step 'I turn on wifi'
-  BrowserActions.wait_until_is_visible(on(Section4BPage).wifi_popup_elements[1])
+  BrowserActions.wait_until_is_visible(on(CommonFormsPage).wifi_restore_popup_element)
   if which_category === "EIC"
-    sleep 3
+    # sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Energy Isolation Certificate so other crew members will be able to access it in other devices.")
   elsif which_category === "section 6"
-    sleep 3
+    # sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6: Gas Testing/Equipment so other crew members will be able to access it in other devices.")
   # elsif which_category === "smartform"

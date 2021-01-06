@@ -12,8 +12,11 @@ class CommonFormsPage < CommonPage
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
-  elements(:wifi_popup_smartform, xpath: "//div[starts-with(@class,'OfflineInfoCard__')]")
   element(:is_dashboard_screen, xpath: "//h2[contains(.,'Crew Finder')]")
+
+  ### Wifi
+  elements(:wifi_popup_smartform, xpath: "//div[starts-with(@class,'OfflineInfoCard__')]")
+  element(:wifi_restore_popup, xpath: "//h3[contains(.,'Wi-Fi restored')]")
 
   ### buttons by text ###
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
