@@ -52,10 +52,10 @@ And (/^I should see gas reading section enabled$/) do
 end
 
 And (/^I should see gas reading section enabled in active state$/) do
-  is_equal(on(Section6Page).gas_yes_no_elements.size,2)
-  is_enabled(on(Section6Page).gas_last_calibration_button_element)
-  is_enabled(on(Section6Page).gas_equipment_input_element)
-  is_enabled(on(Section6Page).gas_sr_number_input_element)
+  # is_equal(on(Section6Page).gas_yes_no_elements.size,2)
+  # is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  # is_enabled(on(Section6Page).gas_equipment_input_element)
+  # is_enabled(on(Section6Page).gas_sr_number_input_element)
   is_enabled(on(Section6Page).add_gas_btn_element)
 end
 
