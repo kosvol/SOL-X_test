@@ -2,7 +2,7 @@ require './././support/env'
 
 class PreDisplay < PumpRoomEntry
   include PageObject
-  include GasReading
+  # include GasReading
 
   element('warning_box', xpath: "//div[starts-with(@class,'WarningBox')]")
   element('permit_status', xpath: "//*[contains(text(),'Permit')]")

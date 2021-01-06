@@ -2,7 +2,6 @@ require './././support/env'
 
 class PumpRoomEntry < Section9Page
   include PageObject
-  include GasReading
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
