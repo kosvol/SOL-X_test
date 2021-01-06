@@ -49,6 +49,7 @@ end
 And ('I sign on checklist with invalid {int} pin') do |_pin|
   on(Section3APage).scroll_multiple_times(4)
   on(Section4APage).enter_pin_btn
+  step "I enter pin #{_pin}"
 end
 
 Then (/^I should see signed details$/) do
