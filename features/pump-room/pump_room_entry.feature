@@ -87,68 +87,30 @@ Feature: PumpRoomEntry
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
     And I should see Reporting interval
 
+
+  Scenario: Verify user can add Gas Test Record with toxic gas
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new PRE
+    And I enter pin 8383
+    And I add all gas readings
+    And I enter pin 9015
+    And I set time
+    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    When I dismiss gas reader dialog box
+    Then I should see gas reading display with toxic gas
+
+  # Scenario: Verify user can add Gas Test Record without toxic gas
+  #   Given I launch sol-x portal without unlinking wearable
+  #   When I navigate to create new PRE
+  #   And I enter pin 8383
+  #   And I add only normal gas readings
+  #   And I enter pin 9015
+  #   And I set time
+  #   Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+  #   When I dismiss gas reader dialog box
+  #   Then I should see gas reading display without toxic gas
+
   @x11
-  Scenario: Verify user can add Gas Test Record
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin 8383
-    Then I press the "Add Gas Test Record" button
-    And I should see the page "Gas Test Record"
-    And (for pre) I should see the disabled "Continue" button
-    And I fill up "Gas Test Record"
-    Then (for pre) I should see the enabled "Continue" button
-    And I press the "Continue" button
-    Then I should see the page "Other Toxic Gases"
-    And (for pre) I should see the disabled "Add Toxic Gas" button
-    Then I fill up "Other Toxic Gases"
-    And (for pre) I should see the enabled "Add Toxic Gas" button
-    Then I press the "Add Toxic Gas" button
-    And I should see a new row with filled data
-    And I should be able to delete the record
-    Then I fill up "Other Toxic Gases"
-    And I press the "Add Toxic Gas" button
-    And I press the "Review & Sign" button
-    Then I should see the page "Review Your Gas Test Record"
-
-    # And I should be able to return on previous pages
-    # Then I press the "Back" button
-    # And I should see the section "Other Toxic Gases"
-    # Then I press the "Back" button
-    # And I should see the section "Gas test Record"
-    # Then I should be able to return on Review Your Gas Test Record => BUG SOL-5246
-
-    And (for pre) I should see the disabled "Enter PIN & Submit" button
-    Then (for pre) I sign on canvas
-    And (for pre) I should see the enabled "Enter PIN & Submit" button
-    And I press the "Enter PIN & Submit" button
-    And I sign on Gas Test Record with 8383 pin
-
-
-  #TThen I should see the page "Gas Test Record Successfully Submitted"
-  #Then I should "Gas Reading" table
-  #And I should see the table on the page with entered gas data
-  #Then I should not see the "Add Gas Test Record" button
-
-  Scenario: Verify PRE will be activated and auto terminated at the specified time
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    When I navigate to "Scheduled" screen for PRE
-    And I should see the current PRE in the "Scheduled" list
-    And I click on back arrow
-    When I wait to activate PRE. Delay 120
-    And I navigate to "Active" screen for PRE
-    Then I should see the current PRE in the "Active PRE" list
-    And I set the activity end time in 1 minutes
-    And I click on back arrow
-    And I sleep for 90 seconds
-    When I navigate to "Terminated" screen for PRE
-    Then I should see current PRE is auto terminated
-
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -163,14 +125,14 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
     When I wait to activate PRE. Delay 120
-    And I navigate to "Active" screen for PRE
-    And I should see the current PRE in the "Active PRE" list
-    And I click on back arrow
-    And I sleep for 1 seconds
-    Then I terminate the PRE
-    And I sleep for 1 seconds
-    When I navigate to "Terminated" screen for PRE
-    And I should see the current PRE in the "Closed PRE" list
+  # And I navigate to "Active" screen for PRE
+  # And I should see the current PRE in the "Active PRE" list
+  # And I click on back arrow
+  # And I sleep for 1 seconds
+  # Then I terminate the PRE
+  # And I sleep for 1 seconds
+  # When I navigate to "Terminated" screen for PRE
+  # And I should see the current PRE in the "Closed PRE" list
 
   Scenario: Verify Update needed text can be input and displayed after
     Given I launch sol-x portal without unlinking wearable
@@ -267,6 +229,27 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
+
+  @PRE-integration
+  Scenario: Verify PRE will be activated and auto terminated at the specified time
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    Then I fill up PRE. Duration 4. Delay to activate 2
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    Then I activate the current PRE form
+    When I navigate to "Scheduled" screen for PRE
+    And I should see the current PRE in the "Scheduled" list
+    And I click on back arrow
+    When I wait to activate PRE. Delay 120
+    And I navigate to "Active" screen for PRE
+    Then I should see the current PRE in the "Active PRE" list
+    And I set the activity end time in 1 minutes
+    And I click on back arrow
+    And I sleep for 90 seconds
+    When I navigate to "Terminated" screen for PRE
+    Then I should see current PRE is auto terminated
 
 
 

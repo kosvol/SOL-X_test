@@ -70,7 +70,8 @@ Then(/^I press the "([^"]*)" button$/) do |button|
 end
 
 And(/^I should see the page "([^"]*)"$/) do |section|
-  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", section, "text"))
+  is_true(on(PumpRoomEntry).is_text_displayed?(section))
+  # is_true(on(PumpRoomEntry).is_element_displayed?("xpath", section, "text"))
 end
 
 And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
@@ -135,21 +136,17 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
 end
 
 And('I activate the current PRE form') do
-  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
+  # step 'I click on PRE show more'
+  # step 'I click on forms show more'
+  step 'I navigate to "Pending Approval" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin 8383'
-  sleep 1
   step 'I press the "Approve for Activation" button'
-  sleep 1
   step 'I enter pin 8383'
-  sleep 1
   step '(for pre) I sign on canvas'
   step 'I press the "Done" button'
-  sleep 1
   step 'I should see the page "Permit Successfully Scheduled for Activation"'
-  sleep 1
   step 'I press the "Back to Home" button'
-  sleep 1
 end
 
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|

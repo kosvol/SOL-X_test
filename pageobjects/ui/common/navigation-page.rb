@@ -9,9 +9,8 @@ class NavigationPage
   elements(:menu_categories, xpath: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])")
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
   @@menu_categories_base = ["SmartForms","Created","Pending Approval","Updates Needed","Active","Pending Withdrawal","Withdrawn","Deleted","Created","Pending Approval","Updates Needed","Active","Scheduled","Terminated","Deleted","Settings"]
-  # @@setting_link = "//a[contains(text(),'%s')]"
+  @@which_category = "//a[contains(text(),'%s')]"
   # @@root_PRE = "//h3[contains(text(),'Pump Room Entry')]/following::a[contains(text(),'%s')]"
-  # @@show_more = "//button[contains(text(),'Show More')]"
 
   def get_menu_categories
     @@menu_categories_base
@@ -42,15 +41,27 @@ class NavigationPage
 
   def select_nav_category(_category,_which_category)
     sleep 1
-    if _which_category === "forms"
-      @browser.find_element(:xpath, @@setting_link%[_category]).click
-    elsif _which_category === "PRE"
-      category_objs = @browser.find_elements(:xpath, @@setting_link%[_category])
-      category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
+    begin
+      click_nav_category(_category,_which_category)
+    rescue
+      click_show_more(_which_category)
+      click_nav_category(_category,_which_category)
     end
   end
 
   def click_show_more(_which_category)
-    _which_category === "forms" ? show_more_elements.first.click : show_more_elements.last.click
+    _which_category === "forms" ? BrowserActions.poll_exists_and_click(show_more_elements.first) : BrowserActions.poll_exists_and_click(show_more_elements.last)
   end
+
+  private
+  
+  def click_nav_category(_category,_which_category)
+    if _which_category === "forms"
+      @browser.find_element(:xpath, @@which_category%[_category]).click
+    elsif _which_category === "PRE"
+      category_objs = @browser.find_elements(:xpath, @@which_category%[_category])
+      category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
+    end
+  end
+
 end

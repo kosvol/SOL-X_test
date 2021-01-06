@@ -22,11 +22,13 @@ class PumpRoomEntry < Section9Page
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
-
   @@pending_approval_pre_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[1]"
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
+
+  @@text_obj = "//*[contains(text(),'%s')]"
+
 
 
   def fill_up_pre(duration)
@@ -47,6 +49,7 @@ class PumpRoomEntry < Section9Page
     picker_hh = "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]" % [hh]
     picker_mm = "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]" % [mm]
 
+    sleep 1
     @browser.find_element(:xpath, picker).click
     sleep 1
     BrowserActions.scroll_down
@@ -78,37 +81,40 @@ class PumpRoomEntry < Section9Page
       elements.size === 3
     end
   end
-
-  def is_element_displayed?(by, value, like = "", fast = nil)
-    if like == "alert_text"
-      alert_text = "//div[contains(.,'%s')]"
-      value = alert_text % [value]
-    elsif like == "text"
-      any_text = "//*[contains(text(),'%s')]"
-      value = any_text % [value]
-    elsif like == "auto_terminated"
-      value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
-    elsif like == "label"
-      value = "//h3[contains(text(),'%s')]" % [value]
-    elsif like == "button"
-      value = @@button % [value]
-    end
-
-    if fast.nil?
-      @browser.find_element(by, value)#.displayed?
-      
-    else
-      js = %(return document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) % [value]
-      !@browser.execute_script(js).nil?
-    end
-  rescue StandardError
-    false
+  
+  def is_text_displayed?(_value)
+    value = @@text_obj % [_value]
+    @browser.find_element('xpath', value).displayed?
   end
+  # def is_element_displayed?(by, value, like = "", fast = nil)
+  #   if like == "alert_text"
+  #     alert_text = "//div[contains(.,'%s')]"
+  #     value = alert_text % [value]
+  #   elsif like == "text"
+  #     any_text = "//*[contains(text(),'%s')]"
+  #     value = any_text % [value]
+  #   elsif like == "auto_terminated"
+  #     value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
+  #   elsif like == "label"
+  #     value = "//h3[contains(text(),'%s')]" % [value]
+  #   elsif like == "button"
+  #     value = @@button % [value]
+  #   end
+
+  #   if fast.nil?
+  #     @browser.find_element(by, value)#.displayed?
+      
+  #   else
+  #     js = %(return document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) % [value]
+  #     !@browser.execute_script(js).nil?
+  #   end
+  # rescue StandardError
+  #   false
+  # end
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    sleep 1
-    BrowserActions.scroll_down
+    scroll_multiple_times(2)
     xpath_str = @@permit_duration % [duration]
     @browser.find_element('xpath', xpath_str).click
   end
