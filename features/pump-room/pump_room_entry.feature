@@ -7,33 +7,9 @@ Feature: PumpRoomEntry
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
-    Then  I navigate to "Created" screen for PRE
-    And I should see the label 'Created Pump Room Entries'
-    And I click on back arrow
-
-    Then  I navigate to "Updates Needed" screen in "Show More" for PRE
-    And I should see the label 'Updates Needed Pump Room Entries'
-    And I click on back arrow
-
-    Then  I navigate to "Terminated" screen
-    And I should see the label 'Terminated Pump Room Entries'
-    And I click on back arrow
-
-    Then  I navigate to "Deleted" screen for PRE
-    And I should see the label 'Deleted Pump Room Entries'
-    And I click on back arrow
-
-
-  Scenario: Verify Created PRE is displayed in Created PRE list
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin 8383
-    And Get PRE id
-    Then I press the "Close" button
-    And I getting a permanent number from indexedDB
-    And I navigate to "Created" screen for PRE
-    Then I should see the current PRE in the "Created PRE" list
-
+    When I click on PRE show more
+    And I click on forms show more
+    And I should see entire hamburger categories
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given I launch sol-x portal without unlinking wearable
@@ -74,15 +50,14 @@ Feature: PumpRoomEntry
       | O/S                        | 7669 |
       | OLR                        | 0450 |
 
-
   Scenario: Verify in the form there are all questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
     Then I should see the right order of elements
 
-
-    Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
+  @x12
+  Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
@@ -95,9 +70,8 @@ Feature: PumpRoomEntry
     Examples:
       | duration |
       | 4 hours  |
-      | 6 hours  |
-      | 8 hours  |
-
+  # | 6 hours  |
+  # | 8 hours  |
 
   Scenario: Verify user able to fill Date of Last Calibration
     Given  I launch sol-x portal without unlinking wearable
@@ -105,16 +79,15 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I select current day for field "Date of Last Calibration"
 
-
   Scenario: Verify user able to see reporting interval when YES is selected
-    Given  I launch sol-x portal without unlinking wearable
+    Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
-    And  I should see Reporting interval
+    And I should see Reporting interval
 
-
+  @x11
   Scenario: Verify user can add Gas Test Record
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -156,7 +129,6 @@ Feature: PumpRoomEntry
   #And I should see the table on the page with entered gas data
   #Then I should not see the "Add Gas Test Record" button
 
-
   Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -176,7 +148,6 @@ Feature: PumpRoomEntry
     And I sleep for 90 seconds
     When I navigate to "Terminated" screen for PRE
     Then I should see current PRE is auto terminated
-
 
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
@@ -200,7 +171,6 @@ Feature: PumpRoomEntry
     And I sleep for 1 seconds
     When I navigate to "Terminated" screen for PRE
     And I should see the current PRE in the "Closed PRE" list
-
 
   Scenario: Verify Update needed text can be input and displayed after
     Given I launch sol-x portal without unlinking wearable
@@ -251,7 +221,19 @@ Feature: PumpRoomEntry
       | A/B                        | 6316 |
       | O/S                        | 7669 |
       | OLR                        | 0450 |
-@xxx
+
+  ### later to look at
+  Scenario: Verify Created PRE is displayed in Created PRE list
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And Get PRE id
+    Then I press the "Close" button
+    And I getting a permanent number from indexedDB
+    And I navigate to "Created" screen for PRE
+    Then I should see the current PRE in the "Created PRE" list
+
+  @xxx
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE

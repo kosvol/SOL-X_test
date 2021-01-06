@@ -56,13 +56,12 @@ Then(/^I click (Yes|No|N\/A) to answer the question "(.*)"$/) do |answer, questi
 end
 
 And(/^I (should|should not) see Reporting interval$/) do |_condition|
-  id = "pre_section2_reportingIntervalPeriod"
+  sleep 1
+  BrowserActions.scroll_down
   if _condition === 'should not'
-    is_false(on(PumpRoomEntry).is_element_displayed?("id", id))
-  end
-
-  if _condition === 'should'
-    is_true(on(PumpRoomEntry).is_element_displayed?("id", id))
+    not_to_exists(on(PumpRoomEntry).reporting_interval_element)
+  elsif _condition === 'should'
+    to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
 
