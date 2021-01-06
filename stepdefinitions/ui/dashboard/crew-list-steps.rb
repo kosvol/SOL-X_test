@@ -90,11 +90,6 @@ Then (/^I should see duplicate crew error message$/) do
   is_equal('Unable to add crew to the crew list. Please enter a correct Crew ID.', on(CrewListPage).duplicate_crew_element.text)
 end
 
-Then (/^I should see Retrieve My Data button disabled$/) do
-  on(CrewListPage).add_new_crew_btn
-  is_disabled(on(CrewListPage).retrieve_data_btn_element)
-end
-
 And (/^I add crew$/) do
   on(CrewListPage).add_new_crew_btn
   on(CrewListPage).crew_id = 'Automation_User_001'

@@ -1,12 +1,4 @@
 # frozen_string_literal: true
-# Then (/^I should see (.*) disabled$/) do |_which_button|
-#   case _which_button
-#   when "Add Gas button"
-#     is_disabled(on(Section6Page).add_gas_btn_element)
-#   when "submit button"
-#     is_disabled(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
-#   end
-# end
 
 Then (/^I should see gas reading copy text$/) do
   p ">> #{on(Section6Page).gas_notes_element.text}"
@@ -193,11 +185,6 @@ And (/^I am able to delete toxic gas inputs$/) do
   on(Section6Page).remove_toxic_btn
   sleep 1
   is_equal(on(Section6Page).toxic_gas_reading_elements.size, 0)
-end
-
-And (/^I should see submit button enabled$/) do
-  step 'I dismiss gas reader dialog box'
-  is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
 end
 
 And (/^I dismiss gas reader dialog box$/) do

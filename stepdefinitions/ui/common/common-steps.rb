@@ -11,9 +11,9 @@ And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
-Then (/^I should map to partial sign details$/) do
-  is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
-end
+# Then (/^I should map to partial sign details$/) do
+#   is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
+# end
 
 Then (/^I should see display texts match for section1$/) do
   on(Section0Page).labels_scrapper_elements.each do |elem|

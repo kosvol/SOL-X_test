@@ -27,10 +27,11 @@ Then (/^I should see wifi restore popup display for (.*)$/) do |which_category|
   step 'I turn on wifi'
   BrowserActions.wait_until_is_visible(on(Section4BPage).wifi_popup_elements[1])
   if which_category === "EIC"
+    sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Energy Isolation Certificate so other crew members will be able to access it in other devices.")
   elsif which_category === "section 6"
-    sleep 2
+    sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6: Gas Testing/Equipment so other crew members will be able to access it in other devices.")
   # elsif which_category === "smartform"
@@ -111,7 +112,7 @@ And (/^I fill up EIC certificate$/) do
   step 'I click on create EIC certification button'
   sleep 1
   on(Section3DPage).radio_btn_elements[0].click
-  on(Section4BPage).fill_textarea
+  on(Section4BPage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
   # tmp = 0
   on(Section3DPage).radio_btn_elements[2].click #select LOTO
   sleep 1

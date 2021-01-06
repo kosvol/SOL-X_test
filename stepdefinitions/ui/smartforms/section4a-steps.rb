@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+And (/^I fill up checklist$/) do
+  on(Section4APage).fill_up_checkbox_inputs
+  on(Section4APage).fill_textarea(on(Section4APage).input_type_text_elements,'Test automation')
+  on(Section4APage).fill_textarea(on(Section4APage).input_type_number_elements,1)
+  on(Section4APage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
+  step 'I select PPE equipment'
+end
+
 And (/^I fill up section 4a$/) do
   sleep 1
   on(Section4APage).tool_box_elements.first.click
@@ -27,10 +35,10 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-And ('I sign on section with {int} pin') do |_pin|
-  BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  step "I enter pin #{_pin}"
-end
+# And ('I sign on section with {int} pin') do |_pin|
+#   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
+#   step "I enter pin #{_pin}"
+# end
 
 And ('I sign on checklist with {int} pin') do |_pin|
   on(Section3APage).scroll_multiple_times(4)
@@ -41,6 +49,7 @@ end
 And ('I sign on checklist with invalid {int} pin') do |_pin|
   on(Section3APage).scroll_multiple_times(4)
   on(Section4APage).enter_pin_btn
+  step "I enter pin #{_pin}"
 end
 
 Then (/^I should see signed details$/) do
@@ -53,22 +62,10 @@ Then (/^I should see permit number, date and time populated$/) do
   is_true(on(Section4APage).is_checklist_details_prepopulated?)
 end
 
-And (/^I fill up checklist yes, no, na$/) do
-  tmp = 0
-
-  (0..((on(Section3DPage).radio_btn_elements.size / 3) - 1)).each do |_i|
-    on(Section3DPage).radio_btn_elements[0 + tmp].click
-    # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp, 2 + tmp].sample].click
-    tmp += 3
-  end
-  begin
-    on(Section4APage).fill_textarea
-    on(Section4APage).equipment_used = '1234'
-    on(Section4APage).interval = '1'
-  rescue StandardError
-  end
-  step 'I sign on checklist with 9015 pin'
-end
+# And (/^I fill up checklist yes, no, na$/) do
+#   step 'I fill up checklist'
+#   step 'I sign on checklist with 9015 pin'
+# end
 
 And (/^I select PPE equipment$/) do
   BrowserActions.scroll_up
