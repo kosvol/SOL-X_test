@@ -10,6 +10,7 @@ class PumpRoomEntry < Section9Page
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
+  element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
@@ -17,7 +18,6 @@ class PumpRoomEntry < Section9Page
 
   @@text_areas = '//textarea'
   @@permit_duration = "//button[contains(text(),'%s')]"
-  @@button = "//span[contains(text(),'%s')]//.."
 
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
@@ -28,8 +28,9 @@ class PumpRoomEntry < Section9Page
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
   @@text_obj = "//*[contains(text(),'%s')]"
-
-
+  button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
+  @@button = "//button[contains(.,'%s')]"
+  
 
   def fill_up_pre(duration)
     fill_static_pre
@@ -83,8 +84,15 @@ class PumpRoomEntry < Section9Page
   end
   
   def is_text_displayed?(_value)
-    value = @@text_obj % [_value]
-    @browser.find_element('xpath', value).displayed?
+    is_element_displayed(@@text_obj,_value)
+  end
+
+  def is_alert_text_displayed?(_value)
+    is_element_displayed("//div[contains(.,'%s')]",_value)
+  end
+  
+  def is_auto_terminated_displayed?(_value)
+    is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]",_value)
   end
   # def is_element_displayed?(by, value, like = "", fast = nil)
   #   if like == "alert_text"
@@ -94,7 +102,7 @@ class PumpRoomEntry < Section9Page
   #     any_text = "//*[contains(text(),'%s')]"
   #     value = any_text % [value]
   #   elsif like == "auto_terminated"
-  #     value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
+      # value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
   #   elsif like == "label"
   #     value = "//h3[contains(text(),'%s')]" % [value]
   #   elsif like == "button"
@@ -168,6 +176,16 @@ class PumpRoomEntry < Section9Page
   end
 
   private
+
+  def is_element_displayed(_xpath,_value)
+    begin
+      alert_text = "//div[contains(.,'%s')]"
+      value = alert_text % [_value]
+      @browser.find_element('xpath', value).displayed?
+    rescue
+      false
+    end
+  end
 
   def get_current_time
       @which_json = 'ship-local-time/base-get-current-time'

@@ -6,7 +6,7 @@ Feature: CreatedPermitToWork
 
   Scenario: Verify correct total list of created permit
     Given I launch sol-x portal without unlinking wearable
-    When I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     Then I should see the total permits in CREATED state match backend results
 
   Scenario: Verify section 6 buttons display are correct
@@ -16,7 +16,7 @@ Feature: CreatedPermitToWork
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
     And I enter pin 7551
     And I navigate to section 6
@@ -29,7 +29,7 @@ Feature: CreatedPermitToWork
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
     And I enter pin 9015
     Then I should see correct permit details
@@ -41,7 +41,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     Then I should see the newly created permit details listed on Created Permits to Work
 
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
@@ -51,7 +51,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I delete the permit created
     Then I should see deleted permit deleted
 
@@ -62,7 +62,7 @@ Feature: CreatedPermitToWork
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I edit ptw with rank <rank> and <pin> pin
     Then I should see EIC section with fields enabled
 
@@ -83,7 +83,7 @@ Feature: CreatedPermitToWork
     And I press the Yes button to enable gas testing
     And I click on back arrow
     And I sleep for 3 seconds
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 6
     And I sleep for 1 seconds
@@ -114,7 +114,7 @@ Feature: CreatedPermitToWork
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I click on back arrow
-    And I navigate to "Created" screen
+    When I navigate to "Created" screen for forms
     And I edit ptw with rank <rank> and <pin> pin
     And I navigate to section 4a
     Then I should see checklist selections fields enabled

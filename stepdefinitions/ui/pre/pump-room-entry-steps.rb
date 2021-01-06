@@ -10,7 +10,6 @@ Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
 end
 
 Then(/^I should see the right order of elements$/) do
-
   base_data = YAML.load_file("data/pre/pump-room-entries.yml")['questions']
   on(PumpRoomEntry).form_structure_elements.each_with_index do |_element,_index|
     is_equal(_element.text,base_data[_index])
@@ -19,11 +18,11 @@ end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", alert, "alert_text"))
+    is_true(on(PumpRoomEntry).is_alert_text_displayed?(alert))
   end
 
   if _condition === 'should not'
-    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", alert, "alert_text"))
+    is_false(on(PumpRoomEntry).is_alert_text_displayed?(alert))
   end
 end
 
@@ -69,13 +68,8 @@ Then(/^I press the "([^"]*)" button$/) do |button|
   on(PumpRoomEntry).press_the_button(button)
 end
 
-And(/^I should see the page "([^"]*)"$/) do |section|
-  is_true(on(PumpRoomEntry).is_text_displayed?(section))
-  # is_true(on(PumpRoomEntry).is_element_displayed?("xpath", section, "text"))
-end
-
-And (/^I should see the (text|label) '([^"]*)'$/) do |like, text|
-  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", text, like))
+And (/^I should see the (text|label|page) '([^"]*)'$/) do |like, text|
+  is_true(on(PumpRoomEntry).is_text_displayed?(text))
 end
 
 And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
@@ -92,28 +86,13 @@ And('I fill up {string}') do |section|
   on(PumpRoomEntry).fill_up_section(section)
 end
 
-And(/^I should see a new row with filled data$/) do
-  #is_true(on(PumpRoomEntry).how_many_rows == 1)
-  is_equal(on(PumpRoomEntry).toxic_gas_rows_elements.size, 1.to_s)
-end
-
-And(/^I should be able to delete the record$/) do
-  on(PumpRoomEntry).toxic_gas_del_row
-  is_equal(on(PumpRoomEntry).toxic_gas_rows, 0)
-end
+# And(/^I should be able to delete the record$/) do
+#   on(PumpRoomEntry).toxic_gas_del_row
+#   is_equal(on(PumpRoomEntry).toxic_gas_rows, 0)
+# end
 
 Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
-end
-
-
-And('I sign on Gas Test Record with {int} pin') do |_pin|
-  on(PinPadPage).enter_pin(_pin)
-  sleep 1
-  step "I should see the text 'Gas Test Record Successfully Submitted'"
-  sleep 1
-  step 'I press the "Done" button'
-  sleep 1
 end
 
 Then('I fill up PRE. Duration {int}. Delay to activate {int}') do |_duration, delay|
@@ -126,31 +105,26 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
-  step 'I enter pin 8383'
-  step '(for pre) I sign on canvas'
-  step 'I press the "Done" button'
+  step "I sign on canvas with 8383 pin"
   sleep 1
-  step 'I should see the page "Successfully Submitted"'
+  step "I should see the page 'Successfully Submitted'"
   sleep 1
   step 'I press the "Back to Home" button'
 end
 
 And('I activate the current PRE form') do
-  # step 'I click on PRE show more'
-  # step 'I click on forms show more'
-  step 'I navigate to "Pending Approval" screen for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
-  step 'I enter pin 8383'
+  step 'I open the current PRE with status Pending approval. Pin: 8383'
   step 'I press the "Approve for Activation" button'
-  step 'I enter pin 8383'
-  step '(for pre) I sign on canvas'
-  step 'I press the "Done" button'
-  step 'I should see the page "Permit Successfully Scheduled for Activation"'
+  step "I sign on canvas with 8383 pin"
+  sleep 1
+  step "I should see the page 'Permit Successfully Scheduled for Activation'"
   step 'I press the "Back to Home" button'
 end
 
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
-  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "text"))
+  p "PRE ID: #{@@pre_number}"
+  step "I should see the text '#{@@pre_number}'"
+  # is_true(on(PumpRoomEntry).is_text_displayed?(@@pre_number))
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|
@@ -159,16 +133,7 @@ And('I set the activity end time in {int} minutes') do |minutes|
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
-  is_true(on(PumpRoomEntry).is_element_displayed?("xpath", @@pre_number, "auto_terminated"))
-end
-
-And(/^I should see the table on the page with entered gas data$/) do
-  pending
-end
-
-
-When('I wait to activate PRE. Delay {int}') do |delay|
-  sleep delay
+  is_true(on(PumpRoomEntry).is_auto_terminated_displayed?(@@pre_number))
 end
 
 Then(/^I terminate the PRE$/) do
@@ -176,23 +141,15 @@ Then(/^I terminate the PRE$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Submit for Termination")
   step 'I enter pin 8383'
   step 'I press the "Terminate" button'
-  step 'I enter pin 8383'
-  step '(for pre) I sign on canvas'
-  step 'I press the "Done" button'
+  step "I sign on canvas with 8383 pin"
   step "I should see the text 'Permit Has Been Closed'"
   sleep 1
   step 'I press the "Back to Home" button'
 end
 
 Then(/^I request update needed$/) do
-  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
-  step 'I enter pin 2761'
-  sleep 1
-  step 'I press the "Updates Needed" button'
-  on(PumpRoomEntry).fill_text_input("id", "updatesNeededComment", "Auto test. Update Needed")
-  step 'I press the "Submit" button'
-  sleep 1
+  step 'I open the current PRE with status Pending approval. Pin: 2761'
+  step 'I request update for permit'
   step "I should see the text 'Your Updates Have Been Successfully Requested'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -203,7 +160,7 @@ And(/^\(for pre\) I should see update needed message$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Edit/Update")
   step 'I enter pin 8383'
   step "I should see the text 'Comments from Approving Authority'"
-  step "I should see the text 'Auto test. Update Needed'"
+  step "I should see the text 'Test Automation'"
 end
 
 
@@ -213,7 +170,7 @@ And(/^Get PRE id$/) do
 end
 
 Then('I open the current PRE with status Pending approval. Pin: {int}') do |pin|
-  step 'I navigate to "Pending Approval" screen in "Show More" for PRE'
+  step 'I navigate to "Pending Approval" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin %s' % [pin]
   sleep 1
@@ -225,19 +182,17 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
     pin = role[1]
     p role
     step 'I open the current PRE with status Pending approval. Pin: %s' % [pin]
-    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", "Approve for Activation", "button", true))
-    is_false(on(PumpRoomEntry).is_element_displayed?("xpath", "Updates Needed", "button", true))
-
-    is_true(on(PumpRoomEntry).is_element_displayed?("xpath", "Close", "button", true))
+    on(CommonFormsPage).scroll_multiple_times(20)
+    not_to_exists(on(PumpRoomEntry).approve_activation_element)
+    not_to_exists(on(Section7Page).update_btn_element)
+    is_equal(on(CommonFormsPage).close_btn_elements.size,1)
     step 'I click on back arrow'
   end
 end
 
-
 And(/^I get a temporary number and writing it down$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   is_equal(@temp_id.include?("TEMP"), true)
-
   on(PumpRoomEntry).reasonForEntry_element.send_keys(@temp_id)
   step 'I press the "Save" button'
   sleep 1

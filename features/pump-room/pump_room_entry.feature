@@ -1,5 +1,4 @@
 @Pump-Room-Entry
-@test_master_branch
 Feature: PumpRoomEntry
   As a ...
   I want to ...
@@ -56,7 +55,6 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I should see the right order of elements
 
-  @x12
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -70,8 +68,8 @@ Feature: PumpRoomEntry
     Examples:
       | duration |
       | 4 hours  |
-  # | 6 hours  |
-  # | 8 hours  |
+      | 6 hours  |
+      | 8 hours  |
 
   Scenario: Verify user able to fill Date of Last Calibration
     Given  I launch sol-x portal without unlinking wearable
@@ -86,7 +84,6 @@ Feature: PumpRoomEntry
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
     And I should see Reporting interval
-
 
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given I launch sol-x portal without unlinking wearable
@@ -110,7 +107,6 @@ Feature: PumpRoomEntry
   #   When I dismiss gas reader dialog box
   #   Then I should see gas reading display without toxic gas
 
-  @x11
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -124,15 +120,13 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    When I wait to activate PRE. Delay 120
-  # And I navigate to "Active" screen for PRE
-  # And I should see the current PRE in the "Active PRE" list
-  # And I click on back arrow
-  # And I sleep for 1 seconds
-  # Then I terminate the PRE
-  # And I sleep for 1 seconds
-  # When I navigate to "Terminated" screen for PRE
-  # And I should see the current PRE in the "Closed PRE" list
+    And I sleep for 120 seconds
+    And I navigate to "Active" screen for PRE
+    And I should see the current PRE in the "Active PRE" list
+    And I click on back arrow
+    Then I terminate the PRE
+    When I navigate to "Terminated" screen for PRE
+    And I should see the current PRE in the "Closed PRE" list
 
   Scenario: Verify Update needed text can be input and displayed after
     Given I launch sol-x portal without unlinking wearable
@@ -176,15 +170,14 @@ Feature: PumpRoomEntry
       | Additional Second Engineer | 3030 |
       | D/C                        | 2317 |
       | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
+      # | A 3/E                      | 6727 |
       | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
+      # | A 4/E                      | 0703 |
       | BOS                        | 1018 |
-      | A/B                        | 6316 |
+      # | A/B                        | 6316 |
       | O/S                        | 7669 |
-      | OLR                        | 0450 |
+  # | OLR                        | 0450 |
 
-  ### later to look at
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -195,7 +188,6 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     Then I should see the current PRE in the "Created PRE" list
 
-  @xxx
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -217,7 +209,6 @@ Feature: PumpRoomEntry
       | 3/O                       | 0159 | disabled  |
       | A 3/O                     | 2674 | disabled  |
 
-  @indexedDB
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -230,7 +221,7 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
 
-  @PRE-integration
+  @x11
   Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
@@ -242,7 +233,7 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    When I wait to activate PRE. Delay 120
+    And I sleep for 120 seconds
     And I navigate to "Active" screen for PRE
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
