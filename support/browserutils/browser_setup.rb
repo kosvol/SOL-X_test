@@ -83,7 +83,7 @@ class BrowserSetup
           automationName: 'UiAutomator2',
           newCommandTimeout: 50000,
           adbExecTimeout: 500000,
-          skipUnlock: true,
+          skipUnlock: false,
           unlockType: 'pin',
           unlockKey: '1111',
           skipLogcatCapture: true,
