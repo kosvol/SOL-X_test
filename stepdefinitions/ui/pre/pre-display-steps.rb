@@ -39,7 +39,7 @@ Then (/^I should see (green|red) background color$/) do |condition|
 end
 
 And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
-  sleep 1
+  sleep 2
   is_equal(on(PreDisplay).permit_status_element.text, status)
 end
 
