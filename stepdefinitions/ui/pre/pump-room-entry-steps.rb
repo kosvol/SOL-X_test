@@ -42,11 +42,11 @@ end
 
 
 Then(/^I select current day for field "([^"]*)"$/) do |button|
-  on(PumpRoomEntry).last_calibration_btn
+  on(PumpRoomEntry).gas_last_calibration_button
   sleep 1
   on(PumpRoomEntry).current_day_button_btn
   sleep 1
-  is_true(on(PumpRoomEntry).last_calibration_btn_element.text == Time.now.strftime('%d/%b/%Y'))
+  is_true(on(PumpRoomEntry).gas_last_calibration_button_element.text == Time.now.strftime('%d/%b/%Y'))
 end
 
 
@@ -106,7 +106,6 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
   step "I sign on canvas with 8383 pin"
-  sleep 1
   step "I should see the page 'Successfully Submitted'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -116,8 +115,8 @@ And('I activate the current PRE form') do
   step 'I open the current PRE with status Pending approval. Pin: 8383'
   step 'I press the "Approve for Activation" button'
   step "I sign on canvas with 8383 pin"
-  sleep 1
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
+  sleep 1
   step 'I press the "Back to Home" button'
 end
 

@@ -6,7 +6,8 @@ Feature: PumpRoomEntry
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
-    When I click on PRE show more
+    When I open hamburger menu
+    And I click on PRE show more
     And I click on forms show more
     And I should see entire hamburger categories
 
@@ -221,7 +222,6 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
 
-  @x11
   Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE

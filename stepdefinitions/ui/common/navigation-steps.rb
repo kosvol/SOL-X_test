@@ -4,13 +4,16 @@ And (/^I should see entire hamburger categories$/) do
   end
 end
 
-And (/^I click on (.*) show more$/) do |_which_category|
+And (/^I open hamburger menu$/) do
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+end
+
+And (/^I click on (.*) show more$/) do |_which_category|
   on(NavigationPage).click_show_more(_which_category)
 end
 
 Then (/^I navigate to "(.*)" screen for (.*)$/) do |_which_section,_which_category|
-  BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+  step 'I open hamburger menu'
   on(NavigationPage).select_nav_category(_which_section,_which_category)
   sleep 1
 end
