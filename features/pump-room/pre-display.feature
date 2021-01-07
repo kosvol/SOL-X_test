@@ -6,7 +6,7 @@ Feature: PumpRoomEntry
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable
-    And Navigate to PRE Display
+    And I navigate to PRE Display
     And I enter pin <pin>
     Then I should see not authorize error message
 
@@ -29,10 +29,9 @@ Feature: PumpRoomEntry
       | O/S                        | 7669 |
       | OLR                        | 0450 |
 
-
   Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable
-    And Navigate to PRE Display
+    And I navigate to PRE Display
     And I enter pin <pin>
     Then I should see the label 'Pump Room Entry Display'
 
@@ -43,16 +42,16 @@ Feature: PumpRoomEntry
       | Chief Engineer  | 8248 |
       | Second Engineer | 2523 |
 
-
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
+    When I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    And I fill up PRE. Duration 4. Delay to activate 1
     And (for pre) I submit permit for Officer Approval
-    When I activate the current PRE form
-    And I wait to activate PRE. Delay 120
-    Then Navigate to PRE Display
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 10 seconds
+    And I navigate to PRE Display
     And I enter pin 8383
     And I should see Permit Activated PRE status on screen
     And I should see green background color
@@ -60,10 +59,9 @@ Feature: PumpRoomEntry
     And (for pred) I should see the enabled "Entry Log" button
     And (for pred) I should see the enabled "Permit" button
     And (for pred) I should see warning box for activated status
-    Then I press the "Entry Log" button
     And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
     Then I set the activity end time in 1 minutes
-    And I sleep for 90 seconds
+    And I sleep for 120 seconds
     And I should see red background color
     And I should see Permit Terminated PRE status on screen
     And (for pred) I should see the enabled "Home" button

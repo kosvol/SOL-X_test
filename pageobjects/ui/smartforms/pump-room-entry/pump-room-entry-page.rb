@@ -26,10 +26,13 @@ class PumpRoomEntry < Section9Page
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
+  ### gx
   @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
+  element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
+  element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
   @@button = "//button[contains(.,'%s')]"
-  
+  ### end
 
   def fill_up_pre(duration)
     fill_static_pre

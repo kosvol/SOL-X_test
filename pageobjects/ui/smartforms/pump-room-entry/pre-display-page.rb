@@ -4,13 +4,10 @@ class PreDisplay < PumpRoomEntry
   include PageObject
   # include GasReading
 
-  element('warning_box', xpath: "//div[starts-with(@class,'WarningBox')]")
-  element('permit_status', xpath: "//*[contains(text(),'Permit')]")
-  element('info_gas_testing_is_missing', xpath: "//div[starts-with(@class,'GasTesting')]")
+  element(:warning_box, xpath: "//div[starts-with(@aria-label,'create-entry-record')]/div/div")
+  element(:permit_status, xpath: "//*[contains(text(),'Permit')]")
+  elements(:info_gas_testing_is_missing, xpath: "//div[starts-with(@class,'GasTesting')]/*")
   elements(:pre_structure_on_pred, xpath: "//div/*[local-name()='h3' or (local-name()='span'  and not(contains(text(),'LT')))]")
-
-  #@browser.find_element(:xpath, "//div[starts-with(@class,'WarningBox')]").text
-
   @@button_li = "//span[contains(text(),'%s')]/ancestor::li"  #home, entry log, permit
 
 
