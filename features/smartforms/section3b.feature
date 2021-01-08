@@ -10,6 +10,7 @@ Feature: Section3BDRA
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin 9015
+    And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with 9015 pin
     And I click on back to home

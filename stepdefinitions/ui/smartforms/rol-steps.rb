@@ -57,12 +57,7 @@ Then (/^I should not see extra previous and close button$/) do
   on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
   is_equal(on(PendingStatePage).close_btn_elements.first.text, "Close")
-  begin
-    is_equal(on(PendingStatePage).close_btn_elements.size, 1)
-  rescue
-    is_equal(on(PendingStatePage).close_btn_elements.size, 2)
-  end
-  # is_not_visible(on(PendingStatePage).close_btn_elements.last)
+  is_equal(on(PendingStatePage).close_btn_elements.size, 1)
 end
 
 Then (/^I should not see extra previous and save button$/) do
@@ -83,7 +78,6 @@ Then (/^I should not see permit duration selectable$/) do
 end
 
 And (/^I submit permit for termination$/) do
-  step 'I navigate to section 8' #to remove
   on(Section0Page).submit_termination_btn_elements.first.click
 end
 

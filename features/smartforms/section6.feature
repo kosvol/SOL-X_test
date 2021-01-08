@@ -165,6 +165,20 @@ Feature: Section6
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
     Then I should see master approval button only
+    And I should not see extra previous and save button
+
+    Examples:
+      | level_one_permit | level_two_permit                    | checklist                       |
+      | Hot Work         | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
+
+  Scenario Outline: Verify non-OA ptw display submit for master approval on button
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select <level_one_permit> permit
+    And I select <level_two_permit> permit for level 2
+    And I navigate to section 6
+    Then I should see master approval button only
 
     Examples:
       | level_one_permit                                             | level_two_permit                                                | checklist                                                    |
@@ -234,6 +248,7 @@ Feature: Section6
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
     Then I should see master review button only
+    And I should not see extra previous and save button
 
     Examples:
       | level_one_permit                     | level_two_permit                                                                | checklist                        |

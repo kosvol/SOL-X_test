@@ -17,14 +17,13 @@ end
 
 Then (/^I should see master (approval|review) button only$/) do |_condition|
   on(Section3APage).scroll_multiple_times(2)
-  is_equal(on(Section6Page).submit_btn_elements.size, '1')
+  is_equal(on(Section6Page).submit_btn_elements.size, 1)
   if _condition === 'approval'
     is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval")
   end
   if _condition === 'review'
     is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review")
   end
-  step 'I should not see extra previous and save button'
 end
 
 Then (/^I (should|should not) see gas reader sections$/) do |_condition|
