@@ -47,10 +47,10 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1
-    And I add all gas readings
-    And I enter pin 9015
-    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
-    When I dismiss gas reader dialog box
+    # And I add all gas readings
+    # And I enter pin 9015
+    # Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    # When I dismiss gas reader dialog box
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
