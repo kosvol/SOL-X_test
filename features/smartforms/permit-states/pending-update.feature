@@ -7,6 +7,28 @@ Feature: PendingUpdate
   # Scenario: Verify all sections fields are enabled when editing from pending approval state for RA
   # Scenario: Verify AGT can add gas reading
 
+  Scenario: SOL-4773 Verify submit for master approval button is enabled
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit with 5/E rank and 9015 pin
+    And I navigate to section 6
+    Then I should see submit button enabled
+
   Scenario: Verify section 6 Add Gas button should be disabled via pending termination state
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
