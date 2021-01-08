@@ -68,8 +68,8 @@ And (/^I sign on next role with same user$/) do
   on(Section3DPage).done_btn_elements.last.click
 end
 
-Then (/^I should see signed role details with (.*) pin$/) do |_pin|
-  is_true(on(Section5Page).is_role_signed_user_details?(_pin))
+Then (/^I should see (.*) signed role details with (.*) pin$/) do |_which_role,_pin|
+  is_true(on(Section5Page).is_role_signed_user_details?(_which_role,_pin))
 end
 
 And (/^I fill up non crew details$/) do

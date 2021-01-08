@@ -52,7 +52,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I sign on role
-    Then I should see signed role details with 9015 pin
+    Then I should see first signed role details with 9015 pin
 
   Scenario: Verify same user can sign for multiple roles
     Given I launch sol-x portal
@@ -63,9 +63,9 @@ Feature: Section5
     And I navigate to section 5
     And I select 2 role from list
     And I sign on role
-    Then I should see signed role details with 9015 pin
+    Then I should see first signed role details with 9015 pin
     When I sign on next role with same user
-    Then I should see signed role details with 9015 pin
+    Then I should see second signed role details with 9015 pin
 
   Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
     Given I launch sol-x portal
@@ -153,7 +153,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I sign on role with sponsor crew <pin> pin
-    Then I should see signed role details with <pin> pin
+    Then I should see first signed role details with <pin> pin
 
     Examples:
       | rank | pin  | supervized        |

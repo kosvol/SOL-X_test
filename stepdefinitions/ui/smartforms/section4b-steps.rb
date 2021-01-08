@@ -60,6 +60,8 @@ Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|
   on(Section8Page).sign_eic_or_issuer(_condition)
   if _condition === 'issuing authority' || _condition === 'competent person'
     step "I sign on canvas with #{_pin} pin"
+  elsif _condition === 'non issuing authority' || _condition === 'non competent person'
+    step "I enter pin #{_pin}"
   end
 end
 

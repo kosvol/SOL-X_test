@@ -20,13 +20,13 @@ class Section5Page < Section4BPage
 
   @@list_of_roles = ['Authorized Entrant 1', 'Authorized Entrant 2', 'Authorized Entrant 3', 'Authorized Entrant 4', 'Authorized Gas Tester', 'Diving Supervisor', 'Fire Watch 1', 'Fire Watch 2', 'Responsible for Safety', 'Standby Person', 'Task Leader', 'Task Performer 1', 'Task Performer 2', 'Task Performer 3', 'Task Performer 4', 'Task Performer - Assisting for Hot Work', 'Task Performer - Carrying out Hot Work', 'Task Performer - Diver (Underwater Operation)', 'Task Performer - Working Aloft', 'Task Performer - Working Overside']
 
-  def is_role_signed_user_details?(_entered_pin)
+  def is_role_signed_user_details?(_which_role,_entered_pin)
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
-    begin
+    if _which_role === "first"
       ((signed_details_elements.first.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_details_elements[1].text === get_current_date_and_time.to_s))
-    rescue
+    elsif _which_role === "second"
       ((signed_details_elements[2].text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_details_elements.last.text === get_current_date_and_time.to_s))
     end
   end
