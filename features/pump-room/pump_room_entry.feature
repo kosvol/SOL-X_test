@@ -233,7 +233,7 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 60 seconds
+    And I sleep for 120 seconds
     And I navigate to "Active" screen for PRE
     Then I should see the current PRE in the "Active PRE" list
     And I set the activity end time in 1 minutes
