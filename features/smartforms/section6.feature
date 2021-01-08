@@ -116,6 +116,7 @@ Feature: Section6
     And I enter pin <pin>
     And I set time
     Then I will see popup dialog with <rank_name> crew rank and name
+    And I dismiss gas reader dialog box
     And I should see submit button enabled
 
     Examples:

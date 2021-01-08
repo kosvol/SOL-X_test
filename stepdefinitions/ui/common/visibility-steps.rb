@@ -26,7 +26,6 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "sign"
       is_enabled(on(Section5Page).sign_btn_role_elements.first)
     when "submit"
-      step 'I dismiss gas reader dialog box'
       on(Section3APage).scroll_multiple_times(3)
       is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
     end
