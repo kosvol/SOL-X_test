@@ -83,6 +83,7 @@ Then (/^I should not see permit duration selectable$/) do
 end
 
 And (/^I submit permit for termination$/) do
+  step 'I navigate to section 8' #to remove
   on(Section0Page).submit_termination_btn_elements.first.click
 end
 
