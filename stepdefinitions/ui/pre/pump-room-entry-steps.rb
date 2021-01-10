@@ -184,11 +184,11 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
     on(CommonFormsPage).scroll_multiple_times(20)
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
-    begin 
+    # begin 
       is_equal(on(CommonFormsPage).close_btn_elements.size,2)
-    rescue StandardError
-      is_equal(on(CommonFormsPage).close_btn_elements.size,1)
-    end
+    # rescue StandardError
+      # is_equal(on(CommonFormsPage).close_btn_elements.size,1)
+    # end
     step 'I click on back arrow'
   end
 end
