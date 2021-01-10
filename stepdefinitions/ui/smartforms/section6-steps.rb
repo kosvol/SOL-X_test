@@ -36,7 +36,7 @@ end
 
 Then (/^I (should|should not) see gas reader sections on active permit$/) do |_condition|
   sleep 1
-  step 'I navigate to section 6'
+  # step 'I navigate to section 6'
   step "I #{_condition} see gas reader sections"
 end
 

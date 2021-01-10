@@ -11,7 +11,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with 5/E rank and 7551 pin
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I should see previous and close buttons
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user
@@ -19,7 +19,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with 5/E rank and 7551 pin
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I should not see competent person sign button exists
 
   Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
@@ -260,7 +260,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
