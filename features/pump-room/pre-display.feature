@@ -4,6 +4,25 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  # Scenario: Verify total entrant is valid after entry log approval
+
+  Scenario: Verify total entrant count is valid before entry log approval
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new PRE
+    And I enter pin 8383
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    And I submit a new entry log
+    Then I should see entrant count equal 0
+
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
@@ -47,10 +66,6 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1
-    # And I add all gas readings
-    # And I enter pin 9015
-    # Then I will see popup dialog with By A/M Atif Hayat crew rank and name
-    # When I dismiss gas reader dialog box
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form

@@ -51,16 +51,16 @@ class Section6Page < Section5Page
     @browser.find_element(:xpath, format(@@gas_added_by, _agt))
   end
 
+  def add_all_gas_readings_pre
+    normal_gas_readings("pre")
+    sleep 1
+    toxic_gas_readings
+  end
+
   def add_all_gas_readings
     normal_gas_readings
     sleep 1
-    gas_name_input_element.send_keys('Test')
-    threshold_input_element.send_keys('20')
-    reading_input_element.send_keys('1.5')
-    unit_input_element.send_keys('cc')
-    sleep 1
-    add_toxic_gas_btn
-    sleep 1
+    toxic_gas_readings
   end
 
   def add_normal_gas_readings
@@ -97,8 +97,18 @@ class Section6Page < Section5Page
 
   private
 
-  def normal_gas_readings
-    add_gas_btn
+  def toxic_gas_readings
+    gas_name_input_element.send_keys('Test')
+    threshold_input_element.send_keys('20')
+    reading_input_element.send_keys('1.5')
+    unit_input_element.send_keys('cc')
+    sleep 1
+    add_toxic_gas_btn
+    sleep 1
+  end
+
+  def normal_gas_readings(_which_permit=nil)
+    add_gas_btn if _which_permit != "pre"
     sleep 1
     o2_input_element.send_keys('1')
     hc_input_element.send_keys('2')

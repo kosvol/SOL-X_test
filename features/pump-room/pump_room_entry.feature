@@ -171,13 +171,13 @@ Feature: PumpRoomEntry
       | Additional Second Engineer | 3030 |
       | D/C                        | 2317 |
       | 3/E                        | 4685 |
-      # | A 3/E                      | 6727 |
+      | A 3/E                      | 6727 |
       | 4/E                        | 1311 |
-      # | A 4/E                      | 0703 |
+      | A 4/E                      | 0703 |
       | BOS                        | 1018 |
-      # | A/B                        | 6316 |
+      | A/B                        | 6316 |
       | O/S                        | 7669 |
-  # | OLR                        | 0450 |
+      | OLR                        | 0450 |
 
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given I launch sol-x portal without unlinking wearable
