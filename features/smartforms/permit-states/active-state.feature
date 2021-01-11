@@ -31,9 +31,9 @@ Feature: ActivePermit
     Then I should see section 6 screen
 
     Examples:
-      | level_one_permit               | level_two_permit                   |
-      | Critical Equipment Maintenance | Maintenance on Anchor              |
-      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
+      | level_one_permit               | level_two_permit      |
+      | Critical Equipment Maintenance | Maintenance on Anchor |
+  # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
@@ -62,7 +62,7 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit               | level_two_permit                   |
-      | Critical Equipment Maintenance | Maintenance on Anchor              |
+      # | Critical Equipment Maintenance | Maintenance on Anchor              |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
@@ -91,9 +91,9 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit               | level_two_permit                   |
-      | Critical Equipment Maintenance | Maintenance on Anchor              |
-      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
+      | level_one_permit               | level_two_permit      |
+      | Critical Equipment Maintenance | Maintenance on Anchor |
+  # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -122,7 +122,7 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit               | level_two_permit                   |
-      | Critical Equipment Maintenance | Maintenance on Anchor              |
+      # | Critical Equipment Maintenance | Maintenance on Anchor              |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Update Reading with RA
@@ -151,15 +151,15 @@ Feature: ActivePermit
     Then I should see section 6 screen
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
-      | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
-      | Underwater Operations                | Underwater Operation at night                                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
-      | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
+      | level_one_permit           | level_two_permit                                                                |
+      | Underwater Operations      | Underwater Operation during daytime without any simultaneous operations         |
+      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
+      # | Underwater Operations                | Underwater Operation at night                                                   |
+      # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
+      # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
+      | Hot Work                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+      # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
+      | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -188,14 +188,14 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit                     | level_two_permit                                                                |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
-      | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
+      # | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
+      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
       | Underwater Operations                | Underwater Operation at night                                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
+      # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
+      # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
       | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
       | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
-      | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
+  # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -218,25 +218,25 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                                      |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                                   |
-      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                           |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                 |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                                              |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                           |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                 |
-      | Helicopter Operations                                        | Helicopter Operation                                                  |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                           |
-      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools                 |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                    |
-      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
-      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
-      | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
-      | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
-      | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
-      | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
-      | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                                  |
+      | level_one_permit                                             | level_two_permit                                      |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                   |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)           |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                 |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                              |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels           |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                 |
+      | Helicopter Operations                                        | Helicopter Operation                                  |
+      # | Rotational Portable Power Tools                              | Use of Portable Power Tools                           |
+      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage    |
+      # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
+      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                      |
+      # | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
+      # | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
+      # | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
+      # | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
+      # | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                   |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                  |
 
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
@@ -260,25 +260,25 @@ Feature: ActivePermit
 
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                                      |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                                   |
-      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                           |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                 |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                                              |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                           |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                 |
-      | Helicopter Operations                                        | Helicopter Operation                                                  |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                           |
-      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools                 |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                    |
-      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
-      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
-      | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
-      | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
-      | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
-      | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
-      | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                                  |
+      | level_one_permit                                             | level_two_permit                                    |
+      # | Hot Work                                                     | Hot Work Level-2 in Designated Area                 |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)         |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                               |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                            |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels         |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket               |
+      | Helicopter Operations                                        | Helicopter Operation                                |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                         |
+      # | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage  |
+      # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
+      # | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
+      # | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
+      # | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
+      # | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
+      # | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
+      | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                |
 
   Scenario: Verify section 8 buttons display are correct
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
