@@ -24,6 +24,8 @@ Feature: PumpRoomEntry
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
 
+  Scenario: Verify PRE permit is terminated after terminating via dashboard popup
+
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
