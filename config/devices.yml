@@ -13,7 +13,7 @@ tablet_chrome:
   platformVersion: "8.1"
   deviceName: "4aa590af"
   app: ""
-  port: 4723
+  port: 8200
   browserName: "Chrome"
   isHeadless: true
   noReset: false
@@ -23,7 +23,7 @@ ue_tablet_chrome:
   platformVersion: "8.1"
   deviceName: "6572e096"
   app: ""
-  port: 4723
+  port: 8200
   browserName: "Chrome"
   isHeadless: true
   noReset: false
@@ -43,7 +43,7 @@ thinktouch_android_ue_dashboard_chrome:
   platformVersion: "9.1"
   deviceName: "10.100.1.72:5555"
   app: ""
-  port: 4723
+  port: 8201
   browserName: "Chrome"
   isHeadless: true
   noReset: false
