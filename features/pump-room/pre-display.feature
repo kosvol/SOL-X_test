@@ -17,7 +17,7 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
-    And I sleep for 80 seconds
+    And I sleep for 70 seconds
     And I navigate to PRE Display
     And I enter pin 8383
     And I submit a new entry log
