@@ -46,8 +46,8 @@ Feature: ActivePermit
     And I press next for 1 times
     And I fill up compulsory fields
     And I press next for 1 times
-    Then I submit permit for Master Review
-    When I click on back to home
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
@@ -106,8 +106,8 @@ Feature: ActivePermit
     And I press next for 1 times
     And I fill up compulsory fields
     And I press next for 1 times
-    Then I submit permit for Master Review
-    When I click on back to home
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
@@ -480,7 +480,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -497,6 +497,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
     Examples:
@@ -534,7 +535,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    # And I navigate to section 6
+    And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -557,6 +558,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
+    And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
     Examples:
