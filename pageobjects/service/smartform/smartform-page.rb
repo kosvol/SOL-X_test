@@ -34,15 +34,32 @@ class SmartFormDBPage
       end
     end
 
+    def acknowledge_pre_entry_log(_which_pre_entry_log)
+      entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',_which_pre_entry_log)
+      acknowledge_entry_log_payload = JSON.parse JsonUtil.read_json("pre/02.acknowledge-entry-log")
+      acknowledge_entry_log_payload['variables']['formId'] = @@pre_number
+      acknowledge_entry_log_payload['variables']['entryId'] = entry_id
+      JsonUtil.create_request_file('pre/mod_02.acknowledge-entry-log', acknowledge_entry_log_payload)
+      ServiceUtil.post_graph_ql('pre/mod_02.acknowledge-entry-log', '8383')
+    end
+
     private
+
+    def get_pre_gas_entry_log_id(_which_db,_url_map,_which_pre_entry_log)
+      _uri = get_environment_link(_which_db.to_s, _url_map.to_s)
+      _uri = _uri % [_which_pre_entry_log]
+      p "URI: #{_uri}"
+      ServiceUtil.fauxton(_uri, 'get', 'fauxton/get_forms')
+      ServiceUtil.get_response_body['records'].first['entryId']
+    end
 
     def get_environment_link(_which_db, _url_map)
       if ENV['env'] === 'sit'
         $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       elsif ENV['env'] === 'dev'
         $obj_env_yml[_which_db.to_s]['base_dev_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif ENV['env'] === 'ngrok'
-        'http://d0b02eada7fb.ngrok.io/' + $obj_env_yml[_which_db.to_s][_url_map.to_s]
+      # elsif ENV['env'] === 'ngrok'
+      #   'http://d0b02eada7fb.ngrok.io/' + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       else
         $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       end

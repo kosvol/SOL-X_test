@@ -34,6 +34,12 @@ class PumpRoomEntry < Section9Page
   @@button = "//button[contains(.,'%s')]"
   ### end
 
+  def add_all_gas_readings_pre
+    normal_gas_readings
+    sleep 1
+    toxic_gas_readings
+  end
+
   def fill_up_pre(duration)
     fill_static_pre
     select_permit_duration(duration)
