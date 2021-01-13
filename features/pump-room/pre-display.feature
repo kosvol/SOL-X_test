@@ -10,7 +10,7 @@ Feature: PumpRoomEntry
 
   # Scenario: Verify PRE entry log count on dashboard after entry log approval
 
-  Scenario: Verify historic entry logs displayed on dashboard
+  # Scenario: Verify historic entry logs displayed on dashboard
 
   Scenario: Verify PRE permit creator name display on PRED
 
@@ -28,7 +28,8 @@ Feature: PumpRoomEntry
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
-    When I navigate to create new PRE
+    When I clear gas reader entries
+    And I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1
     And I add all gas readings
@@ -46,7 +47,8 @@ Feature: PumpRoomEntry
 
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
-    When I navigate to create new PRE
+    When I clear gas reader entries
+    And I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1
     And I add all gas readings
