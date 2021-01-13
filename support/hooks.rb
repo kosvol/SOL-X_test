@@ -53,7 +53,11 @@ After do |scenario|
   rescue Exception => e
     # $extent_test.info(:fail, 'Exception Raised', e, @browser)
   end
-  @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
+  
+  begin
+    @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
+  rescue StandardError
+  end
   $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
