@@ -4,6 +4,8 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  Scenario: Verify PRE gas entry pop up don't show if no difference in gas reading
+
   Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
 
   # Scenario: Verify PRE turn No Active on dashboard after PRE permit terminated

@@ -141,6 +141,7 @@ Feature: Section8
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
     And I navigate to section 8
+    And I press next for 1 times
     Then I should see extra section8 questions for critical maintenance permit
 
   Scenario: Verify extra section8 questions shown when Work on Electrical Equipment and Circuits
@@ -166,6 +167,7 @@ Feature: Section8
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
     And I navigate to section 8
+    And I press next for 1 times
     Then I should see extra section8 questions for electrical permit
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
