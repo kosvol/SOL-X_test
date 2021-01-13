@@ -4,7 +4,24 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  @x11
   Scenario: Verify PRE gas entry pop up don't show if no difference in gas reading
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    And I submit a same entry log
+    Then I shoud not see dashboard gas reading popup
 
   Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
 

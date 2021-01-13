@@ -34,8 +34,8 @@ class SmartFormDBPage
       end
     end
 
-    def acknowledge_pre_entry_log(_which_pre_entry_log)
-      entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',_which_pre_entry_log)
+    def acknowledge_pre_entry_log
+      entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',get_mod_permit_id)
       acknowledge_entry_log_payload = JSON.parse JsonUtil.read_json("pre/02.acknowledge-entry-log")
       acknowledge_entry_log_payload['variables']['formId'] = @@pre_number
       acknowledge_entry_log_payload['variables']['entryId'] = entry_id
@@ -44,6 +44,10 @@ class SmartFormDBPage
     end
 
     private
+
+    def get_mod_permit_id
+      @@pre_number.gsub("/", "%2F")
+    end
 
     def get_pre_gas_entry_log_id(_which_db,_url_map,_which_pre_entry_log)
       _uri = get_environment_link(_which_db.to_s, _url_map.to_s)
