@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class Section0Page < CommonFormsPage
+class Section0Page < NavigationPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//a[starts-with(@class,'Forms__CreateLink')]")
@@ -29,7 +29,7 @@ class Section0Page < CommonFormsPage
 
   def select_level2_permit_and_next(_permit)
     select_level2_permit(_permit)
-    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
+    click_next
     set_selected_level2_permit(_permit)
     set_current_time
     sleep 1

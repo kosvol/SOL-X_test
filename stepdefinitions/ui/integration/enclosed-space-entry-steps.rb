@@ -134,11 +134,11 @@ And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   p "<><><> #{on(Section6Page).get_filled_section}"
   is_equal(on(Section6Page).get_filled_section, @@form_data['section6'])
-  is_equal(on(Section6Page).date_and_time_btn_elements.first.text,on(CommonFormsPage).get_current_date_format_with_offset)
+  is_equal(on(Section6Page).last_calibration_btn_elements.first.text,on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(Section6Page).rank_and_name_stamp, 'A/M Atif Hayat')
   does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT')
   does_include(on(Section6Page).date_and_time_stamp, '/')
   step 'I should see gas reading display with toxic gas'
-  # does_include(on(Section6Page).date_and_time_btn_elements[0].text, 'LT (GMT')
-  # does_include(on(Section6Page).date_and_time_btn_elements[1].text, '/')
+  # does_include(on(Section6Page).last_calibration_btn_elements[0].text, 'LT (GMT')
+  # does_include(on(Section6Page).last_calibration_btn_elements[1].text, '/')
 end

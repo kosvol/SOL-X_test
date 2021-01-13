@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require './././support/env'
-require './././library/utils/asserts'
+# require './././library/utils/asserts'
 
 class CommonFormsPage < CommonPage
   include PageObject
@@ -27,8 +27,6 @@ class CommonFormsPage < CommonPage
   buttons(:done_btn, xpath: "//button[contains(.,'Done')]")
   buttons(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
-  button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
-  button(:next_btn, xpath: "//button[contains(.,'Next')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
@@ -58,13 +56,6 @@ class CommonFormsPage < CommonPage
     end
   end
 
-  def click_next
-    sleep 1
-    BrowserActions.poll_exists_and_click(next_btn_element)
-  rescue StandardError
-    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
-  end
-
   def set_current_time
     @@time = main_clock_element.text
   end
@@ -86,33 +77,6 @@ class CommonFormsPage < CommonPage
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-  end
-
-  def get_total_steps_to_section6(_which_section)
-    case _which_section
-    when '6'
-      10
-    when '7'
-      11
-    when '8'
-      13
-    when '4a'
-      6
-    when '3a'
-      2
-    when '3b'
-      3
-    when '3c'
-      4
-    when '3d'
-      5
-    when '4b'
-      8
-    when '5'
-      9
-    when '2'
-      1
-    end
   end
 
   def get_timezone

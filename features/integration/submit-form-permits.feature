@@ -49,7 +49,7 @@ Feature: SubmitPermit
     And I select 1 role from list
     And I fill up section 3b
     And I press next for 1 times
-    And I fill up section 3c
+    And I add additional dra member
     And I press next for 1 times
     And I fill up section 3d
     And I press next for 1 times
@@ -86,7 +86,7 @@ Feature: SubmitPermit
     And I select 1 role from list
     And I fill up section 3b
     And I press next for 1 times
-    And I fill up section 3c
+    And I add additional dra member
     And I press next for 1 times
     And I fill up section 3d
     And I press next for 1 times

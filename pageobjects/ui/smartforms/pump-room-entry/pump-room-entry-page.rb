@@ -9,7 +9,7 @@ class PumpRoomEntry < Section9Page
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
-  element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
+  # element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
@@ -30,14 +30,27 @@ class PumpRoomEntry < Section9Page
   @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
+  text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
+  span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
   @@button = "//button[contains(.,'%s')]"
   ### end
 
-  def add_all_gas_readings_pre
-    normal_gas_readings
+  def additional_entrant(_additional_entrants)
+    purpose_of_entry="Test Automation"
+    entrant_names_dd_element.click
+    sleep 2
+    while _additional_entrants > 0
+      member_name_btn_elements[_additional_entrants].click
+      _additional_entrants = _additional_entrants - 1
+    end
+    confirm_btn_elements.first.click
+  end
+
+  def add_all_gas_readings_pre(_o2,_hc,_h2s,_co,_gas_name,_threhold,_reading,_unit)
+    normal_gas_readings(_o2,_hc,_h2s,_co)
     sleep 1
-    toxic_gas_readings
+    toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
   end
 
   def fill_up_pre(duration)

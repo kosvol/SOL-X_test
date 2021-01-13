@@ -61,6 +61,6 @@
 #   does_include(on(Section6Page).rank_and_name_stamp, 'A/M Atif Hayat')
 #   does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT+')
 #   does_include(on(Section6Page).date_and_time_stamp, '/')
-#   # does_include(on(Section6Page).date_and_time_btn_elements[0].text, 'LT (GMT+')
-#   # does_include(on(Section6Page).date_and_time_btn_elements[1].text, '/')
+#   # does_include(on(Section6Page).last_calibration_btn_elements[0].text, 'LT (GMT+')
+#   # does_include(on(Section6Page).last_calibration_btn_elements[1].text, '/')
 # end

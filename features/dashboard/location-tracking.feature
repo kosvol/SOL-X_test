@@ -4,6 +4,8 @@ Feature: LocationTracking
   I want to ...
   So that ...
 
+  Scenario: Verify PRE activity tab shows inactive after active permit got terminated
+
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I launch sol-x portal
     Then I should not see PRE tab active on dashboard

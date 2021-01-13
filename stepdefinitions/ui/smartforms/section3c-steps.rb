@@ -6,10 +6,6 @@ And (/^I uncheck dra member$/) do
   on(Section3CPage).confirm_btn_elements.first.click
 end
 
-And (/^I fill up section 3c$/) do
-  on(Section3CPage).select_dra_team_member
-end
-
 Then (/^I should see dra member prefilled$/) do
   on(Section3CPage).dra_team_name_list_elements.each do |_element|
     is_equal(_element.text,"A/M Atif Hayat")
@@ -17,7 +13,7 @@ Then (/^I should see dra member prefilled$/) do
 end
 
 And (/^I add additional dra member$/) do
-  on(Section3CPage).add_additional_dra_member
+  on(Section3CPage).select_dra_team_member(0)
 end
 
 Then (/^I should see list of dra member$/) do

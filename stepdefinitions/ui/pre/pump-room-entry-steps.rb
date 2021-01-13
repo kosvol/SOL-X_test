@@ -106,6 +106,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
   step "I sign on canvas with 8383 pin"
+  sleep 2
   step "I should see the page 'Successfully Submitted'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -123,7 +124,6 @@ end
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
   p "PRE ID: #{@@pre_number}"
   step "I should see the text '#{@@pre_number}'"
-  # is_true(on(PumpRoomEntry).is_text_displayed?(@@pre_number))
 end
 
 And('I set the activity end time in {int} minutes') do |minutes|
@@ -184,11 +184,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
     on(CommonFormsPage).scroll_multiple_times(20)
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
-    # begin 
-      is_equal(on(CommonFormsPage).close_btn_elements.size,2)
-    # rescue StandardError
-      # is_equal(on(CommonFormsPage).close_btn_elements.size,1)
-    # end
+    is_equal(on(CommonFormsPage).close_btn_elements.size,2)
     step 'I click on back arrow'
   end
 end
@@ -196,7 +192,7 @@ end
 And(/^I get a temporary number and writing it down$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   is_equal(@temp_id.include?("TEMP"), true)
-  on(PumpRoomEntry).reasonForEntry_element.send_keys(@temp_id)
+  on(PumpRoomEntry).purpose_of_entry="Test Automation"
   step 'I press the "Save" button'
   sleep 1
   step 'I press the "Close" button'
@@ -212,5 +208,5 @@ Then(/^I edit pre and should see the old number previously written down$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Edit")
   step 'I enter pin 8383'
   sleep 1
-  is_equal(on(PumpRoomEntry).reasonForEntry_element.text, @temp_id)
+  is_equal(on(PumpRoomEntry).purpose_of_entry, "Test Automation")
 end

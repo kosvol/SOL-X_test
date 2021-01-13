@@ -43,6 +43,10 @@ class SmartFormDBPage
       ServiceUtil.post_graph_ql('pre/mod_02.acknowledge-entry-log', '8383')
     end
 
+    def get_error_message
+      ServiceUtil.get_response_body['errors'].first['message']
+    end
+
     private
 
     def get_mod_permit_id

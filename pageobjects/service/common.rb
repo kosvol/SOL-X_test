@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './././support/env'
+
 class CommonPage
   class << self
     def is_error

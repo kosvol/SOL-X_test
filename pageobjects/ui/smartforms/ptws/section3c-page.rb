@@ -11,18 +11,9 @@ class Section3CPage < Section3BPage
   element(:am, xpath: "//li[starts-with(@aria-label,'A/M Atif Hayat')]")
   buttons(:member_name_btn, xpath: '//div[starts-with(@class,"items")]/ul/li/button')
 
-  def select_dra_team_member
-    sleep 1
+  def select_dra_team_member(_index)
     dra_team_btn
-    sleep 1
-    member_name_btn_elements[0].click
-    confirm_btn_elements.last.click
-    sleep 1
-  end
-
-  def add_additional_dra_member
-    dra_team_btn
-    member_name_btn_elements.first.click
+    member_name_btn_elements[_index].click
     confirm_btn_elements.first.click
   end
 end

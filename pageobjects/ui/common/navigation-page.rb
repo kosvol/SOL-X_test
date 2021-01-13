@@ -2,42 +2,30 @@
 
 require './././support/env'
 
-class NavigationPage
+class NavigationPage < CommonFormsPage
   include PageObject
 
   button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
   elements(:menu_categories, xpath: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])")
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
+  button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
+  button(:next_btn, xpath: "//button[contains(.,'Next')]")
   @@menu_categories_base = ["SmartForms","Created","Pending Approval","Updates Needed","Active","Pending Withdrawal","Withdrawn","Deleted","Created","Pending Approval","Updates Needed","Active","Scheduled","Terminated","Deleted","Settings"]
   @@which_category = "//a[contains(text(),'%s')]"
-  # @@root_PRE = "//h3[contains(text(),'Pump Room Entry')]/following::a[contains(text(),'%s')]"
+
+  def click_hamburger_menu
+    BrowserActions.poll_exists_and_click(hamburger_menu_element)
+  end
 
   def get_menu_categories
     @@menu_categories_base
   end
-  ##### to refactor
 
-  # def select_pre_nav_category(_category)#, pre = false, show_more = false)
-  #   # unless @already_opened_show_more_for_pre
-  #     # if show_more and pre
-  #       # @already_opened_show_more_for_pre = true
-  #       sleep 1
-        
-  # end
-    # unless @already_opened_show_more
-    #   if show_more and !pre
-    #     @already_opened_show_more = true
-    #     @browser.find_elements(:xpath, @@show_more)[0].click
-    #     sleep 1
-    #   end
-    # end
-
-    # if !pre
-    #   @browser.find_element(:xpath, @@setting_link%[_category]).click
-    # else
-    #   @browser.find_element(:xpath, @@root_PRE%[_category]).click
-    # end
-  # end
+  def toggle_to_section(_which_section)
+    (1..get_total_steps_to_section6(_which_section)).each do |_i|
+      click_next
+    end
+  end
 
   def select_nav_category(_category,_which_category)
     sleep 1
@@ -51,6 +39,40 @@ class NavigationPage
 
   def click_show_more(_which_category)
     _which_category === "forms" ? BrowserActions.poll_exists_and_click(show_more_elements.first) : BrowserActions.poll_exists_and_click(show_more_elements.last)
+  end
+
+  def click_next
+    sleep 1
+    BrowserActions.poll_exists_and_click(next_btn_element)
+  rescue StandardError
+    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
+  end
+
+  def get_total_steps_to_section6(_which_section)
+    case _which_section
+    when '6'
+      10
+    when '7'
+      11
+    when '8'
+      13
+    when '4a'
+      6
+    when '3a'
+      2
+    when '3b'
+      3
+    when '3c'
+      4
+    when '3d'
+      5
+    when '4b'
+      8
+    when '5'
+      9
+    when '2'
+      1
+    end
   end
 
   private

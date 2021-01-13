@@ -64,8 +64,8 @@
 #   on(Section1Page).next_btn_elements.last.click
 #   p "<><><> #{on(Section6Page).get_filled_section}"
 #   is_equal(on(Section6Page).get_filled_section, @@form_data['section6'])
-#   does_include(on(Section6Page).date_and_time_btn_elements[0].text, 'LT (GMT+')
-#   does_include(on(Section6Page).date_and_time_btn_elements[1].text, '/')
+#   does_include(on(Section6Page).last_calibration_btn_elements[0].text, 'LT (GMT+')
+#   does_include(on(Section6Page).last_calibration_btn_elements[1].text, '/')
 #   does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT+')
 #   does_include(on(Section6Page).date_and_time_stamp, '/')
 # end

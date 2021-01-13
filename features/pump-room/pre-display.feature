@@ -4,25 +4,6 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-  @x11
-  Scenario: Verify PRE gas entry pop up don't show if no difference in gas reading
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin 8383
-    And I fill up PRE. Duration 4. Delay to activate 1
-    And I add all gas readings
-    And I enter pin 9015
-    And I dismiss gas reader dialog box
-    And (for pre) I submit permit for Officer Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current PRE form
-    And I sleep for 80 seconds
-    And I navigate to PRE Display
-    And I enter pin 8383
-    And I submit a same entry log
-    Then I shoud not see dashboard gas reading popup
-
   Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
 
   # Scenario: Verify PRE turn No Active on dashboard after PRE permit terminated
@@ -41,9 +22,102 @@ Feature: PumpRoomEntry
 
   Scenario: Verify exit time update to timestamp after entrant sign out
 
-  Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
+  Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    And I enter same entry log
+    And I send entry report with 0 optional entrants
+    And I sleep for 3 seconds
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    Then I shoud not see dashboard gas reading popup
+  ### need to check if dashboard really dont show popup; after display popup feature gap resolve
 
-  Scenario: Verify PRE permit is terminated after terminating via dashboard popup
+  Scenario: Verify PRE gas entry popup display if there is difference in gas reading
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I sleep for 3 seconds
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    Then I should see dashboard gas reading popup
+  ### need to check if dashboard really show popup; after display popup feature gap resolve
+
+  Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin 8383
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And I add all gas readings
+    And I enter pin 9015
+    And I dismiss gas reader dialog box
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    And I enter new entry log
+    And I send entry report with 1 optional entrants
+    And I sleep for 3 seconds
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see entrant count equal 2
+
+  ##### dashboard termination not even implemented
+  # Scenario: Verify PRE permit is terminated after terminating via dashboard popup
+  #   Given I launch sol-x portal without unlinking wearable
+  #   When I clear gas reader entries
+  #   And I navigate to create new PRE
+  #   And I enter pin 8383
+  #   And I fill up PRE. Duration 4. Delay to activate 1
+  #   And I add all gas readings
+  #   And I enter pin 9015
+  #   And I dismiss gas reader dialog box
+  #   And (for pre) I submit permit for Officer Approval
+  #   And I getting a permanent number from indexedDB
+  #   And I activate the current PRE form
+  #   And I sleep for 80 seconds
+  #   And I navigate to PRE Display
+  #   And I enter pin 8383
+  #   And I enter new entry log
+  # step 'I send entry report with 0 optional entrants'
+  # step 'I sleep for 3 seconds'
+  # step 'I dismiss gas reader dialog box'
+  # step 'I sleep for 3 seconds'
+  #   And I terminate from dashboard
+  #   And I sleep for 20 seconds
+  #   # Then I should see PRE activity status change to inactive
+  #   Then I should see red background color
+  #   And I should see Permit Terminated PRE status on screen
+  # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
@@ -60,7 +134,11 @@ Feature: PumpRoomEntry
     And I sleep for 80 seconds
     And I navigate to PRE Display
     And I enter pin 8383
-    And I submit a new entry log
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I sleep for 3 seconds
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
 
@@ -79,7 +157,11 @@ Feature: PumpRoomEntry
     And I sleep for 70 seconds
     And I navigate to PRE Display
     And I enter pin 8383
-    And I submit a new entry log
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I sleep for 3 seconds
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
     Then I should see entrant count equal 0
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
