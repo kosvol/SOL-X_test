@@ -50,15 +50,15 @@ class Section1Page < Section0Page
     tmp
   end
 
-  def is_fields_enabled?
-    bool = true
-    generic_data_elements.each do |field|
-      bool &&= field.enabled?
-    end
-    bool
-  rescue StandardError
-    false
-  end
+  # def is_fields_enabled?
+  #   bool = true
+  #   generic_data_elements.each do |field|
+  #     bool &&= field.enabled?
+  #   end
+  #   bool
+  # rescue StandardError
+  #   false
+  # end
 
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
