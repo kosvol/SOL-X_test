@@ -46,23 +46,4 @@ module AssertionUtil
     def is_not_visible(element)
       expect(element).not_to be_visible
     end
-
-    # def select_from_dropdown(dropdown_list,which_type)
-    #   wait_for_element(dropdown_list)
-    #   dropdown_list.list_items.each do |type|
-    #     if type.text == which_type
-    #       type.click
-    #       break
-    #     end
-    #   end
-    # end
-
-    # def select_from_dropdown_with_inclusion(dropdown_list,which_type)
-    #   wait_for_element(dropdown_list)
-    #   dropdown_list.list_items.each do |type|
-    #     if type.text.include? which_type
-    #       type.click
-    #       break
-    #     end
-    #   end
 end
