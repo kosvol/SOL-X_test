@@ -49,11 +49,11 @@ Feature: ActivePermit
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
-    And I click on pending approval filter
+    # And I set oa permit to office approval state manually
+    # And I click on pending approval filter
+    # And I navigate to OA link
+    # And I approve oa permit via oa link manually
+    # And I click on pending approval filter
     And I approve permit
     And I click on back to home
     And I click on active filter
@@ -95,6 +95,7 @@ Feature: ActivePermit
       | Critical Equipment Maintenance | Maintenance on Anchor |
   # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
+  @x12
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -109,13 +110,15 @@ Feature: ActivePermit
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
-    And I click on pending approval filter
     And I approve permit
     And I click on back to home
+    # And I set oa permit to office approval state manually
+    # And I click on pending approval filter
+    # And I navigate to OA link
+    # And I approve oa permit via oa link manually
+    # And I click on pending approval filter
+    # And I approve permit
+    # And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
     Then I should see section 8 screen
