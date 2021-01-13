@@ -37,3 +37,6 @@ end
 And (/^I terminate from dashboard$/) do
     ## pending frontend implementation
 end
+
+And ("I signout {int} entrants") |total_entrants|
+end
