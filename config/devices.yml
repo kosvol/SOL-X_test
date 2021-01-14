@@ -13,27 +13,37 @@ tablet_chrome:
   platformVersion: "8.1"
   deviceName: "4aa590af"
   app: ""
+  port: 4723
+  browserName: "Chrome"
+  isHeadless: true
+  noReset: false
+
+ue_tablet_a_chrome:
+  platformName: "Android"
+  platformVersion: "8.1"
+  deviceName: "10.100.1.97:5555"
+  app: ""
   port: 8200
   browserName: "Chrome"
   isHeadless: true
   noReset: false
 
-ue_tablet_chrome:
+ue_tablet_b_chrome:
   platformName: "Android"
   platformVersion: "8.1"
-  deviceName: "6572e096"
+  deviceName: "10.100.1.2:5555"
   app: ""
-  port: 8200
+  port: 8201
   browserName: "Chrome"
   isHeadless: true
   noReset: false
 
 ue_dashboard_chrome:
   platformName: "Android"
-  platformVersion: "5.1"
-  deviceName: "5200dbcec0ae1455"
+  platformVersion: "7.1"
+  deviceName: "10.100.30.35:5555"
   app: ""
-  port: 4723
+  port: 8202
   browserName: "Chrome"
   isHeadless: true
   noReset: false
