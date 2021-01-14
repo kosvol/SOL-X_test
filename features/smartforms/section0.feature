@@ -98,6 +98,7 @@ Feature: SmartFormsPermission
       | Rotational Portable Power Tools |
       | Underwater Operations           |
 
+  @debug
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

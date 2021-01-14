@@ -13,7 +13,6 @@ Feature: Offline Mode
     Then I should see wifi inconsistent popup display for section 8
     And I turn on wifi
 
-  @debug1
   Scenario: Verify wifi restore dialog in section 4b EIC certification
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -29,7 +28,6 @@ Feature: Offline Mode
     Then I should see wifi restore popup display for EIC
     And I turn off wifi
 
-  @debug
   Scenario: Verify wifi restore dialog in section 6
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
