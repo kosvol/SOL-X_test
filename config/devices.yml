@@ -41,7 +41,7 @@ ue_tablet_b_chrome:
 ue_dashboard_chrome:
   platformName: "Android"
   platformVersion: "7.1"
-  deviceName: "10.100.30.35:5555"
+  deviceName: "10.100.1.95:5555"
   app: ""
   port: 8202
   browserName: "Chrome"
