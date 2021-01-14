@@ -13,6 +13,17 @@ Feature: PumpRoomEntry
   # Scenario: Verify historic entry logs displayed on dashboard
 
   Scenario: Verify PRE permit creator name display on PRED
+    Given I launch sol-x portal without unlinking wearable
+    When I navigate to create new PRE
+    And I enter pin 0159
+    And I fill up PRE. Duration 4. Delay to activate 1
+    And (for pre) I submit permit for Officer Approval
+    And I getting a permanent number from indexedDB
+    And I take note of PRE permit creator name and activate the the current PRE form
+    And I sleep for 80 seconds
+    And I navigate to PRE Display
+    And I enter pin 8383
+    Then I should see the PRE permit creator name on PRED
 
   Scenario: Verify ship local time shift on PRED
 
