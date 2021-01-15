@@ -21,7 +21,7 @@ tablet_chrome:
 ue_tablet_a_chrome:
   platformName: "Android"
   platformVersion: "8.1"
-  deviceName: "10.100.1.97:5555"
+  deviceName: "6572e096"
   app: ""
   port: 8200
   browserName: "Chrome"
@@ -32,7 +32,7 @@ ue_tablet_a_chrome:
 ue_tablet_b_chrome:
   platformName: "Android"
   platformVersion: "8.1"
-  deviceName: "10.100.1.2:5555"
+  deviceName: "409f97da"
   app: ""
   port: 8201
   browserName: "Chrome"
@@ -43,7 +43,7 @@ ue_tablet_b_chrome:
 ue_dashboard_chrome:
   platformName: "Android"
   platformVersion: "7.1"
-  deviceName: "10.100.1.95:5555"
+  deviceName: "202092300E49"
   app: ""
   port: 8202
   browserName: "Chrome"
