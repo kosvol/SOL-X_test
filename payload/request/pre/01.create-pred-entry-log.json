@@ -1,0 +1,37 @@
+{
+  "operationName": "createPREDEntryRecord",
+  "variables": {
+    "formId": "SIT/PRE/2021/018",
+    "signature": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAB0AyADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/xAAxEAEAAgICAAMEBwkAAAAAAAAAAQIDBAURBhMxISJScQcSQVFhgYIUFRYyRHKRkqP/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A+zAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDNmxa+K2XNkpix0ju172iIj5zKh2fF2DJWacFo7POZ57iv7JERgifb/Nmt1SI7jr2TM/gDoUbd5DS43BOff3MGrij1yZ8taVj85lzN+I8Zc/3+9eYw8Hp2/peKj6+eazHpbNaPdmJ+GvUpXDfR94a4W858fH129q0932t2fOy2n7+7ek/KIB0oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA155zRr5J1qUvmik+XXJaa1m3XsiZiJmI7+3qfkq6fxNnrPmRxWlbr2TWcm1Ez/wA+gXDDNmxa+G+bPkpixUibWve0VrWPvmZ9FbHF8hmmttzm9ifixauKmHHb/MWvH+7fg4Xj9fLTNGv5ubHMzTNsXtmyU79er3mZj8pBGyeIcWSOuM0dzk5mImttfHFcVon0mMt5rS0f2zM/gj2w+K+RmYvtaPDYZ+zBWdnN6/FaK0rP6bL8BQYfBnEedGxyMZ+Y2ImZjLyWWc0V7nv3aT7lP01hfREREREdRHpEPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH//Z",
+    "gasReadings": [
+      {
+        "gasName": "O2",
+        "reading": "1",
+        "threshold": "20.9",
+        "unit": "%"
+      },
+      {
+        "gasName": "HC",
+        "reading": "2",
+        "threshold": "1",
+        "unit": "% LEL"
+      },
+      {
+        "gasName": "H2S",
+        "reading": "3",
+        "threshold": "5",
+        "unit": "ppm"
+      },
+      {
+        "gasName": "CO",
+        "reading": "4",
+        "threshold": "25",
+        "unit": "ppm"
+      }
+    ],
+    "crewId": "SIT_SOLX0004",
+    "purposeOfEntry": "Test Automation",
+    "otherEntrantIds": []
+  },
+  "query": "fragment dateTimeWithOffsetFragment on DateTimeWithOffset {\n  dateTime\n  utcOffset\n  __typename\n}\n\nmutation createPREDEntryRecord($formId: ID!, $crewId: ID!, $signature: String!, $locationId: ID, $gasReadings: [GasReadingInput!]!, $otherEntrantIds: [ID!]!, $purposeOfEntry: String!) {\n  createPREDEntryRecord(formId: $formId, crewId: $crewId, signature: $signature, locationId: $locationId, gasReadings: $gasReadings, otherEntrantIds: $otherEntrantIds, purposeOfEntry: $purposeOfEntry) {\n    crewId\n    entryStatus\n    entryId\n    entrant {\n      _id\n      rank\n      firstName\n      lastName\n      __typename\n    }\n    purposeOfEntry\n    timeIn {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignIn\n    timeOut {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignOut\n    validityStart {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    validityEnd {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    gasReadingTime {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    gasReadingStatus\n    signature\n    locationId\n    gasReadings {\n      gasName\n      threshold\n      reading\n      unit\n      __typename\n    }\n    __typename\n  }\n}\n"
+}
