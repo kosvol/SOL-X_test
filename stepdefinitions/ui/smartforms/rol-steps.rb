@@ -49,7 +49,7 @@ Then (/^I should not see extra buttons$/) do
   on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).submit_for_master_approval_btn_elements.size, 1)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
-  is_equal(on(CommonFormsPage).close_btn_elements.size, 2)
+  is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
   # is_equal(on(PendingStatePage).save_and_close_btn_elements.size, 1)
 end
 

@@ -130,5 +130,5 @@ Then (/^I should see gas reading display (with|without) toxic gas$/) do |_condit
 end
 
 And (/^I dismiss gas reader dialog box$/) do
-  on(CommonFormsPage).done_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
 end
