@@ -68,9 +68,9 @@ Feature: PumpRoomEntry
 
     Examples:
       | duration |
-      | 4 hours  |
-      | 6 hours  |
-      | 8 hours  |
+      | 4        |
+      | 6        |
+      | 8        |
 
   Scenario: Verify user able to fill Date of Last Calibration
     Given  I launch sol-x portal without unlinking wearable
@@ -117,7 +117,7 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
-    And I sleep for 5 seconds
+    And I sleep for 8 seconds
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow

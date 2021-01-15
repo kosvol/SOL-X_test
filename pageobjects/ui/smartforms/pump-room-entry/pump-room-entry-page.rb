@@ -33,7 +33,8 @@ class PumpRoomEntry < Section9Page
   @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
-  text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
+  # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
+  text_area(:purpose_of_entry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
   @@button = "//button[contains(.,'%s')]"

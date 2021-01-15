@@ -26,7 +26,7 @@ Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|
   end
 end
 
-Then(/^I select Permit Duration (.*)$/) do |duration|
+Then("I select Permit Duration {int}") do |duration|
   on(PumpRoomEntry).select_permit_duration(duration)
 end
 

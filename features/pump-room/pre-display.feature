@@ -20,19 +20,19 @@ Feature: PumpRoomEntry
 
   Scenario: Verify entrant count updated after sign out
 
-  @x11
-  Scenario: Verify exit time update to timestamp after entrant sign out
-    Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
-    And I enter new entry log
-    And I send entry report with 1 optional entrants
-    And I sleep for 3 seconds
-    And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
-    And I acknowledge the new entry log via service
-    Then I should see entrant count equal 1
-    And I signout 1 entrants
-    Then I should see entrant count equal 0
+  # @x11
+  # Scenario: Verify exit time update to timestamp after entrant sign out
+  #   Given I launch sol-x portal without unlinking wearable
+  #   When I fill and submit PRE permit details
+  #   And I enter new entry log
+  #   And I send entry report with 1 optional entrants
+  #   And I sleep for 3 seconds
+  #   And I dismiss gas reader dialog box
+  #   And I sleep for 3 seconds
+  #   And I acknowledge the new entry log via service
+  #   Then I should see entrant count equal 1
+  #   And I signout 1 entrants
+  #   Then I should see entrant count equal 0
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given I launch sol-x portal without unlinking wearable
@@ -173,7 +173,7 @@ Feature: PumpRoomEntry
     And (for pred) I should see warning box for activated status
     And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
     Then I set the activity end time in 1 minutes
-    And I sleep for 120 seconds
+    And I sleep for 70 seconds
     And I should see red background color
     And I should see Permit Terminated PRE status on screen
     And (for pred) I should see the enabled "Home" button
