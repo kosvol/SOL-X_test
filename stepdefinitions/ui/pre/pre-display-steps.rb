@@ -51,7 +51,7 @@ end
 
 And(/^I take note of PRE permit creator name and activate the the current PRE form$/) do
   step 'I open the current PRE with status Pending approval. Pin: 8383'
-  @preCreatorName = @browser.find_element(:xpath, "//div[@id='root']//div[@class='row']//div[1]//h3[1]/following::div[@class='Cell__Description-chagrg-0 gcIGCP']").text
+  @preCreatorName = on(PumpRoomEntry).pre_creator_form_element.text
   sleep 1
   step 'I press the "Approve for Activation" button'
   step "I sign on canvas with 8383 pin"
@@ -62,5 +62,5 @@ end
 
 Then(/^I should see the PRE permit creator name on PRED$/) do
   sleep 1
-  is_equal(on(PreDisplay).pre_creator_name_element.text, @preCreatorName)
+  is_equal(on(PreDisplay).pre_creator_display_element.text, @preCreatorName)
 end
