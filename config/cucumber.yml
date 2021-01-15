@@ -16,10 +16,11 @@ mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --pro
 mac_chrome_sits_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=tablet
 mac_chrome_tablet_uat_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=uat DEVICE=tablet LOCAL=local
 
-android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome
-android_chrome_dashboard_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_dashboard_chrome
-android_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_chrome
-android_chrome_tablet_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_tablet_chrome
+android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome resolution=dashboard
+# android_chrome_dashboard_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_dashboard_chrome
+android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_a_chrome resolution=tablet_a
+android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome resolution=tablet_b
+# android_chrome_tablet_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_tablet_chrome
 
 android_chrome_tablet_dev_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet_chrome
 android_chrome_tablet_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet_chrome

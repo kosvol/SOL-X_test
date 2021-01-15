@@ -107,7 +107,7 @@ And (/^I manually put the permit to pending termination state$/) do
   on(Section0Page).submit_termination_btn1_elements.first.click
   on(PinPadPage).enter_pin("9015")
   sleep 1
-  step 'I navigate to section 8'
+  # step 'I navigate to section 8'
   on(Section8Page).task_status_completed_element.click
   step 'I sign EIC section 8 with RA 9015'
 end

@@ -95,7 +95,6 @@ Feature: ActivePermit
       | Critical Equipment Maintenance | Maintenance on Anchor |
   # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
-  @x12
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -287,7 +286,7 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with 5/E rank and 7551 pin
+    And I terminate permit with 5/E rank and 7551 pin
     # And I navigate to section 8
     Then I should see previous and close buttons
 
@@ -295,7 +294,7 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with 5/E rank and 7551 pin
+    And I terminate permit with 5/E rank and 7551 pin
     # And I navigate to section 8
     Then I should not see competent person sign button exists
 
@@ -517,7 +516,7 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -538,7 +537,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -557,11 +556,11 @@ Feature: ActivePermit
       | Hot Work                         | submit_hotwork               | Master                     | 1111 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
+    Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
     Examples:
@@ -582,7 +581,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:

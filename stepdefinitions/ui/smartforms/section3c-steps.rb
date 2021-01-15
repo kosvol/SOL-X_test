@@ -24,12 +24,12 @@ Then (/^I should see list of dra member$/) do
 end
 
 And (/^I remove one of the member via clicking on cross$/) do
-  on(Section3CPage).member_name_btn_elements.first.click
+  on(Section3CPage).cross_btn_elements.first.click
 end
 
 And (/^I remove one of the member from list$/) do
   on(Section3CPage).dra_team_btn
-  on(Section3CPage).member_name_btn_elements[2].click
+  on(Section3CPage).member_name_btn_elements[1].click
   on(Section3CPage).confirm_btn_elements.first.click
 end
 

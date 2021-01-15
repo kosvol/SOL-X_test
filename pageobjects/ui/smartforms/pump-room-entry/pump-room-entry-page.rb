@@ -9,6 +9,9 @@ class PumpRoomEntry < Section9Page
   button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New Pump Room Entry Permit')]//..")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
+  button(:four_hours_duration, xpath: "//button[contains(text(),'4 hours')]")
+  button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
+  button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
   # element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
@@ -16,7 +19,7 @@ class PumpRoomEntry < Section9Page
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
 
   @@text_areas = '//textarea'
-  @@permit_duration = "//button[contains(text(),'%s')]"
+  
 
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
@@ -143,9 +146,16 @@ class PumpRoomEntry < Section9Page
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    scroll_multiple_times(2)
-    xpath_str = @@permit_duration % [duration]
-    @browser.find_element('xpath', xpath_str).click
+    scroll_multiple_times(1)
+    sleep 1
+    case duration
+    when 4
+      four_hours_duration
+    when 6
+      six_hours_duration
+    when 8
+      eight_hours_duration
+    end
   end
 
   def is_button_enabled?(button_text)

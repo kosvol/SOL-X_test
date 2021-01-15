@@ -40,6 +40,7 @@ Feature: LocationTracking
     And I should see Main Deck location indicator showing 2 on location pin
     And I unlink all crew from wearable
 
+  @debug1
   Scenario Outline: Verify active crew member location changed
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
