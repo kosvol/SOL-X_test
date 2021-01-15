@@ -34,7 +34,7 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
 end
 
 Then (/^I should see section (.*) screen$/) do |_which_section|
-  screen_title = @browser.find_elements(:xpath, "//h3").last.text
+  screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__HeadingSmall')]").first.text
   case _which_section
   when '8'
     is_equal(screen_title,"Section 8: Task Status & EIC Normalisation")

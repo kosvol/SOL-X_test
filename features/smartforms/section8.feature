@@ -10,7 +10,7 @@ Feature: Section8
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin 9015
-    And I navigate to section 8
+    # And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with 9015 pin
     And I click on back to home
@@ -29,7 +29,7 @@ Feature: Section8
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin 4421
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I should see section 8 in read only mode
 
   Scenario: Verify task commenced at should be populated with permit activated time
@@ -140,7 +140,7 @@ Feature: Section8
     And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
-    And I navigate to section 8
+    # And I navigate to section 8
     And I press next for 1 times
     Then I should see extra section8 questions for critical maintenance permit
 
@@ -166,7 +166,7 @@ Feature: Section8
     And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
-    And I navigate to section 8
+    # And I navigate to section 8
     And I press next for 1 times
     Then I should see extra section8 questions for electrical permit
 
@@ -176,7 +176,7 @@ Feature: Section8
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I should not see EIC normalize extra questions
 
     Examples:
@@ -242,7 +242,7 @@ Feature: Section8
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I sign EIC as competent person with pin <pin>
     And I set time
     And I should see <rank> rank and name for section 8
@@ -260,7 +260,7 @@ Feature: Section8
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
-    And I navigate to section 8
+    # And I navigate to section 8
     Then I should not see EIC normalize extra questions
 
     Examples:

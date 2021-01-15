@@ -21,8 +21,9 @@ Given (/^I submit permit (.+) via service with (.+) user and set to active state
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_no', 'gas_yes')
 end
 
-Given (/^I submit permit (.+) via service with (.+) user and set to active state with gas reading not require$/) do |_permit_type, _user|
-  on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_no')
+Given (/^I submit permit (.+) via service with (.+) user and set to active state with gas reading (not require|require)$/) do |_permit_type, _user, _condition|
+  on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_no') if _condition === "not require"
+  on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes', 'gas_yes') if _condition === "require"
 end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to pending office approval state$/) do |_permit_type, _user|
