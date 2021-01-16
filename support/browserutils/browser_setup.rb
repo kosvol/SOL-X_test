@@ -66,7 +66,37 @@ class BrowserSetup
               end
     
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
-    opts =
+    if ENV['resolution'] === "tablet_b" || ENV['resolution'] === "dashboard"
+      opts =
+      {
+        caps: {
+          browserName: (@device['browserName']).to_s,
+          platformName: (@device['platformName']).to_s,
+          platformVersion: (@device['platformVersion']).to_s,
+          deviceName: (@device['deviceName']).to_s,
+          udid: (@device['deviceName']).to_s,
+          isHeadless: @device['isHeadless'],
+          automationName: 'UiAutomator2',
+          newCommandTimeout: 50000,
+          adbExecTimeout: 500000,
+          skipUnlock: true,
+          # unlockType: 'pin',
+          # unlockKey: '1111',
+          systemPort: @device['port'],
+          chromedriverPort: @device['chromedriverPort'],
+          skipLogcatCapture: true,
+          recreateChromeDriverSessions: true,
+          # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          # :fullReset => fullreset,
+          noReset: noreset
+        },
+        appium_lib: { port: @device['appiumPort'], wait: 180 }
+      }
+    end
+
+    if ENV['resolution'] === "tablet_a"
+      opts =
       {
         caps: {
           browserName: (@device['browserName']).to_s,
@@ -92,15 +122,16 @@ class BrowserSetup
         },
         appium_lib: { port: @device['appiumPort'], wait: 180 }
       }
-      browser = Appium::Driver.new(opts, true).start_driver
-
-      ### set wifi to always on
-      $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
-      p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
-      if $wifi_on_off.strip === "0"
-        browser.toggle_wifi 
-        sleep 8
-      end
-      browser
     end
+    browser = Appium::Driver.new(opts, true).start_driver
+
+    ### set wifi to always on
+    $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
+    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
+    if $wifi_on_off.strip === "0"
+      browser.toggle_wifi 
+      sleep 8
+    end
+    browser
   end
+end
