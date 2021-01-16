@@ -115,6 +115,10 @@ Then (/^I (should|should not) see ui location updated to (.+)$/) do |_condition,
   end
 end
 
+And (/^I expand ship zone dropdown$/) do
+  on(DashboardPage).expand_ship_zones_dd
+end
+
 Then (/^I should see (.+) location indicator showing (.+) on location pin$/) do |_location, _count|
   is_equal(on(DashboardPage).get_location_pin_text(_location), _count)
 end

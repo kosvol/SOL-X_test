@@ -31,10 +31,10 @@ And (/^I launch sol-x portal on another tab$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
 end
 
-And (/^I acknowledge the assistance with pin (.+)$/) do |pin|
-  on(CrewAssistPage).acknowledge_btn
+And ("I acknowledge the assistance with pin {int}") do |pin|
+  sleep 1
+  @browser.execute_script(%(document.evaluate("//div[starts-with(@class, 'CrewAssistModal__Content')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   step "I enter pin #{pin}"
-  # on(PinPadPage).enter_pin(pin)
 end
 
 Then (/^I should see crew assist dialog dismiss in both tab$/) do
@@ -54,7 +54,7 @@ Then (/^I should see invalid pin message$/) do
 end
 
 And (/^I dismiss enter pin screen$/) do
-  on(PinPadPage).cancel
+  on(PinPadPage).cancel_pinpad
 end
 
 Then (/^I should not see crew assist dialog$/) do

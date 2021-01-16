@@ -28,12 +28,12 @@ class BrowserSetup
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
-      options.add_argument('--disable-web-security')
-      options.add_argument('--allow-running-insecure-content')
-      options.add_argument('--ignore-certificate-errors')
-      if ENV['LOCAL'] === 'local'
-        options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
-      end
+      # options.add_argument('--disable-web-security')
+      # options.add_argument('--allow-running-insecure-content')
+      # options.add_argument('--ignore-certificate-errors')
+      # if ENV['LOCAL'] === 'local'
+      #   options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
+      # end
       # end
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
 
