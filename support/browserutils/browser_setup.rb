@@ -90,7 +90,7 @@ class BrowserSetup
           # :fullReset => fullreset,
           noReset: noreset
         },
-        appium_lib: { port: 4723, wait: 180 }
+        appium_lib: { port: @device['appiumPort'], wait: 180 }
       }
       browser = Appium::Driver.new(opts, true).start_driver
 

@@ -26,6 +26,7 @@ ue_tablet_a_chrome:
   port: 8200
   browserName: "Chrome"
   chromedriverPort: 9515
+  appiumPort: 4723
   isHeadless: true
   noReset: false
 
@@ -37,6 +38,7 @@ ue_tablet_b_chrome:
   port: 8201
   browserName: "Chrome"
   chromedriverPort: 9516
+  appiumPort: 4724
   isHeadless: true
   noReset: false
 
@@ -48,6 +50,7 @@ ue_dashboard_chrome:
   port: 8202
   browserName: "Chrome"
   chromedriverPort: 9515
+  appiumPort: 4725
   isHeadless: true
   noReset: false
 
