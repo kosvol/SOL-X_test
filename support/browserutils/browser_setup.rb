@@ -66,7 +66,7 @@ class BrowserSetup
               end
     
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
-    if ENV['resolution'] === "tablet_b" || ENV['resolution'] === "dashboard"
+    if ENV['RESOLUTION'] == "tablet_b" || ENV['RESOLUTION'] == "dashboard"
       opts =
       {
         caps: {
@@ -95,7 +95,7 @@ class BrowserSetup
       }
     end
 
-    if ENV['resolution'] === "tablet_a"
+    if ENV['RESOLUTION'] == "tablet_a"
       opts =
       {
         caps: {
