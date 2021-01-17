@@ -1,0 +1,8 @@
+{
+  "operationName": "acknowledgeAlert",
+  "variables": {
+    "userId": "SIT_SOLX0001",
+    "id": "01EW8CASY93DC61T8P081DRVWE"
+  },
+  "query": "fragment alertFragment on Alert {\n  _id\n  createdAt\n  endedAt\n  acknowledgedAt\n  wearableId\n  alertType\n  __typename\n}\n\nmutation acknowledgeAlert($userId: ID!, $id: ID!) {\n  acknowledgeAlert(userId: $userId, id: $id) {\n    ...alertFragment\n    __typename\n  }\n}\n"
+}
