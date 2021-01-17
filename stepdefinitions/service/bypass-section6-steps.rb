@@ -64,3 +64,10 @@ And (/^I clear oa event table$/) do
   SmartFormDBPage.get_table_data('oa_db', 'get_oa_event')
   SmartFormDBPage.delete_table_row('oa_db', 'delete_oa_event')
 end
+
+And (/^I clear wearable history and active users$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_wearable_histories')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_histories_entries')
+  SmartFormDBPage.get_table_data('fauxton', 'get_wearable_active_users')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_active_users')
+end

@@ -13,3 +13,4 @@ Feature: DB reset
   @clear-pre-gas-table
   Scenario: PRE DB reset
     Given I clear gas reader entries
+    And I clear wearable history and active users

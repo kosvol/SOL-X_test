@@ -24,11 +24,15 @@ fauxton:
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
   delete_form: "/forms/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
+  delete_wearable_histories_entries: "/wearables_history/_bulk_docs"
+  delete_wearable_active_users: "/wearables_active_users/_bulk_docs"
   get_forms: "/forms/_all_docs?skip=0&limit=10000"
   get_user: "/users/_all_docs?skip=0&limit=1000"
   get_pre_gas_entry_log: "/gas_reader_entry/%s"
   delete_user: "/users/_bulk_docs"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
+  get_wearable_histories: "/wearables_history/_all_docs?skip=0&limit=10000"
+  get_wearable_active_users: "/wearables_active_users/_all_docs?skip=0&limit=10000"
 
 oa_db:
   base_sit_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
