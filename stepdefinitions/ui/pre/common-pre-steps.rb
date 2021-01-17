@@ -5,7 +5,6 @@ When (/^I fill and submit PRE permit details$/) do
     step 'I fill up PRE. Duration 4. Delay to activate 1'
     step 'I add all gas readings'
     step 'I enter pin 9015'
-    sleep 1
     step 'I dismiss gas reader dialog box'
     step '(for pre) I submit permit for Officer Approval'
     step 'I getting a permanent number from indexedDB'
