@@ -7,7 +7,8 @@ Feature: LocationTracking
   Scenario: Verify PRE activity tab shows inactive after active permit got terminated
 
   Scenario: Verify PRE active tab is grey with inactive PRE
-    Given I launch sol-x portal
+    Given I clear forms table
+    When I launch sol-x portal
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is green with active PRE
@@ -36,7 +37,6 @@ Feature: LocationTracking
     Given I launch sol-x portal
     When I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:B0:00:00
     And I link wearable to zone SIT_0AJK702J76YK6GVCEGMTE6 and mac 00:00:00:B0:00:00
-    And I expand ship zone dropdown
     Then I should see Full Ship location indicator showing 2 on location pin
     And I should see Engine Room location indicator showing 2 on location pin
     And I unlink all crew from wearable

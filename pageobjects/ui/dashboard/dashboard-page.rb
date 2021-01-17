@@ -30,11 +30,8 @@ class DashboardPage < WearablePage
     end
   end
 
-  def expand_ship_zones_dd
-    @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'values-area')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-  end
-
   def get_location_pin_text(location)
+    @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'values-area')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     sleep 1
     toggle_zone_filter(location)
     sleep 1
@@ -123,7 +120,8 @@ class DashboardPage < WearablePage
   def toggle_zone_filter(which_zone)
     xpath_str = format(@@ship_area, which_zone)
     sleep 1
-    @browser.find_element('xpath', xpath_str).click
+    @browser.execute_script(%(document.evaluate("#{xpath_str}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    # @browser.find_element('xpath', xpath_str).click
   end
 
   private
