@@ -31,7 +31,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 And (/^I click on back to home$/) do
-  sleep 1
+  sleep 2
   on(Section6Page).back_to_home_btn
   sleep 4
   step 'I set permit id'
