@@ -71,3 +71,7 @@ And (/^I clear wearable history and active users$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_wearable_active_users')
   SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_active_users')
 end
+
+Given (/^I clear mariadb$/) do
+  MariaDB_clearing.clear_maria_db
+end

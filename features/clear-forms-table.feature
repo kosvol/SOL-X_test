@@ -14,3 +14,7 @@ Feature: DB reset
   Scenario: PRE DB reset
     Given I clear gas reader entries
     And I clear wearable history and active users
+
+  @clear-mariadb
+  Scenario: Maria DB reset
+    Given I clear mariadb
