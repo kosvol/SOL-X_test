@@ -15,3 +15,4 @@
 /payload/request/*/*.mod*
 Gemfile.lock
 /ms/*
+.idea

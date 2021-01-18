@@ -16,6 +16,7 @@ class PreDisplay < PumpRoomEntry
   element(:home_tab, xpath: "//a[contains(.,'Home')]")
   element(:entry_log_tab, xpath: "//a[contains(.,'Home')]")
   element(:permit_tab, xpath: "//a[contains(.,'Home')]")
+  element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePreFormDetails')]")
 
   def is_element_disabled_by_att?(text)
     #enable? - doesn't work for PRED. for 'li' elements

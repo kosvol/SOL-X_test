@@ -17,6 +17,7 @@ class PumpRoomEntry < Section9Page
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
+  element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
 
   @@text_areas = '//textarea'
   

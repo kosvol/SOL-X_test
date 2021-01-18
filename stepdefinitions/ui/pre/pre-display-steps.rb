@@ -49,3 +49,19 @@ And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry l
   is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.last.text,"Initial gas reading for this permit is missing.")
 end
 
+And(/^I take note of PRE permit creator name and activate the the current PRE form$/) do
+  step 'I open the current PRE with status Pending approval. Pin: 8383'
+  # @preCreatorName = on(PumpRoomEntry).pre_creator_form_element.text
+  # p "PRE Creator>> #{@preCreatorName}"
+  sleep 1
+  step 'I press the "Approve for Activation" button'
+  step "I sign on canvas with 8383 pin"
+  step "I should see the page 'Permit Successfully Scheduled for Activation'"
+  sleep 1
+  step 'I press the "Back to Home" button'
+end
+
+Then(/^I should see the PRE permit creator name on PRED$/) do
+  sleep 1
+  is_equal(on(PreDisplay).pre_creator_display_element.text, "3/O Tim Kinzer")
+end
