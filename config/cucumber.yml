@@ -8,10 +8,12 @@ mac_chrome_dev_tablet_headless: --profile dir --profile html --profile xml --pro
 
 mac_chrome_dashboard_sits_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
+mac_chrome_dashboard_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_sits_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=dashboard
 mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+mac_chrome_tablet_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 mac_chrome_sits_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=tablet
 mac_chrome_tablet_uat_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=uat DEVICE=tablet LOCAL=local
@@ -21,6 +23,10 @@ android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profi
 android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
 android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 # android_chrome_tablet_sits: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sits DEVICE=ue_tablet_chrome
+
+android_chrome_dashboard_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
+android_chrome_tablet_a_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+android_chrome_tablet_b_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 android_chrome_tablet_dev_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet_chrome
 android_chrome_tablet_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet_chrome

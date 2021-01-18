@@ -14,6 +14,11 @@ sits:
   service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
   master_pin:
 
+auto:
+  c2_preview: "http://168.63.210.163:8080"
+  service: "http://168.63.210.163:4000/"
+  master_pin: "1111"
+
 uat:
   c2_preview: "http://104.215.192.113:8080"
   service: "http://104.215.192.113:4000"
