@@ -70,46 +70,46 @@ Feature: SubmitPermit
     And I click on back to home
     And I sleep for 4 seconds
 
-  @active-smoke-test-1
-  Scenario: Submit permit data Enclosed Spaces Entry into active
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin 9015
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 3a
-    And I add a new hazard
-    And I press next for 1 times
-    And I set time
-    And I should see crew drop down list after clicking Yes on Inspection carried out
-    And I select 1 role from list
-    And I fill up section 3b
-    And I press next for 1 times
-    And I add additional dra member
-    And I press next for 1 times
-    And I fill up section 3d
-    And I press next for 1 times
-    And I fill up section 4a
-    And I press next for 1 times
-    And I fill up checklist
-    And I sign on checklist with 9015 pin
-    And I press next for 1 times
-    And I select yes to EIC
-    And I fill up EIC certificate
-    And I press next for 1 times
-    And I fill up section 5
-    And I press next for 1 times
-    And I add all gas readings
-    And I enter pin 9015
-    And I dismiss gas reader dialog box
-    And I submit smoke test permit
-    And I click on back to home
-    And I sleep for 3 seconds
-    And I click on pending approval filter
-    And I approve permit
-    And I click on back to home
-    And I sleep for 3 seconds
+  # @active-smoke-test-1
+  # Scenario: Submit permit data Enclosed Spaces Entry into active
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Enclosed Spaces Entry permit
+  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I fill up section 1 with default value
+  #   And I navigate to section 3a
+  #   And I add a new hazard
+  #   And I press next for 1 times
+  #   And I set time
+  #   And I should see crew drop down list after clicking Yes on Inspection carried out
+  #   And I select 1 role from list
+  #   And I fill up section 3b
+  #   And I press next for 1 times
+  #   And I add additional dra member
+  #   And I press next for 1 times
+  #   And I fill up section 3d
+  #   And I press next for 1 times
+  #   And I fill up section 4a
+  #   And I press next for 1 times
+  #   And I fill up checklist
+  #   And I sign on checklist with 9015 pin
+  #   And I press next for 1 times
+  #   And I select yes to EIC
+  #   And I fill up EIC certificate
+  #   And I press next for 1 times
+  #   And I fill up section 5
+  #   And I press next for 1 times
+  #   And I add all gas readings
+  #   And I enter pin 9015
+  #   And I dismiss gas reader dialog box
+  #   And I submit smoke test permit
+  #   And I click on back to home
+  #   And I sleep for 3 seconds
+  #   And I click on pending approval filter
+  #   And I approve permit
+  #   And I click on back to home
+  #   And I sleep for 3 seconds
 
   @pending-approval-smoke-test-2
   Scenario: Verify submitted permit data gets reflected for Enclosed Spaces Entry
