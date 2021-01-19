@@ -33,7 +33,7 @@ And (/^I click on (.+) filter$/) do |state|
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[0])
     # this is use to pick up correct permit id due to temp id usage during creation
     begin
-      CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
+      # CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
     rescue StandardError
     end
   elsif state === 'update needed'
