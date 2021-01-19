@@ -39,7 +39,7 @@ section4b: ["Yes"]
 section4b_eic:
   [
     "SIT",
-    "Test AutomationTest automationTest automation",
+    "Test AutomationTest automation",
     "Yes",
     "Test automation",
     "Yes",
@@ -93,7 +93,7 @@ checklist:
   [
     "SIT",
     "Test automation",
-    "Test Automation",
+    "Test automation",
     "Yes",
     "Yes",
     "Yes",
