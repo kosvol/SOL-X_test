@@ -1,5 +1,5 @@
 And(/^I navigate to PRE Display$/) do
-  step 'I navigate to "Settings" screen for PRE'
+  step 'I navigate to "Settings" screen for setting'
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element)
   step 'I press the "Enter Pin & Apply" button'
 end
@@ -62,6 +62,6 @@ And(/^I take note of PRE permit creator name and activate the the current PRE fo
 end
 
 Then(/^I should see the PRE permit creator name on PRED$/) do
-  sleep 1
+  sleep 2
   is_equal(on(PreDisplay).pre_creator_display_element.text, "3/O Tim Kinzer")
 end

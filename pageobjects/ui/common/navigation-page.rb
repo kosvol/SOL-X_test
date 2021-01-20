@@ -83,6 +83,8 @@ class NavigationPage < CommonFormsPage
     elsif _which_category === "PRE"
       category_objs = @browser.find_elements(:xpath, @@which_category%[_category])
       category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
+    elsif _which_category === "setting"
+      @browser.execute_script(%(document.evaluate("//a[contains(text(),'Settings')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     else
       @browser.find_element(:xpath, @@which_category%[_category]).click
     end

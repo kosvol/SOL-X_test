@@ -13,8 +13,10 @@ tablet_chrome:
   platformVersion: "8.1"
   deviceName: "4aa590af"
   app: ""
-  port: 4723
+  port: 8200
   browserName: "Chrome"
+  chromedriverPort: 9515
+  appiumPort: 4723
   isHeadless: true
   noReset: false
 
