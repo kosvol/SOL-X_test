@@ -63,7 +63,7 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    # And I sleep for 3 seconds
     Then I should see dashboard gas reading popup
   ### need to check if dashboard really show popup; after display popup feature gap resolve
 
@@ -74,7 +74,7 @@ Feature: PumpRoomEntry
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    # And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
 
@@ -113,7 +113,7 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    # And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
 
