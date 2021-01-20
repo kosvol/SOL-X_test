@@ -32,7 +32,7 @@ class NavigationPage < CommonFormsPage
     begin
       click_nav_category(_category,_which_category)
     rescue
-      click_show_more(_which_category)
+      click_show_more(_which_category) if _category != "Settings"
       click_nav_category(_category,_which_category)
     end
   end
