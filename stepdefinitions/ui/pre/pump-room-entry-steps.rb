@@ -105,7 +105,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
-  step "I sign on canvas with valid 8383 pin"
+  step "I sign on canvas with valid 2761 pin"
   sleep 2
   step "I should see the page 'Successfully Submitted'"
   sleep 1

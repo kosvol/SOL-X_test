@@ -64,5 +64,5 @@ end
 
 Then(/^I should see the PRE permit creator name on PRED$/) do
   sleep 2
-  is_equal(on(PreDisplay).pre_creator_display_element.text, "C/O Alister Leong")
+  is_equal(on(PreDisplay).pre_creator_display_element.text, "3/O Tim Kinzer")
 end
