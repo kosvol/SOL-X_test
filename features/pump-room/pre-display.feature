@@ -20,7 +20,7 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
-    And I sleep for 80 seconds
+    And I sleep for 100 seconds
     And I navigate to PRE Display
     And I enter pin 8383
     Then I should see the PRE permit creator name on PRED
@@ -42,7 +42,7 @@ Feature: PumpRoomEntry
   #   And I sleep for 3 seconds
   #   And I acknowledge the new entry log via service
   #   Then I should see entrant count equal 1
-  #   And I signout 1 entrants
+  #   And I signouts 1 entrants
   #   Then I should see entrant count equal 0
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
@@ -52,7 +52,6 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
   ### need to check if dashboard really dont show popup; after display popup feature gap resolve
 
@@ -63,7 +62,6 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    # And I sleep for 3 seconds
     Then I should see dashboard gas reading popup
   ### need to check if dashboard really show popup; after display popup feature gap resolve
 
@@ -113,7 +111,6 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    # And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
 
@@ -184,7 +181,7 @@ Feature: PumpRoomEntry
     And (for pred) I should see warning box for activated status
     And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
     Then I set the activity end time in 1 minutes
-    And I sleep for 70 seconds
+    And I sleep for 90 seconds
     And I should see red background color
     And I should see Permit Terminated PRE status on screen
     And (for pred) I should see the enabled "Home" button

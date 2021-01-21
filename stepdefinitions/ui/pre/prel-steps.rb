@@ -30,6 +30,7 @@ end
 
 Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
     step 'I acknowledge the new entry log via service'
+    step 'I sleep for 2 seconds'
     if _condition === 'should not'
         is_equal(SmartFormDBPage.get_error_message,"No pending PRED record")
     elsif _condition === 'should'
