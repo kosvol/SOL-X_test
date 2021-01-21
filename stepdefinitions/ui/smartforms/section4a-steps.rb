@@ -37,7 +37,7 @@ end
 
 And (/^I sign on checklist with (valid|invalid) (.*) pin$/) do |_condition,_pin|
   on(Section4APage).click_on_enter_pin
-  step "I sign on canvas with #{_pin} pin"
+  step "I sign on canvas with #{_condition} #{_pin} pin"
 end
 
 Then (/^I should see signed details$/) do

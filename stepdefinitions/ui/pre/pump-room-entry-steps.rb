@@ -105,7 +105,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   step 'I press the "Submit for Approval" button'
-  step "I sign on canvas with 8383 pin"
+  step "I sign on canvas with valid 8383 pin"
   sleep 2
   step "I should see the page 'Successfully Submitted'"
   sleep 1
@@ -115,7 +115,7 @@ end
 And('I activate the current PRE form') do
   step 'I open the current PRE with status Pending approval. Pin: 8383'
   step 'I press the "Approve for Activation" button'
-  step "I sign on canvas with 8383 pin"
+  step "I sign on canvas with valid 8383 pin"
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -140,7 +140,7 @@ Then(/^I terminate the PRE$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Submit for Termination")
   step 'I enter pin 8383'
   step 'I press the "Terminate" button'
-  step "I sign on canvas with 8383 pin"
+  step "I sign on canvas with valid 8383 pin"
   step "I should see the text 'Permit Has Been Closed'"
   sleep 1
   step 'I press the "Back to Home" button'

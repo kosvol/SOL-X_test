@@ -46,9 +46,9 @@ And ('I sleep for {int} seconds') do |sec|
   sleep sec
 end
 
-Then (/^I sign on canvas with (.*) pin$/) do |_pin|
+Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
   step "I enter pin #{_pin}"
-  on(SignaturePage).sign_and_done
+  on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
 And ('I enter pin {int}') do |pin|

@@ -12,7 +12,7 @@ Feature: Section8
     And I enter pin 9015
     # And I navigate to section 8
     And I submit permit for termination
-    And I sign on canvas with 9015 pin
+    And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
     And I update permit with Master rank and 1111 pin

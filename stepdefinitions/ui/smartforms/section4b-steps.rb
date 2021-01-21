@@ -59,7 +59,7 @@ end
 Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
   on(Section8Page).sign_eic_or_issuer(_condition)
   if _condition === 'issuing authority' || _condition === 'competent person'
-    step "I sign on canvas with #{_pin} pin"
+    step "I sign on canvas with valid #{_pin} pin"
   elsif _condition === 'non issuing authority' || _condition === 'non competent person'
     step "I enter pin #{_pin}"
   end

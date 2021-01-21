@@ -56,7 +56,7 @@ And(/^I take note of PRE permit creator name and activate the the current PRE fo
   # p "PRE Creator>> #{@preCreatorName}"
   sleep 1
   step 'I press the "Approve for Activation" button'
-  step "I sign on canvas with 8383 pin"
+  step "I sign on canvas with valid 8383 pin"
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'

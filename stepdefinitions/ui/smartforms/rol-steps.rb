@@ -87,7 +87,7 @@ When (/^I put the permit to termination state/) do
   step 'I open rol permit with rank A/M and 9015 pin'
   step 'I press next for 2 times'
   on(Section0Page).submit_termination_btn_elements.first.click
-  step "I sign on canvas with 9015 pin"
+  step "I sign on canvas with valid 9015 pin"
   sleep 1
   step 'I click on back to home'
 end
