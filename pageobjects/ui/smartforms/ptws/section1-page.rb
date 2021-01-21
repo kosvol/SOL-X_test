@@ -82,7 +82,7 @@ class Section1Page < Section0Page
   end
 
   def fill_default_section_1
-    sleep 1
+    sleep 2
     fill_default_section1
   end
 
