@@ -12,6 +12,7 @@ When (/^I fill a full enclosed workspace permit$/) do
   step 'I navigate to section 4a'
   step 'I press next for 1 times'
   step 'I fill up checklist'
+  step 'I sleep for 1 seconds'
   step 'I sign on checklist with valid 9015 pin'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
