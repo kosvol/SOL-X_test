@@ -50,17 +50,17 @@ Feature: SmartFormsPermission
     Examples:
       | rank   | pin  |
       | Master | 1111 |
-      # | 4/O    | 1010 |
+      # # | 4/O    | 1010 |
       | D/C    | 2317 |
-      | 3/E    | 4685 |
-      | A 3/E  | 6727 |
-      | 4/E    | 1311 |
-      | A 4/E  | 0703 |
+      # | 3/E  | 4685 |
+      # | A 3/E  | 6727 |
+      # | 4/E    | 1311 |
+      # | A 4/E  | 0703 |
       | BOS    | 1018 |
-      # | PMN    | 4236 |
+      | PMN    | 4236 |
       | A/B    | 6316 |
-      | O/S    | 7669 |
-      | OLR    | 0450 |
+  # | O/S    | 7669 |
+  # | OLR    | 0450 |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
