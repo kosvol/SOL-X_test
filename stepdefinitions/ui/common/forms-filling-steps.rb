@@ -1,5 +1,5 @@
 And (/^I fill up compulsory fields$/) do
-    step 'I sign on checklist with 8383 pin'
+    step 'I sign on checklist with valid 8383 pin'
     step 'I press next for 1 times'
     sleep 1
     step 'I select yes to EIC'
@@ -12,7 +12,7 @@ When (/^I fill a full enclosed workspace permit$/) do
   step 'I navigate to section 4a'
   step 'I press next for 1 times'
   step 'I fill up checklist'
-  step 'I sign on checklist with 9015 pin'
+  step 'I sign on checklist with valid 9015 pin'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
   step 'I fill up EIC certificate'
@@ -29,7 +29,7 @@ end
 When (/^I fill a full OA permit$/) do
   step 'I fill up section 1 with default value'
   step 'I press next for 7 times'
-  step 'I sign on checklist with 9015 pin'
+  step 'I sign on checklist with valid 9015 pin'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
   step 'I fill up EIC certificate'

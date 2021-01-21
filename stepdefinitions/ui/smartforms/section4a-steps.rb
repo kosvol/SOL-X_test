@@ -35,21 +35,9 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-# And ('I sign on section with {int} pin') do |_pin|
-#   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-#   step "I enter pin #{_pin}"
-# end
-
-And ('I sign on checklist with {int} pin') do |_pin|
-  on(Section3APage).scroll_multiple_times(4)
-  on(Section4APage).enter_pin_btn
+And ('I sign on checklist with (valid|invalid) {int} pin') do |_condition,_pin|
+  on(Section4APage).click_on_enter_pin
   step "I sign on canvas with #{_pin} pin"
-end
-
-And ('I sign on checklist with invalid {int} pin') do |_pin|
-  on(Section3APage).scroll_multiple_times(4)
-  on(Section4APage).enter_pin_btn
-  step "I enter pin #{_pin}"
 end
 
 Then (/^I should see signed details$/) do
@@ -61,11 +49,6 @@ Then (/^I should see permit number, date and time populated$/) do
   step 'I press next for 1 times'
   is_true(on(Section4APage).is_checklist_details_prepopulated?)
 end
-
-# And (/^I fill up checklist yes, no, na$/) do
-#   step 'I fill up checklist'
-#   step 'I sign on checklist with 9015 pin'
-# end
 
 And (/^I select PPE equipment$/) do
   BrowserActions.scroll_up

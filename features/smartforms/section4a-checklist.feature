@@ -118,7 +118,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with <pin> pin
+    And I sign on checklist with valid <pin> pin
     And I set time
     Then I should see signed details
 
@@ -181,7 +181,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with <pin> pin
+    And I sign on checklist with valid <pin> pin
     And I set time
     Then I should see signed details
 
