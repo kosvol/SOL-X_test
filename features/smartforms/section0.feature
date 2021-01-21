@@ -8,17 +8,17 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal without unlinking wearable
     Then I should see permits match backend results
 
-  # Scenario Outline: Verify pending approval permit filter listing match counter in smart form
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I click on <filter> filter
-  #   Then I should see <filter> permits listing match counter
+  Scenario Outline: Verify pending approval permit filter listing match counter in smart form
+    Given I launch sol-x portal without unlinking wearable
+    And I click on <filter> filter
+    Then I should see <filter> permits listing match counter
 
-  #   Examples:
-  #     | filter             |
-  #     | pending approval   |
-  #     | update needed      |
-  #     | active             |
-  #     | pending withdrawal |
+    Examples:
+      | filter             |
+      | pending approval   |
+      | update needed      |
+      | active             |
+      | pending withdrawal |
 
   Scenario Outline: Verify only RA can create permit
     Given I launch sol-x portal without unlinking wearable
@@ -50,7 +50,7 @@ Feature: SmartFormsPermission
     Examples:
       | rank   | pin  |
       | Master | 1111 |
-      # # | 4/O    | 1010 |
+      # | 4/O    | 1010 |
       | D/C    | 2317 |
       # | 3/E  | 4685 |
       # | A 3/E  | 6727 |
