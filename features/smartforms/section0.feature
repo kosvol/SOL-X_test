@@ -57,7 +57,7 @@ Feature: SmartFormsPermission
       # | 4/E    | 1311 |
       # | A 4/E  | 0703 |
       | BOS    | 1018 |
-      | PMN    | 4236 |
+      | PMN    | 4421 |
       | A/B    | 6316 |
   # | O/S    | 7669 |
   # | OLR    | 0450 |

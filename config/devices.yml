@@ -51,8 +51,8 @@ ue_dashboard_chrome:
   app: ""
   port: 8202
   browserName: "Chrome"
-  chromedriverPort: 9515
-  appiumPort: 4723
+  chromedriverPort: 9517
+  appiumPort: 4725
   isHeadless: true
   noReset: false
 
