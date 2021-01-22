@@ -4,13 +4,27 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-  Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
+  # Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
 
-  # Scenario: Verify PRE turn No Active on dashboard after PRE permit terminated
+  Scenario: Verify PRE duration display on PRED
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see timer countdown
 
-  # Scenario: Verify PRE entry log count on dashboard after entry log approval
-
-  # Scenario: Verify historic entry logs displayed on dashboard
+  Scenario: Verify entry log details populated as filled
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
     Given I launch sol-x portal without unlinking wearable
@@ -26,44 +40,44 @@ Feature: PumpRoomEntry
     Then I should see the PRE permit creator name on PRED
 
   Scenario: Verify ship local time shift on PRED
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    And I should see PRE display timezone
 
-  Scenario: Verify PRE duration display on PRED
-
-  Scenario: Verify entrant count updated after sign out
-
-  # @x11
-  # Scenario: Verify exit time update to timestamp after entrant sign out
-  #   Given I launch sol-x portal without unlinking wearable
-  #   When I fill and submit PRE permit details
-  #   And I enter new entry log
-  #   And I send entry report with 1 optional entrants
-  #   And I sleep for 3 seconds
-  #   And I dismiss gas reader dialog box
-  #   And I sleep for 3 seconds
-  #   And I acknowledge the new entry log via service
-  #   Then I should see entrant count equal 1
-  #   And I signouts 1 entrants
-  #   Then I should see entrant count equal 0
+  Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    And I signout the entrant
+    Then I should see entrant count equal 0
+    And I should see exit timestamp updated
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
     And I enter same entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 3 seconds
+    And I sleep for 2 seconds
     And I dismiss gas reader dialog box
     Then I shoud not see dashboard gas reading popup
-  ### need to check if dashboard really dont show popup; after display popup feature gap resolve
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 3 seconds
+    And I sleep for 2 seconds
     And I dismiss gas reader dialog box
     Then I should see dashboard gas reading popup
-  ### need to check if dashboard really show popup; after display popup feature gap resolve
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable

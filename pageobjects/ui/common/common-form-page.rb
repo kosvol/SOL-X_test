@@ -60,6 +60,10 @@ class CommonFormsPage < CommonPage
     @@time = main_clock_element.text
   end
 
+  def get_current_time
+    @@time
+  end
+
   def get_current_time_format
       "#{@@time}#{get_timezone}"
   end

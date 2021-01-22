@@ -1,6 +1,6 @@
 require './././support/env'
 
-class PreDisplay < PumpRoomEntry
+class PreDisplay < Section9Page
   include PageObject
   # include GasReading
 
@@ -13,10 +13,15 @@ class PreDisplay < PumpRoomEntry
   element(:entrant_count, xpath: "//span[starts-with(@aria-label,'active-entrant-counter')]")
   element(:new_entry_log, xpath: "//span[contains(text(),'New Entry')]")
   element(:send_report, xpath: "//span[contains(text(),'Send Report')]")
+  element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
+  elements(:sign_out_btn, xpath: "//span[contains(text(),'Sign Out')]")
+  elements(:cross_btn, xpath: "//button[contains(@class,'Button__ButtonStyled-')]/span")
   element(:home_tab, xpath: "//a[contains(.,'Home')]")
   element(:entry_log_tab, xpath: "//a[contains(.,'Home')]")
   element(:permit_tab, xpath: "//a[contains(.,'Home')]")
   element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePreFormDetails')]")
+  element(:time_shifted_by_text, xpath: "//div[contains(@class,'PermitValidUntil__TextSmall')]")
+  element(:pre_duration_timer, xpath: "//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
 
   def is_element_disabled_by_att?(text)
     #enable? - doesn't work for PRED. for 'li' elements

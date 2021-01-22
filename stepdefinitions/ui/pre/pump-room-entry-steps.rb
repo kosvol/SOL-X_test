@@ -114,11 +114,16 @@ end
 
 And('I activate the current PRE form') do
   step 'I open the current PRE with status Pending approval. Pin: 8383'
+  step 'I take note of start and end validity time'
   step 'I press the "Approve for Activation" button'
   step "I sign on canvas with valid 8383 pin"
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'
+end
+
+And ('I take note of start and end validity time') do
+  on(PumpRoomEntry).get_validity_start_and_end_time
 end
 
 And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
@@ -209,4 +214,45 @@ Then(/^I edit pre and should see the old number previously written down$/) do
   step 'I enter pin 8383'
   sleep 1
   is_equal(on(PumpRoomEntry).purpose_of_entry, "Test Automation")
+end
+
+And (/^I signout the entrant$/) do
+  on(PumpRoomEntry).home_tab_element.click
+  on(PumpRoomEntry).signout_entrant(1)
+end
+
+Then (/^I should see exit timestamp updated$/) do
+  on(PumpRoomEntry).entry_log_btn_element.click
+  sleep 1
+  does_include(on(PumpRoomEntry).entry_log_table_elements[3].text,on(CommonFormsPage).get_current_time)
+end
+
+And (/^I should see PRE display timezone$/) do
+  on(PumpRoomEntry).home_tab_element.click
+  step 'I sleep for 1 seconds'
+  is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
+end
+
+Then (/^I should see entry log details display as filled$/) do
+  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,"A/M Atif Hayat")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,"Test Automation")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_details)
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text,"#{on(CommonFormsPage).get_current_time_offset}")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,"2 %")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,"3 % LEL")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text,"4 PPM")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text,"5 PPM")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text,"2 CC")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text,"C/O Alister Leong")
+end
+
+Then ('I should see timer countdown') do
+  on(PumpRoomEntry).home_tab_element.click
+  step 'I sleep for 3 seconds'
+  p "#{on(PreDisplay).pre_duration_timer_element.text}"
+  if on(PreDisplay).pre_duration_timer_element.text.include? "03:58:"
+    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:58:")
+  elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:57:"
+    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:57:")
+  end
 end

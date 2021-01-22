@@ -1,6 +1,6 @@
 require './././support/env'
 
-class PumpRoomEntry < Section9Page
+class PumpRoomEntry < PreDisplay
   include PageObject
 
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
@@ -12,16 +12,12 @@ class PumpRoomEntry < Section9Page
   button(:four_hours_duration, xpath: "//button[contains(text(),'4 hours')]")
   button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
-  # element(:reasonForEntry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
-
-  @@text_areas = '//textarea'
   
-
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
@@ -37,9 +33,31 @@ class PumpRoomEntry < Section9Page
   # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
-  element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
   @@button = "//button[contains(.,'%s')]"
+  elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
+  element(:permit_end_time, xpath: "//button[@id='permitValidUntil']/span")
+  element(:permit_start_time, xpath: "//button[@id='permitActiveAt']/span")
   ### end
+
+  def get_validity_start_and_end_time
+    @@pre_permit_start_time = permit_start_time_element.text
+    @@pre_permit_end_time = permit_end_time_element.text
+  end
+
+  def get_entry_log_validity_details
+    "#{@@pre_permit_start_time[0,5]} - #{@@pre_permit_end_time[0,5]}"
+  end
+
+  def signout_entrant(_entrants)
+    BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
+    (1.._entrants.to_i).each do |_i|
+      cross_btn_elements[_i].click
+      sleep 1
+      BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
+    end
+    sleep 1
+    set_current_time
+  end
 
   def additional_entrant(_additional_entrants)
     purpose_of_entry="Test Automation"
