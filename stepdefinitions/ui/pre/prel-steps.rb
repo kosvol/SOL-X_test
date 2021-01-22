@@ -24,13 +24,14 @@ Then (/^I should see entrant count equal (.*)$/) do |_count|
 end
 
 And (/^I acknowledge the new entry log via service$/) do
+    step 'I sleep for 5 seconds'
     SmartFormDBPage.acknowledge_pre_entry_log
     step 'I sleep for 3 seconds'
 end
 
 Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
     step 'I acknowledge the new entry log via service'
-    step 'I sleep for 2 seconds'
+    step 'I sleep for 1 seconds'
     if _condition === 'should not'
         is_equal(SmartFormDBPage.get_error_message,"No pending PRED record")
     elsif _condition === 'should'

@@ -49,6 +49,7 @@ class PumpRoomEntry < PreDisplay
   end
 
   def signout_entrant(_entrants)
+    sleep 1
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
     (1.._entrants.to_i).each do |_i|
       cross_btn_elements[_i].click
@@ -87,7 +88,7 @@ class PumpRoomEntry < PreDisplay
   end
 
   def select_start_time_to_activate(delay)
-    set_current_time #@@time
+    set_current_time
     hh, mm = add_minutes(delay)
 
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']"
