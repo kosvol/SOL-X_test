@@ -27,7 +27,7 @@ end
 
 And (/^I approve oa permit via oa link manually$/) do
   # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ES5NYNPXEPZY4PNE187C5HBY?formId=SIT/PTW/2020/161&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
-  sleep 2
+  sleep 5
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox
   on(OAPage).set_from_to_details
