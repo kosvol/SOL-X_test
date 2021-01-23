@@ -118,7 +118,6 @@ Feature: PumpRoomEntry
   #   And I should see Permit Terminated PRE status on screen
   # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
-  @x13
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details

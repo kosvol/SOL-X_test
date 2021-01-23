@@ -167,7 +167,7 @@ class PumpRoomEntry < PreDisplay
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    scroll_multiple_times(1)
+    scroll_multiple_times(5)
     sleep 1
     case duration
     when 4

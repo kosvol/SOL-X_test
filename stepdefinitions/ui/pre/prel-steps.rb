@@ -1,6 +1,7 @@
 And (/^I enter (new|same) entry log$/) do |_condition|
     step 'I sleep for 3 seconds'
     on(PreDisplay).new_entry_log_element.click
+    
     on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
     on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','Test','20','2','cc') if _condition === 'new'
     step "I sign for gas"
