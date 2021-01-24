@@ -12,7 +12,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    # And I sleep for 5 seconds
+    And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see timer countdown
 
@@ -22,7 +22,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    # And I sleep for 3 seconds
+    And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
 
@@ -68,6 +68,7 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 2 seconds
     And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
@@ -77,6 +78,7 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 2 seconds
     And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
     Then I should see dashboard gas reading popup
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
