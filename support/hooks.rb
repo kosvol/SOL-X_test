@@ -48,10 +48,10 @@ After do |scenario|
       # end
     else
       # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      $extent_test.info(:fail, 'Exception Raised', e, @browser)
+      $extent_test.info(:fail, 'Exception Raised', scenario, @browser)
     end
   rescue Exception => e
-    # $extent_test.info(:fail, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception Raised', scenario, @browser)
   end
   
   begin
@@ -74,7 +74,7 @@ AfterStep do |scenario|
       # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
     end
   rescue Exception => e
-    $extent_test.info(:fail, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception Raised', scenario, @browser)
   end
 end
 
