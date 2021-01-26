@@ -11,14 +11,15 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('pre/mod-01.create-pre-form', create_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-01.create-pre-form', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
-
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+    end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
     update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['answers'][25]['value'] = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
-    update_form_pre['variables']['answers'][26]['value'] = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
+    update_form_pre['variables']['answers'][9]['value'] = start_time
+    update_form_pre['variables']['answers'][10]['value'] = end_time
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
@@ -28,11 +29,19 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('pre/03.update-form-status', update_form_pre)
     ServiceUtil.post_graph_ql('pre/03.update-form-status', _user)
 
+    update_form_pre = JSON.parse JsonUtil.read_json('pre/07.before-change-status-to-approve')
+    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre['variables']['answers'][9]['value'] = start_time
+    update_form_pre['variables']['answers'][10]['value'] = end_time
+    JsonUtil.create_request_file('pre/mod-07.before-change-status-to-approve', update_form_pre)
+    ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
+
     update_form_pre = JSON.parse JsonUtil.read_json('pre/04.update-form-status')
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     JsonUtil.create_request_file('pre/04.update-form-status', update_form_pre)
-    ServiceUtil.post_graph_ql('pre/04.update-form-status', _user)
+    ServiceUtil.post_graph_ql('pre/04.update-form-status', '2761')
   end
 
   def terminate_pre_permit(_user)
