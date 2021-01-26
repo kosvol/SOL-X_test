@@ -23,6 +23,7 @@ end
 And (/^I click on back arrow$/) do
   sleep 2
   on(Section0Page).back_arrow_element.click
+  sleep 4
   step 'I set permit id'
 end
 
@@ -36,7 +37,7 @@ end
 And (/^I click on back to home$/) do
   sleep 2
   on(Section6Page).back_to_home_btn
-  sleep 8
+  sleep 4
   step 'I set permit id'
 end
 
