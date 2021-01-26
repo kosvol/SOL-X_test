@@ -78,7 +78,7 @@ Feature: PumpRoomEntry
     And I send entry report with 0 optional entrants
     And I sleep for 2 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
