@@ -141,3 +141,7 @@ Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
 end
+
+When (/^I terminate the PRE permit via service$/) do
+  on(BypassPage).terminate_pre_permit('8383')
+end

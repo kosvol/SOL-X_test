@@ -35,6 +35,20 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('pre/04.update-form-status', _user)
   end
 
+  def terminate_pre_permit(_user)
+    create_form_pre = JSON.parse JsonUtil.read_json('pre/05.submit-form-status-for-termination')
+    create_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('pre/mod-05.submit-form-status-for-termination', create_form_pre)
+    ServiceUtil.post_graph_ql('pre/mod-05.submit-form-status-for-termination', _user)
+    
+    create_form_pre = JSON.parse JsonUtil.read_json('pre/06.update-form-status-for-termination')
+    create_form_pre['variables']['formId'] = CommonPage.get_permit_id
+    create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('pre/mod-06.update-form-status-for-termination', create_form_pre)
+    ServiceUtil.post_graph_ql('pre/mod-06.update-form-status-for-termination', _user)
+  end
+
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     @via_service_or_not = true
     ### init ptw form

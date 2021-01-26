@@ -5,6 +5,14 @@ Feature: LocationTracking
   So that ...
 
   Scenario: Verify PRE activity tab shows inactive after active permit got terminated
+    Given I clear forms table
+    When I launch sol-x portal
+    And I submit a scheduled PRE permit
+    And I sleep for 120 seconds
+    Then I should see PRE tab active on dashboard
+    When I terminate the PRE permit via service
+    And I sleep for 10 seconds
+    Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I clear forms table
