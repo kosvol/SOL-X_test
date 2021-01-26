@@ -75,6 +75,7 @@ end
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
+  sleep 2
   @temp_id = on(Section0Page).ptw_id_element.text
 end
 
