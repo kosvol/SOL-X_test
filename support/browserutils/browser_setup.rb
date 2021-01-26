@@ -86,7 +86,7 @@ class BrowserSetup
           # unlockKey: '1111',
           skipLogcatCapture: true,
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
-          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content','--no-sandbox'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content','--no-sandbox', '--no-service-autorun'] },
           # :fullReset => fullreset,
           noReset: noreset
         },
@@ -114,7 +114,7 @@ class BrowserSetup
           uiautomator2ServerLaunchTimeout: 100000,
           chromedriverPort: @device['chromedriverPort'],
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
-          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content','--no-sandbox'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content','--no-sandbox', '--no-service-autorun'] },
           # :fullReset => fullreset,
           noReset: noreset
         },
