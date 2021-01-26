@@ -5,7 +5,9 @@ And (/^I should see entire hamburger categories$/) do
 end
 
 And (/^I open hamburger menu$/) do
-  BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+  # BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+  sleep 1
+  on(NavigationPage).hamburger_menu_element.click
 end
 
 And (/^I click on (.*) show more$/) do |_which_category|
