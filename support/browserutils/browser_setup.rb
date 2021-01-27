@@ -5,21 +5,23 @@ $browser
 class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
   def self.get_browser(os, platform, _noreset = false, _fullreset = true)
-    $browser = case ENV['PLATFORM'].upcase
-               when 'CHROME', 'CHROME_HEADLESS'
-                 load_chrome(os)
-               when 'ANDROID'
-                 load_web_app(os, _noreset, _fullreset)
-               else
-                 raise "Invalid Platform => #{platform} for the OS => #{os}"
+    if $browser.nil?
+      $browser = case ENV['PLATFORM'].upcase
+                when 'CHROME', 'CHROME_HEADLESS'
+                  load_chrome(os)
+                when 'ANDROID'
+                  load_web_app(os, _noreset, _fullreset)
+                else
+                  raise "Invalid Platform => #{platform} for the OS => #{os}"
+        end
+      if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
+        $browser.manage.delete_all_cookies
       end
-    if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
-      $browser.manage.delete_all_cookies
+      $wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+      $browser.manage.timeouts.script_timeout = 30
+      # $browser.manage.timeouts.page_load = 30
+      $browser.manage.timeouts.implicit_wait = 30
     end
-    $wait = Selenium::WebDriver::Wait.new(:timeout => 30)
-    $browser.manage.timeouts.script_timeout = 30
-    # $browser.manage.timeouts.page_load = 30
-    $browser.manage.timeouts.implicit_wait = 30
     $browser
   end
 
@@ -86,7 +88,7 @@ class BrowserSetup
           # unlockKey: '1111',
           skipLogcatCapture: true,
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
-          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content',"--disable-dev-shm-usage","--no-sandbox"] },
           # :fullReset => fullreset,
           noReset: noreset
         },
@@ -114,14 +116,13 @@ class BrowserSetup
           uiautomator2ServerLaunchTimeout: 300000,
           chromedriverPort: @device['chromedriverPort'],
           # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
-          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
+          chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content',"--disable-dev-shm-usage","--no-sandbox"] },
           # :fullReset => fullreset,
           noReset: noreset
         },
         appium_lib: { port: @device['appiumPort'], wait: 180 }
       }
     end
-    browser = Appium::Driver.new(opts, true).start_driver
 
     ### set wifi to always on
     $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
@@ -130,6 +131,6 @@ class BrowserSetup
       browser.toggle_wifi 
       sleep 10
     end
-    browser
+    Appium::Driver.new(opts, true).start_driver
   end
 end
