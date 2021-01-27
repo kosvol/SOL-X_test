@@ -23,7 +23,7 @@ end
 And (/^I click on back arrow$/) do
   sleep 2
   on(Section0Page).back_arrow_element.click
-  sleep 4
+  sleep 6
   step 'I set permit id'
 end
 

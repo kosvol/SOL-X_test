@@ -30,6 +30,7 @@ Then (/^I should see crew list location indicator is (.+) 5 minutes$/) do |indic
 end
 
 Then (/^I should see crew location details on crew screen$/) do
+  step 'I sleep for 2 seconds'
   is_true(on(CrewListPage).is_location_details)
 end
 
@@ -38,10 +39,10 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  sleep 3
+  step 'I sleep for 3 seconds'
   step 'I click on view pin button'
   on(PinPadPage).enter_pin(1111)
-  sleep 1
+  step 'I sleep for 1 seconds'
 end
 
 Then (/^I should see pin reviewed$/) do
