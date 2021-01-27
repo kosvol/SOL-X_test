@@ -31,7 +31,8 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'values-area')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    BrowserActions.js_click("//div[starts-with(@class,'values-area')]/button")
+    # @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'values-area')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     sleep 1
     toggle_zone_filter(location)
     sleep 1
@@ -120,7 +121,8 @@ class DashboardPage < WearablePage
   def toggle_zone_filter(which_zone)
     xpath_str = format(@@ship_area, which_zone)
     sleep 1
-    @browser.execute_script(%(document.evaluate("#{xpath_str}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    BrowserActions.js_click("#{xpath_str}")
+    # @browser.execute_script(%(document.evaluate("#{xpath_str}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     # @browser.find_element('xpath', xpath_str).click
   end
 

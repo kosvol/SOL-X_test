@@ -54,7 +54,8 @@ class Section4APage < Section3DPage
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
   def click_on_enter_pin
-    @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    BrowserActions.js_click("//button[contains(.,'Enter Pin')]")
+    # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
   def get_checklist_locator(_checklist)
@@ -69,7 +70,8 @@ class Section4APage < Section3DPage
   ### hack
   def select_ppe_equipment
     begin
-      @browser.execute_script(%(document.evaluate("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+      # @browser.execute_script(%(document.evaluate("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
       # ppe_btn
       sleep 1
       member_name_btn_elements.first.click
@@ -79,7 +81,8 @@ class Section4APage < Section3DPage
     end
 
     begin
-      browser.execute_script(%(document.evaluate("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
+      # browser.execute_script(%(document.evaluate("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
       # ppe1_btn
       sleep 1
       member_name_btn_elements.first.click

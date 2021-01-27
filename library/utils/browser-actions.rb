@@ -77,6 +77,10 @@ module BrowserActions
       $browser.execute_script("window.scrollBy(0,#{_distance})", '')
     end
 
+    def js_click(_xpath)
+      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    end
+
     private
 
     def scroll_to_element(_element)

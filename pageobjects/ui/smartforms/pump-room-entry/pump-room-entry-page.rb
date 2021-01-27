@@ -104,8 +104,9 @@ class PumpRoomEntry < PreDisplay
     sleep 1
     @browser.find_element(:xpath, picker_mm).click
     sleep 1
-    x = %(document.evaluate("//h2[contains(text(),'Permit Validity')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
-    @browser.execute_script(x)  #click on empty space to close picker
+    BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
+    # x = %(document.evaluate("//h2[contains(text(),'Permit Validity')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+    # @browser.execute_script(x)  #click on empty space to close picker
   end
 
 

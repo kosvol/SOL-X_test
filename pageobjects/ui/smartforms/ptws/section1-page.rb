@@ -105,7 +105,8 @@ class Section1Page < Section0Page
 
   def select_checkbox(_input, _location)
     p ">> #{_input % [_location]}"
-    browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    BrowserActions.js_click("#{_input % [_location]}")
+    # browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
   def fill_text_area(_input, _text)

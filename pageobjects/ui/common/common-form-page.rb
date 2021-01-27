@@ -43,7 +43,7 @@ class CommonFormsPage < CommonPage
   def select_todays_date_from_calendar(advance_days=0)
     current_day_elements.each_with_index do |_element,_index|
       if _element.attribute('class').include? 'current'
-        current_day_elements[_index+advance_days].click 
+        BrowserActions.js_click("//button[contains(@class,'Day__DayButton')][(#{_index}+#{advance_days})+1]")
         break
       end
     end

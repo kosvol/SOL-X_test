@@ -50,7 +50,8 @@ class Section0Page < NavigationPage
     BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
-      @browser.execute_script(%(document.evaluate("//ul/li[#{_index+1}]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      BrowserActions.js_click("//ul/li[#{_index+1}]/button")
+      # @browser.execute_script(%(document.evaluate("//ul/li[#{_index+1}]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
       # permit.click
       break
     end
