@@ -31,6 +31,7 @@ $obj_env_yml = YAML.load_file('config/environment.yml')
 $sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')
 
 $master_pin = $obj_env_yml[$current_environment]['master_pin']
+$password = $obj_env_yml[$current_environment]['password']
 # Clear report folders contents
 ReportUtils.clear_folder
 

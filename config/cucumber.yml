@@ -36,6 +36,11 @@ android_chrome_tablet_dev: --profile dir --profile html --profile xml --profile 
 win_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WINDOWS APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 win_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WINDOWS APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 thinktouch_android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=thinktouch_android_ue_dashboard_chrome
+
+mac_chrome_dashboard_office_approval: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=format_link ENVIRONMENT=office_approval DEVICE=dashboard
+mac_chrome_dashboard_office_approval_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=format_link ENVIRONMENT=office_approval DEVICE=dashboard
+
+
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
 
 dir: -r support -r stepdefinitions -r pageobjects
