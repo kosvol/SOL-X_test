@@ -66,9 +66,8 @@ And(/^I enter pin for rank (.*)$/) do |rank|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 2
-  # BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
-  on(Section0Page).click_permit_type_ddl_element.click
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
 end
 
