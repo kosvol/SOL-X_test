@@ -29,6 +29,7 @@ Given (/^I launch sol-x portal$/) do
   rescue 
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
+  sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
@@ -39,6 +40,7 @@ Given (/^I launch sol-x portal without unlinking wearable$/) do
   rescue 
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
+  sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
