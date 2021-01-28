@@ -5,9 +5,9 @@ module WorkWithIndexeddb
       # works only after synchronization. Usually you should return to the Home page.
       # otherwise the browser shut down
       sleep 10
-      $browser.execute_script("openRequest = indexedDB.open('safevue')")
+      $browser.execute_script("openRequest = await indexedDB.open('safevue')")
       sleep 2
-      $browser.execute_script("db = openRequest.result")
+      $browser.execute_script("db = await openRequest.result")
       $browser.execute_script("res = db.transaction(['idMap'], 'readonly').objectStore('idMap').get('%s')"%temp_id)
       $browser.execute_script("return res.result['formId']")
     end
