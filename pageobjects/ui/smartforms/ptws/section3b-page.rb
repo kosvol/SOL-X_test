@@ -5,10 +5,10 @@ require './././support/env'
 class Section3BPage < Section3APage
   include PageObject
 
-  element(:method_reason, id: 'methodReason')
-  element(:last_assessment_date, id: 'lastAssessment')
-  text_field(:last_assessment, id: 'lastAssessmentDra')
-  button(:work_side_inspected_by, id: 'workInspectionBy')
+  element(:method_reason, xpath: "//input[@id='methodReason']")
+  element(:last_assessment_date, xpath: "//button[@id='lastAssessment']")
+  text_field(:last_assessment, xpath: "//input[@id='lastAssessmentDra']")
+  button(:work_side_inspected_by, xpath: "//button[@id='workInspectionBy']")
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
   elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
   elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content')]/div/ul/li")

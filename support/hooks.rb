@@ -3,6 +3,7 @@
 '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
 '' ' DO NOT TOUCH THIS WHEN UNSURE ' ''
 '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
+
 AfterConfiguration do |config|
   unless %w[MAC WINDOWS Android iOS iOS-web Android-web].include? (ENV['OS']).to_s
     raise "Invalid OS => #{ENV['OS']}"
@@ -32,7 +33,7 @@ Before do |scenario|
   ReportUtils.output_tag(scenario, $extent_test)
   @log = Log.instance.start_new(scenario.name.gsub(' ', '_'))
   @log.instance_variable_set(:@cucumber_world, self)
-  @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM']) # ,false,true) if @reset_flag_counter == 0
+  @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM'])
 end
 
 After do |scenario|
