@@ -23,7 +23,6 @@ class BrowserSetup
       # $browser.manage.timeouts.page_load = 30
       $browser.manage.timeouts.implicit_wait = 30
     end
-    BrowserActions.turn_on_wifi_by_default
     $browser
   end
 

@@ -35,6 +35,16 @@ Before do |scenario|
   @log.instance_variable_set(:@cucumber_world, self)
 
   @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM'])
+
+  device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+
+  $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
+  p "Wifi Status: #{$wifi_on_off}"
+  if $wifi_on_off.strip === "0"
+    $browser.toggle_wifi 
+    sleep 10
+  end
+  # BrowserActions.turn_on_wifi_by_default if ENV['PLATFORM'].upcase != "CHROME"
 end
 
 After do |scenario|
