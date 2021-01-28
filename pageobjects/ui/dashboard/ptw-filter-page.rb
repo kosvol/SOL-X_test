@@ -16,6 +16,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
   end
 
   def is_permit_listing_count?(_which_filter)
+    sleep 5
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
     case _which_filter
     when 'pending approval'
