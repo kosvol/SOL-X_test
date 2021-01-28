@@ -4,7 +4,7 @@ module WorkWithIndexeddb
     def get_id_from_indexeddb(temp_id)
       # works only after synchronization. Usually you should return to the Home page.
       # otherwise the browser shut down
-      sleep 8
+      sleep 10
       $browser.execute_script("openRequest = indexedDB.open('safevue')")
       sleep 2
       $browser.execute_script("db = openRequest.result")
