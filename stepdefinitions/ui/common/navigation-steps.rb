@@ -28,6 +28,7 @@ And (/^I click on back arrow$/) do
 end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
+  sleep 1
   (1.._times.to_i).each do |_i|
     _condition === 'next' ? on(Section0Page).click_next : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
     sleep 1
