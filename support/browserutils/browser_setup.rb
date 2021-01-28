@@ -5,6 +5,7 @@ $browser
 class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
   def self.get_browser(os, platform, _noreset = false, _fullreset = true)
+    
     if $browser.nil?
       $browser = case ENV['PLATFORM'].upcase
                 when 'CHROME', 'CHROME_HEADLESS'
@@ -22,6 +23,7 @@ class BrowserSetup
       # $browser.manage.timeouts.page_load = 30
       $browser.manage.timeouts.implicit_wait = 30
     end
+    BrowserActions.turn_on_wifi_by_default
     $browser
   end
 
@@ -124,13 +126,6 @@ class BrowserSetup
       }
     end
 
-    ### set wifi to always on
-    $wifi_on_off = `adb -s #{@device["deviceName"]} shell settings get global wifi_on`
-    p ">>>>>>>>>>> WIFI Status: #{$wifi_on_off}"
-    if $wifi_on_off.strip === "0"
-      browser.toggle_wifi 
-      sleep 10
-    end
     Appium::Driver.new(opts, true).start_driver
   end
 end

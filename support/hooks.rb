@@ -33,6 +33,7 @@ Before do |scenario|
   ReportUtils.output_tag(scenario, $extent_test)
   @log = Log.instance.start_new(scenario.name.gsub(' ', '_'))
   @log.instance_variable_set(:@cucumber_world, self)
+
   @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM'])
 end
 

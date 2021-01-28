@@ -21,6 +21,16 @@ module BrowserActions
       sleep 9
     end
 
+    def turn_on_wifi_by_default
+      device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+
+      $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
+      p "Wifi Status: #{$wifi_on_off}"
+      if $wifi_on_off.strip === "0"
+        $browser.toggle_wifi 
+        sleep 10
+      end
+    end
     ### end
 
     def scroll_click(_element)
