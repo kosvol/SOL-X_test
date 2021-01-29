@@ -32,12 +32,12 @@ class Section0Page < NavigationPage
     click_next
     set_selected_level2_permit(_permit)
     set_current_time
-    sleep 1
+    sleep 3
   end
 
   def select_level1_permit(_permit)
-    CommonPage.set_permit_id(_permit)  ### this might be redundant already
     sleep 1
+    CommonPage.set_permit_id(_permit)  ### this might be redundant already
     select_permit
   end
 

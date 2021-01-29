@@ -21,9 +21,10 @@ Then (/^I navigate to "(.*)" screen for (.*)$/) do |_which_section,_which_catego
 end
 
 And (/^I click on back arrow$/) do
-  sleep 2
-  on(Section0Page).back_arrow_element.click
-  sleep 4
+  # sleep 1
+  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
+  # on(Section0Page).back_arrow_element.click
+  sleep 5
   step 'I set permit id'
 end
 
