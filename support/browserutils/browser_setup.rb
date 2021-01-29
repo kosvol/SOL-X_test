@@ -6,7 +6,6 @@ class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
   def self.get_browser(os, platform, _noreset = false, _fullreset = true)
     
-    # if $browser.nil?
     $browser = case ENV['PLATFORM'].upcase
               when 'CHROME', 'CHROME_HEADLESS'
                 load_chrome(os)
@@ -19,7 +18,7 @@ class BrowserSetup
     $browser.manage.timeouts.script_timeout = 50
     # $browser.manage.timeouts.page_load = 30
     $browser.manage.timeouts.implicit_wait = 50
-    # end
+
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
