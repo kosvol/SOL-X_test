@@ -22,6 +22,7 @@ class BrowserSetup
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies
     end
+    BrowserActions.turn_on_wifi_by_default if $current_platform.upcase != "CHROME"
     $browser
   end
 

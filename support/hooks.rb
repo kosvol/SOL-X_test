@@ -36,9 +36,15 @@ Before do |scenario|
 
   @browser = BrowserSetup.get_browser(ENV['OS'], $current_platform)
 
-  device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+  # device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
 
-  BrowserActions.turn_on_wifi_by_default if $current_platform.upcase != "CHROME"
+  # $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
+  # p "Wifi Status: #{$wifi_on_off}"
+  # if $wifi_on_off.strip === "0"
+  #   $browser.toggle_wifi 
+  #   sleep 10
+  # end
+
 end
 
 After do |scenario|
