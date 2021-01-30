@@ -40,7 +40,7 @@ ue_tablet_b_chrome:
   port: 8201
   browserName: "Chrome"
   chromedriverPort: 9516
-  appiumPort: 4724
+  appiumPort: 4723
   isHeadless: true
   noReset: false
 
