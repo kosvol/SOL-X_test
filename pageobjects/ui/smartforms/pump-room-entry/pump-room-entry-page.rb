@@ -50,11 +50,13 @@ class PumpRoomEntry < PreDisplay
 
   def signout_entrant(_entrants)
     sleep 1
-    BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
+    sign_out_btn_elements.first.click
+    # BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
     (1.._entrants.to_i).each do |_i|
       cross_btn_elements[_i].click
       sleep 1
-      BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
+      sign_out_btn_elements.last.click
+      # BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
     end
     sleep 1
     set_current_time

@@ -11,7 +11,9 @@ class SignaturePage < CommonFormsPage
   def sign_and_done
     sleep 1
     sign_for_gas
-    BrowserActions.poll_exists_and_click(done_btn_elements.first)
+    sleep 1
+    done_btn_elements.first.click
+    # BrowserActions.poll_exists_and_click(done_btn_elements.first)
   end
 
   def sign_for_gas
