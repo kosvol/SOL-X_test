@@ -26,6 +26,7 @@ ue_tablet_a_chrome:
   deviceName: "6572e096"
   app: ""
   port: 8200
+  udid: "6572e096"
   browserName: "Chrome"
   chromedriverPort: 9515
   appiumPort: 4723
@@ -36,6 +37,7 @@ ue_tablet_b_chrome:
   platformName: "Android"
   platformVersion: "8.1"
   deviceName: "409f97da"
+  udid: "409f97da"
   app: ""
   port: 8201
   browserName: "Chrome"
@@ -48,6 +50,7 @@ ue_dashboard_chrome:
   platformName: "Android"
   platformVersion: "7.1"
   deviceName: "202092300E49"
+  udid: "202092300E49"
   app: ""
   port: 8202
   browserName: "Chrome"
