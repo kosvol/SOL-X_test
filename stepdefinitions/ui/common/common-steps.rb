@@ -26,10 +26,10 @@ Given (/^I launch sol-x portal$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 5
   begin
-    BrowserActions.to_exists(on(Section0Page).click_create_permit_btn_element)
+    AssertionUtil.to_exists(on(Section0Page).click_create_permit_btn_element)
     # BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
-    BrowserActions.to_exists(on(CommonFormsPage).is_dashboard_screen_element)
+    AssertionUtil.to_exists(on(CommonFormsPage).is_dashboard_screen_element)
     # BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
@@ -40,10 +40,10 @@ Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 5
   begin
-    BrowserActions.to_exists(on(Section0Page).click_create_permit_btn_element)
+    AssertionUtil.to_exists(on(Section0Page).click_create_permit_btn_element)
     # BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
-    BrowserActions.to_exists(on(CommonFormsPage).is_dashboard_screen_element)
+    AssertionUtil.to_exists(on(CommonFormsPage).is_dashboard_screen_element)
     # BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
