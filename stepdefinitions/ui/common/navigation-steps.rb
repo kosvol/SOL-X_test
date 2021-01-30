@@ -22,8 +22,8 @@ end
 
 And (/^I click on back arrow$/) do
   # sleep 1
-  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  # on(Section0Page).back_arrow_element.click
+  # BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
+  on(Section0Page).back_arrow_element.click
   sleep 5
   step 'I set permit id'
 end
@@ -31,7 +31,7 @@ end
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   sleep 1
   (1.._times.to_i).each do |_i|
-    _condition === 'next' ? on(Section0Page).click_next : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
+    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
     sleep 1
   end
 end
