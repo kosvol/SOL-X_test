@@ -47,7 +47,8 @@ class Section0Page < NavigationPage
   end
 
   def select_permit
-    BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
+    sleep 2
+    # BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
       BrowserActions.js_click("//ul/li[#{_index+1}]/button")
