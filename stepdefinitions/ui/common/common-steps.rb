@@ -24,13 +24,13 @@ end
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 5
+  # sleep 5
   begin
-    to_exists(on(Section0Page).click_create_permit_btn_element)
-    # BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+    # to_exists(on(Section0Page).click_create_permit_btn_element)
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
-    to_exists(on(CommonFormsPage).is_dashboard_screen_element)
-    # BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+    # to_exists(on(CommonFormsPage).is_dashboard_screen_element)
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
   # puts "screen size: #{$browser.window_size}"
@@ -38,13 +38,13 @@ end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
-  sleep 5
+  # sleep 5
   begin
-    to_exists(on(Section0Page).click_create_permit_btn_element)
-    # BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+    # to_exists(on(Section0Page).click_create_permit_btn_element)
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
-    to_exists(on(CommonFormsPage).is_dashboard_screen_element)
-    # BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+    # to_exists(on(CommonFormsPage).is_dashboard_screen_element)
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
   # puts "screen size: #{$browser.window_size}"
@@ -74,9 +74,9 @@ And(/^I enter pin for rank (.*)$/) do |rank|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  sleep 1
-  on(Section0Page).click_permit_type_ddl
-  # BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
+  # sleep 1
+  # on(Section0Page).click_permit_type_ddl
+  BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
 end
 
