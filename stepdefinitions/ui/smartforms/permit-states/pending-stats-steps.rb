@@ -29,8 +29,8 @@ end
 
 Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
-  on(Section4BPage).view_eic_btn_element
-  # BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
+  # on(Section4BPage).view_eic_btn_element
+  BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section3APage).total_p_elements.size,28)
   # on(CommonFormsPage).close_btn_elements.first.click
