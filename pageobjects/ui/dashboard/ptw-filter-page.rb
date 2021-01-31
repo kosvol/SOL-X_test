@@ -12,7 +12,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
 
   def does_permit_counter_match
     get_permits_counter
-    (@@total_pending_approval.to_s === pending_approval) && (@@total_update_needed.to_s === pending_update) && (@@total_active.to_s === active) && (@@total_terminal.to_s === pending_termination)
+    (@total_pending_approval.to_s === pending_approval) && (@total_update_needed.to_s === pending_update) && (@total_active.to_s === active) && (@total_terminal.to_s === pending_termination)
   end
 
   def is_permit_listing_count?(_which_filter)
@@ -20,17 +20,17 @@ class PtwFilterPage < CreatedPermitToWorkPage
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
     case _which_filter
     when 'pending approval'
-      Log.instance.info("\n\nExpected: #{@@total_pending_approval}\n\n")
-      parent_container_elements.size === @@total_pending_approval
+      Log.instance.info("\n\nExpected: #{@total_pending_approval}\n\n")
+      parent_container_elements.size === @total_pending_approval
     when 'update needed'
-      Log.instance.info("\n\nExpected: #{@@total_update_needed}\n\n")
-      parent_container_elements.size === @@total_update_needed.to_i
+      Log.instance.info("\n\nExpected: #{@total_update_needed}\n\n")
+      parent_container_elements.size === @total_update_needed.to_i
     when 'active'
-      Log.instance.info("\n\nExpected: #{@@total_active}\n\n")
-      parent_container_elements.size === @@total_active.to_i
+      Log.instance.info("\n\nExpected: #{@total_active}\n\n")
+      parent_container_elements.size === @total_active.to_i
     when 'pending withdrawal'
-      Log.instance.info("\n\nExpected: #{@@total_terminal}\n\n")
-      parent_container_elements.size === @@total_terminal.to_i
+      Log.instance.info("\n\nExpected: #{@total_terminal}\n\n")
+      parent_container_elements.size === @total_terminal.to_i
     end
   end
 
