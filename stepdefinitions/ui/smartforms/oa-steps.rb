@@ -6,7 +6,7 @@ And (/^I navigate to OA link$/) do
 end
 
 And (/^I request the permit for update via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ESNCV64360TJGE4H1BX7GRFQ?formId=SIT/PTW/2020/046&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
+  # $browser.get("http://solas-dev-office-portal.azurewebsites.net/permit-preview/01EXBM6HC2FXMZ4FF72HA3VS0Z?staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 1
   on(OAPage).update_permit_btn
   sleep 1
@@ -26,7 +26,7 @@ And (/^I request the permit for update via oa link manually$/) do
 end
 
 And (/^I approve oa permit via oa link manually$/) do
-  # $browser.get('http://solas-dev-office-portal.azurewebsites.net/permit-preview/01ES5NYNPXEPZY4PNE187C5HBY?formId=SIT/PTW/2020/161&staffId=410ab5c6feb3d2f1b030b9d9ce036138')
+  # $browser.get("http://solas-dev-office-portal.azurewebsites.net/permit-preview/01EXBM6HC2FXMZ4FF72HA3VS0Z?staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 5
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox

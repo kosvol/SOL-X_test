@@ -88,7 +88,6 @@ end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
   sleep 1
-  on(Section4BPage).yes_no_btn_elements[0].click
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   step "I enter pin #{_pin}"
   on(SignaturePage).sign_and_done if _condition === 'RA'

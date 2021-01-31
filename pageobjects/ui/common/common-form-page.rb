@@ -19,6 +19,7 @@ class CommonFormsPage < CommonPage
   element(:wifi_restore_popup, xpath: "//h3[contains(.,'Wi-Fi restored')]")
 
   ### buttons by text ###
+  button(:calendar_next_month, xpath: "//button[contains(@data-testid,'calendar-next-month')]")
   element(:no_permits_found, xpath: "//h3[contains(.,'No permits found.')]")
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   buttons(:sign_btn, xpath: "//button[contains(.,'Sign')]")
@@ -42,11 +43,18 @@ class CommonFormsPage < CommonPage
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
   
   def select_todays_date_from_calendar(advance_days=0)
-    current_day_elements.each_with_index do |_element,_index|
-      if _element.attribute('class').include? 'current'
-        BrowserActions.js_click("//button[contains(@class,'Day__DayButton')][(#{_index}+#{advance_days})+1]")
-        break
+    begin
+      current_day_elements.each_with_index do |_element,_index|
+        if _element.attribute('class').include? 'current'
+          BrowserActions.js_click("//button[contains(@class,'Day__DayButton')][(#{_index}+#{advance_days})+1]")
+          break
+        end
       end
+    rescue StandardError
+      calendar_next_month
+      sleep 1
+      BrowserActions.js_clicks("//button[contains(.,'01')]","1")
+      sleep 1
     end
   end
 
