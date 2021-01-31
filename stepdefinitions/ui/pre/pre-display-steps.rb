@@ -1,7 +1,7 @@
 And(/^I navigate to PRE Display$/) do
   step 'I navigate to "Settings" screen for setting'
-  on(PumpRoomEntry).pump_room_display_setting_element.click
-  # BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element)
+  # on(PumpRoomEntry).pump_room_display_setting_element.click
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element)
   step 'I press the "Enter Pin & Apply" button'
 end
 

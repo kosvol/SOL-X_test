@@ -70,8 +70,8 @@ After do |scenario|
     @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
-  # $browser.close
-  $browser.quit
+  $browser.close
+  # $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
 end
@@ -92,7 +92,7 @@ AfterStep do |scenario|
 end
 
 at_exit do
-  # $browser.quit
+  $browser.quit
   $extent.append_desc(Formatter::HtmlFormatter.examples)
   # $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report

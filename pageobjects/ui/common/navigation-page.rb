@@ -43,11 +43,11 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    next_btn
-    # BrowserActions.poll_exists_and_click(next_btn_element)
+    # next_btn
+    BrowserActions.poll_exists_and_click(next_btn_element)
   rescue StandardError
-    save_and_next_btn
-    # BrowserActions.poll_exists_and_click(save_and_next_btn_element)
+    # save_and_next_btn
+    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
   end
 
   def get_total_steps_to_section6(_which_section)

@@ -19,6 +19,7 @@ class CommonFormsPage < CommonPage
   element(:wifi_restore_popup, xpath: "//h3[contains(.,'Wi-Fi restored')]")
 
   ### buttons by text ###
+  element(:no_permits_found, xpath: "//h3[contains(.,'No permits found.')]")
   button(:enter_pin_btn, xpath: "//button[contains(.,'Enter Pin')]")
   buttons(:sign_btn, xpath: "//button[contains(.,'Sign')]")
   button(:back_btn, xpath: "//button[contains(.,'Back')]")
