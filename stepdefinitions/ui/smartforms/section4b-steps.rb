@@ -4,6 +4,10 @@ Then (/^I should not see comment box exists$/) do
   not_to_exists(on(PendingStatePage).update_comment_box_element)
 end
 
+Then (/^I should see description of work pre-populated$/) do
+  is_equal(on(Section4BPage).description_of_work,"Test Automation")
+end
+
 Then (/^I should see wifi inconsistent popup display for (.*)$/) do |which_category|
   # p ">> #{on(Section4BPage).wifi_popup_elements[2].text}"
   if which_category === "EIC"
@@ -69,14 +73,6 @@ When (/^I select yes to EIC$/) do
   sleep 2
   on(Section4BPage).yes_no_btn_elements[0].click
 end
-
-# When (/^I select yes to EIC certification$/) do
-#   step 'I select yes to EIC'
-#   # on(Section4BPage).yes_no_btn_elements[0].click
-#   step 'I set time'
-#   step 'I click on create EIC certification button'
-#   sleep 2
-# end
 
 And (/^I click on (.*) EIC certification button$/) do |_which_type|
   if _which_type === "create"
