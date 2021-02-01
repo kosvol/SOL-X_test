@@ -8,24 +8,16 @@ Feature: LocationTracking
     Given I clear forms table
     When I launch sol-x portal
     And I submit a scheduled PRE permit
-    And I sleep for 150 seconds
+    And I sleep for 140 seconds
     Then I should see PRE tab active on dashboard
     When I terminate the PRE permit via service
-    And I sleep for 3 seconds
-    And I submit a scheduled PRE permit
-    And I sleep for 2 seconds
+    And I sleep for 10 seconds
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is grey with inactive PRE
     Given I clear forms table
     When I launch sol-x portal
     Then I should not see PRE tab active on dashboard
-
-  Scenario: Verify PRE active tab is green with active PRE
-    Given I launch sol-x portal
-    When I submit a scheduled PRE permit
-    And I sleep for 170 seconds
-    Then I should see PRE tab active on dashboard
 
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
@@ -115,3 +107,9 @@ Feature: LocationTracking
     And I link wearable
     Then I should see Full Ship count represent 2
     And I unlink all crew from wearable
+
+  Scenario: Verify PRE active tab is green with active PRE
+    Given I launch sol-x portal
+    When I submit a scheduled PRE permit
+    And I sleep for 170 seconds
+    Then I should see PRE tab active on dashboard

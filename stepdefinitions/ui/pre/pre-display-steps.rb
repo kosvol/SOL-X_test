@@ -1,3 +1,10 @@
+Then (/^I should see no new entry log message$/) do
+  on(PumpRoomEntry).entry_log_btn_element.click
+  sleep 1
+  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[2].text,"No Entry Yet")
+  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[3].text,"Press on “New Entry” button on the “Home” page to record a new entry.")
+end
+
 And(/^I navigate to PRE Display$/) do
   step 'I navigate to "Settings" screen for setting'
   # on(PumpRoomEntry).pump_room_display_setting_element.click

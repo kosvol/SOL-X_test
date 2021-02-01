@@ -32,6 +32,7 @@ Feature: Section4BEIC
     And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
+    And I select yes to EIC
     And I sign EIC section 4b with RA pin 9015
     And I set time
     And I should see signed details
@@ -97,6 +98,7 @@ Feature: Section4BEIC
     And I uncheck the pre-selected checklist
     And I select the matching <checklist> checklist
     And I press next for 2 times
+    And I select yes to EIC
     And I sign EIC section 4b with non RA pin <pin>
     Then I should see not authorize error message
 

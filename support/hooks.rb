@@ -92,7 +92,7 @@ AfterStep do |scenario|
 end
 
 at_exit do
-  $browser.quit
+  # $browser.quit
   $extent.append_desc(Formatter::HtmlFormatter.examples)
   # $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report
