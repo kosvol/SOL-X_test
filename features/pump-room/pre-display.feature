@@ -30,7 +30,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
     And I enter pin 0159
-    And I fill up PRE. Duration 4. Delay to activate 1
+    And I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
