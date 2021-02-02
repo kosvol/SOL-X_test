@@ -115,13 +115,13 @@ Feature: PumpRoomEntry
   #   When I dismiss gas reader dialog box
   #   Then I should see gas reading display without toxic gas
 
-  @debug
+  @debug1
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
@@ -142,7 +142,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds
@@ -156,7 +156,7 @@ Feature: PumpRoomEntry
     When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds
@@ -168,7 +168,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 2 seconds
@@ -206,7 +206,7 @@ Feature: PumpRoomEntry
     When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin <pin>
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds
