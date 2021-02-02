@@ -8,8 +8,8 @@ class NavigationPage < CommonFormsPage
   button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
   elements(:menu_categories, xpath: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])")
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
-  button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
-  button(:next_btn, xpath: "//button[contains(.,'Next')]")
+  # button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
+  # button(:next_btn, xpath: "//button[contains(.,'Next')]")
   @@menu_categories_base = ["SmartForms","Created","Pending Approval","Updates Needed","Active","Pending Withdrawal","Withdrawn","Deleted","Created","Pending Approval","Updates Needed","Active","Scheduled","Terminated","Deleted","Settings"]
   @@which_category = "//a[contains(text(),'%s')]"
 
@@ -43,11 +43,11 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    # next_btn
-    BrowserActions.poll_exists_and_click(next_btn_element)
+    BrowserActions.js_click("//button[contains(.,'Next')]")
+    # BrowserActions.poll_exists_and_click(next_btn_element)
   rescue StandardError
-    # save_and_next_btn
-    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
+    BrowserActions.js_click("//button[contains(.,'Save & Next')]")
+    # BrowserActions.poll_exists_and_click(save_and_next_btn_element)
   end
 
   def get_total_steps_to_section6(_which_section)

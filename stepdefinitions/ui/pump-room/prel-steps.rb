@@ -25,7 +25,7 @@ Then (/^I should see entrant count equal (.*)$/) do |_count|
 end
 
 And (/^I acknowledge the new entry log via service$/) do
-    step 'I sleep for 5 seconds'
+    # step 'I sleep for 5 seconds'
     SmartFormDBPage.acknowledge_pre_entry_log
     step 'I sleep for 3 seconds'
 end

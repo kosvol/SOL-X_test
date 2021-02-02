@@ -4,12 +4,10 @@ Feature: SmartFormsPermission
   I want to ...
   So that ...
 
-  @debug
   Scenario: Verify permits filter displaying the right counts on smartform screen
     Given I launch sol-x portal without unlinking wearable
     Then I should see permits match backend results
 
-  @debug
   Scenario Outline: Verify pending approval permit filter listing match counter in smart form
     Given I launch sol-x portal without unlinking wearable
     And I click on <filter> filter
