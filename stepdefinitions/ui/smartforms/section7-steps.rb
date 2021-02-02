@@ -35,7 +35,7 @@ Then (/^I (should|should not) see submit for office approval and request update 
 end
 
 And (/^I open a permit (.+) with (.+) rank and (.+) pin$/) do |_status, _rank, _pin|
-  sleep 1
-  on(Section0Page).master_approval_elements[0].click
+  sleep 2
+  on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   step "I enter pin #{_pin}"
 end

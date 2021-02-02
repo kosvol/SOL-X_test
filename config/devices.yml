@@ -13,8 +13,10 @@ tablet_chrome:
   platformVersion: "8.1"
   deviceName: "4aa590af"
   app: ""
-  port: 4723
+  port: 8200
   browserName: "Chrome"
+  chromedriverPort: 9515
+  appiumPort: 4723
   isHeadless: true
   noReset: false
 
@@ -24,8 +26,10 @@ ue_tablet_a_chrome:
   deviceName: "6572e096"
   app: ""
   port: 8200
+  udid: "6572e096"
   browserName: "Chrome"
   chromedriverPort: 9515
+  adbPort: 5037
   appiumPort: 4723
   isHeadless: true
   noReset: false
@@ -34,10 +38,12 @@ ue_tablet_b_chrome:
   platformName: "Android"
   platformVersion: "8.1"
   deviceName: "409f97da"
+  udid: "409f97da"
   app: ""
   port: 8201
   browserName: "Chrome"
   chromedriverPort: 9516
+  adbPort: 5038
   appiumPort: 4724
   isHeadless: true
   noReset: false
@@ -46,10 +52,12 @@ ue_dashboard_chrome:
   platformName: "Android"
   platformVersion: "7.1"
   deviceName: "202092300E49"
+  udid: "202092300E49"
   app: ""
   port: 8202
   browserName: "Chrome"
-  chromedriverPort: 9515
+  chromedriverPort: 9517
+  adbPort: 5037
   appiumPort: 4723
   isHeadless: true
   noReset: false

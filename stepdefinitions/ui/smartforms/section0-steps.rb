@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Then('I should see a list of available forms for selections') do |_table|
+  # on(Section0Page).click_permit_type_ddl
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   _table.raw.each_with_index do |_element, _index|
     is_equal(_element.first, on(Section0Page).list_permit_type_elements[_index].text)
@@ -8,6 +9,7 @@ Then('I should see a list of available forms for selections') do |_table|
 end
 
 And (/^I navigate to create new permit$/) do
+  # on(Section0Page).click_create_permit_btn_element.click
   BrowserActions.poll_exists_and_click(on(Section0Page).click_create_permit_btn_element)
   on(Section0Page).reset_data_collector
 end
@@ -25,22 +27,27 @@ end
 
 And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
+  # on(Section0Page).close_btn_elements.first.click
   BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
 end
 
 And (/^I click on (.+) filter$/) do |state|
   if state === 'pending approval'
-    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[0])
+    # on(Section0Page).permit_filter_elements.first.click
+    BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements.first)
     # this is use to pick up correct permit id due to temp id usage during creation
     begin
-      CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
+      # CommonPage.set_permit_id(on(Section0Page).created_ptw_id_elements[1].text)
     rescue StandardError
     end
   elsif state === 'update needed'
+    # on(Section0Page).permit_filter_elements[1].click
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[1])
   elsif state === 'active'
+    # on(Section0Page).permit_filter_elements[2].click
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
   elsif state === 'pending withdrawal'
+    # on(Section0Page).permit_filter_elements[3].click
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
   end
 end

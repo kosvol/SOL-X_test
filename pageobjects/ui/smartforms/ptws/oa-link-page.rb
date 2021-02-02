@@ -6,7 +6,6 @@ require 'date'
 class OAPage < Section9Page
   include PageObject
 
-  
   element(:xxx, xpath: "//label[contains(.,'Your comments to the ship')]")
   button(:approve_permit_btn, xpath: "//button[contains(.,'Approve This Permit')]")
   button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")
@@ -15,10 +14,10 @@ class OAPage < Section9Page
   button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments (1)')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
   button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
-  elements(:date_time_from, id: 'date-from')
-  elements(:date_time_to, id: 'date-to')
+  elements(:date_time_from, xpath: "//button[@id='date-from']")
+  elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
-  button(:designation, id: 'designation')
+  button(:designation, xpath: "//button[@id='designation']")
   # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
   button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
@@ -27,16 +26,18 @@ class OAPage < Section9Page
 
   element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
 
+  ## Comment elements ###  
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
   # element(:enter_comment_box, xpath: "//textarea")
-  text_field(:name_box, id: 'user-name')
-  button(:rank_dd_list, id: 'rank')
+  text_field(:name_box, xpath: "//input[@id='user-name']")
+  button(:rank_dd_list, xpath: "//button[@id='rank']")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
   @@comment_base = "QAHSSE Manager
   Test Automation
   %s %s (GMT+0)
   Test Automation"
+  ## END Comment elements ###
 
   def navigate_to_oa_link
     sleep 10

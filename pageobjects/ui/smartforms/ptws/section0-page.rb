@@ -32,12 +32,12 @@ class Section0Page < NavigationPage
     click_next
     set_selected_level2_permit(_permit)
     set_current_time
-    sleep 1
+    sleep 3
   end
 
   def select_level1_permit(_permit)
-    CommonPage.set_permit_id(_permit)  ### this might be redundant already
     sleep 1
+    CommonPage.set_permit_id(_permit)  ### this might be redundant already
     select_permit
   end
 
@@ -47,10 +47,13 @@ class Section0Page < NavigationPage
   end
 
   def select_permit
-    BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
-    list_permit_type_elements.each do |permit|
+    sleep 2
+    # BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
+    list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
-      permit.click
+      BrowserActions.js_click("//ul/li[#{_index+1}]/button")
+      # @browser.execute_script(%(document.evaluate("//ul/li[#{_index+1}]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      # permit.click
       break
     end
   end

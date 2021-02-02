@@ -21,6 +21,16 @@ module BrowserActions
       sleep 9
     end
 
+    def turn_on_wifi_by_default
+      device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+
+      $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
+      p "Wifi Status: #{$wifi_on_off}"
+      if $wifi_on_off.strip === "0"
+        $browser.toggle_wifi 
+        sleep 10
+      end
+    end
     ### end
 
     def scroll_click(_element)
@@ -75,6 +85,14 @@ module BrowserActions
 
     def scroll_up_by_custom_dist(_distance)
       $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    end
+
+    def js_click(_xpath)
+      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    end
+
+    def js_clicks(_xpath,_index)
+      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{_index}").click()))
     end
 
     private

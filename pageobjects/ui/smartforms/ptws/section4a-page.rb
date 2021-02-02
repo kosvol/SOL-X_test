@@ -53,6 +53,11 @@ class Section4APage < Section3DPage
   button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
+  def click_on_enter_pin
+    BrowserActions.js_click("//button[contains(.,'Enter Pin')]")
+    # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+  end
+
   def get_checklist_locator(_checklist)
     tmp = if _checklist != 'ROL'
             section1_elements
@@ -65,22 +70,34 @@ class Section4APage < Section3DPage
   ### hack
   def select_ppe_equipment
     begin
-      ppe_btn
-    rescue StandardError
-    end
-
-    begin
-      ppe1_btn
-    rescue StandardError
-    end
-
-    begin
+      BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+      # @browser.execute_script(%(document.evaluate("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      # ppe_btn
       sleep 1
       member_name_btn_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError
     end
+
+    begin
+      BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
+      # browser.execute_script(%(document.evaluate("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      # ppe1_btn
+      sleep 1
+      member_name_btn_elements.first.click
+      confirm_btn_elements.last.click
+      sleep 1
+    rescue StandardError
+    end
+
+    # begin
+    #   sleep 1
+    #   member_name_btn_elements.first.click
+    #   confirm_btn_elements.last.click
+    #   sleep 1
+    # rescue StandardError
+    # end
   end
 
   def fill_textarea(_elems,_input)
@@ -97,7 +114,8 @@ class Section4APage < Section3DPage
     tmp = 0
     spacer = occurrence_elements.size
     (0..((radio_btn_elements.size / spacer) - 1)).each do |_i|
-      radio_btn_elements[0 + tmp].click
+      @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{tmp}").click()))
+      # radio_btn_elements[0 + tmp].click
       tmp += spacer
     end
   end
@@ -142,7 +160,7 @@ class Section4APage < Section3DPage
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_mm_yyyy_format} #{time_offset}")
-    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_mm_yyyy_format} #{time_offset}"))
   end
 
   # def is_partial_signed_user_details_mapped?(_entered_pin)

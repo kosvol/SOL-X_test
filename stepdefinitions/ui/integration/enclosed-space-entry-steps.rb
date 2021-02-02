@@ -2,6 +2,7 @@
 
 And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
   on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  # on(CreatedPermitToWorkPage).edit_permit_btn_elements[0].click
   # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   step 'I enter pin 1111'
   if _permit_type === 'enclose workspace'
@@ -20,8 +21,8 @@ end
 And (/^I review page 2 of submitted (.+) permit$/) do |_permit_type|
   step 'I press next for 1 times'
   sleep 1
-  is_equal(on(Section2Page).generic_data_elements[0].text, 'Master')
-  is_equal(on(Section2Page).generic_data_elements[1].text, 'N/A')
+  is_equal(on(Section2Page).generic_data_elements[0].text, @@form_data['section2'][0])
+  is_equal(on(Section2Page).generic_data_elements[1].text, @@form_data['section2'][1])
 end
 
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|

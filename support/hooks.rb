@@ -3,6 +3,7 @@
 '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
 '' ' DO NOT TOUCH THIS WHEN UNSURE ' ''
 '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
+
 AfterConfiguration do |config|
   unless %w[MAC WINDOWS Android iOS iOS-web Android-web].include? (ENV['OS']).to_s
     raise "Invalid OS => #{ENV['OS']}"
@@ -32,7 +33,18 @@ Before do |scenario|
   ReportUtils.output_tag(scenario, $extent_test)
   @log = Log.instance.start_new(scenario.name.gsub(' ', '_'))
   @log.instance_variable_set(:@cucumber_world, self)
-  @browser = BrowserSetup.get_browser(ENV['OS'], ENV['PLATFORM']) # ,false,true) if @reset_flag_counter == 0
+
+  @browser = BrowserSetup.get_browser(ENV['OS'], $current_platform)
+
+  # device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+
+  # $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
+  # p "Wifi Status: #{$wifi_on_off}"
+  # if $wifi_on_off.strip === "0"
+  #   $browser.toggle_wifi 
+  #   sleep 10
+  # end
+
 end
 
 After do |scenario|
@@ -48,17 +60,18 @@ After do |scenario|
       # end
     else
       # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      $extent_test.info(:fail, 'Exception Raised', e, @browser)
+      # $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario.name.gsub(' ', '_'), @browser)
     end
   rescue Exception => e
-    # $extent_test.info(:fail, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception raised from after scenario rescue', scenario, @browser)
   end
   
   begin
     @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
-  $browser.quit
+  $browser.close
+  # $browser.quit
   $extent.end_test($extent_test)
   # $living_documentation.end_test($extent_test)
 end
@@ -74,11 +87,12 @@ AfterStep do |scenario|
       # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
     end
   rescue Exception => e
-    $extent_test.info(:fail, 'Exception Raised', e, @browser)
+    $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
   end
 end
 
 at_exit do
+  # $browser.quit
   $extent.append_desc(Formatter::HtmlFormatter.examples)
   # $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report

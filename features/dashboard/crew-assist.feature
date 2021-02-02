@@ -33,10 +33,10 @@ Feature: CrewAssist
   # @skip
   # Scenario: Versify pending permits display on crew assists dialog box
 
-  @debug
   Scenario: Verify crew assist dialog should not display on refresh after acknowledging
     Given I launch sol-x portal
-    When I trigger crew assist from wearable
+    When I clear wearable history and active users
+    And I trigger crew assist from wearable
     And I acknowledge the assistance with pin 1111
     Then I should not see crew assist dialog
     When I refresh the browser

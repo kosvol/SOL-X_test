@@ -29,6 +29,7 @@ end
 
 Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
+  # on(Section4BPage).view_eic_btn_element
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section3APage).total_p_elements.size,28)
@@ -96,6 +97,6 @@ And (/^I reapprove the updated permit$/) do
   step 'I enter pin 9015'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
-  step "I sign on canvas with 9015 pin"
+  step "I sign on canvas with valid 9015 pin"
   step 'I click on back to home'
 end

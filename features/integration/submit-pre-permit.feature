@@ -13,7 +13,7 @@ Feature: PREIntegration
         And (for pre) I submit permit for Officer Approval
         And I getting a permanent number from indexedDB
         Then I activate the current PRE form
-        And I sleep for 5 seconds
+        # And I sleep for 2 seconds
         When I navigate to "Scheduled" screen for PRE
         And I should see the current PRE in the "Scheduled" list
         And I click on back arrow

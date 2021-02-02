@@ -8,8 +8,8 @@ class NavigationPage < CommonFormsPage
   button(:hamburger_menu, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button")
   elements(:menu_categories, xpath: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])")
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
-  button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
-  button(:next_btn, xpath: "//button[contains(.,'Next')]")
+  # button(:save_and_next_btn, xpath: "//button[contains(.,'Save & Next')]")
+  # button(:next_btn, xpath: "//button[contains(.,'Next')]")
   @@menu_categories_base = ["SmartForms","Created","Pending Approval","Updates Needed","Active","Pending Withdrawal","Withdrawn","Deleted","Created","Pending Approval","Updates Needed","Active","Scheduled","Terminated","Deleted","Settings"]
   @@which_category = "//a[contains(text(),'%s')]"
 
@@ -32,7 +32,7 @@ class NavigationPage < CommonFormsPage
     begin
       click_nav_category(_category,_which_category)
     rescue
-      click_show_more(_which_category)
+      click_show_more(_which_category) if _category != "Settings"
       click_nav_category(_category,_which_category)
     end
   end
@@ -43,9 +43,11 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    BrowserActions.poll_exists_and_click(next_btn_element)
+    BrowserActions.js_click("//button[contains(.,'Next')]")
+    # BrowserActions.poll_exists_and_click(next_btn_element)
   rescue StandardError
-    BrowserActions.poll_exists_and_click(save_and_next_btn_element)
+    BrowserActions.js_click("//button[contains(.,'Save & Next')]")
+    # BrowserActions.poll_exists_and_click(save_and_next_btn_element)
   end
 
   def get_total_steps_to_section6(_which_section)
@@ -83,6 +85,9 @@ class NavigationPage < CommonFormsPage
     elsif _which_category === "PRE"
       category_objs = @browser.find_elements(:xpath, @@which_category%[_category])
       category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
+    elsif _which_category === "setting"
+      BrowserActions.js_click("//a[contains(text(),'Settings')]")
+      # @browser.execute_script(%(document.evaluate("//a[contains(text(),'Settings')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     else
       @browser.find_element(:xpath, @@which_category%[_category]).click
     end

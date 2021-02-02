@@ -4,6 +4,11 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    Then I should see no new entry log message
+
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
     When I open hamburger menu
@@ -117,7 +122,7 @@ Feature: PumpRoomEntry
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
-    And I sleep for 3 seconds
+    And I sleep for 1 seconds
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
@@ -160,7 +165,7 @@ Feature: PumpRoomEntry
     Then I fill up PRE. Duration 4. Delay to activate 1
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
-    And I sleep for 5 seconds
+    And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
       | Master                     | 1111 |

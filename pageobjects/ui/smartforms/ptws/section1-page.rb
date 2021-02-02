@@ -82,7 +82,7 @@ class Section1Page < Section0Page
   end
 
   def fill_default_section_1
-    sleep 1
+    sleep 2
     fill_default_section1
   end
 
@@ -105,20 +105,13 @@ class Section1Page < Section0Page
 
   def select_checkbox(_input, _location)
     p ">> #{_input % [_location]}"
-    _element = $browser.find_element(:xpath, "#{_input % [_location]}")
-    p "-- #{_element.text}"
-    # _elements.each do |_element|
-      # if _element.text === _location
-        BrowserActions.scroll_click(_element)
-        # break
-      # end
-    # end
+    BrowserActions.js_click("#{_input % [_location]}")
+    # browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
   def fill_text_area(_input, _text)
     tmp_elements = $browser.find_elements(:xpath, _input)
     tmp_elements.each do |_element|
-      BrowserActions.scroll_click(_element)
       _element.send_keys(_text)
     end
   end

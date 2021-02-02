@@ -10,7 +10,7 @@ class PendingStatePage < Section9Page
   buttons(:office_approval_btn, xpath: "//button[contains(.,'Office Approval')]")
   # buttons(:submit_for_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
   buttons(:edit_update_btn, xpath: "//button[contains(.,'Edit/Update')]")
-  element(:update_comment_box, id: 'updatesNeededComment')
+  element(:update_comment_box, xpath: "//textarea[@id='updatesNeededComment']")
   elements(:action_required_note, xpath: "//li/div/div[@class='note-row']/div[2]/span[2]")
   
 

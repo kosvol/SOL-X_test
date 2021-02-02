@@ -18,6 +18,7 @@ end
 
 Then (/^I should see active crew count is correct$/) do
   step 'I link wearable'
+  sleep 2
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end
@@ -140,4 +141,8 @@ Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
     is_equal(on(DashboardPage).pre_indicator, 'Not Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
+end
+
+When (/^I terminate the PRE permit via service$/) do
+  on(BypassPage).terminate_pre_permit('8383')
 end

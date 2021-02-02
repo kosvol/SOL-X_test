@@ -24,21 +24,29 @@ end
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)
+  # sleep 5
   begin
+    # to_exists(on(Section0Page).click_create_permit_btn_element)
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
+    # to_exists(on(CommonFormsPage).is_dashboard_screen_element)
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
+  # sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
 Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
+  # sleep 5
   begin
+    # to_exists(on(Section0Page).click_create_permit_btn_element)
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
+    # to_exists(on(CommonFormsPage).is_dashboard_screen_element)
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
+  # sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
@@ -46,9 +54,10 @@ And ('I sleep for {int} seconds') do |sec|
   sleep sec
 end
 
-Then (/^I sign on canvas with (.*) pin$/) do |_pin|
+Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
+  step 'I sleep for 1 seconds'
   step "I enter pin #{_pin}"
-  on(SignaturePage).sign_and_done
+  on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
 And ('I enter pin {int}') do |pin|
@@ -65,6 +74,8 @@ And(/^I enter pin for rank (.*)$/) do |rank|
 end
 
 When (/^I select (.+) permit$/) do |_permit|
+  # sleep 1
+  # on(Section0Page).click_permit_type_ddl
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
 end
@@ -72,6 +83,7 @@ end
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
+  sleep 2
   @temp_id = on(Section0Page).ptw_id_element.text
 end
 

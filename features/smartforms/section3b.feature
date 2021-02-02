@@ -12,10 +12,11 @@ Feature: Section3BDRA
     And I enter pin 9015
     # And I navigate to section 8
     And I submit permit for termination
-    And I sign on canvas with 9015 pin
+    And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit
+    And I sleep for 3 seconds
     And I navigate to create new permit
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
