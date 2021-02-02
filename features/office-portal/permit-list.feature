@@ -4,7 +4,12 @@ Feature: PermitList
   I want to ...
   So that ...
 
-  Scenario: Verify the vessel name is displayed at the top bar after selecting (3579)
+  Scenario: Verify vessels are displayed in alphanumeric order (3582)
+@ska
+  Scenario: Verify the vessel name is displayed at the top bar and permits list after selecting (3579)
+    Given I log in to the Office Portal
+    When I select the "sit" vessel
+    Then I should see the vessel name at the top bar and permits list
 
   Scenario: Verify user is redirected to the Home screen after pressing the Home icon or "Cross" button (3580, 5859, 5735)
 

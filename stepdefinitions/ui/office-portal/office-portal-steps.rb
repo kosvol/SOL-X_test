@@ -30,7 +30,7 @@ Then(/^I should see the Vessel List page$/) do
 end
 =begin
 And(/^I see the checkbox is pre-checked$/) do
-  is_selected(on(OfficePortalPage).remember_checkbox_element)
+  to_exists(on(OfficePortalPage).test_element)
   sleep(10)
 end
 
@@ -44,3 +44,24 @@ Then(/^I should see the checkbox is unchecked$/) do
   sleep(1)
 end
 =end
+
+
+Given(/^I log in to the Office Portal$/) do
+  step 'I launch Office Portal'
+  step 'I enter a valid password'
+  step 'I click on Log In Now button'
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
+end
+
+
+Then(/^I should see the vessel name at the top bar and permits list$/) do
+  does_include(on(OfficePortalPage).topbar_header_element.text, @vessel)
+  does_include(on(OfficePortalPage).permits_list_name_element.text, @vessel)
+  sleep(1)
+end
+
+When(/^I select the "([^"]*)" vessel$/) do |vessel|
+  @vessel = vessel.upcase
+  on(OfficePortalPage).select_vessel(@vessel)
+  sleep(1)
+end
