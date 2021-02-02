@@ -10,7 +10,7 @@ When (/^I fill and submit PRE permit details$/) do
     step 'I sleep for 4 seconds'
     step 'I getting a permanent number from indexedDB'
     step 'I activate the current PRE form'
-    step 'I sleep for 80 seconds'
+    step 'I sleep for 120 seconds'
     step 'I navigate to PRE Display'
     step 'I enter pin 8383'
 end
