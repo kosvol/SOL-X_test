@@ -81,8 +81,10 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
+  @debug
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 1 optional entrants
@@ -120,8 +122,10 @@ Feature: PumpRoomEntry
   #   And I should see Permit Terminated PRE status on screen
   # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
+  @debug
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
@@ -130,15 +134,17 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
 
+  @debug
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
     And I sleep for 3 seconds
-    Then I should see entrant count equal 0
+    Then I should see entrant count equal 1
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable
@@ -178,8 +184,10 @@ Feature: PumpRoomEntry
       | Chief Engineer  | 8248 |
       | Second Engineer | 2523 |
 
+  @debug
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1
