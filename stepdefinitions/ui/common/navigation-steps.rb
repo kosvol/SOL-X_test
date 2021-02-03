@@ -5,9 +5,9 @@ And (/^I should see entire hamburger categories$/) do
 end
 
 And (/^I open hamburger menu$/) do
-  # BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
-  sleep 1
-  on(NavigationPage).hamburger_menu_element.click
+  BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
+  # sleep 1
+  # on(NavigationPage).hamburger_menu_element.click
 end
 
 And (/^I click on (.*) show more$/) do |_which_category|
@@ -21,16 +21,17 @@ Then (/^I navigate to "(.*)" screen for (.*)$/) do |_which_section,_which_catego
 end
 
 And (/^I click on back arrow$/) do
-  sleep 2
-  on(Section0Page).back_arrow_element.click
-  sleep 4
+  # sleep 1
+  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
+  # on(Section0Page).back_arrow_element.click
+  sleep 5
   step 'I set permit id'
 end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   sleep 1
   (1.._times.to_i).each do |_i|
-    _condition === 'next' ? on(Section0Page).click_next : BrowserActions.poll_exists_and_click(on(CommonFormsPage).previous_btn_elements.first)
+    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
     sleep 1
   end
 end

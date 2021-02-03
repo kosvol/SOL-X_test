@@ -5,24 +5,25 @@ $browser
 class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
   def self.get_browser(os, platform, _noreset = false, _fullreset = true)
-    
-    if $browser.nil?
-      $browser = case ENV['PLATFORM'].upcase
-                when 'CHROME', 'CHROME_HEADLESS'
-                  load_chrome(os)
-                when 'ANDROID'
-                  load_web_app(os, _noreset, _fullreset)
-                else
-                  raise "Invalid Platform => #{platform} for the OS => #{os}"
-        end
-      if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
-        $browser.manage.delete_all_cookies
+  
+    $browser = case ENV['PLATFORM'].upcase
+              when 'CHROME', 'CHROME_HEADLESS'
+                load_chrome(os)
+              when 'ANDROID'
+                load_web_app(os, _noreset, _fullreset)
+              else
+                raise "Invalid Platform => #{platform} for the OS => #{os}"
       end
-      $wait = Selenium::WebDriver::Wait.new(:timeout => 30)
-      $browser.manage.timeouts.script_timeout = 30
-      # $browser.manage.timeouts.page_load = 30
-      $browser.manage.timeouts.implicit_wait = 30
+    $wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+    $browser.manage.timeouts.script_timeout = 30
+    # $browser.manage.timeouts.page_load = 30
+    $browser.manage.timeouts.implicit_wait = 30
+    
+    if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
+      $browser.manage.delete_all_cookies
     end
+
+    BrowserActions.turn_on_wifi_by_default if $current_device.upcase != "CHROME" && $current_device.upcase != "CHROME_HEADLESS"
     $browser
   end
 
@@ -31,13 +32,6 @@ class BrowserSetup
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
-      # options.add_argument('--disable-web-security')
-      # options.add_argument('--allow-running-insecure-content')
-      # options.add_argument('--ignore-certificate-errors')
-      # if ENV['LOCAL'] === 'local'
-      #   options.add_argument('--user-data-dir=/Users/slo-gx/Library/Application Support/Google/Chrome/Default/')
-      # end
-      # end
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
 
       begin
@@ -84,6 +78,9 @@ class BrowserSetup
           adbExecTimeout: 700000,
           uiautomator2ServerLaunchTimeout: 300000,
           chromedriverPort: @device['chromedriverPort'],
+          systemPort: @device['port'],
+          udid: @device['udid'],
+          # adbPort: @device['adbPort'],
           # skipUnlock: false,
           # unlockType: 'pin',
           # unlockKey: '1111',
@@ -113,6 +110,9 @@ class BrowserSetup
           # skipUnlock: false,
           # unlockType: 'pin',
           # unlockKey: '1111',
+          systemPort: @device['port'],
+          udid: @device['udid'],
+          # adbPort: @device['adbPort'],
           skipLogcatCapture: true,
           uiautomator2ServerLaunchTimeout: 300000,
           chromedriverPort: @device['chromedriverPort'],

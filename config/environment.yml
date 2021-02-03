@@ -15,8 +15,8 @@ sits:
   master_pin:
 
 auto:
-  c2_preview: "http://168.63.210.163:8080"
-  service: "http://168.63.210.163:4000/"
+  c2_preview: "https://cloud-edge.auto.solas.magellanx.io:8080/"
+  service: "https://cloud-edge.auto.solas.magellanx.io:4000/"
   master_pin: "1111"
 
 uat:
@@ -25,6 +25,7 @@ uat:
   master_pin:
 
 fauxton:
+  base_auto_url: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984"
   base_sit_url: "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984"
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
   delete_form: "/forms/_bulk_docs"

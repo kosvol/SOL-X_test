@@ -60,7 +60,7 @@ And (/^I enter a invalid master pin$/) do
 end
 
 And (/^I click on view pin button$/) do
-  sleep 1
+  # sleep 1
   BrowserActions.poll_exists_and_click(on(CrewListPage).view_pin_btn_element)
   # on(CrewListPage).view_pin_btn
 end

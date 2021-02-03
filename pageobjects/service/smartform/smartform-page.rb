@@ -25,7 +25,19 @@ class SmartFormDBPage
     def delete_table_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))
+        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
+
+        tmp_payload['docs'][0]['_id'] = form['id']
+        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
+        JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
+        ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+      end
+    end
+
+    def delete_oa_table_row(_which_db, _url_map)
+      tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
+      ServiceUtil.get_response_body['rows'].each do |form|
+        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -62,10 +74,14 @@ class SmartFormDBPage
     end
 
     def get_environment_link(_which_db, _url_map)
-      if ENV['env'] === 'sit'
+      if $current_environment === 'sit' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif ENV['env'] === 'dev'
+      elsif $current_environment === 'dev' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_dev_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
+      elsif $current_environment === 'auto' && _which_db != 'oa_db'
+        $obj_env_yml[_which_db.to_s]['base_auto_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
+      elsif _which_db === 'oa_db'
+        "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io" + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       # elsif ENV['env'] === 'ngrok'
       #   'http://d0b02eada7fb.ngrok.io/' + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       else

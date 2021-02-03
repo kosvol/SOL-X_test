@@ -91,6 +91,10 @@ module BrowserActions
       $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 
+    def js_clicks(_xpath,_index)
+      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{_index}").click()))
+    end
+
     private
 
     def scroll_to_element(_element)

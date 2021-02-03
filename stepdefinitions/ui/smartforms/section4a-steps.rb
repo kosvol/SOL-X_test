@@ -41,7 +41,7 @@ And (/^I sign on checklist with (valid|invalid) (.*) pin$/) do |_condition,_pin|
 end
 
 Then (/^I should see signed details$/) do
-  on(Section4APage).is_signed_user_details?(@@entered_pin)
+  is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
   is_true(on(SignaturePage).is_signature_pad?)
 end
 

@@ -124,20 +124,16 @@ class Section4APage < Section3DPage
     !(disabled_fields_elements.size === 0)
   end
 
-  def get_current_date_mm_yyyy_format
-    Time.new.strftime('%b/%Y')
-  end
-
   def is_checklist_details_prepopulated?
     sleep 1
-    Log.instance.info("--- #{get_current_date_mm_yyyy_format}")
+    Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
     # Log.instance.info("--- #{checklist_permit_number}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
     Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
     # Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_mm_yyyy_format) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'PTW/TEMP/')) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    ((checklist_date_and_time_elements[0].text.include? get_current_date_and_time) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'PTW/TEMP/')) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
   end
 
   def uncheck_all_checklist
@@ -159,19 +155,9 @@ class Section4APage < Section3DPage
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-    Log.instance.info(">> Date & Time #{get_current_date_mm_yyyy_format} #{time_offset}")
-    (("Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}" === rank_and_name_stamp_element.text) && ("Date & Time #{get_current_date_mm_yyyy_format} #{time_offset})" === date_and_time_stamp_element.text))
+    Log.instance.info(">> Date & Time #{get_current_date_and_time} #{time_offset}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}") && (date_and_time_stamp_element.text.include? "#{time_offset}"))
   end
-
-  # def is_partial_signed_user_details_mapped?(_entered_pin)
-  #   BrowserActions.scroll_down(rank_and_name_stamp)
-  #   sleep 1
-  #   rank_and_name = get_user_details_by_pin(_entered_pin)
-  #   Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-  #   Log.instance.info(">> #{get_current_date_format_with_offset}")
-  #   # Log.instance.info("UI >>#{date_and_time_stamp_element.text}")
-  #   ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")) # && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s))
-  # end
 
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)

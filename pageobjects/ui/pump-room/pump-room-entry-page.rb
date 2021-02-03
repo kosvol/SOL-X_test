@@ -1,4 +1,4 @@
-require './././support/env'
+require '././support/env'
 
 class PumpRoomEntry < PreDisplay
   include PageObject
@@ -50,10 +50,12 @@ class PumpRoomEntry < PreDisplay
 
   def signout_entrant(_entrants)
     sleep 1
+    # sign_out_btn_elements.first.click
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
     (1.._entrants.to_i).each do |_i|
       cross_btn_elements[_i].click
       sleep 1
+      # sign_out_btn_elements.last.click
       BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
     end
     sleep 1

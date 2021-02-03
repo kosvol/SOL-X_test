@@ -6,7 +6,6 @@ require 'date'
 class OAPage < Section9Page
   include PageObject
 
-  
   element(:xxx, xpath: "//label[contains(.,'Your comments to the ship')]")
   button(:approve_permit_btn, xpath: "//button[contains(.,'Approve This Permit')]")
   button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")

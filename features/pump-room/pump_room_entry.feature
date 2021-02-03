@@ -4,6 +4,13 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
+  @debug
+  Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    When I fill and submit PRE permit details
+    Then I should see no new entry log message
+
   Scenario: Verify menu items are displayed in hamburger menu
     Given I launch sol-x portal without unlinking wearable
     When I open hamburger menu
@@ -110,9 +117,10 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
@@ -121,7 +129,7 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 120 seconds
+    And I sleep for 150 seconds
     And I navigate to "Active" screen for PRE
     And I should see the current PRE in the "Active PRE" list
     And I click on back arrow
@@ -133,7 +141,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds
@@ -141,11 +149,13 @@ Feature: PumpRoomEntry
     Then I request update needed
     And (for pre) I should see update needed message
 
+  @debug
   Scenario: Verify creator PRE cannot request update needed
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds
@@ -157,7 +167,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
     And I enter pin 8383
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 2 seconds
@@ -189,11 +199,13 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     Then I should see the current PRE in the "Created PRE" list
 
+  @debug
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin <pin>
-    Then I fill up PRE. Duration 4. Delay to activate 1
+    Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
     And (for pre) I submit permit for Officer Approval
     And I sleep for 5 seconds

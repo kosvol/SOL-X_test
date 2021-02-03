@@ -1,4 +1,4 @@
-require './././support/env'
+require '././support/env'
 
 class PreDisplay < Section9Page
   include PageObject

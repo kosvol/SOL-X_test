@@ -18,6 +18,7 @@ end
 
 Then (/^I should see active crew count is correct$/) do
   step 'I link wearable'
+  sleep 2
   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end

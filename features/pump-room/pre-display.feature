@@ -30,7 +30,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
     And I enter pin 0159
-    And I fill up PRE. Duration 4. Delay to activate 1
+    And I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
@@ -49,6 +49,7 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
 
+  @test
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
@@ -81,8 +82,10 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
+  @debug
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 1 optional entrants
@@ -120,8 +123,10 @@ Feature: PumpRoomEntry
   #   And I should see Permit Terminated PRE status on screen
   # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
+  @debug
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
@@ -130,8 +135,10 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
 
+  @debug
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
@@ -178,8 +185,10 @@ Feature: PumpRoomEntry
       | Chief Engineer  | 8248 |
       | Second Engineer | 2523 |
 
+  @debug
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 1

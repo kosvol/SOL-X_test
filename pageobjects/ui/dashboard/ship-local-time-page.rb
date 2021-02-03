@@ -14,7 +14,11 @@ class ShipLocalTimePage
   button(:increment, xpath: "//div[starts-with(@class,'ClockModal__')]/button[2]")
 
   def is_utc_time
-    Time.now.utc.strftime('%k') < '12' ? Time.now.utc.strftime('%I:%M') : Time.now.utc.strftime('%k:%M')
+    if ((Time.now.utc.strftime('%k').to_i < 12) && (Time.now.utc.strftime('%k').to_i > 0))
+      return Time.now.utc.strftime('%I:%M')
+    elsif Time.now.utc.strftime('%k').to_i >= 12
+      return Time.now.utc.strftime('%H:%M')
+    end
   end
 
   def adjust_ship_local_time

@@ -8,7 +8,8 @@ class Section4BPage < Section4APage
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:yes_no_btn, xpath: "//input[@name='energyIsolationCertIssued']")
   text_field(:loto, xpath: "//input[@id='eicPreWork_confirmationAndAcceptance_lotoNumber']")
-
+  text_area(:description_of_work, xpath: "//textarea[@id='descOfWork']")
+  
   button(:save_eic, xpath: "//button[contains(.,'Save EIC')]")
   button(:view_eic_btn, xpath: "//button[contains(.,'View/Edit Energy Isolation Certificate')]")
   button(:create_eic_btn, xpath: "//button[contains(.,'Create Energy Isolation Certificate')]")

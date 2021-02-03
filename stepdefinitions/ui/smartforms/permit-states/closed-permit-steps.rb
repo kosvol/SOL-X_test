@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 And (/^I request terminating permit to be updated$/) do
-  sleep 1
-  # BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
-  on(CommonFormsPage).review_and_terminate_btn_elements.first.click
+  # sleep 1
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
+  # on(CommonFormsPage).review_and_terminate_btn_elements.first.click
   step 'I enter pin 1111'
 end
 
 And (/^I terminate the permit$/) do
-  sleep 1
-  # BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
-  on(CommonFormsPage).review_and_terminate_btn_elements.first.click
+  # sleep 1
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
+  # on(CommonFormsPage).review_and_terminate_btn_elements.first.click
   step 'I enter pin 1111'
   on(Section9Page).submit_permit_termination_btn
   step "I sign on canvas with valid 1111 pin"
