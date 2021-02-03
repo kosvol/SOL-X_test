@@ -49,7 +49,6 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
 
-  @test
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
