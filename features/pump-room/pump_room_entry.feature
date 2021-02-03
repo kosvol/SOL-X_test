@@ -115,7 +115,6 @@ Feature: PumpRoomEntry
   #   When I dismiss gas reader dialog box
   #   Then I should see gas reading display without toxic gas
 
-  @debug1
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

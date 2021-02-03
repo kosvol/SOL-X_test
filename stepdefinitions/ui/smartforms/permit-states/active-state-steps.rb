@@ -16,7 +16,7 @@ end
 
 Then (/^I should see issue date display$/) do
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT')
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_mm_yyyy_format)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_and_time)
   # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
 

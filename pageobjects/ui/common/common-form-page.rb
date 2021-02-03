@@ -85,6 +85,10 @@ class CommonFormsPage < CommonPage
     time_offset = get_current_time_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
+  
+  # def get_current_date_mm_yyyy_format
+  #   Time.new.strftime('%b/%Y')
+  # end
 
   def get_current_time_offset
     @which_json = 'ship-local-time/base-get-current-time'
