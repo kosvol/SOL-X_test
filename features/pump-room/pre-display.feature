@@ -49,6 +49,7 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
 
+  @test
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
@@ -144,7 +145,7 @@ Feature: PumpRoomEntry
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
     And I sleep for 3 seconds
-    Then I should see entrant count equal 1
+    Then I should see entrant count equal 0
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable

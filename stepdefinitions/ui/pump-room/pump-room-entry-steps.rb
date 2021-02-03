@@ -97,7 +97,7 @@ end
 
 Then('I fill up PRE. Duration {int}. Delay to activate {int}') do |_duration, delay|
   on(PumpRoomEntry).fill_up_pre(_duration)
-  on(Section3APage).scroll_multiple_times(8)
+  on(Section3APage).scroll_multiple_times(18)
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
