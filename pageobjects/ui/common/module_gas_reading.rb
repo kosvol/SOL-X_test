@@ -7,10 +7,10 @@ module GasReading
   text_field(:gas_sr_number_input, xpath: "//input[@id='gasSrNumber']")
   buttons(:last_calibration_btn, xpath: "//button[@id='gasLastCalibrationDate']")
 
-  text_field(:o2_input, xpath: "//input[@id='o2']")
-  text_field(:hc_input, xpath: "//input[@id='hc']")
-  text_field(:h2s_input, xpath: "//input[@id='h2s']")
-  text_field(:co_input, xpath: "//input[@id='co']")
+  text_field(:o2_input, xpath: "//input[@id='O2']")
+  text_field(:hc_input, xpath: "//input[@id='HC']")
+  text_field(:h2s_input, xpath: "//input[@id='H2S']")
+  text_field(:co_input, xpath: "//input[@id='CO']")
 
   text_field(:gas_name_input, xpath: "//input[@id='gasName']")
   text_field(:threshold_input, xpath: "//input[@id='threshold']")

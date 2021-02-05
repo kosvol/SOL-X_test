@@ -35,7 +35,8 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
 end
 
-And (/^I sign on checklist with (valid|invalid) (.*) pin$/) do |_condition,_pin|
+And (/^I sign on (checklist|section) with (valid|invalid) (.*) pin$/) do |_page,_condition,_pin|
+  step 'I set time'
   on(Section4APage).click_on_enter_pin
   step "I sign on canvas with #{_condition} #{_pin} pin"
 end

@@ -148,3 +148,10 @@ And (/^I fill up EIC certificate$/) do
   sleep 1
   step 'I sign EIC section 4b with RA pin 9015'
 end
+
+Then (/^I should see these sub questions$/) do |_table|
+  _table.raw.each do |_element|
+    step "I should see the text '#{_element}'"
+    # is_true(on(PumpRoomEntry).is_text_displayed?(_element))
+  end
+end

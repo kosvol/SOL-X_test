@@ -13,8 +13,10 @@ class Section3APage < Section2Page
 
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
+  # to change to generic_data
   elements(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
+  # buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
@@ -24,10 +26,12 @@ class Section3APage < Section2Page
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  elements(:ih_details1, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
-  elements(:ih_details2, xpath: "//div[contains(@class,'row-container')]/p")
-  elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+  # elements(:ih_details1, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
+  elements(:ih_details2, xpath: "//div[contains(@class,'row-wrapper')][1]/div[contains(@class,'row-container')]")
+  # elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
+  elements(:ecm_details, xpath: "//div[contains(@class,'row-wrapper')][3]/div[contains(@class,'row-container')]")
+  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
 
@@ -50,17 +54,16 @@ class Section3APage < Section2Page
 
   def is_new_hazard_added?
     # view_edit_btn
-    p ">> #{hazard_risk_details_elements[23].text}"
-    p ">> #{hazard_risk_details_elements[24].text}"
+    p ">> #{hazard_risk_details_elements[30].text}"
+    p ">> #{hazard_risk_details_elements[31].text}"
     p ">> #{ecm_details_elements[10].text}"
-    begin
-      tmp = ih_details1_elements[10].text
-    rescue
+    # begin
+    #   tmp = ih_details1_elements[10].text
+    # rescue
       tmp = ih_details2_elements[10].text
-    end
+    # end
     p ">> #{tmp}"
-    (tmp === "Test Automation" && ecm_details_elements[10].text === "Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
-    
+    (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
   end
 
   def scroll_to_new_hazard

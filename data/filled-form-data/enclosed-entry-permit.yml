@@ -11,13 +11,14 @@ section1_without_duration:
     "Test Automation",
   ]
 
-section2: ["Master", "Not Answered"]
+section2: ["Master", "N/A"]
 
 section3b:
   [
     "General procedures for Enclosed Space Entry",
     "Test automation",
     "Yes",
+    "MAS Daniel Alcantara",
     "People",
     "Yes",
     "Master",
@@ -70,23 +71,23 @@ section6: ["Yes", "Test Automation", "Test Automation"]
 section4a:
   [
     "Yes",
-    "Not Answered",
-    "Not Answered",
+    "N/A",
+    "N/A",
     "Yes",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
-    "Not Answered",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
+    "N/A",
   ]
 
 checklist:
@@ -117,6 +118,7 @@ checklist:
     "Yes",
     "Yes",
     "Yes",
+    "1",
     "Yes",
     "Yes",
     "Yes",

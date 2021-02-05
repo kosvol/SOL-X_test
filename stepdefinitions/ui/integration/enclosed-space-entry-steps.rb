@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
-  on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  # on(CreatedPermitToWorkPage).edit_permit_btn_elements[0].click
-  # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
+  # on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  on(CreatedPermitToWorkPage).edit_permit_btn_elements[0].click
+  
   step 'I enter pin 1111'
   if _permit_type === 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-form-data/enclosed-entry-permit.yml')
@@ -30,10 +30,11 @@ And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
   does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
-  does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT')
-  # does_include(on(Section3APage).date_and_time_fields_elements[1].text, on(CommonFormsPage).get_current_time_format)
-  does_include(on(Section3APage).method_detail_elements[2].text, 'Enclosed Space Entry')
+  does_include(on(Section3APage).method_detail_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(Section3APage).method_detail_elements[2].text, ' LT (GMT')
+  # does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
+  # does_include(on(Section3APage).date_and_time_fields_elements[1].text, ' LT (GMT')
+  does_include(on(Section3APage).method_detail_elements[3].text, 'Enclosed Space Entry')
   # is_equal(on(Section3APage).generic_data_elements[3].text, 'Standard procedures for connecting and disconnecting pipelines')
   BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   is_true(on(Section3APage).is_new_hazard_added?)
@@ -44,24 +45,25 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   base_data = @@form_data['section3b']
   capture_data = on(Section3BPage).get_filled_section
-  base_data.delete_at(6)
-  base_data.delete_at(6)
+  base_data.delete_at(7)
+  base_data.delete_at(7)
   p ">> #{base_data}"
   p "-- #{capture_data}"
-  capture_data.delete_at(6)
-  does_include(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).get_current_date_format_with_offset)
+  capture_data.delete_at(7)
+  capture_data.delete_at(7)
+  does_include(on(Section3BPage).method_detail_elements[7].text, on(CommonFormsPage).get_current_date_format_with_offset)
   begin
     # does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")
-    does_include(on(Section3BPage).generic_data_elements[6].text, "Test automation")
+    does_include(on(Section3BPage).method_detail_elements[8].text, "Test automation")
   rescue StandardError
     puts '>> Probably First RUN !!!!'
     # does_include(on(Section3BPage).last_assessment_date_element.text, CommonFormsPage.get_current_date_format_with_offset)
-    does_include(on(Section3BPage).generic_data_elements[6].text, "Test automation")
+    does_include(on(Section3BPage).method_detail_elements[8].text, "Test automation")
     # capture_data.delete_at(6)
   end
   p "=== #{capture_data}"
   is_equal(capture_data, base_data)
-  is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
+  # is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
 end
 
 And (/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
@@ -76,7 +78,8 @@ And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   p "--- #{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
-  step 'I should see signed details'
+  @@entered_pin = "9015"
+  step 'I should see signed details for integration test'
   # step 'I should map to partial sign details'
 end
 
@@ -89,41 +92,53 @@ end
 And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  does_include(on(Section4APage).checklist_date_element.text, "/#{BrowserActions.get_year}")
-  does_include(on(Section4APage).checklist_time_element.text, 'LT (GMT')
-  does_include(on(Section4APage).generic_data_elements[1].text, 'SIT/PTW')
+  does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
+  does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
+  does_include(on(Section4APage).generic_data_elements[2].text, 'SIT/PTW')
   extract = on(Section4APage).get_filled_section
+  p "--- #{extract}"
+  extract.delete_at(1)
   extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
-  is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
-  step 'I should see signed details'
-  # step 'I should map to partial sign details'
+  # is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
+  step 'I should see signed details for integration test'
 end
 
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
+  tmp = on(Section4BPage).get_filled_section
+  tmp.delete_at(1)
+  is_equal(tmp, @@form_data['section4b'])
   sleep 1
   on(Section4BPage).view_eic_btn
   sleep 1
   tmp = on(Section4BPage).get_filled_section
+  p "base -- #{tmp}"
+  tmp.delete_at(1)
   tmp.delete_at(1)
   tmp.delete_at(3)
   p "++ #{@@form_data['section4b_eic']}"
   p "-- #{tmp}"
+  does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
+  does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
+  does_include(on(Section4APage).generic_data_elements[2].text, 'SIT/EIC')
   is_equal(tmp, @@form_data['section4b_eic'])
-  step 'I set time'
-  step 'I should see signed details'
+  # step 'I set time'
+  @@entered_pin = '8383'
+  step 'I should see signed details for integration test'
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 1
-  step 'I set time'
-  step 'I should see signed details'
+  # step 'I set time'
+  @@entered_pin = '9015'
+  step 'I should see signed details for integration test'
 end
 
 And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
+  sleep 1
   is_equal(on(Section5Page).get_filled_roles_responsibility_elements.first.text, "Authorized Entrant 1")
+  p ">>> #{on(Section5Page).get_filled_crew_details_elements[0].text}"
   is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, "C/O Alister Leong")
   is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, "Test Automation")
   does_include(on(Section5Page).get_filled_crew_details_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)
@@ -133,13 +148,18 @@ end
 
 And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  p "<><><> #{on(Section6Page).get_filled_section}"
-  is_equal(on(Section6Page).get_filled_section, @@form_data['section6'])
-  is_equal(on(Section6Page).last_calibration_btn_elements.first.text,on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section6Page).rank_and_name_stamp, 'A/M Atif Hayat')
-  does_include(on(Section6Page).date_and_time_stamp, 'LT (GMT')
-  does_include(on(Section6Page).date_and_time_stamp, '/')
+  tmp = on(Section6Page).get_filled_section
+  tmp.delete_at(3)
+  p "<><><> #{tmp}"
+  is_equal(tmp, @@form_data['section6'])
+  is_equal(on(Section4APage).generic_data_elements.last.text,on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(Section6Page).rank_and_name_stamp_element.text, 'A/M Atif Hayat')
+  does_include(on(Section6Page).date_and_time_stamp_element.text, 'LT (GMT')
+  does_include(on(Section6Page).date_and_time_stamp_element.text, "/#{BrowserActions.get_year}")
   step 'I should see gas reading display with toxic gas'
-  # does_include(on(Section6Page).last_calibration_btn_elements[0].text, 'LT (GMT')
-  # does_include(on(Section6Page).last_calibration_btn_elements[1].text, '/')
+end
+
+Then (/^I should see signed details for integration test$/) do
+  is_true(on(Section4APage).is_signed_user_details_integration?(@@entered_pin))
+  is_true(on(SignaturePage).is_signature_pad?)
 end

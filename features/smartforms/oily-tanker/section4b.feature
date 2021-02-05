@@ -184,4 +184,34 @@ Feature: Section4BEIC
       | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       # | 4/E                        | 1311 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | BOS                        | 1018 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-# | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+  # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+
+  @test
+  Scenario: Verify sub questions
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 2523
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4b
+    And I select yes to EIC
+    And I click on create EIC certification button
+    Then I should see these sub questions
+      | Lock Out                                                                                 |
+      | Tag Out                                                                                  |
+      | Sanction to Test (High Voltage) (Checklist)                                              |
+      | Switch Disconnector                                                                      |
+      | Main/DB Switch Breaker                                                                   |
+      | Circuit fuses                                                                            |
+      | Blank Flanges/Capping                                                                    |
+      | Blinding/Spading                                                                         |
+      | Removal spool piece/valves                                                               |
+      | Removal of Hazards                                                                       |
+      | Double Block and Bleed                                                                   |
+      | Disconnection of piping                                                                  |
+      | Warning Tag displayed on Equipments / Power Supply / Control Unit / Valves               |
+      | Relevant Departments personnel informed as applicable                                    |
+      | Equipments/Valves locked and tagged                                                      |
+      | Suitable tools with insulation available (Electrical Isolation)                          |
+      | Voltage level checked after electrical isolation and found "zero" (Electrical Isolation) |

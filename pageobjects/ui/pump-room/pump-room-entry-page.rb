@@ -27,7 +27,7 @@ class PumpRoomEntry < PreDisplay
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
   ### gx
-  @@text_obj = "//*[contains(text(),'%s')]"
+  # @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
   # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
@@ -234,8 +234,8 @@ class PumpRoomEntry < PreDisplay
 
   def is_element_displayed(_xpath,_value)
     begin
-      alert_text = "//div[contains(.,'%s')]"
-      value = alert_text % [_value]
+      # alert_text = "//div[contains(.,'%s')]"
+      value = _xpath % [_value]
       @browser.find_element('xpath', value).displayed?
     rescue
       false

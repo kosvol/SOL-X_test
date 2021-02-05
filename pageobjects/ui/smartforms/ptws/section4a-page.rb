@@ -54,7 +54,7 @@ class Section4APage < Section3DPage
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
   def click_on_enter_pin
-    BrowserActions.js_click("//button[contains(.,'Enter Pin')]")
+    BrowserActions.js_click("//button[contains(.,'Sign')]")
     # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
@@ -155,8 +155,19 @@ class Section4APage < Section3DPage
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-    Log.instance.info(">> Date & Time #{get_current_date_and_time} #{time_offset}")
+    Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}") && (date_and_time_stamp_element.text.include? "#{time_offset}"))
+  end
+
+  def is_signed_user_details_integration?(_entered_pin)
+    BrowserActions.scroll_down(rank_and_name_stamp)
+    sleep 1
+    BrowserActions.scroll_down
+    # time_offset = get_current_time_format
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+    # Log.instance.info(">> Date & Time #{get_current_date_and_time}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
   end
 
   # ##Blue rgba(24, 144, 255, 1)

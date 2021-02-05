@@ -41,6 +41,8 @@ class CommonFormsPage < CommonPage
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
+
+  @@text_obj = "//*[contains(text(),'%s')]"
   
   def select_todays_date_from_calendar(advance_days=0)
     begin
