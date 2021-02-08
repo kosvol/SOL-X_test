@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "DRA",
-    "templateVersion": 3,
+    "templateVersion": 4,
     "parentFormId": "SIT/PTW/2020/049",
     "answers": [
       {

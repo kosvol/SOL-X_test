@@ -186,7 +186,6 @@ Feature: Section4BEIC
       | BOS                        | 1018 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
   # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
 
-  @test
   Scenario: Verify sub questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
