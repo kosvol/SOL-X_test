@@ -83,7 +83,7 @@ end
 
 And (/^I add an existing crew id$/) do
   on(CrewListPage).add_new_crew_btn
-  on(CrewListPage).crew_id = 'SIT_SOLX0004'
+  on(CrewListPage).crew_id = 'AUTO_SOLX0004'
   on(CrewListPage).retrieve_data_btn
 end
 

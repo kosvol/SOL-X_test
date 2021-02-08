@@ -88,7 +88,7 @@ class WearablePage
     def get_crews_id
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
-        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_')
+        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
           @@tmp_list << list['_id']
         end
       end

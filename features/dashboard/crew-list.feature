@@ -58,8 +58,8 @@ Feature: CrewList
     And I unlink all crew from wearable
 
     Examples:
-      | zone        | zoneid                     | mac               | new_zone         | new_zoneid                 | new_mac           |
-      | Engine Room | SIT_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room Bottom | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+      | zone        | zoneid                      | mac               | new_zone         | new_zoneid                  | new_mac           |
+      | Engine Room | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room Bottom | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
   Scenario: Verify crew pin is shown after tapping on view pin with captain pin
     Given I launch sol-x portal
