@@ -94,7 +94,7 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  does_include(on(Section4APage).generic_data_elements[2].text, 'SIT/PTW')
+  does_include(on(Section4APage).generic_data_elements[2].text, "#{$current_environment.upcase}/PTW")
   extract = on(Section4APage).get_filled_section
   p "--- #{extract}"
   extract.delete_at(1)

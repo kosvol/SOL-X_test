@@ -98,7 +98,7 @@ end
 
 And (/^I should see data persisted on page 2$/) do
   tmp = on(Section3DPage).get_filled_section
-  does_include(tmp[1],"SIT/PTW/#{BrowserActions.get_year}/")
+  does_include(tmp[1],"#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
   # data cleanse after first assertion
   tmp.delete_at(1)
   p ">> #{tmp}"
