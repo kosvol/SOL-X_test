@@ -203,7 +203,7 @@ class BypassPage < Section0Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = $obj_env_yml['fauxton']["base_#{$current_environment.downcase}_url"]+"/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status

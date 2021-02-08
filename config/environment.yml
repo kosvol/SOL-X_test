@@ -5,8 +5,8 @@ dev:
   master_pin: "9707"
 
 sit:
-  c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8080"
-  service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
+  c2_preview: "https://sit.edge.dev.safevue.sol-x.co:8080"
+  service: "https://sit.edge.dev.safevue.sol-x.co:4000/"
   master_pin: "1111"
 
 sits:
