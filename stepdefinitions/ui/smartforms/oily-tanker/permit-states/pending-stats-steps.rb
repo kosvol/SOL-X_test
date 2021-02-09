@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 Then (/^I should see Note from (.*)$/) do |_requested_from|
-  p ">> #{on(PendingStatePage).action_required_note_elements[5].text}"
+  p ">> #{on(PendingStatePage).action_required_note_elements.first.text}"
   if _requested_from === "Office"
-    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See Notes from Office")
+    is_equal(on(PendingStatePage).action_required_note_elements.first.text,"See Notes from Office")
   elsif _requested_from === "Master"
-    is_equal(on(PendingStatePage).action_required_note_elements[5].text,"See notes from Master")
+    is_equal(on(PendingStatePage).action_required_note_elements.first.text,"See Notes from Master")
   end
 end
 
@@ -23,7 +23,8 @@ Then (/^I should not be able to edit DRA$/) do
     is_disabled(_elem)
   end
   sleep 1
-  is_equal(on(Section3APage).total_p_elements.size,58)
+  is_equal(on(Section3APage).total_p_elements.size,22)
+  on(Section3APage).scroll_multiple_times(2)
   on(CommonFormsPage).close_btn_elements.first.click
 end
 
@@ -32,7 +33,7 @@ Then (/^I should not be able to edit EIC certification$/) do
   # on(Section4BPage).view_eic_btn_element
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
-  is_equal(on(Section3APage).total_p_elements.size,28)
+  is_equal(on(Section3APage).total_p_elements.size,30)
   # on(CommonFormsPage).close_btn_elements.first.click
 end
 
@@ -75,6 +76,7 @@ And (/^I set oa permit to office approval state manually$/) do
   on(PendingStatePage).submit_oa_btn
   sleep 1
   step 'I click on back to home'
+  sleep 1
 end
 
 And (/^Master request for oa permit update$/) do

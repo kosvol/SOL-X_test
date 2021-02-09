@@ -2,7 +2,8 @@
 
 And (/^I navigate to OA link$/) do
   sleep 1
-  on(OAPage).navigate_to_oa_link
+  $browser.get(on(OAPage).navigate_to_oa_link)
+  
 end
 
 And (/^I request the permit for update via oa link manually$/) do

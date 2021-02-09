@@ -55,8 +55,8 @@ ldev_fauxton_forms:
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:
-  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
-  office_portal: "http://solas-dev-office-portal.azurewebsites.net/login/demo-uid"
+  format_link: "https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
+  office_portal: "https://dev-officeportalclient-2953306c.azurewebsites.net/login/demo-uid"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
   password: "13-dead-CENT-think-56"
