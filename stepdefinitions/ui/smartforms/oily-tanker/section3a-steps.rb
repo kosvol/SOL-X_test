@@ -56,9 +56,10 @@ end
 
 Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
+  # is_equal(on(Section3APage).date_and_time_fields_elements[0].text, "SOLX Automation Test")
   does_include(on(Section3APage).generic_data_elements[1].text, 'DRA/TEMP/')
-  is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(Section0Page).get_current_date_format_with_offset)
-  is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(Section0Page).get_current_time_format)
+  is_equal(on(Section3APage).generic_data_elements[2].text, on(Section0Page).get_current_date_and_time)
+  # is_equal(on(Section3APage).generic_data_elements[2].text, on(Section0Page).get_current_time_format)
 end
 
 Then (/^I should see Date and Time fields disabled$/) do
