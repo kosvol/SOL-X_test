@@ -86,7 +86,7 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    # scroll_multiple_times(1)
+    scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
     level_to_choose_elements[level_to_choose_elements.size-20].click
