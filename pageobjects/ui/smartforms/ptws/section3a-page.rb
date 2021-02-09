@@ -49,6 +49,8 @@ class Section3APage < Section2Page
 
   def is_additional_hazard_saved?
     view_edit_btn
+    sleep 1
+    scroll_multiple_times(3)
     description_elements[2].text === 'Test Automation'
   end
 
@@ -113,7 +115,7 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 2
+    sleep 3
     scroll_multiple_times(2)
     likelihood_btn_elements[0].click
     sleep 2
@@ -144,7 +146,8 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
     @@swap_flag === 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
-    add_additional_measure_btn_elements[0].click
+    BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]",0)
+    # add_additional_measure_btn_elements[0].click
     # scroll_multiple_times(1)
     likelihood_btn_elements[2].click
     sleep 2

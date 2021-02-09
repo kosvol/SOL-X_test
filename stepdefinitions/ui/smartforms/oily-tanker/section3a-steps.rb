@@ -35,6 +35,7 @@ And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |like
     @@swap_flag = 'evaluation_matrix'
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   end
+  sleep 1
 end
 
 Then (/^I should see risk as (.+) risk$/) do |_condition|
@@ -108,5 +109,6 @@ Then (/^I should see added new hazard$/) do
   on(Section3APage).navigate_front_back
   BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   on(Section3APage).scroll_to_new_hazard
+  BrowserActions.scroll_up
   is_true(on(Section3APage).is_new_hazard_added?)
 end
