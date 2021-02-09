@@ -30,8 +30,8 @@ class Section3APage < Section2Page
   elements(:ih_details2, xpath: "//div[contains(@class,'row-wrapper')][1]/div[contains(@class,'row-container')]")
   # elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:ecm_details, xpath: "//div[contains(@class,'row-wrapper')][3]/div[contains(@class,'row-container')]")
-  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
 
@@ -54,8 +54,8 @@ class Section3APage < Section2Page
 
   def is_new_hazard_added?
     # view_edit_btn
-    p ">> #{hazard_risk_details_elements[30].text}"
-    p ">> #{hazard_risk_details_elements[31].text}"
+    p ">> #{hazard_risk_details_elements[23].text}"
+    p ">> #{hazard_risk_details_elements[24].text}"
     p ">> #{ecm_details_elements[10].text}"
     # begin
     #   tmp = ih_details1_elements[10].text
@@ -63,7 +63,7 @@ class Section3APage < Section2Page
       tmp = ih_details2_elements[10].text
     # end
     p ">> #{tmp}"
-    (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures Test Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
   end
 
   def scroll_to_new_hazard

@@ -150,8 +150,10 @@ And (/^I fill up EIC certificate$/) do
 end
 
 Then (/^I should see these sub questions$/) do |_table|
+  on(Section4BPage).loto_rdo_element.click
+  on(Section4BPage).electrical_rdo_element.click
+  on(Section4BPage).phy_rdo_element.click
   _table.raw.each do |_element|
-    step "I should see the text '#{_element}'"
-    # is_true(on(PumpRoomEntry).is_text_displayed?(_element))
+    step "I should see the text '#{_element.first}'"
   end
 end

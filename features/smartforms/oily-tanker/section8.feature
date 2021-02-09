@@ -236,7 +236,6 @@ Feature: Section8
       | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user          | zoneid                      | mac               | location_stamp   |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
-  @test
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal

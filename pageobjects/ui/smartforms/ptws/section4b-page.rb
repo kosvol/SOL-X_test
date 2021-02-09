@@ -4,7 +4,10 @@ require './././support/env'
 
 class Section4BPage < Section4APage
   include PageObject
-
+  
+  element(:loto_rdo, xpath: "//input[starts-with(@name,'eicPreWork_LOTO')]")
+  element(:electrical_rdo, xpath: "//input[starts-with(@name,'eicPreWork_ElectricalIsolation')]")
+  element(:phy_rdo, xpath: "//input[starts-with(@name,'eicPreWork_PhysicalIsolation')]")
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   elements(:yes_no_btn, xpath: "//input[@name='energyIsolationCertIssued']")
   text_field(:loto, xpath: "//input[@id='eicPreWork_confirmationAndAcceptance_lotoNumber']")
@@ -25,10 +28,8 @@ class Section4BPage < Section4APage
 
   def is_eic_details_prepopulated?
     sleep 1
-    Log.instance.info(">>> #{eic_date_and_time_elements[1].text} vs #{get_current_time_format}")
-    Log.instance.info(">>> #{eic_date_and_time_elements[0].text} vs #{get_current_date_format_with_offset}")
-    # Log.instance.info(">>> #{generic_data_elements[1].text.include? "SIT/EIC/#{BrowserActions.get_year}"}")
-    # Log.instance.info(">>> #{generic_data_elements[1].text.include? 'EIC/TEMP'/}")
-    ((eic_date_and_time_elements[0].text === get_current_date_format_with_offset) && (eic_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'EIC/TEMP/'))
+    Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_time_format}")
+    Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_date_and_time}")
+    ((generic_data_elements[1].text === get_current_date_and_time) && (generic_data_elements[2].text.include? 'EIC/TEMP/'))
   end
 end
