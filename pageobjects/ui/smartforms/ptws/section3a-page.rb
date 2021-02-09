@@ -116,11 +116,12 @@ class Section3APage < Section2Page
     sleep 2
     scroll_multiple_times(2)
     likelihood_btn_elements[0].click
-    sleep 1
+    sleep 2
     level_to_choose_elements[(_likelihood.to_i - 1)].click
     confirm_btn_elements.first.click
     sleep 1
     consequence_btn_elements[0].click
+    sleep 2
     level_to_choose_elements[(_consequence.to_i + 4)].click
     confirm_btn_elements[1].click
   end
@@ -130,11 +131,12 @@ class Section3APage < Section2Page
     sleep 1
     scroll_multiple_times(3)
     likelihood_btn_elements[1].click
-    sleep 1
+    sleep 2
     level_to_choose_elements[(_likelihood.to_i + 9)].click
     confirm_btn_elements[2].click
     sleep 1
     consequence_btn_elements[1].click
+    sleep 2
     level_to_choose_elements[(_consequence.to_i + 14)].click
     confirm_btn_elements[3].click
   end
@@ -145,9 +147,11 @@ class Section3APage < Section2Page
     add_additional_measure_btn_elements[0].click
     # scroll_multiple_times(1)
     likelihood_btn_elements[2].click
+    sleep 2
     level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
     confirm_btn_elements[confirm_btn_elements.size - 2].click
     consequence_btn_elements[2].click
+    sleep 2
     level_to_choose_elements[((level_to_choose_elements.size - 6) + _consequence.to_i)].click
     confirm_btn_elements.last.click
   end
