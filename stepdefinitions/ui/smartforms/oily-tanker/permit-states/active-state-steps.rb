@@ -52,6 +52,7 @@ And (/^I should see gas reading section enabled$/) do
 end
 
 And (/^I should see gas reading section enabled in active state$/) do
+  step 'I navigate to section 6'
   # is_equal(on(Section6Page).gas_yes_no_elements.size,2)
   # is_enabled(on(Section6Page).gas_last_calibration_button_element)
   # is_enabled(on(Section6Page).gas_equipment_input_element)
