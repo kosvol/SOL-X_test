@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
-  # on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  on(CreatedPermitToWorkPage).edit_permit_btn_elements[0].click
+  step 'I click on permit for Master Approval'
+  # on(PendingStatePage).pending_approval_status_btn_elements[0].click
   
   step 'I enter pin 1111'
   if _permit_type === 'enclose workspace'

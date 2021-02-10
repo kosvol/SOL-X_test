@@ -8,6 +8,8 @@ class ActiveStatePage < CreatedPermitToWorkPage
   spans(:permit_validity_timer, xpath: "//span[@data-testid='time-left']")
   buttons(:view_btn, xpath: "//button[contains(.,'View')]")
   buttons(:first_permit_buttons, xpath: "//ul/li[1]/ul/li/button")
+  buttons(:terminate_permit_btn, xpath: "//button[contains(.,'View/Terminate')]")
+  buttons(:add_gas_btn, xpath: "//button[contains(.,'Gas Test')]")
 
   def get_permit_validity_period(_index)
     permit_validity_timer_elements[_index].text
@@ -18,7 +20,7 @@ class ActiveStatePage < CreatedPermitToWorkPage
       next unless ptw_id_elements[_index].text === _permit_id
 
       p ">> #{ptw_id_elements[_index].text}"
-      return delete_permit_btn_elements[_index]
+      return terminate_permit_btn_elements[_index]
       # break
     end
   end

@@ -12,6 +12,7 @@ class PendingStatePage < Section9Page
   buttons(:edit_update_btn, xpath: "//button[contains(.,'Edit/Update')]")
   element(:update_comment_box, xpath: "//textarea[@id='updatesNeededComment']")
   elements(:action_required_note, xpath: "//li/div/div[@class='note-row']/div[2]/span[2]")
+  elements(:pending_approval_status_btn, xpath: '//button[@data-testid="action-button"]')
   
 
   def set_update_comment
