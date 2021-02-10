@@ -15,3 +15,7 @@ end
 And (/^I verify method (.+) is successful$/) do |table|
   is_true(CommonPage.is_successful(table))
 end
+
+And (/^I switch vessel to (.*)$/) do |_vesselType|
+  ServiceUtil.switch_vessel_type(_vesselType)
+end

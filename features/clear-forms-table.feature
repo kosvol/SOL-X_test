@@ -21,3 +21,7 @@ Feature: DB reset
   @clear-mariadb
   Scenario: Maria DB reset
     Given I clear mariadb
+
+  @switch-vessel
+  Scenario: Switch vessel
+    Given I switch vessel to COT

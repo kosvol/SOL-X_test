@@ -11,14 +11,18 @@ module EnvironmentSelector
       $obj_env_yml[get_environment.to_s][key.to_s]
     end
 
+    def get_vessel_switch_url
+      $obj_env_yml[get_environment.to_s]["switch_vessel"]
+    end
+
     private
 
     def get_environment
-      $current_platform = ENV['ENVIRONMENT']
+      $current_environment = ENV['ENVIRONMENT']
     end
 
     def get_application
-      $current_platform = ENV['APPLICATION']
+      $current_application = ENV['APPLICATION']
     end
   end
 end
