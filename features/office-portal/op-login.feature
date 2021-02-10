@@ -19,7 +19,7 @@ Feature: OpLoginPage
     When I enter a valid password
     And I click on Log In Now button
     Then I should see the Vessel List page
-@ska
+
   Scenario: Verify the "Remember me" checkbox is editable (3494)
     Given I launch Office Portal
     And I see the checkbox is checked
