@@ -36,8 +36,8 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
     Examples:
-      | zone        | zoneid                      | mac               | new_zone         | new_zoneid                  | new_mac           |
-      | Engine Room | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Pump Room Bottom | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+      | zone        | zoneid                      | mac               | new_zone    | new_zoneid                  | new_mac           |
+      | Engine Room | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Aft Station | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
   Scenario: Verify active duration countdown starts at 15s
     Given I launch sol-x portal
@@ -72,7 +72,7 @@ Feature: LocationTracking
 
     Examples:
       | zone         | zoneid                      | mac               | location                   |
-      | Engine Room  | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:B0:00:00 | Bottom Flat Engine Forward |
+      | Main Deck    | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:B0:00:00 | Bottom Flat Engine Forward |
       | Pump Room    | AUTO_0ABXE1CH1MN0QMK21PPK40 | C4:BE:84:CE:19:82 | Pump Room Top              |
       | Funnel Stack | AUTO_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 | IG Platform 2              |
   # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
