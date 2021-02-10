@@ -82,14 +82,6 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
-    ### save section 0
-    # section2 = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '2'))
-    # section2['variables']['formId'] = CommonPage.get_permit_id
-    # section2['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-    # section2['variables']['submissionTimestamp'] = get_current_date_time
-    # JsonUtil.create_request_file('ptw/mod_2.save_section0_details', section2)
-    # ServiceUtil.post_graph_ql('ptw/mod_2.save_section0_details', _user)
-
     ### save sections
     save_different_form_section(payload_mapper(_permit_type, '3'), _user)
     save_different_form_section(payload_mapper(_permit_type, '4'), _user)
@@ -115,13 +107,28 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
     ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
+    ### create eic ###
+    create_eic = JSON.parse JsonUtil.read_json('ptw/11.create_eic')
+    create_eic['variables']['parentFormId'] = CommonPage.get_permit_id
+    create_eic['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_11.create_eic', create_eic)
+    ServiceUtil.post_graph_ql('ptw/mod_11.create_eic', _user)
+
+    ### save eic cert details ###
+    save_eic = JSON.parse JsonUtil.read_json('ptw/11.save_eic_cert_details')
+    save_eic['variables']['parentFormId'] = CommonPage.get_permit_id
+    save_eic['variables']['formId'] = ServiceUtil.get_response_body['data']['createForm']['_id']
+    save_eic['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_11.save_eic_cert_details', save_eic)
+    ServiceUtil.post_graph_ql('ptw/mod_11.save_eic_cert_details', _user)
+
     ### section 4b ###
     section4b = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
     section4b['variables']['formId'] = CommonPage.get_permit_id
     section4b['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
       section4b['variables']['answers'][1].to_h['value'] = '"yes"'
-      section4b['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+      section4b['variables']['answers'].last['value'] = "{\"signedBy\":\"AUTO_SOLX0012\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
     elsif eic === 'eic_no'
       section4b['variables']['answers'][1].to_h['value'] = '"no"'
       section4b['variables']['answers'].pop
@@ -196,7 +203,7 @@ class BypassPage < Section0Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = $obj_env_yml['fauxton']["base_#{$current_environment.downcase}_url"]+"/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -331,7 +338,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/camera/0.create_form_dra'
       when '1'
-        'ptw/camera/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/camera/2.save_section0_details'
       when '3'
@@ -356,7 +363,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/enclosed-workspace/0.create_form_dra'
       when '1'
-        'ptw/enclosed-workspace/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/enclosed-workspace/2.save_section0_details'
       when '3'
@@ -381,7 +388,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/cold-work-cleaning-spill/0.create_form_dra'
       when '1'
-        'ptw/cold-work-cleaning-spill/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/cold-work-cleaning-spill/2.save_section0_details'
       when '3'
@@ -406,7 +413,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/hotwork/0.create_form_dra'
       when '1'
-        'ptw/hotwork/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/hotwork/2.save_section0_details'
       when '3'
@@ -431,7 +438,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/underwater-sim/0.create_form_dra'
       when '1'
-        'ptw/underwater-sim/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/underwater-sim/2.save_section0_details'
       when '3'
@@ -456,7 +463,7 @@ class BypassPage < Section0Page
       when '00'
         'ptw/work-pressure-line/0.create_form_dra'
       when '1'
-        'ptw/work-pressure-line/1.date_with_offset'
+        'ptw/1.date_with_offset'
       when '2'
         'ptw/work-pressure-line/2.save_section0_details'
       when '3'

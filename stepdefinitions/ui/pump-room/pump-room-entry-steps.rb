@@ -68,7 +68,7 @@ Then(/^I press the "([^"]*)" button$/) do |button|
   on(PumpRoomEntry).press_the_button(button)
 end
 
-And (/^I should see the (text|label|page) '([^"]*)'$/) do |like, text|
+And (/^I should see the (text|label|page) '(.*)'$/) do |like, text|
   is_true(on(PumpRoomEntry).is_text_displayed?(text))
 end
 

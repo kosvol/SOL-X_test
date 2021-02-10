@@ -43,7 +43,7 @@ class OAPage < Section9Page
     sleep 10
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
     p "OA Link : #{tmp}"
-    $browser.get(tmp)
+    tmp
   end
 
   def set_from_to_details

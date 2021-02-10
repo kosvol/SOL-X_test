@@ -22,7 +22,7 @@ end
 
 Then (/^I should see (.+) as button text$/) do |update_or_view|
   # update_reading_or_view_btn = on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id)
-  update_reading_or_view_btn = on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  update_reading_or_view_btn = on(ActiveStatePage).add_gas_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   if update_or_view === 'Update Readings'
     is_equal(update_reading_or_view_btn.text, 'Update Readings')
   elsif update_or_view === 'View'
@@ -34,7 +34,7 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   sleep 1
   @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
   if _update_or_terminate === 'update'
-    on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+    on(ActiveStatePage).add_gas_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
     # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
   elsif _update_or_terminate === 'terminate'
     on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click
@@ -52,6 +52,7 @@ And (/^I should see gas reading section enabled$/) do
 end
 
 And (/^I should see gas reading section enabled in active state$/) do
+  step 'I navigate to section 6'
   # is_equal(on(Section6Page).gas_yes_no_elements.size,2)
   # is_enabled(on(Section6Page).gas_last_calibration_button_element)
   # is_enabled(on(Section6Page).gas_equipment_input_element)
@@ -98,7 +99,7 @@ end
 
 And (/^I should see data persisted on page 2$/) do
   tmp = on(Section3DPage).get_filled_section
-  does_include(tmp[1],"SIT/PTW/#{BrowserActions.get_year}/")
+  does_include(tmp[1],"#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
   # data cleanse after first assertion
   tmp.delete_at(1)
   p ">> #{tmp}"

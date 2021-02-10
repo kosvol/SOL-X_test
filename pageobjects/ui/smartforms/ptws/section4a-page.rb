@@ -129,11 +129,8 @@ class Section4APage < Section3DPage
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
-    # Log.instance.info("--- #{checklist_permit_number}")
-    Log.instance.info(">>> #{checklist_date_and_time_elements[0].text}")
-    Log.instance.info(">>> #{checklist_date_and_time_elements[1].text}")
-    # Log.instance.info(">>> #{$browser.find_element(:xpath, "//input[contains(@name,'formNumber')]").attribute('value')}")
-    ((checklist_date_and_time_elements[0].text.include? get_current_date_and_time) && (checklist_date_and_time_elements[1].text === get_current_time_format) && (generic_data_elements[1].text.include? 'PTW/TEMP/')) # BrowserActions.get_attribute_value(@@checklist_permit_number)))
+    Log.instance.info("--- #{generic_data_elements[2].text}")
+    ((generic_data_elements[1].text.include? get_current_date_and_time) && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
   end
 
   def uncheck_all_checklist
@@ -156,7 +153,8 @@ class Section4APage < Section3DPage
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}") && (date_and_time_stamp_element.text.include? "#{time_offset}"))
+    Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
   end
 
   def is_signed_user_details_integration?(_entered_pin)

@@ -14,7 +14,7 @@ class Section1Page < Section0Page
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   element(:s1_navigation_dropdown, xpath: "//h3[contains(.,'Section 1: Task Description')]")
 
-  @@maint_require_text = '//div[@id="1_subsection6"]'
+  @@maint_require_text = '//div[@id="1_6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
   
   @@location_check_btn = "//span[contains(.,'%s')]"

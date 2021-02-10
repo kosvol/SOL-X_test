@@ -8,7 +8,7 @@ class ROLPage < Section9Page
   button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
   buttons(:boarding_ddl, xpath: '//button[@id="cl_riggingOfLadder_boardingArrangement"]')
   buttons(:boarding_value, xpath: '//ul/li/button')
-  element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_subsection19"]')
+  element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_19"]')
   elements(:rol_inputs, xpath: '//input')
   button(:current_date, xpath: "//button[contains(@class,'current')]")
   buttons(:date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_createdDate']")

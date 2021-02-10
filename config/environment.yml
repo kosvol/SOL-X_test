@@ -5,19 +5,21 @@ dev:
   master_pin: "9707"
 
 sit:
-  c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8080"
-  service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
+  c2_preview: "https://sit.edge.dev.safevue.sol-x.co:8080"
+  service: "https://sit.edge.dev.safevue.sol-x.co:4000/"
   master_pin: "1111"
+  switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-vessel"
 
-sits:
-  c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
-  service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
-  master_pin:
+# sits:
+#   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
+#   service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
+#   master_pin:
 
 auto:
   c2_preview: "https://cloud-edge.auto.solas.magellanx.io:8080/"
   service: "https://cloud-edge.auto.solas.magellanx.io:4000/"
   master_pin: "1111"
+  switch_vessel: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/vessels/auto-vessel"
 
 uat:
   c2_preview: "http://104.215.192.113:8080"
@@ -55,7 +57,7 @@ ldev_fauxton_forms:
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:
-  format_link: "http://solas-dev-office-portal.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
+  format_link: "https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
   office_portal: "https://dev-officeportalclient-2953306c.azurewebsites.net/login/demo-uid"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"

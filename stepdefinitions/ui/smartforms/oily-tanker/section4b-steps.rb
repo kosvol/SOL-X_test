@@ -107,7 +107,7 @@ end
 
 And (/^I fill up EIC certificate$/) do
   step 'I click on create EIC certification button'
-  sleep 1
+  sleep 2
   on(Section3DPage).radio_btn_elements[0].click
   on(Section4BPage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
   # tmp = 0
@@ -150,8 +150,10 @@ And (/^I fill up EIC certificate$/) do
 end
 
 Then (/^I should see these sub questions$/) do |_table|
+  on(Section4BPage).loto_rdo_element.click
+  on(Section4BPage).electrical_rdo_element.click
+  on(Section4BPage).phy_rdo_element.click
   _table.raw.each do |_element|
-    step "I should see the text '#{_element}'"
-    # is_true(on(PumpRoomEntry).is_text_displayed?(_element))
+    step "I should see the text '#{_element.first}'"
   end
 end

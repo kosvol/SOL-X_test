@@ -19,7 +19,8 @@ class Section6Page < Section5Page
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
   button(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   buttons(:last_calibration_btn, xpath: "//button[@id='gasLastCalibrationDate']")
-  buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
+  # buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
+  buttons(:submit_btn, xpath: "//div[starts-with(@class,'Section__Description')]/button")
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
   @@gas_added_by = "//span[contains(.,'%s')]"
   @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"

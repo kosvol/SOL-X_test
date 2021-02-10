@@ -19,8 +19,8 @@ Feature: Section3DDRA
     And I should see location <location_stamp> stamp
 
     Examples:
-      | user         | zoneid                     | mac               | location_stamp   |
-      | SIT_SOLX0012 | SIT_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | user          | zoneid                      | mac               | location_stamp   |
+      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
 
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable

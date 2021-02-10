@@ -6,7 +6,7 @@ Then (/^I should see request update comment box$/) do
 end
 
 Then (/^I should see fields disabled$/) do
-  is_equal(on(Section3APage).total_p_elements.size,58)
+  is_equal(on(Section3APage).total_p_elements.size,22)
   is_disabled(on(Section3APage).delete_btn_elements.first)
 end
 
@@ -35,6 +35,7 @@ And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |like
     @@swap_flag = 'evaluation_matrix'
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   end
+  sleep 1
 end
 
 Then (/^I should see risk as (.+) risk$/) do |_condition|
@@ -56,9 +57,10 @@ end
 
 Then (/^I should see DRA number,Date and Time populated$/) do
   sleep 1
+  # is_equal(on(Section3APage).date_and_time_fields_elements[0].text, "SOLX Automation Test")
   does_include(on(Section3APage).generic_data_elements[1].text, 'DRA/TEMP/')
-  is_equal(on(Section3APage).date_and_time_fields_elements[0].text, on(Section0Page).get_current_date_format_with_offset)
-  is_equal(on(Section3APage).date_and_time_fields_elements[1].text, on(Section0Page).get_current_time_format)
+  is_equal(on(Section3APage).generic_data_elements[2].text, on(Section0Page).get_current_date_and_time)
+  # is_equal(on(Section3APage).generic_data_elements[2].text, on(Section0Page).get_current_time_format)
 end
 
 Then (/^I should see Date and Time fields disabled$/) do
@@ -107,5 +109,6 @@ Then (/^I should see added new hazard$/) do
   on(Section3APage).navigate_front_back
   BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   on(Section3APage).scroll_to_new_hazard
+  BrowserActions.scroll_up
   is_true(on(Section3APage).is_new_hazard_added?)
 end
