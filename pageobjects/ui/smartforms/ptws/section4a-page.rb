@@ -153,7 +153,8 @@ class Section4APage < Section3DPage
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}") && (date_and_time_stamp_element.text.include? "#{time_offset}"))
+    Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
