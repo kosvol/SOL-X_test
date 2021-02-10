@@ -115,8 +115,8 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 3
-    scroll_multiple_times(2)
+    sleep 2
+    scroll_multiple_times(1)
     likelihood_btn_elements[0].click
     sleep 2
     level_to_choose_elements[(_likelihood.to_i - 1)].click
@@ -130,8 +130,8 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 1
-    scroll_multiple_times(3)
+    sleep 2
+    scroll_multiple_times(2)
     likelihood_btn_elements[1].click
     sleep 2
     level_to_choose_elements[(_likelihood.to_i + 9)].click
