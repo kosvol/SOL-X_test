@@ -1,0 +1,8 @@
+{
+  "selector": {
+    "vesselId": "sit-vessel"
+  },
+  "execution_stats": true,
+  "limit": 101,
+  "skip": 0
+}
