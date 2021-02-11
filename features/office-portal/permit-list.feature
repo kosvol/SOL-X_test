@@ -5,6 +5,8 @@ Feature: PermitList
   So that ...
 
   Scenario: Verify vessels are displayed in alphanumeric order (3582)
+    Given I log in to the Office Portal
+    Then I should see vessel cards are in alphanumeric order
 
   Scenario: Verify the vessel name is displayed at the top bar and permits list after selecting (3579)
     Given I log in to the Office Portal
@@ -29,15 +31,22 @@ Feature: PermitList
     Given I log in to the Office Portal
     When I select the "dev" vessel
     And I check the forms number on the vessel card
-    Then I should sew the same number on the All Permits button
+    Then I should see the same number on the All Permits button
 
   Scenario: Verify counters are updated after the form termination (3781, 4468)
 
   Scenario: Verify the permit types list in the filter drop-down (5195, 3747)
+    Given I log in to the Office Portal
+    When I select the "sit" vessel
 
   Scenario: Verify permits are filtered properly
-
+  @ska
   Scenario: Verify users can select a form for review
+    Given I log in to the Office Portal
+    When I select the "sit" vessel
+    And I select the permit 6
+    And I click on View Permit button
+    Then I should see the selected form in a new tab
 
   Scenario: Verify all forms are selected after check the check box near the "Permit No." title
 

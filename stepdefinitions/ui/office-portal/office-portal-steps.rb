@@ -29,22 +29,23 @@ Then(/^I should see the Vessel List page$/) do
   to_exists(on(OfficePortalPage).home_btn_element)
   not_to_exists(on(OfficePortalPage).permit_list_element)
 end
-=begin
-And(/^I see the checkbox is pre-checked$/) do
-  to_exists(on(OfficePortalPage).test_element)
-  sleep(10)
+
+And(/^I see the checkbox is (checked|unchecked)$/) do |condition|
+  if condition == "checked"
+    is_true(on(OfficePortalPage).remember_checkbox_element.checked?)
+    sleep(1)
+  else
+    is_false(on(OfficePortalPage).remember_checkbox_element.checked?)
+    sleep(1)
+  end
 end
 
 When(/^I uncheck the checkbox$/) do
-  check_remember_checkbox
+  on(OfficePortalPage).remember_box_element.click
   sleep(1)
 end
 
-Then(/^I should see the checkbox is unchecked$/) do
-  is_false(on(OfficePortalPage).remember_checkbox_element.selected?)
-  sleep(1)
-end
-=end
+
 
 
 Given(/^I log in to the Office Portal$/) do
@@ -78,10 +79,42 @@ And(/^I click on the Cross icon$/) do
 end
 
 Then(/^I check the forms number on the vessel card$/) do
-  @permitsNumber = on(OfficePortalPage).vessel_card_permits_number(@vessel)
+  @permits_quantity = on(OfficePortalPage).vessel_card_permits_quantity(@vessel)
 end
 
-And(/^I should sew the same number on the All Permits button$/) do
-  does_include(on(OfficePortalPage).all_permits_btn_element.text, @permitsNumber)
+Then(/^I should see the same number on the All Permits button$/) do
+  does_include(on(OfficePortalPage).all_permits_btn_element.text, @permits_quantity)
+  sleep(1)
 end
+
+
+Then(/^I should see vessel cards are in alphanumeric order$/) do
+  vessels_list = Array.new
+  on(OfficePortalPage).vessel_card_name_elements.each do |vessel|
+    name = vessel.text
+    vessels_list<<name
+  end
+  order = vessels_list.sort
+  is_true(vessels_list == order)
+  sleep(1)
+end
+
+And(/^I select the permit (\d+)$/) do |_whatPermit|
+  on(OfficePortalPage).permit_check_box_elements[_whatPermit].click
+  @permit_number = on(OfficePortalPage).get_permit_number(_whatPermit+1)
+  @permit_name = on(OfficePortalPage).get_permit_name(_whatPermit+1)
+end
+
+And(/^I click on View Permit button$/) do
+  on(OfficePortalPage).view_permit_btn
+end
+
+Then(/^I should see the selected form in a new tab$/) do
+  $browser.switch_to.window($browser.window_handles[1])
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_element)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @permit_number)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @permit_name)
+  sleep(2)
+end
+
 
