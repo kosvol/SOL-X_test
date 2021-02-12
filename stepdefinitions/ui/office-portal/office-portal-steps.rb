@@ -45,16 +45,12 @@ When(/^I uncheck the checkbox$/) do
   sleep(1)
 end
 
-
-
-
 Given(/^I log in to the Office Portal$/) do
   step 'I launch Office Portal'
   step 'I enter a valid password'
   step 'I click on Log In Now button'
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
 end
-
 
 Then(/^I should see the vessel name at the top bar and permits list$/) do
   does_include(on(OfficePortalPage).topbar_header_element.text, @vessel)
@@ -87,7 +83,6 @@ Then(/^I should see the same number on the All Permits button$/) do
   sleep(1)
 end
 
-
 Then(/^I should see vessel cards are in alphanumeric order$/) do
   vessels_list = Array.new
   on(OfficePortalPage).vessel_card_name_elements.each do |vessel|
@@ -117,4 +112,17 @@ Then(/^I should see the selected form in a new tab$/) do
   sleep(2)
 end
 
+And(/^I click on Add Filter button$/) do
+  on(OfficePortalPage).add_filter_btn
+end
 
+Then(/^I should the Permit Types list for filter$/) do
+  permitTypesList = []
+  on(OfficePortalPage).filter_permit_type_elements.each do |_whatType|
+    type = _whatType.text
+    permitTypesList<<type
+  end
+  base_data = YAML.load_file("data/office-portal-filters.yml")['types']
+  is_true(permitTypesList == base_data)
+  puts permitTypesList
+end

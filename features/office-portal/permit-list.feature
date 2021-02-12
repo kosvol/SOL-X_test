@@ -23,30 +23,32 @@ Feature: PermitList
     Then I should see the Vessel List page
 #find out how to reduce the waiting time
 
-  Scenario: Verify the last terminated permit appears at the top of the list in the Office Portal (5133)
-
-  Scenario: Verify the stand alone permits (PRE, RoL) are displayed in the Office Portal
-
   Scenario: Verify the the forms quantity on the vessel card is the same as on the "All Permits" title (3733)
     Given I log in to the Office Portal
     When I select the "dev" vessel
     And I check the forms number on the vessel card
     Then I should see the same number on the All Permits button
 
+  Scenario: Verify the last terminated permit appears at the top of the list in the Office Portal (5133)
+
   Scenario: Verify counters are updated after the form termination (3781, 4468)
 
   Scenario: Verify the permit types list in the filter drop-down (5195, 3747)
     Given I log in to the Office Portal
     When I select the "sit" vessel
+    And I click on Add Filter button
+    Then I should the Permit Types list for filter
 
   Scenario: Verify permits are filtered properly
-  @ska
-  Scenario: Verify users can select a form for review
+
+  Scenario: Verify users can select a form for review (4807)
     Given I log in to the Office Portal
     When I select the "sit" vessel
     And I select the permit 6
     And I click on View Permit button
     Then I should see the selected form in a new tab
+
+  Scenario: Verify the stand alone permits (PRE, RoL) are displayed in the Office Portal
 
   Scenario: Verify all forms are selected after check the check box near the "Permit No." title
 

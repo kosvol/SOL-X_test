@@ -9,6 +9,7 @@ class OfficePortalPage
   button(:home_btn, xpath: "//nav[contains(@class,'NavigationBar')]//button")
   button(:all_permits_btn, xpath: "//span[contains(text(),'All Permits')]/parent::button")
   button(:view_permit_btn, xpath: "//span[contains(text(),'View Selected Permit')]/parent::button")
+  button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
 
   element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
   element(:portal_name, xpath: "//h1[contains(@class,'Heading__HeadingLarge')]")
@@ -21,17 +22,17 @@ class OfficePortalPage
   element(:permit_section_header, xpath: "//h2[contains(text(),'Section 9')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
+  elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
-  checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
   text_field(:op_password, xpath: "//input[@type='password']")
 
   def select_vessel(_vesselName)
     $browser.find_element(:xpath, "//h3[contains(text(),'%s')]"%_vesselName).click
   end
 
-  def vessel_card_permits_quantity(_formNumber)
-    $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formNumber).text
+  def vessel_card_permits_quantity(_formsQuantity)
+    $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
   end
 
   def get_permit_number(_permitNumber)
