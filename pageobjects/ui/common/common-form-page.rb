@@ -31,7 +31,7 @@ class CommonFormsPage < CommonPage
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
-  buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
+  # buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
   buttons(:update_reading_btn, xpath: "//button[contains(.,'Update Readings')]")
   button(:back_to_home_btn, xpath: "//button[contains(.,'Back to Home')]")
   buttons(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")

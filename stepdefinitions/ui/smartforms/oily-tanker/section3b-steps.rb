@@ -9,7 +9,7 @@ Then (/^I should see method description (.+) populated$/) do |method_desc|
 end
 
 And (/^I click on Submit for Termination$/) do
-  on(Section0Page).submit_termination_btn1_elements.first.click
+  on(ActiveStatePage).get_termination_btn(CommonPage.get_permit_id).click
 end
 
 Then (/^I should see dra number and last assessment date populated$/) do
