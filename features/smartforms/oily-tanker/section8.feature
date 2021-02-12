@@ -233,8 +233,8 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user          | zoneid                      | mac               | location_stamp   |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user          | zoneid                      | mac               | location_stamp |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -250,10 +250,10 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types | permit_payload | rank          | pin  | user          | zoneid                      | mac               | location_stamp   |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
-      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom    |
-      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | permit_types | permit_payload | rank          | pin  | user          | zoneid                      | mac               | location_stamp |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
+      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
