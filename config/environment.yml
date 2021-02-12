@@ -9,17 +9,14 @@ sit:
   service: "https://sit.edge.dev.safevue.sol-x.co:4000/"
   master_pin: "1111"
   switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-vessel"
-
-# sits:
-#   c2_preview: "https://cloud-edge.stage.solas.magellanx.io:8443/"
-#   service: "https://cloud-edge.stage.solas.magellanx.io:4000/"
-#   master_pin:
+  get_crew_members: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_find"
 
 auto:
   c2_preview: "https://cloud-edge.auto.solas.magellanx.io:8080/"
   service: "https://cloud-edge.auto.solas.magellanx.io:4000/"
   master_pin: "1111"
   switch_vessel: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/vessels/auto-vessel"
+  get_crew_members: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/crew_members/_find"
 
 uat:
   c2_preview: "http://104.215.192.113:8080"
@@ -28,7 +25,7 @@ uat:
 
 fauxton:
   base_auto_url: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984"
-  base_sit_url: "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984"
+  base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984"
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
   delete_form: "/forms/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
@@ -50,9 +47,9 @@ oa_db:
   get_oa_event: "/office_approval_events/_all_docs?skip=0&limit=10000"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
 
-ldev_fauxton_forms:
-  delete_form: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_bulk_docs"
-  get_forms: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_all_docs?skip=0&limit=10000"
+# ldev_fauxton_forms:
+#   delete_form: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_bulk_docs"
+#   get_forms: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_all_docs?skip=0&limit=10000"
 
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
@@ -71,7 +68,7 @@ maria_db:
 
 pin_management:
   sit:
-    db: "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/"
+    db: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/"
     vessel: "sit-vessel"
   dev:
 
