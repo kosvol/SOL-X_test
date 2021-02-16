@@ -26,5 +26,5 @@ end
 And (/^I should be able to view close permit$/) do
   on(ActiveStatePage).view_btn_elements.first.click
   step 'I enter pin 1111'
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
+  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
 end

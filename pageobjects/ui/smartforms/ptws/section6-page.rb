@@ -37,7 +37,8 @@ class Section6Page < Section5Page
 
   def is_gas_reader_section?
     sleep 1
-    total_sections_elements.size > 3
+    p ">> #{total_sections_elements.size}"
+    total_sections_elements.size === 5
   end
 
 

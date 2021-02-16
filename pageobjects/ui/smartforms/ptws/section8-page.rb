@@ -9,7 +9,7 @@ class Section8Page < Section7Page
   divs(:rank_name_and_date, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div/div")
   
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
-  buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
+  # buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
   button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
   @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"

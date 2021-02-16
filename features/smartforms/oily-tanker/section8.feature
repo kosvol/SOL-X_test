@@ -15,7 +15,7 @@ Feature: Section8
     And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
-    And I update permit with Master rank and 1111 pin
+    And I withdraw permit with Master rank and 1111 pin
     And I request update for permit
     And I click on back to home
     And I click on update needed filter

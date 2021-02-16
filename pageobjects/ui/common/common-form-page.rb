@@ -37,6 +37,7 @@ class CommonFormsPage < CommonPage
   buttons(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
   buttons(:save_and_close_btn, xpath: "//button[contains(.,'Save & Close')]")
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
+  buttons(:view_btn, xpath: "//button[contains(.,'View')]")
   buttons(:review_and_terminate_btn, xpath: "//button[contains(.,'Review & Withdraw')]")
   button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
@@ -81,6 +82,11 @@ class CommonFormsPage < CommonPage
 
   def get_current_date_and_time
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
+  end
+
+  def get_current_hour
+    time_offset = get_current_time_offset
+    (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H')
   end
 
   def get_current_date_format_with_offset

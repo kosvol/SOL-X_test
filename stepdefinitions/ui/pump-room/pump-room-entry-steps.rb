@@ -1,5 +1,5 @@
 And(/^I navigate to create new PRE$/) do
-  on(PumpRoomEntry).create_new_pre_btn
+  on(PumpRoomEntry).create_new_pre_btn_element.click
   sleep 1
 end
 

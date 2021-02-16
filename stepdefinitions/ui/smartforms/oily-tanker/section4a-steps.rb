@@ -66,9 +66,6 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   BrowserActions.scroll_down
   @@checklist = _checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  base_data.delete_at(1)
-  base_data.delete_at(1)
-  base_data.delete_at(1)
   on(Section4APage).get_checklist_locator(@@checklist).each_with_index do |_element, _index|
     p _element.text.to_s
     p base_data[_index].to_s
