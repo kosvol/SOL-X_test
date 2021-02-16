@@ -124,5 +124,19 @@ Then(/^I should the Permit Types list for filter$/) do
   end
   base_data = YAML.load_file("data/office-portal-filters.yml")['types']
   is_true(permitTypesList == base_data)
-  puts permitTypesList
+end
+
+And(/^I check the checkbox near the Permit No. title$/) do
+  on(OfficePortalPage).permit_check_box_elements[0].click
+end
+
+Then(/^I should see all the forms are selected$/) do
+  on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
+    is_true(_selection.checked?)
+  end
+end
+
+And(/^I should see the forms quantity on the top bar is the same as on the All Permits title$/) do
+  bottomQuantity = on(OfficePortalPage).bottom_bar_permits_quantity_element.text
+  does_include(on(OfficePortalPage).all_permits_btn_element.text, bottomQuantity)
 end

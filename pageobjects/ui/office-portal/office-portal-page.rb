@@ -20,11 +20,13 @@ class OfficePortalPage
   element(:permits_list_name, xpath: "(//h2[contains(@class,'Heading')])[2]")
   element(:remember_box, xpath: "//span[@class='checkbox']")
   element(:permit_section_header, xpath: "//h2[contains(text(),'Section 9')]")
+  element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
+  checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
   text_field(:op_password, xpath: "//input[@type='password']")
 
   def select_vessel(_vesselName)

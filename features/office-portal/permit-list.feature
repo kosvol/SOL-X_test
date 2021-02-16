@@ -49,8 +49,13 @@ Feature: PermitList
     Then I should see the selected form in a new tab
 
   Scenario: Verify the stand alone permits (PRE, RoL) are displayed in the Office Portal
-
+@ska
   Scenario: Verify all forms are selected after check the check box near the "Permit No." title
+    Given I log in to the Office Portal
+    When I select the "lngsit" vessel
+    And I check the checkbox near the Permit No. title
+    Then I should see all the forms are selected
+    And I should see the forms quantity on the top bar is the same as on the All Permits title
 
   Scenario: Verify the several forms are displayed after multi-selection (4479)
 
