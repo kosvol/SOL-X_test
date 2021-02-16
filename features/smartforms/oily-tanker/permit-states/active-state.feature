@@ -537,7 +537,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank and <pin> pin
     And I navigate to section 6
     Then I should see gas reading section enabled
     # Then I should see gas reading section enabled in active state
@@ -561,7 +561,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
+    And I view permit with <rank> rank and <pin> pin
     And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
@@ -582,7 +582,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank and <pin> pin
     And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 

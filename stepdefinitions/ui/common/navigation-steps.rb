@@ -46,3 +46,24 @@ end
 And (/^I navigate to section (.+)$/) do |_which_section|
   on(Section6Page).toggle_to_section(_which_section)
 end
+
+And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
+  sleep 1
+  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
+  p "index >> #{permit_id}"
+  p "permit id >> #{CommonPage.get_permit_id}"
+  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
+  if _update_or_terminate === 'add gas to'
+    on(ActiveStatePage).add_gas_btn_elements[permit_id].click
+  elsif _update_or_terminate === 'update'
+    on(PendingStatePage).edit_update_btn_elements[permit_id].click
+  elsif _update_or_terminate === 'view'
+    on(PendingStatePage).view_btn_elements[permit_id].click
+  elsif _update_or_terminate === 'withdraw'
+    on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
+  elsif _update_or_terminate === 'terminate'
+    step 'I click on Submit for Termination'
+  end
+  sleep 1
+  step "I enter pin #{_pin}"
+end

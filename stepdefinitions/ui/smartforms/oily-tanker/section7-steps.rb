@@ -22,12 +22,12 @@ end
 Then (/^I (should|should not) see submit for office approval and request update buttons$/) do |_condition|
   on(Section3APage).scroll_multiple_times(3)
   if _condition === 'should'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 7) #previous 5
     is_equal(on(Section7Page).submit_oa_btn_element.text, 'Submit for Office Approval')
     is_equal(on(Section7Page).update_btn_element.text, 'Updates Needed')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
   elsif _condition === 'should not'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 3)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 5) #previous 3
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
   end
 end
