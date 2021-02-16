@@ -29,14 +29,16 @@ class PumpRoomEntry < PreDisplay
   ### gx
   # @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
-  element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
+  element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
   # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
-  element(:permit_end_time, xpath: "//button[@id='permitValidUntil']/span")
-  element(:permit_start_time, xpath: "//button[@id='permitActiveAt']/span")
+  element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
+  element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p")
+  # element(:pre_creator_form, xpath: "//div[contains(@class,'Section__Description')]/div[contains(.,'Start Time')]")
+  
   ### end
 
   def get_validity_start_and_end_time
