@@ -66,6 +66,7 @@ Then (/^I should see data persisted on page 1$/) do
   sleep 1
   @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
   tmp = on(Section3DPage).get_filled_section
+  p ">> #{tmp}"
   does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
   tmp.delete_at(1)
   does_include(tmp[8], "Test Automation")
