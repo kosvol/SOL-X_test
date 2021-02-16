@@ -19,3 +19,7 @@ end
 And (/^I switch vessel to (.*)$/) do |_vesselType|
   ServiceUtil.switch_vessel_type(_vesselType)
 end
+
+Given (/^I update master pin$/) do
+  ServiceUtil.update_mas_pin
+end

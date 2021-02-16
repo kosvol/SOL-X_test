@@ -6,7 +6,7 @@ class PumpRoomEntry < PreDisplay
   element(:heading_text, xpath: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3")
   element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
   element(:pre_id, xpath: "//h4[contains(text(),'PRE No:')]/following::p")
-  button(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New")
+  element(:create_new_pre_btn, xpath: "//span[contains(text(),'Create New')]")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button(:four_hours_duration, xpath: "//button[contains(text(),'4 hours')]")
@@ -29,14 +29,16 @@ class PumpRoomEntry < PreDisplay
   ### gx
   # @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
-  element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room Display')]")
+  element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
   # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
-  element(:permit_end_time, xpath: "//button[@id='permitValidUntil']/span")
-  element(:permit_start_time, xpath: "//button[@id='permitActiveAt']/span")
+  element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
+  element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p")
+  # element(:pre_creator_form, xpath: "//div[contains(@class,'Section__Description')]/div[contains(.,'Start Time')]")
+  
   ### end
 
   def get_validity_start_and_end_time

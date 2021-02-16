@@ -15,8 +15,9 @@ Then (/^I (should|should not) see competent person sign button exists$/) do |_co
 end
 
 Then (/^I should see issue date display$/) do
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, 'LT (GMT')
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(Section4APage).get_current_date_and_time)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_timezone)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_current_hour)
   # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
 
@@ -30,36 +31,23 @@ Then (/^I should see (.+) as button text$/) do |update_or_view|
   end
 end
 
-And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
-  sleep 1
-  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
-  if _update_or_terminate === 'update'
-    on(ActiveStatePage).add_gas_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-    # on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id).click
-  elsif _update_or_terminate === 'terminate'
-    step 'I click on Submit for Termination'
-  end
-  sleep 1
-  step "I enter pin #{_pin}"
-end
-
 And (/^I should see gas reading section enabled$/) do
-  is_equal(on(Section6Page).gas_yes_no_elements.size,2)
-  is_enabled(on(Section6Page).gas_last_calibration_button_element)
-  is_enabled(on(Section6Page).gas_equipment_input_element)
-  is_enabled(on(Section6Page).gas_sr_number_input_element)
+  is_equal(on(Section6Page).gas_yes_no_elements.size,0)
+  # is_enabled(on(Section6Page).gas_last_calibration_button_element)
+  # is_enabled(on(Section6Page).gas_equipment_input_element)
+  # is_enabled(on(Section6Page).gas_sr_number_input_element)
   is_enabled(on(Section6Page).add_gas_btn_element)
 end
 
-And (/^I should see Add Gas Reading button disabled$/) do
-  sleep 1
-  not_to_exists(on(Section6Page).gas_yes_no_elements.first)
-  not_to_exists(on(Section6Page).gas_last_calibration_button_element)
-  not_to_exists(on(Section6Page).gas_equipment_input_element)
-  not_to_exists(on(Section6Page).gas_sr_number_input_element)
-  # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
-  not_to_exists(on(Section6Page).add_gas_btn_element)
-end
+# And (/^I should see Add Gas Reading button disabled$/) do
+#   sleep 1
+#   not_to_exists(on(Section6Page).gas_yes_no_elements.first)
+#   not_to_exists(on(Section6Page).gas_last_calibration_button_element)
+#   not_to_exists(on(Section6Page).gas_equipment_input_element)
+#   not_to_exists(on(Section6Page).gas_sr_number_input_element)
+#   # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
+#   not_to_exists(on(Section6Page).add_gas_btn_element)
+# end
 
 Then (/^I should see permit valid for (.+) hours$/) do |_duration|
   permit_validity_timer = on(ActiveStatePage).get_permit_validity_period(on(ActiveStatePage).get_permit_index(CommonPage.get_permit_id))
@@ -78,6 +66,7 @@ Then (/^I should see data persisted on page 1$/) do
   sleep 1
   @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
   tmp = on(Section3DPage).get_filled_section
+  p ">> #{tmp}"
   does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
   tmp.delete_at(1)
   does_include(tmp[8], "Test Automation")

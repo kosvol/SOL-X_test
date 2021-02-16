@@ -25,3 +25,7 @@ Feature: DB reset
   @switch-vessel
   Scenario: Switch vessel
     Given I switch vessel to COT
+
+  @update_mas_pin
+  Scenario: Get master details
+    Given I update master pin
