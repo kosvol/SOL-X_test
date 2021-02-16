@@ -7,6 +7,22 @@ module ServiceUtil
   include HTTParty
   class << self
 
+    def update_mas_pin
+      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/users/SIT_SOLX0001"
+      #EnvironmentSelector.get_vessel_switch_url
+      content_body = JsonUtil.read_json("vessel-switch/get_mas_details")
+      error_logging('URI: ', uri)
+      error_logging('Request Body: ', content_body)
+      @@response = HTTParty.get(uri, { body: content_body }.merge(ql_headers("_user")))
+      error_logging('Response Body: ', @@response)
+
+      master_details = JSON.parse @@response.to_s
+      master_details['pin'] = "1111"
+      p "> #{master_details.to_json}"
+      @@response = HTTParty.put(uri, { body: master_details.to_json }.merge(ql_headers("_user")))
+      error_logging('Switch Response Body: ', @@response)
+    end
+
     def switch_vessel_type(_vesselType, _user = '1111')
       uri = EnvironmentSelector.get_vessel_switch_url
       if $current_environment === 'auto'
