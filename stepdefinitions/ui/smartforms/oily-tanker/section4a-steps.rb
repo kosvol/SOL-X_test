@@ -111,7 +111,7 @@ Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_o
       is_equal(on(Section4APage).tool_box_elements.size, 0)
     end
     if _condition === 'questions'
-      is_equal(on(Section4APage).tool_box_elements.size, 1)
+      is_equal(on(Section4APage).tool_box_elements.size, 0)
       is_equal(on(Section4APage).textarea_elements.size, 0)
     end
   end
