@@ -143,7 +143,8 @@ end
 
 Then(/^I terminate the PRE$/) do
   step 'I navigate to "Active" screen for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE("Submit for Termination")
+  on(ActiveStatePage).get_termination_btn(@@pre_number).click
+  # on(PumpRoomEntry).press_button_for_current_PRE("View/Termination")
   step 'I enter pin 8383'
   step 'I press the "Terminate" button'
   step "I sign on canvas with valid 8383 pin"
@@ -172,6 +173,7 @@ end
 And(/^Get PRE id$/) do
   @temp_id = on(PumpRoomEntry).pre_id_element.text
   @@pre_number = on(PumpRoomEntry).pre_id_element.text
+  # step 'I set permit id'
 end
 
 Then('I open the current PRE with status Pending approval. Pin: {int}') do |pin|

@@ -8,16 +8,15 @@ Feature: PREIntegration
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new PRE
         And I enter pin 8383
-        Then I fill up PRE. Duration 4. Delay to activate 1
+        Then I fill up PRE. Duration 4. Delay to activate 3
         And Get PRE id
         And (for pre) I submit permit for Officer Approval
         And I getting a permanent number from indexedDB
         Then I activate the current PRE form
-        # And I sleep for 2 seconds
         When I navigate to "Scheduled" screen for PRE
         And I should see the current PRE in the "Scheduled" list
         And I click on back arrow
-        And I sleep for 60 seconds
+        And I sleep for 120 seconds
         And I navigate to "Active" screen for PRE
         And I should see the current PRE in the "Active PRE" list
         And I click on back arrow
