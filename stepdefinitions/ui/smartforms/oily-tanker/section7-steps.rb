@@ -13,7 +13,7 @@ Then (/^I (should|should not) see approve and request update buttons$/) do |_con
     is_equal(on(Section7Page).non_oa_buttons_elements[1].text, 'Request Updates')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
   elsif _condition === 'should not'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 3)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     # is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
   end
