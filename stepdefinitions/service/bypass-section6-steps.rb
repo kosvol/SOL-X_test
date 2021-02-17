@@ -53,6 +53,11 @@ Given (/^I clear forms table$/) do
   SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
 end
 
+Given (/^I clear PRE forms$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_forms')
+  SmartFormDBPage.delete_pre_table_row('fauxton', 'delete_form')
+end
+
 And (/^I clear gas reader entries$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_gas_reader_entries')
   SmartFormDBPage.delete_table_row('fauxton', 'delete_gas_entries')

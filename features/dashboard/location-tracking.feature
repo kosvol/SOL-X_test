@@ -94,7 +94,7 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
   Scenario: Verify PRE activity tab shows inactive after active permit got terminated
-    Given I clear forms table
+    Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
     And I sleep for 140 seconds
@@ -104,7 +104,7 @@ Feature: LocationTracking
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is grey with inactive PRE
-    Given I clear forms table
+    Given I clear PRE forms
     When I launch sol-x portal
     Then I should not see PRE tab active on dashboard
 
