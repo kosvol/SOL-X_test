@@ -29,3 +29,11 @@ Feature: DB reset
   @update_mas_pin
   Scenario: Get master details
     Given I update master pin
+
+  @update_cot_crew_member_vessel
+  Scenario: Update crew members vessel
+    Given I update crew members to sit-vessel vessel
+
+  @update_lng_crew_member_vessel
+  Scenario: Update crew members vessel
+    Given I update crew members to sit-lng-vessel vessel
