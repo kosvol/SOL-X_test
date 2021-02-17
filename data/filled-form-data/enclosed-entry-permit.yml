@@ -1,6 +1,6 @@
 section1_without_duration:
   [
-    "SIT",
+    "SOLX Automation Test",
     "Enclosed Space Entry",
     "In Port",
     "Loaded",
@@ -31,7 +31,7 @@ section3b:
 
 section3c: ["MAS Daniel Alcantara", "A/M Atif Hayat"]
 
-section3d-yes: ["Yes", "Yes", "Yes", "Yes"]
+section3d-yes: ["No", "No", "Test Automation", "No", "No"]
 
 section3d-no: ["Yes", "Yes", "", "Yes", "Yes"]
 
@@ -39,7 +39,7 @@ section4b: ["Yes"]
 
 section4b_eic:
   [
-    "SIT",
+    "SOLX Automation Test",
     "Test AutomationTest automation",
     "Yes",
     "Test automation",
@@ -92,7 +92,7 @@ section4a:
 
 checklist:
   [
-    "SIT",
+    "SOLX Automation Test",
     "Test automation",
     "Test automation",
     "Yes",

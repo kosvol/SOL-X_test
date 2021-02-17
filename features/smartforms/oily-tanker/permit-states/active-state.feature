@@ -57,7 +57,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with PMAN rank and 9015 pin
+    And I add gas to permit with PMAN rank and 9015 pin
     Then I should see section 6 screen
 
     Examples:
@@ -257,7 +257,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with PMAN rank and 9015 pin
+    And I add gas to permit with PMAN rank and 9015 pin
     Then I should see section 6 screen
 
 

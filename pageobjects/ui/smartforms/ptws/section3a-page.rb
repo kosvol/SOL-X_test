@@ -30,8 +30,8 @@ class Section3APage < Section2Page
   elements(:ih_details2, xpath: "//div[contains(@class,'row-wrapper')][1]/div[contains(@class,'row-container')]")
   # elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:ecm_details, xpath: "//div[contains(@class,'row-wrapper')][3]/div[contains(@class,'row-container')]")
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
-  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
+  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
 
@@ -65,7 +65,7 @@ class Section3APage < Section2Page
       tmp = ih_details2_elements[10].text
     # end
     p ">> #{tmp}"
-    (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
   end
 
   def scroll_to_new_hazard
@@ -88,29 +88,37 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
-    scroll_multiple_times(1)
+    # scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
     sleep 1
-    level_to_choose_elements[level_to_choose_elements.size-20].click
-    confirm_btn_elements[confirm_btn_elements.size-4].click
+    # level_to_choose_elements[level_to_choose_elements.size-20].click
+    level_to_choose_elements.first.click
+    # confirm_btn_elements[confirm_btn_elements.size-4].click
+    confirm_btn_elements.first.click
     sleep 1
     consequence_btn_elements[(consequence_btn_elements.size - 2)].click
     sleep 2
-    level_to_choose_elements[level_to_choose_elements.size-15].click
-    confirm_btn_elements[confirm_btn_elements.size-3].click
+    # level_to_choose_elements[level_to_choose_elements.size-15].click
+    level_to_choose_elements.first.click
+    # confirm_btn_elements[confirm_btn_elements.size-3].click
+    confirm_btn_elements.first.click
     sleep 1
 
     # for existing control measure
     scroll_multiple_times(2)
     likelihood_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[level_to_choose_elements.size-10].click
-    confirm_btn_elements[confirm_btn_elements.size-2].click
+    level_to_choose_elements.first.click
+    # level_to_choose_elements[level_to_choose_elements.size-10].click
+    # confirm_btn_elements[confirm_btn_elements.size-2].click
+    confirm_btn_elements.first.click
     sleep 1
     consequence_btn_elements.last.click
     sleep 1
-    level_to_choose_elements[level_to_choose_elements.size-5].click
-    confirm_btn_elements[confirm_btn_elements.size-1].click
+    level_to_choose_elements.first.click
+    # level_to_choose_elements[level_to_choose_elements.size-5].click
+    # confirm_btn_elements[confirm_btn_elements.size-1].click
+    confirm_btn_elements.first.click
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)

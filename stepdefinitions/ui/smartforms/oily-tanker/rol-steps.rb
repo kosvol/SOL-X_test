@@ -23,7 +23,7 @@ end
 
 Then (/^I should see view and termination buttons$/) do
   is_equal(on(ActiveStatePage).first_permit_buttons_elements.first.text, 'View')
-  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'Submit for Termination')
+  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'View/Terminate')
 end
 
 And (/^I request for update without submitting$/) do
@@ -85,7 +85,7 @@ When (/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
   step 'I open rol permit with rank A/M and 9015 pin'
-  step 'I press next for 2 times'
+  # step 'I press next for 2 times'
   on(Section0Page).submit_termination_btn_elements.first.click
   step "I sign on canvas with valid 9015 pin"
   sleep 1

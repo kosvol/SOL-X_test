@@ -123,7 +123,7 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on active filter
     Then I open rol permit with rank <rank> and <pin> pin
-    When I press next for 1 times
+    # When I press next for 1 times
     Then I should not see permit duration selectable
     When I put the permit to termination state
     And I review termination permit with <pin> pin
@@ -196,7 +196,7 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on active filter
     Then I open rol permit with rank A/M and 9015 pin
-    When I press next for 2 times
+    # When I press next for 2 times
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
     And I click on back to home

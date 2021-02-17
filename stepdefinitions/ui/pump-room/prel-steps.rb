@@ -11,7 +11,8 @@ end
 
 And ("I send entry report with {int} optional entrants") do |_optional_entrant|
     on(PumpRoomEntry).additional_entrant(_optional_entrant) if _optional_entrant > 0
-    on(PreDisplay).send_report_element.click
+    BrowserActions.poll_exists_and_click(on(PreDisplay).send_report_element)
+    # on(PreDisplay).send_report_element.click
 end
 
 Then (/^I should see entrant count equal (.*)$/) do |_count|
