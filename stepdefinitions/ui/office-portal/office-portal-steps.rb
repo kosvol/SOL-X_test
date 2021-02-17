@@ -140,3 +140,10 @@ And(/^I should see the forms quantity on the top bar is the same as on the All P
   bottomQuantity = on(OfficePortalPage).bottom_bar_permits_quantity_element.text
   does_include(on(OfficePortalPage).all_permits_btn_element.text, bottomQuantity)
 end
+
+
+And(/^I should see the Print Permit button at the bottom bar$/) do
+  $browser.switch_to.window($browser.window_handles[1])
+  to_exists(on(OfficePortalPage).print_permit_btn_element)
+  sleep(2)
+end

@@ -10,6 +10,7 @@ class OfficePortalPage
   button(:all_permits_btn, xpath: "//span[contains(text(),'All Permits')]/parent::button")
   button(:view_permit_btn, xpath: "//span[contains(text(),'View Selected Permit')]/parent::button")
   button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
+  button(:print_permit_btn, xpath: "//span[contains(text(),'Print Permit')]/parent::button")
 
   element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
   element(:portal_name, xpath: "//h1[contains(@class,'Heading__HeadingLarge')]")

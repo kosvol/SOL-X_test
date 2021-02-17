@@ -49,7 +49,7 @@ Feature: PermitList
     Then I should see the selected form in a new tab
 
   Scenario: Verify the stand alone permits (PRE, RoL) are displayed in the Office Portal
-@ska
+
   Scenario: Verify all forms are selected after check the check box near the "Permit No." title
     Given I log in to the Office Portal
     When I select the "lngsit" vessel
