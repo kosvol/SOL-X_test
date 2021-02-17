@@ -19,7 +19,7 @@ class PreDisplay < Section9Page
   element(:home_tab, xpath: "//a[contains(.,'Home')]")
   element(:entry_log_tab, xpath: "//a[contains(.,'Home')]")
   element(:permit_tab, xpath: "//a[contains(.,'Home')]")
-  element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePreFormDetails')]")
+  element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePermitDetails')]")
   element(:time_shifted_by_text, xpath: "//div[contains(@class,'PermitValidUntil__TextSmall')]")
   element(:pre_duration_timer, xpath: "//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
 

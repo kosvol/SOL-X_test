@@ -39,6 +39,7 @@ class Section1Page < Section0Page
     sleep 1
     tmp = []
     tmp << generic_data_elements[0].text
+    tmp << generic_data_elements[1].text
     tmp << generic_data_elements[2].text
     tmp << generic_data_elements[3].text
     tmp << generic_data_elements[4].text
@@ -46,7 +47,6 @@ class Section1Page < Section0Page
     tmp << generic_data_elements[6].text
     tmp << generic_data_elements[7].text
     tmp << generic_data_elements[8].text
-    tmp << generic_data_elements[9].text
     tmp
   end
 
@@ -104,6 +104,7 @@ class Section1Page < Section0Page
   end
 
   def select_checkbox(_input, _location)
+    sleep 1
     p ">> #{_input % [_location]}"
     BrowserActions.js_click("#{_input % [_location]}")
     # browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))

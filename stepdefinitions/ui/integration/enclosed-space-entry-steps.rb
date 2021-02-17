@@ -28,8 +28,8 @@ end
 And (/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  does_include(on(Section3APage).method_detail_elements[0].text, 'SIT')
-  does_include(on(Section3APage).method_detail_elements[1].text, "SIT/DRA/#{BrowserActions.get_year}")
+  does_include(on(Section3APage).method_detail_elements[0].text, 'SOLX Automation Test')
+  does_include(on(Section3APage).method_detail_elements[1].text, "AUTO/DRA/#{BrowserActions.get_year}")
   does_include(on(Section3APage).method_detail_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(Section3APage).method_detail_elements[2].text, ' LT (GMT')
   # does_include(on(Section3APage).date_and_time_fields_elements[0].text, on(CommonFormsPage).get_current_date_format_with_offset)
@@ -51,14 +51,14 @@ And (/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   p "-- #{capture_data}"
   capture_data.delete_at(7)
   capture_data.delete_at(7)
-  does_include(on(Section3BPage).method_detail_elements[7].text, on(CommonFormsPage).get_current_date_format_with_offset)
+  # does_include(on(Section3BPage).method_detail_elements[6].text, on(CommonFormsPage).get_current_date_format_with_offset)
   begin
     # does_include(on(Section3BPage).generic_data_elements[6].text, "SIT/DRA/#{BrowserActions.get_year}")
-    does_include(on(Section3BPage).method_detail_elements[8].text, "Test automation")
+    does_include(on(Section3BPage).method_detail_elements[7].text, "Test automation")
   rescue StandardError
     puts '>> Probably First RUN !!!!'
     # does_include(on(Section3BPage).last_assessment_date_element.text, CommonFormsPage.get_current_date_format_with_offset)
-    does_include(on(Section3BPage).method_detail_elements[8].text, "Test automation")
+    does_include(on(Section3BPage).method_detail_elements[7].text, "Test automation")
     # capture_data.delete_at(6)
   end
   p "=== #{capture_data}"
@@ -94,10 +94,9 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  does_include(on(Section4APage).generic_data_elements[2].text, "#{$current_environment.upcase}/PTW")
+  # does_include(on(Section4APage).generic_data_elements[1].text, "#{$current_environment.upcase}/PTW")
   extract = on(Section4APage).get_filled_section
   p "--- #{extract}"
-  extract.delete_at(1)
   extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
@@ -117,12 +116,12 @@ And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   p "base -- #{tmp}"
   tmp.delete_at(1)
   tmp.delete_at(1)
-  tmp.delete_at(3)
+  # tmp.delete_at(3)
   p "++ #{@@form_data['section4b_eic']}"
   p "-- #{tmp}"
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  does_include(on(Section4APage).generic_data_elements[2].text, 'SIT/EIC')
+  does_include(on(Section4APage).generic_data_elements[2].text, 'AUTO/EIC')
   is_equal(tmp, @@form_data['section4b_eic'])
   # step 'I set time'
   @@entered_pin = '8383'

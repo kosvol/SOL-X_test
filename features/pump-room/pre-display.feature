@@ -184,7 +184,6 @@ Feature: PumpRoomEntry
       | Chief Engineer  | 8248 |
       | Second Engineer | 2523 |
 
-  @debug
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
