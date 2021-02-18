@@ -12,7 +12,8 @@ end
 And (/^I should see incomplete signature field warning message display$/) do
   on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section6Page).info_warning_boxes_elements[2].text,"This permit has required fields missing. To submit it for approval, please sign at the following sections")
-  is_equal(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
+  # is_equal(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
+  does_include(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
 end
 
 Then (/^I should see master (approval|review) button only$/) do |_condition|
