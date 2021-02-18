@@ -66,10 +66,20 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   BrowserActions.scroll_down
   @@checklist = _checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  on(Section4APage).get_checklist_locator(@@checklist).each_with_index do |_element, _index|
-    p _element.text.to_s
-    p base_data[_index].to_s
-    does_include(_element.text, base_data[_index])
+  base_data.each do |_element|
+    begin
+      tmp = @browser.find_element(:xpath, "//span[contains(., \"#{_element}\")]")
+    rescue StandardError
+      begin 
+        tmp = @browser.find_element(:xpath, "//label[contains(., \"#{_element}\")]")
+      rescue StandardError
+        begin
+          tmp = @browser.find_element(:xpath, "//p[contains(., \"#{_element}\")]")
+        rescue
+          tmp = @browser.find_element(:xpath, "//h4[contains(., \"#{_element}\")]")
+        end
+      end
+    end
   end
   if @@checklist === 'ROL'
     is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')

@@ -28,6 +28,7 @@ class Section4APage < Section3DPage
 
   spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+  elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
   element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
 
@@ -58,14 +59,14 @@ class Section4APage < Section3DPage
     # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
-  def get_checklist_locator(_checklist)
-    tmp = if _checklist != 'ROL'
-            section1_elements
-          else
-            rol_checklist_elements
-          end
-    tmp
-  end
+  # def get_checklist_locator(_checklist)
+  #   tmp = if _checklist != 'ROL'
+  #           section4a_elements
+  #         else
+  #           rol_checklist_elements
+  #         end
+  #   tmp
+  # end
 
   ### hack
   def select_ppe_equipment
@@ -129,8 +130,7 @@ class Section4APage < Section3DPage
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
-    Log.instance.info("--- #{generic_data_elements[2].text}")
-    ((generic_data_elements[1].text.include? get_current_date_and_time) && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
+    ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
   end
 
   def uncheck_all_checklist
@@ -158,6 +158,7 @@ class Section4APage < Section3DPage
   end
 
   def is_signed_user_details_integration?(_entered_pin)
+    sleep 1
     BrowserActions.scroll_down(rank_and_name_stamp)
     sleep 1
     BrowserActions.scroll_down

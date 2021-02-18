@@ -14,7 +14,10 @@ And (/^I terminate the permit$/) do
   step 'I enter pin 1111'
   on(Section9Page).submit_permit_termination_btn
   step "I sign on canvas with valid 1111 pin"
+  sleep 2
   on(CommonFormsPage).close_btn_elements.first.click
+  sleep 4
+  step 'I set permit id'
   # step 'I click on back to home'
 end
 

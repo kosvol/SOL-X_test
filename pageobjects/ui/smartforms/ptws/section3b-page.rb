@@ -37,6 +37,7 @@ class Section3BPage < Section3APage
   end
 
   def is_crew_list_populated?
+    work_side_inspected_by
     !crew_list_elements.empty?
   end
 

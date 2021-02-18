@@ -16,7 +16,6 @@ Feature: Section3BDRA
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit
-    And I sleep for 3 seconds
     And I navigate to create new permit
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit

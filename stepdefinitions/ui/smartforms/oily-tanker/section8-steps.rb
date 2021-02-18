@@ -6,7 +6,7 @@ Then (/^I should not see issuing and competence authority button$/) do
 end
 
 Then (/^I should see section 8 in read only mode$/) do
-  is_equal(on(Section3APage).total_p_elements.size,19)
+  is_equal(on(Section3APage).total_p_elements.size,18)
 end
 
 Then (/^I should see extra section8 questions for pipe permit$/) do

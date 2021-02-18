@@ -15,6 +15,7 @@ And (/^I click on (.*) show more$/) do |_which_category|
 end
 
 Then (/^I navigate to "(.*)" screen for (.*)$/) do |_which_section,_which_category|
+  sleep 1
   step 'I open hamburger menu'
   on(NavigationPage).select_nav_category(_which_section,_which_category)
   sleep 1
