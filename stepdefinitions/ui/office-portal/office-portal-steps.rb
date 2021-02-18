@@ -107,7 +107,7 @@ And(/^I click on View Permit button$/) do
 end
 
 Then(/^I should see the selected form in a new tab$/) do
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_element)
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[2])
   does_include(on(OfficePortalPage).topbar_header_element.text, @permit_number)
   does_include(on(OfficePortalPage).topbar_header_element.text, @permit_name)
   sleep(2)
@@ -123,7 +123,7 @@ Then(/^I should the Permit Types list for filter$/) do
     type = _whatType.text
     permitTypesList<<type
   end
-  base_data = YAML.load_file("data/office-portal-filters.yml")['types']
+  base_data = YAML.load_file("data/office-portal/office-portal-filters.yml")['types']
   is_true(permitTypesList == base_data)
 end
 
@@ -149,7 +149,13 @@ And(/^I should see the Print Permit button at the bottom bar$/) do
 end
 
 Then(/^I should see the form contains 9 sections$/) do
-  pending
+  sectionsList = []
+  on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
+    section = _whatSection.text
+    sectionsList<<section
+  end
+  sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['terminated']
+  is_true(sectionsList == sections_data)
 end
 
 And(/^I should see This Permit Has been approved on label with the correct date$/) do

@@ -9,7 +9,7 @@ Feature: PermitOverview
     When I select the "lngsit" vessel
     And I select the permit 6
     And I click on View Permit button
-    #Then I should see the form contains 9 sections
+    Then I should see the form contains 9 sections
 
   Scenario: Verify users can print the final copy of a form
     Given I log in to the Office Portal

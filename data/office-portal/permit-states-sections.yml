@@ -1,0 +1,62 @@
+terminated:
+  [
+       "Section 1: Task Description",
+       "Section 2: Approving Authority",
+       "Section 3A: DRA - Method & Hazards",
+       "Section 3B: DRA - Checks and Measures",
+       "Section 3C: DRA - Team Members",
+       "Section 3D: DRA - Summary & Assessment",
+       "Section 4A: Safety Checklists Completed",
+       "Section 4B: Energy Isolation Certificate",
+       "Section 5: Responsibility Acceptance",
+       "Section 6: Gas Testing/Equipment",
+       "Section 7: Office Approval",
+       "Section 7B: Validity of Permit",
+       "Section 8: Task Status",
+       "Section 9: Withdrawal of Permit"
+  ]
+
+pending_office_approval:
+  [
+       "Section 1: Task Description",
+       "Section 2: Approving Authority",
+       "Section 3A: DRA - Method & Hazards",
+       "Section 3B: DRA - Checks and Measures",
+       "Section 3C: DRA - Team Members",
+       "Section 3D: DRA - Summary & Assessment",
+       "Section 4A: Safety Checklists Completed",
+       "Section 4B: Energy Isolation Certificate",
+       "Section 5: Responsibility Acceptance",
+       "Section 6: Gas Testing/Equipment",
+  ]
+
+pending_master_approval:
+  [
+       "Section 1: Task Description",
+       "Section 2: Approving Authority",
+       "Section 3A: DRA - Method & Hazards",
+       "Section 3B: DRA - Checks and Measures",
+       "Section 3C: DRA - Team Members",
+       "Section 3D: DRA - Summary & Assessment",
+       "Section 4A: Safety Checklists Completed",
+       "Section 4B: Energy Isolation Certificate",
+       "Section 5: Responsibility Acceptance",
+       "Section 6: Gas Testing/Equipment",
+       "Section 7: Office Approval",
+  ]
+
+active:
+  [
+       "Section 1: Task Description",
+       "Section 2: Approving Authority",
+       "Section 3A: DRA - Method & Hazards",
+       "Section 3B: DRA - Checks and Measures",
+       "Section 3C: DRA - Team Members",
+       "Section 3D: DRA - Summary & Assessment",
+       "Section 4A: Safety Checklists Completed",
+       "Section 4B: Energy Isolation Certificate",
+       "Section 5: Responsibility Acceptance",
+       "Section 6: Gas Testing/Equipment",
+       "Section 7: Office Approval",
+       "Section 7B: Validity of Permit",
+  ]
