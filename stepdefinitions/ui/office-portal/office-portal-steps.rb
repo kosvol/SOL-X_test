@@ -102,10 +102,11 @@ end
 
 And(/^I click on View Permit button$/) do
   on(OfficePortalPage).view_permit_btn
+  sleep(1)
+  $browser.switch_to.window($browser.window_handles[1])
 end
 
 Then(/^I should see the selected form in a new tab$/) do
-  $browser.switch_to.window($browser.window_handles[1])
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_element)
   does_include(on(OfficePortalPage).topbar_header_element.text, @permit_number)
   does_include(on(OfficePortalPage).topbar_header_element.text, @permit_name)
@@ -143,7 +144,16 @@ end
 
 
 And(/^I should see the Print Permit button at the bottom bar$/) do
-  $browser.switch_to.window($browser.window_handles[1])
   to_exists(on(OfficePortalPage).print_permit_btn_element)
   sleep(2)
+end
+
+Then(/^I should see the form contains 9 sections$/) do
+  pending
+end
+
+And(/^I should see This Permit Has been approved on label with the correct date$/) do
+  approved_date = on(OfficePortalPage).get_approved_date_time
+  date = on(OfficePortalPage).permit_approved_on_element.text.sub('This Permit Has been approved on ', '')
+  does_include(approved_date, date)
 end

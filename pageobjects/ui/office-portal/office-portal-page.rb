@@ -22,9 +22,11 @@ class OfficePortalPage
   element(:remember_box, xpath: "//span[@class='checkbox']")
   element(:permit_section_header, xpath: "//h2[contains(text(),'Section 9')]")
   element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
+  element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
+  elements(:permit_section_headers, xpath: "//h2[contains(text(),'Section')]")
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
@@ -44,5 +46,9 @@ class OfficePortalPage
 
   def get_permit_name(_permitName)
     $browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[2]"%_permitName).text
+  end
+
+  def get_approved_date_time
+    $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p").text
   end
 end
