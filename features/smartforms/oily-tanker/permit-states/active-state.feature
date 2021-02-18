@@ -20,7 +20,7 @@ Feature: ActivePermit
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
-    # And I click on pending approval filter
+    And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
     And I navigate to OA link
@@ -29,7 +29,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with PMAN rank and 9015 pin
+    And I add gas to permit with A/M rank and 9015 pin
     Then I should see section 6 screen
 
     Examples:
@@ -50,7 +50,7 @@ Feature: ActivePermit
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    # And I click on pending approval filter
+    And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
     And I navigate to OA link
@@ -59,7 +59,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with PMAN rank and 9015 pin
+    And I add gas to permit with A/M rank and 9015 pin
     Then I should see section 6 screen
 
     Examples:
@@ -113,7 +113,7 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
-    # And I set oa permit to office approval state manually
+    And I set oa permit to office approval state manually
     And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
