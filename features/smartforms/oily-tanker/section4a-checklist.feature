@@ -6,18 +6,6 @@ Feature: Section4AChecklist
 
   # Scenario: Verify user should see description of work pre-filled with what is filled in section 1
 
-  # Scenario: Test
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 2523
-  #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
-  #   And I navigate to section 4a
-  #   And I uncheck the pre-selected checklist
-  #   And I select the matching Work on Hazardous Substances checklist
-  #   And I press next for 1 times
-  #   And I fill up checklist
-
   Scenario: Verify checklist questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

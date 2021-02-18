@@ -5,6 +5,8 @@ Feature: ActivePermit
   So that ...
 
   # Scenario: Verify all sections disabled for ptw reader
+
+  @test
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 8 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

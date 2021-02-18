@@ -5,9 +5,8 @@ Then (/^I should see navigation dropdown$/) do
 end
 
 Then (/^I should see permit details are pre-filled$/) do
-  is_equal(on(Section1Page).generic_data_elements[2].text, on(Section1Page).get_section1_filled_data[0])
-  does_include(on(Section3APage).generic_data_elements[1].text, 'PTW/TEMP/')
-  # is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
+  p ">> #{on(Section1Page).get_section1_filled_data}"
+  is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
 end
 

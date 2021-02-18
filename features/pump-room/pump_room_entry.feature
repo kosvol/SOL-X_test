@@ -4,7 +4,6 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-  @test
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

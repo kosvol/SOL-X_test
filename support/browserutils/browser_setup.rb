@@ -14,10 +14,10 @@ class BrowserSetup
               else
                 raise "Invalid Platform => #{platform} for the OS => #{os}"
       end
-    $wait = Selenium::WebDriver::Wait.new(:timeout => 30)
-    $browser.manage.timeouts.script_timeout = 30
+    $wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+    $browser.manage.timeouts.script_timeout = 10
     # $browser.manage.timeouts.page_load = 30
-    $browser.manage.timeouts.implicit_wait = 30
+    $browser.manage.timeouts.implicit_wait = 10
     
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'
       $browser.manage.delete_all_cookies

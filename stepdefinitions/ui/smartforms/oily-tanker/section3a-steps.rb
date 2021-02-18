@@ -6,7 +6,7 @@ Then (/^I should see request update comment box$/) do
 end
 
 Then (/^I should see fields disabled$/) do
-  is_equal(on(Section3APage).total_p_elements.size,22)
+  is_equal(on(Section3APage).total_p_elements.size,14)
   is_disabled(on(Section3APage).delete_btn_elements.first)
 end
 
