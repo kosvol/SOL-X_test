@@ -17,7 +17,7 @@ class OAPage < Section9Page
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
-  button(:designation, xpath: "//button[@id='designation']")
+  button(:designation, xpath: "//button[@name='designation']")
   # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
   button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
@@ -49,21 +49,23 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
+    current_hour = get_current_hour
     ### set from time
     date_time_from_elements[1].click
-    hour_from_picker_elements[0].click
+    hour_from_picker_elements[current_hour.to_i].click
     minute_from_picker_elements[1].click
     ### set to time
     dismiss_picker_element.click
     date_time_to_elements[1].click
-    hour_from_picker_elements[23].click
-    minute_from_picker_elements[59].click
+    hour_from_picker_elements[(current_hour.to_i+2)].click
+    minute_from_picker_elements[0].click
     dismiss_picker_element.click
-    date_time_to_elements[0].click
+    # date_time_to_elements[0].click
 
     sleep 1
     p ">> #{current_day_elements.size}"
-    select_todays_date_from_calendar(1)
+    # select_todays_date_from_calendar(0)
+    # dismiss_picker_element.click
   end
 
   def set_to_date_plus_one_day(_current_date)
