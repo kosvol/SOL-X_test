@@ -7,7 +7,7 @@ end
 
 Then (/^I should see fields disabled$/) do
   is_equal(on(Section3APage).total_p_elements.size,14)
-  is_disabled(on(Section3APage).delete_btn_elements.first)
+  not_to_exists(on(Section3APage).delete_btn_elements.first)
 end
 
 And (/^I should see correct risk evaluation (.+),(.+),(.+)$/) do |_risk, _risk1, _risk2|
