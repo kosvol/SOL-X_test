@@ -9,6 +9,8 @@ class OfficePortalPage
   button(:home_btn, xpath: "//nav[contains(@class,'NavigationBar')]//button")
   button(:all_permits_btn, xpath: "//span[contains(text(),'All Permits')]/parent::button")
   button(:view_permit_btn, xpath: "//span[contains(text(),'View Selected Permit')]/parent::button")
+  button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
+  button(:print_permit_btn, xpath: "//span[contains(text(),'Print Permit')]/parent::button")
 
   element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
   element(:portal_name, xpath: "//h1[contains(@class,'Heading__HeadingLarge')]")
@@ -18,9 +20,12 @@ class OfficePortalPage
   element(:permit_list_cross_btn, xpath: "//div[contains(@class,'PermitList__Header')]//a")
   element(:permits_list_name, xpath: "(//h2[contains(@class,'Heading')])[2]")
   element(:remember_box, xpath: "//span[@class='checkbox']")
-  element(:permit_section_header, xpath: "//h2[contains(text(),'Section 9')]")
+  element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
+  element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
+  elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
+  elements(:permit_section_header, xpath: "//h2[contains(text(),'Section')]")
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
@@ -30,8 +35,8 @@ class OfficePortalPage
     $browser.find_element(:xpath, "//h3[contains(text(),'%s')]"%_vesselName).click
   end
 
-  def vessel_card_permits_quantity(_formNumber)
-    $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formNumber).text
+  def vessel_card_permits_quantity(_formsQuantity)
+    $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
   end
 
   def get_permit_number(_permitNumber)
@@ -40,5 +45,9 @@ class OfficePortalPage
 
   def get_permit_name(_permitName)
     $browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[2]"%_permitName).text
+  end
+
+  def get_approved_date_time
+    $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p").text
   end
 end
