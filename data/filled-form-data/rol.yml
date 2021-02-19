@@ -1,16 +1,19 @@
 page1:
   [
-    "SIT",
+    "LNGSIT",
     "Rigging of Gangway & Pilot Ladder",
     "Standard procedure for rigging Pilot/Combination Ladder",
     "Test Automation",
     "Yes",
+    "MAS Daniel Alcantara",
     "People",
     "Yes",
     "Master",
+    "Test Automation",
     "Yes",
     "Yes",
     "Yes",
+    "A/M Atif Hayat",
     "Yes",
     "Yes",
     "Yes",
@@ -19,7 +22,7 @@ page1:
 page2:
   [
     "Rigging of Gangway & Pilot Ladder",
-    "SIT",
+    "SOLX Automation Test",
     "Port Pilot Ladder",
     "Yes",
     "Yes",

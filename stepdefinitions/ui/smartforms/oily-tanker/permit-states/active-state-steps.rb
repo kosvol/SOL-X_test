@@ -67,34 +67,38 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step "I sign on canvas with valid 1111 pin"
 end
 
-Then (/^I should see data persisted on page 1$/) do
+Then (/^I should see data persisted on page 2$/) do
   sleep 1
-  @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
   tmp = on(Section3DPage).get_filled_section
   p ">> #{tmp}"
-  does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
+  does_include(tmp[1], "SOLX Automation Test")
+  does_include(tmp[2], on(CommonFormsPage).get_timezone)
+  does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
   tmp.delete_at(1)
-  does_include(tmp[8], "Test Automation")
-  tmp.delete_at(8)
+  tmp.delete_at(1)
+  does_include(tmp[19], on(CommonFormsPage).get_timezone)
+  does_include(tmp[21], on(CommonFormsPage).get_timezone)
+  does_include(tmp[19], on(Section0Page).get_current_date_format_with_offset)
+  does_include(tmp[21], on(Section0Page).get_current_date_format_with_offset)
+  tmp.delete_at(19)
+  tmp.delete_at(20)
   p ">> #{tmp}"
-  is_equal(on(Section3APage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(Section3APage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
-  is_equal(tmp,@@rol_data['page1'])
+  is_equal(tmp,@@rol_data['page2'])
 end
 
-And (/^I should see data persisted on page 2$/) do
+And (/^I should see data persisted on page 1$/) do
+  @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
+  step 'I press previous for 2 times'
   tmp = on(Section3DPage).get_filled_section
-  does_include(tmp[1],"#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
+  does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
+  does_include(tmp[2],on(CommonFormsPage).get_timezone)
+  does_include(tmp[2],on(Section0Page).get_current_date_format_with_offset)
   # data cleanse after first assertion
   tmp.delete_at(1)
+  tmp.delete_at(1)
+  tmp.delete_at(9)
   p ">> #{tmp}"
-  is_equal(on(ROLPage).date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(ROLPage).date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
-  on(Section3APage).scroll_multiple_times(15)
-  is_equal(on(ROLPage).issued_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  does_include(on(ROLPage).issued_date_and_time_fields_elements.last.text, on(CommonFormsPage).get_timezone)
-  is_equal(on(ROLPage).valid_until_date_and_time_fields_elements.first.text, on(Section0Page).get_current_date_format_with_offset)
-  is_equal(tmp,@@rol_data['page2'])
+  is_equal(tmp,@@rol_data['page1'])
 end
 
 And (/^I approve permit$/) do

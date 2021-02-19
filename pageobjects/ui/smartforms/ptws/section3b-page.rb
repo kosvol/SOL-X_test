@@ -44,6 +44,7 @@ class Section3BPage < Section3APage
   def get_filled_section
     tmp = []
     generic_data_elements.each_with_index do |_data, index|
+      p ">> #{generic_data_elements[index].text}"
       tmp << generic_data_elements[index].text
     end
     tmp

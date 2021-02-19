@@ -7,7 +7,7 @@ end
 And (/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms
-  step 'I sign DRA section 3d with RA pin 9015'
+  step 'I sign on section with valid 9015 pin'
   step 'I set time'
   step 'I should see signed details'
   step 'I press next for 1 times'
@@ -17,8 +17,8 @@ end
 
 And (/^I open up active rol permit$/) do
   sleep 1
-  # on(ROLPage).update_reading_btn_elements.first.click
-  on(ActiveStatePage).view_btn_elements.first.click
+  on(ROLPage).view_btn_elements.first.click
+  # on(ActiveStatePage).view_btn_elements.first.click
 end
 
 Then (/^I should see view and termination buttons$/) do
@@ -51,7 +51,6 @@ Then (/^I should not see extra buttons$/) do
   is_equal(on(PendingStatePage).submit_for_master_approval_btn_elements.size, 1)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
   is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
-  # is_equal(on(PendingStatePage).save_and_close_btn_elements.size, 1)
 end
 
 Then (/^I should not see extra previous and close button$/) do
