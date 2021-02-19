@@ -133,7 +133,7 @@ Then (/^I should see 25 crews link to dashboard$/) do
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
-  p ">> #{on(DashboardPage).pre_indicator}"
+  # p ">> #{on(DashboardPage).pre_indicator}"
   if _condition === 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('active'))
