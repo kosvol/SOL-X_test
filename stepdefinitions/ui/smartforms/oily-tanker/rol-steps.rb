@@ -38,7 +38,8 @@ end
 
 And (/^I request update for permit$/) do
   step 'I request for update without submitting'
-  on(Section0Page).submit_update_btn_elements.first.click
+  sleep 1
+  on(Section0Page).submit_update_btn_elements.last.click
 end
 
 Then (/^I should not see extra buttons$/) do
