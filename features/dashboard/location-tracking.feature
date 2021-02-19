@@ -6,7 +6,6 @@ Feature: LocationTracking
 
   Background: Given I clear wearable history and active users
 
-  @test
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inactive crew count is correct
@@ -75,7 +74,7 @@ Feature: LocationTracking
 
     Examples:
       | zone         | zoneid                      | mac               | location                   |
-      | Main Deck    | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:B0:00:00 | Bottom Flat Engine Forward |
+      | Main Deck    | AUTO_0ABXE1FM9KNV9FY46D2NEG | 00:00:00:B0:00:00 | Bottom Flat Engine Forward |
       | Pump Room    | AUTO_0ABXE1CH1MN0QMK21PPK40 | C4:BE:84:CE:19:82 | Pump Room Top              |
       | Funnel Stack | AUTO_0ABXE10S7JGZ0TYHR704GH | 00:00:00:00:00:A0 | IG Platform 2              |
   # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
@@ -100,7 +99,7 @@ Feature: LocationTracking
     Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
-    And I sleep for 140 seconds
+    And I sleep for 80 seconds
     Then I should see PRE tab active on dashboard
     When I terminate the PRE permit via service
     And I sleep for 10 seconds
@@ -112,7 +111,8 @@ Feature: LocationTracking
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is green with active PRE
-    Given I launch sol-x portal
-    When I submit a scheduled PRE permit
-    And I sleep for 170 seconds
+    Given I clear PRE forms
+    When I launch sol-x portal
+    And I submit a scheduled PRE permit
+    And I sleep for 80 seconds
     Then I should see PRE tab active on dashboard

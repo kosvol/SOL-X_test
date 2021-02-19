@@ -14,7 +14,9 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+    p "start time >> #{start_time}"
     end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
+    p "end time >> #{end_time}"
     update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
@@ -290,7 +292,7 @@ class BypassPage < Section0Page
 
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')
-    current_minute = @current_minute.to_i + 2
+    current_minute = @current_minute.to_i + 1
     if current_minute > 60
       current_minute -= 60
       current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"

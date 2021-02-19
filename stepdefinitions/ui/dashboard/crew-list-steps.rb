@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then (/^I should see correct column headers$/) do
-  is_equal(on(CrewListPage).get_crew_table_headers, '["Rank", "Crew ID", "Surname", "First Name", "Location", "View PINs"]')
+  is_equal(on(CrewListPage).get_crew_table_headers, '["Rank", "Crew ID", "Surname", "First Name", "Location", "PIN", "Work Availability", "Total Work", "Total Rest", "Longest Rest", "Rest Periods", "Work Availability"]')
 end
 
 Then (/^I should see total crew count match inactive crew$/) do
