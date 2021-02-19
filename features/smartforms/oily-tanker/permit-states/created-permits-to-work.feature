@@ -20,7 +20,7 @@ Feature: CreatedPermitToWork
     And I want to edit the newly created permit
     And I enter pin 7551
     And I navigate to section 6
-    Then I should see previous and close buttons
+    Then I should see previous and not close buttons
 
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
