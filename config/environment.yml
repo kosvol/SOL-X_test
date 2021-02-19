@@ -17,6 +17,7 @@ auto:
   c2_preview: "https://cloud-edge.auto.solas.magellanx.io:8080/"
   service: "https://cloud-edge.auto.solas.magellanx.io:4000/"
   master_pin: "1111"
+  update_mas_pin: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/users/AUTO_SOLX0001"
   switch_vessel: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/vessels/auto-vessel"
   get_crew_members: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/crew_members/_find"
   fauxton_url: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984"

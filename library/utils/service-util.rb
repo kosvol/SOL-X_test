@@ -8,8 +8,7 @@ module ServiceUtil
   class << self
 
     def update_mas_pin
-      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/users/SIT_SOLX0001"
-      #EnvironmentSelector.get_vessel_switch_url
+      uri = EnvironmentSelector.get_update_master_pin_url
       content_body = JsonUtil.read_json("vessel-switch/get_mas_details")
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)

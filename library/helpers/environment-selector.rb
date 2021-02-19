@@ -15,6 +15,10 @@ module EnvironmentSelector
       $obj_env_yml[get_environment.to_s]["switch_vessel"]
     end
 
+    def get_update_master_pin_url
+      $obj_env_yml[get_environment.to_s]["update_mas_pin"]
+    end
+
     private
 
     def get_environment
