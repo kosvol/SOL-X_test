@@ -17,8 +17,7 @@ end
 
 And (/^I open up active rol permit$/) do
   sleep 1
-  on(ROLPage).view_btn_elements.first.click
-  # on(ActiveStatePage).view_btn_elements.first.click
+  on(ROLPage).view_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
 end
 
 Then (/^I should see view and termination buttons$/) do
