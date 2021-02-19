@@ -100,14 +100,14 @@ Feature: PumpRoomEntry
   #   When I clear gas reader entries
   #   And I navigate to create new PRE
   #   And I enter pin 8383
-  #   And I fill up PRE. Duration 4. Delay to activate 1
+  #   And I fill up PRE. Duration 4. Delay to activate 2
   #   And I add all gas readings
   #   And I enter pin 9015
   #   And I dismiss gas reader dialog box
   #   And (for pre) I submit permit for Officer Approval
   #   And I getting a permanent number from indexedDB
   #   And I activate the current PRE form
-  #   And I sleep for 80 seconds
+  #   And I sleep for 100 seconds
   #   And I navigate to PRE Display
   #   And I enter pin 8383
   #   And I enter new entry log
@@ -122,7 +122,6 @@ Feature: PumpRoomEntry
   #   And I should see Permit Terminated PRE status on screen
   # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
-  @debug
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -189,11 +188,11 @@ Feature: PumpRoomEntry
     When I clear gas reader entries
     When I navigate to create new PRE
     And I enter pin 8383
-    And I fill up PRE. Duration 4. Delay to activate 1
+    And I fill up PRE. Duration 4. Delay to activate 2
     And (for pre) I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
-    And I sleep for 80 seconds
+    And I sleep for 100 seconds
     And I navigate to PRE Display
     And I enter pin 8383
     And I should see Permit Activated PRE status on screen
@@ -202,7 +201,7 @@ Feature: PumpRoomEntry
     And (for pred) I should see the enabled "Entry Log" button
     And (for pred) I should see the enabled "Permit" button
     And (for pred) I should see warning box for activated status
-    And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
+    # And (for pred) I should see warning box "Gas reading is missing" on "Entry log"
     Then I set the activity end time in 1 minutes
     And I sleep for 90 seconds
     And I should see red background color

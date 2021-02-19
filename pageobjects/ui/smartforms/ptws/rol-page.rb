@@ -22,7 +22,7 @@ class ROLPage < Section9Page
     rol_inputs_elements[1].click
     work_side_inspected_by
     sleep 1
-    member_name_btn_elements[46].click
+    member_name_btn_elements.first.click
     confirm_btn_elements.last.click
     rol_inputs_elements[4].click
     rol_inputs_elements[7].click

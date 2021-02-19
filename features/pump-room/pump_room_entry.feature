@@ -128,7 +128,7 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 150 seconds
+    And I sleep for 100 seconds
     And I navigate to "Active" screen for PRE
     And I should see the current PRE in the "Active PRE" list
     And I click on back arrow

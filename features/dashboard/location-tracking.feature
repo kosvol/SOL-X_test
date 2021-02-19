@@ -4,6 +4,9 @@ Feature: LocationTracking
   I want to ...
   So that ...
 
+  Background: Given I clear wearable history and active users
+
+  @test
   Scenario: Verify inactive crew count is correct
     Given I launch sol-x portal
     Then I should see inactive crew count is correct

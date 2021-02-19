@@ -14,7 +14,8 @@ class PumpRoomEntry < PreDisplay
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
 
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
-  elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
+  # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
+  elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
   
@@ -31,7 +32,7 @@ class PumpRoomEntry < PreDisplay
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
   # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
-  text_area(:purpose_of_entry, xpath: "//textarea[@id='pre_section1_pumpRoomEntry_reasonForEntry']")
+  text_area(:purpose_of_entry, xpath: "//textarea[@id='reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
@@ -47,7 +48,7 @@ class PumpRoomEntry < PreDisplay
   end
 
   def get_entry_log_validity_details
-    "#{@@pre_permit_start_time[0,5]} - #{@@pre_permit_end_time[0,5]}"
+    "#{@@pre_permit_start_time[12,5]} - #{@@pre_permit_end_time[12,5]}"
   end
 
   def signout_entrant(_entrants)
@@ -214,16 +215,19 @@ class PumpRoomEntry < PreDisplay
   end
 
   def reduce_time_activity( finish_in_x_minutes)
-
+    p "permit no: >> #{@@pre_number}"
     time_to_finish = get_current_time+60*finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
-    url = "https://admin:magellanx@cloud-edge.stage.solas.magellanx.io:5984/forms/%s?conflicts=true"
+    url = "#{EnvironmentSelector.get_graphql_environment_url('fauxton_url')}/forms/%s?conflicts=true"
     url = url % [web_pre_id]
+    p "url >> #{url}"
 
     request = HTTParty.get(url, {
-        headers: {}})
-    full_form = (JSON.parse request.to_s)
+        headers: {'Content-Type': 'application/json'}})
 
+    p "request >> #{request}"
+    
+    full_form = (JSON.parse request.to_s)
     full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
 
     request = HTTParty.put(url, {

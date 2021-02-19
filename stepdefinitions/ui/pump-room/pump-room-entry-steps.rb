@@ -12,6 +12,7 @@ end
 Then(/^I should see the right order of elements$/) do
   base_data = YAML.load_file("data/pre/pump-room-entries.yml")['questions']
   on(PumpRoomEntry).form_structure_elements.each_with_index do |_element,_index|
+    p "#{_element.text}\","
     is_equal(_element.text,base_data[_index])
   end
 end
@@ -69,6 +70,7 @@ Then(/^I press the "([^"]*)" button$/) do |button|
 end
 
 And (/^I should see the (text|label|page) '(.*)'$/) do |like, text|
+  sleep 1
   is_true(on(PumpRoomEntry).is_text_displayed?(text))
 end
 

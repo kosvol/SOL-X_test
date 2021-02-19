@@ -11,7 +11,9 @@ end
 
 And ("I send entry report with {int} optional entrants") do |_optional_entrant|
     on(PumpRoomEntry).additional_entrant(_optional_entrant) if _optional_entrant > 0
-    BrowserActions.poll_exists_and_click(on(PreDisplay).send_report_element)
+    sleep 1
+    BrowserActions.js_click("//span[contains(text(),'Send Report')]")
+    # BrowserActions.poll_exists_and_click(on(PreDisplay).send_report_element)
     # on(PreDisplay).send_report_element.click
 end
 
@@ -26,7 +28,7 @@ Then (/^I should see entrant count equal (.*)$/) do |_count|
 end
 
 And (/^I acknowledge the new entry log via service$/) do
-    # step 'I sleep for 5 seconds'
+    step 'I sleep for 2 seconds'
     SmartFormDBPage.acknowledge_pre_entry_log
     step 'I sleep for 3 seconds'
 end
