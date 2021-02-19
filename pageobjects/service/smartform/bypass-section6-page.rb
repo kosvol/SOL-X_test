@@ -17,33 +17,42 @@ class BypassPage < Section0Page
     p "start time >> #{start_time}"
     end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
     p "end time >> #{end_time}"
+    gas_date = "\"#{get_current_date}\""
     update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['answers'][9]['value'] = start_time
-    update_form_pre['variables']['answers'][10]['value'] = end_time
+    update_form_pre['variables']['answers'][4]['value'] = start_time
+    update_form_pre['variables']['answers'][10]['value'] = gas_date
+    update_form_pre['variables']['answers'][26]['value'] = start_time
+    update_form_pre['variables']['answers'][27]['value'] = end_time
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
-    update_form_pre = JSON.parse JsonUtil.read_json('pre/03.update-form-status')
-    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
-    JsonUtil.create_request_file('pre/03.update-form-status', update_form_pre)
-    ServiceUtil.post_graph_ql('pre/03.update-form-status', _user)
+    update_form_pre_status = JSON.parse JsonUtil.read_json('pre/03.update-form-status')
+    update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/mod-03.update-form-status', update_form_pre_status)
+    ServiceUtil.post_graph_ql('pre/mod-03.update-form-status', _user)
+
+    # ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
     update_form_pre = JSON.parse JsonUtil.read_json('pre/07.before-change-status-to-approve')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['answers'][9]['value'] = start_time
-    update_form_pre['variables']['answers'][10]['value'] = end_time
+    update_form_pre['variables']['answers'][4]['value'] = start_time
+    update_form_pre['variables']['answers'][10]['value'] = gas_date
+    update_form_pre['variables']['answers'][26]['value'] = start_time
+    update_form_pre['variables']['answers'][27]['value'] = end_time
     JsonUtil.create_request_file('pre/mod-07.before-change-status-to-approve', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
 
-    update_form_pre = JSON.parse JsonUtil.read_json('pre/04.update-form-status')
-    update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['formId'] = CommonPage.get_permit_id
-    JsonUtil.create_request_file('pre/04.update-form-status', update_form_pre)
-    ServiceUtil.post_graph_ql('pre/04.update-form-status', '2761')
+    update_form_pre_status = JSON.parse JsonUtil.read_json('pre/04.update-form-status')
+    update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/mod-04.update-form-status', update_form_pre_status)
+    ServiceUtil.post_graph_ql('pre/mod-04.update-form-status', '2761')
+
+    # ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
   end
 
   def terminate_pre_permit(_user)
@@ -310,15 +319,19 @@ class BypassPage < Section0Page
   end
 
   def get_current_hours_time_with_offset(_offset)
-    Time.now.utc.strftime("%Y-%m-%dT#{cal_new_hour_offset_time(_offset)}:%M:%S.901Z")
+    Time.now.utc.strftime("%Y-%m-%dT#{cal_new_hour_offset_time(_offset)}:%M:%S.000Z")
   end
 
   def get_current_minutes_time_with_offset
-    Time.now.utc.strftime("%Y-%m-%dT%H:#{cal_new_minutes_offset_time}:%S.901Z")
+    Time.now.utc.strftime("%Y-%m-%dT%H:#{cal_new_minutes_offset_time}:%S.000Z")
   end
 
   def get_current_date_time
     Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
+  end
+
+  def get_current_date
+    Time.now.utc.strftime('%Y-%m-%dT12:00:00.000Z')
   end
 
   def get_issued_time
