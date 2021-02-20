@@ -145,7 +145,8 @@ end
 
 Then(/^I terminate the PRE$/) do
   step 'I navigate to "Active" screen for PRE'
-  on(ActiveStatePage).get_termination_btn(@@pre_number).click
+  on(ActiveStatePage).terminate_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(@@pre_number)].click
+  # on(ActiveStatePage).get_termination_btn(@@pre_number).click
   # on(PumpRoomEntry).press_button_for_current_PRE("View/Termination")
   step 'I enter pin 8383'
   step 'I press the "Terminate" button'
