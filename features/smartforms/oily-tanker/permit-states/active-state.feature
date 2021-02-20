@@ -128,6 +128,7 @@ Feature: ActivePermit
       # | Critical Equipment Maintenance | Maintenance on Anchor              |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
+  @test
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -154,15 +155,15 @@ Feature: ActivePermit
     Then I should see section 6 screen
 
     Examples:
-      | level_one_permit           | level_two_permit                                                                |
-      | Underwater Operations      | Underwater Operation during daytime without any simultaneous operations         |
-      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
-      # | Underwater Operations                | Underwater Operation at night                                                   |
-      # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
-      # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
-      | Hot Work                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
-      # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
-      | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
+      | level_one_permit      | level_two_permit                                                        |
+      | Underwater Operations | Underwater Operation during daytime without any simultaneous operations |
+  # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
+  # | Underwater Operations                | Underwater Operation at night                                                   |
+  # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
+  # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
+  # | Hot Work                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+  # # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
+  # | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable

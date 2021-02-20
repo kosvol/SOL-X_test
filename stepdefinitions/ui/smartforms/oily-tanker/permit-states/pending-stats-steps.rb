@@ -23,7 +23,7 @@ Then (/^I should not be able to edit DRA$/) do
     is_disabled(_elem)
   end
   sleep 1
-  is_equal(on(Section3APage).total_p_elements.size,22)
+  is_equal(on(Section3APage).total_p_elements.size,14)
   on(Section3APage).scroll_multiple_times(2)
   on(CommonFormsPage).close_btn_elements.first.click
 end
@@ -90,7 +90,7 @@ end
 Then (/^I should be able to open permit as master without seeing blank screen$/) do
   on(PendingStatePage).master_approval_btn_elements.first.click
   step 'I enter pin 1111'
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SIT')
+  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
 end
 
 And (/^I reapprove the updated permit$/) do

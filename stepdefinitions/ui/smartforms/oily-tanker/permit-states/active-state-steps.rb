@@ -90,7 +90,7 @@ And (/^I should see data persisted on page 1$/) do
   @@rol_data = YAML.load_file('data/filled-form-data/rol.yml')
   step 'I press previous for 2 times'
   tmp = on(Section3DPage).get_filled_section
-  does_include(tmp[1],"SIT/DRA/#{BrowserActions.get_year}/")
+  does_include(tmp[1],"AUTO/DRA/#{BrowserActions.get_year}/")
   does_include(tmp[2],on(CommonFormsPage).get_timezone)
   does_include(tmp[2],on(Section0Page).get_current_date_format_with_offset)
   # data cleanse after first assertion
