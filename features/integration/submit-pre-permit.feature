@@ -4,7 +4,7 @@ Feature: PREIntegration
     I want to ...
     So that ...
 
-    Scenario: Verify PRE can be terminated manually
+    Scenario: Verify PRE can be terminated manually integration
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new PRE
         And I enter pin 8383

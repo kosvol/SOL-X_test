@@ -1,4 +1,5 @@
 Then (/^I should see no new entry log message$/) do
+  sleep 3
   on(PumpRoomEntry).entry_log_btn_element.click
   sleep 1
   is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[2].text,"No Entry Yet")
