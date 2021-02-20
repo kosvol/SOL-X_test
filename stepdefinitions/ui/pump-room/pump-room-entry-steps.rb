@@ -111,7 +111,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   step "I sign on canvas with valid 2761 pin"
   sleep 2
   step "I should see the page 'Successfully Submitted'"
-  sleep 1
+  sleep 2
   step 'I press the "Back to Home" button'
 end
 

@@ -71,6 +71,6 @@ And(/^I take note of PRE permit creator name and activate the the current PRE fo
 end
 
 Then(/^I should see the PRE permit creator name on PRED$/) do
-  sleep 2
+  sleep 5
   is_equal(on(PreDisplay).pre_creator_display_element.text, "3/O Tim Kinzer")
 end
