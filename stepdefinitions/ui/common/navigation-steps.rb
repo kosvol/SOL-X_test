@@ -57,7 +57,6 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
   p "index >> #{permit_id}"
-  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
   if _update_or_terminate === 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
   elsif _update_or_terminate === 'update'
