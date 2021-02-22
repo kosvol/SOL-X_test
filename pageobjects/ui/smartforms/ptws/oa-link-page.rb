@@ -40,7 +40,7 @@ class OAPage < Section9Page
   ## END Comment elements ###
 
   def navigate_to_oa_link
-    sleep 10
+    sleep 15
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
     p "OA Link : #{tmp}"
     tmp
