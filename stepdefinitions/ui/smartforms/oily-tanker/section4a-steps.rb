@@ -76,7 +76,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
         begin
           tmp = @browser.find_element(:xpath, "//p[contains(., \"#{_element}\")]")
         rescue
-          tmp = @browser.find_element(:xpath, "//h4[contains(., \"#{_element}\")]")
+          tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
         end
       end
     end
