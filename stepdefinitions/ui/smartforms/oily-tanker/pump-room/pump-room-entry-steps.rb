@@ -1,4 +1,4 @@
-And(/^I navigate to create new PRE$/) do
+And(/^I navigate to create new (PRE|CRE)$/) do |_permit_type|
   on(PumpRoomEntry).create_new_pre_btn_element.click
   sleep 1
 end
@@ -74,7 +74,7 @@ And (/^I should see the (text|label|page) '(.*)'$/) do |like, text|
   is_true(on(PumpRoomEntry).is_text_displayed?(text))
 end
 
-And(/^\(for pre\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
+And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
     if _condition === 'disabled'
       is_false(on(PumpRoomEntry).is_button_enabled?(button))
     end
@@ -97,16 +97,17 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then('I fill up PRE. Duration {int}. Delay to activate {int}') do |_duration, delay|
+Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permit_type,_duration, delay|
   on(PumpRoomEntry).fill_up_pre(_duration)
-  on(Section3APage).scroll_multiple_times(18)
+  on(Section3APage).scroll_multiple_times(1)
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
 
-And(/^\(for pre\) I submit permit for Officer Approval$/) do
-  @@pre_number = on(PumpRoomEntry).pre_id_element.text
-  @temp_id = on(PumpRoomEntry).pre_id_element.text
+And(/^for (pre|cre) I submit permit for Officer Approval$/) do |_permit_type|
+  step 'Get PRE id'
+  # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
+  # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
   step "I sign on canvas with valid 2761 pin"
   sleep 2
@@ -115,7 +116,7 @@ And(/^\(for pre\) I submit permit for Officer Approval$/) do
   step 'I press the "Back to Home" button'
 end
 
-And('I activate the current PRE form') do
+And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step 'I open the current PRE with status Pending approval. Pin: 8383'
   step 'I take note of start and end validity time'
   step 'I press the "Approve for Activation" button'
@@ -129,7 +130,7 @@ And ('I take note of start and end validity time') do
   on(PumpRoomEntry).get_validity_start_and_end_time
 end
 
-And(/^I should see the current PRE in the "([^"]*)" list$/) do |list|
+And(/^I should see the current (PRE|CRE) in the "([^"]*)" list$/) do |_permit_type,list|
   p "PRE ID: #{@@pre_number}"
   step "I should see the text '#{@@pre_number}'"
 end
@@ -174,13 +175,13 @@ end
 
 
 And(/^Get PRE id$/) do
-  @temp_id = on(PumpRoomEntry).pre_id_element.text
-  @@pre_number = on(PumpRoomEntry).pre_id_element.text
+  @temp_id = on(PumpRoomEntry).ptw_id_element.text
+  @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # step 'I set permit id'
 end
 
-Then('I open the current PRE with status Pending approval. Pin: {int}') do |pin|
-  step 'I navigate to "Pending Approval" screen for PRE'
+Then(/^I open the current (PRE|CRE) with status Pending approval. Pin: (.*)$/) do |_permit_type,pin|
+  step "I navigate to \"Pending Approval\" screen for #{_permit_type}"
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
   step 'I enter pin %s' % [pin]
   sleep 1
@@ -201,7 +202,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
 end
 
 And(/^I get a temporary number and writing it down$/) do
-  @temp_id = on(PumpRoomEntry).pre_id_element.text
+  @temp_id = on(PumpRoomEntry).ptw_id_element.text
   is_equal(@temp_id.include?("TEMP"), true)
   on(PumpRoomEntry).purpose_of_entry="Test Automation"
   step 'I press the "Save" button'
@@ -212,7 +213,7 @@ end
 
 Then(/^I getting a permanent number from indexedDB$/) do
   @@pre_number =  WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
-  is_equal(@@pre_number.include?("PRE"), true)
+  # is_equal(@@pre_number.include?("PRE"), true)
 end
 
 Then(/^I edit pre and should see the old number previously written down$/) do

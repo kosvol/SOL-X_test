@@ -89,7 +89,7 @@ class PumpRoomEntry < PreDisplay
 
   def fill_static_pre
     fill_text_area(@@text_areas, 'Test Automation')
-    select_checkbox(@@radio_buttons%["Location of vesse"], ['At Sea', 'In Port'].sample)
+    select_checkbox(@@radio_buttons%["Location of vessel"], ['At Sea', 'In Port'].sample)
   end
 
   def select_start_time_to_activate(delay)
@@ -110,8 +110,6 @@ class PumpRoomEntry < PreDisplay
     @browser.find_element(:xpath, picker_mm).click
     sleep 1
     BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
-    # x = %(document.evaluate("//h2[contains(text(),'Permit Validity')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
-    # @browser.execute_script(x)  #click on empty space to close picker
   end
 
 
@@ -175,7 +173,7 @@ class PumpRoomEntry < PreDisplay
     BrowserActions.scroll_click(permit_validation_btn_element)
     scroll_multiple_times(5)
     sleep 1
-    case duration
+    case duration.to_i
     when 4
       four_hours_duration
     when 6
@@ -259,7 +257,7 @@ class PumpRoomEntry < PreDisplay
     mm = mm.to_i
     hh = hh.to_i
 
-    mm = mm+add_mm
+    mm = mm+add_mm.to_i
     if mm >= 60
       mm = mm-60
       hh = hh+1
