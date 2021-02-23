@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Then (/^I should see permits match backend results$/) do
+  sleep 1
   step 'I get forms-filter/smart-form-filter request payload'
   step 'I hit graphql'
   is_true(on(PtwFilterPage).does_permit_counter_match)
