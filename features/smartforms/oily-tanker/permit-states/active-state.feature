@@ -6,7 +6,6 @@ Feature: ActivePermit
 
   # Scenario: Verify all sections disabled for ptw reader
 
-  @test1
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -341,7 +340,6 @@ Feature: ActivePermit
     And I click on active filter
     Then I should see issue date display
 
-  @test
   Scenario: Verify all underwater permit only valid for 4 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
