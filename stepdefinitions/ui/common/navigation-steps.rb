@@ -71,3 +71,7 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   sleep 1
   step "I enter pin #{_pin}"
 end
+
+And ('I take note of issued date and time') do
+  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text
+end

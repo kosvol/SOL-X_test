@@ -100,6 +100,7 @@ class OAPage < Section9Page
   def set_designation
     designation
     sleep 2
+    BrowserActions.scroll_down
     set_vs_designation
   end
 

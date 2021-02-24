@@ -27,7 +27,6 @@ end
 
 And (/^I navigate back to permit selection screen$/) do
   on(Section0Page).back_btn
-  # on(Section0Page).close_btn_elements.first.click
   BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
 end
 
@@ -39,7 +38,6 @@ And (/^I click on (.+) filter$/) do |state|
   elsif state === 'active'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
   elsif state === 'pending withdrawal'
-    @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
   end
 end
