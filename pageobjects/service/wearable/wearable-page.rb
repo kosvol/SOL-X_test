@@ -20,8 +20,9 @@ class WearablePage
         tmp_req_payload['variables']['id'] = @@wearableid
       when 'wearable-simulator/mod-link-crew-to-wearable'
         get_one_wearable_id
-        @@crewid = @@list_of_crew_id.sample
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        @@list_of_crew_id.delete(tmp_req_payload['variables']['userId'])
+        @@crewid = @@list_of_crew_id.sample
         tmp_req_payload['variables']['wearableId'] = @@wearableid
         tmp_req_payload['variables']['userId'] = @@crewid
       when 'wearable-simulator/mod-unlink-crew-to-wearable'
@@ -82,13 +83,14 @@ class WearablePage
     @@wearableid = ''
     def get_one_wearable_id
       tmp = @@list_of_wearables.sample
-      (tmp.size >= 32) && (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
+      # (tmp.size >= 32) && (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
+      (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
     end
 
     def get_crews_id
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
-        if ((list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_') && (list['_id'] != @@crewid))
+        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
           @@tmp_list << list['_id']
         end
       end
