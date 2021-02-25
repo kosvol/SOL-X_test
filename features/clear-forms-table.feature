@@ -33,4 +33,12 @@ Feature: DB reset
   @load-workload-data
   Scenario: Load workload data
     Given I clear work rest table
-# Then I load workload data
+  # Then I load workload data
+
+  @update_cot_crew_member_vessel
+  Scenario: Update crew members vessel
+    Given I update crew members to sit-vessel vessel
+
+  @update_lng_crew_member_vessel
+  Scenario: Update crew members vessel
+    Given I update crew members to sit-lng-vessel vessel
