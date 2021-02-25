@@ -23,7 +23,13 @@ end
 
 Then (/^I should see termination date display$/) do
   # step 'I set time'
-  is_equal(on(CommonFormsPage).get_current_date_and_time.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
+  p "#{on(CommonFormsPage).get_current_date_and_time.to_s}"
+  p "#{on(CommonFormsPage).get_current_date_and_time_add_a_min.to_s}"
+  begin
+    is_equal(on(CommonFormsPage).get_current_date_and_time.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
+  rescue
+    is_equal(on(CommonFormsPage).get_current_date_and_time_add_a_min.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
+  end
 end
 
 And (/^I should be able to view close permit$/) do

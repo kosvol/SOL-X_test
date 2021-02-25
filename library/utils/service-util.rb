@@ -2,6 +2,7 @@
 
 require 'httparty'
 require 'fileutils'
+require 'date'
 
 module ServiceUtil
   include HTTParty
@@ -88,6 +89,10 @@ module ServiceUtil
 
     def get_response_body
       @@response if !@@response.body.nil? && !@@response.body.empty?
+    end
+
+    def craft_date_time_format(_year,_month,_day,_hour,_min,_seconds)
+      DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%d-%b-%YT:%H:%M:%S.%LZ")
     end
 
     private
