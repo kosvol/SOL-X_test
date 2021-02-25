@@ -1,0 +1,49 @@
+{
+  "docs": [
+    {
+      "_id": "00000000000000000000000001",
+      "userId": "SIT_SOLX0004",
+      "startTime": "2021-02-25T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-02-25T07:00:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000004",
+      "userId": "SIT_SOLX0004",
+      "startTime": "2021-02-24T21:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-02-24T23:58:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000003",
+      "userId": "SIT_SOLX0004",
+      "startTime": "2021-02-24T18:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-02-24T21:00:31.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000004",
+      "userId": "SIT_SOLX0005",
+      "startTime": "2021-02-25T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-02-25T07:00:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000005",
+      "userId": "SIT_SOLX0005",
+      "startTime": "2021-02-25T22:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-02-25T23:58:00.000Z",
+      "endOffset": 7
+    }
+  ]
+}

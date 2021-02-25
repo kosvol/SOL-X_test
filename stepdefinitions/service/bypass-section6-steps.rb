@@ -83,5 +83,9 @@ end
 
 Given (/^I clear work rest table$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_workrest')
-  SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
+  SmartFormDBPage.delete_table_row('fauxton', 'add-work-rest-hour')
+end
+
+Then (/^I load workload data$/) do
+  SmartFormDBPage.load_work_rest_hour
 end

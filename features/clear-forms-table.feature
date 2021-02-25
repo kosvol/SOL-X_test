@@ -33,7 +33,7 @@ Feature: DB reset
   @load-workload-data
   Scenario: Load workload data
     Given I clear work rest table
-  # Then I load workload data
+    Then I load workload data
 
   @update_cot_crew_member_vessel
   Scenario: Update crew members vessel

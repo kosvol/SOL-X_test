@@ -18,6 +18,16 @@ class SmartFormDBPage
       ServiceUtil.fauxton(get_environment_link('fauxton', 'delete_form'), 'post', 'fauxton/delete_form')
     end
 
+    def load_work_rest_hour
+      tmp_payload = JSON.parse JsonUtil.read_json('wrh/work-rest-hour')
+      ### need -1; which is 8 days
+      
+      # tmp_payload['docs'][0]['_id'] = _form_id
+      # tmp_payload['docs'][0]['_rev'] = rev_tag
+      # JsonUtil.create_request_file('work-rest-hour/work-rest-hour', tmp_payload)
+      ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/work-rest-hour')
+    end
+
     def get_table_data(_which_db, _url_map)
       ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'get', 'fauxton/get_forms')
     end
@@ -46,17 +56,17 @@ class SmartFormDBPage
       end
     end
 
-    def delete_oa_table_row(_which_db, _url_map)
-      tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
-      ServiceUtil.get_response_body['rows'].each do |form|
-        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
+    # def delete_oa_table_row(_which_db, _url_map)
+    #   tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
+    #   ServiceUtil.get_response_body['rows'].each do |form|
+    #     next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
 
-        tmp_payload['docs'][0]['_id'] = form['id']
-        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
-        JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
-      end
-    end
+    #     tmp_payload['docs'][0]['_id'] = form['id']
+    #     tmp_payload['docs'][0]['_rev'] = form['value']['rev']
+    #     JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
+    #     ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+    #   end
+    # end
 
     def acknowledge_pre_entry_log
       entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',get_mod_permit_id)

@@ -40,6 +40,7 @@ fauxton:
   get_user: "/users/_all_docs?skip=0&limit=1000"
   get_pre_gas_entry_log: "/gas_reader_entry/%s"
   delete_user: "/users/_bulk_docs"
+  add-work-rest-hour: "/work_rest_hour/_bulk_docs"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
   get_wearable_histories: "/wearables_history/_all_docs?skip=0&limit=10000"
   get_wearable_active_users: "/wearables_active_users/_all_docs?skip=0&limit=10000"

@@ -8,7 +8,8 @@ class CommonFormsPage < CommonPage
   
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
-  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  # elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
