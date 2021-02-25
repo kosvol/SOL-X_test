@@ -80,3 +80,8 @@ end
 Given (/^I clear mariadb$/) do
   MariaDB_clearing.clear_maria_db
 end
+
+Given (/^I clear work rest table$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_workrest')
+  SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
+end

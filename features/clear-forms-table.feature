@@ -29,3 +29,8 @@ Feature: DB reset
   @update_mas_pin
   Scenario: Get master details
     Given I update master pin
+
+  @load-workload-data
+  Scenario: Load workload data
+    Given I clear work rest table
+# Then I load workload data
