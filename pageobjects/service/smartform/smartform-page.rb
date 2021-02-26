@@ -100,10 +100,10 @@ class SmartFormDBPage
       tmp_payload['docs'][9]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][10]['startTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
       tmp_payload['docs'][10]['startTime'] = ttt
       ttt = tmp_payload['docs'][10]['endTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
       tmp_payload['docs'][10]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][11]['startTime']
@@ -128,13 +128,12 @@ class SmartFormDBPage
       tmp_payload['docs'][13]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][14]['startTime']
-      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      ttt[0,10] = (Date.today-5).strftime("%Y-%m-%d")
       tmp_payload['docs'][14]['startTime'] = ttt
       ttt = tmp_payload['docs'][14]['endTime']
-      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      ttt[0,10] = (Date.today-5).strftime("%Y-%m-%d")
       tmp_payload['docs'][14]['endTime'] = ttt
   
-      
       JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
       ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
     end
