@@ -1,5 +1,5 @@
 And (/^I enter (new|same) entry log$/) do |_condition|
-    step 'I sleep for 3 seconds'
+    step 'I sleep for 5 seconds'
     on(PreDisplay).new_entry_log_element.click
     
     on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
@@ -28,7 +28,7 @@ Then (/^I should see entrant count equal (.*)$/) do |_count|
 end
 
 And (/^I acknowledge the new entry log via service$/) do
-    step 'I sleep for 2 seconds'
+    step 'I sleep for 4 seconds'
     SmartFormDBPage.acknowledge_pre_entry_log
     step 'I sleep for 3 seconds'
 end
