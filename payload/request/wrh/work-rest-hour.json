@@ -84,7 +84,7 @@
     {
       "_id": "00000000000000000000000010",
       "userId": "AUTO_SOLX0006",
-      "startTime": "2021-02-24T12:00:00.000Z",
+      "startTime": "2021-02-24T07:00:00.000Z",
       "startOffset": 7,
       "vesselLocation": "PORT",
       "endTime": "2021-02-24T23:55:00.000Z",
@@ -114,7 +114,7 @@
       "startTime": "2021-02-24T12:00:00.000Z",
       "startOffset": 7,
       "vesselLocation": "PORT",
-      "endTime": "2021-02-24T18:00:00.000Z",
+      "endTime": "2021-02-24T23:55:00.000Z",
       "endOffset": 7
     },
     {
@@ -123,7 +123,7 @@
       "startTime": "2021-02-24T12:00:00.000Z",
       "startOffset": 7,
       "vesselLocation": "PORT",
-      "endTime": "2021-02-24T18:00:00.000Z",
+      "endTime": "2021-02-24T23:55:00.000Z",
       "endOffset": 7
     },
     {
@@ -132,7 +132,7 @@
       "startTime": "2021-02-24T12:00:00.000Z",
       "startOffset": 7,
       "vesselLocation": "PORT",
-      "endTime": "2021-02-24T18:00:00.000Z",
+      "endTime": "2021-02-24T23:55:00.000Z",
       "endOffset": 7
     }
   ]
