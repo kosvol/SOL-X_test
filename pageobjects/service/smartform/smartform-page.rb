@@ -20,12 +20,118 @@ class SmartFormDBPage
 
     def load_work_rest_hour
       tmp_payload = JSON.parse JsonUtil.read_json('wrh/work-rest-hour')
-      ### need -1; which is 8 days
+
+      # ## 13h59m
+      ttt = tmp_payload['docs'][0]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][0]['startTime'] = ttt
+      ttt = tmp_payload['docs'][0]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][0]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][1]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][1]['startTime'] = ttt
+      ttt = tmp_payload['docs'][1]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][1]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][2]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][2]['startTime'] = ttt
+      ttt = tmp_payload['docs'][2]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][2]['endTime'] = ttt
+
+      # ## 9h59m
+      ttt = tmp_payload['docs'][3]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][3]['startTime'] = ttt
+      ttt = tmp_payload['docs'][3]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][3]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][4]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][4]['startTime'] = ttt
+      ttt = tmp_payload['docs'][4]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][4]['endTime'] = ttt
+
+      # ## 71h59m
+      ttt = tmp_payload['docs'][5]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][5]['startTime'] = ttt
+      ttt = tmp_payload['docs'][5]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][5]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][6]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][6]['startTime'] = ttt
+      ttt = tmp_payload['docs'][6]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][6]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][7]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][7]['startTime'] = ttt
+      ttt = tmp_payload['docs'][7]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][7]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][8]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][8]['startTime'] = ttt
+      ttt = tmp_payload['docs'][8]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][8]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][9]['startTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][9]['startTime'] = ttt
+      ttt = tmp_payload['docs'][9]['endTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][9]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][10]['startTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][10]['startTime'] = ttt
+      ttt = tmp_payload['docs'][10]['endTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][10]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][11]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][11]['startTime'] = ttt
+      ttt = tmp_payload['docs'][11]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][11]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][12]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][12]['startTime'] = ttt
+      ttt = tmp_payload['docs'][12]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][12]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][13]['startTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][13]['startTime'] = ttt
+      ttt = tmp_payload['docs'][13]['endTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][13]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][14]['startTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][14]['startTime'] = ttt
+      ttt = tmp_payload['docs'][14]['endTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][14]['endTime'] = ttt
+  
       
-      # tmp_payload['docs'][0]['_id'] = _form_id
-      # tmp_payload['docs'][0]['_rev'] = rev_tag
-      # JsonUtil.create_request_file('work-rest-hour/work-rest-hour', tmp_payload)
-      ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/work-rest-hour')
+      JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
+      ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
     end
 
     def get_table_data(_which_db, _url_map)
