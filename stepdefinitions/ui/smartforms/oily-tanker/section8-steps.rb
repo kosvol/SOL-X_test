@@ -69,7 +69,7 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
   BrowserActions.scroll_down
   sleep 1
   if _condition === 'should'
-    is_equal($browser.find_elements(:xpath, '//input').size, '29')
+    is_equal($browser.find_elements(:xpath, '//input').size, '28')
     to_exists(on(Section8Page).normalization_question1_element)
     to_exists(on(Section8Page).normalization_question2_element)
     to_exists(on(Section8Page).normalization_question3_element)
@@ -78,7 +78,7 @@ Then (/^I (should|should not) see EIC normalize extra questions$/) do |_conditio
     step 'I should see default section 8 questions'
   end
   if _condition === 'should not'
-    is_equal($browser.find_elements(:xpath, '//input').size, '19')
+    is_equal($browser.find_elements(:xpath, '//input').size, '18')
     not_to_exists(on(Section8Page).normalization_question1_element)
     not_to_exists(on(Section8Page).normalization_question2_element)
     not_to_exists(on(Section8Page).normalization_question3_element)
@@ -90,7 +90,7 @@ end
 Then (/^I should see EIC extra questions for work on pressure pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
-  is_equal($browser.find_elements(:xpath, '//input').size, '23')
+  is_equal($browser.find_elements(:xpath, '//input').size, '22')
   step 'I should see default section 8 questions'
 end
 

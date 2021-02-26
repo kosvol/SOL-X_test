@@ -91,7 +91,7 @@ Feature: CreatedPermitToWork
 
     Examples:
       | rank                       | pin  | level_one_permit      | level_two_permit      |
-      | Master                     | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      # | Master | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
