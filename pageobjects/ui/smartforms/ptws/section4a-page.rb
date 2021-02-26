@@ -151,6 +151,7 @@ class Section4APage < Section3DPage
     BrowserActions.scroll_down
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> #{rank_and_name_stamp_element.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
