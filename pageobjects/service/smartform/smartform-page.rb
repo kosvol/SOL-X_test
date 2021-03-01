@@ -149,7 +149,7 @@ class SmartFormDBPage
       ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][16]['endTime'] = ttt
 
-      ### AUTO_SOLX0008
+      ### AUTO_SOLX0013
       ttt = tmp_payload['docs'][17]['startTime']
       ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][17]['startTime'] = ttt
@@ -200,7 +200,7 @@ class SmartFormDBPage
       ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
       tmp_payload['docs'][20]['endTime'] = ttt
 
-      ### AUTO_SOLX0010
+      ### AUTO_SOLX0012
       ttt = tmp_payload['docs'][21]['startTime']
       ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][21]['startTime'] = ttt
