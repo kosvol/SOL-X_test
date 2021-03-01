@@ -199,6 +199,49 @@ class SmartFormDBPage
       ttt = tmp_payload['docs'][20]['endTime']
       ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
       tmp_payload['docs'][20]['endTime'] = ttt
+
+      ### AUTO_SOLX0010
+      ttt = tmp_payload['docs'][21]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][21]['startTime'] = ttt
+      ttt = tmp_payload['docs'][21]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][21]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][22]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][22]['startTime'] = ttt
+      ttt = tmp_payload['docs'][22]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][22]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][23]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][23]['startTime'] = ttt
+      ttt = tmp_payload['docs'][23]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][23]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][24]['startTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][24]['startTime'] = ttt
+      ttt = tmp_payload['docs'][24]['endTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][24]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][25]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][25]['startTime'] = ttt
+      ttt = tmp_payload['docs'][25]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][25]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][26]['startTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][26]['startTime'] = ttt
+      ttt = tmp_payload['docs'][26]['endTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][26]['endTime'] = ttt
   
       JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
       ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')

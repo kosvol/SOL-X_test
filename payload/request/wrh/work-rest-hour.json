@@ -215,6 +215,60 @@
       "vesselLocation": "PORT",
       "endTime": "2021-03-01T00:00:00.000Z",
       "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000025",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T06:00:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000026",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T10:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T00:00:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000027",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T23:55:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000028",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T23:55:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000029",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T23:55:00.000Z",
+      "endOffset": 7
+    },
+    {
+      "_id": "00000000000000000000000030",
+      "userId": "AUTO_SOLX0010",
+      "startTime": "2021-03-01T00:00:00.000Z",
+      "startOffset": 7,
+      "vesselLocation": "PORT",
+      "endTime": "2021-03-01T23:55:00.000Z",
+      "endOffset": 7
     }
   ]
 }
