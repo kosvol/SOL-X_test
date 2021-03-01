@@ -122,13 +122,14 @@ Feature: PumpRoomEntry
   #   And I should see Permit Terminated PRE status on screen
   # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
+  @test
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 3 seconds
+    And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 1
