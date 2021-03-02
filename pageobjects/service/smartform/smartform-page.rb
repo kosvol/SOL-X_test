@@ -18,6 +18,235 @@ class SmartFormDBPage
       ServiceUtil.fauxton(get_environment_link('fauxton', 'delete_form'), 'post', 'fauxton/delete_form')
     end
 
+    def load_work_rest_hour
+      tmp_payload = JSON.parse JsonUtil.read_json('wrh/work-rest-hour')
+      tmp_payload['docs'].each_with_index do |_doc,_index|
+        userid = _doc['userId']
+        userid[0,4] = "SIT" if $current_environment === 'sit'
+        tmp_payload['docs'][_index]['userId'] = userid
+      end
+      
+      # ## 13h59m
+      ttt = tmp_payload['docs'][0]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][0]['startTime'] = ttt
+      ttt = tmp_payload['docs'][0]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][0]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][1]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][1]['startTime'] = ttt
+      ttt = tmp_payload['docs'][1]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][1]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][2]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][2]['startTime'] = ttt
+      ttt = tmp_payload['docs'][2]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][2]['endTime'] = ttt
+
+      # ## 9h59m
+      ttt = tmp_payload['docs'][3]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][3]['startTime'] = ttt
+      ttt = tmp_payload['docs'][3]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][3]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][4]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][4]['startTime'] = ttt
+      ttt = tmp_payload['docs'][4]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][4]['endTime'] = ttt
+
+      # ## 71h59m
+      ttt = tmp_payload['docs'][5]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][5]['startTime'] = ttt
+      ttt = tmp_payload['docs'][5]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][5]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][6]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][6]['startTime'] = ttt
+      ttt = tmp_payload['docs'][6]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][6]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][7]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][7]['startTime'] = ttt
+      ttt = tmp_payload['docs'][7]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][7]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][8]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][8]['startTime'] = ttt
+      ttt = tmp_payload['docs'][8]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][8]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][9]['startTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][9]['startTime'] = ttt
+      ttt = tmp_payload['docs'][9]['endTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][9]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][10]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][10]['startTime'] = ttt
+      ttt = tmp_payload['docs'][10]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][10]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][11]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][11]['startTime'] = ttt
+      ttt = tmp_payload['docs'][11]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][11]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][12]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][12]['startTime'] = ttt
+      ttt = tmp_payload['docs'][12]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][12]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][13]['startTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][13]['startTime'] = ttt
+      ttt = tmp_payload['docs'][13]['endTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][13]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][14]['startTime']
+      ttt[0,10] = (Date.today-5).strftime("%Y-%m-%d")
+      tmp_payload['docs'][14]['startTime'] = ttt
+      ttt = tmp_payload['docs'][14]['endTime']
+      ttt[0,10] = (Date.today-5).strftime("%Y-%m-%d")
+      tmp_payload['docs'][14]['endTime'] = ttt
+
+      ### AUTO_SOLX0007
+      ttt = tmp_payload['docs'][15]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][15]['startTime'] = ttt
+      ttt = tmp_payload['docs'][15]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][15]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][16]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][16]['startTime'] = ttt
+      ttt = tmp_payload['docs'][16]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][16]['endTime'] = ttt
+
+      ### AUTO_SOLX0013
+      ttt = tmp_payload['docs'][17]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][17]['startTime'] = ttt
+      ttt = tmp_payload['docs'][17]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][17]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][18]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][18]['startTime'] = ttt
+      ttt = tmp_payload['docs'][18]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][18]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][19]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][19]['startTime'] = ttt
+      ttt = tmp_payload['docs'][19]['endTime']
+      ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][19]['endTime'] = ttt
+
+      ### AUTO_SOLX0009
+      ttt = tmp_payload['docs'][20]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['startTime'] = ttt
+      ttt = tmp_payload['docs'][20]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][20]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['startTime'] = ttt
+      ttt = tmp_payload['docs'][20]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][20]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['startTime'] = ttt
+      ttt = tmp_payload['docs'][20]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][20]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['startTime'] = ttt
+      ttt = tmp_payload['docs'][20]['endTime']
+      ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][20]['endTime'] = ttt
+
+      ### AUTO_SOLX0012
+      ttt = tmp_payload['docs'][21]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][21]['startTime'] = ttt
+      ttt = tmp_payload['docs'][21]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][21]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][22]['startTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][22]['startTime'] = ttt
+      ttt = tmp_payload['docs'][22]['endTime']
+      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      tmp_payload['docs'][22]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][23]['startTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][23]['startTime'] = ttt
+      ttt = tmp_payload['docs'][23]['endTime']
+      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      tmp_payload['docs'][23]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][24]['startTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][24]['startTime'] = ttt
+      ttt = tmp_payload['docs'][24]['endTime']
+      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][24]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][25]['startTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][25]['startTime'] = ttt
+      ttt = tmp_payload['docs'][25]['endTime']
+      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][25]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][26]['startTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][26]['startTime'] = ttt
+      ttt = tmp_payload['docs'][26]['endTime']
+      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][26]['endTime'] = ttt
+  
+      JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
+      ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
+    end
+
     def get_table_data(_which_db, _url_map)
       ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'get', 'fauxton/get_forms')
     end
@@ -27,6 +256,17 @@ class SmartFormDBPage
       ServiceUtil.get_response_body['rows'].each do |form|
         next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
 
+        tmp_payload['docs'][0]['_id'] = form['id']
+        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
+        JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
+        ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+      end
+    end
+
+    def delete_crew_from_vessel(_which_db, _url_map)
+    tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
+    ServiceUtil.get_response_body['rows'].each do |form|
+      next if ((form['id'].include? '_design') || (form['id'].include? 'SIT') || (form['id'].include? 'AUTO'))
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
@@ -46,17 +286,17 @@ class SmartFormDBPage
       end
     end
 
-    def delete_oa_table_row(_which_db, _url_map)
-      tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
-      ServiceUtil.get_response_body['rows'].each do |form|
-        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
+    # def delete_oa_table_row(_which_db, _url_map)
+    #   tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
+    #   ServiceUtil.get_response_body['rows'].each do |form|
+    #     next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
 
-        tmp_payload['docs'][0]['_id'] = form['id']
-        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
-        JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
-      end
-    end
+    #     tmp_payload['docs'][0]['_id'] = form['id']
+    #     tmp_payload['docs'][0]['_rev'] = form['value']['rev']
+    #     JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
+    #     ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+    #   end
+    # end
 
     def acknowledge_pre_entry_log
       entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',get_mod_permit_id)

@@ -20,6 +20,10 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "Retrieve My Data"
       on(CrewListPage).add_new_crew_btn
       is_disabled(on(CrewListPage).retrieve_data_btn_element)
+    when "Updates Needed"
+      is_disabled(on(Section7Page).update_btn_element)
+    when "Approve for Activation"
+      is_disabled(on(PumpRoomEntry).approve_activation)
     end
   elsif _condition === 'enabled'
     case _which_button

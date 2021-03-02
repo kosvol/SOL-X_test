@@ -8,7 +8,8 @@ class CommonFormsPage < CommonPage
   
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
-  elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  # elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
+  elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
@@ -78,6 +79,15 @@ class CommonFormsPage < CommonPage
 
   def get_current_time_format
       "#{@@time}#{get_timezone}"
+  end
+
+  def move_date_time_by_1_minute
+    move = DateTime.strptime(@@time, '%H:%M') + Rational(1, 840)
+    "#{move.strftime('%H:%M')}#{get_timezone}"
+  end
+
+  def get_current_date_and_time_add_a_min
+    "#{get_current_date_format_with_offset} #{move_date_time_by_1_minute}"
   end
 
   def get_current_date_and_time

@@ -174,7 +174,7 @@ And(/^\(for pre\) I should see update needed message$/) do
 end
 
 
-And(/^Get PRE id$/) do
+And(/^Get (PRE|CRE) id$/) do |_permit_type|
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
   @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # step 'I set permit id'

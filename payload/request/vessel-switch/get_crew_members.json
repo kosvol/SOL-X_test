@@ -1,6 +1,8 @@
 {
   "selector": {
-    "vesselId": "sit-vessel"
+    "_id": {
+      "$regex": "(?i)SIT"
+    }
   },
   "execution_stats": true,
   "limit": 101,

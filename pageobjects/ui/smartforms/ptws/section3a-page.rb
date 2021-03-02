@@ -14,7 +14,7 @@ class Section3APage < Section2Page
   buttons(:add_measure_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div[7]/div/button")
   text_areas(:description, xpath: "//div[starts-with(@class,'Textarea__Container')]/textarea")
   # to change to generic_data
-  elements(:method_detail, xpath: "//p[starts-with(@class,'ViewGenericAnswer__Answer-')]")
+  elements(:method_detail, xpath: "//p[starts-with(@class,'AnswerComponent__Answer-')]")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   # buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
@@ -55,15 +55,17 @@ class Section3APage < Section2Page
   end
 
   def is_new_hazard_added?
-    p ">> #{hazard_risk_details_elements[23].text}"
-    p ">> #{hazard_risk_details_elements[24].text}"
     p ">> #{ecm_details_elements[10].text}"
     tmp = ih_details2_elements[10].text
     p ">> #{tmp}"
     begin
+      p ">> #{hazard_risk_details_elements[23].text}"
+      p ">> #{hazard_risk_details_elements[24].text}"
       (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     rescue
-      (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements1[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      p ">> #{hazard_risk_details1_elements[23].text}"
+      p ">> #{hazard_risk_details1_elements[24].text}"
+      (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details1_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     end
   end
 

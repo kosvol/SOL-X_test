@@ -32,7 +32,11 @@ end
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
   sleep 1
   (1.._times.to_i).each do |_i|
-    _condition === 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+    if _condition === 'next'
+      is_enabled(on(NavigationPage).next_btn_element)
+      on(Section0Page).click_next
+    else BrowserActions.js_click("//button[contains(.,'Previous')]")
+    end
   end
 end
 

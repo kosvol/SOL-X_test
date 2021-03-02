@@ -42,7 +42,11 @@ And (/^I sign on (checklist|section) with (valid|invalid) (.*) pin$/) do |_page,
 end
 
 Then (/^I should see signed details$/) do
-  is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
+  begin
+    is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
+  rescue RSpec::Expectations::ExpectationNotMetError
+    is_true(on(Section4APage).is_signed_user_details_plus_1_min?(@@entered_pin))
+  end
   is_true(on(SignaturePage).is_signature_pad?)
 end
 
@@ -67,8 +71,9 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   @@checklist = _checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
   base_data.each do |_element|
+    p ">> #{_element}"
     begin
-      tmp = @browser.find_element(:xpath, "//span[contains(., \"#{_element}\")]")
+      tmp = @browser.find_element(:xpath, "//span[contains(., '#{_element}')]")
     rescue StandardError
       begin 
         tmp = @browser.find_element(:xpath, "//label[contains(., \"#{_element}\")]")
@@ -76,7 +81,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
         begin
           tmp = @browser.find_element(:xpath, "//p[contains(., \"#{_element}\")]")
         rescue
-          tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
+          # tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
         end
       end
     end

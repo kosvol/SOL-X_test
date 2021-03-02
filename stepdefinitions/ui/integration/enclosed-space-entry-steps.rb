@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
-  step 'I click on permit for Master Approval'
-  # on(PendingStatePage).pending_approval_status_btn_elements[0].click
+  # step 'I click on permit for Master Approval'
+  on(PendingStatePage).pending_approval_status_btn_elements[0].click
   
   step 'I enter pin 1111'
   if _permit_type === 'enclose workspace'
@@ -100,6 +100,7 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
+  @@entered_pin = '9015'
   # is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
   step 'I should see signed details for integration test'
 end
@@ -108,7 +109,8 @@ And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   tmp = on(Section4BPage).get_filled_section
   tmp.delete_at(1)
-  is_equal(tmp, @@form_data['section4b'])
+  p "base -- #{tmp}"
+  is_equal(tmp, @@form_data['checklist'])
   sleep 1
   on(Section4BPage).view_eic_btn
   sleep 1

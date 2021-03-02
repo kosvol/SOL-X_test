@@ -4,6 +4,8 @@ Feature: LNGCRE
     I want to ...
     So that ...
 
+    # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
+
     Scenario: Verify user can see all the CRE questions
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
@@ -136,19 +138,33 @@ Feature: LNGCRE
         And I open the current CRE with status Pending approval. Pin: 2674
         And for cre I should see the disabled "Updates Needed" button
 
-# Scenario: Verify CRE permit turn active on schedule time
+    Scenario: Verify CRE permit turn active on schedule time
+        Given I launch sol-x portal without unlinking wearable
+        When I clear gas reader entries
+        And I navigate to create new PRE
+        And I enter pin 8383
+        And I fill up CRE. Duration 4. Delay to activate 2
+        And Get CRE id
+        And for cre I submit permit for Officer Approval
+        And I getting a permanent number from indexedDB
+        Then I activate the current CRE form
+        And I sleep for 1 seconds
+        When I navigate to "Scheduled" screen for CRE
+        And I should see the current CRE in the "Scheduled" list
+        And I click on back arrow
+        And I sleep for 100 seconds
+        And I navigate to "Active" screen for CRE
+        And I should see the current CRE in the "Active PRE" list
 
-# Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
-
-# Scenario: Verify creator PRE cannot request update needed
-#     Given I launch sol-x portal without unlinking wearable
-#     When I clear gas reader entries
-#     And I navigate to create new PRE
-#     And I enter pin 8383
-#     Then I fill up PRE. Duration 4. Delay to activate 2
-#     And Get PRE id
-#     And (for pre) I submit permit for Officer Approval
-#     And I sleep for 5 seconds
-#     And I getting a permanent number from indexedDB
-#     Then I open the current PRE with status Pending approval. Pin: 8383
-#     And (for pre) I should see the disabled "Updates Needed" button
+    Scenario: Verify creator PRE cannot request update needed
+        Given I launch sol-x portal without unlinking wearable
+        When I clear gas reader entries
+        And I navigate to create new PRE
+        And I enter pin 8383
+        And I fill up CRE. Duration 4. Delay to activate 2
+        And Get CRE id
+        And for cre I submit permit for Officer Approval
+        And I getting a permanent number from indexedDB
+        Then I open the current PRE with status Pending approval. Pin: 8383
+        Then I should see Add Gas button disabled
+        And I should see Approve for Activation button disabled

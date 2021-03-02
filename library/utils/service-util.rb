@@ -2,6 +2,7 @@
 
 require 'httparty'
 require 'fileutils'
+require 'date'
 
 module ServiceUtil
   include HTTParty
@@ -22,22 +23,22 @@ module ServiceUtil
       error_logging('Switch Response Body: ', @@response)
     end
 
-    def switch_vessel_type(_vesselType, _user = '1111')
-      uri = EnvironmentSelector.get_vessel_switch_url
-      if $current_environment === 'auto'
-        content_body = JsonUtil.read_json("vessel-switch/get_auto_vessel_details")
-      elsif $current_environment === 'sit'
-        content_body = JsonUtil.read_json("vessel-switch/get_sit_vessel_details")
-      end
+    def update_crew_members_vessel(_vesselType)
+      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_find"
+      #EnvironmentSelector.get_vessel_switch_url
+      content_body = JsonUtil.read_json("vessel-switch/get_crew_members")
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @@response = HTTParty.get(uri, { body: content_body }.merge(ql_headers("_user")))
+      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers("_user")))
       error_logging('Response Body: ', @@response)
 
-      vessel_details = JSON.parse @@response.to_s
-      vessel_details['vesselType'] = _vesselType.upcase
-      p "> #{vessel_details.to_json}"
-      @@response = HTTParty.put(uri, { body: vessel_details.to_json }.merge(ql_headers("_user")))
+      master_details = JSON.parse @@response.to_s
+      master_details['docs'].each do |_crew|
+        _crew['vesselId'] = _vesselType
+      end
+      p "> #{master_details.to_json}"
+      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_bulk_docs"
+      @@response = HTTParty.post(uri, { body: master_details.to_json }.merge(ql_headers("_user")))
       error_logging('Switch Response Body: ', @@response)
     end
 
@@ -51,6 +52,25 @@ module ServiceUtil
       error_logging('Status Code: ', get_http_response_status_code)
       JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
     end
+
+    # def switch_vessel_type(_vesselType, _user = '1111')
+    #   uri = EnvironmentSelector.get_vessel_switch_url
+    #   if $current_environment === 'auto'
+    #     content_body = JsonUtil.read_json("vessel-switch/get_auto_vessel_details")
+    #   elsif $current_environment === 'sit'
+    #     content_body = JsonUtil.read_json("vessel-switch/get_sit_vessel_details")
+    #   end
+    #   error_logging('URI: ', uri)
+    #   error_logging('Request Body: ', content_body)
+    #   @@response = HTTParty.get(uri, { body: content_body }.merge(ql_headers("_user")))
+    #   error_logging('Response Body: ', @@response)
+
+    #   vessel_details = JSON.parse @@response.to_s
+    #   vessel_details['vesselType'] = _vesselType.upcase
+    #   p "> #{vessel_details.to_json}"
+    #   @@response = HTTParty.put(uri, { body: vessel_details.to_json }.merge(ql_headers("_user")))
+    #   error_logging('Switch Response Body: ', @@response)
+    # end
 
     def post_graph_ql(which_json, _user = '1111')
       uri = EnvironmentSelector.get_graphql_environment_url('service')
@@ -99,6 +119,10 @@ module ServiceUtil
 
     def get_response_body
       @@response if !@@response.body.nil? && !@@response.body.empty?
+    end
+
+    def craft_date_time_format(_year,_month,_day,_hour,_min,_seconds)
+      DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%d-%b-%YT:%H:%M:%S.%LZ")
     end
 
     private

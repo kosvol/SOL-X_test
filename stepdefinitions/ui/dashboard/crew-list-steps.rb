@@ -93,9 +93,15 @@ end
 
 And (/^I add crew$/) do
   on(CrewListPage).add_new_crew_btn
-  on(CrewListPage).crew_id = 'Automation_User_001'
+  on(CrewListPage).crew_id = "CDEV_SOLX0002"
   sleep 1
   on(CrewListPage).retrieve_data_btn
+  sleep 1
+  on(CrewListPage).view_pin_btn
+  sleep 2
+  @@entered_pin = on(CrewListPage).pin_text_field_element.text
+  p "new pin >> #{@@entered_pin}"
+  on(CommonFormsPage).done_btn_elements.first.click
 end
 
 And (/^I add crew (.+) id$/) do |_crew|
@@ -103,6 +109,11 @@ And (/^I add crew (.+) id$/) do |_crew|
   on(CrewListPage).crew_id = _crew
   sleep 1
   on(CrewListPage).retrieve_data_btn
+  sleep 1
+  on(CrewListPage).view_pin_btn
+  @@entered_pin = on(CrewListPage).pin_text_field_element.text
+  p "new pin >> #{@@entered_pin}"
+  on(CommonFormsPage).done_btn_elements.first.click
 end
 
 Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
@@ -125,4 +136,10 @@ Then (/^I should see count down start from 10 seconds$/) do
   elsif on(CrewListPage).countdown_elements[0].text === 'Hiding in 7 secs'
     true
   end
+end
+
+When (/^I create the ptw with the new pin$/) do
+  step 'I navigate to "SmartForms" screen for forms'
+  step 'I navigate to create new permit'
+  step "I enter pin #{@@entered_pin}"
 end

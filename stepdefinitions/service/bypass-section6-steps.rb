@@ -80,3 +80,17 @@ end
 Given (/^I clear mariadb$/) do
   MariaDB_clearing.clear_maria_db
 end
+
+Given (/^I clear work rest table$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_workrest')
+  SmartFormDBPage.delete_table_row('fauxton', 'add-work-rest-hour')
+end
+
+Then (/^I load workload data$/) do
+  SmartFormDBPage.load_work_rest_hour
+end
+
+Given (/^I remove crew from vessel$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_user')
+  SmartFormDBPage.delete_crew_from_vessel('fauxton', 'delete_user')
+end

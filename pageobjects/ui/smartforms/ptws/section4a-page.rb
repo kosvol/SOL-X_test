@@ -151,10 +151,20 @@ class Section4APage < Section3DPage
     BrowserActions.scroll_down
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> #{rank_and_name_stamp_element.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
     ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
+  end
+  
+  def is_signed_user_details_plus_1_min?(_entered_pin)
+    BrowserActions.scroll_down(rank_and_name_stamp)
+    sleep 1
+    BrowserActions.scroll_down
+    time_offset = get_current_time_format
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_add_a_min}"))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
@@ -164,8 +174,9 @@ class Section4APage < Section3DPage
     BrowserActions.scroll_down
     # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_element.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
-    # Log.instance.info(">> Date & Time #{get_current_date_and_time}")
+    Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
     ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
   end
 
