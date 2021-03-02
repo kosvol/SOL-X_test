@@ -3,7 +3,7 @@
 And (/^I navigate to OA link$/) do
   sleep 1
   $browser.get(on(OAPage).navigate_to_oa_link)
-  
+  sleep 3
 end
 
 And (/^I request the permit for update via oa link manually$/) do
@@ -37,7 +37,7 @@ And (/^I approve oa permit via oa link manually$/) do
   on(OAPage).submit_permit_approval_btn
   # x = %(document.evaluate("//button[contains(.,'Approve This Permit to Work')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
   # @browser.execute_script(x)
-  sleep 1
+  sleep 3
   $browser.get(EnvironmentSelector.get_environment_url)
 end
 

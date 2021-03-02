@@ -30,8 +30,8 @@ class Section3APage < Section2Page
   elements(:ih_details2, xpath: "//div[contains(@class,'row-wrapper')][1]/div[contains(@class,'row-container')]")
   # elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:ecm_details, xpath: "//div[contains(@class,'row-wrapper')][3]/div[contains(@class,'row-container')]")
-  # elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
-  elements(:hazard_risk_details, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
+  elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
+  elements(:hazard_risk_details1, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
 
@@ -55,17 +55,16 @@ class Section3APage < Section2Page
   end
 
   def is_new_hazard_added?
-    # view_edit_btn
     p ">> #{hazard_risk_details_elements[23].text}"
     p ">> #{hazard_risk_details_elements[24].text}"
     p ">> #{ecm_details_elements[10].text}"
-    # begin
-    #   tmp = ih_details1_elements[10].text
-    # rescue
-      tmp = ih_details2_elements[10].text
-    # end
+    tmp = ih_details2_elements[10].text
     p ">> #{tmp}"
-    (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    begin
+      (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    rescue
+      (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements1[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+    end
   end
 
   def scroll_to_new_hazard
@@ -90,35 +89,21 @@ class Section3APage < Section2Page
     # for without applying measure
     # scroll_multiple_times(1)
     likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
-    sleep 1
-    # level_to_choose_elements[level_to_choose_elements.size-20].click
-    level_to_choose_elements.first.click
-    # confirm_btn_elements[confirm_btn_elements.size-4].click
-    confirm_btn_elements.first.click
+    select_dra_risk(1)
     sleep 1
     consequence_btn_elements[(consequence_btn_elements.size - 2)].click
-    sleep 2
-    # level_to_choose_elements[level_to_choose_elements.size-15].click
-    level_to_choose_elements.first.click
-    # confirm_btn_elements[confirm_btn_elements.size-3].click
-    confirm_btn_elements.first.click
+    select_dra_risk(1)
     sleep 1
 
     # for existing control measure
     scroll_multiple_times(2)
     likelihood_btn_elements.last.click
     sleep 1
-    level_to_choose_elements.first.click
-    # level_to_choose_elements[level_to_choose_elements.size-10].click
-    # confirm_btn_elements[confirm_btn_elements.size-2].click
-    confirm_btn_elements.first.click
+    select_dra_risk(1)
     sleep 1
     consequence_btn_elements.last.click
     sleep 1
-    level_to_choose_elements.first.click
-    # level_to_choose_elements[level_to_choose_elements.size-5].click
-    # confirm_btn_elements[confirm_btn_elements.size-1].click
-    confirm_btn_elements.first.click
+    select_dra_risk(1)
   end
 
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
@@ -126,45 +111,33 @@ class Section3APage < Section2Page
     sleep 2
     scroll_multiple_times(1)
     likelihood_btn_elements[0].click
-    sleep 2
-    level_to_choose_elements[(_likelihood.to_i - 1)].click
-    confirm_btn_elements.first.click
+    select_dra_risk(_likelihood)
     sleep 1
     consequence_btn_elements[0].click
-    sleep 2
-    level_to_choose_elements[(_consequence.to_i + 4)].click
-    confirm_btn_elements[1].click
+    select_dra_risk(_consequence)
   end
 
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
-    sleep 2
-    scroll_multiple_times(2)
+    sleep 1
+    scroll_multiple_times(3)
+    sleep 1
     likelihood_btn_elements[1].click
-    sleep 2
-    level_to_choose_elements[(_likelihood.to_i + 9)].click
-    confirm_btn_elements[2].click
+    select_dra_risk(_likelihood)
     sleep 1
     consequence_btn_elements[1].click
-    sleep 2
-    level_to_choose_elements[(_consequence.to_i + 14)].click
-    confirm_btn_elements[3].click
+    select_dra_risk(_consequence)
   end
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
     @@swap_flag === 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]",0)
-    # add_additional_measure_btn_elements[0].click
-    # scroll_multiple_times(1)
+    scroll_multiple_times(1)
     likelihood_btn_elements[2].click
-    sleep 2
-    level_to_choose_elements[((level_to_choose_elements.size - 11) + _likelihood.to_i)].click
-    confirm_btn_elements[confirm_btn_elements.size - 2].click
+    select_dra_risk(_likelihood)
     consequence_btn_elements[2].click
-    sleep 2
-    level_to_choose_elements[((level_to_choose_elements.size - 6) + _consequence.to_i)].click
-    confirm_btn_elements.last.click
+    select_dra_risk(_consequence)
   end
 
   def is_risk_indicator_color?(_measure, _status)
@@ -198,5 +171,11 @@ class Section3APage < Section2Page
     when 'very high'
       'rgba(160, 16, 35, 1)'
     end
+  end
+
+  def select_dra_risk(_risk)
+    sleep 2
+    level_to_choose_elements[(_risk.to_i - 1)].click
+    confirm_btn_elements.first.click
   end
 end

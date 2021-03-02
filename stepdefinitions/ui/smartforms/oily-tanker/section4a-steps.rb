@@ -68,13 +68,13 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
   base_data.each do |_element|
     begin
-      tmp = @browser.find_element(:xpath, "//span[contains(., \'#{_element}\')]")
+      tmp = @browser.find_element(:xpath, "//span[contains(., \"#{_element}\")]")
     rescue StandardError
       begin 
-        tmp = @browser.find_element(:xpath, "//label[contains(., \'#{_element}\')]")
+        tmp = @browser.find_element(:xpath, "//label[contains(., \"#{_element}\")]")
       rescue StandardError
         begin
-          tmp = @browser.find_element(:xpath, "//p[contains(., \'#{_element}\')]")
+          tmp = @browser.find_element(:xpath, "//p[contains(., \"#{_element}\")]")
         rescue
           tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
         end

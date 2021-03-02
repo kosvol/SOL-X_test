@@ -51,6 +51,7 @@ Feature: Section8
     And I click on back to home
     And I set time
     And I click on active filter
+    And I take note of issued date and time
     And I terminate permit with A/M rank and 9015 pin
     Then I should see task commenced data and time populated with permit activated date and timestamp
 

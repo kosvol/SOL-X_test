@@ -25,7 +25,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 5/E rank and 9015 pin
+    And I update permit in pending update state with 9015 pin
     And I navigate to section 6
     Then I should see submit button enabled
 
@@ -44,7 +44,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with C/O rank and 8383 pin
+    And I update permit in pending update state with 8383 pin
     Then I should see Add Gas button disabled
 
   Scenario: Verify update note shows from Master if request update via non OA
@@ -145,7 +145,7 @@ Feature: PendingUpdate
     And I navigate to OA link
     And I request the permit for update via oa link manually
     And I click on update needed filter
-    And I update permit with A/M rank and 1111 pin
+    And I update permit in pending update state with 1111 pin
     And I navigate to section 4b
     And I click on view EIC certification button
     Then I should not see comment box exists
@@ -168,7 +168,7 @@ Feature: PendingUpdate
     And I navigate to OA link
     And I request the permit for update via oa link manually
     And I click on update needed filter
-    And I update permit with A/M rank and 9015 pin
+    And I update permit in pending update state with 9015 pin
     And I navigate to section 3a
     And I click on View Edit Hazard
     Then I should see DRA content editable
@@ -191,7 +191,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 5/E rank and 7551 pin
+    And I update permit in pending update state with 7551 pin
     And I navigate to section 6
     Then I should see previous and close buttons
 
@@ -210,7 +210,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with A 3/E rank and 6727 pin
+    And I update permit in pending update state with 6727 pin
     And I press next for 1 times
     And I should see rol checklist questions fields enabled
 
@@ -232,7 +232,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 3/E rank and 4685 pin
+    And I update permit in pending update state with 4685 pin
     And I navigate to section 4a
     Then I should see checklist selections fields enabled
     And I press next for 1 times
@@ -262,7 +262,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit with 3/E rank and 7551 pin
+    And I update permit in pending update state with 7551 pin
     And I navigate to section 4a
     Then I should not see checklist selections fields enabled
     And I press next for 1 times

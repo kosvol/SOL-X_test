@@ -30,9 +30,9 @@ And (/^I click on back arrow$/) do
 end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
-  sleep 2
+  sleep 1
   (1.._times.to_i).each do |_i|
-    _condition === 'next' ? on(Section0Page).click_next : on(CommonFormsPage).previous_btn_elements.first.click
+    _condition === 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
   end
 end
 
@@ -47,12 +47,16 @@ And (/^I navigate to section (.+)$/) do |_which_section|
   on(Section6Page).toggle_to_section(_which_section)
 end
 
+And (/^I update permit in pending update state with (.*) pin$/) do |_pin|
+  on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  sleep 1
+  step "I enter pin #{_pin}"
+end
+
 And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
   p "index >> #{permit_id}"
-  p "permit id >> #{CommonPage.get_permit_id}"
-  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements.first.text
   if _update_or_terminate === 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
   elsif _update_or_terminate === 'update'
@@ -66,4 +70,8 @@ And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _r
   end
   sleep 1
   step "I enter pin #{_pin}"
+end
+
+And ('I take note of issued date and time') do
+  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text
 end

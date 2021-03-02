@@ -1,0 +1,9 @@
+@lng-section-8
+Feature: LNGSmartFormsPermission
+    As a ...
+    I want to ...
+    So that ...
+
+    Scenario: EIC section 8 competent person label change to C/O 2/E
+
+    Scenario: EIC section 8 issuing authority to change to Master and C/E

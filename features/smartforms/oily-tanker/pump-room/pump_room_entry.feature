@@ -103,17 +103,6 @@ Feature: PumpRoomEntry
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas
 
-  # Scenario: Verify user can add Gas Test Record without toxic gas
-  #   Given I launch sol-x portal without unlinking wearable
-  #   When I navigate to create new PRE
-  #   And I enter pin 8383
-  #   And I add only normal gas readings
-  #   And I enter pin 9015
-  #   And I set time
-  #   Then I will see popup dialog with By A/M Atif Hayat crew rank and name
-  #   When I dismiss gas reader dialog box
-  #   Then I should see gas reading display without toxic gas
-
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

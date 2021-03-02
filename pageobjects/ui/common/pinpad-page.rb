@@ -14,7 +14,7 @@ class PinPadPage
       index = num.to_i === 0 ? 10 : num
       query = "//ol[@class='pin-entry']/li[%s]/button"  
       query = query % [index.to_s]
-      p ">> #{query}"
+      # p ">> #{query}"
       BrowserActions.js_click("#{query}")
       # @browser.execute_script(%(document.evaluate("#{query}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end

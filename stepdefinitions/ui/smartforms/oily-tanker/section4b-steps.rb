@@ -75,6 +75,7 @@ When (/^I select yes to EIC$/) do
 end
 
 And (/^I click on (.*) EIC certification button$/) do |_which_type|
+  sleep 2
   if _which_type === "create"
     on(Section4BPage).create_eic_btn
   elsif _which_type === "view"

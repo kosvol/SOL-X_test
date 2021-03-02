@@ -82,7 +82,7 @@ class NavigationPage < CommonFormsPage
   def click_nav_category(_category,_which_category)
     if _which_category === "forms"
       @browser.find_element(:xpath, @@which_category%[_category]).click
-    elsif _which_category === "PRE"
+    elsif (_which_category === "PRE" || _which_category === "CRE")
       category_objs = @browser.find_elements(:xpath, @@which_category%[_category])
       category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
     elsif _which_category === "setting"
