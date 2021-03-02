@@ -58,6 +58,39 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('pre/mod-06.update-form-status-for-termination', _user)
   end
 
+  def trigger_forms_termination(_permit_type, _user, _vessel)
+    @via_service_or_not = true
+    ### init ptw form
+    create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
+    create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
+    ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', _user, _vessel)
+    CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+    form_number = CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+
+    ### init dra form
+    init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
+    init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
+    init_dra['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
+    ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_dra', _user, _vessel)
+    CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
+
+    submit_active = set_permit_status('PENDING_MASTER_APPROVAL')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+
+    submit_active = set_permit_status('ACTIVE')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+
+    submit_active = set_permit_status('PENDING_TERMINATION')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+
+    submit_active = set_permit_status('CLOSED')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+    puts form_number
+    puts _permit_type
+  end
+
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     @via_service_or_not = true
     ### init ptw form
@@ -164,6 +197,13 @@ class BypassPage < Section0Page
       set_update_require_for_permit(_permit_type, _user)
     end
     ### End submit states
+  end
+
+  def submit_permit_for_status_change_to_uri(_submit_active, _user, _permit_type, _uri)
+    _submit_active['variables']['formId'] = CommonPage.get_permit_id
+    _submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', _submit_active)
+    ServiceUtil.post_graph_ql_to_uri('ptw/mod_15.submit-to-active', _user, _uri)
   end
 
   def submit_permit_for_status_change(_submit_active, _user, _permit_type)

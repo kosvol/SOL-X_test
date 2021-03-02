@@ -27,9 +27,15 @@ Feature: PermitList
     Given I log in to the Office Portal
     When I select the "dev" vessel
     And I check the forms number on the vessel card
-    Then I should see the same number on the All Permits button
-
+    Then I should see the same number on the All Permits
+  @ska
   Scenario: Verify the last terminated permit appears at the top of the list in the Office Portal (5133)
+    Given I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
+    When I log in to the Office Portal
+    And I select the "sit" vessel
+    #Then I should see the terminated form at the top of the forms list
+  # Check if there is a terminated date for the form
+  # Compare number/name
 
   Scenario: Verify counters are updated after the form termination (3781, 4468)
 

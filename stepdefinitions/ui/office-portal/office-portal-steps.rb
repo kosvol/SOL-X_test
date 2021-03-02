@@ -78,7 +78,7 @@ Then(/^I check the forms number on the vessel card$/) do
   @permits_quantity = on(OfficePortalPage).vessel_card_permits_quantity(@vessel)
 end
 
-Then(/^I should see the same number on the All Permits button$/) do
+Then(/^I should see the same number on the All Permits$/) do
   does_include(on(OfficePortalPage).all_permits_btn_element.text, @permits_quantity)
   sleep(1)
 end
@@ -163,3 +163,8 @@ And(/^I should see This Permit Has been approved on label with the correct date$
   date = on(OfficePortalPage).permit_approved_on_element.text.sub('This Permit Has been approved on ', '')
   does_include(approved_date, date)
 end
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel)
+end
+
