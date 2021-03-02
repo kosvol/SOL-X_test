@@ -36,6 +36,10 @@ Before do |scenario|
 
   @browser = BrowserSetup.get_browser(ENV['OS'], $current_platform)
 
+  # if !scenario.undefined?
+  #   $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - Undefined Step", scenario, @browser)
+  # end
+
   # device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
 
   # $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
@@ -59,6 +63,7 @@ After do |scenario|
       #   # $living_test.info(:fatal, 'Exception Raised', e, @browser)
       # end
     else
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
       # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
       # $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario.name.gsub(' ', '_'), @browser)
     end
@@ -78,12 +83,12 @@ end
 
 AfterStep do |scenario|
   begin
-    if !scenario.failed?
+    if scenario.passed?
       $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
       # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
       @step += 1
     else
-      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario, @browser)
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
       # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
     end
   rescue Exception => e

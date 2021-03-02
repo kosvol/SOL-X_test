@@ -31,7 +31,7 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 0159
     And I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
     And I sleep for 100 seconds
@@ -104,7 +104,7 @@ Feature: PumpRoomEntry
   #   And I add all gas readings
   #   And I enter pin 9015
   #   And I dismiss gas reader dialog box
-  #   And (for pre) I submit permit for Officer Approval
+  #   And for pre I submit permit for Officer Approval
   #   And I getting a permanent number from indexedDB
   #   And I activate the current PRE form
   #   And I sleep for 100 seconds
@@ -189,7 +189,7 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
     And I sleep for 100 seconds
