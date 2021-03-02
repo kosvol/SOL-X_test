@@ -89,3 +89,8 @@ end
 Then (/^I load workload data$/) do
   SmartFormDBPage.load_work_rest_hour
 end
+
+Given (/^I remove crew from vessel$/) do
+  SmartFormDBPage.get_table_data('fauxton', 'get_user')
+  SmartFormDBPage.delete_crew_from_vessel('fauxton', 'delete_user')
+end

@@ -48,3 +48,7 @@ Feature: DB reset
   @update_lng_crew_member_vessel
   Scenario: Update crew members vessel
     Given I update crew members to sit-lng-vessel vessel
+
+  @removed-crew-from-vessel
+  Scenario: Removed crew from vessel
+    Given I remove crew from vessel
