@@ -77,7 +77,6 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', _user, _vessel)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
-    form_number = CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### init dra form
     init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
@@ -98,9 +97,7 @@ class BypassPage < Section0Page
 
     submit_active = set_permit_status('CLOSED')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
-    puts form_number
-    puts _permit_type
-  end
+end
 
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     @via_service_or_not = true

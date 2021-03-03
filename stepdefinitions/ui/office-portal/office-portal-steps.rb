@@ -59,7 +59,7 @@ Then(/^I should see the vessel name at the top bar and permits list$/) do
 end
 
 When(/^I select the "([^"]*)" vessel$/) do |vessel|
-  @vessel = vessel.upcase
+  @vessel = vessel
   on(OfficePortalPage).select_vessel(@vessel)
   sleep(1)
 end
@@ -166,5 +166,17 @@ end
 
 Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
   on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  puts @formNumber
+  puts @formName
+  sleep(2)
 end
 
+
+Then(/^I should see the terminated form at the top of the forms list$/) do
+  does_include(on(OfficePortalPage).first_permit_with_time, @formNumber)
+  does_include(on(OfficePortalPage).first_permit_with_time, @formName)
+end

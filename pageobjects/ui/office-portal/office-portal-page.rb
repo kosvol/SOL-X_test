@@ -22,6 +22,7 @@ class OfficePortalPage
   element(:remember_box, xpath: "//span[@class='checkbox']")
   element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
   element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
+  element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
