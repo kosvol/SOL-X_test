@@ -40,6 +40,10 @@ class OfficePortalPage
     $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
   end
 
+  def select_permit_by_number(_whatNumber)
+    $browser.find_element(:xpath, "//span[contains(text(),'%s')]/..//span[contains(@class,'check')]"%_whatNumber).click
+  end
+
   def get_permit_number(_permitNumber)
     $browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[1]"%_permitNumber).text
   end
