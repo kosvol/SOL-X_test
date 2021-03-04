@@ -49,6 +49,7 @@ class Section1Page < Section0Page
     tmp << generic_data_elements[6].text
     tmp << generic_data_elements[7].text
     tmp << generic_data_elements[8].text
+    tmp << generic_data_elements[9].text
     tmp
   end
 

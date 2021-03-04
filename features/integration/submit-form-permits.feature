@@ -123,7 +123,7 @@ Feature: SubmitPermit
     And I review page 3c of submitted enclose workspace permit
     And I review page 3d of submitted enclose workspace permit
     And I review page 4a of submitted enclose workspace permit
-    # And I press next for 6 times
+    # And I navigate to section 4b
     And I review page 4a checklist of submitted enclose workspace permit
     And I review page 4b of submitted enclose workspace permit
     And I review page 5 of submitted enclose workspace permit
