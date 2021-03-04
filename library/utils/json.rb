@@ -32,6 +32,11 @@ module JsonUtil
 
     @@response_payload_fpath = '../../../payload/response/'
 
+    def read_json_response(filename)
+      get_absolute_path = File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__)
+      file = File.read(get_absolute_path)
+    end
+
     def create_response_file(filename, response_body, response_status_code)
       if response_status_code === 200
         FileUtils.mkdir_p(File.expand_path("#{filename.split('/').first}/", 'payload/response'))

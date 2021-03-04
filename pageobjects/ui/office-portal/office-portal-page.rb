@@ -22,6 +22,7 @@ class OfficePortalPage
   element(:remember_box, xpath: "//span[@class='checkbox']")
   element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
   element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
+  element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
@@ -37,6 +38,10 @@ class OfficePortalPage
 
   def vessel_card_permits_quantity(_formsQuantity)
     $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
+  end
+
+  def select_permit_by_number(_whatNumber)
+    $browser.find_element(:xpath, "//span[contains(text(),'%s')]/..//span[contains(@class,'check')]"%_whatNumber).click
   end
 
   def get_permit_number(_permitNumber)

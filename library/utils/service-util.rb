@@ -42,6 +42,17 @@ module ServiceUtil
       error_logging('Switch Response Body: ', @@response)
     end
 
+    def post_graph_ql_to_uri(which_json, _user = '1111', _uri)
+      uri = $obj_env_yml[_uri]['service']
+      content_body = JsonUtil.read_json(which_json)
+      error_logging('URI: ', uri)
+      error_logging('Request Body: ', content_body)
+      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
+      error_logging('Response Body: ', @@response)
+      error_logging('Status Code: ', get_http_response_status_code)
+      JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
+    end
+
     # def switch_vessel_type(_vesselType, _user = '1111')
     #   uri = EnvironmentSelector.get_vessel_switch_url
     #   if $current_environment === 'auto'

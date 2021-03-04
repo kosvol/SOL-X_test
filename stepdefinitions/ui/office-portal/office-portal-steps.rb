@@ -59,7 +59,7 @@ Then(/^I should see the vessel name at the top bar and permits list$/) do
 end
 
 When(/^I select the "([^"]*)" vessel$/) do |vessel|
-  @vessel = vessel.upcase
+  @vessel = vessel
   on(OfficePortalPage).select_vessel(@vessel)
   sleep(1)
 end
@@ -78,7 +78,7 @@ Then(/^I check the forms number on the vessel card$/) do
   @permits_quantity = on(OfficePortalPage).vessel_card_permits_quantity(@vessel)
 end
 
-Then(/^I should see the same number on the All Permits button$/) do
+Then(/^I should see the same number on the All Permits$/) do
   does_include(on(OfficePortalPage).all_permits_btn_element.text, @permits_quantity)
   sleep(1)
 end
@@ -108,9 +108,9 @@ end
 
 Then(/^I should see the selected form in a new tab$/) do
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[2])
-  does_include(on(OfficePortalPage).topbar_header_element.text, @permit_number)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @permit_name)
-  sleep(2)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  sleep(1)
 end
 
 And(/^I click on Add Filter button$/) do
@@ -162,4 +162,28 @@ And(/^I should see This Permit Has been approved on label with the correct date$
   approved_date = on(OfficePortalPage).get_approved_date_time
   date = on(OfficePortalPage).permit_approved_on_element.text.sub('This Permit Has been approved on ', '')
   does_include(approved_date, date)
+end
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  sleep(2)
+end
+
+
+Then(/^I should see the terminated form at the top of the forms list$/) do
+  does_include(on(OfficePortalPage).first_permit_with_time, @formNumber)
+  does_include(on(OfficePortalPage).first_permit_with_time, @formName)
+end
+
+And(/^I select the recently terminated form$/) do
+  on(OfficePortalPage).select_permit_by_number(@formNumber)
+end
+
+And(/^I reload the page$/) do
+  $browser.navigate.refresh
+  sleep(1)
 end
