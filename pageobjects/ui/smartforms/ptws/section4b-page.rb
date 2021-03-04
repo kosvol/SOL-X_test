@@ -21,6 +21,7 @@ class Section4BPage < Section4APage
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]")
   element(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/p")
   elements(:wifi_popup, xpath: "//div[starts-with(@class,'PreemptiveOfflineInfo__')]")
+  elements(:competent_label, xpath: "//section[starts-with(@class,'Section__SectionMain')]/h2")
   
   # sub form
   elements(:eic_date_and_time, xpath: "//button[@id='eic_eicCreatedDate']")

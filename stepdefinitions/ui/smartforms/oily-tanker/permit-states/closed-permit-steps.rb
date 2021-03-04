@@ -7,18 +7,15 @@ And (/^I request terminating permit to be updated$/) do
   step 'I enter pin 1111'
 end
 
-And (/^I terminate the permit$/) do
-  # sleep 1
+And (/^I terminate the permit with (.*) pin$/) do |_pin|
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
-  # on(CommonFormsPage).review_and_terminate_btn_elements.first.click
-  step 'I enter pin 1111'
+  step "I enter pin #{_pin}"
   on(Section9Page).submit_permit_termination_btn
-  step "I sign on canvas with valid 1111 pin"
+  step "I sign on canvas with valid #{_pin} pin"
   sleep 2
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 4
   step 'I set permit id'
-  # step 'I click on back to home'
 end
 
 Then (/^I should see termination date display$/) do

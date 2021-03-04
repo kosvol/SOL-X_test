@@ -15,7 +15,7 @@ Feature: ClosedPermit
     And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit
+    And I terminate the permit with 1111 pin
     And I set time
     And I navigate to "Withdrawn" screen for forms
     Then I should see termination date display
