@@ -12,7 +12,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -42,7 +42,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during less than 2 hours
+    And I fill section 1 of maintenance permit with duration less than 2 hours
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -72,7 +72,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -102,7 +102,7 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during less than 2 hours
+    And I fill section 1 of maintenance permit with duration less than 2 hours
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields

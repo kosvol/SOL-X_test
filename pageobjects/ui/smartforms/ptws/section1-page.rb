@@ -10,9 +10,11 @@ class Section1Page < Section0Page
   buttons(:btn_list, xpath: "//nav[starts-with(@class,'FormNavigationFactory__Button')]/button")
   buttons(:duration_btn, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:sea_state_btn, xpath: '//button[@id="seaState"]')
+  button(:zone_btn, xpath: '//button[@id="zone"]')
   button(:wind_force_btn, xpath: '//button[@id="windforce"]')
   elements(:dd_list_value, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   element(:s1_navigation_dropdown, xpath: "//h3[contains(.,'Section 1: Task Description')]")
+  text_field(:zone_details_input, xpath: '//input[@id="zone-details"]')
 
   @@maint_require_text = '//div[@id="1_6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
@@ -100,6 +102,14 @@ class Section1Page < Section0Page
     select_checkbox(@@condition_check_btn, 'Loaded')
     select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
+    BrowserActions.scroll_click(zone_btn_element)
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[0])
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[0])
+    sleep 2
+    zone_details_input_element.send_keys("Test Automation")
+    sleep 5
     BrowserActions.hide_keyboard
   end
 

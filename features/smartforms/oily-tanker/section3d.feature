@@ -54,7 +54,7 @@ Feature: Section3DDRA
     And I enter pin 8383
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
     And I sign DRA section 3d with 8383 as valid pin
     Then I should see signed details
@@ -93,7 +93,7 @@ Feature: Section3DDRA
     And I enter pin 8383
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
     And I sign DRA section 3d with 6726 as valid pin
     Then I should see not authorize error message
