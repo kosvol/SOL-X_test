@@ -4,7 +4,7 @@ Feature: LNGSmartFormsPermission
     I want to ...
     So that ...
 
-    Scenario: EIC section 8 competent person label change to C/O 2/E
+    Scenario Outline: EIC section 8 competent person label change to C/O 2/E
         Given I submit permit <permit_payload> via service with 9015 user and set to active state
         And I set oa permit to ACTIVE state
         And I launch sol-x portal without unlinking wearable
