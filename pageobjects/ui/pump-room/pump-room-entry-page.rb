@@ -7,6 +7,7 @@ class PumpRoomEntry < PreDisplay
   element(:current_activity_pre, xpath: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span")
   element(:pre_id, xpath: "//h4[contains(text(),'PRE No:')]/following::p")
   element(:create_new_pre_btn, xpath: "//span[contains(.,'Create New Pump')]")
+  element(:create_new_cre_btn, xpath: "//span[contains(.,'Create New Compressor')]")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button(:four_hours_duration, xpath: "//button[contains(text(),'4 hours')]")

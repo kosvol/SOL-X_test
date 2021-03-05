@@ -1,5 +1,6 @@
 And(/^I navigate to create new (PRE|CRE)$/) do |_permit_type|
-  on(PumpRoomEntry).create_new_pre_btn_element.click
+  on(PumpRoomEntry).create_new_pre_btn_element.click if _permit_type === "PRE"
+  on(PumpRoomEntry).create_new_cre_btn_element.click if _permit_type === "CRE"
   sleep 1
 end
 
