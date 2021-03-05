@@ -6,7 +6,7 @@ end
 
 Then (/^I should see incomplete fields warning message display$/) do
   is_equal(on(Section6Page).info_warning_boxes_elements.first.text,"Please Complete The Following Sections")
-  is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
+  is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 1: Task Description\nSection 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
 end
 
 And (/^I should see incomplete signature field warning message display$/) do

@@ -13,8 +13,10 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    # And I navigate to section 4a
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     Then I submit permit for Master Review
@@ -43,17 +45,13 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -73,8 +71,9 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     Then I submit permit for Master Review
@@ -103,19 +102,13 @@ Feature: ActivePermit
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    And I click on pending approval filter
-    And I approve permit
-    And I click on back to home
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
     And I click on pending approval filter
     And I approve permit
     And I click on back to home

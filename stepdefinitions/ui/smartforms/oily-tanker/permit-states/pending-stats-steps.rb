@@ -69,10 +69,12 @@ Then (/^I should see the newly pending approval permit details listed on Pending
   is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
 end
 
-And (/^I set oa permit to office approval state manually$/) do
-  on(PendingStatePage).master_review_btn_elements.first.click
+And (/^I set oa permit to office (approval|review) state manually$/) do |_condition|
+  on(PendingStatePage).master_review_btn_elements.first.click if _condition === "approval"
+  on(PendingStatePage).master_approval_btn_elements.first.click if _condition === "review"
   step 'I enter pin 1111'
-  step 'I navigate to section 6'
+  step 'I navigate to section 6' if _condition === "approval"
+  step 'I navigate to section 7' if _condition === "review"
   on(PendingStatePage).submit_oa_btn
   sleep 1
   step 'I click on back to home'

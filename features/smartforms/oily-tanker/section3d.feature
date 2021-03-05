@@ -19,8 +19,8 @@ Feature: Section3DDRA
     And I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp   |
-      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Pump Room Bottom |
+      | user          | zoneid                      | mac               | location_stamp |
+      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -72,7 +72,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3d
-    And I sign DRA section 3d with <non_ra_pin> as valid pin
+    And I sign DRA section 3d with <non_ra_pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:
@@ -95,7 +95,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
-    And I sign DRA section 3d with 6726 as valid pin
+    And I sign DRA section 3d with 6726 as invalid pin
     Then I should see not authorize error message
 
     Examples:
@@ -109,7 +109,7 @@ Feature: Section3DDRA
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
-    And I sign DRA section 3d with <pin> as valid pin
+    And I sign DRA section 3d with <pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:

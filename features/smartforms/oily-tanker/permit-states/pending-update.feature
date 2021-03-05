@@ -13,6 +13,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -53,6 +54,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -93,6 +95,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -113,6 +116,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -179,6 +183,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -201,6 +206,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I fill up section 1 with default value
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -220,6 +226,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -250,6 +257,7 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
