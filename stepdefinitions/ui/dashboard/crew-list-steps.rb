@@ -97,7 +97,7 @@ And (/^I add crew$/) do
   sleep 1
   on(CrewListPage).retrieve_data_btn
   sleep 1
-  on(CrewListPage).view_pin_btn
+  on(CrewListPage).view_crew_pin_btn
   sleep 2
   @@entered_pin = on(CrewListPage).pin_text_field_element.text
   p "new pin >> #{@@entered_pin}"
@@ -109,11 +109,6 @@ And (/^I add crew (.+) id$/) do |_crew|
   on(CrewListPage).crew_id = _crew
   sleep 1
   on(CrewListPage).retrieve_data_btn
-  sleep 1
-  on(CrewListPage).view_pin_btn
-  @@entered_pin = on(CrewListPage).pin_text_field_element.text
-  p "new pin >> #{@@entered_pin}"
-  on(CommonFormsPage).done_btn_elements.first.click
 end
 
 Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
