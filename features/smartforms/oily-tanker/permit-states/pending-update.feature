@@ -206,7 +206,6 @@ Feature: PendingUpdate
     And I enter pin 9015
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
-    And I fill up section 1 with default value
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home

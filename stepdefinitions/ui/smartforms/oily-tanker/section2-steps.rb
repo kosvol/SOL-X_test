@@ -14,7 +14,7 @@ And (/^I should see previous and close buttons$/) do
   on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section2Page).previous_btn_elements.size, 1)
   to_exists(on(Section2Page).previous_btn_elements.first)
-  to_exists(on(Section2Page).close_btn_elements.first)
+  # to_exists(on(Section2Page).close_btn_elements.first)
   # to_exists(on(Section2Page).save_btn_element)
 end
 
