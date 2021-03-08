@@ -29,18 +29,14 @@ class PumpRoomEntry < PreDisplay
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
   ### gx
-  # @@text_obj = "//*[contains(text(),'%s')]"
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
-  # text_field(:purpose_of_entry, xpath: "//input[@placeholder='Required']")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
   element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
   element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p")
-  # element(:pre_creator_form, xpath: "//div[contains(@class,'Section__Description')]/div[contains(.,'Start Time')]")
-  
   ### end
 
   def get_validity_start_and_end_time
@@ -133,8 +129,21 @@ class PumpRoomEntry < PreDisplay
     end
   end
   
-  def is_text_displayed?(_value)
-    is_element_displayed(@@text_obj,_value)
+  def is_text_displayed?(like,_value)
+    if like == "alert_text"
+      xpath = "//div[contains(.,'%s')]"
+      # value = alert_text % [_value]
+    elsif like == "text"
+      xpath = "//*[contains(text(),'%s')]"
+      # value = any_text % [_value]
+    elsif like == "auto_terminated"
+      xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"# % [_value]
+    elsif ((like == "label") || (like == "page"))
+      xpath = "//h3[contains(text(),'%s')]"# % [_value]
+    elsif like == "button"
+      xpath = @@button
+    end
+    is_element_displayed(xpath,_value)
   end
 
   def is_alert_text_displayed?(_value)
@@ -237,7 +246,7 @@ class PumpRoomEntry < PreDisplay
 
   private
 
-  def is_element_displayed(_xpath,_value)
+  def is_element_displayed(_xpath,_value=nil)
     begin
       # alert_text = "//div[contains(.,'%s')]"
       value = _xpath % [_value]

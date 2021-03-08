@@ -72,7 +72,7 @@ end
 
 And (/^I should see the (text|label|page) '(.*)'$/) do |like, text|
   sleep 1
-  is_true(on(PumpRoomEntry).is_text_displayed?(text))
+  is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
 end
 
 And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
