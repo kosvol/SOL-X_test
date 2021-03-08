@@ -27,7 +27,7 @@ And (/^I request the permit for update via oa link manually$/) do
 end
 
 And (/^I approve oa permit via oa link manually$/) do
-  # $browser.get("https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/01F00CFWNFVNZZ2CQ6EV5XVKX2?formId=LNGSIT/PTW/2021/040&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
+  # $browser.get("https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/01F07VY2VJ5PJMPMDZR2BW9ZKF?formId=AUTO/PTW/2021/164&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 5
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox

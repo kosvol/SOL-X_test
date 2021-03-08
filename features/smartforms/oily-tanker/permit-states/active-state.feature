@@ -475,8 +475,8 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    And I add gas to permit with <rank> rank and <pin> pin
+    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -492,8 +492,8 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    And I add gas to permit with <rank> rank and <pin> pin
+    # And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
     Examples:
@@ -509,8 +509,8 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    And I add gas to permit with <rank> rank and <pin> pin
+    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:

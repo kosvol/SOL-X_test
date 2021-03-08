@@ -17,9 +17,9 @@ class OAPage < Section9Page
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
-  button(:designation, xpath: "//button[@name='designation']")
+  # button(:designation, xpath: "//button[@name='designation']")
   # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
-  button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
+  # button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
@@ -29,7 +29,6 @@ class OAPage < Section9Page
   ## Comment elements ###  
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
-  # element(:enter_comment_box, xpath: "//textarea")
   text_field(:name_box, xpath: "//input[@id='user-name']")
   button(:rank_dd_list, xpath: "//button[@id='rank']")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
@@ -56,10 +55,14 @@ class OAPage < Section9Page
     minute_from_picker_elements[1].click
     ### set to time
     dismiss_picker_element.click
+    sleep 1
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     date_time_to_elements[1].click
     hour_from_picker_elements[(current_hour.to_i+2)].click
     minute_from_picker_elements[0].click
     dismiss_picker_element.click
+    sleep 1
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     # date_time_to_elements[0].click
 
     sleep 1
@@ -98,10 +101,12 @@ class OAPage < Section9Page
   end
 
   def set_designation
-    designation
+    # designation
+    BrowserActions.js_click("//button[@name='designation']")
     sleep 2
     BrowserActions.scroll_down
-    set_vs_designation
+    # set_vs_designation
+    BrowserActions.js_click("//button[contains(.,'VS')]")
   end
 
   private

@@ -11,12 +11,12 @@ class PtwFilterPage < CreatedPermitToWorkPage
   span(:pending_termination, xpath: "//span[@data-testid='pendingTermination-stat']")
 
   def does_permit_counter_match
-    get_permits_counter
+    get_permits_counter 
     ($total_pending_approval.to_s === pending_approval) && ($total_update_needed.to_s === pending_update) && ($total_active.to_s === active) && ($total_terminal.to_s === pending_termination)
   end
 
   def is_permit_listing_count?(_which_filter)
-    scroll_multiple_times(8)
+    scroll_multiple_times(12)
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
     case _which_filter
     when 'pending approval'
