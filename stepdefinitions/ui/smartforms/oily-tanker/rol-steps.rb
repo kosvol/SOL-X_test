@@ -42,7 +42,7 @@ And (/^I request update for permit$/) do
 end
 
 Then (/^I should not see extra buttons$/) do
-  on(PendingStatePage).edit_update_btn_elements.first.click
+  on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   step 'I enter pin 9015'
   step 'I press next for 1 times'
   sleep 1

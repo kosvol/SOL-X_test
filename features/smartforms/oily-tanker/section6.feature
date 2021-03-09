@@ -273,16 +273,16 @@ Feature: Section6
     And I press next for 1 times
     And I fill up compulsory fields
     And I press next for 1 times
-    And  I press the N/A button to disable gas testing
+    And I press the N/A button to disable gas testing
     Then I should see warning label
-    And  I should not see gas_equipment_input
-    And  I should not see gas_sr_number_input
-    And  I should not see gas_last_calibration_button
+    And I should not see gas_equipment_input
+    And I should not see gas_sr_number_input
+    And I should not see gas_last_calibration_button
     And I press the Yes button to enable gas testing
     Then I should not see warning label
-    And  I should see gas_equipment_input
-    And  I should see gas_sr_number_input
-    And  I should see gas_last_calibration_button
+    And I should see gas_equipment_input
+    And I should see gas_sr_number_input
+    And I should see gas_last_calibration_button
 
     Examples:
       | level_one_permit      | level_two_permit     |

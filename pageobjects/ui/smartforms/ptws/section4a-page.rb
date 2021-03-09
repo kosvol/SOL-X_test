@@ -113,6 +113,7 @@ class Section4APage < Section3DPage
 
   def fill_up_checkbox_inputs
     tmp = 0
+    sleep 2
     spacer = occurrence_elements.size
     (0..((radio_btn_elements.size / spacer) - 1)).each do |_i|
       @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{tmp}").click()))

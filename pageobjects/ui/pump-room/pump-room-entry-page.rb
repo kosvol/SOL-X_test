@@ -139,7 +139,9 @@ class PumpRoomEntry < PreDisplay
     elsif like == "auto_terminated"
       xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"# % [_value]
     elsif ((like == "label") || (like == "page"))
-      xpath = "//h3[contains(text(),'%s')]"# % [_value]
+      xpath = "//h2[contains(text(),'%s')]"# % [_value]
+    elsif like == "header"
+      xpath = "//h3[contains(text(),'%s')]"
     elsif like == "button"
       xpath = @@button
     end

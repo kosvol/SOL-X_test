@@ -64,9 +64,13 @@ Then (/^I should see the newly pending approval permit details listed on Pending
   @@pending_approval_permit_data = on(PendingStatePage).set_section1_filled_data
   p ">> #{@@pending_approval_permit_data}"
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
-  # is_equal(@@pending_approval_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
   is_equal(@@pending_approval_permit_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
-  is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  p "base >> #{@@pending_approval_permit_data[3]}"
+  if @@pending_approval_permit_data[3] === on(CreatedPermitToWorkPage).created_date_time_elements.first.text
+    is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  else
+    is_equal(on(CommonFormsPage).get_current_date_and_time_minus_a_min, on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  end
 end
 
 And (/^I set oa permit to office (approval|review) state manually$/) do |_condition|

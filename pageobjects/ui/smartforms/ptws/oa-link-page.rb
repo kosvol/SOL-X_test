@@ -58,8 +58,10 @@ class OAPage < Section9Page
     sleep 1
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     date_time_to_elements[1].click
-    hour_from_picker_elements[(current_hour.to_i+2)].click
-    minute_from_picker_elements[0].click
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",(current_hour.to_i+2))
+    # hour_from_picker_elements[(current_hour.to_i+2)].click
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",0)
+    # minute_from_picker_elements[0].click
     dismiss_picker_element.click
     sleep 1
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")

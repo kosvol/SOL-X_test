@@ -175,7 +175,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin <pin>
-    Then I should see the label 'Pump Room Entry Display'
+    Then I should see the header 'Pump Room Entry Display'
 
     Examples:
       | role            | pin  |
