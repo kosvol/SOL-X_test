@@ -66,11 +66,14 @@ office_approval:
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
   password: "13-dead-CENT-think-56"
 
-maria_db:
-  mariadb_host: "safevue-mariadb-dev.mariadb.database.azure.com"
-  mariadb_user: "safevue@safevue-mariadb-dev"
-  mariadb_pass: "64d58dba2c535612841489d69a4d9998"
-  Emariadb_database: "replication"
+postgres:
+  adapter: "postgresql"
+  encoding: "unicode"
+  database: "safevue"
+  pool: 5
+  username: "safevue_user@safevue-dev"
+  password: "79-window-CHOOSE-nation-38"
+  host: "safevue-dev.postgres.database.azure.com"
 
 pin_management:
   sit:

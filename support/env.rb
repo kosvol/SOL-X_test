@@ -11,7 +11,7 @@ require 'rspec/expectations'
 require 'cucumber'
 require 'appium_lib'
 require 'json-schema'
-require 'mysql2'
+# require 'mysql2'
 
 require_all 'library'
 require_all 'pageobjects'
