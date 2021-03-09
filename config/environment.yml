@@ -72,6 +72,15 @@ maria_db:
   mariadb_pass: "64d58dba2c535612841489d69a4d9998"
   Emariadb_database: "replication"
 
+postgres:
+  adapter: "postgresql"
+  encoding: "unicode"
+  database: "safevue"
+  pool: 5
+  username: "safevue_user@safevue-dev"
+  password: "79-window-CHOOSE-nation-38"
+  host: "safevue-dev.postgres.database.azure.com"
+
 pin_management:
   sit:
     db: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/"

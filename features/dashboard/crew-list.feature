@@ -96,6 +96,7 @@ Feature: CrewList
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
+  @production
   Scenario: Verify user can add crew on an ad-hoc manner
     Given I launch sol-x portal
     And I remove crew from vessel

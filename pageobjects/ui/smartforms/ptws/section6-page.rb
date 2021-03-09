@@ -10,7 +10,7 @@ class Section6Page < Section5Page
   element(:rank_and_name_stamp, xpath: "//button[starts-with(@data-testid,'show-signature-display')]/span/span")
   # div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
-  element(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
+  elements(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
   elements(:info_warning_boxes, xpath: "//div[starts-with(@class,'InfoBox__')]/*")
   element(:gas_notes, xpath: "//div[starts-with(@class,'WarningBox__')]/*")
   elements(:gas_reading_table, xpath: "//div[starts-with(@class,'cell')]")
@@ -51,12 +51,12 @@ class Section6Page < Section5Page
     # select_checkbox(@@gas_yes_no_btn, value)
   end
 
-  def is_info_box_disable_gas_exist?
-    $browser.find_element(:xpath, @@inf_box_disable_gas)
-    true
-  rescue StandardError
-    false
-  end
+  # def is_info_box_disable_gas_exist?
+  #   $browser.find_element(:xpath, @@inf_box_disable_gas)
+  #   true
+  # rescue StandardError
+  #   false
+  # end
 
   private
 

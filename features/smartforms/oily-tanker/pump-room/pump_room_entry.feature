@@ -187,7 +187,6 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     Then I should see the current PRE in the "Created PRE" list
 
-  @debug
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

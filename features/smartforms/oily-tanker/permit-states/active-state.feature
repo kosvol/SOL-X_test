@@ -12,9 +12,11 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    # And I navigate to section 4a
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     Then I submit permit for Master Review
@@ -42,18 +44,14 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I fill section 1 of maintenance permit with duration less than 2 hours
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -72,9 +70,10 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     Then I submit permit for Master Review
@@ -102,20 +101,14 @@ Feature: ActivePermit
     And I enter pin 9015
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I set maintenance during less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
+    And I fill section 1 of maintenance permit with duration less than 2 hours
+    And I navigate to section 3d
+    And I sign DRA section 3d with 9015 as valid pin
+    And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
-    And I click on pending approval filter
-    And I approve permit
-    And I click on back to home
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -482,8 +475,8 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    And I add gas to permit with <rank> rank and <pin> pin
+    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -499,7 +492,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
+    And I view permit with <rank> rank and <pin> pin
     And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
@@ -516,8 +509,8 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I update permit with <rank> rank and <pin> pin
-    And I navigate to section 6
+    And I add gas to permit with <rank> rank and <pin> pin
+    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:

@@ -717,6 +717,9 @@ span.classname {
 .status.pass {
   color: #32cd32;
 }
+.status.undefined {
+  color: #cec704;
+}
 .info > i,
 .status.info {
   color: #22a1c4;
@@ -790,6 +793,7 @@ span.classname {
   background: #d88519;
   border-color: #b96600;
 }
+
 .label.skip,
 .label.skipped {
   background: #2196f3;
@@ -824,6 +828,9 @@ span.classname {
 .label.outline.skip,
 .label.outline.skipped {
   color: #2196f3;
+}
+.label.outline.undefined {
+  color: #cec704;
 }
 .label.outline.unknown {
   color: #777;

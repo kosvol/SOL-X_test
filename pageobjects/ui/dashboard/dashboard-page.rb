@@ -5,11 +5,11 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
-  element(:inactive_status, xpath: "//label[@data-testid='inactive-status']")
-  element(:active_status, xpath: "//label[@data-testid='active-status']")
+  # element(:inactive_status, xpath: "//label[@data-testid='inactive-status']")
+  elements(:activity_status, xpath: "//label[@for='toggle-switch']")
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
-  element(:active_switch, xpath: "//label[starts-with(@class,'CrewStatusToggle__Switch')]")
+  element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[4]')
   spans(:permits_count, xpath: '//span[@class="stat"]')
   div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")

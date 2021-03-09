@@ -73,6 +73,7 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
@@ -81,7 +82,6 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
-  @debug
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -90,7 +90,7 @@ Feature: PumpRoomEntry
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    # And I sleep for 3 seconds
+    And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
 
@@ -131,6 +131,7 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
     Then I should see entrant count equal 1
 
   @debug
@@ -174,7 +175,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin <pin>
-    Then I should see the label 'Pump Room Entry Display'
+    Then I should see the header 'Pump Room Entry Display'
 
     Examples:
       | role            | pin  |

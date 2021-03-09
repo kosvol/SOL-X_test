@@ -107,15 +107,9 @@ end
 
 And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  tmp = on(Section4BPage).get_filled_section
-  tmp.delete_at(1)
-  p "base -- #{tmp}"
-  is_equal(tmp, @@form_data['checklist'])
-  sleep 1
-  on(Section4BPage).view_eic_btn
+  step 'I click on view EIC certification button'
   sleep 1
   tmp = on(Section4BPage).get_filled_section
-  p "base -- #{tmp}"
   tmp.delete_at(1)
   tmp.delete_at(1)
   # tmp.delete_at(3)
@@ -125,12 +119,10 @@ And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
   does_include(on(Section4APage).generic_data_elements[2].text, 'AUTO/EIC')
   is_equal(tmp, @@form_data['section4b_eic'])
-  # step 'I set time'
   @@entered_pin = '8383'
   step 'I should see signed details for integration test'
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 1
-  # step 'I set time'
   @@entered_pin = '9015'
   step 'I should see signed details for integration test'
 end

@@ -74,15 +74,14 @@ Then (/^I should see data persisted on page 2$/) do
   does_include(tmp[1], "SOLX Automation Test")
   does_include(tmp[2], on(CommonFormsPage).get_timezone)
   does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
-  tmp.delete_at(1)
-  tmp.delete_at(1)
+  tmp.delete_at(2)
   does_include(tmp[19], on(CommonFormsPage).get_timezone)
   does_include(tmp[21], on(CommonFormsPage).get_timezone)
   does_include(tmp[19], on(Section0Page).get_current_date_format_with_offset)
   does_include(tmp[21], on(Section0Page).get_current_date_format_with_offset)
   tmp.delete_at(19)
   tmp.delete_at(20)
-  p ">> #{tmp}"
+  p "<< #{tmp}"
   is_equal(tmp,@@rol_data['page2'])
 end
 
@@ -103,7 +102,7 @@ end
 
 And (/^I approve permit$/) do
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
-  step 'I press next for 11 times'
+  step 'I navigate to section 7'
   sleep 1
   step 'I sign the permit for submission to active state'
 end

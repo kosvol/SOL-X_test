@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 And (/^I click on permit for (.+)$/) do |_status|
+  # on(PendingStatePage).pending_approval_status_btn_elements.first.click
   on(PendingStatePage).pending_approval_status_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   sleep 1
 end

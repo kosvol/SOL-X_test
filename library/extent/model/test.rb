@@ -100,6 +100,8 @@ module RelevantCodes
           @status = "skip"
         elsif @arr.include?("info")
           @status = "pass"
+        elsif @arr.include?("undefined")
+          @status = "undefined"
         else
           @status = "fail"
         end

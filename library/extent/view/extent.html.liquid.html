@@ -105,6 +105,20 @@
                             <!-- <div class='panel-setting modal-trigger test-count-setting right'>
                                 <a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
                             </div>  -->
+                            <!-- {% for item in report.get_category_tests_context %}
+                            {% assign test_list = item[1] %}
+                                        {% assign passed = 0 %}
+                                        {% assign failed = 0 %}
+                                        {% assign others = 0 %}
+                                        {% for test in item[1] %}
+                                            {% if test.status == 'pass' %}
+                                                {% assign passed = passed | plus:1 %}
+                                            {% elsif test.status == 'fail' %}
+                                                {% assign failed = failed | plus:1 %}
+                                            {% else %}
+                                                {% assign others = others | plus:1 %}
+                                            {% endif %}
+                                        {% endfor %} -->
                             <div class='chart-box'>
                                 <canvas class='text-centered' id='test-analysis'></canvas>
                             </div> 
@@ -114,6 +128,7 @@
                             <div>
                                 <span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
                             </div> 
+                            <!-- {% endfor %} -->
                         </div> 
                     </div> 
                     <div class='col s12 m6 l4 fh'> 

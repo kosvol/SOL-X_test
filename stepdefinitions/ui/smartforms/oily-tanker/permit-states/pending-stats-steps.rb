@@ -33,7 +33,7 @@ Then (/^I should not be able to edit EIC certification$/) do
   # on(Section4BPage).view_eic_btn_element
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
-  is_equal(on(Section3APage).total_p_elements.size,29)
+  is_equal(on(Section3APage).total_p_elements.size,27)
   # on(CommonFormsPage).close_btn_elements.first.click
 end
 
@@ -64,15 +64,21 @@ Then (/^I should see the newly pending approval permit details listed on Pending
   @@pending_approval_permit_data = on(PendingStatePage).set_section1_filled_data
   p ">> #{@@pending_approval_permit_data}"
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text, "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
-  # is_equal(@@pending_approval_permit_data[1], on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
   is_equal(@@pending_approval_permit_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
-  is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  p "base >> #{@@pending_approval_permit_data[3]}"
+  if @@pending_approval_permit_data[3] === on(CreatedPermitToWorkPage).created_date_time_elements.first.text
+    is_equal(@@pending_approval_permit_data[3], on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  else
+    is_equal(on(CommonFormsPage).get_current_date_and_time_minus_a_min, on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
+  end
 end
 
-And (/^I set oa permit to office approval state manually$/) do
-  on(PendingStatePage).master_review_btn_elements.first.click
+And (/^I set oa permit to office (approval|review) state manually$/) do |_condition|
+  on(PendingStatePage).master_review_btn_elements.first.click if _condition === "approval"
+  on(PendingStatePage).master_approval_btn_elements.first.click if _condition === "review"
   step 'I enter pin 1111'
-  step 'I navigate to section 6'
+  step 'I navigate to section 6' if _condition === "approval"
+  step 'I navigate to section 7' if _condition === "review"
   on(PendingStatePage).submit_oa_btn
   sleep 1
   step 'I click on back to home'
