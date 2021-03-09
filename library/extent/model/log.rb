@@ -33,6 +33,8 @@ module RelevantCodes
           ret_val = "mdi-content-redo"
         when "info"
           ret_val = "mdi-action-info-outline"
+        when "undefined"
+          ret_val = "mdi-action-info-outline"
         else
           ret_val = "mdi-action-help"
         end

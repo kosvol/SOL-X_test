@@ -1,5 +1,5 @@
 And (/^I enter (new|same) entry log$/) do |_condition|
-    step 'I sleep for 5 seconds'
+    step 'I sleep for 8 seconds'
     on(PreDisplay).new_entry_log_element.click
     
     on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'

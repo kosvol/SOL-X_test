@@ -35,32 +35,15 @@ Before do |scenario|
   @log.instance_variable_set(:@cucumber_world, self)
 
   @browser = BrowserSetup.get_browser(ENV['OS'], $current_platform)
-
-  # device = YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
-
-  # $wifi_on_off = `adb -s #{device["deviceName"]} shell settings get global wifi_on`
-  # p "Wifi Status: #{$wifi_on_off}"
-  # if $wifi_on_off.strip === "0"
-  #   $browser.toggle_wifi 
-  #   sleep 10
-  # end
-
 end
 
 After do |scenario|
   begin
     if scenario.failed?
-      # begin
       @log.info("Exception: #{scenario.exception}")
       $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      # rescue Exception => e
-      #   $extent_test.info(:fail, 'Exception Raised', e, @browser)
-      #   # $living_test.info(:fatal, 'Exception Raised', e, @browser)
-      # end
-    else
-      # $living_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-      # $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario.name.gsub(' ', '_'), @browser)
+    elsif scenario.status.to_s == "undefined"
+      $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}", scenario.name.gsub(' ', '_'), @browser)
     end
   rescue Exception => e
     $extent_test.info(:fail, 'Exception raised from after scenario rescue', scenario, @browser)
@@ -70,21 +53,18 @@ After do |scenario|
     @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
+
   $browser.close
-  # $browser.quit
   $extent.end_test($extent_test)
-  # $living_documentation.end_test($extent_test)
 end
 
 AfterStep do |scenario|
   begin
-    if !scenario.failed?
+    if scenario.passed?
       $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-      # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
       @step += 1
     else
-      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario, @browser)
-      # $living_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
     end
   rescue Exception => e
     $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
@@ -92,12 +72,7 @@ AfterStep do |scenario|
 end
 
 at_exit do
-  # $browser.quit
   $extent.append_desc(Formatter::HtmlFormatter.examples)
-  # $living_documentation.append_desc(Formatter::HtmlFormatter.examples)
   $extent.flush_extent_report
   ReportUtils.make_folder_test($test_report)
-  # ReportUtils.make_folder_documentation($documentation)
-  # $living_documentation.flush_living_report
-  # ReportUtils.get_steps_for_examples('./testreport/jsonreports/json_report.json')
 end

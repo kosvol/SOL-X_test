@@ -110,7 +110,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     And I sleep for 1 seconds
@@ -131,11 +131,11 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I request update needed
-    And (for pre) I should see update needed message
+    And for pre I should see update needed message
 
   @debug
   Scenario: Verify creator PRE cannot request update needed
@@ -145,11 +145,11 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: 8383
-    And (for pre) I should see the disabled "Updates Needed" button
+    And for pre I should see the disabled "Updates Needed" button
 
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given I launch sol-x portal without unlinking wearable
@@ -157,7 +157,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
@@ -187,7 +187,6 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     Then I should see the current PRE in the "Created PRE" list
 
-  @debug
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -195,11 +194,11 @@ Feature: PumpRoomEntry
     And I enter pin <pin>
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: <pin>
-    And (for pre) I should see the <condition> "Approve for Activation" button
+    And for pre I should see the <condition> "Approve for Activation" button
 
     Examples:
       | rank                      | pin  | condition |
@@ -227,7 +226,7 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     When I navigate to "Scheduled" screen for PRE

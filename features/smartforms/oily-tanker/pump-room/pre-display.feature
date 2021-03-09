@@ -31,7 +31,7 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 0159
     And I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
     And I sleep for 100 seconds
@@ -73,6 +73,7 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
@@ -81,7 +82,6 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
-  @debug
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -90,7 +90,7 @@ Feature: PumpRoomEntry
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    # And I sleep for 3 seconds
+    And I sleep for 3 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
 
@@ -104,7 +104,7 @@ Feature: PumpRoomEntry
   #   And I add all gas readings
   #   And I enter pin 9015
   #   And I dismiss gas reader dialog box
-  #   And (for pre) I submit permit for Officer Approval
+  #   And for pre I submit permit for Officer Approval
   #   And I getting a permanent number from indexedDB
   #   And I activate the current PRE form
   #   And I sleep for 100 seconds
@@ -128,9 +128,10 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 3 seconds
+    And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
     Then I should see entrant count equal 1
 
   @debug
@@ -174,7 +175,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin <pin>
-    Then I should see the label 'Pump Room Entry Display'
+    Then I should see the header 'Pump Room Entry Display'
 
     Examples:
       | role            | pin  |
@@ -189,7 +190,7 @@ Feature: PumpRoomEntry
     When I navigate to create new PRE
     And I enter pin 8383
     And I fill up PRE. Duration 4. Delay to activate 2
-    And (for pre) I submit permit for Officer Approval
+    And for pre I submit permit for Officer Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
     And I sleep for 100 seconds

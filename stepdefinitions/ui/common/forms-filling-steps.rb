@@ -9,8 +9,10 @@ And (/^I fill up compulsory fields$/) do
 end
 
 When (/^I fill a full enclosed workspace permit$/) do
+  step 'I fill up section 1 with default value'
   step 'I navigate to section 4a'
   step 'I press next for 1 times'
+  step 'I sleep for 1 seconds'
   step 'I fill up checklist'
   step 'I sleep for 1 seconds'
   step 'I sign on checklist with valid 9015 pin'

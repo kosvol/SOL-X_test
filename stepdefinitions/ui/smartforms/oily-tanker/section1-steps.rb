@@ -35,13 +35,15 @@ end
 
 And (/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).fill_default_section_1
-  step "I set maintenance during #{condition} than 2 hours"
-end
-
-And (/^I set maintenance during (more|less) than 2 hours$/) do |condition|
   on(Section1Page).set_maintenance_duration(condition)
   sleep 1
+  # step "I set maintenance during #{condition} than 2 hours"
 end
+
+# And (/^I set maintenance during (more|less) than 2 hours$/) do |condition|
+#   on(Section1Page).set_maintenance_duration(condition)
+#   sleep 1
+# end
 
 And (/^I should not see copy text regarding maintenance hour$/) do
   not_to_exists(on(Section2Page).maintenance_text_element)

@@ -1,5 +1,6 @@
 And(/^I navigate to create new (PRE|CRE)$/) do |_permit_type|
-  on(PumpRoomEntry).create_new_pre_btn_element.click
+  on(PumpRoomEntry).create_new_pre_btn_element.click if _permit_type === "PRE"
+  on(PumpRoomEntry).create_new_cre_btn_element.click if _permit_type === "CRE"
   sleep 1
 end
 
@@ -69,9 +70,9 @@ Then(/^I press the "([^"]*)" button$/) do |button|
   on(PumpRoomEntry).press_the_button(button)
 end
 
-And (/^I should see the (text|label|page) '(.*)'$/) do |like, text|
+And (/^I should see the (text|label|page|header) '(.*)'$/) do |like, text|
   sleep 1
-  is_true(on(PumpRoomEntry).is_text_displayed?(text))
+  is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
 end
 
 And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
@@ -174,7 +175,7 @@ And(/^\(for pre\) I should see update needed message$/) do
 end
 
 
-And(/^Get PRE id$/) do
+And(/^Get (PRE|CRE) id$/) do |_permit_type|
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
   @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # step 'I set permit id'

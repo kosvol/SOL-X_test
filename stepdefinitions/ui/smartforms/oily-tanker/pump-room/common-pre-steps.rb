@@ -14,4 +14,5 @@ When (/^I fill and submit PRE permit details$/) do
     step 'I sleep for 120 seconds'
     step 'I navigate to PRE Display'
     step 'I enter pin 8383'
+    step 'I sleep for 5 seconds'
 end

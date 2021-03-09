@@ -18,6 +18,12 @@ Feature: DB reset
     Given I clear gas reader entries
     And I clear wearable history and active users
 
+  @clear-cre-gas-table
+  Scenario: CRE DB reset
+    Given I clear PRE forms
+    And I clear gas reader entries
+    And I clear wearable history and active users
+
   @clear-mariadb
   Scenario: Maria DB reset
     Given I clear mariadb
@@ -42,3 +48,7 @@ Feature: DB reset
   @update_lng_crew_member_vessel
   Scenario: Update crew members vessel
     Given I update crew members to sit-lng-vessel vessel
+
+  @removed-crew-from-vessel
+  Scenario: Removed crew from vessel
+    Given I remove crew from vessel

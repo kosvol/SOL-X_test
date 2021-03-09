@@ -44,7 +44,7 @@ class CommonFormsPage < CommonPage
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
 
-  @@text_obj = "//*[contains(text(),'%s')]"
+  @@text_obj = "//*[contains(.,'%s')]"
   
   def select_todays_date_from_calendar(advance_days=0)
     begin
@@ -84,6 +84,15 @@ class CommonFormsPage < CommonPage
   def move_date_time_by_1_minute
     move = DateTime.strptime(@@time, '%H:%M') + Rational(1, 840)
     "#{move.strftime('%H:%M')}#{get_timezone}"
+  end
+
+  def move_date_time_by_minus_1_minute
+    move = DateTime.strptime(@@time, '%H:%M') - Rational(1, 1540)
+    "#{move.strftime('%H:%M')}#{get_timezone}"
+  end
+
+  def get_current_date_and_time_minus_a_min
+    "#{get_current_date_format_with_offset} #{move_date_time_by_minus_1_minute}"
   end
 
   def get_current_date_and_time_add_a_min

@@ -15,7 +15,7 @@ Feature: Section3BDRA
     And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit
+    And I terminate the permit with 1111 pin
     And I navigate to create new permit
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
@@ -57,7 +57,7 @@ Feature: Section3BDRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3b
     Then I should see By: Master after clicking Yes on Is DRA sent to office
 
@@ -67,7 +67,7 @@ Feature: Section3BDRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3b
     Then I should not see By: Master after clicking No on Is DRA sent to office
 
@@ -77,7 +77,7 @@ Feature: Section3BDRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3b
     Then I should see crew drop down list after clicking Yes on Inspection carried out
     And I should see crew list populated
@@ -88,6 +88,6 @@ Feature: Section3BDRA
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
-    And I set maintenance during more than 2 hours
+    And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3b
     Then I should not see crew drop down list after clicking No on Inspection carried out

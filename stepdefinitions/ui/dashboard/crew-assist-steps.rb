@@ -5,6 +5,7 @@ When (/^I trigger crew assist from wearable$/) do
   step 'I get wearable-simulator/mod-trigger-panic request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
+  sleep 3
 end
 
 And (/^I trigger second crew assist$/) do

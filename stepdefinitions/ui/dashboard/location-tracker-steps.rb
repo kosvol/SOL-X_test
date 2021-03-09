@@ -12,14 +12,14 @@ Then (/^I should see inactive crew count is correct$/) do
   step 'I hit graphql'
   step 'I toggle activity crew list'
   sleep 3
-  is_equal(on(DashboardPage).inactive_status_element.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
+  is_equal(on(DashboardPage).activity_status_elements.first.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
 end
 
 Then (/^I should see active crew count is correct$/) do
   step 'I link wearable'
   sleep 2
-  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).active_status_element.text)
+  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).activity_status_elements.last.text)
   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
 end
 

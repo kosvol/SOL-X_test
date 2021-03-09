@@ -96,16 +96,16 @@ Feature: CrewList
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-  # Scenario: Verify user can add crew on an ad-hoc manner
-  #   Given I launch sol-x portal
-  #   When I navigate to "Crew List" screen for forms
-  #   And I add crew
-  #   And I change the crew rank
-  #   Then I should see pin review
-  #   And I should see crew added with rank changed
-  #   And I reset crew data
-
-  # Scenario: Verify newly added crew pin can be reviewed
+  @production
+  Scenario: Verify user can add crew on an ad-hoc manner
+    Given I launch sol-x portal
+    And I remove crew from vessel
+    When I navigate to "Crew List" screen for forms
+    And I add crew
+    Then I sleep for 1000 seconds
+    When I create the ptw with the new pin
+    Then I should see smart form landing screen
+    And I remove crew from vessel
 
   Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
     Given I launch sol-x portal

@@ -6,7 +6,7 @@ end
 
 Then (/^I should see incomplete fields warning message display$/) do
   is_equal(on(Section6Page).info_warning_boxes_elements.first.text,"Please Complete The Following Sections")
-  is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
+  is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 1: Task Description\nSection 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
 end
 
 And (/^I should see incomplete signature field warning message display$/) do
@@ -71,10 +71,10 @@ end
 Then(/^I (should|should not) see warning label$/) do |_condition|
   info_text = "Gas Testing Disabled\nYou have selected to disable gas testing for this permit."
   if _condition === 'should'
-    is_equal(on(Section6Page).info_box_disable_gas, info_text)
+    is_equal(on(Section6Page).info_box_disable_gas_elements[1].text, info_text)
   end
   if _condition === 'should not'
-    is_equal(on(Section6Page).is_info_box_disable_gas_exist?, false)
+    is_equal(on(Section6Page).info_box_disable_gas_elements.size, 2)
   end
 end
 

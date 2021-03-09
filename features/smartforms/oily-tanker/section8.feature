@@ -34,10 +34,11 @@ Feature: Section8
 
   Scenario: Verify task commenced at should be populated with permit activated time
     Given I launch sol-x portal
-    And I navigate to create new permit
+    When I navigate to create new permit
     And I enter pin 9015
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -61,6 +62,7 @@ Feature: Section8
     And I enter pin 9015
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -82,6 +84,7 @@ Feature: Section8
     And I enter pin 9015
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -103,7 +106,7 @@ Feature: Section8
     And I enter pin 9015
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I set maintenance during less than 2 hours
+    And I fill section 1 of maintenance permit with duration less than 2 hours
     And I navigate to section 4a
     And I press next for 1 times
     And I fill up compulsory fields
@@ -125,6 +128,7 @@ Feature: Section8
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
@@ -151,6 +155,7 @@ Feature: Section8
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times

@@ -38,7 +38,7 @@
       },
       {
         "fieldId": "locationOfWork",
-        "value": "\"Test Automation\""
+        "value": "{\"zone\":\"01EVXD0J3JYTFV8D7Z80MDJNQJ\",\"zoneDetails\":\"Test Automation\"}"
       },
       {
         "fieldId": "permitValidUntil",
