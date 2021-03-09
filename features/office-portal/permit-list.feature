@@ -37,18 +37,17 @@ Feature: PermitList
     When I log in to the Office Portal
     And I select the "Auto" vessel
     Then I should see the terminated form at the top of the forms list
-@ska
+
   Scenario: Verify counters are updated after the form termination (3781, 4468)
-    Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
+    Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the sit vessel
     When I log in to the Office Portal
-    And I select the "Auto" vessel
+    And I select the "LNGSIT" vessel
     And I remember the current permits quantity
-    And I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
+    And I terminate permit submit_enclose_space_entry via service with 9015 user on the sit vessel
     And I reload the page
     And I check the forms number on the vessel card
     Then I should see the the form number is updated
     And I should see the same number on the All Permits
-  #find the way how to compare the numbers
 
   Scenario: Verify the permit types list in the filter drop-down (5195, 3747)
     Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
@@ -67,7 +66,11 @@ Feature: PermitList
     And I click on View Permit button
     Then I should see the selected form in a new tab
 
-  Scenario: Verify the stand alone permits (PRE, RoL) are displayed in the Office Portal
+  Scenario: Verify the stand alone RoL permit is displayed in the Office Portal
+
+  Scenario: Verify the stand alone PRE permit is displayed in the Office Portal (COT)
+
+  Scenario: Verify the stand alone CRE permit is displayed in the Office Portal (LNG)
 
   Scenario: Verify all forms are selected after check the check box near the "Permit No." title
     Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
