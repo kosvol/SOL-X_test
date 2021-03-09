@@ -41,6 +41,7 @@ Feature: SmartFormsPermission
       | 3/O   | 0159 |
       | A 3/O | 2674 |
 
+  @test
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -52,10 +53,10 @@ Feature: SmartFormsPermission
       | Master | 1111 |
       # | 4/O    | 1010 |
       | D/C    | 2317 |
-      | 3/E    | 4685 |
+      # | 3/E    | 4685 |
       | A 3/E  | 6727 |
-      | 4/E    | 1311 |
-      | A 4/E  | 0703 |
+      #     | 4/E    | 1311 |
+      #     | A 4/E  | 0703 |
       | BOS    | 1018 |
       | PMN    | 4421 |
       | A/B    | 6316 |
