@@ -319,8 +319,6 @@ end
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
   end
 
-  private
-
   def cal_new_hour_offset_time(_offset)
     @current_time = Time.now.utc.strftime('%H')
     begin
@@ -336,6 +334,8 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
+  private
+  
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 1

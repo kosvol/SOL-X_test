@@ -122,7 +122,7 @@ module ServiceUtil
     end
 
     def craft_date_time_format(_year,_month,_day,_hour,_min,_seconds)
-      DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%d-%b-%YT:%H:%M:%S.%LZ")
+      DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%Y-%m-%dT%H:%M:%S.%LZ")
     end
 
     private
