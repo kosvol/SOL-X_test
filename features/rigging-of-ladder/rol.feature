@@ -77,7 +77,6 @@ Feature: RiggingOfLadder
       | 3/O  | 0159 |
   # | A 3/O | 2674 |
 
-  @test
   Scenario: SOL-5099 Verify no extra buttons during pending update state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
