@@ -26,14 +26,14 @@ Feature: PermitList
 #find out how to reduce the waiting time
 
   Scenario: Verify the the forms quantity on the vessel card is the same as on the "All Permits" title (3733)
-    Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
+    Given I terminate permit submit_work_on_pressure_line via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     And I check the forms number on the vessel card
     Then I should see the same number on the All Permits
 
   Scenario: Verify the last terminated permit appears at the top of the list in the Office Portal (5133)
-    Given I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     Then I should see the terminated form at the top of the forms list
@@ -50,7 +50,7 @@ Feature: PermitList
     And I should see the same number on the All Permits
 
   Scenario: Verify the permit types list in the filter drop-down (5195, 3747)
-    Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
+    Given I terminate permit submit_work_on_pressure_line via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     And I click on Add Filter button
@@ -59,7 +59,7 @@ Feature: PermitList
   #Scenario: Verify permits are filtered properly
 
   Scenario: Verify users can select a form for review (4807)
-    Given I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
