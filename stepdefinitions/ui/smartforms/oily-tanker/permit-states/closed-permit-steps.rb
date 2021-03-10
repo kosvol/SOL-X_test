@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-And (/^I request terminating permit to be updated$/) do
+And (/^I request terminating permit to be updated with (.*) pin$/) do |_pin|
   # sleep 1
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
   # on(CommonFormsPage).review_and_terminate_btn_elements.first.click
-  step 'I enter pin 1111'
+  step "I enter pin #{_pin}"
 end
 
 And (/^I terminate the permit with (.*) pin$/) do |_pin|
