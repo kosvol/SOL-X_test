@@ -79,3 +79,24 @@ end
 And ('I take note of issued date and time') do
   @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text
 end
+
+And ('I click New Entrant button on Enclose Space Entry PWT') do
+  sleep 1
+  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
+  p "index >> #{permit_id}"
+  on(ActiveStatePage).new_entrant_btn_elements[permit_id].click
+  sleep 2
+end
+
+Then (/^I should see no new entry log message in Entry log$/) do
+  sleep 3
+  on(NewEntrantPage).entry_log_btn_element.click
+  sleep 1
+  is_equal(on(EntryLog).info_gas_testing_is_missing_elements[2].text,"No Entry Yet")
+  is_equal(on(EntryLog).info_gas_testing_is_missing_elements[3].text,"Press on “New Entry” button on the “Home” page to record a new entry.")
+end
+
+And ('I click New Entry button on PTW screen') do
+  on(NewEntrantPage).new_entry_button_button.click
+  sleep 1
+end

@@ -24,7 +24,6 @@ module GasReading
   button(:add_gas_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
   button(:add_toxic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
   button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
-  button(:enter_pin_and_submit_btn, xpath: "//button[contains(.,'Enter PIN & Submit')]")
   button(:continue_btn, xpath: "//button[contains(.,'Continue')]")
 
   def add_all_gas_readings
