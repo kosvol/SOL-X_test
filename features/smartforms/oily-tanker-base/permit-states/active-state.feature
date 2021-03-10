@@ -172,7 +172,7 @@ Feature: ActivePermit
     When I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
-    And I click on pending approval filter
+    # And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
     And I click on pending approval filter

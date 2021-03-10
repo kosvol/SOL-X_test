@@ -8,7 +8,7 @@ sit:
   c2_preview: "https://sit.edge.dev.safevue.sol-x.co:8080"
   service: "https://sit.edge.dev.safevue.sol-x.co:4000/"
   master_pin: "1111"
-  switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-vessel"
+  switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-lng-vessel"
   update_mas_pin: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/users/SIT_SOLX0001"
   get_crew_members: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_find"
   fauxton_url: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984"

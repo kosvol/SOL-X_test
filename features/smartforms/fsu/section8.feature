@@ -1,23 +1,27 @@
-@lng-section-8
+@fsu-section-8
 Feature: LNGSmartFormsPermission
     As a ...
     I want to ...
     So that ...
 
-    Scenario Outline: EIC section 8 competent person label change to C/O 2/E
+    Background:
+        Given I switch vessel to FSU
+
+    Scenario Outline: EIC section 8 competent person label change to CO 2E
         Given I submit permit <permit_payload> via service with 9015 user and set to active state
         And I set oa permit to ACTIVE state
         And I launch sol-x portal without unlinking wearable
         And I click on active filter
         And I terminate permit with <rank> rank and <pin> pin
         Then I should see competent person label change
+        And I switch vessel to LNG
 
         Examples:
             | permit_types | permit_payload                 | rank          | pin  |
             # | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
             | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
 
-    Scenario Outline: EIC section 8 issuing authority to change to Master and C/E
+    Scenario Outline: EIC section 8 issuing authority to change to Master and CE
         Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to active state
         And I set oa permit to ACTIVE state
         And I launch sol-x portal without unlinking wearable
@@ -29,6 +33,7 @@ Feature: LNGSmartFormsPermission
         And I set time
         And I should see signed details
         Then I should see location <location_stamp> stamp
+        And I switch vessel to LNG
 
         Examples:
             | user         | zoneid                     | mac               | location_stamp |

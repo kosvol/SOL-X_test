@@ -41,7 +41,7 @@ Feature: PendingUpdate
     And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
-    And I request terminating permit to be updated
+    And I request terminating permit to be updated with 1111 pin
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
