@@ -13,7 +13,7 @@ class OfficePortalPage
   button(:print_permit_btn, xpath: "//span[contains(text(),'Print Permit')]/parent::button")
 
   element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
-  element(:portal_name, xpath: "//h1[contains(@class,'Heading__HeadingLarge')]")
+  element(:portal_name, xpath: "//h1[contains(@class,'Heading')]")
   element(:warning_message_text, xpath: "//div[contains(text(),'Incorrect Password')]")
   element(:vessels_list_header, xpath: "//h2[contains(text(),'All Vessels')]")
   element(:permit_list, xpath: "//div[contains(@class,'PermitList__Container')]")
