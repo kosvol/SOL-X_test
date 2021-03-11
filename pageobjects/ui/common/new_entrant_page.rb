@@ -17,7 +17,7 @@ class NewEntrantPage
   element(:valid_, xpath: "//div[starts-with(@class,'PermitValidUntil__BoldText')]")
   element(:enclosed_space, xpath: "//class[contains(.,'Enclosed Space')]")
   element(:en_workshop, xpath: "//div[starts-with(@class,'ActivePermitDetails__TextWhite')]")
-  button(:new_entry_button, xpath: "//button[contains(.,'New Entry')]")
+  element(:new_entry_bn, xpath: "//span[contains(text(),'New Entry')]")
   button(:home_button, xpath: "//button[contains(.,'Home')]")
   element(:entry_log_btn, xpath: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span")
 

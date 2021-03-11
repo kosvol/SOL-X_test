@@ -9,14 +9,22 @@ class EntryLog
   elements(:info_gas_testing_is_missing, xpath: "//div[starts-with(@class,'GasTesting')]/*")
   button(:home_button, xpath: "//button[contains(.,'Home')]")
   element(:entry_log_button, xpath: "//div[starts-with(@class,'Entry Log')]")
+
   text_field(:o2_input, xpath: "//input[@id='O2']")
   text_field(:hc_input, xpath: "//input[@id='HC']")
   text_field(:h2s_input, xpath: "//input[@id='H2S']")
   text_field(:co_input, xpath: "//input[@id='CO']")
-  button(:continue_btn, xpath: "//button[contains(.,'Continue')]")
+
+  text_field(:gas_name_input, xpath: "//input[@id='gasName']")
+  text_field(:threshold_input, xpath: "//input[@id='threshold']")
+  text_field(:reading_input, xpath: "//input[@id='reading']")
+  text_field(:unit_input, xpath: "//input[@id='unit']")
+
+  element(:continue_btn, xpath: "//span[contains(text(),'Continue')]")
   button(:add_toxic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
-  button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
-  button(:enter_pin_and_submit_btn, xpath: "//button[contains(.,'Enter PIN & Submit')]")
+  element(:review_sign_btn, xpath: "//span[contains(text(),'Review & Sign')]")
+
+  element(:enter_pin_and_sbmt, xpath: "//span[contains(text(),'Enter PIN & Submit')]")
 
   def normal_gas_readings(_o2,_hc,_h2s,_co)
     sleep 1
