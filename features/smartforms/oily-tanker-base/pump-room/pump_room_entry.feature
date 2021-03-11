@@ -137,7 +137,6 @@ Feature: PumpRoomEntry
     Then I request update needed
     And for pre I should see update needed message
 
-  @debug
   Scenario: Verify creator PRE cannot request update needed
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

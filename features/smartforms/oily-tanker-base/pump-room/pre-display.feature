@@ -134,7 +134,6 @@ Feature: PumpRoomEntry
     And I sleep for 3 seconds
     Then I should see entrant count equal 1
 
-  @debug
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
