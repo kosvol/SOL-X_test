@@ -48,6 +48,8 @@ Feature: Section3DDRA
       # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856   | 0856 |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/O                        | 0159   | 0159 |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/O                      | 2674   | 2674 |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 4/E                        | 0159   | 1311 |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 4/E                      | 2674   | 0703 |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -77,14 +79,14 @@ Feature: Section3DDRA
     Then I should see not authorize error message
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                                | ra_rank                    | pin  | non_ra_rank | non_ra_pin |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Addtional Master           | 9015 | A 3/E       | 6727       |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Additional Second Officer  | 7865 | D/C         | 2317       |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Chief Engineer             | 8248 | 3/E         | 4685       |
-      | Helicopter Operations                                        | Helicopter Operation                                            | Additional Chief Engineer  | 5718 | A 3/E       | 6727       |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | Second Engineer            | 2523 | 4/E         | 1311       |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Additional Second Engineer | 3030 | A 4/E       | 0703       |
-      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer  | 0856 | BOS         | 1018       |
+      | level_one_permit                      | level_two_permit                                                | ra_rank                   | pin  | non_ra_rank | non_ra_pin |
+      | Hot Work                              | Hot Work Level-2 in Designated Area                             | Addtional Master          | 9015 | 4/O         | 2637       |
+      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                     | Additional Second Officer | 7865 | D/C         | 2317       |
+      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                           | Chief Engineer            | 8248 | A 4/O       | 5574       |
+      | Helicopter Operations                 | Helicopter Operation                                            | Additional Chief Engineer | 5718 | ETO         | 0856       |
+      | Cold Work                             | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer | 0856 | BOS         | 1018       |
+  # | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | Second Engineer            | 2523 | 4/E         | 1311       |
+  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Additional Second Engineer | 3030 | A 4/E       | 0703       |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -94,7 +96,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
-    And I sign DRA section 3d with 2674 as invalid pin
+    And I sign DRA section 3d with 5574 as invalid pin
     Then I should see not authorize error message
 
     Examples:

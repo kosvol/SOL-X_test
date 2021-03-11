@@ -24,7 +24,9 @@ Feature: SmartFormsPermission
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank <rank>
-    Then I should see smart form landing screen
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    Then I fill a full enclosed workspace permit
 
     Examples:
       | rank  | pin  |
