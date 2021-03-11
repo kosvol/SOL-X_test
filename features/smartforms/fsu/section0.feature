@@ -9,6 +9,11 @@ Feature: LNGSmartFormsPermission
 
     Scenario: Two LNG forms to be dispalyed in maintenance permit
         Given I launch sol-x portal without unlinking wearable
+        Then I navigate to create new CRE
+        And I switch vessel to LNG
+
+    Scenario: Two LNG forms to be dispalyed in maintenance permit
+        Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
         And I enter pin 9015
         When I select Critical Equipment Maintenance permit
