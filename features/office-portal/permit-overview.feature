@@ -5,7 +5,7 @@ Feature: PermitOverview
   So that ...
 
   Scenario: Verify the standard PTW form contains all sections (9)
-    Given I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
