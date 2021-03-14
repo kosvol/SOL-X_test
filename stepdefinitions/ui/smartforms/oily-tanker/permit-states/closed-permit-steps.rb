@@ -13,7 +13,8 @@ And (/^I terminate the permit with (.*) pin$/) do |_pin|
   on(Section9Page).submit_permit_termination_btn
   step "I sign on canvas with valid #{_pin} pin"
   sleep 2
-  on(CommonFormsPage).close_btn_elements.first.click
+  on(CommonFormsPage).back_to_home_btn
+  # on(CommonFormsPage).close_btn_elements.first.click
   sleep 4
   step 'I set permit id'
 end

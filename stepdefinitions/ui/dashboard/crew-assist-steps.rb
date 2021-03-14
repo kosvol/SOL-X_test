@@ -17,6 +17,7 @@ Then (/^I should see two crew assist dialogs on dashboard$/) do
 end
 
 Then (/^I should see crew assist popup display crew rank,name and location on dashboard$/) do
+  sleep 1
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   is_true(on(CrewAssistPage).is_crew_assist_dialog_details)
