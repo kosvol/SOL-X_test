@@ -11,6 +11,11 @@ class NewEntryPage < PreDisplay
   element(:send_report, xpath: "//span[contains(text(),'Send Report')]")
   buttons(:send_report_btn, xpath: "//button[contains(.,\"Send Report\")]")
   buttons(:checkbox_text, xpath: "//li[@class='button']")
+  element(:done_btn, xpath: "//span[contains(text(),'Done')]")
+  element(:entry_log_btn, xpath: "//span[contains(text(),'Entry Log')]")
+  element(:home_btn, xpath: "//span[contains(text(),'Home')]")
+
+
 
   def select_entrants(entrants)
     while entrants > 0
@@ -34,7 +39,7 @@ class NewEntryPage < PreDisplay
     @@entrants_arr
   end
 
-  def save_entrants_to_file(entrants)
+  def save_entrants_to_variable(entrants)
     entr_arr = []
     while entrants > 0
       entr_arr.push($browser.

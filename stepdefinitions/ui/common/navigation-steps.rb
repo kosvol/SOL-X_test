@@ -100,3 +100,13 @@ And ('I click New Entry button on PTW screen') do
   on(NewEntrantPage).new_entry_button_button.click
   sleep 1
 end
+
+And (/^I just click on back arrow$/) do
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
+end
+
+And (/^I just click button Home$/) do
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(NewEntryPage).home_btn_element)
+end
