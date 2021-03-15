@@ -6,6 +6,28 @@ Feature: PumpRoomEntry
 
   # Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
 
+  Scenario: Verify entrant crew list displayed the correct entrants
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see correct signed in entrants
+
+  Scenario: Verify crew already entered pumproom should not be listed on optional crew list
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 1 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see entrant count equal 1
+    And I enter new entry log
+    Then I should not see entered entrant on list
+
   Scenario: Verify PRE duration display on PRED
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
