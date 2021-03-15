@@ -15,3 +15,32 @@ And (/^I review and sign gas readings$/) do
   on(SignaturePage).sign_for_gas
   on(EntryLog).enter_pin_and_sbmt_element.click
 end
+
+
+And ('I select entrants {int}') do |_entrants_number|
+   BrowserActions.wait_until_is_visible(on(NewEntryPage).input_field_element)
+   on(NewEntryPage).entrant_select_btn_element.click
+  on(NewEntryPage).select_entrants(_entrants_number)
+  on(NewEntryPage).save_entrants(_entrants_number)
+  on(NewEntryPage).confirm_btn_element.click
+end
+
+Then (/^I check the Send Report button is enabled$/) do
+  if is_enabled(on(NewEntryPage).send_report_btn_elements.first)
+    p 'Button is enabled'
+  else
+    raise 'Button is disabled'
+  end
+end
+
+Then (/^I check the Send Report button is disabled$/) do
+  if is_disabled(on(NewEntryPage).send_report_btn_elements.first)
+    p 'Button is disabled'
+  else
+    raise 'Button is enabled'
+  end
+end
+
+Then (/^I save names of entrants$/) do
+  save_entrants()
+end
