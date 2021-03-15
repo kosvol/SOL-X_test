@@ -152,23 +152,14 @@ Feature: PumpRoomEntry
     Then I should see not authorize error message
 
     Examples:
-      | role                       | pin  |
-      | Second Officer             | 6268 |
-      | Additional Second Officer  | 7865 |
-      | 3/O                        | 0159 |
-      | A 3/O                      | 2674 |
-      | Addtional Master           | 9015 |
-      | Electro Technical Officer  | 0856 |
-      | Additional Second Engineer | 3030 |
-      | D/C                        | 2317 |
-      | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
-      | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
-      | BOS                        | 1018 |
-      | A/B                        | 6316 |
-      | O/S                        | 7669 |
-      | OLR                        | 0450 |
+      | role                      | pin  |
+      | Addtional Master          | 9015 |
+      | Electro Technical Officer | 0856 |
+      | D/C                       | 2317 |
+      | BOS                       | 1018 |
+      | A/B                       | 6316 |
+      | O/S                       | 7669 |
+      | OLR                       | 0450 |
 
   Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display
     Given I launch sol-x portal without unlinking wearable
@@ -177,11 +168,22 @@ Feature: PumpRoomEntry
     Then I should see the header 'Pump Room Entry Display'
 
     Examples:
-      | role            | pin  |
-      | Master          | 1111 |
-      | Chief Officer   | 8383 |
-      | Chief Engineer  | 8248 |
-      | Second Engineer | 2523 |
+      | role                      | pin  |
+      | Master                    | 1111 |
+      | Chief Officer             | 8383 |
+      | A Chief Officer           | 2761 |
+      | Second Officer            | 6268 |
+      | Additional Second Officer | 7865 |
+      | 3/O                       | 0159 |
+      | A 3/O                     | 2674 |
+      | Chief Engineer            | 8248 |
+      | A Chief Engineer          | 5718 |
+      | Second Engineer           | 2523 |
+      | A Second Engineer         | 3030 |
+      | 3/E                       | 4685 |
+      | A 3/E                     | 6727 |
+      | 4/E                       | 1311 |
+      | A 4/E                     | 0703 |
 
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable

@@ -7,10 +7,10 @@ Feature: LNGSmartFormsPermission
     Background:
         Given I switch vessel to FSU
 
-    Scenario: Two LNG forms to be dispalyed in maintenance permit
-        Given I launch sol-x portal without unlinking wearable
-        Then I navigate to create new CRE
-        And I switch vessel to LNG
+    # Scenario: Two LNG forms to be dispalyed in maintenance permit
+    #     Given I launch sol-x portal without unlinking wearable
+    #     Then I navigate to create new CRE
+    #     And I switch vessel to LNG
 
     Scenario: Two LNG forms to be dispalyed in maintenance permit
         Given I launch sol-x portal without unlinking wearable
@@ -53,7 +53,7 @@ Feature: LNGSmartFormsPermission
             | level_one_permit               | level_two_permit                                   | pin  | rank |
             | Critical Equipment Maintenance | Maintenance on Emergency Shutdown for Cargo System | 8248 | c/e  |
 
-    Scenario Outline: CE and Master can ask for update on all permit for FSU
+    Scenario Outline: CE and Master can ask for update on all permit for FSU with duration less than 2 hours
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
         And I enter pin 9015
