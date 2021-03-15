@@ -20,10 +20,11 @@ end
 And ('I select entrants {int}') do |_entrants_number|
    BrowserActions.wait_until_is_visible(on(NewEntryPage).input_field_element)
    on(NewEntryPage).entrant_select_btn_element.click
-  on(NewEntryPage).select_entrants(_entrants_number)
-  on(NewEntryPage).save_entrants(_entrants_number)
-  on(NewEntryPage).confirm_btn_element.click
+   on(NewEntryPage).select_entrants(_entrants_number)
+   on(NewEntryPage).save_entrants_to_file(_entrants_number)
+   on(NewEntryPage).confirm_btn_element.click
 end
+
 
 Then (/^I check the Send Report button is enabled$/) do
   if is_enabled(on(NewEntryPage).send_report_btn_elements.first)
@@ -41,6 +42,26 @@ Then (/^I check the Send Report button is disabled$/) do
   end
 end
 
-Then (/^I save names of entrants$/) do
-  save_entrants()
+Then ('I check entrants in list {int}') do |item|
+  while item.positive?
+    is_enabled($browser.find_element(:xpath, '//*[starts-with(@class,\'UnorderedList\')]/li[' + item.to_s + ']'))
+    item = item - 1
+    p 'enabled'
+  end
+end
+
+
+Then ('I check names of entrants {int} on New Entry page') do |item|
+  step 'I select entrants 3'
+  entr_arr = []
+  while item.positive?
+    entr_arr.push($browser.
+      find_element(:xpath, '//*[starts-with(@class,\'UnorderedList\')]/li[' + item.to_s + ']').attribute('aria-label'))
+    item = item - 1
+  end
+  p "second"
+  p entr_arr.to_s
+  arr_before = on(NewEntryPage).get_entrants
+  p arr_before
+  expect(arr_before.to_a).to match_array entr_arr.to_a
 end

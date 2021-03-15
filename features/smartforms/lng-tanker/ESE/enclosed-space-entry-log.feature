@@ -35,8 +35,8 @@ Feature: EnclosedSpaceEntryLog
     And I select entrants 5
     Then I check the Send Report button is enabled
 
-  @wip
-  Scenario: Check selected Entrants on New Entry page
+
+  Scenario: Check enabled selected Entrants on New Entry page
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
@@ -46,6 +46,18 @@ Feature: EnclosedSpaceEntryLog
     And I enter pin 8383
     And I sleep for 20 seconds
     And I select entrants 5
+    Then I check entrants in list 5
+
+  @wip
+  Scenario: Check names of  selected Entrants on New Entry page
+    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click New Entrant button on Enclose Space Entry PWT
+    And I add normal gas readings
+    And I review and sign gas readings
+    And I enter pin 8383
+    Then I check names of entrants 3 on New Entry page
 
 
 
@@ -58,6 +70,8 @@ Feature: EnclosedSpaceEntryLog
     And I review and sign gas readings
     And I enter pin 8383
     And I select entrants 5
+
+
 
 
 
