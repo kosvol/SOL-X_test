@@ -26,7 +26,7 @@ Then (/^I should see termination date display$/) do
   if on(CommonFormsPage).get_current_date_and_time.to_s === on(ClosedStatePage).terminated_date_time_elements[0].text
     is_equal(on(CommonFormsPage).get_current_date_and_time.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
   else
-    is_equal(on(CommonFormsPage).get_current_date_and_time_add_a_min.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
+    is_equal(on(CommonFormsPage).get_current_date_and_time_minus_a_min.to_s, on(ClosedStatePage).terminated_date_time_elements[0].text)
   end
 end
 

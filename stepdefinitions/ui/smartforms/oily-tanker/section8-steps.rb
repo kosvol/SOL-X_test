@@ -9,6 +9,10 @@ Then (/^I should see section 8 in read only mode$/) do
   is_equal(on(Section3APage).total_p_elements.size,18)
 end
 
+Then (/^I should see section 8 editable$/) do
+  is_equal($browser.find_elements(:xpath, '//input').size, '28')
+end
+
 Then (/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)

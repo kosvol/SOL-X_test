@@ -144,7 +144,7 @@ Feature: LNGCRE
     Scenario: Verify CRE permit turn active on schedule time
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
-        And I navigate to create new PRE
+        And I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
@@ -162,7 +162,7 @@ Feature: LNGCRE
     Scenario: Verify creator PRE cannot request update needed
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
-        And I navigate to create new PRE
+        And I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
