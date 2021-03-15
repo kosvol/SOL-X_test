@@ -157,6 +157,7 @@ Feature: ActivePermit
       # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
       | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
 
+  @debug
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -172,7 +173,7 @@ Feature: ActivePermit
     When I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
-    And I click on pending approval filter
+    # And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
     And I click on pending approval filter

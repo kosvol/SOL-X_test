@@ -173,7 +173,6 @@ Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/)
   sleep(2)
 end
 
-
 Then(/^I should see the terminated form at the top of the forms list$/) do
   does_include(on(OfficePortalPage).first_permit_with_time, @formNumber)
   does_include(on(OfficePortalPage).first_permit_with_time, @formName)
@@ -187,3 +186,14 @@ And(/^I reload the page$/) do
   $browser.navigate.refresh
   sleep(1)
 end
+
+Then(/^I should see the the form number is updated$/) do
+  is_true(@permits_quantity.to_i == (@previous_quantity.to_i + 1))
+  sleep(1)
+end
+
+And(/^I remember the current permits quantity$/) do
+  step 'I check the forms number on the vessel card'
+  @previous_quantity = @permits_quantity
+end
+

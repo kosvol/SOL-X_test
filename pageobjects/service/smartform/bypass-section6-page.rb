@@ -78,6 +78,13 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', _user, _vessel)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
+    ### add time offset to ptw
+    add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
+    add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
+    ServiceUtil.post_graph_ql_to_uri('ptw/1.mod_date_with_offset', _user, _vessel)
+    @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
+
     ### init dra form
     init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
     init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
@@ -91,6 +98,14 @@ class BypassPage < Section0Page
 
     submit_active = set_permit_status('ACTIVE')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+    _update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    _update_permit['variables']['formId'] = CommonPage.get_permit_id
+    _update_permit['variables']['submissionTimestamp'] = get_current_date_time
+    _update_permit['variables']['answers'][3].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
+    _update_permit['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', _update_permit)
+    ServiceUtil.post_graph_ql_to_uri('ptw/mod_16.update-active-status', _user, _vessel)
+    sleep(2)
 
     submit_active = set_permit_status('PENDING_TERMINATION')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
@@ -319,8 +334,6 @@ end
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
   end
 
-  private
-
   def cal_new_hour_offset_time(_offset)
     @current_time = Time.now.utc.strftime('%H')
     begin
@@ -336,6 +349,8 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
+  private
+  
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 1

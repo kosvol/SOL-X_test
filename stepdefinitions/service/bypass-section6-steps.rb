@@ -78,7 +78,8 @@ And (/^I clear wearable history and active users$/) do
 end
 
 Given (/^I clear mariadb$/) do
-  MariaDB_clearing.clear_maria_db
+  Postgres_clearing.clear_postgres_db
+  # MariaDB_clearing.clear_maria_db
 end
 
 Given (/^I clear work rest table$/) do

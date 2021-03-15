@@ -9,12 +9,21 @@ And (/^I enter (new|same) entry log$/) do |_condition|
     step 'I sleep for 1 seconds'
 end
 
+Then (/^I should see correct signed in entrants$/) do
+    on(PumpRoomEntry).home_tab_element.click
+    is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,"A/M Atif Hayat")
+    is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size,1)
+end
+
+Then (/^I should not see entered entrant on list$/) do
+    on(PreDisplay).home_tab_element.click
+    is_false(on(PumpRoomEntry).is_entered_entrant_listed?("MAS Daniel Alcantara"))
+end
+
 And ("I send entry report with {int} optional entrants") do |_optional_entrant|
     on(PumpRoomEntry).additional_entrant(_optional_entrant) if _optional_entrant > 0
     sleep 1
     BrowserActions.js_click("//span[contains(text(),'Send Report')]")
-    # BrowserActions.poll_exists_and_click(on(PreDisplay).send_report_element)
-    # on(PreDisplay).send_report_element.click
 end
 
 Then (/^I should see entrant count equal (.*)$/) do |_count|

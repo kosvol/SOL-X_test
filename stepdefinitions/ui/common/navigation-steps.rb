@@ -57,7 +57,7 @@ And (/^I update permit in pending update state with (.*) pin$/) do |_pin|
   step "I enter pin #{_pin}"
 end
 
-And (/^I (.+) permit with (.+) rank and (.+) pin$/) do |_update_or_terminate, _rank, _pin|
+And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _rank, _pin|
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
   p "index >> #{permit_id}"

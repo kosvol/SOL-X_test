@@ -26,77 +26,89 @@ class SmartFormDBPage
         tmp_payload['docs'][_index]['userId'] = userid
       end
       
-      # ## 13h59m
+      # ## 13h59m SOLX0004
       ttt = tmp_payload['docs'][0]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-7, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][0]['startTime'] = ttt
       ttt = tmp_payload['docs'][0]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][0]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][1]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-10, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][1]['startTime'] = ttt
       ttt = tmp_payload['docs'][1]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-7, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][1]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][2]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-13, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-13, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-13, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-13, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][2]['startTime'] = ttt
       ttt = tmp_payload['docs'][2]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-10, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][2]['endTime'] = ttt
 
-      # ## 9h59m
+      # ## 9h59m _SOLX0005
       ttt = tmp_payload['docs'][3]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-7, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][3]['startTime'] = ttt
       ttt = tmp_payload['docs'][3]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][3]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][4]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-10, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-10, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][4]['startTime'] = ttt
       ttt = tmp_payload['docs'][4]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-7, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][4]['endTime'] = ttt
 
-      # ## 71h59m
+      # ## 71h59m SOLX0006
       ttt = tmp_payload['docs'][5]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-12, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-12, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-12, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-12, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][5]['startTime'] = ttt
       ttt = tmp_payload['docs'][5]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
       tmp_payload['docs'][5]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][6]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-13, 24)).strftime('%H')}"
       tmp_payload['docs'][6]['startTime'] = ttt
       ttt = tmp_payload['docs'][6]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-12, 24)).strftime('%H')}"
       tmp_payload['docs'][6]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][7]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-14, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][7]['startTime'] = ttt
       ttt = tmp_payload['docs'][7]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-13, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][7]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][8]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-15, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][8]['startTime'] = ttt
       ttt = tmp_payload['docs'][8]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-14, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][8]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][9]['startTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-2).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-17, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
       tmp_payload['docs'][9]['startTime'] = ttt
       ttt = tmp_payload['docs'][9]['endTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(0, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
       tmp_payload['docs'][9]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][10]['startTime']
@@ -136,112 +148,143 @@ class SmartFormDBPage
 
       ### AUTO_SOLX0007
       ttt = tmp_payload['docs'][15]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-3, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][15]['startTime'] = ttt
       ttt = tmp_payload['docs'][15]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][15]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][16]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-6, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][16]['startTime'] = ttt
       ttt = tmp_payload['docs'][16]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-3, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][16]['endTime'] = ttt
 
       ### AUTO_SOLX0013
       ttt = tmp_payload['docs'][17]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-4, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][17]['startTime'] = ttt
       ttt = tmp_payload['docs'][17]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][17]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][18]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-8, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][18]['startTime'] = ttt
       ttt = tmp_payload['docs'][18]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-4, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-4, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][18]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][19]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-11, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][19]['startTime'] = ttt
       ttt = tmp_payload['docs'][19]['endTime']
-      ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-8, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
       tmp_payload['docs'][19]['endTime'] = ttt
 
       ### AUTO_SOLX0009
       ttt = tmp_payload['docs'][20]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-2, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-2, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-2, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-2, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][20]['startTime'] = ttt
       ttt = tmp_payload['docs'][20]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][20]['endTime'] = ttt
 
-      ttt = tmp_payload['docs'][20]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['startTime'] = ttt
-      ttt = tmp_payload['docs'][20]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['endTime'] = ttt
-
-      ttt = tmp_payload['docs'][20]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['startTime'] = ttt
-      ttt = tmp_payload['docs'][20]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['endTime'] = ttt
-
-      ttt = tmp_payload['docs'][20]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['startTime'] = ttt
-      ttt = tmp_payload['docs'][20]['endTime']
-      ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
-      tmp_payload['docs'][20]['endTime'] = ttt
-
-      ### AUTO_SOLX0012
       ttt = tmp_payload['docs'][21]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-5, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-5, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-5, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-5, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][21]['startTime'] = ttt
       ttt = tmp_payload['docs'][21]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-3, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-3, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][21]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][22]['startTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-8, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-8, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][22]['startTime'] = ttt
       ttt = tmp_payload['docs'][22]['endTime']
-      ttt[0,10] = Date.today.strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-7, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-7, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][22]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][23]['startTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-11, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-11, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][23]['startTime'] = ttt
       ttt = tmp_payload['docs'][23]['endTime']
-      ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-9, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-9, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-9, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-9, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = (Date.today+1).strftime("%Y-%m-%d")
       tmp_payload['docs'][23]['endTime'] = ttt
 
+      ### AUTO_SOLX0012
       ttt = tmp_payload['docs'][24]['startTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-6, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][24]['startTime'] = ttt
       ttt = tmp_payload['docs'][24]['endTime']
-      ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(0, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(0, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][24]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][25]['startTime']
-      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-1).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-14, 24)).strftime('%H')}"
+      # ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-20, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-20, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-14, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-14, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][25]['startTime'] = ttt
       ttt = tmp_payload['docs'][25]['endTime']
-      ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      ttt[0,24] = ServiceUtil.craft_date_time_format(DateTime.now.new_offset(Rational(-6, 24)).strftime('%Y').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%m').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%d').to_i,DateTime.now.new_offset(Rational(-6, 24)).strftime('%H').to_i,0,0)
+      # ttt[0,10] = Date.today.strftime("%Y-%m-%d")
       tmp_payload['docs'][25]['endTime'] = ttt
 
       ttt = tmp_payload['docs'][26]['startTime']
-      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-3).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-24, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][26]['startTime'] = ttt
       ttt = tmp_payload['docs'][26]['endTime']
-      ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      ttt[0,13] = "#{(Date.today-2).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(0, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-1).strftime("%Y-%m-%d")
       tmp_payload['docs'][26]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][27]['startTime']
+      ttt[0,13] = "#{(Date.today-4).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-24, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][27]['startTime'] = ttt
+      ttt = tmp_payload['docs'][27]['endTime']
+      ttt[0,13] = "#{(Date.today-3).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(0, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-2).strftime("%Y-%m-%d")
+      tmp_payload['docs'][27]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][28]['startTime']
+      ttt[0,13] = "#{(Date.today-5).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-24, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][28]['startTime'] = ttt
+      ttt = tmp_payload['docs'][28]['endTime']
+      ttt[0,13] = "#{(Date.today-4).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(0, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-3).strftime("%Y-%m-%d")
+      tmp_payload['docs'][28]['endTime'] = ttt
+
+      ttt = tmp_payload['docs'][29]['startTime']
+      ttt[0,13] = "#{(Date.today-6).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(-24, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][29]['startTime'] = ttt
+      ttt = tmp_payload['docs'][29]['endTime']
+      ttt[0,13] = "#{(Date.today-5).strftime("%Y-%m-%d")}T#{DateTime.now.new_offset(Rational(0, 24)).strftime('%H')}"
+      # ttt[0,10] = (Date.today-4).strftime("%Y-%m-%d")
+      tmp_payload['docs'][29]['endTime'] = ttt
   
       JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
       ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
@@ -312,6 +355,25 @@ class SmartFormDBPage
     end
 
     private
+
+    # def craft_date_time_format(_year,_month,_day,_hour,_min,_seconds)
+    #   DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%d-%b-%YT:%H:%M:%S.%LZ")
+    # end
+
+    def get_date_time_with_offset(_offset)
+      @current_time = Time.now.utc.strftime('%H')
+      begin
+        time_w_offset = @current_time.to_i + _offset.to_i
+      rescue StandardError
+        time_w_offset = @current_time.to_i + get_current_time_offset.to_i
+      end
+      count_hour = if time_w_offset >= 24
+                     (time_w_offset - 24).abs
+                   else
+                     time_w_offset
+                   end
+      count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
+    end
 
     def get_mod_permit_id
       @@pre_number.gsub("/", "%2F")

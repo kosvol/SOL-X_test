@@ -29,6 +29,7 @@ class PumpRoomEntry < PreDisplay
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
 
   ### gx
+  elements(:signed_in_entrants, xpath: "//div/div/ul/li")
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='reasonForEntry']")
@@ -50,16 +51,25 @@ class PumpRoomEntry < PreDisplay
 
   def signout_entrant(_entrants)
     sleep 1
-    # sign_out_btn_elements.first.click
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
     (1.._entrants.to_i).each do |_i|
       cross_btn_elements[_i].click
       sleep 1
-      # sign_out_btn_elements.last.click
       BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
     end
     sleep 1
     set_current_time
+  end
+
+  def is_entered_entrant_listed?(entrant)
+    entrant_names_dd_element.click
+    sleep 1
+    member_name_btn_elements.each do |_crew|
+      if entrant === _crew.text
+        return false
+      end
+    end
+    return true
   end
 
   def additional_entrant(_additional_entrants)
@@ -132,14 +142,12 @@ class PumpRoomEntry < PreDisplay
   def is_text_displayed?(like,_value)
     if like == "alert_text"
       xpath = "//div[contains(.,'%s')]"
-      # value = alert_text % [_value]
     elsif like == "text"
       xpath = "//*[contains(text(),'%s')]"
-      # value = any_text % [_value]
     elsif like == "auto_terminated"
-      xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"# % [_value]
+      xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"
     elsif ((like == "label") || (like == "page"))
-      xpath = "//h2[contains(text(),'%s')]"# % [_value]
+      xpath = "//h2[contains(text(),'%s')]"
     elsif like == "header"
       xpath = "//h3[contains(text(),'%s')]"
     elsif like == "button"
@@ -155,31 +163,6 @@ class PumpRoomEntry < PreDisplay
   def is_auto_terminated_displayed?(_value)
     is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]",_value)
   end
-  # def is_element_displayed?(by, value, like = "", fast = nil)
-  #   if like == "alert_text"
-  #     alert_text = "//div[contains(.,'%s')]"
-  #     value = alert_text % [value]
-  #   elsif like == "text"
-  #     any_text = "//*[contains(text(),'%s')]"
-  #     value = any_text % [value]
-  #   elsif like == "auto_terminated"
-      # value = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]" % [value]
-  #   elsif like == "label"
-  #     value = "//h3[contains(text(),'%s')]" % [value]
-  #   elsif like == "button"
-  #     value = @@button % [value]
-  #   end
-
-  #   if fast.nil?
-  #     @browser.find_element(by, value)#.displayed?
-      
-  #   else
-  #     js = %(return document.evaluate("%s", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue) % [value]
-  #     !@browser.execute_script(js).nil?
-  #   end
-  # rescue StandardError
-  #   false
-  # end
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
@@ -250,7 +233,6 @@ class PumpRoomEntry < PreDisplay
 
   def is_element_displayed(_xpath,_value=nil)
     begin
-      # alert_text = "//div[contains(.,'%s')]"
       value = _xpath % [_value]
       @browser.find_element('xpath', value).displayed?
     rescue

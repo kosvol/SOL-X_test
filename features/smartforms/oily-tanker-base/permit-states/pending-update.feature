@@ -5,7 +5,45 @@ Feature: PendingUpdate
   So that ...
 
   # Scenario: Verify all sections fields are enabled when editing from pending approval state for RA
-  # Scenario: Verify AGT can add gas reading
+
+  Scenario: Verify section 8 is editable via pending termination state
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click on Submit for Termination
+    And I enter pin 9015
+    Then I should see section 8 editable
+
+  Scenario: Verify AGT can add gas reading via pending approval state
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with 6268 pin
+    And I navigate to section 6
+    Then I should see warning label
+    And I should not see gas_equipment_input
+    And I should not see gas_sr_number_input
+    And I should not see gas_last_calibration_button
+    And I press the Yes button to enable gas testing
+    Then I should not see warning label
+    And I should see gas_equipment_input
+    And I should see gas_sr_number_input
+    And I should see gas_last_calibration_button
 
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
@@ -41,12 +79,35 @@ Feature: PendingUpdate
     And I sign on canvas with valid 9015 pin
     And I click on back to home
     And I click on pending withdrawal filter
-    And I request terminating permit to be updated
+    And I request terminating permit to be updated with 1111 pin
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
     And I update permit in pending update state with 8383 pin
     Then I should see Add Gas button disabled
+
+  Scenario Outline: Verify user should see master's note on all section while viewing as AGT via Pending Withdrawal state
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I click on Submit for Termination
+    And I enter pin 9015
+    And I submit permit for termination
+    And I sign on canvas with valid 9015 pin
+    And I click on back to home
+    And I click on pending withdrawal filter
+    And I request terminating permit to be updated with 1111 pin
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with <pin> pin
+    Then I should see request update comment box
+
+    Examples:
+      | rank  | pin  |
+      | 3/E   | 4685 |
+      | A 3/E | 6727 |
+      | 4/E   | 1311 |
 
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
@@ -68,6 +129,32 @@ Feature: PendingUpdate
     And I click on back to home
     And I click on update needed filter
     Then I should see Note from Master
+
+  Scenario Outline: Verify user should not see master's note on all section while viewing as Master, non RA, non Checklist Creator and non AGT via Pending Approval state
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with <pin> pin
+    Then I should not see request update comment box
+
+    Examples:
+      | rank | pin  |
+      | PMAN | 4421 |
 
   Scenario: Verify update note shows from Office if request update via OA office
     Given I launch sol-x portal without unlinking wearable
