@@ -19,7 +19,8 @@ class PumpRoomEntry < PreDisplay
   elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
-  
+  elements(:person_checkbox, xpath: "//div[@class='checkbox']")
+
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
 
@@ -27,7 +28,10 @@ class PumpRoomEntry < PreDisplay
   @@scheduled_link = "//strong[contains(text(),'Pump Room Entry Permit')]//following::a[2]"
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
-
+  @@entrants_arr = []
+  element(:entrant_select_btn, xpath: "//span[contains(text(),'Select Entrants - Required')]")
+  element(:entry_log_btn, xpath: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span")
+  element(:input_field, xpath: "//div[starts-with(@class,'Input')]")
   ### gx
   elements(:signed_in_entrants, xpath: "//div/div/ul/li")
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
@@ -47,6 +51,14 @@ class PumpRoomEntry < PreDisplay
 
   def get_entry_log_validity_details
     "#{@@pre_permit_start_time[12,5]} - #{@@pre_permit_end_time[12,5]}"
+  end
+
+  def set_entrants(entrants)
+    @@entrants_arr = entrants
+  end
+
+  def get_entrants()
+    @@entrants_arr
   end
 
   def signout_entrant(_entrants)
@@ -81,6 +93,33 @@ class PumpRoomEntry < PreDisplay
       _additional_entrants = _additional_entrants - 1
     end
     confirm_btn_elements.first.click
+  end
+
+  def select_entrants(entrants)
+    while entrants > 0
+      person_checkbox_elements[entrants].click
+      entrants = entrants - 1
+    end
+  end
+
+  def entrants(entrants)
+    while entrants > 0
+      member_name_btn_elements[entrants].click
+      entrants = entrants - 1
+    end
+  end
+
+  def save_entrants_to_variable(entrants)
+    entr_arr = []
+    while entrants > 0
+      entr_arr.push($browser.
+        find_element(:xpath,
+                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").text)
+      entrants = entrants - 1
+    end
+    p "first"
+    p entr_arr.to_s
+    set_entrants(entr_arr)
   end
 
   def add_all_gas_readings_pre(_o2,_hc,_h2s,_co,_gas_name,_threhold,_reading,_unit)
@@ -138,7 +177,7 @@ class PumpRoomEntry < PreDisplay
       elements.size === 3
     end
   end
-  
+
   def is_text_displayed?(like,_value)
     if like == "alert_text"
       xpath = "//div[contains(.,'%s')]"
@@ -159,7 +198,7 @@ class PumpRoomEntry < PreDisplay
   def is_alert_text_displayed?(_value)
     is_element_displayed("//div[contains(.,'%s')]",_value)
   end
-  
+
   def is_auto_terminated_displayed?(_value)
     is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]",_value)
   end
@@ -219,7 +258,7 @@ class PumpRoomEntry < PreDisplay
         headers: {'Content-Type': 'application/json'}})
 
     p "request >> #{request}"
-    
+
     full_form = (JSON.parse request.to_s)
     full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
 

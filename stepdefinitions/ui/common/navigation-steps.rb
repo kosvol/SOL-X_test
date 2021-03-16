@@ -88,25 +88,12 @@ And ('I click New Entrant button on Enclose Space Entry PWT') do
   sleep 2
 end
 
-Then (/^I should see no new entry log message in Entry log$/) do
-  sleep 3
-  on(NewEntrantPage).entry_log_btn_element.click
-  sleep 1
-  is_equal(on(EntryLog).info_gas_testing_is_missing_elements[2].text,"No Entry Yet")
-  is_equal(on(EntryLog).info_gas_testing_is_missing_elements[3].text,"Press on “New Entry” button on the “Home” page to record a new entry.")
-end
-
 And ('I click New Entry button on PTW screen') do
-  on(NewEntrantPage).new_entry_button_button.click
+  on(PreDisplay).new_entry_log_button.click
   sleep 1
-end
-
-And (/^I just click on back arrow$/) do
-  sleep 1
-  BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
 end
 
 And (/^I just click button Home$/) do
   sleep 1
-  BrowserActions.poll_exists_and_click(on(NewEntryPage).home_btn_element)
+  BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)
 end
