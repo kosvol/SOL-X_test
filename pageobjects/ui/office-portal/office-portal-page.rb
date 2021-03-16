@@ -40,6 +40,14 @@ class OfficePortalPage
     $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
   end
 
+  def vessel_card_since_date(_sinceDate)
+    $browser.find_element(:xpath, "//h3[contains(text(),'%s')]/following-sibling::div//span[contains(text(),'Since')]"%_sinceDate).text
+  end
+
+  def vessel_card_last_permit_date(_lastPermitDate)
+    $browser.find_element(:xpath, "//h3[contains(text(),'%s')]/following-sibling::div//span[contains(text(),'Last Permit')]"%_lastPermitDate).text
+  end
+
   def select_permit_by_number(_whatNumber)
     $browser.find_element(:xpath, "//span[contains(text(),'%s')]/..//span[contains(@class,'check')]"%_whatNumber).click
   end
