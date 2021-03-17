@@ -85,40 +85,28 @@ class PumpRoomEntry < PreDisplay
   end
 
   def additional_entrant(_additional_entrants)
+    entr_arr = []
     purpose_of_entry="Test Automation"
     entrant_names_dd_element.click
     sleep 2
     while _additional_entrants > 0
       member_name_btn_elements[_additional_entrants].click
+      entr_arr.push(member_name_btn_elements[_additional_entrants].text)
       _additional_entrants = _additional_entrants - 1
     end
+    set_entrants(entr_arr)
     confirm_btn_elements.first.click
   end
 
-  def select_entrants(entrants)
-    while entrants > 0
-      person_checkbox_elements[entrants].click
-      entrants = entrants - 1
-    end
-  end
-
-  def entrants(entrants)
-    while entrants > 0
-      member_name_btn_elements[entrants].click
-      entrants = entrants - 1
-    end
-  end
-
-  def save_entrants_to_variable(entrants)
+  def required_entrants(entrants)
     entr_arr = []
     while entrants > 0
+      person_checkbox_elements[entrants].click
       entr_arr.push($browser.
         find_element(:xpath,
                      "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").text)
       entrants = entrants - 1
     end
-    p "first"
-    p entr_arr.to_s
     set_entrants(entr_arr)
   end
 

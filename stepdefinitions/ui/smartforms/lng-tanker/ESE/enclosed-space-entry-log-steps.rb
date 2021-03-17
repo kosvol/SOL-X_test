@@ -1,8 +1,7 @@
 And ('I select required entrants {int}') do |_entrants_number|
   BrowserActions.wait_until_is_visible(on(PumpRoomEntry).input_field_element)
    on(PumpRoomEntry).entrant_select_btn_element.click
-   on(PumpRoomEntry).select_entrants(_entrants_number)
-   on(PumpRoomEntry).save_entrants_to_variable(_entrants_number)
+   on(PumpRoomEntry).required_entrants(_entrants_number)
    on(PumpRoomEntry).confirm_btn_elements.first.click
 end
 
@@ -17,8 +16,8 @@ end
 
 Then (/^I check the Send Report button is disabled$/) do
   p on(PreDisplay).send_report_btn_elements.first.text
-  if is_disabled(on(PreDisplay).send_report_btn_elements.first)
-    p 'Button is disabled'
+   if is_disabled(on(PreDisplay).send_report_btn_elements.first)
+     p 'Button is disabled'
   else
     raise 'Button is enabled'
   end
@@ -51,6 +50,7 @@ end
 
 And (/^I send Report$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
+  on(PreDisplay).send_report_btn_elements.first.click
   on(PreDisplay).send_report_element.click
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
   on(CommonFormsPage).done_btn_elements.first.click
