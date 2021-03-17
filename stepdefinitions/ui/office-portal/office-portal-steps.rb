@@ -139,9 +139,15 @@ And(/^I check the checkbox near the Permit No. title$/) do
   on(OfficePortalPage).permit_check_box_elements[0].click
 end
 
-Then(/^I should see all the forms are selected$/) do
+Then(/^I should see all the forms are (selected|not selected)$/) do |_whatChoiсe|
+  if _whatChoiсe == "selected"
   on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
     is_true(_selection.checked?)
+    end
+  else
+    on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
+      is_false(_selection.checked?)
+      end
   end
 end
 
