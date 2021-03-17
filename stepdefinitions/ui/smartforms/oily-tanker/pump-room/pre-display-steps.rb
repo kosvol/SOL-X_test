@@ -1,9 +1,22 @@
-Then (/^I should see no new entry log message$/) do
-  sleep 3
-  on(PumpRoomEntry).entry_log_btn_element.click
-  sleep 1
-  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[2].text,"No Entry Yet")
-  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[3].text,"Press on “New Entry” button on the “Home” page to record a new entry.")
+Then (/^I should see (no new|only) entry log message$/) do |_condition|
+  case _condition
+  when 'no new'
+    sleep 3
+    on(PumpRoomEntry).entry_log_btn_element.click
+    sleep 1
+    is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[2]
+                           .text,'No Entry Yet')
+    is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[3]
+                           .text,'Press on “New Entry” button on the “Home” page to record a new entry.')
+  when 'only'
+    sleep 3
+    on(PumpRoomEntry).entry_log_btn_element.click
+    sleep 1
+    is_disabled(on(PreDisplay).info_gas_testing_is_missing_elements[2])
+    is_disabled(on(PreDisplay).info_gas_testing_is_missing_elements[3])
+  else
+    raise 'wrong condition'
+  end
 end
 
 And(/^I navigate to PRE Display$/) do
@@ -24,25 +37,25 @@ And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_
 end
 
 And (/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|
-  if which_box === "warning"
+  if which_box === 'warning'
     begin
       box_text = on(PreDisplay).warning_box_element.text
     rescue StandardError
       box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'WarningBox')]").text
     end
-    base_data_text = YAML.load_file("data/pre/pre-display.yml")['warning_box'][status]
+    base_data_text = YAML.load_file('data/pre/pre-display.yml')['warning_box'][status]
     is_equal(box_text, base_data_text)
   end
 end
 
 Then (/^I should see (green|red) background color$/) do |condition|
   background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
-  if condition == "green"
-    green = "rgba(67, 160, 71, 1)"
+  if condition == 'green'
+    green = 'rgba(67, 160, 71, 1)'
     is_equal(background_color, green)
 
-  elsif condition == "red"
-    red = "rgba(216, 75, 75, 1)"
+  elsif condition == 'red'
+    red = 'rgba(216, 75, 75, 1)'
     is_equal(background_color, red)
   end
 end
@@ -56,7 +69,7 @@ And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry l
   on(PumpRoomEntry).entry_log_btn_element.click
   sleep 2
   is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.first.text,"Please Terminate This Permit and\nCreate A New Permit")
-  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.last.text,"Initial gas reading for this permit is missing.")
+  is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.last.text,'Initial gas reading for this permit is missing.')
 end
 
 And(/^I take note of PRE permit creator name and activate the the current PRE form$/) do
@@ -65,7 +78,7 @@ And(/^I take note of PRE permit creator name and activate the the current PRE fo
   # p "PRE Creator>> #{@preCreatorName}"
   sleep 1
   step 'I press the "Approve for Activation" button'
-  step "I sign on canvas with valid 8383 pin"
+  step 'I sign on canvas with valid 8383 pin'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -73,5 +86,5 @@ end
 
 Then(/^I should see the PRE permit creator name on PRED$/) do
   sleep 5
-  is_equal(on(PreDisplay).pre_creator_display_element.text, "3/O Tim Kinzer")
+  is_equal(on(PreDisplay).pre_creator_display_element.text, '3/O Tim Kinzer')
 end

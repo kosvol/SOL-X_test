@@ -5,7 +5,7 @@ Feature: PumpRoomEntry
   So that ...
 
   # Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
-@wip2
+
   Scenario: Verify entrant crew list displayed the correct entrants
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
