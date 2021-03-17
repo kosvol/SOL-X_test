@@ -48,8 +48,30 @@ And (/^I should see comment reset$/) do
   is_true(on(OAPage).is_comment_box_reset?)
 end
 
+And(/^I should see other Comments block attributes$/) do
+  to_exists(on(OAPage).comments_cross_icon_btn_element)
+  to_exists(on(OAPage).comment_input_box_element)
+  to_exists(on(OAPage).rank_dd_list_element)
+  to_exists(on(OAPage).name_box_element)
+  to_exists(on(OAPage).send_comments_btn_element)
+end
+
 And (/^I add comment on oa permit$/) do
   # $browser.get("http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=SIT/PTW/2020/158&eventId=01EJ7VZKGE7G6CV4ST5Y47K4KH&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   # on(OAPage).add_comments_btn
   on(OAPage).set_comment
+end
+
+And(/^I click on Add Comments button$/) do
+  on(OAPage).add_comments_btn
+  sleep 1
+end
+
+And(/^I click on Designation drop\-down$/) do
+  on(OAPage).rank_dd_list
+  sleep 1
+end
+
+Then(/^I should the Designation list contains all necessary roles$/) do
+  is_true(on(OAPage).is_designation_list?)
 end
