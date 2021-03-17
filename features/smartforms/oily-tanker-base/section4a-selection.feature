@@ -4,14 +4,12 @@ Feature: Section4AChecklistSelection
   I want to ...
   So that ...
 
-  @test
   Scenario: Verify checklist display are correct to vessel type
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 9015
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill a full enclosed workspace permit
     And I navigate to section 4a
     Then I should see this list of available checklist
       | Cold Work Operation Checklist             |
