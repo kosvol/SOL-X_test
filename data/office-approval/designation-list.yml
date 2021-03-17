@@ -1,0 +1,16 @@
+roles:
+  [
+    "Vessel Superintendent",
+    "Marine Superintendent",
+    "Vessel Superintendent (Backup)",
+    "Marine Superintendent (Backup)",
+    "Director, Fleet Operations",
+    "Director, Fleet Operations (Backup)",
+    "Director, QAHSSE",
+    "Director, QAHSSE (Backup)",
+    "HSE, Operations",
+    "QAHSSE Superintendent",
+    "QAHSSE Manager",
+    "Head, Fleet Operations",
+    "Head, Fleet Operations (Backup)"
+  ]
