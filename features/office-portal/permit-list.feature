@@ -83,7 +83,7 @@ Feature: PermitList
     And I check the checkbox near the Permit No. title
     Then I should see all the forms are selected
     And I should see the forms quantity on the top bar is the same as on the All Permits title
-@ska
+
   Scenario: Verify that the selection for the forms is reset when switching to another vessel or proceeding to the vessel list (5734)
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     And I terminate permit submit_cold_work_clean_spill via service with 9015 user on the sit vessel

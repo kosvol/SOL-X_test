@@ -8,6 +8,8 @@ class OfficePortalPage
   button(:op_login_btn, xpath: "//button[contains(@class,'LoginButton')]")
   button(:home_btn, xpath: "//nav[contains(@class,'NavigationBar')]//button")
   button(:all_permits_btn, xpath: "//span[contains(text(),'All Permits')]/parent::button")
+  button(:permit_to_work_forms_btn, xpath: "//span[contains(text(),'Permit to Work Forms')]/parent::button")
+  button(:other_forms_btn, xpath: "//span[contains(text(),'Other Forms')]/parent::button")
   button(:view_permit_btn, xpath: "//span[contains(text(),'View Selected Permit')]/parent::button")
   button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
   button(:print_permit_btn, xpath: "//span[contains(text(),'Print Permit')]/parent::button")
