@@ -65,6 +65,12 @@ And (/^I uncheck the pre-selected checklist$/) do
   on(Section4APage).uncheck_all_checklist
 end
 
+Then (/^I should see this list of available checklist$/) do |_table|
+  _table.raw.each_with_index do |_checklist,_index|
+    is_equal(_checklist.first,on(Section4APage).list_of_checklist_elements[_index].text)
+  end
+end
+
 Then (/^I should see (.+) checklist questions$/) do |_checklist|
   sleep 2
   BrowserActions.scroll_down

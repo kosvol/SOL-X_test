@@ -26,8 +26,8 @@ class Section4APage < Section3DPage
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
-  spans(:list_of_checklist, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
-  elements(:section1, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+  spans(:list_of_checklist, xpath: "//section[starts-with(@class,'Section__SectionMain')][2]/div/div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
   elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
   element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
