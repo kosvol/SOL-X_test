@@ -14,6 +14,7 @@ class OAPage < Section9Page
   button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
   button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments (1)')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
+  button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
   button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")

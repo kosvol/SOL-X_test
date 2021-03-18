@@ -48,7 +48,7 @@ And (/^I should see comment reset$/) do
   is_true(on(OAPage).is_comment_box_reset?)
 end
 
-And(/^I should see other Comments block attributes$/) do
+And(/^I should see Comments block attributes$/) do
   to_exists(on(OAPage).comments_cross_icon_btn_element)
   to_exists(on(OAPage).comment_input_box_element)
   to_exists(on(OAPage).rank_dd_list_element)
@@ -74,4 +74,60 @@ end
 
 Then(/^I should the Designation list contains all necessary roles$/) do
   is_true(on(OAPage).is_designation_list?)
+end
+
+And(/^I select any role$/) do
+  whatRole = rand(14)
+  @designation = on(OAPage).designation_elements[whatRole].text
+  on(OAPage).designation_elements[whatRole].click
+end
+
+Then(/^I should see the selected role in the Designation field$/) do
+  is_equal(on(OAPage).rank_dd_list_element.text, @designation)
+end
+
+Then(/^I should see the Send button is (disabled|enabled)$/) do |_condition|
+  case _condition
+  when "enabled"
+    is_enabled(on(OAPage).send_comments_btn_element)
+  when "disabled"
+    is_disabled(on(OAPage).send_comments_btn_element)
+  end
+  sleep(1)
+end
+
+And(/^I key a (comment|long comment|name)$/) do |_whatInput|
+  if _whatInput == 'comment'
+    on(OAPage).comment_input_box_element.send_keys(YAML.load_file("data/office-approval/comments.yml")['short'])
+    elsif _whatInput == 'long comment'
+    on(OAPage).comment_input_box_element.send_keys(YAML.load_file("data/office-approval/comments.yml")['long'])
+    elsif _whatInput == 'name'
+    on(OAPage).name_box_element.send_keys('Test Automation')
+  end
+  sleep(2)
+end
+
+And(/^I delete the comment$/) do
+  on(OAPage).comment_input_box_element.clear()
+end
+
+And(/^I add a (short|long) comment$/) do |_whatLength|
+  case _whatLength
+  when 'short'
+    step 'I key a comment'
+  when 'long'
+    step 'I key a long comment'
+  end
+  step 'I key a name'
+  step 'I click on Send button'
+end
+
+And(/^I click on Send button$/) do
+  on(OAPage).send_comments_btn
+  sleep(1)
+end
+
+Then(/^I should see the See More button for a long comment$/) do
+  to_exists(on(OAPage).see_more_less_btn_element)
+  is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
 end
