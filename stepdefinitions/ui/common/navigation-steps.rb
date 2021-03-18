@@ -79,3 +79,21 @@ end
 And ('I take note of issued date and time') do
   @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text
 end
+
+And ('I click New Entrant button on Enclose Space Entry PWT') do
+  sleep 1
+  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
+  p "index >> #{permit_id}"
+  on(ActiveStatePage).new_entrant_btn_elements[permit_id].click
+  sleep 2
+end
+
+And ('I click New Entry button on PTW screen') do
+  on(PreDisplay).new_entry_log_button.click
+  sleep 1
+end
+
+And (/^I just click button Home$/) do
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)
+end
