@@ -22,6 +22,7 @@ class PreDisplay < Section9Page
   element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePermitDetails')]")
   element(:time_shifted_by_text, xpath: "//div[contains(@class,'PermitValidUntil__TextSmall')]")
   element(:pre_duration_timer, xpath: "//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
+  buttons(:send_report_btn, xpath: "//button[contains(.,\"Send Report\")]")
 
   def is_element_disabled_by_att?(text)
     #enable? - doesn't work for PRED. for 'li' elements
@@ -31,5 +32,4 @@ class PreDisplay < Section9Page
   rescue StandardError
     false
   end
-
 end

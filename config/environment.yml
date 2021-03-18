@@ -1,12 +1,12 @@
 ##Service
 dev:
-  c2_preview: "https://cloud-edge.dev.solas.magellanx.io:8080"
-  service: "http://cloud-edge.dev.solas.magellanx.io:4000/"
+  c2_preview: "https://dev.edge.dev.safevue.ai:8080"
+  service: "http://dev.edge.dev.safevue.ai:4000/"
   master_pin: "9707"
 
 sit:
-  c2_preview: "https://sit.edge.dev.safevue.sol-x.co:8080"
-  service: "https://sit.edge.dev.safevue.sol-x.co:4000/"
+  c2_preview: "https://sit.edge.dev.safevue.ai:8080"
+  service: "https://sit.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
   switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-lng-vessel"
   update_mas_pin: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/users/SIT_SOLX0001"
@@ -14,8 +14,8 @@ sit:
   fauxton_url: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984"
 
 auto:
-  c2_preview: "https://cloud-edge.auto.solas.magellanx.io:8080/"
-  service: "https://cloud-edge.auto.solas.magellanx.io:4000/"
+  c2_preview: "https://auto.edge.dev.safevue.ai:8080/"
+  service: "https://auto.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
   update_mas_pin: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/users/AUTO_SOLX0001"
   switch_vessel: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/vessels/auto-vessel"

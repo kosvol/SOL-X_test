@@ -10,6 +10,7 @@ class ActiveStatePage < CreatedPermitToWorkPage
   buttons(:first_permit_buttons, xpath: "//ul/li[1]/ul/li/button")
   buttons(:terminate_permit_btn, xpath: "//button[contains(.,'View/Terminate')]")
   buttons(:add_gas_btn, xpath: "//button[contains(.,'Gas Test')]")
+  buttons(:new_entrant_btn, xpath: "//button[contains(.,'New Entrant')]")
 
   def get_permit_validity_period(_index)
     permit_validity_timer_elements[_index].text
