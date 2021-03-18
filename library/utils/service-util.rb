@@ -24,7 +24,7 @@ module ServiceUtil
     end
 
     def update_crew_members_vessel(_vesselType)
-      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_find"
+      uri = "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/crew_members/_find"
       #EnvironmentSelector.get_vessel_switch_url
       content_body = JsonUtil.read_json("vessel-switch/get_crew_members")
       error_logging('URI: ', uri)
@@ -37,7 +37,7 @@ module ServiceUtil
         _crew['vesselId'] = _vesselType
       end
       p "> #{master_details.to_json}"
-      uri = "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_bulk_docs"
+      uri = "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/crew_members/_bulk_docs"
       @@response = HTTParty.post(uri, { body: master_details.to_json }.merge(ql_headers("_user")))
       error_logging('Switch Response Body: ', @@response)
     end
