@@ -8,19 +8,19 @@ sit:
   c2_preview: "https://sit.edge.dev.safevue.ai:8080"
   service: "https://sit.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
-  switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/vessels/sit-lng-vessel"
-  update_mas_pin: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/users/SIT_SOLX0001"
-  get_crew_members: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/crew_members/_find"
-  fauxton_url: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984"
+  switch_vessel: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/vessels/sit-lng-vessel"
+  update_mas_pin: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
+  get_crew_members: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
 
 auto:
   c2_preview: "https://auto.edge.dev.safevue.ai:8080/"
   service: "https://auto.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
-  update_mas_pin: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/users/AUTO_SOLX0001"
-  switch_vessel: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/vessels/auto-vessel"
-  get_crew_members: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984/crew_members/_find"
-  fauxton_url: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984"
+  update_mas_pin: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/users/AUTO_SOLX0001"
+  switch_vessel: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/vessels/auto-vessel"
+  get_crew_members: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
 
 uat:
   c2_preview: "http://104.215.192.113:8080"
@@ -28,8 +28,8 @@ uat:
   master_pin:
 
 fauxton:
-  base_auto_url: "https://admin:magellanx@cloud-edge.auto.solas.magellanx.io:5984"
-  base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984"
+  base_auto_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
+  base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
   delete_form: "/forms/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
@@ -83,7 +83,7 @@ postgres:
 
 pin_management:
   sit:
-    db: "https://admin:magellanx@sit.edge.dev.safevue.sol-x.co:5984/"
+    db: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/"
     vessel: "sit-vessel"
   dev:
 
