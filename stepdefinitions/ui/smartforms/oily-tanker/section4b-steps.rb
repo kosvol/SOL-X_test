@@ -9,7 +9,6 @@ Then (/^I should see description of work pre-populated$/) do
 end
 
 Then (/^I should see wifi inconsistent popup display for (.*)$/) do |which_category|
-  # p ">> #{on(Section4BPage).wifi_popup_elements[2].text}"
   if which_category === "EIC"
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"Due to a Wi-Fi issue, you are doing this Energy Isolation Certificate in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
@@ -19,7 +18,6 @@ Then (/^I should see wifi inconsistent popup display for (.*)$/) do |which_categ
   elsif which_category === "smartform"
     on(Section0Page).back_arrow_element.click
     sleep 3
-    # p ">> #{on(CommonFormsPage).wifi_popup_smartform_elements[0].text}"
     is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,"Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
   elsif which_category === "section 8"
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Inconsistent Wi-Fi")
@@ -31,18 +29,11 @@ Then (/^I should see wifi restore popup display for (.*)$/) do |which_category|
   step 'I turn on wifi'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).wifi_restore_popup_element)
   if which_category === "EIC"
-    # sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Energy Isolation Certificate so other crew members will be able to access it in other devices.")
   elsif which_category === "section 6"
-    # sleep 3
     is_equal(on(Section4BPage).wifi_popup_elements[1].text,"Wi-Fi restored")
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,"You are Online Now\nNow you can submit Section 6: Gas Testing/Equipment so other crew members will be able to access it in other devices.")
-  # elsif which_category === "smartform"
-  #   on(Section0Page).back_arrow_element.click
-  #   sleep 3 Permit 
-  #   # p ">> #{on(CommonFormsPage).wifi_popup_smartform_elements[0].text}"
-  #   is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,"Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
   end
 end
 
@@ -137,14 +128,12 @@ And (/^I fill up EIC certificate$/) do
   on(Section3DPage).radio_btn_elements[30].click
   on(Section3DPage).radio_btn_elements[32].click
   on(Section3DPage).radio_btn_elements[34].click
-  # (0..((on(Section3DPage).radio_btn_elements.size / 2) - 1)).each do |_i|
-  #   on(Section3DPage).radio_btn_elements[0 + tmp].click
-  #   tmp += 2
-  # end
   on(Section4BPage).loto = '1234'
   # sign
   step 'I sign EIC as competent person with pin 8383'
+  sleep 1
   step 'I sign EIC as issuing authority with pin 8248'
+  sleep 2
   on(Section4BPage).save_eic
   sleep 1
   step 'I sign EIC section 4b with RA pin 9015'
