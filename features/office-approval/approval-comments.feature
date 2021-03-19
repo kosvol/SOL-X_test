@@ -11,14 +11,14 @@ Feature: OfficeApprovalComments
     And I should see Comments block attributes
 
   Scenario: Verify the Designation list contains all necessary roles (5310)
-    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I click on Designation drop-down
     Then I should the Designation list contains all necessary roles
 
   Scenario: Verify the selected role appears in the Designation field (5311)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit ssubmit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I click on Designation drop-down
@@ -32,18 +32,18 @@ Feature: OfficeApprovalComments
     Then I should see the Send button is disabled
     And I key a comment
     Then I should see the Send button is disabled
-    And I delete the comment
+    And close the comment block
+    And I click on Add Comments button
     And I key a name
-    #Then I should see the Send button is disabled
-    #And I key a comment
-    #And I key a name
-    #Then I should see the Send button is enabled
+    Then I should see the Send button is disabled
+    And I key a comment
+    Then I should see the Send button is enabled
 
   Scenario: Verify the comment's attributes after adding (5313)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
-    And I add comment on oa permit
+    And I add a short comment
     Then I should see comment attributes
 
   Scenario: Verify the last added comment appears at the top of the list (5314)
@@ -51,11 +51,13 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add Comments button
     And I add comment on oa permit
+    And close the comment block
+    And I click on Add/Show Comments button
     And I add a short comment
-    Then I should see the last is at the top of the list
-@ska
+    Then I should see the last comment is at the top of the list
+
   Scenario: Verify the "See More" button appears at the end of the comment if it is longer than 240 characters (5325)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I add a long comment

@@ -102,13 +102,8 @@ And(/^I key a (comment|long comment|name)$/) do |_whatInput|
     elsif _whatInput == 'long comment'
     on(OAPage).comment_input_box_element.send_keys(YAML.load_file("data/office-approval/comments.yml")['long'])
     elsif _whatInput == 'name'
-    on(OAPage).name_box_element.send_keys('Test Automation')
+    on(OAPage).name_box_element.send_keys('Test Automation 2')
   end
-  sleep(2)
-end
-
-And(/^I delete the comment$/) do
-  on(OAPage).comment_input_box_element.clear()
 end
 
 And(/^I add a (short|long) comment$/) do |_whatLength|
@@ -124,10 +119,31 @@ end
 
 And(/^I click on Send button$/) do
   on(OAPage).send_comments_btn
-  sleep(1)
+  @when = Time.now.strftime('%d/%b/%Y %H:%M')
+  sleep(5)
 end
 
 Then(/^I should see the See More button for a long comment$/) do
-  to_exists(on(OAPage).see_more_less_btn_element)
   is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
+end
+
+And(/^close the comment block$/) do
+  on(OAPage).comments_cross_icon_btn
+  sleep(1)
+end
+
+Then(/^I should see comment attributes$/) do
+  is_true(on(OAPage).comment_rank_elements.first.text == "Vessel Superintendent")
+  is_true(on(OAPage).comment_name_elements.first.text == "Test Automation 2")
+  does_include(on(OAPage).comment_date_elements.first.text, @when)
+  is_true(on(OAPage).comment_text_elements.first.text == "Test Automation 2")
+end
+
+Then(/^I should see the last comment is at the top of the list$/) do
+  step 'I should see comment attributes'
+end
+
+And(/^I click on Add\/Show Comments button$/) do
+  on(OAPage).add_comments_btn1
+  sleep 1
 end
