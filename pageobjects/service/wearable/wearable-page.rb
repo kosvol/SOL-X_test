@@ -110,6 +110,7 @@ class WearablePage
     def get_beacon_mac
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['beacons'].each do |list|
+        next if list['location']['zone'].nil?
         @@tmp_list << [list['_id'], list['location']['zone']['name'], list['mac']]
       end
       @@tmp_list
