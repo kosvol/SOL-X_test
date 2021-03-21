@@ -62,8 +62,16 @@ Feature: OfficeApprovalComments
     And I click on Add Comments button
     And I add a long comment
     Then I should see the See More button for a long comment
+    And I should see only 240 chars are displayed
 
-  #Scenario: Verify the full comment appears after pressing the "See More" button (5326)
+  Scenario: Verify the full comment appears after pressing the "See More" button (5326)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on Add Comments button
+    And I add a long comment
+    And I click on See More button
+    Then I should see the full comment text
+
   #Scenario: Verify that comments will be saved after the form is sent for updates before approval (5457)
   #Scenario: Verify Captain cannot add comments to the form after approval (5327)
   #Scenario: Verify Office Approval Authority cannot add comments to the form after activation (5328)

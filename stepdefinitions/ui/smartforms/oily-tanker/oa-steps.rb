@@ -120,11 +120,16 @@ end
 And(/^I click on Send button$/) do
   on(OAPage).send_comments_btn
   @when = Time.now.strftime('%d/%b/%Y %H:%M')
-  sleep(5)
+  sleep(1)
 end
 
 Then(/^I should see the See More button for a long comment$/) do
   is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
+end
+
+And(/^I should see only 240 chars are displayed$/) do
+  commentText = on(OAPage).comment_text_elements.first.text.sub('... See More', '')
+  is_true(commentText.length == 240)
 end
 
 And(/^close the comment block$/) do
@@ -146,4 +151,21 @@ end
 And(/^I click on Add\/Show Comments button$/) do
   on(OAPage).add_comments_btn1
   sleep 1
+end
+
+And(/^I click on (See More|See Less) button$/) do |_seeWhat|
+  case _seeWhat
+  when 'See More'
+    on(OAPage).see_more_less_btn
+  when 'See Less'
+    on(OAPage).see_more_less_btn
+  end
+end
+
+Then(/^I should see the full comment text$/) do
+  commentText = on(OAPage).comment_text_elements.first.text.sub(' See Less', '')
+  baseText = YAML.load_file("data/office-approval/comments.yml")['long']
+  baseText = baseText.to_s.sub('["', '')
+  baseText = baseText.to_s.sub('"]', '')
+  is_equal(commentText, baseText)
 end
