@@ -6,7 +6,7 @@ Then (/^I should not see issuing and competence authority button$/) do
 end
 
 Then (/^I should see section 8 in read only mode$/) do
-  is_equal(on(Section3APage).total_p_elements.size,18)
+  is_equal(on(Section3APage).total_p_elements.size,20)
 end
 
 Then (/^I should see section 8 editable$/) do
@@ -23,7 +23,7 @@ Then (/^I should see extra section8 questions for pipe permit$/) do
     # p "#{_elem.text}"
     does_include(@@section8_questions["pipe"],_elem.text)
   end
-  is_equal($browser.find_elements(:xpath, '//input').size, '34')
+  is_equal($browser.find_elements(:xpath, '//input').size, '32')
 end
 
 Then (/^I should see extra section8 questions for critical maintenance permit$/) do
@@ -36,7 +36,7 @@ Then (/^I should see extra section8 questions for critical maintenance permit$/)
   tmp.each do |_elem|
     does_include(@@section8_questions["critical"],_elem.text)
   end
-  is_equal($browser.find_elements(:xpath, '//input').size, '39')
+  is_equal($browser.find_elements(:xpath, '//input').size, '37')
 end
 
 Then (/^I should see extra section8 questions for electrical permit$/) do
@@ -48,7 +48,7 @@ Then (/^I should see extra section8 questions for electrical permit$/) do
   tmp.each do |_elem|
     does_include(@@section8_questions["electrical"],_elem.text)
   end
-  is_equal($browser.find_elements(:xpath, '//input').size, '36')
+  is_equal($browser.find_elements(:xpath, '//input').size, '34')
 end
 
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
