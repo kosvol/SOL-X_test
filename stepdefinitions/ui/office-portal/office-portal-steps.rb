@@ -58,6 +58,14 @@ Then(/^I should see the vessel name at the top bar and permits list$/) do
   sleep(1)
 end
 
+And(/^I should see Since item on the vessel card$/) do
+  does_include(on(OfficePortalPage).vessel_card_since_date(@vessel), 'Since')
+end
+
+And(/^I should see Last Permit (\d+) days ago on the vessel card$/) do |_days|
+  is_equal(on(OfficePortalPage).vessel_card_last_permit_date(@vessel), ('Last Permit ' + _days.to_s + ' day(s) ago'))
+end
+
 When(/^I select the "([^"]*)" vessel$/) do |vessel|
   @vessel = vessel
   on(OfficePortalPage).select_vessel(@vessel)
@@ -131,9 +139,15 @@ And(/^I check the checkbox near the Permit No. title$/) do
   on(OfficePortalPage).permit_check_box_elements[0].click
 end
 
-Then(/^I should see all the forms are selected$/) do
+Then(/^I should see all the forms are (selected|not selected)$/) do |_whatChoiсe|
+  if _whatChoiсe == "selected"
   on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
     is_true(_selection.checked?)
+    end
+  else
+    on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
+      is_false(_selection.checked?)
+      end
   end
 end
 
@@ -182,11 +196,6 @@ And(/^I select the recently terminated form$/) do
   on(OfficePortalPage).select_permit_by_number(@formNumber)
 end
 
-And(/^I reload the page$/) do
-  $browser.navigate.refresh
-  sleep(1)
-end
-
 Then(/^I should see the the form number is updated$/) do
   is_true(@permits_quantity.to_i == (@previous_quantity.to_i + 1))
   sleep(1)
@@ -196,4 +205,5 @@ And(/^I remember the current permits quantity$/) do
   step 'I check the forms number on the vessel card'
   @previous_quantity = @permits_quantity
 end
+
 

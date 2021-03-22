@@ -11,8 +11,10 @@ class OAPage < Section9Page
   button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")
   element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
-  button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments (1)')]")
+  button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
+  button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
+  button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
   button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
@@ -29,14 +31,23 @@ class OAPage < Section9Page
   ## Comment elements ###  
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
+  text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
   button(:rank_dd_list, xpath: "//button[@id='rank']")
+  elements(:designation, xpath: "//ul[contains(@class,'UnorderedList')]/li")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
-  @@comment_base = "QAHSSE Manager
+  @@comment_base = "Head, Fleet Operations (Backup)
   Test Automation
   %s %s (GMT+0)
   Test Automation"
   ## END Comment elements ###
+
+  ## Comment attributes ###
+  elements(:comment_rank, xpath: "//div[@class='message-rank']")
+  elements(:comment_name, xpath: "//div[@class='message-name']")
+  elements(:comment_date, xpath: "//div[@class='message-date']")
+  elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
+  ## END Comment attributes ###
 
   def navigate_to_oa_link
     sleep 15
@@ -113,6 +124,14 @@ class OAPage < Section9Page
     BrowserActions.scroll_down
     # set_vs_designation
     BrowserActions.js_click("//button[contains(.,'VS')]")
+  end
+
+  def is_designation_list?
+    tmp_arr = []
+    designation_elements.each do |_element|
+      tmp_arr << _element.text
+    end
+    tmp_arr === YAML.load_file("data/office-approval/designation-list.yml")['roles']
   end
 
   private

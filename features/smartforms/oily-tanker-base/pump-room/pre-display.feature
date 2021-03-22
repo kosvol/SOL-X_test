@@ -167,7 +167,7 @@ Feature: PumpRoomEntry
     And I sleep for 3 seconds
     Then I should see entrant count equal 0
 
-  Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display
+  Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin <pin>
@@ -183,7 +183,7 @@ Feature: PumpRoomEntry
       | O/S                       | 7669 |
       | OLR                       | 0450 |
 
-  Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display
+  Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin <pin>

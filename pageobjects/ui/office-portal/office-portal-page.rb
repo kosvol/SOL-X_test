@@ -8,6 +8,8 @@ class OfficePortalPage
   button(:op_login_btn, xpath: "//button[contains(@class,'LoginButton')]")
   button(:home_btn, xpath: "//nav[contains(@class,'NavigationBar')]//button")
   button(:all_permits_btn, xpath: "//span[contains(text(),'All Permits')]/parent::button")
+  button(:permit_to_work_forms_btn, xpath: "//span[contains(text(),'Permit to Work Forms')]/parent::button")
+  button(:other_forms_btn, xpath: "//span[contains(text(),'Other Forms')]/parent::button")
   button(:view_permit_btn, xpath: "//span[contains(text(),'View Selected Permit')]/parent::button")
   button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
   button(:print_permit_btn, xpath: "//span[contains(text(),'Print Permit')]/parent::button")
@@ -38,6 +40,14 @@ class OfficePortalPage
 
   def vessel_card_permits_quantity(_formsQuantity)
     $browser.find_element(:xpath, "//h3[contains(text(), '%s')]/parent::div/following-sibling::div//span[contains(@class,'value')]"%_formsQuantity).text
+  end
+
+  def vessel_card_since_date(_sinceDate)
+    $browser.find_element(:xpath, "//h3[contains(text(),'%s')]/following-sibling::div//span[contains(text(),'Since')]"%_sinceDate).text
+  end
+
+  def vessel_card_last_permit_date(_lastPermitDate)
+    $browser.find_element(:xpath, "//h3[contains(text(),'%s')]/following-sibling::div//span[contains(text(),'Last Permit')]"%_lastPermitDate).text
   end
 
   def select_permit_by_number(_whatNumber)

@@ -35,15 +35,124 @@ And (/^I approve oa permit via oa link manually$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
 end
 
-# And (/^I should see comment reset$/) do
-#   # $browser.gset("http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=SIT/PTW/2020/158&eventId=01EJ7VZKGE7G6CV4ST5Y47K4KH&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
-#   on(OAPage).add_comments_btn
-#   sleep 1
-#   is_true(on(OAPage).is_comment_box_reset?)
-# end
+And(/^I should see Comments block attributes$/) do
+  to_exists(on(OAPage).comments_cross_icon_btn_element)
+  to_exists(on(OAPage).comment_input_box_element)
+  to_exists(on(OAPage).rank_dd_list_element)
+  to_exists(on(OAPage).name_box_element)
+  to_exists(on(OAPage).send_comments_btn_element)
+end
 
-# And (/^I add comment on oa permit$/) do
-#   # $browser.get("http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=SIT/PTW/2020/158&eventId=01EJ7VZKGE7G6CV4ST5Y47K4KH&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
-#   # on(OAPage).add_comments_btn
-#   on(OAPage).set_comment
-# end
+And (/^I add comment on oa permit$/) do
+  # $browser.get("http://solas-dev-office-portal.azurewebsites.net/permit-overview?formId=SIT/PTW/2020/158&eventId=01EJ7VZKGE7G6CV4ST5Y47K4KH&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
+  # on(OAPage).add_comments_btn
+  on(OAPage).set_comment
+end
+
+And(/^I click on Add Comments button$/) do
+  on(OAPage).add_comments_btn
+  sleep 1
+end
+
+And(/^I click on Designation drop\-down$/) do
+  on(OAPage).rank_dd_list
+  sleep 1
+end
+
+Then(/^I should the Designation list contains all necessary roles$/) do
+  is_true(on(OAPage).is_designation_list?)
+end
+
+And(/^I select any role$/) do
+  whatRole = rand(14)
+  @designation = on(OAPage).designation_elements[whatRole].text
+  on(OAPage).designation_elements[whatRole].click
+end
+
+Then(/^I should see the selected role in the Designation field$/) do
+  is_equal(on(OAPage).rank_dd_list_element.text, @designation)
+end
+
+Then(/^I should see the Send button is (disabled|enabled)$/) do |_condition|
+  case _condition
+  when "enabled"
+    is_enabled(on(OAPage).send_comments_btn_element)
+  when "disabled"
+    is_disabled(on(OAPage).send_comments_btn_element)
+  end
+  sleep(1)
+end
+
+And(/^I key a (comment|long comment|name)$/) do |_whatInput|
+  if _whatInput == 'comment'
+    on(OAPage).comment_input_box_element.send_keys(YAML.load_file("data/office-approval/comments.yml")['short'])
+    elsif _whatInput == 'long comment'
+    on(OAPage).comment_input_box_element.send_keys(YAML.load_file("data/office-approval/comments.yml")['long'])
+    elsif _whatInput == 'name'
+    on(OAPage).name_box_element.send_keys('Test Automation 2')
+  end
+end
+
+And(/^I add a (short|long) comment$/) do |_whatLength|
+  case _whatLength
+  when 'short'
+    step 'I key a comment'
+  when 'long'
+    step 'I key a long comment'
+  end
+  step 'I key a name'
+  step 'I click on Send button'
+end
+
+And(/^I click on Send button$/) do
+  on(OAPage).send_comments_btn
+  @when = Time.now.strftime('%d/%b/%Y %H:%M')
+  sleep(1)
+end
+
+Then(/^I should see the See More button for a long comment$/) do
+  is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
+end
+
+And(/^I should see only 240 chars are displayed$/) do
+  commentText = on(OAPage).comment_text_elements.first.text.sub('... See More', '')
+  is_true(commentText.length == 240)
+end
+
+And(/^close the comment block$/) do
+  on(OAPage).comments_cross_icon_btn
+  sleep(1)
+end
+
+Then(/^I should see comment attributes$/) do
+  is_true(on(OAPage).comment_rank_elements.first.text == "Vessel Superintendent")
+  is_true(on(OAPage).comment_name_elements.first.text == "Test Automation 2")
+  does_include(on(OAPage).comment_date_elements.first.text, @when)
+  is_true(on(OAPage).comment_text_elements.first.text == "Test Automation 2")
+end
+
+Then(/^I should see the last comment is at the top of the list$/) do
+  step 'I should see comment attributes'
+end
+
+And(/^I click on Add\/Show Comments button$/) do
+  on(OAPage).add_comments_btn1
+  sleep 1
+end
+
+And(/^I click on (See More|See Less) button$/) do |_seeWhat|
+  case _seeWhat
+  when 'See More'
+    on(OAPage).see_more_less_btn
+  when 'See Less'
+    on(OAPage).see_more_less_btn
+  end
+end
+
+Then(/^I should see the full comment text$/) do
+  commentText = on(OAPage).comment_text_elements.first.text.sub(' See Less', '')
+  baseText = YAML.load_file("data/office-approval/comments.yml")['long']
+  baseText = baseText.to_s.sub('["', '')
+  baseText = baseText.to_s.sub('"]', '')
+  is_equal(commentText, baseText)
+end

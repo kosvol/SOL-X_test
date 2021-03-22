@@ -13,6 +13,8 @@ Feature: PermitList
     When I log in to the Office Portal
     And I select the "Auto" vessel
     Then I should see the vessel name at the top bar and permits list
+    And I should see Since item on the vessel card
+    And I should see Last Permit 0 days ago on the vessel card
 
   Scenario: Verify user is redirected to the Home screen after pressing the Home icon or "Cross" icon (3580, 5859, 5735)
     Given I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
@@ -44,7 +46,7 @@ Feature: PermitList
     And I select the "Auto" vessel
     And I remember the current permits quantity
     And I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
-    And I reload the page
+    And I refresh the browser
     And I check the forms number on the vessel card
     Then I should see the the form number is updated
     And I should see the same number on the All Permits
@@ -56,15 +58,17 @@ Feature: PermitList
     And I click on Add Filter button
     Then I should the Permit Types list for filter
 
-  #Scenario: Verify permits are filtered properly
+  #Scenario: Verify permits are filtered properly (3394)
 
-  Scenario: Verify users can select a form for review (4807)
+  Scenario: Verify users can select a form for review (4807, 3316)
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see the selected form in a new tab
+    And I should see the form contains 9 sections
+    And I should see the Print Permit button at the bottom bar
 
   #Scenario: Verify the stand alone RoL permit is displayed in the Office Portal
 
@@ -80,6 +84,27 @@ Feature: PermitList
     Then I should see all the forms are selected
     And I should see the forms quantity on the top bar is the same as on the All Permits title
 
-  #Scenario: Verify the several forms are displayed after multi-selection (4479)
+  Scenario: Verify that the selection for the forms is reset when switching to another vessel or proceeding to the vessel list (5734)
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
+    And I terminate permit submit_cold_work_clean_spill via service with 9015 user on the sit vessel
+    When I log in to the Office Portal
+    And I select the "Auto" vessel
+    And I check the checkbox near the Permit No. title
+    Then I should see all the forms are selected
+    And I click on the Home icon
+    And I select the "Auto" vessel
+    Then I should see all the forms are not selected
+    And I check the checkbox near the Permit No. title
+    Then I should see all the forms are selected
+    And I click on the Cross icon
+    And I select the "Auto" vessel
+    Then I should see all the forms are not selected
+    And I check the checkbox near the Permit No. title
+    Then I should see all the forms are selected
+    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
+    Then I should see all the forms are not selected
 
-  #Scenario: Verify the "Load More Permits" button appears when there are more than 100 terminated permits
+  #Scenario: Verify the several forms are displayed after multi-selection (4479, 6401)
+
+  #Scenario: Verify the "Load More Permits" button appears when there are more than 100 terminated permits (6403)
