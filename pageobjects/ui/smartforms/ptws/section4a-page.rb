@@ -200,8 +200,8 @@ class Section4APage < Section3DPage
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
-      BrowserActions.scroll_down(element_yes[_index])
-      element_yes[_index].click
+      BrowserActions.scroll_down(element_yes[_index+1])
+      element_yes[_index+1].click
     end
   end
 

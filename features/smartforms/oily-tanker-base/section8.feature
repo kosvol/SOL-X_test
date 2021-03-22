@@ -23,7 +23,6 @@ Feature: Section8
     And I press next for 3 times
     Then I should not see issuing and competence authority button
 
-  @debug
   Scenario: Verify non RA cannot fill section 8 for termination
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
@@ -146,8 +145,6 @@ Feature: Section8
     And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
-    # And I navigate to section 8
-    # And I press next for 1 times
     Then I should see extra section8 questions for critical maintenance permit
 
   Scenario: Verify extra section8 questions shown when Work on Electrical Equipment and Circuits
@@ -173,8 +170,6 @@ Feature: Section8
     And I click on back to home
     And I click on active filter
     And I terminate permit with A/M rank and 9015 pin
-    # And I navigate to section 8
-    # And I press next for 1 times
     Then I should see extra section8 questions for electrical permit
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for OA permit
