@@ -23,6 +23,7 @@ Feature: Section8
     And I press next for 3 times
     Then I should not see issuing and competence authority button
 
+  @debug
   Scenario: Verify non RA cannot fill section 8 for termination
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
