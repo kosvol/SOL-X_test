@@ -35,15 +35,15 @@ Feature: PendingUpdate
     And I click on update needed filter
     And I update permit in pending update state with 6268 pin
     And I navigate to section 6
-    Then I should see warning label
-    And I should not see gas_equipment_input
-    And I should not see gas_sr_number_input
-    And I should not see gas_last_calibration_button
-    And I press the Yes button to enable gas testing
     Then I should not see warning label
     And I should see gas_equipment_input
     And I should see gas_sr_number_input
     And I should see gas_last_calibration_button
+    And I press the NA button to enable gas testing
+    Then I should see warning label
+    And I should not see gas_equipment_input
+    And I should not see gas_sr_number_input
+    And I should not see gas_last_calibration_button
 
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
@@ -176,6 +176,7 @@ Feature: PendingUpdate
     And I click on update needed filter
     Then I should see Note from Office
 
+  @skip
   Scenario: Comment is not saved for the EIC when requesting the form for updates
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -197,6 +198,7 @@ Feature: PendingUpdate
     And I click on view EIC certification button
     Then I should see request update comment box
 
+  @skip
   Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

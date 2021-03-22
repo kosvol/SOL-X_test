@@ -15,22 +15,22 @@ Then (/^I should see correct OA submission text$/) do
   is_equal(on(Section3APage).total_p_elements.first.text,"The relevant authority will review this permit.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard.")
 end
 
-Then (/^I should not be able to edit DRA$/) do
+Then (/^I should not be able to edit (.*) DRA$/) do |_permit|
   sleep 1
   step 'I click on View Edit Hazard'
+  sleep 1
   on(Section3APage).scroll_multiple_times(2)
   on(Section3APage).delete_btn_elements.each do |_elem|
     is_disabled(_elem)
   end
-  sleep 1
-  is_equal(on(Section3APage).total_p_elements.size,14)
+  is_equal(on(Section3APage).total_p_elements.size,14) if _permit === 'Enclosed Spaces Entry'
+  is_equal(on(Section3APage).total_p_elements.size,4) if _permit === 'Use of non-intrinsically safe Camera'
   on(Section3APage).scroll_multiple_times(2)
   on(CommonFormsPage).close_btn_elements.first.click
 end
 
 Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
-  # on(Section4BPage).view_eic_btn_element
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
   is_equal(on(Section3APage).total_p_elements.size,27)

@@ -72,8 +72,6 @@ class Section4APage < Section3DPage
   def select_ppe_equipment
     begin
       BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
-      # @browser.execute_script(%(document.evaluate("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-      # ppe_btn
       sleep 1
       member_name_btn_elements.first.click
       confirm_btn_elements.last.click
@@ -83,22 +81,12 @@ class Section4APage < Section3DPage
 
     begin
       BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
-      # browser.execute_script(%(document.evaluate("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-      # ppe1_btn
       sleep 1
       member_name_btn_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError
     end
-
-    # begin
-    #   sleep 1
-    #   member_name_btn_elements.first.click
-    #   confirm_btn_elements.last.click
-    #   sleep 1
-    # rescue StandardError
-    # end
   end
 
   def fill_textarea(_elems,_input)
@@ -117,7 +105,6 @@ class Section4APage < Section3DPage
     spacer = occurrence_elements.size
     (0..((radio_btn_elements.size / spacer) - 1)).each do |_i|
       @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{tmp}").click()))
-      # radio_btn_elements[0 + tmp].click
       tmp += spacer
     end
   end
@@ -188,8 +175,8 @@ class Section4APage < Section3DPage
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
-      BrowserActions.scroll_down(element_yes[_index])
-      return (element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
+      BrowserActions.scroll_down(element_yes[_index-1])
+      return (element_yes[_index-1].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index-1].css_value('color') === 'rgba(255, 255, 255, 1)')
     end
   end
 

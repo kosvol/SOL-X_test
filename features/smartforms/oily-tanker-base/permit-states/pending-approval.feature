@@ -38,7 +38,7 @@ Feature: PendingApprovalPermit
     And I click on permit for master approval
     And I enter pin 9015
     And I navigate to section 3a
-    Then I should not be able to edit DRA
+    Then I should not be able to edit Use of non-intrinsically safe Camera DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification
 
@@ -53,7 +53,7 @@ Feature: PendingApprovalPermit
     And I click on permit for master approval
     And I enter pin <pin>
     And I navigate to section 3a
-    Then I should not be able to edit DRA
+    Then I should not be able to edit Enclosed Spaces Entry DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification
 

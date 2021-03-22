@@ -51,7 +51,7 @@ class OAPage < Section9Page
     current_hour = get_current_hour
     ### set from time
     date_time_from_elements[1].click
-    hour_from_picker_elements[current_hour.to_i].click
+    hour_from_picker_elements[current_hour.to_i+1].click
     minute_from_picker_elements[1].click
     ### set to time
     dismiss_picker_element.click
@@ -60,7 +60,7 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 1
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",(current_hour.to_i+2))
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",(current_hour.to_i+9))
     # hour_from_picker_elements[(current_hour.to_i+2)].click
     sleep 1
     BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",0)

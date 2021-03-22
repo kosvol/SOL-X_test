@@ -6,8 +6,6 @@ end
 
 And (/^I open hamburger menu$/) do
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
-  # sleep 1
-  # on(NavigationPage).hamburger_menu_element.click
 end
 
 And (/^I click on (.*) show more$/) do |_which_category|
@@ -22,9 +20,7 @@ Then (/^I navigate to "(.*)" screen for (.*)$/) do |_which_section,_which_catego
 end
 
 And (/^I click on back arrow$/) do
-  # sleep 1
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  # on(Section0Page).back_arrow_element.click
   sleep 5
   step 'I set permit id'
 end
@@ -52,6 +48,7 @@ And (/^I navigate to section (.+)$/) do |_which_section|
 end
 
 And (/^I update permit in pending update state with (.*) pin$/) do |_pin|
+  # on(PendingStatePage).edit_update_btn_elements.first.click
   on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   sleep 1
   step "I enter pin #{_pin}"
