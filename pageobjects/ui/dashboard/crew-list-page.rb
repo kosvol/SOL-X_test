@@ -67,7 +67,7 @@ class CrewListPage < DashboardPage
       rank_arr << x.text
     end
     p ">>> #{rank_arr.uniq}"
-    rank_arr.uniq === $sit_rank_and_pin_yml['ranks_sorted']
+    rank_arr.uniq === $sit_rank_and_pin_yml['ranks_sorted_auto']
   end
 
   def get_crew_table_headers

@@ -4,6 +4,12 @@ Feature: CrewList
   I want to ...
   So that ...
 
+  # @manual
+  # Scenario: Verify Email notification sent to the assign crew
+
+  # @manual
+  # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+
   Scenario: Verify count down timer not started after clicking of View pin
     Given I launch sol-x portal
     When I navigate to "Crew List" screen for forms
@@ -85,16 +91,10 @@ Feature: CrewList
     And I enter a non-existent pin
     Then I should not see invalid pin message
 
-  # Scenario: Verify crew list is sorted in descending order of seniority
-  #   Given I launch sol-x portal
-  #   When I navigate to "Crew List" screen for forms
-  #   Then I should see crews are sorted by descending order on seniority
-
-  # @manual
-  # Scenario: Verify Email notification sent to the assign crew
-
-  # @manual
-  # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
+  Scenario: Verify crew list is sorted in descending order of seniority
+    Given I launch sol-x portal
+    When I navigate to "Crew List" screen for forms
+    Then I should see crews are sorted by descending order on seniority
 
   @production
   Scenario: Verify user can add crew on an ad-hoc manner
