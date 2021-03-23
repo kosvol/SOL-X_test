@@ -209,6 +209,7 @@ Feature: Section6
     And I select Cold Work permit
     And I select Cold Work - Working in Hazardous or Dangerous Areas permit for level 2
     And I navigate to section 4a
+    And I sleep for 1 seconds
     Then I should see correct checklist Cold Work Operation Checklist pre-selected
     And I should see correct checklist Work on Hazardous Substances pre-selected
 
