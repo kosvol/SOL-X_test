@@ -174,9 +174,8 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
-
-      BrowserActions.scroll_down(element_yes[_index-1])
-      return (element_yes[_index-1].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index-1].css_value('color') === 'rgba(255, 255, 255, 1)')
+      BrowserActions.scroll_down(element_yes[_index])
+      return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
     end
   end
 

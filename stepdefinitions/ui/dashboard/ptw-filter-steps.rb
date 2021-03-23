@@ -8,7 +8,7 @@ Then (/^I should see permits match backend results$/) do
 end
 
 Then (/^I should see (.+) permits listing match counter$/) do |_which_filter|
-  sleep 3
+  sleep 2
   step 'I get forms-filter/smart-form-filter request payload'
   step 'I hit graphql'
   on(PtwFilterPage).get_permits_counter

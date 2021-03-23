@@ -10,9 +10,11 @@ And (/^I enter (new|same) entry log$/) do |_condition|
 end
 
 Then (/^I should see correct signed in entrants$/) do
-  on(PumpRoomEntry).home_tab_element.click
-    is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,"A/M Atif Hayat")
-    is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size,1)
+  on(PreDisplay).home_tab_element.click
+  on(PreDisplay).sign_out_btn_elements.first.click
+  sleep 2
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,"A/M Atif Hayat")
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size,1)
 end
 
 Then (/^I should not see entered entrant on list$/) do

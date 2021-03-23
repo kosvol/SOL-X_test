@@ -49,8 +49,12 @@ class PumpRoomEntry < PreDisplay
     @@pre_permit_end_time = permit_end_time_element.text
   end
 
-  def get_entry_log_validity_details
-    "#{@@pre_permit_start_time[12,5]} - #{@@pre_permit_end_time[12,5]}"
+  def get_entry_log_validity_start_details
+    "#{@@pre_permit_start_time[12,5]}"
+  end
+
+  def get_entry_log_validity_end_details
+    "#{@@pre_permit_end_time[12,5]}"
   end
 
   def set_entrants(entrants)

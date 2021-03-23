@@ -24,7 +24,7 @@ Feature: PumpRoomEntry
     And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     And I acknowledge the new entry log via service
-    Then I should see entrant count equal 1
+    Then I should see entrant count equal 2
     And I enter new entry log
     Then I should not see entered entrant on list
 

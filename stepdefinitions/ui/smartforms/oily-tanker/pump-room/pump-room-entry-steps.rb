@@ -238,13 +238,18 @@ end
 And (/^I should see PRE display timezone$/) do
   on(PumpRoomEntry).home_tab_element.click
   step 'I sleep for 1 seconds'
-  is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
+  if on(CommonFormsPage).get_current_time_offset.to_i <= 1
+    is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hour")
+  else
+    is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
+  end
 end
 
 Then (/^I should see entry log details display as filled$/) do
   is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,"A/M Atif Hayat")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,"Test Automation")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_details)
+  does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_start_details)
+  does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_end_details)
   is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text,"#{on(CommonFormsPage).get_current_time_offset}")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,"2 %")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,"3 % LEL")
