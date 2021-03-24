@@ -15,8 +15,8 @@ class DashboardPage < WearablePage
   div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
-  # @@ship_area = "//li/button[contains(.,'%s')]"
-  @@ship_area = "//div/button/span[contains(.,'%s')]"
+  @@ship_area = "//li/button[contains(.,'%s')]"
+  # @@ship_area = "//div/button/span[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
@@ -32,9 +32,7 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    BrowserActions.js_click("//div[starts-with(@class,'values-area')]/button")
-    # @browser.execute_script(%(document.evaluate("//div[starts-with(@class,'values-area')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-    sleep 1
+    BrowserActions.js_click("//div/button/span")
     toggle_zone_filter(location)
     sleep 1
     begin
