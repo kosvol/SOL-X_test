@@ -62,16 +62,35 @@ Feature: LNGCRE
             | ETO  | 0856 |
             | ELC  | 2719 |
 
-    Scenario: Verify CRE creator cannot approve the same permit
+    Scenario: Verify CRE Chief Officer can approve the same permit
         Given I launch sol-x portal without unlinking wearable
         # When I clear gas reader entries
         When I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
-        And for cre I submit permit for Officer Approval
+        And for cre I submit permit for Chief Officer Approval
         And I getting a permanent number from indexedDB
         And I open the current CRE with status Pending approval. Pin: 8383
-        And I should see not authorize error message
+        And for cre I should see the enabled "Approve for Activation" button
+
+    Scenario Outline: Verify CRE roles cannot approve the same permit
+        Given I launch sol-x portal without unlinking wearable
+        # When I clear gas reader entries
+        When I navigate to create new CRE
+        And I enter pin <pin>
+        And I fill up CRE. Duration 4. Delay to activate 2
+        And for cre I submit permit for <rank> Approval
+        And I getting a permanent number from indexedDB
+        And I open the current CRE with status Pending approval. Pin: <pin>
+        And for cre I should see the disabled "Approve for Activation" button
+        Examples:
+
+            | rank | pin  |
+            | Officer | 2761 |
+            | Second Officer  | 6268 |
+            | Additional Second Officer | 7865 |
+            | Third Officer | 0159 |
+            | Fourth Officer | 2674 |
 
     Scenario: Verify non CRE creator can approve the same permit
         Given I launch sol-x portal without unlinking wearable
@@ -91,7 +110,7 @@ Feature: LNGCRE
         And I enter pin 8383
         Then I fill up CRE. Duration 4. Delay to activate 2
         # And Get PRE id
-        And (for pre) I submit permit for Officer Approval
+        And for pre I submit permit for Officer Approval
         And I getting a permanent number from indexedDB
         Then I activate the current CRE form
         And I sleep for 1 seconds

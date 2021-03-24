@@ -105,12 +105,16 @@ Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permi
 end
 
 
-And(/^for (pre|cre) I submit permit for Officer Approval$/) do |_permit_type|
+And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
+  roles_pin_map =  {"Officer"=>"2761", "Master"=>"1111", "Additional Master"=>"9015",
+                    "Chief Officer"=>"8383", "Second Officer"=>"6268",
+                    "Additional Second Officer"=>"7865", "Third Officer"=>"0159", "Fourth Officer"=>"2674",
+                    "Additional Fourth Officer"=>"2637"}
   step 'Get PRE id'
   # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
-  step "I sign on canvas with valid 2761 pin"
+  step "I sign on canvas with valid #{roles_pin_map[_role]} pin"
   sleep 3
   step "I should see the page 'Successfully Submitted'"
   sleep 2
