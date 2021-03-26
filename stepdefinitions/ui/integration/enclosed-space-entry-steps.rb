@@ -16,6 +16,7 @@ And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
   end
   p ">>> #{on(Section1Page).get_filled_section1}"
   is_equal(on(Section1Page).get_filled_section1, @@form_data['section1_without_duration'])
+  # step 'I press next for 2 times'
 end
 
 And (/^I review page 2 of submitted (.+) permit$/) do |_permit_type|
