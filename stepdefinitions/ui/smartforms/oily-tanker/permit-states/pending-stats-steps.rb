@@ -101,8 +101,9 @@ end
 
 And (/^I reapprove the updated permit$/) do
   step 'I click on update needed filter'
-  BrowserActions.click_element(on(PendingStatePage).edit_update_btn_elements.first)
-  step 'I enter pin 9015'
+  step 'I update permit with A/M rank and 9015 pin'
+  # BrowserActions.click_element(on(PendingStatePage).edit_update_btn_elements.first)
+  # step 'I enter pin 9015'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
   step "I sign on canvas with valid 9015 pin"

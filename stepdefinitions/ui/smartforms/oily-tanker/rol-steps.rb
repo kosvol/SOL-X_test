@@ -42,21 +42,21 @@ And (/^I request update for permit$/) do
 end
 
 Then (/^I should not see extra buttons$/) do
-  on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  step 'I enter pin 9015'
-  step 'I press next for 1 times'
+  step 'I update permit with A/M rank and 9015 pin'
+  # on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  # step 'I enter pin 9015'
+  # step 'I press next for 1 times'
   sleep 1
-  on(Section3APage).scroll_multiple_times(16)
+  step 'I should not see extra previous and close button'
   is_equal(on(PendingStatePage).submit_for_master_approval_btn_elements.size, 1)
-  is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
-  is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
 end
 
 Then (/^I should not see extra previous and close button$/) do
   on(Section3APage).scroll_multiple_times(16)
   is_equal(on(PendingStatePage).previous_btn_elements.size, 1)
-  is_equal(on(PendingStatePage).close_btn_elements.first.text, "Close")
-  is_equal(on(PendingStatePage).close_btn_elements.size, 1)
+  not_to_exists(on(CommonFormsPage).close_btn_elements.first)
+  # is_equal(on(PendingStatePage).close_btn_elements.first.text, "Close")
+  # is_equal(on(PendingStatePage).close_btn_elements.size, 1)
 end
 
 Then (/^I should not see extra previous and save button$/) do

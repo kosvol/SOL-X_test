@@ -48,10 +48,11 @@ And (/^I navigate to section (.+)$/) do |_which_section|
 end
 
 And (/^I update permit in pending update state with (.*) pin$/) do |_pin|
-  # on(PendingStatePage).edit_update_btn_elements.first.click
-  on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  sleep 1
-  step "I enter pin #{_pin}"
+  # on(PendingStatePage).edit_update_btn_elements.firstclick
+  step "I update permit with A/M rank and #{_pin} pin"
+  # on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  # sleep 1
+  # step "I enter pin #{_pin}"
 end
 
 And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _rank, _pin|
