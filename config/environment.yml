@@ -23,11 +23,13 @@ auto:
   fauxton_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
 
 uat:
-  c2_preview: "http://104.215.192.113:8080"
-  service: "http://104.215.192.113:4000"
-  master_pin:
+  c2_preview: "https://uat.edge.dev.safevue.ai:8080/"
+  service: "https://uat.edge.dev.safevue.ai:4000/"
+  fauxton_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
+  get_crew_members: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984/crew_members/_find"
 
 fauxton:
+  base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
   base_auto_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
@@ -46,6 +48,7 @@ fauxton:
   get_wearable_active_users: "/wearables_active_users/_all_docs?skip=0&limit=10000"
 
 oa_db:
+  base_uat_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   base_sit_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   base_dev_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   delete_oa_event: "/office_approval_events/_bulk_docs"
