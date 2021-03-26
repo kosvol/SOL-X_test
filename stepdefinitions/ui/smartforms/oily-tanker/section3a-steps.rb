@@ -97,6 +97,8 @@ And (/^I delete a hazard$/) do
   on(Section3APage).view_edit_btn
   sleep 1
   on(Section3APage).delete_btn_elements.first.click
+  sleep 1
+  on(Section3APage).delete_btn_elements.last.click
   sleep 2
   on(Section3APage).save_dra
   sleep 1

@@ -19,7 +19,7 @@ Feature: Section4AChecklistSelection
       | Hot Work Outside Designated Area          |
       | Hot Work Within Designated Area           |
       | Personnel Transfer by Transfer Basket     |
-      | Pump Room Entry Checklist                 |
+      | Pump Room/Compressor Room Entry Checklist |
       | Rotational Portable Power Tools (PPT)     |
       | Underwater Operation                      |
       | Use of Camera Checklist                   |
