@@ -106,26 +106,20 @@ end
 
 
 And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
-  # roles_pin_map =  {"Officer"=>"2761", "Master"=>"1111", "Additional Master"=>"9015",
-  #                   "Chief Officer"=>"8383", "Second Officer"=>"6268",
-  #                   "Additional Second Officer"=>"7865", "Third Officer"=>"0159", "Fourth Officer"=>"2674",
-  #                   "Additional Fourth Officer"=>"2637"}
   step 'Get PRE id'
   # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
-  step 'I get pinpad/get-pin-by-role request payload'
-  step 'I hit graphql'
-  pin = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], _role)
-  step "I sign on canvas with valid #{pin} pin"
+  step "I enter pin for rank #{_role}"
   sleep 3
+  on(SignaturePage).sign_and_done
   step "I should see the page 'Successfully Submitted'"
   sleep 2
   step 'I press the "Back to Home" button'
 end
 
 And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
-  step 'I open the current PRE with status Pending approval. Pin: 8383'
+  step 'I open the current PRE with status Pending approval. Rank: C/O'
   step 'I take note of start and end validity time'
   step 'I press the "Approve for Activation" button'
   step "I sign on canvas with valid 8383 pin"
@@ -157,7 +151,7 @@ Then(/^I terminate the PRE$/) do
   on(ActiveStatePage).terminate_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(@@pre_number)].click
   # on(ActiveStatePage).get_termination_btn(@@pre_number).click
   # on(PumpRoomEntry).press_button_for_current_PRE("View/Termination")
-  step 'I enter pin 8383'
+  step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
   step "I sign on canvas with valid 8383 pin"
   step "I should see the text 'Permit Has Been Closed'"
@@ -166,7 +160,7 @@ Then(/^I terminate the PRE$/) do
 end
 
 Then(/^I request update needed$/) do
-  step 'I open the current PRE with status Pending approval. Pin: 2761'
+  step 'I open the current PRE with status Pending approval. Rank: A C/O'
   step 'I request update for permit'
   step "I should see the text 'Your Updates Have Been Successfully Requested'"
   sleep 1
@@ -176,7 +170,7 @@ end
 And(/^\(for pre\) I should see update needed message$/) do
   step 'I navigate to "Updates Needed" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE("Edit/Update")
-  step 'I enter pin 8383'
+  step 'I enter pin for rank C/O'
   step "I should see the text 'Comments from Approving Authority'"
   step "I should see the text 'Test Automation'"
 end
@@ -188,26 +182,23 @@ And(/^Get (PRE|CRE) id$/) do |_permit_type|
   # step 'I set permit id'
 end
 
-Then(/^I open the current (PRE|CRE) with status Pending approval. (Pin|Rank): (.*)$/) do |_permit_type,_condition,pin|
+Then(/^I open the current (PRE|CRE) with status Pending approval. Rank: (.*)$/) do |_permit_type,rank|
   step "I navigate to \"Pending Approval\" screen for #{_permit_type}"
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
-  step 'I enter pin %s' % [pin] if _condition=="Pin"
-  step 'I enter pin for rank %s' %[pin] if _condition=="Rank"
+  step 'I enter pin for rank %s' %[rank]
   sleep 1
 end
 
 Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   # table is a table.hashes.keys # => [:Chief Officer, :8383]
-  roles.raw.each do |role|
-    pin = role[1]
-    p role
-    step 'I open the current PRE with status Pending approval. Pin: %s' % [pin]
+   roles.raw.each do |role|
+    step 'I open the current PRE with status Pending approval. Rank: %s' % [role[0].to_s]
     on(CommonFormsPage).scroll_multiple_times(20)
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
     is_equal(on(CommonFormsPage).close_btn_elements.size,1)
     step 'I click on back arrow'
-  end
+   end
 end
 
 And(/^I get a temporary number and writing it down$/) do
@@ -227,7 +218,7 @@ end
 
 Then(/^I edit pre and should see the old number previously written down$/) do
   on(PumpRoomEntry).press_button_for_current_PRE("Edit")
-  step 'I enter pin 8383'
+  step 'I enter pin for rank C/O'
   sleep 1
   is_equal(on(PumpRoomEntry).purpose_of_entry, "Test Automation")
 end

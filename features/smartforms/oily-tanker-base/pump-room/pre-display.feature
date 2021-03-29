@@ -51,14 +51,14 @@ Feature: PumpRoomEntry
   Scenario: Verify PRE permit creator name display on PRED
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
-    And I enter pin 0159
+    And I enter pin for rank 3/O
     And I fill up PRE. Duration 4. Delay to activate 2
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
     And I sleep for 100 seconds
     And I navigate to PRE Display
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I should see the PRE permit creator name on PRED
 
   Scenario: Verify ship local time shift on PRED
@@ -121,17 +121,17 @@ Feature: PumpRoomEntry
   #   Given I launch sol-x portal without unlinking wearable
   #   When I clear gas reader entries
   #   And I navigate to create new PRE
-  #   And I enter pin 8383
+  #   And I enter pin for rank C/O
   #   And I fill up PRE. Duration 4. Delay to activate 2
   #   And I add all gas readings
-  #   And I enter pin 9015
+  #   And I enter pin for rank A/M
   #   And I dismiss gas reader dialog box
   #   And for pre I submit permit for Officer Approval
   #   And I getting a permanent number from indexedDB
   #   And I activate the current PRE form
   #   And I sleep for 100 seconds
   #   And I navigate to PRE Display
-  #   And I enter pin 8383
+  #   And I enter pin for rank C/O
   #   And I enter new entry log
   # step 'I send entry report with 0 optional entrants'
   # step 'I sleep for 3 seconds'
@@ -170,55 +170,55 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
-    And I enter pin <pin>
+    And I enter pin for rank <role>
     Then I should see not authorize error message
 
     Examples:
-      | role                      | pin  |
-      | Addtional Master          | 9015 |
-      | Electro Technical Officer | 0856 |
-      | D/C                       | 2317 |
-      | BOS                       | 1018 |
-      | A/B                       | 6316 |
-      | O/S                       | 7669 |
-      | OLR                       | 0450 |
+      | role  |
+      | A/M   |
+      | ETO   |
+      | D/C   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
   Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
-    And I enter pin <pin>
+    And I enter pin for rank <role>
     Then I should see the header 'Pump Room Entry Display'
 
     Examples:
-      | role                      | pin  |
-      | Master                    | 1111 |
-      | Chief Officer             | 8383 |
-      | A Chief Officer           | 2761 |
-      | Second Officer            | 6268 |
-      | Additional Second Officer | 7865 |
-      | 3/O                       | 0159 |
-      | A 3/O                     | 2674 |
-      | Chief Engineer            | 8248 |
-      | A Chief Engineer          | 5718 |
-      | Second Engineer           | 2523 |
-      | A Second Engineer         | 3030 |
-      | 3/E                       | 4685 |
-      | A 3/E                     | 6727 |
-      | 4/E                       | 1311 |
-      | A 4/E                     | 0703 |
+      | role |
+      | MAS  |
+      | C/O  |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
 
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     When I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I fill up PRE. Duration 4. Delay to activate 2
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
     And I sleep for 100 seconds
     And I navigate to PRE Display
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     And (for pred) I should see the enabled "Home" button

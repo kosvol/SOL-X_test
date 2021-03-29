@@ -76,7 +76,7 @@ end
 And (/^I set oa permit to office (approval|review) state manually$/) do |_condition|
   on(PendingStatePage).master_review_btn_elements.first.click if _condition === "approval"
   on(PendingStatePage).master_approval_btn_elements.first.click if _condition === "review"
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
   step 'I navigate to section 6' if _condition === "approval"
   step 'I navigate to section 7' if _condition === "review"
   on(PendingStatePage).submit_oa_btn
@@ -87,7 +87,7 @@ end
 
 And (/^Master request for oa permit update$/) do
   on(PendingStatePage).master_approval_btn_elements.first.click
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
   step 'I press next for 11 times'
   on(PendingStatePage).set_update_comment
   step 'I click on back to home'
@@ -95,14 +95,14 @@ end
 
 Then (/^I should be able to open permit as master without seeing blank screen$/) do
   on(PendingStatePage).master_approval_btn_elements.first.click
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
   is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
 end
 
 And (/^I reapprove the updated permit$/) do
   step 'I click on update needed filter'
   BrowserActions.click_element(on(PendingStatePage).edit_update_btn_elements.first)
-  step 'I enter pin 9015'
+  step 'I enter pin for rank A/M'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
   step "I sign on canvas with valid 9015 pin"

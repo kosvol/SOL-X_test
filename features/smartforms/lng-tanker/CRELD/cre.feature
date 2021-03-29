@@ -12,7 +12,7 @@ Feature: LNGCRE
     Scenario: Verify user can see all the CRE questions
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         Then I should see CRE form questions
 
     Scenario Outline: Verify only these crew can create CRE permit
@@ -33,15 +33,15 @@ Feature: LNGCRE
     Scenario: Verify these crew cannot create CRE permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 9015
+        And I enter pin for rank A/M
         Then I should see not authorize error message
 
     Scenario: Verify AGT can add gas reading in CRE permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I add all gas readings
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I set time
         Then I will see popup dialog with By A/M Atif Hayat crew rank and name
         When I dismiss gas reader dialog box
@@ -50,7 +50,7 @@ Feature: LNGCRE
     Scenario Outline: Verify any rank can add gas reading in CRE permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I add all gas readings
         And I enter pin 4421
         When I dismiss gas reader dialog box
@@ -66,11 +66,11 @@ Feature: LNGCRE
         Given I launch sol-x portal without unlinking wearable
         # When I clear gas reader entries
         When I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I fill up CRE. Duration 4. Delay to activate 2
         And for cre I submit permit for C/O Approval
         And I getting a permanent number from indexedDB
-        And I open the current CRE with status Pending approval. Pin: 8383
+        And I open the current CRE with status Pending approval. Rank: C/O
         And for cre I should see the enabled "Approve for Activation" button
 
     Scenario Outline: Verify CRE roles cannot approve the same permit
@@ -97,18 +97,18 @@ Feature: LNGCRE
         Given I launch sol-x portal without unlinking wearable
         # When I clear gas reader entries
         When I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I fill up CRE. Duration 4. Delay to activate 2
         And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
-        And I open the current CRE with status Pending approval. Pin: 2761
+        And I open the current CRE with status Pending approval. Rank: A C/O
         Then I should see CRE landing screen
 
     Scenario Outline: Verify these roles can terminate CRE permit
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         Then I fill up CRE. Duration 4. Delay to activate 2
         # And Get PRE id
         And for pre I submit permit for A C/O Approval
@@ -138,7 +138,7 @@ Feature: LNGCRE
     Scenario: Verify only MAS can delete CRE permit in Created State
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I click on back arrow
         And I navigate to "Created" screen for CRE
         And I delete the permit created
@@ -147,25 +147,25 @@ Feature: LNGCRE
     Scenario: Verify user cannot send CRE for approval with start time and duration
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And for cre I should see the disabled "Submit for Approval" button
 
     Scenario: Verify these roles can request update for CRE permit in Pending Approval State
         Given I launch sol-x portal without unlinking wearable
         # When I clear gas reader entries
         When I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I fill up CRE. Duration 4. Delay to activate 2
         And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
-        And I open the current CRE with status Pending approval. Pin: 2674
+        And I open the current CRE with status Pending approval. Rank: A 3/O
         And for cre I should see the disabled "Updates Needed" button
 
     Scenario: Verify CRE permit turn active on schedule time
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
         And for cre I submit permit for A C/O Approval
@@ -183,11 +183,11 @@ Feature: LNGCRE
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
         And I navigate to create new CRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
         And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
-        Then I open the current PRE with status Pending approval. Pin: 8383
+        Then I open the current PRE with status Pending approval. Rank: C/O
         Then I should see Add Gas button disabled
         And I should see Approve for Activation button disabled

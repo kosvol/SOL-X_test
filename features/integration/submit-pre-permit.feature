@@ -7,7 +7,7 @@ Feature: PREIntegration
     Scenario: Verify PRE can be terminated manually integration
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new PRE
-        And I enter pin 8383
+        And I enter pin for rank C/O
         Then I fill up PRE. Duration 4. Delay to activate 2
         And Get PRE id
         And for pre I submit permit for Officer Approval

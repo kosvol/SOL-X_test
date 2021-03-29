@@ -24,7 +24,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
-    And I enter pin 1111
+    And I enter pin for rank MAS
     Then I should see terminate permit to work and request update buttons
 
     Examples:
@@ -39,7 +39,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
-    And I enter pin 1111
+    And I enter pin for rank MAS
     Then I should see terminate permit to work and request update buttons
 
     Examples:
@@ -104,7 +104,7 @@ Feature: Section9
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
     And I click on permit for review and termination
-    And I enter pin 1111
+    And I enter pin for rank MAS
     Then I should see date and time pre-fill on section 9
 
     Examples:

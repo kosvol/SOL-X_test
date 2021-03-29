@@ -61,7 +61,7 @@ end
 
 And (/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
-  step 'I enter pin 9015'
+  step 'I enter pin for rank A/M'
   sleep 1
   on(SignaturePage).sign_for_gas
   sleep 1

@@ -15,7 +15,7 @@ Feature: LNGSmartFormsPermission
     Scenario: Two LNG forms to be dispalyed in maintenance permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin 9015
+        And I enter pin for rank A/M
         When I select Critical Equipment Maintenance permit
         Then I should see two additional permits
         And I switch vessel to LNG
@@ -23,7 +23,7 @@ Feature: LNGSmartFormsPermission
     Scenario Outline: CE and Master can approve on all permit for FSU
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I select <level_one_permit> permit
         And I select <level_two_permit> permit for level 2
         And I fill section 1 of maintenance permit with duration less than 2 hours
@@ -56,7 +56,7 @@ Feature: LNGSmartFormsPermission
     Scenario Outline: CE and Master can ask for update on all permit for FSU with duration less than 2 hours
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I select <level_one_permit> permit
         And I select <level_two_permit> permit for level 2
         And I fill section 1 of maintenance permit with duration less than 2 hours
@@ -89,7 +89,7 @@ Feature: LNGSmartFormsPermission
     Scenario Outline: CE and Master can ask for update on all permit for FSU with duration more than 2 hours
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I select <level_one_permit> permit
         And I select <level_two_permit> permit for level 2
         And I fill section 1 of maintenance permit with duration more than 2 hours

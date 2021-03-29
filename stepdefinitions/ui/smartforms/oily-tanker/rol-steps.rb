@@ -43,7 +43,7 @@ end
 
 Then (/^I should not see extra buttons$/) do
   on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  step 'I enter pin 9015'
+  step 'I enter pin for rank A/M'
   step 'I press next for 1 times'
   sleep 1
   on(Section3APage).scroll_multiple_times(16)
@@ -100,7 +100,7 @@ end
 When (/^I put the permit to pending termination update status$/) do
   step 'I click on pending withdrawal filter'
   on(Section0Page).review_and_terminate_btn_elements.first.click
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
   on(ROLPage).request_update_btn
   sleep 2
   BrowserActions.enter_text(on(Section0Page).enter_comment_box_element, 'Test Automation')
