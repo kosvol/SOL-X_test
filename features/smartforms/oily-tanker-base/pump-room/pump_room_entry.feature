@@ -110,7 +110,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     And I sleep for 1 seconds
@@ -131,7 +131,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I request update needed
@@ -144,7 +144,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: 8383
@@ -156,7 +156,7 @@ Feature: PumpRoomEntry
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
@@ -193,7 +193,7 @@ Feature: PumpRoomEntry
     And I enter pin <pin>
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Pin: <pin>
@@ -225,7 +225,7 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin 8383
     Then I fill up PRE. Duration 4. Delay to activate 2
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     When I navigate to "Scheduled" screen for PRE

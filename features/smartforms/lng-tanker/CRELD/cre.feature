@@ -68,7 +68,7 @@ Feature: LNGCRE
         When I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
-        And for cre I submit permit for Chief Officer Approval
+        And for cre I submit permit for C/O Approval
         And I getting a permanent number from indexedDB
         And I open the current CRE with status Pending approval. Pin: 8383
         And for cre I should see the enabled "Approve for Activation" button
@@ -77,20 +77,21 @@ Feature: LNGCRE
         Given I launch sol-x portal without unlinking wearable
         # When I clear gas reader entries
         When I navigate to create new CRE
-        And I enter pin <pin>
+        And I enter pin for rank <rank>
         And I fill up CRE. Duration 4. Delay to activate 2
         And for cre I submit permit for <rank> Approval
         And I getting a permanent number from indexedDB
-        And I open the current CRE with status Pending approval. Pin: <pin>
+        And I open the current CRE with status Pending approval. Rank: <rank>
         And for cre I should see the disabled "Approve for Activation" button
         Examples:
 
-            | rank | pin  |
-            | Officer | 2761 |
-            | Second Officer  | 6268 |
-            | Additional Second Officer | 7865 |
-            | Third Officer | 0159 |
-            | Fourth Officer | 2674 |
+            | rank  |
+            | 2/O   |
+            | A 2/O |
+            | 3/O   |
+            | A 3/O |
+            | 4/O   |
+            | A 4/O |
 
     Scenario: Verify non CRE creator can approve the same permit
         Given I launch sol-x portal without unlinking wearable
@@ -98,7 +99,7 @@ Feature: LNGCRE
         When I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
-        And for cre I submit permit for Officer Approval
+        And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         And I open the current CRE with status Pending approval. Pin: 2761
         Then I should see CRE landing screen
@@ -110,7 +111,7 @@ Feature: LNGCRE
         And I enter pin 8383
         Then I fill up CRE. Duration 4. Delay to activate 2
         # And Get PRE id
-        And for pre I submit permit for Officer Approval
+        And for pre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         Then I activate the current CRE form
         And I sleep for 1 seconds
@@ -155,7 +156,7 @@ Feature: LNGCRE
         When I navigate to create new CRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
-        And for cre I submit permit for Officer Approval
+        And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         And I open the current CRE with status Pending approval. Pin: 2674
         And for cre I should see the disabled "Updates Needed" button
@@ -167,7 +168,7 @@ Feature: LNGCRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
-        And for cre I submit permit for Officer Approval
+        And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         Then I activate the current CRE form
         And I sleep for 1 seconds
@@ -185,7 +186,7 @@ Feature: LNGCRE
         And I enter pin 8383
         And I fill up CRE. Duration 4. Delay to activate 2
         And Get CRE id
-        And for cre I submit permit for Officer Approval
+        And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         Then I open the current PRE with status Pending approval. Pin: 8383
         Then I should see Add Gas button disabled

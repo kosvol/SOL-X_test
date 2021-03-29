@@ -7,7 +7,7 @@ When (/^I fill and submit PRE permit details$/) do
     step 'I enter pin 9015'
     step 'I dismiss gas reader dialog box'
     sleep 1
-    step 'for pre I submit permit for Officer Approval'
+    step 'for pre I submit permit for A C/O Approval'
     step 'I sleep for 6 seconds'
     step 'I getting a permanent number from indexedDB'
     step 'I activate the current PRE form'

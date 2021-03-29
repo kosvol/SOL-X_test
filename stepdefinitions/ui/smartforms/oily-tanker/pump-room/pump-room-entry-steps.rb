@@ -106,15 +106,18 @@ end
 
 
 And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
-  roles_pin_map =  {"Officer"=>"2761", "Master"=>"1111", "Additional Master"=>"9015",
-                    "Chief Officer"=>"8383", "Second Officer"=>"6268",
-                    "Additional Second Officer"=>"7865", "Third Officer"=>"0159", "Fourth Officer"=>"2674",
-                    "Additional Fourth Officer"=>"2637"}
+  # roles_pin_map =  {"Officer"=>"2761", "Master"=>"1111", "Additional Master"=>"9015",
+  #                   "Chief Officer"=>"8383", "Second Officer"=>"6268",
+  #                   "Additional Second Officer"=>"7865", "Third Officer"=>"0159", "Fourth Officer"=>"2674",
+  #                   "Additional Fourth Officer"=>"2637"}
   step 'Get PRE id'
   # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
-  step "I sign on canvas with valid #{roles_pin_map[_role]} pin"
+  step 'I get pinpad/get-pin-by-role request payload'
+  step 'I hit graphql'
+  pin = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], _role)
+  step "I sign on canvas with valid #{pin} pin"
   sleep 3
   step "I should see the page 'Successfully Submitted'"
   sleep 2
@@ -185,10 +188,11 @@ And(/^Get (PRE|CRE) id$/) do |_permit_type|
   # step 'I set permit id'
 end
 
-Then(/^I open the current (PRE|CRE) with status Pending approval. Pin: (.*)$/) do |_permit_type,pin|
+Then(/^I open the current (PRE|CRE) with status Pending approval. (Pin|Rank): (.*)$/) do |_permit_type,_condition,pin|
   step "I navigate to \"Pending Approval\" screen for #{_permit_type}"
   on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
-  step 'I enter pin %s' % [pin]
+  step 'I enter pin %s' % [pin] if _condition=="Pin"
+  step 'I enter pin for rank %s' %[pin] if _condition=="Rank"
   sleep 1
 end
 
