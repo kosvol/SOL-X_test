@@ -26,16 +26,11 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I enter new entry log
-    Then I should not see entered entrant on list
+    Then I should not see entered entrant on optional entrant list
 
   Scenario: Verify PRE duration display on PRED
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
-    And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
-    And I acknowledge the new entry log via service
     Then I should see timer countdown
 
   Scenario: Verify entry log details populated as filled

@@ -238,7 +238,7 @@ end
 And (/^I should see PRE display timezone$/) do
   on(PumpRoomEntry).home_tab_element.click
   step 'I sleep for 1 seconds'
-  if on(CommonFormsPage).get_current_time_offset.to_i <= 1
+  if on(CommonFormsPage).get_current_time_offset.to_i.abs <= 1
     is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hour")
   else
     is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
@@ -267,5 +267,7 @@ Then ('I should see timer countdown') do
     does_include(on(PreDisplay).pre_duration_timer_element.text,"03:58:")
   elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:57:"
     does_include(on(PreDisplay).pre_duration_timer_element.text,"03:57:")
+  elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:56:"
+    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:56:")
   end
 end

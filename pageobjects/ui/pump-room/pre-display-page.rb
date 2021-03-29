@@ -20,8 +20,8 @@ class PreDisplay < Section9Page
   element(:entry_log_tab, xpath: "//a[contains(.,'Entry Log')]")
   element(:permit_tab, xpath: "//a[contains(.,'Permit')]")
   element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePermitDetails')]")
-  element(:time_shifted_by_text, xpath: "//div[contains(@class,'PermitValidUntil__TextSmall')]")
-  element(:pre_duration_timer, xpath: "//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
+  element(:time_shifted_by_text, xpath: "//p[contains(@class,'PermitValidUntil__TextSmall')]")
+  element(:pre_duration_timer, xpath: "//h4/strong[contains(@class,'PermitValidUntil__')]") #""//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
   buttons(:send_report_btn, xpath: "//button[contains(.,\"Send Report\")]")
 
   def is_element_disabled_by_att?(text)
