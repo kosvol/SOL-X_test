@@ -40,8 +40,8 @@ class PumpRoomEntry < PreDisplay
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
-  element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
-  element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p")
+  element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p")
+  element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p")
   ### end
 
   def get_validity_start_and_end_time

@@ -110,7 +110,7 @@ And(/^for (pre|cre) I submit permit for Officer Approval$/) do |_permit_type|
   # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
-  step "I sign on canvas with valid 2761 pin"
+  step "I sign on canvas with valid 8383 pin"
   sleep 3
   step "I should see the page 'Successfully Submitted'"
   sleep 2

@@ -33,6 +33,10 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
       on(Section3APage).scroll_multiple_times(3)
       is_equal(on(CommonFormsPage).submit_for_master_approval_btn_elements.size,1)
       is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
+    when "Approve for Activation"
+      is_enabled(on(PumpRoomEntry).approve_activation_element)
+    when "Updates Needed"
+      is_enabled(on(Section7Page).update_btn_element)
     end
   end
 end
