@@ -23,11 +23,13 @@ auto:
   fauxton_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
 
 uat:
-  c2_preview: "http://104.215.192.113:8080"
-  service: "http://104.215.192.113:4000"
-  master_pin:
+  c2_preview: "https://uat.edge.dev.safevue.ai:8080/"
+  service: "https://uat.edge.dev.safevue.ai:4000/"
+  fauxton_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
+  get_crew_members: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984/crew_members/_find"
 
 fauxton:
+  base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
   base_auto_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
   base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
@@ -46,6 +48,7 @@ fauxton:
   get_wearable_active_users: "/wearables_active_users/_all_docs?skip=0&limit=10000"
 
 oa_db:
+  base_uat_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   base_sit_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   base_dev_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io"
   delete_oa_event: "/office_approval_events/_bulk_docs"
@@ -53,24 +56,20 @@ oa_db:
   get_oa_event: "/office_approval_events/_all_docs?skip=0&limit=10000"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
 
-# ldev_fauxton_forms:
-#   delete_form: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_bulk_docs"
-#   get_forms: "http://sandbox-admin:magellanx@d0b02eada7fb.ngrok.io/forms/_all_docs?skip=0&limit=10000"
-
 jira_url: "https://teamsolas.atlassian.net/browse/"
 
 office_approval:
-  format_link: "https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/%s?formId=%s&staffId=%s"
-  office_portal: "https://dev-officeportalclient-2953306c.azurewebsites.net/login/demo-uid"
+  format_link: "https://office.dev.safevue.ai/permit-preview/%s?formId=%s&staffId=%s"
+  office_portal: "https://office.dev.safevue.ai/login/demo-uid"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io/office_staff/_find"
   password: "13-dead-CENT-think-56"
 
-maria_db:
-  mariadb_host: "safevue-mariadb-dev.mariadb.database.azure.com"
-  mariadb_user: "safevue@safevue-mariadb-dev"
-  mariadb_pass: "64d58dba2c535612841489d69a4d9998"
-  Emariadb_database: "replication"
+# maria_db:
+#   mariadb_host: "safevue-mariadb-dev.mariadb.database.azure.com"
+#   mariadb_user: "safevue@safevue-mariadb-dev"
+#   mariadb_pass: "64d58dba2c535612841489d69a4d9998"
+#   Emariadb_database: "replication"
 
 postgres:
   adapter: "postgresql"

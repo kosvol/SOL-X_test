@@ -3,7 +3,7 @@ Feature: PumpRoomEntry
   As a ...
   I want to ...
   So that ...
-  @wip
+
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -108,7 +108,7 @@ Feature: PumpRoomEntry
     When I clear gas reader entries
     And I navigate to create new PRE
     And I enter pin for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    Then I fill up PRE. Duration 4. Delay to activate 3
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -117,7 +117,7 @@ Feature: PumpRoomEntry
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 100 seconds
+    And I sleep for 180 seconds
     And I navigate to "Active" screen for PRE
     And I should see the current PRE in the "Active PRE" list
     And I click on back arrow
@@ -149,7 +149,7 @@ Feature: PumpRoomEntry
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Rank: C/O
     And for pre I should see the disabled "Updates Needed" button
-@wip33
+
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE

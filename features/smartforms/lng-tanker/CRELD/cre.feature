@@ -160,13 +160,14 @@ Feature: LNGCRE
         And I getting a permanent number from indexedDB
         And I open the current CRE with status Pending approval. Rank: A 3/O
         And for cre I should see the disabled "Updates Needed" button
+        And I should see Approve for Activation button enabled
 
     Scenario: Verify CRE permit turn active on schedule time
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
         And I navigate to create new CRE
         And I enter pin for rank C/O
-        And I fill up CRE. Duration 4. Delay to activate 2
+        And I fill up CRE. Duration 4. Delay to activate 3
         And Get CRE id
         And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
@@ -175,7 +176,7 @@ Feature: LNGCRE
         When I navigate to "Scheduled" screen for CRE
         And I should see the current CRE in the "Scheduled" list
         And I click on back arrow
-        And I sleep for 100 seconds
+        And I sleep for 180 seconds
         And I navigate to "Active" screen for CRE
         And I should see the current CRE in the "Active PRE" list
 
@@ -184,10 +185,10 @@ Feature: LNGCRE
         When I clear gas reader entries
         And I navigate to create new CRE
         And I enter pin for rank C/O
-        And I fill up CRE. Duration 4. Delay to activate 2
+        And I fill up CRE. Duration 4. Delay to activate 3
         And Get CRE id
         And for cre I submit permit for A C/O Approval
         And I getting a permanent number from indexedDB
         Then I open the current PRE with status Pending approval. Rank: C/O
-        Then I should see Add Gas button disabled
-        And I should see Approve for Activation button disabled
+        Then I should see Add Gas button enabled
+        And I should see Updates Needed button disabled

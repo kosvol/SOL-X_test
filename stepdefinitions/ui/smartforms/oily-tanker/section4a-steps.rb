@@ -42,11 +42,13 @@ And (/^I sign on (checklist|section) with (valid|invalid) (.*) pin$/) do |_page,
 end
 
 Then (/^I should see signed details$/) do
-  begin
-    is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
-  rescue RSpec::Expectations::ExpectationNotMetError
-    is_true(on(Section4APage).is_signed_user_details_plus_1_min?(@@entered_pin))
-  end
+  # begin
+    if on(Section4APage).is_signed_user_details?(@@entered_pin)
+      is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
+    else
+  # rescue RSpec::Expectations::ExpectationNotMetError
+      is_true(on(Section4APage).is_signed_user_details_plus_1_min?(@@entered_pin))
+    end
   is_true(on(SignaturePage).is_signature_pad?)
 end
 

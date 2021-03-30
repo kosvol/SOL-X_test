@@ -5,6 +5,12 @@ Feature: Offline Mode
   So that ...
 
   Scenario: SOL-5489 Verify connectivity blob display either green or red during online or offline
+    Given I launch sol-x portal without unlinking wearable
+    Then I should see green online blob
+    And I turn off wifi
+    Then I should see red online blob
+    And I turn on wifi
+    Then I should see green online blob
 
   Scenario: Verify Wifi popup display when during no wifi on section 8 screen
     Given I submit permit submit_work_on_pressure_line via service with 9015 user and set to active state with EIC not require

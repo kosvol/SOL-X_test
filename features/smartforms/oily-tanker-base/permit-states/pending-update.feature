@@ -176,49 +176,49 @@ Feature: PendingUpdate
     And I click on update needed filter
     Then I should see Note from Office
 
-  @skip
-  Scenario: Comment is not saved for the EIC when requesting the form for updates
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
-    And I press next for 1 times
-    And I submit permit for Master Approval
-    And I click on back to home
-    And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
-    And I navigate to section 7
-    And I request for update without submitting
-    And I press previous for 3 times
-    And I click on view EIC certification button
-    Then I should see request update comment box
+  # @skip
+  # Scenario: Comment is not saved for the EIC when requesting the form for updates
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Enclosed Spaces Entry permit
+  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I fill up section 1 with default value
+  #   And I navigate to section 4a
+  #   And I press next for 1 times
+  #   And I fill up compulsory fields
+  #   And I press next for 1 times
+  #   And I submit permit for Master Approval
+  #   And I click on back to home
+  #   And I click on pending approval filter
+  #   And I open a permit pending Master Approval with Master rank and 1111 pin
+  #   And I navigate to section 7
+  #   And I request for update without submitting
+  #   And I press previous for 3 times
+  #   And I click on view EIC certification button
+  #   Then I should see request update comment box
 
-  @skip
-  Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
-    And I press next for 1 times
-    And I submit permit for Master Approval
-    And I click on back to home
-    And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
-    And I navigate to section 7
-    And I request for update without submitting
-    And I press previous for 9 times
-    And I click on View Edit Hazard
-    Then I should see request update comment box
+  # @skip
+  # Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin 9015
+  #   And I select Enclosed Spaces Entry permit
+  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I fill up section 1 with default value
+  #   And I navigate to section 4a
+  #   And I press next for 1 times
+  #   And I fill up compulsory fields
+  #   And I press next for 1 times
+  #   And I submit permit for Master Approval
+  #   And I click on back to home
+  #   And I click on pending approval filter
+  #   And I open a permit pending Master Approval with Master rank and 1111 pin
+  #   And I navigate to section 7
+  #   And I request for update without submitting
+  #   And I press previous for 9 times
+  #   And I click on View Edit Hazard
+  #   Then I should see request update comment box
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable

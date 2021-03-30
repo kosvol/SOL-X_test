@@ -6,7 +6,7 @@ Then (/^I (should|should not) see request update comment box$/) do |_condition|
     is_equal(on(Section3APage).total_p_elements.size,6)
     is_equal(on(Section3APage).total_p_elements.first.text,'Test Automation')
   elsif _condition === 'should not'
-    not_to_exists(on(Section3APage).total_p_elements.first.text,'Test Automation')
+    is_not_equal(on(Section3APage).total_p_elements.first.text,'Test Automation')
     is_equal(on(Section3APage).total_p_elements.size,8)
   end
 end
@@ -97,6 +97,8 @@ And (/^I delete a hazard$/) do
   on(Section3APage).view_edit_btn
   sleep 1
   on(Section3APage).delete_btn_elements.first.click
+  sleep 1
+  on(Section3APage).delete_btn_elements.last.click
   sleep 2
   on(Section3APage).save_dra
   sleep 1

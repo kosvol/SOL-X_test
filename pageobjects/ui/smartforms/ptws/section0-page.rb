@@ -14,7 +14,8 @@ class Section0Page < NavigationPage
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
   element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
-
+  element(:wifi_blob, xpath: "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]")
+  
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|
     end

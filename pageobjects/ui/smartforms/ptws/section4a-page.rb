@@ -118,7 +118,11 @@ class Section4APage < Section3DPage
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
-    ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
+    if (generic_data_elements[1].text.include? get_current_date_and_time)
+      return ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
+    else
+      return (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}")
+    end
   end
 
   def uncheck_all_checklist
@@ -175,7 +179,11 @@ class Section4APage < Section3DPage
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
       BrowserActions.scroll_down(element_yes[_index])
-      return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
+      if _checklist.include? "Cold Work"
+        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
+      else
+        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
+      end
     end
   end
 

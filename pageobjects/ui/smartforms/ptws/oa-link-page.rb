@@ -70,22 +70,18 @@ class OAPage < Section9Page
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     sleep 1
     date_time_to_elements[1].click
+    sleep 2
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((current_hour.to_i+9)-24))
     sleep 1
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",(current_hour.to_i+9))
-    # hour_from_picker_elements[(current_hour.to_i+2)].click
-    sleep 1
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",0)
-    # minute_from_picker_elements[0].click
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",((current_hour.to_i+9)-24))
     sleep 1
     dismiss_picker_element.click
     sleep 1
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    # date_time_to_elements[0].click
-
+    date_time_to_elements.first.click
     sleep 1
     p ">> #{current_day_elements.size}"
-    # select_todays_date_from_calendar(0)
-    # dismiss_picker_element.click
+    select_todays_date_from_calendar(1)
   end
 
   def set_to_date_plus_one_day(_current_date)
