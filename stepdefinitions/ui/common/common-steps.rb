@@ -57,6 +57,7 @@ Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
   on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
+### To deprecate ####
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
   on(PinPadPage).enter_pin(pin)
@@ -64,9 +65,10 @@ And ('I enter pin {int}') do |pin|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  step 'I get pinpad/get-pin-by-role request payload'
-  step 'I hit graphql'
-  @@entered_pin = on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
+  # step 'I get pinpad/get-pin-by-role request payload'
+  # step 'I hit graphql'
+  @@entered_pin = $sit_rank_and_pin_yml[rank]#on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
+  p "pin: #{@@entered_pin}"
   on(PinPadPage).enter_pin(@@entered_pin)
   sleep 1
 end

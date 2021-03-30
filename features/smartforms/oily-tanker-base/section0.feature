@@ -29,19 +29,19 @@ Feature: SmartFormsPermission
     Then I fill a full enclosed workspace permit
 
     Examples:
-      | rank  | pin  |
-      | A/M   | 9015 |
-      | C/O   | 8383 |
-      | A C/O | 2761 |
-      | 2/O   | 6268 |
-      | A 2/O | 7865 |
-      | C/E   | 8248 |
-      | A C/E | 5718 |
-      | 2/E   | 2523 |
-      | A 2/E | 3030 |
-      | ETO   | 0856 |
-      | 3/O   | 0159 |
-      | A 3/O | 2674 |
+      | rank  |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | ETO   |
+      | 3/O   |
+      | A 3/O |
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
