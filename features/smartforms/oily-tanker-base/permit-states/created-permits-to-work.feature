@@ -12,7 +12,7 @@ Feature: CreatedPermitToWork
   Scenario: Verify section 6 buttons display are correct
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
@@ -25,19 +25,19 @@ Feature: CreatedPermitToWork
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
     And I select Use of ODME in Manual Mode permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     Then I should see correct permit details
 
   Scenario: Verify created permit is under Created Permit to Work
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
@@ -47,7 +47,7 @@ Feature: CreatedPermitToWork
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
@@ -58,7 +58,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify only competent person from EIC can sign on section 4b
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
@@ -75,7 +75,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify AGT can add gas reading on section 6 for permit on Created state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
@@ -110,7 +110,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I click on back arrow

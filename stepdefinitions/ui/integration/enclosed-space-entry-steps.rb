@@ -4,7 +4,7 @@ And (/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
   # step 'I click on permit for Master Approval'
   on(PendingStatePage).pending_approval_status_btn_elements[0].click
   
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
   if _permit_type === 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-form-data/enclosed-entry-permit.yml')
   elsif _permit_type === 'hot work'

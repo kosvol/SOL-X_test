@@ -7,7 +7,7 @@ Feature: SubmitPermit
   # Scenario: Verify master can send for oa approval twice
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin 9015
+  #   And I enter pin for rank A/M
   #   And I select Critical Equipment Maintenance permit
   #   And I select Maintenance on Magnetic Compass permit for level 2
   #   And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -37,7 +37,7 @@ Feature: SubmitPermit
   Scenario: Submit permit data Enclosed Spaces Entry into pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -65,7 +65,7 @@ Feature: SubmitPermit
     And I fill up section 5
     And I press next for 1 times
     And I add all gas readings
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
@@ -75,7 +75,7 @@ Feature: SubmitPermit
   # Scenario: Submit permit data Enclosed Spaces Entry into active
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin 9015
+  #   And I enter pin for rank A/M
   #   And I select Enclosed Spaces Entry permit
   #   And I select Enclosed Spaces Entry permit for level 2
   #   And I fill up section 1 with default value
@@ -102,7 +102,7 @@ Feature: SubmitPermit
   #   And I fill up section 5
   #   And I press next for 1 times
   #   And I add all gas readings
-  #   And I enter pin 9015
+  #   And I enter pin for rank A/M
   #   And I dismiss gas reader dialog box
   #   And I submit smoke test permit
   #   And I click on back to home

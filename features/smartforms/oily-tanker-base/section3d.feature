@@ -9,7 +9,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
@@ -54,7 +54,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -91,7 +91,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -106,7 +106,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify these rank cannot sign off DRA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
@@ -122,7 +122,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify these rank can sign off DRA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d

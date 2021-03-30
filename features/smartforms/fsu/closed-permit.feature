@@ -12,7 +12,7 @@ Feature: LNGClosedPermit
         When I launch sol-x portal without unlinking wearable
         And I click on active filter
         And I click on Submit for Termination
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I submit permit for termination
         And I sign on canvas with valid 9015 pin
         And I click on back to home
@@ -28,7 +28,7 @@ Feature: LNGClosedPermit
         When I launch sol-x portal without unlinking wearable
         And I click on active filter
         And I click on Submit for Termination
-        And I enter pin 9015
+        And I enter pin for rank A/M
         And I submit permit for termination
         And I sign on canvas with valid 9015 pin
         And I click on back to home

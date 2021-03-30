@@ -63,7 +63,7 @@ end
 And (/^I delete the permit created$/) do
   CommonPage.set_permit_id(on(CreatedPermitToWorkPage).ptw_id_elements.first.text)
   on(CreatedPermitToWorkPage).delete_permit_btn_elements.first.click
-  step 'I enter pin 1111'
+  step 'I enter pin for rank MAS'
 end
 
 Then (/^I should see the total permits in CREATED state match backend results$/) do

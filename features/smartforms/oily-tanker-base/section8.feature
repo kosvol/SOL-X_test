@@ -9,7 +9,7 @@ Feature: Section8
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I click on Submit for Termination
-    And I enter pin 9015
+    And I enter pin for rank A/M
     # And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
@@ -35,7 +35,7 @@ Feature: Section8
   Scenario: Verify task commenced at should be populated with permit activated time
     Given I launch sol-x portal
     When I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
     And I fill up section 1 with default value
@@ -59,7 +59,7 @@ Feature: Section8
   Scenario: Verify extra section8 questions shown for pipe permit
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
     And I fill up section 1 with default value
@@ -81,7 +81,7 @@ Feature: Section8
   Scenario: Verify extra section8 questions shown for electrical permit
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
     And I fill up section 1 with default value
@@ -103,7 +103,7 @@ Feature: Section8
   Scenario: Verify extra section8 questions shown for crit
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
@@ -125,7 +125,7 @@ Feature: Section8
   Scenario: Verify extra section8 questions shown when Critical Equipment Maintenance Checklist selected
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -150,7 +150,7 @@ Feature: Section8
   Scenario: Verify extra section8 questions shown when Work on Electrical Equipment and Circuits
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value

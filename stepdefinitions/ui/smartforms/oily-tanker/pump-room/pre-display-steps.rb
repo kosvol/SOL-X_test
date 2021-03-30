@@ -73,7 +73,7 @@ And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry l
 end
 
 And(/^I take note of PRE permit creator name and activate the the current PRE form$/) do
-  step 'I open the current PRE with status Pending approval. Pin: 8383'
+  step 'I open the current PRE with status Pending approval. Rank: C/O'
   # @preCreatorName = on(PumpRoomEntry).pre_creator_form_element.text
   # p "PRE Creator>> #{@preCreatorName}"
   sleep 1

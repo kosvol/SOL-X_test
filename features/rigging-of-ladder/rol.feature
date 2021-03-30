@@ -23,7 +23,7 @@ Feature: RiggingOfLadder
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -39,6 +39,25 @@ Feature: RiggingOfLadder
     When I press next for 1 times
     Then I should see submit button enabled
     And I should not see extra previous and save button
+
+  Scenario: Verify no duplicate previous and close button when viewing permit with checklist creator only crew via pending update
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Rigging of Gangway & Pilot Ladder permit
+    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    When I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I press next for 1 times
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I edit rol permit with rank 3/E and 4685 pin
+    And I press next for 1 times
+    Then I should not see extra previous and close button
 
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
@@ -63,7 +82,7 @@ Feature: RiggingOfLadder
   Scenario: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -78,7 +97,7 @@ Feature: RiggingOfLadder
   Scenario Outline: SOL-5189 Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -118,7 +137,7 @@ Feature: RiggingOfLadder
   Scenario Outline: SOL-5210 Verify RA, Checklist Creator and other Crew ranks cannot edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -141,7 +160,7 @@ Feature: RiggingOfLadder
   Scenario: Verify ROL section labels
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -151,7 +170,7 @@ Feature: RiggingOfLadder
   Scenario: Verify termination page display previous and close buttons for read only user
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times

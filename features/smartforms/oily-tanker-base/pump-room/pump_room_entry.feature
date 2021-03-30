@@ -20,17 +20,17 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see PRE landing screen
 
     Examples:
-      | rank                      | pin  |
-      | Chief Officer             | 8383 |
-      | Additional Chief Officer  | 2761 |
-      | Second Officer            | 6268 |
-      | Additional Second Officer | 7865 |
-      | 3/O                       | 0159 |
-      | A 3/O                     | 2674 |
+      | rank  |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
     Given I launch sol-x portal without unlinking wearable
@@ -59,13 +59,13 @@ Feature: PumpRoomEntry
   Scenario: Verify in the form there are all questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I should see the right order of elements
 
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I should see alert message "Please select the start time and duration before submitting."
     And Button "Submit for Approval" should be disabled
     Then I select Permit Duration <duration>
@@ -81,13 +81,13 @@ Feature: PumpRoomEntry
   Scenario: Verify user able to fill Date of Last Calibration
     Given  I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I select current day for field "Date of Last Calibration"
 
   Scenario: Verify user able to see reporting interval when YES is selected
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I should not see Reporting interval
     Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
     And I should see Reporting interval
@@ -95,9 +95,9 @@ Feature: PumpRoomEntry
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I add all gas readings
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     When I dismiss gas reader dialog box
@@ -107,10 +107,10 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 3
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     And I sleep for 1 seconds
@@ -128,10 +128,10 @@ Feature: PumpRoomEntry
   Scenario: Verify Update needed text can be input and displayed after
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
     Then I request update needed
@@ -141,45 +141,45 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Pin: 8383
+    Then I open the current PRE with status Pending approval. Rank: C/O
     And for pre I should see the disabled "Updates Needed" button
 
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
-      | Master                     | 1111 |
-      | Addtional Master           | 9015 |
-      | Chief Engineer             | 8248 |
-      | Second Engineer            | 2523 |
-      | Electro Technical Officer  | 0856 |
-      | Additional Second Engineer | 3030 |
-      | D/C                        | 2317 |
-      | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
-      | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
-      | BOS                        | 1018 |
-      | A/B                        | 6316 |
-      | O/S                        | 7669 |
-      | OLR                        | 0450 |
+      | MAS   |
+      | A/M   |
+      | C/E   |
+      | 2/E   |
+      | ETO   |
+      | A 2/E |
+      | D/C   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And Get PRE id
     Then I press the "Close" button
     And I getting a permanent number from indexedDB
@@ -190,28 +190,28 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new PRE
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I fill up PRE. Duration 4. Delay to activate 2
     And Get PRE id
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Pin: <pin>
+    Then I open the current PRE with status Pending approval. Rank: <rank>
     And for pre I should see the <condition> "Approve for Activation" button
 
     Examples:
-      | rank                      | pin  | condition |
-      | Chief Officer             | 8383 | enabled   |
-      | Additional Chief Officer  | 2761 | disabled  |
-      | Second Officer            | 6268 | disabled  |
-      | Additional Second Officer | 7865 | disabled  |
-      | 3/O                       | 0159 | disabled  |
-      | A 3/O                     | 2674 | disabled  |
+      | rank   |  condition |
+      | C/O    |  enabled   |
+      | A C/O  |  disabled  |
+      | 2/O    |  disabled  |
+      | A 2/O  |  disabled  |
+      | 3/O    |  disabled  |
+      | A 3/O  |  disabled  |
 
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I get a temporary number and writing it down
     Then I sleep for 3 seconds
     And I should see the text 'Permit Updated'
@@ -223,9 +223,9 @@ Feature: PumpRoomEntry
   Scenario: Verify PRE will be activated and auto terminated at the specified time
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin 8383
+    And I enter pin for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 2
-    And for pre I submit permit for Officer Approval
+    And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
     When I navigate to "Scheduled" screen for PRE

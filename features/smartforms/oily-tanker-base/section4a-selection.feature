@@ -7,7 +7,7 @@ Feature: Section4AChecklistSelection
   Scenario: Verify checklist display are correct to vessel type
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
@@ -33,7 +33,7 @@ Feature: Section4AChecklistSelection
   Scenario Outline: Verify checklist is pre-selected for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -63,7 +63,7 @@ Feature: Section4AChecklistSelection
   Scenario Outline: Verify checklist is pre-selected for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a

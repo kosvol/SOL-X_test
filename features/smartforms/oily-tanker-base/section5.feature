@@ -7,7 +7,7 @@ Feature: Section5
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities from drop down
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -21,7 +21,7 @@ Feature: Section5
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities via cross
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -37,7 +37,7 @@ Feature: Section5
   Scenario: Verify user can see a list of roles
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -46,7 +46,7 @@ Feature: Section5
   Scenario: Verify user can sign on responsiblity and reflected as roles for the crew
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -57,7 +57,7 @@ Feature: Section5
   Scenario: Verify same user can sign for multiple roles
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -70,7 +70,7 @@ Feature: Section5
   Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -81,7 +81,7 @@ Feature: Section5
   Scenario: Verify Enter Pin and Sign button is enabled if name and company fields filled
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -92,7 +92,7 @@ Feature: Section5
   Scenario: Verify ship staff copy text display after name and company fields filled
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -103,7 +103,7 @@ Feature: Section5
   Scenario Outline: Verify only sponsor crews can sign
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -131,7 +131,7 @@ Feature: Section5
   Scenario Outline: Verify non sponsor crews cannot sign
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
@@ -147,7 +147,7 @@ Feature: Section5
   Scenario Outline: Verify crew can sign
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5

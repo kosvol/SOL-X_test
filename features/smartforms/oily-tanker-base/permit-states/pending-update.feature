@@ -11,13 +11,13 @@ Feature: PendingUpdate
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I click on Submit for Termination
-    And I enter pin 9015
+    And I enter pin for rank A/M
     Then I should see section 8 editable
 
   Scenario: Verify AGT can add gas reading via pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -48,7 +48,7 @@ Feature: PendingUpdate
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -73,7 +73,7 @@ Feature: PendingUpdate
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I click on Submit for Termination
-    And I enter pin 9015
+    And I enter pin for rank A/M
     # And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
@@ -91,7 +91,7 @@ Feature: PendingUpdate
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I click on Submit for Termination
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
     And I click on back to home
@@ -112,7 +112,7 @@ Feature: PendingUpdate
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -133,7 +133,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify user should not see master's note on all section while viewing as Master, non RA, non Checklist Creator and non AGT via Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -159,7 +159,7 @@ Feature: PendingUpdate
   Scenario: Verify update note shows from Office if request update via OA office
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -223,7 +223,7 @@ Feature: PendingUpdate
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -246,7 +246,7 @@ Feature: PendingUpdate
   Scenario: Verify user is able to update permit after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -269,7 +269,7 @@ Feature: PendingUpdate
   Scenario: Verify section 6 buttons display are correct via pending master approval state as a reader after requesting permit update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -292,7 +292,7 @@ Feature: PendingUpdate
   Scenario: Verify checklist creator can edit rol checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -311,7 +311,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify checklist creator can edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -342,7 +342,7 @@ Feature: PendingUpdate
   Scenario: Verify non checklist creator cannot edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
