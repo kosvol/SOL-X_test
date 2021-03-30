@@ -38,4 +38,4 @@ Feature: LNGSmartFormsPermission
 
         Examples:
             | user         | zoneid                     | mac               | location_stamp |
-            | SIT_SOLX0002 | 01EVXD0J3J9ERQG7ZBF51HY4E5 | 00:00:00:00:00:3B | Ballast Pump   |
+            | SIT_SOLX0001 | 01EVXD0J3J9ERQG7ZBF51HY4E5 | 00:00:00:00:00:3B | Ballast Pump   |
