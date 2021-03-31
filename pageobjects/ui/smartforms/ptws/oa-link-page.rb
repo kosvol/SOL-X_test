@@ -15,7 +15,7 @@ class OAPage < Section9Page
   button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
   button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
-  button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
+  # button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")

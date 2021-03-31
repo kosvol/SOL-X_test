@@ -20,19 +20,22 @@ And (/^I request the permit for update via oa link manually$/) do
   sleep 3
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
+  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
 end
 
 And (/^I approve oa permit via oa link manually$/) do
-  # $browser.get("https://dev-officeportalclient-2953306c.azurewebsites.net/permit-preview/01F1P3E33ZW330CT8F2J4F12PG?formId=AUTO/PTW/2021/192&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
+  # $browser.get("https://office.dev.safevue.ai/permit-preview/01F23C5B44MVT2A3WRFABN85NB?formId=AUTO/PTW/2021/191&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 5
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox
   on(OAPage).set_from_to_details
   on(OAPage).set_designation
-  sleep 1
-  on(OAPage).submit_permit_approval_btn
-  sleep 3
+  sleep 2
+  BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
+  sleep 2
   $browser.get(EnvironmentSelector.get_environment_url)
+  sleep 1
+  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
 end
 
 And(/^I should see Comments block attributes$/) do
