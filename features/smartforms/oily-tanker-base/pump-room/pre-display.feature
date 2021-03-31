@@ -4,7 +4,20 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-  # Scenario: Verify entrant count and entries log persist for an overlapped or immediate scheduled PRE
+  Scenario: Verify PRE permit hand over is working
+    Given I launch sol-x portal without unlinking wearable
+    When I fill and submit PRE permit details
+    And I enter new entry log
+    And I send entry report with 1 optional entrants
+    And I dismiss gas reader dialog box
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I should see entry log details display as filled
+    When I submit a scheduled PRE permit
+    And I sleep for 75 seconds
+    And I click on permit tab
+    Then I should see new PRE permit number
+  # And I should see entry log data transfer to new permit
 
   Scenario: Verify entrant crew list displayed the correct entrants
     Given I launch sol-x portal without unlinking wearable

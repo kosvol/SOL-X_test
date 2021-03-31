@@ -54,7 +54,7 @@ Feature: EnclosedSpaceEntryLog
     And I enter new entry log
     And I fill entry report with 2 required entrants
     And I send Report
-    And I just click button Home
+    And I click on entry log tab
     And I click on back arrow
     And I click on back arrow
     And I sleep for 30 seconds
