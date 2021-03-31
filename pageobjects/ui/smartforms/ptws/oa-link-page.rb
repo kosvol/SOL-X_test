@@ -71,9 +71,14 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((current_hour.to_i+9)-24))
+    endtime = current_hour.to_i+9
+    if endtime <= 24
+      BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((endtime)))
+    else
+      BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((endtime)-24))
+    end
     sleep 1
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",((current_hour.to_i+9)-24))
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",0)
     sleep 1
     dismiss_picker_element.click
     sleep 1

@@ -6,6 +6,7 @@ Feature: ActivePermit
 
   # Scenario: Verify all sections disabled for ptw reader
 
+  @debug
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -15,7 +16,6 @@ Feature: ActivePermit
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
     And I sign DRA section 3d with 9015 as valid pin
-    # And I navigate to section 4a
     And I press next for 2 times
     And I fill up compulsory fields
     And I press next for 1 times
