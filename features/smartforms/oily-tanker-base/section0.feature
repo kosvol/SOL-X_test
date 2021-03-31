@@ -26,7 +26,7 @@ Feature: SmartFormsPermission
     And I enter pin for rank <rank>
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    Then I fill a full enclosed workspace permit
+    Then I fill up section 1 with default value
 
     Examples:
       | rank  |
