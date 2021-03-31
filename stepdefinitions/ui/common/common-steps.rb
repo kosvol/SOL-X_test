@@ -69,7 +69,7 @@ And(/^I enter pin for rank (.*)$/) do |rank|
   # step 'I hit graphql'
   @@entered_pin = $sit_rank_and_pin_yml[rank]#on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
   p "pin: #{@@entered_pin}"
-  on(PinPadPage).enter_pin(@@entered_pin)
+  on(PinPadPage).enter_pin(@@entered_pin.to_i)
   sleep 1
 end
 

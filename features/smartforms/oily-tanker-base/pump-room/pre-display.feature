@@ -169,14 +169,14 @@ Feature: PumpRoomEntry
     Then I should see not authorize error message
 
     Examples:
-      | role  |
-      | A/M   |
-      | ETO   |
-      | D/C   |
-      | BOS   |
-      | A/B   |
-      | O/S   |
-      | OLR   |
+      | role |
+      | A/M  |
+      | ETO  |
+      | D/C  |
+      | BOS  |
+      | A/B  |
+      | O/S  |
+      | OLR  |
 
   Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
@@ -185,9 +185,9 @@ Feature: PumpRoomEntry
     Then I should see the header 'Pump Room Entry Display'
 
     Examples:
-      | role |
-      | MAS  |
-      | C/O  |
+      | role  |
+      | MAS   |
+      | C/O   |
       | A C/O |
       | 2/O   |
       | A 2/O |

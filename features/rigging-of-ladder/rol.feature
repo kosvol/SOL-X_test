@@ -57,7 +57,7 @@ Feature: RiggingOfLadder
     And I click on update needed filter
     And I edit rol permit with rank 3/E and 4685 pin
     And I press next for 1 times
-    Then I should not see extra previous and close button
+    Then I should not see extra previous and save button
 
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
