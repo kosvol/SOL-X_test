@@ -32,7 +32,7 @@ fauxton:
   base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
   base_auto_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
-  base_dev_url: "https://admin:magellanx@23.97.50.121:5984"
+  base_dev_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
   delete_form: "/forms/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
   delete_wearable_histories_entries: "/wearables_history/_bulk_docs"
