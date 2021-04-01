@@ -297,7 +297,7 @@ class SmartFormDBPage
     def delete_table_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT'))
+        next if ((form['id'].include? '_design') || (form['id'].include? 'UAT'))# || (form['id'].include? 'SIT')) || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || 
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -320,7 +320,7 @@ class SmartFormDBPage
     def delete_pre_table_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if ((form['id'].include? '_design') || (form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || (form['id'].include? 'UAT') || (form['id'].include? 'PTW') || (form['id'].include? 'DRA') || (form['id'].include? 'EIC'))
+        next if ((form['id'].include? '_design') || (form['id'].include? 'UAT') || (form['id'].include? 'PTW') || (form['id'].include? 'DRA') || (form['id'].include? 'EIC')) #(form['id'].include? 'DEV') || (form['id'].include? 'LNGDEV') || 
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
