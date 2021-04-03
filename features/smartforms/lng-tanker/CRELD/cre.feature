@@ -90,8 +90,6 @@ Feature: LNGCRE
             | A 2/O |
             | 3/O   |
             | A 3/O |
-            | 4/O   |
-            | A 4/O |
 
     Scenario: Verify non CRE creator can approve the same permit
         Given I launch sol-x portal without unlinking wearable
@@ -108,17 +106,17 @@ Feature: LNGCRE
         Given I launch sol-x portal without unlinking wearable
         When I clear gas reader entries
         And I navigate to create new CRE
-        And I enter pin for rank C/O
+        And I enter pin for rank <rank>
         Then I fill up CRE. Duration 4. Delay to activate 3
         # And Get PRE id
-        And for pre I submit permit for A C/O Approval
+        And for cre I submit permit for <rank> Approval
         And I getting a permanent number from indexedDB
         Then I activate the current CRE form
         And I sleep for 1 seconds
         When I navigate to "Scheduled" screen for CRE
         And I should see the current CRE in the "Scheduled" list
         And I click on back arrow
-        And I sleep for 100 seconds
+        And I sleep for 180 seconds
         And I navigate to "Active" screen for CRE
         And I should see the current CRE in the "Active CRE" list
         And I click on back arrow
@@ -127,12 +125,12 @@ Feature: LNGCRE
         And I should see the current CRE in the "Closed CRE" list
 
         Examples:
-            | rank           | pin  |
-            | Chief Officer  | 8383 |
+            | rank|
+            | C/O |
             # | Additional Chief Officer  | 2761 |
-            | Second Officer | 6268 |
+            | 2/O |
             # | Additional Second Officer | 7865 |
-            | 3/O            | 0159 |
+            | 3/O |
     # | A 3/O                     | 2674 |
 
     Scenario: Verify only MAS can delete CRE permit in Created State
