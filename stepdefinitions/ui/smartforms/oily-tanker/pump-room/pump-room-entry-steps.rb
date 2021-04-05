@@ -120,7 +120,7 @@ end
 
 And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step 'I open the current PRE with status Pending approval. Rank: C/O'
-  step 'I take note of start and end validity time'
+  step "I take note of start and end validity time for \"#{_permit_type}\""
   step 'I press the "Approve for Activation" button'
   step "I sign on canvas with valid 8383 pin"
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
@@ -128,8 +128,8 @@ And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step 'I press the "Back to Home" button'
 end
 
-And ('I take note of start and end validity time') do
-  on(PumpRoomEntry).get_validity_start_and_end_time
+And(/^I take note of start and end validity time for "([^"]*)"$/) do |_permit_type|
+  on(PumpRoomEntry).get_validity_start_and_end_time(_permit_type)
 end
 
 And(/^I should see the current (PRE|CRE) in the "([^"]*)" list$/) do |_permit_type,list|

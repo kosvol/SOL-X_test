@@ -42,11 +42,20 @@ class PumpRoomEntry < PreDisplay
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
   element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
   element(:permit_start_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p")
+  element(:permit_start_time1, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p")
+  element(:permit_end_time1, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p")
   ### end
 
-  def get_validity_start_and_end_time
-    @@pre_permit_start_time = permit_start_time_element.text
-    @@pre_permit_end_time = permit_end_time_element.text
+  def get_validity_start_and_end_time(permit_type)
+    case permit_type
+    when "CRE"
+      @@pre_permit_start_time = permit_start_time1_element.text
+      @@pre_permit_end_time = permit_end_time1_element.text
+    when "PRE"
+      @@pre_permit_start_time = permit_start_time_element.text
+      @@pre_permit_end_time = permit_end_time_element.text
+    end
+
   end
 
   def get_entry_log_validity_start_details
