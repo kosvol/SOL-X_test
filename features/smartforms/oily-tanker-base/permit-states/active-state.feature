@@ -83,6 +83,7 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
+    And I sleep for 2 seconds
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
