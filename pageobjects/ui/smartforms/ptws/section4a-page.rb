@@ -121,7 +121,7 @@ class Section4APage < Section3DPage
     if (generic_data_elements[1].text.include? get_current_date_and_time)
       return ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
     else
-      return (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}")
+      return (generic_data_elements[1].text.include? "#{get_current_date_and_time_minus_a_min}")
     end
   end
 
