@@ -47,7 +47,11 @@ And (/^\(for pred\) I should see (info|warning) box for (activated|deactivated) 
     begin
       box_text = on(PreDisplay).warning_box_element.text
     rescue StandardError
-      box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'CreateEntryRecord__EntryDisclaimer')]").text
+      begin
+        box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'WarningBox__AlertWrapper')]").text
+      rescue StandardError
+        box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'CreateEntryRecord__EntryDisclaimer')]").text
+      end
     end
     base_data_text = YAML.load_file('data/pre/pre-display.yml')['warning_box'][status]
     is_equal(box_text, base_data_text)
