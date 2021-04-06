@@ -36,8 +36,8 @@ Feature: LNGSmartFormsPermission
         And I switch vessel to LNG
 
         Examples:
-            | user         | zoneid                     | mac               | location_stamp |
-            | SIT_SOLX0001 | 01EVXD0J3J9ERQG7ZBF51HY4E5 | 00:00:00:00:00:3B | Ballast Pump   |
+            | user         | zoneid                     | mac               | location_stamp                   |
+            | SIT_SOLX0001 | 000000YGJ2DC7WQPN532HRVVMV | A0:E6:F8:25:A6:7E | Bridge Electrical Equipment Room |
 
     Scenario: Switch back to LNG
         Given I switch vessel to LNG
