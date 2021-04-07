@@ -123,5 +123,5 @@ Feature: LocationTracking
     Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
-    And I sleep for 80 seconds
+    And I sleep for 100 seconds
     Then I should see PRE tab active on dashboard

@@ -45,7 +45,7 @@ Feature: LNGSmartFormsPermission
         Then I should see Master Approval button
         When I click on permit for master approval
         And I enter pin <pin>
-        And I navigate to section 6
+        And I navigate to section 7
         Then I should see approve and request update buttons
         And I switch vessel to LNG
 
@@ -116,7 +116,7 @@ Feature: LNGSmartFormsPermission
         When I click on permit for master approval
         And I enter pin <pin>
         And I navigate to section 7
-        Then I should see approve and request update buttons
+        Then I should see Approve for Activation button enabled
         And I switch vessel to LNG
 
         Examples:
