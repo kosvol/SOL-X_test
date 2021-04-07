@@ -256,6 +256,15 @@ end
     submit_status
   end
 
+  def set_oa_permit_to_pending_master_review
+    submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
+    submit_active['variables']['formId'] = CommonPage.get_permit_id
+    submit_active['variables']['newStatus'] = 'PENDING_MASTER_REVIEW'
+    submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
+  end
+
   def set_oa_permit_to_pending_office_appr
     submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
     submit_active['variables']['formId'] = CommonPage.get_permit_id

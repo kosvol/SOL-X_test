@@ -20,7 +20,11 @@ And (/^I request the permit for update via oa link manually$/) do
   sleep 3
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
-  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  rescue
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  end
 end
 
 And (/^I approve oa permit via oa link manually$/) do
@@ -158,4 +162,10 @@ Then(/^I should see the full comment text$/) do
   baseText = baseText.to_s.sub('["', '')
   baseText = baseText.to_s.sub('"]', '')
   is_equal(commentText, baseText)
+end
+
+
+And(/^I submit permit via service to to pending office approval state$/) do
+  on(BypassPage).set_oa_permit_to_pending_master_review
+  on(BypassPage).set_oa_permit_to_pending_office_appr
 end
