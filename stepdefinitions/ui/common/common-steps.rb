@@ -105,3 +105,15 @@ end
 And (/^I set time$/) do
   on(CommonFormsPage).set_current_time
 end
+
+
+Given (/^I launch sol-x portal dashboard$/) do
+  $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
+  begin
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  rescue
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  end
+  # sleep 5
+  # puts "screen size: #{$browser.window_size}"
+end

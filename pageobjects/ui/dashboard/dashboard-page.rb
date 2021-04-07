@@ -15,6 +15,8 @@ class DashboardPage < WearablePage
   div(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/div")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
+  element(:entry_status_indicator, xpath: "//span[starts-with(@class,'ActiveEntrantIndicator__Status')]")
+  elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
   @@ship_area = "//li/button[contains(.,'%s')]"
   # @@ship_area = "//div/button/span[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"

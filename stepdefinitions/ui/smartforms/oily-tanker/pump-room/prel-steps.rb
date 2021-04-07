@@ -41,8 +41,10 @@ And (/^I (send|fill) entry report with (.*) (optional|required) entrants$/) do |
     sleep 1
     BrowserActions.js_click("//span[contains(text(),'Send Report')]")
   elsif (_condition === 'required') && (_condition1 === 'fill')
+    on(PumpRoomEntry).input_field1_element.send_keys("Test Automation")
     step "I select required entrants #{_optional_entrant.to_i}"
   elsif (_condition === 'optional') && (_condition1 === 'fill')
+    on(PumpRoomEntry).input_field1_element.send_keys("Test Automation")
     on(PumpRoomEntry).additional_entrant(_optional_entrant.to_i) if _optional_entrant.to_i > 0
   end
 end
