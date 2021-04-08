@@ -18,8 +18,7 @@ Then (/^I should see (no new|only) entry log message$/) do |_condition|
     sleep 3
     on(PumpRoomEntry).entry_log_btn_element.click
     sleep 1
-    is_disabled(on(PreDisplay).info_gas_testing_is_missing_elements[2])
-    is_disabled(on(PreDisplay).info_gas_testing_is_missing_elements[3])
+    is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
   else
     raise 'wrong condition'
   end
