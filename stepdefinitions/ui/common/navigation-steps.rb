@@ -38,7 +38,8 @@ end
 
 And (/^I click on back to home$/) do
   sleep 2
-  on(Section6Page).back_to_home_btn
+  BrowserActions.js_click("//button[contains(.,'Back to Home')]")
+  # on(Section6Page).back_to_home_btn
   sleep 6
   step 'I set permit id'
 end
