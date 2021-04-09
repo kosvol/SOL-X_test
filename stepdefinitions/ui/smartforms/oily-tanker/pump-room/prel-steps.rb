@@ -1,12 +1,13 @@
-And (/^I enter (new|same) entry log$/) do |_condition|
+And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   step 'I sleep for 10 seconds'
   on(PreDisplay).new_entry_log_element.click
 
-    on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
-    on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','Test','20','2','cc') if _condition === 'new'
-    step "I sign for gas"
-    step 'I enter pin for rank A/M'
-    step 'I sleep for 1 seconds'
+  on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','Test','20','2','cc') if _condition === 'new'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','','','','') if _condition === 'without toxic'
+  step "I sign for gas"
+  step 'I enter pin for rank A/M'
+  step 'I sleep for 1 seconds'
 end
 
 Then (/^I should see correct signed in entrants$/) do
@@ -85,12 +86,12 @@ end
 
 Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
   step 'I acknowledge the new entry log via service'
-    step 'I sleep for 1 seconds'
-    if _condition === 'should not'
-      is_equal(SmartFormDBPage.get_error_message,"No pending PRED record")
-    elsif _condition === 'should'
-      ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
-    end
+  step 'I sleep for 1 seconds'
+  if _condition === 'should not'
+    is_equal(SmartFormDBPage.get_error_message,"No pending PRED record")
+  elsif _condition === 'should'
+    ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
+  end
 end
 
 And (/^I terminate from dashboard$/) do

@@ -126,9 +126,14 @@ class PumpRoomEntry < PreDisplay
   end
 
   def add_all_gas_readings_pre(_o2,_hc,_h2s,_co,_gas_name,_threhold,_reading,_unit)
-    normal_gas_readings(_o2,_hc,_h2s,_co)
-    sleep 1
-    toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+    if _gas_name === '' or _threhold === '' or _reading ==='' or _unit === ''
+      normal_gas_readings(_o2,_hc,_h2s,_co)
+    else
+      normal_gas_readings(_o2,_hc,_h2s,_co)
+      sleep 1
+      toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+    end
+
   end
 
   def fill_up_pre(duration)
