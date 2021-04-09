@@ -9,8 +9,7 @@ Feature: PREIntegration
         And I navigate to create new PRE
         And I enter pin for rank C/O
         Then I fill up PRE. Duration 4. Delay to activate 2
-        And Get PRE id
-        And for pre I submit permit for Officer Approval
+        And for pre I submit permit for C/O Approval
         And I getting a permanent number from indexedDB
         Then I activate the current PRE form
         When I navigate to "Scheduled" screen for PRE

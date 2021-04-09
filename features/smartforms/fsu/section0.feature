@@ -116,7 +116,7 @@ Feature: LNGSmartFormsPermission
         When I click on permit for master approval
         And I enter pin <pin>
         And I navigate to section 7
-        Then I should see Approve for Activation button enabled
+        Then I should see Activate Permit to Work button enabled
         And I switch vessel to LNG
 
         Examples:
