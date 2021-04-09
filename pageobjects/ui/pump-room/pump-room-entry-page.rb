@@ -46,6 +46,7 @@ class PumpRoomEntry < PreDisplay
   element(:permit_end_time1, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p")
   element(:input_field1, xpath: "//input[starts-with(@class,'Input')]")
   elements(:header_cell, xpath: "//div[starts-with(@class,'header-cell')]")
+  elements(:header_pwt, xpath: "//h4[starts-with(@class,'Heading__H4')]")
   ### end
 
   def get_validity_start_and_end_time(permit_type)
