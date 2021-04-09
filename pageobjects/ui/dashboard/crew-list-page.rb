@@ -8,7 +8,7 @@ class CrewListPage < DashboardPage
   elements(:crew_table_header, xpath: '//*/tr/th')
   elements(:crew_rank, xpath: "//tr/td[starts-with(@data-testid,'rank-')]")
   elements(:crew_list, xpath: '//*/tbody/tr')
-  elements(:crew_pin_list, xpath: '//tbody/tr/td[6]')
+  elements(:crew_pin_list, xpath: '//tbody/tr/td[5]')
   spans(:countdown, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]/span")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
   divs(:location_details, xpath: "//div[@data-testid='location']")
