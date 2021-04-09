@@ -5,7 +5,7 @@ require './././support/env'
 class Section8Page < Section7Page
   include PageObject
 
-  # divs(:rank_name_and_date, xpath: "//div[starts-with(@class,'Cell__Content-')]/div")
+  divs(:input_fields_text, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__')]/div/span")
   divs(:rank_name_and_date, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div/div")
   
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")

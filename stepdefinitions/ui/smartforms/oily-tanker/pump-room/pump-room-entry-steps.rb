@@ -179,7 +179,7 @@ end
 And(/^Get (PRE|CRE) id$/) do |_permit_type|
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
   @@pre_number = on(PumpRoomEntry).ptw_id_element.text
-  # step 'I set permit id'
+  # @@issue_time = on(PreDisplay).pre_duration_timer_element.text
 end
 
 Then(/^I open the current (PRE|CRE) with status Pending approval. Rank: (.*)$/) do |_permit_type,rank|
@@ -244,11 +244,19 @@ And (/^I should see PRE display timezone$/) do
   end
 end
 
-Then (/^I should see entry log details display as filled$/) do
+Then (/^I should see entry log details display as (filled|filled api)$/) do |_condition|
   is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,"A/M Atif Hayat")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,"Test Automation")
-  does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_start_details)
-  does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_end_details)
+  case _condition
+  when 'filled'
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_start_details)
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_end_details)
+  when 'filled api'
+    p "#{@@issued_date_and_time[12,5]}"
+    p "#{@@issue_time[12,5]}"
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, "#{@@issued_date_and_time[12,5]}")
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,"#{@@issue_time[12,5]}")
+  end
   is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text,"#{on(CommonFormsPage).get_current_time_offset}")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,"2 %")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,"3 % LEL")
@@ -269,4 +277,28 @@ Then ('I should see timer countdown') do
   elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:56:"
     does_include(on(PreDisplay).pre_duration_timer_element.text,"03:56:")
   end
+end
+
+Then (/^I check all header-cells in Entry log table on (PWT|Dashboard)$/) do |_condition|
+
+  is_equal(on(PumpRoomEntry).header_cell_elements.first.text,"Entrant")
+  is_equal(on(PumpRoomEntry).header_cell_elements[1].text,"Purpose")
+  is_equal(on(PumpRoomEntry).header_cell_elements[2].text,"Validity")
+  is_equal(on(PumpRoomEntry).header_cell_elements[3].text,"Time In/Out")
+  is_equal(on(PumpRoomEntry).header_cell_elements[4].text,"GMT")
+  is_equal(on(PumpRoomEntry).header_cell_elements[5].text,"O2")
+  is_equal(on(PumpRoomEntry).header_cell_elements[6].text,"HC")
+  is_equal(on(PumpRoomEntry).header_cell_elements[7].text,"H2S")
+  is_equal(on(PumpRoomEntry).header_cell_elements[8].text,"CO")
+  is_equal(on(PumpRoomEntry).header_cell_elements[9].text,"Test")
+  case _condition
+  when "dashboard"
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,"Other Toxic")
+    is_equal(on(PumpRoomEntry).header_cell_elements[11].text,"Benzene")
+    is_equal(on(PumpRoomEntry).header_cell_elements[12].text,"NO2")
+  when "PTW"
+    #shoud be "Competent Person"
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,"OOW")
+  end
+
 end

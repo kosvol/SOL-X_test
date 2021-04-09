@@ -14,6 +14,7 @@ And (/^I click on Submit for Termination$/) do
 end
 
 Then (/^I should see dra number and last assessment date populated$/) do
+  p "permit id: #{CommonPage.get_dra_permit_id}"
   is_equal(on(Section3BPage).last_assessment, CommonPage.get_dra_permit_id)
   is_equal(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).get_current_date_format_with_offset)
 end

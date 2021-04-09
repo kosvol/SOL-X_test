@@ -38,7 +38,8 @@ end
 
 And (/^I click on back to home$/) do
   sleep 2
-  on(Section6Page).back_to_home_btn
+  BrowserActions.js_click("//button[contains(.,'Back to Home')]")
+  # on(Section6Page).back_to_home_btn
   sleep 6
   step 'I set permit id'
 end
@@ -99,4 +100,11 @@ And (/^I click on (.*) tab$/) do |_which_tab|
   when 'permit'
     BrowserActions.poll_exists_and_click(on(PreDisplay).permit_tab_element)
   end
+end
+
+And (/^I go to ESE log in dashboard$/) do
+  sleep 1
+  on(DashboardPage).entry_status_indicator_element.click
+  sleep 1
+  on(DashboardPage).radio_button_enclosed_elements[1].click
 end

@@ -101,6 +101,7 @@ And (/^I should see data persisted on page 1$/) do
 end
 
 And (/^I approve permit$/) do
+  sleep 3
   step 'I open a permit pending Master Approval with Master rank and 1111 pin'
   step 'I navigate to section 7'
   sleep 1
