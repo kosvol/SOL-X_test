@@ -178,7 +178,7 @@ end
 
 And(/^Get (PRE|CRE) id$/) do |_permit_type|
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
-  # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
+  @@pre_number = on(PumpRoomEntry).ptw_id_element.text
   # @@issue_time = on(PreDisplay).pre_duration_timer_element.text
 end
 

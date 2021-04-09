@@ -130,7 +130,7 @@ end
 And (/^I send Report$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
   on(PreDisplay).send_report_btn_elements.first.click
-  on(PreDisplay).send_report_element.click
+  # on(PreDisplay).send_report_element.click
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
   on(CommonFormsPage).done_btn_elements.first.click
 end

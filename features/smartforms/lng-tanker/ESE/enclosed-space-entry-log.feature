@@ -46,7 +46,7 @@ Feature: EnclosedSpaceEntryLog
     And I fill entry report with 5 required entrants
     Then I check names of entrants 5 on New Entry page
 
-  Scenario: Check Enclosed Spaces Entry  first log
+  Scenario: Check Enclosed Spaces Entry first log
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
