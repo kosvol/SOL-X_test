@@ -5,7 +5,8 @@ Feature: SmartFormsPermission
   So that ...
 
   Scenario: Verify permits filter displaying the right counts on smartform screen
-    Given I launch sol-x portal without unlinking wearable
+    Given I switch vessel to COT
+    When I launch sol-x portal without unlinking wearable
     Then I should see permits match backend results
 
   Scenario Outline: Verify pending approval permit filter listing match counter in smart form
