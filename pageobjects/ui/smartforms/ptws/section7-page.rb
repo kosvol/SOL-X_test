@@ -9,6 +9,13 @@ class Section7Page < Section6Page
   button(:submit_oa_btn, xpath: "//button[contains(.,'Submit for Office Approval')]")
   button(:update_btn, xpath: "//button[contains(.,'Updates Needed')]")
   button(:activate_permit_btn, xpath: "//button[contains(.,'Activate Permit To Work')]")
+  element(:permit_issued_on, xpath: "//div[starts-with(@class,'Section__Description')]/div[starts-with(@class,'ViewGenericAnswer__')][1]")
+  element(:permit_valid_until, xpath: "//div[starts-with(@class,'Section__Description')]/div[starts-with(@class,'ViewGenericAnswer__')][2]")
+  
+  def get_validity_until(_offset_hours)
+    tmp = (Time.parse(@@issue_time_date)+((60*60)*_offset_hours))
+    return "#{tmp.strftime("%d/%b/%Y %H:%M")} #{@@issue_time_date[18,29]}"
+  end
 
   def activate_permit
     set_current_time
