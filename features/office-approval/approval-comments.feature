@@ -82,7 +82,7 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add/Show Comments button
     Then I should see the last comment is at the top of the list
-  @ska
+
   Scenario: Verify no one cannot add comments to the form after approval (5327)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
@@ -95,8 +95,23 @@ Feature: OfficeApprovalComments
     And I should see the correct notification at the bottom after approval
     And I should not see active fields and buttons
 
+  Scenario: Verify Office Approval Authority cannot add comments to the form after activation (5328)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on Add Comments button
+    And I add a short comment
+    And I approve oa permit via oa link manually
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
+    And I sleep for 5 seconds
+    And I navigate to OA link
+    And I click on Add/Show Comments button
+    Then I should see the last comment is at the top of the list
+    And I should see the correct notification at the bottom after activation
+    And I should not see active fields and buttons
 
-#Scenario: Verify Office Approval Authority cannot add comments to the form after activation (5328)
+
 #Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452)
 #Scenario: Verify that a long comment (more than 240 characters) is displayed in full (5456)
 #Scenario: Verify that comments are displayed in chronological order after the form termination (5454)
