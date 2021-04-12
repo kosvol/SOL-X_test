@@ -39,7 +39,11 @@ And (/^I approve oa permit via oa link manually$/) do
   sleep 2
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 1
-  BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
+  rescue
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  end
 end
 
 And(/^I should see Comments block attributes$/) do
@@ -66,7 +70,7 @@ And(/^I click on Designation drop\-down$/) do
   sleep 1
 end
 
-Then(/^I should the Designation list contains all necessary roles$/) do
+Then(/^I should see the Designation list contains all necessary roles$/) do
   is_true(on(OAPage).is_designation_list?)
 end
 
@@ -168,4 +172,19 @@ end
 And(/^I submit permit via service to to pending office approval state$/) do
   on(BypassPage).set_oa_permit_to_pending_master_review
   on(BypassPage).set_oa_permit_to_pending_office_appr
+end
+
+And(/^I should see the correct notification at the bottom after (approval|activation)$/) do |_whichState|
+  case _whichState
+  when 'approval'
+    is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to approved Permits")
+  when 'activation'
+    is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to activated permits")
+  end
+  sleep(1)
+end
+
+And(/^I should not see active fields and buttons$/) do
+  not_to_exists(on(OAPage).comment_input_box_element)
+  not_to_exists(on(OAPage).send_comments_btn_element)
 end

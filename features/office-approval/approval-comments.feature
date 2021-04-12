@@ -15,7 +15,7 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add Comments button
     And I click on Designation drop-down
-    Then I should the Designation list contains all necessary roles
+    Then I should see the Designation list contains all necessary roles
 
   Scenario: Verify the selected role appears in the Designation field (5311)
     Given I submit permit ssubmit_underwater_simultaneous via service with 9015 user and set to pending office approval state
@@ -71,7 +71,7 @@ Feature: OfficeApprovalComments
     And I add a long comment
     And I click on See More button
     Then I should see the full comment text
-@ska
+
   Scenario: Verify that comments will be saved after the form is sent for updates before approval (5457)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
@@ -82,8 +82,20 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add/Show Comments button
     Then I should see the last comment is at the top of the list
+  @ska
+  Scenario: Verify no one cannot add comments to the form after approval (5327)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on Add Comments button
+    And I add a short comment
+    And I approve oa permit via oa link manually
+    And I navigate to OA link
+    And I click on Add/Show Comments button
+    Then I should see the last comment is at the top of the list
+    And I should see the correct notification at the bottom after approval
+    And I should not see active fields and buttons
 
-#Scenario: Verify Captain cannot add comments to the form after approval (5327)
+
 #Scenario: Verify Office Approval Authority cannot add comments to the form after activation (5328)
 #Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452)
 #Scenario: Verify that a long comment (more than 240 characters) is displayed in full (5456)
