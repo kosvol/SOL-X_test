@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+Then (/^I should see valid validity date and time$/) do
+  sleep 1
+  does_include(on(Section7Page).permit_issued_on_element.text, @@issue_time_date)
+  p ">> #{on(Section7Page).permit_valid_until_element.text}"
+  does_include(on(Section7Page).permit_valid_until_element.text,on(Section7Page).get_validity_until(8))
+end
+
 And (/^I click on permit for (.+)$/) do |_status|
   # on(PendingStatePage).pending_approval_status_btn_elements.first.click
   on(PendingStatePage).pending_approval_status_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click

@@ -46,6 +46,7 @@ class PumpRoomEntry < PreDisplay
   element(:permit_end_time1, xpath: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p")
   element(:input_field1, xpath: "//input[starts-with(@class,'Input')]")
   elements(:header_cell, xpath: "//div[starts-with(@class,'header-cell')]")
+  elements(:header_pwt, xpath: "//h4[starts-with(@class,'Heading__H4')]")
   ### end
 
   def get_validity_start_and_end_time(permit_type)
@@ -126,9 +127,14 @@ class PumpRoomEntry < PreDisplay
   end
 
   def add_all_gas_readings_pre(_o2,_hc,_h2s,_co,_gas_name,_threhold,_reading,_unit)
-    normal_gas_readings(_o2,_hc,_h2s,_co)
-    sleep 1
-    toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+    if _gas_name === '' or _threhold === '' or _reading ==='' or _unit === ''
+      normal_gas_readings(_o2,_hc,_h2s,_co)
+    else
+      normal_gas_readings(_o2,_hc,_h2s,_co)
+      sleep 1
+      toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+    end
+
   end
 
   def fill_up_pre(duration)

@@ -31,6 +31,7 @@ end
 
 Then (/^I should see second level permits details$/) do
   base_permits = YAML.load_file('data/permits.yml')[CommonPage.get_permit_id]
+  is_equal(on(Section0Page).list_permit_type_elements.size, base_permits.size)
   on(Section0Page).list_permit_type_elements.each_with_index do |_element, _index|
     is_equal(_element.text, base_permits[_index])
   end

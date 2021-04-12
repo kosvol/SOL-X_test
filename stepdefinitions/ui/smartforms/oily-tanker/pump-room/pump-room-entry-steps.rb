@@ -1,17 +1,17 @@
 And(/^I navigate to create new (PRE|CRE)$/) do |_permit_type|
-  on(PumpRoomEntry).create_new_pre_btn_element.click if _permit_type === "PRE"
-  on(PumpRoomEntry).create_new_cre_btn_element.click if _permit_type === "CRE"
+  on(PumpRoomEntry).create_new_pre_btn_element.click if _permit_type === 'PRE'
+  on(PumpRoomEntry).create_new_cre_btn_element.click if _permit_type === 'CRE'
   sleep 1
 end
 
 Then (/^I (should|should not) see PRE landing screen$/) do |_condition|
   if _condition === 'should'
-    is_true(on(PumpRoomEntry).heading_text == "Section 1: Pump Room Entry Permit" )
+    is_true(on(PumpRoomEntry).heading_text == 'Section 1: Pump Room Entry Permit' )
   end
 end
 
 Then(/^I should see the right order of elements$/) do
-  base_data = YAML.load_file("data/pre/pump-room-entries.yml")['questions']
+  base_data = YAML.load_file('data/pre/pump-room-entries.yml')['questions']
   on(PumpRoomEntry).form_structure_elements.each_with_index do |_element,_index|
     p "#{_element.text}\","
     is_equal(_element.text,base_data[_index])
@@ -28,7 +28,7 @@ Then(/^I (should|should not) see alert message "(.*)"$/) do |_condition, alert|
   end
 end
 
-Then("I select Permit Duration {int}") do |duration|
+Then('I select Permit Duration {int}') do |duration|
   on(PumpRoomEntry).select_permit_duration(duration)
 end
 
@@ -76,9 +76,9 @@ And (/^I should see the (text|label|page|header) '(.*)'$/) do |like, text|
 end
 
 And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
-    if _condition === 'disabled'
-      is_false(on(PumpRoomEntry).is_button_enabled?(button))
-    end
+  if _condition === 'disabled'
+    is_false(on(PumpRoomEntry).is_button_enabled?(button))
+  end
 
     if _condition === 'enabled'
       is_true(on(PumpRoomEntry).is_button_enabled?(button))
@@ -122,7 +122,7 @@ And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step 'I open the current PRE with status Pending approval. Rank: C/O'
   step "I take note of start and end validity time for \"#{_permit_type}\""
   step 'I press the "Approve for Activation" button'
-  step "I sign on canvas with valid 8383 pin"
+  step 'I sign on canvas with valid 8383 pin'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -153,7 +153,7 @@ Then(/^I terminate the PRE$/) do
   # on(PumpRoomEntry).press_button_for_current_PRE("View/Termination")
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
-  step "I sign on canvas with valid 8383 pin"
+  step 'I sign on canvas with valid 8383 pin'
   step "I should see the text 'Permit Has Been Closed'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -169,42 +169,42 @@ end
 
 And(/^\(for pre\) I should see update needed message$/) do
   step 'I navigate to "Updates Needed" screen for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE("Edit/Update")
+  on(PumpRoomEntry).press_button_for_current_PRE('Edit/Update')
   step 'I enter pin for rank C/O'
   step "I should see the text 'Comments from Approving Authority'"
   step "I should see the text 'Test Automation'"
 end
 
 
-And(/^Get (PRE|CRE) id$/) do |_permit_type|
+And(/^Get (PRE|CRE|PWT) id$/) do |_permit_type|
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
   @@pre_number = on(PumpRoomEntry).ptw_id_element.text
-  # @@issue_time = on(PreDisplay).pre_duration_timer_element.text
+  @@issue_time = on(PreDisplay).pre_duration_timer_element.text if _permit_type === 'PWT'
 end
 
 Then(/^I open the current (PRE|CRE) with status Pending approval. Rank: (.*)$/) do |_permit_type,rank|
   step "I navigate to \"Pending Approval\" screen for #{_permit_type}"
-  on(PumpRoomEntry).press_button_for_current_PRE("Officer Approval")
-  step 'I enter pin for rank %s' %[rank]
+  on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval')
+  step 'I enter pin for rank %s' % [rank]
   sleep 1
 end
 
 Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   # table is a table.hashes.keys # => [:Chief Officer, :8383]
-   roles.raw.each do |role|
+  roles.raw.each do |role|
     step 'I open the current PRE with status Pending approval. Rank: %s' % [role[0].to_s]
-    on(CommonFormsPage).scroll_multiple_times(20)
-    not_to_exists(on(PumpRoomEntry).approve_activation_element)
-    not_to_exists(on(Section7Page).update_btn_element)
-    is_equal(on(CommonFormsPage).close_btn_elements.size,1)
-    step 'I click on back arrow'
-   end
+   on(CommonFormsPage).scroll_multiple_times(20)
+   not_to_exists(on(PumpRoomEntry).approve_activation_element)
+   not_to_exists(on(Section7Page).update_btn_element)
+   is_equal(on(CommonFormsPage).close_btn_elements.size,1)
+   step 'I click on back arrow'
+  end
 end
 
 And(/^I get a temporary number and writing it down$/) do
   @temp_id = on(PumpRoomEntry).ptw_id_element.text
-  is_equal(@temp_id.include?("TEMP"), true)
-  on(PumpRoomEntry).purpose_of_entry="Test Automation"
+  is_equal(@temp_id.include?('TEMP'), true)
+  on(PumpRoomEntry).purpose_of_entry = 'Test Automation'
   step 'I press the "Save" button'
   sleep 1
   step 'I press the "Close" button'
@@ -212,15 +212,15 @@ And(/^I get a temporary number and writing it down$/) do
 end
 
 Then(/^I getting a permanent number from indexedDB$/) do
-  @@pre_number =  WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
+  @@pre_number = WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
   # is_equal(@@pre_number.include?("PRE"), true)
 end
 
 Then(/^I edit pre and should see the old number previously written down$/) do
-  on(PumpRoomEntry).press_button_for_current_PRE("Edit")
+  on(PumpRoomEntry).press_button_for_current_PRE('Edit')
   step 'I enter pin for rank C/O'
   sleep 1
-  is_equal(on(PumpRoomEntry).purpose_of_entry, "Test Automation")
+  is_equal(on(PumpRoomEntry).purpose_of_entry, 'Test Automation')
 end
 
 And (/^I signout the entrant$/) do
@@ -245,8 +245,8 @@ And (/^I should see PRE display timezone$/) do
 end
 
 Then (/^I should see entry log details display as (filled|filled api)$/) do |_condition|
-  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,"A/M Atif Hayat")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,"Test Automation")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,'A/M Atif Hayat')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,'Test Automation')
   case _condition
   when 'filled'
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_start_details)
@@ -258,47 +258,78 @@ Then (/^I should see entry log details display as (filled|filled api)$/) do |_co
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,"#{@@issue_time[12,5]}")
   end
   is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text,"#{on(CommonFormsPage).get_current_time_offset}")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,"2 %")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,"3 % LEL")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text,"4 PPM")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text,"5 PPM")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text,"2 CC")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text,"C/O Alister Leong")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,'2 %')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,'3 % LEL')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text,'4 PPM')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text,'5 PPM')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text,'2 CC')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text,'C/O Alister Leong')
 end
 
 Then ('I should see timer countdown') do
   on(PumpRoomEntry).home_tab_element.click
   step 'I sleep for 3 seconds'
   p "#{on(PreDisplay).pre_duration_timer_element.text}"
-  if on(PreDisplay).pre_duration_timer_element.text.include? "03:58:"
-    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:58:")
-  elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:57:"
-    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:57:")
-  elsif on(PreDisplay).pre_duration_timer_element.text.include? "03:56:"
-    does_include(on(PreDisplay).pre_duration_timer_element.text,"03:56:")
+  if on(PreDisplay).pre_duration_timer_element.text.include? '03:58:'
+    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:58:')
+  elsif on(PreDisplay).pre_duration_timer_element.text.include? '03:57:'
+    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:57:')
+  elsif on(PreDisplay).pre_duration_timer_element.text.include? '03:56:'
+    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:56:')
   end
 end
 
 Then (/^I check all header-cells in Entry log table on (PWT|Dashboard)$/) do |_condition|
 
-  is_equal(on(PumpRoomEntry).header_cell_elements.first.text,"Entrant")
-  is_equal(on(PumpRoomEntry).header_cell_elements[1].text,"Purpose")
-  is_equal(on(PumpRoomEntry).header_cell_elements[2].text,"Validity")
-  is_equal(on(PumpRoomEntry).header_cell_elements[3].text,"Time In/Out")
-  is_equal(on(PumpRoomEntry).header_cell_elements[4].text,"GMT")
-  is_equal(on(PumpRoomEntry).header_cell_elements[5].text,"O2")
-  is_equal(on(PumpRoomEntry).header_cell_elements[6].text,"HC")
-  is_equal(on(PumpRoomEntry).header_cell_elements[7].text,"H2S")
-  is_equal(on(PumpRoomEntry).header_cell_elements[8].text,"CO")
-  is_equal(on(PumpRoomEntry).header_cell_elements[9].text,"Test")
+  is_equal(on(PumpRoomEntry).header_cell_elements.first.text,'Entrant')
+  is_equal(on(PumpRoomEntry).header_cell_elements[1].text,'Purpose')
+  is_equal(on(PumpRoomEntry).header_cell_elements[2].text,'Validity')
+  is_equal(on(PumpRoomEntry).header_cell_elements[3].text,'Time In/Out')
+  is_equal(on(PumpRoomEntry).header_cell_elements[4].text,'GMT')
+  is_equal(on(PumpRoomEntry).header_cell_elements[5].text,'O2')
+  is_equal(on(PumpRoomEntry).header_cell_elements[6].text,'HC')
+  is_equal(on(PumpRoomEntry).header_cell_elements[7].text,'H2S')
+  is_equal(on(PumpRoomEntry).header_cell_elements[8].text,'CO')
+  is_equal(on(PumpRoomEntry).header_cell_elements[9].text,'Test')
   case _condition
-  when "dashboard"
-    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,"Other Toxic")
-    is_equal(on(PumpRoomEntry).header_cell_elements[11].text,"Benzene")
-    is_equal(on(PumpRoomEntry).header_cell_elements[12].text,"NO2")
-  when "PTW"
+  when 'dashboard'
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,'Other Toxic')
+    is_equal(on(PumpRoomEntry).header_cell_elements[11].text,'Benzene')
+    is_equal(on(PumpRoomEntry).header_cell_elements[12].text,'NO2')
+  when 'PTW'
     #shoud be "Competent Person"
-    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,"OOW")
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,'OOW')
   end
 
+end
+
+Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashboard)$/) do |_type, _condition|
+  case _condition
+  when 'table'
+    if _type === 'last'
+      is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
+      is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
+    elsif _type === 'previous'
+      is_not_equal($browser.
+        find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[9].text, 'Test')
+      is_not_equal($browser.
+        find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[9].text, '2 CC')
+    end
+  when 'dashboard'
+    is_equal(on(PumpRoomEntry).header_pwt_elements.first.text, @@pre_number)
+    is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
+    is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
+
+    is_not_equal(on(PumpRoomEntry).header_pwt_elements[1].text, @@pre_number)
+    i = 0
+    while i < 10
+      is_not_equal($browser.
+        find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text, 'Test')
+      is_not_equal($browser.
+        find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[i].text, '2 CC')
+      i += 1
+    end
+  else
+    raise 'Wrong condition'
+  end
 end
