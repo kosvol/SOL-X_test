@@ -113,7 +113,7 @@ Feature: EnclosedSpaceEntryLog
     And I launch sol-x portal dashboard
     And I go to ESE log in dashboard
     And I check all header-cells in Entry log table on Dashboard
-@wip
+
   Scenario: Additional Toxic Gas Readings should be displayed only for the ESE PTW they are relating to
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable
@@ -148,6 +148,24 @@ Feature: EnclosedSpaceEntryLog
     And I go to ESE log in dashboard
     Then I check toxic gas readings on last PTW Entry log dashboard
 
+  Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
+    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
+    And I add new entry "A 2/O"
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
+    When I Close Permit submit_enclose_space_entry via service auto
+    And I sleep for 3 seconds
+    When I log in to the Office Portal with new ENV
+    And I select the "Auto" vessel
+    And I click on Add Filter button
+    And I select filter value with permit type "Enclosed Spaces Entry"
+    And I sleep for 3 seconds
+    And I check the checkbox near the first permit in the list
+    And I click on View Permit button
+    And I check that Entry log is present
+    And I check all headers of Entry Log table without toxic gas on portal
+    And I check rank and full name of Entrant without toxic "A 2/O"
 
 
 

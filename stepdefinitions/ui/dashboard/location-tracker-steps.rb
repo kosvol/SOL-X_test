@@ -146,3 +146,7 @@ end
 When (/^I terminate the PRE permit via service$/) do
   on(BypassPage).terminate_pre_permit('8383')
 end
+
+When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
+  on(BypassPage).close_permit(_permit_type,'9015',_env)
+end

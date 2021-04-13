@@ -61,7 +61,7 @@ class BypassPage < Section0Page
     create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('pre/mod-05.submit-form-status-for-termination', create_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-05.submit-form-status-for-termination', _user)
-    
+
     create_form_pre = JSON.parse JsonUtil.read_json('pre/06.update-form-status-for-termination')
     create_form_pre['variables']['formId'] = CommonPage.get_permit_id
     create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
@@ -349,8 +349,28 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
+  def create_entry_record(_array)
+    _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
+    _entry_record['variables']['formId'] = CommonPage.get_permit_id
+    _array.split(',').each do |item|
+      yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+      id = yml_id['ranks_id'][item]
+      _entry_record['variables']['otherEntrantIds'].push(id)
+    end
+    JsonUtil.create_request_file('ptw/18.mod_create_entry_record', _entry_record)
+    ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
+  end
+
+  def close_permit(_permit_type, _user, _vessel)
+    submit_active = set_permit_status('PENDING_TERMINATION')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+
+    submit_active = set_permit_status('CLOSED')
+    submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
+  end
+
   private
-  
+
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 1
