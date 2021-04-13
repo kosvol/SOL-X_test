@@ -49,11 +49,7 @@ And (/^I navigate to section (.+)$/) do |_which_section|
 end
 
 And (/^I update permit in pending update state with (.*) pin$/) do |_pin|
-  # on(PendingStatePage).edit_update_btn_elements.firstclick
   step "I update permit with A/M rank and #{_pin} pin"
-  # on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  # sleep 1
-  # step "I enter pin #{_pin}"
 end
 
 And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _rank, _pin|
@@ -64,6 +60,7 @@ And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _r
   if _update_or_terminate === 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
   elsif _update_or_terminate === 'update'
+    # on(PendingStatePage).edit_update_btn_elements.first.click
     on(PendingStatePage).edit_update_btn_elements[permit_id].click
   elsif _update_or_terminate === 'view'
     @@issue_time_date = on(CreatedPermitToWorkPage).issued_date_time_elements[permit_id].text

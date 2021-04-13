@@ -56,6 +56,8 @@ class NavigationPage < CommonFormsPage
       10
     when '7'
       11
+    when '7b'
+      12
     when '8'
       13
     when '4a'

@@ -15,7 +15,6 @@ class OAPage < Section9Page
   button(:add_comments_btn1, xpath: "//button[contains(.,'Add/Show Comments')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
   button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
-  # button(:submit_permit_approval_btn, xpath: "//button[contains(.,'Approve This Permit to Work')]")
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
@@ -49,6 +48,39 @@ class OAPage < Section9Page
   elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
   ## END Comment attributes ###
 
+  def sol_6553
+    sleep 5
+    approve_permit_btn_element.click
+    select_yes_on_checkbox
+
+    sleep 1
+    BrowserActions.scroll_down(date_time_from_elements[0])
+    current_hour = get_current_hour
+    ### set from time
+    date_time_from_elements[1].click
+    hour_from_picker_elements.first.click
+    minute_from_picker_elements.first.click
+    ### set to time
+    dismiss_picker_element.click
+    sleep 1
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+    sleep 1
+    date_time_to_elements[1].click
+    select_to_hour_minutes(1,0)
+    dismiss_picker_element.click
+    sleep 1
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+    date_time_to_elements.first.click
+    sleep 1
+    set_designation
+    sleep 2
+    BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
+    sleep 2
+    $browser.get(EnvironmentSelector.get_environment_url)
+    sleep 1
+    BrowserActions.wait_until_is_visible(click_create_permit_btn_element)
+  end
+
   def navigate_to_oa_link
     sleep 15
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
@@ -73,12 +105,12 @@ class OAPage < Section9Page
     sleep 2
     endtime = current_hour.to_i+9
     if endtime <= 24
-      BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((endtime)))
+      select_to_hour(endtime)
     else
-      BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",((endtime)-24))
+      select_to_hour((endtime)-24)
     end
     sleep 1
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",0)
+    select_to_minute(0)
     sleep 1
     dismiss_picker_element.click
     sleep 1
@@ -139,5 +171,21 @@ class OAPage < Section9Page
 
   def add_instruction
     false
+  end
+
+  def select_to_hour_minutes(_hour_index,_minute_index)
+    sleep 2
+    select_to_hour(_hour_index)
+    sleep 1
+    select_to_minute(_minute_index)
+    sleep 1
+  end
+
+  def select_to_hour(_hour_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",_hour_index)
+  end
+
+  def select_to_minute(_minute_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",_minute_index)
   end
 end
