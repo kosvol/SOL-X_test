@@ -4,7 +4,7 @@ Feature: Section7
   I want to ...
   So that ...
 
-  @sol-6553 @test
+  @sol-6553
   Scenario: Verify validity from and to is correct with more than 0 ship time offset
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
@@ -38,6 +38,7 @@ Feature: Section7
     Then I should see valid validity date and time
 
   Scenario: Verify validity from and to is correct for non OA permit
+    Given I change ship local time to +8 GMT
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
     And I sleep for 1 seconds
     And I launch sol-x portal without unlinking wearable
@@ -50,6 +51,7 @@ Feature: Section7
     Then I should see valid validity date and time
 
   Scenario: Verify validity from and to is correct for OA permit
+    Given I change ship local time to +8 GMT
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
