@@ -44,7 +44,7 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add Comments button
     And I add a short comment
-    Then I should see comment attributes
+    Then I should see comment attributes before termination
 
   Scenario: Verify the last added comment appears at the top of the list (5314)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
@@ -73,12 +73,13 @@ Feature: OfficeApprovalComments
     Then I should see the full comment text
 
   Scenario: Verify that comments will be saved after the form is sent for updates before approval (5457)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I add a short comment
+    And close the comment block
     And I request the permit for update via oa link manually
-    And I submit permit via service to to pending office approval state
+    And I submit permit via service to pending office approval state
     And I navigate to OA link
     And I click on Add/Show Comments button
     Then I should see the last comment is at the top of the list
@@ -88,6 +89,7 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     And I click on Add Comments button
     And I add a short comment
+    And close the comment block
     And I approve oa permit via oa link manually
     And I navigate to OA link
     And I click on Add/Show Comments button
@@ -96,10 +98,11 @@ Feature: OfficeApprovalComments
     And I should not see active fields and buttons
 
   Scenario: Verify Office Approval Authority cannot add comments to the form after activation (5328)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I add a short comment
+    And close the comment block
     And I approve oa permit via oa link manually
     And I click on pending approval filter
     And I approve permit
@@ -110,9 +113,20 @@ Feature: OfficeApprovalComments
     Then I should see the last comment is at the top of the list
     And I should see the correct notification at the bottom after activation
     And I should not see active fields and buttons
+@ska
+  Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on Add Comments button
+    And I add a short comment
+    And close the comment block
+    And I approve oa permit via oa link manually
+    And I submit permit via service to closed state
+    And I navigate to OA link
+    And I sleep for 5 seconds
+    Then I should see the Approval comments block at the bottom of the form
+    And I should see comment attributes after termination
 
-
-#Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452)
 #Scenario: Verify that a long comment (more than 240 characters) is displayed in full (5456)
 #Scenario: Verify that comments are displayed in chronological order after the form termination (5454)
 #Scenario: Verify the Comments section at the end of the final copy of PTW - UI (5453)

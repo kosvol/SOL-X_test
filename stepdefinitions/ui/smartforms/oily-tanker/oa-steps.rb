@@ -135,15 +135,21 @@ And(/^close the comment block$/) do
   sleep(1)
 end
 
-Then(/^I should see comment attributes$/) do
+Then(/^I should see comment attributes (before|after) termination$/) do |_seeWhen|
   is_true(on(OAPage).comment_rank_elements.first.text == "Vessel Superintendent")
   is_true(on(OAPage).comment_name_elements.first.text == "Test Automation 2")
-  does_include(on(OAPage).comment_date_elements.first.text, @when)
-  is_true(on(OAPage).comment_text_elements.first.text == "Test Automation 2")
+  case _seeWhen
+  when 'before'
+    does_include(on(OAPage).comment_date_elements.first.text, @when)
+    is_true(on(OAPage).comment_text_elements.first.text == "Test Automation 2")
+  when 'after'
+    does_include(on(OAPage).comment_date_after_term_elements.first.text, @when)
+    is_true(on(OAPage).comment_text_after_term_elements.first.text == "Test Automation 2")
+  end
 end
 
 Then(/^I should see the last comment is at the top of the list$/) do
-  step 'I should see comment attributes'
+  step 'I should see comment attributes before termination'
 end
 
 And(/^I click on Add\/Show Comments button$/) do
@@ -169,8 +175,8 @@ Then(/^I should see the full comment text$/) do
 end
 
 
-And(/^I submit permit via service to to pending office approval state$/) do
-  on(BypassPage).set_oa_permit_to_pending_master_review
+And(/^I submit permit via service to pending office approval state$/) do
+  on(BypassPage).set_oa_permit_to_state('PENDING_MASTER_REVIEW')
   on(BypassPage).set_oa_permit_to_pending_office_appr
 end
 
@@ -187,4 +193,14 @@ end
 And(/^I should not see active fields and buttons$/) do
   not_to_exists(on(OAPage).comment_input_box_element)
   not_to_exists(on(OAPage).send_comments_btn_element)
+end
+
+And(/^I submit permit via service to closed state$/) do
+  on(BypassPage).set_oa_permit_to_state('ACTIVE')
+  on(BypassPage).set_oa_permit_to_state('PENDING_TERMINATION')
+  on(BypassPage).set_oa_permit_to_state('CLOSED')
+end
+
+Then(/^I should see the Approval comments block at the bottom of the form$/) do
+  to_exists(on(OAPage).approval_comments_block_element)
 end

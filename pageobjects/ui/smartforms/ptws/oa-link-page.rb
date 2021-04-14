@@ -44,10 +44,15 @@ class OAPage < Section9Page
   ## END Comment elements ###
 
   ## Comment attributes ###
+  # before Termination #
   elements(:comment_rank, xpath: "//div[@class='message-rank']")
   elements(:comment_name, xpath: "//div[@class='message-name']")
   elements(:comment_date, xpath: "//div[@class='message-date']")
   elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
+  # after Termination #
+  element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
+  elements(:comment_date_after_term, xpath: "//time")
+  elements(:comment_text_after_term, xpath: "//li[@class='sc-AxgMl uGkHd']/div[3]")
   ## END Comment attributes ###
 
   def navigate_to_oa_link
