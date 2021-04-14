@@ -27,6 +27,10 @@ And (/^I request the permit for update via oa link manually$/) do
   end
 end
 
+And (/^I approve oa permit via oa link manually with from 0 hour to 01 hour$/) do
+  on(OAPage).sol_6553
+end
+
 And (/^I approve oa permit via oa link manually$/) do
   # $browser.get("https://office.dev.safevue.ai/permit-preview/01F23C5B44MVT2A3WRFABN85NB?formId=AUTO/PTW/2021/191&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 5

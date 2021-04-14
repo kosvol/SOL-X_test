@@ -1,0 +1,6 @@
+{
+  "query": "mutation changeLocalTime($utcOffset: Int!) {\r\n  changeUtcOffset(utcOffset: $utcOffset)\r\n}\r\n",
+  "variables": {
+    "utcOffset": 8
+  }
+}
