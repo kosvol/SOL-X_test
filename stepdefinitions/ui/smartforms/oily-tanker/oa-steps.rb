@@ -239,3 +239,7 @@ end
 And(/^I should see the comments counter shows the same number$/) do
   does_include(on(OAPage).approval_comments_block_element.text, @counter)
 end
+
+Then(/^I should not see the Add\/Show Comments button$/) do
+  not_to_exists(on(OAPage).add_comments_btn1_element)
+end

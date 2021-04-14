@@ -114,6 +114,18 @@ Feature: OfficeApprovalComments
     And I should see the correct notification at the bottom after activation
     And I should not see active fields and buttons
 
+  Scenario: Verify Office Approval Authority cannot add comments to the form after termination (5329)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on Add Comments button
+    And I add a short comment
+    And close the comment block
+    And I approve oa permit via oa link manually
+    And I submit permit via service to closed state
+    And I navigate to OA link
+    Then I should not see the Add/Show Comments button
+    And I should see the Print Permit button at the bottom bar
+
   Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452, 5453)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
@@ -166,5 +178,3 @@ Feature: OfficeApprovalComments
     And I submit permit via service to closed state
     And I navigate to OA link
     Then I should see This Permit Has been approved on label with the correct date
-
-#Scenario: Verify Office Approval Authority cannot add comments to the form after termination (5329)
