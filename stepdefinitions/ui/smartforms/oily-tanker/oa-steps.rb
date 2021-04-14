@@ -170,8 +170,13 @@ And(/^I click on (See More|See Less) button$/) do |_seeWhat|
   end
 end
 
-Then(/^I should see the full comment text$/) do
-  commentText = on(OAPage).comment_text_elements.first.text.sub(' See Less', '')
+Then(/^I should see the full comment text (before|after) termination$/) do |_seeWhen|
+  case _seeWhen
+  when 'before'
+    commentText = on(OAPage).comment_text_elements.first.text.sub(' See Less', '')
+  when 'after'
+    commentText = on(OAPage).comment_text_after_term_elements.first.text
+  end
   baseText = YAML.load_file("data/office-approval/comments.yml")['long']
   baseText = baseText.to_s.sub('["', '')
   baseText = baseText.to_s.sub('"]', '')
