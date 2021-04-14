@@ -213,3 +213,16 @@ end
 Then(/^I should see the Approval comments block at the bottom of the form$/) do
   to_exists(on(OAPage).approval_comments_block_element)
 end
+
+Then(/^I should see comments are displayed in chronological order$/) do
+  comments_list = Array.new
+  on(OAPage).comment_date_after_term_elements.each do |comment|
+    name = comment.text
+    comments_list << name
+  end
+  puts comments_list
+  order = comments_list.sort
+  puts order
+  is_equal(comments_list, order)
+  sleep(1)
+end
