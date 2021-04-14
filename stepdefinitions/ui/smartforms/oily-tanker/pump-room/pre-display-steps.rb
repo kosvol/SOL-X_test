@@ -8,6 +8,7 @@ Then (/^I should see (no new|only) entry log message$/) do |_condition|
   case _condition
   when 'no new'
     sleep 3
+    BrowserActions.wait_until_is_visible(on(PumpRoomEntry).entry_log_btn_element)
     on(PumpRoomEntry).entry_log_btn_element.click
     sleep 1
     is_equal(on(PreDisplay).info_gas_testing_is_missing_elements[2]
