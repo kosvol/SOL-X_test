@@ -226,3 +226,16 @@ Then(/^I should see comments are displayed in chronological order$/) do
   is_equal(comments_list, order)
   sleep(1)
 end
+
+And(/^I take note of comments counter$/) do
+  sleep(5)
+  counterText = on(OAPage).comment_counter_element.text
+  counter = counterText.sub('Comments (', '')
+  @counter = counter.sub(')', '')
+  puts @counter
+  sleep(2)
+end
+
+And(/^I should see the comments counter shows the same number$/) do
+  does_include(on(OAPage).approval_comments_block_element.text, @counter)
+end

@@ -114,7 +114,7 @@ Feature: OfficeApprovalComments
     And I should see the correct notification at the bottom after activation
     And I should not see active fields and buttons
 
-  Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452)
+  Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452, 5453)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
@@ -138,7 +138,7 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     Then I should see the full comment text after termination
 
-  Scenario: Verify that comments are displayed in chronological order after the form termination (5454)
+  Scenario: Verify that comments are displayed in chronological order after the form termination (5454, 5453)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
@@ -146,17 +146,25 @@ Feature: OfficeApprovalComments
     And close the comment block
     And I sleep for 60 seconds
     And I click on Add/Show Comments button
-    And I add a short comment
+    And I add a long comment
     And close the comment block
     And I sleep for 60 seconds
     And I click on Add/Show Comments button
     And I add a short comment
+    And I take note of comments counter
     And close the comment block
     And I approve oa permit via oa link manually
     And I submit permit via service to closed state
     And I navigate to OA link
     Then I should see comments are displayed in chronological order
+    And I should see the comments counter shows the same number
 
+  Scenario: Verify the "Approved date" is displayed at the bottom of the OA PTW form (5460, 5453)
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I approve oa permit via oa link manually
+    And I submit permit via service to closed state
+    And I navigate to OA link
+    Then I should see This Permit Has been approved on label with the correct date
 
-#Scenario: Verify the Comments section at the end of the final copy of PTW - UI (5453)
 #Scenario: Verify Office Approval Authority cannot add comments to the form after termination (5329)
