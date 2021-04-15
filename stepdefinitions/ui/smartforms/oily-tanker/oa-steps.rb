@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 And (/^I navigate to OA link$/) do
-  sleep 1
   $browser.get(on(OAPage).navigate_to_oa_link)
   sleep 3
 end
