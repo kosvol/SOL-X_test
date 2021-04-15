@@ -5,7 +5,8 @@ Feature: Section6
   So that ...
 
   Scenario: Verify incomplete fields warning message displays
-    Given I launch sol-x portal without unlinking wearable
+    Given I change ship local time to +8 GMT
+    When I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit

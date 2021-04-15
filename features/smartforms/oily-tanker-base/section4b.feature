@@ -5,7 +5,8 @@ Feature: Section4BEIC
   So that ...
 
   Scenario: Verify description of work is pre-populated
-    Given I launch sol-x portal without unlinking wearable
+    Given I change ship local time to +8 GMT
+    When I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin 2523
     And I select Enclosed Spaces Entry permit
