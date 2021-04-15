@@ -25,15 +25,18 @@ class OfficePortalPage
   element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
   element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
   element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
+  element(:input_field, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
   elements(:permit_section_header, xpath: "//h2[contains(text(),'Section')]")
+  elements(:permit_title_number, xpath: "//div[starts-with(@class,'PermitList__List-sc')]/..//span[starts-with(@class,'Text__TextSmall-sc')]")
+  elements(:section_headers_all, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
   text_field(:op_password, xpath: "//input[@type='password']")
-
+  elements(:ese_log_table_title_or_value, xpath: "//div[starts-with(@class,'Section__Description')][last()]/..//td[starts-with(@class,'sc-')]")
   def select_vessel(_vesselName)
     $browser.find_element(:xpath, "//h3[contains(text(),'%s')]"%_vesselName).click
   end

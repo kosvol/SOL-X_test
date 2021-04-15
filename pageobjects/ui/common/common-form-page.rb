@@ -144,9 +144,9 @@ class CommonFormsPage < CommonPage
             @browser.find_element(:xpath, "//p[contains(., \"#{_element.text}\")]")
           rescue
             begin
-              @browser.find_element(:xpath, "//h4[contains(., \'#{_element.text}\')]")
+              @browser.find_element(:xpath, "//h4[contains(., \"#{_element.text}\")]")
             rescue
-              @browser.find_element(:xpath, "//button[contains(., \'#{_element.text}\')]")
+              @browser.find_element(:xpath, "//button[contains(., \"#{_element.text}\")]")
             end
           end
         end
