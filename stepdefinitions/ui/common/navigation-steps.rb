@@ -25,8 +25,7 @@ And (/^I click on back arrow$/) do
 end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
-  # sleep 1
-  BrowserActions.wait_until_is_visible(on(NavigationPage).next_btn_element)
+  sleep 1
   (1.._times.to_i).each do |_i|
     if _condition === 'next'
       is_enabled(on(NavigationPage).next_btn_element)
