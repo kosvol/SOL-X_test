@@ -21,12 +21,12 @@ end
 
 And (/^I click on back arrow$/) do
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  sleep 5
   step 'I set permit id'
 end
 
 And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
-  sleep 1
+  # sleep 1
+  BrowserActions.wait_until_is_visible(on(NavigationPage).next_btn_element)
   (1.._times.to_i).each do |_i|
     if _condition === 'next'
       is_enabled(on(NavigationPage).next_btn_element)
@@ -40,7 +40,6 @@ And (/^I click on back to home$/) do
   sleep 2
   BrowserActions.js_click("//button[contains(.,'Back to Home')]")
   # on(Section6Page).back_to_home_btn
-  sleep 6
   step 'I set permit id'
 end
 
