@@ -33,10 +33,11 @@ Feature: Section7
     # And I click on active filter   ### should be using this step but due to bug ####
     # And I view permit with A/M rank and 9015 pin
     # And I press previous for 2 times
-    Then I should see valid validity from 0 to 1
+    Then I should see valid validity from 8 to 9
     When I press next for 1 times
     Then I should see valid validity date and time
 
+  @test
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
