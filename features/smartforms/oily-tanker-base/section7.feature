@@ -37,7 +37,6 @@ Feature: Section7
     When I press next for 1 times
     Then I should see valid validity date and time
 
-  @test
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
