@@ -5,8 +5,9 @@ Feature: Section3BDRA
   So that ...
 
   Scenario: Verify last assessment is pre-populated
-    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
-    When I launch sol-x portal without unlinking wearable
+    Given I change ship local time to +8 GMT
+    When I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin for rank A/M

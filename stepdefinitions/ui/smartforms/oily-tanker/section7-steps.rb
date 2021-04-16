@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Given ("I change ship local time to +8 GMT") do
+Given (/^I change ship local time to +(.*) GMT$/) do |_duration|
   ServiceUtil.post_graph_ql('ship-local-time/change-ship-local-time', '1111')
 end
 
