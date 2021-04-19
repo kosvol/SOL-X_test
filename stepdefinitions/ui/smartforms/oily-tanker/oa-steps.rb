@@ -220,9 +220,7 @@ Then(/^I should see comments are displayed in chronological order$/) do
     name = comment.text
     comments_list << name
   end
-  puts comments_list
   order = comments_list.sort
-  puts order
   is_equal(comments_list, order)
   sleep(1)
 end
@@ -232,8 +230,6 @@ And(/^I take note of comments counter$/) do
   counterText = on(OAPage).comment_counter_element.text
   counter = counterText.sub('Comments (', '')
   @counter = counter.sub(')', '')
-  puts @counter
-  sleep(2)
 end
 
 And(/^I should see the comments counter shows the same number$/) do
