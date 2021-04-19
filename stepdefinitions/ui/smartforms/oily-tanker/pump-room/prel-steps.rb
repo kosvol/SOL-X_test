@@ -23,8 +23,9 @@ Then (/^I should not see entered entrant on list$/) do
   is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS Daniel Alcantara'))
 end
 
-Then (/^I should not see entered entrant on optional entrant list$/) do
-  on(PumpRoomEntry).entrant_names_dd_element.click
+Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |_condition|
+  on(PumpRoomEntry).entrant_names_dd_element.click if _condition === 'optional'
+  on(PumpRoomEntry).entrant_select_btn_element.click if _condition === 'required'
   sleep 1
   arr_before = on(PumpRoomEntry).get_entrants
   on(PumpRoomEntry).member_name_btn_elements.each do |item|
@@ -137,6 +138,7 @@ And (/^I send Report$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
   on(PreDisplay).send_report_btn_elements.first.click
   # on(PreDisplay).send_report_element.click
+  step 'I sleep for 5 seconds'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
   on(CommonFormsPage).done_btn_elements.first.click
 end

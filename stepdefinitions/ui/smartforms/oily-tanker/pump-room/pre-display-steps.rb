@@ -25,10 +25,11 @@ Then (/^I should see (no new|only) entry log message$/) do |_condition|
   end
 end
 
-And(/^I navigate to PRE Display$/) do
+And(/^I navigate to (PRE|CRE) Display$/) do |_type|
   step 'I navigate to "Settings" screen for setting'
   # on(PumpRoomEntry).pump_room_display_setting_element.click
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element)
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if _type === 'PRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if _type === 'CRE'
   step 'I press the "Enter Pin & Apply" button'
 end
 
@@ -71,7 +72,7 @@ Then (/^I should see (green|red) background color$/) do |condition|
 end
 
 And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
-  sleep 2
+  sleep 25
   is_equal(on(PreDisplay).permit_status_element.text, status)
 end
 
