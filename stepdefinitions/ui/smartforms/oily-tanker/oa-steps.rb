@@ -47,6 +47,7 @@ And (/^I approve oa permit via oa link manually$/) do
   rescue
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
+  sleep 3
 end
 
 And(/^I should see Comments block attributes$/) do
