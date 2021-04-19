@@ -36,6 +36,7 @@ class PumpRoomEntry < PreDisplay
   elements(:signed_in_entrants, xpath: "//div/div/ul/li")
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
+  element(:compressor_room_display_setting, xpath: "//span[contains(.,'Compressor/Motor Room')]")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='reasonForEntry']")
   span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
