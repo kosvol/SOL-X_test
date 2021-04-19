@@ -11,12 +11,10 @@ module BrowserActions
 
     def wait_until_is_visible(_element)
       $wait.until { _element.exists? }
-      # sleep 1 until _element.exists?
     end
 
     def turn_wifi_off_on
-      # wifi_on_off = `adb shell settings get global wifi_on`
-      $browser.toggle_wifi# if wifi_on_off.strip === "1"
+      $browser.toggle_wifi
       p "WIFI turned on/off"
       sleep 9
     end

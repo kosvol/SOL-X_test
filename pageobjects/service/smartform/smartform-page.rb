@@ -397,7 +397,7 @@ class SmartFormDBPage
       elsif $current_environment === 'uat' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_uat_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       elsif _which_db === 'oa_db'
-        "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.dev.solas.magellanx.io" + $obj_env_yml[_which_db.to_s][_url_map.to_s]
+        "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai" + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       # elsif ENV['env'] === 'ngrok'
       #   'http://d0b02eada7fb.ngrok.io/' + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       else

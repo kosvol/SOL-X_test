@@ -95,7 +95,7 @@ Then(/^I should see vessel cards are in alphanumeric order$/) do
   vessels_list = Array.new
   on(OfficePortalPage).vessel_card_name_elements.each do |vessel|
     name = vessel.text
-    vessels_list<<name
+    vessels_list << name
   end
   order = vessels_list.sort
   is_true(vessels_list == order)
@@ -104,8 +104,8 @@ end
 
 And(/^I select the permit (\d+)$/) do |_whatPermit|
   on(OfficePortalPage).permit_check_box_elements[_whatPermit].click
-  @permit_number = on(OfficePortalPage).get_permit_number(_whatPermit+1)
-  @permit_name = on(OfficePortalPage).get_permit_name(_whatPermit+1)
+  @permit_number = on(OfficePortalPage).get_permit_number(_whatPermit + 1)
+  @permit_name = on(OfficePortalPage).get_permit_name(_whatPermit + 1)
 end
 
 And(/^I click on View Permit button$/) do
@@ -129,7 +129,7 @@ Then(/^I should the Permit Types list for filter$/) do
   permitTypesList = []
   on(OfficePortalPage).filter_permit_type_elements.each do |_whatType|
     type = _whatType.text
-    permitTypesList<<type
+    permitTypesList << type
   end
   base_data = YAML.load_file("data/office-portal/office-portal-filters.yml")['types']
   is_true(permitTypesList == base_data)
@@ -141,12 +141,12 @@ end
 
 Then(/^I should see all the forms are (selected|not selected)$/) do |_whatChoiсe|
   if _whatChoiсe == "selected"
-  on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
-    is_true(_selection.checked?)
-    end
+    on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
+        is_true(_selection.checked?)
+      end
   else
     on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
-      is_false(_selection.checked?)
+        is_false(_selection.checked?)
       end
   end
 end
@@ -166,7 +166,7 @@ Then(/^I should see the form contains 9 sections$/) do
   sectionsList = []
   on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
     section = _whatSection.text
-    sectionsList<<section
+    sectionsList << section
   end
   sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['terminated']
   is_true(sectionsList == sections_data)
@@ -206,4 +206,58 @@ And(/^I remember the current permits quantity$/) do
   @previous_quantity = @permits_quantity
 end
 
+And(/^I check that Entry log is present$/) do
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[2])
+  sleep 2
+  expect(on(OfficePortalPage).section_headers_all_elements.last.text).to include("Entry Log")
+end
 
+And(/^I check all headers of Entry Log table without toxic gas on portal$/) do
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[0].text, 'Entrant')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[1].text, 'Purpose')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[2].text, 'Validity')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[3].text, 'Time In/Out')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[4].text, 'GMT')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[5].text, 'O2')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[6].text, 'HC')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[7].text, 'H2S')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[8].text, 'CO')
+  is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[9].text, 'Competent Person')
+end
+
+And(/^I log in to the Office Portal with new ENV$/) do
+  ENV['ENV_OLD'] = ENV['ENVIRONMENT']
+  ENV['APP_OLD'] = ENV['APPLICATION']
+  ENV['ENVIRONMENT'] = "office_approval"
+  ENV['APPLICATION'] = "office_portal"
+  step 'I launch Office Portal'
+  on(OfficePortalPage).op_password_element.send_keys($obj_env_yml[$current_environment]['password'])
+  step 'I click on Log In Now button'
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
+  ENV['ENVIRONMENT'] = ENV['ENV_OLD']
+  ENV['APPLICATION'] = ENV['ENV_OLD']
+end
+
+And(/^I check the checkbox near the current Permit$/) do
+  on(OfficePortalPage).select_permit_by_number(@@pre_number)
+end
+
+And(/^I check the checkbox near the first permit in the list$/) do
+  on(OfficePortalPage).permit_check_box_elements[1].click
+end
+
+And(/^I check rank and full name of Entrant without toxic "([^"]*)"$/) do |array|
+  #add full name after fix parent task
+  i = 1
+  yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+  array.split(',').each do |item|
+    id = yml_id['rank_name'][item]
+    is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[10 * i].text, id)
+    i += 1
+  end
+end
+
+And(/^I select filter value with permit type (.+)$/) do |_permit_type|
+  #on(OfficePortalPage).input_field_element.send_keys(_permit_type)
+  @browser.find_element(:xpath, "//span[contains(text(), #{_permit_type})]/parent::button").click
+end

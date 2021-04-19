@@ -1,19 +1,8 @@
 # frozen_string_literal: true
 
-# Then (/^I print all text$/) do
-#   tmp = $browser.find_elements(:xpath, "//html/body")
-#   tmp.each do |_t|
-#     p ">> #{_t.text}"
-#   end
-# end
-
 And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
-
-# Then (/^I should map to partial sign details$/) do
-#   is_true(on(Section4APage).is_partial_signed_user_details_mapped?('9015'))
-# end
 
 Then (/^I should see display texts match for section1$/) do
   on(Section0Page).labels_scrapper_elements.each do |elem|
@@ -24,12 +13,9 @@ end
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)
-  # sleep 5
   begin
-    # to_exists(on(Section0Page).click_create_permit_btn_element)
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue 
-    # to_exists(on(CommonFormsPage).is_dashboard_screen_element)
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
@@ -65,17 +51,13 @@ And ('I enter pin {int}') do |pin|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  # step 'I get pinpad/get-pin-by-role request payload'
-  # step 'I hit graphql'
-  @@entered_pin = $sit_rank_and_pin_yml[rank]#on(PinPadPage).get_pin_code(ServiceUtil.get_response_body['data']['users'], rank)
+  @@entered_pin = $sit_rank_and_pin_yml[rank]
   p "pin: #{@@entered_pin}"
   on(PinPadPage).enter_pin(@@entered_pin.to_i)
   sleep 1
 end
 
 When (/^I select (.+) permit$/) do |_permit|
-  # sleep 1
-  # on(Section0Page).click_permit_type_ddl
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   on(Section0Page).select_level1_permit(_permit)
 end
@@ -83,11 +65,13 @@ end
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
-  sleep 2
+  # sleep 2
+  BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
   @temp_id = on(Section0Page).ptw_id_element.text
 end
 
 And (/^I set permit id$/) do
+  sleep 6
   if @via_service_or_not === false
     p "Temp ID >> #{@temp_id}"
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
@@ -105,7 +89,6 @@ end
 And (/^I set time$/) do
   on(CommonFormsPage).set_current_time
 end
-
 
 Given (/^I launch sol-x portal dashboard$/) do
   $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")

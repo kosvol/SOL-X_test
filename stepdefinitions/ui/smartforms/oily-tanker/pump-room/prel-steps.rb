@@ -5,7 +5,7 @@ And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
   on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','Test','20','2','cc') if _condition === 'new'
   on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','','','','') if _condition === 'without toxic'
-  step "I sign for gas"
+  step 'I sign for gas'
   step 'I enter pin for rank A/M'
   step 'I sleep for 1 seconds'
 end
@@ -14,17 +14,23 @@ Then (/^I should see correct signed in entrants$/) do
   on(PreDisplay).home_tab_element.click
   on(PreDisplay).sign_out_btn_elements.first.click
   sleep 2
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,"A/M Atif Hayat")
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,'A/M Atif Hayat')
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size,1)
 end
 
 Then (/^I should not see entered entrant on list$/) do
   on(PreDisplay).home_tab_element.click
-  is_false(on(PumpRoomEntry).is_entered_entrant_listed?("MAS Daniel Alcantara"))
+  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS Daniel Alcantara'))
 end
 
-Then (/^I should not see entered entrant on optional entrant list$/) do
-  is_true(on(PumpRoomEntry).is_entered_entrant_listed?("MAS Daniel Alcantara"))
+Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |_condition|
+  on(PumpRoomEntry).entrant_names_dd_element.click if _condition === 'optional'
+  on(PumpRoomEntry).entrant_select_btn_element.click if _condition === 'required'
+  sleep 1
+  arr_before = on(PumpRoomEntry).get_entrants
+  on(PumpRoomEntry).member_name_btn_elements.each do |item|
+    expect(arr_before).not_to include(item.text)
+  end
 end
 
 # And ('I send entry report with {int} optional entrants') do |_optional_entrant|
@@ -42,10 +48,10 @@ And (/^I (send|fill) entry report with (.*) (optional|required) entrants$/) do |
     sleep 1
     BrowserActions.js_click("//span[contains(text(),'Send Report')]")
   elsif (_condition === 'required') && (_condition1 === 'fill')
-    on(PumpRoomEntry).input_field1_element.send_keys("Test Automation")
+    on(PumpRoomEntry).input_field1_element.send_keys('Test Automation')
     step "I select required entrants #{_optional_entrant.to_i}"
   elsif (_condition === 'optional') && (_condition1 === 'fill')
-    on(PumpRoomEntry).input_field1_element.send_keys("Test Automation")
+    on(PumpRoomEntry).input_field1_element.send_keys('Test Automation')
     on(PumpRoomEntry).additional_entrant(_optional_entrant.to_i) if _optional_entrant.to_i > 0
   end
 end
@@ -62,7 +68,7 @@ Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condit
   if _condition === 'entrant'
     on(PreDisplay).home_tab_element.click
     step 'I sleep for 1 seconds'
-    if _count === "0"
+    if _count === '0'
       not_to_exists(on(PreDisplay).entrant_count_element)
     else
       is_equal(on(PreDisplay).entrant_count_element.text,_count)
@@ -88,7 +94,7 @@ Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
   step 'I acknowledge the new entry log via service'
   step 'I sleep for 1 seconds'
   if _condition === 'should not'
-    is_equal(SmartFormDBPage.get_error_message,"No pending PRED record")
+    is_equal(SmartFormDBPage.get_error_message,'No pending PRED record')
   elsif _condition === 'should'
     ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
   end
@@ -98,17 +104,17 @@ And (/^I terminate from dashboard$/) do
     ## pending frontend implementation
 end
 
-And ("I signout {int} entrants") do |total_entrants|
+And ('I signout {int} entrants') do |total_entrants|
 end
 
 Then (/^I check the Send Report button is (enabled|disabled)$/) do |_condition|
   case _condition
-  when "enabled"
+  when 'enabled'
     is_enabled(on(PreDisplay).send_report_btn_elements.first)
-  when "disabled"
+  when 'disabled'
     is_disabled(on(PreDisplay).send_report_btn_elements.first)
   else
-    raise "wrong condition"
+    raise 'wrong condition'
   end
 end
 
@@ -121,7 +127,7 @@ Then ('I check names of entrants {int} on New Entry page') do |item|
                     .attribute('aria-label'))
     item = item - 1
   end
-  p "second"
+  p 'second'
   p entr_arr.to_s
   arr_before = on(PumpRoomEntry).get_entrants
   p arr_before
@@ -132,6 +138,7 @@ And (/^I send Report$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
   on(PreDisplay).send_report_btn_elements.first.click
   # on(PreDisplay).send_report_element.click
+  step 'I sleep for 5 seconds'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
   on(CommonFormsPage).done_btn_elements.first.click
 end

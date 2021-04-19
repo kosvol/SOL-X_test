@@ -1,0 +1,8 @@
+{
+  "operationName": "permits",
+  "variables": {
+    "vesselId": "sit-lng-vessel",
+    "permitType": "All Permits"
+  },
+  "query": "query permits($vesselId: ID!, $permitType: String, $skip: Int, $limit: Int) {\\n  permits(vesselId: $vesselId, permitType: $permitType, skip: $skip, limit: $limit) {\\n    items {\\n      id\\n      terminated\\n      terminatedUtcOffset\\n      permitType\\n      __typename\\n    }\\n    hasNextPage\\n    __typename\\n  }\\n}\\n"
+}

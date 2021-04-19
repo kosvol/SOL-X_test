@@ -119,8 +119,8 @@ And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
 end
 
 And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
-  step 'I open the current PRE with status Pending approval. Rank: C/O'
-  step "I take note of start and end validity time for \"#{_permit_type}\""
+  step "I open the current #{_permit_type} with status Pending approval. Rank: C/O"
+  step 'I take note of start and end validity time for %s' % [_permit_type.to_s]
   step 'I press the "Approve for Activation" button'
   step 'I sign on canvas with valid 8383 pin'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
@@ -128,8 +128,8 @@ And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step 'I press the "Back to Home" button'
 end
 
-And(/^I take note of start and end validity time for "([^"]*)"$/) do |_permit_type|
-  on(PumpRoomEntry).get_validity_start_and_end_time(_permit_type)
+And(/^I take note of start and end validity time for (.*)$/) do |_permit_type|
+  on(PumpRoomEntry).get_validity_start_and_end_time(_permit_type.to_s)
 end
 
 And(/^I should see the current (PRE|CRE) in the "([^"]*)" list$/) do |_permit_type,list|
@@ -322,9 +322,10 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
 
     is_not_equal(on(PumpRoomEntry).header_pwt_elements[1].text, @@pre_number)
     i = 0
-    while i < 10
+    while i < 5
       is_not_equal($browser.
         find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text, 'Test')
+      puts ($browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
       is_not_equal($browser.
         find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[i].text, '2 CC')
       i += 1

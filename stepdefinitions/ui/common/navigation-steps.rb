@@ -21,7 +21,6 @@ end
 
 And (/^I click on back arrow$/) do
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  sleep 5
   step 'I set permit id'
 end
 
@@ -40,7 +39,6 @@ And (/^I click on back to home$/) do
   sleep 2
   BrowserActions.js_click("//button[contains(.,'Back to Home')]")
   # on(Section6Page).back_to_home_btn
-  sleep 6
   step 'I set permit id'
 end
 
@@ -92,7 +90,7 @@ And ('I click New Entry button on PTW screen') do
 end
 
 And (/^I click on (.*) tab$/) do |_which_tab|
-  sleep 1
+  sleep 5
   case _which_tab
   when 'entry log'
     BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)
