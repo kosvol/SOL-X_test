@@ -62,6 +62,7 @@ And (/^I select PPE equipment$/) do
 end
 
 And (/^I uncheck the pre-selected checklist$/) do
+  sleep 1
   on(Section4APage).uncheck_all_checklist
 end
 
