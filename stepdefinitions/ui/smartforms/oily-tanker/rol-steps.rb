@@ -22,7 +22,7 @@ end
 
 Then (/^I should see view and termination buttons$/) do
   is_equal(on(ActiveStatePage).first_permit_buttons_elements.first.text, 'View')
-  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'View/Terminate')
+  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'View / Terminate')
 end
 
 And (/^I request for update without submitting$/) do
