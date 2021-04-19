@@ -4,39 +4,40 @@ Feature: Section7
   I want to ...
   So that ...
 
-  @sol-6553
-  Scenario: Verify validity from and to is correct with more than 0 ship time offset
-    Given I change ship local time to +8 GMT
-    When I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Hot Work permit
-    And I select Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
-    And I press next for 1 times
-    Then I submit permit for Master Review
-    When I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I click on pending approval filter
-    And I navigate to OA link
-    And I approve oa permit via oa link manually with from 0 hour to 01 hour
-    And I click on pending approval filter
-    And I approve permit
-    And I click on back to home
-    And I click on update needed filter
-    And I update permit with A/M rank and 9015 pin
-    And I navigate to section 7
-    # And I click on active filter   ### should be using this step but due to bug ####
-    # And I view permit with A/M rank and 9015 pin
-    # And I press previous for 2 times
-    Then I should see valid validity from 8 to 9
-    When I press next for 1 times
-    Then I should see valid validity date and time
+  # @sol-6553
+  # Scenario: Verify validity from and to is correct with more than 0 ship time offset
+  #   Given I change ship local time to +8 GMT
+  #   When I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin for rank A/M
+  #   And I select Hot Work permit
+  #   And I select Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) permit for level 2
+  #   And I fill up section 1 with default value
+  #   And I navigate to section 4a
+  #   And I press next for 1 times
+  #   And I fill up compulsory fields
+  #   And I press next for 1 times
+  #   Then I submit permit for Master Review
+  #   When I click on back to home
+  #   And I click on pending approval filter
+  #   And I set oa permit to office approval state manually
+  #   And I click on pending approval filter
+  #   And I navigate to OA link
+  #   And I approve oa permit via oa link manually with from 0 hour to 01 hour
+  #   And I click on pending approval filter
+  #   And I approve permit
+  #   And I click on back to home
+  #   And I click on update needed filter
+  #   And I update permit with A/M rank and 9015 pin
+  #   And I navigate to section 7
+  #   # And I click on active filter   ### should be using this step but due to bug ####
+  #   # And I view permit with A/M rank and 9015 pin
+  #   # And I press previous for 2 times
+  #   Then I should see valid validity from 8 to 9
+  #   When I press next for 1 times
+  #   Then I should see valid validity date and time
 
+  @sol-6553
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
@@ -50,6 +51,7 @@ Feature: Section7
     And I press previous for 1 times
     Then I should see valid validity date and time
 
+  @sol-6553
   Scenario: Verify validity from and to is correct for OA permit
     Given I change ship local time to +8 GMT
     Given I launch sol-x portal without unlinking wearable
