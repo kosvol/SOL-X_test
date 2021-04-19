@@ -7,6 +7,7 @@ Feature: OfficeApprovalComments
   Scenario: Verify an Office Approval Authority can see the Comments block on the View Permit page - UI (5308)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
+    And I click on Add Comments button
     Then I should see Comments block attributes
 
   Scenario: Verify the Designation list contains all necessary roles (5310)
