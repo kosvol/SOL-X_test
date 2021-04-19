@@ -51,6 +51,8 @@ And (/^I approve oa permit via oa link manually$/) do
 end
 
 And(/^I should see Comments block attributes$/) do
+  sleep 1
+  is_true(on(OAPage).is_comment_box_reset?)
   to_exists(on(OAPage).comments_cross_icon_btn_element)
   to_exists(on(OAPage).comment_input_box_element)
   to_exists(on(OAPage).rank_dd_list_element)

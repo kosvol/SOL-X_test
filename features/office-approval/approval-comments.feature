@@ -7,8 +7,7 @@ Feature: OfficeApprovalComments
   Scenario: Verify an Office Approval Authority can see the Comments block on the View Permit page - UI (5308)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
-    Then I should see comment reset
-    And I should see Comments block attributes
+    Then I should see Comments block attributes
 
   Scenario: Verify the Designation list contains all necessary roles (5310)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
@@ -18,7 +17,7 @@ Feature: OfficeApprovalComments
     Then I should see the Designation list contains all necessary roles
 
   Scenario: Verify the selected role appears in the Designation field (5311)
-    Given I submit permit ssubmit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I click on Designation drop-down
@@ -50,7 +49,7 @@ Feature: OfficeApprovalComments
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
-    And I add comment on oa permit
+    And I add a long comment
     And close the comment block
     And I click on Add/Show Comments button
     And I add a short comment
