@@ -27,12 +27,9 @@ Feature: Section7
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
-    And I click on update needed filter
-    And I update permit with A/M rank and 9015 pin
-    And I navigate to section 7
-    # And I click on active filter   ### should be using this step but due to bug ####
-    # And I view permit with A/M rank and 9015 pin
-    # And I press previous for 2 times
+    And I click on active filter
+    And I view permit with A/M rank and 9015 pin
+    And I press previous for 2 times
     Then I should see valid validity from 8 to 9
     When I press next for 1 times
     Then I should see valid validity date and time
