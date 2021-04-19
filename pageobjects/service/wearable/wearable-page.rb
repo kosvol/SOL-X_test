@@ -83,8 +83,11 @@ class WearablePage
     @@wearableid = ''
     def get_one_wearable_id
       tmp = @@list_of_wearables.sample
-      # (tmp.size >= 32) && (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
-      (@@wearableid != tmp.to_s) ? @@wearableid = tmp : get_one_wearable_id
+      begin
+        (@@wearableid != tmp.to_s) ? set_wearable_id(tmp) : get_one_wearable_id
+      rescue
+        p "Empty wearables array"
+      end
     end
 
     def get_crews_id
