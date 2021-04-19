@@ -6,9 +6,9 @@ end
 
 Then (/^I should see valid validity from 8 to 9$/) do
   sleep 1
-  does_include(on(Section7Page).permit_issued_on_elements[1].text, "08:00 LT (GMT+0)")
+  does_include(on(Section7Page).permit_issued_on_elements[1].text, "08:00 LT (GMT+8)")
   p ">> #{on(Section7Page).permit_valid_until_element.text}"
-  does_include(on(Section7Page).permit_valid_until_elements[2].text,"09:00 LT (GMT+0)")
+  does_include(on(Section7Page).permit_valid_until_elements[2].text,"09:00 LT (GMT+8)")
 end
 
 Then (/^I should see valid validity date and time$/) do
