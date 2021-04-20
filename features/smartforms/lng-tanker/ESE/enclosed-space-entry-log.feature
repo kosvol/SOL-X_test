@@ -167,5 +167,22 @@ Feature: EnclosedSpaceEntryLog
     And I check all headers of Entry Log table without toxic gas on portal
     And I check rank and full name of Entrant without toxic "A 2/O"
 
-
+  Scenario: User can't add additional entrant, who is already inside the ESE
+    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I take note of issued date and time
+    And I click New Entrant button on Enclose Space Entry PWT
+    And Get PWT id
+    And I enter new entry log
+    And I fill entry report with 1 required entrants
+    And I send Report
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    And I sleep for 5 seconds
+    And I sleep for 5 seconds
+    And I click on back arrow
+    And I click New Entrant button on Enclose Space Entry PWT
+    And I enter new entry log
+    Then I should not see entered entrant on required entrant list
 
