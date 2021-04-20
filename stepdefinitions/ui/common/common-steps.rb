@@ -43,6 +43,13 @@ Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
   on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
+Then (/^I sign on canvas only with valid (.*) pin$/) do |_pin|
+  step 'I sleep for 1 seconds'
+  on(CommonFormsPage).sign_btn_elements.first.click
+  step "I enter pin #{_pin}"
+  on(SignaturePage).sign_for_gas
+end
+
 ### To deprecate ####
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin

@@ -23,7 +23,9 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "Updates Needed"
       is_disabled(on(Section7Page).update_btn_element)
     when "Approve for Activation"
-      is_disabled(on(PumpRoomEntry).approve_activation)
+      is_disabled(on(PumpRoomEntry).approve_activation_element)
+    when "done"
+      is_disabled(on(PumpRoomEntry).done_btn_elements.first)
     end
   elsif _condition === 'enabled'
     case _which_button
@@ -38,7 +40,11 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "Updates Needed"
       is_enabled(on(Section7Page).update_btn_element)
     when "Activate Permit to Work"
+      is_enabled(on(Section7Page).non_oa_buttons_elements.first)
       is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
+    when "location of work"
+      is_enabled(on(Section1Page).zone_btn_element)
+      is_equal(on(Section1Page).zone_btn_element.text,"Aft Station")
     end
   end
 end

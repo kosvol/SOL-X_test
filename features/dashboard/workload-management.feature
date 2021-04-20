@@ -29,7 +29,9 @@ Feature: WorkloadManagement
     Scenario: Verify work availability bar display red when crew work more than 14 hours during last 24 hours
 
     @SOL-6081
-    Scenario: Verify only these ranks are able to view work availability in details
+    Scenario Outline: Verify only these ranks are able to view work availability in details
+        Given I launch sol-x portal
+        When I navigate to "Crew List" screen for forms
     # Master
     # C/O
     # C/E
