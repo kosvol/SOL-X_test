@@ -173,6 +173,8 @@ Then(/^I should see the form contains 9 sections$/) do
 end
 
 And(/^I should see This Permit Has been approved on label with the correct date$/) do
+  to_exists(on(OfficePortalPage).permit_approved_on_element)
+  step 'I scroll down to This Permit Approved On element'
   approved_date = on(OfficePortalPage).get_approved_date_time
   date = on(OfficePortalPage).permit_approved_on_element.text.sub('This Permit Has been approved on ', '')
   does_include(approved_date, date)

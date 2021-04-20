@@ -7,8 +7,8 @@ Feature: OfficeApprovalComments
   Scenario: Verify an Office Approval Authority can see the Comments block on the View Permit page - UI (5308)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
-    Then I should see comment reset
-    And I should see Comments block attributes
+    And I click on Add Comments button
+    Then I should see Comments block attributes
 
   Scenario: Verify the Designation list contains all necessary roles (5310)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
@@ -18,7 +18,7 @@ Feature: OfficeApprovalComments
     Then I should see the Designation list contains all necessary roles
 
   Scenario: Verify the selected role appears in the Designation field (5311)
-    Given I submit permit ssubmit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
     And I click on Designation drop-down
@@ -50,7 +50,7 @@ Feature: OfficeApprovalComments
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on Add Comments button
-    And I add comment on oa permit
+    And I add a long comment
     And close the comment block
     And I click on Add/Show Comments button
     And I add a short comment
@@ -126,6 +126,14 @@ Feature: OfficeApprovalComments
     Then I should not see the Add/Show Comments button
     And I should see the Print Permit button at the bottom bar
 
+  Scenario: Verify the "Approved date" is displayed at the bottom of the OA PTW form (5460, 5453)
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I approve oa permit via oa link manually
+    And I submit permit via service to closed state
+    And I navigate to OA link
+    Then I should see This Permit Has been approved on label with the correct date
+
   Scenario: Verify that the comment added during the approval process is at the end of the final copy of PTW (5452, 5453)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I navigate to OA link
@@ -170,11 +178,3 @@ Feature: OfficeApprovalComments
     And I navigate to OA link
     Then I should see comments are displayed in chronological order
     And I should see the comments counter shows the same number
-
-  Scenario: Verify the "Approved date" is displayed at the bottom of the OA PTW form (5460, 5453)
-    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
-    And I navigate to OA link
-    And I approve oa permit via oa link manually
-    And I submit permit via service to closed state
-    And I navigate to OA link
-    Then I should see This Permit Has been approved on label with the correct date

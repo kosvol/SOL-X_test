@@ -100,31 +100,52 @@ class OAPage < Section9Page
     current_hour = get_current_hour
     ### set from time
     date_time_from_elements[1].click
-    hour_from_picker_elements[current_hour.to_i+1].click
-    minute_from_picker_elements[1].click
+    starttime = current_hour.to_i+1
+    if starttime <= 23
+      select_to_hour(starttime)
+      sleep 1
+      minute_from_picker_elements[1].click
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+    else
+      select_to_hour((starttime)-24)
+      sleep 1
+      minute_from_picker_elements[1].click
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      date_time_from_elements.first.click
+      sleep 1
+      p ">> #{current_day_elements.size}"
+      select_todays_date_from_calendar(1)
+    end
     ### set to time
-    dismiss_picker_element.click
-    sleep 1
-    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     sleep 1
     date_time_to_elements[1].click
     sleep 2
     endtime = current_hour.to_i+9
-    if endtime <= 24
+    if endtime <= 23
       select_to_hour(endtime)
+      sleep 1
+      select_to_minute(0)
+      sleep 1
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     else
       select_to_hour((endtime)-24)
+      sleep 1
+      select_to_minute(0)
+      sleep 1
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      date_time_to_elements.first.click
+      sleep 1
+      p ">> #{current_day_elements.size}"
+      select_todays_date_from_calendar(1)
     end
-    sleep 1
-    select_to_minute(0)
-    sleep 1
-    dismiss_picker_element.click
-    sleep 1
-    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    date_time_to_elements.first.click
-    sleep 1
-    p ">> #{current_day_elements.size}"
-    select_todays_date_from_calendar(1)
   end
 
   def set_to_date_plus_one_day(_current_date)

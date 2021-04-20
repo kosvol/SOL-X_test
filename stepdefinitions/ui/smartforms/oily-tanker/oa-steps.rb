@@ -51,6 +51,8 @@ And (/^I approve oa permit via oa link manually$/) do
 end
 
 And(/^I should see Comments block attributes$/) do
+  sleep 1
+  is_true(on(OAPage).is_comment_box_reset?)
   to_exists(on(OAPage).comments_cross_icon_btn_element)
   to_exists(on(OAPage).comment_input_box_element)
   to_exists(on(OAPage).rank_dd_list_element)
@@ -175,6 +177,7 @@ Then(/^I should see the full comment text (before|after) termination$/) do |_see
   when 'before'
     commentText = on(OAPage).comment_text_elements.first.text.sub(' See Less', '')
   when 'after'
+    step 'I scroll down to This Permit Approved On element'
     commentText = on(OAPage).comment_text_after_term_elements.first.text
   end
   baseText = YAML.load_file("data/office-approval/comments.yml")['long']
@@ -211,18 +214,18 @@ And(/^I submit permit via service to closed state$/) do
 end
 
 Then(/^I should see the Approval comments block at the bottom of the form$/) do
+  step 'I scroll down to This Permit Approved On element'
   to_exists(on(OAPage).approval_comments_block_element)
 end
 
 Then(/^I should see comments are displayed in chronological order$/) do
+  step 'I scroll down to This Permit Approved On element'
   comments_list = Array.new
   on(OAPage).comment_date_after_term_elements.each do |comment|
     name = comment.text
     comments_list << name
   end
-  puts comments_list
   order = comments_list.sort
-  puts order
   is_equal(comments_list, order)
   sleep(1)
 end
@@ -232,8 +235,6 @@ And(/^I take note of comments counter$/) do
   counterText = on(OAPage).comment_counter_element.text
   counter = counterText.sub('Comments (', '')
   @counter = counter.sub(')', '')
-  puts @counter
-  sleep(2)
 end
 
 And(/^I should see the comments counter shows the same number$/) do
@@ -242,4 +243,10 @@ end
 
 Then(/^I should not see the Add\/Show Comments button$/) do
   not_to_exists(on(OAPage).add_comments_btn1_element)
+end
+
+Then(/^I scroll down to This Permit Approved On element$/) do
+  el = $browser.find_element(:xpath, "//div[contains(@class,'ApprovedTagWrapper')]")
+  $browser.action.move_to(el).perform
+  sleep(3)
 end
