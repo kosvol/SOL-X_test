@@ -14,7 +14,9 @@ class Section5Page < Section4BPage
   buttons(:sign_btn_role, xpath: "//button[contains(.,'Enter PIN & Sign')]")
   span(:non_crew_copy_text, xpath: "//span[contains(.,'Ship Staff to use PIN for non-crew member to enter signature')]")
   elements(:roles_name, xpath: '//li/h3')
-  spans(:signed_details, xpath: '//div/span')
+  spans(:signed_rank_and_name, xpath: "//li[@data-testid='responsibility-box']/div/div/span")
+  elements(:signed_time, xpath: "//li[@data-testid='responsibility-box']/div/div/time")
+  elements(:signed_location, xpath: "//li[@data-testid='responsibility-box']/div/div/p")
   elements(:get_filled_roles_responsibility, xpath: "//ul/li[starts-with(@aria-label,'Authorized Entrant 1')]")
   elements(:get_filled_crew_details, xpath: "//div/span")
 
@@ -25,9 +27,9 @@ class Section5Page < Section4BPage
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     if _which_role === "first"
-      ((signed_details_elements.first.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_details_elements[1].text === get_current_date_and_time.to_s))
+      ((signed_rank_and_name_elements.first.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.first.text === get_current_date_and_time.to_s))
     elsif _which_role === "second"
-      ((signed_details_elements[2].text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_details_elements.last.text === get_current_date_and_time.to_s))
+      ((signed_rank_and_name_elements.last.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.last.text === get_current_date_and_time.to_s))
     end
   end
 
