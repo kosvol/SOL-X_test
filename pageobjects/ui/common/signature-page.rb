@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class SignaturePage < CommonFormsPage
+class SignaturePage < Section1Page
   include PageObject
 
   element(:signing_canvas, xpath: '//canvas[@data-testid="signature-canvas"]')
@@ -12,7 +12,7 @@ class SignaturePage < CommonFormsPage
     sleep 1
     sign_for_gas
     sleep 1
-    # done_btn_elements.first.click
+    select_location_of_work if zone_btn_element.text === "Select"
     BrowserActions.poll_exists_and_click(done_btn_elements.first)
   end
 

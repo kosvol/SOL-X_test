@@ -40,6 +40,7 @@ end
 Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
   step 'I sleep for 1 seconds'
   step "I enter pin #{_pin}"
+  on(Section1Page).select_location_of_work if on(Section1Page).zone_btn_element.text === "Select"
   on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
