@@ -135,9 +135,10 @@ And (/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
   p ">>> #{on(Section5Page).get_filled_crew_details_elements[0].text}"
   is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, "C/O Alister Leong")
   is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, "Test Automation")
-  does_include(on(Section5Page).get_filled_crew_details_elements[2].text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section5Page).get_filled_crew_details_elements[2].text, " LT (GMT")
-  is_equal(on(Section5Page).get_filled_crew_details_elements[3].text, "Test Automation Company")
+  
+  does_include(on(Section5Page).get_non_crew_date_time_element.text, on(CommonFormsPage).get_current_date_format_with_offset)
+  does_include(on(Section5Page).get_non_crew_date_time_element.text, " LT (GMT")
+  is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, "Test Automation Company")
 end
 
 And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|

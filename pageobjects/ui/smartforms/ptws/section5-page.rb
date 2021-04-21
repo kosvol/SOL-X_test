@@ -19,7 +19,8 @@ class Section5Page < Section4BPage
   elements(:signed_location, xpath: "//li[@data-testid='responsibility-box']/div/div/p")
   elements(:get_filled_roles_responsibility, xpath: "//ul/li[starts-with(@aria-label,'Authorized Entrant 1')]")
   elements(:get_filled_crew_details, xpath: "//div/span")
-
+  element(:get_non_crew_date_time, xpath: "//div/time")
+  
   @@list_of_roles = ['Authorized Entrant 1', 'Authorized Entrant 2', 'Authorized Entrant 3', 'Authorized Entrant 4', 'Authorized Gas Tester', 'Diving Supervisor', 'Fire Watch 1', 'Fire Watch 2', 'Responsible for Safety', 'Standby Person', 'Task Leader', 'Task Performer 1', 'Task Performer 2', 'Task Performer 3', 'Task Performer 4', 'Task Performer - Assisting for Hot Work', 'Task Performer - Carrying out Hot Work', 'Task Performer - Diver (Underwater Operation)', 'Task Performer - Working Aloft', 'Task Performer - Working Overside']
 
   def is_role_signed_user_details?(_which_role,_entered_pin)
