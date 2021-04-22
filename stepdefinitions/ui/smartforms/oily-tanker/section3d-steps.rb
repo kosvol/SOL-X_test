@@ -12,7 +12,7 @@ end
 And (/^I sign DRA section 3d with (.*) as (valid|invalid) pin$/) do |_pin,_condition|
   @@entered_pin = _pin
   on(CommonFormsPage).sign_btn_elements.first.click
+  step "I enter pin #{_pin}" if _condition === "invalid"
   step "I sign on canvas with valid #{@@entered_pin} pin" if _condition === "valid"
-  step "I sign on canvas with invalid #{@@entered_pin} pin" if _condition === "invalid"
   step 'I set time'
 end
