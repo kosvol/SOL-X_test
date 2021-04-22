@@ -151,6 +151,7 @@ When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
   on(BypassPage).close_permit(_permit_type,'9015',_env)
 end
 
-When (/^I submit a scheduled CRE permit via service$/) do
-  on(BypassPage).trigger_cre_submission('8383')
+When (/^I submit a (scheduled|current) CRE permit via service$/) do |_type|
+  on(BypassPage).trigger_cre_submission('8383', 'current') if _type == 'current'
+  on(BypassPage).trigger_cre_submission('8383', 'scheduled') if _type == 'scheduled'
 end

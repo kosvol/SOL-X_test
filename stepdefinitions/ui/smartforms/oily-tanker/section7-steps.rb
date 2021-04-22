@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-Given (/^I change ship local time to +(.*) GMT$/) do |_duration|
-  ServiceUtil.post_graph_ql('ship-local-time/change-ship-local-time', '1111')
+Given (/^I change ship local time to (.*) GMT$/) do |_duration|
+  content_body = JSON.parse JsonUtil.read_json('ship-local-time/change-ship-local-time')
+  content_body['variables']['utcOffset'] = _duration.to_i
+  JsonUtil.create_request_file('ship-local-time/mod-ship-local-time', content_body)
+  ServiceUtil.post_graph_ql('ship-local-time/mod-ship-local-time', '1111')
 end
 
 Then (/^I should see valid validity from 8 to 9$/) do

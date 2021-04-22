@@ -2,9 +2,9 @@ And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   step 'I sleep for 10 seconds'
   on(PreDisplay).new_entry_log_element.click
 
-  on(PumpRoomEntry).add_all_gas_readings_pre('1','2','3','4','Test','20','1.5','cc') if _condition === 'same'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','Test','20','2','cc') if _condition === 'new'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2','3','4','5','','','','') if _condition === 'without toxic'
+  on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if _condition === 'same'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if _condition === 'new'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if _condition === 'without toxic'
   step 'I sign for gas'
   step 'I enter pin for rank A/M'
   step 'I sleep for 1 seconds'
@@ -14,8 +14,8 @@ Then (/^I should see correct signed in entrants$/) do
   on(PreDisplay).home_tab_element.click
   on(PreDisplay).sign_out_btn_elements.first.click
   sleep 2
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text,'A/M Atif Hayat')
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size,1)
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M Atif Hayat')
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size, 1)
 end
 
 Then (/^I should not see entered entrant on list$/) do
@@ -64,14 +64,14 @@ And ('I select required entrants {int}') do |_entrants_number|
 end
 
 
-Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condition,_count|
+Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condition, _count|
   if _condition === 'entrant'
     on(PreDisplay).home_tab_element.click
     step 'I sleep for 1 seconds'
     if _count === '0'
       not_to_exists(on(PreDisplay).entrant_count_element)
     else
-      is_equal(on(PreDisplay).entrant_count_element.text,_count)
+      is_equal(on(PreDisplay).entrant_count_element.text, _count)
     end
   elsif _condition === 'required entrants'
     while _count.to_i.positive?
@@ -90,11 +90,18 @@ And (/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 3 seconds'
 end
 
+And (/^I acknowledge the new entry log cre via service$/) do
+  step 'I sleep for 6 seconds'
+  @@pre_number = CommonPage.get_permit_id
+  SmartFormDBPage.acknowledge_pre_entry_log
+  step 'I sleep for 3 seconds'
+end
+
 Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
   step 'I acknowledge the new entry log via service'
   step 'I sleep for 1 seconds'
   if _condition === 'should not'
-    is_equal(SmartFormDBPage.get_error_message,'No pending PRED record')
+    is_equal(SmartFormDBPage.get_error_message, 'No pending PRED record')
   elsif _condition === 'should'
     ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
   end
@@ -141,4 +148,17 @@ And (/^I send Report$/) do
   step 'I sleep for 5 seconds'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
   on(CommonFormsPage).done_btn_elements.first.click
+end
+
+And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
+  if _action === 'save'
+    current  = DateTime.now.strftime("%Y-%m-%d")
+    on(DashboardPage).set_arr_data(current)
+  elsif _action === 'check'
+    data = on(DashboardPage).get_arr_data
+    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).to include(data[0].to_s)
+    expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[1].to_s)
+  else
+    raise "wrong action"
+  end
 end
