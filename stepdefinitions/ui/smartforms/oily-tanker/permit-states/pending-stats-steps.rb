@@ -33,8 +33,11 @@ Then (/^I should not be able to edit EIC certification$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
   on(Section3APage).scroll_multiple_times(5)
-  is_equal(on(Section3APage).total_p_elements.size,27)
-  # on(CommonFormsPage).close_btn_elements.first.click
+  if on(Section3APage).total_p_elements.size === 27
+    is_equal(on(Section3APage).total_p_elements.size,27)
+  else
+    is_equal(on(Section3APage).total_p_elements.size,29)
+  end
 end
 
 Then (/^I should be navigated back to (.*) screen$/) do |which_screen|
