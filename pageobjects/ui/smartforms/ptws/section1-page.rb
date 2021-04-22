@@ -90,6 +90,7 @@ class Section1Page < Section0Page
   end
 
   def select_location_of_work
+    sleep 1
     BrowserActions.scroll_click(zone_btn_element)
     sleep 1
     if dd_list_value_elements.size < 9
@@ -104,6 +105,17 @@ class Section1Page < Section0Page
       BrowserActions.scroll_click(dd_list_value_elements[1])
     end
     sleep 2
+  end
+
+  ### Hack for fsu; zone setup differently
+  def fsu_select_location_of_work
+    sleep 1
+    BrowserActions.scroll_click(zone_btn_element)
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[1])
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[1])
+    sleep 1
   end
   
   private

@@ -55,7 +55,7 @@ end
 
 And (/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I sign on canvas with valid 9015 pin"
+  step "I sign on canvas with valid 9015 pin for fsu"
   step 'I set time'
 end
 
