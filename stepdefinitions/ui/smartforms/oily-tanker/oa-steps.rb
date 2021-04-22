@@ -81,7 +81,7 @@ Then(/^I should see the Designation list contains all necessary roles$/) do
 end
 
 And(/^I select any role$/) do
-  whatRole = rand(14)
+  whatRole = rand(12)
   @designation = on(OAPage).designation_elements[whatRole].text
   on(OAPage).designation_elements[whatRole].click
 end
