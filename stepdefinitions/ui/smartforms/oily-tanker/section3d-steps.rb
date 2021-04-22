@@ -9,7 +9,7 @@ And (/^I fill up section 3d$/) do
   BrowserActions.enter_text(on(CommonFormsPage).enter_comment_box_element, 'Test Automation')
 end
 
-And (/^I sign DRA section 3d with (.*) as (valid|invalid) pin$/) do |_pin,_condition|
+And (/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) pin$/) do |_page,_pin,_condition|
   @@entered_pin = _pin
   on(CommonFormsPage).sign_btn_elements.first.click
   step "I enter pin #{_pin}" if _condition === "invalid"

@@ -106,7 +106,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with valid <pin> pin
+    And I sign checklist with <pin> as valid pin
     And I set time
     Then I should see signed details
 
@@ -138,7 +138,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     When I press next for 1 times
-    And I sign on checklist with invalid <pin> pin
+    And I sign checklist with <pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:
@@ -169,7 +169,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with valid <pin> pin
+    And I sign checklist with <pin> as valid pin
     And I set time
     Then I should see signed details
 
@@ -187,7 +187,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with invalid <pin> pin
+    And I sign checklist with <pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:
