@@ -59,13 +59,17 @@ class Section4APage < Section3DPage
     # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
-  # def get_checklist_locator(_checklist)
-  #   tmp = if _checklist != 'ROL'
-  #           section4a_elements
-  #         else
-  #           rol_checklist_elements
-  #         end
-  #   tmp
+  # def is_checklist_question_displayed(_checklist)
+  #   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+  #   base_data.each do |_element|
+  #     p ">> #{_element}"
+  #     span = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]")
+  #     label = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]")
+  #     ptag = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]")
+  #     h4 = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
+      
+  #     is_equal(tmp.size,1)
+  #   end
   # end
 
   ### hack

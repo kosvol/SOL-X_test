@@ -132,7 +132,7 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
-    And I sign on checklist with valid 8383 pin
+    And I sign checklist with 8383 as valid pin
     And I press next for 1 times
     And I fill up compulsory fields
     And I press next for 1 times
@@ -157,7 +157,7 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times
-    And I sign on checklist with valid 8383 pin
+    And I sign checklist with 8383 as valid pin
     And I press next for 1 times
     And I fill up compulsory fields
     And I press next for 1 times

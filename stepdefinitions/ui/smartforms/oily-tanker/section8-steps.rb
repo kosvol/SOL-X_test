@@ -80,13 +80,12 @@ end
 
 And (/^I should see (.+) rank and name for section 8$/) do |_rank|
   BrowserActions.scroll_down
-  sleep 3
-  is_equal(on(Section8Page).rank_name_and_date_elements.last.text,"Date & Time\n#{on(Section8Page).get_signed_date_time}")
+  sleep 1
   is_equal(on(Section8Page).rank_name_and_date_elements.first.text, "Rank/Name\n#{_rank}")
 end
 
 And (/^I should see signed date and time for section 8$/) do
-  is_equal(on(Section8Page).rank_name_and_date_elements.last.text, "Date & Time\n#{on(Section8Page).get_signed_date_time}")
+  is_equal(on(Section8Page).rank_name_and_date_elements[1].text, "Date & Time\n#{on(Section8Page).get_signed_date_time}")
 end
 
 Then (/^I should see default section 8 questions$/) do 

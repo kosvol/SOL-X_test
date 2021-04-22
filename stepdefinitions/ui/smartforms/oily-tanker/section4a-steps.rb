@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+Then (/^I should not see location of work in checklist$/) do
+  sleep 2
+  tmp = @browser.find_elements(:xpath, "//span[contains(., 'Location of work:')]")
+  if tmp.size === 0
+    tmp = @browser.find_elements(:xpath, "//label[contains(., \"Location of work:\")]")
+  elsif tmp.size === 0
+    tmp = @browser.find_elements(:xpath, "//p[contains(., \"Location of work:\")]")
+  elsif tmp.size === 0
+    tmp = @browser.find_element(:xpath, "//h4[contains(., \'Location of work:\')]")
+  end
+  is_equal(tmp.size,0)
+end
+
 And (/^I fill up checklist$/) do
   on(Section4APage).fill_up_checkbox_inputs
   on(Section4APage).fill_textarea(on(Section4APage).input_type_text_elements,'Test automation')
@@ -33,12 +46,6 @@ end
 And (/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
   on(Section4APage).select_checklist(_checklist)
-end
-
-And (/^I sign on (checklist|section) with (valid|invalid) (.*) pin$/) do |_page,_condition,_pin|
-  step 'I set time'
-  on(Section4APage).click_on_enter_pin
-  step "I sign on canvas with #{_condition} #{_pin} pin"
 end
 
 Then (/^I should see signed details$/) do
@@ -79,23 +86,22 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
   base_data.each do |_element|
     p ">> #{_element}"
-    begin
-      tmp = @browser.find_element(:xpath, "//span[contains(., '#{_element}')]")
-    rescue StandardError
-      begin 
-        tmp = @browser.find_element(:xpath, "//label[contains(., \"#{_element}\")]")
-      rescue StandardError
-        begin
-          tmp = @browser.find_element(:xpath, "//p[contains(., \"#{_element}\")]")
-        rescue
-          # tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
-        end
-      end
+    tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]")
+    if tmp.size === 0
+      tmp = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]")
+    elsif tmp.size === 0
+      tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]")
+    elsif tmp.size === 0
+      tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
     end
+    Log.instance.info("Checking on question >>>> #{_element}")
+    is_equal(tmp.size,1)
   end
+  
   if @@checklist === 'ROL'
     is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
   end
+  
 end
 
 And (/^I should see (info|warning|heavy) boxes$/) do |which_box|

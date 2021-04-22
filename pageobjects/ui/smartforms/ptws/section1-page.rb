@@ -89,6 +89,35 @@ class Section1Page < Section0Page
     fill_default_section1
   end
 
+  def select_location_of_work
+    sleep 1
+    BrowserActions.scroll_click(zone_btn_element)
+    sleep 1
+    if dd_list_value_elements.size < 9
+      BrowserActions.scroll_click(dd_list_value_elements.first)
+    else
+      BrowserActions.scroll_click(dd_list_value_elements[1])
+    end
+    sleep 1
+    if dd_list_value_elements.size < 3
+      BrowserActions.scroll_click(dd_list_value_elements.first)
+    else
+      BrowserActions.scroll_click(dd_list_value_elements[1])
+    end
+    sleep 2
+  end
+
+  ### Hack for fsu; zone setup differently
+  def fsu_select_location_of_work
+    sleep 1
+    BrowserActions.scroll_click(zone_btn_element)
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[1])
+    sleep 1
+    BrowserActions.scroll_click(dd_list_value_elements[1])
+    sleep 1
+  end
+  
   private
 
   def select_sea_and_wind_state
@@ -103,12 +132,7 @@ class Section1Page < Section0Page
     select_checkbox(@@condition_check_btn, 'Loaded')
     select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
-    BrowserActions.scroll_click(zone_btn_element)
-    sleep 1
-    BrowserActions.scroll_click(dd_list_value_elements[0])
-    sleep 1
-    BrowserActions.scroll_click(dd_list_value_elements[0])
-    sleep 2
+    select_location_of_work
     zone_details_input_element.send_keys("Test Automation")
     sleep 5
     BrowserActions.hide_keyboard

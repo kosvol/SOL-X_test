@@ -38,7 +38,6 @@ android_chrome_tablet_b_auto: --profile dir --profile html --profile xml --profi
 
 mac_chrome_dashboard_office_approval: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
 mac_chrome_dashboard_office_approval_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
-
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
 
 dir: -r support -r stepdefinitions -r pageobjects

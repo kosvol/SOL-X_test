@@ -19,7 +19,7 @@ class Section4BPage < Section4APage
   button(:date_and_time_btn, xpath: '//button[@id="workSiteVisitSafetyChecksAndProcsCompletedOn"]')
   elements(:time_picker, xpath: "//div[@class='picker']")
   button(:calendar_btn, xpath: "//button[starts-with(@class,'Day__DayButton')]")
-  element(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/p")
+  # element(:location_stamp, xpath: "//div[starts-with(@class,'ComboButton__Container')]/p")
   elements(:wifi_popup, xpath: "//div[starts-with(@class,'PreemptiveOfflineInfo__')]")
   elements(:competent_label, xpath: "//section[starts-with(@class,'Section__SectionMain')]/h2")
   

@@ -34,7 +34,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign on checklist with valid 9015 pin
+        And I sign checklist with 9015 as valid pin
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role
@@ -67,7 +67,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign on checklist with valid 9015 pin
+        And I sign checklist with 9015 as valid pin
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role
@@ -100,7 +100,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign on checklist with valid 9015 pin
+        And I sign checklist with 9015 as valid pin
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role

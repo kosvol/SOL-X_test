@@ -56,7 +56,7 @@ class ROLPage < Section9Page
   def submit_rol_permit_w_duration(_duration)
     BrowserActions.scroll_down(rol_duration_element)
     sleep 1
-    BrowserActions.scroll_down
+    scroll_multiple_times(3)
     sleep 1
     rol_duration
     sleep 1

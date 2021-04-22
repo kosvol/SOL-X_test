@@ -6,8 +6,6 @@ class Section8Page < Section7Page
   include PageObject
 
   divs(:input_fields_text, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__')]/div/span")
-  divs(:rank_name_and_date, xpath: "//div[starts-with(@class,'Section__Description')]/div/div/div/div/div")
-  
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   # buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
@@ -56,7 +54,6 @@ class Section8Page < Section7Page
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp_element)
     sleep 1
-    # time_offset = get_current_time_format
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end
 end

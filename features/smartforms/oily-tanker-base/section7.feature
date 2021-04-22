@@ -40,9 +40,18 @@ Feature: Section7
   @sol-6553
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
-    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
-    And I sleep for 1 seconds
-    And I launch sol-x portal without unlinking wearable
+    When I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
     And I click on pending approval filter
     And I approve permit
     And I click on back to home

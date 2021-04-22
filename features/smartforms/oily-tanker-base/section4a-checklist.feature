@@ -6,6 +6,48 @@ Feature: Section4AChecklist
 
   # Scenario: Verify user should see description of work pre-filled with what is filled in section 1
 
+  Scenario: Verify I should not see location of work in these checklist
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 2523
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I navigate to section 4a
+    And I uncheck the pre-selected checklist
+    And I select the matching Cold Work Operation Checklist checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Hot Work Outside Designated Area checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Rotational Portable Power Tools (PPT) checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Deck During Heavy Weather checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Pressure Pipelines checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Working Aloft/Overside checklist
+    And I press next for 1 times
+    Then I should not see location of work in checklist
+
   Scenario: Verify checklist questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -106,7 +148,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with valid <pin> pin
+    And I sign checklist with <pin> as valid pin
     And I set time
     Then I should see signed details
 
@@ -138,7 +180,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     When I press next for 1 times
-    And I sign on checklist with invalid <pin> pin
+    And I sign checklist with <pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:
@@ -169,7 +211,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with valid <pin> pin
+    And I sign checklist with <pin> as valid pin
     And I set time
     Then I should see signed details
 
@@ -187,7 +229,7 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign on checklist with invalid <pin> pin
+    And I sign checklist with <pin> as invalid pin
     Then I should see not authorize error message
 
     Examples:
