@@ -135,6 +135,7 @@ class Section4APage < Section3DPage
       next if _index === 0
 
       BrowserActions.scroll_down(element_yes[_index])
+      sleep 1
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
         get_na_elements[_index].click
       end

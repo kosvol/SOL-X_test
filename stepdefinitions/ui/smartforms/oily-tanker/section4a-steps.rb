@@ -87,18 +87,31 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   ### quick hack ###
   base_data.each do |_element|
     tmp = 0
-    tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]").size
+    begin
+      tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]").size
+      p "span list >> #{tmp}"
+    rescue
+      if tmp === 0
+        tmp = @browser.find_elements(:xpath, "//span[contains(., \"#{_element}\")]").size
+        p "span2 list >> #{tmp}"
+      end
+    end
     if tmp === 0
       tmp = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]").size
+      p "label list >> #{tmp}"
     end
     if tmp === 0
       tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]").size
     end
     if tmp === 0
-      tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]").size
+      tmp = @browser.find_elements(:xpath, "//h4[contains(., \'#{_element}\')]").size
     end
     Log.instance.info("Checking on question >>>> #{_element}")
-    is_equal(tmp,1)
+    if (_element === "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?") || (_element === "Is vessel movement in seaway acceptable for personnel transfer?")
+      is_equal(tmp,2)
+    else
+      is_equal(tmp,1)
+    end
   end
   
   if @@checklist === 'ROL'
