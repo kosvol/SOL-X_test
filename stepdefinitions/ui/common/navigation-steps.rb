@@ -105,3 +105,10 @@ And (/^I go to ESE log in dashboard$/) do
   sleep 1
   on(DashboardPage).radio_button_enclosed_elements[1].click
 end
+
+And (/^I go to CRE log in dashboard$/) do
+  sleep 1
+  on(DashboardPage).entry_status_indicator_element.click
+  sleep 1
+  on(DashboardPage).radio_button_enclosed_elements[0].click
+end

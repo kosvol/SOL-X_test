@@ -53,3 +53,10 @@ And (/^I click on (.+) filter$/) do |state|
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
   end
 end
+
+And (/^I navigate back to dashboard$/) do
+  sleep 1
+  step 'I navigate to "Settings" screen for setting'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).smartforms_display_setting_element)
+  step 'I press the "Enter Pin & Apply" button'
+end

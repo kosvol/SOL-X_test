@@ -378,19 +378,32 @@ end
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
   end
 
-  def trigger_cre_submission(_user)
+  def trigger_cre_submission(_user, _time)
     create_form_pre = JSON.parse JsonUtil.read_json('cre/01.create-cre-form')
     create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('cre/mod-01.create-cre-form', create_form_pre)
     ServiceUtil.post_graph_ql('cre/mod-01.create-cre-form', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
-    @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
-    start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
-    p "start time >> #{start_time}"
-    end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
-    p "end time >> #{end_time}"
-
+    if _time=="current"
+      @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+      start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+      p "start time >> #{start_time}"
+      end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
+      p "end time >> #{end_time}"
+    else
+      @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+      start_time = "{\"dateTime\":\"#{get_current_date_time_cal(24)}\",\"utcOffset\":#{@get_offset}}"
+      p "start time >> #{start_time}"
+      end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(28)}\",\"utcOffset\":#{@get_offset}}"
+      p "end time >> #{end_time}"
+    end
+    # @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+    # start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
+    # p "start time >> #{start_time}"
+    # end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
+    # p "end time >> #{end_time}"
+    @@startTime = get_current_minutes_time_with_offset
     update_form_pre = JSON.parse JsonUtil.read_json('cre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
@@ -422,6 +435,12 @@ end
     update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
     JsonUtil.create_request_file('pre/mod-04.update-form-status', update_form_pre_status)
     ServiceUtil.post_graph_ql('pre/mod-04.update-form-status', '2761')
+
+    update_form_pre_status = JSON.parse JsonUtil.read_json('pre/05.update-form-status')
+    update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/mod-05.update-form-status', update_form_pre_status)
+    ServiceUtil.post_graph_ql('pre/mod-05.update-form-status', '2761')
 
     # ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
   end
