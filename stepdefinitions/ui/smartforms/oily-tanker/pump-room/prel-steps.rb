@@ -1,5 +1,6 @@
 And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   step 'I sleep for 10 seconds'
+  BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   on(PreDisplay).new_entry_log_element.click
 
   on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if _condition === 'same'
@@ -48,10 +49,8 @@ And (/^I (send|fill) entry report with (.*) (optional|required) entrants$/) do |
     sleep 1
     BrowserActions.js_click("//span[contains(text(),'Send Report')]")
   elsif (_condition === 'required') && (_condition1 === 'fill')
-    on(PumpRoomEntry).input_field1_element.send_keys('Test Automation')
     step "I select required entrants #{_optional_entrant.to_i}"
   elsif (_condition === 'optional') && (_condition1 === 'fill')
-    on(PumpRoomEntry).input_field1_element.send_keys('Test Automation')
     on(PumpRoomEntry).additional_entrant(_optional_entrant.to_i) if _optional_entrant.to_i > 0
   end
 end

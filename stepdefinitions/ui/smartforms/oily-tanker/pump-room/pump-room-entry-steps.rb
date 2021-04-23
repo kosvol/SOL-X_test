@@ -211,6 +211,7 @@ end
 
 Then(/^I getting a permanent number from indexedDB$/) do
   @@pre_number = WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
+  CommonPage.set_permit_id(@@pre_number)
   # is_equal(@@pre_number.include?("PRE"), true)
 end
 
