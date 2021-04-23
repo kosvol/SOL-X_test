@@ -10,7 +10,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     When I submit a scheduled PRE permit
@@ -26,9 +26,10 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see correct signed in entrants
+    And I terminate the PRE permit via service
 
   Scenario: Verify crew already entered pumproom should not be listed on optional crew list
     Given I launch sol-x portal without unlinking wearable
@@ -36,16 +37,18 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I enter new entry log
     Then I should not see entered entrant on optional entrant list
+    And I terminate the PRE permit via service
 
   Scenario: Verify PRE duration display on PRED
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
     Then I should see timer countdown
+    And I terminate the PRE permit via service
 
   Scenario: Verify entry log details populated as filled
     Given I launch sol-x portal without unlinking wearable
@@ -53,9 +56,10 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
+    And I terminate the PRE permit via service
 
   Scenario: Verify PRE permit creator name display on PRED
     Given I launch sol-x portal without unlinking wearable
@@ -69,6 +73,8 @@ Feature: PumpRoomEntry
     And I navigate to PRE Display
     And I enter pin for rank C/O
     Then I should see the PRE permit creator name on PRED
+    And I terminate the PRE permit via service
+
 
   Scenario: Verify ship local time shift on PRED
     Given I launch sol-x portal without unlinking wearable
@@ -76,9 +82,10 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
+    And I terminate the PRE permit via service
 
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I launch sol-x portal without unlinking wearable
@@ -86,11 +93,12 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I signout the entrant
     Then I should see entrant count equal 0
     And I should see exit timestamp updated
+    And I terminate the PRE permit via service
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given I launch sol-x portal without unlinking wearable
@@ -101,6 +109,7 @@ Feature: PumpRoomEntry
     And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
+    And I terminate the PRE permit via service
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
@@ -112,6 +121,7 @@ Feature: PumpRoomEntry
     And I dismiss gas reader dialog box
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
+    And I terminate the PRE permit via service
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
@@ -121,9 +131,10 @@ Feature: PumpRoomEntry
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
+    And I terminate the PRE permit via service
 
   ##### dashboard termination not even implemented
   # Scenario: Verify PRE permit is terminated after terminating via dashboard popup
@@ -164,6 +175,7 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     And I sleep for 3 seconds
     Then I should see entrant count equal 1
+    And I terminate the PRE permit via service
 
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
@@ -175,6 +187,7 @@ Feature: PumpRoomEntry
     And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I should see entrant count equal 0
+    And I terminate the PRE permit via service
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
