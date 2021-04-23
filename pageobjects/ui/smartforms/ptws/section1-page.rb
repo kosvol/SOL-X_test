@@ -110,11 +110,19 @@ class Section1Page < Section0Page
   ### Hack for fsu; zone setup differently
   def fsu_select_location_of_work
     sleep 1
-    BrowserActions.scroll_click(zone_btn_element)
+    zone_btn
     sleep 1
-    BrowserActions.scroll_click(dd_list_value_elements[1])
+    begin
+      dd_list_value_elements[1].click
+    rescue
+      dd_list_value_elements[2].click
+    end
     sleep 1
-    BrowserActions.scroll_click(dd_list_value_elements[1])
+    begin
+      dd_list_value_elements[1].click
+    rescue
+      dd_list_value_elements[2].click
+    end
     sleep 1
   end
   

@@ -61,12 +61,8 @@ end
 
 And (/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
-  step 'I enter pin for rank A/M'
-  sleep 1
-  on(SignaturePage).sign_for_gas
-  sleep 1
+  step "I sign on canvas with valid 9015 pin for fsu"
   step 'I set time'
-  on(Section3DPage).done_btn_elements.last.click
 end
 
 Then (/^I should see (.*) signed role details with (.*) pin$/) do |_which_role,_pin|
@@ -105,11 +101,12 @@ And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
 end
 
 Then (/^I should see non crew details$/) do
-  is_equal(on(Section5Page).signed_details_elements[1].text, 'Test Automation')
-  is_equal(on(Section5Page).signed_details_elements[2].text, "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
+  sleep 1
+  is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
+  is_equal(on(Section5Page).get_non_crew_date_time_element.text, "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
 end
 
 And (/^I should see supervise by (.+) detail and (.+) detail$/) do |_supervized, _company|
-  is_equal(on(Section5Page).signed_details_elements[0].text, _supervized)
-  is_equal(on(Section5Page).signed_details_elements.last.text, _company)
+  is_equal(on(Section5Page).get_filled_crew_details_elements.first.text, _supervized)
+  is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, _company)
 end
