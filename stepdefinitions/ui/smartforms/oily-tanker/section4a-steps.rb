@@ -84,18 +84,21 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   BrowserActions.scroll_down
   @@checklist = _checklist
   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+  ### quick hack ###
   base_data.each do |_element|
-    p ">> #{_element}"
-    tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]")
-    if tmp.size === 0
-      tmp = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]")
-    elsif tmp.size === 0
-      tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]")
-    elsif tmp.size === 0
-      tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
+    tmp = 0
+    tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]").size
+    if tmp === 0
+      tmp = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]").size
+    end
+    if tmp === 0
+      tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]").size
+    end
+    if tmp === 0
+      tmp = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]").size
     end
     Log.instance.info("Checking on question >>>> #{_element}")
-    is_equal(tmp.size,1)
+    is_equal(tmp,1)
   end
   
   if @@checklist === 'ROL'
