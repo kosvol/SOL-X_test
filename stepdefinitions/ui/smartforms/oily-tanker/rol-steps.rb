@@ -7,7 +7,7 @@ end
 And (/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms
-  step 'I sign on section with valid 9015 pin'
+  step 'I sign section with 9015 as valid pin'
   step 'I set time'
   step 'I should see signed details'
   step 'I press next for 1 times'
