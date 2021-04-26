@@ -161,3 +161,7 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
     raise "wrong action"
   end
 end
+
+And (/^I check number (.*) of entrants on dashboard$/) do |_number|
+  expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+end

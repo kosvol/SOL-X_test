@@ -1,0 +1,8 @@
+{
+  "operationName": "signOutEntrant",
+  "variables": {
+    "formId": "LNGSIT/CRE/2021/017",
+    "crewId": "SIT_SOLX0004"
+  },
+  "query": "mutation signOutEntrant($formId: ID!, $crewId: ID!) {\n  signOutEntrant(formId: $formId, crewId: $crewId) {\n    crewId\n    entryStatus\n    __typename\n  }\n}\n"
+}

@@ -155,3 +155,9 @@ When (/^I submit a (scheduled|current) CRE permit via service$/) do |_type|
   on(BypassPage).trigger_cre_submission('8383', 'current') if _type == 'current'
   on(BypassPage).trigger_cre_submission('8383', 'scheduled') if _type == 'scheduled'
 end
+
+When (/^I signout entrants "([^"]*)"$/) do |_entrants|
+  _entrants.split(',').each do |item|
+  on(BypassPage).signout_entrants(item.to_s)
+  end
+end

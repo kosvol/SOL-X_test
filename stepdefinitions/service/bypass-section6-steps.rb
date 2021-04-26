@@ -100,3 +100,8 @@ And (/^I add new entry "([^"]*)"$/) do |_array|
   @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record(_array)
 end
+
+And (/^I delete number of entry "([^"]*)"$/) do |_array|
+  @@pre_number = CommonPage.get_permit_id
+  on(BypassPage).create_entry_record(_array)
+end
