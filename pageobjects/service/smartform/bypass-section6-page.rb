@@ -370,6 +370,16 @@ end
     ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
   end
 
+  def signout_entrants(_entrant_name)
+    _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
+    _entry_record['variables']['formId'] = CommonPage.get_permit_id
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+    id = yml_id['ranks_id'][_entrant_name]
+    _entry_record['variables']['crewId'] = (id)
+    JsonUtil.create_request_file('cre/18.mod_signout_entrants', _entry_record)
+    ServiceUtil.post_graph_ql('cre/18.mod_signout_entrants')
+  end
+
   def close_permit(_permit_type, _user, _vessel)
     submit_active = set_permit_status('PENDING_TERMINATION')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)

@@ -105,7 +105,7 @@ And (/^I set time$/) do
 end
 
 Given (/^I launch sol-x portal dashboard$/) do
-  $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
+  $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue
