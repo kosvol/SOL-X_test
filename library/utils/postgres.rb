@@ -8,24 +8,16 @@ module Postgres_clearing
                 connection = PG::Connection.new(:host => $obj_env_yml['postgres']['host'], :user => $obj_env_yml['postgres']['username'], :dbname => $obj_env_yml['postgres']['database'], :port => '5432', :password => $obj_env_yml['postgres']['password'])
                 puts 'Successfully created connection to database'
 
-                connection.exec("SELECT * FROM form")
-                resultSet = connection.exec("SELECT * FROM form WHERE id LIKE 'AUTO%';")
+                # if $current_environment === 'sit'
+                    connection.exec("DELETE FROM form WHERE id LIKE '%#{$current_environment.upcase}%';")
+                    puts 'SIT vessel deleted'
+                    connection.exec("DELETE FROM comment WHERE form_id LIKE '%SIT%';")
+                    puts 'SIT comment deleted'
+                # end
+
+                resultSet = connection.exec("SELECT * FROM comment WHERE form_id LIKE '%SIT%';")
                 resultSet.each do |row|
                     puts "Data row = #{row}"
-                end
-
-                if $current_environment === 'sit'
-                    connection.exec('DELETE FROM form WHERE "vesselId" = %s;' % ['\'SIT%\''])
-                    puts 'SIT vessel deleted'
-                    connection.exec('DELETE FROM form WHERE "vesselId" = %s;' % ['\'LNGSIT%\''])
-                    puts 'SIT LNG vessel deleted'
-                end
-
-                if $current_environment === 'auto'
-                    # connection.exec('DELETE FROM form WHERE id LIKE %s;' % ['\'auto-lng-vessel\''])
-                    # puts 'AUTO LNG vessel deleted'
-                    connection.exec('DELETE FROM form WHERE id LIKE %s;' % ['\'AUTO%\''])
-                    puts 'AUTO vessel deleted'
                 end
                             
             rescue PG::Error => e
