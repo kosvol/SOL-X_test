@@ -225,24 +225,24 @@ Feature: Section6
     Then I should see master review button only
 
     Examples:
-      | level_one_permit               | level_two_permit                                                           | checklist                                |
-      | Critical Equipment Maintenance | Maintenance on Anchor                                                      | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                                 | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                  | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel      | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                             | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Magnetic Compass                                            | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device      | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device   | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                        | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                        | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                         | Critical Equipment Maintenance Checklist |
-      | Critical Equipment Maintenance | Maintenance on Radio Battery                                               | Critical Equipment Maintenance Checklist |
+      | level_one_permit               | level_two_permit                                                      | checklist                                |
+      | Critical Equipment Maintenance | Maintenance on Anchor                                                 | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump                                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Emergency Generator                                    | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fire Detection Alarm System                            | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System                                  | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Fuel/Lubricating Oil Tanks Quick Closing Valve & Panel | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Life/Rescue Boats and Davits                                | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Lifeboat Engine                                        | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Magnetic Compass                                            | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Main Boilers and GE - Shutdown Alarm & Tripping Device | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Main Propulsion System - Shutdown Alarm & Tripping Device   | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oil Discharging Monitoring Equipment                   | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on Oil Mist Detector Monitoring System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Oily Water Separator                                   | Critical Equipment Maintenance Checklist |
+      # | Critical Equipment Maintenance | Maintenance on P/P Room Gas Detection Alarm System                         | Critical Equipment Maintenance Checklist |
+      | Critical Equipment Maintenance | Maintenance on Radio Battery                                          | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify OA ptw display submit for master review on button
     Given I launch sol-x portal without unlinking wearable
@@ -255,15 +255,15 @@ Feature: Section6
     And I should not see extra previous and save button
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                | checklist                        |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
-      | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Underwater Operation             |
-      | Underwater Operations                | Underwater Operation at night                                                   | Underwater Operation             |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist          |
-      | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |
+      | level_one_permit                     | level_two_permit                                                        | checklist                        |
+      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
+      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Underwater Operation             |
+      | Underwater Operations                | Underwater Operation at night                                           | Underwater Operation             |
+      # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
+      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
+      # | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                    | Use of Camera Checklist          |
+  # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |
 
   Scenario Outline: Verify gas reading can disable and enable
     Given I launch sol-x portal without unlinking wearable
