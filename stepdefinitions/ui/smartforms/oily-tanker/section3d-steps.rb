@@ -9,6 +9,12 @@ And (/^I fill up section 3d$/) do
   BrowserActions.enter_text(on(CommonFormsPage).enter_comment_box_element, 'Test Automation')
 end
 
+And (/^I resign with valid (.*) pin$/) do |_pin|
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
+  sleep 1
+  step "I sign DRA section 3d with #{_pin} as valid pin"
+end
+
 And (/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) pin$/) do |_page,_pin,_condition|
   @@entered_pin = _pin
   sleep 1
