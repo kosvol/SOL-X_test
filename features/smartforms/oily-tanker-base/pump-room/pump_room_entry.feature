@@ -219,31 +219,3 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
-
-  Scenario: Verify PRE will be activated and auto terminated at the specified time
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    When I navigate to "Scheduled" screen for PRE
-    And I should see the current PRE in the "Scheduled" list
-    And I click on back arrow
-    And I sleep for 120 seconds
-    And I navigate to "Active" screen for PRE
-    Then I should see the current PRE in the "Active PRE" list
-    And I set the activity end time in 1 minutes
-    And I click on back arrow
-    And I sleep for 90 seconds
-    When I navigate to "Terminated" screen for PRE
-    Then I should see current PRE is auto terminated
-
-
-
-
-
-
-
-

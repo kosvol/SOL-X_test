@@ -33,6 +33,7 @@ class OfficePortalPage
   elements(:permit_title_number, xpath: "//div[starts-with(@class,'PermitList__List-sc')]/..//span[starts-with(@class,'Text__TextSmall-sc')]")
   elements(:section_headers_all, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
 
+
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
   text_field(:op_password, xpath: "//input[@type='password']")
@@ -67,5 +68,9 @@ class OfficePortalPage
 
   def get_approved_date_time
     $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p").text
+  end
+
+  def select_element_by_text_near(_text_title)
+    $browser.find_element(:xpath, "//h4[contains(text(),'%s')]/..//p[starts-with(@class,'AnswerComponent__Answer')]"%_text_title)
   end
 end

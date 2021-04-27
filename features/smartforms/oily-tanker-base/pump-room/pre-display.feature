@@ -17,6 +17,7 @@ Feature: PumpRoomEntry
     And I sleep for 75 seconds
     And I click on permit tab
     Then I should see new PRE permit number
+    And I terminate the PRE permit via service
   # And I sleep for 1000 seconds
   # And I should see entry log data transfer to new permit
 
