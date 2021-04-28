@@ -23,8 +23,7 @@ Feature: LNGCREL
     And I go to CRE log in dashboard
     Then I check permit date on Dashboard LOG
 
-@wip
-  Scenario: Entrant counter in Dashboard is not updating
+  Scenario: Entrant counter in Dashboard is updating
     Given  I submit a current CRE permit via service
     And I add new entry "A 2/O,3/O,A 3/O,4/O"
     And I sleep for 20 seconds

@@ -227,17 +227,27 @@ And(/^I check all headers of Entry Log table without toxic gas on portal$/) do
   is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[9].text, 'Competent Person')
 end
 
-And(/^I log in to the Office Portal with new ENV$/) do
+And(/^I create ([^"]*) via service with static env$/) do |_type|
   ENV['ENV_OLD'] = ENV['ENVIRONMENT']
-  ENV['APP_OLD'] = ENV['APPLICATION']
-  ENV['ENVIRONMENT'] = "office_approval"
-  ENV['APPLICATION'] = "office_portal"
-  step 'I launch Office Portal'
-  on(OfficePortalPage).op_password_element.send_keys($obj_env_yml[$current_environment]['password'])
-  step 'I click on Log In Now button'
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
+  ENV['ENVIRONMENT'] = "auto"
+  if _type === 'PRE'
+    step 'I submit a scheduled PRE permit'
+    step 'I sleep for 85 seconds'
+    step 'I terminate the PRE permit via service'
+  elsif _type === 'submit_enclose_space_entry'
+    step "I submit permit #{_type} via service with 8383 user and set to active state with gas reading require"
+    step 'I add new entry "A 2/O"'
+    step 'I sleep for 3 seconds'
+    step 'I acknowledge the new entry log via service'
+    step 'I sleep for 3 seconds'
+    step 'I Close Permit submit_enclose_space_entry via service auto'
+    step 'I sleep for 3 seconds'
+  elsif _type === 'CRE'
+    puts "here"
+  else
+    raise "Wrong condition"
+  end
   ENV['ENVIRONMENT'] = ENV['ENV_OLD']
-  ENV['APPLICATION'] = ENV['ENV_OLD']
 end
 
 And(/^I check the checkbox near the current Permit$/) do
@@ -262,4 +272,8 @@ end
 And(/^I select filter value with permit type (.+)$/) do |_permit_type|
   #on(OfficePortalPage).input_field_element.send_keys(_permit_type)
   @browser.find_element(:xpath, "//span[contains(text(), #{_permit_type})]/parent::button").click
+end
+
+And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |_value, _title|
+  is_equal(on(OfficePortalPage).select_element_by_text_near(_title).text, _value)
 end

@@ -15,7 +15,7 @@ Given (/^I launch sol-x portal$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  rescue 
+  rescue
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
@@ -26,7 +26,7 @@ Given (/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  rescue 
+  rescue
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
@@ -105,7 +105,13 @@ And (/^I set time$/) do
 end
 
 Given (/^I launch sol-x portal dashboard$/) do
-  $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
+  if ENV['ENVIRONMENT'] === 'sit'
+    $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
+  elsif ENV['ENVIRONMENT'] === 'auto'
+    $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
+  else
+    raise "Wrong Environment"
+  end
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue
