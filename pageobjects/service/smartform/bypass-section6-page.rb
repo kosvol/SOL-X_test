@@ -316,14 +316,14 @@ end
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
 
-    submit_active = JSON.parse JsonUtil.read_json('ptw/rol/approve-rol')
+    submit_active = JSON.parse JsonUtil.read_json('ptw/rol/16.update-active-status_rol')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][6].to_h['value'] = "\"#{_duration}\""
     submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
-    JsonUtil.create_request_file('ptw/mod-approve-rol', submit_active)
-    ServiceUtil.post_graph_ql('ptw/mod-approve-rol')
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status_rol')
   end
 
   def submit_permit_for_termination_wo_eic_normalization(_status)
@@ -651,6 +651,17 @@ end
         'work-pressure-line/9.save_section4a_details'
       when '4ac'
         'ptw/work-pressure-line/10.save_section4a_checklist_details'
+      when '14'
+        'work-pressure-line/14.submit_for_master_approval'
+      end
+    when 'submit_rigging_of_ladder'
+      case _step
+      when '0'
+        'ptw/work-pressure-line/0.create_form_ptw'
+      when '00'
+        'ptw/work-pressure-line/0.create_form_dra'
+      when '1'
+        'ptw/1.date_with_offset'
       when '14'
         'work-pressure-line/14.submit_for_master_approval'
       end

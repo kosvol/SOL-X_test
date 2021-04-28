@@ -1,0 +1,32 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 4,
+    "permitType": "Rigging of Gangway & Pilot Ladder",
+    "answers": [
+      {
+        "fieldId": "team",
+        "value": "[\"SIT_SOLX0012\"]"
+      },
+      {
+        "fieldId": "permitType",
+        "value": "\"Rigging of Gangway & Pilot Ladder\""
+      },
+      {
+        "fieldId": "openChecklistRiggingOfLadder",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2021-04-28T09:31:21.078Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}
