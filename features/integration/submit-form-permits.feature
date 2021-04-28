@@ -52,7 +52,7 @@ Feature: SubmitPermit
     And I add additional dra member
     And I press next for 1 times
     And I fill up section 3d
-    And I sign on section with valid 9015 pin
+    And I sign section with 9015 as valid pin
     And I press next for 1 times
     And I fill up section 4a
     And I press next for 1 times
