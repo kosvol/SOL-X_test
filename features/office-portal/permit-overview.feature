@@ -27,3 +27,11 @@ Feature: PermitOverview
     And I check all headers of Entry Log table without toxic gas on portal
     And I check rank and full name of Entrant without toxic "A 2/O"
 
+  Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
+    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the sit vessel
+    When I log in to the Office Portal
+    And I select the "LNGSIT" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see ROL checklist questions
+

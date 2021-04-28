@@ -104,7 +104,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
       tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]").size
     end
     if tmp === 0
-      tmp = @browser.find_elements(:xpath, "//h4[contains(., \'#{_element}\')]").size
+      tmp = @browser.find_elements(:xpath, "//h4[contains(., \"#{_element}\")]").size
     end
     Log.instance.info("Checking on question >>>> #{_element}")
     if (_element === "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?") || (_element === "Is vessel movement in seaway acceptable for personnel transfer?")
@@ -115,9 +115,12 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
   end
   
   if @@checklist === 'ROL'
-    is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
+    begin
+      is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
+    rescue
+      is_equal(on(OfficePortalPage).rol_dd_label_element.text, 'Description of boarding arrangement:')
+    end
   end
-  
 end
 
 And (/^I should see (info|warning|heavy) boxes$/) do |which_box|

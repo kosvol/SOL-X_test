@@ -657,13 +657,11 @@ end
     when 'submit_rigging_of_ladder'
       case _step
       when '0'
-        'ptw/work-pressure-line/0.create_form_ptw'
+        'ptw/rol/0.create_form_ptw'
       when '00'
-        'ptw/work-pressure-line/0.create_form_dra'
+        'ptw/rol/0.create_form_dra'
       when '1'
         'ptw/1.date_with_offset'
-      when '14'
-        'work-pressure-line/14.submit_for_master_approval'
       end
     end
   end

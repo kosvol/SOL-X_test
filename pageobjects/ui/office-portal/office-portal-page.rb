@@ -26,6 +26,7 @@ class OfficePortalPage
   element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
   element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
   element(:input_field, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
+  element(:rol_dd_label, xpath: "//h4[contains(text(),'boarding arrangement:')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
