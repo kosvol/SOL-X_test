@@ -35,3 +35,14 @@ Feature: PermitOverview
     And I click on View Permit button
     Then I should see ROL checklist questions
 
+  Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
+    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the <checklist> checklist
+    When I log in to the Office Portal
+    And I select the "LNGSIT" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see ROL checklist questions
+
+    Examples:
+      |checklist|
+      |Cold Work Operation Checklist|

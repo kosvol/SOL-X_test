@@ -30,6 +30,7 @@ $current_device = ENV['PLATFORM']
 
 $obj_env_yml = YAML.load_file('config/environment.yml')
 $sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')
+$checklist_name_in_code_yml = YAML.load_file('data/checklist/checklist_name_in_code.yml')
 
 $master_pin = $obj_env_yml[$current_environment]['master_pin']
 $password = $obj_env_yml[$current_environment]['password']

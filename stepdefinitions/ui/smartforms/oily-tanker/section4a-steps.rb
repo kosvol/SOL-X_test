@@ -105,6 +105,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
     end
     if tmp === 0
       tmp = @browser.find_elements(:xpath, "//h4[contains(., \"#{_element}\")]").size
+      p "header list >> #{tmp}"
     end
     Log.instance.info("Checking on question >>>> #{_element}")
     if (_element === "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?") || (_element === "Is vessel movement in seaway acceptable for personnel transfer?")

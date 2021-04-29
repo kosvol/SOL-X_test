@@ -277,3 +277,13 @@ end
 And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |_value, _title|
   is_equal(on(OfficePortalPage).select_element_by_text_near(_title).text, _value)
 end
+
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |_permit_type, _user, _vessel, _checklist|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, _checklist)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  sleep(2)
+end
