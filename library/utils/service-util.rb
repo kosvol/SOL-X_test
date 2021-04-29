@@ -34,7 +34,9 @@ module ServiceUtil
 
       master_details = JSON.parse @@response.to_s
       master_details['docs'].each do |_crew|
-        _crew['vesselId'] = _vesselType
+        if _crew['_id'].downcase.include? "#{$current_environment.downcase}lng"
+          _crew['vesselId'] = _vesselType
+        end
       end
       p "> #{master_details.to_json}"
       uri = "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/crew_members/_bulk_docs"
