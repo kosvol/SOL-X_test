@@ -34,7 +34,7 @@ module ServiceUtil
 
       master_details = JSON.parse @@response.to_s
       master_details['docs'].each do |_crew|
-        if _crew['_id'].downcase.include? "#{$current_environment.downcase}lng"
+        if _crew['_id'].downcase.include? "sit_solx"
           _crew['vesselId'] = _vesselType
         end
       end
