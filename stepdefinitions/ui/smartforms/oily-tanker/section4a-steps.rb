@@ -114,14 +114,6 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
       is_equal(tmp,1)
     end
   end
-  
-  if @@checklist === 'ROL'
-    begin
-      is_equal(on(Section4APage).rol_dd_label_element.text, 'Description of boarding arrangement:')
-    rescue
-      is_equal(on(OfficePortalPage).rol_dd_label_element.text, 'Description of boarding arrangement:')
-    end
-  end
 end
 
 And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
