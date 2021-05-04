@@ -2,7 +2,7 @@ When (/^I fill and submit PRE permit details$/) do
     step 'I clear gas reader entries'
     step 'I navigate to create new PRE'
     step 'I enter pin for rank C/O'
-    step 'I fill up PRE. Duration 4. Delay to activate 2'
+    step 'I fill up PRE. Duration 4. Delay to activate 3'
     step 'I add all gas readings'
     step 'I enter pin for rank A/M'
     step 'I dismiss gas reader dialog box'

@@ -74,6 +74,9 @@ end
 And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
+  if status === "Permit Activated"
+    BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
+  end
   4.times { is_equal(on(PreDisplay).permit_status_element.text, status)}
 end
 
