@@ -74,7 +74,9 @@ class BypassPage < Section0Page
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
-    create_form_ptw['variables']['answers'][2].to_h['fieldId'] = $checklist_name_in_code_yml[_checklist] if _checklist != nil
+    if _checklist != nil
+      create_form_ptw['variables']['answers'][2].to_h['fieldId'] = $checklist_name_in_code_yml[_checklist]
+    end
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', _user, _vessel)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
