@@ -66,7 +66,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
     And I enter pin for rank 3/O
-    And I fill up PRE. Duration 4. Delay to activate 2
+    And I fill up PRE. Duration 4. Delay to activate 3
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
@@ -235,11 +235,11 @@ Feature: PumpRoomEntry
     When I clear gas reader entries
     When I navigate to create new PRE
     And I enter pin for rank C/O
-    And I fill up PRE. Duration 4. Delay to activate 2
+    And I fill up PRE. Duration 4. Delay to activate 3
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
-    And I sleep for 100 seconds
+    And I sleep for 120 seconds
     And I navigate to PRE Display
     And I enter pin for rank C/O
     And I should see Permit Activated PRE status on screen
