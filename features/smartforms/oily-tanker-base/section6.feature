@@ -108,10 +108,10 @@ Feature: Section6
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
     And I select Helicopter Operations permit for level 2
-    And I fill up section 1 with default value
+    And I fill only location of work
     And I navigate to section 4a
     And I press next for 1 times
-    And I fill up compulsory fields
+    And I sign checklist and section 5
     And I press next for 1 times
     And I press the Yes button to enable gas testing
     And I add all gas readings
@@ -220,7 +220,7 @@ Feature: Section6
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I fill only location of work and duration more than 2 hours
     And I navigate to section 6
     Then I should see master review button only
 
@@ -271,10 +271,10 @@ Feature: Section6
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
+    And I fill only location of work
     And I navigate to section 4a
     And I press next for 1 times
-    And I fill up compulsory fields
+    And I sign checklist and section 5
     And I press next for 1 times
     And I press the N/A button to disable gas testing
     Then I should see warning label
