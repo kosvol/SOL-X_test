@@ -18,10 +18,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -49,10 +48,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -72,7 +70,6 @@ Feature: PendingUpdate
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin for rank A/M
-    # And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
     And I click on back to home
@@ -113,10 +110,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -134,10 +130,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -160,10 +155,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -224,10 +218,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -247,10 +240,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -270,10 +262,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -312,10 +303,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -343,10 +333,9 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home

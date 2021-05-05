@@ -10,7 +10,6 @@ Feature: Section8
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin for rank A/M
-    # And I navigate to section 8
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
     And I click on back to home
@@ -29,7 +28,6 @@ Feature: Section8
     And I click on active filter
     And I click on Submit for Termination
     And I enter pin 4421
-    # And I navigate to section 8
     Then I should see section 8 in read only mode
 
   Scenario: Verify task commenced at should be populated with permit activated time
@@ -38,10 +36,9 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -62,10 +59,9 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
     And I select Work on Pressure Pipeline/Vessels permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -84,10 +80,9 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -106,10 +101,9 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Anchor permit for level 2
-    And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration less than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -128,13 +122,11 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
+    And I fill only location of work
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -153,13 +145,11 @@ Feature: Section8
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
-    And I fill up section 1 with default value
+    And I fill only location of work
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -178,7 +168,6 @@ Feature: Section8
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with <rank> rank and <pin> pin
-    # And I navigate to section 8
     Then I should not see EIC normalize extra questions
 
     Examples:
