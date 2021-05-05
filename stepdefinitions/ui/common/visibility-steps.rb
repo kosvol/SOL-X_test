@@ -50,8 +50,14 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
 end
 
 Then (/^I should see section (.*) screen$/) do |_which_section|
-  screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text
+  sleep 1
+  screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text if _which_section != '0'
   case _which_section
+  when '0'
+    screen_title = @browser.find_elements(:xpath, "//div/header/h3[starts-with(@class,'Heading__H3')]").first.text
+    is_equal(screen_title,"Select Permit Type")
+  when '1'
+    is_equal(screen_title,"Section 1: Task Description")
   when '8'
     is_equal(screen_title,"Section 8: Task Status & EIC Normalisation")
   when '6'
