@@ -20,6 +20,8 @@ Feature: RiggingOfLadder
   #     | 3/O   | 0159 |
   #     | A 3/O | 2674 |
 
+  Scenario: Verify ROL permit validity is accurate as per permit activation duration
+
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -108,7 +110,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on active filter
     Then I open rol permit with rank <rank> and <pin> pin
-    # When I press next for 1 times
     Then I should not see permit duration selectable
     When I put the permit to termination state
     And I review termination permit with <pin> pin
@@ -181,7 +182,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on active filter
     Then I open rol permit with rank A/M and 9015 pin
-    # When I press next for 2 times
     And I submit permit for termination
     And I sign on canvas with valid 9015 pin
     And I click on back to home
