@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-Then (/^I should see section 2$/) do
-  is_equal(on(Section2Page).heading_text_element.text, 'Section 2: Approving Authority')
-end
-
 And (/^I should see previous and next buttons$/) do
   is_equal(on(Section2Page).previous_btn_elements.size, 1)
   to_exists(on(Section2Page).previous_btn_elements.first)

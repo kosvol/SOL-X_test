@@ -127,7 +127,7 @@ Feature: Section1
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 2
-    Then I should see section 2
+    Then I should see section 2 screen
 
   Scenario: Verify user can fill up the form, save and proceed to next page for critical maintenance permit
     Given I launch sol-x portal without unlinking wearable
@@ -137,6 +137,5 @@ Feature: Section1
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 2
-    Then I should see section 2
     And I should not see copy text regarding maintenance hour
 

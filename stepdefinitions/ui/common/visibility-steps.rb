@@ -58,6 +58,8 @@ Then (/^I should see section (.*) screen$/) do |_which_section|
     is_equal(screen_title,"Select Permit Type")
   when '1'
     is_equal(screen_title,"Section 1: Task Description")
+  when '2'
+    is_equal(screen_title,"Section 2: Approving Authority")
   when '8'
     is_equal(screen_title,"Section 8: Task Status & EIC Normalisation")
   when '6'
