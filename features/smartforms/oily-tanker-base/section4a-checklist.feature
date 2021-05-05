@@ -207,7 +207,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I fill only location of work and duration more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
@@ -225,7 +225,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
+    And I fill only location of work and duration more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
@@ -266,8 +266,7 @@ Feature: Section4AChecklist
     And I enter pin 2523
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    # And I set time
+    And I fill only location of work and duration less than 2 hours
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     Then I should see permit number, date and time populated
