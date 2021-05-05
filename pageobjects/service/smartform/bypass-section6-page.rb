@@ -455,6 +455,14 @@ end
     # ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
   end
 
+  def activate_pre_cre
+    update_form_pre_status = JSON.parse JsonUtil.read_json('pre/05.update-form-status')
+    update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+    update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+    JsonUtil.create_request_file('pre/mod-05.update-form-status', update_form_pre_status)
+    ServiceUtil.post_graph_ql('pre/mod-05.update-form-status', '2761')
+  end
+
   private
 
   def cal_new_minutes_offset_time
