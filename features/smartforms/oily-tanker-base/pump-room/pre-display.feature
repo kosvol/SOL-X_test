@@ -70,7 +70,7 @@ Feature: PumpRoomEntry
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
-    And I sleep for 100 seconds
+    And I activate PRE form via service
     And I navigate to PRE Display
     And I enter pin for rank C/O
     Then I should see the PRE permit creator name on PRED
@@ -239,7 +239,7 @@ Feature: PumpRoomEntry
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
-    And I sleep for 120 seconds
+    And I activate PRE form via service
     And I navigate to PRE Display
     And I enter pin for rank C/O
     And I should see Permit Activated PRE status on screen
@@ -257,7 +257,7 @@ Feature: PumpRoomEntry
     And (for pred) I should see the disabled "Entry Log" button
     And (for pred) I should see the disabled "Permit" button
     And (for pred) I should see warning box for deactivated status
-  @wip
+
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
