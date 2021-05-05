@@ -29,6 +29,7 @@ class PumpRoomEntry < PreDisplay
   @@active_link = "//strong[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@activity_pre_text = "//*[contains(text(),'Pump Room Entry Permit')]/parent::span"
   @@entrants_arr = []
+  element(:view_btn, xpath: "//button[contains(.,'View')]")
   element(:entrant_select_btn, xpath: "//span[contains(text(),'Select Entrants - Required')]")
   element(:entry_log_btn, xpath: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span")
   element(:input_field, xpath: "//div[starts-with(@class,'Input')]")
