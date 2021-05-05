@@ -130,5 +130,4 @@ Feature: Section2ApprovalAuthority
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 2
-    Then I should see section 2
-    And I should see display texts match for section2
+    Then I should see display texts match for section2
