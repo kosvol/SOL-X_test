@@ -277,3 +277,38 @@ end
 And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |_value, _title|
   is_equal(on(OfficePortalPage).select_element_by_text_near(_title).text, _value)
 end
+
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |_permit_type, _user, _vessel, _checklist|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, _checklist)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  sleep(2)
+end
+
+Then(/^I should see (.+) checklist questions in Office Portal$/) do |_checklist|
+  questionsArr = []
+  if _checklist == "Work on Pressure Pipelines"
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |_question|
+      questionsArr << _question.text
+    end
+  elsif _checklist == "Working Aloft Overside"
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |_question|
+      questionsArr << _question.text
+    end
+  elsif _checklist == "Enclosed Spaces Entry Checklist"
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |_question|
+      questionsArr << _question.text
+    end
+  elsif
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_checklist}')]/../..//h4").each do |_question|
+      questionsArr << _question.text
+    end
+  end
+  base_data = ["Vessel Name:", "Created On:"]
+  base_data = base_data + YAML.load_file("data/checklist/#{_checklist}.yml")['questions'] - YAML.load_file("data/checklist/checklist_exceptions.yml")['exceptions']
+  p "#{questionsArr - base_data}"
+  is_equal(questionsArr, base_data)
+end

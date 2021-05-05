@@ -4,8 +4,6 @@ Feature: PendingUpdate
   I want to ...
   So that ...
 
-  # Scenario: Verify all sections fields are enabled when editing from pending approval state for RA
-
   Scenario: Verify section 8 is editable via pending termination state
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable

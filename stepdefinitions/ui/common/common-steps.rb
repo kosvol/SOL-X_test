@@ -4,12 +4,6 @@ And (/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
-Then (/^I should see display texts match for section1$/) do
-  on(Section0Page).labels_scrapper_elements.each do |elem|
-    p ">> #{elem.text}"
-  end
-end
-
 Given (/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)

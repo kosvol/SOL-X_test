@@ -1,3 +1,10 @@
+And (/^I sign checklist and section 5$/) do
+    step 'I sign checklist with 8383 as valid pin'
+    step 'I press next for 2 times'
+    sleep 1
+    step 'I fill up section 5'
+end
+
 And (/^I fill up compulsory fields$/) do
     step 'I sign checklist with 8383 as valid pin'
     step 'I press next for 1 times'

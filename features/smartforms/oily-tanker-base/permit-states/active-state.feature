@@ -4,8 +4,6 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
-  # Scenario: Verify all sections disabled for ptw reader
-
   @debug
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
@@ -13,11 +11,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 3d
-    And I sign DRA section 3d with 9015 as valid pin
-    And I press next for 2 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -36,7 +32,6 @@ Feature: ActivePermit
     Examples:
       | level_one_permit               | level_two_permit      |
       | Critical Equipment Maintenance | Maintenance on Anchor |
-  # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
@@ -44,11 +39,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 3d
-    And I sign DRA section 3d with 9015 as valid pin
-    And I press next for 2 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration less than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -61,7 +54,6 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit               | level_two_permit                   |
-      # | Critical Equipment Maintenance | Maintenance on Anchor              |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
@@ -70,11 +62,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 3d
-    And I sign DRA section 3d with 9015 as valid pin
-    And I press next for 2 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -94,7 +84,6 @@ Feature: ActivePermit
     Examples:
       | level_one_permit               | level_two_permit      |
       | Critical Equipment Maintenance | Maintenance on Anchor |
-  # | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -102,11 +91,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 3d
-    And I sign DRA section 3d with 9015 as valid pin
-    And I press next for 2 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration less than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -119,19 +106,17 @@ Feature: ActivePermit
 
     Examples:
       | level_one_permit               | level_two_permit                   |
-      # | Critical Equipment Maintenance | Maintenance on Anchor              |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
-  Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Update Reading with RA
+  Scenario Outline: Verify non maintenance AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -164,10 +149,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -199,10 +183,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -234,16 +217,15 @@ Feature: ActivePermit
       # | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                   |
       | Working on Deck During Heavy Weather | Working on Deck During Heavy Weather                  |
 
-  Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Update Reading with RA
+  Scenario Outline: Verify non maintenance AND non oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -256,20 +238,20 @@ Feature: ActivePermit
 
 
     Examples:
-      | level_one_permit                      | level_two_permit                            |
+      | level_one_permit                      | level_two_permit                                   |
       # | Hot Work                                                     | Hot Work Level-2 in Designated Area                 |
-      | Hot Work                              | Hot Work Level-1 (Loaded & Ballast Passage) |
+      | Hot Work                              | Hot Work Level-1 (Loaded & Ballast Passage)        |
       # | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                               |
-      | Working Aloft/Overside                | Working Aloft / Overside                    |
+      | Working Aloft/Overside                | Working Aloft / Overside                           |
       # | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels         |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket       |
-  # | Helicopter Operations                                        | Helicopter Operation                                |
-  # | Rotational Portable Power Tools       | Use of Portable Power Tools                         |
-  # | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools |
-  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage  |
-  # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
-  # | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
-  # | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                    |
+      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket              |
+      # | Helicopter Operations                                        | Helicopter Operation                                |
+      # | Rotational Portable Power Tools       | Use of Portable Power Tools                         |
+      # | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools |
+      # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage  |
+      # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings       |
+      # | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
+      | Cold Work                             | Cold Work - Connecting and Disconnecting Pipelines |
   # | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits   |
   # | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                             |
   # | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
@@ -281,7 +263,6 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with 5/E rank and 7551 pin
-    # And I navigate to section 8
     Then I should see previous and close buttons
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user
@@ -289,7 +270,6 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with 5/E rank and 7551 pin
-    # And I navigate to section 8
     Then I should not see competent person sign button exists
 
   Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
@@ -305,10 +285,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration less than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -339,10 +318,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select Underwater Operations permit
     And I select Simultaneous underwater operation during daytime with other operation permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -363,10 +341,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration less than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration less than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -382,10 +359,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill section 1 of maintenance permit with duration more than 2 hours
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
@@ -413,7 +389,6 @@ Feature: ActivePermit
     And I click on back to home
     And I sleep for 3 seconds
     And I click on active filter
-    # And I sleep for 3 seconds
     Then I should see permit valid for <duration> hours
 
     Examples:
@@ -433,10 +408,9 @@ Feature: ActivePermit
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4a
-    And I press next for 1 times
-    And I fill up compulsory fields
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -476,7 +450,6 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I add gas to permit with <rank> rank and <pin> pin
-    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -510,7 +483,6 @@ Feature: ActivePermit
     And I click on back to home
     And I click on active filter
     And I add gas to permit with <rank> rank and <pin> pin
-    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -531,7 +503,6 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I add gas to permit with <rank> rank and <pin> pin
-    # And I navigate to section 6
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -575,7 +546,6 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I add gas to permit with <rank> rank and <pin> pin
-    # And I navigate to section 6
     Then I should see Add Gas Reading button disabled
 
     Examples:

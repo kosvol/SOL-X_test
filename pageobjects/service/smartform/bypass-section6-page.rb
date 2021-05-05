@@ -69,11 +69,14 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql('pre/mod-06.update-form-status-for-termination', _user)
   end
 
-  def trigger_forms_termination(_permit_type, _user, _vessel)
+  def trigger_forms_termination(_permit_type, _user, _vessel, _checklist = nil)
     @via_service_or_not = true
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
+    if _checklist != nil
+      create_form_ptw['variables']['answers'][2].to_h['fieldId'] = $checklist_name_in_code_yml[_checklist]
+    end
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', _user, _vessel)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
@@ -316,14 +319,14 @@ end
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
 
-    submit_active = JSON.parse JsonUtil.read_json('ptw/rol/approve-rol')
+    submit_active = JSON.parse JsonUtil.read_json('ptw/rol/16.update-active-status_rol')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['answers'][5].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][6].to_h['value'] = "\"#{_duration}\""
     submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
-    JsonUtil.create_request_file('ptw/mod-approve-rol', submit_active)
-    ServiceUtil.post_graph_ql('ptw/mod-approve-rol')
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', submit_active)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status_rol')
   end
 
   def submit_permit_for_termination_wo_eic_normalization(_status)
@@ -661,6 +664,15 @@ end
         'ptw/work-pressure-line/10.save_section4a_checklist_details'
       when '14'
         'work-pressure-line/14.submit_for_master_approval'
+      end
+    when 'submit_rigging_of_ladder'
+      case _step
+      when '0'
+        'ptw/rol/0.create_form_ptw'
+      when '00'
+        'ptw/rol/0.create_form_dra'
+      when '1'
+        'ptw/1.date_with_offset'
       end
     end
   end

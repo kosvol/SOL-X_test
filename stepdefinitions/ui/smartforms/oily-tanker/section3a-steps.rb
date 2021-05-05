@@ -27,7 +27,7 @@ Then (/^I should see DRA content editable$/) do
 end
 
 And (/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
-  sleep 2
+  sleep 1
   @measure = _measure
   @@swap_flag = ''
   case _measure
@@ -105,7 +105,7 @@ And (/^I delete a hazard$/) do
 end
 
 Then (/^I should see hazard deleted$/) do
-  sleep 3
+  sleep 2
   on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
   is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')

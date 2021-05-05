@@ -25,17 +25,17 @@ Then (/^I should not see previous button exists$/) do
   is_equal(on(Section1Page).btn_list_elements[0].text, 'Save & Next')
 end
 
-Then (/^I (should|should not) see maintenance duration section and require text$/) do |condition|
-  if condition === 'should'
+Then (/^I (should|should not) see maintenance duration section and require text$/) do |_condition|
+  if _condition === 'should'
     is_true(on(Section1Page).is_maint_duration_dd_exists?)
-  elsif condition === 'should not'
+  elsif _condition === 'should not'
     is_true(!on(Section1Page).is_maint_duration_dd_exists?)
   end
 end
 
-And (/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
+And (/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |_condition|
   on(Section1Page).fill_default_section_1
-  on(Section1Page).set_maintenance_duration(condition)
+  on(Section1Page).set_maintenance_duration(_condition)
   sleep 1
 end
 
@@ -49,4 +49,13 @@ And (/^I fill up section 1 with default value$/) do
   if permits_arr.include? on(Section0Page).get_selected_level2_permit
     on(Section1Page).set_maintenance_duration(%w[more less].sample)
   end
+end
+
+And (/^I fill only location of work and duration (more|less) than 2 hours$/) do |_condition|
+  on(Section1Page).select_location_of_work
+  on(Section1Page).set_maintenance_duration(_condition)
+end
+
+And (/^I fill only location of work$/) do
+  on(Section1Page).select_location_of_work
 end

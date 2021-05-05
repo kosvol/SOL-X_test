@@ -42,12 +42,10 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_next
-    sleep 2
+    sleep 1
     BrowserActions.js_click("//button[contains(.,'Next')]")
-    # BrowserActions.poll_exists_and_click(next_btn_element)
   rescue StandardError
     BrowserActions.js_click("//button[contains(.,'Save & Next')]")
-    # BrowserActions.poll_exists_and_click(save_and_next_btn_element)
   end
 
   def get_total_steps_to_section6(_which_section)
