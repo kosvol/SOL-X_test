@@ -27,3 +27,38 @@ Feature: PermitOverview
     And I check all headers of Entry Log table without toxic gas on portal
     And I check rank and full name of Entrant without toxic "A 2/O"
 
+  Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
+    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the sit vessel
+    When I log in to the Office Portal
+    And I select the "LNGSIT" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see ROL checklist questions
+
+  Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
+    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the <checklist> checklist
+    When I sleep for 5 seconds
+    And I log in to the Office Portal
+    And I select the "LNGSIT" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see <checklist> checklist questions in Office Portal
+
+    Examples:
+      | checklist                                    |
+      | Cold Work Operation                          |
+      | Critical Equipment Maintenance               |
+      | Enclosed Spaces Entry Checklist              |
+      | Helicopter Operation                         |
+      | Hot Work Outside Designated Area             |
+      | Hot Work Within Designated Area              |
+      | Personnel Transfer by Transfer Basket        |
+      | Rotational Portable Power Tools (PPT)        |
+      | Underwater Operation                         |
+      | Use of Camera                                |
+      | Use of ODME in Manual Mode                   |
+      | Work on Deck During Heavy Weather            |
+      | Work on Electrical Equipment and Circuits    |
+      | Work on Hazardous Substances                 |
+      | Work on Pressure Pipelines                   |
+      | Working Aloft Overside                       |

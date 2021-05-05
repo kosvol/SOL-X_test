@@ -1,0 +1,13 @@
+exceptions:
+  [
+    "Not Answered",
+    "(To be checked by the Master or Responsible Authority and the Authorised Entrants)",
+    "(Hot Work Level -1: Work not involving naked flame or continuous spark production. This includes work involving the use of high speed air driven rotary equipment, grit blasting, hammering, or mechanical chipping that is potentially spark producing)",
+    "(Level - 2: Work involving high temperatures, open flame, electric arc, continuous source of sparks, use of non-intrinsically safe electrical equipment, including any work conducted on a cargo or bunker pipeline that may produce sparks)",
+    "Electrical",
+    "Pneumatic",
+    "Hydraulic",
+    "Preparations and checks to be carried out by the Officer in Charge of work for low and high voltage",
+    "Preparations and checks to be carried out by the Officer in Charge of work to be performed.",
+    "To be completed by the ship's Safety Officer",
+  ]
