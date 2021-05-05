@@ -133,7 +133,6 @@ Then ('I check names of entrants {int} on New Entry page') do |item|
                     .attribute('aria-label'))
     item = item - 1
   end
-  p 'second'
   p entr_arr.to_s
   arr_before = on(PumpRoomEntry).get_entrants
   p arr_before

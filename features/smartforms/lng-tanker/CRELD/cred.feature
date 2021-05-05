@@ -1,8 +1,8 @@
 @lng-cred
 Feature: LNGCRED
-As a ...
-I want to ...
-So that ...
+  As a ...
+  I want to ...
+  So that ...
 
   Scenario: CRED should not displayed permit terminated when new CRE permit is created
     Given I launch sol-x portal without unlinking wearable
@@ -21,3 +21,47 @@ So that ...
     When I submit a current CRE permit via service
     And I sleep for 30 seconds
     And I should see green background color
+
+  Scenario: [CRED] Just exited entrant can create new entry again api
+    Given  I submit a current CRE permit via service
+    And I add new entry "A 2/O,3/O,A 3/O"
+    And I sleep for 20 seconds
+    And I acknowledge the new entry log cre via service
+    When I launch sol-x portal without unlinking wearable
+    And I navigate to CRE Display
+    And I enter pin for rank C/O
+    And I should see Permit Activated PRE status on screen
+    When I signout entrants "A 2/O"
+    And I sleep for 15 seconds
+    And I add new entry "A 2/O"
+    And I sleep for 20 seconds
+    And I acknowledge the new entry log cre via service
+    Then I should see entrant count equal 3
+
+  Scenario: CRED Just exited entrant can create new entry again
+    Given I submit a current CRE permit via service
+    And I launch sol-x portal without unlinking wearable
+    And I open the current CRE with status Active. Rank: A C/O
+    And Get CRE id
+    And I click on back arrow
+    And I sleep for 5 seconds
+    And I navigate to CRE Display
+    And I enter pin for rank C/O
+    And I should see Permit Activated PRE status on screen
+    And I enter new entry log
+    And I fill entry report with 5 optional entrants
+    And I send Report
+    And I sleep for 20 seconds
+    And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
+    And I click on back arrow
+    And I signout the entrant
+    Then I should see entrant count equal 5
+    And I sleep for 5 seconds
+    And I enter new entry log
+    And I fill entry report with 1 optional entrants
+    And I send Report
+    And I sleep for 20 seconds
+    And I acknowledge the new entry log via service
+    And I click on back arrow
+    Then I should see entrant count equal 7

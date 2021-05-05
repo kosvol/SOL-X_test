@@ -107,8 +107,6 @@ end
 
 And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
   step 'Get PRE id'
-  # @@pre_number = on(PumpRoomEntry).ptw_id_element.text
-  # @temp_id = on(PumpRoomEntry).ptw_id_element.text
   step 'I press the "Submit for Approval" button'
   step "I enter pin for rank #{_role}"
   sleep 3
@@ -180,9 +178,11 @@ And(/^Get (PRE|CRE|PWT) id$/) do |_permit_type|
   @@issue_time = on(PreDisplay).pre_duration_timer_element.text if _permit_type === 'PWT'
 end
 
-Then(/^I open the current (PRE|CRE) with status Pending approval. Rank: (.*)$/) do |_permit_type,rank|
-  step "I navigate to \"Pending Approval\" screen for #{_permit_type}"
-  on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval')
+Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do |_permit_type,_condition,rank|
+  step "I navigate to \"Pending Approval\" screen for #{_permit_type}" if _condition ==='Pending approval'
+  step "I navigate to \"Active\" screen for #{_permit_type}" if _condition ==='Active'
+  on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval') if _condition ==='Pending approval'
+  on(PumpRoomEntry).view_btn_element.click if _condition ==='Active'
   step 'I enter pin for rank %s' % [rank]
   sleep 1
 end
