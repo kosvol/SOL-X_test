@@ -70,7 +70,7 @@ Feature: PumpRoomEntry
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
-    And I sleep for 100 seconds
+    And I activate PRE form via service
     And I navigate to PRE Display
     And I enter pin for rank C/O
     Then I should see the PRE permit creator name on PRED
@@ -132,7 +132,7 @@ Feature: PumpRoomEntry
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+    And I sleep for 4 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I terminate the PRE permit via service
@@ -239,7 +239,7 @@ Feature: PumpRoomEntry
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
-    And I sleep for 120 seconds
+    And I activate PRE form via service
     And I navigate to PRE Display
     And I enter pin for rank C/O
     And I should see Permit Activated PRE status on screen
@@ -268,6 +268,7 @@ Feature: PumpRoomEntry
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
+    And I activate PRE form via service
     And I navigate to PRE Display
     And I enter pin for rank C/O
     And I should see Permit Activated PRE status on screen
