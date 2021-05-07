@@ -65,3 +65,25 @@ Feature: LNGCRED
     And I acknowledge the new entry log via service
     And I click on back arrow
     Then I should see entrant count equal 7
+
+  Scenario: Verify user can't add new entry without an initial gas readings
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin for rank C/O
+    And I fill up CRE. Duration 4. Delay to activate 3
+    And Get CRE id
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current CRE form
+    And I activate CRE form via service
+    And I navigate to CRE Display
+    And I enter pin for rank C/O
+    And I should see Permit Activated PRE status on screen
+    And I click on permit tab
+    Then I check initial gas readings is not exist
+    When I click on back arrow
+    And I enter new entry log
+    And I fill entry report with 1 optional entrants
+    And I just send Report
+    And I check report not send
