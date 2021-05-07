@@ -126,6 +126,9 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
+    And I sign checklist with 8383 as valid pin
+    And I press next for 1 times
+    And I sign checklist with 8383 as valid pin
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
@@ -149,6 +152,9 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times
+    And I sign checklist with 8383 as valid pin
+    And I press next for 1 times
+    And I sign checklist with 8383 as valid pin
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
