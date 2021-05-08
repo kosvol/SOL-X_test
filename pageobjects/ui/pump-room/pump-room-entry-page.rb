@@ -50,6 +50,9 @@ class PumpRoomEntry < PreDisplay
   element(:input_field1, xpath: "//input[starts-with(@class,'Input')]")
   elements(:header_cell, xpath: "//div[starts-with(@class,'header-cell')]")
   elements(:header_pwt, xpath: "//h4[starts-with(@class,'Heading__H4')]")
+  element(:gas_O2, xpath: "//div[contains(.,'O2')]")
+  element(:gas_HC, xpath: "//div[contains(.,'HC')]")
+  element(:gas_H2S, xpath: "//div[contains(.,'H2S')]")
   ### end
 
   def get_validity_start_and_end_time(permit_type)
