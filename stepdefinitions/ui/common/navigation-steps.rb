@@ -36,7 +36,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
+  sleep 3
   BrowserActions.js_click("//button[contains(.,'Back to Home')]")
   # on(Section6Page).back_to_home_btn
   step 'I set permit id'
