@@ -231,7 +231,7 @@ Feature: PendingUpdate
     And I click on update needed filter
     And I update permit in pending update state with 1111 pin
     And I navigate to section 4b
-    And I click on view EIC certification button
+    And I click on create EIC certification button
     Then I should not see comment box exists
 
   Scenario: Verify user is able to update permit after Office request for update
