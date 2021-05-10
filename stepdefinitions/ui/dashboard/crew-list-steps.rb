@@ -40,7 +40,7 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  step 'I sleep for 3 seconds'
+  step 'I sleep for 5 seconds'
   step 'I click on view pin button'
   on(PinPadPage).enter_pin(1111)
   step 'I sleep for 1 seconds'
