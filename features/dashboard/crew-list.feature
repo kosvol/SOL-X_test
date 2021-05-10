@@ -49,6 +49,7 @@ Feature: CrewList
     And I unlink all crew from wearable
 
   Scenario: Verify crew latest location is display on crew listing
+    Given I clear wearable history and active users
     Given I launch sol-x portal
     When I navigate to "Crew List" screen for forms
     And I link wearable

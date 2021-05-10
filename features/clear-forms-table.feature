@@ -52,3 +52,7 @@ Feature: DB reset
   @removed-crew-from-vessel
   Scenario: Removed crew from vessel
     Given I remove crew from vessel
+
+  @dump_wb_step_records
+  Scenario: Dumped wellbeing portal step records
+    Given I truncate and dump step records
