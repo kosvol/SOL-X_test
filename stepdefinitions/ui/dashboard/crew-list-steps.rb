@@ -6,9 +6,6 @@ Then (/^I should see correct column headers$/) do
 end
 
 Then (/^I should see total crew count match inactive crew$/) do
-  # step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  # step 'I hit graphql'
-  # is_equal(on(CrewListPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
   is_equal(on(CrewListPage).crew_count, (on(CrewListPage).crew_list_elements.size/2))
 end
 
@@ -40,7 +37,7 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  step 'I sleep for 5 seconds'
+  step 'I sleep for 3 seconds'
   step 'I click on view pin button'
   on(PinPadPage).enter_pin(1111)
   step 'I sleep for 1 seconds'
@@ -61,9 +58,7 @@ And (/^I enter a invalid master pin$/) do
 end
 
 And (/^I click on view pin button$/) do
-  # sleep 1
   BrowserActions.poll_exists_and_click(on(CrewListPage).view_pin_btn_element)
-  # on(CrewListPage).view_pin_btn
 end
 
 And (/^I backspace on entered pin$/) do
