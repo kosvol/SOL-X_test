@@ -5,6 +5,7 @@ require './././support/env'
 class Section0Page < NavigationPage
   include PageObject
 
+  #element(:click_create_permit_btn, xpath: "//button[contains(.,'Create New Permit to Work')]")
   element(:click_create_permit_btn, xpath: "//button[contains(.,'Create Permit To Work')]")
   # element(:click_create_permit_btn, xpath: "//a[contains(.,'Create New Permit to Work')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')

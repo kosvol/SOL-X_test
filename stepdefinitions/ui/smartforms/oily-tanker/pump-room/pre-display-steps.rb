@@ -103,3 +103,8 @@ Then(/^I should see the PRE permit creator name on PRED$/) do
   sleep 5
   is_equal(on(PreDisplay).pre_creator_display_element.text, '3/O Tim Kinzer')
 end
+
+Then(/^I check \"Responsible Officer Signature\" is present$/) do
+  sleep 5
+  wait_until_is_visible(@browser.find_element(:xpath, "//h2[contains(text(),'Responsible Officer Signature')]"))
+end
