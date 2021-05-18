@@ -68,13 +68,13 @@ class ROLPage < Section9Page
   end
 
   def is_duration?(permit_validity_timer, _duration)
-    return permit_validity_timer.include?('00:59:') if _duration === '1'
-    return permit_validity_timer.include?('01:59:') if _duration === '2'
-    return permit_validity_timer.include?('02:59:') if _duration === '3'
-    return permit_validity_timer.include?('03:59:') if _duration === '4'
-    return permit_validity_timer.include?('04:59:') if _duration === '5'
-    return permit_validity_timer.include?('05:59:') if _duration === '6'
-    return permit_validity_timer.include?('06:59:') if _duration === '7'
-    return permit_validity_timer.include?('07:59:') if _duration === '8'
+    return permit_validity_timer.include?('00:58:') if _duration === '1'
+    return permit_validity_timer.include?('01:58:') if _duration === '2'
+    return permit_validity_timer.include?('02:58:') if _duration === '3'
+    return permit_validity_timer.include?('03:58:') if _duration === '4'
+    return permit_validity_timer.include?('04:58:') if _duration === '5'
+    return permit_validity_timer.include?('05:58:') if _duration === '6'
+    return permit_validity_timer.include?('06:58:') if _duration === '7'
+    return permit_validity_timer.include?('07:58:') if _duration === '8'
   end
 end
