@@ -5,6 +5,7 @@ Feature: Section3DDRA
   So that ...
 
   Scenario Outline: Verify wearable can be picked up consistently
+    Given I clear wearable history and active users
     Given I launch sol-x portal
     And I navigate to create new permit
     And I enter pin for rank A/M
