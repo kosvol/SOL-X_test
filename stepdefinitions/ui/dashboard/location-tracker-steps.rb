@@ -7,21 +7,22 @@ Given (/^I unlink all crew from wearable$/) do
   sleep 2
 end
 
-Then (/^I should see inactive crew count is correct$/) do
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I toggle activity crew list'
-  sleep 3
-  is_equal(on(DashboardPage).activity_status_elements.first.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
-  is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
-end
+# DEPRECATED
+# Then (/^I should see inactive crew count is correct$/) do
+#   step 'I get wearable-simulator/base-get-list-of-crew request payload'
+#   step 'I hit graphql'
+#   step 'I toggle activity crew list'
+#   sleep 3
+  # is_equal(on(DashboardPage).activity_status_elements.first.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
+#   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
+# end
 
-Then (/^I should see active crew count is correct$/) do
-  step 'I link wearable'
-  sleep 2
-  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).activity_status_elements.last.text)
-  is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
-end
+# Then (/^I should see active crew count is correct$/) do
+#   step 'I link wearable'
+#   sleep 2
+#   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).activity_status_elements.last.text)
+#   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
+# end
 
 Then (/^I should see active crew details$/) do
   is_true(on(DashboardPage).is_crew_location_detail_correct?('service'))
@@ -81,9 +82,9 @@ When (/^I link wearable$/) do
   sleep 2
 end
 
-And (/^I toggle activity crew list$/) do
-  on(DashboardPage).toggle_crew_activity_list
-end
+# And (/^I toggle activity crew list$/) do
+#   on(DashboardPage).toggle_crew_activity_list
+# end
 
 When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   step 'I link crew to wearable'
@@ -134,12 +135,11 @@ Then (/^I should see 25 crews link to dashboard$/) do
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
-  # p ">> #{on(DashboardPage).pre_indicator}"
   if _condition === 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('active'))
   elsif _condition === 'should not'
-    is_equal(on(DashboardPage).pre_indicator, 'Not Active')
+    is_equal(on(DashboardPage).pre_indicator, 'Inactive')
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
 end
