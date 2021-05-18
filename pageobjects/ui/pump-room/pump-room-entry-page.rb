@@ -40,7 +40,7 @@ class PumpRoomEntry < PreDisplay
   element(:compressor_room_display_setting, xpath: "//span[contains(.,'Compressor/Motor Room')]")
   element(:smartforms_display_setting, xpath: "//span[contains(.,'SmartForms')]")
   text_area(:purpose_of_entry, xpath: "//textarea[@id='reasonForEntry']")
-  span(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
+  element(:entrant_names_dd, xpath: "//span[contains(.,'Select Other Entrants - Optional')]")
   @@button = "//button[contains(.,'%s')]"
   elements(:entry_log_table, xpath: "//div[@data-testid='entry-log-column']/div")
   element(:permit_end_time, xpath: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p")
@@ -109,6 +109,7 @@ class PumpRoomEntry < PreDisplay
   def additional_entrant(_additional_entrants)
     entr_arr = []
     purpose_of_entry="Test Automation"
+    puts entrant_names_dd_element.text
     entrant_names_dd_element.click
     sleep 2
     while _additional_entrants > 0
