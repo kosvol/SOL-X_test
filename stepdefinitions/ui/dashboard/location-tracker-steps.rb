@@ -144,8 +144,9 @@ Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
   end
 end
 
-When (/^I terminate the PRE permit via service$/) do
-  on(BypassPage).terminate_pre_permit('8383')
+When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |_action,_permit_type|
+  on(BypassPage).terminate_pre_permit('8383') if _action == "terminate"
+  on(BypassPage).close_permit(_permit_type,'8383',ENV['ENVIRONMENT']) if _action == "close"
 end
 
 When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
