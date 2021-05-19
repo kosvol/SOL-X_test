@@ -130,7 +130,7 @@ When (/^I submit a scheduled PRE permit$/) do
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
-  sleep 6
+  sleep 3
   is_equal(on(DashboardPage).crew_list_elements.size,25)
 end
 
