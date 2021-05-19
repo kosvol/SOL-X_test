@@ -79,7 +79,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I set permit id$/) do
-  sleep 6
+  sleep 8
   if @via_service_or_not === false
     p "Temp ID >> #{@temp_id}"
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
