@@ -243,7 +243,7 @@ And(/^I create ([^"]*) via service with static env$/) do |_type|
     step 'I Close Permit submit_enclose_space_entry via service auto'
     step 'I sleep for 3 seconds'
   elsif _type === 'CRE'
-    puts "here"
+    puts "to do"
   else
     raise "Wrong condition"
   end

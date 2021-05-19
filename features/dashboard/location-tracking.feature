@@ -15,15 +15,13 @@ Feature: LocationTracking
     And I turn on wifi
     Then I should see green online blob
 
-  Scenario: Verify inactive crew count is correct
-    Given I launch sol-x portal
-    Then I should see inactive crew count is correct
-    And I unlink all crew from wearable
+  Scenario: Verify crew list table header is correct
 
-  Scenario: Verify active crew count is correct
-    Given I launch sol-x portal
-    Then I should see active crew count is correct
-    And I unlink all crew from wearable
+  Scenario: Verify PTW is tied to crew
+
+  Scenario: Verify entry log counts match
+
+  Scenario: Verify entry log navigate to entry log page
 
   Scenario: Verify active crew with location details are correct
     Given I launch sol-x portal
@@ -92,8 +90,6 @@ Feature: LocationTracking
 
   Scenario: Verify total count for full ship is correct when toggle at inactive
     Given I launch sol-x portal
-    And I link wearable
-    When I toggle activity crew list
     Then I should see Full Ship count represent 0
     And I unlink all crew from wearable
 
@@ -108,10 +104,10 @@ Feature: LocationTracking
     Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
-    And I sleep for 85 seconds
+    And I sleep for 25 seconds
     Then I should see PRE tab active on dashboard
     When I terminate the PRE permit via service
-    And I sleep for 30 seconds
+    And I sleep for 20 seconds
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is grey with inactive PRE
@@ -123,5 +119,5 @@ Feature: LocationTracking
     Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
-    And I sleep for 100 seconds
+    And I sleep for 25 seconds
     Then I should see PRE tab active on dashboard

@@ -11,7 +11,7 @@ end
 
 Then (/^I should see correct OA submission text$/) do
   on(PendingStatePage).submit_oa_btn
-  sleep 2
+  BrowserActions.wait_until_is_visible(on(Section3APage).total_p_elements.first)
   is_equal(on(Section3APage).total_p_elements.first.text,"The relevant authority will review this permit.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard.")
 end
 
@@ -80,6 +80,7 @@ And (/^I set oa permit to office (approval|review) state manually$/) do |_condit
   on(PendingStatePage).master_review_btn_elements.first.click if _condition === "approval"
   on(PendingStatePage).master_approval_btn_elements.first.click if _condition === "review"
   step 'I enter pin for rank MAS'
+  sleep 1
   step 'I navigate to section 6' if _condition === "approval"
   step 'I navigate to section 7' if _condition === "review"
   on(PendingStatePage).submit_oa_btn

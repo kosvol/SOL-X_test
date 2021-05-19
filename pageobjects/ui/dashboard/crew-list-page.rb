@@ -79,11 +79,11 @@ class CrewListPage < DashboardPage
   end
 
   def is_pin_hidden?
-    sleep 1
-    # crew_pin_list_elements.first.text === '••••'
-    crew_pin_list_elements.all? do |pin|
-      pin.text === '••••'
-    end
+    sleep 5
+    crew_pin_list_elements.first.text === '••••'
+    # crew_pin_list_elements.all? do |pin|
+    #   pin.text === '••••'
+    # end
   end
 
   ### "rgba(67, 160, 71, 1), 1)" - green

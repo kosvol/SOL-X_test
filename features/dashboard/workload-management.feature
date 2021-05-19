@@ -31,7 +31,7 @@ Feature: WorkloadManagement
     @SOL-6081
     Scenario Outline: Verify only these ranks are able to view work availability in details
         Given I launch sol-x portal
-        When I navigate to "Crew List" screen for forms
+        When I navigate to "Crew Management" screen for forms
     # Master
     # C/O
     # C/E
