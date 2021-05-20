@@ -257,8 +257,8 @@ Feature: Section6
     Examples:
       | level_one_permit                     | level_two_permit                                                        | checklist                        |
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
-      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Underwater Operation             |
-      | Underwater Operations                | Underwater Operation at night                                           | Underwater Operation             |
+      # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           | Underwater Operation             |
+      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search | Underwater Operation             |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
       | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
       # | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |

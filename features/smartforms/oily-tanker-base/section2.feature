@@ -115,8 +115,8 @@ Feature: Section2ApprovalAuthority
     Examples:
       | level_one_permit                     | level_two_permit                                                                | ship approval | office approval                                                 |
       | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Master        | Head, Fleet Operations                                          |
-      | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           | Master        | Director, Fleet Operations                                      |
-      | Underwater Operations                | Underwater Operation at night                                                   | Master        | Director, Fleet Operations                                      |
+      | Underwater Operations                | Underwater Operation at night or concurrent with other operations               | Master        | Director, Fleet Operations                                      |
+      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         | Master        | Head, Fleet Operations                                          |
       | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
       | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
       | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
