@@ -43,8 +43,9 @@ And (/^I view pin$/) do
   # step 'I sleep for 1 seconds'
 end
 
-Then (/^I should see pin reviewed$/) do
-  is_true(!on(CrewListPage).is_pin_hidden?)
+Then (/^I (should|should not) see pin reviewed$/) do |_condition|
+  is_true(!on(CrewListPage).is_pin_hidden?) if _condition === "should not"
+  is_true(!on(CrewListPage).is_pin_reviewed?) if _condition === "should"
 end
 
 And (/^I enter a non-existent pin$/) do
