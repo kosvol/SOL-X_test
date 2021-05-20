@@ -130,7 +130,7 @@ When (/^I submit a scheduled PRE permit$/) do
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
-  sleep 3
+  sleep 20 #default 3 seconds; hack to bypass some optimization problem
   is_equal(on(DashboardPage).crew_list_elements.size,25)
 end
 
