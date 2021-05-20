@@ -29,7 +29,8 @@ class OAPage < Section9Page
 
   ## Comment elements ###  
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
-  element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
+  #element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
+  element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
   text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
   button(:rank_dd_list, xpath: "//button[@id='rank']")
@@ -153,6 +154,7 @@ class OAPage < Section9Page
   end
 
   def is_comment_box_reset?
+    puts comment_counter_element.text
     (comment_counter_element.text === 'Comments (0)' && comment_box_element.text === 'This Permit has no comments')
   end
 

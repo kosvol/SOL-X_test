@@ -67,6 +67,7 @@ office_approval:
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_staff/_find"
   password: "13-dead-CENT-think-56"
+  service: "https://sit.edge.dev.safevue.ai:4000/"
 
 # maria_db:
 #   mariadb_host: "safevue-mariadb-dev.mariadb.database.azure.com"
