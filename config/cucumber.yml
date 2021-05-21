@@ -1,10 +1,4 @@
 #************** Browser Profiles *************#
-
-# mac_chrome_dashboard_dev_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard LOCAL=local
-# mac_chrome_dashboard_dev: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
-# mac_chrome_tablet_dev: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet
-# mac_chrome_dev_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
-
 mac_chrome_dashboard_sit_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
 mac_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
@@ -14,7 +8,6 @@ mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --
 ### Gx's machine
 mac_chrome_tablet_uat: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=uat DEVICE=tablet
 mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-# mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet1
 mac_chrome_tablet_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 mac_chrome_dev_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=tablet
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
