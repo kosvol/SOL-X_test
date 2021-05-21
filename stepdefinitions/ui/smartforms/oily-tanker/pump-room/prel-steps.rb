@@ -170,5 +170,6 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |_number|
-  expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+  #expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+  expect(on(DashboardPage).active_entarnt_element.text).to include(_number.to_s)
 end

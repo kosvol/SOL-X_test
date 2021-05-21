@@ -28,7 +28,7 @@ end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to pending office approval state$/) do |_permit_type, _user|
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'pending', 'eic_yes', 'gas_yes')
-  on(BypassPage).set_oa_permit_to_pending_office_appr
+  on(BypassPage).set_oa_permit_to_pending_office_appr 
 end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to pending office approval state and no gas reading$/) do |_permit_type, _user|
