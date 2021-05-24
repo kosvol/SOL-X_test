@@ -5,8 +5,8 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
-  # element(:inactive_status, xpath: "//label[@data-testid='inactive-status']")
-  # elements(:activity_status, xpath: "//label[@for='toggle-switch']")
+  elements(:crew_list_headers, xpath: "//th")
+  element(:permit_to_work, xpath: '//table/tbody/tr/td[4]')
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")

@@ -7,22 +7,18 @@ Given (/^I unlink all crew from wearable$/) do
   sleep 2
 end
 
-# DEPRECATED
-# Then (/^I should see inactive crew count is correct$/) do
-#   step 'I get wearable-simulator/base-get-list-of-crew request payload'
-#   step 'I hit graphql'
-#   step 'I toggle activity crew list'
-#   sleep 3
-  # is_equal(on(DashboardPage).activity_status_elements.first.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
-#   is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
-# end
+Then (/^I should see correct table headers for crew list$/) do
+  is_equal(on(DashboardPage).crew_list_headers_elements.first.text,"Rank")
+  is_equal(on(DashboardPage).crew_list_headers_elements[1].text,"Surname")
+  is_equal(on(DashboardPage).crew_list_headers_elements[2].text,"Location")
+  is_equal(on(DashboardPage).crew_list_headers_elements[3].text,"Permit To Work")
+  is_equal(on(DashboardPage).crew_list_headers_elements.last.text,"Last Seen")
+end
 
-# Then (/^I should see active crew count is correct$/) do
-#   step 'I link wearable'
-#   sleep 2
-#   is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).activity_status_elements.last.text)
-#   is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
-# end
+Then (/^I should see crew link to PTW$/) do
+  p ">> #{on(DashboardPage).permit_to_work_element.text}"
+  does_include(on(DashboardPage).permit_to_work_element.text,CommonPage.get_permit_id)
+end
 
 Then (/^I should see active crew details$/) do
   is_true(on(DashboardPage).is_crew_location_detail_correct?('service'))
@@ -82,10 +78,6 @@ When (/^I link wearable$/) do
   sleep 2
 end
 
-# And (/^I toggle activity crew list$/) do
-#   on(DashboardPage).toggle_crew_activity_list
-# end
-
 When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   step 'I link crew to wearable'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
@@ -94,6 +86,12 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   sleep 1
   step 'I hit graphql'
   sleep 2
+end
+
+When (/^I link default user wearable$/) do
+  WearablePage.link_default_crew_to_wearable
+  step "I get wearable-simulator/mod-base-link-crew-to-wearable request payload"
+  step 'I hit graphql'
 end
 
 And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
