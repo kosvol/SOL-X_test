@@ -6,7 +6,8 @@ class DashboardPage < WearablePage
   include PageObject
 
   elements(:crew_list_headers, xpath: "//th")
-  element(:permit_to_work, xpath: '//table/tbody/tr/td[4]')
+  element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
+  elements(:permit_to_work_link, xpath: "//td/ul/li/a") #same as above
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")

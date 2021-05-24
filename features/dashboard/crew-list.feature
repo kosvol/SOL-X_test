@@ -91,7 +91,7 @@ Feature: CrewList
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I enter a non-existent pin
-    Then I should not see invalid pin message
+    Then I should see invalid pin message
 
   Scenario: Verify crew list is sorted in descending order of seniority
     Given I launch sol-x portal

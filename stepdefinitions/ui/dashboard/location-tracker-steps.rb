@@ -32,7 +32,6 @@ end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
-
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 
@@ -86,6 +85,17 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   sleep 1
   step 'I hit graphql'
   sleep 2
+end
+
+And (/^I click on any ptw$/) do
+  selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size-1))
+  @ptw_id = on(DashboardPage).permit_to_work_link_elements[selected_ptw].text
+  p ">> #{@ptw_id}"
+  on(DashboardPage).permit_to_work_link_elements[selected_ptw].click
+end
+
+Then (/^I should see correct permit display$/) do
+  is_equal(on(Section0Page).ptw_id_element.text,@ptw_id)
 end
 
 When (/^I link default user wearable$/) do
@@ -161,3 +171,5 @@ When (/^I signout entrants "([^"]*)"$/) do |_entrants|
   on(BypassPage).signout_entrants(item.to_s)
   end
 end
+
+

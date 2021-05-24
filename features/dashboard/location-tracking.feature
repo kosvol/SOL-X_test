@@ -27,6 +27,15 @@ Feature: LocationTracking
     Then I should see crew link to PTW
     And I unlink all crew from wearable
 
+  Scenario: Verify crew able to access ptw via dashboard crew list
+    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
+    And I sleep for 5 seconds
+    When I launch sol-x portal
+    And I link default user wearable
+    And I click on any ptw
+    And I enter pin for rank MAS
+    Then I should see correct permit display
+
   # Scenario: Verify entry log counts match
 
   # Scenario: Verify entry log navigate to entry log page

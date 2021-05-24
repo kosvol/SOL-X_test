@@ -66,9 +66,9 @@ And (/^I backspace on entered pin$/) do
   on(PinPadPage).backspace_once
 end
 
-Then (/^I should not see invalid pin message$/) do
-  is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
-end
+# Then (/^I should not see invalid pin message$/) do
+#   is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
+# end
 
 Then (/^I should see not authorize error message$/) do
   is_equal(on(PinPadPage).error_msg_element.text, 'You Are Not Authorized To Perform That Action')
