@@ -35,6 +35,7 @@ Feature: LocationTracking
     And I click on any ptw
     And I enter pin for rank MAS
     Then I should see correct permit display
+    And I should see navigation dropdown
     And I unlink all crew from wearable
 
   # Scenario: Verify entry log counts match
