@@ -67,14 +67,10 @@ class ROLPage < Section9Page
     submit_btn_elements.first.click
   end
 
-  def is_duration?(permit_validity_timer, _duration)
-    return permit_validity_timer.include?('00:58:') if _duration === '1'
-    return permit_validity_timer.include?('01:58:') if _duration === '2'
-    return permit_validity_timer.include?('02:58:') if _duration === '3'
-    return permit_validity_timer.include?('03:58:') if _duration === '4'
-    return permit_validity_timer.include?('04:58:') if _duration === '5'
-    return permit_validity_timer.include?('05:58:') if _duration === '6'
-    return permit_validity_timer.include?('06:58:') if _duration === '7'
-    return permit_validity_timer.include?('07:58:') if _duration === '8'
+  def is_duration?(permit_validity_timer, _duration, _timer_mins="59")
+    if permit_validity_timer.include?(":#{_timer_mins}:")
+      return permit_validity_timer.include?("0#{(_duration.to_i-1)}:#{_timer_mins}:") if _duration === '1'
+    end
+    is_duration?(permit_validity_timer, _duration, (_timer_mins.to_i-1))
   end
 end
