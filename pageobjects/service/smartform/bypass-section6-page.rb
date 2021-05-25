@@ -96,6 +96,13 @@ class BypassPage < Section0Page
     ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_dra', _user, _vessel)
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
+    _which_json = payload_mapper(_permit_type, '3')
+    section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
+    section['variables']['formId'] = CommonPage.get_permit_id
+    section['variables']['submissionTimestamp'] = get_current_date_time
+    JsonUtil.create_request_file("ptw/mod_3.save_section1_details", section)
+    ServiceUtil.post_graph_ql_to_uri("ptw/mod_3.save_section1_details", _user, _vessel)
+
     submit_active = set_permit_status('PENDING_MASTER_APPROVAL')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
 

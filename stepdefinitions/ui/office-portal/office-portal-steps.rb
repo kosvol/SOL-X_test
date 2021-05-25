@@ -312,3 +312,24 @@ Then(/^I should see (.+) checklist questions in Office Portal$/) do |_checklist|
   p "#{questionsArr - base_data}"
   is_equal(questionsArr, base_data)
 end
+
+Then(/^I should see the PTW ([^"]*) shows the same fields as in the Client app$/) do |_whatSection|
+  fieldsArr = []
+  labelsArr = []
+  subheadersArr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h4").each do |_field|
+    fieldsArr << _field.text
+  end
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//label").each do |_label|
+    labelsArr << _label.text
+  end
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h2").each do |_subheader|
+    subheadersArr << _subheader.text
+  end
+  baseFields = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['fields']
+  baseLabels  = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['labels']
+  baseSubheaders = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['subheaders']
+  p ">>> #{fieldsArr - baseFields}"
+  p ">> #{labelsArr - baseLabels}"
+  p "> #{subheadersArr - baseSubheaders}"
+end

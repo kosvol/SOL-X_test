@@ -62,3 +62,12 @@ Feature: PermitOverview
       | Work on Hazardous Substances                 |
       | Work on Pressure Pipelines                   |
       | Working Aloft Overside                       |
+@ska
+  Scenario: Verify the PTW Section 1 shows the same fields as in the Client app (non-maintenance type)
+    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel
+    When I sleep for 5 seconds
+    And I log in to the Office Portal
+    And I select the "LNGSIT" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see the PTW Section 1: Task Description shows the same fields as in the Client app
