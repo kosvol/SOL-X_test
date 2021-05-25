@@ -4,7 +4,6 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
-  @debug
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -135,8 +134,8 @@ Feature: ActivePermit
     Examples:
       | level_one_permit           | level_two_permit                                                                |
       | Underwater Operations      | Underwater Operation during daytime without any simultaneous operations         |
-      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
-      # | Underwater Operations                | Underwater Operation at night                                                   |
+      # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
+      # | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search                                                   |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
       | Hot Work                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
@@ -169,8 +168,8 @@ Feature: ActivePermit
     Examples:
       | level_one_permit                     | level_two_permit                                                                |
       # | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
-      # | Underwater Operations                | Simultaneous underwater operation during daytime with other operation           |
-      | Underwater Operations                | Underwater Operation at night                                                   |
+      # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
+      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
       | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
@@ -317,7 +316,7 @@ Feature: ActivePermit
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Underwater Operations permit
-    And I select Simultaneous underwater operation during daytime with other operation permit for level 2
+    And I select Underwater Operation at night or concurrent with other operations permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5

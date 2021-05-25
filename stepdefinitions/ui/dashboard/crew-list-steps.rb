@@ -6,9 +6,6 @@ Then (/^I should see correct column headers$/) do
 end
 
 Then (/^I should see total crew count match inactive crew$/) do
-  # step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  # step 'I hit graphql'
-  # is_equal(on(CrewListPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
   is_equal(on(CrewListPage).crew_count, (on(CrewListPage).crew_list_elements.size/2))
 end
 
@@ -43,11 +40,12 @@ And (/^I view pin$/) do
   step 'I sleep for 3 seconds'
   step 'I click on view pin button'
   on(PinPadPage).enter_pin(1111)
-  step 'I sleep for 1 seconds'
+  # step 'I sleep for 1 seconds'
 end
 
-Then (/^I should see pin reviewed$/) do
-  is_true(!on(CrewListPage).is_pin_hidden?)
+Then (/^I (should|should not) see pin reviewed$/) do |_condition|
+  is_true(!on(CrewListPage).is_pin_hidden?) if _condition === "should not"
+  is_true(!on(CrewListPage).is_pin_reviewed?) if _condition === "should"
 end
 
 And (/^I enter a non-existent pin$/) do
@@ -61,18 +59,16 @@ And (/^I enter a invalid master pin$/) do
 end
 
 And (/^I click on view pin button$/) do
-  # sleep 1
   BrowserActions.poll_exists_and_click(on(CrewListPage).view_pin_btn_element)
-  # on(CrewListPage).view_pin_btn
 end
 
 And (/^I backspace on entered pin$/) do
   on(PinPadPage).backspace_once
 end
 
-Then (/^I should not see invalid pin message$/) do
-  is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
-end
+# Then (/^I should not see invalid pin message$/) do
+#   is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
+# end
 
 Then (/^I should see not authorize error message$/) do
   is_equal(on(PinPadPage).error_msg_element.text, 'You Are Not Authorized To Perform That Action')

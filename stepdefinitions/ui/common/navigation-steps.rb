@@ -36,7 +36,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 And (/^I click on back to home$/) do
-  sleep 2
+  sleep 3
   BrowserActions.js_click("//button[contains(.,'Back to Home')]")
   # on(Section6Page).back_to_home_btn
   step 'I set permit id'
@@ -85,7 +85,7 @@ And ('I click New Entrant button on Enclose Space Entry PWT') do
 end
 
 And ('I click New Entry button on PTW screen') do
-  on(PreDisplay).new_entry_log_button.click
+  BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_button)
   sleep 1
 end
 
@@ -101,14 +101,14 @@ end
 
 And (/^I go to ESE log in dashboard$/) do
   sleep 1
-  on(DashboardPage).entry_status_indicator_element.click
+  BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
   on(DashboardPage).radio_button_enclosed_elements[1].click
 end
 
 And (/^I go to CRE log in dashboard$/) do
   sleep 1
-  on(DashboardPage).entry_status_indicator_element.click
+  BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
   on(DashboardPage).radio_button_enclosed_elements[0].click
 end

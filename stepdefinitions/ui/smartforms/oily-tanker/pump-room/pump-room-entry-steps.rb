@@ -337,3 +337,26 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
     raise 'Wrong condition'
   end
 end
+
+
+Then(/^I check initial gas readings is (exist|not exist)$/) do |_condition|
+  case _condition
+  when 'exist'
+    to_exists(on(PumpRoomEntry).gas_O2_element)
+    to_exists(on(PumpRoomEntry).gas_HC_element)
+    to_exists(on(PumpRoomEntry).gas_H2S_element)
+  when 'not exist'
+    not_to_exists(on(PumpRoomEntry).gas_O2_element)
+    not_to_exists(on(PumpRoomEntry).gas_HC_element)
+    not_to_exists(on(PumpRoomEntry).gas_H2S_element)
+  else
+    raise 'Wrong condition'
+  end
+end
+
+Then(/^I check report not send$/) do
+  to_exists(on(PreDisplay).send_report_element)
+  not_to_exists(on(PreDisplay).entry_log_btn_element)
+  not_to_exists(on(PreDisplay).home_tab_element)
+  not_to_exists(on(PreDisplay).permit_tab_element)
+end

@@ -21,6 +21,7 @@ Feature: LNGCRED
     When I submit a current CRE permit via service
     And I sleep for 30 seconds
     And I should see green background color
+    And I terminate the PRE permit via service
 
   Scenario: [CRED] Just exited entrant can create new entry again api
     Given  I submit a current CRE permit via service
@@ -37,6 +38,7 @@ Feature: LNGCRED
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
     Then I should see entrant count equal 3
+    And I terminate the PRE permit via service
 
   Scenario: CRED Just exited entrant can create new entry again
     Given I submit a current CRE permit via service
@@ -65,3 +67,37 @@ Feature: LNGCRED
     And I acknowledge the new entry log via service
     And I click on back arrow
     Then I should see entrant count equal 7
+    And I terminate the PRE permit via service
+
+  Scenario: Verify user can't add new entry without an initial gas readings
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin for rank C/O
+    And I fill up CRE. Duration 4. Delay to activate 3
+    And Get CRE id
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current CRE form
+    And I activate CRE form via service
+    And I navigate to CRE Display
+    And I enter pin for rank C/O
+    And I should see Permit Activated PRE status on screen
+    And I click on permit tab
+    Then I check initial gas readings is not exist
+    When I click on back arrow
+    And I enter new entry log
+    And I fill entry report with 1 optional entrants
+    And I just send Report
+    And I check report not send
+    And I terminate the PRE permit via service
+
+  Scenario: Displaying CRED without an active CRE[SOL-6222]
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to CRE Display
+    And I enter pin for rank C/O
+    And I should see red background color
+    Then I should see Permit Terminated PRE status on screen
+    And (for pred) I should see the enabled "Home" button
+    And (for pred) I should see the disabled "Entry Log" button
+    And (for pred) I should see the disabled "Permit" button

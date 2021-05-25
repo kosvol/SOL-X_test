@@ -10,6 +10,11 @@ class WearablePage
       @@beacon
     end
 
+    def link_default_crew_to_wearable
+        tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
+        JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
+    end
+
     def swap_payload(which_json, custom_value1 = nil, custom_value2 = nil)
       case which_json
       when 'wearable-simulator/mod-dismiss-panic'

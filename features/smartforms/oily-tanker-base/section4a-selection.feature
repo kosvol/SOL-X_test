@@ -78,8 +78,8 @@ Feature: Section4AChecklistSelection
       | Hot Work                                                     | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
       | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
       | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
-      # | Underwater Operations                                        | Simultaneous underwater operation during daytime with other operation           | Underwater Operation                      |
-      # | Underwater Operations                                        | Underwater Operation at night                                                   | Underwater Operation                      |
+      # | Underwater Operations                                        | Underwater Operation at night or concurrent with other operations           | Underwater Operation                      |
+      # | Underwater Operations                                        | Underwater Operations at night for mandatory drug and contraband search                                                   | Underwater Operation                      |
       | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
       | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
       | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |

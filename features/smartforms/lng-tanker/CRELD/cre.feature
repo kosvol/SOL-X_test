@@ -7,7 +7,7 @@ Feature: LNGCRE
   Background:
     Given I switch vessel to LNG
 
-    # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
+  # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
 
   Scenario: Verify user can see all the CRE questions
     Given I launch sol-x portal without unlinking wearable
@@ -23,11 +23,11 @@ Feature: LNGCRE
 
     Examples:
       | rank                      | pin  |
-            # | Chief Officer             | 8383 |
+      # | Chief Officer             | 8383 |
       | Additional Chief Officer  | 2761 |
-            # | Second Officer | 6268 |
+      # | Second Officer | 6268 |
       | Additional Second Officer | 7865 |
-            # | 3/O                       | 0159 |
+      # | 3/O                       | 0159 |
       | A 3/O                     | 2674 |
 
   Scenario: Verify these crew cannot create CRE permit
@@ -64,7 +64,7 @@ Feature: LNGCRE
 
   Scenario: Verify CRE Chief Officer can approve the same permit
     Given I launch sol-x portal without unlinking wearable
-        # When I clear gas reader entries
+    # When I clear gas reader entries
     When I navigate to create new CRE
     And I enter pin for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
@@ -75,7 +75,7 @@ Feature: LNGCRE
 
   Scenario Outline: Verify CRE roles cannot approve the same permit
     Given I launch sol-x portal without unlinking wearable
-        # When I clear gas reader entries
+    # When I clear gas reader entries
     When I navigate to create new CRE
     And I enter pin for rank <rank>
     And I fill up CRE. Duration 4. Delay to activate 3
@@ -93,7 +93,7 @@ Feature: LNGCRE
 
   Scenario: Verify non CRE creator can approve the same permit
     Given I launch sol-x portal without unlinking wearable
-        # When I clear gas reader entries
+    # When I clear gas reader entries
     When I navigate to create new CRE
     And I enter pin for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
@@ -108,7 +108,7 @@ Feature: LNGCRE
     And I navigate to create new CRE
     And I enter pin for rank <rank>
     Then I fill up CRE. Duration 4. Delay to activate 3
-        # And Get PRE id
+    # And Get PRE id
     And for cre I submit permit for <rank> Approval
     And I getting a permanent number from indexedDB
     Then I activate the current CRE form
@@ -127,11 +127,11 @@ Feature: LNGCRE
     Examples:
       | rank |
       | C/O  |
-            # | Additional Chief Officer  | 2761 |
+      # | Additional Chief Officer  | 2761 |
       | 2/O  |
-            # | Additional Second Officer | 7865 |
+      # | Additional Second Officer | 7865 |
       | 3/O  |
-    # | A 3/O                     | 2674 |
+  # | A 3/O                     | 2674 |
 
   Scenario: Verify only MAS can delete CRE permit in Created State
     Given I launch sol-x portal without unlinking wearable
@@ -150,7 +150,7 @@ Feature: LNGCRE
 
   Scenario: Verify these roles can request update for CRE permit in Pending Approval State
     Given I launch sol-x portal without unlinking wearable
-        # When I clear gas reader entries
+    # When I clear gas reader entries
     When I navigate to create new CRE
     And I enter pin for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
@@ -166,7 +166,6 @@ Feature: LNGCRE
     And I navigate to create new CRE
     And I enter pin for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
-    And Get CRE id
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current CRE form
@@ -184,12 +183,23 @@ Feature: LNGCRE
     And I navigate to create new CRE
     And I enter pin for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
-    And Get CRE id
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Rank: C/O
     Then I should see Add Gas button enabled
     And I should see Updates Needed button disabled
 
-
-
+  Scenario: The Responsible Officer Signature should be displayed
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin for rank C/O
+    And I fill up CRE. Duration 4. Delay to activate 10
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I open the current CRE with status Pending approval. Rank: C/O
+    And I take note of start and end validity time for CRE
+    When I press the "Approve for Activation" button
+    And I sign on canvas with valid 8383 pin
+    And I should see the page 'Permit Successfully Scheduled for Activation'
+    And I check "Responsible Officer Signature" is present

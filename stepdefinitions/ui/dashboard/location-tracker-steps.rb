@@ -7,20 +7,17 @@ Given (/^I unlink all crew from wearable$/) do
   sleep 2
 end
 
-Then (/^I should see inactive crew count is correct$/) do
-  step 'I get wearable-simulator/base-get-list-of-crew request payload'
-  step 'I hit graphql'
-  step 'I toggle activity crew list'
-  sleep 3
-  is_equal(on(DashboardPage).activity_status_elements.first.text, "Inactive (#{ServiceUtil.get_response_body['data']['crewMembers'].size})")
-  is_equal(on(DashboardPage).crew_list_elements.size, ServiceUtil.get_response_body['data']['crewMembers'].size)
+Then (/^I should see correct table headers for crew list$/) do
+  is_equal(on(DashboardPage).crew_list_headers_elements.first.text,"Rank")
+  is_equal(on(DashboardPage).crew_list_headers_elements[1].text,"Surname")
+  is_equal(on(DashboardPage).crew_list_headers_elements[2].text,"Location")
+  is_equal(on(DashboardPage).crew_list_headers_elements[3].text,"Permit To Work")
+  is_equal(on(DashboardPage).crew_list_headers_elements.last.text,"Last Seen")
 end
 
-Then (/^I should see active crew count is correct$/) do
-  step 'I link wearable'
-  sleep 2
-  is_equal("Active (#{on(DashboardPage).get_serv_active_crew_count})", on(DashboardPage).activity_status_elements.last.text)
-  is_equal(on(DashboardPage).crew_list_elements.size, on(DashboardPage).get_serv_active_crew_count)
+Then (/^I should see crew link to PTW$/) do
+  p ">> #{on(DashboardPage).permit_to_work_element.text}"
+  does_include(on(DashboardPage).permit_to_work_element.text,CommonPage.get_permit_id)
 end
 
 Then (/^I should see active crew details$/) do
@@ -35,7 +32,6 @@ end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
-
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 
@@ -81,10 +77,6 @@ When (/^I link wearable$/) do
   sleep 2
 end
 
-And (/^I toggle activity crew list$/) do
-  on(DashboardPage).toggle_crew_activity_list
-end
-
 When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   step 'I link crew to wearable'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
@@ -93,6 +85,23 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   sleep 1
   step 'I hit graphql'
   sleep 2
+end
+
+And (/^I click on any ptw$/) do
+  selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size-1))
+  @ptw_id = on(DashboardPage).permit_to_work_link_elements[selected_ptw].text
+  p ">> #{@ptw_id}"
+  on(DashboardPage).permit_to_work_link_elements[selected_ptw].click
+end
+
+Then (/^I should see correct permit display$/) do
+  is_equal(on(Section0Page).ptw_id_element.text,@ptw_id)
+end
+
+When (/^I link default user wearable$/) do
+  WearablePage.link_default_crew_to_wearable
+  step "I get wearable-simulator/mod-base-link-crew-to-wearable request payload"
+  step 'I hit graphql'
 end
 
 And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
@@ -129,22 +138,23 @@ When (/^I submit a scheduled PRE permit$/) do
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
+  sleep 10 #default 3 seconds; hack to bypass some optimization problem
   is_equal(on(DashboardPage).crew_list_elements.size,25)
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
-  # p ">> #{on(DashboardPage).pre_indicator}"
   if _condition === 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('active'))
   elsif _condition === 'should not'
-    is_equal(on(DashboardPage).pre_indicator, 'Not Active')
+    is_equal(on(DashboardPage).pre_indicator, 'Inactive')
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
 end
 
-When (/^I terminate the PRE permit via service$/) do
-  on(BypassPage).terminate_pre_permit('8383')
+When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |_action,_permit_type|
+  on(BypassPage).terminate_pre_permit('8383') if _action == "terminate"
+  on(BypassPage).close_permit(_permit_type,'8383',ENV['ENVIRONMENT']) if _action == "close"
 end
 
 When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
@@ -161,3 +171,5 @@ When (/^I signout entrants "([^"]*)"$/) do |_entrants|
   on(BypassPage).signout_entrants(item.to_s)
   end
 end
+
+

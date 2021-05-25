@@ -139,13 +139,21 @@ Then ('I check names of entrants {int} on New Entry page') do |item|
   expect(arr_before.to_a).to match_array entr_arr.to_a
 end
 
-And (/^I send Report$/) do
-  BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
-  on(PreDisplay).send_report_btn_elements.first.click
-  # on(PreDisplay).send_report_element.click
-  step 'I sleep for 5 seconds'
-  BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
-  on(CommonFormsPage).done_btn_elements.first.click
+And (/^I (send|just send) Report$/) do |_condition|
+  case _condition
+  when 'send'
+    BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
+    on(PreDisplay).send_report_btn_elements.first.click
+    # on(PreDisplay).send_report_element.click
+    step 'I sleep for 5 seconds'
+    BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
+    on(CommonFormsPage).done_btn_elements.first.click
+  when 'just send'
+    BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
+    on(PreDisplay).send_report_btn_elements.first.click
+  else
+    raise "wrong action"
+  end
 end
 
 And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
@@ -162,5 +170,6 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |_number|
-  expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+  #expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+  expect(on(DashboardPage).active_entarnt_element.text).to include(_number.to_s)
 end

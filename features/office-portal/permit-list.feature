@@ -25,7 +25,7 @@ Feature: PermitList
     And I select the "Auto" vessel
     And I click on the Cross icon
     Then I should see the Vessel List page
-#find out how to reduce the waiting time
+  #find out how to reduce the waiting time
 
   Scenario: Verify the the forms quantity on the vessel card is the same as on the "All Permits" title (3733)
     Given I terminate permit submit_work_on_pressure_line via service with 9015 user on the auto vessel
@@ -38,6 +38,7 @@ Feature: PermitList
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
+    And I select filter value with permit type "Permit to Work Forms"
     Then I should see the terminated form at the top of the forms list
 
   Scenario: Verify counters are updated after the form termination (3781, 4468)
@@ -64,6 +65,7 @@ Feature: PermitList
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I log in to the Office Portal
     And I select the "Auto" vessel
+    And I select filter value with permit type "Permit to Work Forms"
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see the selected form in a new tab
@@ -105,6 +107,6 @@ Feature: PermitList
     And I select the "Auto" vessel
     Then I should see all the forms are not selected
 
-  #Scenario: Verify the several forms are displayed after multi-selection (4479, 6401)
+#Scenario: Verify the several forms are displayed after multi-selection (4479, 6401)
 
-  #Scenario: Verify the "Load More Permits" button appears when there are more than 100 terminated permits (6403)
+#Scenario: Verify the "Load More Permits" button appears when there are more than 100 terminated permits (6403)

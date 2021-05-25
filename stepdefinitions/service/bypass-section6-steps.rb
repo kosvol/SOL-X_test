@@ -28,7 +28,7 @@ end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to pending office approval state$/) do |_permit_type, _user|
   on(BypassPage).trigger_forms_submission(_permit_type, _user, 'pending', 'eic_yes', 'gas_yes')
-  on(BypassPage).set_oa_permit_to_pending_office_appr
+  on(BypassPage).set_oa_permit_to_pending_office_appr 
 end
 
 Given (/^I submit permit (.+) via service with (.+) user and set to pending office approval state and no gas reading$/) do |_permit_type, _user|
@@ -73,8 +73,6 @@ end
 And (/^I clear wearable history and active users$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_wearable_histories')
   SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_histories_entries')
-  SmartFormDBPage.get_table_data('fauxton', 'get_wearable_active_users')
-  SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_active_users')
 end
 
 Given (/^I clear mariadb$/) do
@@ -104,4 +102,8 @@ end
 And (/^I delete number of entry "([^"]*)"$/) do |_array|
   @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record(_array)
+end
+
+Given (/^I truncate and dump step records$/) do
+  Postgres_clearing.import_step_record_csv_postgres
 end

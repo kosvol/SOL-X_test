@@ -152,7 +152,7 @@ Feature: Section4BEIC
       | C/O            | 8383 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | 2/E            | 2523 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | ETO            | 0856 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-      | Second Officer | 6268 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
+      | Second Officer | 6268 | Underwater Operations           | Underwater Operations at night for mandatory drug and contraband search    | Underwater Operation                     |
 
   Scenario Outline: Verify non competent person cannot sign as competent person
     Given I launch sol-x portal without unlinking wearable
@@ -178,14 +178,14 @@ Feature: Section4BEIC
       # | Additional Second Officer  | 7865 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       # | Additional Chief Engineer  | 5718 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-      | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operation at night                                              | Underwater Operation                     |
+      | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operations at night for mandatory drug and contraband search    | Underwater Operation                     |
       | Master                     | 1111 | Critical Equipment Maintenance  | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
       | 3/O                        | 0159 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
       # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                       | Enclosed Space Entry Checklist           |
       | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
       # | 4/E                        | 1311 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
       | BOS                        | 1018 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # | PMN                        | 4236 | Underwater Operations          | Underwater Operation at night                                              | Underwater Operation                     |
+  # | PMN                        | 4236 | Underwater Operations          | Underwater Operations at night for mandatory drug and contraband search                                              | Underwater Operation                     |
 
   Scenario: Verify sub questions
     Given I launch sol-x portal without unlinking wearable

@@ -71,6 +71,6 @@ Rotational Portable Power Tools:
 Underwater Operations:
   [
     "Underwater Operation during daytime without any simultaneous operations",
-    "Simultaneous underwater operation during daytime with other operation",
-    "Underwater Operation at night",
+    "Underwater Operation at night or concurrent with other operations",
+    "Underwater Operations at night for mandatory drug and contraband search",
   ]

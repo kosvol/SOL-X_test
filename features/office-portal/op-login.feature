@@ -1,8 +1,8 @@
 @op-login-page
 Feature: OpLoginPage
-    As a ...
-    I want to ...
-    So that ...
+  As a ...
+  I want to ...
+  So that ...
 
   Scenario: Verify the name of the portal is "Office Portal"(5761)
     Given I launch Office Portal
@@ -12,7 +12,7 @@ Feature: OpLoginPage
     Given I launch Office Portal
     When I enter a invalid password
     And I click on Log In Now button
-    Then I should see the text 'Incorrect Password'
+    Then I should see the text 'Incorrect uid or password'
 
   Scenario: Verify users can log in to the Office Portal (3099)
     Given I launch Office Portal
