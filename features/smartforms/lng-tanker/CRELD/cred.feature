@@ -25,7 +25,7 @@ Feature: LNGCRED
 
   Scenario: [CRED] Just exited entrant can create new entry again api
     Given  I submit a current CRE permit via service
-    And I add new entry "A 2/O,3/O,A 3/O"
+    And I add new entry "A 2/O,3/O,A 3/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
     When I launch sol-x portal without unlinking wearable
@@ -34,7 +34,7 @@ Feature: LNGCRED
     And I should see Permit Activated PRE status on screen
     When I signout entrants "A 2/O"
     And I sleep for 15 seconds
-    And I add new entry "A 2/O"
+    And I add new entry "A 2/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
     Then I should see entrant count equal 3
