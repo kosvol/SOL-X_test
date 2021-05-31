@@ -99,6 +99,11 @@ And (/^I add new entry "([^"]*)" (CRE|PTW)$/) do |_array, _type|
   on(BypassPage).create_entry_record(_array, _type)
 end
 
+And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |_array, _type|
+  @@pre_number = CommonPage.get_permit_id
+  on(BypassPage).create_entry_record_custom_gas_readings(_array, _type)
+end
+
 Given (/^I truncate and dump step records$/) do
   Postgres_clearing.import_step_record_csv_postgres
 end

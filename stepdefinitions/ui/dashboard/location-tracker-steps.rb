@@ -161,9 +161,10 @@ When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
   on(BypassPage).close_permit(_permit_type,'9015',_env)
 end
 
-When (/^I submit a (scheduled|current) CRE permit via service$/) do |_type|
-  on(BypassPage).trigger_cre_submission('8383', 'current') if _type == 'current'
-  on(BypassPage).trigger_cre_submission('8383', 'scheduled') if _type == 'scheduled'
+When (/^I submit a (scheduled|current) (CRE|PRE) permit via service$/) do |_type,_permit_type|
+  on(BypassPage).trigger_cre_submission('8383', 'current') if _type == 'current' && _permit_type =='CRE'
+  on(BypassPage).trigger_cre_submission('8383', 'scheduled') if _type == 'scheduled' && _permit_type =='CRE'
+  
 end
 
 When (/^I signout entrants "([^"]*)"$/) do |_entrants|
