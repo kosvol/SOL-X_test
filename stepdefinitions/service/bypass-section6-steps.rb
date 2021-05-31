@@ -94,14 +94,9 @@ Given (/^I remove crew from vessel$/) do
   SmartFormDBPage.delete_crew_from_vessel('fauxton', 'delete_user')
 end
 
-And (/^I add new entry "([^"]*)"$/) do |_array|
+And (/^I add new entry "([^"]*)" (CRE|PTW)$/) do |_array, _type|
   @@pre_number = CommonPage.get_permit_id
-  on(BypassPage).create_entry_record(_array)
-end
-
-And (/^I delete number of entry "([^"]*)"$/) do |_array|
-  @@pre_number = CommonPage.get_permit_id
-  on(BypassPage).create_entry_record(_array)
+  on(BypassPage).create_entry_record(_array, _type)
 end
 
 Given (/^I truncate and dump step records$/) do

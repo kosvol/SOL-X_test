@@ -361,16 +361,32 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
-  def create_entry_record(_array)
-    _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
-    _entry_record['variables']['formId'] = CommonPage.get_permit_id
-    _array.split(',').each do |item|
+  def create_entry_record(_array,_type)
       yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-      id = yml_id['ranks_id'][item]
-      _entry_record['variables']['otherEntrantIds'].push(id)
-    end
-    JsonUtil.create_request_file('ptw/18.mod_create_entry_record', _entry_record)
-    ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
+    if _type == 'CRE'
+      _entry_record = JSON.parse JsonUtil.read_json('cre/09.add_entry')
+      _entry_record['variables']['formId'] = CommonPage.get_permit_id
+      _array.split(',').each do |item|
+        id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
+        _entry_record['variables']['otherEntrantIds'].push(id)
+      end
+      id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
+      _entry_record['variables']['crew_id'] = id_2
+      JsonUtil.create_request_file('cre/09.mod_add_entry', _entry_record)
+      ServiceUtil.post_graph_ql('cre/09.mod_add_entry')
+      elsif _type == 'PTW'
+        _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
+        _entry_record['variables']['formId'] = CommonPage.get_permit_id
+        _array.split(',').each do |item|
+          id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
+          puts (ENV['ENVIRONMENT'])
+          _entry_record['variables']['otherEntrantIds'].push(id)
+        end
+        JsonUtil.create_request_file('ptw/18.mod_create_entry_record', _entry_record)
+        ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
+      else 
+        raise "Wrong Permit Type" 
+    end 
   end
 
   def signout_entrants(_entrant_name)
@@ -421,8 +437,10 @@ end
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][4]['value'] = start_time
+    update_form_pre['variables']['answers'][7]['value']['2021-02-19T13:00:13.786Z'] = get_current_date_time
     update_form_pre['variables']['answers'][8]['value'] = start_time
     update_form_pre['variables']['answers'][9]['value'] = end_time
+    update_form_pre['variables']['answers'][11]['value']['2021-02-19T13:00:46.786Z'] = get_current_date_time
     JsonUtil.create_request_file('cre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('cre/mod-02.update-form-answers', _user)
 
@@ -438,8 +456,11 @@ end
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][4]['value'] = start_time
+    update_form_pre['variables']['answers'][7]['value']['2021-02-19T13:00:13.786Z'] = get_current_date_time
     update_form_pre['variables']['answers'][8]['value'] = start_time
     update_form_pre['variables']['answers'][9]['value'] = end_time
+    update_form_pre['variables']['answers'][11]['value']['2021-02-19T13:06:33.658Z'] = get_current_date_time
+    update_form_pre['variables']['answers'][12]['value']['2021-02-19T13:07:00.658Z'] = get_current_date_time
     JsonUtil.create_request_file('cre/mod-07.before-change-status-to-approve', update_form_pre)
     ServiceUtil.post_graph_ql('cre/mod-07.before-change-status-to-approve', _user)
 
