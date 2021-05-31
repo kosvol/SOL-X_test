@@ -14,7 +14,7 @@ class PumpRoomEntry < PreDisplay
   button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
 
-  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
+  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
   # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
   elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
