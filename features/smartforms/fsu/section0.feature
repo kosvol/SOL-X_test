@@ -12,6 +12,38 @@ Feature: LNGSmartFormsPermission
     #     Then I navigate to create new CRE
     #     And I switch vessel to LNG
 
+    Scenario: Verify ROL can be approved by CE
+        Given I launch sol-x portal without unlinking wearable
+        And I navigate to create new permit
+        And I enter pin 8248
+        And I select Rigging of Gangway & Pilot Ladder permit
+        And I select Rigging of Gangway & Pilot Ladder permit for level 2
+        When I press next for 1 times
+        And I submit permit for Master Approval
+        And I click on back to home
+        And I click on pending approval filter
+        When I click on permit for master approval
+        And I enter pin 8248
+        When I press next for 1 times
+        And I should see submit button enabled
+        And I switch vessel to LNG
+
+    Scenario: Verify CE can request for update for ROL
+        Given I launch sol-x portal without unlinking wearable
+        When I navigate to create new permit
+        And I enter pin 8248
+        And I select Rigging of Gangway & Pilot Ladder permit
+        And I select Rigging of Gangway & Pilot Ladder permit for level 2
+        And I press next for 1 times
+        And I submit permit for Master Approval
+        And I click on back to home
+        And I click on pending approval filter
+        And I click on permit for master approval
+        And I enter pin 8248
+        And I press next for 1 times
+        Then I should see updates needed button enabled
+        And I switch vessel to LNG
+
     Scenario: Two LNG forms to be dispalyed in maintenance permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
