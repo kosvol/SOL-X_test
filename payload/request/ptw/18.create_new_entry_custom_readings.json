@@ -30,9 +30,7 @@
             }
         ],
         "purposeOfEntry": "Autotest",
-        "otherEntrantIds": [
-            "AUTO_SOLX0007"
-        ]
+        "otherEntrantIds": []
     },
     "query": "fragment dateTimeWithOffsetFragment on DateTimeWithOffset {\n  dateTime\n  utcOffset\n  __typename\n}\n\nmutation createEntryRecord($formId: ID!, $crewId: ID, $signature: String!, $locationId: ID, $gasReadings: [GasReadingInput!]!, $otherEntrantIds: [ID!]!, $purposeOfEntry: String!) {\n  createEntryRecord(formId: $formId, crewId: $crewId, signature: $signature, locationId: $locationId, gasReadings: $gasReadings, otherEntrantIds: $otherEntrantIds, purposeOfEntry: $purposeOfEntry) {\n    crewId\n    entryStatus\n    entryId\n    gasReadingStatus\n    signature\n    locationId\n    purposeOfEntry\n    entrant {\n      _id\n      rank\n      firstName\n      lastName\n      __typename\n    }\n    gasReadings {\n      gasName\n      threshold\n      reading\n      unit\n      __typename\n    }\n    timeIn {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignIn\n    timeOut {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignOut\n    validityStart {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    validityEnd {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    gasReadingTime {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    __typename\n  }\n}\n"
 }

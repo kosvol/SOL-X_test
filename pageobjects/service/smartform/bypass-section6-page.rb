@@ -371,7 +371,7 @@ end
         _entry_record['variables']['otherEntrantIds'].push(id)
       end
       id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
-      _entry_record['variables']['crew_id'] = id_2
+      _entry_record['variables']['crewId'] = id_2
       JsonUtil.create_request_file('cre/09.mod_add_entry', _entry_record)
       ServiceUtil.post_graph_ql('cre/09.mod_add_entry')
       elsif _type == 'PTW'
@@ -407,7 +407,7 @@ end
       _entry_record['variables']['otherEntrantIds'].push(id)
     end
     id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O'] if _type == 'CRE' or 'PRE'
-    _entry_record['variables']['crew_id'] = id_2 if _type == 'CRE' or 'PRE'
+    _entry_record['variables']['crewId'] = id_2 if _type == 'CRE' or 'PRE'
     JsonUtil.create_request_file(permit_mod, _entry_record)
     ServiceUtil.post_graph_ql(permit_mod)
 end

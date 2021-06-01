@@ -20,6 +20,12 @@ class DashboardPage < WearablePage
   elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
   elements(:date_log, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entarnt, xpath: "//span[@data-testid='entrant-count']")
+  #Gas reading alert 
+  element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
+  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
+  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+
+
   @@ship_area = "//li/button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
