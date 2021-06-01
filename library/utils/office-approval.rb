@@ -17,6 +17,7 @@ module OfficeApproval
     private
 
     def get_event_id(form_id)
+      sleep 45
       request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
       (JSON.parse request.to_s)['docs'][0]['_id']
     end
