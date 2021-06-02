@@ -1,0 +1,27 @@
+fields:
+  [
+    "Name of Vessel:",
+    "DRA No:",
+    "Created On:",
+    "Task:"
+  ]
+
+labels: []
+
+subheaders:
+  [
+    "Section 3A: DRA - Method & Hazards",
+    "Evaluation of Residual Risk",
+    "Method No: 1"
+  ]
+
+fields_exceptions: []
+
+labels_exceptions:
+  [
+      "Gaseous atmosphere",
+      "Flammable materials",
+      "Fire hazard in adjacent compartments"
+  ]
+
+subheaders_exceptions: []

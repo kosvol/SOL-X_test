@@ -181,7 +181,7 @@ And(/^I should see This Permit Has been approved on label with the correct date$
 end
 
 Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel)
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, nil)
   dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
   @formNumber = dataFileResp['data']['createForm']['_id']
@@ -280,7 +280,7 @@ end
 
 
 Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |_permit_type, _user, _vessel, _checklist|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, _checklist)
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, _checklist, nil, nil)
   dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
   @formNumber = dataFileResp['data']['createForm']['_id']
@@ -309,27 +309,123 @@ Then(/^I should see (.+) checklist questions in Office Portal$/) do |_checklist|
   end
   base_data = ["Vessel Name:", "Created On:"]
   base_data = base_data + YAML.load_file("data/checklist/#{_checklist}.yml")['questions'] - YAML.load_file("data/checklist/checklist_exceptions.yml")['exceptions']
-  p "#{questionsArr - base_data}"
+  p "> difference #{questionsArr - base_data}"
   is_equal(questionsArr, base_data)
 end
 
-Then(/^I should see the PTW ([^"]*) shows the same fields as in the Client app$/) do |_whatSection|
+Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do |_whatSection|
   fieldsArr = []
   labelsArr = []
   subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h4").each do |_field|
+  if _whatSection == 'Energy Isolation Certificate'
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//h4").each do |_field|
+      fieldsArr << _field.text
+    end
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//label").each do |_label|
+      labelsArr << _label.text
+    end
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//h2").each do |_subheader|
+      subheadersArr << _subheader.text
+    end
+  else
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h4").each do |_field|
+      fieldsArr << _field.text
+    end
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//label").each do |_label|
+      labelsArr << _label.text
+    end
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h2").each do |_subheader|
+      subheadersArr << _subheader.text
+    end
+  end
+  baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+  baseLabels  = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels']
+  baseSubheaders = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders']
+  #exceptions
+  fieldsArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields_exceptions']
+  labelsArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels_exceptions']
+  subheadersArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders_exceptions']
+  p ">>> difference #{fieldsArr - baseFields}"
+  p ">> difference #{labelsArr - baseLabels}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(labelsArr, baseLabels)
+  is_equal(subheadersArr, baseSubheaders)
+end
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the EIC (.+)$/) do |_permit_type, _user, _vessel, _eic|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, _eic, nil)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  sleep(2)
+end
+
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the Gas Readings (.+)$/) do |_permit_type, _user, _vessel, _gas|
+  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, _gas)
+  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @formNumber = dataFileResp['data']['createForm']['_id']
+  @formName = dateFileReq['variables']['permitType']
+  sleep(2)
+end
+
+Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in the Client app$/) do |_condition|
+  fieldsArr = []
+  subheadersArr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |_field|
     fieldsArr << _field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//label").each do |_label|
-    labelsArr << _label.text
-  end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h2").each do |_subheader|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |_subheader|
     subheadersArr << _subheader.text
   end
-  baseFields = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['fields']
-  baseLabels  = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['labels']
-  baseSubheaders = [] + YAML.load_file("data/screens-label/screen-labels.yml")['default_section1_labels']['subheaders']
-  p ">>> #{fieldsArr - baseFields}"
-  p ">> #{labelsArr - baseLabels}"
-  p "> #{subheadersArr - baseSubheaders}"
+  baseFields = [] + YAML.load_file("data/screens-label/Section 6.yml")["fields_#{_condition}"]
+  baseSubheaders = [] + YAML.load_file("data/screens-label/Section 6.yml")['subheaders']
+  p ">>> difference #{fieldsArr - baseFields}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(subheadersArr, baseSubheaders)
+end
+
+Then(/^I should see the (.*) shows the same fields as in the Client app with (.*)$/) do |_section, _condition|
+  fieldsArr = []
+  subheadersArr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h4").each do |_field|
+    fieldsArr << _field.text
+  end
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h2").each do |_subheader|
+    subheadersArr << _subheader.text
+  end
+  baseFields = [] + YAML.load_file("data/screens-label/#{_section}.yml")["fields_#{_condition}"]
+  baseSubheaders = [] + YAML.load_file("data/screens-label/#{_section}.yml")["subheaders_#{_condition}"]
+  p ">>> difference #{fieldsArr - baseFields}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(subheadersArr, baseSubheaders)
+end
+
+Then(/^I should see Section 8 shows the same fields as in the Client app with (.*)$/) do |_checklist|
+  case _checklist
+  when "Critical Equipment Maintenance"
+    _checklist = "critical"
+  when "Work on Electrical Equipment and Circuits"
+    _checklist = "electrical"
+  when "Work on Pressure Pipelines"
+    _checklist = "pipe"
+  end
+  fieldsArr = []
+  subheadersArr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |_field|
+    fieldsArr << _field.text
+  end
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |_subheader|
+    subheadersArr << _subheader.text
+  end
+  baseFields = [] + YAML.load_file("data/screens-label/Section 8.yml")["fields_#{_checklist}"]
+  baseSubheaders = [] + YAML.load_file("data/screens-label/Section 8.yml")["subheaders_eic_no"]
+  p ">>> difference #{fieldsArr - baseFields}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(subheadersArr, baseSubheaders)
 end

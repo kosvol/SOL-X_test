@@ -1,0 +1,86 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/012",
+    "answers": [
+      {
+      "fieldId": "updatesNeededComment",
+      "value": "\"\""
+      },
+      {
+      "fieldId": "toolBoxMeetingCarriedOut",
+      "value": "\"yes\""
+      },
+      {
+      "fieldId": "openChecklistColdWorkOp",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistCriticalEquipMaintenance",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistEnclosedSpaceEntry",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistHelicopterOp",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistHotWorkOutsideDesignatedArea",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistPersonnelTransferByBasket",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistPumpRoomEntry",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistRotationalPortablePowerTools",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistUnderwaterOp",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistUseOfCamera",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistUseOfOdmeInManualMode",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistHeavyWeather",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistElectricalEquipmentAndCircuit",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistWorkOnHazardousSubstances",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistPressurePipelines",
+      "value": "\"na\""
+      },
+      {
+      "fieldId": "openChecklistWorkingAloftOverside",
+      "value": "\"na\""
+      }
+    ],
+    "submissionTimestamp": "2021-04-05T10:56:31.115Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}
