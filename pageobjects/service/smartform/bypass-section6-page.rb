@@ -393,7 +393,7 @@ end
     _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
     _entry_record['variables']['formId'] = CommonPage.get_permit_id
     yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-    id = yml_id['ranks_id'][_entrant_name]
+    id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][_entrant_name]
     _entry_record['variables']['crewId'] = (id)
     JsonUtil.create_request_file('cre/18.mod_signout_entrants', _entry_record)
     ServiceUtil.post_graph_ql('cre/18.mod_signout_entrants')
