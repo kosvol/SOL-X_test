@@ -3,7 +3,7 @@ Feature: LNGCREL
   As a ...
   I want to ...
   So that ...
-  @wip
+
   Scenario: The log should display entries with the correct date
     Given I change ship local time to -11 GMT
     When  I submit a current CRE permit via service
@@ -30,10 +30,10 @@ Feature: LNGCREL
     And I acknowledge the new entry log cre via service
     When I launch sol-x portal dashboard
     And I sleep for 5 seconds
-    And I check number 4 of entrants on dashboard
+    And I check number 5 of entrants on dashboard
     When I signout entrants "A 2/O"
     And I sleep for 10 seconds
-    And I check number 3 of entrants on dashboard
+    And I check number 4 of entrants on dashboard
     And I terminate the PRE permit via service
 
 

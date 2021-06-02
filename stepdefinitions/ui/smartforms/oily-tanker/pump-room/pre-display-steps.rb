@@ -106,5 +106,6 @@ end
 
 Then(/^I check \"Responsible Officer Signature\" is present$/) do
   sleep 5
-  wait_until_is_visible(@browser.find_element(:xpath, "//h2[contains(text(),'Responsible Officer Signature')]"))
+  BrowserActions.wait_until_is_visible(on(PumpRoomEntry).resp_off_signature_element)
+  is_equal(on(PumpRoomEntry).resp_off_signature_element.text,"Responsible Officer Signature:")
 end

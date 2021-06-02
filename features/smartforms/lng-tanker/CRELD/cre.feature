@@ -202,4 +202,9 @@ Feature: LNGCRE
     When I press the "Approve for Activation" button
     And I sign on canvas with valid 8383 pin
     And I should see the page 'Permit Successfully Scheduled for Activation'
+    Then I press the "Back to Home" button
+    And I sleep for 1 seconds
+    When I navigate to "Scheduled" screen for CRE
+    And I should see the current CRE in the "Scheduled" list
+    When I view permit with A/M rank and 8383 pin
     And I check "Responsible Officer Signature" is present
