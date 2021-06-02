@@ -78,10 +78,10 @@ Feature: Section7
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
-    # And I sleep for 200 seconds
+    # And I sleep for 230 seconds
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 200 seconds
+    And I sleep for 230 seconds
     And I click on pending approval filter
     And I approve permit
     And I click on back to home

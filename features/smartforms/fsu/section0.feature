@@ -143,7 +143,7 @@ Feature: LNGSmartFormsPermission
         And I set oa permit to office approval state manually
         And I navigate to OA link
         And I approve oa permit via oa link manually
-        And I sleep for 200 seconds
+        And I sleep for 230 seconds
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval
