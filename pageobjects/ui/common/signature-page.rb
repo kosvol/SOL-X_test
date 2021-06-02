@@ -13,7 +13,7 @@ class SignaturePage < Section1Page
     sign_for_gas
     sleep 1
     select_location_of_work if zone_btn_element.text === "Select"
-    sleep 1
+    sleep 2
     BrowserActions.poll_exists_and_click(done_btn_elements.first)
   end
 

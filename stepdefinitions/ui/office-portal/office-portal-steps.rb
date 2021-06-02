@@ -236,7 +236,7 @@ And(/^I create ([^"]*) via service with static env$/) do |_type|
     step 'I terminate the PRE permit via service'
   elsif _type === 'submit_enclose_space_entry'
     step "I submit permit #{_type} via service with 8383 user and set to active state with gas reading require"
-    step 'I add new entry "A 2/O"'
+    step 'I add new entry "A 2/O" PTW'
     step 'I sleep for 3 seconds'
     step 'I acknowledge the new entry log via service'
     step 'I sleep for 3 seconds'

@@ -15,6 +15,7 @@ class ROLPage < Section9Page
   buttons(:issued_date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_permitIssuedOnDate']")
   buttons(:valid_until_date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_permitValidUntil']")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div[2]/button")
+  button(:updates_needed_btn, xpath: "//button[contains(.,'Updates Needed')]")
   @@duration = "//button[contains(.,'%s')]"
 
   def fill_rol_forms

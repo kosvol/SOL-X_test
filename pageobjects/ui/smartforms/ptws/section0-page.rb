@@ -7,7 +7,7 @@ class Section0Page < NavigationPage
 
   element(:click_create_permit_btn, xpath: "//button[contains(.,'Create Permit To Work')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')
-  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
+  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
   button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   elements(:permit_filter, xpath: "//div[@role='list']/a")
