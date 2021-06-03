@@ -6,7 +6,8 @@ Feature: PermitOverview
 
   Scenario: Verify PRE will be activated and auto terminated at the specified time [Office portal]
     Given I create PRE via service with static env
-    When I log in to the Office Portal
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
     And I select the "Auto" vessel
     And I sleep for 3 seconds
     And I check the checkbox near the first permit in the list
@@ -16,7 +17,8 @@ Feature: PermitOverview
 
   Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
     Given I create submit_enclose_space_entry via service with static env
-    When I log in to the Office Portal
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
     And I select the "Auto" vessel
     And I click on Add Filter button
     And I select filter value with permit type "Enclosed Spaces Entry"
