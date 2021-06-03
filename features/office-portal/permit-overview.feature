@@ -28,19 +28,19 @@ Feature: PermitOverview
     And I check rank and full name of Entrant without toxic "A 2/O"
 
   Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
-    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the sit vessel
+    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the auto vessel
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see ROL checklist questions
-
+@ska
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the <checklist> checklist
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see <checklist> checklist questions in Office Portal
@@ -65,10 +65,10 @@ Feature: PermitOverview
       | Working Aloft Overside                       |
 
   Scenario Outline: Verify the PTW Sections shows the same fields as in the Client app (non-maintenance)
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see the <section> shows the same fields as in the Client app
@@ -88,10 +88,10 @@ Feature: PermitOverview
       | Section 9  |
 
   Scenario Outline: Verify Section 6 with Gas Readings shows the same fields as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the Gas Readings <condition>
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the Gas Readings <condition>
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then Then I should see the Section 6 with gas <condition> shows the same fields as in the Client app
@@ -102,19 +102,19 @@ Feature: PermitOverview
       | gas_no    |
 
   Scenario: Verify the EIC section shows the same fields as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the EIC eic_yes
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC eic_yes
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see the Energy Isolation Certificate shows the same fields as in the Client app
 
   Scenario Outline: Verify section 4B and 8 shows the same fields as in the Client app with or without the EIC
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the EIC <condition>
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC <condition>
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see the <section> shows the same fields as in the Client app with <condition>
@@ -127,10 +127,10 @@ Feature: PermitOverview
       | eic_no    | Section 8  |
 
   Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
-    Given I terminate permit submit_hotwork via service with 9015 user on the sit vessel with the <checklist> checklist
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I sleep for 300 seconds
     And I log in to the Office Portal
-    And I select the "LNGSIT" vessel
+    And I select the "Auto" vessel
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see Section 8 shows the same fields as in the Client app with <checklist>
