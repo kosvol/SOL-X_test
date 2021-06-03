@@ -35,7 +35,7 @@ Feature: PermitOverview
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see ROL checklist questions
-@ska
+
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I sleep for 300 seconds
