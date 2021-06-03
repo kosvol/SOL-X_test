@@ -1,0 +1,47 @@
+# XPath for the EIC fields etc. - "(//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h4"
+
+fields:
+  [
+    "Name of Vessel:",
+    "Created On:",
+    "EIC No:",
+    "Description of work:",
+    "Is this EIC required by Permit to Work System",
+    "Equipments/valves to be isolated:",
+    "LOTO",
+    "Lock Out",
+    "Tag Out",
+    "Sanction to Test (High Voltage) (Checklist)",
+    "Electrical Isolation",
+    "Switch Disconnector",
+    "Main/DB Switch Breaker",
+    "Circuit fuses",
+    "Physical Isolation",
+    "Blank Flanges/Capping",
+    "Blinding/Spading",
+    "Removal spool piece/valves",
+    "Removal of Hazards",
+    "Double Block and Bleed",
+    "Disconnection of piping",
+    "Warning Tag displayed on Equipments / Power Supply / Control Unit / Valves",
+    "Relevant Departments personnel informed as applicable",
+    "Equipments/Valves locked and tagged",
+    "Suitable tools with insulation available (Electrical Isolation)",
+    'Voltage level checked after electrical isolation and found "zero" (Electrical Isolation)',
+    "LOTO Number:"
+  ]
+
+labels: []
+
+subheaders:
+  [
+    "Energy Isolation Certificate",
+    "Method of Isolation",
+    "Confirmation and Acceptance",
+    "Competent Person (C/O, 2/E, E/O):",
+    "Issuing Authorized (C/E):"
+  ]
+
+fields_exceptions: []
+labels_exceptions: []
+subheaders_exceptions: []

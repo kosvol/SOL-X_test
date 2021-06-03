@@ -1,0 +1,117 @@
+fields_eic_no:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Task commenced at:",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Task completed at:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Near Misses:",
+    "Best Practice:",
+    "Master notified on task status:",
+  ]
+
+fields_eic_yes:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Task commenced at:",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Task completed at:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Near Misses:",
+    "Best Practice:",
+    "Work completed. PTW cancellation (if applicable).",
+    "Time/Date",
+    "Relevant Departments personnel informed as applicable",
+    "LOTO and Warning Tag removed from Equipments / Power Supply / Control Unit / Valves",
+    "Mentioned equipments has been normalized",
+    "Isolating Certificate withdrawn at",
+    "Normalization of energy isolation completed:",
+    "Master notified on task status:"
+  ]
+
+fields_critical:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Task commenced at:",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Task completed at:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Is the test/trial completed and performance is satisfactory?",
+    "Equipment/procedures restore to normal?",
+    "All personnel/operator have been informed of the restoration?",
+    "Near Misses:",
+    "Best Practice:",
+    "Master notified on task status:",
+  ]
+
+fields_electrical:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Task commenced at:",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Task completed at:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Has the grounding been removed prior reconnecting power to the system?",
+    "Has the newly installed and/or repaired High Voltage Equipment been subjected to a High Voltage test?",
+    "Near Misses:",
+    "Best Practice:",
+    "Master notified on task status:",
+  ]
+
+fields_pipe:
+  [
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Task commenced at:",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "Task completed at:",
+    "Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):",
+    "Fire/Safety checks conducted on adjacent compartments, where applicable:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Have all Valves and Pipes been re-secured properly on completion of the work?",
+    "Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?",
+    "Near Misses:",
+    "Best Practice:",
+    "Master notified on task status:",
+  ]
+
+labels: []
+
+subheaders_eic_no:
+  [
+    "Section 8: Task Status",
+    "Submit For Termination",
+    "Responsible Authority:"
+  ]
+
+subheaders_eic_yes:
+  [
+    "Section 8: Task Status",
+    "Energy Isolation Certificate",
+    "EIC Normalization:",
+    "Competent Person (C/O, 2/E, E/O):",
+    "Issuing Authorized (C/E):",
+    "Submit For Termination",
+    "Responsible Authority:"
+  ]
+
+fields_exceptions: []
+labels_exceptions: []
+subheaders_exceptions: []

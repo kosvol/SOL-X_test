@@ -1,0 +1,20 @@
+fields_gas_yes:
+  [
+    "Gas Equipment:",
+    "Sr. No:",
+    "Date of Last Calibration:"
+  ]
+
+fields_gas_no: []
+
+labels: []
+
+subheaders:
+  [
+    "Section 6: Gas Testing/Equipment",
+    "Responsible Authority:"
+  ]
+
+fields_exceptions: []
+labels_exceptions: []
+subheaders_exceptions: []
