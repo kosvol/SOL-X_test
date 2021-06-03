@@ -39,8 +39,6 @@ Feature: Section4BEIC
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
-    And I uncheck the pre-selected checklist
-    And I select the matching <checklist> checklist
     And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC

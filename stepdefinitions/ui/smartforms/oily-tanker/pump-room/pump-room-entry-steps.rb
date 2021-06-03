@@ -177,8 +177,8 @@ end
 
 
 And(/^Get (PRE|CRE|PWT) id$/) do |_permit_type|
-  @temp_id = on(PumpRoomEntry).ptw_id_element.text
-  @@pre_number = on(PumpRoomEntry).ptw_id_element.text
+  @temp_id = on(Section0Page).ptw_id_element.text
+  @@pre_number = on(Section0Page).ptw_id_element.text
   @@issue_time = on(PreDisplay).pre_duration_timer_element.text if _permit_type === 'PWT'
 end
 
@@ -204,7 +204,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
 end
 
 And(/^I get a temporary number and writing it down$/) do
-  @temp_id = on(PumpRoomEntry).ptw_id_element.text
+  @temp_id = on(Section0Page).ptw_id_element.text
   is_equal(@temp_id.include?('TEMP'), true)
   on(PumpRoomEntry).purpose_of_entry = 'Test Automation'
   step 'I press the "Save" button'

@@ -1,0 +1,34 @@
+fields:
+  [
+    "Ship's Approval:",
+    "Office Approval:"
+  ]
+
+labels: []
+
+subheaders: ["Section 2: Approving Authority"]
+
+fields_exceptions:
+  [
+      "Name of Vessel",
+      "Permit Type",
+      "Location of vessel",
+      "Condition of vessel",
+      "Cargo Details",
+      "Sea State",
+      "Wind Force",
+      "Description of work",
+      "Zone:",
+      "Zone Details:"
+  ]
+
+labels_exceptions: ["Location of work:"]
+
+subheaders_exceptions:
+  [
+      "Section 1: Task Description",
+      "Permit Details",
+      "Vessel Information",
+      "Weather Condition",
+      "Task Information"
+  ]

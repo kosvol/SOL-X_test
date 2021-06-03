@@ -1,0 +1,17 @@
+fields:
+  [
+    "Task Status verified by Master:",
+    "Permit Withdrawal on"
+  ]
+
+labels: []
+
+subheaders:
+  [
+    "Section 9: Withdrawal of Permit",
+    "Permit Withdrawn By:"
+  ]
+
+fields_exceptions: []
+labels_exceptions: []
+subheaders_exceptions: []

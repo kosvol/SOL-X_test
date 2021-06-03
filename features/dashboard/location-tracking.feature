@@ -65,7 +65,7 @@ Feature: LocationTracking
 
     Examples:
       | zone        | zoneid                      | mac               | new_zone    | new_zoneid                  | new_mac           |
-      | Engine Room | AUTO_0AJK702J76YK6GVCEGMTE6 | 00:00:00:80:00:00 | Aft Station | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
+      | Engine Room | AUTO_0AF6FGV9QFVQEDA6XAJWV8 | 00:00:00:00:A0:00 | Aft Station | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 |
 
   Scenario: Verify active duration countdown starts at 15s
     Given I launch sol-x portal

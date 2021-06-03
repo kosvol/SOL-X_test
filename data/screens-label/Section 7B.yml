@@ -1,0 +1,33 @@
+fields:
+  [
+    "Permit issued on:",
+    "Permit valid until:"
+  ]
+
+labels: []
+
+subheaders:
+  [
+    "Section 7B: Validity of Permit",
+    "Approval Authority:"
+  ]
+
+fields_exceptions:
+  [
+      "DRA & Workplan reviewed?",
+      "Safety Meeting Minutes Reviewed?",
+      "Any Intermediate Reporting Required?",
+      "Local/appropriate authority approval required",
+      "Additional Instruction on safety and technical matters",
+      "Office Approval Issued from:",
+      "Office Approval Issued till:",
+      "Office Approval Authority's Name:",
+      "Designation:",
+      "Date/Time:"
+  ]
+labels_exceptions: []
+subheaders_exceptions:
+  [
+      "Section 7: Office Approval",
+      "Validity of Office Approval"
+  ]
