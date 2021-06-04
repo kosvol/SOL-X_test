@@ -182,6 +182,7 @@ end
 
 Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
   on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, nil)
+  @permitType = _permit_type
   dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
   @formNumber = dataFileResp['data']['createForm']['_id']
@@ -338,7 +339,11 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
       subheadersArr << _subheader.text
     end
   end
-  baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+  if @permitType == 'submit_maintenance_on_anchor'
+    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields_maintenance']
+  else
+    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+  end
   baseLabels  = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels']
   baseSubheaders = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders']
   #exceptions

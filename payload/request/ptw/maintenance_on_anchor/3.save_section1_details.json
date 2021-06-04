@@ -1,0 +1,54 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/043",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "showUpdatesNeeded",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "locationOfVessel",
+        "value": "\"At Sea\""
+      },
+      {
+        "fieldId": "conditionOfVessel",
+        "value": "\"Loaded\""
+      },
+      {
+        "fieldId": "cargoDetails",
+        "value": "\"Tets Automation\""
+      },
+      {
+        "fieldId": "seaState",
+        "value": "\"3 : Slight\""
+      },
+      {
+        "fieldId": "windforce",
+        "value": "\"9 : Strong Gale\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "duration_of_maintenance_over_2_hours",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "locationOfWork",
+        "value": "{\"zone\":\"000000YGJ11ZSESBYNRXYRVVMK\",\"zoneDetails\":\"Test Automation\"}"
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2021-06-04T14:07:16.600Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

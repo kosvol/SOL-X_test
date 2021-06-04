@@ -1,0 +1,18 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/043",
+    "answers": [
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2021-06-04T14:07:18.600Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

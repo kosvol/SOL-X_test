@@ -28,15 +28,15 @@ Feature: PermitOverview
     And I check that Entry log is present
     And I check all headers of Entry Log table without toxic gas on portal
     And I check rank and full name of Entrant without toxic "A 2/O"
-@ska
+
   Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the auto vessel
-    #When I sleep for 300 seconds
-    #And I log in to the Office Portal
-    #And I select the "Auto" vessel
-    #And I select the recently terminated form
-    #And I click on View Permit button
-    #Then I should see ROL checklist questions
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
+    And I select the "Auto" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see ROL checklist questions
 
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
@@ -88,6 +88,15 @@ Feature: PermitOverview
       | Section 7  |
       | Section 7B |
       | Section 9  |
+  
+  Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
+    Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the sit vessel
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
+    And I select the "Auto" vessel
+    And I select the recently terminated form
+    And I click on View Permit button
+    Then I should see the Section 1 shows the same fields as in the Client app
 
   Scenario Outline: Verify Section 6 with Gas Readings shows the same fields as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the Gas Readings <condition>
