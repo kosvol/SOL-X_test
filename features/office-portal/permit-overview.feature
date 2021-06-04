@@ -6,7 +6,8 @@ Feature: PermitOverview
 
   Scenario: Verify PRE will be activated and auto terminated at the specified time [Office portal]
     Given I create PRE via service with static env
-    When I log in to the Office Portal
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
     And I select the "Auto" vessel
     And I sleep for 3 seconds
     And I check the checkbox near the first permit in the list
@@ -16,7 +17,8 @@ Feature: PermitOverview
 
   Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
     Given I create submit_enclose_space_entry via service with static env
-    When I log in to the Office Portal
+    When I sleep for 300 seconds
+    And I log in to the Office Portal
     And I select the "Auto" vessel
     And I click on Add Filter button
     And I select filter value with permit type "Enclosed Spaces Entry"
@@ -35,7 +37,7 @@ Feature: PermitOverview
     And I select the recently terminated form
     And I click on View Permit button
     Then I should see ROL checklist questions
-@ska
+
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I sleep for 300 seconds

@@ -14,8 +14,8 @@ class OfficePortalPage
   button(:add_filter_btn, xpath: "//span[contains(text(),'Add Filter')]/parent::button")
   button(:print_permit_btn, xpath: "//span[contains(text(),'Print')]/parent::button")
 
-  element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
-  element(:portal_name, xpath: "//h1[contains(@class,'Heading')]")
+  element(:topbar_header, xpath: "//nav[contains(@class,'NavigationBar')]//h1")
+  element(:portal_name, xpath: "//h1[contains (@class,'Heading__H1')]")
   element(:warning_message_text, xpath: "//div[contains(text(),'Incorrect Password')]")
   element(:vessels_list_header, xpath: "//h2[contains(text(),'All Vessels')]")
   element(:permit_list, xpath: "//div[contains(@class,'PermitList__Container')]")
