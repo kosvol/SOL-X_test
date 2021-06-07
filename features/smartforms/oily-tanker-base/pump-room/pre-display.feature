@@ -3,13 +3,13 @@ Feature: PumpRoomEntry
   As a ...
   I want to ...
   So that ...
-  @wip
+
   Scenario: Verify PRE permit hand over is working
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 1 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
@@ -25,7 +25,7 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see correct signed in entrants
@@ -36,7 +36,7 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 1 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
@@ -81,7 +81,7 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
@@ -92,7 +92,7 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I signout the entrant
@@ -130,7 +130,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I sleep for 3 seconds
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 4 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
@@ -171,7 +171,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 5 seconds
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     And I sleep for 3 seconds
     Then I should see entrant count equal 1
@@ -184,7 +184,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I should see entrant count equal 0
     And I terminate the PRE permit via service
