@@ -88,7 +88,7 @@ Feature: PermitOverview
       | Section 7  |
       | Section 7B |
       | Section 9  |
-  
+  #Check after 6931 is done!
   Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
     Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the sit vessel
     When I sleep for 300 seconds
@@ -151,3 +151,14 @@ Feature: PermitOverview
       | Critical Equipment Maintenance               |
       | Work on Electrical Equipment and Circuits    |
       | Work on Pressure Pipelines                   |
+ #Check after 6931 is done!
+    Scenario: Verify PRE form shows the same fields as in the client app
+      Given I create PRE via service with static env
+      When I sleep for 300 seconds
+      And I log in to the Office Portal
+      And I select the "Auto" vessel
+      And I sleep for 3 seconds
+      And I check the checkbox near the first permit in the list
+      And I click on View Permit button
+      And I sleep for 5 seconds
+      Then I should see the PRE form shows the same fields as in the client app
