@@ -98,7 +98,6 @@ Feature: CrewList
     When I navigate to "Crew Management" screen for forms
     Then I should see crews are sorted by descending order on seniority
 
-  @production
   Scenario: Verify user can add crew on an ad-hoc manner
     Given I launch sol-x portal
     And I remove crew from vessel

@@ -36,7 +36,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 And (/^I click on back to home$/) do
-  sleep 1
+  # sleep 1
   BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
   # BrowserActions.js_click("//button[contains(.,'Back to Home')]")
   # on(Section6Page).back_to_home_btn
@@ -69,7 +69,7 @@ And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _r
   elsif _update_or_terminate === 'terminate'
     step 'I click on Submit for Termination'
   end
-  sleep 1
+  # sleep 1
   step "I enter pin #{_pin}"
 end
 

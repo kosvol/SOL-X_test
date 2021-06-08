@@ -75,7 +75,8 @@ And (/^I click on (.*) EIC certification button$/) do |_which_type|
 end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
-  sleep 1
+  # sleep 1
+  BrowserActions.wait_until_is_visible(on(Section4APage).sign_btn_elements.first)
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   step "I enter pin #{_pin}"
   on(SignaturePage).sign_and_done if _condition === 'RA'

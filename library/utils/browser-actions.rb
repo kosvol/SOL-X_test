@@ -29,7 +29,6 @@ module BrowserActions
         sleep 10
       end
     end
-    ### end
 
     def scroll_click(_element)
       sleep 1

@@ -37,10 +37,9 @@ Then (/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And (/^I view pin$/) do
-  step 'I sleep for 3 seconds'
+  # step 'I sleep for 3 seconds'
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin(1111)
-  # step 'I sleep for 1 seconds'
+  step 'I enter pin 1111'
 end
 
 Then (/^I (should|should not) see pin reviewed$/) do |_condition|
@@ -50,12 +49,14 @@ end
 
 And (/^I enter a non-existent pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin(1234)
+  step "I enter pin 1234"
+  # on(PinPadPage).enter_pin(1234)
 end
 
 And (/^I enter a invalid master pin$/) do
   step 'I click on view pin button'
-  on(PinPadPage).enter_pin(9015)
+  step "I enter pin 9015"
+  # on(PinPadPage).enter_pin(9015)
 end
 
 And (/^I click on view pin button$/) do
@@ -89,23 +90,20 @@ Then (/^I should see duplicate crew error message$/) do
 end
 
 And (/^I add crew$/) do
-  on(CrewListPage).add_new_crew_btn
+  BrowserActions.poll_exists_and_click(on(CrewListPage).add_new_crew_btn_element)
   on(CrewListPage).crew_id = "CDEV_SOLX0002"
-  sleep 1
-  on(CrewListPage).retrieve_data_btn
-  sleep 1
-  on(CrewListPage).view_crew_pin_btn
-  sleep 2
+  BrowserActions.poll_exists_and_click(on(CrewListPage).retrieve_data_btn_element)
+  BrowserActions.poll_exists_and_click(on(CrewListPage).view_crew_pin_btn_element)
+  BrowserActions.wait_until_is_visible(on(CrewListPage).pin_text_field_element)
   @@entered_pin = on(CrewListPage).pin_text_field_element.text
   p "new pin >> #{@@entered_pin}"
-  on(CommonFormsPage).done_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
 end
 
 And (/^I add crew (.+) id$/) do |_crew|
   on(CrewListPage).add_new_crew_btn
   on(CrewListPage).crew_id = _crew
-  sleep 1
-  on(CrewListPage).retrieve_data_btn
+  BrowserActions.poll_exists_and_click(on(CrewListPage).retrieve_data_btn_element)
 end
 
 Then (/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
