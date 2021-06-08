@@ -200,13 +200,13 @@ Feature: PumpRoomEntry
     And for pre I should see the <condition> "Approve for Activation" button
 
     Examples:
-      | rank   |  condition |
-      | C/O    |  enabled   |
-      | A C/O  |  disabled  |
-      | 2/O    |  disabled  |
-      | A 2/O  |  disabled  |
-      | 3/O    |  disabled  |
-      | A 3/O  |  disabled  |
+      | rank  | condition |
+      | C/O   | enabled   |
+      | A C/O | disabled  |
+      | 2/O   | disabled  |
+      | A 2/O | disabled  |
+      | 3/O   | disabled  |
+      | A 3/O | disabled  |
 
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given I launch sol-x portal without unlinking wearable
@@ -219,3 +219,19 @@ Feature: PumpRoomEntry
     And I navigate to "Created" screen for PRE
     And I should see the current PRE in the "Created" list
     Then I edit pre and should see the old number previously written down
+
+  Scenario: The Responsible Officer Signature should be displayed PRE
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin for rank C/O
+    Then I fill up PRE. Duration 4. Delay to activate 3
+    And Get PRE id
+    And for pre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    Then I activate the current PRE form
+    And I sleep for 1 seconds
+    When I navigate to "Scheduled" screen for PRE
+    And I should see the current PRE in the "Scheduled" list
+    When I view permit with A/M rank and 8383 pin
+    And I check "Responsible Officer Signature" is present
