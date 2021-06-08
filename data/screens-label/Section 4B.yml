@@ -1,0 +1,22 @@
+fields_eic_no: ["Is Energy Isolation Certificate Required?"]
+
+fields_eic_yes:
+  [
+    "Work Site Visit, Safety checks & procedures completed on",
+    "EIC No:",
+    "Isolation Date and Time"
+  ]
+
+labels: []
+
+subheaders_eic_no: ["Section 4B: Energy Isolation Certificate"]
+
+subheaders_eic_yes:
+  [
+    "Section 4B: Energy Isolation Certificate",
+    "Responsible Authority"
+  ]
+
+fields_exceptions: []
+labels_exceptions: []
+subheaders_exceptions: []

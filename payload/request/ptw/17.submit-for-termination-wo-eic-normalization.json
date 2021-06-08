@@ -8,6 +8,10 @@
         "value": "\"\""
       },
       {
+        "fieldId": "isControlMeasuresPerDRASatisfied",
+        "value": "\"yes\""
+      },
+      {
         "fieldId": "taskCommencedAt",
         "value": "{\"dateTime\":\"2020-07-27T17:01:00.000Z\",\"utcOffset\":8}"
       },
@@ -20,8 +24,8 @@
         "value": "\"Completed\""
       },
       {
-        "fieldId": "taskStatus_suspended",
-        "value": "\"\""
+        "fieldId": "taskCompletedAt",
+        "value": "{\"dateTime\":\"2021-05-27T17:07:31.078Z\",\"utcOffset\":12}"
       },
       {
         "fieldId": "isolationValvesForOxygenAcetyleneGasCylinersAreShutAfterUse",
@@ -38,6 +42,14 @@
       {
         "fieldId": "spaceSecuredAndHouseKeepingCompleted",
         "value": "\"no\""
+      },
+      {
+      "fieldId": "nearMisses",
+      "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "bestPractice",
+        "value": "\"Test Automation\""
       },
       {
         "fieldId": "masterNotifiedOnTaskStatus",
