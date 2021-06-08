@@ -14,7 +14,7 @@ Feature: LNGCREL
     When I terminate the PRE permit via service
     And I sleep for 10 seconds
     Then I change ship local time to +12 GMT
-    When  I submit a current CRE permit via service
+    When I submit a current CRE permit via service
     And I add new entry "A 2/O" CRE
     And I sleep for 10 seconds
     And I acknowledge the new entry log cre via service
