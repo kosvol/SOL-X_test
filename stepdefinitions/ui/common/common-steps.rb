@@ -32,28 +32,35 @@ And ('I sleep for {int} seconds') do |sec|
 end
 
 Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
-  step 'I sleep for 1 seconds'
   step "I enter pin #{_pin}"
   on(SignaturePage).sign_and_done if _condition != "invalid"
 end
 
 ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 Then (/^I sign on canvas with (invalid|valid) (.*) pin for fsu$/) do |_condition,_pin|
-  step 'I sleep for 1 seconds'
   step "I enter pin #{_pin}"
   on(SignaturePage).sign_and_done_fsu if _condition != "invalid"
 end
 
 Then (/^I sign on canvas only with valid (.*) pin$/) do |_pin|
-  step 'I sleep for 1 seconds'
-  on(CommonFormsPage).sign_btn_elements.first.click
+  # step 'I sleep for 1 seconds'
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
+  # on(CommonFormsPage).sign_btn_elements.first.click
   step "I enter pin #{_pin}"
   on(SignaturePage).sign_for_gas
 end
 
-### To deprecate ####
+And (/^I wait for pinpad element to exists$/) do
+  p "polling...."
+  sleep 1
+  if on(PinPadPage).pin_pad_elements.size === 0 
+    step 'I wait for pinpad element to exists'
+  end
+end
+
 And ('I enter pin {int}') do |pin|
   @@entered_pin = pin
+  step 'I wait for pinpad element to exists'
   on(PinPadPage).enter_pin(pin)
   sleep 1
 end
@@ -61,7 +68,7 @@ end
 And(/^I enter pin for rank (.*)$/) do |rank|
   @@entered_pin = $sit_rank_and_pin_yml[rank]
   p "pin: #{@@entered_pin}"
-  on(PinPadPage).enter_pin(@@entered_pin.to_i)
+  step "I enter pin #{@@entered_pin.to_i}"
   sleep 1
 end
 
@@ -73,7 +80,6 @@ end
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
-  # sleep 2
   BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
   @temp_id = on(Section0Page).ptw_id_element.text
 end
