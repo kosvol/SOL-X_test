@@ -90,7 +90,7 @@ Feature: PermitOverview
       | Section 9  |
   #Check after 6931 is done!
   Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
-    Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the sit vessel
+    Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the auto vessel
     When I sleep for 300 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
