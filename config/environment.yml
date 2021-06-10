@@ -15,6 +15,8 @@ sit:
   update_mas_pin: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
   get_crew_members: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/crew_members/_find"
   fauxton_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984/forms/_find"
+
 
 auto:
   c2_preview: "https://auto.edge.dev.safevue.ai:8080/"
@@ -24,6 +26,7 @@ auto:
   switch_vessel: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/vessels/auto-vessel"
   get_crew_members: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/crew_members/_find"
   fauxton_url: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@auto.edge.dev.safevue.ai:5984/forms/_find"
 
 # uat:
 #   c2_preview: "https://uat.edge.dev.safevue.ai:8080/"
@@ -66,6 +69,7 @@ office_approval:
   office_portal: "https://office.dev.safevue.ai/login/demo-uid"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_staff/_find"
+  get_form_status: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/forms/_find"
   password: "13-dead-CENT-think-56"
 
 # maria_db:
