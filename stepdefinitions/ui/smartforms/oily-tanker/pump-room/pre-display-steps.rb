@@ -70,13 +70,13 @@ Then (/^I should see (green|red) background color$/) do |condition|
   end
 end
 
-And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
+And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |_status,_type|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
   if status === "Permit Activated"
     BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   end
-  4.times { is_equal(on(PreDisplay).permit_status_element.text, status)}
+  4.times { is_equal(on(PreDisplay).permit_status_element.text, _status)}
 end
 
 And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do

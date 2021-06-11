@@ -27,6 +27,11 @@ class DashboardPage < WearablePage
   @@location_pin = "//a[@data-testid='location-pin']"
   @@arr_data = []
 
+  #Gas reading alert
+  element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
+  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
+  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+
   def set_arr_data(data)
     @@arr_data.push(data)
   end

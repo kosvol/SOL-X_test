@@ -168,7 +168,7 @@ end
 
 When (/^I signout entrants "([^"]*)"$/) do |_entrants|
   _entrants.split(',').each do |item|
-  on(BypassPage).signout_entrants(item.to_s)
+    on(BypassPage).signout_entrants(item.to_s)
   end
 end
 
