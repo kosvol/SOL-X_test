@@ -182,6 +182,7 @@ end
 
 Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
   on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, nil)
+  @permitType = _permit_type
   dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
   @formNumber = dataFileResp['data']['createForm']['_id']
@@ -338,7 +339,11 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
       subheadersArr << _subheader.text
     end
   end
-  baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+  if @permitType == 'submit_maintenance_on_anchor'
+    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields_maintenance']
+  else
+    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+  end
   baseLabels  = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels']
   baseSubheaders = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders']
   #exceptions
@@ -424,6 +429,23 @@ Then(/^I should see Section 8 shows the same fields as in the Client app with (.
   end
   baseFields = [] + YAML.load_file("data/screens-label/Section 8.yml")["fields_#{_checklist}"]
   baseSubheaders = [] + YAML.load_file("data/screens-label/Section 8.yml")["subheaders_eic_no"]
+  p ">>> difference #{fieldsArr - baseFields}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(subheadersArr, baseSubheaders)
+end
+
+Then(/^I should see the PRE form shows the same fields as in the client app$/) do
+  fieldsArr = []
+  subheadersArr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h4").each do |_field|
+    fieldsArr << _field.text
+  end
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h2").each do |_subheader|
+    subheadersArr << _subheader.text
+  end
+  baseFields = [] + YAML.load_file("data/pre/pre-display.yml")["pre_structure_on_pred"]["with_interval"]
+  baseSubheaders = [] + YAML.load_file("data/pre/pre-display.yml")["subheaders"]
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)

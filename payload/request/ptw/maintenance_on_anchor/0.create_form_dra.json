@@ -1,0 +1,16 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "DRA",
+    "templateVersion": 5,
+    "parentFormId": "LNGSIT/PTW/2021/043",
+    "answers": [
+      {
+        "fieldId": "riskHazard",
+        "value": "{\"__typename\":\"RiskHazardsWithMethod\",\"hazards\":[{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Presence of flammable gases/fire hazard\",\"existingMeasures\":\"1. All cargo tanks purged to HC content less than 1% by Volume.\\n2. Vessel heading in windward direction, taking all gasses on deck in aft direction.\\n3. Continuous monitoring of atmosphere in the vicinity of Hotwork to be carried out.\\n4. Drain or strip cargo pipelines around the adjacent area.\\n5. Have fire line pressurised during the task.\\n6.Area must be clear of any flammable material.\",\"additionalMeasures\":null,\"likelihood\":2,\"consequence\":4,\"likelihoodAfterExistingMeasures\":1,\"consequenceAfterExistingMeasures\":4,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null},{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Falling down anchor chain\",\"existingMeasures\":\"1. Bow stopper to be down to hold the chain.\\n2. Provide extra lashing if possible.\\n3. Re-check bitter end is secured.\\n4. Task performer handling windlass to be insight of the signaller.\",\"additionalMeasures\":null,\"likelihood\":2,\"consequence\":3,\"likelihoodAfterExistingMeasures\":1,\"consequenceAfterExistingMeasures\":3,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null},{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Personal injury\",\"existingMeasures\":\"1. Comply with PPE matrix.\\n2. Toolbox meeting to be carried out.\\n3. Maintain buddy system throughout the task.\\n4. Use correct tools for the task.\\n5. Operate equipment within its operating limits.\\n6. Work area to be clear from tripping hazards.\",\"additionalMeasures\":null,\"likelihood\":3,\"consequence\":3,\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null},{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Heavy weather/sea condition\",\"existingMeasures\":\"1. Obtain weather forecast.\\n2. Compare weather forecast with other stations or with different service providers.\\n3. Anticipate weather changes and plan work during clear period for the task.\\n4. Decide on a common weather restriction for the task.\",\"additionalMeasures\":null,\"likelihood\":null,\"consequence\":null,\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null}],\"methodDescription\":\"Standard procedures for maintenance on anchor\"}"
+      }
+    ],
+    "submissionTimestamp": "2021-06-04T14:06:26.600Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

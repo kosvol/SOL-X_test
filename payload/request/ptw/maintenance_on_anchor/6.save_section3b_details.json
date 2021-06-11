@@ -1,0 +1,54 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/043",
+    "answers": [
+      {
+        "fieldId": "methodReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "inspectionCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "workInspectionBy",
+        "value": "[\"SIT_SOLX0008\"]"
+      },
+      {
+        "fieldId": "_3B_subsection4_atRisk",
+        "value": "[\"Property\"]"
+      },
+      {
+        "fieldId": "sentForReview",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "draReviewedBy",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "contingencyAndEvacuationPlans",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "availabilityOfNecessaryEmergencyEquipment",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "personnelTraining",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "lastAssessment",
+        "value": "\"2021-06-04T21:00:00.000Z\""
+      },
+      {
+        "fieldId": "lastAssessmentDra",
+        "value": "\"TEST/DRA/NUMBER\""
+      }
+    ],
+    "submissionTimestamp": "2021-06-04T14:08:04.600Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}
