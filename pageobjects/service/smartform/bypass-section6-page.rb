@@ -521,9 +521,10 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
-  def create_entry_record(_array,_type)
-      yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-    if _type == 'CRE'
+  def create_entry_record(_array, _type)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+    case _type
+    when 'CRE', 'PRE'
       _entry_record = JSON.parse JsonUtil.read_json('cre/09.add_entry')
       _entry_record['variables']['formId'] = CommonPage.get_permit_id
       _array.split(',').each do |item|
@@ -534,7 +535,7 @@ end
       _entry_record['variables']['crew_id'] = id_2
       JsonUtil.create_request_file('cre/09.mod_add_entry', _entry_record)
       ServiceUtil.post_graph_ql('cre/09.mod_add_entry')
-      elsif _type == 'PTW'
+      when 'PTW'
         _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
         _entry_record['variables']['formId'] = CommonPage.get_permit_id
         _array.split(',').each do |item|
@@ -544,9 +545,9 @@ end
         end
         JsonUtil.create_request_file('ptw/18.mod_create_entry_record', _entry_record)
         ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
-      else 
-        raise "Wrong Permit Type" 
-    end 
+      else
+        raise "Wrong Permit Type"
+    end
   end
 
   def signout_entrants(_entrant_name)

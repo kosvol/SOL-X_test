@@ -1,5 +1,5 @@
 And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
-  step 'I sleep for 10 seconds'
+ # step 'I sleep for 10 seconds'
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   on(PreDisplay).new_entry_log_element.click
 
@@ -8,7 +8,7 @@ And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if _condition === 'without toxic'
   step 'I sign for gas'
   step 'I enter pin for rank A/M'
-  step 'I sleep for 1 seconds'
+#  step 'I sleep for 1 seconds'
 end
 
 Then (/^I should see correct signed in entrants$/) do
@@ -152,27 +152,41 @@ And (/^I (send|just send) Report$/) do |_condition|
     BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
     on(PreDisplay).send_report_btn_elements.first.click
   else
-    raise "wrong action"
+    raise 'wrong action'
   end
 end
 
 And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
   if _action === 'save'
-    current  = DateTime.now.strftime("%Y-%m-%d")
+    current  = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
   elsif _action === 'check'
     data = on(DashboardPage).get_arr_data
-    puts (data[0].to_s)
-    puts (DateTime.parse(on(DashboardPage).date_log_elements[0].text))
-    puts (DateTime.parse(on(DashboardPage).date_log_elements[1].text))
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).not_to include(data[0].to_s)
+    puts(data[0].to_s)
+    puts(DateTime.parse(on(DashboardPage).date_log_elements[0].text))
+    puts(DateTime.parse(on(DashboardPage).date_log_elements[1].text))
     expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[0].to_s)
+    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).not_to include(data[0].to_s)
   else
-    raise "wrong action"
+    raise 'wrong action'
   end
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |_number|
-  #expect(on(DashboardPage).active_entarnt_elements.first.text).to include(_number.to_s)
+  BrowserActions.wait_condition(20, on(DashboardPage).active_entarnt_element.text == 5)
+  # i=0
+  # until on(DashboardPage).active_entarnt_element.text == 5
+  #   i=i+1
+  #   break if i==20
+  # end
   expect(on(DashboardPage).active_entarnt_element.text).to include(_number.to_s)
+end
+
+And (/^I open new dashboard page$/) do
+  BrowserActions.open_new_page
+  step 'I launch sol-x portal dashboard'
+end
+
+And (/^I switch to (first|last) tab in browser$/) do |_condition|
+  BrowserActions.switch_browser_tab(_condition)
 end

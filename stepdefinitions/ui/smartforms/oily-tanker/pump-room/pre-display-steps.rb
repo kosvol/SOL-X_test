@@ -60,11 +60,10 @@ And (/^\(for pred\) I should see (info|warning) box for (activated|deactivated) 
 end
 
 Then (/^I should see (green|red) background color$/) do |condition|
-  background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
+  background_color = BrowserActions.wait_until_is_visible(@browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color'))
   if condition == 'green'
     green = 'rgba(67, 160, 71, 1)'
     is_equal(background_color, green)
-
   elsif condition == 'red'
     red = 'rgba(216, 75, 75, 1)'
     is_equal(background_color, red)

@@ -94,7 +94,7 @@ Given (/^I remove crew from vessel$/) do
   SmartFormDBPage.delete_crew_from_vessel('fauxton', 'delete_user')
 end
 
-And (/^I add new entry "([^"]*)" (CRE|PTW)$/) do |_array, _type|
+And (/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |_array, _type|
   @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record(_array, _type)
 end
