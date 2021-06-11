@@ -3,6 +3,16 @@ warning_box:
   deactivated: "Do Not Enter!\nCall the watch officer.\nReport that you need a new permit."
   # gas_reading_is_missing: "Please Terminate This Permit and\nCreate A New Permit\nInitial gas reading for this permit is missing."
 
+subheaders:
+    [
+        "Pump Room Entry Permit & Checklist",
+        "Gas Reading",
+        "Permit Validity",
+        "Responsible Officer Signature:",
+        "Chief Officer/Relieved Officer Signature:",
+        "Chief Officer/Relieved Officer Termination Signature:"
+    ]
+
 pre_structure_on_pred:
   without_interval:
     [

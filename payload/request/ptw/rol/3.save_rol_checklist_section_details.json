@@ -1,0 +1,90 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/054",
+    "answers": [
+      {
+        "fieldId": "openChecklistRiggingOfLadder",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_boardingArrangement",
+        "value": "\"Starboard Combination Ladder\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_hasInformationObtained",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_workingOutboardGuidelines",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_hasConsiderationMadeForReduction",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_hasLadderArrangementVerifiedByResponsibileOfficer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_toolBoxMeetingMeetingCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_allCrewInvolvedInOperationFamiliarWithGangway",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_hasCommunicationWithResponsibleOfficerBeenEstablished",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_ropesAndGantlinesAndLifelinesInGoodConditionAndLongEnough",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_ppeUsedAsPerPpeMatrix",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_lifebouyAndLineReady",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_safetyHarnessAndLineSecuringAggangmentToAStrongPointAvailable",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_lifeVestWornByPersonnelWorkingOverside",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_sufficientIlluminationAvailableToComplete",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_heavingLineAvailable",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_accessPointFreeOfObstruction",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_ladderMadeFastWithShipside",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_riggingOfLadder_responsibleAuthority",
+        "value": "{\"signedBy\":\"AUTO_SOLX0012\",\"signatureString\":\"data:image/jpeg;base64,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\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVMV\",\"signedOn\":{\"dateTime\":\"2021-04-28T09:34:18.091Z\",\"utcOffset\":12}}"
+      },
+      {
+        "fieldId": "showUpdatesNeeded",
+        "value": "\"false\""
+      }
+    ],
+    "submissionTimestamp": "2021-04-28T09:34:19.091Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

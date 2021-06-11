@@ -1,0 +1,35 @@
+fields: []
+
+labels: []
+
+subheaders: ["Section 3C: DRA - Team Members"]
+
+fields_exceptions:
+  [
+    "Method Description:",
+    "Reason",
+    "Work Site Inspection Carried Out?",
+    "By:",
+    "Who is at Risk?",
+    "Has this DRA been sent to the office for review?",
+    "By:",
+    "Last Assessment for similar work activity",
+    "DRA number of last assessment",
+    "Contingency & evacuation plans and recovery procedures available to manage the emergencies",
+    "Availability of necessary emergency equipment relevant to the specific hazards",
+    "Personnel training and skills adequate for the specific task",
+    "Work Plan carried out?",
+    "DRA carried out?",
+    "Reason",
+    "Safety Meeting carried out?",
+    "Office Approval required?"
+  ]
+labels_exceptions: []
+subheaders_exceptions:
+  [
+    "Section 3B: DRA - Checks and Measures",
+    "Checks and Measures",
+    "Measures for Unplanned Occurrences",
+    "Section 3D: DRA - Summary & Assessment",
+    "DRA Approved By"
+  ]

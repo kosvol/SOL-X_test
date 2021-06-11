@@ -69,6 +69,14 @@ And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step "I sign on canvas with valid 1111 pin"
 end
 
+And (/^I set rol permit to active state with (.+) duration with CE$/) do |_duration|
+  sleep 1
+  step 'I open a permit pending Master Approval with CE rank and 8248 pin'
+  step 'I press next for 1 times'
+  on(ROLPage).submit_rol_permit_w_duration(_duration)
+  step "I sign on canvas with valid 8248 pin"
+end
+
 Then (/^I should see data persisted on page 2$/) do
   sleep 1
   tmp = on(Section3DPage).get_filled_section

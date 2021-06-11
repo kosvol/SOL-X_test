@@ -1,0 +1,49 @@
+fields:
+  [
+      "Name of Vessel:",
+      "Permit Type:",
+      "Location of vessel:",
+      "Condition of vessel:",
+      "Cargo Details:",
+      "Sea State:",
+      "Wind Force:",
+      "Description of work:",
+      "Zone:",
+      "Zone Details:"
+  ]
+
+fields_maintenance:
+  [
+    "Name of Vessel:",
+    "Permit Type:",
+    "Location of vessel:",
+    "Condition of vessel:",
+    "Cargo Details:",
+    "Sea State:",
+    "Wind Force:",
+    "Description of work:",
+    "Will the duration of this Maintenance be over 2 hours? (Required)",
+    "Zone:",
+    "Zone Details:"
+  ]
+
+labels: ["Location of work:"]
+
+subheaders:
+  [
+    "Section 1: Task Description",
+    "Permit Details",
+    "Vessel Information",
+    "Weather Condition",
+    "Task Information"
+  ]
+
+fields_exceptions:
+  [
+      "Ship's Approval",
+      "Office Approval"
+  ]
+
+labels_exceptions: []
+
+subheaders_exceptions: ["Section 2: Approving Authority"]

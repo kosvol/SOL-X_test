@@ -26,10 +26,11 @@ class WearablePage
       when 'wearable-simulator/mod-link-crew-to-wearable'
         get_one_wearable_id
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
-        @@list_of_crew_id.delete(tmp_req_payload['variables']['userId'])
+        # @@list_of_crew_id.delete(tmp_req_payload['variables']['userId'])
         @@crewid = @@list_of_crew_id.sample
         tmp_req_payload['variables']['wearableId'] = @@wearableid
         tmp_req_payload['variables']['userId'] = @@crewid
+        p ">> #{tmp_req_payload['variables']['userId']}"
       when 'wearable-simulator/mod-unlink-crew-to-wearable'
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
         tmp_req_payload['variables']['id'] = @@wearableid

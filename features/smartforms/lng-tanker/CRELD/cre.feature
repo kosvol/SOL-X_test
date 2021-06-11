@@ -188,8 +188,8 @@ Feature: LNGCRE
     Then I open the current PRE with status Pending approval. Rank: C/O
     Then I should see Add Gas button enabled
     And I should see Updates Needed button disabled
-
-  Scenario: The Responsible Officer Signature should be displayed
+  @wip
+  Scenario: The Responsible Officer Signature should be displayed CRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
@@ -199,7 +199,36 @@ Feature: LNGCRE
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
     And I take note of start and end validity time for CRE
+    And I check "Responsible Officer Signature" is present
     When I press the "Approve for Activation" button
     And I sign on canvas with valid 8383 pin
     And I should see the page 'Permit Successfully Scheduled for Activation'
+    Then I press the "Back to Home" button
+    And I sleep for 1 seconds
+    When I navigate to "Scheduled" screen for CRE
+    And I should see the current CRE in the "Scheduled" list
+    When I view permit with A/M rank and 8383 pin
+    And I check "Responsible Officer Signature" is present
+
+  Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin for rank C/O
+    And I fill up CRE. Duration 4. Delay to activate 3
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I open the current CRE with status Pending approval. Rank: C/O
+    And I take note of start and end validity time for CRE
+    When I press the "Approve for Activation" button
+    And I sign on canvas with valid 8383 pin
+    And I should see the page 'Permit Successfully Scheduled for Activation'
+    Then I press the "Back to Home" button
+    And I sleep for 1 seconds
+    And I activate CRE form via service
+    And I sleep for 10 seconds
+    Then I terminate the PRE
+    When I navigate to "Terminated" screen for CRE
+    And I should see the current CRE in the "Terminated" list
+    When I view permit with A/M rank and 8383 pin
     And I check "Responsible Officer Signature" is present

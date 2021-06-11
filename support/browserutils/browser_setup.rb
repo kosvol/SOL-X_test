@@ -16,7 +16,7 @@ class BrowserSetup
       end
     $wait = Selenium::WebDriver::Wait.new(:timeout => 20)
     $browser.manage.timeouts.script_timeout = 20
-    # $browser.manage.timeouts.page_load = 30
+    $browser.manage.timeouts.page_load = 30
     $browser.manage.timeouts.implicit_wait = 20
     
     if ENV['APPLICATION'].upcase == 'WEBSITE' || ENV['APPLICATION'].upcase == 'MOBILEWEBSITE' || ENV['APPLICATION'].upcase == 'C2_PREVIEW'

@@ -162,8 +162,11 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
     on(DashboardPage).set_arr_data(current)
   elsif _action === 'check'
     data = on(DashboardPage).get_arr_data
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).to include(data[0].to_s)
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[1].to_s)
+    puts (data[0].to_s)
+    puts (DateTime.parse(on(DashboardPage).date_log_elements[0].text))
+    puts (DateTime.parse(on(DashboardPage).date_log_elements[1].text))
+    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).not_to include(data[0].to_s)
+    expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[0].to_s)
   else
     raise "wrong action"
   end

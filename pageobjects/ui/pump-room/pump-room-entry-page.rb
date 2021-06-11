@@ -14,7 +14,6 @@ class PumpRoomEntry < PreDisplay
   button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
 
-  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
   # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
   elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
@@ -33,6 +32,10 @@ class PumpRoomEntry < PreDisplay
   element(:entrant_select_btn, xpath: "//span[contains(text(),'Select Entrants - Required')]")
   element(:entry_log_btn, xpath: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span")
   element(:input_field, xpath: "//div[starts-with(@class,'Input')]")
+  element(:resp_off_signature, xpath: "//h2[contains(.,'Responsible Officer Signature:')]")
+  elements(:resp_off_signature_title, xpath: "//h2[contains(.,'Signature')]")
+  elements(:resp_off_signature_rank, xpath: "//h3[contains(.,'Rank/Name')]")
+  @@element_value = "//div[contains(.,'%s')]"
   ### gx
   elements(:signed_in_entrants, xpath: "//div/div/ul/li")
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
@@ -204,7 +207,7 @@ class PumpRoomEntry < PreDisplay
     elsif ((like == "label") || (like == "page"))
       xpath = "//h2[contains(text(),'%s')]"
     elsif like == "header"
-      xpath = "//h3[contains(text(),'%s')]"
+      xpath = "//h1[contains(text(),'%s')]"
     elsif like == "button"
       xpath = @@button
     end
@@ -282,6 +285,12 @@ class PumpRoomEntry < PreDisplay
         headers: {'Content-Type': 'application/json'},
         body: full_form.to_json})
     (JSON.parse request.to_s)
+  end
+
+  def get_element_by_value(_element_value_text,_count)
+    xpath_str = @@element_value % [_element_value_text]
+    el_arr = @browser.find_elements("xpath", xpath_str)
+    return el_arr[_count.to_i]
   end
 
   private

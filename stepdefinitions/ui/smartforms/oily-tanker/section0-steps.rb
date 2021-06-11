@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Then (/^I should see (green|red) online blob$/) do |_color|
-  p "#{@browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]").css_value('background-color')}"
-  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]").css_value('background-color')
+  p "#{@browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')}"
+  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')
   if _color === "green"
     is_equal(wifi_blob_color_code,"rgba(118, 210, 117, 1)")
   elsif _color === "red"
@@ -38,7 +38,8 @@ Then (/^I should see second level permits details$/) do
 end
 
 And (/^I navigate back to permit selection screen$/) do
-  on(Section0Page).back_btn
+  # on(Section0Page).back_btn
+  BrowserActions.poll_exists_and_click(on(Section0Page).back_btn_element)
   BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
 end
 
