@@ -102,17 +102,17 @@ And (/^I click on (.*) tab$/) do |_which_tab|
 end
 
 And (/^I go to ESE log in dashboard$/) do
-  #sleep 1
+  sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
-  #sleep 1
+  sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   #on(DashboardPage).radio_button_enclosed_elements[1].click
 end
 
 And (/^I go to CRE log in dashboard$/) do
-  #sleep 1
+  sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
-  #sleep 1
+  sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   #on(DashboardPage).radio_button_enclosed_elements[0].click
 end

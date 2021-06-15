@@ -173,12 +173,7 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |_number|
-  BrowserActions.wait_condition(20, on(DashboardPage).active_entarnt_element.text == 5)
-  # i=0
-  # until on(DashboardPage).active_entarnt_element.text == 5
-  #   i=i+1
-  #   break if i==20
-  # end
+  BrowserActions.wait_condition(20, on(DashboardPage).active_entarnt_element.text == _number.to_s)
   expect(on(DashboardPage).active_entarnt_element.text).to include(_number.to_s)
 end
 
