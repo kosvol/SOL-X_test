@@ -37,10 +37,7 @@ And (/^I press (next|previous) for (.+) times$/) do |_condition, _times|
 end
 
 And (/^I click on back to home$/) do
-  # sleep 1
   BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
-  # BrowserActions.js_click("//button[contains(.,'Back to Home')]")
-  # on(Section6Page).back_to_home_btn
   step 'I set permit id'
 end
 
@@ -70,7 +67,6 @@ And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _r
   elsif _update_or_terminate === 'terminate'
     step 'I click on Submit for Termination'
   end
-  # sleep 1
   step "I enter pin #{_pin}"
 end
 
@@ -106,7 +102,6 @@ And (/^I go to ESE log in dashboard$/) do
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
-  #on(DashboardPage).radio_button_enclosed_elements[1].click
 end
 
 And (/^I go to CRE log in dashboard$/) do
@@ -114,5 +109,4 @@ And (/^I go to CRE log in dashboard$/) do
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
-  #on(DashboardPage).radio_button_enclosed_elements[0].click
 end
