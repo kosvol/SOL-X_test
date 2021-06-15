@@ -116,7 +116,8 @@ Feature: LNGCRE
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 180 seconds
+    And I activate CRE form via service
+    #And I sleep for 180 seconds
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     And I click on back arrow
@@ -173,7 +174,7 @@ Feature: LNGCRE
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 180 seconds
+    And I activate CRE form via service
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active PRE" list
 
@@ -188,7 +189,7 @@ Feature: LNGCRE
     Then I open the current PRE with status Pending approval. Rank: C/O
     Then I should see Add Gas button enabled
     And I should see Updates Needed button disabled
-  @wip
+
   Scenario: The Responsible Officer Signature should be displayed CRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries

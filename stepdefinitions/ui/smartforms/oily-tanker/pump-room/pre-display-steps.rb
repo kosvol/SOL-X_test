@@ -60,24 +60,23 @@ And (/^\(for pred\) I should see (info|warning) box for (activated|deactivated) 
 end
 
 Then (/^I should see (green|red) background color$/) do |condition|
-  background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
+  background_color = BrowserActions.wait_until_is_visible(@browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color'))
   if condition == 'green'
     green = 'rgba(67, 160, 71, 1)'
     is_equal(background_color, green)
-
   elsif condition == 'red'
     red = 'rgba(216, 75, 75, 1)'
     is_equal(background_color, red)
   end
 end
 
-And(/^I should see (Permit Activated|Permit Terminated) PRE status on screen$/) do |status|
+And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |_status,_type|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
   if status === "Permit Activated"
     BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   end
-  4.times { is_equal(on(PreDisplay).permit_status_element.text, status)}
+  4.times { is_equal(on(PreDisplay).permit_status_element.text, _status)}
 end
 
 And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do

@@ -5,6 +5,7 @@ And (/^I should see entire hamburger categories$/) do
 end
 
 And (/^I open hamburger menu$/) do
+  BrowserActions.wait_condition(20, on(NavigationPage).hamburger_menu_element.enabled?)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 
@@ -104,12 +105,14 @@ And (/^I go to ESE log in dashboard$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  on(DashboardPage).radio_button_enclosed_elements[1].click
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
+  #on(DashboardPage).radio_button_enclosed_elements[1].click
 end
 
 And (/^I go to CRE log in dashboard$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  on(DashboardPage).radio_button_enclosed_elements[0].click
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
+  #on(DashboardPage).radio_button_enclosed_elements[0].click
 end

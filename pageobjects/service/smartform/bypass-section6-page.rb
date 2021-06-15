@@ -521,9 +521,10 @@ end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
-  def create_entry_record(_array,_type)
-      yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-    if _type == 'CRE'
+  def create_entry_record(_array, _type)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+    case _type
+    when 'CRE', 'PRE'
       _entry_record = JSON.parse JsonUtil.read_json('cre/09.add_entry')
       _entry_record['variables']['formId'] = CommonPage.get_permit_id
       _array.split(',').each do |item|
@@ -534,7 +535,7 @@ end
       _entry_record['variables']['crew_id'] = id_2
       JsonUtil.create_request_file('cre/09.mod_add_entry', _entry_record)
       ServiceUtil.post_graph_ql('cre/09.mod_add_entry')
-      elsif _type == 'PTW'
+      when 'PTW'
         _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
         _entry_record['variables']['formId'] = CommonPage.get_permit_id
         _array.split(',').each do |item|
@@ -544,10 +545,34 @@ end
         end
         JsonUtil.create_request_file('ptw/18.mod_create_entry_record', _entry_record)
         ServiceUtil.post_graph_ql('ptw/18.mod_create_entry_record')
-      else 
-        raise "Wrong Permit Type" 
-    end 
+      else
+        raise "Wrong Permit Type"
+    end
   end
+
+  def create_entry_record_custom_gas_readings(_array,_type)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+    if _type == 'CRE' or 'PRE'
+      permit  = 'cre/09.add_entry_custom_readings'
+      permit_mod = 'cre/09.mod_add_entry_custom_readings'
+    elsif _type == 'PTW'
+      permit  = '18.create_new_entry_custom_readings'
+      permit_mod = '18.create_new_entry_custom_readings'
+    else
+      raise "wrong type"
+    end
+    _entry_record = JSON.parse JsonUtil.read_json(permit)
+    _entry_record['variables']['formId'] = CommonPage.get_permit_id
+    _array.split(',').each do |item|
+      id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
+      _entry_record['variables']['otherEntrantIds'].push(id)
+    end
+    id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O'] if _type == 'CRE' or 'PRE'
+    _entry_record['variables']['crewId'] = id_2 if _type == 'CRE' or 'PRE'
+    JsonUtil.create_request_file(permit_mod, _entry_record)
+    ServiceUtil.post_graph_ql(permit_mod)
+  end
+
 
   def signout_entrants(_entrant_name)
     _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
@@ -601,6 +626,9 @@ end
     update_form_pre['variables']['answers'][8]['value'] = start_time
     update_form_pre['variables']['answers'][9]['value'] = end_time
     update_form_pre['variables']['answers'][11]['value']['2021-02-19T13:00:46.786Z'] = get_current_date_time
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
     JsonUtil.create_request_file('cre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('cre/mod-02.update-form-answers', _user)
 
@@ -621,6 +649,10 @@ end
     update_form_pre['variables']['answers'][9]['value'] = end_time
     update_form_pre['variables']['answers'][11]['value']['2021-02-19T13:06:33.658Z'] = get_current_date_time
     update_form_pre['variables']['answers'][12]['value']['2021-02-19T13:07:00.658Z'] = get_current_date_time
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
+    update_form_pre['variables']['answers'][11]['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['C/O']
+    update_form_pre['variables']['answers'][12]['value']['AUTO_SOLX0005'] = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O']
     JsonUtil.create_request_file('cre/mod-07.before-change-status-to-approve', update_form_pre)
     ServiceUtil.post_graph_ql('cre/mod-07.before-change-status-to-approve', _user)
 
