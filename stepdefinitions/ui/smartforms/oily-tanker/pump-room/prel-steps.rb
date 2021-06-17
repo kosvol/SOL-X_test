@@ -180,6 +180,7 @@ end
 And (/^I open new dashboard page$/) do
   BrowserActions.open_new_page
   step 'I launch sol-x portal dashboard'
+  sleep(10)
 end
 
 And (/^I switch to (first|last) tab in browser$/) do |_condition|

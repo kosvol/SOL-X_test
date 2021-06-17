@@ -33,11 +33,11 @@ Feature: LNGCREL
     When I signout entrants "A 2/O"
     And I check number 4 of entrants on dashboard
     And I terminate the PRE permit via service
-
+@wip
   Scenario: Verify CRE permit is terminated after terminating via dashboard popup
-    Given I submit a current CRE permit via service
-    And I activate CRE form via service
-    When I launch sol-x portal dashboard
+#    Given I submit a current CRE permit via service
+#    And I activate CRE form via service
+#    When I launch sol-x portal dashboard
     And I sleep for 5 seconds
 #    And I navigate to "SmartForms" screen for forms
 #    When I clear gas reader entries
@@ -53,16 +53,16 @@ Feature: LNGCREL
 #    And I sleep for 180 seconds
    # And I activate CRE form via service
     And I open new dashboard page
-    And I sleep for 5 seconds
-    And I switch to first tab in browser
-    And I navigate to CRE Display
-    And I enter pin for rank A C/O
-    And I enter new entry log
-    And I send entry report with 5 optional entrants
-    And I switch to last tab in browser
-    Then I should see alert message
-    And I click terminate new gas readings on dashboard page
-    And I enter pin 2761
-    And I switch to first tab in browser
-    Then I should see red background color
-    And I should see Permit Terminated CRE status on screen
+#    And I sleep for 5 seconds
+#    And I switch to first tab in browser
+#    And I navigate to CRE Display
+#    And I enter pin for rank A C/O
+#    And I enter new entry log
+#    And I send entry report with 5 optional entrants
+#    And I switch to last tab in browser
+#    Then I should see alert message
+#    And I click terminate new gas readings on dashboard page
+#    And I enter pin 2761
+#    And I switch to first tab in browser
+#    Then I should see red background color
+#    And I should see Permit Terminated CRE status on screen
