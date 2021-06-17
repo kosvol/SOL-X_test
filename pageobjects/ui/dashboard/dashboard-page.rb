@@ -5,6 +5,7 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
+  element(:dismiss_area_dd, xpath: "//div[@data-testid='dropdown-overlay-container']")
   elements(:crew_list_headers, xpath: "//th")
   element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
   elements(:permit_to_work_link, xpath: "//td/ul/li/a") #same as above
@@ -106,10 +107,18 @@ class DashboardPage < WearablePage
   end
 
   def get_map_zone_count(which_zone, total_crew)
-    area_dd
+    expand_area_dd
     sleep 1
     xpath_str = format(@@ship_area, "#{which_zone} (#{total_crew})")
     @browser.find_element('xpath', xpath_str).text
+  end
+
+  def expand_area_dd
+    area_dd
+  end
+
+  def dismiss_area_dd
+    dismiss_area_dd_element.click
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)

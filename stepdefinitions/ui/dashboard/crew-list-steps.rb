@@ -94,7 +94,7 @@ And (/^I add crew$/) do
   on(CrewListPage).crew_id = "CDEV_SOLX0002"
   BrowserActions.poll_exists_and_click(on(CrewListPage).retrieve_data_btn_element)
   BrowserActions.poll_exists_and_click(on(CrewListPage).view_crew_pin_btn_element)
-  BrowserActions.wait_until_is_visible(on(CrewListPage).pin_text_field_element)
+  sleep 1
   @@entered_pin = on(CrewListPage).pin_text_field_element.text
   p "new pin >> #{@@entered_pin}"
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
