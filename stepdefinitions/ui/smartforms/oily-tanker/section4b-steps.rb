@@ -60,6 +60,10 @@ Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|
   end
 end
 
+And (/^I click on sign button for (issuing authority|non issuing authority|competent person|non competent person)$/) do |_condition|
+  on(Section4BPage).sign_eic_or_issuer(_condition)
+end
+
 When (/^I select yes to EIC$/) do
   sleep 2
   on(Section4BPage).yes_no_btn_elements[0].click

@@ -27,6 +27,14 @@ class Section4BPage < Section4APage
   elements(:eic_date_and_time, xpath: "//button[@id='eic_eicCreatedDate']")
   elements(:eic_signer_name, xpath: "//div[starts-with(@class,'Section__Description')]/div[2]")
 
+  def sign_eic_or_issuer(_condition)
+    if ['competent person', 'non competent person'].include? _condition
+        BrowserActions.scroll_click(sign_btn_elements.first)
+    elsif ['issuing authority', 'non issuing authority'].include? _condition
+        BrowserActions.scroll_click(sign_btn_elements.last)
+    end
+  end
+
   def is_eic_details_prepopulated?
     sleep 1
     Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_time_format}")

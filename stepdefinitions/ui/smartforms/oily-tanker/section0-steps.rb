@@ -20,8 +20,11 @@ Then('I should see a list of available forms for selections') do |_table|
 end
 
 And (/^I navigate to create new permit$/) do
-  # on(Section0Page).click_create_permit_btn_element.click
-  BrowserActions.poll_exists_and_click(on(Section0Page).click_create_permit_btn_element)
+  begin
+    BrowserActions.poll_exists_and_click(on(Section0Page).click_create_permit_btn_element)
+  rescue
+    BrowserActions.poll_exists_and_click(on(Section0Page).uat_create_permit_btn_element)
+  end
   on(Section0Page).reset_data_collector
 end
 

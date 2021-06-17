@@ -8,10 +8,10 @@ class Section8Page < Section7Page
   divs(:input_fields_text, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__')]/div/span")
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   # buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
-  button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
-  button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
-  @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
-  @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
+  # button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
+  # button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
+  # @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
+  # @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
   buttons(:task_commerce_at, xpath: "//button[@id='taskCommencedAt']")
   
   span(:default_section8_question1, xpath: "//span[contains(.,'Isolation valves for oxygen and acetylene gas cylinders are shut after use (Hot Work):')]")
@@ -35,19 +35,19 @@ class Section8Page < Section7Page
 
   def sign_eic_or_issuer(_condition)
     if ['competent person', 'non competent person'].include? _condition
-      tmp = @browser.find_elements(:xpath, @@competent_person_btn)
-      if tmp.size === 1
-        BrowserActions.scroll_click(tmp.first)
-      elsif tmp.size === 0
-        BrowserActions.scroll_click(sign_btn_elements.first)
-      end
+      # tmp = @browser.find_elements(:xpath, @@competent_person_btn)
+      # if tmp.size === 1
+      #   BrowserActions.scroll_click(tmp.first)
+      # elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_role_elements.first)
+      # end
     elsif ['issuing authority', 'non issuing authority'].include? _condition
-      tmp = @browser.find_elements(:xpath, @@issuing_authority_btn)
-      if tmp.size === 1
-        BrowserActions.scroll_click(tmp.first)
-      elsif tmp.size === 0
-        BrowserActions.scroll_click(sign_btn_elements.last)
-      end
+      # tmp = @browser.find_elements(:xpath, @@issuing_authority_btn)
+      # if tmp.size === 1
+      #   BrowserActions.scroll_click(tmp.first)
+      # elsif tmp.size === 0
+        BrowserActions.scroll_click(sign_btn_role_elements.last)
+      # end
     end
   end
 

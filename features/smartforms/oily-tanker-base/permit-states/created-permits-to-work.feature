@@ -4,6 +4,71 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
+  @sol-6981
+  Scenario: Verify EIC certificate Save button work as expected
+
+  @sol-6981
+  Scenario: Verify EIC certificate Close button work as expected
+
+  @sol-6981
+  Scenario Outline: Verify EIC certification signature component for issuing authority
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank C/O
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    And I click on back arrow
+    When I navigate to "Created" screen for forms
+    And I want to edit the newly created permit
+    And I enter pin for rank <rank>
+    And I navigate to section 4b
+    Then I should see EIC section with fields enabled
+    When I select yes to EIC
+    And I click on create EIC certification button
+    And I click on sign button for issuing authority
+    And I enter pin for rank <rank>
+    And I sign on canvas
+    And I set time
+    Then I should see signed details
+    And I should see competent person sign button disabled
+    And I should see Save EIC and Close button enabled
+
+    Examples:
+      | rank  |
+      | C/E   |
+      | A C/E |
+
+  @sol-6981
+  Scenario Outline: Verify EIC certification signature component for competent person
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank C/E
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    And I click on back arrow
+    When I navigate to "Created" screen for forms
+    And I want to edit the newly created permit
+    And I enter pin for rank <rank>
+    And I navigate to section 4b
+    Then I should see EIC section with fields enabled
+    When I select yes to EIC
+    And I click on create EIC certification button
+    And I click on sign button for competent person
+    And I enter pin for rank <rank>
+    And I sign on canvas
+    And I set time
+    Then I should see signed details
+    And I should see issuing authority sign button disabled
+    And I should see Save EIC and Close button enabled
+
+    Examples:
+      | rank  |
+      | C/O   |
+      | A C/O |
+      | 2/E   |
+      | A 2/E |
+      | ETO   |
+
   Scenario: Verify correct total list of created permit
     Given I launch sol-x portal without unlinking wearable
     When I navigate to "Created" screen for forms
@@ -55,23 +120,6 @@ Feature: CreatedPermitToWork
     And I delete the permit created
     Then I should see deleted permit deleted
 
-  Scenario Outline: Verify only competent person from EIC can sign on section 4b
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Hot Work permit
-    And I select Hot Work Level-2 in Designated Area permit for level 2
-    And I click on back arrow
-    When I navigate to "Created" screen for forms
-    And I edit ptw with rank <rank> and <pin> pin
-    Then I should see EIC section with fields enabled
-
-    Examples:
-      | rank                      | pin  |
-      | C/O                       | 8383 |
-      | Second Engineer           | 2523 |
-      | Electro Technical Officer | 0856 |
-
   Scenario Outline: Verify AGT can add gas reading on section 6 for permit on Created state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -106,6 +154,8 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+
+  Scenario Outline: Checklist creator Only ranks
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
