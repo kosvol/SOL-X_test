@@ -8,8 +8,8 @@ class Section8Page < Section7Page
   divs(:input_fields_text, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__')]/div/span")
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   # buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
-  # button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
-  # button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
+  button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
+  button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
   # @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
   # @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
   buttons(:task_commerce_at, xpath: "//button[@id='taskCommencedAt']")

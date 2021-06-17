@@ -272,7 +272,7 @@ Feature: ActivePermit
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I terminate permit with 5/E rank and 7551 pin
-    Then I should not see competent person sign button exists
+    Then I should not see competent and issuing person sign button exists
 
   Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
