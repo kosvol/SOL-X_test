@@ -26,7 +26,6 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see correct signed in entrants
     And I terminate the PRE permit via service
@@ -37,7 +36,6 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
-    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I enter new entry log
@@ -56,7 +54,6 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     #And I dismiss gas reader dialog box
-    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     And I terminate the PRE permit via service
@@ -82,7 +79,6 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-   # And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
     And I terminate the PRE permit via service
@@ -93,7 +89,6 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I signout the entrant
     Then I should see entrant count equal 0
@@ -105,7 +100,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter same entry log
     And I send entry report with 0 optional entrants
-    #And I sleep for 2 seconds
     #And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
@@ -117,7 +111,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I sleep for 2 seconds
     #And I dismiss gas reader dialog box
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
@@ -129,13 +122,11 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 1 optional entrants
-   # And I sleep for 3 seconds
     And I dismiss gas reader dialog box
     And I sleep for 4 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I terminate the PRE permit via service
-
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable

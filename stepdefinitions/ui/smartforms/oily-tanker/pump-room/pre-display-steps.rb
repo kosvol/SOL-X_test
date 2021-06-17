@@ -80,7 +80,7 @@ And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on scre
 end
 
 And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do
-  on(PumpRoomEntry).entry_log_btn_element.click
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entry_log_btn_element)
   sleep 2
   is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.first.text,"Please Terminate This Permit and\nCreate A New Permit")
   is_equal(on(PreDisplay).info_gas_testing_is_missing_elements.last.text,'Initial gas reading for this permit is missing.')

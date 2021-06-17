@@ -132,6 +132,6 @@ end
 
 And (/^I dismiss gas reader dialog box$/) do
   sleep 1
-  on(CommonFormsPage).done_btn_elements.first.click
-  # BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
+  #on(CommonFormsPage).done_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
 end

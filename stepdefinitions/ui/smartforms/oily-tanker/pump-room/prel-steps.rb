@@ -12,8 +12,8 @@ And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
 end
 
 Then (/^I should see correct signed in entrants$/) do
-  on(PreDisplay).home_tab_element.click
-  on(PreDisplay).sign_out_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
+  BrowserActions.poll_exists_and_click(on(PreDisplay).sign_out_btn_elements.first)
   sleep 2
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M Atif Hayat')
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size, 1)
@@ -25,8 +25,8 @@ Then (/^I should not see entered entrant on list$/) do
 end
 
 Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |_condition|
-  on(PumpRoomEntry).entrant_names_dd_element.click if _condition === 'optional'
-  on(PumpRoomEntry).entrant_select_btn_element.click if _condition === 'required'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_names_dd_element) if _condition === 'optional'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if _condition === 'required'
   sleep 1
   arr_before = on(PumpRoomEntry).get_entrants
   on(PumpRoomEntry).member_name_btn_elements.each do |item|
@@ -65,7 +65,7 @@ end
 
 Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condition, _count|
   if _condition === 'entrant'
-    on(PreDisplay).home_tab_element.click
+    BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
     step 'I sleep for 1 seconds'
     if _count === '0'
       not_to_exists(on(PreDisplay).entrant_count_element)
