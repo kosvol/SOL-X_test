@@ -50,9 +50,7 @@ And (/^I should see gas reading section with fields enabled$/) do
 end
 
 Then (/^I should see EIC section with fields enabled$/) do
-  step 'I navigate to section 4b'
   is_equal(on(Section4APage).disabled_fields_elements.size, '2')
-  # is_false(on(Section4APage).is_checklist_fields_disabled?)
 end
 
 Then (/^I should see deleted permit deleted$/) do

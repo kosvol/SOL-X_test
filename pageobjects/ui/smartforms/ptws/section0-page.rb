@@ -6,8 +6,10 @@ class Section0Page < NavigationPage
   include PageObject
 
   element(:click_create_permit_btn, xpath: "//button[contains(.,'Create Permit To Work')]")
+  element(:uat_create_permit_btn, xpath: "//button[contains(.,'Create New Permit to Work')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
+  element(:uat_ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
   buttons(:list_permit_type, xpath: '//ul/li/button')
   elements(:permit_filter, xpath: "//div[@role='list']/a")
@@ -49,12 +51,9 @@ class Section0Page < NavigationPage
 
   def select_permit
     sleep 2
-    # BrowserActions.wait_until_is_visible(list_permit_type_elements.first)
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
       BrowserActions.js_click("//ul/li[#{_index+1}]/button")
-      # @browser.execute_script(%(document.evaluate("//ul/li[#{_index+1}]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-      # permit.click
       break
     end
   end
@@ -66,7 +65,13 @@ class Section0Page < NavigationPage
       select_permit
     end
     @@section1_data_collector << CommonPage.get_permit_id
-    @@section1_data_collector << ptw_id_element.text
-    CommonPage.set_permit_id(ptw_id_element.text)
+    ### TO remove if condition after 2.0 in UAT
+    if ($current_environment === "sit" || $current_environment === "auto")
+      @@section1_data_collector << ptw_id_element.text
+      CommonPage.set_permit_id(ptw_id_element.text)
+    elsif $current_environment === "uat"
+      @@section1_data_collector << uat_ptw_id_element.text
+      CommonPage.set_permit_id(uat_ptw_id_element.text)
+    end
   end
 end

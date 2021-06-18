@@ -1,17 +1,9 @@
 # frozen_string_literal: true
 Then (/^I should not see competent and issuing person sign button exists$/) do
   on(Section3APage).scroll_multiple_times(8)
+  not_to_exists(on(Section8Page).competent_person_btn_element)
+  not_to_exists(on(Section8Page).issuing_authority_btn_element)
   is_equal(on(Section5Page).sign_btn_role_elements.size,0)
-end
-
-Then (/^I (should|should not) see competent person sign button exists$/) do |_condition|
-  sleep 1
-  if _condition === 'should not'
-    not_to_exists(on(Section8Page).competent_person_btn_element)
-  end
-  if _condition === 'should'
-    to_exists(on(Section8Page).competent_person_btn_element)
-  end
 end
 
 Then (/^I should see issue date display$/) do

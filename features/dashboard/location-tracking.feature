@@ -95,7 +95,7 @@ Feature: LocationTracking
     And I should see Full Ship count represent 1
     And I should see ui location updated to <location>
     And I should see Lower Accomm. count represent 0
-    And I should not see ui location updated to <location>
+    And I should see ui location updated to <location>
     And I unlink all crew from wearable
 
     Examples:

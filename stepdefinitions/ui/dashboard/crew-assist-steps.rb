@@ -40,6 +40,7 @@ And ("I acknowledge the assistance with pin {int}") do |pin|
 end
 
 Then (/^I should see crew assist dialog dismiss in both tab$/) do
+  sleep 3
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)
   $browser.switch_to.window($browser.window_handles.first)
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)

@@ -21,7 +21,11 @@ Given (/^I launch sol-x portal without unlinking wearable$/) do
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue
-    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+    begin
+      BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+    rescue
+      BrowserActions.wait_until_is_visible(on(Section0Page).uat_create_permit_btn_element)
+    end
   end
   # sleep 5
   # puts "screen size: #{$browser.window_size}"
@@ -31,14 +35,20 @@ And ('I sleep for {int} seconds') do |sec|
   sleep sec
 end
 
+And (/^I sign on canvas$/) do
+  on(SignaturePage).sign_and_done
+end
+
 Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
-  on(SignaturePage).sign_and_done if _condition != "invalid"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
+  step "I sign on canvas" if _condition != "invalid"
 end
 
 ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 Then (/^I sign on canvas with (invalid|valid) (.*) pin for fsu$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
   on(SignaturePage).sign_and_done_fsu if _condition != "invalid"
 end
 
@@ -46,7 +56,8 @@ Then (/^I sign on canvas only with valid (.*) pin$/) do |_pin|
   # step 'I sleep for 1 seconds'
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
   # on(CommonFormsPage).sign_btn_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
   on(SignaturePage).sign_for_gas
 end
 
@@ -65,8 +76,23 @@ And ('I enter pin {int}') do |pin|
   sleep 1
 end
 
+And (/^I enter pin via service for rank (.*)$/) do |rank|
+  step "I get pinpad/get-pin-by-role request payload"
+  step 'I hit graphql'
+  ServiceUtil.get_response_body['data']['users'].each do |_crew|
+    if _crew['crewMember']['rank'] === rank
+      @@entered_pin = _crew['pin']
+      p "pin: #{@@entered_pin}"
+      break
+    end
+  end
+  step "I enter pin #{@@entered_pin.to_i}"
+  sleep 1
+end
+
 And(/^I enter pin for rank (.*)$/) do |rank|
-  @@entered_pin = $sit_rank_and_pin_yml[rank]
+  @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
+  @@entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
   p "pin: #{@@entered_pin}"
   step "I enter pin #{@@entered_pin.to_i}"
   sleep 1
@@ -80,8 +106,15 @@ end
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
-  BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
-  @temp_id = on(Section0Page).ptw_id_element.text
+  ### TO remove UAT adaptation after UAT switch to 2.0
+  if ($current_environment === "sit" || $current_environment === "auto")
+    BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
+    @temp_id = on(Section0Page).ptw_id_element.text
+  elsif $current_environment === "uat"
+    BrowserActions.wait_until_is_visible(on(Section0Page).uat_ptw_id_element)
+    @temp_id = on(Section0Page).uat_ptw_id_element.text
+  end
+  
 end
 
 And (/^I set permit id$/) do
@@ -112,6 +145,7 @@ Given (/^I launch sol-x portal dashboard$/) do
   else
     raise "Wrong Environment"
   end
+    BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue

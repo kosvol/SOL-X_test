@@ -6,7 +6,7 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE permit hand over is working
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
@@ -22,22 +22,22 @@ Feature: PumpRoomEntry
 
   Scenario: Verify entrant crew list displayed the correct entrants
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see correct signed in entrants
     And I terminate the PRE permit via service
 
   Scenario: Verify crew already entered pumproom should not be listed on optional crew list
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I enter new entry log
@@ -46,7 +46,7 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE duration display on PRED
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     Then I should see timer countdown
     And I terminate the PRE permit via service
 
@@ -56,7 +56,7 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     #And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     And I terminate the PRE permit via service
@@ -82,18 +82,18 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+   # And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
     And I terminate the PRE permit via service
 
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I sleep for 10 seconds
+    #And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     And I signout the entrant
     Then I should see entrant count equal 0
@@ -102,10 +102,10 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter same entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 2 seconds
+    #And I sleep for 2 seconds
     #And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
@@ -114,10 +114,10 @@ Feature: PumpRoomEntry
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    And I sleep for 2 seconds
+    #And I sleep for 2 seconds
     #And I dismiss gas reader dialog box
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
@@ -126,48 +126,21 @@ Feature: PumpRoomEntry
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 1 optional entrants
-    And I sleep for 3 seconds
+   # And I sleep for 3 seconds
     And I dismiss gas reader dialog box
     And I sleep for 4 seconds
     And I acknowledge the new entry log via service
     Then I should see entrant count equal 2
     And I terminate the PRE permit via service
 
-  ##### dashboard termination not even implemented
-  # Scenario: Verify PRE permit is terminated after terminating via dashboard popup
-  #   Given I launch sol-x portal without unlinking wearable
-  #   When I clear gas reader entries
-  #   And I navigate to create new PRE
-  #   And I enter pin for rank C/O
-  #   And I fill up PRE. Duration 4. Delay to activate 2
-  #   And I add all gas readings
-  #   And I enter pin for rank A/M
-  #   And I dismiss gas reader dialog box
-  #   And for pre I submit permit for Officer Approval
-  #   And I getting a permanent number from indexedDB
-  #   And I activate the current PRE form
-  #   And I sleep for 100 seconds
-  #   And I navigate to PRE Display
-  #   And I enter pin for rank C/O
-  #   And I enter new entry log
-  # step 'I send entry report with 0 optional entrants'
-  # step 'I sleep for 3 seconds'
-  # step 'I dismiss gas reader dialog box'
-  # step 'I sleep for 3 seconds'
-  #   And I terminate from dashboard
-  #   And I sleep for 20 seconds
-  #   # Then I should see PRE activity status change to inactive
-  #   Then I should see red background color
-  #   And I should see Permit Terminated PRE status on screen
-  # ### need to check if dashboard really dismiss popup; after display popup feature gap resolve
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 5 seconds
@@ -180,12 +153,12 @@ Feature: PumpRoomEntry
   Scenario: Verify total entrant count is valid before entry log approval
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    And I sleep for 3 seconds
+    #And I sleep for 3 seconds
     Then I should see entrant count equal 0
     And I terminate the PRE permit via service
 
@@ -275,3 +248,25 @@ Feature: PumpRoomEntry
     When I submit a scheduled PRE permit
     And I sleep for 30 seconds
     And I should see green background color
+
+  Scenario: Verify PRE permit is terminated after terminating via dashboard popup
+     Given I launch sol-x portal without unlinking wearable
+     When I clear gas reader entries
+     And I navigate to create new PRE
+     And I enter pin for rank C/O
+     And I fill up PRE. Duration 4. Delay to activate 2
+     And I add all gas readings
+     And I enter pin for rank A/M
+     And I dismiss gas reader dialog box
+     And for pre I submit permit for Officer Approval
+     And I getting a permanent number from indexedDB
+     And I activate the current PRE form
+     And I activate PRE form via service
+     And I navigate to PRE Display
+     And I enter pin for rank C/O
+     Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
+     And I terminate the PRE permit via service
+     And I sleep for 10 seconds
+     # Then I should see PRE activity status change to inactive
+     Then I should see red background color
+     And I should see Permit Terminated PRE status on screen

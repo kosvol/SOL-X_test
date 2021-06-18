@@ -148,7 +148,7 @@ And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   p "<><><> #{tmp}"
   is_equal(tmp, @@form_data['section6'])
   is_equal(on(Section4APage).generic_data_elements.last.text,on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section6Page).rank_and_name_stamp_element.text, 'A/M Atif Hayat')
+  does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'A/M Atif Hayat')
   does_include(on(Section6Page).date_and_time_stamp_element.text, 'LT (GMT')
   does_include(on(Section6Page).date_and_time_stamp_element.text, "/#{BrowserActions.get_year}")
   step 'I should see gas reading display with toxic gas'

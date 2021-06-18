@@ -5,6 +5,7 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
+  element(:dismiss_area_dd, xpath: "//div[@data-testid='dropdown-overlay-container']")
   elements(:crew_list_headers, xpath: "//th")
   element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
   elements(:permit_to_work_link, xpath: "//td/ul/li/a") #same as above
@@ -26,6 +27,11 @@ class DashboardPage < WearablePage
   @@activity_indicator = '//table/tbody/tr/td/div'
   @@location_pin = "//a[@data-testid='location-pin']"
   @@arr_data = []
+
+  #Gas reading alert
+  element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
+  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
+  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
 
   def set_arr_data(data)
     @@arr_data.push(data)
@@ -101,10 +107,18 @@ class DashboardPage < WearablePage
   end
 
   def get_map_zone_count(which_zone, total_crew)
-    area_dd
+    expand_area_dd
     sleep 1
     xpath_str = format(@@ship_area, "#{which_zone} (#{total_crew})")
     @browser.find_element('xpath', xpath_str).text
+  end
+
+  def expand_area_dd
+    area_dd
+  end
+
+  def dismiss_area_dd
+    dismiss_area_dd_element.click
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)

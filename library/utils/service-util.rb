@@ -133,7 +133,8 @@ module ServiceUtil
       { headers: {
         'Content-Type' => 'application/json',
         'Accept' => '/',
-        'x-auth-pin' => authorization_pin
+        'x-auth-pin' => authorization_pin,
+        'x-auth-user' => 'system'
       } }
     end
 
