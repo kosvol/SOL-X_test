@@ -285,3 +285,17 @@ When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _s
   is_true(status == "#{_whatStatus}")
   p " status >> #{status}"
 end
+
+And(/^I get (PTW|PRE) permit info$/) do |_permitType|
+  case _permitType
+  when "PTW"
+    dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @formNumber = dataFileResp['data']['createForm']['_id']
+    @formName = dateFileReq['variables']['permitType']
+  when "PRE"
+    dataFileResp = JSON.parse JsonUtil.read_json_response('pre/mod-01.create-pre-form')
+    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @formNumber = dataFileResp['data']['createForm']['_id']
+  end
+end

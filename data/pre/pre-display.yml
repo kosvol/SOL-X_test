@@ -6,11 +6,21 @@ warning_box:
 subheaders:
     [
         "Pump Room Entry Permit & Checklist",
+        "Gas Testing/Equipment",
         "Gas Reading",
+        "Checklist",
         "Permit Validity",
         "Responsible Officer Signature:",
         "Chief Officer/Relieved Officer Signature:",
         "Chief Officer/Relieved Officer Termination Signature:"
+    ]
+
+fields_exceptions:
+    [
+        "Note",
+        "Alert",
+        "Rank/Name",
+        "Date & Time"
     ]
 
 pre_structure_on_pred:
@@ -49,7 +59,7 @@ pre_structure_on_pred:
       "Rank/Name",
       "Date & Time",
       "Rank/Name",
-      "Date & Time",
+      "Date & Time"
     ]
   with_interval:
     [
@@ -87,6 +97,5 @@ pre_structure_on_pred:
       "Rank/Name",
       "Date & Time",
       "Rank/Name",
-      "Date & Time",
-      "",
+      "Date & Time"
     ]
