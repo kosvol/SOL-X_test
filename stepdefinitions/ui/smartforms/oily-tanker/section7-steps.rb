@@ -57,5 +57,6 @@ end
 And (/^I open a permit (.+) with (.+) rank and (.+) pin$/) do |_status, _rank, _pin|
   sleep 2
   on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank #{_rank}" if $current_environment === "uat"
 end

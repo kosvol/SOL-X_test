@@ -4,17 +4,17 @@ Feature: CreatedPermitToWork
   I want to ...
   So that ...
 
-  @sol-6981
-  Scenario: Verify EIC certificate Save button work as expected
+  # @sol-6981
+  # Scenario: Verify EIC certificate Save button work as expected
 
-  @sol-6981
-  Scenario: Verify EIC certificate Close button work as expected
+  # @sol-6981
+  # Scenario: Verify EIC certificate Close button work as expected
 
-  @sol-6981
-  Scenario: Verify RA can Save EIC certificate
+  # @sol-6981
+  # Scenario: Verify RA can Save EIC certificate
 
-  @sol-6981
-  Scenario Outline: Checklist creator only should not be able to save and sign eic certificate
+  # @sol-6981
+  # Scenario Outline: Checklist creator only should not be able to save and sign eic certificate
 
   @sol-6981
   Scenario Outline: Verify Save button disable and Close button enable for these ranks in EIC Certificate
@@ -42,6 +42,7 @@ Feature: CreatedPermitToWork
       | FTR  |
       | PMN  |
       | 4/E  |
+      | MAS  |
 
   @sol-6981
   Scenario Outline: Verify EIC certification signature component for issuing authority

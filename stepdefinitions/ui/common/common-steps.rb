@@ -40,13 +40,15 @@ And (/^I sign on canvas$/) do
 end
 
 Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
   step "I sign on canvas" if _condition != "invalid"
 end
 
 ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 Then (/^I sign on canvas with (invalid|valid) (.*) pin for fsu$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
   on(SignaturePage).sign_and_done_fsu if _condition != "invalid"
 end
 
@@ -54,7 +56,8 @@ Then (/^I sign on canvas only with valid (.*) pin$/) do |_pin|
   # step 'I sleep for 1 seconds'
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
   # on(CommonFormsPage).sign_btn_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank C/O" if $current_environment === "uat"
   on(SignaturePage).sign_for_gas
 end
 

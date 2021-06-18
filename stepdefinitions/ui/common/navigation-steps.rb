@@ -67,7 +67,8 @@ And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _r
   elsif _update_or_terminate === 'terminate'
     step 'I click on Submit for Termination'
   end
-  step "I enter pin #{_pin}"
+  step "I enter pin #{_pin}" if ($current_environment === "sit" || $current_environment === "auto")
+  step "I enter pin via service for rank #{_rank}" if $current_environment === "uat"
 end
 
 And ('I take note of issued date and time') do

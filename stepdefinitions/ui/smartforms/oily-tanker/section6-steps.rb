@@ -50,7 +50,11 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   if _approval_or_review === 'Review'
     BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
   end
-  step "I sign on canvas with valid 9015 pin"
+  step "I sign on canvas with valid 9015 pin" if ($current_environment === "sit" || $current_environment === "auto")
+  if $current_environment === "uat"
+    step "I enter pin via service for rank C/O"
+    step "I sign on canvas"
+  end
   # data collector; will evolve
   # on(Section0Page).reset_data_collector
   # @@created_permit_data = on(Section1Page).set_section1_filled_data
