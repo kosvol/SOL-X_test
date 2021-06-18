@@ -1,0 +1,13 @@
+before_appr: "Do you confirm the approval of this Permit?\nAs soon as you confirm it, the crew at LNGSIT will be able to activate it.\nOnce the permit is active, you will receive an email with link to the Permit to Work."
+
+before_appr_section7: "The permit is currently pending Office Approval.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard."
+
+after_appr: ""
+
+after_appr_section7: "The permit is approved by the Office"
+
+is_already_approved: ""
+
+before_rejection: ""
+
+after_rejectio: ""

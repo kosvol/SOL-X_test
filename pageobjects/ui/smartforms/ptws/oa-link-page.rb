@@ -6,9 +6,11 @@ require 'date'
 class OAPage < Section9Page
   include PageObject
 
+  element(:sol_logo, xpath: "//nav[contains(@class,'NavigationBar')]//img[@alt='SOL-X']")
   element(:xxx, xpath: "//label[contains(.,'Your comments to the ship')]")
   button(:approve_permit_btn, xpath: "//button[contains(.,'Approve This Permit')]")
   button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")
+  button(:permit_has_been_btn, xpath: "//button[contains(.,'This Permit Has Been')]")
   element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
   button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
@@ -26,8 +28,21 @@ class OAPage < Section9Page
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
 
   element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
+  element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]/section")
 
-  ## Comment elements ###  
+  ## Web Confirmation Page
+  element(:topbar_header_h3, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
+  element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
+  elements(:confirmation_question, xpath: "//ul/li")
+  elements(:radio_button, xpath: "//input[starts-with(@type,'radio')]")
+  element(:text_area_header, xpath: "//div[contains(@class, 'Textarea')]/label")
+  text_area(:instruction_text_area, xpath: "//textarea[@placeholder='Optional']")
+  element(:name_input_field, xpath: "//input[@type='text']")
+  element(:bottom_hint, xpath: "//section[@class='hint']/p")
+  element(:warning_infobox, xpath: "//div[contains(@class, 'InfoBox__')]")
+  ##End Web Confirmation Page ###
+
+  ## Comment elements ###
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
   #element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
   element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
@@ -52,7 +67,7 @@ class OAPage < Section9Page
   # after Termination #
   element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
   elements(:comment_date_after_term, xpath: "//time")
-  elements(:comment_text_after_term, xpath: "//li[@class='sc-AxgMl uGkHd']/div[3]")
+  elements(:comment_text_after_term, xpath: "//li[@class='sc-AxhUy ggajZP']/div[3]")
   ## END Comment attributes ###
 
   def sol_6553
@@ -89,7 +104,7 @@ class OAPage < Section9Page
   end
 
   def navigate_to_oa_link
-    sleep 100
+    sleep 20
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
     p "OA Link : #{tmp}"
     tmp
@@ -98,50 +113,40 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    current_hour = get_current_hour
     ### set from time
     date_time_from_elements[1].click
-    starttime = current_hour.to_i+1
-    if starttime <= 23
-      select_to_hour(starttime)
-      sleep 1
-      minute_from_picker_elements[1].click
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    else
-      select_to_hour((starttime)-24)
-      sleep 1
-      minute_from_picker_elements[1].click
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      date_time_from_elements.first.click
-      sleep 1
-      p ">> #{current_day_elements.size}"
-      select_todays_date_from_calendar(1)
-    end
+    starttime = Time.now.utc.strftime('%k')
+    hour_from_picker_elements[starttime].click
+    sleep 1
+    minute_from_picker_elements[1].click
+    dismiss_picker_element.click
+    sleep 1
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+    p " #{starttime}"
+
     ### set to time
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    endtime = current_hour.to_i+9
+    endtime = Time.now.utc.strftime('%k') + 8
     if endtime <= 23
-      select_to_hour(endtime)
+      hour_from_picker_elements[endtime].click
       sleep 1
-      select_to_minute(0)
+      minute_from_picker_elements[0].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{endtime}"
     else
-      select_to_hour((endtime)-24)
+      hour_from_picker_elements[endtime - 24].click
       sleep 1
-      select_to_minute(0)
+      minute_from_picker_elements[0].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{endtime - 24}"
       date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"

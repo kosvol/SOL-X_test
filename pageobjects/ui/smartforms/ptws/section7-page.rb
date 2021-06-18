@@ -11,6 +11,7 @@ class Section7Page < Section6Page
   button(:activate_permit_btn, xpath: "//button[contains(.,'Activate Permit To Work')]")
   elements(:permit_issued_on, xpath: "//div[starts-with(@class,'Section__Description')]/div[starts-with(@class,'ViewGenericAnswer__')]")
   elements(:permit_valid_until, xpath: "//div[starts-with(@class,'Section__Description')]/div[starts-with(@class,'ViewGenericAnswer__')]")
+  element(:oa_description, xpath: "//p[contains(@class, 'ViewFormSection__Description')]")
   
   def get_validity_until(_offset_hours)
     tmp = (Time.parse(@@issue_time_date)+((60*60)*_offset_hours))
