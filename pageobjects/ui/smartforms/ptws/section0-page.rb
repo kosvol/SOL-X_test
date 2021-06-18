@@ -66,7 +66,7 @@ class Section0Page < NavigationPage
     end
     @@section1_data_collector << CommonPage.get_permit_id
     ### TO remove if condition after 2.0 in UAT
-    if $current_environment === "sit"
+    if ($current_environment === "sit" || $current_environment === "auto")
       @@section1_data_collector << ptw_id_element.text
       CommonPage.set_permit_id(ptw_id_element.text)
     elsif $current_environment === "uat"

@@ -73,8 +73,22 @@ And ('I enter pin {int}') do |pin|
   sleep 1
 end
 
+And (/^I enter pin via service for rank (.*)$/) do |rank|
+  step "I get pinpad/get-pin-by-role request payload"
+  step 'I hit graphql'
+  ServiceUtil.get_response_body['data']['users'].each do |_crew|
+    if _crew['crewMember']['rank'] === rank
+      @@entered_pin = _crew['pin']
+      p "pin: #{@@entered_pin}"
+      break
+    end
+  end
+  step "I enter pin #{@@entered_pin.to_i}"
+  sleep 1
+end
+
 And(/^I enter pin for rank (.*)$/) do |rank|
-  @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if $current_environment === "sit"
+  @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
   @@entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
   p "pin: #{@@entered_pin}"
   step "I enter pin #{@@entered_pin.to_i}"
@@ -90,7 +104,7 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
   ### TO remove UAT adaptation after UAT switch to 2.0
-  if $current_environment === "sit"
+  if ($current_environment === "sit" || $current_environment === "auto")
     BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
     @temp_id = on(Section0Page).ptw_id_element.text
   elsif $current_environment === "uat"

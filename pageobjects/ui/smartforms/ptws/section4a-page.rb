@@ -14,7 +14,7 @@ class Section4APage < Section3DPage
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
   @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
-  element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
+  elements(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
   # elements(:enclosed_space_interval_filled_data, xpath: '//input')
@@ -143,38 +143,43 @@ class Section4APage < Section3DPage
   end
 
   def is_signed_user_details?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp)
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1
     BrowserActions.scroll_down
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> #{rank_and_name_stamp_element.text}")
+    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}") 
+    if (rank_and_name_stamp_elements.first.text.size > 9)
+      @tmp_rank_name = rank_and_name_stamp_elements.first.text
+    elsif (rank_and_name_stamp_elements.first.text.size <= 9)
+      @tmp_rank_name = rank_and_name_stamp_elements.last.text
+    end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
+    ((@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
   end
   
   def is_signed_user_details_plus_1_min?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp)
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1
     BrowserActions.scroll_down
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}"))
+    ((@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}"))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
     sleep 1
-    BrowserActions.scroll_down(rank_and_name_stamp)
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1
     BrowserActions.scroll_down
     # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_element.text}")
+    Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
+    ((rank_and_name_stamp_elements.first.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
   end
 
   # ##Blue rgba(24, 144, 255, 1)

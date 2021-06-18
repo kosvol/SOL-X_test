@@ -11,6 +11,39 @@ Feature: CreatedPermitToWork
   Scenario: Verify EIC certificate Close button work as expected
 
   @sol-6981
+  Scenario: Verify RA can Save EIC certificate
+
+  @sol-6981
+  Scenario Outline: Checklist creator only should not be able to save and sign eic certificate
+
+  @sol-6981
+  Scenario Outline: Verify Save button disable and Close button enable for these ranks in EIC Certificate
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin via service for rank C/O
+    And I select Use of ODME in Manual Mode permit
+    And I select Use of ODME in Manual Mode permit for level 2
+    And I navigate to section 4b
+    And I select yes to EIC
+    And I click on back arrow
+    When I navigate to "Created" screen for forms
+    And I want to edit the newly created permit
+    And I enter pin via service for rank <rank>
+    And I navigate to section 4b
+    And I click on create EIC certification button
+    And I should see competent person sign button disabled
+    And I should see issuing authority sign button disabled
+    And I should see Save EIC button disabled
+    And I should see Close button enabled
+
+    Examples:
+      | rank |
+      | 3/E  |
+      | FTR  |
+      | PMN  |
+      | 4/E  |
+
+  @sol-6981
   Scenario Outline: Verify EIC certification signature component for issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -154,8 +187,6 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
-
-  Scenario Outline: Checklist creator Only ranks
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable

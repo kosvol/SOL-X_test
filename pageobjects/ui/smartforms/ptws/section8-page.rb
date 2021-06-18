@@ -52,7 +52,7 @@ class Section8Page < Section7Page
   end
 
   def get_signed_date_time
-    BrowserActions.scroll_down(rank_and_name_stamp_element)
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end

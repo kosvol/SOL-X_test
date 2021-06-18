@@ -31,7 +31,7 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "competent person sign"
       is_disabled(on(Section4APage).sign_btn_elements.first)
     when "Save EIC"
-      is_disabled(on(Section4APage).save_eic_element)
+      is_disabled(on(Section4BPage).save_eic_element)
     end
   elsif _condition === 'enabled'
     case _which_button
@@ -53,6 +53,8 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
       is_equal(on(Section1Page).zone_btn_element.text,"Aft Station")
     when "Save EIC and Close"
       is_enabled(on(Section4BPage).save_eic_element)
+      is_enabled(on(Section4BPage).close_btn_elements.first)
+    when "Close"
       is_enabled(on(Section4BPage).close_btn_elements.first)
     end
   end
