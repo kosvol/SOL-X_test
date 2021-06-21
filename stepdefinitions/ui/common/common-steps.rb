@@ -141,9 +141,9 @@ And (/^I set time$/) do
 end
 
 Given (/^I launch sol-x portal dashboard$/) do
-  if ENV['ENVIRONMENT'] === 'sit'
+  if EnvironmentSelector.get_current_env === 'sit'
     $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
-  elsif ENV['ENVIRONMENT'] === 'auto'
+  elsif EnvironmentSelector.get_current_env=== 'auto'
     $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
   else
     raise "Wrong Environment"

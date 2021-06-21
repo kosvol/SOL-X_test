@@ -55,12 +55,11 @@ Feature: EnclosedSpaceEntryLog
     And I enter new entry log
     And I fill entry report with 2 required entrants
     And I send Report
-    And I sleep for 3 seconds
+    And I sleep for 5 seconds
     And I acknowledge the new entry log via service
     And I click on entry log tab
     And I click on back arrow
     And I click on back arrow
-    And I sleep for 20 seconds
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
     Then I should see only entry log message

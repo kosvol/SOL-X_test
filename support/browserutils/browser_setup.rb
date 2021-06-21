@@ -7,7 +7,7 @@ class BrowserSetup
   def self.get_browser(os, platform, _noreset = false, _fullreset = true)
   
     $browser = case ENV['PLATFORM'].upcase
-              when 'CHROME', 'CHROME_HEADLESS'
+              when 'CHROME', 'CHROME_HEADLESS', 'CHROME_INCOGNITO'
                 load_chrome(os)
               when 'ANDROID'
                 load_web_app(os, _noreset, _fullreset)
@@ -23,7 +23,7 @@ class BrowserSetup
       $browser.manage.delete_all_cookies
     end
 
-    BrowserActions.turn_on_wifi_by_default if $current_device.upcase != "CHROME" && $current_device.upcase != "CHROME_HEADLESS"
+    BrowserActions.turn_on_wifi_by_default if $current_device.upcase != "CHROME" && $current_device.upcase != "CHROME_HEADLESS" &&  $current_device.upcase != "CHROME_INCOGNITO"
     $browser
   end
 
@@ -33,10 +33,13 @@ class BrowserSetup
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
       ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
-
       begin
         if ENV['PLATFORM'] === 'chrome_headless'
           options.add_argument('--headless')
+          caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }) # , 'chromeOptions' => { 'args' => ['--unsafely-treat-insecure-origin-as-secure', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
+        elsif ENV['PLATFORM'] === 'chrome_incognito'
+          options.add_argument('--incognito')
+          options.add_argument('--private')
           caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }) # , 'chromeOptions' => { 'args' => ['--unsafely-treat-insecure-origin-as-secure', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
         else
           caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }) # 'chromeOptions' => { 'args' => ['--unsafely-treat-insecure-origin-as-secure', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] }) # , 'localState' => '/Users/slo-gx/Library/Application Support/Google/Chrome/Default/Local State' })
