@@ -346,6 +346,7 @@ end
 
 And(/^I click on "Approve This Permit”$/) do
   on(OAPage).approve_permit_btn
+  @time_now = Time.now.utc
   sleep(2)
 end
 
@@ -376,6 +377,7 @@ And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _min
   on(OAPage).hour_from_picker_elements[_hours.to_i].click
   on(OAPage).minute_from_picker_elements[_mins.to_i].click
   on(OAPage).dismiss_picker_element.click
+  BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
   sleep 1
 end
 
@@ -419,10 +421,40 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
   when "before"
     is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
   when "after"
-    is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr_section7'])
+    time_from = Time.new(@time_now.year, @time_now.mon, @time_now.day, 0, 0, 0, 0)
+    time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, 8, 0, 0, 0)
+    time_offset = on(CommonFormsPage).get_current_time_offset
+    if time_offset.to_s[0] != "-"
+      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+    else
+      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
+      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
+    end
+    p "#{time_ship_from}"
+    p "#{time_ship_to}"
+    is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr_section7'])
+    is_equal(on(Section7Page).additional_instruction_element.text, "Test Automation")
+    is_equal(on(Section7Page).issued_from_date_element.text, "#{time_ship_from}")
+    is_equal(on(Section7Page).issued_to_date_element.text, "#{time_ship_to}")
+    is_equal(on(Section7Page).approver_name_element.text, "VS Automation")
+    is_equal(on(Section7Page).approver_designation_element.text, "VS")
+    to_exists(on(Section7Page).activate_permit_btn_element)
   end
   to_exists(on(CommonFormsPage).previous_btn_elements.first)
   to_exists(on(CommonFormsPage).close_btn_elements.first)
   not_to_exists(on(Section7Page).update_btn_element)
   not_to_exists(on(CommonFormsPage).request_update_btn_element)
+end
+
+And(/^I leave additional instructions$/) do
+  on(OAPage).instruction_text_area_element.send_keys("Test Automation")
+end
+
+And(/^I answer all questions on the page$/) do
+  on(OAPage).select_yes_on_checkbox
+end
+
+And(/^I select the approver designation$/) do
+  on(OAPage).set_designation
 end

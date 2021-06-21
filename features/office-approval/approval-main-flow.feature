@@ -113,7 +113,14 @@ Feature: OfficeApprovalMainFlow
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     When I wait for OA event
     And I navigate to OA link
-    And I approve oa permit via oa link manually
+    And I click on "Approve This Permit”
+    And I answer all questions on the page
+    And I leave additional instructions
+    And I select Issued From time as 00:00
+    And I select Issued To time as 08:00
+    And I select the approver designation
+    And I click on "Approve This Permit”
+    And I launch sol-x portal without unlinking wearable
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
     And I click on pending approval filter
     And I open a permit pending Master Approval with Master rank and 1111 pin
