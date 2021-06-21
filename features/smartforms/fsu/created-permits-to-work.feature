@@ -4,6 +4,9 @@ Feature: CreatedPermitToWork
     I want to ...
     So that ...
 
+    Background:
+        Given I switch vessel to FSU
+
     @sol-6981
     Scenario Outline: Verify Save button disable and Close button enable for these ranks in EIC Certificate
         Given I launch sol-x portal without unlinking wearable

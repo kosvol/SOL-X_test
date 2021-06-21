@@ -16,10 +16,8 @@ And (/^I resign with valid (.*) pin$/) do |_pin|
 end
 
 And (/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) pin$/) do |_page,_pin,_condition|
-  @@entered_pin = nil ## to write common entered pin setter/getter method
-  @@entered_pin = _pin
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
   step "I enter pin #{_pin}" if _condition === "invalid"
-  step "I sign on canvas with valid #{@@entered_pin} pin" if _condition === "valid"
+  step "I sign on canvas with valid #{_pin} pin" if _condition === "valid"
   step 'I set time'
 end

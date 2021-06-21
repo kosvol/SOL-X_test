@@ -70,34 +70,29 @@ And (/^I wait for pinpad element to exists$/) do
 end
 
 And ('I enter pin {int}') do |pin|
-  @@entered_pin = nil
-  @@entered_pin = pin
+  CommonPage.set_entered_pin = pin
   step 'I wait for pinpad element to exists'
-  on(PinPadPage).enter_pin(pin)
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
   sleep 1
 end
 
 And (/^I enter pin via service for rank (.*)$/) do |rank|
   step "I get pinpad/get-pin-by-role request payload"
   step 'I hit graphql'
-  @@entered_pin = nil
   ServiceUtil.get_response_body['data']['users'].each do |_crew|
     if _crew['crewMember']['rank'] === rank
-      @@entered_pin = _crew['pin']
-      p "pin: #{@@entered_pin}"
+      CommonPage.set_entered_pin = _crew['pin']
       break
     end
   end
-  step "I enter pin #{@@entered_pin.to_i}"
+  step "I enter pin #{CommonPage.get_entered_pin}"
   sleep 1
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  @@entered_pin = nil
-  @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
-  @@entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
-  p "pin: #{@@entered_pin}"
-  step "I enter pin #{@@entered_pin.to_i}"
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
+  step "I enter pin #{CommonPage.get_entered_pin}"
   sleep 1
 end
 

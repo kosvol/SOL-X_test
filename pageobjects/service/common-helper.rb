@@ -4,12 +4,23 @@ require './././support/env'
 
 class CommonPage
   class << self
+
     def is_error
       ServiceUtil.get_response_body.key?('errors')
     end
 
     def is_successful(table)
       ServiceUtil.get_response_body['data'][table.to_s]
+    end
+
+    def get_entered_pin
+      @entered_pin
+    end
+
+    def set_entered_pin=(_pin)
+      @entered_pin = nil
+      @entered_pin = _pin
+      p "current pin >> #{@entered_pin}"
     end
 
     def set_permit_id(_permit)

@@ -94,8 +94,6 @@ end
 # end
 
 And (/^I sign on role with sponsor crew (.+) pin$/) do |_pin|
-  @@entered_pin = nil
-  @@entered_pin = _pin
   on(Section5Page).sign_btn_role_elements.first.click
   step "I sign on canvas with valid #{_pin} pin for fsu"
   step 'I set time'
