@@ -26,7 +26,7 @@ World(AssertionUtil)
 
 $current_application = ENV['APPLICATION']
 $current_environment = ENV['ENVIRONMENT']
-$current_device = ENV['PLATFORM']
+$current_platform = ENV['PLATFORM']
 
 $obj_env_yml = YAML.load_file('config/environment.yml')
 $sit_rank_and_pin_yml = YAML.load_file('data/sit_rank_and_pin.yml')
