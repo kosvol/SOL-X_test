@@ -135,7 +135,7 @@ class Section3APage < Section2Page
     sleep 2
     @@swap_flag === 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]",0)
-    scroll_multiple_times(1)
+    scroll_multiple_times(2)
     likelihood_btn_elements[2].click
     select_dra_risk(_likelihood)
     consequence_btn_elements[2].click

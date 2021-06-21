@@ -48,7 +48,6 @@ Feature: Section4AChecklist
     And I press next for 1 times
     Then I should not see location of work in checklist
 
-  @test1
   Scenario: Verify checklist questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -56,58 +55,58 @@ Feature: Section4AChecklist
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
-    # And I press next for 1 times
-    # Then I should see Enclosed Spaces Entry Checklist checklist questions
-    # And I should see info boxes
-    # And I should see warning boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Hot Work Outside Designated Area checklist
-    # And I press next for 1 times
-    # Then I should see Hot Work Outside Designated Area checklist questions
-    # And I should see info boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Underwater Operation checklist
-    # And I press next for 1 times
-    # Then I should see Underwater Operation checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Working Aloft/Overside checklist
-    # And I press next for 1 times
-    # Then I should see Working Aloft Overside checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Work on Pressure Pipelines checklist
-    # And I press next for 1 times
-    # Then I should see Work on Pressure Pipelines checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Use of ODME in Manual Mode checklist
-    # And I press next for 1 times
-    # Then I should see Use of ODME in Manual Mode checklist questions
-    # And I should see warning boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Personnel Transfer by Transfer Basket checklist
-    # And I press next for 1 times
-    # Then I should see Personnel Transfer by Transfer Basket checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Helicopter Operation Checklist checklist
-    # And I press next for 1 times
-    # Then I should see Helicopter Operation checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Rotational Portable Power Tools (PPT) checklist
-    # And I press next for 1 times
-    # Then I should see Rotational Portable Power Tools (PPT) checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Work on Electrical Equipment and Circuits checklist
-    # And I press next for 1 times
-    # Then I should see Work on Electrical Equipment and Circuits checklist questions
-    # And I press previous for 1 times
+    And I press next for 1 times
+    Then I should see Enclosed Spaces Entry Checklist checklist questions
+    And I should see info boxes
+    And I should see warning boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Hot Work Outside Designated Area checklist
+    And I press next for 1 times
+    Then I should see Hot Work Outside Designated Area checklist questions
+    And I should see info boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Underwater Operation checklist
+    And I press next for 1 times
+    Then I should see Underwater Operation checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Working Aloft/Overside checklist
+    And I press next for 1 times
+    Then I should see Working Aloft Overside checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Pressure Pipelines checklist
+    And I press next for 1 times
+    Then I should see Work on Pressure Pipelines checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Use of ODME in Manual Mode checklist
+    And I press next for 1 times
+    Then I should see Use of ODME in Manual Mode checklist questions
+    And I should see warning boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Personnel Transfer by Transfer Basket checklist
+    And I press next for 1 times
+    Then I should see Personnel Transfer by Transfer Basket checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Helicopter Operation Checklist checklist
+    And I press next for 1 times
+    Then I should see Helicopter Operation checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Rotational Portable Power Tools (PPT) checklist
+    And I press next for 1 times
+    Then I should see Rotational Portable Power Tools (PPT) checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 1 times
+    Then I should see Work on Electrical Equipment and Circuits checklist questions
+    And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times

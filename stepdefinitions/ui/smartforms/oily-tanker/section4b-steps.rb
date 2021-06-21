@@ -52,7 +52,7 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.*) and lin
 end
 
 Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
-  on(Section8Page).sign_eic_or_issuer(_condition)
+  on(Section4BPage).sign_eic_or_issuer(_condition)
   if _condition === 'issuing authority' || _condition === 'competent person'
     step "I sign on canvas with valid #{_pin} pin"
   elsif _condition === 'non issuing authority' || _condition === 'non competent person'
