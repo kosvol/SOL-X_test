@@ -79,7 +79,7 @@ And (/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   p "--- #{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
-  @@entered_pin = "9015"
+  CommonPage.set_entered_pin = "9015"
   step 'I should see signed details for integration test'
   # step 'I should map to partial sign details'
 end
@@ -101,7 +101,7 @@ And (/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   extract.delete_at(1)
   p "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
-  @@entered_pin = '9015'
+  CommonPage.set_entered_pin = '9015'
   # is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
   step 'I should see signed details for integration test'
 end
@@ -120,11 +120,11 @@ And (/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
   does_include(on(Section4APage).generic_data_elements[2].text, 'AUTO/EIC')
   is_equal(tmp, @@form_data['section4b_eic'])
-  @@entered_pin = '8383'
+  CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 1
-  @@entered_pin = '9015'
+  CommonPage.set_entered_pin = '9015'
   step 'I should see signed details for integration test'
 end
 
@@ -155,6 +155,6 @@ And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
 end
 
 Then (/^I should see signed details for integration test$/) do
-  is_true(on(Section4APage).is_signed_user_details_integration?(@@entered_pin))
+  is_true(on(Section4APage).is_signed_user_details_integration?(CommonPage.get_entered_pin))
   is_true(on(SignaturePage).is_signature_pad?)
 end

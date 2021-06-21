@@ -49,10 +49,10 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
 end
 
 Then (/^I should see signed details$/) do
-  if on(Section4APage).is_signed_user_details?(@@entered_pin)
-    is_true(on(Section4APage).is_signed_user_details?(@@entered_pin))
+  if on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin)
+    is_true(on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin))
   else
-    is_true(on(Section4APage).is_signed_user_details_plus_1_min?(@@entered_pin))
+    is_true(on(Section4APage).is_signed_user_details_plus_1_min?(CommonPage.get_entered_pin))
   end
   is_true(on(SignaturePage).is_signature_pad?)
 end

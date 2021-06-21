@@ -95,8 +95,7 @@ And (/^I add crew$/) do
   BrowserActions.poll_exists_and_click(on(CrewListPage).retrieve_data_btn_element)
   BrowserActions.poll_exists_and_click(on(CrewListPage).view_crew_pin_btn_element)
   sleep 1
-  @@entered_pin = on(CrewListPage).pin_text_field_element.text
-  p "new pin >> #{@@entered_pin}"
+  CommonPage.set_entered_pin = on(CrewListPage).pin_text_field_element.text
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
 end
 
@@ -131,5 +130,5 @@ end
 When (/^I create the ptw with the new pin$/) do
   step 'I navigate to "SmartForms" screen for forms'
   step 'I navigate to create new permit'
-  step "I enter pin #{@@entered_pin}"
+  step "I enter pin #{CommonPage.get_entered_pin}"
 end

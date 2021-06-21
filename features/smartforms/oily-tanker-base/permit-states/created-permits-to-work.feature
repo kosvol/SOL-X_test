@@ -38,8 +38,8 @@ Feature: CreatedPermitToWork
 
     Examples:
       | rank |
-      | 3/E  |
-      | FTR  |
+      # | 3/E  |
+      # | FTR  |
       | PMN  |
       | 4/E  |
       | MAS  |
@@ -69,7 +69,7 @@ Feature: CreatedPermitToWork
 
     Examples:
       | rank  |
-      | C/E   |
+      # | C/E   |
       | A C/E |
 
   @sol-6981
@@ -96,12 +96,12 @@ Feature: CreatedPermitToWork
     And I should see Save EIC and Close button enabled
 
     Examples:
-      | rank |
-      | C/O  |
-  # | A C/O |
-  # | 2/E   |
-  # | A 2/E |
-  # | ETO   |
+      | rank  |
+      # | C/O   |
+      # | A C/O |
+      | 2/E   |
+      | A 2/E |
+      | ETO   |
 
   Scenario: Verify correct total list of created permit
     Given I launch sol-x portal without unlinking wearable

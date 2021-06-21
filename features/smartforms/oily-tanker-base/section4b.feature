@@ -54,7 +54,7 @@ Feature: Section4BEIC
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -78,7 +78,7 @@ Feature: Section4BEIC
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -129,7 +129,7 @@ Feature: Section4BEIC
   Scenario Outline: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
@@ -155,7 +155,7 @@ Feature: Section4BEIC
   Scenario Outline: Verify non competent person cannot sign as competent person
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value

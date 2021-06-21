@@ -14,18 +14,19 @@ class DashboardPage < WearablePage
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[5]')
   spans(:permits_count, xpath: '//span[@class="stat"]')
-  span(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/span")
+  # span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div/span")
+  span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]/span")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
   element(:entry_status_indicator, xpath: "//div[starts-with(@class,'ActiveEntrantIndicator__ButtonContent')]")
   elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
   elements(:date_log, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entarnt, xpath: "//span[@data-testid='entrant-count']")
-  @@ship_area = "//li/button[contains(.,'%s')]"
+  @@ship_area = "//button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
-  @@location_pin = "//a[@data-testid='location-pin']"
+  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]"#"//a[@data-testid='location-pin']"
   @@arr_data = []
 
   #Gas reading alert

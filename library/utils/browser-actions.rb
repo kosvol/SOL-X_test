@@ -6,7 +6,7 @@ module BrowserActions
     ### new methods
 
     def poll_exists_and_click(_element)
-      (wait_until_is_visible(_element)) ? _element.click : poll_exists_and_click(_element)
+      wait_until_is_visible(_element) ? _element.click : poll_exists_and_click(_element)
     end
 
     def wait_until_is_visible(_element)
@@ -69,7 +69,7 @@ module BrowserActions
     end
 
     def get_attribute_value(xpath)
-      $browser.find_elemente(:xpath, xpath).attribute('value').to_s
+      $browser.find_element(:xpath, xpath).attribute('value').to_s
     end
 
     def get_year
@@ -89,7 +89,7 @@ module BrowserActions
       $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 
-    def js_clicks(_xpath,_index)
+    def js_clicks(_xpath, _index)
       $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{_index}").click()))
     end
 

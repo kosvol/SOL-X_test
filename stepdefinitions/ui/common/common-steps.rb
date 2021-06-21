@@ -70,9 +70,9 @@ And (/^I wait for pinpad element to exists$/) do
 end
 
 And ('I enter pin {int}') do |pin|
-  @@entered_pin = pin
+  CommonPage.set_entered_pin = pin
   step 'I wait for pinpad element to exists'
-  on(PinPadPage).enter_pin(pin)
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
   sleep 1
 end
 
@@ -81,20 +81,18 @@ And (/^I enter pin via service for rank (.*)$/) do |rank|
   step 'I hit graphql'
   ServiceUtil.get_response_body['data']['users'].each do |_crew|
     if _crew['crewMember']['rank'] === rank
-      @@entered_pin = _crew['pin']
-      p "pin: #{@@entered_pin}"
+      CommonPage.set_entered_pin = _crew['pin']
       break
     end
   end
-  step "I enter pin #{@@entered_pin.to_i}"
+  step "I enter pin #{CommonPage.get_entered_pin}"
   sleep 1
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
-  @@entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
-  p "pin: #{@@entered_pin}"
-  step "I enter pin #{@@entered_pin.to_i}"
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
+  step "I enter pin #{CommonPage.get_entered_pin}"
   sleep 1
 end
 
@@ -138,9 +136,9 @@ And (/^I set time$/) do
 end
 
 Given (/^I launch sol-x portal dashboard$/) do
-  if ENV['ENVIRONMENT'] === 'sit'
+  if EnvironmentSelector.get_current_env === 'sit'
     $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
-  elsif ENV['ENVIRONMENT'] === 'auto'
+  elsif EnvironmentSelector.get_current_env=== 'auto'
     $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
   else
     raise "Wrong Environment"

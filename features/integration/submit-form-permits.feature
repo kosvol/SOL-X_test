@@ -37,7 +37,7 @@ Feature: SubmitPermit
   Scenario: Submit permit data Enclosed Spaces Entry into pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
