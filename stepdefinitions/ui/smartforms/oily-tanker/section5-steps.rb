@@ -104,7 +104,12 @@ end
 Then (/^I should see non crew details$/) do
   sleep 1
   is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
-  is_equal(on(Section5Page).get_non_crew_date_time_element.text, "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
+  if on(Section5Page).get_non_crew_date_time_element.text === "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}"
+    is_equal(on(Section5Page).get_non_crew_date_time_element.text, "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
+  else
+    is_equal(on(Section5Page).get_non_crew_date_time_element.text, "get_current_date_and_time_minus_a_min")
+  end
+  
 end
 
 And (/^I should see supervise by (.+) detail and (.+) detail$/) do |_supervized, _company|

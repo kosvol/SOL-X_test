@@ -137,8 +137,8 @@ And (/^I fill up EIC certificate$/) do
   # sign
   step 'I sign EIC as competent person with pin 8383'
   sleep 1
-  step 'I sign EIC as issuing authority with pin 8248'
-  sleep 2
+  # step 'I sign EIC as issuing authority with pin 8248'
+  # sleep 2
   on(Section4BPage).save_eic
   sleep 1
   step 'I sign EIC section 4b with RA pin 9015'
