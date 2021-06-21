@@ -70,6 +70,7 @@ And (/^I wait for pinpad element to exists$/) do
 end
 
 And ('I enter pin {int}') do |pin|
+  @@entered_pin = nil
   @@entered_pin = pin
   step 'I wait for pinpad element to exists'
   on(PinPadPage).enter_pin(pin)
@@ -79,6 +80,7 @@ end
 And (/^I enter pin via service for rank (.*)$/) do |rank|
   step "I get pinpad/get-pin-by-role request payload"
   step 'I hit graphql'
+  @@entered_pin = nil
   ServiceUtil.get_response_body['data']['users'].each do |_crew|
     if _crew['crewMember']['rank'] === rank
       @@entered_pin = _crew['pin']
@@ -91,6 +93,7 @@ And (/^I enter pin via service for rank (.*)$/) do |rank|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
+  @@entered_pin = nil
   @@entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
   @@entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
   p "pin: #{@@entered_pin}"

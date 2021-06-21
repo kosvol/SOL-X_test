@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 Then (/^I should see (green|red) online blob$/) do |_color|
-  p "#{@browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')}"
-  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')
+  # p "#{@browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')}"
+  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']").attribute('class11')
+  p ">> #{wifi_blob_color_code.to_s}"
   if _color === "green"
-    is_equal(wifi_blob_color_code,"rgba(118, 210, 117, 1)")
+    is_equal(wifi_blob_color_code.to_s,"online")#"rgba(118, 210, 117, 1)")
   elsif _color === "red"
-    is_equal(wifi_blob_color_code,"rgba(255, 125, 119, 1)")
+    is_equal(wifi_blob_color_code.to_s,"")
+    # is_equal(wifi_blob_color_code,"rgba(255, 125, 119, 1)")
   end
   
 end
 
 Then('I should see a list of available forms for selections') do |_table|
-  # on(Section0Page).click_permit_type_ddl
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   _table.raw.each_with_index do |_element, _index|
     is_equal(_element.first, on(Section0Page).list_permit_type_elements[_index].text)
@@ -41,7 +42,6 @@ Then (/^I should see second level permits details$/) do
 end
 
 And (/^I navigate back to permit selection screen$/) do
-  # on(Section0Page).back_btn
   BrowserActions.poll_exists_and_click(on(Section0Page).back_btn_element)
   BrowserActions.poll_exists_and_click(on(Section0Page).close_btn_elements.first)
 end

@@ -69,7 +69,7 @@ module BrowserActions
     end
 
     def get_attribute_value(xpath)
-      $browser.find_elemente(:xpath, xpath).attribute('value').to_s
+      $browser.find_element(:xpath, xpath).attribute('value').to_s
     end
 
     def get_year
