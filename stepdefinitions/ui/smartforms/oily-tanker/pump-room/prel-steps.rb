@@ -1,7 +1,7 @@
 And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
  # step 'I sleep for 10 seconds'
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
-  on(PreDisplay).new_entry_log_element.click
+  BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
 
   on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if _condition === 'same'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if _condition === 'new'
@@ -20,7 +20,7 @@ Then (/^I should see correct signed in entrants$/) do
 end
 
 Then (/^I should not see entered entrant on list$/) do
-  on(PreDisplay).home_tab_element.click
+  BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
   is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS Daniel Alcantara'))
 end
 
@@ -57,9 +57,9 @@ end
 
 And ('I select required entrants {int}') do |_entrants_number|
   BrowserActions.wait_until_is_visible(on(PumpRoomEntry).input_field_element)
-  on(PumpRoomEntry).entrant_select_btn_element.click
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
   on(PumpRoomEntry).required_entrants(_entrants_number)
-  on(PumpRoomEntry).confirm_btn_elements.first.click
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).confirm_btn_elements.first)
 end
 
 
