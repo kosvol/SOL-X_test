@@ -115,7 +115,7 @@ class OAPage < Section9Page
     BrowserActions.scroll_down(date_time_from_elements[0])
     ### set from time
     date_time_from_elements[1].click
-    starttime = Time.now.utc.strftime('%k')
+    starttime = Time.now.utc.strftime('%k').to_i
     hour_from_picker_elements[starttime].click
     sleep 1
     minute_from_picker_elements[1].click
@@ -128,7 +128,7 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    endtime = Time.now.utc.strftime('%k') + 8
+    endtime = Time.now.utc.strftime('%k').to_i + 8
     if endtime <= 23
       hour_from_picker_elements[endtime].click
       sleep 1
