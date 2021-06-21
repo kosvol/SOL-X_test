@@ -19,9 +19,11 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -71,9 +73,11 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -123,9 +127,11 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -158,9 +164,11 @@ Feature: ActivePermit
     When I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -329,9 +337,11 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -370,9 +380,11 @@ Feature: ActivePermit
     When I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -447,9 +459,11 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
-    When I navigate to OA link
+    When And I wait for OA event
+    And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -464,9 +478,11 @@ Feature: ActivePermit
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
-    When I navigate to OA link
+    When I wait for OA event
+    And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
@@ -482,9 +498,11 @@ Feature: ActivePermit
 
   Scenario Outline: Verify non AGT cannot add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
-    When I navigate to OA link
+    When I wait for OA event
+    And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
