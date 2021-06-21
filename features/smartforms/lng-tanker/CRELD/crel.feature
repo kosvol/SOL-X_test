@@ -8,7 +8,6 @@ Feature: LNGCREL
     Given I change ship local time to -11 GMT
     When  I submit a current CRE permit via service
     And I add new entry "A 2/O" CRE
-   # And I sleep for 10 seconds
     And I acknowledge the new entry log cre via service
     And I save permit date on Dashboard LOG
     When I terminate the PRE permit via service
@@ -51,7 +50,7 @@ Feature: LNGCREL
 #    And I getting a permanent number from indexedDB
 #    Then I activate the current CRE form
 #    And I sleep for 180 seconds
-   # And I activate CRE form via service
+#    And I activate CRE form via service
     And I open new dashboard page
     And I sleep for 5 seconds
     And I switch to first tab in browser

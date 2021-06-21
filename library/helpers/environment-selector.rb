@@ -19,6 +19,10 @@ module EnvironmentSelector
       $obj_env_yml[get_environment.to_s]["update_mas_pin"]
     end
 
+    def get_current_env
+      get_environment
+    end
+
     private
 
     def get_environment
