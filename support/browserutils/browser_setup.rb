@@ -23,7 +23,7 @@ class BrowserSetup
       $browser.manage.delete_all_cookies
     end
 
-    BrowserActions.turn_on_wifi_by_default if $current_platform.upcase != "CHROME" && $current_platform.upcase != "CHROME_HEADLESS"
+    BrowserActions.turn_on_wifi_by_default if $current_platform.upcase != "CHROME" && $current_platform.upcase != "CHROME_HEADLESS" && $current_platform.upcase != "CHROME_INCOGNITO"
     $browser
   end
 

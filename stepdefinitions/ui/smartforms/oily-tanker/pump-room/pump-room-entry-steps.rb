@@ -1,6 +1,6 @@
 And(/^I navigate to create new (PRE|CRE)$/) do |_permit_type|
-  on(PumpRoomEntry).create_new_pre_btn_element.click if _permit_type === 'PRE'
-  on(PumpRoomEntry).create_new_cre_btn_element.click if _permit_type === 'CRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_pre_btn_element) if _permit_type === 'PRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_cre_btn_element) if _permit_type === 'CRE'
   sleep 1
 end
 
@@ -72,7 +72,8 @@ end
 
 And (/^I should see the (text|label|page|header) '(.*)'$/) do |like, text|
   sleep 1
-  is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
+  BrowserActions.wait_condition(20, is_true(on(PumpRoomEntry).is_text_displayed?(like,text)))
+  #is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
 end
 
 And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
@@ -109,7 +110,7 @@ And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
   step 'Get PRE id'
   step 'I press the "Submit for Approval" button'
   step "I enter pin for rank #{_role}"
-  sleep 3
+   sleep 3
   on(SignaturePage).sign_and_done
   step "I should see the page 'Successfully Submitted'"
   sleep 2
