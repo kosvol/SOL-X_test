@@ -2,7 +2,7 @@
 
 Then (/^I should see (green|red) online blob$/) do |_color|
   # p "#{@browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]/div[1]").css_value('background-color')}"
-  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']").attribute('class11')
+  wifi_blob_color_code = @browser.find_element(:xpath, "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']").attribute('class')
   p ">> #{wifi_blob_color_code.to_s}"
   if _color === "green"
     is_equal(wifi_blob_color_code.to_s,"online")#"rgba(118, 210, 117, 1)")
