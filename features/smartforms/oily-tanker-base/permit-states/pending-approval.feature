@@ -88,9 +88,11 @@ Feature: PendingApprovalPermit
     And I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
+    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    #And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     Then I should be able to open permit as master without seeing blank screen
 

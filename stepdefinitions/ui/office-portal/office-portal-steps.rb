@@ -438,14 +438,15 @@ end
 Then(/^I should see the PRE form shows the same fields as in the client app$/) do
   fieldsArr = []
   subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h4").each do |_field|
+  $browser.find_elements(:xpath, "//h4").each do |_field|
     fieldsArr << _field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h2").each do |_subheader|
+  $browser.find_elements(:xpath, "//h2").each do |_subheader|
     subheadersArr << _subheader.text
   end
   baseFields = [] + YAML.load_file("data/pre/pre-display.yml")["pre_structure_on_pred"]["with_interval"]
   baseSubheaders = [] + YAML.load_file("data/pre/pre-display.yml")["subheaders"]
+  baseFields  -= YAML.load_file("data/pre/pre-display.yml")["fields_exceptions"]
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)

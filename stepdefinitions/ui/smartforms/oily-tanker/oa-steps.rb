@@ -2,7 +2,8 @@
 
 And (/^I navigate to OA link$/) do
   $browser.get(on(OAPage).navigate_to_oa_link)
-  sleep 3
+    #sleep 3
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
 
 And (/^I request the permit for update via oa link manually$/) do
@@ -284,4 +285,176 @@ When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _s
   end
   is_true(status == "#{_whatStatus}")
   p " status >> #{status}"
+end
+
+Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
+  to_exists(on(OAPage).sol_logo_element)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  case _when
+  when "before approval"
+    sectionsList = []
+    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
+      section = _whatSection.text
+      sectionsList << section
+    end
+    sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['pending_office_approval']
+    is_enabled(on(OAPage).approve_permit_btn_element)
+    is_enabled(on(OAPage).update_permit_btn_element)
+    is_enabled(on(OAPage).add_comments_btn_element)
+  when "after approval"
+    sectionsList = []
+    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
+      section = _whatSection.text
+      sectionsList << section
+    end
+    sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['pending_master_approval']
+    is_disabled(on(OAPage).permit_has_been_btn_element)
+    is_equal(on(OAPage).permit_has_been_btn_element.text, "This Permit Has Been Approved")
+    is_disabled(on(OAPage).update_permit_btn_element)
+    is_disabled(on(OAPage).add_comments_btn_element)
+  when "after activation"
+    sectionsList = []
+    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
+      section = _whatSection.text
+      sectionsList << section
+    end
+    sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['active']
+    is_disabled(on(OAPage).permit_has_been_btn_element)
+    is_equal(on(OAPage).permit_has_been_btn_element.text, "This Permit Has Been Activated")
+    is_disabled(on(OAPage).update_permit_btn_element)
+    is_disabled(on(OAPage).add_comments_btn_element)
+  end
+  is_true(sectionsList == sections_data)
+  p ">> #{sectionsList - sections_data}"
+  not_to_exists(on(OfficePortalPage).home_btn_element)
+end
+
+And(/^I get (PTW|PRE) permit info$/) do |_permitType|
+  case _permitType
+  when "PTW"
+    dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @formNumber = dataFileResp['data']['createForm']['_id']
+    @formName = dateFileReq['variables']['permitType']
+  when "PRE"
+    dataFileResp = JSON.parse JsonUtil.read_json_response('pre/mod-01.create-pre-form')
+    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @formNumber = dataFileResp['data']['createForm']['_id']
+  end
+end
+
+And(/^I click on "Approve This Permit”$/) do
+  on(OAPage).approve_permit_btn
+  @time_now = Time.now.utc
+  sleep(2)
+end
+
+Then(/^I should see the Web Confirmation page with all attributes$/) do
+  to_exists(on(OAPage).sol_logo_element)
+  does_include(on(OAPage).topbar_header_h3_element.text, "PTW #: #{@formNumber}")
+  baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr']
+  is_equal(on(OAPage).main_description_element.text, baseDescription)
+  is_equal(on(OAPage).confirmation_question_elements[0].text, "DRA & Work Plan Reviewed?\nYes\nN/A")
+  is_equal(on(OAPage).confirmation_question_elements[1].text, "Safety Meeting Minutes Reviewed?\nYes\nN/A")
+  is_equal(on(OAPage).confirmation_question_elements[2].text, "Any Intermediate Reporting Required?\nYes\nN/A")
+  is_equal(on(OAPage).confirmation_question_elements[3].text, "Local/appropriate authority approval required?\nYes\nN/A")
+  is_equal(on(OAPage).text_area_header_element.text, "Additional Instruction on safety and technical matters:")
+  to_exists(on(OAPage).instruction_text_area_element)
+  to_exists(on(OAPage).name_input_field_element)
+  is_disabled(on(OAPage).approve_permit_btn_element)
+  is_equal(on(OAPage).bottom_hint_element.text, "If you don't intend to approve this permit, please close this window and return to the approval page.")
+end
+
+
+And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _mins|
+  case _whatTime
+  when "From"
+    on(OAPage).date_time_from_elements[1].click
+  when "To"
+    on(OAPage).date_time_to_elements[1].click
+  end
+  on(OAPage).hour_from_picker_elements[_hours.to_i].click
+  on(OAPage).minute_from_picker_elements[_mins.to_i].click
+  on(OAPage).dismiss_picker_element.click
+  BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+  sleep 1
+end
+
+Then(/^I should see the correct warning message for (less|more)$/) do |_validity|
+  case _validity
+  when "less"
+    is_equal(on(OAPage).warning_infobox_element.text, "Validity Time too short\nCheck validity time too short, permit duration can't be less than 1 hr.")
+  when "more"
+    is_equal(on(OAPage).warning_infobox_element.text, "Validity Time too long\nCheck validity time too long, permit duration can't be more than 8 hrs.")
+  end
+end
+
+Then(/^I should see the officer name is pre\-filled$/) do
+  is_equal(on(OAPage).name_input_field_element.attribute('value'), "VS Automation")
+end
+
+Then(/^I should see the Warning Screen$/) do
+  to_exists(on(OAPage).sol_logo_element)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  not_to_exists(on(OfficePortalPage).home_btn_element)
+  is_equal(on(OAPage).warning_link_expired_element.text, "Link has expired as this Permit to Work has been sent again for Office Approval\nA new link has been sent out via email. If it hasn't arrive yet, please wait for a few minutes.\nYour previous comments won't be lost.")
+  not_to_exists(on(OAPage).approve_permit_btn_element)
+end
+
+And(/^I submit permit via service to pending master review state$/) do
+  on(BypassPage).set_oa_permit_to_state('PENDING_MASTER_REVIEW')
+end
+
+And(/^I navigate to OA link as Master$/) do
+  form_id = CommonPage.get_permit_id
+  request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
+  event_id = (JSON.parse request.to_s)['docs'][0]['_id']
+  $browser.get("https://office.dev.safevue.ai/permit-preview/#{event_id}")
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
+end
+
+
+Then(/^I should see correct Section 7 details (before|after) Office Approval$/) do |_when|
+  case _when
+  when "before"
+    is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
+  when "after"
+    time_from = Time.new(@time_now.year, @time_now.mon, @time_now.day, 0, 0, 0, 0)
+    time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, 8, 0, 0, 0)
+    time_offset = on(CommonFormsPage).get_current_time_offset
+    if time_offset.to_s[0] != "-"
+      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+    else
+      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
+      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
+    end
+    p "#{time_ship_from}"
+    p "#{time_ship_to}"
+    is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr_section7'])
+    is_equal(on(Section7Page).additional_instruction_element.text, "Test Automation")
+    is_equal(on(Section7Page).issued_from_date_element.text, "#{time_ship_from}")
+    is_equal(on(Section7Page).issued_to_date_element.text, "#{time_ship_to}")
+    is_equal(on(Section7Page).approver_name_element.text, "VS Automation")
+    is_equal(on(Section7Page).approver_designation_element.text, "VS")
+    to_exists(on(Section7Page).activate_permit_btn_element)
+  end
+  to_exists(on(CommonFormsPage).previous_btn_elements.first)
+  to_exists(on(CommonFormsPage).close_btn_elements.first)
+  not_to_exists(on(Section7Page).update_btn_element)
+  not_to_exists(on(CommonFormsPage).request_update_btn_element)
+end
+
+And(/^I leave additional instructions$/) do
+  on(OAPage).instruction_text_area_element.send_keys("Test Automation")
+end
+
+And(/^I answer all questions on the page$/) do
+  on(OAPage).select_yes_on_checkbox
+end
+
+And(/^I select the approver designation$/) do
+  on(OAPage).set_designation
 end
