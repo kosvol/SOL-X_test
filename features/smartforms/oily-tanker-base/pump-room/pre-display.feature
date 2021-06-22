@@ -15,6 +15,7 @@ Feature: PumpRoomEntry
     Then I should see entry log details display as filled
     When I submit a scheduled PRE permit
     And  I activate CRE form via service
+    And I dismiss gas reader dialog box
     And I click on permit tab
     Then I should see new PRE permit number
     And I terminate the PRE permit via service
@@ -94,7 +95,7 @@ Feature: PumpRoomEntry
     Then I should see entrant count equal 0
     And I should see exit timestamp updated
     And I terminate the PRE permit via service
-
+  @wip
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given I launch sol-x portal without unlinking wearable
     When I fill and submit PRE permit details via service
@@ -107,7 +108,6 @@ Feature: PumpRoomEntry
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
     When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
