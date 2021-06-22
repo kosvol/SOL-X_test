@@ -7,11 +7,6 @@ Feature: LNGSmartFormsPermission
     Background:
         Given I switch vessel to FSU
 
-    # Scenario: Two LNG forms to be dispalyed in maintenance permit
-    #     Given I launch sol-x portal without unlinking wearable
-    #     Then I navigate to create new CRE
-    #     And I switch vessel to LNG
-
     Scenario: Verify ROL can be approved by CE
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
