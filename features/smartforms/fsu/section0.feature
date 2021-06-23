@@ -7,11 +7,6 @@ Feature: LNGSmartFormsPermission
     Background:
         Given I switch vessel to FSU
 
-    # Scenario: Two LNG forms to be dispalyed in maintenance permit
-    #     Given I launch sol-x portal without unlinking wearable
-    #     Then I navigate to create new CRE
-    #     And I switch vessel to LNG
-
     Scenario: Verify ROL can be approved by CE
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
@@ -144,8 +139,7 @@ Feature: LNGSmartFormsPermission
         And I wait for OA event
         And I navigate to OA link
         And I approve oa permit via oa link manually
-        #And I sleep for 230 seconds
-        And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
+        And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval

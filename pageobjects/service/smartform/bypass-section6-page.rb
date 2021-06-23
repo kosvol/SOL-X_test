@@ -82,11 +82,11 @@ class BypassPage < Section0Page
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
-    add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
-    add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
-    JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
-    ServiceUtil.post_graph_ql_to_uri('ptw/1.mod_date_with_offset', _user, _vessel)
-    @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
+    # add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
+    # add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
+    # JsonUtil.create_request_file('ship-loca/1.mod_date_with_offset', add_time_offset_to_ptw)
+    ServiceUtil.post_graph_ql_to_uri('ship-local-time/base-get-current-time', _user, _vessel)
+    @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
 
     ### init dra form
     init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
@@ -287,11 +287,14 @@ end
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
-    add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
-    add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
-    JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
-    ServiceUtil.post_graph_ql('ptw/1.mod_date_with_offset', _user)
-    @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
+    # add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
+    # add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
+    # JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
+    # ServiceUtil.post_graph_ql('ptw/1.mod_date_with_offset', _user)
+    # @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
+    ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
+    @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
+
 
     ### init dra form
     init_dra = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '00'))
@@ -735,7 +738,7 @@ end
       when '00'
         'ptw/camera/0.create_form_dra'
       when '1'
-        'ptw/1.date_with_offset'
+        'ship-local-time/base-get-current-time'
       when '2'
         'ptw/camera/2.save_section0_details'
       when '3'

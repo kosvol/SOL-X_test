@@ -104,25 +104,25 @@ Feature: PendingUpdate
       | A 3/E | 6727 |
       | 4/E   | 1311 |
 
-  Scenario: Verify update note shows from Master if request update via non OA
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill only location of work
-    And I press next for 7 times
-    And I sign checklist and section 5
-    And I press next for 1 times
-    And I submit permit for Master Approval
-    And I click on back to home
-    And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
-    And I navigate to section 7
-    And I request update for permit
-    And I click on back to home
-    And I click on update needed filter
-    Then I should see Note from Master
+  # Scenario: Verify update note shows from Master if request update via non OA
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin for rank A/M
+  #   And I select Enclosed Spaces Entry permit
+  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I fill only location of work
+  #   And I press next for 7 times
+  #   And I sign checklist and section 5
+  #   And I press next for 1 times
+  #   And I submit permit for Master Approval
+  #   And I click on back to home
+  #   And I click on pending approval filter
+  #   And I open a permit pending Master Approval with Master rank and 1111 pin
+  #   And I navigate to section 7
+  #   And I request update for permit
+  #   And I click on back to home
+  #   And I click on update needed filter
+  #   Then I should see Note from Master
 
   Scenario Outline: Verify user should not see master's note on all section while viewing as Master, non RA, non Checklist Creator and non AGT via Pending Approval state
     Given I launch sol-x portal without unlinking wearable
@@ -149,24 +149,24 @@ Feature: PendingUpdate
       | rank | pin  |
       | PMAN | 4421 |
 
-  Scenario: Verify update note shows from Office if request update via OA office
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Magnetic Compass permit for level 2
-    And I fill only location of work and duration more than 2 hours
-    And I press next for 7 times
-    And I sign checklist and section 5
-    And I press next for 1 times
-    Then I submit permit for Master Review
-    When I click on back to home
-    And I click on pending approval filter
-    And I set oa permit to office approval state manually
-    And I navigate to OA link
-    And I request the permit for update via oa link manually
-    And I click on update needed filter
-    Then I should see Note from Office
+  # Scenario: Verify update note shows from Office if request update via OA office
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin for rank A/M
+  #   And I select Critical Equipment Maintenance permit
+  #   And I select Maintenance on Magnetic Compass permit for level 2
+  #   And I fill only location of work and duration more than 2 hours
+  #   And I press next for 7 times
+  #   And I sign checklist and section 5
+  #   And I press next for 1 times
+  #   Then I submit permit for Master Review
+  #   When I click on back to home
+  #   And I click on pending approval filter
+  #   And I set oa permit to office approval state manually
+  #   And I navigate to OA link
+  #   And I request the permit for update via oa link manually
+  #   And I click on update needed filter
+  #   Then I should see Note from Office
 
   # @skip
   # Scenario: Comment is not saved for the EIC when requesting the form for updates

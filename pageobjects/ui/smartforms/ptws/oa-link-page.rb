@@ -106,7 +106,7 @@ class OAPage < Section9Page
   end
 
   def navigate_to_oa_link
-    sleep 20
+    sleep 35 #do not change this
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
     p "OA Link : #{tmp}"
     tmp
@@ -117,7 +117,7 @@ class OAPage < Section9Page
     BrowserActions.scroll_down(date_time_from_elements[0])
     ### set from time
     date_time_from_elements[1].click
-    starttime = Time.now.utc.strftime('%k').to_i
+    starttime = Time.now.utc.strftime('%k').to_i + 1
     hour_from_picker_elements[starttime].click
     sleep 1
     minute_from_picker_elements[1].click
@@ -130,20 +130,20 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    endtime = Time.now.utc.strftime('%k').to_i + 8
+    endtime = Time.now.utc.strftime('%k').to_i + 9
     if endtime <= 23
       hour_from_picker_elements[endtime].click
       sleep 1
-      minute_from_picker_elements[0].click
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime}"
     else
-      hour_from_picker_elements[endtime - 24].click
+      hour_from_picker_elements[endtime-24].click
       sleep 1
-      minute_from_picker_elements[0].click
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1

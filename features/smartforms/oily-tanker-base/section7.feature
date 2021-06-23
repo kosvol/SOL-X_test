@@ -63,7 +63,7 @@ Feature: Section7
   @sol-6553
   Scenario: Verify validity from and to is correct for OA permit
     Given I change ship local time to +8 GMT
-    Given I launch sol-x portal without unlinking wearable
+    And I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank C/O
     And I select Hot Work permit
