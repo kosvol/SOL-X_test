@@ -32,12 +32,14 @@ class OAPage < Section9Page
 
   ## Web Confirmation Page
   element(:topbar_header_h3, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
+  element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
   element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
   elements(:confirmation_question, xpath: "//ul/li")
   elements(:radio_button, xpath: "//input[starts-with(@type,'radio')]")
   element(:text_area_header, xpath: "//div[contains(@class, 'Textarea')]/label")
   text_area(:instruction_text_area, xpath: "//textarea[@placeholder='Optional']")
   element(:name_input_field, xpath: "//input[@type='text']")
+  button(:designation_dd_btn, xpath: "//button[@name='designation']")
   element(:bottom_hint, xpath: "//section[@class='hint']/p")
   element(:warning_infobox, xpath: "//div[contains(@class, 'InfoBox__')]")
   ##End Web Confirmation Page ###

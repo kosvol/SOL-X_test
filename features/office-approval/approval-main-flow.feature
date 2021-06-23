@@ -44,6 +44,8 @@ Feature: OfficeApprovalMainFlow
     And I click on "Approve This Permit”
     Then I should see the officer name is pre-filled
 
+  #Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Approve This Permit" button
+
   #Scenario: Verify the expiry time of the form, specified in the office when approving the form, is set as the scheduled expiry time of the form after its activation (5341)
   #  Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
   #  When I wait for OA event

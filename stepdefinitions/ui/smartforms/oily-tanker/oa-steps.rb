@@ -91,12 +91,22 @@ Then(/^I should see the selected role in the Designation field$/) do
   is_equal(on(OAPage).rank_dd_list_element.text, @designation)
 end
 
-Then(/^I should see the Send button is (disabled|enabled)$/) do |_condition|
-  case _condition
-  when "enabled"
-    is_enabled(on(OAPage).send_comments_btn_element)
-  when "disabled"
-    is_disabled(on(OAPage).send_comments_btn_element)
+Then(/^I should see the (Send|Request Updates) button is (disabled|enabled)$/) do |_button, _condition|
+  case _button
+  when "Send"
+    case _condition
+    when "enabled"
+      is_enabled(on(OAPage).send_comments_btn_element)
+    when "disabled"
+      is_disabled(on(OAPage).send_comments_btn_element)
+    end
+  when "Request Updates"
+    case _condition
+    when "enabled"
+      is_enabled(on(OAPage).update_permit_btn_element)
+    when "disabled"
+      is_disabled(on(OAPage).update_permit_btn_element)
+    end
   end
   sleep(1)
 end
@@ -362,10 +372,21 @@ Then(/^I should see the Web Confirmation page with all attributes$/) do
   is_equal(on(OAPage).text_area_header_element.text, "Additional Instruction on safety and technical matters:")
   to_exists(on(OAPage).instruction_text_area_element)
   to_exists(on(OAPage).name_input_field_element)
+  to_exists(on(OAPage).designation_dd_btn_element)
   is_disabled(on(OAPage).approve_permit_btn_element)
   is_equal(on(OAPage).bottom_hint_element.text, "If you don't intend to approve this permit, please close this window and return to the approval page.")
 end
 
+Then(/^I should see the Web Rejection page with all attributes$/) do
+  to_exists(on(OAPage).sol_logo_element)
+  does_include(on(OAPage).topbar_header_h3_element.text, "PTW#: #{@formNumber}")
+  baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['before_rejection']
+  is_equal(on(OAPage).main_header_element.text, baseDescription)
+  to_exists(on(OAPage).update_comments_element)
+  to_exists(on(OAPage).name_input_field_element)
+  to_exists(on(OAPage).designation_dd_btn_element)
+  is_disabled(on(OAPage).update_permit_btn_element)
+end
 
 And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _mins|
   case _whatTime
@@ -457,4 +478,31 @@ end
 
 And(/^I select the approver designation$/) do
   on(OAPage).set_designation
+end
+
+And(/^I click on "Request Updates"$/) do
+  on(OAPage).update_permit_btn
+end
+
+And(/^I enter (comment|name)$/) do |_input|
+  case _input
+  when "comment"
+    on(OAPage).update_comments_element.send_keys('Test Automation')
+  when "name"
+    on(OAPage).name_input_field_element.send_keys('Test Automation 2')
+  end
+  sleep(1)
+end
+
+And(/^I remove (comment|name)$/) do |_input|
+  case _input
+  when "comment"
+    on(OAPage).update_comments_element.click
+    on(OAPage).update_comments_element.send_keys("\ue03D" + "a")
+    on(OAPage).update_comments_element.send_keys("\ue017")
+  when "name"
+    on(OAPage).name_input_field_element.click
+    on(OAPage).name_input_field_element.send_keys("\ue03D" + "a")
+    on(OAPage).name_input_field_element.send_keys("\ue017")
+  end
 end

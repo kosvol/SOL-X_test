@@ -144,7 +144,7 @@ Feature: OfficeApprovalComments
     Then I should not see the Add/Show Comments button
     And I should see the Print Permit button at the bottom bar
 
-  Scenario: Verify the "Approved date" is displayed at the bottom of the OA PTW form (5460, 5453)
+  Scenario: Verify the "Approved date" is displayed at the bottom of the OA PTW form (5460, 5455)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     When I wait for OA event
     And I navigate to OA link

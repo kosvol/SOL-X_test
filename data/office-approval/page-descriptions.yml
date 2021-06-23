@@ -8,6 +8,6 @@ after_appr_section7: "The permit is approved by the Office"
 
 is_already_approved: ""
 
-before_rejection: ""
+before_rejection: "Comments from Approving Authority"
 
-after_rejectio: ""
+after_rejection: ""
