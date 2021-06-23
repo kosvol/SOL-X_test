@@ -128,25 +128,25 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    endtime = Time.now.utc.strftime('%k').to_i + 9
+    endtime = Time.now.utc.strftime('%k').to_i + 8
     if endtime <= 23
       hour_from_picker_elements[endtime].click
       sleep 1
-      minute_from_picker_elements[0].click
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime}"
     else
-      hour_from_picker_elements[endtime - 24].click
+      hour_from_picker_elements[endtime].click
       sleep 1
-      minute_from_picker_elements[0].click
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{endtime - 24}"
+      p " #{endtime - 25}"
       date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"
