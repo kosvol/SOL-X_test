@@ -62,14 +62,14 @@ Feature: PumpRoomEntry
   Scenario: Verify PRE permit creator name display on PRED
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
-    And I enter pin for rank 3/O
+    And I enter pin via service for rank 3/O
     And I fill up PRE. Duration 4. Delay to activate 3
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
     And I activate PRE form via service
     And I navigate to PRE Display
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     Then I should see the PRE permit creator name on PRED
     And I terminate the PRE permit via service
 
@@ -155,7 +155,7 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
-    And I enter pin for rank <role>
+    And I enter pin via service for rank <role>
     Then I should see not authorize error message
 
     Examples:
@@ -171,7 +171,7 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify role which CAN navigate to Pump Room Entry Display (6024)
     Given I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
-    And I enter pin for rank <role>
+    And I enter pin via service for rank <role>
     Then I should see the header 'Pump Room Entry Display'
 
     Examples:
@@ -196,14 +196,14 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     Then I navigate to create new PRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up PRE. Duration 4. Delay to activate 3
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I activate the current PRE form
     And I activate PRE form via service
     And I navigate to PRE Display
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     And (for pred) I should see the enabled "Home" button
@@ -224,7 +224,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new PRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up PRE. Duration 4. Delay to activate 3
     And Get PRE id
     And for pre I submit permit for A C/O Approval
@@ -232,7 +232,7 @@ Feature: PumpRoomEntry
     And I activate the current PRE form
     And I activate PRE form via service
     And I navigate to PRE Display
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     When I submit a scheduled PRE permit
@@ -243,17 +243,17 @@ Feature: PumpRoomEntry
      Given I launch sol-x portal without unlinking wearable
      When I clear gas reader entries
      And I navigate to create new PRE
-     And I enter pin for rank C/O
+     And I enter pin via service for rank C/O
      And I fill up PRE. Duration 4. Delay to activate 2
      And I add all gas readings
-     And I enter pin for rank A/M
+     And I enter pin via service for rank A/M
      And I dismiss gas reader dialog box
      And for pre I submit permit for Officer Approval
      And I getting a permanent number from indexedDB
      And I activate the current PRE form
      And I activate PRE form via service
      And I navigate to PRE Display
-     And I enter pin for rank C/O
+     And I enter pin via service for rank C/O
      Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
      And I terminate the PRE permit via service
      And I sleep for 10 seconds
