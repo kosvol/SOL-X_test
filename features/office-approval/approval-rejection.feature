@@ -3,7 +3,7 @@ Feature: OfficeApprovalRejection
   As a ...
   I want to ...
   So that ...
-#Ready
+
   Scenario: Verify an Office Approval Authority can proceed to the Web Comment page from the View Permit page (5443)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
@@ -76,7 +76,7 @@ Feature: OfficeApprovalRejection
   #  And I click on "Request Updates"
   #  And I navigate to "Updates Needed" filter screen
   #  And I open the permit as <non_checklist_creator>
-#Ready
+
   Scenario: Verify the "Request Updates" button becomes active only after all required fields are filled in on the Web Comment Page (5548)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
@@ -98,7 +98,6 @@ Feature: OfficeApprovalRejection
     Then I should see the Request Updates button is disabled
     And I enter name
     Then I should see the Request Updates button is enabled
-
 
   Scenario: Verify an Office Approval Authority Name is pre-filled on the Web Comment Page (5546)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
@@ -134,14 +133,13 @@ Feature: OfficeApprovalRejection
   #  And I enter a <designation>
   #  And I click on "Request Updates"
 
-  #Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Request Updates" button (5444)
-  #  Given I launch SIT application
-  #  And I create any new PTW under OA
-  #  And I put PTW to Pending Office Approval state
-  #  And I open an e-mail as Office Approval Authority
-  #  And I click on "Review this Permit"
-  #  And I click on "Request Updates"
-  #  And I enter a <comment>
-  #  And I enter a <name>
-  #  And I enter a <designation>
-  #  And I click on "Request Updates"
+  Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Request Updates" button (5444)
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    And I get PTW permit info
+    When I wait for OA event
+    And I navigate to OA link
+    And I click on "Request Updates"
+    And I enter comment
+    And I select the approver designation
+    And I click on "Request Updates"
+    Then I should see the Successfully Submission page after rejection
