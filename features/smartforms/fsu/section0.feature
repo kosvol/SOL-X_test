@@ -139,8 +139,7 @@ Feature: LNGSmartFormsPermission
         And I wait for OA event
         And I navigate to OA link
         And I approve oa permit via oa link manually
-        #And I sleep for 230 seconds
-        And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
+        And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval
