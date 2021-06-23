@@ -269,16 +269,19 @@ When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _s
   form_id = CommonPage.get_permit_id
   status = nil
   docs = []
-  i = 30
+  i = 35
   while i > 0 && status != "#{_whatStatus}" do
     if _server == "Cloud"
       request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post', { selector: { _id: form_id } }.to_json.to_s)
     else
       request = ServiceUtil.fauxton($obj_env_yml[_server]['get_form_status'], 'post', { selector: { _id: form_id } }.to_json.to_s)
     end
+    p "request >> #{request}"
     docs = (JSON.parse request.to_s)['docs']
+    p "doc >> #{(JSON.parse request.to_s)['docs']}"
     if docs != []
       status = (JSON.parse request.to_s)['docs'][0]['status']
+      break
     end
     i -= 1
     sleep(20)

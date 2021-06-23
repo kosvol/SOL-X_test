@@ -128,7 +128,7 @@ class OAPage < Section9Page
     sleep 1
     date_time_to_elements[1].click
     sleep 2
-    endtime = Time.now.utc.strftime('%k').to_i + 8
+    endtime = Time.now.utc.strftime('%k').to_i + 9
     if endtime <= 23
       hour_from_picker_elements[endtime].click
       sleep 1
