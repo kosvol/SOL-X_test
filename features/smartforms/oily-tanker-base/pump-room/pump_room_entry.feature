@@ -7,7 +7,7 @@ Feature: PumpRoomEntry
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
-    When I fill and submit PRE permit details
+    When I fill and submit PRE permit details via service
     Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu

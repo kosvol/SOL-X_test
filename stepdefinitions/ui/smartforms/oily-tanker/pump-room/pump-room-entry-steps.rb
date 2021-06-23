@@ -72,7 +72,7 @@ end
 
 And (/^I should see the (text|label|page|header) '(.*)'$/) do |like, text|
   sleep 1
-  BrowserActions.wait_condition(20, is_true(on(PumpRoomEntry).is_text_displayed?(like,text)))
+  BrowserActions.wait_condition(20,(on(PumpRoomEntry).is_text_displayed?(like,text)))
   #is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
 end
 
