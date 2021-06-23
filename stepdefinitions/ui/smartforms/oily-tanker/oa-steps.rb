@@ -364,7 +364,7 @@ end
 
 Then(/^I should see the Web Confirmation page with all attributes$/) do
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OAPage).topbar_header_h3_element.text, "PTW #: #{@formNumber}")
+  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
   baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr']
   is_equal(on(OAPage).main_description_element.text, baseDescription)
   is_equal(on(OAPage).confirmation_question_elements[0].text, "DRA & Work Plan Reviewed?\nYes\nN/A")
@@ -381,13 +381,32 @@ end
 
 Then(/^I should see the Web Rejection page with all attributes$/) do
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OAPage).topbar_header_h3_element.text, "PTW#: #{@formNumber}")
+  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
   baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['before_rejection']
   is_equal(on(OAPage).main_header_element.text, baseDescription)
   to_exists(on(OAPage).update_comments_element)
   to_exists(on(OAPage).name_input_field_element)
   to_exists(on(OAPage).designation_dd_btn_element)
   is_disabled(on(OAPage).update_permit_btn_element)
+end
+
+Then(/^I should see the Successfully Submission page after (approval|double approval|rejection)$/) do |_when|
+  to_exists(on(OAPage).sol_logo_element)
+  case _when
+  when "approval"
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
+    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr']
+    is_equal(on(OAPage).main_description_element.text, baseDescription)
+  when "double approval"
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
+    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['is_already_approved']
+    is_equal(on(OAPage).main_description_element.text, baseDescription)
+  when "rejection"
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
+    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['after_rejection']
+    is_equal(on(OAPage).main_description_element.text, baseDescription)
+  end
+  sleep(1)
 end
 
 And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _mins|
@@ -507,4 +526,18 @@ And(/^I remove (comment|name)$/) do |_input|
     on(OAPage).name_input_field_element.send_keys("\ue03D" + "a")
     on(OAPage).name_input_field_element.send_keys("\ue017")
   end
+end
+
+
+And(/^I open a new tab and switch to it$/) do
+  $browser.manage.new_window(:tab)
+  sleep(1)
+  $browser.switch_to.window($browser.window_handles[1])
+  sleep(1)
+end
+
+And(/^I close the tab and navigate back$/) do
+  $browser.close
+  $browser.switch_to.window($browser.window_handles[0])
+  sleep(1)
 end
