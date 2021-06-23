@@ -87,7 +87,11 @@ And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
 end
 
 And (/^I should see location (.+) stamp$/) do |_location|
-  is_equal(on(Section8Page).rank_name_and_date_elements[2].text, "Location Stamp:\n#{_location}")
+  if on(Section8Page).rank_name_and_date_elements.size < 4
+    is_equal(on(Section8Page).rank_name_and_date_elements[2].text, "Location Stamp:\n#{_location}")
+  else
+    is_equal(on(Section8Page).rank_name_and_date_elements.last.text, "Location Stamp:\n#{_location}")
+  end
 end
 
 And (/^I should see signature$/) do

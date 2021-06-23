@@ -98,6 +98,7 @@ And (/^I should see data persisted on page 1$/) do
   tmp.delete_at(1)
   tmp.delete_at(1)
   tmp.delete_at(9)
+  tmp.delete_at(9)
   p ">> #{tmp}"
   is_equal(tmp,@@rol_data['page1'])
 end
