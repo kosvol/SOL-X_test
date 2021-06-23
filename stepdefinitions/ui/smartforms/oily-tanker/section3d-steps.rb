@@ -16,6 +16,7 @@ And (/^I resign with valid (.*) pin$/) do |_pin|
 end
 
 And (/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) pin$/) do |_page,_pin,_condition|
+  sleep 1
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
   step "I enter pin #{_pin}" if _condition === "invalid"
   step "I sign on canvas with valid #{_pin} pin" if _condition === "valid"

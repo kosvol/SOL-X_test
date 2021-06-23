@@ -9,7 +9,7 @@ class Section3CPage < Section3BPage
   spans(:dra_team_name_list, xpath: '//div[starts-with(@class,"Section__Description")]/div/div/div/ul/li')
     #"//button[@id='team']/span")
   element(:master, xpath: "//li[starts-with(.,'MAS Daniel Alcantara')]")
-  element(:am, xpath: "//li[starts-with(.,'A/M Atif Hayat')]")
+  element(:am, xpath: "//li[starts-with(.,'C/O Alister Leong')]")
   buttons(:member_name_btn, xpath: '//div[starts-with(@class,"items")]/ul/li/button')
   buttons(:cross_btn, xpath: '//div[starts-with(@class,"Section__Description")]/div/div/div/ul/li/button')
   

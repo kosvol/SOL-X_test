@@ -59,7 +59,7 @@ Feature: PendingApprovalPermit
 
     Examples:
       | rank   | creator_pin | pin  |
-      | A/M    | 5718        | 9015 |
+      | ETO    | 5718        | 9015 |
       | 3/E    | 2523        | 4685 |
       | PMAN   | 3030        | 4421 |
       | Master | 3030        | 1111 |
@@ -76,7 +76,7 @@ Feature: PendingApprovalPermit
   Scenario: Verify SOL-5474 - Fix Blank Screen when user accesses OA permits from Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank 2/E
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours

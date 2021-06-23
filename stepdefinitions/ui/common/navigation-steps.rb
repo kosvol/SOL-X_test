@@ -57,8 +57,8 @@ And (/^I (.+) permit with (.+) rank and (.*) pin$/) do |_update_or_terminate, _r
   if _update_or_terminate === 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
   elsif _update_or_terminate === 'update'
-    # on(PendingStatePage).edit_update_btn_elements.first.click
-    on(PendingStatePage).edit_update_btn_elements[permit_id].click
+    BrowserActions.poll_exists_and_click(on(PendingStatePage).edit_update_btn_elements[permit_id])
+    # on(PendingStatePage).edit_update_btn_elements[permit_id].click
   elsif _update_or_terminate === 'view'
     @@issue_time_date = on(CreatedPermitToWorkPage).issued_date_time_elements[permit_id].text
     on(PendingStatePage).view_btn_elements[permit_id].click
