@@ -12,23 +12,24 @@ Feature: LNGCRE
   Scenario: Verify user can see all the CRE questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     Then I should see CRE form questions
 
   Scenario Outline: Verify only these crew can create CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin <pin>
+    And I wait for pinpad element to exists
+    And I enter pin for rank <rank>
     Then I should see CRE landing screen
 
     Examples:
-      | rank                      | pin  |
-      # | Chief Officer             | 8383 |
-      | Additional Chief Officer  | 2761 |
-      # | Second Officer | 6268 |
-      | Additional Second Officer | 7865 |
-      # | 3/O                       | 0159 |
-      | A 3/O                     | 2674 |
+      | rank  |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario: Verify these crew cannot create CRE permit
     Given I launch sol-x portal without unlinking wearable
@@ -39,9 +40,9 @@ Feature: LNGCRE
   Scenario: Verify AGT can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I add all gas readings
-    And I enter pin for rank A/M
+    And I enter pin via service for rank A/M
     And I set time
     Then I will see popup dialog with By A/M Atif Hayat crew rank and name
     When I dismiss gas reader dialog box
@@ -50,9 +51,9 @@ Feature: LNGCRE
   Scenario Outline: Verify any rank can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I add all gas readings
-    And I enter pin 4421
+    And I enter pin via service for rank <rank>
     When I dismiss gas reader dialog box
 
     Examples:
@@ -66,7 +67,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for C/O Approval
     And I getting a permanent number from indexedDB
@@ -77,7 +78,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank <rank>
+    And I enter pin via service for rank <rank>
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for <rank> Approval
     And I getting a permanent number from indexedDB
@@ -95,7 +96,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -106,9 +107,8 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank <rank>
+    And I enter pin via service for rank <rank>
     Then I fill up CRE. Duration 4. Delay to activate 3
-    # And Get PRE id
     And for cre I submit permit for <rank> Approval
     And I getting a permanent number from indexedDB
     Then I activate the current CRE form
@@ -117,7 +117,6 @@ Feature: LNGCRE
     And I should see the current CRE in the "Scheduled" list
     And I click on back arrow
     And I activate CRE form via service
-    #And I sleep for 180 seconds
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     And I click on back arrow
@@ -137,7 +136,7 @@ Feature: LNGCRE
   Scenario: Verify only MAS can delete CRE permit in Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I click on back arrow
     And I navigate to "Created" screen for CRE
     And I delete the permit created
@@ -146,14 +145,14 @@ Feature: LNGCRE
   Scenario: Verify user cannot send CRE for approval with start time and duration
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And for cre I should see the disabled "Submit for Approval" button
 
   Scenario: Verify these roles can request update for CRE permit in Pending Approval State
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -165,7 +164,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -182,7 +181,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -194,7 +193,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 10
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -215,7 +214,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB

@@ -13,7 +13,7 @@ Feature: PumpRoomEntry
      And I sleep for 3 seconds
      And I switch to first tab in browser
      And I navigate to PRE Display
-     And I enter pin for rank C/O
+     And I enter pin via service for rank C/O
      And I enter new entry log
      And I send entry report with 3 optional entrants
      And I switch to last tab in browser

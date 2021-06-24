@@ -5,15 +5,15 @@ Then (/^I should see gas reading copy text$/) do
 end
 
 Then (/^I should see incomplete fields warning message display$/) do
-  is_equal(on(Section6Page).info_warning_boxes_elements.first.text,"Please Complete The Following Sections")
+  is_equal(on(Section6Page).info_warning_boxes_elements.first.text,'Please Complete The Following Sections')
   is_equal(on(Section6Page).info_warning_boxes_elements[1].text,"Section 1: Task Description\nSection 3C: DRA - Team Members\nHelicopter Operation\nSection 5: Responsibility Acceptance")
 end
 
 And (/^I should see incomplete signature field warning message display$/) do
   on(Section3APage).scroll_multiple_times(5)
-  is_equal(on(Section6Page).info_warning_boxes_elements[2].text,"This permit has required fields missing. To submit it for approval, please sign at the following sections")
+  is_equal(on(Section6Page).info_warning_boxes_elements[2].text,'This permit has required fields missing. To submit it for approval, please sign at the following sections')
   # is_equal(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
-  does_include(on(Section6Page).info_warning_boxes_elements[3].text,"Helicopter Operation")
+  does_include(on(Section6Page).info_warning_boxes_elements[3].text,'Helicopter Operation')
 end
 
 Then (/^I should see master (approval|review) button only$/) do |_condition|
@@ -50,10 +50,10 @@ Then (/^I submit permit for Master (.+)$/) do |_approval_or_review|
   if _approval_or_review === 'Review'
     BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
   end
-  step "I sign on canvas with valid 9015 pin" if ($current_environment === "sit" || $current_environment === "auto")
-  if $current_environment === "uat"
-    step "I enter pin via service for rank C/O"
-    step "I sign on canvas"
+  step 'I sign on canvas with valid 9015 pin' if ($current_environment === 'sit' || $current_environment === 'auto')
+  if $current_environment === 'uat'
+    step 'I enter pin via service for rank C/O'
+    step 'I sign on canvas'
   end
   # data collector; will evolve
   # on(Section0Page).reset_data_collector
@@ -64,7 +64,7 @@ Then (/^I submit smoke test permit$/) do
   sleep 1
   BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
   sleep 1
-  step "I sign on canvas with valid 9015 pin"
+  step 'I sign on canvas with valid 9015 pin'
 end
 
 And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, _type|
@@ -138,4 +138,12 @@ And (/^I dismiss gas reader dialog box$/) do
   sleep 1
   #on(CommonFormsPage).done_btn_elements.first.click
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
+end
+
+And (/^I should not see gas reader dialog box$/) do
+  if on(CommonFormsPage).done_btn_elements.any?
+    raise 'Gas reader dialog box enabled'
+  else
+    puts 'Expected behavior'
+  end
 end
