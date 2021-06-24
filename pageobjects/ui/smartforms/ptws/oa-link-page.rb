@@ -31,13 +31,15 @@ class OAPage < Section9Page
   element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]/section")
 
   ## Web Confirmation Page
-  element(:topbar_header_h3, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
+  #element(:topbar_header_h3, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
+  element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
   element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
   elements(:confirmation_question, xpath: "//ul/li")
   elements(:radio_button, xpath: "//input[starts-with(@type,'radio')]")
   element(:text_area_header, xpath: "//div[contains(@class, 'Textarea')]/label")
   text_area(:instruction_text_area, xpath: "//textarea[@placeholder='Optional']")
   element(:name_input_field, xpath: "//input[@type='text']")
+  button(:designation_dd_btn, xpath: "//button[@name='designation']")
   element(:bottom_hint, xpath: "//section[@class='hint']/p")
   element(:warning_infobox, xpath: "//div[contains(@class, 'InfoBox__')]")
   ##End Web Confirmation Page ###
@@ -115,13 +117,28 @@ class OAPage < Section9Page
     ### set from time
     date_time_from_elements[1].click
     starttime = Time.now.utc.strftime('%k').to_i + 1
-    hour_from_picker_elements[starttime].click
-    sleep 1
-    minute_from_picker_elements[1].click
-    dismiss_picker_element.click
-    sleep 1
-    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    p " #{starttime}"
+    if starttime <= 23
+      hour_from_picker_elements[starttime].click
+      sleep 1
+      minute_from_picker_elements[1].click
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{starttime}"
+    else
+      hour_from_picker_elements[starttime-24].click
+      sleep 1
+      minute_from_picker_elements[1].click
+      sleep 1
+      dismiss_picker_element.click
+      sleep 1
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{starttime - 24}"
+      date_time_to_elements.first.click
+      sleep 1
+      p ">> #{current_day_elements.size}"
+      select_todays_date_from_calendar(1)
+    end
 
     ### set to time
     sleep 1
