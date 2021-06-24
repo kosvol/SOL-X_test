@@ -52,7 +52,7 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    BrowserActions.js_clicks("//div/button/span",1)
+    BrowserActions.js_clicks("//div/button/span",2)
     toggle_zone_filter(location)
     sleep 1
     begin
