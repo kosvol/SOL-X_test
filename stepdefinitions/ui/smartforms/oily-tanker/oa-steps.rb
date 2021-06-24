@@ -252,33 +252,34 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-When(/^I wait for OA event/) do
-  form_id = CommonPage.get_permit_id
-  docs = []
-  i = 30
-  while i > 0 && docs == [] do
-    request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
-    docs = (JSON.parse request.to_s)['docs']
-    i -= 1
-    sleep(20)
-  end
-  is_true(docs != [])
-end
+###DEPRECATED; by refactoring
+# When(/^I wait for OA event/) do
+#   form_id = CommonPage.get_permit_id
+#   # docs = []
+#   # i = 30
+#   # while i > 0 && docs == [] do
+#   #   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
+#   #   docs = (JSON.parse request.to_s)['docs']
+#   #   i -= 1
+#   #   sleep(20)
+#   # end
+#   is_true(OfficeApproval.get_event_id != [])
+# end
 
 When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _server|
   form_id = CommonPage.get_permit_id
   status = nil
   docs = []
-  i = 35
+  i = 40
   while i > 0 && status != "#{_whatStatus}" do
     if _server == "Cloud"
       request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post', { selector: { _id: form_id } }.to_json.to_s)
     else
       request = ServiceUtil.fauxton($obj_env_yml[_server]['get_form_status'], 'post', { selector: { _id: form_id } }.to_json.to_s)
     end
-    p "request >> #{request}"
+    # p "request >> #{request}"
     docs = (JSON.parse request.to_s)['docs']
-    p "doc >> #{(JSON.parse request.to_s)['docs']}"
+    # p "doc >> #{(JSON.parse request.to_s)['docs']}"
     if docs != []
       status = (JSON.parse request.to_s)['docs'][0]['status']
     end

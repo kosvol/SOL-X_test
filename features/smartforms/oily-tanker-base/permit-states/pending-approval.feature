@@ -59,7 +59,7 @@ Feature: PendingApprovalPermit
 
     Examples:
       | rank   | creator_pin | pin  |
-      | ETO    | 5718        | 9015 |
+      | ETO    | 0856        | 9015 |
       | 3/E    | 2523        | 4685 |
       | PMAN   | 3030        | 4421 |
       | Master | 3030        | 1111 |
@@ -88,10 +88,8 @@ Feature: PendingApprovalPermit
     And I click on back to home
     And I click on pending approval filter
     And I set oa permit to office approval state manually
-    And I wait for OA event
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     Then I should be able to open permit as master without seeing blank screen
@@ -99,7 +97,7 @@ Feature: PendingApprovalPermit
   Scenario: Verify submitted time displayed
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill section 1 of maintenance permit with duration less than 2 hours
