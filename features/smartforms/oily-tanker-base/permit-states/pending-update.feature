@@ -228,6 +228,7 @@ Feature: PendingUpdate
     And I set oa permit to office approval state manually
     And I navigate to OA link
     And I request the permit for update via oa link manually
+    And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
     And I update permit in pending update state with 1111 pin
     And I navigate to section 4b
@@ -250,6 +251,7 @@ Feature: PendingUpdate
     And I set oa permit to office approval state manually
     And I navigate to OA link
     And I request the permit for update via oa link manually
+    And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
     And I update permit in pending update state with 9015 pin
     And I navigate to section 3a
