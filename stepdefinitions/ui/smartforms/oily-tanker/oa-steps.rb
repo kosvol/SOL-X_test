@@ -280,7 +280,7 @@ When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _s
   form_id = CommonPage.get_permit_id
   status = nil
   docs = []
-  i = 40
+  i = 50
   while i > 0 && status != "#{_whatStatus}" do
     if _server == "Cloud"
       request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post', { selector: { _id: form_id } }.to_json.to_s)
