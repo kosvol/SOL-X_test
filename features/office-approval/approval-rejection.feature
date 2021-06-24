@@ -7,7 +7,6 @@ Feature: OfficeApprovalRejection
   Scenario: Verify an Office Approval Authority can proceed to the Web Comment page from the View Permit page (5443)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
-    When I wait for OA event
     And I navigate to OA link
     And I click on "Request Updates"
     Then I should see the Web Rejection page with all attributes
@@ -15,7 +14,6 @@ Feature: OfficeApprovalRejection
   #Scenario Outline: Verify that non Checklist Creator users cannot edit any section of a form from 1 to 5 via "Approval Updates Needed" state (5739)
   #  Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
   #  And I get PTW permit info
-  #  When I wait for OA event
   #  And I navigate to OA link
   #  And I request the permit for update via oa link manually
   #  And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on sit
@@ -80,7 +78,6 @@ Feature: OfficeApprovalRejection
   Scenario: Verify the "Request Updates" button becomes active only after all required fields are filled in on the Web Comment Page (5548)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
-    When I wait for OA event
     And I navigate to OA link
     And I click on "Request Updates"
     And I remove name
@@ -101,7 +98,6 @@ Feature: OfficeApprovalRejection
 
   Scenario: Verify an Office Approval Authority Name is pre-filled on the Web Comment Page (5546)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
-    When I wait for OA event
     And I navigate to OA link
     And I click on "Request Updates"
     Then I should see the officer name is pre-filled
@@ -136,7 +132,6 @@ Feature: OfficeApprovalRejection
   Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Request Updates" button (5444)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
-    When I wait for OA event
     And I navigate to OA link
     And I click on "Request Updates"
     And I enter comment

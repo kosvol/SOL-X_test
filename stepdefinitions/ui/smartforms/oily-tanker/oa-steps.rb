@@ -262,7 +262,7 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-###DEPRECATED; by refactoring
+###DEPRECATED; by refactoring, logic sit inside OfficeApproval.get_office_approval_link
 # When(/^I wait for OA event/) do
 #   form_id = CommonPage.get_permit_id
 #   # docs = []

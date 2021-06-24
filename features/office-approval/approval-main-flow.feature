@@ -42,7 +42,6 @@ Feature: OfficeApprovalMainFlow
   Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Approve This Permit" button
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I get PTW permit info
-    When I wait for OA event
     And I navigate to OA link
     And I click on "Approve This Permit”
     And I answer all questions on the page
@@ -56,7 +55,6 @@ Feature: OfficeApprovalMainFlow
   Scenario: Verify an Office Approval Authority can see the Warning page after approving the already approved PTW
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I get PTW permit info
-    When I wait for OA event
     And I navigate to OA link
     And I open a new tab and switch to it
     And I navigate to OA link
