@@ -109,7 +109,7 @@ class DashboardPage < WearablePage
 
   def get_map_zone_count(which_zone, total_crew)
     expand_area_dd
-    sleep 1
+    sleep 2
     xpath_str = format(@@ship_area, "#{which_zone} (#{total_crew})")
     @browser.find_element('xpath', xpath_str).text
   end
