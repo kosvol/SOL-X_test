@@ -114,16 +114,22 @@ And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
   sleep 1
 end
 
+And (/^I expand location drop down menu$/) do
+  on(DashboardPage).expand_area_dd
+end
+
+And (/^I collapse location drop down menu$/) do
+  on(DashboardPage).dismiss_area_dd
+end
+
 Then (/^I (should|should not) see ui location updated to (.+)$/) do |_condition, _new_zone|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  on(DashboardPage).expand_area_dd
   if _condition === 'should'
     is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', _new_zone))
   elsif _condition === 'should not'
     is_equal(on(DashboardPage).get_ui_active_crew_details.size, '0')
   end
-  on(DashboardPage).dismiss_area_dd
 end
 
 Then (/^I should see (.+) location indicator showing (.+) on location pin$/) do |_location, _count|
