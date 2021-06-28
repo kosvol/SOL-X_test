@@ -153,6 +153,7 @@ class BypassPage < Section0Page
       section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
+      section['variables']['answers'].last['value']['AUTO_02VSR475JK2JTN7V25D27D'] = "000000YGJ11ZSESBYNRXYRVVN3" if $current_environment === "sit"
       JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_3.save_section1_details', _user, _vessel)
 
@@ -304,8 +305,17 @@ end
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', _user)
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
-    ### save sections
-    save_different_form_section(payload_mapper(_permit_type, '3'), _user)
+    ### Section 1
+    _which_json = payload_mapper(_permit_type, '3')
+    section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
+    section['variables']['formId'] = CommonPage.get_permit_id
+    section['variables']['submissionTimestamp'] = get_current_date_time
+    section['variables']['answers'].last['value']['AUTO_02VSR475JK2JTN7V25D27D'] = "000000YGJ11ZSESBYNRXYRVVN3" if $current_environment === "sit"
+    JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
+    ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', _user)
+
+
+    # save_different_form_section(payload_mapper(_permit_type, '3'), _user)
     save_different_form_section(payload_mapper(_permit_type, '4'), _user)
 
     ### section 3a ###
