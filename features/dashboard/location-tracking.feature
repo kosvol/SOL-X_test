@@ -91,11 +91,17 @@ Feature: LocationTracking
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
     Then I should see <zone> count represent 1
+    And I expand location drop down menu
     And I should see ui location updated to <location>
+    And I collapse location drop down menu
     And I should see Full Ship count represent 1
+    And I expand location drop down menu
     And I should see ui location updated to <location>
+    And I collapse location drop down menu
     And I should see Lower Accomm. count represent 0
+    And I expand location drop down menu
     And I should see ui location updated to <location>
+    And I collapse location drop down menu
     And I unlink all crew from wearable
 
     Examples:

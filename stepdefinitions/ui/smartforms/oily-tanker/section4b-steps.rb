@@ -79,7 +79,6 @@ And (/^I click on (.*) EIC certification button$/) do |_which_type|
 end
 
 And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
-  # sleep 1
   BrowserActions.wait_until_is_visible(on(Section4APage).sign_btn_elements.first)
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
   step "I enter pin #{_pin}"
@@ -87,9 +86,9 @@ And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
 end
 
 And (/^I should see location (.+) stamp$/) do |_location|
-  if on(Section8Page).rank_name_and_date_elements[1].text.include? "Rank/Name"
+  if ((on(Section8Page).rank_name_and_date_elements[0].text.include? "Rank/Name") && (on(Section8Page).rank_name_and_date_elements.last.text.include? "Rank/Name"))
     is_equal(on(Section8Page).rank_name_and_date_elements[2].text, "Location Stamp:\n#{_location}")
-  else
+  elsif ((on(Section8Page).rank_name_and_date_elements[0].text.include? "Rank/Name") && (on(Section8Page).rank_name_and_date_elements[1].text.include? "Rank/Name"))
     is_equal(on(Section8Page).rank_name_and_date_elements.last.text, "Location Stamp:\n#{_location}")
   end
 end
@@ -111,7 +110,6 @@ And (/^I fill up EIC certificate$/) do
   sleep 2
   on(Section3DPage).radio_btn_elements[0].click
   on(Section4BPage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
-  # tmp = 0
   on(Section3DPage).radio_btn_elements[2].click #select LOTO
   sleep 1
   on(Section3DPage).radio_btn_elements[4].click
