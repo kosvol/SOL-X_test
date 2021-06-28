@@ -17,7 +17,7 @@ Feature: OfficeApprovalMainFlow
     And I click on "Approve This Permit”
     Then I should see the Web Confirmation page with all attributes
 
-  Scenario: Verify the validity time cannot be more than 8 hours (3601, 6506)
+  Scenario: Verify the validity time cannot be less than 1 hour (3601, 6505)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on "Approve This Permit”
@@ -25,7 +25,7 @@ Feature: OfficeApprovalMainFlow
     And I select Issued To time as 01:00
     Then I should see the correct warning message for less
 
-  Scenario: Verify the validity time cannot be less than 1 hour (3601, 6505)
+  Scenario: Verify the validity time cannot be more than 8 hours (3601, 6506)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on "Approve This Permit”
@@ -70,19 +70,6 @@ Feature: OfficeApprovalMainFlow
     And I click on "Approve This Permit”
     Then I should see the Successfully Submission page after double approval
 
-
-  #Scenario: Verify the expiry time of the form, specified in the office when approving the form, is set as the scheduled expiry time of the form after its activation (5341)
-  #  Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
-  #  And I navigate to OA link
-  #  And I click on "Approve this Permit"
-  #  And I set up the “Issued From” date/time as the <current_utc+0_time>
-  #  And I set up the "To” date/time as the [<current_utc+0_time>+<expiration_time>-1 hour]
-  #  And I approve the permit from Office Approval
-  #  And I activate the permit as a Master
-  #  And I navigate to active filter screen
-  #  And I open the form as RA
-  #  And I proceed to the Section 7B screen
-
   Scenario: Verify an Office Approval Authority can see the Warning screen after the form goes to the Approval Updates Needed state (after Pending Office Approval state) (5330)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
@@ -124,12 +111,60 @@ Feature: OfficeApprovalMainFlow
     And I navigate to OA link
     Then I should see the View Permit Page with all attributes after activation
 
+  Scenario: Verify an Office Approval Authority can review a form after termination of permit by Master (5302)
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
+    And I get PTW permit info
+    And I navigate to OA link
+    And I approve oa permit via oa link manually
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
+    And I submit permit via service to closed state
+    And I wait for form status get changed to CLOSED on Cloud
+    And I navigate to OA link
+    Then I should see the View Permit Page with all attributes after termination
+
+  Scenario: Verify Section 7 details are displayed in the final copy of PTW after termination (3609)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on "Approve This Permit”
+    And I answer all questions on the page
+    And I leave additional instructions
+    And I select Issued From time as 00:00
+    And I select Issued To time as 08:00
+    And I select the approver designation
+    And I click on "Approve This Permit”
+    And I launch sol-x portal without unlinking wearable
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
+    And I submit permit via service to closed state
+    And I wait for form status get changed to CLOSED on Cloud
+    And I navigate to OA link
+    Then I should see the Section 7 shows the correct data
+
   Scenario: PTW - Section 7 - Verify the section UI when the form is in the Pending_Office_Approval state (3398, 5781)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I open a permit pending Master Approval with Master rank and 1111 pin
     Then I should see correct Section 7 details before Office Approval
+
+  Scenario: Verify the expiry time of the form, specified in the office when approving the form, is set as the scheduled expiry time of the form after its activation (5341)
+    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    And I navigate to OA link
+    And I click on "Approve This Permit”
+    And I answer all questions on the page
+    And I leave additional instructions
+    And I select Issued From time as current_hour:00
+    And I select Issued To time as plus_two_hours:00
+    And I select the approver designation
+    And I click on "Approve This Permit”
+    And I launch sol-x portal without unlinking wearable
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
+    And I click on pending approval filter
+    And I approve permit
+    And I click on back to home
+    And I click on active filter
+    And I view permit with A/M rank and 9015 pin
+    And I press previous for 1 times
+    Then I should see the Issued till time is set according to OA issued To time
 
   Scenario: PTW - Section 7 - Verify the section UI when the form is in the Pending_Master_Approval state (3378)
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
