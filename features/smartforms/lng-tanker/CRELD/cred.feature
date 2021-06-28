@@ -101,3 +101,15 @@ Feature: LNGCRED
     And (for pred) I should see the enabled "Home" button
     And (for pred) I should see the disabled "Entry Log" button
     And (for pred) I should see the disabled "Permit" button
+  @wip
+  Scenario: [CRED] Users can exit from an active CRE[SOL-6243]
+    Given  I submit a current CRE permit via service
+    And I add new entry "A 2/O,3/O,A 3/O" CRE
+    And I sleep for 20 seconds
+    And I acknowledge the new entry log cre via service
+    When I launch sol-x portal without unlinking wearable
+    And I navigate to CRE Display
+    And I enter pin via service for rank C/O
+    And I should see Permit Activated PRE status on screen
+    When I signout "A 2/O" entrants by rank
+    Then I check that entrants "A 2/O" not present in list

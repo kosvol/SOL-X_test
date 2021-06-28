@@ -682,6 +682,13 @@ end
     ServiceUtil.post_graph_ql('pre/mod-05.update-form-status', '2761')
   end
 
+  def get_users
+    ServiceUtil.post_graph_ql('get_users', '2761')
+    json_body = ServiceUtil.get_response_body
+    JSON.parse(json_body)
+  end
+
+
   private
 
   def cal_new_minutes_offset_time

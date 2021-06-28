@@ -105,7 +105,7 @@ And (/^I go to ESE log in dashboard$/) do
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1])
 end
 
-And (/^I go to CRE log in dashboard$/) do
+And (/^I go to (CRE|PRE) log in dashboard$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1

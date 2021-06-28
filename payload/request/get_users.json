@@ -1,0 +1,5 @@
+{
+  "operationName": "users",
+  "variables": {},
+  "query": "fragment crewMemberFragment on CrewMember {\n  __typename\n  _id\n  rank\n  lastName\n  firstName\n}\n\nquery users {\n  users {\n    pin\n    crewMember {\n      ...crewMemberFragment\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

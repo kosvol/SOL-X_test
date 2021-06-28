@@ -65,3 +65,24 @@ Feature: LNGCREL
     And I switch to first tab in browser
     Then I should see red background color
     And I should see Permit Terminated CRE status on screen
+
+  Scenario: [ESEL] The ESEL is displayed separately from the PREL CREL and independent of it
+    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
+    When I launch sol-x portal without unlinking wearable
+    And I click on active filter
+    And I take note of issued date and time
+    And I click New Entrant button on Enclose Space Entry PWT
+    And Get PWT id
+    And I enter new entry log
+    And I fill entry report with 1 required entrants
+    And I send Report
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    Then I submit a current CRE permit via service
+    And I add new entry "A 3/O,4/O" CRE
+    And I sleep for 10 seconds
+    And I acknowledge the new entry log cre via service
+    And I open new dashboard page
+    And I sleep for 5 seconds
+    And I go to ESE log in dashboard
+    And I check the entrants "A 3/O,4/O" are not presents in dashboard log
