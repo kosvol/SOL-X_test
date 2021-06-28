@@ -112,7 +112,7 @@ Feature: EnclosedSpaceEntryLog
     And I launch sol-x portal dashboard
     And I go to ESE log in dashboard
     And I check all header-cells in Entry log table on Dashboard
- 
+
   Scenario: Additional Toxic Gas Readings should be displayed only for the ESE PTW they are relating to
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable
