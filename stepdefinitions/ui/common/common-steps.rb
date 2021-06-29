@@ -116,11 +116,11 @@ When (/^I select (.+) permit for level 2$/) do |_permit|
 end
 
 And (/^I set permit id$/) do
-  # sleep 10
   if @via_service_or_not === false
     p "Temp ID >> #{@temp_id}"
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
   end
+  sleep 5
 end
 
 And (/^I tear down created form$/) do
