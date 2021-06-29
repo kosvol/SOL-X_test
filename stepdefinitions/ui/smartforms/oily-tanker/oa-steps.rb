@@ -493,18 +493,9 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
   when "before"
     is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
   when "after"
-    time_from = Time.new(@time_now.year, @time_now.mon, @time_now.day, 0, 0, 0, 0)
-    time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, 8, 0, 0, 0)
     time_offset = on(CommonFormsPage).get_current_time_offset
-    if time_offset.to_s[0] != "-"
-      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-    else
-      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-    end
-    p "#{time_ship_from}"
-    p "#{time_ship_to}"
+    time_ship_from = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
+    time_ship_to = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
     is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr_section7'])
     is_equal(on(Section7Page).additional_instruction_element.text, "Test Automation")
     is_equal(on(Section7Page).issued_from_date_element.text, "#{time_ship_from}")
@@ -587,34 +578,14 @@ end
 Then(/^I should see the Section 7 shows the correct data$/) do
   el = $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
   $browser.action.move_to(el).perform
-  fieldsArr = []
-  subheadersArr = []
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Section 7')]/../..//h4").each do |_field|
-      fieldsArr << _field.text
-    end
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Section 7')]/../..//h2").each do |_subheader|
-      subheadersArr << _subheader.text
-    end
   baseFields = [] + YAML.load_file("data/screens-label/Section 7.yml")['fields_OA_yes']
   baseSubheaders = [] + YAML.load_file("data/screens-label/Section 7.yml")['subheaders_OA_yes']
-  #exceptions
-  fieldsArr -= YAML.load_file("data/screens-label/Section 7.yml")['fields_exceptions']
-  subheadersArr -= YAML.load_file("data/screens-label/Section 7.yml")['subheaders_exceptions']
-  time_from = Time.new(@time_now.year, @time_now.mon, @time_now.day, 0, 0, 0, 0)
-  time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, 8, 0, 0, 0)
+  fieldsArr = on(OfficePortalPage).get_section_fields_list('Section 7')
+  subheadersArr = on(OfficePortalPage).get_section_headers_list('Section 7')
   time_offset = on(CommonFormsPage).get_current_time_offset
-  if time_offset.to_s[0] != "-"
-    time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-    time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-    date_time = (@time_now + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-  else
-    time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-    time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-    date_time = (@time_now + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-  end
-  p "#{time_ship_from}"
-  p "#{time_ship_to}"
-  p "#{date_time}"
+  time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
+  time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
+  date_time = on(OfficePortalPage).oa_date_time_with_offset(@time_now, time_offset)
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)
@@ -625,4 +596,13 @@ Then(/^I should see the Section 7 shows the correct data$/) do
   is_equal(on(Section7Page).approver_name_element.text, "VS Automation")
   is_equal(on(Section7Page).approver_designation_element.text, "VS")
   is_equal(on(OfficePortalPage).s7_date_time_element.text, "#{date_time}")
+end
+
+
+Then(/^I should see the Issued till time is set according to OA issued To time$/) do
+  time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, (@time_now.hour.to_i + 2), 0, 0, 0)
+  time_offset = on(CommonFormsPage).get_current_time_offset
+  issued_to_date = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+  is_equal(on(Section7Page).issued_to_date_element.text, issued_to_date)
+  p ">> #{issued_to_date}"
 end

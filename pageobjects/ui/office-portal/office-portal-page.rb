@@ -77,4 +77,41 @@ class OfficePortalPage
   def select_element_by_text_near(_text_title)
     $browser.find_element(:xpath, "//h4[contains(text(),'%s')]/..//p[starts-with(@class,'AnswerComponent__Answer')]"%_text_title)
   end
+
+  def get_section_headers_list(_section)
+    subheadersArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//h2").each do |_subheader|
+      subheadersArr << _subheader.text
+    end
+    subheadersArr -= YAML.load_file("data/screens-label/#{_section}.yml")['subheaders_exceptions']
+    return subheadersArr
+  end
+
+  def get_section_subheaders_list(_section)
+    labelsArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//label").each do |_label|
+      labelsArr << _label.text
+    end
+    labelsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['labels_exceptions']
+    return labelsArr
+  end
+
+  def get_section_fields_list(_section)
+    fieldsArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//h4").each do |_field|
+      fieldsArr << _field.text
+    end
+    fieldsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['fields_exceptions']
+    return fieldsArr
+  end
+
+  def oa_date_time_with_offset(_approve_time, _time_offset)
+    if _time_offset.to_s[0] != "-"
+      date_time = (_approve_time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{_time_offset})")
+    else
+      date_time = (_approve_time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{_time_offset})")
+    end
+    p "#{date_time}"
+    return date_time
+  end
 end
