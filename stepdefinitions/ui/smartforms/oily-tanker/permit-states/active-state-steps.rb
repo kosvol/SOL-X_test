@@ -69,6 +69,10 @@ And (/^I set rol permit to active state with (.+) duration with CE$/) do |_durat
   step "I sign on canvas with valid 8248 pin"
 end
 
+And (/^I select rol permit active duration (.*) hour$/) do |_duration|
+  on(ROLPage).select_rol_duration(_duration)
+end
+
 Then (/^I should see data persisted on page 2$/) do
   sleep 1
   tmp = on(Section3DPage).get_filled_section

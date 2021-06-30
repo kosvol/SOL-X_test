@@ -75,7 +75,7 @@ Feature: OfficeApprovalRejection
   #  And I navigate to "Updates Needed" filter screen
   #  And I open the permit as <non_checklist_creator>
 
-  Scenario: Verify the "Request Updates" button becomes active only after all required fields are filled in on the Web Comment Page (5548)
+  Scenario: Verify the "Request Updates" button becomes active only after all required fields are filled in on the Web Comment Page (5548, 5543, 5546, 5547)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
     And I navigate to OA link
@@ -83,12 +83,15 @@ Feature: OfficeApprovalRejection
     And I remove name
     And I enter comment
     Then I should see the Request Updates button is disabled
+    And I should see the comment entered
     And I enter name
     Then I should see the Request Updates button is disabled
+    And I should see the name entered
     And I remove comment
     Then I should see the Request Updates button is disabled
     And I select the approver designation
     Then I should see the Request Updates button is disabled
+    And I should see the designation entered
     And I remove name
     Then I should see the Request Updates button is disabled
     And I enter comment

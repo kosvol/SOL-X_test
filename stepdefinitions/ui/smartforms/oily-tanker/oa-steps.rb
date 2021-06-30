@@ -59,6 +59,7 @@ And(/^I should see Comments block attributes$/) do
   to_exists(on(OAPage).rank_dd_list_element)
   to_exists(on(OAPage).name_box_element)
   to_exists(on(OAPage).send_comments_btn_element)
+  is_disabled(on(OAPage).send_comments_btn_element)
 end
 
 And (/^I add comment on oa permit$/) do
@@ -138,8 +139,13 @@ And(/^I click on Send button$/) do
   sleep(1)
 end
 
-Then(/^I should see the See More button for a long comment$/) do
-  is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
+Then(/^I should see the See (More|Less) button for a long comment$/) do |_condition|
+  case _condition
+  when "More"
+    is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
+  when "Less"
+    is_true(on(OAPage).see_more_less_btn_element.text == ' See Less')
+  end
 end
 
 And(/^I should see only 240 chars are displayed$/) do
@@ -219,7 +225,11 @@ And(/^I should not see active fields and buttons$/) do
 end
 
 And(/^I submit permit via service to closed state$/) do
-  on(BypassPage).set_oa_permit_to_state('ACTIVE')
+  #on(BypassPage).set_oa_permit_to_state('ACTIVE')
+  step 'I click on pending approval filter'
+  step 'I approve permit'
+  step 'I click on back to home'
+  sleep (3)
   on(BypassPage).set_oa_permit_to_state('PENDING_TERMINATION')
   on(BypassPage).set_oa_permit_to_state('CLOSED')
 end
@@ -337,9 +347,20 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
     is_equal(on(OAPage).permit_has_been_btn_element.text, "This Permit Has Been Activated")
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
+  when "after termination"
+    sectionsList = []
+    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
+      section = _whatSection.text
+      sectionsList << section
+    end
+    sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['terminated']
+    not_to_exists(on(OAPage).permit_has_been_btn_element)
+    not_to_exists(on(OAPage).update_permit_btn_element)
+    not_to_exists(on(OAPage).add_comments_btn_element)
+    to_exists(on(OfficePortalPage).print_permit_btn_element)
   end
+  p ">> #{sections_data - sectionsList}"
   is_true(sectionsList == sections_data)
-  p ">> #{sectionsList - sections_data}"
   not_to_exists(on(OfficePortalPage).home_btn_element)
 end
 
@@ -417,7 +438,15 @@ And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _min
   when "To"
     on(OAPage).date_time_to_elements[1].click
   end
-  on(OAPage).hour_from_picker_elements[_hours.to_i].click
+  if _hours == "current_hour"
+    _hours = Time.now.utc.strftime('%k')
+    on(OAPage).hour_from_picker_elements[_hours.to_i].click
+  elsif _hours == "plus_two_hours"
+    _hours = Time.now.utc.strftime('%k').to_i + 2
+    on(OAPage).hour_from_picker_elements[_hours.to_i].click
+  else
+    on(OAPage).hour_from_picker_elements[_hours.to_i].click
+  end
   on(OAPage).minute_from_picker_elements[_mins.to_i].click
   on(OAPage).dismiss_picker_element.click
   BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
@@ -464,18 +493,9 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
   when "before"
     is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
   when "after"
-    time_from = Time.new(@time_now.year, @time_now.mon, @time_now.day, 0, 0, 0, 0)
-    time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, 8, 0, 0, 0)
     time_offset = on(CommonFormsPage).get_current_time_offset
-    if time_offset.to_s[0] != "-"
-      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-    else
-      time_ship_from = (time_from + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-      time_ship_to = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{time_offset})")
-    end
-    p "#{time_ship_from}"
-    p "#{time_ship_to}"
+    time_ship_from = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
+    time_ship_to = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
     is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr_section7'])
     is_equal(on(Section7Page).additional_instruction_element.text, "Test Automation")
     is_equal(on(Section7Page).issued_from_date_element.text, "#{time_ship_from}")
@@ -541,4 +561,48 @@ And(/^I close the tab and navigate back$/) do
   $browser.close
   $browser.switch_to.window($browser.window_handles[0])
   sleep(1)
+end
+
+And(/^I should see the (comment|name|designation) entered$/) do |_input|
+  case _input
+  when "comment"
+    is_equal(on(OAPage).update_comments_element.text, 'Test Automation')
+  when "name"
+    is_equal(on(OAPage).name_input_field_element.attribute('value'), 'Test Automation 2')
+  when "designation"
+    is_equal(on(OAPage).designation_dd_btn_element.text, 'VS')
+  end
+  sleep(1)
+end
+
+Then(/^I should see the Section 7 shows the correct data$/) do
+  el = $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  $browser.action.move_to(el).perform
+  baseFields = [] + YAML.load_file("data/screens-label/Section 7.yml")['fields_OA_yes']
+  baseSubheaders = [] + YAML.load_file("data/screens-label/Section 7.yml")['subheaders_OA_yes']
+  fieldsArr = on(OfficePortalPage).get_section_fields_list('Section 7')
+  subheadersArr = on(OfficePortalPage).get_section_headers_list('Section 7')
+  time_offset = on(CommonFormsPage).get_current_time_offset
+  time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
+  time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
+  date_time = on(OfficePortalPage).oa_date_time_with_offset(@time_now, time_offset)
+  p ">>> difference #{fieldsArr - baseFields}"
+  p "> difference #{subheadersArr - baseSubheaders}"
+  is_equal(fieldsArr, baseFields)
+  is_equal(subheadersArr, baseSubheaders)
+  is_equal(on(Section7Page).additional_instruction_element.text, "Test Automation")
+  is_equal(on(OfficePortalPage).s7_issued_from_date_element.text, "#{time_ship_from}")
+  is_equal(on(OfficePortalPage).s7_issued_to_date_element.text, "#{time_ship_to}")
+  is_equal(on(Section7Page).approver_name_element.text, "VS Automation")
+  is_equal(on(Section7Page).approver_designation_element.text, "VS")
+  is_equal(on(OfficePortalPage).s7_date_time_element.text, "#{date_time}")
+end
+
+
+Then(/^I should see the Issued till time is set according to OA issued To time$/) do
+  time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, (@time_now.hour.to_i + 2), 0, 0, 0)
+  time_offset = on(CommonFormsPage).get_current_time_offset
+  issued_to_date = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
+  is_equal(on(Section7Page).issued_to_date_element.text, issued_to_date)
+  p ">> #{issued_to_date}"
 end

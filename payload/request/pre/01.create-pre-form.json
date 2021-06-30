@@ -3,7 +3,7 @@
   "variables": {
     "formType": "PRE",
     "answers": [],
-    "templateVersion": 4,
+    "templateVersion": 5,
     "submissionTimestamp": "2020-11-10T06:53:05.925Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"

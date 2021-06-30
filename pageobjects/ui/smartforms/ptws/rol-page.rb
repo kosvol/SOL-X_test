@@ -5,7 +5,7 @@ require './././support/env'
 class ROLPage < Section9Page
   include PageObject
 
-  button(:rol_duration, xpath: '//button[@id="cl_riggingOfLadder_permitValidDuration"]')
+  button(:rol_duration, xpath: '//button[@id="permitValidDuration"]')
   buttons(:boarding_ddl, xpath: '//button[@id="cl_riggingOfLadder_boardingArrangement"]')
   buttons(:boarding_value, xpath: '//ul/li/button')
   element(:foot_note, xpath: '//div[@id="SECTION_4A_RIGGING_OF_LADDER_19"]')
@@ -54,17 +54,21 @@ class ROLPage < Section9Page
     
   end
 
-  def submit_rol_permit_w_duration(_duration)
+  def select_rol_duration(_duration)
     BrowserActions.scroll_down(rol_duration_element)
     sleep 1
-    scroll_multiple_times(3)
+    scroll_multiple_times(4)
     sleep 1
     rol_duration
     sleep 1
     tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"])
-    BrowserActions.scroll_down(tmp_hour)
     tmp_hour.click
+    BrowserActions.scroll_down(tmp_hour)
     sleep 1
+  end
+
+  def submit_rol_permit_w_duration(_duration)
+    select_rol_duration(_duration)
     submit_btn_elements.first.click
   end
 
