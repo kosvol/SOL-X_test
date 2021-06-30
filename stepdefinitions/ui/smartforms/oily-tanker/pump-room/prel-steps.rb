@@ -110,7 +110,12 @@ And (/^I terminate from dashboard$/) do
     ## pending frontend implementation
 end
 
-And ('I signout {int} entrants') do |total_entrants|
+And (/^I signout "([^"]*)" entrants by rank$/) do |_arr_entry|
+  on(PumpRoomEntry).signout_entrant_by_name(_arr_entry)
+end
+
+And (/^I click signout button$/) do
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
 end
 
 Then (/^I check the Send Report button is (enabled|disabled)$/) do |_condition|
@@ -137,6 +142,14 @@ Then ('I check names of entrants {int} on New Entry page') do |item|
   arr_before = on(PumpRoomEntry).get_entrants
   p arr_before
   expect(arr_before.to_a).to match_array entr_arr.to_a
+end
+
+Then (/^I check that entrants "([^"]*)" not present in list$/) do |_arr_entrants|
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
+  _arr_entrants.split(',').each do |_i|
+      $browser.find_element(:xpath, "//*[contains(.,'#{_i}')]")
+    end
 end
 
 And (/^I (send|just send) Report$/) do |_condition|
@@ -186,3 +199,19 @@ end
 And (/^I switch to (first|last) tab in browser$/) do |_condition|
   BrowserActions.switch_browser_tab(_condition)
 end
+
+And (/^I check the entrants "([^"]*)" are (presents|not presents) in dashboard log$/) do |_entrants, _condition|
+  BrowserActions.wait_until_is_visible(on(Section6Page).gas_reading_table_elements[0])
+  elements = on(Section6Page).gas_reading_table_elements
+  arr_elements_text = []
+  elements.each { |element| arr_elements_text.push(element.text) }
+  case _condition
+  when "presents"
+    _entrants.split(',').each { |x| expect(arr_elements_text).to include(x.to_s) }
+  when "not presents"
+    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(x.to_s) }
+  else
+    raise "Wrong condition"
+  end
+end
+
