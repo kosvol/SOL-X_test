@@ -23,6 +23,17 @@ class Section7Page < Section6Page
     return "#{tmp.strftime("%d/%b/%Y %H:%M")} #{@@issue_time_date[18,29]}"
   end
 
+  def oa_from_to_time_with_offset(_approve_time, _time_offset, _hours, _mins)
+    time = Time.new(_approve_time.year, _approve_time.mon, _approve_time.day, _hours, _mins, 0, 0)
+    if _time_offset.to_s[0] != "-"
+      time_ship = (time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{_time_offset})")
+    else
+      time_ship = (time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{_time_offset})")
+    end
+    p "#{time_ship}"
+    time_ship
+  end
+
   def activate_permit
     set_current_time
     reset_data_collector
