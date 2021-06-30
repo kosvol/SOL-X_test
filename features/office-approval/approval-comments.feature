@@ -71,6 +71,7 @@ Feature: OfficeApprovalComments
     And I add a long comment
     And I click on See More button
     Then I should see the full comment text before termination
+    And I should see the See Less button for a long comment
 
   Scenario: Verify that comments will be saved after the form is sent for updates before approval (5457)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
