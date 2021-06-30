@@ -56,6 +56,7 @@ class PumpRoomEntry < PreDisplay
   element(:gas_O2, xpath: "//div[contains(.,'O2')]")
   element(:gas_HC, xpath: "//div[contains(.,'HC')]")
   element(:gas_H2S, xpath: "//div[contains(.,'H2S')]")
+  elements(:list_name, xpath: "//div[starts-with(.,'EntrantListItem__ListItem')]")
   ### end
 
   def get_validity_start_and_end_time(permit_type)
@@ -94,6 +95,23 @@ class PumpRoomEntry < PreDisplay
       sleep 1
       BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
     end
+    sleep 1
+    set_current_time
+  end
+
+  def signout_entrant_by_name(_entrants)
+    sleep 1
+    entrants_arr = get_entrants
+    BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
+    _entrants.split(',').each do |_i|
+      puts (_entrants.index(_i))
+      find_element(:xpath,
+                   "//*[contains(.,'#{_i}')]/button").click
+      sleep 1
+      BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
+      entrants_arr.delete(_i)
+    end
+    set_entrants(entrants_arr)
     sleep 1
     set_current_time
   end

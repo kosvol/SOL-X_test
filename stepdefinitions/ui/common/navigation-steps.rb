@@ -98,16 +98,10 @@ And (/^I click on (.*) tab$/) do |_which_tab|
   end
 end
 
-And (/^I go to ESE log in dashboard$/) do
+And (/^I go to (CRE|PRE|ESE) log in dashboard$/) do |_condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1])
-end
-
-And (/^I go to CRE log in dashboard$/) do
-  sleep 1
-  BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
-  sleep 1
-  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0]) if _condition ==='PRE' || _condition ==='CRE'
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if _condition ==='ESE'
 end
