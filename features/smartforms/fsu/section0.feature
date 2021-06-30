@@ -17,10 +17,10 @@ Feature: LNGSmartFormsPermission
         And I submit permit for Master Approval
         And I click on back to home
         And I click on pending approval filter
-        When I click on permit for master approval
-        And I enter pin 8248
-        When I press next for 1 times
-        And I should see submit button enabled
+        And I open a permit pending Master Approval with CE rank and 8248 pin
+        And I press next for 1 times
+        And I select rol permit active duration 1 hour
+        And I should see ROL submit button enabled
         And I switch vessel to LNG
 
     Scenario: Verify CE can request for update for ROL
@@ -33,9 +33,9 @@ Feature: LNGSmartFormsPermission
         And I submit permit for Master Approval
         And I click on back to home
         And I click on pending approval filter
-        And I click on permit for master approval
-        And I enter pin 8248
+        And I open a permit pending Master Approval with CE rank and 8248 pin
         And I press next for 1 times
+        And I select rol permit active duration 1 hour
         Then I should see updates needed button enabled
         And I switch vessel to LNG
 
