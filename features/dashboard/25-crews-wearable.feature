@@ -8,6 +8,6 @@ Feature: LocationTracking
         Given I clear wearable history and active users
 
     Scenario: Verify max wearable logins display correct total number of users
-        When I launch sol-x portal without unlinking wearable
+        Given I launch sol-x portal without unlinking wearable
         Then I should see 25 crews link to dashboard
         And I unlink all crew from wearable
