@@ -13,6 +13,7 @@ class CommonFormsPage < CommonPage
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
   buttons(:current_day, xpath: "//button[contains(@class,'Day__DayButton')]")
+  element(:form_navigation_bar, xpath: "//nav[contains(@class, 'SectionControl')]")
   element(:is_dashboard_screen, xpath: "//h2[contains(.,'Crew Finder')]")
 
   ### Wifi

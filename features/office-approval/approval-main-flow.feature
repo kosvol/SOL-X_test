@@ -163,6 +163,7 @@ Feature: OfficeApprovalMainFlow
     And I click on back to home
     And I click on active filter
     And I view permit with A/M rank and 9015 pin
+    And I sleep for 5 seconds
     And I press previous for 1 times
     Then I should see the Issued till time is set according to OA issued To time
 
@@ -180,6 +181,5 @@ Feature: OfficeApprovalMainFlow
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
     And I click on pending approval filter
     And I open a permit pending Master Approval with Master rank and 1111 pin
-    And I sleep for 5 seconds
     And I navigate to section 7
     Then I should see correct Section 7 details after Office Approval
