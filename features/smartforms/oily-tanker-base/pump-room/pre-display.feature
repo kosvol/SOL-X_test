@@ -248,7 +248,7 @@ Feature: PumpRoomEntry
      And I add all gas readings
      And I enter pin via service for rank A/M
      And I dismiss gas reader dialog box
-     And for pre I submit permit for Officer Approval
+     And for pre I submit permit for C/O Approval
      And I getting a permanent number from indexedDB
      And I activate the current PRE form
      And I activate PRE form via service
@@ -282,3 +282,30 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I should not see gas reader dialog box
+  @wip
+  Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin via service for rank C/O
+    And I fill up PRE. Duration 4. Delay to activate 2
+    And I add all gas readings
+    And I enter pin via service for rank A/M
+    And I dismiss gas reader dialog box
+    And for pre I submit permit for C/O Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current PRE form
+    And I activate PRE form via service
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
+#    Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
+#    And I sleep for 5 seconds
+    And I enter new entry log
+    And I send entry report with 2 optional entrants
+    And I sleep for 5 seconds
+    And I dismiss gas reader dialog box
+    And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
+    And I acknowledge the new entry log via service
+    And I sleep for 3 seconds
+    And I should see Entry Log tab

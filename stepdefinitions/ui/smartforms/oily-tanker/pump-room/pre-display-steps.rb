@@ -113,11 +113,14 @@ Then(/^I check \"Responsible Officer Signature\" is present$/) do
   on(PumpRoomEntry).get_element_by_value("3 Cargo Tank Vent",0)
 end
 
-Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |_type,_condition|
-  sleep 5
-  BrowserActions.wait_until_is_visible(on(DashboardPage).pre_cre_title_indicator_element)
-  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Pump Room Entry Permit:") if _type ==='PRE'
-  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Compressor/Motor Room Entry Permit:") if _type ==='CRE'
-  is_equal(on(DashboardPage).pre_indicator_element.text,"Active") if _condition ==='active'
-  is_equal(on(DashboardPage).pre_indicator_element.text,"Inactive") if _condition ==='inactive'
+Then(/^I should see (Home|Entry Log|Permit) tab$/) do |_condition|
+  sleep 1
+  if _condition =='Entry Log'
+    is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
+    if $browser.find_elements(:xpath, "//*[contains(text(),'No Entry Yet'").empty?
+      puts("Entry log is not exist")
+    else
+      raise("Entry log is exist")
+    end
+  end
 end

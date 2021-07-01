@@ -35,7 +35,7 @@ Feature: PumpRoomEntry
     And I add new entry "3/O,A 3/O" CRE with different gas readings
     And I sleep for 20 seconds
     Then I should see alert message
-  @wip
+
   Scenario: Dashboard - Verify updated view and icon is displayed in Dashboard main page for entry log and PRE status
     Given I launch sol-x portal
     When I check PRE elements on dashboard inactive
