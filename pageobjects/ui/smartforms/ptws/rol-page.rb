@@ -57,9 +57,9 @@ class ROLPage < Section9Page
   def select_rol_duration(_duration)
     BrowserActions.scroll_down(rol_duration_element)
     sleep 1
-    scroll_multiple_times(4)
-    sleep 1
     rol_duration
+    sleep 1
+    scroll_multiple_times(2)
     sleep 1
     tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"])
     tmp_hour.click
