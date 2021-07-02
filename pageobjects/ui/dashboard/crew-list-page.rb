@@ -11,7 +11,7 @@ class CrewListPage < DashboardPage
   elements(:crew_pin_list, xpath: '//tbody/tr/td[5]')
   spans(:countdown, xpath: "//button[starts-with(@class,'Button__ButtonStyled-')]/span")
   span(:crew_count, xpath: "//span[@data-testid='total-on-board']")
-  divs(:location_details, xpath: "//div[@data-testid='location']")
+  elements(:location_details, xpath: "//td[contains(@data-testid,'location-')]")
   button(:view_pin_btn, xpath: "//button[contains(.,'View PINs')]")
   button(:view_crew_pin_btn, xpath: "//button[contains(.,'View Pin')]")
   button(:add_new_crew_btn, xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
@@ -104,9 +104,10 @@ class CrewListPage < DashboardPage
     _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
     _element = $browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
+    p ">> outside"
     location_details_elements.each do |location|
       next if location.text === ''
-
+p ">> HERE"
       Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
       Log.instance.info("Actual: #{_get_active_crew_details_frm_service.first.first}")
       return (location.text.gsub!(/\s+/, ' ').to_s === _get_active_crew_details_frm_service.first.first)
@@ -126,7 +127,7 @@ class CrewListPage < DashboardPage
     else
       crew_details << ["#{_location} - Just now"]
     end
-
+    p ">> stuck"
     crew_details
   end
 end
