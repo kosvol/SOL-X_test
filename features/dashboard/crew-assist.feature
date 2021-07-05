@@ -1,9 +1,10 @@
 @crew-assist
 Feature: CrewAssist
 
-  Background: Given I clear wearable history and active users
+  # Background: Given I clear wearable history and active users
 
   Scenario: Verify alert dialog popup display crew rank,name and location
+    Given I clear wearable history and active users
     Given I launch sol-x portal
     When I trigger crew assist from wearable
     Then I should see crew assist popup display crew rank,name and location on dashboard

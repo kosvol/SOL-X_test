@@ -49,6 +49,7 @@ And (/^I select the matching (.+) checklist$/) do |_checklist|
 end
 
 Then (/^I should see signed details$/) do
+  sleep 1
   if on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin)
     is_true(on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin))
   else
