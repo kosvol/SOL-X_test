@@ -22,22 +22,28 @@ Feature: PumpRoomEntry
   # And I should see entry log data transfer to new permit
 
   Scenario: Verify entrant crew list displayed the correct entrants
-    Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     Then I should see correct signed in entrants
     And I terminate the PRE permit via service
 
   Scenario: Verify crew already entered pumproom should not be listed on optional crew list
-    Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     Then I should see entrant count equal 2
     And I enter new entry log
     Then I should not see entered entrant on optional entrant list
@@ -84,12 +90,15 @@ Feature: PumpRoomEntry
     And I terminate the PRE permit via service
 
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
-    Given I launch sol-x portal without unlinking wearable
-    When I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     And I signout the entrant
     Then I should see entrant count equal 0
     And I should see exit timestamp updated
@@ -116,34 +125,40 @@ Feature: PumpRoomEntry
     And I terminate the PRE permit via service
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    Then I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
     And I sleep for 4 seconds
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     Then I should see entrant count equal 2
     And I terminate the PRE permit via service
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    Then I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
     Then I should see entrant count equal 1
     And I terminate the PRE permit via service
 
   Scenario: Verify total entrant count is valid before entry log approval
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    Then I fill and submit PRE permit details via service
+    Given I clear gas reader entries
+    When I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
@@ -221,16 +236,8 @@ Feature: PumpRoomEntry
     And (for pred) I should see warning box for deactivated status
 
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I fill up PRE. Duration 4. Delay to activate 3
-    And Get PRE id
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current PRE form
-    And I activate PRE form via service
+    Given I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen
@@ -240,18 +247,8 @@ Feature: PumpRoomEntry
     And I should see green background color
 
   Scenario: Verify PRE permit is terminated after terminating via dashboard popup
-     Given I launch sol-x portal without unlinking wearable
-     When I clear gas reader entries
-     And I navigate to create new PRE
-     And I enter pin via service for rank C/O
-     And I fill up PRE. Duration 4. Delay to activate 2
-     And I add all gas readings
-     And I enter pin via service for rank A/M
-     And I dismiss gas reader dialog box
-     And for pre I submit permit for C/O Approval
-     And I getting a permanent number from indexedDB
-     And I activate the current PRE form
-     And I activate PRE form via service
+     Given I submit a activated PRE permit
+     And I launch sol-x portal without unlinking wearable
      And I navigate to PRE Display
      And I enter pin via service for rank C/O
      Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
@@ -282,30 +279,18 @@ Feature: PumpRoomEntry
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I should not see gas reader dialog box
-  @wip
+
   Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I fill up PRE. Duration 4. Delay to activate 2
-    And I add all gas readings
-    And I enter pin via service for rank A/M
-    And I dismiss gas reader dialog box
-    And for pre I submit permit for C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current PRE form
-    And I activate PRE form via service
+    Given I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
-#    Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
-#    And I sleep for 5 seconds
     And I enter new entry log
     And I send entry report with 2 optional entrants
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
-    And I acknowledge the new entry log via service
+    And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
     And I should see Entry Log tab

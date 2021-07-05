@@ -1,9 +1,9 @@
 {
   "operationName": "UpdateFormStatus",
   "variables": {
-    "formId": "AUTO/PRE/2021/001",
+    "formId": "AUTO/PRE/2021/014",
     "newStatus": "APPROVED_FOR_ACTIVATION",
-    "submissionTimestamp": "2021-02-08T04:54:10.901Z"
+    "submissionTimestamp": "2021-07-05T14:09:31.689Z"
   },
   "query": "mutation UpdateFormStatus($formId: ID!, $newStatus: FormStatusType!, $submissionTimestamp: DateTime!) {\n  updateFormStatus(formId: $formId, newStatus: $newStatus, submissionTimestamp: $submissionTimestamp) {\n    _id\n    __typename\n  }\n}\n"
 }

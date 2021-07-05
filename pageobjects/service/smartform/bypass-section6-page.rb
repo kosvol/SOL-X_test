@@ -5,28 +5,32 @@ require './././support/env'
 class BypassPage < Section0Page
   include PageObject
 
-  def trigger_pre_submission(_user)
+  def trigger_pre_submission(_user,_condition)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     create_form_pre = JSON.parse JsonUtil.read_json('pre/01.create-pre-form')
     create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('pre/mod-01.create-pre-form', create_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-01.create-pre-form', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
+
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
     p "start time >> #{start_time}"
     end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
     p "end time >> #{end_time}"
-    gas_date = "\"#{get_current_date}\""
+    gas_date = "\"#{get_current_date_time}\""
     update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['answers'][3]['value'] = start_time
-    update_form_pre['variables']['answers'][7]['value'] = gas_date
+    update_form_pre['variables']['answers'][4]['value'] = start_time
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    update_form_pre['variables']['answers'][7]['value']['2021-07-05T14:05:46.731Z'] = gas_date
     update_form_pre['variables']['answers'][21]['value'] = start_time
     update_form_pre['variables']['answers'][22]['value'] = end_time
-    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-    update_form_pre['variables']['answers'][-1].to_h['value']['signedBy'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']
+    #update_form_pre['variables']['answers'][-1].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-1].to_h['value']['2021-07-05T14:06:21.731Z'] = gas_date
+
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
@@ -42,12 +46,14 @@ class BypassPage < Section0Page
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][3]['value'] = start_time
-    update_form_pre['variables']['answers'][7]['value'] = gas_date
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    update_form_pre['variables']['answers'][7]['value']['2021-07-05T14:05:46.731Z'] = gas_date
     update_form_pre['variables']['answers'][21]['value'] = start_time
     update_form_pre['variables']['answers'][22]['value'] = end_time
-    update_form_pre['variables']['answers'][-2].to_h['value']['signedBy'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
-    update_form_pre['variables']['answers'][-1].to_h['value']['signedBy'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']
-
+    #update_form_pre['variables']['answers'][-2].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-2].to_h['value']['2021-07-05T14:06:21.731Z'] = gas_date
+    #update_form_pre['variables']['answers'][-1].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-1].to_h['value']['2021-07-05T13:47:58.728Z'] = start_time
     JsonUtil.create_request_file('pre/mod-07.before-change-status-to-approve', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
 
@@ -57,6 +63,13 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('pre/mod-04.update-form-status', update_form_pre_status)
     ServiceUtil.post_graph_ql('pre/mod-04.update-form-status', '2761')
 
+    if _condition == 'activated'
+      update_form_pre_status = JSON.parse JsonUtil.read_json('pre/05.update-form-status')
+      update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+      update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+      JsonUtil.create_request_file('pre/05.update-form-status', update_form_pre_status)
+      ServiceUtil.post_graph_ql('pre/05.update-form-status', '2761')
+    end
     # ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
   end
 

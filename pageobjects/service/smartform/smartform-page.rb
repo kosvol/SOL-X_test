@@ -354,7 +354,7 @@ class SmartFormDBPage
     # end
 
     def acknowledge_pre_entry_log
-      entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log',get_mod_permit_id)
+      entry_id = get_pre_gas_entry_log_id('fauxton', 'get_pre_gas_entry_log', get_mod_permit_id)
       acknowledge_entry_log_payload = JSON.parse JsonUtil.read_json("pre/02.acknowledge-entry-log")
       acknowledge_entry_log_payload['variables']['formId'] = @@pre_number
       acknowledge_entry_log_payload['variables']['entryId'] = entry_id
