@@ -2,7 +2,7 @@
 module WorkWithIndexeddb
   class << self
     def get_id_from_indexeddb(temp_id)
-      sleep 3
+      sleep 4
       $browser.execute_script("openRequest = indexedDB.open('safevue')")
       sleep 2
       $browser.execute_script("db = openRequest.result")
