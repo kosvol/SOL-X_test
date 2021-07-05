@@ -63,10 +63,10 @@ end
 
 And (/^I wait for pinpad element to exists$/) do
   p "polling...."
-  sleep 1
-  if on(PinPadPage).pin_pad_elements.size === 0 
-    step 'I wait for pinpad element to exists'
-  end
+  sleep 2
+  # if on(PinPadPage).pin_pad_elements.size === 0 
+  #   step 'I wait for pinpad element to exists'
+  # end
 end
 
 And ('I enter pin {int}') do |pin|
