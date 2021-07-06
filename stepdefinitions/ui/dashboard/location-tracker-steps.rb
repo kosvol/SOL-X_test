@@ -140,8 +140,8 @@ And (/^I should not see (.+) location indicator$/) do |_location|
   is_true(!on(DashboardPage).get_location_pin_text(_location))
 end
 
-When (/^I submit a scheduled PRE permit$/) do
-  on(BypassPage).trigger_pre_submission('8383')
+When (/^I submit a (scheduled|activated) PRE permit$/) do |_condition|
+  on(BypassPage).trigger_pre_submission('8383',_condition)
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do

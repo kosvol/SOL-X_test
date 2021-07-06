@@ -252,7 +252,7 @@ end
 
 Then (/^I should see entry log details display as (filled|filled api)$/) do |_condition|
   is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M Atif Hayat')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'Test Automation')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'TEST AUTO')
   case _condition
   when 'filled'
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, on(PumpRoomEntry).get_entry_log_validity_start_details)
