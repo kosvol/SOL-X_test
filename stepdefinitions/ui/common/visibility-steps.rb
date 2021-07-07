@@ -48,6 +48,8 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
     when "Activate Permit to Work"
       is_enabled(on(Section7Page).non_oa_buttons_elements.first)
       is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
+    when "ROL submit"
+      is_enabled(on(Section7Page).activate_permit_btn_element)
     when "location of work"
       is_enabled(on(Section1Page).zone_btn_element)
       is_equal(on(Section1Page).zone_btn_element.text,"Aft Station")

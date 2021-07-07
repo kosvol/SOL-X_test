@@ -112,3 +112,16 @@ Then(/^I check \"Responsible Officer Signature\" is present$/) do
   on(PumpRoomEntry).get_element_by_value("C/O Alister Leong",0)
   on(PumpRoomEntry).get_element_by_value("3 Cargo Tank Vent",0)
 end
+
+Then(/^I should see (Home|Entry Log|Permit) tab$/) do |_condition|
+  sleep 1
+  if _condition =='Entry Log'
+    is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
+
+    if $browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
+      puts("Entry log is not exist")
+    else
+      raise("Entry log is exist")
+    end
+  end
+end

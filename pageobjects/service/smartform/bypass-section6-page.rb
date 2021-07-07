@@ -5,26 +5,32 @@ require './././support/env'
 class BypassPage < Section0Page
   include PageObject
 
-  def trigger_pre_submission(_user)
+  def trigger_pre_submission(_user,_condition)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     create_form_pre = JSON.parse JsonUtil.read_json('pre/01.create-pre-form')
     create_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('pre/mod-01.create-pre-form', create_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-01.create-pre-form', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
+
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     start_time = "{\"dateTime\":\"#{get_current_minutes_time_with_offset}\",\"utcOffset\":#{@get_offset}}"
     p "start time >> #{start_time}"
     end_time = "{\"dateTime\":\"#{get_current_hours_time_with_offset(4)}\",\"utcOffset\":#{@get_offset}}"
     p "end time >> #{end_time}"
-    gas_date = "\"#{get_current_date}\""
+    gas_date = "\"#{get_current_date_time}\""
     update_form_pre = JSON.parse JsonUtil.read_json('pre/02.update-form-answers')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre['variables']['answers'][4]['value'] = start_time
-    update_form_pre['variables']['answers'][10]['value'] = gas_date
-    update_form_pre['variables']['answers'][26]['value'] = start_time
-    update_form_pre['variables']['answers'][27]['value'] = end_time
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    update_form_pre['variables']['answers'][7]['value']['2021-07-05T14:05:46.731Z'] = gas_date
+    update_form_pre['variables']['answers'][21]['value'] = start_time
+    update_form_pre['variables']['answers'][22]['value'] = end_time
+    #update_form_pre['variables']['answers'][-1].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-1].to_h['value']['2021-07-05T14:06:21.731Z'] = gas_date
+
     JsonUtil.create_request_file('pre/mod-02.update-form-answers', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-02.update-form-answers', _user)
 
@@ -39,10 +45,15 @@ class BypassPage < Section0Page
     update_form_pre = JSON.parse JsonUtil.read_json('pre/07.before-change-status-to-approve')
     update_form_pre['variables']['formId'] = CommonPage.get_permit_id
     update_form_pre['variables']['submissionTimestamp'] = get_current_date_time
-    update_form_pre['variables']['answers'][4]['value'] = start_time
-    update_form_pre['variables']['answers'][10]['value'] = gas_date
-    update_form_pre['variables']['answers'][26]['value'] = start_time
-    update_form_pre['variables']['answers'][27]['value'] = end_time
+    update_form_pre['variables']['answers'][3]['value'] = start_time
+    update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    update_form_pre['variables']['answers'][7]['value']['2021-07-05T14:05:46.731Z'] = gas_date
+    update_form_pre['variables']['answers'][21]['value'] = start_time
+    update_form_pre['variables']['answers'][22]['value'] = end_time
+    #update_form_pre['variables']['answers'][-2].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-2].to_h['value']['2021-07-05T14:06:21.731Z'] = gas_date
+    #update_form_pre['variables']['answers'][-1].to_h['value']['AUTO_SOLX0004'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']
+    #update_form_pre['variables']['answers'][-1].to_h['value']['2021-07-05T13:47:58.728Z'] = start_time
     JsonUtil.create_request_file('pre/mod-07.before-change-status-to-approve', update_form_pre)
     ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
 
@@ -52,6 +63,13 @@ class BypassPage < Section0Page
     JsonUtil.create_request_file('pre/mod-04.update-form-status', update_form_pre_status)
     ServiceUtil.post_graph_ql('pre/mod-04.update-form-status', '2761')
 
+    if _condition == 'activated'
+      update_form_pre_status = JSON.parse JsonUtil.read_json('pre/05.update-form-status')
+      update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
+      update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
+      JsonUtil.create_request_file('pre/05.update-form-status', update_form_pre_status)
+      ServiceUtil.post_graph_ql('pre/05.update-form-status', '2761')
+    end
     # ServiceUtil.post_graph_ql('pre/mod-07.before-change-status-to-approve', _user)
   end
 
@@ -97,6 +115,7 @@ class BypassPage < Section0Page
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     if _permit_type == 'submit_rigging_of_ladder'
+      yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
       #DRA section
       _which_json = payload_mapper(_permit_type, '2')
       section = JSON.parse JsonUtil.read_json(_which_json)
@@ -124,6 +143,7 @@ class BypassPage < Section0Page
       section['variables']['submissionTimestamp'] = get_current_date_time
       section['variables']['answers'][1].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
       section['variables']['answers'][2].to_h['value'] = "\"2\""
+      section['variables']['answers'][3].to_h['value']['signedBy'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['MAS']
       section['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{@get_offset}}"
       JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_16.update-active-status_rol', _user, _vessel)
@@ -131,6 +151,7 @@ class BypassPage < Section0Page
       section = JSON.parse JsonUtil.read_json('ptw/rol/17.save_rol_task_status_section_details')
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
+      section['variables']['answers'][10]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']
       JsonUtil.create_request_file('ptw/mod_17.save_rol_task_status_section_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_17.save_rol_task_status_section_details', _user, _vessel)
 
@@ -140,7 +161,7 @@ class BypassPage < Section0Page
       section = JSON.parse JsonUtil.read_json('ptw/rol/20.save_rol_task_status_before_termination')
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      section['variables']['answers'].last['value'] = "{\"signedBy\":\"AUTO_SOLX0001\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+      section['variables']['answers'].last['value'] = "{\"signedBy\":\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['MAS']}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_rol_task_status_before_termination', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_20.save_rol_task_status_before_termination', _user, _vessel)
 
@@ -281,8 +302,10 @@ end
   def trigger_forms_submission(_permit_type = nil, _user, _state, eic, _gas)
     @via_service_or_not = true
     ### init ptw form
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
+    create_form_ptw['variables']['answers'][0]['value'] = "[\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\"]"
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
@@ -336,6 +359,7 @@ end
     section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
     section4ac['variables']['formId'] = CommonPage.get_permit_id
     section4ac['variables']['submissionTimestamp'] = get_current_date_time
+    section4ac['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\""
     JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
     ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
@@ -360,7 +384,7 @@ end
     section4b['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
       section4b['variables']['answers'][1].to_h['value'] = '"yes"'
-      section4b['variables']['answers'].last['value'] = "{\"signedBy\":\"AUTO_SOLX0012\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+      section4b['variables']['answers'].last['value'] = "{\"signedBy\":\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
     elsif eic === 'eic_no'
       section4b['variables']['answers'][1].to_h['value'] = '"no"'
       section4b['variables']['answers'].pop
@@ -486,6 +510,7 @@ end
   end
 
   def set_rol_to_active(_duration)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     submit_active = JSON.parse JsonUtil.read_json('ptw/15.submit-to-active')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
@@ -498,15 +523,19 @@ end
     submit_active['variables']['answers'][2].to_h['value'] = "\"#{_duration}\""
     submit_active['variables']['answers'].last['value'] = "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
+    section['variables']['answers'][3].to_h['value']['signedBy'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['MAS']}\""
+
     JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status_rol')
   end
 
   def submit_permit_for_termination_wo_eic_normalization(_status)
+    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     submit_active = JSON.parse JsonUtil.read_json('ptw/17.submit-for-termination-wo-eic-normalization')
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['answers'][2].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][4].to_h['value'] = "\"#{_status}\""
+    submit_active['variables']['answers'][-2].to_h['value']['signedBy'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\""
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-17.submit-for-termination-wo-eic-normalization')
@@ -689,7 +718,7 @@ end
     update_form_pre_status['variables']['submissionTimestamp'] = get_current_date_time
     update_form_pre_status['variables']['formId'] = CommonPage.get_permit_id
     JsonUtil.create_request_file('pre/mod-05.update-form-status', update_form_pre_status)
-    ServiceUtil.post_graph_ql('pre/mod-05.update-form-status', '2761')
+    ServiceUtil.post_graph_ql('pre/mod-05.update-form-status', '8383')
   end
 
   def get_users

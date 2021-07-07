@@ -63,10 +63,10 @@ end
 
 And (/^I wait for pinpad element to exists$/) do
   p "polling...."
-  sleep 1
-  if on(PinPadPage).pin_pad_elements.size === 0 
-    step 'I wait for pinpad element to exists'
-  end
+  sleep 2
+  # if on(PinPadPage).pin_pad_elements.size === 0 
+  #   step 'I wait for pinpad element to exists'
+  # end
 end
 
 And ('I enter pin {int}') do |pin|
@@ -103,6 +103,7 @@ end
 
 When (/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
+  sleep 1
   on(Section0Page).select_level2_permit_and_next(_permit)
   ### TO remove UAT adaptation after UAT switch to 2.0
   if ($current_environment === "sit" || $current_environment === "auto")

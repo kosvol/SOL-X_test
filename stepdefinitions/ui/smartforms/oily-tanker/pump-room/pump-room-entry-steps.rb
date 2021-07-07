@@ -12,9 +12,9 @@ end
 
 Then(/^I should see the right order of elements$/) do
   base_data = YAML.load_file('data/pre/pump-room-entries.yml')['questions']
-  on(PumpRoomEntry).form_structure_elements.each_with_index do |_element,_index|
+  on(PumpRoomEntry).form_structure_elements.each_with_index do |_element, _index|
     p "#{_element.text}\","
-    is_equal(_element.text,base_data[_index])
+    is_equal(_element.text, base_data[_index])
   end
 end
 
@@ -72,11 +72,11 @@ end
 
 And (/^I should see the (text|label|page|header) '(.*)'$/) do |like, text|
   sleep 1
-  BrowserActions.wait_condition(20,(on(PumpRoomEntry).is_text_displayed?(like,text)))
+  BrowserActions.wait_condition(20, (on(PumpRoomEntry).is_text_displayed?(like, text)))
   #is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
 end
 
-And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type,_condition, button|
+And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type, _condition, button|
   if _condition === 'disabled'
     is_false(on(PumpRoomEntry).is_button_enabled?(button))
   end
@@ -99,18 +99,18 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permit_type,_duration, delay|
+Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permit_type, _duration, delay|
   on(PumpRoomEntry).fill_up_pre(_duration)
   on(Section3APage).scroll_multiple_times(1)
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
 
-And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type,_role|
+And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type, _role|
   step 'Get PRE id'
   step 'I press the "Submit for Approval" button'
-  step "I enter pin for rank #{_role}"
-   sleep 3
+  step 'I enter pin for rank %s'% [_role.to_s]
+  sleep 3
   on(SignaturePage).sign_and_done
   step "I should see the page 'Successfully Submitted'"
   sleep 2
@@ -128,14 +128,16 @@ And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
 end
 
 And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
+  sleep 1
   on(BypassPage).activate_pre_cre
+  sleep 5
 end
 
 And(/^I take note of start and end validity time for (.*)$/) do |_permit_type|
   on(PumpRoomEntry).get_validity_start_and_end_time(_permit_type.to_s)
 end
 
-And(/^I should see the current (PRE|CRE) in the "([^"]*)" list$/) do |_permit_type,list|
+And(/^I should see the current (PRE|CRE) in the "([^"]*)" list$/) do |_permit_type, list|
   p "PRE ID: #{@@pre_number}"
   step "I should see the text '#{@@pre_number}'"
 end
@@ -183,7 +185,7 @@ And(/^Get (PRE|CRE|PWT) id$/) do |_permit_type|
   @@issue_time = on(PreDisplay).pre_duration_timer_element.text if _permit_type === 'PWT'
 end
 
-Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do |_permit_type,_condition,rank|
+Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do |_permit_type, _condition, rank|
   step "I navigate to \"Pending Approval\" screen for #{_permit_type}" if _condition ==='Pending approval'
   step "I navigate to \"Active\" screen for #{_permit_type}" if _condition ==='Active'
   on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval') if _condition ==='Pending approval'
@@ -199,7 +201,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
    on(CommonFormsPage).scroll_multiple_times(20)
    not_to_exists(on(PumpRoomEntry).approve_activation_element)
    not_to_exists(on(Section7Page).update_btn_element)
-   is_equal(on(CommonFormsPage).close_btn_elements.size,1)
+   is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
    step 'I click on back arrow'
   end
 end
@@ -235,39 +237,39 @@ end
 Then (/^I should see exit timestamp updated$/) do
   on(PumpRoomEntry).entry_log_btn_element.click
   sleep 1
-  does_include(on(PumpRoomEntry).entry_log_table_elements[3].text,on(CommonFormsPage).get_current_time)
+  does_include(on(PumpRoomEntry).entry_log_table_elements[3].text, on(CommonFormsPage).get_current_time)
 end
 
 And (/^I should see PRE display timezone$/) do
   on(PumpRoomEntry).home_tab_element.click
   step 'I sleep for 1 seconds'
   if on(CommonFormsPage).get_current_time_offset.to_i.abs <= 1
-    is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hour")
+    is_equal(on(PreDisplay).time_shifted_by_text_element.text, "Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hour")
   else
-    is_equal(on(PreDisplay).time_shifted_by_text_element.text,"Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
+    is_equal(on(PreDisplay).time_shifted_by_text_element.text, "Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
   end
 end
 
 Then (/^I should see entry log details display as (filled|filled api)$/) do |_condition|
-  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text,'A/M Atif Hayat')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text,'Test Automation')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M Atif Hayat')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'TEST AUTO')
   case _condition
   when 'filled'
-    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_start_details)
-    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,on(PumpRoomEntry).get_entry_log_validity_end_details)
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, on(PumpRoomEntry).get_entry_log_validity_start_details)
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, on(PumpRoomEntry).get_entry_log_validity_end_details)
   when 'filled api'
-    p "#{@@issued_date_and_time[12,5]}"
-    p "#{@@issue_time[12,5]}"
-    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, "#{@@issued_date_and_time[12,5]}")
-    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,"#{@@issue_time[12,5]}")
+    p "#{@@issued_date_and_time[12, 5]}"
+    p "#{@@issue_time[12, 5]}"
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, "#{@@issued_date_and_time[12, 5]}")
+    does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, "#{@@issue_time[12, 5]}")
   end
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text,"#{on(CommonFormsPage).get_current_time_offset}")
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text,'2 %')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text,'3 % LEL')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text,'4 PPM')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text,'5 PPM')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text,'2 CC')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text,'C/O Alister Leong')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text, "#{on(CommonFormsPage).get_current_time_offset}")
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text, '2 %')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text, '3 % LEL')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text, '4 PPM')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O Alister Leong')
 end
 
 Then ('I should see timer countdown') do
@@ -275,33 +277,33 @@ Then ('I should see timer countdown') do
   step 'I sleep for 3 seconds'
   p "#{on(PreDisplay).pre_duration_timer_element.text}"
   if on(PreDisplay).pre_duration_timer_element.text.include? '03:58:'
-    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:58:')
+    does_include(on(PreDisplay).pre_duration_timer_element.text, '03:58:')
   elsif on(PreDisplay).pre_duration_timer_element.text.include? '03:57:'
-    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:57:')
+    does_include(on(PreDisplay).pre_duration_timer_element.text, '03:57:')
   elsif on(PreDisplay).pre_duration_timer_element.text.include? '03:56:'
-    does_include(on(PreDisplay).pre_duration_timer_element.text,'03:56:')
+    does_include(on(PreDisplay).pre_duration_timer_element.text, '03:56:')
   end
 end
 
 Then (/^I check all header-cells in Entry log table on (PWT|Dashboard)$/) do |_condition|
-  is_equal(on(PumpRoomEntry).header_cell_elements.first.text,'Entrant')
-  is_equal(on(PumpRoomEntry).header_cell_elements[1].text,'Purpose')
-  is_equal(on(PumpRoomEntry).header_cell_elements[2].text,'Validity')
-  is_equal(on(PumpRoomEntry).header_cell_elements[3].text,'Time In/Out')
-  is_equal(on(PumpRoomEntry).header_cell_elements[4].text,'GMT')
-  is_equal(on(PumpRoomEntry).header_cell_elements[5].text,'O2')
-  is_equal(on(PumpRoomEntry).header_cell_elements[6].text,'HC')
-  is_equal(on(PumpRoomEntry).header_cell_elements[7].text,'H2S')
-  is_equal(on(PumpRoomEntry).header_cell_elements[8].text,'CO')
-  is_equal(on(PumpRoomEntry).header_cell_elements[9].text,'Test')
+  is_equal(on(PumpRoomEntry).header_cell_elements.first.text, 'Entrant')
+  is_equal(on(PumpRoomEntry).header_cell_elements[1].text, 'Purpose')
+  is_equal(on(PumpRoomEntry).header_cell_elements[2].text, 'Validity')
+  is_equal(on(PumpRoomEntry).header_cell_elements[3].text, 'Time In/Out')
+  is_equal(on(PumpRoomEntry).header_cell_elements[4].text, 'GMT')
+  is_equal(on(PumpRoomEntry).header_cell_elements[5].text, 'O2')
+  is_equal(on(PumpRoomEntry).header_cell_elements[6].text, 'HC')
+  is_equal(on(PumpRoomEntry).header_cell_elements[7].text, 'H2S')
+  is_equal(on(PumpRoomEntry).header_cell_elements[8].text, 'CO')
+  is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
   case _condition
   when 'dashboard'
-    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,'Other Toxic')
-    is_equal(on(PumpRoomEntry).header_cell_elements[11].text,'Benzene')
-    is_equal(on(PumpRoomEntry).header_cell_elements[12].text,'NO2')
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text, 'Other Toxic')
+    is_equal(on(PumpRoomEntry).header_cell_elements[11].text, 'Benzene')
+    is_equal(on(PumpRoomEntry).header_cell_elements[12].text, 'NO2')
   when 'PTW'
     #shoud be "Competent Person"
-    is_equal(on(PumpRoomEntry).header_cell_elements[10].text,'OOW')
+    is_equal(on(PumpRoomEntry).header_cell_elements[10].text, 'OOW')
   end
 
 end

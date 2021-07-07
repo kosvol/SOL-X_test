@@ -89,7 +89,7 @@ And (/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 3 seconds'
 end
 
-And (/^I acknowledge the new entry log cre via service$/) do
+And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 6 seconds'
   @@pre_number = CommonPage.get_permit_id
   SmartFormDBPage.acknowledge_pre_entry_log
@@ -148,7 +148,11 @@ Then (/^I check that entrants "([^"]*)" not present in list$/) do |_arr_entrants
   sleep 1
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
   _arr_entrants.split(',').each do |_i|
-      $browser.find_element(:xpath, "//*[contains(.,'#{_i}')]")
+      if $browser.find_elements(:xpath, "//*[contains(.,'#{_i}')]").empty?
+        puts("Entrant #{_i} not exists in list")
+      else
+        raise("Entrant #{_i} is exists in list")
+      end
     end
 end
 
@@ -210,6 +214,32 @@ And (/^I check the entrants "([^"]*)" are (presents|not presents) in dashboard l
     _entrants.split(',').each { |x| expect(arr_elements_text).to include(x.to_s) }
   when "not presents"
     _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(x.to_s) }
+  else
+    raise "Wrong condition"
+  end
+end
+
+Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |_type,_condition|
+  sleep 5
+  BrowserActions.wait_until_is_visible(on(DashboardPage).pre_cre_title_indicator_element)
+  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Pump Room Entry Permit:") if _type ==='PRE'
+  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Compressor/Motor Room Entry Permit:") if _type ==='CRE'
+  is_equal(on(DashboardPage).pre_indicator_element.text,"Active") if _condition ==='active'
+  is_equal(on(DashboardPage).pre_indicator_element.text,"Inactive") if _condition ==='inactive'
+end
+
+Then (/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry page$/) do |_entrants, _condition|
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
+  sleep 2
+  yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+  elements = on(PumpRoomEntry).member_name_btn_elements
+  arr_elements_text = []
+  elements.each { |element| arr_elements_text.push(element.text) }
+  case _condition
+  when "presents"
+    _entrants.split(',').each { |x| expect(arr_elements_text).to include(yml_id["rank_name"][x.to_s])}
+  when "not presents"
+    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(yml_id["rank_name"][x.to_s]) }
   else
     raise "Wrong condition"
   end
