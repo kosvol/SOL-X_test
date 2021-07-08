@@ -4,10 +4,6 @@
     "formId": "SIT/PTW/2020/010",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
         "fieldId": "toolBoxMeetingCarriedOut",
         "value": "\"yes\""
       },

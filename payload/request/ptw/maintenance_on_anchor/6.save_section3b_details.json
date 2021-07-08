@@ -13,7 +13,7 @@
       },
       {
         "fieldId": "workInspectionBy",
-        "value": "[\"SIT_SOLX0008\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0001\",\"rank\":\"MAS\"}]"
       },
       {
         "fieldId": "_3B_subsection4_atRisk",

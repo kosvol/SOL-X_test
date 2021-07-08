@@ -4,12 +4,8 @@
     "formId": "SIT/PTW/2020/010",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
         "fieldId": "team",
-        "value": "[\"AUTO_SOLX0012\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       }
     ],
     "submissionTimestamp": "2020-10-05T08:21:44.856Z"
