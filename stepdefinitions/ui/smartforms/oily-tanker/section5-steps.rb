@@ -14,9 +14,9 @@ And (/^I fill up section 5$/) do
   step 'I fill up non crew details'
   step 'I sign on role with sponsor crew 8383 pin'
   BrowserActions.scroll_up
-  on(Section5Page).roles_and_resp_btn
-  on(Section5Page).roles_btn_elements[2].click
-  on(Section5Page).confirm_btn_elements.last.click
+  # on(Section5Page).roles_and_resp_btn
+  # on(Section5Page).roles_btn_elements[2].click
+  # on(Section5Page).confirm_btn_elements.last.click
   # step 'I select 1 role from list'
 end
 

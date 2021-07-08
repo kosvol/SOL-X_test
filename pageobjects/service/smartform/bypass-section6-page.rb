@@ -151,7 +151,7 @@ class BypassPage < Section0Page
       section = JSON.parse JsonUtil.read_json('ptw/rol/17.save_rol_task_status_section_details')
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      section['variables']['answers'][10]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']
+      section['variables']['answers'][10]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']
       JsonUtil.create_request_file('ptw/mod_17.save_rol_task_status_section_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_17.save_rol_task_status_section_details', _user, _vessel)
 
@@ -305,7 +305,8 @@ end
     yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
-    create_form_ptw['variables']['answers'][0]['value'] = "[\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\"]"
+    # p ">> #{create_form_ptw['variables']['answers'][0]['value'].to_a[0]['userId']}"
+    create_form_ptw['variables']['answers'][0]['value'] = create_form_ptw['variables']['answers'][0]['value'].gsub("AUTO_SOLX0012", "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}")
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
     ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', _user)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
@@ -359,7 +360,7 @@ end
     section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
     section4ac['variables']['formId'] = CommonPage.get_permit_id
     section4ac['variables']['submissionTimestamp'] = get_current_date_time
-    section4ac['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\""
+    section4ac['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
     JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
     ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
@@ -384,7 +385,7 @@ end
     section4b['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
       section4b['variables']['answers'][1].to_h['value'] = '"yes"'
-      section4b['variables']['answers'].last['value'] = "{\"signedBy\":\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+      section4b['variables']['answers'].last['value'] = "{\"signedBy\":\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
     elsif eic === 'eic_no'
       section4b['variables']['answers'][1].to_h['value'] = '"no"'
       section4b['variables']['answers'].pop
@@ -535,7 +536,7 @@ end
     submit_active['variables']['formId'] = CommonPage.get_permit_id
     submit_active['variables']['answers'][2].to_h['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][4].to_h['value'] = "\"#{_status}\""
-    submit_active['variables']['answers'][-2].to_h['value']['signedBy'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\""
+    submit_active['variables']['answers'][-2].to_h['value']['signedBy'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-17.submit-for-termination-wo-eic-normalization')

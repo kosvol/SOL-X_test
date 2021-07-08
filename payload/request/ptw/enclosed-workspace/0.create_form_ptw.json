@@ -7,7 +7,7 @@
     "answers": [
       {
         "fieldId": "team",
-        "value": "[\"AUTO_SOLX0012\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",

@@ -4,10 +4,6 @@
     "formId": "SIT/PTW/2020/018",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
         "fieldId": "methodReason",
         "value": "\"Test Automation\""
       },
@@ -17,7 +13,7 @@
       },
       {
         "fieldId": "workInspectionBy",
-        "value": "[\"AUTO_SOLX0001\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0001\",\"rank\":\"MAS\"}]"
       },
       {
         "fieldId": "_3B_subsection4_atRisk",
