@@ -359,7 +359,7 @@ end
     section4ac = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '4ac'))
     section4ac['variables']['formId'] = CommonPage.get_permit_id
     section4ac['variables']['submissionTimestamp'] = get_current_date_time
-    section4ac['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "\"#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']}\""
+    section4ac['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A C/O']
     JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
     ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
@@ -375,6 +375,7 @@ end
     save_eic['variables']['parentFormId'] = CommonPage.get_permit_id
     save_eic['variables']['formId'] = ServiceUtil.get_response_body['data']['createForm']['_id']
     save_eic['variables']['submissionTimestamp'] = get_current_date_time
+    #todo
     JsonUtil.create_request_file('ptw/mod_11.save_eic_cert_details', save_eic)
     ServiceUtil.post_graph_ql('ptw/mod_11.save_eic_cert_details', _user)
 
@@ -407,6 +408,7 @@ end
       section2['variables']['answers'].delete_at(2)
       section2['variables']['answers'].delete_at(2)
     end
+    #todo
     JsonUtil.create_request_file('ptw/mod_13.save_section6_details', section2)
     ServiceUtil.post_graph_ql('ptw/mod_13.save_section6_details', _user)
 
