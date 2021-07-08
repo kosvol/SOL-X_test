@@ -5,10 +5,6 @@
     "sectionId": "3A",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
         "fieldId": "draCreatedDate",
         "value": "{\"dateTime\":\"2020-10-05T07:57:07.795Z\",\"utcOffset\":7}"
       },

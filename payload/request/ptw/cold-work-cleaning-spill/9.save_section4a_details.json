@@ -5,10 +5,6 @@
     "sectionId": "4A",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
         "fieldId": "toolBoxMeetingCarriedOut",
         "value": "\"yes\""
       },
