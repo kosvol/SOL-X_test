@@ -45,6 +45,8 @@ Then (/^I should see (.*) button (disabled|enabled)$/) do |_which_button,_condit
       is_enabled(on(PumpRoomEntry).approve_activation_element)
     when "Updates Needed"
       is_enabled(on(Section7Page).update_btn_element)
+    when "rol updates needed"
+      is_enabled(on(ROLPage).updates_needed_btn_element)
     when "Activate Permit to Work"
       is_enabled(on(Section7Page).non_oa_buttons_elements.first)
       is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')

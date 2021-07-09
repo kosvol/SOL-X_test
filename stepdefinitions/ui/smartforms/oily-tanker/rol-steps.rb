@@ -1,7 +1,4 @@
 # frozen_string_literal: true
-Then (/^I should see updates needed button enabled$/) do
-  is_enabled(on(ROLPage).updates_needed_btn_element)
-end
 
 And (/^I should see rol info box$/) do
   is_equal(on(ROLPage).foot_note_element.text,"1. Deck officer shall be the Responsible Officer to supervise the task and be responsible for safety.\n2. This permit shall be issued for one side (port/Stbd) boarding arrangement only. Its not valid for both side.\n3. This permit shall be issued while rigging ship's gangway/MOT if working overside by personnel is involved.")

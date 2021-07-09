@@ -36,7 +36,7 @@ Feature: LNGSmartFormsPermission
         And I open a permit pending Master Approval with CE rank and 8248 pin
         And I press next for 1 times
         And I select rol permit active duration 1 hour
-        Then I should see updates needed button enabled
+        Then I should see rol updates needed button enabled
         And I switch vessel to LNG
 
     Scenario: Two LNG forms to be dispalyed in maintenance permit
