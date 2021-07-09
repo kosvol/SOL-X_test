@@ -81,7 +81,7 @@ Feature: RiggingOfLadder
       | 3/O  | 0159 |
   # | A 3/O | 2674 |
 
-  Scenario: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
+  Scenario Outline: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank <rank>
