@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+And (/^I fill zone details$/) do
+  on(Section1Page).fill_partial_section_1
+end
+
 Then (/^I should see navigation dropdown$/) do
   to_exists(on(Section1Page).s1_navigation_dropdown_element)
 end
