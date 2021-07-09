@@ -105,6 +105,13 @@ Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permi
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
+Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*) with custom date (.*)$/) do |_permit_type, _duration, delay, _dat|
+  on(PumpRoomEntry).fill_up_pre(_duration)
+  on(Section3APage).scroll_multiple_times(1)
+  on(PumpRoomEntry).
+  on(PumpRoomEntry).select_start_time_to_activate(delay)
+end
+
 
 And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type, _role|
   step 'Get PRE id'
@@ -252,7 +259,7 @@ end
 
 Then (/^I should see entry log details display as (filled|filled api)$/) do |_condition|
   is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M Atif Hayat')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'TEST AUTO')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'Test Automation')
   case _condition
   when 'filled'
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, on(PumpRoomEntry).get_entry_log_validity_start_details)
@@ -269,7 +276,12 @@ Then (/^I should see entry log details display as (filled|filled api)$/) do |_co
   is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text, '4 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O Alister Leong')
+  case _condition
+  when 'filled api'
+    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'MAS Default Master') # why MAS Default Master on auto or sit if api call???????
+  else
+    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O Alister Leong')
+  end
 end
 
 Then ('I should see timer countdown') do

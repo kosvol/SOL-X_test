@@ -351,9 +351,44 @@ end
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
     ### end ###
 
-    save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
-    save_different_form_section('7.save_section3c_details', _user)
-    save_different_form_section('8.save_section3d_details', _user)
+    if _permit_type == 'submit_enclose_space_entry'
+      ### section 3b ###
+      _which_json = payload_mapper(_permit_type, '3b')
+      section3b = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
+      section3b['variables']['formId'] = CommonPage.get_permit_id
+      section3b['variables']['submissionTimestamp'] = get_current_date_time
+      section3b['variables']['answers'][3]['value']['AUTO_SOLX0001'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      JsonUtil.create_request_file('ptw/mod_6.save_section3b_details', section3b)
+      ServiceUtil.post_graph_ql('ptw/mod_6.save_section3b_details', _user)
+    else
+      save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
+    end
+
+    if  _permit_type == 'submit_enclose_space_entry'
+      ### section 3c ###
+      section3c = JSON.parse JsonUtil.read_json('ptw/7.save_section3c_details')
+      section3c['variables']['formId'] = CommonPage.get_permit_id
+      section3c['variables']['submissionTimestamp'] = get_current_date_time
+      section3c['variables']['answers'][0]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      JsonUtil.create_request_file('ptw/mod_7.save_section3c_details', section3c)
+      ServiceUtil.post_graph_ql('ptw/mod_7.save_section3c_details', _user)
+    else
+      save_different_form_section('7.save_section3c_details', _user)
+    end
+
+    if  _permit_type == 'submit_enclose_space_entry'
+      ### section 3d ###
+      section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
+      section3d['variables']['formId'] = CommonPage.get_permit_id
+      section3d['variables']['submissionTimestamp'] = get_current_date_time
+      section3d['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      section3d['variables']['answers'][-1]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section3d)
+      ServiceUtil.post_graph_ql('ptw/mod_8.save_section3d_details', _user)
+    else
+      save_different_form_section('8.save_section3d_details', _user)
+    end
+
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
 
     ### section 4ac ###
@@ -376,7 +411,10 @@ end
     save_eic['variables']['parentFormId'] = CommonPage.get_permit_id
     save_eic['variables']['formId'] = ServiceUtil.get_response_body['data']['createForm']['_id']
     save_eic['variables']['submissionTimestamp'] = get_current_date_time
-    #todo
+    save_eic['variables']['answers'][-3]['value']['AUTO_SOLX0004'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']}"
+    save_eic['variables']['answers'][-3]['value']['AUTO_SOLX0004'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/O']}"
+    save_eic['variables']['answers'][-2]['value']['AUTO_SOLX0002'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/E']}"
+    save_eic['variables']['answers'][-2]['value']['AUTO_SOLX0002'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['C/E']}"
     JsonUtil.create_request_file('ptw/mod_11.save_eic_cert_details', save_eic)
     ServiceUtil.post_graph_ql('ptw/mod_11.save_eic_cert_details', _user)
 
@@ -403,13 +441,16 @@ end
     section2['variables']['submissionTimestamp'] = get_current_date_time
     if _gas === 'gas_yes'
       section2['variables']['answers'][1].to_h['value'] = '"yes"'
+      section2['variables']['answers'][-3]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      section2['variables']['answers'][-3]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      section2['variables']['answers'][-2]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
+      section2['variables']['answers'][-2]['value']['AUTO_SOLX0012'] = "#{yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"]['A/M']}"
     elsif _gas === 'gas_no'
       section2['variables']['answers'][1].to_h['value'] = '"no"'
       section2['variables']['answers'].delete_at(2)
       section2['variables']['answers'].delete_at(2)
       section2['variables']['answers'].delete_at(2)
     end
-    #todo
     JsonUtil.create_request_file('ptw/mod_13.save_section6_details', section2)
     ServiceUtil.post_graph_ql('ptw/mod_13.save_section6_details', _user)
 
