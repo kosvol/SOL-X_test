@@ -84,7 +84,7 @@ Feature: RiggingOfLadder
   Scenario: Verify no duplicate 'Previous' and 'Close' buttons during pending withdrawal state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank 2/O
+    And I enter pin for rank <rank>
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -95,6 +95,14 @@ Feature: RiggingOfLadder
     When I put the permit to termination state
     And I review termination permit with 1111 pin
     Then I should not see extra previous and close button
+
+    Examples:
+      | rank  |
+      | C/E   |
+      | A 3/O |
+      | C/O   |
+      | 2/E   |
+      | A 2/E |
 
   Scenario Outline: SOL-5189 Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
