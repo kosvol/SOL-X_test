@@ -2,7 +2,7 @@
 
 Then (/^I (should|should not) see terminate permit to work and request update buttons$/) do |_condition|
   if _condition === 'should'
-    is_equal(on(Section7Page).non_oa_buttons_elements.size, 6)
+    is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     is_equal(on(Section7Page).non_oa_buttons_elements[2].text, 'Withdraw Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[3].text, 'Request Updates')
   elsif _condition === 'should not'

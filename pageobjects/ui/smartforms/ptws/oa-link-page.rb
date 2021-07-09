@@ -69,7 +69,7 @@ class OAPage < Section9Page
   # after Termination #
   element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
   elements(:comment_date_after_term, xpath: "//time")
-  elements(:comment_text_after_term, xpath: "//li[@class='sc-AxhUy ggajZP']/div[3]")
+  elements(:comment_text_after_term, xpath: "//div[@class='sender-info']/../div[3]")
   ## END Comment attributes ###
 
   def sol_6553

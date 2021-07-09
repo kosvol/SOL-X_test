@@ -84,9 +84,15 @@ class Section1Page < Section0Page
     _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
   end
 
+  def fill_partial_section_1
+    sleep 1
+    set_default_section1
+  end
+
   def fill_default_section_1
     sleep 2
-    fill_default_section1
+    set_default_section1
+    select_location_of_work
   end
 
   def select_location_of_work
@@ -135,12 +141,11 @@ class Section1Page < Section0Page
     BrowserActions.scroll_click(dd_list_value_elements[0])
   end
 
-  def fill_default_section1
+  def set_default_section1
     select_checkbox(@@location_check_btn, 'In Port')
     select_checkbox(@@condition_check_btn, 'Loaded')
     select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
-    select_location_of_work
     zone_details_input_element.send_keys("Test Automation")
     sleep 5
     BrowserActions.hide_keyboard
