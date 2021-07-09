@@ -11,6 +11,7 @@ Feature: Section6
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
     And I select Helicopter Operations permit for level 2
+    And I fill zone details
     And I navigate to section 3c
     And I uncheck dra member
     And I press next for 6 times
