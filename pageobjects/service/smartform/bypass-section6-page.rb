@@ -595,7 +595,7 @@ end
 
   def create_entry_record_custom_gas_readings(_array,_type)
     yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-    if _type == 'CRE' or 'PRE'
+    if _type == 'CRE' or _type == 'PRE'
       permit  = 'cre/09.add_entry_custom_readings'
       permit_mod = 'cre/09.mod_add_entry_custom_readings'
     elsif _type == 'PTW'
@@ -610,12 +610,11 @@ end
       id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
       _entry_record['variables']['otherEntrantIds'].push(id)
     end
-    id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O'] if _type == 'CRE' or 'PRE'
-    _entry_record['variables']['crewId'] = id_2 if _type == 'CRE' or 'PRE'
+    id_2 = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['A C/O'] if _type == 'CRE' or _type == 'PRE'
+    _entry_record['variables']['crewId'] = id_2 if _type == 'CRE' or _type == 'PRE'
     JsonUtil.create_request_file(permit_mod, _entry_record)
     ServiceUtil.post_graph_ql(permit_mod)
   end
-
 
   def signout_entrants(_entrant_name)
     _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
