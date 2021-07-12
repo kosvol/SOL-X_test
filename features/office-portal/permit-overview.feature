@@ -6,11 +6,12 @@ Feature: PermitOverview
 
   Scenario: Verify PRE will be activated and auto terminated at the specified time [Office portal]
     Given I create PRE via service with static env
+    And I get PRE permit info
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I sleep for 3 seconds
-    And I check the checkbox near the first permit in the list
+    And I select the recently terminated form
     And I click on View Permit button
     And I sleep for 5 seconds
     Then I check the element value "Test Automation" by title "Reason for Entry"
