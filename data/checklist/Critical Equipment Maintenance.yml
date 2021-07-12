@@ -1,7 +1,7 @@
 questions:
   [
-    "Name of equipment/systems/alarms",
-    "Reason for critical equipment maintenance",
+    "Name of equipment/systems/alarms:",
+    "Reason for critical equipment maintenance:",
     "Detailed Risk Assessment carried out with mitigating factors as follows: \na) Alternate back-up equipment/systems. \nb) Modification in operational procedures. \nc) Additional: Emergency safety procedures.",
     "Permit to Work System complied with?",
     "Will equipment require modification?",
