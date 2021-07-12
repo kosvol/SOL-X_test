@@ -18,6 +18,10 @@
         "value": "\"yes\""
       },
       {
+        "fieldId": "permitValidDuration",
+        "value": "\"4\""
+      },
+      {
         "fieldId": "gasReaderRequired",
         "value": "\"yes\""
       },
@@ -30,7 +34,7 @@
         "value": "\"Head, Fleet Operations\""
       }
     ],
-    "submissionTimestamp": "2020-10-29T06:17:57.870Z"
+    "submissionTimestamp": "2021-07-12T05:46:14.824Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }
