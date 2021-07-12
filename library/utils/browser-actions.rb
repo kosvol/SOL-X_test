@@ -16,7 +16,7 @@ module BrowserActions
     def turn_wifi_off_on
       $browser.toggle_wifi
       p 'WIFI turned on/off'
-      sleep 9
+      sleep 11
     end
 
     def turn_on_wifi_by_default
