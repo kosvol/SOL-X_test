@@ -1,5 +1,5 @@
 {
-  "operationName": null,
+  "operationName": "UpdateFormAnswers",
   "variables": {
     "formId": "DEV/PTW/2020/045",
     "answers": [

@@ -18,6 +18,10 @@
         "value": "\"yes\""
       },
       {
+        "fieldId": "permitValidDuration",
+        "value": "\"8\""
+      },
+      {
         "fieldId": "gasReaderRequired",
         "value": "\"yes\""
       },
