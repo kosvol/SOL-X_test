@@ -38,10 +38,6 @@
       {
         "fieldId": "locationOfWork",
         "value": "{\"zone\":\"AUTO_02VSR475JK2JTN7V25D27D\",\"zoneDetails\":\"Test Automation\"}"
-      },
-      {
-        "fieldId": "permitValidUntil",
-        "value": "{\"dateTime\":\"2020-07-23T16:01:44.903Z\",\"utcOffset\":1}"
       }
     ],
     "submissionTimestamp": "2020-07-23T08:01:44.903Z"

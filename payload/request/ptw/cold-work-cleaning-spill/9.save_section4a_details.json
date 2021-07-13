@@ -1,12 +1,8 @@
 {
   "operationName": "UpdateFormAnswers",
   "variables": {
-    "formId": "SIT/PTW/2020/010",
+    "formId": "LNGSIT/PTW/2021/099",
     "answers": [
-      {
-        "fieldId": "toolBoxMeetingCarriedOut",
-        "value": "\"yes\""
-      },
       {
         "fieldId": "openChecklistColdWorkOp",
         "value": "\"yes\""
@@ -76,7 +72,7 @@
         "value": "\"na\""
       }
     ],
-    "submissionTimestamp": "2020-10-05T08:21:50.856Z"
+    "submissionTimestamp": "2021-07-13T07:06:09.287Z"
   },
   "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }

@@ -8,10 +8,6 @@
         "value": "\"\""
       },
       {
-        "fieldId": "locationOfWork",
-        "value": "\"Test Automation\""
-      },
-      {
         "fieldId": "cl_pressurePipeline_formalRiskAssessmentCarriedOut",
         "value": "\"yes\""
       },

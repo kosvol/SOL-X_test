@@ -4,14 +4,6 @@
     "formId": "SIT/PTW/2020/024",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "locationOfWork",
-        "value": "\"Test Automation\""
-      },
-      {
         "fieldId": "descOfWork",
         "value": "\"Test Automation\""
       },
