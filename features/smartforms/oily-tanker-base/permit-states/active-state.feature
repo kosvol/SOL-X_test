@@ -454,7 +454,6 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
