@@ -49,7 +49,7 @@ Feature: LNGClosedPermit
         And I sign on canvas with valid 8248 pin
         And I click on back to home
         And I review termination permit with 8248 pin
-        Then I should see terminate permit to work and request update buttons
+        Then I should see terminate permit to work and request update buttons for FSU
         And I switch vessel to LNG
 
     Scenario: CE and Master can withdraw all permit for FSU
