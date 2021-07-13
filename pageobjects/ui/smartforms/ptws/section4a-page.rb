@@ -56,21 +56,7 @@ class Section4APage < Section3DPage
 
   def click_on_enter_pin
     BrowserActions.js_click("//button[contains(.,'Sign')]")
-    # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
-
-  # def is_checklist_question_displayed(_checklist)
-  #   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  #   base_data.each do |_element|
-  #     p ">> #{_element}"
-  #     span = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]")
-  #     label = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]")
-  #     ptag = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]")
-  #     h4 = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
-      
-  #     is_equal(tmp.size,1)
-  #   end
-  # end
 
   ### hack
   def select_ppe_equipment
@@ -137,7 +123,8 @@ class Section4APage < Section3DPage
       BrowserActions.scroll_down(element_yes[_index])
       sleep 1
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
-        get_na_elements[_index].click
+        # get_na_elements[_index].click
+        BrowserActions.js_clicks(@@na_input,_index)
       end
     end
   end
@@ -205,7 +192,8 @@ class Section4APage < Section3DPage
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index+1])
-      element_yes[_index+1].click
+      # element_yes[_index+1].click
+      BrowserActions.js_clicks(@@yes_input,_index+1)
     end
   end
 
