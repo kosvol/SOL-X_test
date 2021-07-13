@@ -6,18 +6,19 @@ Feature: PermitOverview
 
   Scenario: Verify PRE will be activated and auto terminated at the specified time [Office portal]
     Given I create PRE via service with static env
-    When I sleep for 300 seconds
+    And I get PRE permit info
+    When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I sleep for 3 seconds
-    And I check the checkbox near the first permit in the list
+    And I select the recently terminated form
     And I click on View Permit button
     And I sleep for 5 seconds
     Then I check the element value "Test Automation" by title "Reason for Entry"
 
   Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
     Given I create submit_enclose_space_entry via service with static env
-    When I sleep for 300 seconds
+    When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I click on Add Filter button
@@ -155,7 +156,7 @@ Feature: PermitOverview
     Scenario: Verify PRE form shows the same fields as in the client app
       Given I create PRE via service with static env
       And I get PRE permit info
-      When I sleep for 300 seconds
+      When I wait for form status get changed to CLOSED on Cloud
       And I log in to the Office Portal
       And I select the "Auto" vessel
       And I sleep for 3 seconds
