@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-Then (/^I should not see comment box exists$/) do
-  not_to_exists(on(PendingStatePage).update_comment_box_element)
+Then (/^I (should not|should) see comment box exists$/) do |_condition|
+  not_to_exists(on(PendingStatePage).update_comment_box_element) if _condition === "should not"
+  to_exists(on(PendingStatePage).update_comment_box_element) if _condition === "should"
 end
 
 Then (/^I should see description of work pre-populated$/) do

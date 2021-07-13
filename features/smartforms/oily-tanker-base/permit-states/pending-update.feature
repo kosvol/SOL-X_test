@@ -104,25 +104,25 @@ Feature: PendingUpdate
       | A 3/E | 6727 |
       | 4/E   | 1311 |
 
-  # Scenario: Verify update note shows from Master if request update via non OA
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin for rank A/M
-  #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
-  #   And I fill only location of work
-  #   And I press next for 7 times
-  #   And I sign checklist and section 5
-  #   And I press next for 1 times
-  #   And I submit permit for Master Approval
-  #   And I click on back to home
-  #   And I click on pending approval filter
-  #   And I open a permit pending Master Approval with Master rank and 1111 pin
-  #   And I navigate to section 7
-  #   And I request update for permit
-  #   And I click on back to home
-  #   And I click on update needed filter
-  #   Then I should see Note from Master
+  Scenario: Verify update note shows from Master if request update via non OA
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    Then I should see Note from Master
 
   Scenario Outline: Verify user should not see master's note on all section while viewing as Master, non RA, non Checklist Creator and non AGT via Pending Approval state
     Given I launch sol-x portal without unlinking wearable
@@ -149,30 +149,52 @@ Feature: PendingUpdate
       | rank | pin  |
       | PMAN | 4421 |
 
-  # Scenario: Verify update note shows from Office if request update via OA office
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin for rank A/M
-  #   And I select Critical Equipment Maintenance permit
-  #   And I select Maintenance on Magnetic Compass permit for level 2
-  #   And I fill only location of work and duration more than 2 hours
-  #   And I press next for 7 times
-  #   And I sign checklist and section 5
-  #   And I press next for 1 times
-  #   Then I submit permit for Master Review
-  #   When I click on back to home
-  #   And I click on pending approval filter
-  #   And I set oa permit to office approval state manually
-  #   And I navigate to OA link
-  #   And I request the permit for update via oa link manually
-  #   And I click on update needed filter
-  #   Then I should see Note from Office
+  Scenario: Verify update note shows from Office if request update via OA office
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I request the permit for update via oa link manually
+    And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
+    And I click on update needed filter
+    Then I should see Note from Office
 
-  # @skip
-  # Scenario: Comment is not saved for the EIC when requesting the form for updates
+  Scenario: Comment is not saved for the EIC when requesting the form for updates
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 8383
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request for update without submitting
+    And I press previous for 3 times
+    And I click on view EIC certification button
+    Then I should see request update comment box
+
+  # @test
+  # Scenario: Verify comment box displayed in EIC Certificate when requesting the form for updates
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin 9015
+  #   And I enter pin 8383
   #   And I select Enclosed Spaces Entry permit
   #   And I select Enclosed Spaces Entry permit for level 2
   #   And I fill up section 1 with default value
@@ -185,32 +207,77 @@ Feature: PendingUpdate
   #   And I click on pending approval filter
   #   And I open a permit pending Master Approval with Master rank and 1111 pin
   #   And I navigate to section 7
-  #   And I request for update without submitting
-  #   And I press previous for 3 times
+  #   And I request update for permit
+  #   And I click on back to home
+  #   And I click on update needed filter
+  #   And I update permit in pending update state with 9015 pin
+  #   And I navigate to section 4b
   #   And I click on view EIC certification button
   #   Then I should see request update comment box
 
-  # @skip
-  # Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
-  #   Given I launch sol-x portal without unlinking wearable
-  #   And I navigate to create new permit
-  #   And I enter pin 9015
-  #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
-  #   And I fill up section 1 with default value
-  #   And I navigate to section 4a
-  #   And I press next for 1 times
-  #   And I fill up compulsory fields
-  #   And I press next for 1 times
-  #   And I submit permit for Master Approval
-  #   And I click on back to home
-  #   And I click on pending approval filter
-  #   And I open a permit pending Master Approval with Master rank and 1111 pin
-  #   And I navigate to section 7
-  #   And I request for update without submitting
-  #   And I press previous for 9 times
-  #   And I click on View Edit Hazard
-  #   Then I should see request update comment box
+  Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request for update without submitting
+    And I press previous for 9 times
+    And I click on View Edit Hazard
+    Then I should see request update comment box
+
+  Scenario: Verify comment box display on all section after requesting for update
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin 9015
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill up section 1 with default value
+    And I navigate to section 4a
+    And I press next for 1 times
+    And I fill up compulsory fields
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with 9015 pin
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
+    Then I should see request update comment box
+    And I press next for 1 times
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
@@ -235,7 +302,33 @@ Feature: PendingUpdate
     And I click on create EIC certification button
     Then I should not see comment box exists
 
-  Scenario: Verify user is able to update permit after Office request for update
+  @sol-7240
+  Scenario: Verify checklist user should see comment box on EIC screen after Office request for update
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I request the permit for update via oa link manually
+    And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
+    And I click on update needed filter
+    And I update permit in pending update state with 4685 pin
+    And I navigate to section 4b
+    And I navigate to section 4b
+    And I click on view EIC certification button
+    Then I should see request update comment box
+  # Then I should see comment box exists
+
+  Scenario: Verify user is able to update DRA after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
