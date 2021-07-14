@@ -6,7 +6,7 @@ after_appr: "Your approval has been successfully submitted.\nThe vessel LNGSIT i
 
 after_appr_section7: "The permit is approved by the Office"
 
-is_already_approved: "This permit has already been approved\nThis permit was approved by VS Automation on June 24, 2021 and doesn't need to be approved again.\nIf you have any doubts, please confirm it with the approving officer or the vessel captain.\nIf you don't intend to approve this permit, please close this window and return to the approval page."
+is_already_approved: "This permit has already been approved\nThis permit was approved by VS Automation on %s and doesn't need to be approved again.\nIf you have any doubts, please confirm it with the approving officer or the vessel captain.\nIf you don't intend to approve this permit, please close this window and return to the approval page."
 
 before_rejection: "Comments from Approving Authority"
 

@@ -421,8 +421,9 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
     baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr']
     is_equal(on(OAPage).main_description_element.text, baseDescription)
   when "double approval"
+    approveDate = @time_now.strftime('%B %d, %Y')
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
-    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['is_already_approved']
+    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['is_already_approved'] % [approveDate]
     is_equal(on(OAPage).main_description_element.text, baseDescription)
   when "rejection"
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
