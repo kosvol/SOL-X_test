@@ -497,7 +497,7 @@ end
 Then(/^I should see correct Section 7 details (before|after) Office Approval$/) do |_when|
   case _when
   when "before"
-    is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
+    is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
   when "after"
     time_offset = on(CommonFormsPage).get_current_time_offset
     time_ship_from = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
