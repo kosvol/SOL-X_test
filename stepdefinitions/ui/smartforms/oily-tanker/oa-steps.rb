@@ -606,9 +606,7 @@ end
 
 
 Then(/^I should see the Issued till time is set according to OA issued To time$/) do
-  time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, (@time_now.hour.to_i + 2), 0, 0, 0)
   time_offset = on(CommonFormsPage).get_current_time_offset
-  issued_to_date = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-  is_equal(on(Section7Page).issued_to_date_element.text, issued_to_date)
-  p ">> #{issued_to_date}"
+  valid_to_date = on(Section7Page).permit_valid_until_with_offset(@time_now, time_offset, 2)
+  is_equal(on(Section7Page).valid_until_date_7b_element.text, valid_to_date)
 end
