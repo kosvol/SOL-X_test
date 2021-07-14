@@ -3,7 +3,11 @@
 And (/^I navigate to OA link$/) do
   $browser.get(on(OAPage).navigate_to_oa_link)
     #sleep 3
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
+  begin
+    BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
+  rescue
+    BrowserActions.wait_until_is_visible(on(OAPage).warning_link_expired_element)
+  end
 end
 
 And (/^I request the permit for update via oa link manually$/) do
