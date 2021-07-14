@@ -218,7 +218,7 @@ Feature: PendingUpdate
   Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin 8383
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -239,7 +239,7 @@ Feature: PendingUpdate
   Scenario: Verify comment box display on all section after requesting for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin 8383
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -322,7 +322,6 @@ Feature: PendingUpdate
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
     And I update permit in pending update state with 4685 pin
-    And I navigate to section 4b
     And I navigate to section 4b
     And I click on view EIC certification button
     Then I should see request update comment box
