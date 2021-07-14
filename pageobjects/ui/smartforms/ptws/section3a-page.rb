@@ -21,7 +21,7 @@ class Section3APage < Section2Page
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
-  elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
+  buttons(:level_to_choose, xpath: "//button[starts-with(@class,'Menu__MenuOption')]")#"//div[starts-with(@class,'ComboBoxWithButtons__')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
@@ -87,12 +87,12 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
     # scroll_multiple_times(1)
-    likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
-    select_dra_risk(1)
-    sleep 1
-    consequence_btn_elements[(consequence_btn_elements.size - 2)].click
-    select_dra_risk(1)
-    sleep 1
+    # likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
+    # select_dra_risk(1)
+    # sleep 1
+    # consequence_btn_elements[(consequence_btn_elements.size - 2)].click
+    # select_dra_risk(1)
+    # sleep 1
 
     # for existing control measure
     scroll_multiple_times(2)
