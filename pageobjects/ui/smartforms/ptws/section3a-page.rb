@@ -21,6 +21,7 @@ class Section3APage < Section2Page
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
+  elements(:active_risk, xpath: "//div[starts-with(@data-testid,'combo-box-with-buttons-sheet')]/div[2]/div/ul/li")
   buttons(:level_to_choose, xpath: "//button[starts-with(@class,'Menu__MenuOption')]")#"//div[starts-with(@class,'ComboBoxWithButtons__')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
   buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
@@ -108,6 +109,7 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 2
+    BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times(1)
     likelihood_btn_elements[0].click
     select_dra_risk(_likelihood)
@@ -119,6 +121,7 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 1
+    BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times(3)
     sleep 1
     likelihood_btn_elements[1].click
@@ -174,7 +177,12 @@ class Section3APage < Section2Page
 
   def select_dra_risk(_risk)
     sleep 2
-    level_to_choose_elements[(_risk.to_i - 1)].click
+    if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s === "active"
+      level_to_choose_elements[(_risk.to_i - 1)].click
+      level_to_choose_elements[(_risk.to_i - 1)].click
+    else
+      level_to_choose_elements[(_risk.to_i - 1)].click
+    end
     confirm_btn_elements.first.click
   end
 end

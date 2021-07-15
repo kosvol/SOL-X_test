@@ -155,19 +155,19 @@ Feature: Section4AChecklist
     Examples:
       | Rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
       | A/M   | 9015 | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | C/O   | 8383 | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
+      # | C/O   | 8383 | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
       | A C/O | 2761 | Hot Work                                                     | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
-      | 2/O   | 6268 | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
+      # | 2/O   | 6268 | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7865 | Hot Work                                                     | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      | 3/O   | 0159 | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
+      # | 3/O   | 0159 | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
       | A 3/O | 2674 | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
       | C/E   | 8248 | Underwater Operations                                        | Underwater Operation at night or concurrent with other operations               | Underwater Operation                      |
       # | A C/E | 5718 | Underwater Operations                                         | Underwater Operations at night for mandatory drug and contraband search                                                   | Underwater Operation                                          |
-      | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
+      # | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
       | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
-      | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
+      # | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
       | A 3/E | 6727 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | 4/E   | 1311 | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
+      # | 4/E   | 1311 | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
       | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
       | ETO   | 0856 | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 

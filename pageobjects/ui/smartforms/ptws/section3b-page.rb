@@ -11,7 +11,7 @@ class Section3BPage < Section3APage
   button(:work_side_inspected_by, xpath: "//button[@id='workInspectionBy']")
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
   elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
-  elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__')]/div/ul/li")
+  elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')#"//div[starts-with(@class,'ComboBoxWithButtons__')]/div/ul/li")
 
   def is_last_crew?(_exit)
     return false if _exit === 10

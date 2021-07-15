@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 And (/^I uncheck dra member$/) do
-  on(Section3CPage).dra_team_btn
-  on(Section3CPage).member_name_btn_elements[1].click
-  on(Section3CPage).confirm_btn_elements.first.click
+  # on(Section3CPage).dra_team_btn
+  on(Section3CPage).cross_btn_elements.first.click
+  # on(Section3CPage).cancel_btn
 end
 
 Then (/^I should see dra member prefilled$/) do

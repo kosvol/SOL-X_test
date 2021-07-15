@@ -40,7 +40,7 @@ And (/^I (should|should not) see (.+) role$/) do |_condition, _role|
 end
 
 When (/^I delete the role from cross$/) do
-  on(Section5Page).roles_btn_elements.first.click
+  on(Section3CPage).cross_btn_elements.first.click
 end
 
 Then (/^I should see a list of roles$/) do
