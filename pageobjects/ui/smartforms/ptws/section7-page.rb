@@ -15,6 +15,7 @@ class Section7Page < Section6Page
   element(:additional_instruction, xpath: "//h4[contains(text(),'Additional Instruction')]/following-sibling::p")
   element(:issued_from_date, xpath: "//h4[contains(text(),'Issued From')]/following-sibling::p")
   element(:issued_to_date, xpath: "//h4[contains(text(),'To')]/following-sibling::p")
+  element(:valid_until_date_7b, xpath: "//h4[contains(text(),'valid until')]/following-sibling::p")
   element(:approver_name, xpath: '//h4[contains(text(),"Authority\'s Name:")]/following-sibling::p')
   element(:approver_designation, xpath: "//h4[contains(text(),'Designation')]/following-sibling::p")
   
@@ -25,13 +26,25 @@ class Section7Page < Section6Page
 
   def oa_from_to_time_with_offset(_approve_time, _time_offset, _hours, _mins)
     time = Time.new(_approve_time.year, _approve_time.mon, _approve_time.day, _hours, _mins, 0, 0)
-    if _time_offset.to_s[0] != "-"
-      time_ship = (time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{_time_offset})")
-    else
-      time_ship = (time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{_time_offset})")
-    end
+    time_ship = convert_time_to_ship(time, _time_offset)
     p "#{time_ship}"
     time_ship
+  end
+
+  def permit_valid_until_with_offset(_approve_time, _time_offset, _shift_hours)
+    time_to = Time.new(_approve_time.year, _approve_time.mon, _approve_time.day, (_approve_time.hour.to_i + _shift_hours), 0, 0, 0)
+    valid_to_date = convert_time_to_ship(time_to, _time_offset)
+    p "#{valid_to_date}"
+    valid_to_date
+  end
+
+  def convert_time_to_ship(_time, _offset)
+    if _offset.to_s[0] != "-"
+      converted_time = (_time + (60*60*_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{_offset})")
+    else
+      converted_time = (_time + (60*60*_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{_offset})")
+    end
+    converted_time
   end
 
   def activate_permit

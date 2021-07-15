@@ -3,7 +3,11 @@
 And (/^I navigate to OA link$/) do
   $browser.get(on(OAPage).navigate_to_oa_link)
     #sleep 3
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
+  begin
+    BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
+  rescue
+    BrowserActions.wait_until_is_visible(on(OAPage).warning_link_expired_element)
+  end
 end
 
 And (/^I request the permit for update via oa link manually$/) do
@@ -421,8 +425,9 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
     baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['after_appr']
     is_equal(on(OAPage).main_description_element.text, baseDescription)
   when "double approval"
+    approveDate = @time_now.strftime('%B %d, %Y')
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
-    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['is_already_approved']
+    baseDescription = YAML.load_file("data/office-approval/page-descriptions.yml")['is_already_approved'] % [approveDate]
     is_equal(on(OAPage).main_description_element.text, baseDescription)
   when "rejection"
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
@@ -492,7 +497,7 @@ end
 Then(/^I should see correct Section 7 details (before|after) Office Approval$/) do |_when|
   case _when
   when "before"
-    is_equal(on(Section7Page).oa_description_elements.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
+    is_equal(on(Section7Page).oa_description_element.text, YAML.load_file("data/office-approval/page-descriptions.yml")['before_appr_section7'])
   when "after"
     time_offset = on(CommonFormsPage).get_current_time_offset
     time_ship_from = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
@@ -601,9 +606,7 @@ end
 
 
 Then(/^I should see the Issued till time is set according to OA issued To time$/) do
-  time_to = Time.new(@time_now.year, @time_now.mon, @time_now.day, (@time_now.hour.to_i + 2), 0, 0, 0)
   time_offset = on(CommonFormsPage).get_current_time_offset
-  issued_to_date = (time_to + (60*60*time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{time_offset})")
-  is_equal(on(Section7Page).issued_to_date_element.text, issued_to_date)
-  p ">> #{issued_to_date}"
+  valid_to_date = on(Section7Page).permit_valid_until_with_offset(@time_now, time_offset, 2)
+  is_equal(on(Section7Page).valid_until_date_7b_element.text, valid_to_date)
 end
