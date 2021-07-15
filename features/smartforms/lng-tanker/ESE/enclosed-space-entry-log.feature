@@ -63,7 +63,7 @@ Feature: EnclosedSpaceEntryLog
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
     Then I should see only entry log message
-@wip
+
   Scenario: Check Enclosed Spaces Entry LOG values
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable

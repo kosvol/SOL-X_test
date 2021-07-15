@@ -235,3 +235,16 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Scheduled" list
     When I view permit with A/M rank and 8383 pin
     And I check "Responsible Officer Signature" is present
+
+  Scenario: Permit Validity date should match the final date selected from the date picker
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin via service for rank C/O
+    Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
+    #And I change PRE Duration 4 Delay to activate 3 with custom days 1 in Past from selected
+    And Get PRE id
+    And for pre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I navigate to "Pending Approval" screen for PRE
+    Then I check scheduled date

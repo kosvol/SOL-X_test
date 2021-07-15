@@ -60,7 +60,7 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via ui
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
+    And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     And I terminate the PRE permit via service

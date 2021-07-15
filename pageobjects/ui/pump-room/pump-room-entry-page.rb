@@ -10,7 +10,7 @@ class PumpRoomEntry < PreDisplay
   element(:create_new_cre_btn, xpath: "//span[contains(.,'Compressor/Motor')]")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
-  button(:four_hours_duration, xpath: "//button[contains(text(),'4 hours')]")
+  button(:four_hours_duration, xpath: "//button[contains(.,'4 hours')]")
   button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
 
@@ -58,6 +58,7 @@ class PumpRoomEntry < PreDisplay
   element(:gas_H2S, xpath: "//div[contains(.,'H2S')]")
   elements(:list_name, xpath: "//div[starts-with(.,'EntrantListItem__ListItem')]")
   ### end
+  @@selected_date = nil
 
   def get_validity_start_and_end_time(permit_type)
     case permit_type
@@ -195,10 +196,43 @@ class PumpRoomEntry < PreDisplay
     BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
   end
 
+  def select_day(_condition, _number,_point)
+    picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='days']"
+    selected_current_day = "//*[contains(@class,'selected current')]"
+    selected_day = "//*[contains(@class,'selected')]"
+    current_day_date = "//*[contains(@class,'current')]"
+    @browser.find_element(:xpath, picker).click
+    sleep 1
+    if @@selected_date === nil
+      current_day = @browser.find_element(:xpath, selected_current_day).text
+      @@selected_date = current_day.to_i + _number.to_i
+    else
+      if _point === 'current'
+        current_day = @browser.find_element(:xpath, current_day_date).text
+      else
+      current_day = @browser.find_element(:xpath, selected_day).text
+      end
+    end
+    sleep 1
+    changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{(current_day.to_i + _number.to_i)}')]" if _condition === 'Future'
+    changed_day = format("//div[starts-with(@class,'DatePicker__OverlayContainer')]//*[contains(text(),'%s')]", (current_day.to_i - _number.to_i)) if _condition === 'Past'
+    sleep 1
+    @browser.find_element(:xpath, changed_day).click
+    sleep 1
+    BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
+  end
+
 
   def press_button_for_current_PRE(button)
     xpath_str = "//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]"%[@@pre_number, button]
     @browser.find_element(:xpath, xpath_str).click
+  end
+
+  def compare_scheduled_date
+    #//*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
+    xpath_str = "//*[contains(.,'Scheduled for')]/parent::*//span[1]"%[@@pre_number]
+    text = @browser.find_element(:xpath, xpath_str).text
+    text.include? @@selected_date.to_s
   end
 
   def are_questions?(table)

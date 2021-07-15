@@ -105,11 +105,11 @@ Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permi
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
-Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*) with custom date (.*)$/) do |_permit_type, _duration, delay, _dat|
-  on(PumpRoomEntry).fill_up_pre(_duration)
-  on(Section3APage).scroll_multiple_times(1)
-  on(PumpRoomEntry).
-  on(PumpRoomEntry).select_start_time_to_activate(delay)
+Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |_condition,_permit_type, _duration, delay, _days,_direction,_point|
+  on(PumpRoomEntry).fill_up_pre(_duration) if _condition === "fill up"
+  on(Section3APage).scroll_multiple_times(1) if _condition === "fill up"
+  on(PumpRoomEntry).select_day(_direction,_days,_point)
+  on(PumpRoomEntry).select_start_time_to_activate(delay) if _condition === "fill up"
 end
 
 
@@ -197,7 +197,7 @@ Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank:
   step "I navigate to \"Active\" screen for #{_permit_type}" if _condition ==='Active'
   on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval') if _condition ==='Pending approval'
   on(PumpRoomEntry).view_btn_element.click if _condition ==='Active'
-  step 'I enter pin for rank %s' % [rank]
+  step 'I enter pin via service for rank %s' % [rank]
   sleep 1
 end
 
@@ -211,6 +211,10 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
    is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
    step 'I click on back arrow'
   end
+end
+
+Then(/^I check scheduled date$/) do
+  on(PumpRoomEntry).compare_scheduled_date
 end
 
 And(/^I get a temporary number and writing it down$/) do
