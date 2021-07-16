@@ -8,7 +8,7 @@ Feature: PermitOverview
     Given I create PRE via service with static env
     And I get PRE permit info
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I sleep for 3 seconds
@@ -20,7 +20,7 @@ Feature: PermitOverview
   Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
     Given I create submit_enclose_space_entry via service with static env
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I click on Add Filter button
@@ -35,7 +35,7 @@ Feature: PermitOverview
   Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -45,7 +45,7 @@ Feature: PermitOverview
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -74,7 +74,7 @@ Feature: PermitOverview
   Scenario Outline: Verify the PTW Sections shows the same fields as in the Client app (non-maintenance)
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -98,7 +98,7 @@ Feature: PermitOverview
   Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
     Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -108,7 +108,7 @@ Feature: PermitOverview
   Scenario Outline: Verify Section 6 with Gas Readings shows the same fields as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the Gas Readings <condition>
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -123,7 +123,7 @@ Feature: PermitOverview
   Scenario: Verify the EIC section shows the same fields as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC eic_yes
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -133,7 +133,7 @@ Feature: PermitOverview
   Scenario Outline: Verify section 4B and 8 shows the same fields as in the Client app with or without the EIC
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC <condition>
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -150,7 +150,7 @@ Feature: PermitOverview
   Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
     When I wait for form status get changed to CLOSED on Cloud
-    And I sleep for 5 seconds
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select the recently terminated form
@@ -167,7 +167,7 @@ Feature: PermitOverview
       Given I create PRE via service with static env
       And I get PRE permit info
       When I wait for form status get changed to CLOSED on Cloud
-      And I sleep for 5 seconds
+      And I sleep for 10 seconds
       And I log in to the Office Portal
       And I select the "Auto" vessel
       And I sleep for 3 seconds
