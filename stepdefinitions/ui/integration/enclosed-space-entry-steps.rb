@@ -155,6 +155,7 @@ And (/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
 end
 
 Then (/^I should see signed details for integration test$/) do
+  on(Section4APage).signature_scroll
   is_true(on(Section4APage).is_signed_user_details_integration?(CommonPage.get_entered_pin))
   is_true(on(SignaturePage).is_signature_pad?)
 end

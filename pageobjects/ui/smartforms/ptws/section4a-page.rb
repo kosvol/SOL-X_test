@@ -17,7 +17,6 @@ class Section4APage < Section3DPage
   elements(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
-  # elements(:enclosed_space_interval_filled_data, xpath: '//input')
 
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
   elements(:sub_headers, xpath: '//h2')
@@ -42,7 +41,6 @@ class Section4APage < Section3DPage
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
 
   text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
-  # elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
   text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
   button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
@@ -50,7 +48,6 @@ class Section4APage < Section3DPage
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
-  # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
   button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
@@ -130,10 +127,6 @@ class Section4APage < Section3DPage
   end
 
   def is_signed_user_details?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
-    sleep 1
-    BrowserActions.scroll_down
-    sleep 1
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}") 
@@ -149,20 +142,12 @@ class Section4APage < Section3DPage
   end
   
   def is_signed_user_details_plus_1_min?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
-    sleep 1
-    BrowserActions.scroll_down
-    sleep 1
     time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}"))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
-    sleep 1
-    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
-    sleep 1
-    BrowserActions.scroll_down
     # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
@@ -197,6 +182,14 @@ class Section4APage < Section3DPage
       # element_yes[_index+1].click
       BrowserActions.js_clicks(@@yes_input,_index+1)
     end
+  end
+
+  def signature_scroll
+    sleep 1
+    BrowserActions.scroll_down(on(Section4APage).rank_and_name_stamp_elements.first)
+    sleep 1
+    BrowserActions.scroll_down
+    sleep 1
   end
 
   private

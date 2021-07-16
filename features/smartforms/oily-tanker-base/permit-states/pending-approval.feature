@@ -162,5 +162,5 @@ Feature: PendingApprovalPermit
 
     Examples:
       | level_one_permit               | level_two_permit                          | pin  | rank |
-      | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | c/e  |
+      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | 8248 | c/e  |
 

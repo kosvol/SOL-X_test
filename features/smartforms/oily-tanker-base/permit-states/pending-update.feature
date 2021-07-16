@@ -256,27 +256,27 @@ Feature: PendingUpdate
     And I click on back to home
     And I click on update needed filter
     And I update permit in pending update state with 9015 pin
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
-    Then I should see request update comment box
+    Then I should see request update comment
     And I press next for 1 times
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
@@ -324,7 +324,7 @@ Feature: PendingUpdate
     And I update permit in pending update state with 4685 pin
     And I navigate to section 4b
     And I click on view EIC certification button
-    Then I should see request update comment box
+    Then I should see request update comment
   # Then I should see comment box exists
 
   Scenario: Verify user is able to update DRA after Office request for update

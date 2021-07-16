@@ -313,6 +313,7 @@ When (/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _s
   end
   is_true(status == "#{_whatStatus}")
   p " status >> #{status}"
+  sleep 2
 end
 
 Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|

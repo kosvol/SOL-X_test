@@ -2,7 +2,15 @@
 
 Then (/^I (should|should not) see request update comment box$/) do |_condition|
   if _condition === 'should'
-    # to_exists(on(Section0Page).enter_comment_box_element)
+    to_exists(on(Section0Page).enter_comment_box_element)
+    is_equal(on(Section3APage).enter_comment_box_element.text,'Test Automation')
+  elsif _condition === 'should not'
+    not_to_exists(on(Section0Page).enter_comment_box_element)
+  end
+end
+
+Then (/^I (should|should not) see request update comment$/) do |_condition|
+  if _condition === 'should'
     is_equal(on(Section3APage).total_p_elements.size,6)
     is_equal(on(Section3APage).total_p_elements.first.text,'Test Automation')
   elsif _condition === 'should not'
