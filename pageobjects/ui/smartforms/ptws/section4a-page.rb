@@ -186,7 +186,7 @@ class Section4APage < Section3DPage
 
   def signature_scroll
     sleep 1
-    BrowserActions.scroll_down(on(Section4APage).rank_and_name_stamp_elements.first)
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1
     BrowserActions.scroll_down
     sleep 1
