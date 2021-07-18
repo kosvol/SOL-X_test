@@ -2,6 +2,7 @@
 module WorkWithIndexeddb
   class << self
     def get_id_from_indexeddb(temp_id)
+      sleep 3
       open_indexdb(temp_id)
       access_indexdb_data("formId")
     end
@@ -9,7 +10,6 @@ module WorkWithIndexeddb
     private
 
     def open_indexdb(temp_id)
-      sleep 1
       begin
         $browser.execute_script("openRequest = indexedDB.open('safevue')")
         $browser.execute_script("db = openRequest.result")
