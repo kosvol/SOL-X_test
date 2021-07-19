@@ -59,6 +59,7 @@ And ('I select required entrants {int}') do |_entrants_number|
   BrowserActions.wait_until_is_visible(on(PumpRoomEntry).input_field_element)
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
   on(PumpRoomEntry).required_entrants(_entrants_number)
+  puts(on(PumpRoomEntry).confirm_btn_elements.size)
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).confirm_btn_elements.first)
 end
 
