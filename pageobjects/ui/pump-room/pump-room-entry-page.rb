@@ -18,7 +18,7 @@ class PumpRoomEntry < PreDisplay
   elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
-  elements(:person_checkbox, xpath: "//div[@class='checkbox']")
+  elements(:person_checkbox, xpath: "//span[@class='checkbox']")
 
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'
@@ -146,7 +146,10 @@ class PumpRoomEntry < PreDisplay
   def required_entrants(entrants)
     entr_arr = []
     while entrants > 0
-      person_checkbox_elements[entrants].click
+      puts(person_checkbox_elements.size)
+      #person_checkbox_elements[entrants].click
+       $browser.find_element(:xpath,
+                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").click
       entr_arr.push($browser.
         find_element(:xpath,
                      "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").text)
