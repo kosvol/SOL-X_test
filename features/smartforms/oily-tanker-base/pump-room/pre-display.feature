@@ -15,7 +15,7 @@ Feature: PumpRoomEntry
     Then I should see entry log details display as filled
     When I submit a scheduled PRE permit
     And  I activate CRE form via service
-    And I dismiss gas reader dialog box
+    #And I dismiss gas reader dialog box
     And I click on permit tab
     Then I should see new PRE permit number
     And I terminate the PRE permit via service
@@ -255,8 +255,8 @@ Feature: PumpRoomEntry
      And I terminate the PRE permit via service
      And I sleep for 10 seconds
      # Then I should see PRE activity status change to inactive
-     Then I should see red background color
      And I should see Permit Terminated PRE status on screen
+     Then I should see red background color
 
   Scenario: [PRED] Verify PRED displays green screen automatically after PRE becomes active
     Given I launch sol-x portal without unlinking wearable
