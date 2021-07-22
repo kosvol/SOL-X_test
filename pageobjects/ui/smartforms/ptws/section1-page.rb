@@ -98,32 +98,15 @@ class Section1Page < Section0Page
   def select_location_of_work
     sleep 1
     BrowserActions.scroll_click(zone_btn_element)
+    BrowserActions.scroll_click(dd_list_value_elements.first)
+    BrowserActions.scroll_click(dd_list_value_elements.first)
     sleep 1
-    if dd_list_value_elements.size < 9
-      BrowserActions.scroll_click(dd_list_value_elements.first)
-    else
-      BrowserActions.scroll_click(dd_list_value_elements[1])
-    end
-    sleep 1
-    if dd_list_value_elements.size < 3
-      BrowserActions.scroll_click(dd_list_value_elements.first)
-    else
-      BrowserActions.scroll_click(dd_list_value_elements[1])
-    end
-    sleep 2
   end
 
   ### Hack for fsu; zone setup differently
   def fsu_select_location_of_work
     sleep 1
     zone_btn
-    sleep 1
-    begin
-      dd_list_value_elements[1].click
-    rescue
-      dd_list_value_elements[2].click
-    end
-    sleep 1
     begin
       dd_list_value_elements[1].click
     rescue
@@ -153,9 +136,7 @@ class Section1Page < Section0Page
 
   def select_checkbox(_input, _location)
     sleep 1
-    p ">> #{_input % [_location]}"
     BrowserActions.js_click("#{_input % [_location]}")
-    # browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
 
   def fill_text_area(_input, _text)
