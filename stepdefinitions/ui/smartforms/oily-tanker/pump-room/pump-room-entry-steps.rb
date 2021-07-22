@@ -99,7 +99,15 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then(/^I fill up (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_permit_type, _duration, delay|
+Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |_gas,_permit_type, _duration, delay|
+  on(Section3APage).scroll_multiple_times(1)
+  if _gas === 'fill up with gas readings'
+    on(Section6Page).add_all_gas_readings
+    step "I sign for gas"
+    step "I enter pin via service for rank C/O"
+    step "I dismiss gas reader dialog box"
+  end
+  on(Section3APage).scroll_multiple_times_with_direction(1,'up')
   on(PumpRoomEntry).fill_up_pre(_duration)
   on(Section3APage).scroll_multiple_times(1)
   on(PumpRoomEntry).select_start_time_to_activate(delay)
@@ -228,6 +236,7 @@ And(/^I get a temporary number and writing it down$/) do
 end
 
 Then(/^I getting a permanent number from indexedDB$/) do
+  p(@temp_id)
   @@pre_number = WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
   CommonPage.set_permit_id(@@pre_number)
   # is_equal(@@pre_number.include?("PRE"), true)

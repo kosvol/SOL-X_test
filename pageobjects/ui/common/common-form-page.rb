@@ -67,6 +67,14 @@ class CommonFormsPage < CommonPage
     end
   end
 
+  def scroll_multiple_times_with_direction(times,direction)
+    (1..times).each do |_i|
+      BrowserActions.scroll_down if direction ==='down'
+      BrowserActions.scroll_up if direction ==='up'
+      sleep 1
+    end
+  end
+
   def set_current_time
     @@time = main_clock_element.text
   end

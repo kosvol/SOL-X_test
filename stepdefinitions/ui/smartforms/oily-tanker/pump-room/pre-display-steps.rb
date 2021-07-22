@@ -113,6 +113,15 @@ Then(/^I check \"Responsible Officer Signature\" is present$/) do
   on(PumpRoomEntry).get_element_by_value("3 Cargo Tank Vent",0)
 end
 
+Then(/^I check location in gas readings signature is present$/) do
+  sleep 2
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).show_signature_display_element)
+  is_equal(on(PumpRoomEntry).resp_off_signature_title_elements[1].text,"Signature")
+  is_equal(on(PumpRoomEntry).resp_off_signature_rank_elements[0].text,"Rank/Name")
+  on(PumpRoomEntry).get_element_by_value("C/O Alister Leong",0)
+  is_not_equal($browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[2]/div/div)").text,"")
+end
+
 Then(/^I should see (Home|Entry Log|Permit) tab$/) do |_condition|
   sleep 1
   if _condition =='Entry Log'

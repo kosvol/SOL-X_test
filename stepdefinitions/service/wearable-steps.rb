@@ -8,6 +8,14 @@ Then (/^I get a list of crews$/) do
   WearablePage.get_list_of_crews_id
 end
 
+Then (/^I get a hash of crews$/) do
+  WearablePage.get_list_of_crews_id_hash
+end
+
+Then (/^I create rq for rank (.+)$/) do |_rank|
+  WearablePage.get_crew_id_from_rank(_rank)
+end
+
 And (/^I manipulate wearable requeset payload$/) do
   WearablePage.swap_payload(@which_json)
 end

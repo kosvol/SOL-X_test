@@ -10,9 +10,24 @@ class WearablePage
       @@beacon
     end
 
-    def link_default_crew_to_wearable
-        tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
-        JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
+    def link_default_crew_to_wearable(_user)
+      tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
+      if _user != 'default'
+        yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"][_user]
+      end
+      JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
+    end
+
+    def get_crew_id_from_rank(_user)
+      get_one_wearable_id
+      tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/mod-link-crew-to-wearable')
+      @@crewid = @@list_of_crew_id.key(_user)
+      tmp_req_payload['variables']['wearableId'] = @@wearableid
+      tmp_req_payload['variables']['userId'] = @@crewid
+      p ">> #{tmp_req_payload['variables']['userId']}"
+      JsonUtil.create_request_file('wearable-simulator/mod-link-crew-to-wearable', tmp_req_payload)
+      ServiceUtil.post_graph_ql('wearable-simulator/mod-link-crew-to-wearable', $master_pin)
     end
 
     def swap_payload(which_json, custom_value1 = nil, custom_value2 = nil)
@@ -68,6 +83,11 @@ class WearablePage
       @@list_of_crew_id = get_crews_id
     end
 
+    def get_list_of_crews_id_hash
+      @@list_of_crew_id = get_crews_id_rank
+      puts(@@list_of_crew_id)
+    end
+
     def set_list_of_crews_id(_define)
       tmp = []
       tmp << _define
@@ -92,6 +112,7 @@ class WearablePage
       begin
         (@@wearableid != tmp.to_s) ? set_wearable_id(tmp) : get_one_wearable_id
       rescue
+        p(@@list_of_wearables)
         p "Empty wearables array"
       end
     end
@@ -101,6 +122,18 @@ class WearablePage
       ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
         if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
           @@tmp_list << list['_id']
+        end
+      end
+      puts(@@tmp_list)
+      @@tmp_list
+    end
+
+    def get_crews_id_rank
+      @@tmp_list = {}
+      ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
+        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
+          # id = list['_id']
+          @@tmp_list[list['_id']] = list['rank']
         end
       end
       @@tmp_list

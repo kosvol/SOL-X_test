@@ -4,8 +4,8 @@ Feature: LNGCRE
   I want to ...
   So that ...
 
-  Background:
-    Given I switch vessel to LNG
+#  Background:
+#    Given I switch vessel to LNG
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
 
@@ -231,3 +231,26 @@ Feature: LNGCRE
     And I should see the current CRE in the "Terminated" list
     When I view permit with A/M rank and 8383 pin
     And I check "Responsible Officer Signature" is present
+
+  Scenario: Gas Reader location stamp should not be missing
+    Given I launch sol-x portal
+    When I link wearable to rank C/O to zone
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin via service for rank C/O
+    And I fill up with gas readings CRE. Duration 4. Delay to activate 3
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I open the current CRE with status Pending approval. Rank: C/O
+    And I take note of start and end validity time for CRE
+    When I press the "Approve for Activation" button
+    And I sign on canvas with valid 8383 pin
+    And I should see the page 'Permit Successfully Scheduled for Activation'
+    Then I press the "Back to Home" button
+    And I sleep for 1 seconds
+    And I activate CRE form via service
+    And I sleep for 1 seconds
+    When I navigate to "Active" screen for CRE
+    When I view permit with C/O rank and 8383 pin
+    Then I check location in gas readings signature is present
+
