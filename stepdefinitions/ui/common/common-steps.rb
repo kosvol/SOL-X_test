@@ -59,6 +59,7 @@ Then (/^I sign on canvas only with valid (.*) rank$/) do |_rank|
   on(SignaturePage).sign_for_gas
 end
 
+### DEPRECATING SOON
 And (/^I wait for pinpad element to exists$/) do
   p "polling...."
   sleep 2
@@ -84,15 +85,15 @@ And (/^I enter pin via service for rank (.*)$/) do |rank|
       break
     end
   end
-  step "I enter pin #{CommonPage.get_entered_pin}"
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
   sleep 1
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml["sit_auto_rank"][rank] if ($current_environment === "sit" || $current_environment === "auto")
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml["uat_rank"][rank] if $current_environment === "uat"
-  step "I enter pin #{CommonPage.get_entered_pin}"
   sleep 1
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
 end
 
 When (/^I select (.+) permit$/) do |_permit|

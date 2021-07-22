@@ -18,7 +18,6 @@ Feature: LNGCRE
   Scenario Outline: Verify only these crew can create CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I wait for pinpad element to exists
     And I enter pin for rank <rank>
     Then I should see CRE landing screen
 
