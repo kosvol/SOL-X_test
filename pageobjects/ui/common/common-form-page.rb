@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 require './././support/env'
-# require './././library/utils/asserts'
 
 class CommonFormsPage < CommonPage
   include PageObject
   
   element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
-  # elements(:generic_data, xpath: "//*[starts-with(@class,'ViewGenericAnswer__Answer')]")
   elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
   elements(:enter_comment_boxes, xpath: '//textarea')
@@ -33,7 +31,6 @@ class CommonFormsPage < CommonPage
   buttons(:close_btn, xpath: "//button[contains(.,'Close')]")
   buttons(:confirm_btn, xpath: "//button[contains(.,'Confirm')]")
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
-  # buttons(:submit_termination_btn1, xpath: "//button[contains(.,'Submit for Termination')]")
   buttons(:update_reading_btn, xpath: "//button[contains(.,'Update Readings')]")
   button(:back_to_home_btn, xpath: "//button[contains(.,'Back to Home')]")
   buttons(:submit_update_btn, xpath: "//button[contains(.,'Submit')]")
@@ -113,10 +110,6 @@ class CommonFormsPage < CommonPage
     time_offset = get_current_time_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
-  
-  # def get_current_date_mm_yyyy_format
-  #   Time.new.strftime('%b/%Y')
-  # end
 
   def get_current_time_offset
     @which_json = 'ship-local-time/base-get-current-time'

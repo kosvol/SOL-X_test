@@ -17,8 +17,6 @@ module GasReading
   text_field(:reading_input, xpath: "//input[@id='reading']")
   text_field(:unit_input, xpath: "//input[@id='unit']")
 
-#   button(:del_row_stage1, xpath: "//button[@aria-label = 'Delete']")
-#   button(:del_row_stage2, xpath: "//span[contains(text(),'Remove')]//..")
   button(:remove_toxic_btn, xpath: "//button[contains(.,'Remove')]")
   elements(:toxic_gas_rows, xpath: "//li[starts-with(@class,'GasReadingListItem')]")
   button(:add_gas_btn, xpath: "//button[contains(.,'Add Gas Test Record')]")
