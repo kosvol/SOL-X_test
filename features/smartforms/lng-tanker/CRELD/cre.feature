@@ -4,8 +4,8 @@ Feature: LNGCRE
   I want to ...
   So that ...
 
-  #Background:
-   # Given I switch vessel to LNG
+  Background:
+    Given I switch vessel to LNG
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
 
@@ -232,7 +232,7 @@ Feature: LNGCRE
     And I should see the current CRE in the "Terminated" list
     When I view permit with A/M rank and 8383 pin
     And I check "Responsible Officer Signature" is present
-@wip
+
   Scenario: Gas Reader location stamp should not be missing
     Given I launch sol-x portal
     When I link wearable to rank C/O and zone 01EKYSC64D6MYZ2MF6CJDAMH8K and mac 27:58:E1:0D:68:F1
