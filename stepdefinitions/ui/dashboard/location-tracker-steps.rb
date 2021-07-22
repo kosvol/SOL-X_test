@@ -50,16 +50,21 @@ Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
   on(DashboardPage).dismiss_area_dd
 end
 
-And (/^I link crew to wearable$/) do
+And (/^I link (.+) to wearable$/) do |_user|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
-  step 'I get a list of crews'
-  step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
-  step 'I manipulate wearable requeset payload'
-  step 'I hit graphql'
+  if _user === 'crew'
+    step 'I get a list of crews'
+    step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
+    step 'I manipulate wearable requeset payload'
+    step 'I hit graphql'
+  else
+    step 'I get a hash of crews'
+    step "I create rq for rank #{_user}"
+  end
 end
 
 When (/^I link wearable$/) do
@@ -87,6 +92,16 @@ When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
   sleep 2
 end
 
+When (/^I link wearable to rank (.+) and zone (.+) and mac (.+)$/) do |_rank, _zoneid, _mac|
+  step "I link #{_rank} to wearable"
+  step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
+  step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
+  step 'I hit graphql'
+  sleep 1
+  step 'I hit graphql'
+  sleep 2
+end
+
 And (/^I click on any ptw$/) do
   selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size-1))
   @ptw_id = on(DashboardPage).permit_to_work_link_elements[selected_ptw].text
@@ -98,8 +113,8 @@ Then (/^I should see correct permit display$/) do
   is_equal(on(Section0Page).ptw_id_element.text,@ptw_id)
 end
 
-When (/^I link default user wearable$/) do
-  WearablePage.link_default_crew_to_wearable
+When (/^I link (.+) user wearable$/) do |_condition|
+  WearablePage.link_default_crew_to_wearable(_condition)
   step "I get wearable-simulator/mod-base-link-crew-to-wearable request payload"
   step 'I hit graphql'
 end

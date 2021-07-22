@@ -104,6 +104,8 @@ Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to
   if _gas === 'fill up with gas readings'
     on(Section6Page).add_all_gas_readings
     step "I sign for gas"
+    step "I enter pin via service for rank C/O"
+    step "I dismiss gas reader dialog box"
   end
   on(Section3APage).scroll_multiple_times_with_direction(1,'up')
   on(PumpRoomEntry).fill_up_pre(_duration)

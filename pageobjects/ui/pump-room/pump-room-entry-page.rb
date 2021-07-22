@@ -57,6 +57,7 @@ class PumpRoomEntry < PreDisplay
   element(:gas_HC, xpath: "//div[contains(.,'HC')]")
   element(:gas_H2S, xpath: "//div[contains(.,'H2S')]")
   elements(:list_name, xpath: "//div[starts-with(.,'EntrantListItem__ListItem')]")
+  element(:show_signature_display, xpath: "//button[@data-testid='show-signature-display']")
   ### end
   @@selected_date = nil
 
