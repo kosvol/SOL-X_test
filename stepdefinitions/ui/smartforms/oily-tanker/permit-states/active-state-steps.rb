@@ -55,18 +55,18 @@ end
 
 And (/^I set rol permit to active state with (.+) duration$/) do |_duration|
   sleep 1
-  step 'I open a permit pending Master Approval with Master rank and 1111 pin'
+  step 'I open a permit pending Master Approval with MAS rank'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
-  step "I sign on canvas with valid 1111 pin"
+  step "I sign on canvas with valid MAS rank"
 end
 
 And (/^I set rol permit to active state with (.+) duration with CE$/) do |_duration|
   sleep 1
-  step 'I open a permit pending Master Approval with CE rank and 8248 pin'
+  step 'I open a permit pending Master Approval with C/E rank'
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
-  step "I sign on canvas with valid 8248 pin"
+  step "I sign on canvas with valid C/E rank"
 end
 
 And (/^I select rol permit active duration (.*) hour$/) do |_duration|
@@ -109,7 +109,7 @@ end
 
 And (/^I approve permit$/) do
   sleep 3
-  step 'I open a permit pending Master Approval with Master rank and 1111 pin'
+  step 'I open a permit pending Master Approval with MAS rank'
   sleep 1
   step 'I navigate to section 7'
   sleep 1
@@ -118,6 +118,6 @@ end
 
 And (/^I sign the permit for submission to active state$/) do
   on(Section7Page).activate_permit_btn
-  step "I sign on canvas with valid 1111 pin"
+  step "I sign on canvas with valid MAS rank"
   on(Section7Page).activate_permit
 end

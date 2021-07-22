@@ -21,20 +21,9 @@ Then (/^I should see correct permit details$/) do
   # is_equal(on(Section0Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
 end
 
-# And (/^I should see form is at reading mode for (.+) rank and (.+) pin$/) do |_rank, _pin|
-#   sleep 1
-#   on(CreatedPermitToWorkPage).select_created_permit_with_param(on(CreatedPermitToWorkPage).get_section1_filled_data[1]).click
-#   step "I enter pin #{_pin}"
-# end
-
-# Then (/^I should see permit id populated$/) do
-#   is_true(does_include(on(Section0Page).form_number, 'SIT/PTW/'))
-# end
-
-And (/^I edit ptw with rank (.+) and (.+) pin$/) do |_rank, _pin|
+And (/^I edit ptw with rank (.+)$/) do |_rank|
   step 'I want to edit the newly created permit'
-  # on(CreatedPermitToWorkPage).edit_permit_btn_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
 end
 
 And (/^I should see eic selection fields enabled$/) do

@@ -122,7 +122,7 @@ Feature: Section7
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     And I press next for 10 times
     Then I should not see submit for office approval and request update buttons
     And I should see close button
@@ -144,7 +144,7 @@ Feature: Section7
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     And I press next for 10 times
     Then I should not see approve and request update buttons
     And I should see close button

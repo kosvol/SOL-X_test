@@ -4,6 +4,8 @@ Feature: ActivePermit
   I want to ...
   So that ...
 
+  Scenario: Verify Gas Tester2 should not be able to add gas reading on no CRE/PRE permit
+
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

@@ -20,12 +20,12 @@ Feature: LNGClosedPermit
         And I set rol permit to active state with 1 duration with CE
         And I click on back to home
         And I click on active filter
-        Then I open rol permit with rank C/E and 8248 pin
+        Then I open rol permit with rank C/E
         And I submit permit for termination
-        And I sign on canvas with valid 8248 pin
+        And I sign on canvas with valid C/E rank
         And I click on back to home
         And I click on pending withdrawal filter
-        And I terminate the permit with 8248 pin
+        And I terminate the permit with C/E rank
         And I set time
         And I navigate to "Withdrawn" screen for forms
         Then I should see termination date display
@@ -34,7 +34,7 @@ Feature: LNGClosedPermit
     Scenario: Verify CE can request for update in pending withdrawal state for ROL permit
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin 8248
+        And I enter pin for rank C/E
         And I select Rigging of Gangway & Pilot Ladder permit
         And I select Rigging of Gangway & Pilot Ladder permit for level 2
         When I press next for 1 times
@@ -44,11 +44,11 @@ Feature: LNGClosedPermit
         And I set rol permit to active state with 1 duration with CE
         And I click on back to home
         And I click on active filter
-        And I open rol permit with rank C/E and 8248 pin
+        And I open rol permit with rank C/E
         And I submit permit for termination
-        And I sign on canvas with valid 8248 pin
+        And I sign on canvas with valid C/E rank
         And I click on back to home
-        And I review termination permit with 8248 pin
+        And I review termination permit with C/E rank
         Then I should see terminate permit to work and request update buttons for FSU
         And I switch vessel to LNG
 
@@ -59,10 +59,10 @@ Feature: LNGClosedPermit
         And I click on Submit for Termination
         And I enter pin for rank A/M
         And I submit permit for termination
-        And I sign on canvas with valid 9015 pin
+        And I sign on canvas with valid A/M rank
         And I click on back to home
         And I click on pending withdrawal filter
-        And I terminate the permit with 8248 pin
+        And I terminate the permit with C/E rank
         And I set time
         And I navigate to "Withdrawn" screen for forms
         Then I should see termination date display
@@ -75,10 +75,10 @@ Feature: LNGClosedPermit
         And I click on Submit for Termination
         And I enter pin for rank A/M
         And I submit permit for termination
-        And I sign on canvas with valid 9015 pin
+        And I sign on canvas with valid A/M rank
         And I click on back to home
         And I click on pending withdrawal filter
-        And I request terminating permit to be updated with 8248 pin
+        And I request terminating permit to be updated with C/E rank
         And I request update for permit
         And I click on back to home
         And I click on update needed filter

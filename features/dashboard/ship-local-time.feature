@@ -23,32 +23,32 @@ Feature: ShipLocalTime
   Scenario Outline: Verify all other ranks are not allow to change time other than Captain and 2 officer
     Given I launch sol-x portal
     When I change local time
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
 
     Examples:
-      | pin  |
-      | 9015 |
-      | 8383 |
-      | 7865 |
-      | 0159 |
-      | 2674 |
+      | pin   |
+      | A/M   |
+      | C/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
       # | 1010 |
-      | 2317 |
-      | 8248 |
+      | D/C   |
+      | C/E   |
       # | 2761 |
-      | 2523 |
-      | 3030 |
-      | 4685 |
-      | 6727 |
-      | 1311 |
-      | 0703 |
-      | 0856 |
-      | 1018 |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | ETO   |
+      | BOS   |
       # | 4236 |
-      | 6316 |
-      | 7669 |
-      | 0450 |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
 # @manual
 # Scenario: Verify ship's local time only limit at -12 to +14

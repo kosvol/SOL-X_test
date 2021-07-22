@@ -25,7 +25,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -55,7 +55,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -71,10 +71,10 @@ Feature: PendingUpdate
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I request terminating permit to be updated with 1111 pin
+    And I request terminating permit to be updated with MAS rank
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
@@ -88,10 +88,10 @@ Feature: PendingUpdate
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I request terminating permit to be updated with 1111 pin
+    And I request terminating permit to be updated with MAS rank
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
@@ -119,7 +119,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -139,7 +139,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -185,7 +185,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request for update without submitting
     And I press previous for 3 times
@@ -207,7 +207,7 @@ Feature: PendingUpdate
   #   And I submit permit for Master Approval
   #   And I click on back to home
   #   And I click on pending approval filter
-  #   And I open a permit pending Master Approval with Master rank and 1111 pin
+  #   And I open a permit pending Master Approval with MAS rank
   #   And I navigate to section 7
   #   And I request update for permit
   #   And I click on back to home
@@ -231,7 +231,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request for update without submitting
     And I press previous for 9 times
@@ -252,7 +252,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -365,7 +365,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -384,7 +384,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 1 times
     And I request update for permit
     And I click on back to home
@@ -406,7 +406,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -436,7 +436,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     And I request update for permit
     And I click on back to home
@@ -461,7 +461,7 @@ Feature: PendingUpdate
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     And I navigate to section 3d
     And I sign DRA section 3d with <pin> as valid pin
     Then I should see signed details

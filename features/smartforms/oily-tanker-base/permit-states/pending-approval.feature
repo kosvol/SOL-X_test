@@ -15,7 +15,7 @@ Feature: PendingApprovalPermit
   #   Then I should see View EIC certification button
 
   @SOL-7290
-  Scenario: Sign button to be disabled while on Pending Approval state
+  Scenario: Section 4B sign button to be disabled while on Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin 9015
@@ -155,7 +155,7 @@ Feature: PendingApprovalPermit
     When I press next for 1 times
     Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
     When I press next for 1 times
-    And I sign checklist with 9015 as valid pin
+    And I sign checklist with A/M as valid rank
     And I press next for 2 times
     And I select 1 role from list
     And I sign on role

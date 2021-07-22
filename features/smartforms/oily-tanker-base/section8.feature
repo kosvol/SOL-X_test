@@ -11,7 +11,7 @@ Feature: Section8
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I withdraw permit with Master rank and 1111 pin
@@ -43,7 +43,7 @@ Feature: Section8
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 11 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -66,7 +66,7 @@ Feature: Section8
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 11 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -87,7 +87,7 @@ Feature: Section8
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 11 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -108,7 +108,7 @@ Feature: Section8
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 11 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -126,15 +126,15 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
+    And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
+    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 12 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -152,15 +152,15 @@ Feature: Section8
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
+    And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with 8383 as valid pin
+    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 12 times
     And I sign the permit for submission to active state
     And I click on back to home
@@ -221,36 +221,36 @@ Feature: Section8
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
     And I click on active filter
-    And I terminate permit with <rank> rank and <terminator_pin> pin
+    And I terminate permit with <rank_name> rank and <terminator_pin> pin
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
-    Then I sign EIC as issuing authority with pin <pin>
+    Then I sign EIC as issuing authority with rank <rank>
     And I set time
-    And I should see <rank> rank and name for section 8
+    And I should see <rank_name> rank and name for section 8
     And I should see signed date and time for section 8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank             | pin  | user          | zoneid                      | mac               | location_stamp |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | 8248 | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank_name        | rank | user          | zoneid                      | mac               | location_stamp |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | C/E  | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal
     And I click on active filter
-    And I terminate permit with <rank> rank and <pin> pin
+    And I terminate permit with <rank_name> rank and <pin> pin
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     # And I navigate to section 8
-    Then I sign EIC as competent person with pin <pin>
+    Then I sign EIC as competent person with rank <rank>
     And I set time
-    And I should see <rank> rank and name for section 8
+    And I should see <rank_name> rank and name for section 8
     And I should see signed date and time for section 8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types | permit_payload | rank          | pin  | user          | zoneid                      | mac               | location_stamp |
+      | permit_types | permit_payload | rank_name     | rank | user          | zoneid                      | mac               | location_stamp |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
       # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
-      | Hot Work     | submit_hotwork | ETO Reza Ilmi | 0856 | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO Reza Ilmi | ETO  | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

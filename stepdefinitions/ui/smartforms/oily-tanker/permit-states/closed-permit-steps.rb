@@ -1,21 +1,16 @@
 # frozen_string_literal: true
 
-And (/^I request terminating permit to be updated with (.*) pin$/) do |_pin|
-  # sleep 1
+And (/^I request terminating permit to be updated with (.*) rank$/) do |_rank|
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
-  # on(CommonFormsPage).review_and_terminate_btn_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
 end
 
-And (/^I terminate the permit with (.*) pin$/) do |_pin|
+And (/^I terminate the permit with (.*) rank$/) do |_rank|
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
   on(Section9Page).submit_permit_termination_btn
-  step "I sign on canvas with valid #{_pin} pin"
-  # sleep 2
+  step "I sign on canvas with valid #{_rank} rank"
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).back_to_home_btn_element)
-  # on(CommonFormsPage).back_to_home_btn
-  # on(CommonFormsPage).close_btn_elements.first.click
   sleep 4
   step 'I set permit id'
 end

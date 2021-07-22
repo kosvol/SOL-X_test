@@ -1,36 +1,36 @@
 @fsu-pending-update
 Feature: PendingUpdate
-    As a ...
-    I want to ...
-    So that ...
+As a ...
+I want to ...
+So that ...
 
-    @sol-6981
-    Scenario Outline: Verify Save button disable and Close button enable for these ranks in EIC Certificate
-        Given I launch sol-x portal without unlinking wearable
-        And I navigate to create new permit
-        And I enter pin via service for rank C/O
-        And I select Use of ODME in Manual Mode permit
-        And I select Use of ODME in Manual Mode permit for level 2
-        And I fill only location of work
-        And I press next for 7 times
-        And I sign checklist and section 5
-        And I press next for 1 times
-        And I submit permit for Master Approval
-        And I click on back to home
-        And I click on pending approval filter
-        And I open a permit pending Master Approval with Master rank and 1111 pin
-        And I navigate to section 7
-        And I request update for permit
-        And I click on back to home
-        And I click on update needed filter
-        And I update permit in pending update state with 6268 pin
+#     @sol-6981
+#     Scenario Outline: Verify Save button disable and Close button enable for these ranks in EIC Certificate
+#         Given I launch sol-x portal without unlinking wearable
+#         And I navigate to create new permit
+#         And I enter pin via service for rank C/O
+#         And I select Use of ODME in Manual Mode permit
+#         And I select Use of ODME in Manual Mode permit for level 2
+#         And I fill only location of work
+#         And I press next for 7 times
+#         And I sign checklist and section 5
+#         And I press next for 1 times
+#         And I submit permit for Master Approval
+#         And I click on back to home
+#         And I click on pending approval filter
+#         And I open a permit pending Master Approval with MAS rank
+#         And I navigate to section 7
+#         And I request update for permit
+#         And I click on back to home
+#         And I click on update needed filter
+#         And I update permit in pending update state with 6268 pin
 
-        Examples:
-            | rank |
-            | 3/E  |
-# | FTR  |
-# | PMN  |
-# | 4/E  |
+#         Examples:
+#             | rank |
+#             | 3/E  |
+# # | FTR  |
+# # | PMN  |
+# # | 4/E  |
 
 # Scenario: Verify OA permit in pending update state
 

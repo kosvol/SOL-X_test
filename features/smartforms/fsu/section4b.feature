@@ -30,7 +30,7 @@ Feature: LNGSmartFormsPermission
         And I select yes to EIC
         And I click on create EIC certification button
         Then I should see issuing authority label change
-        When I sign EIC as issuing authority with pin 1111
+        When I sign EIC as issuing authority with rank MAS
         And I set time
         And I should see signed details
         Then I should see location <location_stamp> stamp

@@ -17,7 +17,7 @@ Feature: LNGSmartFormsPermission
         And I submit permit for Master Approval
         And I click on back to home
         And I click on pending approval filter
-        And I open a permit pending Master Approval with CE rank and 8248 pin
+        And I open a permit pending Master Approval with C/E rank
         And I press next for 1 times
         And I select rol permit active duration 1 hour
         And I should see ROL submit button enabled
@@ -33,7 +33,7 @@ Feature: LNGSmartFormsPermission
         And I submit permit for Master Approval
         And I click on back to home
         And I click on pending approval filter
-        And I open a permit pending Master Approval with CE rank and 8248 pin
+        And I open a permit pending Master Approval with C/E rank
         And I press next for 1 times
         And I select rol permit active duration 1 hour
         Then I should see rol updates needed button enabled
@@ -61,7 +61,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign checklist with 9015 as valid pin
+        And I sign checklist with A/M as valid rank
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role
@@ -94,7 +94,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign checklist with 9015 as valid pin
+        And I sign checklist with A/M as valid rank
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role
@@ -127,7 +127,7 @@ Feature: LNGSmartFormsPermission
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
-        And I sign checklist with 9015 as valid pin
+        And I sign checklist with A/M as valid rank
         And I press next for 2 times
         And I select 1 role from list
         And I sign on role

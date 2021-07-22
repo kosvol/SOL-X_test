@@ -52,12 +52,12 @@ And (/^I link wearable to a (RA|competent person|issuing authority) (.*) and lin
   sleep 4
 end
 
-Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with pin (.+)$/) do |_condition, _pin|
+Then (/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do |_condition, _rank|
   on(Section4BPage).sign_eic_or_issuer(_condition)
   if _condition === 'issuing authority' || _condition === 'competent person'
-    step "I sign on canvas with valid #{_pin} pin"
+    step "I sign on canvas with valid #{_rank} rank"
   elsif _condition === 'non issuing authority' || _condition === 'non competent person'
-    step "I enter pin #{_pin}"
+    step "I enter pin for rank #{_rank}"
   end
 end
 
@@ -79,10 +79,10 @@ And (/^I click on (.*) EIC certification button$/) do |_which_type|
   end
 end
 
-And (/^I sign EIC section 4b with (RA|non RA) pin (.+)$/) do |_condition, _pin|
+And (/^I sign EIC section 4b with (RA|non RA) rank (.+)$/) do |_condition, _rank|
   BrowserActions.wait_until_is_visible(on(Section4APage).sign_btn_elements.first)
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
   on(SignaturePage).sign_and_done if _condition === 'RA'
 end
 
@@ -138,13 +138,11 @@ And (/^I fill up EIC certificate$/) do
   on(Section3DPage).radio_btn_elements[34].click
   on(Section4BPage).loto = '1234'
   # sign
-  step 'I sign EIC as competent person with pin 8383'
+  step 'I sign EIC as competent person with rank C/O'
   sleep 1
-  # step 'I sign EIC as issuing authority with pin 8248'
-  # sleep 2
   on(Section4BPage).save_eic
   sleep 1
-  step 'I sign EIC section 4b with RA pin 9015'
+  step 'I sign EIC section 4b with RA rank A/M'
 end
 
 Then (/^I should see these sub questions$/) do |_table|

@@ -29,7 +29,7 @@ Feature: LNGSmartFormsPermission
         And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
         And I terminate permit with A/M rank and 9015 pin
         Then I should see issuing authority label change
-        When I sign EIC as issuing authority with pin 1111
+        When I sign EIC as issuing authority with rank MAS
         And I set time
         And I should see signed details
         Then I should see location <location_stamp> stamp

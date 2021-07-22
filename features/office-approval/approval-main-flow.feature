@@ -143,7 +143,7 @@ Feature: OfficeApprovalMainFlow
     Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     Then I should see correct Section 7 details before Office Approval
 
   Scenario: Verify the expiry time of the form, specified in the office when approving the form, is set as the scheduled expiry time of the form after its activation (5341)
@@ -180,6 +180,6 @@ Feature: OfficeApprovalMainFlow
     And I launch sol-x portal without unlinking wearable
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on sit
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I navigate to section 7
     Then I should see correct Section 7 details after Office Approval

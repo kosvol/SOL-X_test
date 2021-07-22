@@ -52,12 +52,12 @@ Feature: SubmitPermit
     And I add additional dra member
     And I press next for 1 times
     And I fill up section 3d
-    And I sign section with 9015 as valid pin
+    And I sign section with A/M as valid rank
     And I press next for 1 times
     And I fill up section 4a
     And I press next for 1 times
     And I fill up checklist
-    And I sign checklist with 9015 as valid pin
+    And I sign checklist with A/M as valid rank
     And I press next for 1 times
     And I select yes to EIC
     And I fill up EIC certificate
@@ -94,7 +94,7 @@ Feature: SubmitPermit
   #   And I fill up section 4a
   #   And I press next for 1 times
   #   And I fill up checklist
-  #   And I sign checklist with 9015 as valid pin
+  #   And I sign checklist with A/M as valid rank
   #   And I press next for 1 times
   #   And I select yes to EIC
   #   And I fill up EIC certificate

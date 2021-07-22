@@ -7,7 +7,7 @@ end
 And (/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms
-  step 'I sign section with 9015 as valid pin'
+  step 'I sign section with A/M as valid rank'
   step 'I set time'
   step 'I should see signed details'
   step 'I press next for 1 times'
@@ -61,9 +61,9 @@ Then (/^I should not see extra previous and save button$/) do
   is_equal(on(CommonFormsPage).save_btn_elements.size, 0)
 end
 
-Then (/^I (open|edit) rol permit with rank (.+) and (.+) pin$/) do |_condition, _rank, _pin|
+Then (/^I (open|edit) rol permit with rank (.+)$/) do |_condition, _rank|
   _condition === 'open' ? on(ActiveStatePage).view_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click : on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
 end
 
 Then (/^I should not see permit duration selectable$/) do
@@ -79,18 +79,18 @@ end
 When (/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
-  step 'I open rol permit with rank A/M and 9015 pin'
+  step 'I open rol permit with rank A/M'
   # step 'I press next for 2 times'
   on(Section0Page).submit_termination_btn_elements.first.click
-  step "I sign on canvas with valid 9015 pin"
+  step "I sign on canvas with valid A/M rank"
   sleep 1
   step 'I click on back to home'
 end
 
-And (/^I review termination permit with (.+) pin$/) do |_pin|
+And (/^I review termination permit with (.+) rank$/) do |_rank|
   step 'I click on pending withdrawal filter'
   on(Section0Page).review_and_terminate_btn_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
 end
 
 When (/^I put the permit to pending termination update status$/) do

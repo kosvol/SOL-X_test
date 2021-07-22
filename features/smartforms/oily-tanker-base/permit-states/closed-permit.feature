@@ -11,10 +11,10 @@ Feature: ClosedPermit
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit with 1111 pin
+    And I terminate the permit with MAS rank
     And I set time
     And I navigate to "Withdrawn" screen for forms
     Then I should see termination date display

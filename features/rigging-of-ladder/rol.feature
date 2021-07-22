@@ -32,7 +32,7 @@ Feature: RiggingOfLadder
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 1 times
     And I request update for permit
     And I click on back to home
@@ -52,19 +52,19 @@ Feature: RiggingOfLadder
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with Master rank and 1111 pin
+    And I open a permit pending Master Approval with MAS rank
     And I press next for 1 times
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I edit rol permit with rank 3/E and 4685 pin
+    And I edit rol permit with rank 3/E
     And I press next for 1 times
     Then I should not see extra previous and save button
 
   Scenario Outline: SOL-4477 Active RoL permit should only have 'View' and 'Submit Termination' button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select Rigging of Gangway & Pilot Ladder permit for level 2
     When I press next for 1 times
@@ -93,7 +93,7 @@ Feature: RiggingOfLadder
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     When I put the permit to termination state
-    And I review termination permit with 1111 pin
+    And I review termination permit with MAS rank
     Then I should not see extra previous and close button
 
     Examples:
@@ -117,17 +117,17 @@ Feature: RiggingOfLadder
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
-    Then I open rol permit with rank <rank> and <pin> pin
+    Then I open rol permit with rank <rank>
     Then I should not see permit duration selectable
     When I put the permit to termination state
-    And I review termination permit with <pin> pin
+    And I review termination permit with <rank> rank
     And I press previous for 1 times
     Then I should not see permit duration selectable
     When I click on back arrow
     And I put the permit to pending termination update status
     And I click on back to home
     And I click on update needed filter
-    Then I edit rol permit with rank <rank> and <pin> pin
+    Then I edit rol permit with rank <rank>
     When I press previous for 1 times
     Then I should not see permit duration selectable
 
@@ -153,18 +153,18 @@ Feature: RiggingOfLadder
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     When I press next for 1 times
     Then I should not see permit duration selectable
 
     Examples:
-      | rank  | pin  |
-      | A/M   | 9015 |
-      | A/B   | 6316 |
-      | 3/E   | 4685 |
-      | A 3/E | 6727 |
-      | 4/E   | 1311 |
-      | A 4/E | 0703 |
+      | rank  |
+      | A/M   |
+      | A/B   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
 
   Scenario: Verify ROL section labels
     Given I launch sol-x portal without unlinking wearable
@@ -189,9 +189,9 @@ Feature: RiggingOfLadder
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
-    Then I open rol permit with rank A/M and 9015 pin
+    Then I open rol permit with rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign on canvas with valid A/M rank
     And I click on back to home
-    And I review termination permit with 7551 pin
+    And I review termination permit with 5/E rank
     Then I should see previous and close buttons

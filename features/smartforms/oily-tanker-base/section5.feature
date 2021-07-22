@@ -137,12 +137,12 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
-    And I sign on role with non sponsor crew <pin> pin
+    And I sign on role with non sponsor crew <rank> rank
     Then I should see not authorize error message
 
     Examples:
-      | rank   | pin  |
-      | Master | 1111 |
+      | rank | pin  |
+      | MAS  | 1111 |
 
   Scenario Outline: Verify crew can sign
     Given I launch sol-x portal

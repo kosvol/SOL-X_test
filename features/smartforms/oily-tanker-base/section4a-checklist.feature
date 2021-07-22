@@ -148,12 +148,12 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as valid pin
+    And I sign checklist with <rank> as valid rank
     And I set time
     Then I should see signed details
 
     Examples:
-      | Rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
+      | rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
       | A/M   | 9015 | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
       # | C/O   | 8383 | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
       | A C/O | 2761 | Hot Work                                                     | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
@@ -180,11 +180,11 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     When I press next for 1 times
-    And I sign checklist with <pin> as invalid pin
+    And I sign checklist with <rank> as invalid rank
     Then I should see not authorize error message
 
     Examples:
-      | Rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
+      | rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
       | Master | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
       | D/C    | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
       # | SAA    | 6445 | Enclosed Spaces Entry | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist  |
@@ -211,12 +211,12 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as valid pin
+    And I sign checklist with <rank> as valid rank
     And I set time
     Then I should see signed details
 
     Examples:
-      | Rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
+      | rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
       | ETO  | 0856 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non checklist creator signature cannot signed on checklist for maintenance permits
@@ -229,11 +229,11 @@ Feature: Section4AChecklist
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as invalid pin
+    And I sign checklist with <rank> as invalid rank
     Then I should see not authorize error message
 
     Examples:
-      | Rank   | pin  | level_one_permit               | level_two_permit      | checklist                                |
+      | rank   | pin  | level_one_permit               | level_two_permit      | checklist                                |
       | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
   # | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 

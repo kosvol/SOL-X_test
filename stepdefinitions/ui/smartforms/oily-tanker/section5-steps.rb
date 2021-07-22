@@ -22,7 +22,7 @@ end
 
 And (/^I sign on listed role$/) do
   BrowserActions.scroll_click(on(Section5Page).sign_btn_role_elements.first)
-  step "I sign on canvas with valid 9015 pin"
+  step "I sign on canvas with valid A/M rank"
   sleep 1
 end
 
@@ -48,20 +48,20 @@ Then (/^I should see a list of roles$/) do
   is_true(on(Section5Page).is_list_of_roles?)
 end
 
-And (/^I sign on role with non sponsor crew (.*) pin$/) do |_pin|
+And (/^I sign on role with non sponsor crew (.*) rank$/) do |_rank|
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I enter pin #{_pin}"
+  step "I enter pin for rank #{_rank}"
 end
 
 And (/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I sign on canvas with valid 9015 pin for fsu"
+  step "I sign on canvas with valid A/M rank for fsu"
   step 'I set time'
 end
 
 And (/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
-  step "I sign on canvas with valid 9015 pin for fsu"
+  step "I sign on canvas with valid A/M rank for fsu"
   step 'I set time'
 end
 
