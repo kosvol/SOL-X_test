@@ -173,7 +173,7 @@ Feature: CreatedPermitToWork
 
     Examples:
       | rank                       | pin  | level_one_permit      | level_two_permit      |
-      # | Master | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | Master                     | 1111 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A/M                        | 9015 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | C/O                        | 8383 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A C/O                      | 2761 | Enclosed Spaces Entry | Enclosed Spaces Entry |
@@ -188,6 +188,8 @@ Feature: CreatedPermitToWork
       | 3/E                        | 4685 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A 3/E                      | 6727 | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | 4/E                        | 1311 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 4/E                      | 0703 | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | CGENG                      | 1393 | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable

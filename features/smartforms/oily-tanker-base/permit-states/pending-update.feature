@@ -30,7 +30,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 6268 pin
+    And I update permit in pending update state with 1393 pin
     And I navigate to section 6
     Then I should not see warning label
     And I should see gas_equipment_input
@@ -103,6 +103,8 @@ Feature: PendingUpdate
       | 3/E   | 4685 |
       | A 3/E | 6727 |
       | 4/E   | 1311 |
+      | CGENG | 1393 |
+
 
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable

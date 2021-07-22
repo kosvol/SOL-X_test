@@ -463,9 +463,9 @@ Feature: ActivePermit
     Then I should see gas reading section enabled in active state
 
     Examples:
-      | permit_types       | permit_payload                | rank   | pin  |
-      | intrinsical camera | submit_non_intrinsical_camera | Master | 1111 |
-  # | underwater   | submit_underwater_simultaneous | A/M  | 9015 |
+      | permit_types       | permit_payload                 | rank   | pin  |
+      | intrinsical camera | submit_non_intrinsical_camera  | Master | 1111 |
+      | underwater         | submit_underwater_simultaneous | CGENG  | 1393 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
@@ -500,8 +500,8 @@ Feature: ActivePermit
     Then I should see Add Gas Reading button disabled
 
     Examples:
-      | permit_types | permit_payload                 | rank  | pin  |
-      | underwater   | submit_underwater_simultaneous | A 4/E | 0703 |
+      | permit_types | permit_payload                 | rank | pin  |
+      | underwater   | submit_underwater_simultaneous | OLR  | 0450 |
   # | underwater   | submit_underwater_simultaneous | ETO  | 0856 |
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
@@ -533,6 +533,8 @@ Feature: ActivePermit
       | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
       | Hot Work                         | submit_hotwork               | 4/E                        | 1311 |
       | Hot Work                         | submit_hotwork               | Master                     | 1111 |
+      | Hot Work                         | submit_hotwork               | A 4/E                      | 0703 |
+      | Hot Work                         | submit_hotwork               | CGENG                      | 1393 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
@@ -543,8 +545,8 @@ Feature: ActivePermit
     Then I should not see gas reader sections on active permit
 
     Examples:
-      | permit_types                     | permit_payload               | rank   | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Master | 1111 |
+      | permit_types                     | permit_payload               | rank  | pin  |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A 4/E | 0703 |
   # # | Enclosed Spaces Entry              | submit_enclose_space_entry   | A 2/O                      | 7865 |
   # | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O    | 0159 |
   # # | Hot Work                           | submit_hotwork               | A 3/O                      | 2674 |
@@ -563,7 +565,7 @@ Feature: ActivePermit
     Then I should see Add Gas Reading button disabled
 
     Examples:
-      | permit_types          | permit_payload             | rank  | pin  |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | A 4/E | 0703 |
-      | Hot Work              | submit_hotwork             | A/B   | 6316 |
+      | permit_types          | permit_payload             | rank | pin  |
+      | Enclosed Spaces Entry | submit_enclose_space_entry | PMAN | 4421 |
+      | Hot Work              | submit_hotwork             | A/B  | 6316 |
 # | Hot Work                           | submit_hotwork               | ETO   | 0856 |
