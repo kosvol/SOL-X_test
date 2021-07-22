@@ -62,11 +62,6 @@ class Section5Page < Section4BPage
   end
 
   def delete_roles_and_responsibility(_total_roles)
-    # roles_and_resp_btn
-    # sleep 1
     cross_btn_elements[_total_roles.to_i-1].click
-    # sleep 1
-    # confirm_btn_elements.last.click
-    # sleep 1
   end
 end

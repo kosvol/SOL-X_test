@@ -20,9 +20,6 @@ class OAPage < Section9Page
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
-  # button(:designation, xpath: "//button[@name='designation']")
-  # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
-  # button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
@@ -31,7 +28,6 @@ class OAPage < Section9Page
   element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]/section")
 
   ## Web Confirmation Page
-  #element(:topbar_header_h3, xpath: "//nav[contains(@class,'NavigationBar')]//h3")
   element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
   element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
   elements(:confirmation_question, xpath: "//ul/li")
@@ -46,7 +42,6 @@ class OAPage < Section9Page
 
   ## Comment elements ###
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
-  #element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
   element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
   text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
@@ -205,7 +200,6 @@ class OAPage < Section9Page
     BrowserActions.js_click("//button[@name='designation']")
     sleep 2
     BrowserActions.scroll_down
-    # set_vs_designation
     BrowserActions.js_click("//button[contains(.,'VS')]")
   end
 

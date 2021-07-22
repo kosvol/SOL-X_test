@@ -87,7 +87,6 @@ class NavigationPage < CommonFormsPage
       category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
     elsif _which_category === "setting"
       BrowserActions.js_click("//a[contains(text(),'Settings')]")
-      # @browser.execute_script(%(document.evaluate("//a[contains(text(),'Settings')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     else
       @browser.find_element(:xpath, @@which_category%[_category]).click
     end

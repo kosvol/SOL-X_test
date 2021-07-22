@@ -14,7 +14,6 @@ class DashboardPage < WearablePage
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[5]')
   spans(:permits_count, xpath: '//span[@class="stat"]')
-  # span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div/span")
   span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]/span")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
@@ -80,15 +79,6 @@ class DashboardPage < WearablePage
     $browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
     $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end
-
-  # DEPRECATED
-  # def get_serv_active_crew_count
-  #   active_crew_count = 0
-  #   ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
-  #     active_crew_count += 1 unless wearable['crewMember'].nil?
-  #   end
-  #   active_crew_count
-  # end
 
   def is_crew_location_detail_correct?(ui_or_service, _new_zone = nil)
     sleep 2

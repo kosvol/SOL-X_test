@@ -444,4 +444,41 @@ Feature: PendingUpdate
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
     And I should not see checklist questions fields enabled
-# And I should not see enter pin button
+  # And I should not see enter pin button
+
+  Scenario Outline: Verify these rank can sign off DRA on section 3D
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Enclosed Spaces Entry permit
+    And I select Enclosed Spaces Entry permit for level 2
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I navigate to section 3d
+    And I sign DRA section 3d with <pin> as valid pin
+    Then I should see signed details
+
+    Examples:
+      | rank  | pin  |
+      | MAS   | 1111 |
+      | A/M   | 9015 |
+      | C/O   | 8383 |
+      | A C/O | 2761 |
+      | 2/O   | 6268 |
+      | A 2/O | 7865 |
+      | 3/O   | 0159 |
+      | A 3/O | 2674 |
+      | C/E   | 8248 |
+      | A C/E | 5718 |
+      | 2/E   | 2523 |
+      | A 2/E | 3030 |
+      | 3/E   | 4685 |
+      | A 3/E | 6727 |
+      | 4/E   | 1311 |
+      | A 4/E | 0703 |

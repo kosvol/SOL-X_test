@@ -48,10 +48,8 @@ class ROLPage < Section9Page
     tmp = 0
     (0..((radio_btn_elements.size / 3) - 1)).each do |_i|
       radio_btn_elements[0 + tmp].click
-      # on(Section3DPage).radio_btn_elements[[0 + tmp, 1 + tmp, 2 + tmp].sample].click
       tmp += 3
     end
-    
   end
 
   def select_rol_duration(_duration)
