@@ -35,26 +35,26 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new PRE
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
 
     Examples:
-      | rank                       | pin  |
-      | Master                     | 1111 |
-      | Addtional Master           | 9015 |
-      | Chief Engineer             | 8248 |
-      | Second Engineer            | 2523 |
-      | Electro Technical Officer  | 0856 |
-      | Additional Second Engineer | 3030 |
-      | D/C                        | 2317 |
-      | 3/E                        | 4685 |
-      | A 3/E                      | 6727 |
-      | 4/E                        | 1311 |
-      | A 4/E                      | 0703 |
-      | BOS                        | 1018 |
-      | A/B                        | 6316 |
-      | O/S                        | 7669 |
-      | OLR                        | 0450 |
+      | rank  | pin  |
+      | MAS   | 1111 |
+      | A/M   | 9015 |
+      | C/E   | 8248 |
+      | 2/E   | 2523 |
+      | ETO   | 0856 |
+      | A 2/E | 3030 |
+      | D/C   | 2317 |
+      | 3/E   | 4685 |
+      | A 3/E | 6727 |
+      | 4/E   | 1311 |
+      | A 4/E | 0703 |
+      | BOS   | 1018 |
+      | A/B   | 6316 |
+      | O/S   | 7669 |
+      | OLR   | 0450 |
 
   Scenario: Verify in the form there are all questions
     Given I launch sol-x portal without unlinking wearable
@@ -233,7 +233,7 @@ Feature: PumpRoomEntry
     And I sleep for 1 seconds
     When I navigate to "Scheduled" screen for PRE
     And I should see the current PRE in the "Scheduled" list
-    When I view permit with A/M rank and 8383 pin
+    When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
 
   Scenario: Permit Validity date should match the final date selected from the date picker

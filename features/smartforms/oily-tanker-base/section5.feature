@@ -109,7 +109,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
-    And I sign on role with sponsor crew <pin> pin
+    And I sign on role with sponsor crew <rank> rank
     Then I should see non crew details
     And I should see supervise by <supervized> detail and Test Automation Company detail
 
@@ -152,7 +152,7 @@ Feature: Section5
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 5
     And I select 1 role from list
-    And I sign on role with sponsor crew <pin> pin
+    And I sign on role with sponsor crew <rank> rank
     Then I should see first signed role details with <pin> pin
 
     Examples:

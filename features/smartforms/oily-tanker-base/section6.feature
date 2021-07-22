@@ -93,7 +93,7 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
 
     Examples:

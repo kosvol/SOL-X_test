@@ -45,21 +45,21 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
 
     Examples:
-      | rank   | pin  |
-      | Master | 1111 |
+      | rank  | pin  |
+      | MAS   | 1111 |
       # | 4/O    | 1010 |
-      | D/C    | 2317 |
+      | D/C   | 2317 |
       # | 3/E    | 4685 |
-      | A 3/E  | 6727 |
+      | A 3/E | 6727 |
       #     | 4/E    | 1311 |
       #     | A 4/E  | 0703 |
-      | BOS    | 1018 |
-      | PMN    | 4421 |
-      | A/B    | 6316 |
+      | BOS   | 1018 |
+      | PMN   | 4421 |
+      | A/B   | 6316 |
   # | O/S    | 7669 |
   # | OLR    | 0450 |
 

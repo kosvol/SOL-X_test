@@ -18,7 +18,7 @@ Feature: OfficeApprovalRejection
   #  And I request the permit for update via oa link manually
   #  And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on sit
   #  And I click on update needed filter
-  #  And I update permit in pending update state with <pin> pin
+  #  And I update permit in pending update state with <rank> rank
   #  And I navigate to section 4a
   #  Then I should see checklist selections fields enabled
   #  And I press next for 1 times

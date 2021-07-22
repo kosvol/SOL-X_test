@@ -82,7 +82,7 @@ Feature: LNGClosedPermit
         And I request update for permit
         And I click on back to home
         And I click on update needed filter
-        And I update permit in pending update state with 8383 pin
+        And I update permit in pending update state with C/O rank
         And I switch vessel to LNG
 
     Scenario: Switch back to LNG

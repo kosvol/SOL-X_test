@@ -30,7 +30,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 1393 pin
+    And I update permit in pending update state with CGENG rank
     And I navigate to section 6
     Then I should not see warning label
     And I should see gas_equipment_input
@@ -60,7 +60,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 9015 pin
+    And I update permit in pending update state with A/M rank
     And I navigate to section 6
     Then I should see submit button enabled
 
@@ -78,7 +78,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 8383 pin
+    And I update permit in pending update state with C/O rank
     Then I should see Add Gas button disabled
 
   Scenario Outline: Verify user should see master's note on all section while viewing as AGT via Pending Withdrawal state
@@ -95,7 +95,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with <pin> pin
+    And I update permit in pending update state with <rank> rank
     Then I should see request update comment box
 
     Examples:
@@ -144,7 +144,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with <pin> pin
+    And I update permit in pending update state with <rank> rank
     Then I should not see request update comment box
 
     Examples:
@@ -212,7 +212,7 @@ Feature: PendingUpdate
   #   And I request update for permit
   #   And I click on back to home
   #   And I click on update needed filter
-  #   And I update permit in pending update state with 9015 pin
+  #   And I update permit in pending update state with A/M rank
   #   And I navigate to section 4b
   #   And I click on view EIC certification button
   #   Then I should see request update comment box
@@ -257,7 +257,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 9015 pin
+    And I update permit in pending update state with A/M rank
     Then I should see request update comment
     And I press next for 1 times
     Then I should see request update comment
@@ -299,7 +299,7 @@ Feature: PendingUpdate
     And I request the permit for update via oa link manually
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
-    And I update permit in pending update state with 1111 pin
+    And I update permit in pending update state with MAS rank
     And I navigate to section 4b
     And I click on create EIC certification button
     Then I should not see comment box exists
@@ -323,7 +323,7 @@ Feature: PendingUpdate
     And I request the permit for update via oa link manually
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
-    And I update permit in pending update state with 4685 pin
+    And I update permit in pending update state with 3/E rank
     And I navigate to section 4b
     And I click on view EIC certification button
     Then I should see request update comment
@@ -347,7 +347,7 @@ Feature: PendingUpdate
     And I request the permit for update via oa link manually
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
-    And I update permit in pending update state with 9015 pin
+    And I update permit in pending update state with A/M rank
     And I navigate to section 3a
     And I click on View Edit Hazard
     Then I should see DRA content editable
@@ -370,7 +370,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 7551 pin
+    And I update permit in pending update state with 5/E rank
     And I navigate to section 6
     Then I should see previous and close buttons
 
@@ -389,7 +389,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 6727 pin
+    And I update permit in pending update state with A 3/E rank
     And I press next for 1 times
     And I should see rol checklist questions fields enabled
 
@@ -411,7 +411,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 4685 pin
+    And I update permit in pending update state with 3/E rank
     And I navigate to section 4a
     Then I should see checklist selections fields enabled
     And I press next for 1 times
@@ -441,7 +441,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 7551 pin
+    And I update permit in pending update state with 5/E rank
     And I navigate to section 4a
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
@@ -463,7 +463,7 @@ Feature: PendingUpdate
     And I click on pending approval filter
     And I open a permit pending Master Approval with <rank> rank
     And I navigate to section 3d
-    And I sign DRA section 3d with <pin> as valid pin
+    And I sign DRA section 3d with <rank> as valid rank
     Then I should see signed details
 
     Examples:

@@ -4,8 +4,8 @@ Feature: LNGCRE
   I want to ...
   So that ...
 
-#  Background:
-#    Given I switch vessel to LNG
+  #  Background:
+  #    Given I switch vessel to LNG
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
 
@@ -206,7 +206,7 @@ Feature: LNGCRE
     And I sleep for 1 seconds
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
-    When I view permit with A/M rank and 8383 pin
+    When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
@@ -229,7 +229,7 @@ Feature: LNGCRE
     Then I terminate the PRE
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Terminated" list
-    When I view permit with A/M rank and 8383 pin
+    When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
 
   Scenario: Gas Reader location stamp should not be missing
@@ -244,13 +244,13 @@ Feature: LNGCRE
     And I open the current CRE with status Pending approval. Rank: C/O
     And I take note of start and end validity time for CRE
     When I press the "Approve for Activation" button
-    And I sign on canvas with valid 8383 pin
+    And I sign on canvas with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds
     And I activate CRE form via service
     And I sleep for 1 seconds
     When I navigate to "Active" screen for CRE
-    When I view permit with C/O rank and 8383 pin
+    When I view permit with C/O rank
     Then I check location in gas readings signature is present
 

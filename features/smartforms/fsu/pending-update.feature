@@ -23,7 +23,7 @@ So that ...
 #         And I request update for permit
 #         And I click on back to home
 #         And I click on update needed filter
-#         And I update permit in pending update state with 6268 pin
+#         And I update permit in pending update state with <rank> rank
 
 #         Examples:
 #             | rank |

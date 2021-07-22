@@ -71,14 +71,14 @@ Feature: LNGSmartFormsPermission
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval
-        And I enter pin <pin>
+        And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see approve and request update buttons
         And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                                   | pin  | rank |
-            | Critical Equipment Maintenance | Maintenance on Emergency Shutdown for Cargo System | 8248 | c/e  |
+            | Critical Equipment Maintenance | Maintenance on Emergency Shutdown for Cargo System | 8248 | C/E  |
 
     Scenario Outline: CE and Master can ask for update on all permit for FSU with duration less than 2 hours
         Given I launch sol-x portal without unlinking wearable
@@ -104,14 +104,14 @@ Feature: LNGSmartFormsPermission
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval
-        And I enter pin <pin>
+        And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see approve and request update buttons
         And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                          | pin  | rank |
-            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | c/e  |
+            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
 
     Scenario Outline: CE and Master can ask for update on all permit for FSU with duration more than 2 hours
         Given I launch sol-x portal without unlinking wearable
@@ -142,12 +142,12 @@ Feature: LNGSmartFormsPermission
         And I click on pending approval filter
         Then I should see Master Approval button
         When I click on permit for master approval
-        And I enter pin <pin>
+        And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see Activate Permit to Work button enabled
         And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                          | pin  | rank |
-            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | c/e  |
+            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
 

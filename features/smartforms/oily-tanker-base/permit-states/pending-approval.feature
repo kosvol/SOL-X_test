@@ -65,18 +65,18 @@ Feature: PendingApprovalPermit
     And I fill a full enclosed workspace permit
     And I click on pending approval filter
     And I click on permit for master approval
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     And I navigate to section 3a
     Then I should not be able to edit Enclosed Spaces Entry DRA
     When I press next for 6 times
     Then I should not be able to edit EIC certification
 
     Examples:
-      | rank   | creator_pin | pin  |
-      | ETO    | 0856        | 9015 |
-      | 3/E    | 2523        | 4685 |
-      | PMAN   | 3030        | 4421 |
-      | Master | 3030        | 1111 |
+      | rank | creator_pin | pin  |
+      | ETO  | 0856        | 9015 |
+      | 3/E  | 2523        | 4685 |
+      | PMAN | 3030        | 4421 |
+      | MAS  | 3030        | 1111 |
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
@@ -170,11 +170,11 @@ Feature: PendingApprovalPermit
     And I click on pending approval filter
     Then I should see Master Approval button
     When I click on permit for master approval
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     And I navigate to section 7
     Then I should see Activate Permit to Work button enabled
 
     Examples:
       | level_one_permit               | level_two_permit                          | pin  | rank |
-      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | 8248 | c/e  |
+      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | 8248 | C/E  |
 

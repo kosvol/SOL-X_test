@@ -29,7 +29,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank and 9015 pin
+    And I add gas to permit with A/M rank
     Then I should see section 6 screen
 
     Examples:
@@ -52,7 +52,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank and 9015 pin
+    And I add gas to permit with A/M rank
     Then I should see section 6 screen
 
     Examples:
@@ -82,7 +82,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I terminate permit with A/M rank and 9015 pin
+    And I terminate permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -105,7 +105,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I terminate permit with A/M rank and 9015 pin
+    And I terminate permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -135,7 +135,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with PMAN rank and 9015 pin
+    And I add gas to permit with A/M rank
     Then I should see section 6 screen
 
     Examples:
@@ -171,7 +171,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I terminate permit with A/M rank and 9015 pin
+    And I terminate permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -201,7 +201,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I terminate permit with A/M rank and 9015 pin
+    And I terminate permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -241,7 +241,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with PMAN rank and 9015 pin
+    And I add gas to permit with A/M rank
     Then I should see section 6 screen
 
 
@@ -270,21 +270,21 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I terminate permit with 5/E rank and 7551 pin
+    And I terminate permit with 5/E rank
     Then I should see previous and close buttons
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I terminate permit with 5/E rank and 7551 pin
+    And I terminate permit with 5/E rank
     Then I should not see competent and issuing person sign button exists
 
   Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I terminate permit with PMAN rank and 4421 pin
+    And I terminate permit with PMAN rank
     Then I should not see competent and issuing person sign button exists
 
   Scenario: Verify maintenance permit issue date is display
@@ -461,7 +461,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -479,7 +479,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I view permit with <rank> rank and <pin> pin
+    And I view permit with <rank> rank
     And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
@@ -498,7 +498,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank
     Then I should see Add Gas Reading button disabled
 
     Examples:
@@ -518,7 +518,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I add gas to permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank
     Then I should see gas reading section enabled in active state
 
     Examples:
@@ -542,7 +542,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I view permit with <rank> rank and <pin> pin
+    And I view permit with <rank> rank
     And I navigate to section 6
     Then I should not see gas reader sections on active permit
 
@@ -563,7 +563,7 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I add gas to permit with <rank> rank and <pin> pin
+    And I add gas to permit with <rank> rank
     Then I should see Add Gas Reading button disabled
 
     Examples:

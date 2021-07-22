@@ -162,7 +162,7 @@ Feature: OfficeApprovalMainFlow
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I view permit with A/M rank and 9015 pin
+    And I view permit with A/M rank
     And I sleep for 5 seconds
     And I press previous for 1 times
     Then I should see the Issued till time is set according to OA issued To time
