@@ -6,9 +6,7 @@ class Section6Page < Section5Page
   include PageObject
   include GasReading
   
-  # div(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]/div")
   element(:rank_and_name_stamp, xpath: "//button[starts-with(@data-testid,'show-signature-display')]/span/span")
-  # div(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]/div")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
   elements(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
   elements(:info_warning_boxes, xpath: "//div[starts-with(@class,'InfoBox__')]/*")
@@ -19,7 +17,6 @@ class Section6Page < Section5Page
   elements(:total_sections, xpath: "//section[starts-with(@class,'Section__SectionMain')]/div/section")
   button(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   buttons(:last_calibration_btn, xpath: "//button[@id='gasLastCalibrationDate']")
-  # buttons(:submit_btn, xpath: "//div[starts-with(@class,'FormFieldButtonFactory__ButtonContainer')]/button")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'Section__Description')]/button")
   @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
   @@gas_added_by = "//span[contains(.,'%s')]"
