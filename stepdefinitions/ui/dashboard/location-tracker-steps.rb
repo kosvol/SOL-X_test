@@ -102,6 +102,21 @@ When (/^I link wearable to rank (.+) and zone (.+) and mac (.+)$/) do |_rank, _z
   sleep 2
 end
 
+When (/^I link wearable to rank (.+) to zone$/) do |_rank|
+  step "I link #{_rank} to wearable"
+  step 'I get wearable-simulator/base-get-beacons-details request payload'
+  step 'I hit graphql'
+  step 'I get list of beacons detail'
+  step 'I get wearable-simulator/mod-update-wearable-location request payload'
+  step 'I manipulate wearable requeset payload'
+  step 'I hit graphql'
+  step 'I hit graphql'
+  sleep 3
+  step 'I get wearable-simulator/base-get-wearable-details request payload'
+  step 'I hit graphql'
+  sleep 2
+end
+
 And (/^I click on any ptw$/) do
   selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size-1))
   @ptw_id = on(DashboardPage).permit_to_work_link_elements[selected_ptw].text
