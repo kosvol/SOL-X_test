@@ -178,10 +178,9 @@ class Section3APage < Section2Page
 
   def select_dra_risk(_risk)
     sleep 2
-    level_to_choose_elements[(_risk.to_i - 1)].click
-    if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s === 'active'
+    if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s != 'active'
+      level_to_choose_elements[(_risk.to_i - 1)].click
     end
-    level_to_choose_elements[(_risk.to_i - 1)].click
     confirm_btn_elements.first.click
   end
 end
