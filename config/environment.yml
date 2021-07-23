@@ -8,8 +8,12 @@
 #   fauxton_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
 
 sit-cot:
-sit-lng:
+  c2_preview: "https://sit-cot.edge.dev.safevue.ai:8080"
+  service: "https://sit-cot.edge.dev.safevue.ai:4000/"
+
 sit-fsu:
+  c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
+  service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
 
 auto-cot:
 auto-lng:
