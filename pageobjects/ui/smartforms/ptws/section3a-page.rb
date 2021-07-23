@@ -134,9 +134,10 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
-    @swap_flag == 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
+    @swap_flag == 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(6)
+    sleep 1
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]", 0)
-    scroll_multiple_times(4)
+    scroll_multiple_times(3)
     likelihood_btn_elements[2].click
     select_dra_risk(_likelihood)
     consequence_btn_elements[2].click
