@@ -1,12 +1,3 @@
-##Service
-# dev:
-#   c2_preview: "https://dev.edge.dev.safevue.ai:8080"
-#   service: "http://dev.edge.dev.safevue.ai:4000/"
-#   switch_vessel: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984/vessels/sit-lng-vessel"
-#   update_mas_pin: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
-#   get_crew_members: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984/crew_members/_find"
-#   fauxton_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
-
 sit-cot:
   c2_preview: "https://sit-cot.edge.dev.safevue.ai:8080"
   service: "https://sit-cot.edge.dev.safevue.ai:4000/"
@@ -15,11 +6,10 @@ sit-fsu:
   c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
   service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
 
-auto-cot:
 auto-lng:
 auto-fsu:
 
-sit:
+sit-lng:
   c2_preview: "https://sit-lng.edge.dev.safevue.ai:8080"
   service: "https://sit-lng.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
