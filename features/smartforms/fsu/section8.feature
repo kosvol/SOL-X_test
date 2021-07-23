@@ -12,7 +12,7 @@ Feature: LNGSmartFormsPermission
         And I set oa permit to ACTIVE state
         And I launch sol-x portal without unlinking wearable
         And I click on active filter
-        And I terminate permit with <rank> rank
+        And I submit for terminationpermit with <rank> rank
         Then I should see competent person label change
         And I switch vessel to LNG
 
@@ -27,7 +27,7 @@ Feature: LNGSmartFormsPermission
         And I launch sol-x portal without unlinking wearable
         And I click on active filter
         And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
-        And I terminate permit with A/M rank
+        And I submit for terminationpermit with A/M rank
         Then I should see issuing authority label change
         When I sign EIC as issuing authority with rank MAS
         And I set time

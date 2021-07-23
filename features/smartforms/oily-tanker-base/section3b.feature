@@ -15,7 +15,7 @@ Feature: Section3BDRA
     And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit with MAS rank
+    And I terminate the permit with MAS rank via Pending Withdrawal
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit

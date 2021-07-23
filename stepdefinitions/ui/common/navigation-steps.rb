@@ -52,19 +52,16 @@ end
 And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, _rank|
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
-  p "index >> #{permit_id}"
 
-  if _update_or_terminate === 'add gas to'
+  case _update_or_terminate
+  when 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
-  elsif _update_or_terminate === 'update'
+  when 'update'
     BrowserActions.poll_exists_and_click(on(PendingStatePage).edit_update_btn_elements[permit_id])
-    # on(PendingStatePage).edit_update_btn_elements[permit_id].click
-  elsif _update_or_terminate === 'view'
+  when 'view'
     @@issue_time_date = on(CreatedPermitToWorkPage).issued_date_time_elements[permit_id].text
     on(PendingStatePage).view_btn_elements[permit_id].click
-  # elsif _update_or_terminate === 'withdraw'
-  #   on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
-  elsif _update_or_terminate === 'terminate'
+  when 'submit for termination'
     step 'I click on Submit for Termination'
   end
   step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'

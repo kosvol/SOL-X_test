@@ -14,7 +14,7 @@ Feature: ClosedPermit
     And I sign on canvas with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit with MAS rank
+    And I terminate the permit with MAS rank via Pending Withdrawal
     And I set time
     And I navigate to "Withdrawn" screen for forms
     Then I should see termination date display

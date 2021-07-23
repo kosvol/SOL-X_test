@@ -184,7 +184,6 @@ Feature: Section3ADRA
       | 5          | 5           |
   # | 5          | 4           |
 
-  @test
   Scenario Outline: Verify risk matrix meets criteria for low risk for additional hazard
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -200,15 +199,15 @@ Feature: Section3ADRA
 
     Examples:
       | likelihood | consequence |
-      # # | 1          | 1           |
-      # # | 1          | 2           |
-      # # | 1          | 3           |
-      # | 1          | 4           |
-      # # | 2          | 1           |
-      # # | 2          | 2           |
-      # | 2          | 3           |
-      # # | 3          | 1           |
-      # | 3          | 2           |
+      # | 1          | 1           |
+      # | 1          | 2           |
+      # | 1          | 3           |
+      | 1          | 4           |
+      # | 2          | 1           |
+      # | 2          | 2           |
+      | 2          | 3           |
+      # | 3          | 1           |
+      | 3          | 2           |
       | 4          | 1           |
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for additional hazard
