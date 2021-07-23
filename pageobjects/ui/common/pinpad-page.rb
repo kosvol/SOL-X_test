@@ -10,7 +10,7 @@ class PinPadPage
 
   def enter_pin(pin)
     format('%04d', pin).to_s.split('').each do |num|
-      index = num.to_i.zero? ? pin_pad_elements.last : num
+      index = num.to_i.zero? ? (pin_pad_elements.size - 1) : num
       p "index >> #{index}"
       query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
       query = format(query, index.to_s)
