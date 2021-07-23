@@ -37,7 +37,7 @@ end
 And(/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
   sleep 1
   @measure = _measure
-  @swap_flag = ''
+  @@swap_flag = ''
   case _measure
   when 'without applying measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
@@ -46,7 +46,7 @@ And(/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likel
   when 'additional hazard'
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   when 'additional hazard follow through'
-    @swap_flag = 'evaluation_matrix'
+    @@swap_flag = 'evaluation_matrix'
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
   end
   sleep 1
