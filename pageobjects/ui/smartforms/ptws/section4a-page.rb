@@ -5,7 +5,8 @@ require './././support/env'
 class Section4APage < Section3DPage
   include PageObject
 
-  elements(:occurrence, xpath: "(//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')])[1]/div[2]/label")
+  elements(:occurrence,
+           xpath: "(//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')])[1]/div[2]/label")
   elements(:tool_box, xpath: '//input')
   elements(:input_type_text, xpath: "//input[@type='text']")
   elements(:input_type_number, xpath: "//input[@type='number']")
@@ -14,8 +15,10 @@ class Section4APage < Section3DPage
   @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
   elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
   @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
-  elements(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
-  element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
+  elements(:rank_and_name_stamp,
+           xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
+  element(:date_and_time_stamp,
+          xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
 
   elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
@@ -25,7 +28,8 @@ class Section4APage < Section3DPage
   elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
   divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
-  spans(:list_of_checklist, xpath: "//section[starts-with(@class,'Section__SectionMain')][2]/div/div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  spans(:list_of_checklist,
+        xpath: "//section[starts-with(@class,'Section__SectionMain')][2]/div/div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
   elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
@@ -76,14 +80,12 @@ class Section4APage < Section3DPage
     end
   end
 
-  def fill_textarea(_elems,_input)
-    begin
-      _elems.each do |text_area|
+  def fill_textarea(_elems, _input)
+    _elems.each do |text_area|
       BrowserActions.enter_text(text_area, _input)
     end
-    rescue StandardError
-      p "Error: #{StandardError}"
-    end
+  rescue StandardError
+    p "Error: #{StandardError}"
   end
 
   def fill_up_checkbox_inputs
@@ -105,10 +107,10 @@ class Section4APage < Section3DPage
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
-    if (generic_data_elements[1].text.include? get_current_date_and_time)
-      return ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
+    if generic_data_elements[1].text.include? get_current_date_and_time
+      ((generic_data_elements[1].text.include? get_current_date_and_time)) # && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
     else
-      return (generic_data_elements[1].text.include? "#{get_current_date_and_time_minus_a_min}")
+      (generic_data_elements[1].text.include? get_current_date_and_time_minus_a_min.to_s)
     end
   end
 
@@ -121,30 +123,31 @@ class Section4APage < Section3DPage
       sleep 1
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
         # get_na_elements[_index].click
-        BrowserActions.js_clicks(@@na_input,_index)
+        BrowserActions.js_clicks(@@na_input, _index)
       end
     end
   end
 
   def is_signed_user_details?(_entered_pin)
-    time_offset = get_current_time_format
+    sleep 1
+    # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}") 
-    if (rank_and_name_stamp_elements.first.text.size > 9)
-      @@tmp_rank_name = rank_and_name_stamp_elements.first.text
-    elsif (rank_and_name_stamp_elements.first.text.size <= 9)
-      @@tmp_rank_name = rank_and_name_stamp_elements.last.text
+    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
+    if rank_and_name_stamp_elements.first.text.size > 9
+      @tmp_rank_name = rank_and_name_stamp_elements.first.text
+    elsif rank_and_name_stamp_elements.first.text.size <= 9
+      @tmp_rank_name = rank_and_name_stamp_elements.last.text
     end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
-    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
+    ((@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time.to_s))
   end
-  
+
   def is_signed_user_details_plus_1_min?(_entered_pin)
-    time_offset = get_current_time_format
+    # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}"))
+    ((@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
@@ -153,7 +156,7 @@ class Section4APage < Section3DPage
     Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_elements.first.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
+    ((rank_and_name_stamp_elements.first.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s) && (date_and_time_stamp_element.text.include? get_timezone.to_s))
   end
 
   # ##Blue rgba(24, 144, 255, 1)
@@ -162,8 +165,9 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
+
       BrowserActions.scroll_down(element_yes[_index])
-      if _checklist.include? "Cold Work"
+      if _checklist.include? 'Cold Work'
         return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
       else
         return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
@@ -178,9 +182,9 @@ class Section4APage < Section3DPage
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
-      BrowserActions.scroll_down(element_yes[_index+1])
+      BrowserActions.scroll_down(element_yes[_index + 1])
       # element_yes[_index+1].click
-      BrowserActions.js_clicks(@@yes_input,_index+1)
+      BrowserActions.js_clicks(@@yes_input, _index + 1)
     end
   end
 

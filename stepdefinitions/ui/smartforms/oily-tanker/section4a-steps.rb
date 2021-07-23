@@ -1,54 +1,61 @@
 # frozen_string_literal: true
 
-Then (/^I should not see location of work in checklist$/) do
+Then(/^I should not see location of work in checklist$/) do
   sleep 2
   tmp = @browser.find_elements(:xpath, "//span[contains(., 'Location of work:')]")
   if tmp.size === 0
-    tmp = @browser.find_elements(:xpath, "//label[contains(., \"Location of work:\")]")
+    tmp = @browser.find_elements(:xpath, '//label[contains(., "Location of work:")]')
   elsif tmp.size === 0
-    tmp = @browser.find_elements(:xpath, "//p[contains(., \"Location of work:\")]")
+    tmp = @browser.find_elements(:xpath, '//p[contains(., "Location of work:")]')
   elsif tmp.size === 0
     tmp = @browser.find_element(:xpath, "//h4[contains(., \'Location of work:\')]")
   end
-  is_equal(tmp.size,0)
+  is_equal(tmp.size, 0)
 end
 
-And (/^I fill up checklist$/) do
+And(/^I fill up checklist$/) do
   on(Section4APage).fill_up_checkbox_inputs
-  on(Section4APage).fill_textarea(on(Section4APage).input_type_text_elements,'Test automation')
-  on(Section4APage).fill_textarea(on(Section4APage).input_type_number_elements,1)
-  on(Section4APage).fill_textarea(on(Section4APage).textarea_elements,'Test automation')
+  on(Section4APage).fill_textarea(on(Section4APage).input_type_text_elements, 'Test automation')
+  on(Section4APage).fill_textarea(on(Section4APage).input_type_number_elements, 1)
+  on(Section4APage).fill_textarea(on(Section4APage).textarea_elements, 'Test automation')
   step 'I select PPE equipment'
 end
 
-And (/^I fill up section 4a$/) do
+And(/^I fill up section 4a$/) do
   sleep 1
   on(Section4APage).tool_box_elements.first.click
 end
 
-Then (/^I should see correct checklist (.+) pre-selected$/) do |_checklist|
+Then(/^I should see correct checklist (.+) pre-selected$/) do |_checklist|
   is_true(on(Section4APage).is_checklist_preselected(_checklist))
 end
 
-Then (/^I should see correct checklist content for (.+) checklist$/) do |_checklist|
+Then(/^I should see correct checklist content for (.+) checklist$/) do |_checklist|
   on(Section4APage).select_checklist(_checklist)
   step 'I press next for 1 times'
   sleep 1
-  is_equal(on(Section4APage).get_checklist_label('labels', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['labels'])
-  is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
-  is_equal(on(Section4APage).get_checklist_label('sections', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section'])
-  is_equal(on(Section4APage).get_checklist_label('section1', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section1'])
-  is_equal(on(Section4APage).get_checklist_label('section2', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['section2'])
-  is_equal(on(Section4APage).get_checklist_label('info_box', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['info_box'])
-  is_equal(on(Section4APage).get_checklist_label('warning_box', _checklist), on(Section4APage).get_checklist_base_data(_checklist)['warning_box'])
+  is_equal(on(Section4APage).get_checklist_label('labels', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['labels'])
+  is_equal(on(Section4APage).get_checklist_label('subheaders', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['subheaders'])
+  is_equal(on(Section4APage).get_checklist_label('sections', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['section'])
+  is_equal(on(Section4APage).get_checklist_label('section1', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['section1'])
+  is_equal(on(Section4APage).get_checklist_label('section2', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['section2'])
+  is_equal(on(Section4APage).get_checklist_label('info_box', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['info_box'])
+  is_equal(on(Section4APage).get_checklist_label('warning_box', _checklist),
+           on(Section4APage).get_checklist_base_data(_checklist)['warning_box'])
 end
 
-And (/^I select the matching (.+) checklist$/) do |_checklist|
+And(/^I select the matching (.+) checklist$/) do |_checklist|
   sleep 1
   on(Section4APage).select_checklist(_checklist)
 end
 
-Then (/^I should see signed details$/) do
+Then(/^I should see signed details$/) do
   on(Section4APage).signature_scroll
   if on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin)
     is_true(on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin))
@@ -58,29 +65,29 @@ Then (/^I should see signed details$/) do
   is_true(on(SignaturePage).is_signature_pad?)
 end
 
-Then (/^I should see permit number, date and time populated$/) do
+Then(/^I should see permit number, date and time populated$/) do
   step 'I press next for 1 times'
   is_true(on(Section4APage).is_checklist_details_prepopulated?)
 end
 
-And (/^I select PPE equipment$/) do
+And(/^I select PPE equipment$/) do
   BrowserActions.scroll_up
   BrowserActions.scroll_up
   on(Section4APage).select_ppe_equipment
 end
 
-And (/^I uncheck the pre-selected checklist$/) do
+And(/^I uncheck the pre-selected checklist$/) do
   sleep 1
   on(Section4APage).uncheck_all_checklist
 end
 
-Then (/^I should see this list of available checklist$/) do |_table|
-  _table.raw.each_with_index do |_checklist,_index|
-    is_equal(_checklist.first,on(Section4APage).list_of_checklist_elements[_index].text)
+Then(/^I should see this list of available checklist$/) do |_table|
+  _table.raw.each_with_index do |_checklist, _index|
+    is_equal(_checklist.first, on(Section4APage).list_of_checklist_elements[_index].text)
   end
 end
 
-Then (/^I should see (.+) checklist questions$/) do |_checklist|
+Then(/^I should see (.+) checklist questions$/) do |_checklist|
   sleep 2
   BrowserActions.scroll_down
   @@checklist = _checklist
@@ -91,7 +98,7 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
     begin
       tmp = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]").size
       p "span list >> #{tmp}"
-    rescue
+    rescue StandardError
       if tmp === 0
         tmp = @browser.find_elements(:xpath, "//span[contains(., \"#{_element}\")]").size
         p "span2 list >> #{tmp}"
@@ -101,23 +108,21 @@ Then (/^I should see (.+) checklist questions$/) do |_checklist|
       tmp = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]").size
       p "label list >> #{tmp}"
     end
-    if tmp === 0
-      tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]").size
-    end
+    tmp = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]").size if tmp === 0
     if tmp === 0
       tmp = @browser.find_elements(:xpath, "//h4[contains(., \"#{_element}\")]").size
       p "header list >> #{tmp}"
     end
     Log.instance.info("Checking on question >>>> #{_element}")
-    if (_element === "If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?") || (_element === "Is vessel movement in seaway acceptable for personnel transfer?")
-      is_equal(tmp,2)
+    if (_element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (_element === 'Is vessel movement in seaway acceptable for personnel transfer?')
+      is_equal(tmp, 2)
     else
-      is_equal(tmp,1)
+      is_equal(tmp, 1)
     end
   end
 end
 
-And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
+And(/^I should see (info|warning|heavy) boxes$/) do |which_box|
   if which_box === 'info'
     box_obj = on(Section4APage).info_box_elements
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
@@ -136,11 +141,9 @@ And (/^I should see (info|warning|heavy) boxes$/) do |which_box|
   end
 end
 
-Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_or_not, _condition|
+Then(/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_or_not, _condition|
   if _should_or_not === 'should'
-    if _condition === 'selections'
-      is_equal(on(Section4APage).tool_box_elements.size, 36)
-    end
+    is_equal(on(Section4APage).tool_box_elements.size, 36) if _condition === 'selections'
     if _condition === 'questions'
       is_equal(on(Section4APage).tool_box_elements.size, 100)
       is_equal(on(Section4APage).textarea_elements.size, 2)
@@ -148,9 +151,7 @@ Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_o
     end
   end
   if _should_or_not === 'should not'
-    if _condition === 'selections'
-      is_equal(on(Section4APage).tool_box_elements.size, 0)
-    end
+    is_equal(on(Section4APage).tool_box_elements.size, 0) if _condition === 'selections'
     if _condition === 'questions'
       is_equal(on(Section4APage).tool_box_elements.size, 0)
       is_equal(on(Section4APage).textarea_elements.size, 0)
@@ -158,12 +159,12 @@ Then (/^I (should|should not) see checklist (.+) fields enabled$/) do |_should_o
   end
 end
 
-Then (/^I should see rol checklist questions fields enabled$/) do
+Then(/^I should see rol checklist questions fields enabled$/) do
   is_equal(on(Section4APage).tool_box_elements.size, 48)
   is_equal(on(ROLPage).boarding_ddl_elements.size, 1)
 end
 
-And (/^I should not see enter pin button$/) do
+And(/^I should not see enter pin button$/) do
   sleep 1
   is_disabled(on(Section4APage).enter_pin_btn_element)
 end
