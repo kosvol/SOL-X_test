@@ -23,11 +23,11 @@ auto:
   c2_preview: "https://auto-cot.edge.dev.safevue.ai:8080/"
   service: "https://auto-cot.edge.dev.safevue.ai:4000/"
   master_pin: "1111"
-  update_mas_pin: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984/users/AUTO_SOLX0001"
-  switch_vessel: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984/vessels/auto-vessel"
-  get_crew_members: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984/crew_members/_find"
-  fauxton_url: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984"
-  get_form_status: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984/forms/_find"
+  update_mas_pin: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984/users/AUTO_SOLX0001"
+  switch_vessel: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984/vessels/auto-vessel"
+  get_crew_members: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984/forms/_find"
 
 uat:
   c2_preview: "https://uat.edge.dev.safevue.ai:8080/"
@@ -36,10 +36,10 @@ uat:
   get_crew_members: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984/crew_members/_find"
 
 fauxton:
-  base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
-  base_auto_url: "https://admin:magellanx@auto-lng.edge.dev.safevue.ai:5984"
+  # base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
+  base_auto_url: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
-  base_dev_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
+  # base_dev_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
   delete_form: "/forms/_bulk_docs"
   delete_geofence: "/geofence/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
