@@ -5,14 +5,14 @@ require './././support/env'
 class PinPadPage
   include PageObject
 
-  buttons(:pin_pad, xpath: "//main/ol[@class='pin-entry']/li/button")
+  buttons(:pin_pad, xpath: "//main/ol[@class='pin-entry']/li/button[starts-with(@class,'Button__')]")
   element(:error_msg, xpath: "//section[@class='pin-indicators-section']/h2")
 
   def enter_pin(pin)
     format('%04d', pin).to_s.split('').each do |num|
-      index = num.to_i === 0 ? 10 : num
+      index = num.to_i === pin_pad_elements.last ? 10 : num
       p "index >> #{index}"
-      query = "//ol[@class='pin-entry']/li[%s]/button"
+      query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
       query = format(query, index.to_s)
       BrowserActions.js_click(query.to_s)
     end
