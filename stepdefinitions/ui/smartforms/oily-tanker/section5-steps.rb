@@ -51,13 +51,13 @@ end
 
 And(/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step 'I sign on canvas with valid A/M rank for fsu'
+  step 'I sign on canvas with valid A/M rank'
   step 'I set time'
 end
 
 And(/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
-  step 'I sign on canvas with valid A/M rank for fsu'
+  step 'I sign on canvas with valid A/M rank'
   step 'I set time'
 end
 
@@ -91,7 +91,7 @@ end
 
 And(/^I sign on role with sponsor crew (.+) rank$/) do |_rank|
   on(Section5Page).sign_btn_role_elements.first.click
-  step "I sign on canvas with valid #{_rank} rank for fsu"
+  step "I sign on canvas with valid #{_rank} rank"
   step 'I set time'
 end
 

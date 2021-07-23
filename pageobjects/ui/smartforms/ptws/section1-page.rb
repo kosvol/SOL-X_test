@@ -18,7 +18,7 @@ class Section1Page < Section0Page
 
   @@maint_require_text = '//div[@id="1_6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
-  
+
   @@location_check_btn = "//span[contains(.,'%s')]"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
@@ -103,18 +103,18 @@ class Section1Page < Section0Page
     sleep 1
   end
 
-  ### Hack for fsu; zone setup differently
-  def fsu_select_location_of_work
-    sleep 1
-    zone_btn
-    begin
-      dd_list_value_elements[1].click
-    rescue
-      dd_list_value_elements[2].click
-    end
-    sleep 1
-  end
-  
+  # ### Hack for fsu; zone setup differently
+  # def fsu_select_location_of_work
+  #   sleep 1
+  #   zone_btn
+  #   begin
+  #     dd_list_value_elements[1].click
+  #   rescue
+  #     dd_list_value_elements[2].click
+  #   end
+  #   sleep 1
+  # end
+
   private
 
   def select_sea_and_wind_state
@@ -129,14 +129,14 @@ class Section1Page < Section0Page
     select_checkbox(@@condition_check_btn, 'Loaded')
     select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
-    zone_details_input_element.send_keys("Test Automation")
+    zone_details_input_element.send_keys('Test Automation')
     sleep 5
     BrowserActions.hide_keyboard
   end
 
   def select_checkbox(_input, _location)
     sleep 1
-    BrowserActions.js_click("#{_input % [_location]}")
+    BrowserActions.js_click(format(_input, _location).to_s)
   end
 
   def fill_text_area(_input, _text)

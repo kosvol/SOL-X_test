@@ -12,19 +12,19 @@ class SignaturePage < Section1Page
     sleep 1
     sign_for_gas
     sleep 1
-    select_location_of_work if zone_btn_element.text === "Select"
+    select_location_of_work if zone_btn_element.text === 'Select'
     sleep 2
     BrowserActions.poll_exists_and_click(done_btn_elements.first)
   end
 
-  def sign_and_done_fsu
-    sleep 1
-    sign_for_gas
-    sleep 1
-    fsu_select_location_of_work if zone_btn_element.text === "Select"
-    sleep 1
-    BrowserActions.poll_exists_and_click(done_btn_elements.first)
-  end
+  # def sign_and_done_fsu
+  #   sleep 1
+  #   sign_for_gas
+  #   sleep 1
+  #   fsu_select_location_of_work if zone_btn_element.text === "Select"
+  #   sleep 1
+  #   BrowserActions.poll_exists_and_click(done_btn_elements.first)
+  # end
 
   def sign_for_gas
     tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')

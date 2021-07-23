@@ -14,7 +14,7 @@ class WearablePage
       tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
       if _user != 'default'
         yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{EnvironmentSelector.get_current_env}"][_user]
+        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{$current_environment}"][_user]
       end
       JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
     end
@@ -110,10 +110,10 @@ class WearablePage
     def get_one_wearable_id
       tmp = @@list_of_wearables.sample
       begin
-        (@@wearableid != tmp.to_s) ? set_wearable_id(tmp) : get_one_wearable_id
-      rescue
+        @@wearableid != tmp.to_s ? set_wearable_id(tmp) : get_one_wearable_id
+      rescue StandardError
         p(@@list_of_wearables)
-        p "Empty wearables array"
+        p 'Empty wearables array'
       end
     end
 
@@ -153,6 +153,7 @@ class WearablePage
       @@tmp_list = []
       ServiceUtil.get_response_body['data']['beacons'].each do |list|
         next if list['location']['zone'].nil?
+
         @@tmp_list << [list['_id'], list['location']['zone']['name'], list['mac']]
       end
       @@tmp_list

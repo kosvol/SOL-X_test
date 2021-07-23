@@ -34,13 +34,13 @@ Feature: SmartFormsPermission
       | A C/O |
       | 2/O   |
       | A 2/O |
+      | 3/O   |
+      | A 3/O |
       | C/E   |
       | A C/E |
       | 2/E   |
       | A 2/E |
       | ETO   |
-      | 3/O   |
-      | A 3/O |
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
