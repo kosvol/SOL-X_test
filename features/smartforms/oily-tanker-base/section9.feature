@@ -46,6 +46,7 @@ Feature: Section9
       | permit_types                         | permit_payload                |
       | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
+  @test
   Scenario Outline: Verify non Master will not see terminate and update button for oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
@@ -56,17 +57,17 @@ Feature: Section9
     Then I should not see terminate permit to work and request update buttons
 
     Examples:
-      | rank                      | pin  | permit_types                         | permit_payload                |
-      # | Addtional Master | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 3/E                       | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 3/E                     | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 4/E                       | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 4/E                     | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Chief Engineer  | 5718 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | ETO | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | rank  | pin  | permit_types                         | permit_payload                |
+      # # | A/M | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | 3/E   | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | A 3/E | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | 4/E   | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | A 4/E | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # ## | Additional Chief Engineer  | 5718 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  # | ETO   | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
   Scenario Outline: Verify non Master will not see approve and request update button for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state

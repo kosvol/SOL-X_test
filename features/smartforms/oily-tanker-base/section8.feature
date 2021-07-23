@@ -179,7 +179,7 @@ Feature: Section8
     Examples:
       | permit_types       | permit_payload                | rank | pin  |
       | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
-  # | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
+  # | underwater   | submit_underwater_simultaneous | C/O | 8383 |
 
   Scenario Outline: Verify EIC normalization displayed when EIC is Yes during permit creation for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -190,9 +190,9 @@ Feature: Section8
     Then I should see EIC normalize extra questions
 
     Examples:
-      | permit_types | permit_payload                 | rank          | pin  |
+      | permit_types | permit_payload                 | rank | pin  |
       # | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
-      | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
+      | underwater   | submit_underwater_simultaneous | C/O  | 8383 |
 
   Scenario Outline: Verify user should see two additional question when terminating Work on Pressure Pipeline permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
@@ -261,10 +261,10 @@ Feature: Section8
     Then I should not see EIC normalize extra questions
 
     Examples:
-      | permit_types | permit_payload | rank                     | pin  |
+      | permit_types | permit_payload | rank           | pin  |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 9015 |
-      ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Officer | 8383 |
-      | Hot Work     | submit_hotwork | Additional Chief Officer | 2761 |
+      ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | C/O | 8383 |
+      | Hot Work     | submit_hotwork | Additional C/O | 2761 |
   ## | Hot Work                           | submit_hotwork               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
   ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
@@ -283,8 +283,8 @@ Feature: Section8
     Examples:
       | permit_types                     | permit_payload               | rank | pin  |
       | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M  | 9015 |
-# | Enclosed Spaces Entry            | submit_enclose_space_entry   | Chief Officer | 8383 |
-## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Chief Officer   | 2761 |
+# | Enclosed Spaces Entry            | submit_enclose_space_entry   | C/O | 8383 |
+## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional C/O   | 2761 |
 ## | Hot Work                           | submit_hotwork               | Second Officer             | 6268 |
 ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
 ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
