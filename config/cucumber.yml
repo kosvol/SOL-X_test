@@ -30,7 +30,7 @@ android_chrome_tablet_auto_fsu_local: --profile dir --profile html --profile xml
 
 # ### Jenkins SIT COT ###
 # android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
 # android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### Jenkins AUTO COT ###  ###------->>>>>> TO UPDATE TO auto-cot
