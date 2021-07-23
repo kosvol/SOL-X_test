@@ -19,7 +19,7 @@ Then(/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question2_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8.yml')
+  @@section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |_elem|
     does_include(@@section8_questions['pipe'], _elem.text)
   end
@@ -38,7 +38,7 @@ Then(/^I should see extra section8 questions for critical maintenance permit$/) 
   to_exists(on(Section8Page).normalization_crit_question3_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8.yml')
+  @@section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |_elem|
     does_include(@@section8_questions['critical'], _elem.text)
   end
@@ -56,7 +56,7 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
   to_exists(on(Section8Page).normalization_elec_question2_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8.yml')
+  @@section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |_elem|
     does_include(@@section8_questions['electrical'], _elem.text)
   end
