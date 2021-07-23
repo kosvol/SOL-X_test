@@ -192,7 +192,6 @@ Feature: PendingUpdate
     And I click on view EIC certification button
     Then I should see request update comment box
 
-  # @test
   # Scenario: Verify comment box displayed in EIC Certificate when requesting the form for updates
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit

@@ -172,24 +172,24 @@ Feature: CreatedPermitToWork
     Then I should see gas reading section enabled
 
     Examples:
-      | rank                       | level_one_permit      | level_two_permit      |
-      | Master                     | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A/M                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | C/O                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A C/O                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 2/O                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 2/O                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/O                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/O                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | Chief Engineer             | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | Additional Chief Engineer  | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | Second Engineer            | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | Additional Second Engineer | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/E                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/E                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 4/E                        | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 4/E                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | CGENG                      | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | rank  | level_one_permit      | level_two_permit      |
+      | MAS   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A/M   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | C/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A C/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 2/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 2/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | C/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A C/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 2/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 2/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 3/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 3/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | 4/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | A 4/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | CGENG | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
@@ -208,20 +208,20 @@ Feature: CreatedPermitToWork
     And I should see eic selection fields enabled
 
     Examples:
-      | rank                       |
-      | 3/O                        |
-      | A 3/O                      |
-      | 3/E                        |
-      | A 3/E                      |
-      | 4/E                        |
-      | A 4/E                      |
-      | Addtional Master           |
-      | Chief Officer              |
-      | Additional Chief Officer   |
-      | Second Officer             |
-      | Additional Second Officer  |
-      | Chief Engineer             |
-      | Additional Chief Engineer  |
-      | Second Engineer            |
-      | Additional Second Engineer |
-      | Electro Technical Officer  |
+      | rank  |
+      | 3/O   |
+      | A 3/O |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | ETO   |
