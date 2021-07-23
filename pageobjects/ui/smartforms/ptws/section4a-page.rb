@@ -134,20 +134,20 @@ class Section4APage < Section3DPage
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
     if rank_and_name_stamp_elements.first.text.size > 9
-      @tmp_rank_name = rank_and_name_stamp_elements.first.text
+      @@tmp_rank_name = rank_and_name_stamp_elements.first.text
     elsif rank_and_name_stamp_elements.first.text.size <= 9
-      @tmp_rank_name = rank_and_name_stamp_elements.last.text
+      @@tmp_rank_name = rank_and_name_stamp_elements.last.text
     end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
-    ((@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time.to_s))
+    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time.to_s))
   end
 
   def is_signed_user_details_plus_1_min?(_entered_pin)
     # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    ((@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
+    ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
 
   def is_signed_user_details_integration?(_entered_pin)
