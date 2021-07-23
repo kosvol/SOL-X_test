@@ -3,7 +3,7 @@
 # mac_chrome_dashboard_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
 # mac_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 # mac_chrome_dashboard_dev: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=dev DEVICE=dashboard
-# mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
+mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_sit_dashboard_incognito_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_sit_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
