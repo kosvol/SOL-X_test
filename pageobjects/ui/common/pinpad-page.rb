@@ -11,9 +11,10 @@ class PinPadPage
   def enter_pin(pin)
     format('%04d', pin).to_s.split('').each do |num|
       index = num.to_i === 0 ? 10 : num
-      query = "//ol[@class='pin-entry']/li[%s]/button"  
-      query = query % [index.to_s]
-      BrowserActions.js_click("#{query}")
+      p "index >> #{index}"
+      query = "//ol[@class='pin-entry']/li[%s]/button"
+      query = format(query, index.to_s)
+      BrowserActions.js_click(query.to_s)
     end
   end
 
