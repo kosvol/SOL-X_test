@@ -22,7 +22,7 @@ Feature: LNGClosedPermit
         And I click on active filter
         Then I open rol permit with rank C/E
         And I submit permit for termination
-        And I sign on canvas with valid C/E rank
+        And i sign with valid C/E rank
         And I click on back to home
         And I click on pending withdrawal filter
         And I terminate the permit with C/E rank via Pending Withdrawal
@@ -46,7 +46,7 @@ Feature: LNGClosedPermit
         And I click on active filter
         And I open rol permit with rank C/E
         And I submit permit for termination
-        And I sign on canvas with valid C/E rank
+        And i sign with valid C/E rank
         And I click on back to home
         And I review termination permit with C/E rank
         Then I should see terminate permit to work and request update buttons for FSU
@@ -59,7 +59,7 @@ Feature: LNGClosedPermit
         And I click on Submit for Termination
         And I enter pin for rank A/M
         And I submit permit for termination
-        And I sign on canvas with valid A/M rank
+        And i sign with valid A/M rank
         And I click on back to home
         And I click on pending withdrawal filter
         And I terminate the permit with C/E rank via Pending Withdrawal
@@ -75,7 +75,7 @@ Feature: LNGClosedPermit
         And I click on Submit for Termination
         And I enter pin for rank A/M
         And I submit permit for termination
-        And I sign on canvas with valid A/M rank
+        And i sign with valid A/M rank
         And I click on back to home
         And I click on pending withdrawal filter
         And I request terminating permit to be updated with C/E rank
