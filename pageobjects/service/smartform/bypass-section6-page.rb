@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage < Section0Page
+class BypassPage < Section1Page
   include PageObject
 
   def trigger_pre_submission(_user, _condition)
@@ -596,7 +596,7 @@ class BypassPage < Section0Page
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     set_current_time
     reset_data_collector
-    @@created_permit_data = set_section1_filled_data
+    # @@created_permit_data = set_section1_filled_data
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active')
 
