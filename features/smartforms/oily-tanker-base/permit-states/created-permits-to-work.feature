@@ -72,7 +72,7 @@ Feature: CreatedPermitToWork
       # | C/E   |
       | A C/E |
 
-  @sol-6981
+  @sol-6981 @test
   Scenario Outline: Verify EIC certification signature component for competent person
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -96,12 +96,12 @@ Feature: CreatedPermitToWork
     And I should see Save EIC and Close button enabled
 
     Examples:
-      | rank  |
-      # | C/O   |
-      # | A C/O |
-      | 2/E   |
-      | A 2/E |
-      | ETO   |
+      | rank |
+      # # | C/O   |
+      # # | A C/O |
+      # | 2/E   |
+      # | A 2/E |
+      | ETO  |
 
   Scenario: Verify correct total list of created permit
     Given I launch sol-x portal without unlinking wearable
