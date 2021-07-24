@@ -183,11 +183,11 @@ Feature: Section4AChecklist
     Then I should see not authorize error message
 
     Examples:
-      | rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
-      | Master | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-      | D/C    | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      | rank | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
+      | MAS  | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+      | D/C  | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
       # | SAA    | 6445 | Enclosed Spaces Entry | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist  |
-      | BOS    | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
+      | BOS  | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
   # | 5/E    | 6322 | Working Aloft/Overside     | Working Aloft / Overside                                                | Working Aloft/Overside          |
   # | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
   # | ELC    | 9298 | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode      |
@@ -231,8 +231,8 @@ Feature: Section4AChecklist
     Then I should see not authorize error message
 
     Examples:
-      | rank   | pin  | level_one_permit               | level_two_permit      | checklist                                |
-      | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
+      | rank | pin  | level_one_permit               | level_two_permit      | checklist                                |
+      | MAS  | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
   # | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
