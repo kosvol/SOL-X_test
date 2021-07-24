@@ -35,7 +35,7 @@ Feature: Section7
   #   When I press next for 1 times
   #   Then I should see valid validity date and time
 
-  @sol-6553
+  @sol-6553 @test
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
