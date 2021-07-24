@@ -28,6 +28,7 @@ class SignaturePage < Section1Page
 
   def sign_for_gas
     tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
+    $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]').click
     $browser.action.click(tmp).perform
   end
 
