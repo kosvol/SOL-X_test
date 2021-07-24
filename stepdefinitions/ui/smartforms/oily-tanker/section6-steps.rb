@@ -51,7 +51,7 @@ Then(/^I submit permit for Master (.+)$/) do |_approval_or_review|
   end
   # data collector; will evolve
   # on(Section0Page).reset_data_collector
-  # @@created_permit_data = on(Section1Page).set_section1_filled_data
+  # @@created_permit_data = on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin)
 end
 
 Then(/^I submit smoke test permit$/) do

@@ -27,9 +27,9 @@ class Section1Page < Section0Page
     @@section1_data_collector
   end
 
-  def set_section1_filled_data(_entered_pin)
+  def set_section1_filled_data(_entered_pin, _create_or_submitted)
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    @@section1_data_collector << "Created By #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
+    @@section1_data_collector << "#{_create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
     sleep 1
     @@section1_data_collector << get_current_date_and_time.to_s
     Log.instance.info(@@section1_data_collector)
