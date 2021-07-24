@@ -12,7 +12,7 @@ Feature: PendingUpdate
     And I enter pin for rank A/M
     Then I should see section 8 editable
 
-  Scenario: Verify AGT can add gas reading via pending approval state
+  Scenario: Verify AGT CGENG can add gas reading via pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
