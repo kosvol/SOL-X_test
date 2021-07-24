@@ -18,13 +18,13 @@ Feature: PendingApprovalPermit
   Scenario: Section 4B sign button to be disabled while on Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
-    And I enter pin 9015
+    And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill a full enclosed workspace permit
     And I click on pending approval filter
     And I click on permit for master approval
-    And I enter pin 1311
+    And I enter pin for rank 4/E
     And I navigate to section 4b
     Then I should see sign button disabled
 

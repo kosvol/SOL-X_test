@@ -171,7 +171,7 @@ Feature: PendingUpdate
   Scenario: Comment is not saved for the EIC when requesting the form for updates
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -192,7 +192,7 @@ Feature: PendingUpdate
   # Scenario: Verify comment box displayed in EIC Certificate when requesting the form for updates
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin 8383
+  #   And I enter pin for rank C/O
   #   And I select Enclosed Spaces Entry permit
   #   And I select Enclosed Spaces Entry permit for level 2
   #   And I fill up section 1 with default value
@@ -216,7 +216,7 @@ Feature: PendingUpdate
   Scenario: Comment text box is missing at the top of the individual DRA screen when requesting for updates
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -237,7 +237,7 @@ Feature: PendingUpdate
   Scenario: Verify comment box display on all section after requesting for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 8383
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value

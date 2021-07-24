@@ -9,7 +9,7 @@ Feature: Section4AChecklist
   Scenario: Verify I should not see location of work in these checklist
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
@@ -51,7 +51,7 @@ Feature: Section4AChecklist
   Scenario: Verify checklist questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I navigate to section 4a
@@ -142,7 +142,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -173,7 +173,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -203,7 +203,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -220,7 +220,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify non checklist creator signature cannot signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -238,7 +238,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -261,7 +261,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration less than 2 hours

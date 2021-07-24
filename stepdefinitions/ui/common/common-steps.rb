@@ -52,19 +52,9 @@ end
 #   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
 # end
 
-### DEPRECATING SOON
-And(/^I wait for pinpad element to exists$/) do
-  p 'polling....'
-  sleep 2
-  # if on(PinPadPage).pin_pad_elements.size === 0
-  #   step 'I wait for pinpad element to exists'
-  # end
-end
-
-### DEPRECATING SOON
 And('I enter pin {int}') do |pin|
   CommonPage.set_entered_pin = pin
-  step 'I wait for pinpad element to exists'
+  sleep 1
   on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
   sleep 1
 end

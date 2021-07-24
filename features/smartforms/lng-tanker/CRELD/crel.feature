@@ -38,19 +38,19 @@ Feature: LNGCREL
     And I activate CRE form via service
     When I launch sol-x portal dashboard
     And I sleep for 5 seconds
-#    And I navigate to "SmartForms" screen for forms
-#    When I clear gas reader entries
-#    And I navigate to create new CRE
-#    And I enter pin for rank C/O
-#    And I fill up CRE. Duration 4. Delay to activate 2
-#    And I add only normal gas readings
-#    And I enter pin for rank A C/O
-#    And I dismiss gas reader dialog box
-#    And for cre I submit permit for A C/O Approval
-#    And I getting a permanent number from indexedDB
-#    Then I activate the current CRE form
-#    And I sleep for 180 seconds
-#    And I activate CRE form via service
+    #    And I navigate to "SmartForms" screen for forms
+    #    When I clear gas reader entries
+    #    And I navigate to create new CRE
+    #    And I enter pin for rank C/O
+    #    And I fill up CRE. Duration 4. Delay to activate 2
+    #    And I add only normal gas readings
+    #    And I enter pin for rank A C/O
+    #    And I dismiss gas reader dialog box
+    #    And for cre I submit permit for A C/O Approval
+    #    And I getting a permanent number from indexedDB
+    #    Then I activate the current CRE form
+    #    And I sleep for 180 seconds
+    #    And I activate CRE form via service
     And I open new dashboard page
     And I sleep for 5 seconds
     And I switch to first tab in browser
@@ -61,7 +61,7 @@ Feature: LNGCREL
     And I switch to last tab in browser
     Then I should see alert message
     And I click terminate new gas readings on dashboard page
-    And I enter pin 2761
+    And I enter pin for rank A C/O
     And I switch to first tab in browser
     Then I should see red background color
     And I should see Permit Terminated CRE status on screen

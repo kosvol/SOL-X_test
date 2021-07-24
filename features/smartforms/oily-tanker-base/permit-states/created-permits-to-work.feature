@@ -117,7 +117,7 @@ Feature: CreatedPermitToWork
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
-    And I enter pin 7551
+    And I enter pin for rank 5/E
     And I navigate to section 6
     Then I should see previous and not close buttons
 

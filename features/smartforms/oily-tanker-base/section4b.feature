@@ -8,7 +8,7 @@ Feature: Section4BEIC
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value
@@ -20,7 +20,7 @@ Feature: Section4BEIC
   Scenario: Verify data,time and EIC number is pre-populated
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Hot Work permit
     And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
     And I navigate to section 4a
@@ -167,7 +167,7 @@ Feature: Section4BEIC
   Scenario: Verify sub questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill up section 1 with default value

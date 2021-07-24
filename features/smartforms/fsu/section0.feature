@@ -10,7 +10,7 @@ Feature: LNGSmartFormsPermission
     Scenario: Verify ROL can be approved by CE
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin 8248
+        And I enter pin for rank C/E
         And I select Rigging of Gangway & Pilot Ladder permit
         And I select Rigging of Gangway & Pilot Ladder permit for level 2
         When I press next for 1 times
@@ -26,7 +26,7 @@ Feature: LNGSmartFormsPermission
     Scenario: Verify CE can request for update for ROL
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
-        And I enter pin 8248
+        And I enter pin for rank C/E
         And I select Rigging of Gangway & Pilot Ladder permit
         And I select Rigging of Gangway & Pilot Ladder permit for level 2
         And I press next for 1 times

@@ -10,7 +10,7 @@ Feature: LNGSmartFormsPermission
     Scenario: EIC certification section 4b competent person label change to CO 2E
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin 2523
+        And I enter pin for rank 2/E
         And I select Enclosed Spaces Entry permit
         And I select Enclosed Spaces Entry permit for level 2
         And I navigate to section 4b
@@ -22,7 +22,7 @@ Feature: LNGSmartFormsPermission
     Scenario Outline: EIC certification section 4b issuing authority to add Master
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin 8248
+        And I enter pin for rank C/E
         And I select Enclosed Spaces Entry permit
         And I select Enclosed Spaces Entry permit for level 2
         And I navigate to section 4b
