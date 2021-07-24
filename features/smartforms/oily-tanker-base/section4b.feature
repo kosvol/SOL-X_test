@@ -49,7 +49,7 @@ Feature: Section4BEIC
 
     Examples:
       | user          | zoneid                      | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                      |
-      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal

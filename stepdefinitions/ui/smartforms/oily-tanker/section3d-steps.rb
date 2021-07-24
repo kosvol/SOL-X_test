@@ -10,8 +10,6 @@ And(/^I fill up section 3d$/) do
 end
 
 And(/^I resign with valid (.*) rank$/) do |_rank|
-  # BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
-  # sleep 1
   step "I sign DRA section 3d with #{_rank} as valid rank"
 end
 

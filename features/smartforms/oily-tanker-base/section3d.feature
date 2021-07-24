@@ -17,7 +17,6 @@ Feature: Section3DDRA
     And I sign DRA section 3d with A/M as valid rank
     Then I should see location of work button enabled
     When I resign with valid C/O rank
-    # And I sign DRA section 3d with A/M as valid rank
     Then I should see location of work button enabled
 
     Examples:
