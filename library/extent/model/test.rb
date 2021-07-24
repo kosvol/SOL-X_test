@@ -96,7 +96,7 @@ module RelevantCodes
                   elsif @arr.last.include?('info')
                     'pass'
                   elsif @arr.last.include?('undefined')
-                    'fail'
+                    'undefined'
                   else
                     'fail'
                   end
