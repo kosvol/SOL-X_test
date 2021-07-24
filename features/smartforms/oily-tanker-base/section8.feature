@@ -217,7 +217,7 @@ Feature: Section8
 
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
-    And I launch sol-x portals
+    And I launch sol-x portal
     And I click on active filter
     And I review and withdraw permit with <terminator_rank> rank
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
@@ -228,8 +228,8 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank_name        | rank | user          | zoneid                      | mac               | location_stamp |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E Alex Pisarev | C/E  | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank_name   | rank | user          | zoneid                      | mac               | location_stamp |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E COT C/E | C/E  | AUTO_SOLX0002 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -245,10 +245,10 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types | permit_payload | rank_name     | rank | user          | zoneid                      | mac               | location_stamp |
+      | permit_types | permit_payload | rank_name   | rank | user          | zoneid                      | mac               | location_stamp |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station |
       # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
-      | Hot Work     | submit_hotwork | ETO Reza Ilmi | ETO  | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO COT ETO | ETO  | AUTO_SOLX0017 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
@@ -259,10 +259,10 @@ Feature: Section8
     Then I should not see EIC normalize extra questions
 
     Examples:
-      | permit_types | permit_payload | rank           | pin  |
+      | permit_types | permit_payload | rank  | pin  |
       # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | A/M                      | 9015 |
       ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | C/O | 8383 |
-      | Hot Work     | submit_hotwork | Additional C/O | 2761 |
+      | Hot Work     | submit_hotwork | A C/O | 2761 |
   ## | Hot Work                           | submit_hotwork               | Second Officer             | 6268 |
   ## | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Additional Second Officer  | 7865 |
   ## | Enclosed Spaces Entry              | submit_enclose_space_entry   | Chief Engineer             | 8248 |
