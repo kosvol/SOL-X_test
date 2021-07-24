@@ -28,8 +28,9 @@ class Section1Page < Section0Page
   end
 
   def set_section1_filled_data
-    # probably need to dynamic this created by
-    @@section1_data_collector << 'Created By A/M Atif Hayat at'
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
+    @@section1_data_collector << "Created By #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
     sleep 1
     @@section1_data_collector << get_current_date_and_time.to_s
     p ">>> #{@@section1_data_collector}"
@@ -164,5 +165,17 @@ class Section1Page < Section0Page
     end
     p ">>> #{drop_down_list_values}"
     drop_down_list_values
+  end
+
+  def get_user_details_by_pin(entered_pin)
+    tmp_payload = JSON.parse JsonUtil.read_json('get_user_detail_by_pin')
+    tmp_payload['variables']['pin'] = entered_pin
+    JsonUtil.create_request_file('mod_get_user_detail_by_pin', tmp_payload)
+    ServiceUtil.post_graph_ql('mod_get_user_detail_by_pin')
+    tmp_arr = []
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['rank']
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['firstName']
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['lastName']
+    tmp_arr
   end
 end

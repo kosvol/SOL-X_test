@@ -205,16 +205,4 @@ class Section4APage < Section3DPage
   def get_na_elements
     $browser.find_elements(:xpath, @@na_input)
   end
-
-  def get_user_details_by_pin(entered_pin)
-    tmp_payload = JSON.parse JsonUtil.read_json('get_user_detail_by_pin')
-    tmp_payload['variables']['pin'] = entered_pin
-    JsonUtil.create_request_file('mod_get_user_detail_by_pin', tmp_payload)
-    ServiceUtil.post_graph_ql('mod_get_user_detail_by_pin')
-    tmp_arr = []
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['rank']
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['firstName']
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['lastName']
-    tmp_arr
-  end
 end
