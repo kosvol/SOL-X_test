@@ -81,21 +81,21 @@ module RelevantCodes
         end
 
         p "Status array >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> #{@arr}"
-        @status = if @arr.include?('fatal')
+        @status = if @arr.last.include?('fatal')
                     'fatal'
-                  elsif @arr.include?('fail')
+                  elsif @arr.last.include?('fail')
                     'fail'
-                  elsif @arr.include?('error')
+                  elsif @arr.last.include?('error')
                     'error'
-                  elsif @arr.include?('warning')
+                  elsif @arr.last.include?('warning')
                     'warning'
-                  elsif @arr.include?('pass')
+                  elsif @arr.last.include?('pass')
                     'pass'
-                  elsif @arr.include?('skip')
+                  elsif @arr.last.include?('skip')
                     'skip'
-                  elsif @arr.include?('info')
+                  elsif @arr.last.include?('info')
                     'pass'
-                  elsif @arr.include?('undefined')
+                  elsif @arr.last.include?('undefined')
                     'fail'
                   else
                     'fail'
