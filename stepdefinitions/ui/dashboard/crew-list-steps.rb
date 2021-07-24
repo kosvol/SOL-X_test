@@ -47,12 +47,11 @@ end
 And(/^I enter a non-existent pin$/) do
   step 'I click on view pin button'
   step 'I enter pin 1234'
-  # on(PinPadPage).enter_pin(1234)
 end
 
 And(/^I enter a invalid master pin$/) do
   step 'I click on view pin button'
-  step 'And I enter pin for rank A/M'
+  step 'I enter pin for rank A/M'
 end
 
 And(/^I click on view pin button$/) do
