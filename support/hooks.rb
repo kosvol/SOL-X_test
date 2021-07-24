@@ -64,8 +64,9 @@ AfterStep do |scenario|
                       scenario, @browser)
     @step += 1
   else
-    $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
-                      "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
+    $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
+    # $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
+    #                   "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
   end
 rescue Exception => e
   $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
