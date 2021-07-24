@@ -144,7 +144,6 @@ Feature: Section5
       | rank | pin  |
       | MAS  | 1111 |
 
-  @test
   Scenario Outline: Verify crew can sign
     Given I launch sol-x portal
     And I navigate to create new permit
