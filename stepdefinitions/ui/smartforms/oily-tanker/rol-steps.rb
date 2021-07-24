@@ -9,7 +9,6 @@ And(/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms
   step 'I sign section with A/M as valid rank'
-  step 'I set time'
   step 'I should see signed details'
   step 'I press next for 1 times'
   sleep 1

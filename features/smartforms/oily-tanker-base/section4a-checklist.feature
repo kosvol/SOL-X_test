@@ -149,7 +149,6 @@ Feature: Section4AChecklist
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
     And I sign checklist with <rank> as valid rank
-    And I set time
     Then I should see signed details
 
     Examples:
@@ -212,7 +211,6 @@ Feature: Section4AChecklist
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
     And I sign checklist with <rank> as valid rank
-    And I set time
     Then I should see signed details
 
     Examples:

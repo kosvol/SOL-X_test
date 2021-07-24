@@ -14,10 +14,10 @@ Feature: Section3DDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign on canvas only with valid A/M rank
+    And I sign DRA section 3d with with A/M as valid rank
     Then I should see location of work button enabled
     When I resign with valid C/O rank
-    And I sign on canvas only with valid A/M rank
+    And I sign DRA section 3d with with A/M as valid rank
     Then I should see location of work button enabled
 
     Examples:
@@ -32,7 +32,7 @@ Feature: Section3DDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign on canvas only with valid A/M rank
+    And I sign DRA section 3d with with A/M as valid rank
     Then I should see location of work button enabled
 
     Examples:
@@ -46,7 +46,7 @@ Feature: Section3DDRA
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
-    And I sign on canvas only with valid A/M rank
+    And I sign DRA section 3d with with A/M as valid rank
     Then I should see done button disabled
 
   Scenario Outline: Verify location stamping on signature section 3d as RA
@@ -57,7 +57,7 @@ Feature: Section3DDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign DRA section 3d with 9015 as valid pin
+    And I sign DRA section 3d with A/M as valid rank
     Then I should see signed details
     And I should see location <location_stamp> stamp
 
@@ -102,7 +102,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
-    And I sign DRA section 3d with 8383 as valid pin
+    And I sign DRA section 3d with C/O as valid rank
     Then I should see signed details
     # And I should see location stamp pre-selected
 
@@ -118,7 +118,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3d
-    And I sign DRA section 3d with <non_ra_pin> as invalid pin
+    And I sign DRA section 3d with <non_ra_pin> as invalid rank
     Then I should see not authorize error message
 
     Examples:
@@ -139,7 +139,7 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 3d
-    And I sign DRA section 3d with 5574 as invalid pin
+    And I sign DRA section 3d with A 4/O as invalid rank
     Then I should see not authorize error message
 
     Examples:

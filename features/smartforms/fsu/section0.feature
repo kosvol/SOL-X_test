@@ -57,7 +57,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to section 2
         Then I should see correct approval details for maintenance duration less than 2 hours
         When I press next for 4 times
-        And I sign DRA section 3d with 9015 as valid pin
+        And I sign DRA section 3d with A/M as valid rank
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
@@ -90,7 +90,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to section 2
         Then I should see correct approval details for maintenance duration less than 2 hours
         When I press next for 4 times
-        And I sign DRA section 3d with 9015 as valid pin
+        And I sign DRA section 3d with A/M as valid rank
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times
@@ -123,7 +123,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to section 2
         Then I should see correct approval details for maintenance duration more than 2 hours
         When I press next for 4 times
-        And I sign DRA section 3d with 9015 as valid pin
+        And I sign DRA section 3d with A/M as valid rank
         When I press next for 1 times
         Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
         When I press next for 1 times

@@ -52,13 +52,6 @@ end
 #   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
 # end
 
-Then(/^I sign on canvas only with valid (.*) rank$/) do |_rank|
-  BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
-  step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
-  step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
-  on(SignaturePage).sign_for_gas
-end
-
 ### DEPRECATING SOON
 And(/^I wait for pinpad element to exists$/) do
   p 'polling....'
