@@ -4,6 +4,7 @@ Feature: Section3DDRA
   I want to ...
   So that ...
 
+  @test
   Scenario Outline: Verify wearable can be picked up consistently
     Given I clear wearable history and active users
     Given I launch sol-x portal
@@ -21,7 +22,7 @@ Feature: Section3DDRA
 
     Examples:
       | user          | zoneid                      | mac               | location_stamp |
-      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify location of work can be manual selected after pre-select via wearable
     Given I launch sol-x portal

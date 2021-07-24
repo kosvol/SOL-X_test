@@ -10,15 +10,14 @@ class Section3BPage < Section3APage
   text_field(:last_assessment, xpath: "//input[@id='lastAssessmentDra']")
   button(:work_side_inspected_by, xpath: "//button[@id='workInspectionBy']")
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
-  elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
-  elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')#"//div[starts-with(@class,'ComboBoxWithButtons__')]/div/ul/li")
+  elements(:radio_btn,
+           xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
+  elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')
 
-  def is_last_crew?(_exit)
-    return false if _exit === 10
-
-    BrowserActions.scroll_down
-    p "--- #{crew_list_elements.last.text}"
-    crew_list_elements.last.text != 'OLR Thaian Oliveira' ? is_last_crew?(_exit.to_i + 1) : (return true)
+  def is_last_crew?
+    # return false if _exit === 10
+    # BrowserActions.scroll_down
+    crew_list_elements.last.text == 'OLR COT OLR' # ? is_last_crew?(_exit.to_i + 1) : (return true)
   end
 
   def fill_section_3b
