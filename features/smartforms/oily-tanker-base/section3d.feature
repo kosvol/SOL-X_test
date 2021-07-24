@@ -17,7 +17,6 @@ Feature: Section3DDRA
     And I sign on canvas only with valid A/M rank
     Then I should see location of work button enabled
     When I resign with valid C/O rank
-    And I sign on canvas only with valid A/M rank
     Then I should see location of work button enabled
 
     Examples:
