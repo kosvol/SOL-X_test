@@ -73,29 +73,22 @@ Then(/^I should not see permit duration selectable$/) do
 end
 
 And(/^I submit permit for termination$/) do
-  on(Section0Page).submit_termination_btn_elements.first.click
+  on(Section8Page).submit_termination_btn_elements.first.click
 end
 
 When(/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
   step 'I open rol permit with rank A/M'
-  # step 'I press next for 2 times'
-  on(Section0Page).submit_termination_btn_elements.first.click
-  step 'i sign with valid A/M rank'
+  on(Section8Page).submit_termination_btn_elements.first.click
+  step 'I sign with valid A/M rank'
   sleep 1
   step 'I click on back to home'
 end
 
-# And (/^I review termination permit with (.+) rank$/) do |_rank|
-#   step 'I click on pending withdrawal filter'
-#   on(Section0Page).review_and_terminate_btn_elements.first.click
-#   step "I enter pin for rank #{_rank}"
-# end
-
 When(/^I put the permit to pending termination update status$/) do
   step 'I click on pending withdrawal filter'
-  on(Section0Page).review_and_terminate_btn_elements.first.click
+  on(PendingWithdrawalPage).review_n_withdraw_elements.first.click
   step 'I enter pin for rank MAS'
   on(ROLPage).request_update_btn
   sleep 2

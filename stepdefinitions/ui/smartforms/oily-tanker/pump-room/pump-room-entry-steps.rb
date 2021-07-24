@@ -119,7 +119,7 @@ And(/^I activate the current (PRE|CRE) form$/) do |_permit_type|
   step "I open the current #{_permit_type} with status Pending approval. Rank: C/O"
   step format('I take note of start and end validity time for %s', _permit_type.to_s)
   step 'I press the "Approve for Activation" button'
-  step 'i sign with valid C/O rank'
+  step 'I sign with valid C/O rank'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'
@@ -154,7 +154,7 @@ Then(/^I terminate the PRE$/) do
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
-  step 'i sign with valid C/O rank'
+  step 'I sign with valid C/O rank'
   step "I should see the text 'Permit Has Been Closed'"
   sleep 1
   step 'I press the "Back to Home" button'

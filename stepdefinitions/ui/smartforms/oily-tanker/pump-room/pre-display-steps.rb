@@ -88,7 +88,7 @@ And(/^I take note of PRE permit creator name and activate the the current PRE fo
   # p "PRE Creator>> #{@preCreatorName}"
   sleep 1
   step 'I press the "Approve for Activation" button'
-  step 'i sign with valid C/O rank'
+  step 'I sign with valid C/O rank'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
   sleep 1
   step 'I press the "Back to Home" button'

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 And(/^I request terminating permit to be updated with (.*) rank$/) do |_rank|
-  BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
+  BrowserActions.poll_exists_and_click(on(PendingWithdrawalPage).review_n_withdraw_elements.first)
   step "I enter pin for rank #{_rank}"
 end
 
 And(/^I terminate the permit with (.*) rank via Pending Withdrawal$/) do |_rank|
-  BrowserActions.poll_exists_and_click(on(CommonFormsPage).review_and_terminate_btn_elements.first)
+  BrowserActions.poll_exists_and_click(on(PendingWithdrawalPage).review_n_withdraw_elements.first)
   step "I enter pin for rank #{_rank}"
   on(Section9Page).submit_permit_termination_btn
-  step "i sign with valid #{_rank} rank"
+  step "I sign with valid #{_rank} rank"
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).back_to_home_btn_element)
   sleep 2
   step 'I set permit id'

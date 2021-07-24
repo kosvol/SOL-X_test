@@ -1,24 +1,21 @@
-require "liquid"
+require 'liquid'
 
-require_relative "log"
+require_relative 'log'
 # require_relative 'test_attribute'
-require_relative "author"
-require_relative "category"
+require_relative 'author'
+require_relative 'category'
 
 module RelevantCodes
   module Model
     class Test < Liquid::Drop
-      attr_reader :name, :description
-      attr_reader :status
-      attr_reader :get_start_time, :get_end_time, :get_run_duration
-      attr_reader :logs, :children
-      attr_reader :authors, :categories
+      attr_reader :name, :description, :status, :get_start_time, :get_end_time, :get_run_duration, :logs, :children,
+                  :authors, :categories
 
       attr_writer :is_child
 
       def initialize(name, description)
         @name = name.strip
-        @description = description.nil? || description == "" ? "" : description.strip
+        @description = description.nil? || description == '' ? '' : description.strip
 
         @child_node = false
         @has_ended = false
@@ -41,9 +38,7 @@ module RelevantCodes
       end
 
       def append_desc(sce_name)
-        unless @name.nil? || sce_name.nil?
-          @name.gsub!(/\)/, sce_name) if @name.include? ")"
-        end
+        @name.gsub!(/\)/, sce_name) if !(@name.nil? || sce_name.nil?) && (@name.include? ')')
       end
 
       def get_run_duration
@@ -86,25 +81,25 @@ module RelevantCodes
         end
 
         p "Status array >>> #{@arr}"
-        if @arr.include?("fatal")
-          @status = "fatal"
-        elsif @arr.include?("fail")
-          @status = "fail"
-        elsif @arr.include?("error")
-          @status = "error"
-        elsif @arr.include?("warning")
-          @status = "warning"
-        elsif @arr.include?("pass")
-          @status = "pass"
-        elsif @arr.include?("skip")
-          @status = "skip"
-        elsif @arr.include?("info")
-          @status = "pass"
-        elsif @arr.include?("undefined")
-          @status = "undefined"
-        else
-          @status = "fail"
-        end
+        @status = if @arr.include?('fatal')
+                    'fatal'
+                  elsif @arr.include?('fail')
+                    'fail'
+                  elsif @arr.include?('error')
+                    'error'
+                  elsif @arr.include?('warning')
+                    'warning'
+                  elsif @arr.include?('pass')
+                    'pass'
+                  elsif @arr.include?('skip')
+                    'skip'
+                  elsif @arr.include?('info')
+                    'pass'
+                  elsif @arr.include?('undefined')
+                    'fail'
+                  else
+                    'fail'
+                  end
       end
     end
   end

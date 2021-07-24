@@ -82,7 +82,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I submit for terminationpermit with A/M rank
+    And I review and withdraw permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -105,7 +105,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I submit for terminationpermit with A/M rank
+    And I review and withdraw permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -171,7 +171,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I submit for terminationpermit with A/M rank
+    And I review and withdraw permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -201,7 +201,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I submit for terminationpermit with A/M rank
+    And I review and withdraw permit with A/M rank
     Then I should see section 8 screen
 
     Examples:
@@ -270,21 +270,21 @@ Feature: ActivePermit
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I submit for terminationpermit with 5/E rank
+    And I review and withdraw permit with 5/E rank
     Then I should see previous and close buttons
 
   Scenario: Verify section 8 Competent Person sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I submit for terminationpermit with 5/E rank
+    And I review and withdraw permit with 5/E rank
     Then I should not see competent and issuing person sign button exists
 
   Scenario: Verify section 8 Issuing Authority sign button is disable for read only user
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I submit for terminationpermit with PMAN rank
+    And I review and withdraw permit with PMAN rank
     Then I should not see competent and issuing person sign button exists
 
   Scenario: Verify maintenance permit issue date is display

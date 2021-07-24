@@ -200,7 +200,7 @@ Feature: LNGCRE
     And I take note of start and end validity time for CRE
     And I check "Responsible Officer Signature" is present
     When I press the "Approve for Activation" button
-    And i sign with valid C/O rank
+    And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds
@@ -220,7 +220,7 @@ Feature: LNGCRE
     And I open the current CRE with status Pending approval. Rank: C/O
     And I take note of start and end validity time for CRE
     When I press the "Approve for Activation" button
-    And i sign with valid C/O rank
+    And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds
@@ -244,7 +244,7 @@ Feature: LNGCRE
     And I open the current CRE with status Pending approval. Rank: C/O
     And I take note of start and end validity time for CRE
     When I press the "Approve for Activation" button
-    And i sign with valid C/O rank
+    And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds

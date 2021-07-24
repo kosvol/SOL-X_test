@@ -93,7 +93,7 @@ Feature: RiggingOfLadder
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
     When I put the permit to termination state
-    And I review termination permit with MAS rank
+    And I withdraw permit with MAS rank
     Then I should not see extra previous and close button
 
     Examples:
@@ -120,7 +120,7 @@ Feature: RiggingOfLadder
     Then I open rol permit with rank <rank>
     Then I should not see permit duration selectable
     When I put the permit to termination state
-    And I review termination permit with <rank> rank
+    And I withdraw permit with <rank> rank
     And I press previous for 1 times
     Then I should not see permit duration selectable
     When I click on back arrow
@@ -191,7 +191,7 @@ Feature: RiggingOfLadder
     And I click on active filter
     Then I open rol permit with rank A/M
     And I submit permit for termination
-    And i sign with valid A/M rank
+    And I sign with valid A/M rank
     And I click on back to home
-    And I review termination permit with 5/E rank
+    And I withdraw permit with 5/E rank
     Then I should see previous and close buttons

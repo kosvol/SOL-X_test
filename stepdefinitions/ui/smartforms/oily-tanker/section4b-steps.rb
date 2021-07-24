@@ -61,7 +61,7 @@ end
 Then(/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do |_condition, _rank|
   on(Section4BPage).sign_eic_or_issuer(_condition)
   if _condition === 'issuing authority' || _condition === 'competent person'
-    step "i sign with valid #{_rank} rank"
+    step "I sign with valid #{_rank} rank"
   elsif _condition === 'non issuing authority' || _condition === 'non competent person'
     step "I enter pin for rank #{_rank}"
   end

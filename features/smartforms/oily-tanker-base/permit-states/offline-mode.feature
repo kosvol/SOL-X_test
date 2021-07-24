@@ -16,7 +16,7 @@ Feature: Offline Mode
     Given I submit permit submit_work_on_pressure_line via service with 9015 user and set to active state with EIC not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I submit for terminationpermit with A/M rank
+    And I review and withdraw permit with A/M rank
     And I turn off wifi
     Then I should see wifi inconsistent popup display for section 8
     And I turn on wifi

@@ -9,10 +9,9 @@ Feature: Section3BDRA
     When I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I click on Submit for Termination
-    And I enter pin for rank A/M
+    And I review and withdraw permit with A/M rank
     And I submit permit for termination
-    And i sign with valid A/M rank
+    And I sign with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit with MAS rank via Pending Withdrawal

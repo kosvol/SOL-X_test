@@ -8,10 +8,6 @@ Then(/^I should see method description (.+) populated$/) do |method_desc|
   is_equal(on(Section3BPage).method_detail_elements.first.text, method_desc)
 end
 
-And(/^I click on Submit for Termination$/) do
-  on(ActiveStatePage).terminate_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-end
-
 Then(/^I should see dra number and last assessment date populated$/) do
   p "permit id: #{CommonPage.get_dra_permit_id}"
   is_equal(on(Section3BPage).last_assessment, CommonPage.get_dra_permit_id)

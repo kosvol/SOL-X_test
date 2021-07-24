@@ -131,15 +131,14 @@ end
 And(/^I sign EIC section 8 with RA (.+) rank$/) do |_rank|
   on(Section3APage).scroll_multiple_times(4)
   on(Section8Page).submit_termination_btn_elements.first.click
-  step "i sign with valid #{_rank} rank"
+  step "I sign with valid #{_rank} rank"
   sleep 2
   step 'I click on back to home'
 end
 
 And(/^I manually put the permit to pending termination state$/) do
   sleep 1
-  step 'I click on Submit for Termination'
-  on(PinPadPage).enter_pin('9015')
+  step 'I review and withdraw permit with A/M rank'
   sleep 1
   on(Section8Page).task_status_completed_element.click
   step 'I sign EIC section 8 with RA A/M rank'

@@ -61,8 +61,10 @@ And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, _rank|
   when 'view'
     @@issue_time_date = on(CreatedPermitToWorkPage).issued_date_time_elements[permit_id].text
     on(PendingStatePage).view_btn_elements[permit_id].click
-  when 'submit for termination'
-    step 'I click on Submit for Termination'
+  when 'review and withdraw'
+    on(ActiveStatePage).terminate_permit_btn_elements[permit_id].click
+  when 'withdraw'
+    on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
   end
   step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
