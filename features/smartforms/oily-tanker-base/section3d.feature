@@ -14,9 +14,10 @@ Feature: Section3DDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign DRA section 3d with A/M as valid rank
+    And I sign on canvas only with valid A/M rank
     Then I should see location of work button enabled
     When I resign with valid C/O rank
+    And I sign on canvas only with valid A/M rank
     Then I should see location of work button enabled
 
     Examples:
@@ -31,12 +32,12 @@ Feature: Section3DDRA
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign DRA section 3d with A/M as valid rank
+    And I sign on canvas only with valid A/M rank
     Then I should see location of work button enabled
 
     Examples:
       | user          | zoneid                      | mac               | location_stamp |
-      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario: Verify done button is disabled when location of work not filled
     Given I launch sol-x portal
@@ -45,7 +46,7 @@ Feature: Section3DDRA
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
-    And I sign DRA section 3d with A/M as valid rank
+    And I sign on canvas only with valid A/M rank
     Then I should see done button disabled
 
   Scenario Outline: Verify location stamping on signature section 3d as RA
@@ -62,7 +63,7 @@ Feature: Section3DDRA
 
     Examples:
       | user          | zoneid                      | mac               | location_stamp |
-      | AUTO_SOLX0012 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
+      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
   Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable

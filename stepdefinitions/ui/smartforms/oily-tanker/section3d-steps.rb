@@ -10,13 +10,15 @@ And(/^I fill up section 3d$/) do
 end
 
 And(/^I resign with valid (.*) rank$/) do |_rank|
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
+  sleep 1
   step "I sign DRA section 3d with #{_rank} as valid rank"
 end
 
 And(/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) rank$/) do |_page, _rank, _condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
-  step "I enter pin for rank #{_rank}"
-  on(SignaturePage).sign_and_done if _condition == 'valid'
+  step "I enter pin for rank #{_rank}" if _condition == 'invalid'
+  step "I sign on canvas with valid #{_rank} rank" if _condition === 'valid'
   step 'I set time'
 end
