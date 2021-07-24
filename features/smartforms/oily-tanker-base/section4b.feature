@@ -67,9 +67,9 @@ Feature: Section4BEIC
 
     Examples:
       | user          | pin | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0004 | C/O | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0013 | 2/E | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0017 | ETO | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0011 | C/O | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0004 | 2/E | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0021 | ETO | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
