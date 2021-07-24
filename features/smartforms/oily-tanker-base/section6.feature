@@ -70,7 +70,7 @@ Feature: Section6
     And I add all gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    Then I will see popup dialog with By A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas
 
@@ -123,23 +123,23 @@ Feature: Section6
     And I should see submit button enabled
 
     Examples:
-      | rank  | pin  | rank_name               |
-      | MAS   | 1111 | By MAS Daniel Alcantara |
+      | rank  | pin  | rank_name          |
+      | MAS   | 1111 | By MAS COT MAS     |
       # | Additional Master          | 9015 | By A/M Atif Hayat       |
       # | Chief Officer              | 8383 | By C/O Alister Leong    |
       # | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh      |
-      | 2/O   | 6268 | By 2/O Paul Keng Teoh   |
+      | 2/O   | 6268 | By 2/O COT 2/O     |
       # | Additional Second Officer  | 7865 | By A 2/O Qasim Khan     |
       # | Third Officer              | 0159 | By 3/O Tim Kinzer       |
-      | A 3/O | 2674 | By A 3/O Aakash Seth    |
+      | A 3/O | 2674 | By A 3/O COT A 3/O |
       # | Chief Engineer             | 8248 | By C/E Alex Pisarev     |
-      | A C/E | 5718 | By A C/E A C/E Xiaowei  |
+      | A C/E | 5718 | By A C/E COT A C/E |
       # | Second Engineer            | 2523 | By 2/E Poon Choryi      |
-      | A 2/E | 3030 | By A 2/E Hyman Huang    |
+      | A 2/E | 3030 | By A 2/E COT A 2/E |
       # | Third Engineer             | 4685 | By 3/E Cs Ow            |
-      | A 3/E | 6727 | By A 3/E James Pike     |
-      | A 4/E | 1311 | By 4/E Tori Kuncoro     |
-      | CGENG | 1311 | By 4/E Tori Kuncoro     |
+      | A 3/E | 6727 | By A 3/E COT A 3/E |
+      | A 4/E | 1311 | By 4/E COT 4/E     |
+      | CGENG | 1311 | By CGENG COT CGENG |
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
@@ -152,13 +152,13 @@ Feature: Section6
     And I add all gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    Then I will see popup dialog with By A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas
     And I add only normal gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    Then I will see popup dialog with By A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display without toxic gas
 

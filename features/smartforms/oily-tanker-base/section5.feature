@@ -114,19 +114,19 @@ Feature: Section5
     And I should see supervise by <supervized> detail and Test Automation Company detail
 
     Examples:
-      | rank  | pin  | supervized          |
-      | C/O   | 8383 | C/O Alister Leong   |
-      | A C/O | 2761 | A C/O Nigel Koh     |
-      | 2/O   | 6268 | 2/O Paul Keng Teoh  |
-      | A 2/O | 7865 | A 2/O Qasim Khan    |
-      | 3/O   | 0159 | 3/O Tim Kinzer      |
-      | C/E   | 8248 | C/E Alex Pisarev    |
-      | A C/E | 5718 | A C/E A C/E Xiaowei |
-      | 2/E   | 2523 | 2/E Poon Choryi     |
-      | A 2/E | 3030 | A 2/E Hyman Huang   |
-      | 3/E   | 4685 | 3/E Cs Ow           |
-      | A 3/E | 6727 | A 3/E James Pike    |
-      | 4/E   | 1311 | 4/E Tori Kuncoro    |
+      | rank  | pin  | supervized      |
+      | C/O   | 8383 | C/O COT C/O     |
+      | A C/O | 2761 | A C/O COT A C/O |
+      | 2/O   | 6268 | 2/O COT 2/O     |
+      | A 2/O | 7865 | A 2/O COT A 2/O |
+      | 3/O   | 0159 | 3/O COT 3/O     |
+      | C/E   | 8248 | C/E COT C/E     |
+      | A C/E | 5718 | A C/E COT A C/E |
+      | 2/E   | 2523 | 2/E COT 2/E     |
+      | A 2/E | 3030 | A 2/E COT A 2/E |
+      | 3/E   | 4685 | 3/E COT 3/E     |
+      | A 3/E | 6727 | A 3/E COT A 3/E |
+      | 4/E   | 1311 | 4/E COT 4/E     |
 
   Scenario Outline: Verify non sponsor crews cannot sign
     Given I launch sol-x portal
