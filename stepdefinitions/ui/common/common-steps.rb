@@ -39,11 +39,11 @@ And(/^I sign on canvas$/) do
   on(SignaturePage).sign_and_done
 end
 
-Then(/^I sign on canvas with (invalid|valid) (.*) rank$/) do |_condition, _rank|
-  step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
-  step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
-  step 'I sign on canvas' if _condition != 'invalid'
-end
+# Then(/^I sign on canvas with (invalid|valid) (.*) rank$/) do |_condition, _rank|
+#   step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
+#   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
+#   step 'I sign on canvas' if _condition != 'invalid'
+# end
 
 # ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 # Then(/^I sign on canvas with (invalid|valid) (.*) rank for fsu$/) do |_condition, _rank|
