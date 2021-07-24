@@ -39,7 +39,6 @@ Feature: Section4BEIC
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
-    # And I press next for 2 times
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC
     And I sign EIC section 4b with RA rank A/M
@@ -58,9 +57,6 @@ Feature: Section4BEIC
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
-    # And I uncheck the pre-selected checklist
-    # And I select the matching <checklist> checklist
-    # And I press next for 2 times
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC
     And I click on create EIC certification button

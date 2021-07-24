@@ -23,19 +23,21 @@ class SignaturePage < Section1Page
   #   sleep 1
   #   fsu_select_location_of_work if zone_btn_element.text === "Select"
   #   sleep 1
-  #   BrowserActions.poll_exists_and_click(done_btn_elements.first)
+  # BrowserActions.poll_exists_and_click(done_btn_elements.first)
   # end
-
-  def sign_for_gas
-    tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
-    $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]').click
-    $browser.action.click(tmp).perform
-  end
 
   def is_signature_pad?
     signature_element
     true
   rescue StandardError
     false
+  end
+
+  private
+
+  def sign_for_gas
+    tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
+    $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]').click
+    $browser.action.click(tmp).perform
   end
 end

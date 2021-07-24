@@ -17,6 +17,6 @@ And(/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) ran
   sleep 1
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
   step "I enter pin for rank #{_rank}"
-  on(SignaturePage).sign_for_gas if _condition === 'valid'
+  on(SignaturePage).sign_and_done if _condition == 'valid'
   step 'I set time'
 end
