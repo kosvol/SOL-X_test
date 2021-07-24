@@ -131,7 +131,7 @@ end
 And(/^I sign EIC section 8 with RA (.+) rank$/) do |_rank|
   on(Section3APage).scroll_multiple_times(4)
   on(Section8Page).submit_termination_btn_elements.first.click
-  step "I sign on canvas with valid #{_rank} rank"
+  step "i sign with valid #{_rank} rank"
   sleep 2
   step 'I click on back to home'
 end

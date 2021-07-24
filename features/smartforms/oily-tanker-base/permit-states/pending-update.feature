@@ -71,7 +71,7 @@ Feature: PendingUpdate
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid A/M rank
+    And i sign with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I request terminating permit to be updated with MAS rank
@@ -88,7 +88,7 @@ Feature: PendingUpdate
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid A/M rank
+    And i sign with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I request terminating permit to be updated with MAS rank

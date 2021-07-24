@@ -11,7 +11,7 @@ Feature: ClosedPermit
     And I click on Submit for Termination
     And I enter pin for rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid A/M rank
+    And i sign with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit with MAS rank via Pending Withdrawal

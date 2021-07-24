@@ -191,7 +191,7 @@ Feature: RiggingOfLadder
     And I click on active filter
     Then I open rol permit with rank A/M
     And I submit permit for termination
-    And I sign on canvas with valid A/M rank
+    And i sign with valid A/M rank
     And I click on back to home
     And I review termination permit with 5/E rank
     Then I should see previous and close buttons

@@ -113,6 +113,6 @@ And(/^I reapprove the updated permit$/) do
   # step 'I enter pin 9015'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
-  step 'I sign on canvas with valid A/M rank'
+  step 'i sign with valid A/M rank'
   step 'I click on back to home'
 end
