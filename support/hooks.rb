@@ -38,7 +38,6 @@ end
 After do |scenario|
   begin
     if scenario.failed?
-      # @log.info("Exception: #{scenario.exception}")
       $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
                         "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
     elsif scenario.status.to_s == 'undefined'
