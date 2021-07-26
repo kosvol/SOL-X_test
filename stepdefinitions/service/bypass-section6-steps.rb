@@ -78,7 +78,7 @@ end
 
 And(/^I clear oa event table$/) do
   SmartFormDBPage.get_table_data('oa_db', 'get_oa_event')
-  SmartFormDBPage.delete_table_row('oa_db', 'delete_oa_event')
+  SmartFormDBPage.delete_oa_event_table_row('oa_db', 'delete_oa_event')
 end
 
 And(/^I clear oa forms table$/) do
