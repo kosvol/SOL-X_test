@@ -63,7 +63,7 @@ Feature: Section3DDRA
       | user          | zoneid                      | mac               | location_stamp |
       | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    |
 
-  Scenario Outline: Verify only RA can sign on section 3d for non maintenance permits
+  Scenario Outline: Verify only DRA signoff can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank <rank>
@@ -86,9 +86,10 @@ Feature: Section3DDRA
       | Helicopter Operations                                        | Helicopter Operation                               | A C/E |
       | Rotational Portable Power Tools                              | Use of Portable Power Tools                        | 2/E   |
       | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | A 2/E |
-      # | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Electro Technical Officer |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/O   |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/O |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/E   |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/E |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 4/E   |
       | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 4/E |
 
@@ -116,18 +117,18 @@ Feature: Section3DDRA
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3d
-    And I sign DRA section 3d with <non_ra_pin> as invalid rank
+    And I sign DRA section 3d with <non_ra_rank> as invalid rank
     Then I should see not authorize error message
 
     Examples:
-      | level_one_permit                      | level_two_permit                                                | rank  | non_ra_rank | non_ra_pin |
-      | Hot Work                              | Hot Work Level-2 in Designated Area                             | A/M   | 4/O         | 2637       |
-      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                     | A 2/O | D/C         | 2317       |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                           | C/E   | A 4/O       | 5574       |
-      | Helicopter Operations                 | Helicopter Operation                                            | A C/E | ETO         | 0856       |
-      | Cold Work                             | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | ETO   | BOS         | 1018       |
-  # | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | 2523 | 4/E         | 1311       |
-  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | 3030 | A 4/E       | 0703       |
+      | level_one_permit                      | level_two_permit                                                | rank  | non_ra_rank |
+      | Hot Work                              | Hot Work Level-2 in Designated Area                             | A/M   | 4/O         |
+      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                     | A 2/O | D/C         |
+      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                           | C/E   | A 4/O       |
+      | Helicopter Operations                 | Helicopter Operation                                            | A C/E | ETO         |
+      | Cold Work                             | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | ETO   | BOS         |
+  # | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | 2523 | 4/E         |
+  # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | 3030 | A 4/E       |
 
   Scenario Outline: Verify non RA cannot sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable

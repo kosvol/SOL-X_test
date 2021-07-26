@@ -1,4 +1,4 @@
-And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
+And (/^I enter (new|same|without toxic|different|random) entry log$/) do |_condition|
  # step 'I sleep for 10 seconds'
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
@@ -6,6 +6,9 @@ And (/^I enter (new|same|without toxic) entry log$/) do |_condition|
   on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if _condition === 'same'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if _condition === 'new'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if _condition === 'without toxic'
+  on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc') if _condition === 'different'
+  on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc') if _condition === 'random'
+
   step 'I sign for gas'
   step 'I enter pin for rank A/M'
 #  step 'I sleep for 1 seconds'

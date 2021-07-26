@@ -1,13 +1,11 @@
 sit-cot:
   c2_preview: "https://sit-cot.edge.dev.safevue.ai:8080"
   service: "https://sit-cot.edge.dev.safevue.ai:4000/"
-
-sit-fsu:
-  c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
-  service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
-
-auto-lng:
-auto-fsu:
+  switch_vessel: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/vessels/sit-vessel"
+  update_mas_pin: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
+  get_crew_members: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/forms/_find"
 
 sit:
   c2_preview: "https://sit-lng.edge.dev.safevue.ai:8080"
@@ -18,6 +16,18 @@ sit:
   get_crew_members: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/crew_members/_find"
   fauxton_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
   get_form_status: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/forms/_find"
+
+sit-fsu:
+  c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
+  service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
+  switch_vessel: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/vessels/sit-fsu-vessel"
+  update_mas_pin: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
+  get_crew_members: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/forms/_find"
+
+auto-lng:
+auto-fsu:
 
 auto:
   c2_preview: "https://auto-cot.edge.dev.safevue.ai:8080/"
@@ -39,7 +49,8 @@ fauxton:
   # base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
   base_auto_url: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
-  # base_dev_url: "https://admin:magellanx@dev.edge.dev.safevue.ai:5984"
+  base_sit_fsu_url: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984"
+  base_sit_cot_url: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984"
   delete_form: "/forms/_bulk_docs"
   delete_geofence: "/geofence/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"

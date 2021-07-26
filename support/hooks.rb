@@ -38,10 +38,16 @@ end
 After do |scenario|
   begin
     if scenario.failed?
+<<<<<<< HEAD
       # @log.info("Exception: #{scenario.exception}")
       $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
                         "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
     elsif %w[undefined error warning skip info fatal].include? scenario.status.to_s
+=======
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
+                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+    elsif scenario.status.to_s == 'undefined'
+>>>>>>> master
       $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}",
                         "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}", scenario.name.gsub(' ', '_'), @browser)
     end
@@ -63,10 +69,16 @@ AfterStep do |scenario|
     $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully",
                       scenario, @browser)
     @step += 1
+<<<<<<< HEAD
   elsif %w[undefined error warning skip info fatal].include? scenario.status.to_s
     $extent_test.info(:undefined, 'Exception raised from after step rescue', scenario, @browser)
     # $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
     #                   "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
+=======
+  elsif scenario.status.to_s == 'undefined'
+    $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}",
+                      "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
+>>>>>>> master
   end
 rescue Exception => e
   $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
