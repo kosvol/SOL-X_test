@@ -7,6 +7,11 @@ mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --
 mac_chrome_sit_dashboard_incognito_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_sit_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
+### Profile for clearing data on Jenkins Cloud ###
+mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
+mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 
 ### Gx's machine auto COT ###  ###------->>>>>> TO UPDATE TO auto-cot
 mac_chrome_tablet_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
@@ -14,19 +19,13 @@ mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --pr
 mac_chrome_auto_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet_chrome RESOLUTION=tablet_a
 
-### Profile for clearing data on Jenkins Cloud ###
-mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
-mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
-mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
-
-### Own's machine auto LNG ###
+### Gx's machine auto LNG ###
 mac_chrome_tablet_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
 mac_chrome_auto_tablet_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
 mac_chrome_auto_dashboard_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=dashboard
 android_chrome_tablet_auto_lng_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet_chrome RESOLUTION=tablet_a
 
-### Own's machine auto FSU ###
+### Gx's machine auto FSU ###
 mac_chrome_tablet_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet
 mac_chrome_auto_tablet_fsu_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet
 mac_chrome_auto_dashboard_fsu_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=dashboard
