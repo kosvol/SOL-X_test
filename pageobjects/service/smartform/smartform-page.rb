@@ -44,8 +44,6 @@ class SmartFormDBPage
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
 
-        next unless tmp_payload['docs'][0]['externalId'].include? $current_environment.upcase
-
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
