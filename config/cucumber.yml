@@ -14,9 +14,10 @@ mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --pr
 mac_chrome_auto_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet_chrome RESOLUTION=tablet_a
 
-### Own's machine auto COT ###
+### Own's machine auto LNG ###
 mac_chrome_tablet_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
 mac_chrome_auto_tablet_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
+mac_chrome_sit_tablet_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
 mac_chrome_auto_dashboard_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=dashboard
 android_chrome_tablet_auto_lng_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet_chrome RESOLUTION=tablet_a
 

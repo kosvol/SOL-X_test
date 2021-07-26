@@ -1,10 +1,20 @@
 sit-cot:
   c2_preview: "https://sit-cot.edge.dev.safevue.ai:8080"
   service: "https://sit-cot.edge.dev.safevue.ai:4000/"
+  switch_vessel: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/vessels/sit-vessel"
+  update_mas_pin: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
+  get_crew_members: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984/forms/_find"
 
 sit-fsu:
   c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
   service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
+  switch_vessel: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/vessels/sit-fsu-vessel"
+  update_mas_pin: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
+  get_crew_members: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/crew_members/_find"
+  fauxton_url: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984"
+  get_form_status: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/forms/_find"
 
 auto-lng:
 auto-fsu:
