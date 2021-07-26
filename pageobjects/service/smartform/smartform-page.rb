@@ -42,9 +42,9 @@ class SmartFormDBPage
     def delete_oa_event_table_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if form['id'].include? '_design'
+        # next if form['id'].include? '_design'
 
-        next unless form['formId'].include? $current_environment.upcase
+        next unless form['rows'].first['doc']['formId'].include? $current_environment.upcase
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
