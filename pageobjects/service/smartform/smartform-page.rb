@@ -26,10 +26,6 @@ class SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-
-        # unless (($current_environment.include? 'auto') && (form['id'].include? 'AUTO')) || (($current_environment.include? 'sit') && (form['id'].include? 'SIT'))
-        #   next
-        # end
         next unless form['id'].include? $current_environment.upcase
 
         tmp_payload['docs'][0]['_id'] = form['id']
@@ -42,11 +38,11 @@ class SmartFormDBPage
     def delete_oa_event_table_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if form['rows'][0]['id'].include? '_design'
-        next unless form['rows'][0]['doc']['formId'].include? $current_environment.upcase
+        next if form['id'].include? '_design'
+        next unless form['doc']['formId'].include? $current_environment.upcase
 
-        tmp_payload['docs'][0]['_id'] = form['rows'][0]['id']
-        tmp_payload['docs'][0]['_rev'] = form['rows'][0]['value']['rev']
+        tmp_payload['docs'][0]['_id'] = form['id']
+        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
         ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
       end
@@ -55,11 +51,11 @@ class SmartFormDBPage
     def delete_geofence_row(_which_db, _url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
-        next if form['rows'][0]['id'].include? '_design'
-        next unless form['rows'][0]['doc']['formId'].include? $current_environment.upcase
+        next if form['id'].include? '_design'
+        next unless form['doc']['formId'].include? $current_environment.upcase
 
-        tmp_payload['docs'][0]['_id'] = form['rows'][0]['id']
-        tmp_payload['docs'][0]['_rev'] = form['rows'][0]['value']['rev']
+        tmp_payload['docs'][0]['_id'] = form['id']
+        tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
         ServiceUtil.fauxton(get_environment_link(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
       end
