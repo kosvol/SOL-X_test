@@ -86,7 +86,7 @@ Feature: LNGCREL
     And I sleep for 5 seconds
     And I go to ESE log in dashboard
     And I check the entrants "A 3/O,4/O" are not presents in dashboard log
-@wip
+
   Scenario: User should be able to see "Change gas readings" pop-up every time when gas readings are changed
     Given I submit a current CRE permit via service
     And I activate CRE form via service
@@ -100,8 +100,10 @@ Feature: LNGCREL
     And I enter new entry log
     And I send entry report with 5 optional entrants
     And I enter random entry log
+    And I sleep for 3 seconds
     And I send entry report with 1 optional entrants
     And I enter random entry log
+    And I sleep for 3 seconds
     And I send entry report with 2 optional entrants
     And I switch to last tab in browser
     Then I should see alert message
