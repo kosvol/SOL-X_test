@@ -50,7 +50,7 @@ fauxton:
   base_auto_url: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984"
   base_sit_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
   base_sit_fsu_url: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984"
-  base_sit_cot_url: "https://admin:magellanx@sit.edge.dev.safevue.ai:5984"
+  base_sit_cot_url: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984"
   delete_form: "/forms/_bulk_docs"
   delete_geofence: "/geofence/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
