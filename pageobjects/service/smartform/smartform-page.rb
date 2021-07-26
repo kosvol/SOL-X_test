@@ -27,9 +27,10 @@ class SmartFormDBPage
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
 
-        unless (($current_environment.include? 'auto') && (form['id'].include? 'AUTO')) || (($current_environment.include? 'sit') && (form['id'].include? 'SIT'))
-          next
-        end
+        # unless (($current_environment.include? 'auto') && (form['id'].include? 'AUTO')) || (($current_environment.include? 'sit') && (form['id'].include? 'SIT'))
+        #   next
+        # end
+        next unless form['id'].include? $current_environment.upcase
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -43,9 +44,7 @@ class SmartFormDBPage
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
 
-        unless (($current_environment.include? 'auto') && (form['id'].include? 'AUTO')) || (($current_environment.include? 'sit') && (form['id'].include? 'SIT'))
-          next
-        end
+        next unless tmp_payload['docs'][0]['externalId'].include? $current_environment.upcase
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
