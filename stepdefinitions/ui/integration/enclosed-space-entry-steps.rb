@@ -134,7 +134,7 @@ And(/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   is_equal(on(Section5Page).get_filled_roles_responsibility_elements.first.text, 'Authorized Entrant 1')
   p ">>> #{on(Section5Page).get_filled_crew_details_elements[0].text}"
-  is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, 'C/O Alister Leong')
+  is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, 'C/O COT C/O')
   is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, 'Test Automation')
 
   does_include(on(Section5Page).get_non_crew_date_time_element.text,
@@ -150,7 +150,7 @@ And(/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   p "<><><> #{tmp}"
   is_equal(tmp, @@form_data['section6'])
   is_equal(on(Section4APage).generic_data_elements.last.text, on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'A/M Atif Hayat')
+  does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'A/M COT A/M')
   does_include(on(Section6Page).date_and_time_stamp_element.text, 'LT (GMT')
   does_include(on(Section6Page).date_and_time_stamp_element.text, "/#{BrowserActions.get_year}")
   step 'I should see gas reading display with toxic gas'
