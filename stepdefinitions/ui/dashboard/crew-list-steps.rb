@@ -34,7 +34,6 @@ Then(/^I should see crew location (.+) details on crew screen$/) do |_location|
 end
 
 And(/^I view pin$/) do
-  # step 'I sleep for 3 seconds'
   step 'I click on view pin button'
   step 'I enter pin for rank MAS'
 end
@@ -61,10 +60,6 @@ end
 And(/^I backspace on entered pin$/) do
   on(PinPadPage).backspace_once
 end
-
-# Then (/^I should not see invalid pin message$/) do
-#   is_equal(on(PinPadPage).error_msg_element.text, 'Incorrect Pin, Please Enter Again')
-# end
 
 Then(/^I should see not authorize error message$/) do
   is_equal(on(PinPadPage).error_msg_element.text, 'You Are Not Authorized To Perform That Action')

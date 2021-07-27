@@ -87,6 +87,7 @@ Feature: LocationTracking
     Then I should see activity indicator is yellow after 5 minutes
     And I unlink all crew from wearable
 
+  @test
   Scenario Outline: Verify active crew member count is correct on engine room against full ship
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>

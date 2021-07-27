@@ -14,9 +14,11 @@ class CrewListPage < DashboardPage
   elements(:location_details, xpath: "//td[contains(@data-testid,'location-')]")
   button(:view_pin_btn, xpath: "//button[contains(.,'View PINs')]")
   button(:view_crew_pin_btn, xpath: "//button[contains(.,'View Pin')]")
-  button(:add_new_crew_btn, xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
+  button(:add_new_crew_btn,
+         xpath: "//main[starts-with(@class, 'Crew__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
   text_field(:crew_id, xpath: "//input[starts-with(@class, 'Input-')]")
-  button(:retrieve_data_btn, xpath: "//div[starts-with(@class,'NewCrewDialog__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
+  button(:retrieve_data_btn,
+         xpath: "//div[starts-with(@class,'NewCrewDialog__Content')]/button[starts-with(@class,'Button__ButtonStyled')]")
   element(:duplicate_crew, xpath: "//div[starts-with(@class,'Input__InputContainer')]/div")
   buttons(:rank_list_selection, xpath: "//ul[starts-with(@class,'UnorderedList-')]/li/button")
   button(:rank_list_btn, xpath: "//button[@id='rank']")
@@ -53,9 +55,7 @@ class CrewListPage < DashboardPage
       if _current_rank != 'MAS'
         return (rank_list_selection_elements[0].text === rank_list[index - 1]) && (rank_list_selection_elements[2].text === rank_list[index + 1])
       end
-      if _current_rank === 'MAS'
-        return (rank_list_selection_elements[1].text === rank_list[index + 1])
-      end
+      return (rank_list_selection_elements[1].text === rank_list[index + 1]) if _current_rank === 'MAS'
 
       break
     end
@@ -89,7 +89,6 @@ class CrewListPage < DashboardPage
       pin.text === '••••'
     end
   end
-  
 
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
@@ -104,10 +103,11 @@ class CrewListPage < DashboardPage
     _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
     _element = $browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
-    p ">> outside"
+    p '>> outside'
     location_details_elements.each do |location|
       next if location.text === ''
-p ">> HERE"
+
+      p '>> HERE'
       Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
       Log.instance.info("Actual: #{_get_active_crew_details_frm_service.first.first}")
       return (location.text.gsub!(/\s+/, ' ').to_s === _get_active_crew_details_frm_service.first.first)
@@ -127,7 +127,7 @@ p ">> HERE"
     else
       crew_details << ["#{_location} - Just now"]
     end
-    p ">> stuck"
+    p '>> stuck'
     crew_details
   end
 end
