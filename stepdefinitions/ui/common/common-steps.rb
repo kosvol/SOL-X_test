@@ -55,7 +55,7 @@ end
 And('I enter pin {int}') do |pin|
   CommonPage.set_entered_pin = pin
   sleep 1
-  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin.to_s)
   sleep 1
 end
 

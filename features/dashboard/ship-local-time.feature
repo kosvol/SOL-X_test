@@ -27,7 +27,7 @@ Feature: ShipLocalTime
     Then I should see not authorize error message
 
     Examples:
-      | pin   |
+      | rank  |
       | A/M   |
       | C/O   |
       | A 2/O |

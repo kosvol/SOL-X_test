@@ -36,7 +36,7 @@ end
 And(/^I view pin$/) do
   # step 'I sleep for 3 seconds'
   step 'I click on view pin button'
-  step 'And I enter pin for rank MAS'
+  step 'I enter pin for rank MAS'
 end
 
 Then(/^I (should|should not) see pin reviewed$/) do |_condition|

@@ -48,7 +48,7 @@ Feature: CrewAssist
   Scenario: Verify crew assist dialog still display after cancel from pin screen
     Given I launch sol-x portal
     When I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 1234
+    And I acknowledge the assistance with invalid pin 1234
     And I dismiss enter pin screen
     Then I should see crew assist popup display crew rank,name and location on dashboard
     And I unlink all crew from wearable
@@ -56,7 +56,7 @@ Feature: CrewAssist
   Scenario: Verify crew assist dialog cannot be dismissed with invalid pin
     Given I launch sol-x portal
     When I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 1234
+    And I acknowledge the assistance with invalid pin 1234
     Then I should see invalid pin message
     And I unlink all crew from wearable
 

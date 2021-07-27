@@ -65,9 +65,9 @@ fauxton:
   get_workrest: "/work_rest_hour/_all_docs?skip=0&limit=10000"
   get_user: "/users/_all_docs?skip=0&limit=1000"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
-  get_wearable_histories: "/wearables_history/_all_docs?skip=0&limit=10000"
-  get_alerts_histories: "/alerts/_all_docs?skip=0&limit=10000"
-  get_wearable_active_users: "/wearables_active_users/_all_docs?skip=0&limit=10000"
+  get_wearable_histories: "/wearables_history/_all_docs?include_docs=true&skip=0&limit=10000"
+  get_alerts_histories: "/alerts/_all_docs?include_docs=true&skip=0&limit=10000"
+  # get_wearable_active_users: "/wearables_active_users/_all_docs?include_docs=true&skip=0&limit=10000"
 
 oa_db:
   base_uat_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai"
