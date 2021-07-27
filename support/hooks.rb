@@ -50,7 +50,7 @@ After do |scenario|
   end
 
   begin
-    @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
+    # @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
 
