@@ -66,7 +66,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify only DRA signoff can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank <rank>
+    And I enter pin for rank <created_rank>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
@@ -75,23 +75,23 @@ Feature: Section3DDRA
     Then I should see signed details
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                   | rank  |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | MAS   |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | A/M   |
-      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)        | C/O   |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                              | A C/O |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                           | 2/O   |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels        | A 2/O |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket              | C/E   |
-      | Helicopter Operations                                        | Helicopter Operation                               | A C/E |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                        | 2/E   |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | A 2/E |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/O   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/O |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/E   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/E |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 4/E   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 4/E |
+      | level_one_permit                                             | level_two_permit                                   | rank  | created_rank |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | MAS   | MAS          |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | A/M   | A/M          |
+      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)        | C/O   | C/O          |
+      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                              | A C/O | A C/O        |
+      | Working Aloft/Overside                                       | Working Aloft / Overside                           | 2/O   | 2/O          |
+      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels        | A 2/O | A 2/O        |
+      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket              | C/E   | C/E          |
+      | Helicopter Operations                                        | Helicopter Operation                               | A C/E | A C/E        |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools                        | 2/E   | 2/E          |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage | A 2/E | A 2/E        |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/O   | 3/O          |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/O | A 3/O        |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 3/E   | A/M          |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 3/E | A/M          |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | 4/E   | A/M          |
+      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               | A 4/E | A/M          |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -121,12 +121,12 @@ Feature: Section3DDRA
     Then I should see not authorize error message
 
     Examples:
-      | level_one_permit                      | level_two_permit                                                | rank  | non_ra_rank |
-      | Hot Work                              | Hot Work Level-2 in Designated Area                             | A/M   | 4/O         |
-      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                     | A 2/O | D/C         |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket                           | C/E   | A 4/O       |
-      | Helicopter Operations                 | Helicopter Operation                                            | A C/E | ETO         |
-      | Cold Work                             | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | ETO   | BOS         |
+      | level_one_permit                      | level_two_permit                            | rank  | non_ra_rank |
+      | Hot Work                              | Hot Work Level-2 in Designated Area         | A/M   | 4/O         |
+      | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels | A 2/O | D/C         |
+      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket       | C/E   | A 4/O       |
+      | Helicopter Operations                 | Helicopter Operation                        | A C/E | ETO         |
+  # | Cold Work                             | Cold Work - Blank/Deblanking of Pipelines and Other Openings | ETO   | BOS         |
   # | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     | 2523 | 4/E         |
   # | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | 3030 | A 4/E       |
 

@@ -5,7 +5,8 @@
 '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
 
 AfterConfiguration do |config|
-  raise "Invalid OS => #{ENV['OS']}" unless %w[MAC WINDOWS Android iOS iOS-web Android-web].include? (ENV['OS']).to_s
+  raise "Invalid OS => #{ENV['OS']}" unless %w[MAC WINDOWS Android iOS iOS-web Android-web
+                                               WIN].include? (ENV['OS']).to_s
 
   $client = Selenium::WebDriver::Remote::Http::Default.new
   $client.read_timeout = 60

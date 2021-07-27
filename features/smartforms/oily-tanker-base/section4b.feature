@@ -66,10 +66,10 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | pin | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0011 | C/O | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0004 | 2/E | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0021 | ETO | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | rank | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
+      | AUTO_SOLX0011 | C/O  | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0004 | 2/E  | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0021 | ETO  | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
@@ -78,9 +78,6 @@ Feature: Section4BEIC
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
-    # And I uncheck the pre-selected checklist
-    # And I select the matching <checklist> checklist
-    # And I press next for 2 times
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC
     And I click on create EIC certification button

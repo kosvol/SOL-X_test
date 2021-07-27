@@ -7,6 +7,8 @@ mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --
 mac_chrome_sit_dashboard_incognito_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_sit_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
+win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+
 ### Profile for clearing data on Jenkins Cloud ###
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet

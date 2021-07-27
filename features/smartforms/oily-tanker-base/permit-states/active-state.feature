@@ -59,6 +59,7 @@ Feature: ActivePermit
       | level_one_permit               | level_two_permit                   |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
+  @test
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -76,7 +77,6 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit

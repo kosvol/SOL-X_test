@@ -112,7 +112,7 @@ Then(/^I should see gas reading display (with|without) toxic gas$/) do |_conditi
   is_equal(on(Section6Page).gas_reading_table_elements[6].text, '4 PPM')
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '1.5 CC') if _condition === 'with'
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '- ') if _condition === 'without'
-  is_equal(on(Section6Page).gas_reading_table_elements[8].text, 'A/M Atif Hayat')
+  is_equal(on(Section6Page).gas_reading_table_elements[8].text, 'A/M COT A/M') # ##need to create dynamic method for RA name
 end
 
 And(/^I dismiss gas reader dialog box$/) do
