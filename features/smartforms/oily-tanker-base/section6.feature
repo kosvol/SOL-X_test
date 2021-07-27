@@ -59,7 +59,7 @@ Feature: Section6
     And I add all gas readings and back from signing screen
     Then I should be able to continue to next page
 
-  Scenario: Verify user can add gas reading
+  Scenario Outline: Verify user can add gas reading
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
@@ -68,11 +68,16 @@ Feature: Section6
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
-    And I enter pin for rank A/M
+    And I enter pin for rank <rank>
     And I set time
-    Then I will see popup dialog with By A/M COT A/M crew rank and name
+    Then I will see popup dialog with By <name> crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas
+
+    Examples:
+      | rank  | name            |
+      | CGENG | CGENG COT CGENG |
+      | A 4/E | A 4/E COT A 4/E |
 
   Scenario: Verify user can delete added toxic gas
     Given I launch sol-x portal without unlinking wearable

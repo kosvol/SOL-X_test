@@ -105,11 +105,11 @@ postgres:
   password: "79-window-CHOOSE-nation-38"
   host: "safevue-dev.postgres.database.azure.com"
 
-pin_management:
-  sit:
-    db: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/"
-    vessel: "sit-vessel"
-  dev:
+# pin_management:
+#   sit:
+#     db: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/"
+#     vessel: "sit-vessel"
+#   dev:
 
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##

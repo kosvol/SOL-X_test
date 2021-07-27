@@ -11,7 +11,7 @@ Feature: PendingUpdate
     And I review and withdraw permit with A/M rank
     Then I should see section 8 editable
 
-  Scenario: Verify AGT CGENG can add gas reading via pending approval state
+  Scenario Outline: Verify AGT can add gas reading via pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
@@ -29,7 +29,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with CGENG rank
+    And I update permit in pending update state with <rank> rank
     And I navigate to section 6
     Then I should not see warning label
     And I should see gas_equipment_input
@@ -40,6 +40,16 @@ Feature: PendingUpdate
     And I should not see gas_equipment_input
     And I should not see gas_sr_number_input
     And I should not see gas_last_calibration_button
+
+    Examples:
+      | rank  |
+      | MAS   |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | CGENG |
 
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
@@ -93,7 +103,7 @@ Feature: PendingUpdate
     And I click on back to home
     And I click on update needed filter
     And I update permit in pending update state with <rank> rank
-    Then I should see request update comment box
+    Then I should see request update comment
 
     Examples:
       | rank  | pin  |
@@ -321,9 +331,8 @@ Feature: PendingUpdate
     And I click on update needed filter
     And I update permit in pending update state with 3/E rank
     And I navigate to section 4b
-    And I click on view EIC certification button
+    And I click on create EIC certification button
     Then I should see request update comment
-  # Then I should see comment box exists
 
   Scenario: Verify user is able to update DRA after Office request for update
     Given I launch sol-x portal without unlinking wearable
@@ -442,42 +451,4 @@ Feature: PendingUpdate
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
     And I should not see checklist questions fields enabled
-  # And I should not see enter pin button
-
-  Scenario Outline: Verify these rank can sign off DRA on section 3D
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
-    And I fill only location of work
-    And I press next for 7 times
-    And I sign checklist and section 5
-    And I press next for 1 times
-    And I submit permit for Master Approval
-    And I click on back to home
-    And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank
-    And I navigate to section 3d
-    And I sign DRA section 3d with <rank> as valid rank
-    Then I should see signed details
-
-    Examples:
-      | rank  | pin  |
-      # | MAS   | 1111 |
-      # | A/M   | 9015 |
-      # | C/O   | 8383 |
-      # | A C/O | 2761 |
-      # | 2/O   | 6268 |
-      # | A 2/O | 7865 |
-      # | 3/O   | 0159 |
-      # | A 3/O | 2674 |
-      # | C/E   | 8248 |
-      # | A C/E | 5718 |
-      # | 2/E   | 2523 |
-      # | A 2/E | 3030 |
-      # | 3/E   | 4685 |
-      | A 3/E | 6727 |
-      | 4/E   | 1311 |
-      | A 4/E | 0703 |
-      | CGENG | 0703 |
+# And I should not see enter pin button
