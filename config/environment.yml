@@ -61,7 +61,7 @@ fauxton:
   delete_user: "/users/_bulk_docs"
   get_pre_gas_entry_log: "/gas_reader_entry/%s"
   get_forms: "/forms/_all_docs?skip=0&limit=10000"
-  get_geofence: "/geofence/_all_docs?skip=0&limit=10000"
+  get_geofence: "/geofence/_all_docs?include_docs=true&skip=0&limit=10000"
   get_workrest: "/work_rest_hour/_all_docs?skip=0&limit=10000"
   get_user: "/users/_all_docs?skip=0&limit=1000"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
@@ -77,7 +77,7 @@ oa_db:
   get_forms: "/forms/_all_docs?skip=0&limit=10000"
   delete_oa_event: "/office_approval_events/_bulk_docs"
   delete_gas_entries: "/gas_reader_entry/_bulk_docs"
-  get_oa_event: "/office_approval_events/_all_docs?skip=0&limit=10000"
+  get_oa_event: "/office_approval_events/_all_docs?include_docs=true&skip=0&limit=10000"
   get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
 
 jira_url: "https://teamsolas.atlassian.net/browse/"
