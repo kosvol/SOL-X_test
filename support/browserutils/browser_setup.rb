@@ -48,10 +48,10 @@ class BrowserSetup
       end
     else
       # windows
-      Selenium::WebDriver::Chrome.driver_path = File.join(File.absolute_path('../../../../', File.dirname(__FILE__)),
-                                                          '/Downloads/chromedriver.exe')
-      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }, 'chromeOptions' => { w3c: false, args: ['start-maximized'] }) # "chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
-      $browser = Selenium::WebDriver.for :remote, url: 'http://localhost:4444/wd/hub', desired_capabilities: caps,
+      Selenium::WebDriver::Chrome::Service.driver_path = File.join(File.absolute_path('../../../../', File.dirname(__FILE__)),
+                                                                   '/Downloads/chromedriver.exe')
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' }) # , 'chromeOptions' => { w3c: false, args: ['start-maximized'] }) # "chromeOptions" => {"args" => ["disable-extensions", "start-maximized", "--headless", "-disable-gpu", "window-size=1500,1500"], "useAutomationExtension" => false})
+      $browser = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:9515/', desired_capabilities: caps,
                                                   http_client: $client, options: options
     end
   end
