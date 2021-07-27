@@ -179,17 +179,17 @@ Feature: CreatedPermitToWork
       | A C/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | 2/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
       | A 2/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | C/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A C/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 2/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 2/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 4/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 4/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | CGENG | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | 3/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | A 3/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | C/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | A C/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | 2/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | A 2/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | 3/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | A 3/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | 4/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | A 4/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
+  # | CGENG | Enclosed Spaces Entry | Enclosed Spaces Entry |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
