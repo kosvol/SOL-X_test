@@ -111,7 +111,6 @@ Feature: ActivePermit
       | level_one_permit               | level_two_permit                   |
       | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump |
 
-  @test
   Scenario Outline: Verify non maintenance AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -148,6 +147,7 @@ Feature: ActivePermit
       # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
       | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
 
+  @test
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -164,7 +164,6 @@ Feature: ActivePermit
     And I set oa permit to office approval state manually
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
@@ -174,15 +173,15 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                |
+      | level_one_permit      | level_two_permit                                                        |
       # | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         |
-      # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
-      # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
-  # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
+      | Underwater Operations | Underwater Operations at night for mandatory drug and contraband search |
+  #     # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
+  #     # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
+  #     | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+  #     | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
+  # # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -521,21 +520,21 @@ Feature: ActivePermit
     Then I should see gas reading section enabled in active state
 
     Examples:
-      | permit_types                     | permit_payload               | rank                       | pin  |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O                        | 6268 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O                      | 7865 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O                        | 0159 |
-      | Hot Work                         | submit_hotwork               | A 3/O                      | 2674 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Chief Engineer             | 8248 |
-      | Enclosed Spaces Entry            | submit_enclose_space_entry   | Additional Chief Engineer  | 5718 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Second Engineer            | 2523 |
-      | Hot Work                         | submit_hotwork               | Additional Second Engineer | 3030 |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E                        | 4685 |
-      | Hot Work                         | submit_hotwork               | A 3/E                      | 6727 |
-      | Hot Work                         | submit_hotwork               | 4/E                        | 1311 |
-      | Hot Work                         | submit_hotwork               | MAS                        | 1111 |
-      | Hot Work                         | submit_hotwork               | A 4/E                      | 0703 |
-      | Hot Work                         | submit_hotwork               | CGENG                      | 1393 |
+      | permit_types                     | permit_payload               | rank  | pin  |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/O   | 6268 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | A 2/O | 7865 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | 3/O   | 0159 |
+      | Hot Work                         | submit_hotwork               | A 3/O | 2674 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/E   | 8248 |
+      | Enclosed Spaces Entry            | submit_enclose_space_entry   | A C/E | 5718 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 2/E   | 2523 |
+      | Hot Work                         | submit_hotwork               | A 2/E | 3030 |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | 3/E   | 4685 |
+      | Hot Work                         | submit_hotwork               | A 3/E | 6727 |
+      | Hot Work                         | submit_hotwork               | 4/E   | 1311 |
+      | Hot Work                         | submit_hotwork               | MAS   | 1111 |
+      | Hot Work                         | submit_hotwork               | A 4/E | 0703 |
+      | Hot Work                         | submit_hotwork               | CGENG | 1393 |
 
   Scenario Outline: Verify AGT cannot add gas reading when permit is in active state if Gas Reader is not needed for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with gas reading not require
