@@ -26,7 +26,8 @@ And(/^I click on Log In Now button$/) do
 end
 
 Then(/^I should see the Vessel List page$/) do
-  to_exists(on(OfficePortalPage).home_btn_element)
+  to_exists(on(OfficePortalPage).reporting_header_element)
+  to_exists(on(OfficePortalPage).permit_archive_tab_element)
   not_to_exists(on(OfficePortalPage).permit_list_element)
 end
 

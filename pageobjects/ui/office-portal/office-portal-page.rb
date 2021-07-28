@@ -30,6 +30,8 @@ class OfficePortalPage
   element(:s7_issued_from_date, xpath: "//h4[contains(text(),'Issued from')]/following-sibling::p")
   element(:s7_issued_to_date, xpath: "//h4[contains(text(),'Issued till')]/following-sibling::p")
   element(:s7_date_time, xpath: "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  element(:reporting_header, xpath: "//h1[contains(text(),'Reporting')]")
+  element(:permit_archive_tab, xpath: "//a[contains(text(),'Permit Archive')]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
