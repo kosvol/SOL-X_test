@@ -30,7 +30,7 @@ class OAPage < Section9Page
   ## Web Confirmation Page
   element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
   element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
-  elements(:confirmation_question, xpath: "//ul/li")
+  elements(:confirmation_question, xpath: '//ul/li')
   elements(:radio_button, xpath: "//input[starts-with(@type,'radio')]")
   element(:text_area_header, xpath: "//div[contains(@class, 'Textarea')]/label")
   text_area(:instruction_text_area, xpath: "//textarea[@placeholder='Optional']")
@@ -38,7 +38,7 @@ class OAPage < Section9Page
   button(:designation_dd_btn, xpath: "//button[@name='designation']")
   element(:bottom_hint, xpath: "//section[@class='hint']/p")
   element(:warning_infobox, xpath: "//div[contains(@class, 'InfoBox__')]")
-  ##End Web Confirmation Page ###
+  # #End Web Confirmation Page ###
 
   ## Comment elements ###
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
@@ -63,7 +63,7 @@ class OAPage < Section9Page
   elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
   # after Termination #
   element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
-  elements(:comment_date_after_term, xpath: "//time")
+  elements(:comment_date_after_term, xpath: '//time')
   elements(:comment_text_after_term, xpath: "//div[@class='sender-info']/../div[3]")
   ## END Comment attributes ###
 
@@ -85,7 +85,7 @@ class OAPage < Section9Page
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     sleep 1
     date_time_to_elements[1].click
-    select_to_hour_minutes(1,0)
+    select_to_hour_minutes(1, 0)
     dismiss_picker_element.click
     sleep 1
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
@@ -121,7 +121,7 @@ class OAPage < Section9Page
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{starttime}"
     else
-      hour_from_picker_elements[starttime-24].click
+      hour_from_picker_elements[starttime - 24].click
       sleep 1
       minute_from_picker_elements[1].click
       sleep 1
@@ -150,7 +150,7 @@ class OAPage < Section9Page
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime}"
     else
-      hour_from_picker_elements[endtime-24].click
+      hour_from_picker_elements[endtime - 24].click
       sleep 1
       minute_from_picker_elements[1].click
       sleep 1
@@ -208,7 +208,7 @@ class OAPage < Section9Page
     designation_elements.each do |_element|
       tmp_arr << _element.text
     end
-    tmp_arr === YAML.load_file("data/office-approval/designation-list.yml")['roles']
+    tmp_arr === YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
   private
@@ -217,7 +217,7 @@ class OAPage < Section9Page
     false
   end
 
-  def select_to_hour_minutes(_hour_index,_minute_index)
+  def select_to_hour_minutes(_hour_index, _minute_index)
     sleep 2
     select_to_hour(_hour_index)
     sleep 1
@@ -226,10 +226,10 @@ class OAPage < Section9Page
   end
 
   def select_to_hour(_hour_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",_hour_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li", _hour_index)
   end
 
   def select_to_minute(_minute_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",_minute_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", _minute_index)
   end
 end

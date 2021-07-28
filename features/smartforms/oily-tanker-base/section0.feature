@@ -4,7 +4,6 @@ Feature: SmartFormsPermission
   I want to ...
   So that ...
 
-  @test
   Scenario: Verify permits filter displaying the right counts on smartform screen
     Given I switch vessel to COT
     When I launch sol-x portal without unlinking wearable
