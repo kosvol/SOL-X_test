@@ -294,3 +294,39 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
     And I should see Entry Log tab
+
+  Scenario Outline: Verify Non AGT and Gas Tester cannot submit entry log in PRED
+    Given I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
+    And I enter without sign new entry log
+    And I sign for gas
+    And I enter pin via service for rank <rank>
+    Then I should see not authorize error message
+
+    Examples:
+    |rank|
+    |  SAA  |
+    | RDCRW   |
+    |  ETR  |
+    |  WPR  |
+    | CCK   |
+    | 2CK   |
+    | STWD   |
+    | FSTO   |
+    | RDCRW   |
+    |  SPM  |
+
+  @wip
+  Scenario Outline: Verify Non AGT and Gas Tester cannot submit entry log in PRED
+    Given I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
+    And I enter without sign new entry log
+    And I sign for gas
+    And I enter pin via service for rank <rank>
+
+    Examples:
+      |rank|
