@@ -76,7 +76,7 @@ Feature: Section5
     And I navigate to section 5
     And I select 1 role from list
     And I check non crew member checkbox
-    Then I should see sign button disabled
+    Then I should see sign role button disabled
 
   Scenario: Verify Enter Pin and Sign button is enabled if name and company fields filled
     Given I launch sol-x portal

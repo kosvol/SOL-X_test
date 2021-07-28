@@ -85,6 +85,7 @@ jira_url: "https://teamsolas.atlassian.net/browse/"
 office_approval:
   format_link: "https://office.dev.safevue.ai/permit-preview/%s?formId=%s&staffId=%s"
   office_portal: "https://office.dev.safevue.ai/login/demo-uid"
+  office_portal_permit_view: "https://office.dev.safevue.ai/permit-overview?formId=%s"
   get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_approval_events/_find"
   get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_staff/_find"
   get_form_status: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/forms/_find"
@@ -105,11 +106,11 @@ postgres:
   password: "79-window-CHOOSE-nation-38"
   host: "safevue-dev.postgres.database.azure.com"
 
-pin_management:
-  sit:
-    db: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/"
-    vessel: "sit-vessel"
-  dev:
+# pin_management:
+#   sit:
+#     db: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/"
+#     vessel: "sit-vessel"
+#   dev:
 
 ## To enable and disable screenshot feature ##
 # "True" - Takes screenshot for all steps ##

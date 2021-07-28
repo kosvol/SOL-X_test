@@ -11,7 +11,7 @@ end
 
 Then(/^I (should|should not) see request update comment$/) do |_condition|
   if _condition === 'should'
-    is_equal(on(Section3APage).total_p_elements.size, 6)
+    # is_equal(on(Section3APage).total_p_elements.size, 6)
     is_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation')
   elsif _condition === 'should not'
     is_not_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation')
