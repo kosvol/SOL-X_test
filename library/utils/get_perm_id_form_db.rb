@@ -3,7 +3,7 @@
 module WorkWithIndexeddb
   class << self
     def get_id_from_indexeddb(temp_id)
-      sleep 3
+      sleep 2
       open_indexdb(temp_id)
       access_indexdb_data('formId')
     end
@@ -15,16 +15,14 @@ module WorkWithIndexeddb
       $browser.execute_script('db = openRequest.result')
       $browser.execute_script("res = db.transaction(['idMap'], 'readonly').objectStore('idMap').get('%s')" % temp_id)
     rescue StandardError
-      # ">> Retrying open_indexdb"
       open_indexdb(temp_id)
     end
 
     def access_indexdb_data(_data)
-      sleep 2
+      sleep 3
       begin
         $browser.execute_script("return res.result['#{_data}']")
       rescue StandardError
-        # p ">> Retrying access_indexdb_data"
         access_indexdb_data(_data)
       end
     end

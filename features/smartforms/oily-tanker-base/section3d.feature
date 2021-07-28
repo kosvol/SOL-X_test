@@ -76,7 +76,7 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit                                             | level_two_permit                                   | rank  | created_rank |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | MAS   | MAS          |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area                | MAS   | A/M          |
       | Hot Work                                                     | Hot Work Level-2 in Designated Area                | A/M   | A/M          |
       | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)        | C/O   | C/O          |
       | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                              | A C/O | A C/O        |
@@ -189,4 +189,3 @@ Feature: Section3DDRA
       | A 3/E | 6727 |
       # | 4/E   | 1311 |
       | A 4/E | 0703 |
-      | CGENG | 0703 |

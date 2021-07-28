@@ -18,7 +18,7 @@ Feature: PendingApprovalPermit
   Scenario: Section 4B sign button to be disabled while on Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill a full enclosed workspace permit
@@ -59,7 +59,7 @@ Feature: PendingApprovalPermit
   Scenario Outline: Verify RA and checklist only creator should not be able to edit DRA and EIC when pending master approval
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
-    And I enter pin <creator_pin>
+    And I enter pin for rank <creator_rank>
     And I select Enclosed Spaces Entry permit
     And I select Enclosed Spaces Entry permit for level 2
     And I fill a full enclosed workspace permit
@@ -72,11 +72,11 @@ Feature: PendingApprovalPermit
     Then I should not be able to edit EIC certification
 
     Examples:
-      | rank | creator_pin | pin  |
-      | ETO  | 0856        | 9015 |
-      | 3/E  | 2523        | 4685 |
-      | PMAN | 3030        | 4421 |
-      | MAS  | 3030        | 1111 |
+      | rank | creator_rank |
+      | ETO  | A/M          |
+      | 3/E  | C/O          |
+      | PMAN | A C/O        |
+      | MAS  | 2/O          |
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
@@ -141,12 +141,12 @@ Feature: PendingApprovalPermit
     And I click on pending approval filter
     Then I should see Office Approval button
 
-  Scenario Outline: Master can ask for update on all permit with duration more than 2 hours
+  Scenario: Master can ask for update on all permit with duration more than 2 hours
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin for rank A/M
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 2
     Then I should see correct approval details for maintenance duration more than 2 hours
@@ -170,13 +170,9 @@ Feature: PendingApprovalPermit
     And I click on pending approval filter
     Then I should see Master Approval button
     When I click on permit for master approval
-    And I enter pin for rank <rank>
+    And I enter pin for rank MAS
     And I navigate to section 7
     Then I should see Activate Permit to Work button enabled
-
-    Examples:
-      | level_one_permit               | level_two_permit                          | pin  | rank |
-      | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | 8248 | C/E  |
 
   Scenario Outline: Verify these rank can sign off DRA on section 3D
     Given I launch sol-x portal
