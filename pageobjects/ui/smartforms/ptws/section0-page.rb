@@ -35,6 +35,7 @@ class Section0Page < NavigationPage
     click_next
     set_selected_level2_permit(_permit)
     set_current_time
+    sleep 1
   end
 
   def select_level1_permit(_permit)
@@ -52,8 +53,7 @@ class Section0Page < NavigationPage
     sleep 2
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
-      BrowserActions.wd_get_by_xpath_element_click("//ul/li[#{_index+1}]/button")
-      # BrowserActions.js_click("//ul/li[#{_index+1}]/button")
+      BrowserActions.js_click("//ul/li[#{_index+1}]/button")
       break
     end
   end
