@@ -75,7 +75,6 @@ And(/^I enter pin for rank (.*)$/) do |rank|
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
-  sleep 1
   step "I enter pin #{(CommonPage.get_entered_pin)}"
 end
 
@@ -86,7 +85,6 @@ end
 
 When(/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
-  sleep 1
   on(Section0Page).select_level2_permit_and_next(_permit)
   ### TO remove UAT adaptation after UAT switch to 2.0
   if $current_environment === 'sit' || $current_environment === 'auto'
@@ -100,7 +98,7 @@ end
 
 And(/^I set permit id$/) do
   if @via_service_or_not === false
-    p "Temp ID >> #{@temp_id}"
+    Log.instance.info("Temp ID >> #{@temp_id}")
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
   end
   sleep 5

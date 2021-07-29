@@ -28,11 +28,11 @@ Feature: CreatedPermitToWork
         And I should see Close button enabled
 
         Examples:
-            | rank |
-            | 3/E  |
-            | FTR  |
-            | PMN  |
-            | 4/E  |
+            | rank  |
+            | 3/E   |
+            | CGENG |
+            | PMN   |
+            | 4/E   |
 
     @sol-6981
     Scenario Outline: Verify EIC certification signature component for issuing authority for MAS

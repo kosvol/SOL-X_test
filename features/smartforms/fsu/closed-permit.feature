@@ -48,6 +48,7 @@ Feature: LNGClosedPermit
         And I submit permit for termination
         And I sign with valid C/E rank
         And I click on back to home
+        And I click on pending withdrawal filter
         And I withdraw permit with C/E rank
         Then I should see terminate permit to work and request update buttons for FSU
         And I switch vessel to LNG

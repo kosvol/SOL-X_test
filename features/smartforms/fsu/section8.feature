@@ -17,9 +17,9 @@ Feature: LNGSmartFormsPermission
         And I switch vessel to LNG
 
         Examples:
-            | permit_types | permit_payload                 | rank          | pin  |
-            # | intrinsical camera | submit_non_intrinsical_camera | A/M  | 9015 |
-            | underwater   | submit_underwater_simultaneous | Chief Officer | 8383 |
+            | permit_types       | permit_payload                 | rank |
+            | intrinsical camera | submit_non_intrinsical_camera  | A/M  |
+            | underwater         | submit_underwater_simultaneous | C/O  |
 
     Scenario Outline: EIC section 8 issuing authority to change to Master and CE
         Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to active state

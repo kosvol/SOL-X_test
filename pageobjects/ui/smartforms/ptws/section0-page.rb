@@ -40,7 +40,7 @@ class Section0Page < NavigationPage
 
   def select_level1_permit(_permit)
     sleep 1
-    CommonPage.set_permit_id(_permit)  ### this might be redundant already
+    CommonPage.set_permit_id(_permit)
     select_permit
   end
 
@@ -59,6 +59,7 @@ class Section0Page < NavigationPage
   end
 
   def select_level2_permit(_permit)
+    sleep 1
     CommonPage.set_permit_id(_permit)
     unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
       select_permit
