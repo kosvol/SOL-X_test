@@ -38,5 +38,15 @@ class CommonPage
     def get_dra_permit_id
       @@dra_permit_id
     end
+
+    def set_rank_id=(_rank_id)
+      @rank_id = nil
+      @rank_id = _rank_id
+      p "current rank id >> #{@rank_id}"
+    end
+
+    def get_rank_id
+      @rank_id
+    end
   end
 end
