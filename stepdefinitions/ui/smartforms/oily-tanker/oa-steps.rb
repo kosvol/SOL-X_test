@@ -304,7 +304,6 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _se
               end
     # p "request >> #{request}"
     docs = (JSON.parse request.to_s)['docs']
-    Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
     if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] === _whatStatus)
       status = (JSON.parse request.to_s)['docs'][0]['status']
       break
@@ -313,7 +312,7 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _se
     sleep(20)
   end
   is_true(status == _whatStatus.to_s)
-  p " status >> #{status}"
+  Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
   sleep 2
 end
 
