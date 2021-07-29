@@ -14,7 +14,7 @@ class PinPadPage
       index = num.to_i.zero? ? 10 : num
       query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
       query = format(query, index.to_s)
-      @browser.find_element(:xpath, query).click
+      BrowserActions.js_click(query)
     end
   end
 
