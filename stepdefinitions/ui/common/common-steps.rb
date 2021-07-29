@@ -66,6 +66,8 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
     if _crew['crewMember']['rank'] === rank
       CommonPage.set_entered_pin = _crew['pin']
       break
+    else
+      CommonPage.set_entered_pin = nil
     end
   end
   on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
@@ -107,12 +109,6 @@ And(/^I set permit id$/) do
   end
   sleep 5
 end
-
-# And(/^I tear down created form$/) do
-#   SmartFormDBPage.tear_down_ptw_form(on(Section1Page).get_section1_filled_data[1])
-# rescue StandardError
-#   SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
-# end
 
 And(/^I set time$/) do
   on(CommonFormsPage).set_current_time
