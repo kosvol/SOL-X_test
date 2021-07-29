@@ -10,7 +10,7 @@ module BrowserActions
 
     def wd_get_by_xpath_elements_click(xpath,index)
       $browser.find_element(:xpath, xpath)[index].click
-    end
+    endx
 
     def poll_exists_and_click(_element)
       wait_until_is_visible(_element) ? _element.click : poll_exists_and_click(_element)
