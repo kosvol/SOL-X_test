@@ -10,14 +10,11 @@ class PinPadPage
 
   def enter_pin(pin)
     p "pin >> #{pin}"
-    # p "pin >> #{format('%04d', pin)}"
     pin.split('').each do |num|
-      # format('%04d', pin).to_s.split('').each do |num|
       index = num.to_i.zero? ? 10 : num
-      # p "index >> #{index}"
       query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
       query = format(query, index.to_s)
-      BrowserActions.js_click(query.to_s)
+      BrowserActions.wd_get_by_xpath_element_click(query)
     end
   end
 
@@ -26,7 +23,8 @@ class PinPadPage
   end
 
   def cancel_pinpad
-    BrowserActions.js_click("//button[@class='cancel']")
+    BrowserActions.wd_get_by_xpath_element_click("//button[@class='cancel']")
+    # BrowserActions.js_click("//button[@class='cancel']")
   end
 
   def get_pin_code(users, rank)

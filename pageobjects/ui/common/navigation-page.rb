@@ -42,10 +42,9 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_next
-    sleep 1
-    BrowserActions.js_click("//button[contains(.,'Next')]")
+    BrowserActions.wd_get_by_xpath_element_click("//button[contains(.,'Next')]")
   rescue StandardError
-    BrowserActions.js_click("//button[contains(.,'Save & Next')]")
+    BrowserActions.wd_get_by_xpath_element_click("//button[contains(.,'Save & Next')]")
   end
 
   def get_total_steps_to_section6(_which_section)
