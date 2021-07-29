@@ -44,11 +44,11 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | MAS   |
-      | A/M   |
-      | C/O   |
-      | A C/O |
-      | 2/O   |
-      | A 2/O |
+      # | A/M   |
+      # | C/O   |
+      # | A C/O |
+      | A 4/E |
+      # | A 2/O |
       | CGENG |
 
   Scenario: SOL-4773 Verify submit for master approval button is enabled
@@ -106,11 +106,9 @@ Feature: PendingUpdate
     Then I should see request update comment
 
     Examples:
-      | rank  | pin  |
-      | 3/E   | 4685 |
-      | A 3/E | 6727 |
-      | 4/E   | 1311 |
-      | CGENG | 1393 |
+      | rank  |
+      | A 4/E |
+      | CGENG |
 
 
   Scenario: Verify update note shows from Master if request update via non OA
@@ -155,8 +153,8 @@ Feature: PendingUpdate
     Then I should not see request update comment box
 
     Examples:
-      | rank | pin  |
-      | PMAN | 4421 |
+      | rank |
+      | PMAN |
 
   Scenario: Verify update note shows from Office if request update via OA office
     Given I launch sol-x portal without unlinking wearable
@@ -285,7 +283,6 @@ Feature: PendingUpdate
     Then I should see request update comment
     And I press next for 1 times
     Then I should see request update comment
-    And I press next for 1 times
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
@@ -451,4 +448,3 @@ Feature: PendingUpdate
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
     And I should not see checklist questions fields enabled
-# And I should not see enter pin button
