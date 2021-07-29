@@ -50,7 +50,7 @@ Given(/^I log in to the Office Portal$/) do
   step 'I launch Office Portal'
   step 'I enter a valid password'
   step 'I click on Log In Now button'
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).reporting_header_element)
 end
 
 Then(/^I should see the vessel name at the top bar and permits list$/) do
@@ -452,4 +452,9 @@ Then(/^I should see the PRE form shows the same fields as in the client app$/) d
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)
   is_equal(subheadersArr, baseSubheaders)
+end
+
+And(/^I open the recently terminated form with link$/) do
+  $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@formNumber])
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
 end
