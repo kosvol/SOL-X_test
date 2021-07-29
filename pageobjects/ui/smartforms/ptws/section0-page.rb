@@ -32,7 +32,7 @@ class Section0Page < NavigationPage
 
   def select_level2_permit_and_next(_permit)
     select_level2_permit(_permit)
-    click_next
+    @browser.find_element(:xpath, "//button[contains(.,'Save & Next')]").click
     set_selected_level2_permit(_permit)
     set_current_time
     sleep 1
@@ -50,7 +50,7 @@ class Section0Page < NavigationPage
   end
 
   def select_permit
-    sleep 2
+    sleep 1
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
       BrowserActions.js_click("//ul/li[#{_index+1}]/button")

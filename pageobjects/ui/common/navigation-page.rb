@@ -44,7 +44,7 @@ class NavigationPage < CommonFormsPage
   def click_next
     begin
       BrowserActions.js_click("//button[contains(.,'Next')]")
-    rescue
+    rescue StandardError
       BrowserActions.js_click("//button[contains(.,'Save & Next')]")
     end
   end
