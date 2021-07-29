@@ -66,6 +66,8 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
     if _crew['crewMember']['rank'] === rank
       CommonPage.set_entered_pin = _crew['pin']
       break
+    else
+      CommonPage.set_entered_pin = nil
     end
   end
   on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
