@@ -38,10 +38,10 @@ android_chrome_tablet_auto_fsu_local: --profile dir --profile html --profile xml
 
 ### End gx machine
 
-# ### Jenkins SIT COT ###
-# android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
+# ### Jenkins SIT LNG ###  TO switch to AUTO env when available
+android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
 # android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-# android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
+android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### Jenkins AUTO COT ###  ###------->>>>>> TO UPDATE TO auto-cot
 android_chrome_dashboard_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_dashboard_chrome RESOLUTION=dashboard

@@ -110,12 +110,6 @@ And(/^I set permit id$/) do
   sleep 5
 end
 
-# And(/^I tear down created form$/) do
-#   SmartFormDBPage.tear_down_ptw_form(on(Section1Page).get_section1_filled_data[1])
-# rescue StandardError
-#   SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
-# end
-
 And(/^I set time$/) do
   on(CommonFormsPage).set_current_time
 end
