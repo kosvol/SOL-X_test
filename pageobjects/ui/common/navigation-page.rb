@@ -43,9 +43,9 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     begin
-      BrowserActions.wd_get_by_xpath_element_click("//button[contains(.,'Next')]")
+      BrowserActions.js_click("//button[contains(.,'Next')]")
     rescue
-      BrowserActions.wd_get_by_xpath_element_click("//button[contains(.,'Save & Next')]")
+      BrowserActions.js_click("//button[contains(.,'Save & Next')]")
     end
   end
 
