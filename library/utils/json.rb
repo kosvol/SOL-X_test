@@ -41,7 +41,7 @@ module JsonUtil
       if response_status_code === 200
         FileUtils.mkdir_p(File.expand_path("#{filename.split('/').first}/", 'payload/response'))
         file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), 'w')
-        file.puts response_body
+        file.puts response_body.to_s.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
         file.close
       end
     end

@@ -139,7 +139,7 @@ module ServiceUtil
 
     def error_logging(header, values = nil)
       Log.instance.info('')
-      Log.instance.info("\n\n#{header} #{values}\n\n")
+      Log.instance.info("\n\n#{header} #{values.to_s.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')}\n\n")
       Log.instance.info('')
       self
     end
