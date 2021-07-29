@@ -32,13 +32,13 @@ class OfficePortalPage
   element(:s7_date_time, xpath: "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
   element(:reporting_header, xpath: "//h1[contains(text(),'Reporting')]")
   element(:permit_archive_tab, xpath: "//a[contains(text(),'Permit Archive')]")
+  element(:copy_header_attribute, xpath: "(//span[@class='form-id'][contains(text(),'AUTO')])[1]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
   elements(:permit_section_header, xpath: "//h2[contains(text(),'Section')]")
   elements(:permit_title_number, xpath: "//div[starts-with(@class,'PermitList__List-sc')]/..//span[starts-with(@class,'Text__TextSmall-sc')]")
   elements(:section_headers_all, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
-
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
