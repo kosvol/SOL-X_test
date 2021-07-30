@@ -100,7 +100,7 @@ And(/^I will see popup dialog with (.+) crew rank and name$/) do |_rank_name|
   is_equal(on(Section6Page).get_gas_added_by(_rank_name).text, _rank_name)
 end
 
-Then(/^I should see gas reading display (with|without) toxic gas and (.*) rank and name$/) do |_condition,_rank_name|
+Then(/^I should see gas reading display (with|without) toxic gas and (.*) as gas signer$/) do |_condition,_rank_name|
   on(Section3APage).scroll_multiple_times(2)
   is_equal(on(Section6Page).gas_reading_table_elements[1].text, 'Initial') if _condition === 'with'
   is_equal(on(Section6Page).gas_reading_table_elements[1].text, '2nd Reading') if _condition === 'without'

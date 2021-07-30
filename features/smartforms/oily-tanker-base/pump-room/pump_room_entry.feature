@@ -101,7 +101,7 @@ Feature: PumpRoomEntry
     And I set time
     Then I will see popup dialog with By A/M LNG A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and A/M LNG A/M rank and name
+    Then I should see gas reading display with toxic gas and A/M LNG A/M as gas signer
 
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
