@@ -16,6 +16,7 @@ module WorkWithIndexeddb
       $browser.execute_script("res = db.transaction(['idMap'], 'readonly').objectStore('idMap').get('%s')" % temp_id)
       $browser.execute_script("return res.result['#{formId}']")
     rescue StandardError
+      sleep 2
       open_indexdb(temp_id,formId)
     end
 
