@@ -44,7 +44,7 @@ Then(/^I submit permit for Master (.+)$/) do |_approval_or_review|
   if _approval_or_review === 'Review'
     BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
   end
-  step 'I sign with valid A/M rank' if $current_environment === 'sit' || $current_environment === 'auto'
+  step 'I sign with valid A/M rank' ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   if $current_environment === 'uat'
     step 'I enter pin via service for rank C/O'
     step 'I sign on canvas'

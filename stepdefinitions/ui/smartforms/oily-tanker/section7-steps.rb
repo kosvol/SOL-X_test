@@ -57,7 +57,7 @@ end
 And(/^I open a permit (.+) with (.+) rank$/) do |_status, _rank|
   sleep 2
   on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
-  step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
+  step "I enter pin for rank #{_rank}" ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).form_navigation_bar_element)
 end
