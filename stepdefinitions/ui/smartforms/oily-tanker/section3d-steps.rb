@@ -25,7 +25,7 @@ end
 
 Then(/^I sign on canvas only with valid (.*) rank$/) do |_rank|
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
-  step "I enter pin for rank #{_rank}" ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
   on(SignaturePage).sign_for_gas
 end

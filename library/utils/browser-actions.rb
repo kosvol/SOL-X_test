@@ -83,7 +83,6 @@ module BrowserActions
     end
 
     def js_click(_xpath)
-      sleep 1
       $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 

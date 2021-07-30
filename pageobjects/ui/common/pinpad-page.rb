@@ -10,11 +10,14 @@ class PinPadPage
 
   def enter_pin(pin)
     p "pin >> #{pin}"
+    _elem = @browser.find_elements(:css, "ol.pin-entry > li > button")
     pin.split('').each do |num|
       index = num.to_i.zero? ? 10 : num
-      query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
-      query = format(query, index.to_s)
-      BrowserActions.js_click(query.to_s)
+      # query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
+      query = "ol.pin-entry > li > button"
+      _elem[index].click
+      # query = format(query, index.to_s)
+      # BrowserActions.js_click(query.to_s)
     end
   end
 

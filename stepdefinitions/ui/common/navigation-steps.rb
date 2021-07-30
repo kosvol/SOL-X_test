@@ -66,7 +66,7 @@ And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, _rank|
   when 'withdraw'
     on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
   end
-  step "I enter pin for rank #{_rank}" ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
 end
 

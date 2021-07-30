@@ -40,14 +40,14 @@ And(/^I sign on canvas$/) do
 end
 
 Then(/^I sign with (invalid|valid) (.*) rank$/) do |_condition, _rank|
-  step "I enter pin for rank #{_rank}" ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
   step 'I sign on canvas' if _condition != 'invalid'
 end
 
 # ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 # Then(/^i sign with (invalid|valid) (.*) rank for fsu$/) do |_condition, _rank|
-#   step "I enter pin for rank #{_rank}" ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+#   step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
 #   step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
 #   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
 # end
@@ -90,7 +90,7 @@ When(/^I select (.+) permit for level 2$/) do |_permit|
   sleep 1
   on(Section0Page).select_level2_permit_and_next(_permit)
   ### TO remove UAT adaptation after UAT switch to 2.0
-  ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
     BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
     @temp_id = on(Section0Page).ptw_id_element.text
   elsif $current_environment === 'uat'
