@@ -42,7 +42,7 @@ end
 And('I acknowledge the assistance with invalid pin {int}') do |_pin|
   sleep 1
   @browser.execute_script(%(document.evaluate("//div[starts-with(@class, 'CrewAssistModal__Content')]/button", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
-  step "I enter pin #{_pin}"
+  step "I enter pure pin #{_pin}"
 end
 
 Then(/^I should see crew assist dialog dismiss in both tab$/) do

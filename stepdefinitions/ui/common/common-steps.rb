@@ -52,10 +52,10 @@ end
 #   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
 # end
 
-And('I enter pin {int}') do |pin|
+And(/^I enter pure pin (.*)$/) do |pin|
   CommonPage.set_entered_pin = pin
   sleep 1
-  on(PinPadPage).enter_pin(CommonPage.get_entered_pin.to_s)
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
 end
 
 And(/^I enter pin via service for rank (.*)$/) do |rank|
@@ -63,7 +63,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
   step 'I hit graphql'
   ServiceUtil.get_response_body['data']['users'].each do |_crew|
     if _crew['crewMember']['rank'] === rank
-      step "I enter pin #{_crew['pin'].to_i}"
+      step "I enter pure pin #{_crew['pin']}"
       break
     else
       CommonPage.set_entered_pin = nil
@@ -77,7 +77,7 @@ And(/^I enter pin for rank (.*)$/) do |rank|
   end
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
   sleep 1
-  step "I enter pin #{(CommonPage.get_entered_pin.to_i)}"
+  step "I enter pure pin #{(CommonPage.get_entered_pin)}"
 end
 
 When(/^I select (.+) permit$/) do |_permit|

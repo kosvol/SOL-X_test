@@ -45,7 +45,7 @@ end
 
 And(/^I enter a non-existent pin$/) do
   step 'I click on view pin button'
-  step 'I enter pin 1234'
+  step 'I enter pure pin 1234'
 end
 
 And(/^I enter a invalid master pin$/) do
