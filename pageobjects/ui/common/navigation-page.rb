@@ -42,9 +42,7 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_next
-    sleep 1
-    BrowserActions.wait_until_is_visible(save_and_next_btn_elements.first)
-    save_and_next_btn_elements.first.click
+    BrowserActions.js_click("//button[contains(.,'Next')]")
   end
 
   def get_total_steps_to_section6(_which_section)
