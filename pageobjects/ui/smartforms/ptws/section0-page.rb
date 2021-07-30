@@ -8,7 +8,7 @@ class Section0Page < NavigationPage
   element(:click_create_permit_btn, xpath: "//button[contains(.,'Create Permit To Work')]")
   element(:uat_create_permit_btn, xpath: "//button[contains(.,'Create New Permit to Work')]")
   elements(:created_ptw_id, xpath: '//li[1]/span')
-  element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
+  element(:ptw_id, css: 'header > h1')
   element(:uat_ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
   buttons(:list_permit_type, css: "div[role='dialog'] > div:nth-child(2) > div > ul > li > button")
@@ -60,19 +60,17 @@ class Section0Page < NavigationPage
   end
 
   def select_level2_permit(_permit)
-    sleep 1
     CommonPage.set_permit_id(_permit)
-    unless ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].include? _permit
-      select_permit
+    ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].each do |obj| 
+      if obj != _permit
+        select_permit
+        break
+       end
     end
+
     @@section1_data_collector << CommonPage.get_permit_id
-    ### TO remove if condition after 2.0 in UAT
-    if ($current_environment === "sit" || $current_environment === "auto")
-      @@section1_data_collector << ptw_id_element.text
-      CommonPage.set_permit_id(ptw_id_element.text)
-    elsif $current_environment === "uat"
-      @@section1_data_collector << uat_ptw_id_element.text
-      CommonPage.set_permit_id(uat_ptw_id_element.text)
-    end
+    ptw_id_tmp = ptw_id_element.text
+    @@section1_data_collector << ptw_id_tmp
+    CommonPage.set_permit_id(ptw_id_tmp)
   end
 end

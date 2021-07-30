@@ -10,8 +10,8 @@ class Section3BPage < Section3APage
   text_field(:last_assessment, xpath: "//input[@id='lastAssessmentDra']")
   button(:work_side_inspected_by, xpath: "//button[@id='workInspectionBy']")
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
-  elements(:radio_btn,
-           css: 'input[type=radio]')
+  elements(:radio_btn, css: 'input[type=radio]')
+  elements(:checkbox_btn, css: 'input[type=checkbox]')
   elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')
 
   def last_crew?
@@ -23,6 +23,7 @@ class Section3BPage < Section3APage
     last_assessment_date_element.click
     sleep 1
     select_todays_date_from_calendar
+    checkbox_btn_elements.first.click
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click
@@ -30,7 +31,7 @@ class Section3BPage < Section3APage
     BrowserActions.enter_text(last_assessment_element, 'Test automation')
     radio_btn_elements[9].click
     radio_btn_elements[12].click
-    radio_btn_elements[15].click
+    sleep 50
   end
 
   def crew_list_populated?

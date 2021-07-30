@@ -17,6 +17,7 @@ module WorkWithIndexeddb
       $browser.execute_script("return res.result['#{formId}']")
     rescue StandardError
       sleep 2
+      p "Retryinggg....."
       open_indexdb(temp_id,formId)
     end
 

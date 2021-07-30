@@ -5,7 +5,7 @@ require './././support/env'
 class SignaturePage < Section1Page
   include PageObject
 
-  element(:signing_canvas, css: 'div.signature-pad > canvas')
+  element(:signing_canvas, css: 'canvas[data-testid="signature-canvas"]')
   element(:signature, xpath: 'div.signature > img')
 
   def sign_and_done
@@ -26,8 +26,11 @@ class SignaturePage < Section1Page
 
   def sign_for_gas
     # tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
-    signing_canvas_element.click
-    signing_canvas_element.click
+    # sleep 1
+    BrowserActions.poll_exists_and_click(signing_canvas_element)
+    BrowserActions.poll_exists_and_click(signing_canvas_element)
+    # signing_canvas_element.click
+    # signing_canvas_element.click
     # $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]').click
     # $browser.action.click(tmp).perform
   end

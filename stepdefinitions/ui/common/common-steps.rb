@@ -88,14 +88,8 @@ end
 When(/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
   on(Section0Page).select_level2_permit_and_next(_permit)
-  ### TO remove UAT adaptation after UAT switch to 2.0
-  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-    BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
-    @temp_id = on(Section0Page).ptw_id_element.text
-  elsif $current_environment === 'uat'
-    BrowserActions.wait_until_is_visible(on(Section0Page).uat_ptw_id_element)
-    @temp_id = on(Section0Page).uat_ptw_id_element.text
-  end
+  BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
+  @temp_id = on(Section0Page).ptw_id_element.text
 end
 
 And(/^I set permit id$/) do
