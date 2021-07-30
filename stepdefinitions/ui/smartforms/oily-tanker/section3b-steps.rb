@@ -37,12 +37,12 @@ Then(/^I should not see crew drop down list after clicking No on Inspection carr
 end
 
 And(/^I should see crew list populated$/) do
-  is_true(on(Section3BPage).is_crew_list_populated?)
+  is_true(on(Section3BPage).crew_list_populated?)
 end
 
 Then(/^I should see work site inspected by crew member list display all crews$/) do
   on(Section3BPage).radio_btn_elements.first.click
   on(Section3BPage).work_side_inspected_by
   sleep 1
-  is_true(on(Section3BPage).is_last_crew?)
+  is_true(on(Section3BPage).last_crew?)
 end

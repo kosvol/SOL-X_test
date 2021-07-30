@@ -14,10 +14,8 @@ class Section3BPage < Section3APage
            css: 'input[type=radio]')
   elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')
 
-  def is_last_crew?
-    # return false if _exit === 10
-    # BrowserActions.scroll_down
-    crew_list_elements.last.text == 'OLR COT OLR' # ? is_last_crew?(_exit.to_i + 1) : (return true)
+  def last_crew?
+    crew_list_elements.last.text == 'OLR COT OLR'
   end
 
   def fill_section_3b
@@ -35,7 +33,7 @@ class Section3BPage < Section3APage
     radio_btn_elements[15].click
   end
 
-  def is_crew_list_populated?
+  def crew_list_populated?
     work_side_inspected_by
     !crew_list_elements.empty?
   end

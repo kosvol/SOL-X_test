@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-'' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
-'' ' DO NOT TOUCH THIS WHEN UNSURE ' ''
-'' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
+#########################################################
+############ DO NOT TOUCH THIS WHEN UNSURE ##############
+#########################################################
 
 AfterConfiguration do |config|
   raise "Invalid OS => #{ENV['OS']}" unless %w[MAC WINDOWS Android iOS iOS-web Android-web
