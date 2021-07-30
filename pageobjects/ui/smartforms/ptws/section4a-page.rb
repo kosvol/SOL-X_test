@@ -11,33 +11,31 @@ class Section4APage < Section3DPage
   elements(:input_type_text, xpath: "//input[@type='text']")
   elements(:input_type_number, xpath: "//input[@type='number']")
   text_field(:equipment_used, xpath: "//input[@id='cl_enclosedSpacesEntry_srNoOfEquipmentUsed']")
-  elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
-  @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
-  elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
-  @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
+  @@yes_input = 'div > label:nth-child(1) > span'
+  @@na_input = 'div > label:nth-child(2) > span'
   elements(:rank_and_name_stamp,
            xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
   element(:date_and_time_stamp,
           xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
 
-  elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
-  elements(:sub_headers, xpath: '//h2')
-  elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
+  # elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
+  # elements(:sub_headers, xpath: '//h2')
+  # elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
 
-  elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
-  divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
+  # elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
+  # divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
 
   spans(:list_of_checklist,
-        xpath: "//section[starts-with(@class,'Section__SectionMain')][2]/div/div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
-  elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
-  elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
+        css: 'form > section > div >section:nth-child(2) > div > div > div > span')
+  # elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
+  # elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
-  element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
+  # element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
 
-  divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
-  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
-  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
+  # divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
+  # divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
+  # divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
 
   divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
 
@@ -46,9 +44,9 @@ class Section4APage < Section3DPage
 
   text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
 
-  text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
-  button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
-  button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
+  # text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
+  # button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+  # button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
@@ -118,19 +116,16 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
-
-      BrowserActions.scroll_down(element_yes[_index])
-      sleep 1
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
-        # get_na_elements[_index].click
-        BrowserActions.js_clicks(@@na_input, _index)
+        BrowserActions.scroll_down(element_yes[_index + 3])
+        sleep 1
+        get_na_elements[_index].click
       end
     end
   end
 
   def is_signed_user_details?(_entered_pin)
     sleep 1
-    # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
     if rank_and_name_stamp_elements.first.text.size > 9
@@ -177,14 +172,12 @@ class Section4APage < Section3DPage
 
   def select_checklist(_checklist)
     sleep 1
-    BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
 
       BrowserActions.scroll_down(element_yes[_index + 1])
-      # element_yes[_index+1].click
-      BrowserActions.js_clicks(@@yes_input, _index + 1)
+      element_yes[_index+1].click
     end
   end
 
@@ -196,13 +189,49 @@ class Section4APage < Section3DPage
     sleep 1
   end
 
+  def is_checklist_questions?
+    span_arr = get_checklist_questions("div > span")
+    label_arr = get_checklist_questions("div > label")
+    p_arr = get_checklist_questions("div > p")
+    h4_arr = get_checklist_questions("div > h4")
+    is_questions = false
+
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+    base_data.each do |_element|
+      Log.instance.info("Checking on question >>>> #{_element}")
+      is_questions = (span_arr.include? "#{_element}")
+      next if is_questions == true
+      is_questions = (label_arr.include? "#{_element}")
+      next if is_questions == true
+      is_questions = (p_arr.include? "#{_element}")
+      next if is_questions == true
+      is_questions = (h4_arr.include? "#{_element}")
+      next if is_questions == true
+      if (_element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (_element === 'Is vessel movement in seaway acceptable for personnel transfer?')
+        is_equal(h4_arr.size, 2)
+      else
+        is_equal(h4_arr.size, 1)
+      end
+    end
+    is_questions
+  end
+  
   private
 
+  def get_checklist_questions(css_input)
+    tmp_arr = []
+    tmp = @browser.find_elements(:css, "#{css_input}")
+    tmp.each do |element|
+      tmp_arr << element.text
+    end
+    tmp_arr
+  end
+
   def get_yes_elements
-    $browser.find_elements(:xpath, @@yes_input)
+    $browser.find_elements(:css, @@yes_input)
   end
 
   def get_na_elements
-    $browser.find_elements(:xpath, @@na_input)
+    $browser.find_elements(:css, @@na_input)
   end
 end

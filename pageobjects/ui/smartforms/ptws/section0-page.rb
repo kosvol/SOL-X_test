@@ -24,7 +24,7 @@ class Section0Page < NavigationPage
   end
 
   def reset_data_collector
-    @@section1_data_collector = [] # reset
+    @@section1_data_collector = []
   end
 
   def get_selected_level2_permit
@@ -34,7 +34,6 @@ class Section0Page < NavigationPage
   def select_level2_permit_and_next(_permit)
     select_level2_permit(_permit)
     save_next
-    # @browser.find_element(:xpath, "//button[contains(.,'Save & Next')]").click
     set_selected_level2_permit(_permit)
     set_current_time
     sleep 1
