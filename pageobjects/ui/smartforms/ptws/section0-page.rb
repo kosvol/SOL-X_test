@@ -11,11 +11,12 @@ class Section0Page < NavigationPage
   element(:ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h1")
   element(:uat_ptw_id, xpath: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/h3")
   button(:click_permit_type_ddl, xpath: "//div[starts-with(@class,'ComboButton__')]/button")
-  buttons(:list_permit_type, xpath: '//ul/li/button')
+  buttons(:list_permit_type, css: "div[role='dialog'] > div:nth-child(2) > div > ul > li > button")
   elements(:permit_filter, xpath: "//div[@role='list']/a")
   buttons(:master_approval, xpath: "//button[@data-testid='action-button']")
   element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
   element(:wifi_blob, xpath: "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]")
+  button(:save_next, css: "button[type='submit']")
   
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|
@@ -32,7 +33,8 @@ class Section0Page < NavigationPage
 
   def select_level2_permit_and_next(_permit)
     select_level2_permit(_permit)
-    @browser.find_element(:xpath, "//button[contains(.,'Save & Next')]").click
+    save_next
+    # @browser.find_element(:xpath, "//button[contains(.,'Save & Next')]").click
     set_selected_level2_permit(_permit)
     set_current_time
     sleep 1
@@ -53,7 +55,7 @@ class Section0Page < NavigationPage
     sleep 1
     list_permit_type_elements.each_with_index do |permit,_index|
       next unless permit.text === CommonPage.get_permit_id
-      BrowserActions.js_click("//ul/li[#{_index+1}]/button")
+      permit.click
       break
     end
   end
