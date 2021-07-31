@@ -127,10 +127,11 @@ class Section4APage < Section3DPage
   def is_signed_user_details?(_entered_pin)
     sleep 1
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
     if rank_and_name_stamp_elements.first.text.size > 9
+      Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.first.text
     elsif rank_and_name_stamp_elements.first.text.size <= 9
+      Log.instance.info(">> #{rank_and_name_stamp_elements.last.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.last.text
     end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
@@ -172,6 +173,7 @@ class Section4APage < Section3DPage
 
   def select_checklist(_checklist)
     sleep 1
+    BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist

@@ -17,7 +17,7 @@ sit:
   fauxton_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
   get_form_status: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984/forms/_find"
 
-sit-fsu:
+sit_fsu:
   c2_preview: "https://sit-fsu.edge.dev.safevue.ai:8080"
   service: "https://sit-fsu.edge.dev.safevue.ai:4000/"
   switch_vessel: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984/vessels/sit-fsu-vessel"

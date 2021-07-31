@@ -112,7 +112,7 @@ Then(/^I should see gas reading display (with|without) toxic gas and (.*) as gas
   is_equal(on(Section6Page).gas_reading_table_elements[6].text, '4 PPM')
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '1.5 CC') if _condition === 'with'
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '- ') if _condition === 'without'
-  is_equal(on(Section6Page).gas_reading_table_elements[8].text, "By #{_rank_name}")
+  is_equal(on(Section6Page).gas_reading_table_elements[8].text, "#{_rank_name}")
 end
 
 And(/^I dismiss gas reader dialog box$/) do

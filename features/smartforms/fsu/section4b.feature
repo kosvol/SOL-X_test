@@ -4,9 +4,6 @@ Feature: LNGSmartFormsPermission
     I want to ...
     So that ...
 
-    Background:
-        Given I switch vessel to FSU
-
     Scenario: EIC certification section 4b competent person label change to CO 2E
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
@@ -17,7 +14,6 @@ Feature: LNGSmartFormsPermission
         And I select yes to EIC
         And I click on create EIC certification button
         Then I should see competent person label change
-        And I switch vessel to LNG
 
     Scenario Outline: EIC certification section 4b issuing authority to add Master
         Given I launch sol-x portal without unlinking wearable
@@ -34,7 +30,6 @@ Feature: LNGSmartFormsPermission
         And I set time
         And I should see signed details
         Then I should see location <location_stamp> stamp
-        And I switch vessel to LNG
 
         Examples:
             | user         | zoneid                     | mac               | location_stamp                   |

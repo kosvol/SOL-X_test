@@ -102,7 +102,7 @@ class OAPage < Section9Page
 
   def navigate_to_oa_link
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
-    p "OA Link : #{tmp}"
+    Log.instance.info "OA Link : #{tmp}"
     tmp
   end
 
