@@ -18,7 +18,9 @@ And(/^I should see incomplete signature field warning message display$/) do
 end
 
 Then(/^I should see master (approval|review) button only$/) do |_condition|
-  on(Section3APage).scroll_multiple_times(2)
+  sleep 1
+  BrowserActions.wait_until_is_visible((on(Section6Page).submit_btn_elements.first)
+  on(Section3APage).scroll_multiple_times(4)
   is_equal(on(Section6Page).submit_btn_elements.size, 1)
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval") if _condition === 'approval'
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review") if _condition === 'review'
