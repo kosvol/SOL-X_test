@@ -18,7 +18,9 @@ And(/^I should see incomplete signature field warning message display$/) do
 end
 
 Then(/^I should see master (approval|review) button only$/) do |_condition|
-  on(Section3APage).scroll_multiple_times(2)
+  sleep 1
+  BrowserActions.wait_until_is_visible(on(Section6Page).submit_btn_elements.first)
+  on(Section3APage).scroll_multiple_times(4)
   is_equal(on(Section6Page).submit_btn_elements.size, 1)
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval") if _condition === 'approval'
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review") if _condition === 'review'
@@ -112,7 +114,7 @@ Then(/^I should see gas reading display (with|without) toxic gas and (.*) as gas
   is_equal(on(Section6Page).gas_reading_table_elements[6].text, '4 PPM')
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '1.5 CC') if _condition === 'with'
   is_equal(on(Section6Page).gas_reading_table_elements[7].text, '- ') if _condition === 'without'
-  is_equal(on(Section6Page).gas_reading_table_elements[8].text, "By #{_rank_name}")
+  is_equal(on(Section6Page).gas_reading_table_elements[8].text, "#{_rank_name}")
 end
 
 And(/^I dismiss gas reader dialog box$/) do

@@ -125,12 +125,13 @@ class Section4APage < Section3DPage
   end
 
   def is_signed_user_details?(_entered_pin)
-    sleep 1
+    BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
     rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
     if rank_and_name_stamp_elements.first.text.size > 9
+      Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.first.text
     elsif rank_and_name_stamp_elements.first.text.size <= 9
+      Log.instance.info(">> #{rank_and_name_stamp_elements.last.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.last.text
     end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
@@ -140,7 +141,6 @@ class Section4APage < Section3DPage
   end
 
   def is_signed_user_details_plus_1_min?(_entered_pin)
-    # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(_entered_pin)
     ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
@@ -160,8 +160,9 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist
-
+      BrowserActions.wait_until_is_visible(element_yes[_index])
       BrowserActions.scroll_down(element_yes[_index])
+      BrowserActions.wait_until_is_visible(element_yes[_index])
       if _checklist.include? 'Cold Work'
         return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
       else
@@ -172,6 +173,7 @@ class Section4APage < Section3DPage
 
   def select_checklist(_checklist)
     sleep 1
+    BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist, _index|
       next unless checklist.text === _checklist

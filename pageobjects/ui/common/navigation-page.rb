@@ -42,6 +42,7 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_next
+    BrowserActions.wait_until_is_visible(next_btn_element)
     BrowserActions.js_click("//button[contains(.,'Next')]")
   end
 

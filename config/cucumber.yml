@@ -10,12 +10,12 @@ mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml 
 win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
-mac_chrome_tablet_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+mac_chrome_tablet_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 
 ### Profile for clearing data on Jenkins Cloud ###
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
-mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_cot DEVICE=tablet
+mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
 
