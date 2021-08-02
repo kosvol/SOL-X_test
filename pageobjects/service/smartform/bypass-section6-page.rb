@@ -7,9 +7,9 @@ class BypassPage < Section1Page
 
   def get_rank_id_from_service(_rank, _vessel = nil)
     if _vessel == nil
-      ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', $master_pin)
+      ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
-      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', $master_pin, _vessel)
+      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', _vessel)
     end
     ServiceUtil.get_response_body['data']['users'].each do |_crew|
       if _crew['crewMember']['rank'] === _rank
