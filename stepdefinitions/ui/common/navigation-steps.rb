@@ -27,7 +27,7 @@ end
 
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
   sleep 1
-  (1..times.to_i).each do |_i|
+  while 1 <= times.to_i do
     condition == 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
   end
 end
