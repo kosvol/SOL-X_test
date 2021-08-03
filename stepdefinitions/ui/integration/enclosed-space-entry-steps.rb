@@ -153,7 +153,7 @@ And(/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'A/M COT A/M')
   does_include(on(Section6Page).date_and_time_stamp_element.text, 'LT (GMT')
   does_include(on(Section6Page).date_and_time_stamp_element.text, "/#{BrowserActions.get_year}")
-  step 'I should see gas reading display with toxic gas and A/M COT A/M rank and name'
+  step 'I should see gas reading display with toxic gas and A/M COT A/M as gas signer'
 end
 
 Then(/^I should see signed details for integration test$/) do

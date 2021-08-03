@@ -15,7 +15,7 @@ Then(/^I should see dra number and last assessment date populated$/) do
 end
 
 Then(/^I should see By: Master after clicking Yes on Is DRA sent to office$/) do
-  on(Section3BPage).radio_btn_elements[6].click
+  on(Section3BPage).radio_btn_elements[3].click
   BrowserActions.scroll_down
   is_equal(on(Section3BPage).generic_data_elements[1].text, 'Master')
   is_equal(on(Section3BPage).generic_data_elements.size, 2)
@@ -37,12 +37,12 @@ Then(/^I should not see crew drop down list after clicking No on Inspection carr
 end
 
 And(/^I should see crew list populated$/) do
-  is_true(on(Section3BPage).is_crew_list_populated?)
+  is_true(on(Section3BPage).crew_list_populated?)
 end
 
 Then(/^I should see work site inspected by crew member list display all crews$/) do
   on(Section3BPage).radio_btn_elements.first.click
   on(Section3BPage).work_side_inspected_by
   sleep 1
-  is_true(on(Section3BPage).is_last_crew?)
+  is_true(on(Section3BPage).last_crew?)
 end

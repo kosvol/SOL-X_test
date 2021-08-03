@@ -3,15 +3,6 @@
 module BrowserActions
   class << self
 
-
-    def wd_get_by_xpath_element_click(xpath)
-      $browser.find_element(:xpath, xpath).click
-    end
-
-    def wd_get_by_xpath_elements_click(xpath,index)
-      $browser.find_element(:xpath, xpath)[index].click
-    end
-
     def poll_exists_and_click(_element)
       wait_until_is_visible(_element) ? _element.click : poll_exists_and_click(_element)
     end
@@ -68,11 +59,13 @@ module BrowserActions
     end
 
     def scroll_down(_element = nil)
+      sleep 1
       begin
         scroll_to_element(_element)
       rescue StandardError
         scroll_down_by_dist
       end
+      sleep 1
     end
 
     def get_attribute_value(xpath)
@@ -92,7 +85,6 @@ module BrowserActions
     end
 
     def js_click(_xpath)
-      sleep 1
       $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 

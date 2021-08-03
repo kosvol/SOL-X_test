@@ -45,7 +45,7 @@ end
 
 And(/^I enter a non-existent pin$/) do
   step 'I click on view pin button'
-  step 'I enter pin 1234'
+  step 'I enter pure pin 1234'
 end
 
 And(/^I enter a invalid master pin$/) do
@@ -121,5 +121,5 @@ end
 When(/^I create the ptw with the new pin$/) do
   step 'I navigate to "SmartForms" screen for forms'
   step 'I navigate to create new permit'
-  step "I enter pin #{CommonPage.get_entered_pin}"
+  step "I enter pure pin #{CommonPage.get_entered_pin}"
 end

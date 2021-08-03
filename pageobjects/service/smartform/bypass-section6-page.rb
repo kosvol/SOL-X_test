@@ -6,7 +6,7 @@ class BypassPage < Section1Page
   include PageObject
 
   def get_rank_id_from_service(_rank)
-    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', $master_pin)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     ServiceUtil.get_response_body['data']['users'].each do |_crew|
       if _crew['crewMember']['rank'] === _rank
         CommonPage.set_rank_id = _crew['_id']
@@ -581,9 +581,7 @@ class BypassPage < Section1Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = $obj_env_yml['fauxton']["base_#{$current_environment.downcase}_url"] + "/forms/#{CommonPage.get_permit_id.gsub(
-      '/', '%2F'
-    )}?conflicts=true"
+    url = $obj_env_yml['fauxton']["base_#{$current_environment.downcase}_url"] + "/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -683,7 +681,7 @@ class BypassPage < Section1Page
   end
 
   def create_entry_record(_array, _type)
-    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', $master_pin)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     case _type
     when 'CRE', 'PRE'
       _entry_record = JSON.parse JsonUtil.read_json('cre/09.add_entry')
@@ -726,7 +724,7 @@ class BypassPage < Section1Page
   end
 
   def create_entry_record_custom_gas_readings(_array, _type)
-    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', $master_pin)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     if (_type == 'CRE') || (_type == 'PRE')
       permit = 'cre/09.add_entry_custom_readings'
       permit_mod = 'cre/09.mod_add_entry_custom_readings'

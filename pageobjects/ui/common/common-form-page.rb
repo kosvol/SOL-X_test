@@ -5,7 +5,7 @@ require './././support/env'
 class CommonFormsPage < CommonPage
   include PageObject
 
-  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+  element(:main_clock, css: 'h3[data-testid=main-clock]')
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')

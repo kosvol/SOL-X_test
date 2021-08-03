@@ -10,11 +10,12 @@ mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml 
 win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
+mac_chrome_tablet_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 
 ### Profile for clearing data on Jenkins Cloud ###
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
-mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_cot DEVICE=tablet
+mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
 
@@ -40,7 +41,7 @@ android_chrome_tablet_auto_fsu_local: --profile dir --profile html --profile xml
 
 # ### Jenkins SIT LNG ###  TO switch to AUTO env when available
 android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-# android_chrome_tablet_a_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+android_chrome_tablet_a_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
 android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### Jenkins AUTO COT ###  ###------->>>>>> TO UPDATE TO auto-cot

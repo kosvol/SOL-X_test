@@ -4,9 +4,6 @@ Feature: LNGSmartFormsPermission
     I want to ...
     So that ...
 
-    Background:
-        Given I switch vessel to FSU
-
     Scenario: Verify ROL can be approved by CE
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
@@ -21,7 +18,6 @@ Feature: LNGSmartFormsPermission
         And I press next for 1 times
         And I select rol permit active duration 1 hour
         And I should see ROL submit button enabled
-        And I switch vessel to LNG
 
     Scenario: Verify CE can request for update for ROL
         Given I launch sol-x portal without unlinking wearable
@@ -37,7 +33,6 @@ Feature: LNGSmartFormsPermission
         And I press next for 1 times
         And I select rol permit active duration 1 hour
         Then I should see rol updates needed button enabled
-        And I switch vessel to LNG
 
     Scenario: Two LNG forms to be dispalyed in maintenance permit
         Given I launch sol-x portal without unlinking wearable
@@ -45,7 +40,6 @@ Feature: LNGSmartFormsPermission
         And I enter pin for rank A/M
         When I select Critical Equipment Maintenance permit
         Then I should see two additional permits
-        And I switch vessel to LNG
 
     Scenario Outline: CE and Master can approve on all permit for FSU
         Given I launch sol-x portal without unlinking wearable
@@ -74,7 +68,6 @@ Feature: LNGSmartFormsPermission
         And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see approve and request update buttons
-        And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                                   | pin  | rank |
@@ -107,7 +100,6 @@ Feature: LNGSmartFormsPermission
         And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see approve and request update buttons
-        And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                          | pin  | rank |
@@ -145,7 +137,6 @@ Feature: LNGSmartFormsPermission
         And I enter pin for rank <rank>
         And I navigate to section 7
         Then I should see Activate Permit to Work button enabled
-        And I switch vessel to LNG
 
         Examples:
             | level_one_permit               | level_two_permit                          | pin  | rank |

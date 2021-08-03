@@ -105,7 +105,7 @@ Feature: Section6
     And I set time
     Then I will see popup dialog with <rank_name> crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and <rank_name> rank and name
+    Then I should see gas reading display with toxic gas and <rank_name> as gas signer
     And I should see submit button enabled
 
     Examples:
@@ -138,15 +138,15 @@ Feature: Section6
     And I add all gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M COT A/M crew rank and name
+    Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and By A/M COT A/M rank and name
+    Then I should see gas reading display with toxic gas and By A/M COT A/M as gas signer
     And I add only normal gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M COT A/M crew rank and name
+    Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display without toxic gas and By A/M COT A/M rank and name
+    Then I should see gas reading display without toxic gas and A/M COT A/M as gas signer
 
   # Scenario Outline: Verify non-OA Hotwork ptw display submit for master approval on button
   #   Given I launch sol-x portal without unlinking wearable

@@ -40,21 +40,22 @@ And(/^I sign on canvas$/) do
 end
 
 Then(/^I sign with (invalid|valid) (.*) rank$/) do |_condition, _rank|
-  step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
+  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
   step 'I sign on canvas' if _condition != 'invalid'
 end
 
 # ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
 # Then(/^i sign with (invalid|valid) (.*) rank for fsu$/) do |_condition, _rank|
-#   step "I enter pin for rank #{_rank}" if $current_environment === 'sit' || $current_environment === 'auto'
+#   step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
 #   step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
 #   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
 # end
 
-And('I enter pin {int}') do |pin|
+And(/^I enter pure pin (.*)$/) do |pin|
   CommonPage.set_entered_pin = pin
-  on(PinPadPage).enter_pin(CommonPage.get_entered_pin.to_s)
+  sleep 1
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
 end
 
 And(/^I enter pin via service for rank (.*)$/) do |rank|
@@ -62,7 +63,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
   step 'I hit graphql'
   ServiceUtil.get_response_body['data']['users'].each do |_crew|
     if _crew['crewMember']['rank'] === rank
-      step "I enter pin #{_crew['pin']}"
+      step "I enter pure pin #{_crew['pin']}"
       break
     else
       CommonPage.set_entered_pin = nil
@@ -71,12 +72,12 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  if $current_environment === 'sit' || $current_environment === 'auto'
+  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
   sleep 1
-  step "I enter pin #{(CommonPage.get_entered_pin)}"
+  step "I enter pure pin #{(CommonPage.get_entered_pin)}"
 end
 
 When(/^I select (.+) permit$/) do |_permit|
@@ -86,21 +87,14 @@ end
 
 When(/^I select (.+) permit for level 2$/) do |_permit|
   @via_service_or_not = false
-  sleep 1
   on(Section0Page).select_level2_permit_and_next(_permit)
-  ### TO remove UAT adaptation after UAT switch to 2.0
-  if $current_environment === 'sit' || $current_environment === 'auto'
-    BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
-    @temp_id = on(Section0Page).ptw_id_element.text
-  elsif $current_environment === 'uat'
-    BrowserActions.wait_until_is_visible(on(Section0Page).uat_ptw_id_element)
-    @temp_id = on(Section0Page).uat_ptw_id_element.text
-  end
+  BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
+  @temp_id = on(Section0Page).ptw_id_element.text
 end
 
 And(/^I set permit id$/) do
   if @via_service_or_not === false
-    p "Temp ID >> #{@temp_id}"
+    Log.instance.info("Temp ID >> #{@temp_id}")
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
   end
   sleep 5

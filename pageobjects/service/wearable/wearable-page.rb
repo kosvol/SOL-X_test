@@ -27,7 +27,7 @@ class WearablePage
       tmp_req_payload['variables']['userId'] = @@crewid
       p ">> #{tmp_req_payload['variables']['userId']}"
       JsonUtil.create_request_file('wearable-simulator/mod-link-crew-to-wearable', tmp_req_payload)
-      ServiceUtil.post_graph_ql('wearable-simulator/mod-link-crew-to-wearable', $master_pin)
+      ServiceUtil.post_graph_ql('wearable-simulator/mod-link-crew-to-wearable')
     end
 
     def swap_payload(which_json, custom_value1 = nil, custom_value2 = nil)

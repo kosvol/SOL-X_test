@@ -20,15 +20,9 @@ Then(/^I should see extra section8 questions for pipe permit$/) do
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8-questions.yml')
-  tmp.each do |_elem|
-    does_include(@@section8_questions['pipe'], _elem.text)
+  tmp.each do |elem|
+    does_include(@@section8_questions['pipe'], elem.text)
   end
-  # input_fields = $browser.find_elements(:xpath, '//input').size
-  # if input_fields === 32
-  #   is_equal(input_fields, '32')
-  # elsif input_fields === 30
-  #   is_equal(input_fields, '30')
-  # end
   step 'I should see first 32 input fields else 30 input fields'
 end
 
@@ -39,15 +33,9 @@ Then(/^I should see extra section8 questions for critical maintenance permit$/) 
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8-questions.yml')
-  tmp.each do |_elem|
-    does_include(@@section8_questions['critical'], _elem.text)
+  tmp.each do |elem|
+    does_include(@@section8_questions['critical'], elem.text)
   end
-  # input_fields = $browser.find_elements(:xpath, '//input').size
-  # if input_fields === 37
-  #   is_equal(input_fields, '37')
-  # elsif input_fields === 35
-  #   is_equal(input_fields, '35')
-  # end
   step 'I should see first 37 input fields else 35 input fields'
 end
 
@@ -57,31 +45,25 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
   @@section8_questions = YAML.load_file('data/section8-questions.yml')
-  tmp.each do |_elem|
-    does_include(@@section8_questions['electrical'], _elem.text)
+  tmp.each do |elem|
+    does_include(@@section8_questions['electrical'], elem.text)
   end
-  # input_fields = $browser.find_elements(:xpath, '//input').size
-  # if input_fields === 34
-  #   is_equal(input_fields, '34')
-  # elsif input_fields === 32
-  #   is_equal(input_fields, '32')
-  # end
   step 'I should see first 34 input fields else 32 input fields'
 end
 
 And('I should see first {int} input fields else {int} input fields') do |first_input_fields_length, second_input_fields_length|
   input_fields = $browser.find_elements(:xpath, '//input').size
-  if input_fields === first_input_fields_length
+  if input_fields == first_input_fields_length
     is_equal(input_fields, first_input_fields_length)
-  elsif input_fields === second_input_fields_length
+  elsif input_fields == second_input_fields_length
     is_equal(input_fields, second_input_fields_length)
   end
 end
 
-And(/^I should see (.+) rank and name for section 8$/) do |_rank|
+And(/^I should see (.+) rank and name for section 8$/) do |rank|
   BrowserActions.scroll_down
   sleep 1
-  is_equal(on(Section8Page).rank_name_and_date_elements.first.text, "Rank/Name\n#{_rank}")
+  is_equal(on(Section8Page).rank_name_and_date_elements.first.text, "Rank/Name\n#{rank}")
 end
 
 And(/^I should see signed date and time for section 8$/) do
@@ -96,10 +78,10 @@ Then(/^I should see default section 8 questions$/) do
   to_exists(on(Section8Page).default_section8_question4_element)
 end
 
-Then(/^I (should|should not) see EIC normalize extra questions$/) do |_condition|
+Then(/^I (should|should not) see EIC normalize extra questions$/) do |condition|
   BrowserActions.scroll_down
   sleep 1
-  if _condition === 'should'
+  if condition == 'should'
     step 'I should see first 28 input fields else 26 input fields'
     # is_equal($browser.find_elements(:xpath, '//input').size, '28')
     to_exists(on(Section8Page).normalization_question1_element)
@@ -109,7 +91,7 @@ Then(/^I (should|should not) see EIC normalize extra questions$/) do |_condition
     to_exists(on(Section8Page).normalization_question5_element)
     step 'I should see default section 8 questions'
   end
-  if _condition === 'should not'
+  if condition == 'should not'
     step 'I should see first 18 input fields else 16 input fields'
     # is_equal($browser.find_elements(:xpath, '//input').size, '18')
     not_to_exists(on(Section8Page).normalization_question1_element)
@@ -128,10 +110,10 @@ Then(/^I should see EIC extra questions for work on pressure pipe permit$/) do
   step 'I should see default section 8 questions'
 end
 
-And(/^I sign EIC section 8 with RA (.+) rank$/) do |_rank|
+And(/^I sign EIC section 8 with RA (.+) rank$/) do |rank|
   on(Section3APage).scroll_multiple_times(4)
   on(Section8Page).submit_termination_btn_elements.first.click
-  step "I sign with valid #{_rank} rank"
+  step "I sign with valid #{rank} rank"
   sleep 2
   step 'I click on back to home'
 end

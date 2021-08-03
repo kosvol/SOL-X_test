@@ -5,16 +5,16 @@ require './././support/env'
 class PinPadPage
   include PageObject
 
-  buttons(:pin_pad, xpath: "//main/ol[@class='pin-entry']/li/button[starts-with(@class,'Button__')]")
+  buttons(:pin_pad, css: "ol.pin-entry > li > button")
+  button(:cancel, css: "button.cancel")
   element(:error_msg, xpath: "//section[@class='pin-indicators-section']/h2")
 
   def enter_pin(pin)
-    p "pin >> #{pin}"
+    Log.instance.info "Pin >> #{pin}"
+    sleep 1
     pin.split('').each do |num|
       index = num.to_i.zero? ? 10 : num
-      query = "//ol[@class='pin-entry']/li[%s]/button[starts-with(@class,'Button__')]"
-      query = format(query, index.to_s)
-      BrowserActions.wd_get_by_xpath_element_click(query)
+      pin_pad_elements[index.to_i-1].click
     end
   end
 
@@ -23,8 +23,7 @@ class PinPadPage
   end
 
   def cancel_pinpad
-    BrowserActions.wd_get_by_xpath_element_click("//button[@class='cancel']")
-    # BrowserActions.js_click("//button[@class='cancel']")
+    cancel
   end
 
   def get_pin_code(users, rank)
