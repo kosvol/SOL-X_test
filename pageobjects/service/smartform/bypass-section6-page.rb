@@ -5,8 +5,12 @@ require './././support/env'
 class BypassPage < Section1Page
   include PageObject
 
-  def get_rank_id_from_service(_rank)
-    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
+  def get_rank_id_from_service(_rank, _vessel = nil)
+    if _vessel == nil
+      ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
+    else
+      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', _vessel)
+    end
     ServiceUtil.get_response_body['data']['users'].each do |_crew|
       if _crew['crewMember']['rank'] === _rank
         CommonPage.set_rank_id = _crew['_id']
@@ -148,7 +152,7 @@ class BypassPage < Section1Page
       section['variables']['answers'][1].to_h['value'] =
         "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
       section['variables']['answers'][2].to_h['value'] = '"2"'
-      get_rank_id_from_service('MAS')
+      get_rank_id_from_service('MAS', _vessel)
       section['variables']['answers'][3].to_h['value']['signedBy'] = CommonPage.get_rank_id
       section['variables']['answers'].last['value'] =
         "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{@get_offset}}"
@@ -158,7 +162,7 @@ class BypassPage < Section1Page
       section = JSON.parse JsonUtil.read_json('ptw/rol/17.save_rol_task_status_section_details')
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      get_rank_id_from_service('A/M')
+      get_rank_id_from_service('A/M', _vessel)
       section['variables']['answers'][10]['value']['AUTO_SOLX0012'] = CommonPage.get_rank_id
       JsonUtil.create_request_file('ptw/mod_17.save_rol_task_status_section_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_17.save_rol_task_status_section_details', _user, _vessel)
@@ -169,7 +173,7 @@ class BypassPage < Section1Page
       section = JSON.parse JsonUtil.read_json('ptw/rol/20.save_rol_task_status_before_termination')
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      get_rank_id_from_service('MAS')
+      get_rank_id_from_service('MAS', _vessel)
       section['variables']['answers'].last['value'] =
         "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_rol_task_status_before_termination', section)
