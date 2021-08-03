@@ -42,6 +42,7 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_next
+    sleep 1
     begin
       BrowserActions.poll_exists_and_click(next_btn_element)
     rescue StandardError
