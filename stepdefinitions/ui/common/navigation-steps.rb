@@ -5,7 +5,7 @@ And(/^I should see entire hamburger categories$/) do
 end
 
 And(/^I open hamburger menu$/) do
-  BrowserActions.waitcondition(20, on(NavigationPage).hamburger_menu_element.enabled?)
+  BrowserActions.wait_condition(20, on(NavigationPage).hamburger_menu_element.enabled?)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 
