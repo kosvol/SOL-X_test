@@ -110,7 +110,7 @@ module ServiceUtil
       unless _json_payload.include? '{'
         JsonUtil.create_response_file(_json_payload, @response, get_http_response_status_code)
       end
-      response
+      @response
     end
 
     def get_error_code
