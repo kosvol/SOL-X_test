@@ -22,7 +22,7 @@ Then(/^I should see valid validity date and time$/) do
 end
 
 And(/^I click on permit for (.+)$/) do |status|
-  on(PendingStatePage).pending_approvalstatus_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  on(PendingStatePage).pending_approval_status_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   sleep 1
 end
 
