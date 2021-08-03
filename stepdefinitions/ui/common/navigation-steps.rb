@@ -1,22 +1,22 @@
 And(/^I should see entire hamburger categories$/) do
-  on(NavigationPage).menu_categories_elements.each_with_index do |_element, _index|
-    is_equal((on(NavigationPage).get_menu_categories)[_index], _element.text)
+  on(NavigationPage).menu_categories_elements.each_with_index do |element, index|
+    is_equal((on(NavigationPage).get_menu_categories)[index], element.text)
   end
 end
 
 And(/^I open hamburger menu$/) do
-  BrowserActions.wait_condition(20, on(NavigationPage).hamburger_menu_element.enabled?)
+  BrowserActions.waitcondition(20, on(NavigationPage).hamburger_menu_element.enabled?)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 
-And(/^I click on (.*) show more$/) do |_which_category|
-  on(NavigationPage).click_show_more(_which_category)
+And(/^I click on (.*) show more$/) do |which_category|
+  on(NavigationPage).click_show_more(which_category)
 end
 
-Then(/^I navigate to "(.*)" screen for (.*)$/) do |_which_section, _which_category|
+Then(/^I navigate to "(.*)" screen for (.*)$/) do |which_section, which_category|
   sleep 1
   step 'I open hamburger menu'
-  on(NavigationPage).select_nav_category(_which_section, _which_category)
+  on(NavigationPage).select_nav_category(which_section, which_category)
   sleep 1
 end
 
@@ -25,31 +25,31 @@ And(/^I click on back arrow$/) do
   step 'I set permit id'
 end
 
-And(/^I press (next|previous) for (.+) times$/) do |_condition, _times|
+And(/^I press (next|previous) for (.+) times$/) do |condition, times|
   sleep 1
-  (1.._times.to_i).each do |_i|
-    if _condition === 'next'
-      is_enabled(on(NavigationPage).next_btn_element)
-      on(Section0Page).click_next
-    else BrowserActions.js_click("//button[contains(.,'Previous')]")
-    end
+  (1..times.to_i).each do |_i|
+    condition == 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
   end
 end
 
 And(/^I click on back to home$/) do
-  BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
+  begin
+    BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
+  rescue StandardError
+    BrowserActions.js_click("//button[contains(.,'Back to Home')]")
+  end
   step 'I set permit id'
 end
 
-And(/^I navigate to section (.+)$/) do |_which_section|
-  on(Section6Page).toggle_to_section(_which_section)
+And(/^I navigate to section (.+)$/) do |which_section|
+  on(Section6Page).toggle_to_section(which_section)
 end
 
-And(/^I update permit in pending update state with (.*) rank$/) do |_rank|
-  step "I update permit with #{_rank} rank"
+And(/^I update permit in pending update state with (.*) rank$/) do |rank|
+  step "I update permit with #{rank} rank"
 end
 
-And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, _rank|
+And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, rank|
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
 
@@ -66,8 +66,8 @@ And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, _rank|
   when 'withdraw'
     on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
   end
-  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-  step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
+  step "I enter pin for rank #{rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step "I enter pin via service for rank #{rank}" if $current_environment === 'uat'
 end
 
 And('I take note of issued date and time') do
@@ -87,9 +87,9 @@ And('I click New Entry button on PTW screen') do
   sleep 1
 end
 
-And(/^I click on (.*) tab$/) do |_which_tab|
+And(/^I click on (.*) tab$/) do |which_tab|
   sleep 5
-  case _which_tab
+  case which_tab
   when 'entry log'
     BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)
   when 'permit'
@@ -97,12 +97,12 @@ And(/^I click on (.*) tab$/) do |_which_tab|
   end
 end
 
-And(/^I go to (CRE|PRE|ESE) log in dashboard$/) do |_condition|
+And(/^I go to (CRE|PRE|ESE) log in dashboard$/) do |condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  if _condition === 'PRE' || _condition === 'CRE'
+  if condition === 'PRE' || condition === 'CRE'
     BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   end
-  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if _condition === 'ESE'
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if condition === 'ESE'
 end

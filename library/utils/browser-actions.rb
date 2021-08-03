@@ -59,11 +59,13 @@ module BrowserActions
     end
 
     def scroll_down(_element = nil)
+      sleep 1
       begin
         scroll_to_element(_element)
       rescue StandardError
         scroll_down_by_dist
       end
+      sleep 1
     end
 
     def get_attribute_value(xpath)

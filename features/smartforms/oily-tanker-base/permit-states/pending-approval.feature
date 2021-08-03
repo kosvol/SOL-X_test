@@ -73,10 +73,10 @@ Feature: PendingApprovalPermit
 
     Examples:
       | rank | creator_rank |
-      | ETO  | A/M          |
+      | ETO  | ETO          |
       | 3/E  | C/O          |
       | PMAN | A C/O        |
-      | MAS  | 2/O          |
+      | MAS  | 2/E          |
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state

@@ -410,6 +410,7 @@ Feature: ActivePermit
       # | 7        |
       | 8        |
 
+  @test
   Scenario Outline: Verify non maintenance non oa permits valid for 8 hour
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
