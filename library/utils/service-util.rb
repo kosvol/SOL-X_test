@@ -32,7 +32,7 @@ module ServiceUtil
       @response = ServiceUtil.fauxton(uri, 'post', content_body.to_json.to_s)
       error_logging('Response Body: ', @response)
 
-      crew_members = JSON.parse response.to_s
+      crew_members = JSON.parse @response.to_s
       crew_members['docs'].each do |crew|
         crew['vesselId'] = vesselType
       end

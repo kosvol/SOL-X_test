@@ -43,11 +43,9 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    begin
-      BrowserActions.poll_exists_and_click(next_btn_element)
-    rescue StandardError
-      BrowserActions.poll_exists_and_click(next_btn_element)
-    end
+    BrowserActions.js_click("//button[contains(.,'Next')]")
+  rescue StandardError
+    BrowserActions.js_click("//button[contains(.,'Save & Next')]")
   end
   
 

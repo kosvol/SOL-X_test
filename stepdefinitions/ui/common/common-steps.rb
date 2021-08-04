@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And(/^I turn (off|on) wifi$/) do |_on_or_off|
+And(/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
@@ -39,10 +39,10 @@ And(/^I sign on canvas$/) do
   on(SignaturePage).sign_and_done
 end
 
-Then(/^I sign with (invalid|valid) (.*) rank$/) do |_condition, _rank|
-  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-  step "I enter pin via service for rank #{_rank}" if $current_environment === 'uat'
-  step 'I sign on canvas' if _condition != 'invalid'
+Then(/^I sign with (invalid|valid) (.*) rank$/) do |condition, rank|
+  step "I enter pin for rank #{rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step "I enter pin via service for rank #{rank}" if $current_environment === 'uat'
+  step 'I sign on canvas' if condition != 'invalid'
 end
 
 # ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
@@ -61,9 +61,9 @@ end
 And(/^I enter pin via service for rank (.*)$/) do |rank|
   step 'I get pinpad/get-pin-by-role request payload'
   step 'I hit graphql'
-  ServiceUtil.get_response_body['data']['users'].each do |_crew|
+  ServiceUtil.get_response_body['data']['users'].each do |crew|
     if _crew['crewMember']['rank'] === rank
-      step "I enter pure pin #{_crew['pin']}"
+      step "I enter pure pin #{crew['pin']}"
       break
     else
       CommonPage.set_entered_pin = nil
@@ -80,15 +80,16 @@ And(/^I enter pin for rank (.*)$/) do |rank|
   step "I enter pure pin #{(CommonPage.get_entered_pin)}"
 end
 
-When(/^I select (.+) permit$/) do |_permit|
+When(/^I select (.+) permit$/) do |permit|
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
-  on(Section0Page).select_level1_permit(_permit)
+  on(Section0Page).select_level1_permit(permit)
 end
 
-When(/^I select (.+) permit for level 2$/) do |_permit|
+When(/^I select (.+) permit for level 2$/) do |permit|
   @via_service_or_not = false
-  on(Section0Page).select_level2_permit_and_next(_permit)
+  on(Section0Page).select_level2_permit_and_next(permit)
   BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
+  @get_permit_creation_datetime = on(CommonFormsPage).get_current_date_and_time
   @temp_id = on(Section0Page).ptw_id_element.text
 end
 

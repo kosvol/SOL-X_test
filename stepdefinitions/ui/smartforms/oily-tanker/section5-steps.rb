@@ -37,7 +37,7 @@ end
 
 Then(/^I should see a list of roles$/) do
   on(Section5Page).roles_and_resp_btn
-  is_true(on(Section5Page).is_list_ofroles?)
+  is_true(on(Section5Page).is_list_of_roles?)
 end
 
 And(/^I sign on role with non sponsor crew (.*) rank$/) do |rank|
@@ -84,7 +84,7 @@ end
 
 Then(/^I should see non crew details$/) do
   sleep 1
-  is_equal(on(Section5Page).signedrank_and_name_elements.first.text, 'Test Automation')
+  is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
   if on(Section5Page).get_non_crew_date_time_element.text === "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}"
     is_equal(on(Section5Page).get_non_crew_date_time_element.text,
              "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")

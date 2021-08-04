@@ -127,13 +127,8 @@ class Section4APage < Section3DPage
   def is_signed_user_details?(entered_pin)
     BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
     rank_and_name = get_user_details_by_pin(entered_pin)
-    if rank_and_name_stamp_elements.first.text.size > 9
       Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.first.text
-    elsif rank_and_name_stamp_elements.first.text.size <= 9
-      Log.instance.info(">> #{rank_and_name_stamp_elements.last.text}")
-      @@tmp_rank_name = rank_and_name_stamp_elements.last.text
-    end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")

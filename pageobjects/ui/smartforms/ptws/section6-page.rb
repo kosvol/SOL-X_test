@@ -28,8 +28,8 @@ class Section6Page < Section5Page
     gas_yes_no_elements.size === 2
   end
 
-  def get_gas_added_by(_agt)
-    @browser.find_element(:xpath, format(@@gas_added_by, _agt))
+  def get_gas_added_by(agt)
+    @browser.find_element(:xpath, format(@@gas_added_by, "By #{agt}"))
   end
 
   def is_gas_reader_section?
