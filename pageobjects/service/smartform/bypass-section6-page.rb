@@ -214,7 +214,6 @@ class BypassPage < Section1Page
         section = JSON.parse JsonUtil.read_json('ptw/21.save_section4a_details')
         section['variables']['formId'] = CommonPage.get_permit_id
         section['variables']['submissionTimestamp'] = get_current_date_time
-        get_rank_id_from_service('A/M')
         JsonUtil.create_request_file('ptw/mod_21.save_section4a_details', section)
         ServiceUtil.post_graph_ql_to_uri('ptw/mod_21.save_section4a_details', user, vessel)
       end
