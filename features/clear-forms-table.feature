@@ -50,7 +50,7 @@ Feature: DB reset
     Examples:
       | vessel_type    | regex      |
       | sit-lng-vessel | (?i)SITLNG |
-      | sit-cot-vessel | (?i)SITCOT |
+      | sit-vessel     | (?i)SITCOT |
       | sit-fsu-vessel | (?i)SITFSU |
 
 # @removed-crew-from-vessel
