@@ -10,6 +10,7 @@ mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml 
 win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
 win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
+win_chrome_auto_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 mac_chrome_tablet_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 
 ### Profile for clearing data on Jenkins Cloud ###
