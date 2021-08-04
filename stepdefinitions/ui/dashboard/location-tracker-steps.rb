@@ -32,6 +32,7 @@ end
 
 Then (/^I should see Just now as current active crew$/) do
   step 'I link wearable'
+  sleep 1
   is_equal(on(DashboardPage).is_last_seen, 'Just now')
 end
 
@@ -149,6 +150,7 @@ And (/^I expand location drop down menu$/) do
 end
 
 And (/^I collapse location drop down menu$/) do
+  sleep 1
   on(DashboardPage).dismiss_area_dd
 end
 

@@ -78,9 +78,9 @@ class Section4APage < Section3DPage
     end
   end
 
-  def fill_textarea(_elems, _input)
-    _elems.each do |text_area|
-      BrowserActions.enter_text(text_area, _input)
+  def fill_textarea(elems, input)
+    elems.each do |text_area|
+      BrowserActions.enter_text(text_area, input)
     end
   rescue StandardError
     p "Error: #{StandardError}"
@@ -124,30 +124,25 @@ class Section4APage < Section3DPage
     end
   end
 
-  def is_signed_user_details?(_entered_pin)
+  def is_signed_user_details?(entered_pin)
     BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    if rank_and_name_stamp_elements.first.text.size > 9
+    rank_and_name = get_user_details_by_pin(entered_pin)
       Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
       @@tmp_rank_name = rank_and_name_stamp_elements.first.text
-    elsif rank_and_name_stamp_elements.first.text.size <= 9
-      Log.instance.info(">> #{rank_and_name_stamp_elements.last.text}")
-      @@tmp_rank_name = rank_and_name_stamp_elements.last.text
-    end
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
     ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time.to_s))
   end
 
-  def is_signed_user_details_plus_1_min?(_entered_pin)
-    rank_and_name = get_user_details_by_pin(_entered_pin)
+  def is_signed_user_details_plus_1_min?(entered_pin)
+    rank_and_name = get_user_details_by_pin(entered_pin)
     ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
 
-  def is_signed_user_details_integration?(_entered_pin)
+  def is_signed_user_details_integration?(entered_pin)
     # time_offset = get_current_time_format
-    rank_and_name = get_user_details_by_pin(_entered_pin)
+    rank_and_name = get_user_details_by_pin(entered_pin)
     Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
@@ -156,30 +151,28 @@ class Section4APage < Section3DPage
 
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)
-  def is_checklist_preselected(_checklist)
+  def is_checklist_preselected(checklist)
     element_yes = get_yes_elements
-    list_of_checklist_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === _checklist
-      BrowserActions.wait_until_is_visible(element_yes[_index])
-      BrowserActions.scroll_down(element_yes[_index])
-      BrowserActions.wait_until_is_visible(element_yes[_index])
-      if _checklist.include? 'Cold Work'
-        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
+    list_of_checklist_elements.each_with_index do |checklist_obj, index|
+      next unless checklist_obj.text === checklist
+      BrowserActions.scroll_down(element_yes[index])
+      if checklist.include? 'Cold Work'
+        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
       else
-        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
+        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('color') === 'rgba(255, 255, 255, 1)')
       end
     end
   end
 
-  def select_checklist(_checklist)
+  def select_checklist(checklist)
     sleep 1
     BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
-    list_of_checklist_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === _checklist
+    list_of_checklist_elements.each_with_index do |checklist_obj, index|
+      next unless checklist_obj.text === checklist
 
-      BrowserActions.scroll_down(element_yes[_index + 1])
-      element_yes[_index+1].click
+      BrowserActions.scroll_down(element_yes[index + 1])
+      element_yes[index+1].click
     end
   end
 
@@ -199,17 +192,17 @@ class Section4APage < Section3DPage
     is_questions = false
 
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-    base_data.each do |_element|
-      Log.instance.info("Checking on question >>>> #{_element}")
-      is_questions = (span_arr.include? "#{_element}")
+    base_data.each do |element|
+      Log.instance.info("Checking on question >>>> #{element}")
+      is_questions = (span_arr.include? "#{element}")
       next if is_questions == true
-      is_questions = (label_arr.include? "#{_element}")
+      is_questions = (label_arr.include? "#{element}")
       next if is_questions == true
-      is_questions = (p_arr.include? "#{_element}")
+      is_questions = (p_arr.include? "#{element}")
       next if is_questions == true
-      is_questions = (h4_arr.include? "#{_element}")
+      is_questions = (h4_arr.include? "#{element}")
       next if is_questions == true
-      if (_element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (_element === 'Is vessel movement in seaway acceptable for personnel transfer?')
+      if (element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (element === 'Is vessel movement in seaway acceptable for personnel transfer?')
         is_equal(h4_arr.size, 2)
       else
         is_equal(h4_arr.size, 1)

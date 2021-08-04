@@ -187,7 +187,7 @@ class BypassPage < Section1Page
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
       if $current_environment === 'sit' #todo: need to fix that with actual
-        section['variables']['answers'].last['value']['AUTO_02VSR475JK2JTN7V25D27D'] =
+        section['variables']['answers'].last['value']["#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D"] =
           '000000YGJ11ZSESBYNRXYRVVN3'
       end
       JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
@@ -202,9 +202,10 @@ class BypassPage < Section1Page
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_3b.save_section3b_details', user, vessel)
 
       ### Section 3d
-      section = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
-      section['variables']['formId'] = CommonPage.get_permit_id
-      section['variables']['submissionTimestamp'] = get_current_date_time
+      section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
+      section3d['variables']['formId'] = CommonPage.get_permit_id
+      section3d['variables']['submissionTimestamp'] = get_current_date_time
+      section3d['variables']['answers'].last['value'] = get_default_signature_payload
       JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_8.save_section3d_details', user, vessel)
 
@@ -213,6 +214,7 @@ class BypassPage < Section1Page
         section = JSON.parse JsonUtil.read_json('ptw/21.save_section4a_details')
         section['variables']['formId'] = CommonPage.get_permit_id
         section['variables']['submissionTimestamp'] = get_current_date_time
+        get_rank_id_from_service('A/M')
         JsonUtil.create_request_file('ptw/mod_21.save_section4a_details', section)
         ServiceUtil.post_graph_ql_to_uri('ptw/mod_21.save_section4a_details', user, vessel)
       end
@@ -359,7 +361,7 @@ class BypassPage < Section1Page
     section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
     if $current_environment === 'sit'
-      section['variables']['answers'].last['value']['AUTO_02VSR475JK2JTN7V25D27D'] =
+      section['variables']['answers'].last['value']["#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D"] =
         '000000YGJ11ZSESBYNRXYRVVN3'
     end
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
@@ -371,7 +373,6 @@ class BypassPage < Section1Page
     ### section 3a ###
     section3a = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '3a'))
     section3a['variables']['formId'] = CommonPage.get_permit_id
-    # section3a['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     section3a['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_5.save_section3a_details', section3a)
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
@@ -388,9 +389,6 @@ class BypassPage < Section1Page
       "[{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"MAS\"}]"
     JsonUtil.create_request_file('ptw/mod_6.save_section3b_details', section3b)
     ServiceUtil.post_graph_ql('ptw/mod_6.save_section3b_details', _user)
-    # else
-    #   save_different_form_section(payload_mapper(_permit_type, '3b'), _user)
-    # end
 
     # if  _permit_type == 'submit_enclose_space_entry'
     ### section 3c ###
@@ -402,22 +400,18 @@ class BypassPage < Section1Page
       "[{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"}]"
     JsonUtil.create_request_file('ptw/mod_7.save_section3c_details', section3c)
     ServiceUtil.post_graph_ql('ptw/mod_7.save_section3c_details', _user)
-    # else
-    #   save_different_form_section('7.save_section3c_details', _user)
-    # end
-
+    
     # if  _permit_type == 'submit_enclose_space_entry'
     ### section 3d ###
     section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
     section3d['variables']['formId'] = CommonPage.get_permit_id
     section3d['variables']['submissionTimestamp'] = get_current_date_time
     get_rank_id_from_service('A/M')
-    section3d['variables']['answers'][-1]['value']['AUTO_SOLX0012'] =
-      (CommonPage.get_rank_id).to_s
-    if $current_environment === 'sit'
-      section3d['variables']['answers'].last['value'] =
-        "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-    end
+    section3d['variables']['answers'][-1]['value'] = get_default_signature_payload
+    # if $current_environment === 'sit'
+    #   section3d['variables']['answers'].last['value'] =
+    #     "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+    # end
     JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section3d)
     ServiceUtil.post_graph_ql('ptw/mod_8.save_section3d_details', _user)
     # else
@@ -431,10 +425,7 @@ class BypassPage < Section1Page
     section4ac['variables']['formId'] = CommonPage.get_permit_id
     section4ac['variables']['submissionTimestamp'] = get_current_date_time
     get_rank_id_from_service('C/E')
-    if $current_environment === 'sit'
-      section4ac['variables']['answers'][-1]['value'] =
-        "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-    end
+    section4ac['variables']['answers'][-1]['value'] = get_default_signature_payload
     JsonUtil.create_request_file('ptw/mod_10.save_section4a_checklist_details', section4ac)
     ServiceUtil.post_graph_ql('ptw/mod_10.save_section4a_checklist_details', _user)
 
@@ -450,16 +441,10 @@ class BypassPage < Section1Page
     save_eic['variables']['parentFormId'] = CommonPage.get_permit_id
     save_eic['variables']['formId'] = ServiceUtil.get_response_body['data']['createForm']['_id']
     save_eic['variables']['submissionTimestamp'] = get_current_date_time
-    if $current_environment === 'sit'
-      get_rank_id_from_service('C/O')
-      save_eic['variables']['answers'][-3]['value'] =
-        "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-    end
-    if $current_environment === 'sit'
-      get_rank_id_from_service('C/E')
-      save_eic['variables']['answers'][-2]['value'] =
-        "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-    end
+    get_rank_id_from_service('C/O')
+    save_eic['variables']['answers'][-3]['value'] = get_default_signature_payload
+    get_rank_id_from_service('C/E')
+    save_eic['variables']['answers'][-2]['value'] = get_default_signature_payload
     JsonUtil.create_request_file('ptw/mod_11.save_eic_cert_details', save_eic)
     ServiceUtil.post_graph_ql('ptw/mod_11.save_eic_cert_details', _user)
 
@@ -469,11 +454,8 @@ class BypassPage < Section1Page
     section4b['variables']['submissionTimestamp'] = get_current_date_time
     if eic === 'eic_yes'
       section4b['variables']['answers'][1].to_h['value'] = '"yes"'
-      if $current_environment === 'sit'
-        get_rank_id_from_service('A/M')
-        section4b['variables']['answers'].last['value'] =
-          "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-      end
+      get_rank_id_from_service('A/M')
+      section4b['variables']['answers'].last['value'] = get_default_signature_payload
     elsif eic === 'eic_no'
       section4b['variables']['answers'][1].to_h['value'] = '"no"'
       section4b['variables']['answers'].pop
@@ -485,11 +467,9 @@ class BypassPage < Section1Page
     ### section 5 ###
     section5 = JSON.parse JsonUtil.read_json('ptw/12.save_section5_details')
     section5['variables']['formId'] = CommonPage.get_permit_id
-    if $current_environment === 'sit'
-      get_rank_id_from_service('A/M')
-      section5['variables']['answers'].last['value'] =
-        "[{\"crewId\":\"#{CommonPage.get_rank_id}\",\"role\":\"Authorized Entrant 1\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"},\"signature\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGhABAAMAAwAAAAAAAAAAAAAAAAECAwQRMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARjjlx8M8MMqZZZVilM6Vita1iOoiIjyIhYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}]"
-    end
+    get_rank_id_from_service('A/M')
+    section5['variables']['answers'].last['value'] =
+      "[{\"crewId\":\"#{CommonPage.get_rank_id}\",\"role\":\"Authorized Entrant 1\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"},\"signature\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGhABAAMAAwAAAAAAAAAAAAAAAAECAwQRMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARjjlx8M8MMqZZZVilM6Vita1iOoiIjyIhYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}]"
     JsonUtil.create_request_file('ptw/mod_12.save_section5_details', section5)
     ServiceUtil.post_graph_ql('ptw/mod_12.save_section5_details', _user)
     ### end ###
@@ -502,12 +482,9 @@ class BypassPage < Section1Page
       section2['variables']['answers'][1].to_h['value'] = '"yes"'
       get_rank_id_from_service('A/M')
       section2['variables']['answers'][-3]['value'] =
-        "[{\"entryId\":\"entry\",\"crewId\":\"#{CommonPage.get_rank_id}\",\"gasReadings\":[{\"gasName\":\"O2\",\"reading\":\"1\",\"unit\":\"%\",\"threshold\":\"20.9\"},{\"gasName\":\"HC\",\"reading\":\"2\",\"unit\":\"% LEL\",\"threshold\":\"1\"},{\"gasName\":\"H2S\",\"reading\":\"3\",\"unit\":\"PPM\",\"threshold\":\"5\"},{\"gasName\":\"CO\",\"reading\":\"4\",\"unit\":\"PPM\",\"threshold\":\"25\"},{\"gasName\":\"Test\",\"reading\":\"1\",\"unit\":\"CC\",\"threshold\":\"25\"}],\"gasReadingTime\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}},\"signature\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAGgABAQACAwAAAAAAAAAAAAAAAAQDBQIGB//EACwQAQACAgIBAgQEBwAAAAAAAAABAgMEBRESIXETMUGBBjJRYRQiIzRSYqH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A9mAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABg293U0ME59zaw62KJ6nJmyRSvfvIM41c85XJPWjx2/u9W8bTjwxjrEf5RbLNIvH71myLLr/i3kbTW27x/C4e6/wBtSdvNMd926veK1r3Hp+SwOwjVcNwl+HnNN+Y5LkZzW8p/js1b+E/69VjqP2bUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE+bati8649bPnvWO/GlYjv2m0xX/oKBFGzv5a4rYuPjFFrf1K7OeK2pH6x4ReJ9u4K6u7k8Z2OQ68ck28dbFGOL0+lbeU2n71ms+n0+QKNjZwamGc2zmx4cVfnfJaK1j7ymvv58tbRoaV81oier55nDj8on5TMxNvX6TFZif1ZNfjdPVvXJjwxOatPhxnyTOTLNe++pvbu0x7yqBBOnvZ7zOxyNseOMkzGLVxxTypMflva3laZj1/mrNPZz1OK0dLJ8XBr1+P4eE58kzky2r8+rZLd2t95WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/9k=\",\"gasReadingStatus\":\"PENDING\",\"entryStatus\":\"ACTIVE\",\"purposeOfEntry\":\"\",\"entrant\":{\"clientId\":\"\",\"_id\":\"#{CommonPage.get_rank_id}\",\"accessGroups\":[],\"firstName\":\"Atif\",\"lastName\":\"Hayat\",\"rank\":\"A/M\"}}]"
-      if $current_environment === 'sit'
-        get_rank_id_from_service('A/M')
-        section2['variables']['answers'][-2]['value'] =
-          "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"000000YGJ11ZSESBYNRXYRVVN3\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-      end
+        "[{\"formId\":\"\",\"entryId\":\"entry\",\"crewId\":\"#{CommonPage.get_rank_id}\",\"gasReadings\":[{\"gasName\":\"O2\",\"reading\":\"1\",\"unit\":\"%\",\"threshold\":\"20.9\"},{\"gasName\":\"HC\",\"reading\":\"2\",\"unit\":\"% LEL\",\"threshold\":\"1\"},{\"gasName\":\"H2S\",\"reading\":\"3\",\"unit\":\"PPM\",\"threshold\":\"5\"},{\"gasName\":\"CO\",\"reading\":\"4\",\"unit\":\"PPM\",\"threshold\":\"25\"}],\"gasReadingTime\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}},\"signature\":\"data:image/jpeg;base64,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\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"},\"gasReadingStatus\":\"PENDING\",\"entryStatus\":\"ACTIVE\",\"purposeOfEntry\":\"\",\"entrant\":{\"clientId\":\"\",\"_id\":\"#{CommonPage.get_rank_id}\",\"accessGroups\":[],\"firstName\":\"COT\",\"lastName\":\"A/M\",\"rank\":\"A/M\"},\"locationId\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\"}]"
+      get_rank_id_from_service('A/M')
+      section2['variables']['answers'][-2]['value'] = get_default_signature_payload
     elsif _gas === 'gas_no'
       section2['variables']['answers'][1].to_h['value'] = '"no"'
       section2['variables']['answers'].delete_at(2)
@@ -547,6 +524,7 @@ class BypassPage < Section1Page
     _update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
     _update_permit['variables']['formId'] = CommonPage.get_permit_id
     _update_permit['variables']['submissionTimestamp'] = get_current_date_time
+    _update_permit['variables']['answers'][2]['value'] = get_default_signature_payload
     _update_permit['variables']['answers'][3].to_h['value'] =
       "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
     if _permit_type != 'submit_underwater_simultaneou'
@@ -640,8 +618,7 @@ class BypassPage < Section1Page
       "{\"dateTime\":\"#{get_current_date_time_cal(_duration)}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     get_rank_id_from_service('MAS')
-    section['variables']['answers'][3].to_h['value']['signedBy'] =
-      "\"#{CommonPage.get_rank_id}\""
+    section['variables']['answers'][3].to_h['value']['signedBy'] = "\"#{CommonPage.get_rank_id}\""
 
     JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status_rol')
@@ -655,8 +632,7 @@ class BypassPage < Section1Page
       "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{get_current_time_offset}}"
     submit_active['variables']['answers'][4].to_h['value'] = "\"#{_status}\""
     get_rank_id_from_service('A/M')
-    submit_active['variables']['answers'][-2].to_h['value']['signedBy'] =
-      (CommonPage.get_rank_id).to_s
+    submit_active['variables']['answers'][-2].to_h['value']['signedBy'] = (CommonPage.get_rank_id).to_s
     submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod-17.submit-for-termination-wo-eic-normalization', submit_active)
     ServiceUtil.post_graph_ql('ptw/mod-17.submit-for-termination-wo-eic-normalization')
@@ -874,6 +850,10 @@ class BypassPage < Section1Page
   end
 
   private
+
+  def get_default_signature_payload
+    "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+  end
 
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')

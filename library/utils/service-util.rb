@@ -7,38 +7,39 @@ require 'date'
 module ServiceUtil
   include HTTParty
   class << self
-    def update_mas_pin
-      uri = EnvironmentSelector.get_update_master_pin_url
-      content_body = JsonUtil.read_json('vessel-switch/get_mas_details')
+    # def update_mas_pin
+    #   uri = EnvironmentSelector.get_update_master_pin_url
+    #   content_body = JsonUtil.read_json('vessel-switch/get_mas_details')
+    #   error_logging('URI: ', uri)
+    #   error_logging('Request Body: ', content_body)
+    #   @response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
+    #   error_logging('Response Body: ', @response)
+
+    #   master_details = JSON.parse response.to_s
+    #   master_details['pin'] = '1111'
+    #   p "> #{master_details.to_json}"
+    #   @response = HTTParty.put(uri, { body: master_details.to_json }.merge(ql_headers('_user')))
+    #   error_logging('Switch Response Body: ', @response)
+    # end
+
+    def update_crew_members_vessel(vesselType,regex)
+
+      uri = "#{$obj_env_yml['oa_db']['base_sit_url']}/crew_members/_find"
+      content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
+      content_body['selector']['_id']['$regex'] = regex
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @@response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
-      error_logging('Response Body: ', @@response)
+      @response = ServiceUtil.fauxton(uri, 'post', content_body.to_json.to_s)
+      error_logging('Response Body: ', @response)
 
-      master_details = JSON.parse @@response.to_s
-      master_details['pin'] = '1111'
-      p "> #{master_details.to_json}"
-      @@response = HTTParty.put(uri, { body: master_details.to_json }.merge(ql_headers('_user')))
-      error_logging('Switch Response Body: ', @@response)
-    end
-
-    def update_crew_members_vessel(_vesselType)
-      uri = "#{$obj_env_yml[$current_environment.to_s]['service']}crew_members/_find"
-      # EnvironmentSelector.get_vessel_switch_url
-      content_body = JsonUtil.read_json('vessel-switch/get_crew_members')
-      error_logging('URI: ', uri)
-      error_logging('Request Body: ', content_body)
-      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers('_user')))
-      error_logging('Response Body: ', @@response)
-
-      master_details = JSON.parse @@response.to_s
-      master_details['docs'].each do |_crew|
-        _crew['vesselId'] = _vesselType if _crew['_id'].downcase.include? 'sit_solx'
+      crew_members = JSON.parse @response.to_s
+      crew_members['docs'].each do |crew|
+        crew['vesselId'] = vesselType
       end
-      p "> #{master_details.to_json}"
-      uri = "#{$obj_env_yml[$current_environment.to_s]['service']}crew_members/_bulk_docs"
-      @@response = HTTParty.post(uri, { body: master_details.to_json }.merge(ql_headers('_user')))
-      error_logging('Switch Response Body: ', @@response)
+      error_logging('Request Body: ', crew_members)
+      uri = "#{$obj_env_yml['oa_db']['base_sit_url']}/crew_members/_bulk_docs"
+      @response = ServiceUtil.fauxton(uri, 'post', crew_members.to_json)
+      error_logging('Response Body: ', @response)
     end
 
     def post_graph_ql_to_uri(which_json, _user = '1111', _uri)
@@ -46,10 +47,10 @@ module ServiceUtil
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
-      error_logging('Response Body: ', @@response)
+      @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
+      error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
-      JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
+      JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
     end
 
     # def switch_vessel_type(_vesselType, _user = '1111')
@@ -61,14 +62,14 @@ module ServiceUtil
     #   end
     #   error_logging('URI: ', uri)
     #   error_logging('Request Body: ', content_body)
-    #   @@response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
-    #   error_logging('Response Body: ', @@response)
+    #   @response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
+    #   error_logging('Response Body: ', @response)
 
-    #   vessel_details = JSON.parse @@response.to_s
+    #   vessel_details = JSON.parse response.to_s
     #   vessel_details['vesselType'] = _vesselType.upcase
     #   p "> #{vessel_details.to_json}"
-    #   @@response = HTTParty.put(uri, { body: vessel_details.to_json }.merge(ql_headers('_user')))
-    #   error_logging('Switch Response Body: ', @@response)
+    #   @response = HTTParty.put(uri, { body: vessel_details.to_json }.merge(ql_headers('_user')))
+    #   error_logging('Switch Response Body: ', @response)
     # end
 
     def post_graph_ql(which_json, _user = '1111')
@@ -76,10 +77,10 @@ module ServiceUtil
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @@response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
-      error_logging('Response Body: ', @@response)
+      @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
+      error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
-      JsonUtil.create_response_file(which_json, @@response, get_http_response_status_code)
+      JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
     end
 
     def fauxton(_uri, _trans_method, _json_payload = '')
@@ -89,27 +90,27 @@ module ServiceUtil
       error_logging('URI: ', _uri)
       error_logging('Request Body: ', content_body)
       if _trans_method === 'put'
-        @@response = HTTParty.put(_uri,
+        @response = HTTParty.put(_uri,
                                   { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'post'
-        @@response = HTTParty.post(_uri,
+        @response = HTTParty.post(_uri,
                                    { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'get'
-        @@response = HTTParty.get(_uri,
+        @response = HTTParty.get(_uri,
                                   { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'delete'
-        @@response = HTTParty.delete(_uri,
+        @response = HTTParty.delete(_uri,
                                      { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      error_logging('Response Body: ', @@response)
+      error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
       unless _json_payload.include? '{'
-        JsonUtil.create_response_file(_json_payload, @@response, get_http_response_status_code)
+        JsonUtil.create_response_file(_json_payload, @response, get_http_response_status_code)
       end
-      @@response
+      @response
     end
 
     def get_error_code
@@ -119,7 +120,7 @@ module ServiceUtil
     end
 
     def get_response_body
-      @@response if !@@response.body.nil? && !@@response.body.empty?
+      @response if !@response.body.nil? && !@response.body.empty?
     end
 
     def craft_date_time_format(_year, _month, _day, _hour, _min, _seconds)
@@ -145,7 +146,7 @@ module ServiceUtil
     end
 
     def get_http_response_status_code
-      @@response.code.to_i if !@@response.body.nil? && !@@response.body.empty?
+      @response.code.to_i if !@response.body.nil? && !@response.body.empty?
     end
   end
 end

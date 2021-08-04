@@ -1,7 +1,0 @@
-align_case_when true
-align_chained_calls true
-parens_in_def :dynamic
-trailing_commas true
-
-includes [*.rb,*.json,data/*/*.yml]
-excludes [*.feature,testreport/,*.html,*.css]

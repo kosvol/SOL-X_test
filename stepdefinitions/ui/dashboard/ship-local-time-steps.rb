@@ -14,6 +14,6 @@ end
 
 Then (/^I should see base time is UTC$/) do
   on(ShipLocalTimePage).clock_btn_element.click
-  sleep 1
+  sleep 2
   is_equal(on(ShipLocalTimePage).is_utc_time, on(ShipLocalTimePage).utc_time)
 end
