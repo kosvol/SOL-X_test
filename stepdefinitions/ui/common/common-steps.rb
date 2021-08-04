@@ -62,7 +62,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
   step 'I get pinpad/get-pin-by-role request payload'
   step 'I hit graphql'
   ServiceUtil.get_response_body['data']['users'].each do |crew|
-    if _crew['crewMember']['rank'] === rank
+    if crew['crewMember']['rank'] === rank
       step "I enter pure pin #{crew['pin']}"
       break
     else
