@@ -13,7 +13,7 @@ Feature: DB reset
     And I clear geofence
     Given I clear gas reader entries
     And I clear wearable history and active users
-    Given I clear mariadb
+    Given I clear postgres db for auto
 
   # @clear-pre-gas-table
   # Scenario: PRE DB reset

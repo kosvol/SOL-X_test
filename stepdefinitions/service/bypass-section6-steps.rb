@@ -93,9 +93,8 @@ And(/^I clear wearable history and active users$/) do
   SmartFormDBPage.delete_table_wearable_alerts_row('fauxton', 'delete_alerts_histories_entries')
 end
 
-Given(/^I clear mariadb$/) do
-  Postgres_clearing.clear_postgres_db
-  # MariaDB_clearing.clear_maria_db
+Given(/^I clear postgres db for (.*)$/) do |env|
+  Postgres_clearing.clear_postgres_db(env)
 end
 
 Given(/^I clear work rest table$/) do
