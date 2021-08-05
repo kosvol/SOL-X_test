@@ -329,7 +329,6 @@ class BypassPage < Section1Page
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
-    # p ">> #{create_form_ptw['variables']['answers'][0]['value'].to_a[0]['userId']}"
      get_rank_id_from_service('C/O')
     create_form_ptw['variables']['answers'][0]['value'] =
       create_form_ptw['variables']['answers'][0]['value'].gsub('AUTO_SOLX0012',
@@ -339,11 +338,6 @@ class BypassPage < Section1Page
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
-    # add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
-    # add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
-    # JsonUtil.create_request_file('ptw/1.mod_date_with_offset', add_time_offset_to_ptw)
-    # ServiceUtil.post_graph_ql('ptw/1.mod_date_with_offset', _user)
-    # @get_offset = ServiceUtil.get_response_body['data']['form']['created']['utcOffset']
     ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', _user)
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
 
@@ -367,7 +361,6 @@ class BypassPage < Section1Page
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
     ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', _user)
 
-    # save_different_form_section(payload_mapper(_permit_type, '3'), _user)
     save_different_form_section(payload_mapper(_permit_type, '4'), _user)
 
     ### section 3a ###
@@ -378,7 +371,6 @@ class BypassPage < Section1Page
     ServiceUtil.post_graph_ql('ptw/mod_5.save_section3a_details', _user)
     ### end ###
 
-    # if _permit_type == 'submit_enclose_space_entry'
     ### section 3b ###
     _which_json = payload_mapper(_permit_type, '3b')
     section3b = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
@@ -390,7 +382,6 @@ class BypassPage < Section1Page
     JsonUtil.create_request_file('ptw/mod_6.save_section3b_details', section3b)
     ServiceUtil.post_graph_ql('ptw/mod_6.save_section3b_details', _user)
 
-    # if  _permit_type == 'submit_enclose_space_entry'
     ### section 3c ###
     section3c = JSON.parse JsonUtil.read_json('ptw/7.save_section3c_details')
     section3c['variables']['formId'] = CommonPage.get_permit_id
@@ -401,22 +392,14 @@ class BypassPage < Section1Page
     JsonUtil.create_request_file('ptw/mod_7.save_section3c_details', section3c)
     ServiceUtil.post_graph_ql('ptw/mod_7.save_section3c_details', _user)
     
-    # if  _permit_type == 'submit_enclose_space_entry'
     ### section 3d ###
     section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
     section3d['variables']['formId'] = CommonPage.get_permit_id
     section3d['variables']['submissionTimestamp'] = get_current_date_time
     get_rank_id_from_service('A/M')
     section3d['variables']['answers'][-1]['value'] = get_default_signature_payload
-    # if $current_environment === 'sit'
-    #   section3d['variables']['answers'].last['value'] =
-    #     "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-    # end
     JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section3d)
     ServiceUtil.post_graph_ql('ptw/mod_8.save_section3d_details', _user)
-    # else
-    #   save_different_form_section('8.save_section3d_details', _user)
-    # end
 
     save_different_form_section(payload_mapper(_permit_type, '4a'), _user)
 
@@ -467,7 +450,7 @@ class BypassPage < Section1Page
     ### section 5 ###
     section5 = JSON.parse JsonUtil.read_json('ptw/12.save_section5_details')
     section5['variables']['formId'] = CommonPage.get_permit_id
-    get_rank_id_from_service('A/M')
+    get_rank_id_from_service('C/O')
     section5['variables']['answers'].last['value'] =
       "[{\"crewId\":\"#{CommonPage.get_rank_id}\",\"role\":\"Authorized Entrant 1\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"},\"signature\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGhABAAMAAwAAAAAAAAAAAAAAAAECAwQRMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARjjlx8M8MMqZZZVilM6Vita1iOoiIjyIhYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}]"
     JsonUtil.create_request_file('ptw/mod_12.save_section5_details', section5)
