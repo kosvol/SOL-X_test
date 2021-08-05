@@ -45,7 +45,7 @@ Feature: LNGCRE
     And I set time
     Then I will see popup dialog with A/M LNG A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
+    Then I should see gas reading display with toxic gas and A/M LNG A/M as gas signer
 
   Scenario Outline: Verify any rank can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable

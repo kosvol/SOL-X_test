@@ -177,7 +177,7 @@ class PumpRoomEntry < PreDisplay
 
   def fill_static_pre
     fill_text_area(@@text_areas, 'Test Automation')
-    select_checkbox(@@radio_buttons%["Location of vessel"], ['At Sea', 'In Port'].sample)
+    select_checkbox(@@location_check_btn, ['At Sea', 'In Port'].sample)
   end
 
   def select_start_time_to_activate(delay)

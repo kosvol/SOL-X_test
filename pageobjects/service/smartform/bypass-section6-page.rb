@@ -355,8 +355,7 @@ class BypassPage < Section1Page
     section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
     if $current_environment === 'sit'
-      section['variables']['answers'].last['value']["#{EnvironmentSelector.get_env_type_prefix}_02VSR475JK2JTN7V25D27D"] =
-        '000000YGJ11ZSESBYNRXYRVVN3'
+      section['variables']['answers'].last['value']["AUTO_02VSR475JK2JTN7V25D27D"] = "#{EnvironmentSelector.get_env_type_prefix}_000000YGJ11ZSESBYNRXYRVVN3"
     end
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
     ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', _user)
