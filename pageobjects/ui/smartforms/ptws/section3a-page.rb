@@ -22,7 +22,7 @@ class Section3APage < Section2Page
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
   elements(:active_risk, xpath: "//div[starts-with(@data-testid,'combo-box-with-buttons-sheet')]/div[2]/div/ul/li")
-  buttons(:level_to_choose, xpath: "//button[starts-with(@class,'Menu__MenuOption')]") # "//div[starts-with(@class,'ComboBoxWithButtons__')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
+  elements(:options_text, css: 'div.option-text')
   buttons(:cancel_btn,
           xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
@@ -179,7 +179,7 @@ class Section3APage < Section2Page
   def select_dra_risk(_risk)
     sleep 1
     if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s != 'active'
-      level_to_choose_elements[(_risk.to_i - 1)].click
+      options_text_elements[(_risk.to_i - 1)].click
     end
     confirm_btn_elements.first.click
   end

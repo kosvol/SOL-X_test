@@ -140,7 +140,7 @@ Feature: Section6
     And I set time
     Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and By A/M COT A/M as gas signer
+    Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
     And I add only normal gas readings
     And I enter pin for rank A/M
     And I set time
