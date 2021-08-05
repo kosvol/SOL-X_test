@@ -55,8 +55,7 @@ android_chrome_dashboard_fsu_auto: --profile dir --profile html --profile xml --
 android_chrome_tablet_a_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
 android_chrome_tablet_b_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
-### Konstantine ###
-### sit-sol-x-web-app-office-comment-ui-test ###
+### use in sit-sol-x-web-app-office-comment-ui-test ###
 mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
 mac_chrome_dashboard_office_approval: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
