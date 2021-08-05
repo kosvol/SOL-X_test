@@ -9,7 +9,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     Then I should see 1 role listed
@@ -23,7 +23,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 2 role from list
     Then I should see 2 role listed
@@ -39,7 +39,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     Then I should see a list of roles
 
@@ -48,7 +48,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I sign on role
@@ -59,7 +59,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 2 role from list
     And I sign on role
@@ -72,7 +72,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I check non crew member checkbox
@@ -83,7 +83,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
@@ -94,7 +94,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
@@ -105,7 +105,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
@@ -133,7 +133,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I fill up non crew details
@@ -149,7 +149,7 @@ Feature: Section5
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 5
     And I select 1 role from list
     And I sign on role with sponsor crew <rank> rank

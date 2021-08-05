@@ -51,9 +51,6 @@ Then(/^I submit permit for Master (.+)$/) do |approval_or_review|
     step 'I enter pin via service for rank C/O'
     step 'I sign on canvas'
   end
-  # data collector; will evolve
-  # on(Section0Page).reset_data_collector
-  # @@created_permit_data = on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin)
 end
 
 Then(/^I submit smoke test permit$/) do

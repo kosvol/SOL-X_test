@@ -28,46 +28,40 @@ class Section0Page < NavigationPage
   end
 
   def get_selected_level2_permit
-    @@selected_level2_permit
+    @selected_level2_permit
   end
 
-  def select_level2_permit_and_next(_permit)
-    select_level2_permit(_permit)
+  def select_level2_permit_and_next(permit)
+    select_level2_permit(permit)
     save_next
-    set_selected_level2_permit(_permit)
+    set_selected_level2_permit(permit)
     set_current_time
     sleep 1
   end
 
-  def select_level1_permit(_permit)
+  def select_level1_permit(permit)
     sleep 1
-    CommonPage.set_permit_id(_permit)
+    CommonPage.set_permit_id(permit)
     select_permit
   end
 
   private
-  def set_selected_level2_permit(_permit)
-    @@selected_level2_permit = _permit
+  def set_selected_level2_permit(permit)
+    @selected_level2_permit = permit
   end
 
   def select_permit
     sleep 1
-    list_permit_type_elements.each_with_index do |permit,_index|
+    list_permit_type_elements.each_with_index do |permit,index|
       next unless permit.text === CommonPage.get_permit_id
       permit.click
       break
     end
   end
 
-  def select_level2_permit(_permit)
-    CommonPage.set_permit_id(_permit)
-    ['Enclosed Space Entry', 'Helicopter Operation', 'Personnel Transfer by Transfer Basket', 'Rigging of Gangway & Pilot Ladder', 'Use of Non-Intrinsically Safe Camera', 'Use of ODME in Manual Mode', 'Work on Electrical Equipment and Circuits – Low/High Voltage', 'Work on Pressure Pipeline/Vessels', 'Working Aloft / Overside', 'Working on Deck During Heavy Weather'].each do |obj| 
-      if obj != _permit
-        select_permit
-        break
-       end
-    end
-
+  def select_level2_permit(permit)
+    CommonPage.set_permit_id(permit)
+    select_permit if permit != 'NA'
     @@section1_data_collector << CommonPage.get_permit_id
     ptw_id_tmp = ptw_id_element.text
     @@section1_data_collector << ptw_id_tmp

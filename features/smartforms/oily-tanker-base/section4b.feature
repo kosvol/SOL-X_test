@@ -10,7 +10,7 @@ Feature: Section4BEIC
     And I navigate to create new permit
     And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4b
     And I select yes to EIC
@@ -47,8 +47,8 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp | level_one_permit      | level_two_permit      | checklist                      |
-      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | user          | zoneid                      | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
+      | AUTO_SOLX0019 | AUTO_0ABXE1MTWY05N3SP16F96T | 00:00:00:00:00:90 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
@@ -166,7 +166,7 @@ Feature: Section4BEIC
     And I navigate to create new permit
     And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4b
     And I select yes to EIC

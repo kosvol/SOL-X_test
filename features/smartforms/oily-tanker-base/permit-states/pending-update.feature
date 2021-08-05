@@ -16,7 +16,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -56,7 +56,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -116,7 +116,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -136,7 +136,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -181,7 +181,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
@@ -202,7 +202,7 @@ Feature: PendingUpdate
   #   And I navigate to create new permit
   #   And I enter pin for rank C/O
   #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I select NA permit for level 2
   #   And I fill up section 1 with default value
   #   And I navigate to section 4a
   #   And I press next for 1 times
@@ -226,7 +226,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
@@ -247,7 +247,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
@@ -359,7 +359,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -381,7 +381,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -400,7 +400,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -430,7 +430,7 @@ Feature: PendingUpdate
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5

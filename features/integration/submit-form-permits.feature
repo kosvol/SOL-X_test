@@ -39,7 +39,7 @@ Feature: SubmitPermit
     And I navigate to create new permit
     And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3a
     And I add a new hazard
@@ -77,7 +77,7 @@ Feature: SubmitPermit
   #   And I navigate to create new permit
   #   And I enter pin for rank A/M
   #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I select NA permit for level 2
   #   And I fill up section 1 with default value
   #   And I navigate to section 3a
   #   And I add a new hazard

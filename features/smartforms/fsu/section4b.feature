@@ -9,7 +9,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to create new permit
         And I enter pin for rank 2/E
         And I select Enclosed Spaces Entry permit
-        And I select Enclosed Spaces Entry permit for level 2
+        And I select NA permit for level 2
         And I navigate to section 4b
         And I select yes to EIC
         And I click on create EIC certification button
@@ -20,7 +20,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to create new permit
         And I enter pin for rank C/E
         And I select Enclosed Spaces Entry permit
-        And I select Enclosed Spaces Entry permit for level 2
+        And I select NA permit for level 2
         And I navigate to section 4b
         And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
         And I select yes to EIC

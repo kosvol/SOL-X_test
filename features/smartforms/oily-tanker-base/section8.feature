@@ -33,7 +33,7 @@ Feature: Section8
     When I navigate to create new permit
     And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
-    And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -56,7 +56,7 @@ Feature: Section8
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Work on Pressure Pipeline/Vessels permit
-    And I select Work on Pressure Pipeline/Vessels permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -77,7 +77,7 @@ Feature: Section8
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit
-    And I select Work on Electrical Equipment and Circuits – Low/High Voltage permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -119,7 +119,7 @@ Feature: Section8
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I navigate to section 4a
     And I select the matching Critical Equipment Maintenance Checklist checklist
@@ -145,7 +145,7 @@ Feature: Section8
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I navigate to section 4a
     And I select the matching Work on Electrical Equipment and Circuits checklist
