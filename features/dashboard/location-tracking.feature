@@ -19,6 +19,7 @@ Feature: LocationTracking
     Given I launch sol-x portal without unlinking wearable
     Then I should see correct table headers for crew list
 
+  @debug
   Scenario: Verify PTW is tied to crew
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I sleep for 5 seconds
