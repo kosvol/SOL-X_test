@@ -314,7 +314,7 @@ Feature: Section3ADRA
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 3a
     And I add a new hazard
     Then I should see added new hazard

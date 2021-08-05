@@ -10,7 +10,7 @@ So that ...
 #         And I navigate to create new permit
 #         And I enter pin via service for rank C/O
 #         And I select Use of ODME in Manual Mode permit
-#         And I select Use of ODME in Manual Mode permit for level 2
+#         And I select NA permit for level 2
 #         And I fill only location of work
 #         And I press next for 7 times
 #         And I sign checklist and section 5
@@ -40,7 +40,7 @@ So that ...
 #     And I navigate to create new permit
 #     And I enter pin via service for rank C/O
 #     And I select Use of ODME in Manual Mode permit
-#     And I select Use of ODME in Manual Mode permit for level 2
+#     And I select NA permit for level 2
 #     And I navigate to section 4b
 #     And I select yes to EIC
 #     And I click on back arrow
@@ -67,7 +67,7 @@ So that ...
 #     And I navigate to create new permit
 #     And I enter pin via service for rank C/O
 #     And I select Use of ODME in Manual Mode permit
-#     And I select Use of ODME in Manual Mode permit for level 2
+#     And I select NA permit for level 2
 #     And I navigate to section 4b
 #     And I select yes to EIC
 #     And I click on back arrow
@@ -98,7 +98,7 @@ So that ...
 #     And I navigate to create new permit
 #     And I enter pin via service for rank C/E
 #     And I select Use of ODME in Manual Mode permit
-#     And I select Use of ODME in Manual Mode permit for level 2
+#     And I select NA permit for level 2
 #     And I click on back arrow
 #     When I navigate to "Created" screen for forms
 #     And I want to edit the newly created permit

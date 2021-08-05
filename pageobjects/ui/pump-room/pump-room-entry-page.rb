@@ -121,7 +121,7 @@ class PumpRoomEntry < PreDisplay
   def is_entered_entrant_listed?(entrant)
     entrant_names_dd_element.click
     sleep 1
-    member_name_btn_elements.each do |_crew|
+    options_text_elements.each do |_crew|
       if entrant === _crew.text
         return false
       end
@@ -136,8 +136,8 @@ class PumpRoomEntry < PreDisplay
     entrant_names_dd_element.click
     sleep 2
     while _additional_entrants > 0
-      member_name_btn_elements[_additional_entrants].click
-      entr_arr.push(member_name_btn_elements[_additional_entrants].text)
+      options_text_elements[_additional_entrants].click
+      entr_arr.push(options_text_elements[_additional_entrants].text)
       _additional_entrants = _additional_entrants - 1
     end
     set_entrants(entr_arr)
@@ -177,7 +177,7 @@ class PumpRoomEntry < PreDisplay
 
   def fill_static_pre
     fill_text_area(@@text_areas, 'Test Automation')
-    select_checkbox(@@radio_buttons%["Location of vessel"], ['At Sea', 'In Port'].sample)
+    select_checkbox(@@location_check_btn, ['At Sea', 'In Port'].sample)
   end
 
   def select_start_time_to_activate(delay)

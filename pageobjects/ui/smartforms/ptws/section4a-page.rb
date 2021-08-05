@@ -62,7 +62,7 @@ class Section4APage < Section3DPage
     begin
       BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
       sleep 1
-      member_name_btn_elements.first.click
+      options_text_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError
@@ -71,7 +71,7 @@ class Section4APage < Section3DPage
     begin
       BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
       sleep 1
-      member_name_btn_elements.first.click
+      options_text_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError

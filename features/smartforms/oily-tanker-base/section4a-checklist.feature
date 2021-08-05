@@ -11,7 +11,7 @@ Feature: Section4AChecklist
     And I navigate to create new permit
     And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4a
     And I uncheck the pre-selected checklist
     And I select the matching Cold Work Operation Checklist checklist
@@ -53,7 +53,7 @@ Feature: Section4AChecklist
     And I navigate to create new permit
     And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4a
     And I press next for 1 times
     Then I should see Enclosed Spaces Entry Checklist checklist questions
@@ -158,16 +158,16 @@ Feature: Section4AChecklist
       | A C/O | 2761 | Hot Work                                                     | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
       # | 2/O   | 6268 | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7865 | Hot Work                                                     | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      # | 3/O   | 0159 | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
+      # | 3/O   | 0159 | Enclosed Spaces Entry                                        | NA                                                           | Enclosed Space Entry Checklist            |
       | A 3/O | 2674 | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
       | C/E   | 8248 | Underwater Operations                                        | Underwater Operation at night or concurrent with other operations               | Underwater Operation                      |
       # | A C/E | 5718 | Underwater Operations                                         | Underwater Operations at night for mandatory drug and contraband search                                                   | Underwater Operation                                          |
       # | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
-      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
+      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | NA                                                                              | Work on Pressure Pipelines                |
       # | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
+      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                        | NA                                                                              | Personnel Transfer by Transfer Basket     |
       # | 4/E   | 1311 | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
+      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                                                              | Work on Electrical Equipment and Circuits |
       | ETO   | 0856 | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
@@ -186,7 +186,7 @@ Feature: Section4AChecklist
       | rank | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
       | MAS  | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
       | D/C  | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      # | SAA    | 6445 | Enclosed Spaces Entry | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist  |
+      # | SAA    | 6445 | Enclosed Spaces Entry | NA                                                           | Enclosed Space Entry Checklist  |
       | BOS  | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
   # | 5/E    | 6322 | Working Aloft/Overside     | Working Aloft / Overside                                                | Working Aloft/Overside          |
   # | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
@@ -246,8 +246,8 @@ Feature: Section4AChecklist
     And I should see permit number, date and time populated
 
     Examples:
-      | level_one_permit      | level_two_permit      | checklist                      |
-      | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | level_one_permit      | level_two_permit | checklist                      |
+      | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
   # | Underwater Operations                 | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                   |
   # | Working Aloft/Overside                | Working Aloft / Overside                                                | Working Aloft/Overside                 |
   # | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines             |

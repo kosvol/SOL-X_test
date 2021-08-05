@@ -9,7 +9,7 @@ Feature: LNGSmartFormsPermission
         And I navigate to create new permit
         And I enter pin for rank C/E
         And I select Rigging of Gangway & Pilot Ladder permit
-        And I select Rigging of Gangway & Pilot Ladder permit for level 2
+        And I select NA permit for level 2
         When I press next for 1 times
         And I submit permit for Master Approval
         And I click on back to home
@@ -24,7 +24,7 @@ Feature: LNGSmartFormsPermission
         When I navigate to create new permit
         And I enter pin for rank C/E
         And I select Rigging of Gangway & Pilot Ladder permit
-        And I select Rigging of Gangway & Pilot Ladder permit for level 2
+        And I select NA permit for level 2
         And I press next for 1 times
         And I submit permit for Master Approval
         And I click on back to home

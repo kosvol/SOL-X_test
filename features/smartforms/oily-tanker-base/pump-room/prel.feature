@@ -38,7 +38,7 @@ Feature: PumpRoomEntry
 
   Scenario: Dashboard - Verify updated view and icon is displayed in Dashboard main page for entry log and PRE status
     Given I launch sol-x portal
-    When I check PRE elements on dashboard inactive
+    When I check CRE elements on dashboard inactive
     When I submit a current CRE permit via service
     And I sleep for 3 seconds
     And I add new entry "A 2/O" CRE

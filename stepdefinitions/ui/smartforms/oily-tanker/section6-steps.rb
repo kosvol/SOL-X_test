@@ -51,9 +51,6 @@ Then(/^I submit permit for Master (.+)$/) do |approval_or_review|
     step 'I enter pin via service for rank C/O'
     step 'I sign on canvas'
   end
-  # data collector; will evolve
-  # on(Section0Page).reset_data_collector
-  # @@created_permit_data = on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin)
 end
 
 Then(/^I submit smoke test permit$/) do
@@ -99,7 +96,7 @@ And(/^I (should|should not) see gas_last_calibration_button$/) do |condition|
 end
 
 And(/^I will see popup dialog with (.+) crew rank and name$/) do |rank_name|
-  is_equal(on(Section6Page).get_gas_added_by(rank_name).text, "By #{rank_name}")
+  is_equal(on(Section6Page).gas_added_by, "By #{rank_name}")
 end
 
 Then(/^I should see gas reading display (with|without) toxic gas and (.*) as gas signer$/) do |condition,rank_name|

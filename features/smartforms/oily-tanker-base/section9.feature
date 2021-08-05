@@ -78,8 +78,8 @@ Feature: Section9
     Then I should not see terminate permit to work and request update buttons
 
     Examples:
-      | rank | pin  | permit_types          | permit_payload             |
-      | A/M  | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | rank | pin  | permit_types | permit_payload             |
+      | A/M  | 9015 | NA           | submit_enclose_space_entry |
 
   Scenario Outline: Verify Status Update display as completed when user submit as continue
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

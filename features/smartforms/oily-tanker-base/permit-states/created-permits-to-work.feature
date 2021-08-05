@@ -22,7 +22,7 @@ Feature: CreatedPermitToWork
     And I navigate to create new permit
     And I enter pin via service for rank C/O
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4b
     And I select yes to EIC
     And I click on back arrow
@@ -50,7 +50,7 @@ Feature: CreatedPermitToWork
     And I navigate to create new permit
     And I enter pin via service for rank C/O
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
@@ -78,7 +78,7 @@ Feature: CreatedPermitToWork
     And I navigate to create new permit
     And I enter pin via service for rank C/E
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
@@ -113,7 +113,7 @@ Feature: CreatedPermitToWork
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
@@ -126,7 +126,7 @@ Feature: CreatedPermitToWork
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
@@ -172,31 +172,31 @@ Feature: CreatedPermitToWork
     Then I should see gas reading section enabled
 
     Examples:
-      | rank  | level_one_permit      | level_two_permit      |
-      # | MAS   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      # | A/M   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      # | C/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      # | A C/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      # | 2/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      # | A 2/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/O   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/O | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | C/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A C/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 2/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 2/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 3/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 3/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | 4/E   | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | A 4/E | Enclosed Spaces Entry | Enclosed Spaces Entry |
-      | CGENG | Enclosed Spaces Entry | Enclosed Spaces Entry |
+      | rank  | level_one_permit      | level_two_permit |
+      # | MAS   | Enclosed Spaces Entry | NA |
+      # | A/M   | Enclosed Spaces Entry | NA |
+      # | C/O   | Enclosed Spaces Entry | NA |
+      # | A C/O | Enclosed Spaces Entry | NA |
+      # | 2/O   | Enclosed Spaces Entry | NA |
+      # | A 2/O | Enclosed Spaces Entry | NA |
+      | 3/O   | Enclosed Spaces Entry | NA               |
+      | A 3/O | Enclosed Spaces Entry | NA               |
+      | C/E   | Enclosed Spaces Entry | NA               |
+      | A C/E | Enclosed Spaces Entry | NA               |
+      | 2/E   | Enclosed Spaces Entry | NA               |
+      | A 2/E | Enclosed Spaces Entry | NA               |
+      | 3/E   | Enclosed Spaces Entry | NA               |
+      | A 3/E | Enclosed Spaces Entry | NA               |
+      | 4/E   | Enclosed Spaces Entry | NA               |
+      | A 4/E | Enclosed Spaces Entry | NA               |
+      | CGENG | Enclosed Spaces Entry | NA               |
 
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I edit ptw with rank <rank>

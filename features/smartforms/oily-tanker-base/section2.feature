@@ -26,14 +26,14 @@ Feature: Section2ApprovalAuthority
       | level_one_permit                                             | level_two_permit                                                |
       | Hot Work                                                     | Hot Work Level-2 in Designated Area                             |
       | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                     |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                           |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                                        |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           |
+      | Enclosed Spaces Entry                                        | NA                                                              |
+      | Working Aloft/Overside                                       | NA                                                              |
+      | Work on Pressure Pipeline/Vessels                            | NA                                                              |
+      | Personnel Transfer By Transfer Basket                        | NA                                                              |
       | Helicopter Operations                                        | Helicopter Operation                                            |
       | Rotational Portable Power Tools                              | Use of Portable Power Tools                                     |
       | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools           |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                                              |
       | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings |
       # | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                      |
       | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines              |
@@ -41,7 +41,7 @@ Feature: Section2ApprovalAuthority
       | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                       |
       # | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds |
       | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas             |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                            |
+      | Working on Deck During Heavy Weather                         | NA                                                              |
 
   Scenario Outline: Verify OA is require if maintenance on critical equipment is more than 2 hours
     Given I launch sol-x portal without unlinking wearable
@@ -120,8 +120,8 @@ Feature: Section2ApprovalAuthority
       | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
       | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
       | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            | Master        | MS/VS                                                           |
-      | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Master        | Director, Fleet Operations (shore Approving Authority)          |
+      | Use of non-intrinsically safe Camera | NA                                                                              | Master        | MS/VS                                                           |
+      | Use of ODME in Manual Mode           | NA                                                                              | Master        | Director, Fleet Operations (shore Approving Authority)          |
 
   Scenario: Verify section2 screen text
     Given I launch sol-x portal without unlinking wearable
