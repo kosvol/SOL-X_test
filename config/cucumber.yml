@@ -2,61 +2,53 @@
 mac_chrome_sit_dashboard_incognito_local: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard LOCAL=local
 mac_chrome_sit_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard LOCAL=local
-win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
-win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
-win_chrome_auto_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 
-### Profile for clearing data ###
-mac_chrome_sit_lng_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
-mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
-mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
-mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
-
-### Auto COT ###  ###------->>>>>> TO UPDATE TO auto-cot
+### Own's machine profiles ### 
 mac_chrome_tablet_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 mac_chrome_auto_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet_chrome RESOLUTION=tablet_a
 android_chrome_tablet_sit_fsu_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet_chrome RESOLUTION=tablet_a
+win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
+win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
+win_chrome_auto_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
+### End Own's machine profiles ###
 
-### Auto LNG ###
-mac_chrome_tablet_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
-mac_chrome_auto_tablet_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
-mac_chrome_auto_dashboard_lng_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=dashboard
-android_chrome_tablet_auto_lng_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet_chrome RESOLUTION=tablet_a
+### Profile for clearing SIT data ###
+mac_chrome_sit_lng_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet
+mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
+mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
+mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
 
-### Auto FSU ###
-mac_chrome_tablet_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet
-mac_chrome_auto_tablet_fsu_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet
-mac_chrome_auto_dashboard_fsu_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=dashboard
-android_chrome_tablet_auto_fsu_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet_chrome RESOLUTION=tablet_a
-
-### End gx machine
-
-# ### Jenkins SIT LNG FSU ###  TO switch to AUTO env when available
+### Use in sit-sol-x-web-app-dashboard-crel-ui-test ###
 android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-android_chrome_tablet_a_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
-mac_chrome_tablet_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=tablet
 
-### Jenkins AUTO COT ###  ###------->>>>>> TO UPDATE TO auto-cot
+### Use in sit-sol-x-web-app-fsu-ui-test ###
+android_chrome_tablet_a_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit_fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+
+### Use in sit-sol-x-web-app-cre-ui-test ###
+android_chrome_tablet_b_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
+
+### Jenkins AUTO COT used in the rest of SG Office jenkins jobs### 
 android_chrome_dashboard_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
 android_chrome_tablet_a_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
 android_chrome_tablet_b_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
-### Jenkins AUTO LNG ###
-android_chrome_dashboard_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-android_chrome_tablet_a_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-android_chrome_tablet_b_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
+### TO BE USED WHEN THESE ENVIRONMENT ARE READY ### 
+# ### Jenkins AUTO LNG ###
+# android_chrome_dashboard_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
+# android_chrome_tablet_a_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+# android_chrome_tablet_b_lng_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
-### Jenkins AUTO FSU ###
-android_chrome_dashboard_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-android_chrome_tablet_a_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-android_chrome_tablet_b_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
+# ### Jenkins AUTO FSU ###
+# android_chrome_dashboard_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
+# android_chrome_tablet_a_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+# android_chrome_tablet_b_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### use in sit-sol-x-web-app-office-comment-ui-test ###
 mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
+
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
 mac_chrome_dashboard_office_approval: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
 mac_chrome_dashboard_office_approval_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
