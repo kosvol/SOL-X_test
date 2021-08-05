@@ -4,6 +4,7 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
+  @debug
   Scenario: Verify base time is UTC
     Given I launch sol-x portal
     Then I should see base time is UTC
