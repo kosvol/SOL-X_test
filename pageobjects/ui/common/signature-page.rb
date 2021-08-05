@@ -9,12 +9,16 @@ class SignaturePage < Section1Page
   element(:signature, xpath: 'div.signature > img')
 
   def sign_and_done
+    sign_and_select_location
+    done_btn_elements.first.click
+  end
+
+  def sign_and_select_location
     sleep 1
-    sign_for_gas
+    sign_on_canvas
     sleep 1
     select_location_of_work if zone_btn_element.text === 'Select'
     sleep 1
-    done_btn_elements.first.click
   end
 
   def is_signature_pad?
@@ -24,14 +28,8 @@ class SignaturePage < Section1Page
     false
   end
 
-  def sign_for_gas
-    # tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
-    # sleep 1
+  def sign_on_canvas
     BrowserActions.poll_exists_and_click(signing_canvas_element)
     BrowserActions.poll_exists_and_click(signing_canvas_element)
-    # signing_canvas_element.click
-    # signing_canvas_element.click
-    # $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]').click
-    # $browser.action.click(tmp).perform
   end
 end

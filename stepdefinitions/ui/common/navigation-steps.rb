@@ -5,7 +5,7 @@ And(/^I should see entire hamburger categories$/) do
 end
 
 And(/^I open hamburger menu$/) do
-  BrowserActions.waitcondition(20, on(NavigationPage).hamburger_menu_element.enabled?)
+  BrowserActions.wait_condition(20, on(NavigationPage).hamburger_menu_element.enabled?)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 
@@ -27,8 +27,10 @@ end
 
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
   sleep 1
-  while 1 <= times.to_i do
+  index = 1
+  while index <= times.to_i do
     condition == 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+    index += 1
   end
 end
 

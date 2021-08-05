@@ -12,10 +12,9 @@ class Section3BPage < Section3APage
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
   elements(:radio_btn, css: 'input[type=radio]')
   elements(:checkbox_btn, css: 'input[type=checkbox]')
-  elements(:crew_list, xpath: '//button[starts-with(@class,"Menu__MenuOption")]')
 
   def last_crew?
-    crew_list_elements.last.text == 'OLR COT OLR'
+    options_text_elements.last.text == 'OLR COT OLR'
   end
 
   def fill_section_3b

@@ -7,6 +7,14 @@ module EnvironmentSelector
       $obj_env_yml[$current_environment.to_s][$current_application.to_s]
     end
 
+    def get_env_type_prefix
+      if $current_environment.include? "sit" 
+        return "SIT" 
+      else
+        return "AUTO"
+      end
+    end
+
     def get_graphql_environment_url(key)
       $obj_env_yml[$current_environment.to_s][key.to_s]
     end

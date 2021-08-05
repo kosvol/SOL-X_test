@@ -126,7 +126,6 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
   Scenario: Verify PRE activity tab shows inactive after active permit got terminated
-    Given I clear PRE forms
     When I launch sol-x portal
     And I submit a scheduled PRE permit
     And I sleep for 85 seconds

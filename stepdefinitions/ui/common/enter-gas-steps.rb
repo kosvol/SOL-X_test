@@ -26,7 +26,7 @@ And (/^I add all gas readings and back from signing screen$/) do
   
   And (/^I sign for gas$/) do
     on(Section6Page).review_sign_btn
-    on(SignaturePage).sign_for_gas
+    on(SignaturePage).sign_and_select_location
     on(Section6Page).enter_pin_and_submit_btn
   end
 

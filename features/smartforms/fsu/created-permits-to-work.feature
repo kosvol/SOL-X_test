@@ -35,7 +35,7 @@ Feature: CreatedPermitToWork
     Scenario Outline: Verify EIC certification signature component for issuing authority for MAS
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin via service for rank C/O
+        And I enter pin via service for rank C/E
         And I select Use of ODME in Manual Mode permit
         And I select Use of ODME in Manual Mode permit for level 2
         And I navigate to section 4b
