@@ -33,7 +33,7 @@ Then (/^I should not see entered entrant on (optional|required) entrant list$/) 
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if _condition === 'required'
   sleep 1
   arr_before = on(PumpRoomEntry).get_entrants
-  on(PumpRoomEntry).member_name_btn_elements.each do |item|
+  on(PumpRoomEntry).options_text_elements.each do |item|
     expect(arr_before).not_to include(item.text)
   end
 end
@@ -237,7 +237,7 @@ Then (/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry 
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
   sleep 2
   yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-  elements = on(PumpRoomEntry).member_name_btn_elements
+  elements = on(PumpRoomEntry).options_text_elements
   arr_elements_text = []
   elements.each { |element| arr_elements_text.push(element.text) }
   case _condition

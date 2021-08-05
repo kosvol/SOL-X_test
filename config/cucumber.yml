@@ -6,6 +6,8 @@ win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile 
 win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=tablet
 win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
 win_chrome_auto_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto DEVICE=dashboard
+win_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
+win_chrome_sit_lng_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 
 ### Profile for clearing data ###
 mac_chrome_sit_lng_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=tablet

@@ -708,6 +708,7 @@ class BypassPage < Section1Page
         end
         #id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
       end
+      _entry_record['variables']['gasReadings'][0]['reading'] = "99"
     end
     get_rank_id_from_service('A C/O')
     _entry_record['variables']['crewId'] = CommonPage.get_rank_id if (_type == 'CRE') || (_type == 'PRE')

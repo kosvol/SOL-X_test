@@ -29,9 +29,10 @@ class DashboardPage < WearablePage
   @@arr_data = []
 
   #Gas reading alert
-  element(:gas_alert, xpath: "//div[starts-with(.,'GasReaderAlert')]")
-  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
-  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_alert, css: "div[data-testid='gas-reader-alert'] > div > section > h2")
+  element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
+  element(:gas_alert_discard_new, xpath: "//span[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_close_btn, css: "button[aria-label='Close']")
   element(:pre_cre_title_indicator, xpath: "//button[contains(.,'EntryStatusIndicator__Title')]")
 
   def set_arr_data(data)
