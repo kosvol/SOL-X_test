@@ -11,7 +11,7 @@ Then (/^I should see correct table headers for crew list$/) do
   is_equal(on(DashboardPage).crew_list_headers_elements.first.text,"Rank")
   is_equal(on(DashboardPage).crew_list_headers_elements[1].text,"Surname")
   is_equal(on(DashboardPage).crew_list_headers_elements[2].text,"Location")
-  is_equal(on(DashboardPage).crew_list_headers_elements[3].text,"Permit To Work")
+  is_equal(on(DashboardPage).crew_list_headers_elements[3].text,"Permit No.")
   is_equal(on(DashboardPage).crew_list_headers_elements.last.text,"Last Seen")
 end
 
