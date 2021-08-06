@@ -45,13 +45,6 @@ Then(/^I sign with (invalid|valid) (.*) rank$/) do |condition, rank|
   step 'I sign on canvas' if condition != 'invalid'
 end
 
-# ### fsu hack quick fix because of difference in zone setup across SIT and AUTO
-# Then(/^i sign with (invalid|valid) (.*) rank for fsu$/) do |_condition, _rank|
-#   step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-#   step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
-#   on(SignaturePage).sign_and_done_fsu if _condition != 'invalid'
-# end
-
 And(/^I enter pure pin (.*)$/) do |pin|
   CommonPage.set_entered_pin = pin
   sleep 1

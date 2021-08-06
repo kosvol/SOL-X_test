@@ -275,20 +275,6 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-# ##DEPRECATED; by refactoring, logic sit inside OfficeApproval.get_office_approval_link
-# When(/^I wait for OA event/) do
-#   form_id = CommonPage.get_permit_id
-#   # docs = []
-#   # i = 30
-#   # while i > 0 && docs == [] do
-#   #   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
-#   #   docs = (JSON.parse request.to_s)['docs']
-#   #   i -= 1
-#   #   sleep(20)
-#   # end
-#   is_true(OfficeApproval.get_event_id != [])
-# end
-
 When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _server|
   form_id = CommonPage.get_permit_id
   status = nil
