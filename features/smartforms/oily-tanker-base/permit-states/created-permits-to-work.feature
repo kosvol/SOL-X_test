@@ -5,12 +5,6 @@ Feature: CreatedPermitToWork
   So that ...
 
   # @sol-6981
-  # Scenario: Verify EIC certificate Save button work as expected
-
-  # @sol-6981
-  # Scenario: Verify EIC certificate Close button work as expected
-
-  # @sol-6981
   # Scenario: Verify RA can Save EIC certificate
 
   # @sol-6981

@@ -69,8 +69,7 @@ end
 Then(/^I should see section (.*) screen$/) do |_which_section|
   sleep 1
   if _which_section != '0'
-    screen_title = @browser.find_elements(:xpath,
-                                          "//nav/h3[starts-with(@class,'Heading__H3')]").first.text
+    screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text
   end
   case _which_section
   when '0'

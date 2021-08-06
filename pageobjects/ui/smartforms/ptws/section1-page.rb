@@ -102,18 +102,6 @@ class Section1Page < Section0Page
     sleep 1
   end
 
-  # ### Hack for fsu; zone setup differently
-  # def fsu_select_location_of_work
-  #   sleep 1
-  #   zone_btn
-  #   begin
-  #     dd_list_value_elements[1].click
-  #   rescue
-  #     dd_list_value_elements[2].click
-  #   end
-  #   sleep 1
-  # end
-
   private
 
   def select_sea_and_wind_state

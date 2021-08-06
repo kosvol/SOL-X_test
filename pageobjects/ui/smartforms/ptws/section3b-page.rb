@@ -35,7 +35,7 @@ class Section3BPage < Section3APage
 
   def crew_list_populated?
     work_side_inspected_by
-    !crew_list_elements.empty?
+    !options_text_elements.empty?
   end
 
   def get_filled_section

@@ -99,18 +99,18 @@ class CrewListPage < DashboardPage
     _element.css_value('background-color') === color
   end
 
-  def is_location_details(_location = nil)
-    _get_active_crew_details_frm_service = get_active_crew_details_frm_service(_location)
-    _element = $browser.find_element(:xpath, @@location_indicator)
-    BrowserActions.scroll_down(_element)
-    p '>> outside'
+  def is_location_details(location = nil)
+    sleep 1
+    get_active_crew_details_frm_service = get_active_crew_details_frm_service(location)
+    element = $browser.find_element(:xpath, @@location_indicator)
+    BrowserActions.scroll_down(element)
+    BrowserActions.scroll_down
     location_details_elements.each do |location|
       next if location.text === ''
 
-      p '>> HERE'
       Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
-      Log.instance.info("Actual: #{_get_active_crew_details_frm_service.first.first}")
-      return (location.text.gsub!(/\s+/, ' ').to_s === _get_active_crew_details_frm_service.first.first)
+      Log.instance.info("Actual: #{get_active_crew_details_frm_service.first.first}")
+      return (location.text.gsub!(/\s+/, ' ').to_s === get_active_crew_details_frm_service.first.first)
     end
   end
 

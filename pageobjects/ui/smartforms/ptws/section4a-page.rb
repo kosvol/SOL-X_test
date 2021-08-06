@@ -18,35 +18,14 @@ class Section4APage < Section3DPage
   element(:date_and_time_stamp,
           xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
-
-  # elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
-  # elements(:sub_headers, xpath: '//h2')
-  # elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-
-  # elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
-  # divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
-
   spans(:list_of_checklist,
         css: 'form > section > div >section:nth-child(2) > div > div > div > span')
-  # elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
-  # elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
-  # element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
-
-  # divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
-  # divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
-  # divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
-
   divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
-
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
-
   text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
 
-  # text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
-  # button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
-  # button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")

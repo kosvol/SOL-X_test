@@ -109,23 +109,23 @@ Feature: Section6
     And I should see submit button enabled
 
     Examples:
-      | rank  | pin  | rank_name       |
-      | MAS   | 1111 | MAS COT MAS     |
-      # | Additional Master          | 9015 | By A/M Atif Hayat       |
-      # | Chief Officer              | 8383 | By C/O Alister Leong    |
-      # | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh      |
-      | 2/O   | 6268 | 2/O COT 2/O     |
-      # | Additional Second Officer  | 7865 | By A 2/O Qasim Khan     |
-      # | Third Officer              | 0159 | By 3/O Tim Kinzer       |
-      | A 3/O | 2674 | A 3/O COT A 3/O |
-      # | Chief Engineer             | 8248 | By C/E Alex Pisarev     |
-      | A C/E | 5718 | A C/E COT A C/E |
-      # | Second Engineer            | 2523 | By 2/E Poon Choryi      |
-      | A 2/E | 3030 | A 2/E COT A 2/E |
-      # | Third Engineer             | 4685 | By 3/E Cs Ow            |
-      | A 3/E | 6727 | A 3/E COT A 3/E |
-      | A 4/E | 1311 | 4/E COT 4/E     |
-      | CGENG | 1311 | CGENG COT CGENG |
+      | rank  | rank_name       |
+      | MAS   | MAS COT MAS     |
+      # | Additional Master         | By A/M Atif Hayat    |
+      # | Chief Officer             | By C/O Alister Leong |
+      # | Additional Chief  Officer | By A C/O Nigel Koh   |
+      | 2/O   | 2/O COT 2/O     |
+      # | Additional Second Officer | By A 2/O Qasim Khan  |
+      # | Third Officer             | By 3/O Tim Kinzer    |
+      | A 3/O | A 3/O COT A 3/O |
+      # | Chief Engineer            | By C/E Alex Pisarev  |
+      | A C/E | A C/E COT A C/E |
+      # | Second Engineer           | By 2/E Poon Choryi   |
+      | A 2/E | A 2/E COT A 2/E |
+      # | Third Engineer            | By 3/E Cs Ow         |
+      | A 3/E | A 3/E COT A 3/E |
+      | A 4/E | A 4/E COT A 4/E |
+      | CGENG | CGENG COT CGENG |
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
