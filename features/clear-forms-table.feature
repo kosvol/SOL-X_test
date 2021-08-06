@@ -22,7 +22,6 @@ Feature: DB reset
 
   # @clear-cre-gas-table
   # Scenario: CRE DB reset
-  #   Given I clear PRE forms
   #   And I clear gas reader entries
   #   And I clear wearable history and active users
 

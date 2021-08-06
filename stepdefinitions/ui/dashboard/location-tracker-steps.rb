@@ -177,7 +177,7 @@ When (/^I submit a (scheduled|activated) PRE permit$/) do |_condition|
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
-  sleep 40 #default 3 seconds; hack to bypass some optimization problem
+  sleep 5
   is_equal(on(DashboardPage).crew_list_elements.size,25)
 end
 

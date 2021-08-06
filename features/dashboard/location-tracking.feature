@@ -135,13 +135,11 @@ Feature: LocationTracking
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is grey with inactive PRE
-    Given I clear PRE forms
-    When I launch sol-x portal
+    Given I launch sol-x portal
     Then I should not see PRE tab active on dashboard
 
   Scenario: Verify PRE active tab is green with active PRE
-    Given I clear PRE forms
-    When I launch sol-x portal
+    Given I launch sol-x portal
     And I submit a scheduled PRE permit
     And I sleep for 85 seconds
     Then I should see PRE tab active on dashboard

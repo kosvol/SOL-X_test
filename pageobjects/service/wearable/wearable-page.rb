@@ -119,9 +119,9 @@ class WearablePage
 
     def get_crews_id
       @tmp_list = []
-      ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
-        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
-          @tmp_list << list['_id']
+      ServiceUtil.get_response_body['data']['users'].each do |list|
+        if (list['crewMember']['_id'].include? EnvironmentSelector.get_env_type_prefix)
+          @tmp_list << list['crewMember']['_id']
         end
       end
       puts(@tmp_list)
@@ -130,10 +130,9 @@ class WearablePage
 
     def get_crews_id_rank
       @tmp_list = {}
-      ServiceUtil.get_response_body['data']['crewMembers'].each do |list|
-        if (list['_id'].include? 'SIT_') || (list['_id'].include? 'test_') || (list['_id'].include? 'AUTO_')
-          # id = list['_id']
-          @tmp_list[list['_id']] = list['rank']
+      ServiceUtil.get_response_body['data']['users'].each do |list|
+        if (list['crewMember']['rank'].include? EnvironmentSelector.get_env_type_prefix)
+          @tmp_list[list['_id']] = list['crewMember']['rank']
         end
       end
       @tmp_list
