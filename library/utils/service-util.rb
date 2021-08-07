@@ -22,8 +22,7 @@ module ServiceUtil
     #   error_logging('Switch Response Body: ', @response)
     # end
 
-    def update_crew_members_vessel(vesselType,regex)
-
+    def update_crew_members_vessel(vesselType, regex)
       uri = "#{$obj_env_yml['oa_db']['base_sit_url']}/crew_members/_find"
       content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
       content_body['selector']['_id']['$regex'] = regex
@@ -91,19 +90,19 @@ module ServiceUtil
       error_logging('Request Body: ', content_body)
       if _trans_method === 'put'
         @response = HTTParty.put(_uri,
-                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'post'
         @response = HTTParty.post(_uri,
-                                   { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'get'
         @response = HTTParty.get(_uri,
-                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'delete'
         @response = HTTParty.delete(_uri,
-                                     { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                    { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
@@ -140,7 +139,8 @@ module ServiceUtil
 
     def error_logging(header, values = nil)
       Log.instance.info('')
-      Log.instance.info("\n\n#{header} #{values.to_s.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')}\n\n")
+      Log.instance.info("\n\n#{header} #{values.to_s.encode('utf-8', invalid: :replace, undef: :replace,
+                                                                     replace: '_')}\n\n")
       Log.instance.info('')
       self
     end

@@ -169,7 +169,7 @@ class SmartFormDBPage
         $obj_env_yml[_which_db.to_s]['base_auto_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       elsif $current_environment === 'uat' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_uat_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'sit_fsu' && _which_db != 'oa_db'
+      elsif $current_environment === 'sit-fsu' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_sit_fsu_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
       elsif $current_environment === 'sit-cot' && _which_db != 'oa_db'
         $obj_env_yml[_which_db.to_s]['base_sit_cot_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
