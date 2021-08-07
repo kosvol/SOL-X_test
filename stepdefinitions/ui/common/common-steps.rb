@@ -99,13 +99,7 @@ And(/^I set time$/) do
 end
 
 Given(/^I launch sol-x portal dashboard$/) do
-  if $current_environment.include? 'sit'
-    $browser.get(EnvironmentSelector.get_environment_url + '/dashboard')
-  elsif $current_environment.include? 'auto'
-    $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
-  else
-    raise 'Wrong Environment'
-  end
+  $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
   BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)

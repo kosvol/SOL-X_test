@@ -60,9 +60,9 @@ class Section0Page < NavigationPage
   end
 
   def select_level2_permit(permit)
-    if permit != 'NA'
-      select_permit
+    if permit != "NA"
       CommonPage.set_permit_id(permit)
+      select_permit
     end
     @@section1_data_collector << CommonPage.get_permit_id
     ptw_id_tmp = ptw_id_element.text
