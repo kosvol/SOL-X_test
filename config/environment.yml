@@ -20,7 +20,7 @@ edge:
   delete_gas_entries: gas_reader_entry/_bulk_docs
   delete_geofence: geofence/_bulk_docs
   delete_user: users/_bulk_docs
-  delete_wearable_active_users: wearables_active_users/_bulk_docs
+  # delete_wearable_active_users: wearables_active_users/_bulk_docs
   delete_wearable_histories_entries: wearables_history/_bulk_docs
   get_alerts_histories: alerts/_all_docs?include_docs=true&skip=0&limit=10000
   get_forms: forms/_all_docs?skip=0&limit=10000
