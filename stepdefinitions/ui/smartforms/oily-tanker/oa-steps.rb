@@ -508,7 +508,7 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
   to_exists(on(CommonFormsPage).previous_btn_elements.first)
   to_exists(on(CommonFormsPage).close_btn_elements.first)
   not_to_exists(on(Section7Page).update_btn_element)
-  not_to_exists(on(CommonFormsPage).request_update_btn_element)
+  not_to_exists(on(Section7Page).request_update_btn_element)
 end
 
 And(/^I leave additional instructions$/) do
