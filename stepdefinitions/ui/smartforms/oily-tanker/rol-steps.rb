@@ -25,16 +25,6 @@ Then(/^I should see view and termination buttons$/) do
   is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'View / Terminate')
 end
 
-And(/^I request for update without submitting$/) do
-  begin
-    on(Section7Page).update_btn
-  rescue StandardError
-    on(Section7Page).request_update_btn
-  end
-  sleep 1
-  BrowserActions.enter_text(on(Section0Page).enter_comment_box_element, 'Test Automation')
-end
-
 And(/^I request update for permit$/) do
   step 'I request for update without submitting'
   sleep 1

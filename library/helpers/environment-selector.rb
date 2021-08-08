@@ -10,8 +10,10 @@ module EnvironmentSelector
     def get_env_type_prefix
       if $current_environment.include? 'sit'
         'SIT'
-      else
+      elsif $current_environment.include? 'auto'
         'AUTO'
+      else
+        $current_environment
       end
     end
 

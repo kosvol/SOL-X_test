@@ -60,3 +60,13 @@ And(/^I open a permit (.+) with (.+) rank$/) do |status, rank|
   step "I enter pin via service for rank #{rank}" if $current_environment === 'uat'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).form_navigation_bar_element)
 end
+
+And(/^I request for update without submitting$/) do
+  begin
+    on(Section7Page).request_update_btn
+  rescue StandardError
+    on(Section7Page).update_btn
+  end
+  sleep 1
+  BrowserActions.enter_text(on(Section0Page).enter_comment_box_element, 'Test Automation')
+end
