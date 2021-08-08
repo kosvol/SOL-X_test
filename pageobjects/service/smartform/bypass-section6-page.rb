@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage# < Section1Page
+class BypassPage # < Section1Page
   include PageObject
 
   def get_rank_id_from_service(_rank, _vessel = nil)
@@ -178,7 +178,6 @@ class BypassPage# < Section1Page
         "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_rol_task_status_before_termination', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_20.save_rol_task_status_before_termination', _user, _vessel)
-
     else
 
       ### Section 1
@@ -318,7 +317,6 @@ class BypassPage# < Section1Page
         "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_section9_details', submit_active)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_20.save_section9_details', _user, _vessel)
-
     end
     submit_active = set_permit_status('CLOSED')
     submit_permit_for_status_change_to_uri(submit_active, _user, _permit_type, _vessel)
@@ -329,7 +327,7 @@ class BypassPage# < Section1Page
     ### init ptw form
     create_form_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '0'))
     create_form_ptw['variables']['submissionTimestamp'] = get_current_date_time
-     get_rank_id_from_service('C/O')
+    get_rank_id_from_service('C/O')
     create_form_ptw['variables']['answers'][0]['value'] =
       create_form_ptw['variables']['answers'][0]['value'].gsub('AUTO_SOLX0012',
                                                                (CommonPage.get_rank_id).to_s)
@@ -355,7 +353,7 @@ class BypassPage# < Section1Page
     section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
     if $current_environment === 'sit'
-      section['variables']['answers'].last['value']["AUTO_02VSR475JK2JTN7V25D27D"] = "#{EnvironmentSelector.get_env_type_prefix}_000000YGJ11ZSESBYNRXYRVVN3"
+      section['variables']['answers'].last['value']['AUTO_02VSR475JK2JTN7V25D27D'] = "#{EnvironmentSelector.get_env_type_prefix}_000000YGJ11ZSESBYNRXYRVVN3"
     end
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
     ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', _user)
@@ -390,7 +388,7 @@ class BypassPage# < Section1Page
       "[{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"}]"
     JsonUtil.create_request_file('ptw/mod_7.save_section3c_details', section3c)
     ServiceUtil.post_graph_ql('ptw/mod_7.save_section3c_details', _user)
-    
+
     ### section 3d ###
     section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
     section3d['variables']['formId'] = CommonPage.get_permit_id
@@ -545,7 +543,7 @@ class BypassPage# < Section1Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = EnvironmentSelector.get_edge_db_data_by_uri("/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true")
+    url = EnvironmentSelector.get_edge_db_data_by_uri("forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true")
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -635,10 +633,10 @@ class BypassPage# < Section1Page
       time_w_offset = @current_time.to_i + get_current_time_offset.to_i
     end
     count_hour = if time_w_offset >= 24
-                   (time_w_offset - 24).abs
-                 else
-                   time_w_offset
-                 end
+        (time_w_offset - 24).abs
+      else
+        time_w_offset
+      end
     count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
@@ -663,7 +661,6 @@ class BypassPage# < Section1Page
       JsonUtil.create_request_file('cre/09.mod_add_entry', _entry_record)
       ServiceUtil.post_graph_ql('cre/09.mod_add_entry')
     when 'PTW'
-
       _entry_record = JSON.parse JsonUtil.read_json('ptw/18.create_entry_record')
       _entry_record['variables']['formId'] = CommonPage.get_permit_id
       _array.split(',').each do |item|
@@ -707,7 +704,7 @@ class BypassPage# < Section1Page
         end
         #id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
       end
-      _entry_record['variables']['gasReadings'][0]['reading'] = "99"
+      _entry_record['variables']['gasReadings'][0]['reading'] = '99'
     end
     get_rank_id_from_service('A C/O')
     _entry_record['variables']['crewId'] = CommonPage.get_rank_id if (_type == 'CRE') || (_type == 'PRE')
@@ -797,7 +794,7 @@ class BypassPage# < Section1Page
       CommonPage.get_rank_id
     update_form_pre['variables']['answers'][11]['value']['AUTO_SOLX0004'] =
       #yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['C/O']
-       CommonPage.get_rank_id
+      CommonPage.get_rank_id
     update_form_pre['variables']['answers'][12]['value']['AUTO_SOLX0005'] =
       CommonPage.get_rank_id
     JsonUtil.create_request_file('cre/mod-07.before-change-status-to-approve', update_form_pre)
