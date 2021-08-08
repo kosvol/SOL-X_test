@@ -64,26 +64,21 @@ And(/^I clear geofence$/) do
   SmartFormDBPage.delete_geofence_row('fauxton', 'delete_geofence')
 end
 
-Given(/^I clear PRE forms$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_forms')
-  SmartFormDBPage.delete_pre_table_row('fauxton', 'delete_form')
-end
-
 And(/^I clear gas reader entries$/) do
   SmartFormDBPage.get_table_data('fauxton', 'get_gas_reader_entries')
   SmartFormDBPage.delete_table_row('fauxton', 'delete_gas_entries')
-  SmartFormDBPage.get_table_data('oa_db', 'get_gas_reader_entries')
-  SmartFormDBPage.delete_table_row('oa_db', 'delete_gas_entries')
+  SmartFormDBPage.get_table_data('cloud', 'get_gas_reader_entries')
+  SmartFormDBPage.delete_table_row('cloud', 'delete_gas_entries')
 end
 
 And(/^I clear oa event table$/) do
-  SmartFormDBPage.get_table_data('oa_db', 'get_oa_event')
-  SmartFormDBPage.delete_oa_event_table_row('oa_db', 'delete_oa_event')
+  SmartFormDBPage.get_table_data('cloud', 'get_oa_event')
+  SmartFormDBPage.delete_oa_event_table_row('cloud', 'delete_oa_event')
 end
 
 And(/^I clear oa forms table$/) do
-  SmartFormDBPage.get_table_data('oa_db', 'get_forms')
-  SmartFormDBPage.delete_table_row('oa_db', 'delete_forms')
+  SmartFormDBPage.get_table_data('cloud', 'get_forms')
+  SmartFormDBPage.delete_table_row('cloud', 'delete_forms')
 end
 
 And(/^I clear wearable history and active users$/) do

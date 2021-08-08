@@ -3,7 +3,7 @@
 Then(/^I should see the newly created permit details listed on Created Permits to Work$/) do
   on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Created By')
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text,
-               "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
+               "#{EnvironmentSelector.get_permit_prefix}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
   is_equal(on(Section1Page).get_section1_filled_data[3],
            on(CreatedPermitToWorkPage).created_date_time_elements.first.text)

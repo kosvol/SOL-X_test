@@ -325,7 +325,7 @@ class PumpRoomEntry < PreDisplay
     p "permit no: >> #{@@pre_number}"
     time_to_finish = get_current_time+60*finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
-    url = "#{EnvironmentSelector.get_graphql_environment_url('fauxton_url')}/forms/%s?conflicts=true"
+    url = EnvironmentSelector.get_edge_db_data_by_uri('/forms/%s?conflicts=true')
     url = url % [web_pre_id]
     p "url >> #{url}"
 

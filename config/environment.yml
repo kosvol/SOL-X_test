@@ -1,84 +1,58 @@
+---
 sit:
-  c2_preview: "https://%s.edge.dev.safevue.ai:8080"
-  service: "https://%s.edge.dev.safevue.ai:4000/"
-  switch_vessel: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/sit-vessel"
-  # update_mas_pin: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/users/SIT_SOLX0001"
-  get_crew_members: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/crew_members/_find"
-  fauxton_url: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984"
-  get_form_status: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/forms/_find"
-
-auto:
-  c2_preview: "https://%s.edge.dev.safevue.ai:8080/"
-  service: "https://%s.edge.dev.safevue.ai:4000/"
-  master_pin: "1111"
-  # update_mas_pin: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/users/AUTO_SOLX0001"
-  switch_vessel: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/auto-vessel"
-  get_crew_members: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/crew_members/_find"
-  fauxton_url: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984"
-  get_form_status: "https://admin:magellanx@%s.edge.dev.safevue.ai:5984/forms/_find"
-
+  c2_preview: https://%s.edge.dev.safevue.ai:8080/
+  fauxton_url: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/
+  service: https://%s.edge.dev.safevue.ai:4000/
+  switch_vessel: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/sit-vessel
 uat:
-  c2_preview: "https://uat.edge.dev.safevue.ai:8080/"
-  service: "https://uat.edge.dev.safevue.ai:4000/"
-  fauxton_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
-  get_crew_members: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984/crew_members/_find"
-
+  c2_preview: https://uat.edge.dev.safevue.ai:8080/
+  fauxton_url: https://admin:magellanx@uat.edge.dev.safevue.ai:5984
+  service: https://uat.edge.dev.safevue.ai:4000/
+auto:
+  c2_preview: https://%s.edge.dev.safevue.ai:8080/
+  fauxton_url: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/
+  service: https://%s.edge.dev.safevue.ai:4000/
+  switch_vessel: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/auto-vessel
 fauxton:
-  # base_uat_url: "https://admin:magellanx@uat.edge.dev.safevue.ai:5984"
-  base_auto_url: "https://admin:magellanx@auto-cot.edge.dev.safevue.ai:5984"
-  base_sit_url: "https://admin:magellanx@sit-lng.edge.dev.safevue.ai:5984"
-  base_sit_fsu_url: "https://admin:magellanx@sit-fsu.edge.dev.safevue.ai:5984"
-  base_sit_cot_url: "https://admin:magellanx@sit-cot.edge.dev.safevue.ai:5984"
-  delete_form: "/forms/_bulk_docs"
-  delete_geofence: "/geofence/_bulk_docs"
-  delete_gas_entries: "/gas_reader_entry/_bulk_docs"
-  delete_wearable_histories_entries: "/wearables_history/_bulk_docs"
-  delete_alerts_histories_entries: "/alerts/_bulk_docs"
-  delete_wearable_active_users: "/wearables_active_users/_bulk_docs"
-  add-work-rest-hour: "/work_rest_hour/_bulk_docs"
-  delete_user: "/users/_bulk_docs"
-  get_pre_gas_entry_log: "/gas_reader_entry/%s"
-  get_forms: "/forms/_all_docs?skip=0&limit=10000"
-  get_geofence: "/geofence/_all_docs?include_docs=true&skip=0&limit=10000"
-  get_workrest: "/work_rest_hour/_all_docs?skip=0&limit=10000"
-  get_user: "/users/_all_docs?skip=0&limit=1000"
-  get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
-  get_wearable_histories: "/wearables_history/_all_docs?include_docs=true&skip=0&limit=10000"
-  get_alerts_histories: "/alerts/_all_docs?include_docs=true&skip=0&limit=10000"
-  # get_wearable_active_users: "/wearables_active_users/_all_docs?include_docs=true&skip=0&limit=10000"
-
-oa_db:
-  base_uat_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai"
-  base_sit_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai"
-  base_dev_url: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai"
-  delete_forms: "/forms/_bulk_docs"
-  get_forms: "/forms/_all_docs?skip=0&limit=10000"
-  delete_oa_event: "/office_approval_events/_bulk_docs"
-  delete_gas_entries: "/gas_reader_entry/_bulk_docs"
-  get_oa_event: "/office_approval_events/_all_docs?include_docs=true&skip=0&limit=10000"
-  get_gas_reader_entries: "/gas_reader_entry/_all_docs?skip=0&limit=10000"
-
-jira_url: "https://teamsolas.atlassian.net/browse/"
-
+  add-work-rest-hour: work_rest_hour/_bulk_docs
+  delete_alerts_histories_entries: alerts/_bulk_docs
+  delete_form: forms/_bulk_docs
+  delete_gas_entries: gas_reader_entry/_bulk_docs
+  delete_geofence: geofence/_bulk_docs
+  delete_user: users/_bulk_docs
+  delete_wearable_active_users: wearables_active_users/_bulk_docs
+  delete_wearable_histories_entries: wearables_history/_bulk_docs
+  get_alerts_histories: alerts/_all_docs?include_docs=true&skip=0&limit=10000
+  get_forms: forms/_all_docs?skip=0&limit=10000
+  get_gas_reader_entries: gas_reader_entry/_all_docs?skip=0&limit=10000
+  get_geofence: geofence/_all_docs?include_docs=true&skip=0&limit=10000
+  get_pre_gas_entry_log: gas_reader_entry/%s
+  get_user: users/_all_docs?skip=0&limit=1000
+  get_wearable_histories: wearables_history/_all_docs?include_docs=true&skip=0&limit=10000
+  get_workrest: work_rest_hour/_all_docs?skip=0&limit=10000
+jira_url: https://teamsolas.atlassian.net/browse/
+cloud:
+  base_cloud_url: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai
+  delete_forms: /forms/_bulk_docs
+  delete_gas_entries: /gas_reader_entry/_bulk_docs
+  delete_oa_event: /office_approval_events/_bulk_docs
+  get_forms: /forms/_all_docs?skip=0&limit=10000
+  get_gas_reader_entries: /gas_reader_entry/_all_docs?skip=0&limit=10000
+  get_oa_event: /office_approval_events/_all_docs?include_docs=true&skip=0&limit=10000
 office_approval:
-  format_link: "https://office.dev.safevue.ai/permit-preview/%s?formId=%s&staffId=%s"
-  office_portal: "https://office.dev.safevue.ai/login/demo-uid"
-  office_portal_permit_view: "https://office.dev.safevue.ai/permit-overview?formId=%s"
-  get_event_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_approval_events/_find"
-  get_staff_id: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_staff/_find"
-  get_form_status: "https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/forms/_find"
-  password: "13-dead-CENT-think-56"
-
+  format_link: https://office.dev.safevue.ai/permit-preview/%s?formId=%s&staffId=%s
+  get_event_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_approval_events/_find
+  get_form_status: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/forms/_find
+  get_staff_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb.aks.dev.safevue.ai/office_staff/_find
+  office_portal: https://office.dev.safevue.ai/login/demo-uid
+  office_portal_permit_view: https://office.dev.safevue.ai/permit-overview?formId=%s
+  password: 13-dead-CENT-think-56
 postgres:
-  adapter: "postgresql"
-  encoding: "unicode"
-  database: "safevue"
+  adapter: postgresql
+  database: safevue
+  encoding: unicode
+  host: safevue-dev.postgres.database.azure.com
+  password: 79-window-CHOOSE-nation-38
   pool: 5
-  username: "safevue_user@safevue-dev"
-  password: "79-window-CHOOSE-nation-38"
-  host: "safevue-dev.postgres.database.azure.com"
-
-## To enable and disable screenshot feature ##
-# "True" - Takes screenshot for all steps ##
-# "False" - Takes screenshot only for failures ##
-screenshot: "true"
+  username: safevue_user@safevue-dev
+screenshot: 'true'

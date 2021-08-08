@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage < Section1Page
+class BypassPage# < Section1Page
   include PageObject
 
   def get_rank_id_from_service(_rank, _vessel = nil)
@@ -545,7 +545,7 @@ class BypassPage < Section1Page
   end
 
   def set_oa_permit_to_active_state(status)
-    url = $obj_env_yml['fauxton']["base_#{$current_environment.downcase}_url"] + "/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true"
+    url = EnvironmentSelector.get_edge_db_data_by_uri("/forms/#{CommonPage.get_permit_id.gsub('/', '%2F')}?conflicts=true")
     ServiceUtil.fauxton(url, 'get')
     permit_payload = JSON.parse ServiceUtil.get_response_body.to_s
     permit_payload['status'] = status
@@ -869,13 +869,13 @@ class BypassPage < Section1Page
     Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
   end
 
-  def get_current_date
-    Time.now.utc.strftime('%Y-%m-%dT12:00:00.000Z')
-  end
+  # def get_current_date
+  #   Time.now.utc.strftime('%Y-%m-%dT12:00:00.000Z')
+  # end
 
-  def get_issued_time
-    @@issued_time = Time.now.utc.strftime('H:%M')
-  end
+  # def get_issued_time
+  #   @@issued_time = Time.now.utc.strftime('H:%M')
+  # end
 
   def get_current_date_time_cal(_duration)
     # tmp = (Time.now + (60 * 60 * _duration.to_i)).utc.strftime('%H')

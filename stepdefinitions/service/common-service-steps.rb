@@ -20,10 +20,6 @@ end
 #   ServiceUtil.switch_vessel_type(_vesselType)
 # end
 
-Given (/^I update master pin$/) do
-  ServiceUtil.update_mas_pin
-end
-
 Given (/^I update crew members to (.*) vessel with (.*) regex$/) do |vesselType,regex|
   ServiceUtil.update_crew_members_vessel(vesselType,regex)
 end

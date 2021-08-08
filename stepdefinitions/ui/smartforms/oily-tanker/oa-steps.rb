@@ -275,6 +275,9 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
+################################################################################################################
+######## Konstantine please refactor this step; Method implementation should never be in step definition #######
+################################################################################################################
 When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _server|
   form_id = CommonPage.get_permit_id
   status = nil
@@ -285,7 +288,7 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _se
                 ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               else
-                ServiceUtil.fauxton($obj_env_yml[_server]['get_form_status'], 'post',
+                ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               end
     # p "request >> #{request}"
