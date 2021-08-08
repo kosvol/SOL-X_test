@@ -2,7 +2,7 @@
 
 require './././support/env'
 
-class BypassPage # < Section1Page
+class BypassPage < CommonFormsPage
   include PageObject
 
   def get_rank_id_from_service(_rank, _vessel = nil)
