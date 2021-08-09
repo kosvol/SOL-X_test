@@ -17,7 +17,7 @@ class Section0Page < NavigationPage
   element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
   element(:wifi_blob, xpath: "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]")
   button(:save_next, css: "button[type='submit']")
-  
+
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|
     end
@@ -28,7 +28,7 @@ class Section0Page < NavigationPage
   end
 
   def get_selected_level2_permit
-    @selected_level2_permit
+    @@selected_level2_permit
   end
 
   def select_level2_permit_and_next(permit)
@@ -46,13 +46,14 @@ class Section0Page < NavigationPage
   end
 
   private
+
   def set_selected_level2_permit(permit)
-    @selected_level2_permit = permit
+    @@selected_level2_permit = permit
   end
 
   def select_permit
     sleep 1
-    list_permit_type_elements.each_with_index do |permit,index|
+    list_permit_type_elements.each_with_index do |permit, index|
       next unless permit.text === CommonPage.get_permit_id
       permit.click
       break
@@ -60,7 +61,7 @@ class Section0Page < NavigationPage
   end
 
   def select_level2_permit(permit)
-    if permit != "NA"
+    if permit != 'NA'
       CommonPage.set_permit_id(permit)
       select_permit
     end

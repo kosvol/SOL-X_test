@@ -28,7 +28,7 @@ end
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
   sleep 1
   index = 1
-  while index <= times.to_i do
+  while index <= times.to_i
     condition == 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
     index += 1
   end
@@ -36,9 +36,13 @@ end
 
 And(/^I click on back to home$/) do
   begin
+    sleep 2
     BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
   rescue StandardError
-    BrowserActions.js_click("//button[contains(.,'Back to Home')]")
+    sleep 1
+    BrowserActions.js_click("//button[contains(.,'Back to')]")
+  rescue StandardError
+    BrowserActions.js_click("//button[contains(.,'Home')]")
   end
   step 'I set permit id'
 end
