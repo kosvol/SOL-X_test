@@ -4,7 +4,6 @@ require './././support/env'
 
 class CommonPage
   class << self
-
     def is_error
       ServiceUtil.get_response_body.key?('errors')
     end
@@ -20,7 +19,6 @@ class CommonPage
     def set_entered_pin=(_pin)
       @entered_pin = nil
       @entered_pin = _pin
-      p "current pin >> #{@entered_pin}"
     end
 
     def set_permit_id(_permit)

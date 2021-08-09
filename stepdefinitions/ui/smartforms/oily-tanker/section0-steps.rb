@@ -32,10 +32,10 @@ Then(/^I should see smart form landing screen$/) do
 end
 
 Then(/^I should see second level permits details$/) do
-  base_permits = YAML.load_file('data/permit-types.yml')[CommonPage.get_permit_id]
+  base_permits = YAML.load_file('data/permit-types.yml')[on(Section0Page).get_section1_filled_data.first]
   is_equal(on(Section0Page).list_permit_type_elements.size, base_permits.size)
-  on(Section0Page).list_permit_type_elements.each_with_index do |_element, _index|
-    is_equal(_element.text, base_permits[_index])
+  on(Section0Page).list_permit_type_elements.each_with_index do |element, index|
+    is_equal(element.text, base_permits[index])
   end
 end
 

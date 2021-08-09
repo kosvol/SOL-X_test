@@ -81,13 +81,12 @@ When(/^I select (.+) permit for level 2$/) do |permit|
   on(Section0Page).select_level2_permit_and_next(permit)
   BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
   @get_permit_creation_datetime = on(CommonFormsPage).get_current_date_and_time
-  @temp_id = on(Section0Page).ptw_id_element.text
 end
 
 And(/^I set permit id$/) do
   if @via_service_or_not === false
-    Log.instance.info("Temp ID >> #{@temp_id}")
-    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
+    Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
+    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
   end
   sleep 5
 end
