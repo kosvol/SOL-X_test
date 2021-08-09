@@ -14,29 +14,7 @@ Feature: DB reset
     Given I clear gas reader entries
     And I clear wearable history and active users
     Given I clear postgres db for auto
-
-  # @clear-pre-gas-table
-  # Scenario: PRE DB reset
-  #   Given I clear gas reader entries
-  #   And I clear wearable history and active users
-
-  # @clear-cre-gas-table
-  # Scenario: CRE DB reset
-  #   And I clear gas reader entries
-  #   And I clear wearable history and active users
-
-  @clear-mariadb
-  Scenario: Maria DB reset
-    Given I clear mariadb
-
-  # @switch-vessel-cot
-  # Scenario: Switch vessel
-  #   Given I switch vessel to COT
-
-  # @update_mas_pin
-  # Scenario: Get master details
-  #   Given I update master pin
-
+    
   @load-workload-data
   Scenario: Load workload data
     Given I clear work rest table

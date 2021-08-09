@@ -47,6 +47,8 @@ class NavigationPage < CommonFormsPage
   rescue StandardError
     sleep 1
     BrowserActions.js_click("//button[contains(.,'Next')]")
+  rescue StandardError
+    BrowserActions.js_click("//button[contains(.,'Next')]")
   end
   
 

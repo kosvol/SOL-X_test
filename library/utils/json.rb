@@ -45,29 +45,5 @@ module JsonUtil
         file.close
       end
     end
-
-    # def self.is_data_structure(which_service)
-    #   get_response_data_structure(which_service)
-    #   base_arr = get_base_data_structure(which_service)
-    #   puts "\n\nGot: #{@@farmer.first(base_arr.size)}\n\n\n"
-    #   puts "\n\nExpected: #{base_arr}\n\n\n"
-    #   return (@@farmer.first(base_arr.size) === base_arr)
-    # end
-
-    # def self.get_base_data_structure(which_service)
-    #   # if $current_application == "frontend" or $global_which_service == "authentication"
-    #   return $obj_data_structure_yml[which_service]
-    #   # else
-    #   # return $obj_data_structure_yml[which_service]
-    #   # end
-    # end
-
-    # def self.get_response_data_structure(which_service)
-    #   @@farmer = []
-    #   get_json_keys(ServiceUtil.get_response_body_json.to_hash,@@farmer)
-    #   Log.instance.info "\n\nGot: #{@@farmer.to_s}\n\n\n"
-    #   # Log.instance.info "\nExpected: #{get_base_data_structure(which_service).to_s}\n\n\n"
-    #   return @@farmer
-    # end
   end
 end

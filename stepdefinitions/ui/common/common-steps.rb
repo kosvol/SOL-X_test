@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 And(/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
@@ -70,7 +68,7 @@ And(/^I enter pin for rank (.*)$/) do |rank|
   end
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
   sleep 1
-  step "I enter pure pin #{(CommonPage.get_entered_pin)}"
+  step "I enter pure pin #{CommonPage.get_entered_pin}"
 end
 
 When(/^I select (.+) permit$/) do |permit|
@@ -99,13 +97,7 @@ And(/^I set time$/) do
 end
 
 Given(/^I launch sol-x portal dashboard$/) do
-  if $current_environment.include? 'sit'
-    $browser.get(EnvironmentSelector.get_environment_url + '/dashboard')
-  elsif $current_environment.include? 'auto'
-    $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
-  else
-    raise 'Wrong Environment'
-  end
+  $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
   BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)

@@ -37,7 +37,7 @@ class PumpRoomEntry < PreDisplay
   elements(:resp_off_signature_rank, xpath: "//h3[contains(.,'Rank/Name')]")
   @@element_value = "//div[contains(.,'%s')]"
   ### gx
-  elements(:signed_in_entrants, xpath: "//div/div/ul/li")
+  elements(:signed_in_entrants, xpath: '//div/div/ul/li')
   button(:approve_activation, xpath: "//button[contains(.,'Approve for Activation')]")
   element(:pump_room_display_setting, xpath: "//span[contains(.,'Pump Room')]")
   element(:compressor_room_display_setting, xpath: "//span[contains(.,'Compressor/Motor Room')]")
@@ -63,22 +63,21 @@ class PumpRoomEntry < PreDisplay
 
   def get_validity_start_and_end_time(permit_type)
     case permit_type
-    when "CRE"
+    when 'CRE'
       @@pre_permit_start_time = permit_start_time1_element.text
       @@pre_permit_end_time = permit_end_time1_element.text
-    when "PRE"
+    when 'PRE'
       @@pre_permit_start_time = permit_start_time_element.text
       @@pre_permit_end_time = permit_end_time_element.text
     end
-
   end
 
   def get_entry_log_validity_start_details
-    "#{@@pre_permit_start_time[12,5]}"
+    "#{@@pre_permit_start_time[12, 5]}"
   end
 
   def get_entry_log_validity_end_details
-    "#{@@pre_permit_end_time[12,5]}"
+    "#{@@pre_permit_end_time[12, 5]}"
   end
 
   def set_entrants(entrants)
@@ -131,7 +130,7 @@ class PumpRoomEntry < PreDisplay
 
   def additional_entrant(_additional_entrants)
     entr_arr = []
-    purpose_of_entry="Test Automation"
+    purpose_of_entry = 'Test Automation'
     puts entrant_names_dd_element.text
     entrant_names_dd_element.click
     sleep 2
@@ -149,25 +148,24 @@ class PumpRoomEntry < PreDisplay
     while entrants > 0
       puts(person_checkbox_elements.size)
       #person_checkbox_elements[entrants].click
-       $browser.find_element(:xpath,
-                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").click
+      $browser.find_element(:xpath,
+                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/button").click
       entr_arr.push($browser.
         find_element(:xpath,
-                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants+1}]/button").text)
+                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/button").text)
       entrants = entrants - 1
     end
     set_entrants(entr_arr)
   end
 
-  def add_all_gas_readings_pre(_o2,_hc,_h2s,_co,_gas_name,_threhold,_reading,_unit)
-    if _gas_name === '' or _threhold === '' or _reading ==='' or _unit === ''
-      normal_gas_readings(_o2,_hc,_h2s,_co)
+  def add_all_gas_readings_pre(_o2, _hc, _h2s, _co, _gas_name, _threhold, _reading, _unit)
+    if _gas_name === '' or _threhold === '' or _reading === '' or _unit === ''
+      normal_gas_readings(_o2, _hc, _h2s, _co)
     else
-      normal_gas_readings(_o2,_hc,_h2s,_co)
+      normal_gas_readings(_o2, _hc, _h2s, _co)
       sleep 1
-      toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+      toxic_gas_readings(_gas_name, _threhold, _reading, _unit)
     end
-
   end
 
   def fill_up_pre(duration)
@@ -200,7 +198,7 @@ class PumpRoomEntry < PreDisplay
     BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
   end
 
-  def select_day(_condition, _number,_point)
+  def select_day(_condition, _number, _point)
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='days']"
     selected_current_day = "//*[contains(@class,'selected current')]"
     selected_day = "//*[contains(@class,'selected')]"
@@ -214,7 +212,7 @@ class PumpRoomEntry < PreDisplay
       if _point === 'current'
         current_day = @browser.find_element(:xpath, current_day_date).text
       else
-      current_day = @browser.find_element(:xpath, selected_day).text
+        current_day = @browser.find_element(:xpath, selected_day).text
       end
     end
     sleep 1
@@ -226,22 +224,21 @@ class PumpRoomEntry < PreDisplay
     BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
   end
 
-
   def press_button_for_current_PRE(button)
-    xpath_str = "//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]"%[@@pre_number, button]
+    xpath_str = "//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]" % [@@pre_number, button]
     @browser.find_element(:xpath, xpath_str).click
   end
 
   def compare_scheduled_date
     #//*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
-    xpath_str = "//*[contains(.,'Scheduled for')]/parent::*//span[1]"%[@@pre_number]
+    xpath_str = "//*[contains(.,'Scheduled for')]/parent::*//span[1]" % [@@pre_number]
     text = @browser.find_element(:xpath, xpath_str).text
     text.include? @@selected_date.to_s
   end
 
   def are_questions?(table)
     table.all? do |question|
-      is_element_displayed?("xpath", question[0], 'text')
+      is_element_displayed?('xpath', question[0], 'text')
     end
   end
 
@@ -253,29 +250,29 @@ class PumpRoomEntry < PreDisplay
     end
   end
 
-  def is_text_displayed?(like,_value)
-    if like == "alert_text"
+  def is_text_displayed?(like, _value)
+    if like == 'alert_text'
       xpath = "//div[contains(.,'%s')]"
-    elsif like == "text"
+    elsif like == 'text'
       xpath = "//*[contains(text(),'%s')]"
-    elsif like == "auto_terminated"
+    elsif like == 'auto_terminated'
       xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"
-    elsif ((like == "label") || (like == "page"))
+    elsif ((like == 'label') || (like == 'page'))
       xpath = "//h2[contains(text(),'%s')]"
-    elsif like == "header"
+    elsif like == 'header'
       xpath = "//h1[contains(text(),'%s')]"
-    elsif like == "button"
+    elsif like == 'button'
       xpath = @@button
     end
-    is_element_displayed(xpath,_value)
+    is_element_displayed(xpath, _value)
   end
 
   def is_alert_text_displayed?(_value)
-    is_element_displayed("//div[contains(.,'%s')]",_value)
+    is_element_displayed("//div[contains(.,'%s')]", _value)
   end
 
   def is_auto_terminated_displayed?(_value)
-    is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]",_value)
+    is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]", _value)
   end
 
   def select_permit_duration(duration)
@@ -300,7 +297,6 @@ class PumpRoomEntry < PreDisplay
     el.enabled?
   end
 
-
   def select_answer(answer, question)
     xpath_str = @@radio_buttons % [question]
     select_checkbox(xpath_str, answer)
@@ -308,9 +304,8 @@ class PumpRoomEntry < PreDisplay
 
   def press_the_button(button)
     xpath_str = @@button % [button]
-    el = @browser.find_element("xpath", xpath_str)
+    el = @browser.find_element('xpath', xpath_str)
     BrowserActions.scroll_click(el)
-
   end
 
   def fill_text_input(type, selector, text)
@@ -321,16 +316,17 @@ class PumpRoomEntry < PreDisplay
     @browser.find_element(type, selector).value == test_data
   end
 
-  def reduce_time_activity( finish_in_x_minutes)
+  def reduce_time_activity(finish_in_x_minutes)
     p "permit no: >> #{@@pre_number}"
-    time_to_finish = get_current_time+60*finish_in_x_minutes
+    time_to_finish = get_current_time + 60 * finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
-    url = "#{EnvironmentSelector.get_graphql_environment_url('fauxton_url')}/forms/%s?conflicts=true"
+    url = EnvironmentSelector.get_edge_db_data_by_uri('forms/%s?conflicts=true')
     url = url % [web_pre_id]
     p "url >> #{url}"
 
     request = HTTParty.get(url, {
-        headers: {'Content-Type': 'application/json'}})
+      headers: { 'Content-Type': 'application/json' },
+    })
 
     p "request >> #{request}"
 
@@ -338,20 +334,21 @@ class PumpRoomEntry < PreDisplay
     full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
 
     request = HTTParty.put(url, {
-        headers: {'Content-Type': 'application/json'},
-        body: full_form.to_json})
+      headers: { 'Content-Type': 'application/json' },
+      body: full_form.to_json,
+    })
     (JSON.parse request.to_s)
   end
 
-  def get_element_by_value(_element_value_text,_count)
+  def get_element_by_value(_element_value_text, _count)
     xpath_str = @@element_value % [_element_value_text]
-    el_arr = @browser.find_elements("xpath", xpath_str)
+    el_arr = @browser.find_elements('xpath', xpath_str)
     return el_arr[_count.to_i]
   end
 
   private
 
-  def is_element_displayed(_xpath,_value=nil)
+  def is_element_displayed(_xpath, _value = nil)
     begin
       value = _xpath % [_value]
       @browser.find_element('xpath', value).displayed?
@@ -361,20 +358,20 @@ class PumpRoomEntry < PreDisplay
   end
 
   def get_current_time
-      @which_json = 'ship-local-time/base-get-current-time'
-      ServiceUtil.post_graph_ql(@which_json, '1111')
-      ServiceUtil.get_response_body['data']['currentTime']["secondsSinceEpoch"]
+    @which_json = 'ship-local-time/base-get-current-time'
+    ServiceUtil.post_graph_ql(@which_json, '1111')
+    ServiceUtil.get_response_body['data']['currentTime']['secondsSinceEpoch']
   end
 
   def add_minutes(add_mm)
-    hh, mm = @@time.split(":")
+    hh, mm = @@time.split(':')
     mm = mm.to_i
     hh = hh.to_i
 
-    mm = mm+add_mm.to_i
+    mm = mm + add_mm.to_i
     if mm >= 60
-      mm = mm-60
-      hh = hh+1
+      mm = mm - 60
+      hh = hh + 1
     end
     return format('%02d', hh), format('%02d', mm)
   end

@@ -7,24 +7,8 @@ require 'date'
 module ServiceUtil
   include HTTParty
   class << self
-    # def update_mas_pin
-    #   uri = EnvironmentSelector.get_update_master_pin_url
-    #   content_body = JsonUtil.read_json('vessel-switch/get_mas_details')
-    #   error_logging('URI: ', uri)
-    #   error_logging('Request Body: ', content_body)
-    #   @response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
-    #   error_logging('Response Body: ', @response)
-
-    #   master_details = JSON.parse response.to_s
-    #   master_details['pin'] = '1111'
-    #   p "> #{master_details.to_json}"
-    #   @response = HTTParty.put(uri, { body: master_details.to_json }.merge(ql_headers('_user')))
-    #   error_logging('Switch Response Body: ', @response)
-    # end
-
-    def update_crew_members_vessel(vesselType,regex)
-
-      uri = "#{$obj_env_yml['oa_db']['base_sit_url']}/crew_members/_find"
+    def update_crew_members_vessel(vesselType, regex)
+      uri = EnvironmentSelector.get_edge_db_data_by_uri('crew_members/_find')
       content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
       content_body['selector']['_id']['$regex'] = regex
       error_logging('URI: ', uri)
@@ -37,13 +21,13 @@ module ServiceUtil
         crew['vesselId'] = vesselType
       end
       error_logging('Request Body: ', crew_members)
-      uri = "#{$obj_env_yml['oa_db']['base_sit_url']}/crew_members/_bulk_docs"
+      uri = EnvironmentSelector.get_edge_db_data_by_uri('crew_members/_bulk_docs')
       @response = ServiceUtil.fauxton(uri, 'post', crew_members.to_json)
       error_logging('Response Body: ', @response)
     end
 
     def post_graph_ql_to_uri(which_json, _user = '1111', _uri)
-      uri = $obj_env_yml[_uri]['service']
+      uri = EnvironmentSelector.get_service_url
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
@@ -73,7 +57,7 @@ module ServiceUtil
     # end
 
     def post_graph_ql(which_json, _user = '1111')
-      uri = EnvironmentSelector.get_graphql_environment_url('service')
+      uri = EnvironmentSelector.get_service_url
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
@@ -91,19 +75,19 @@ module ServiceUtil
       error_logging('Request Body: ', content_body)
       if _trans_method === 'put'
         @response = HTTParty.put(_uri,
-                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'post'
         @response = HTTParty.post(_uri,
-                                   { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'get'
         @response = HTTParty.get(_uri,
-                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       if _trans_method === 'delete'
         @response = HTTParty.delete(_uri,
-                                     { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+                                    { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
       error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
@@ -134,13 +118,14 @@ module ServiceUtil
         'Content-Type' => 'application/json',
         'Accept' => '/',
         'x-auth-pin' => authorization_pin,
-        'x-auth-user' => 'system'
+        'x-auth-user' => 'system',
       } }
     end
 
     def error_logging(header, values = nil)
       Log.instance.info('')
-      Log.instance.info("\n\n#{header} #{values.to_s.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')}\n\n")
+      Log.instance.info("\n\n#{header} #{values.to_s.encode('utf-8', invalid: :replace, undef: :replace,
+                                                                     replace: '_')}\n\n")
       Log.instance.info('')
       self
     end

@@ -55,42 +55,37 @@ end
 # end
 
 Given(/^I clear forms table$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_forms')
-  SmartFormDBPage.delete_table_row('fauxton', 'delete_form')
+  SmartFormDBPage.get_table_data('edge', 'get_forms')
+  SmartFormDBPage.delete_table_row('edge', 'delete_form')
 end
 
 And(/^I clear geofence$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_geofence')
-  SmartFormDBPage.delete_geofence_row('fauxton', 'delete_geofence')
-end
-
-Given(/^I clear PRE forms$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_forms')
-  SmartFormDBPage.delete_pre_table_row('fauxton', 'delete_form')
+  SmartFormDBPage.get_table_data('edge', 'get_geofence')
+  SmartFormDBPage.delete_geofence_row('edge', 'delete_geofence')
 end
 
 And(/^I clear gas reader entries$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_gas_reader_entries')
-  SmartFormDBPage.delete_table_row('fauxton', 'delete_gas_entries')
-  SmartFormDBPage.get_table_data('oa_db', 'get_gas_reader_entries')
-  SmartFormDBPage.delete_table_row('oa_db', 'delete_gas_entries')
+  SmartFormDBPage.get_table_data('edge', 'get_gas_reader_entries')
+  SmartFormDBPage.delete_table_row('edge', 'delete_gas_entries')
+  SmartFormDBPage.get_table_data('cloud', 'get_gas_reader_entries')
+  SmartFormDBPage.delete_table_row('cloud', 'delete_gas_entries')
 end
 
 And(/^I clear oa event table$/) do
-  SmartFormDBPage.get_table_data('oa_db', 'get_oa_event')
-  SmartFormDBPage.delete_oa_event_table_row('oa_db', 'delete_oa_event')
+  SmartFormDBPage.get_table_data('cloud', 'get_oa_event')
+  SmartFormDBPage.delete_oa_event_table_row('cloud', 'delete_oa_event')
 end
 
 And(/^I clear oa forms table$/) do
-  SmartFormDBPage.get_table_data('oa_db', 'get_forms')
-  SmartFormDBPage.delete_table_row('oa_db', 'delete_forms')
+  SmartFormDBPage.get_table_data('cloud', 'get_forms')
+  SmartFormDBPage.delete_table_row('cloud', 'delete_forms')
 end
 
 And(/^I clear wearable history and active users$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_wearable_histories')
-  SmartFormDBPage.delete_table_row('fauxton', 'delete_wearable_histories_entries')
-  SmartFormDBPage.get_table_data('fauxton', 'get_alerts_histories')
-  SmartFormDBPage.delete_table_wearable_alerts_row('fauxton', 'delete_alerts_histories_entries')
+  SmartFormDBPage.get_table_data('edge', 'get_wearable_histories')
+  SmartFormDBPage.delete_table_row('edge', 'delete_wearable_histories_entries')
+  SmartFormDBPage.get_table_data('edge', 'get_alerts_histories')
+  SmartFormDBPage.delete_table_wearable_alerts_row('edge', 'delete_alerts_histories_entries')
 end
 
 Given(/^I clear postgres db for (.*)$/) do |env|
@@ -98,8 +93,8 @@ Given(/^I clear postgres db for (.*)$/) do |env|
 end
 
 Given(/^I clear work rest table$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_workrest')
-  SmartFormDBPage.delete_table_row('fauxton', 'add-work-rest-hour')
+  SmartFormDBPage.get_table_data('edge', 'get_workrest')
+  SmartFormDBPage.delete_table_row('edge', 'add-work-rest-hour')
 end
 
 Then(/^I load workload data$/) do
@@ -107,8 +102,8 @@ Then(/^I load workload data$/) do
 end
 
 Given(/^I remove crew from vessel$/) do
-  SmartFormDBPage.get_table_data('fauxton', 'get_user')
-  SmartFormDBPage.delete_crew_from_vessel('fauxton', 'delete_user')
+  SmartFormDBPage.get_table_data('edge', 'get_user')
+  SmartFormDBPage.delete_crew_from_vessel('edge', 'delete_user')
 end
 
 And(/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |array, type|
