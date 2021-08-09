@@ -27,47 +27,38 @@ class Section0Page < NavigationPage
     @@section1_data_collector = []
   end
 
-  def get_selected_level2_permit
-    @@selected_level2_permit
+  def get_section1_filled_data
+    @@section1_data_collector
   end
 
   def select_level2_permit_and_next(permit)
     select_level2_permit(permit)
     save_next
-    set_selected_level2_permit(permit)
-    set_current_time
     sleep 1
+    CommonPage.set_permit_id(ptw_id_element.text)
+    set_current_time
   end
 
-  def select_level1_permit(permit)
+  def select_level1_permit(selected_permit)
     sleep 1
-    CommonPage.set_permit_id(permit)
-    select_permit
+    select_permit(selected_permit)
   end
 
   private
 
-  def set_selected_level2_permit(permit)
-    @@selected_level2_permit = permit
-  end
-
-  def select_permit
+  def select_permit(selected_permit)
     sleep 1
     list_permit_type_elements.each_with_index do |permit, index|
-      next unless permit.text === CommonPage.get_permit_id
+      next unless permit.text === selected_permit
       permit.click
+      @@section1_data_collector << selected_permit
       break
     end
   end
 
-  def select_level2_permit(permit)
-    if permit != 'NA'
-      CommonPage.set_permit_id(permit)
-      select_permit
+  def select_level2_permit(selected_permit)
+    if selected_permit != 'NA'
+      select_permit(selected_permit)
     end
-    @@section1_data_collector << CommonPage.get_permit_id
-    ptw_id_tmp = ptw_id_element.text
-    @@section1_data_collector << ptw_id_tmp
-    CommonPage.set_permit_id(ptw_id_tmp)
   end
 end

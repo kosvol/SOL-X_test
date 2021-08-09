@@ -23,10 +23,6 @@ class Section1Page < Section0Page
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
 
-  def get_section1_filled_data
-    @@section1_data_collector
-  end
-
   def set_section1_filled_data(_entered_pin, _create_or_submitted)
     rank_and_name = get_user_details_by_pin(_entered_pin)
     @@section1_data_collector << "#{_create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
