@@ -255,7 +255,7 @@ And(/^I should see PRE display timezone$/) do
 end
 
 Then(/^I should see entry log details display as (filled|filled api)$/) do |_condition|
-  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M Atif Hayat')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M COT A/M')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'Test Automation')
   case _condition
   when 'filled'

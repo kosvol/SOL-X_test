@@ -14,7 +14,7 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     When I submit a scheduled PRE permit
-    And  I activate CRE form via service
+    And  I activate PRE form via service
     #And I dismiss gas reader dialog box
     And I click on permit tab
     Then I should see new PRE permit number
