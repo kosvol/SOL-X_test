@@ -243,14 +243,14 @@ Feature: Section6
     And I should not see extra previous and save button
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                        | checklist                        |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
+      | level_one_permit                                                                | level_two_permit                                                        | checklist                        |
+      | Underwater Operations                                                           | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           | Underwater Operation             |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search | Underwater Operation             |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search | Underwater Operation             |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
       # | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      | Use of non-intrinsically safe Camera | NA                                                                      | Use of Camera Checklist          |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                      | Use of Camera Checklist          |
   # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |
 
   Scenario Outline: Verify gas reading can disable and enable

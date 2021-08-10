@@ -5,7 +5,7 @@
     "answers": [
       {
         "fieldId": "permitType",
-        "value": "\"Use of Non-Intrinsically Safe Camera\""
+        "value": "\"Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces\""
       },
       {
         "fieldId": "riskHazard",

@@ -29,8 +29,8 @@ end
 And(/^I review page 3a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  does_include(on(Section3APage).method_detail_elements[0].text, 'SOLX Automation Test')
-  does_include(on(Section3APage).method_detail_elements[1].text, "AUTO/DRA/#{BrowserActions.get_year}")
+  does_include(on(Section3APage).method_detail_elements[0].text, 'COTAUTO')
+  does_include(on(Section3APage).method_detail_elements[1].text, "COTAUTO/DRA/#{BrowserActions.get_year}")
   does_include(on(Section3APage).method_detail_elements[2].text,
                on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(Section3APage).method_detail_elements[2].text, ' LT (GMT')
@@ -119,7 +119,7 @@ And(/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   p "-- #{tmp}"
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  does_include(on(Section4APage).generic_data_elements[2].text, 'AUTO/EIC')
+  does_include(on(Section4APage).generic_data_elements[2].text, 'COTAUTO/EIC')
   is_equal(tmp, @@form_data['section4b_eic'])
   CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
@@ -147,7 +147,6 @@ And(/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   tmp = on(Section6Page).get_filled_section
   tmp.delete_at(3)
-  p "<><><> #{tmp}"
   is_equal(tmp, @@form_data['section6'])
   is_equal(on(Section4APage).generic_data_elements.last.text, on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'A/M COT A/M')
