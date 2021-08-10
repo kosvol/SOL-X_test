@@ -185,10 +185,9 @@ class BypassPage < CommonFormsPage
       section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      if $current_environment === 'sit' #todo: need to fix that with actual
-        section['variables']['answers'].last['value']["#{EnvironmentSelector.get_beacons_env_prefix}-Z-AFT-STATION"] =
-          '000000YGJ11ZSESBYNRXYRVVN3'
-      end
+      # if $current_environment === 'sit' #todo: need to fix that with actual
+      section['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_beacons_env_prefix}-Z-AFT-STATION"
+      # end
       JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_3.save_section1_details', _user, _vessel)
 
@@ -352,9 +351,9 @@ class BypassPage < CommonFormsPage
     section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
     section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
-    if $current_environment === 'sit'
-      section['variables']['answers'].last['value']['AUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_beacons_env_prefix}-Z-AFT-STATION"
-    end
+    # if $current_environment === 'sit'
+    section['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_beacons_env_prefix}-Z-AFT-STATION"
+    # end
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
     ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', _user)
 
