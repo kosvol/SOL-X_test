@@ -27,19 +27,6 @@ module EnvironmentSelector
       end
     end
 
-    def get_permit_prefix
-      case $current_environment
-      when 'auto-cot'
-        'AUTO'
-      when 'sit-cot'
-        'SIT'
-      when 'sit-lng'
-        'SITLNG'
-      when 'sit-fsu'
-        'SITFSU'
-      end
-    end
-
     def get_edge_db_data_by_uri(uri)
       format($obj_env_yml[get_env_type_prefix.downcase]['fauxton_url'], $current_environment) + uri
     end

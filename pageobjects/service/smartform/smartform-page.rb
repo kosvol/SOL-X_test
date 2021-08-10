@@ -10,7 +10,7 @@ module SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['id'].include? EnvironmentSelector.get_permit_prefix
+        next unless form['id'].include? EnvironmentSelector.get_beacons_env_prefix
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -35,7 +35,7 @@ module SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['doc']['formId'].include? EnvironmentSelector.get_permit_prefix
+        next unless form['doc']['formId'].include? EnvironmentSelector.get_beacons_env_prefix
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -48,7 +48,7 @@ module SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['doc']['externalId'].include? EnvironmentSelector.get_permit_prefix
+        next unless form['doc']['externalId'].include? EnvironmentSelector.get_beacons_env_prefix
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']

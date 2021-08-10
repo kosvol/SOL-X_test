@@ -14,7 +14,7 @@ Feature: DB reset
     Given I clear gas reader entries
     And I clear wearable history and active users
     Given I clear postgres db for auto
-    
+
   @load-workload-data
   Scenario: Load workload data
     Given I clear work rest table
@@ -35,10 +35,10 @@ Feature: DB reset
     Given I update crew members to <vessel_type> vessel with <regex> regex
 
     Examples:
-      | vessel_type    | regex      |
+      | vessel_type     | regex         |
       # | AUTO-LNG-VESSEL | (?i)SITLNG |
       | AUTO-COT-VESSEL | (?i)AUTO_SOLX |
-      # | AUTO-FSU-VESSEL | (?i)SITFSU |
+# | AUTO-FSU-VESSEL | (?i)SITFSU |
 
 # @removed-crew-from-vessel
 # Scenario: Removed crew from vessel
