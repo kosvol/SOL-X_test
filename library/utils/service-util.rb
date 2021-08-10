@@ -8,7 +8,7 @@ module ServiceUtil
   include HTTParty
   class << self
     def update_crew_members_vessel(vesselType, regex)
-      uri = EnvironmentSelector.get_edge_db_data_by_uri('crew_members/_find')
+      uri = EnvironmentSelector.get_db_url('cloud', 'get_crew_members')
       content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
       content_body['selector']['_id']['$regex'] = regex
       error_logging('URI: ', uri)
@@ -21,6 +21,10 @@ module ServiceUtil
         crew['vesselId'] = vesselType
       end
       error_logging('Request Body: ', crew_members)
+      uri = EnvironmentSelector.get_db_url('cloud', 'set_crew_members')
+      @response = ServiceUtil.fauxton(uri, 'post', crew_members.to_json)
+      error_logging('Response Body: ', @response)
+
       uri = EnvironmentSelector.get_edge_db_data_by_uri('crew_members/_bulk_docs')
       @response = ServiceUtil.fauxton(uri, 'post', crew_members.to_json)
       error_logging('Response Body: ', @response)

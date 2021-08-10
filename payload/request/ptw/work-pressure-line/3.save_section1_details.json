@@ -37,7 +37,7 @@
       },
       {
         "fieldId": "locationOfWork",
-        "value": "{\"zone\":\"AUTO_02VSR475JK2JTN7V25D27D\",\"zoneDetails\":\"Test Automation\"}"
+        "value": "{\"zone\":\"COTAUTO-Z-AFT-STATION\",\"zoneDetails\":\"Test Automation\"}"
       }
     ],
     "submissionTimestamp": "2020-07-23T08:01:44.903Z"

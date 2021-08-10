@@ -35,7 +35,7 @@ Feature: Section7
   #   When I press next for 1 times
   #   Then I should see valid validity date and time
 
-  @sol-6553
+  @sol-6553 @test
   Scenario: Verify validity from and to is correct for non OA permit
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
@@ -148,7 +148,7 @@ Feature: Section7
     And I should see close button
 
     Examples:
-      | rank | pin  | permit_types          | permit_payload             |
+      | rank |  pin | permit_types          | permit_payload             |
       | A/M  | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Chief Officer              | 8383 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Chief Officer   | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
