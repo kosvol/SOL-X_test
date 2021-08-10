@@ -8,20 +8,12 @@ module EnvironmentSelector
     end
 
     def get_beacons_env_prefix
-      if $current_environment.include? 'sit-lng'
-        'SITLNG'
-      elsif $current_environment.include? 'sit-cot'
-        'SITCOT'
-      elsif $current_environment.include? 'sit-fsu'
-        'SITFSU'
-      elsif $current_environment.include? 'auto-cot'
-        'AUTOCOT'
-      elsif $current_environment.include? 'auto-fsu'
-        'AUTOFSU'
-      elsif $current_environment.include? 'auto-lng'
-        'AUTOLNG'
-      else
-        $current_environment
+      if $current_environment.include? 'lng'
+        "LNG#{get_env_type_prefix}"
+      elsif $current_environment.include? 'cot'
+        "COT#{get_env_type_prefix}"
+      elsif $current_environment.include? 'fsu'
+        "FSU#{get_env_type_prefix}"
       end
     end
 

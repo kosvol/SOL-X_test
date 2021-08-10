@@ -107,6 +107,7 @@ class WearablePage
     private
 
     @wearableid = ''
+
     def get_one_wearable_id
       tmp = @list_of_wearables.sample
       begin
@@ -161,7 +162,7 @@ class WearablePage
     def get_base_json(json)
       case json
       when 'wearable-simulator/mod-update-wearable-location',
-          'wearable-simulator/mod-update-wearable-location-by-zone'
+           'wearable-simulator/mod-update-wearable-location-by-zone'
         'wearable-simulator/base-update-wearable-location'
       when 'wearable-simulator/mod-unlink-crew-to-wearable'
         'wearable-simulator/base-unlink-crew-to-wearable'
