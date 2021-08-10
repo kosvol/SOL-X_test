@@ -45,8 +45,8 @@ end
 And(/^I fill up section 1 with default value$/) do
   permits_arr = YAML.load_file('data/permit-types.yml')['Critical Equipment Maintenance']
   on(Section1Page).fill_default_section_1
-  p ">> #{on(Section0Page).get_section1_filled_data}"
-  if permits_arr.include? on(Section0Page).get_section1_filled_data
+  Log.instance.info "Permit: #{on(Section0Page).get_section1_filled_data.last}"
+  if permits_arr.include? on(Section0Page).get_section1_filled_data.last
     on(Section1Page).set_maintenance_duration(%w[more less].sample)
   end
 end

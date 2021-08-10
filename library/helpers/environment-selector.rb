@@ -7,6 +7,24 @@ module EnvironmentSelector
       tmp_url
     end
 
+    def get_beacons_env_prefix
+      if $current_environment.include? 'sit-lng'
+        'SITLNG'
+      elsif $current_environment.include? 'sit-cot'
+        'SITCOT'
+      elsif $current_environment.include? 'sit-fsu'
+        'SITFSU'
+      elsif $current_environment.include? 'auto-cot'
+        'AUTOCOT'
+      elsif $current_environment.include? 'auto-fsu'
+        'AUTOFSU'
+      elsif $current_environment.include? 'auto-lng'
+        'AUTOLNG'
+      else
+        $current_environment
+      end
+    end
+
     def get_env_type_prefix
       if $current_environment.include? 'sit'
         'SIT'

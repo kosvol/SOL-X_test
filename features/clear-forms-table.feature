@@ -20,15 +20,25 @@ Feature: DB reset
     Given I clear work rest table
     Then I load workload data
 
-  @update_crew_member_vessel
-  Scenario Outline: Update crew members vessel
+  @update_sit_crew_member_vessel
+  Scenario Outline: Update SIT crew members vessel
     Given I update crew members to <vessel_type> vessel with <regex> regex
 
     Examples:
       | vessel_type    | regex      |
-      | sit-lng-vessel | (?i)SITLNG |
-      | sit-vessel     | (?i)SITCOT |
-      | sit-fsu-vessel | (?i)SITFSU |
+      | SIT-LNG-VESSEL | (?i)SITLNG |
+      | SIT-COT-VESSEL | (?i)SITCOT |
+      | SIT-FSU-VESSEL | (?i)SITFSU |
+
+  @update_auto_crew_member_vessel
+  Scenario Outline: Update SIT crew members vessel
+    Given I update crew members to <vessel_type> vessel with <regex> regex
+
+    Examples:
+      | vessel_type    | regex      |
+      # | AUTO-LNG-VESSEL | (?i)SITLNG |
+      | AUTO-COT-VESSEL | (?i)AUTO_SOLX |
+      # | AUTO-FSU-VESSEL | (?i)SITFSU |
 
 # @removed-crew-from-vessel
 # Scenario: Removed crew from vessel
