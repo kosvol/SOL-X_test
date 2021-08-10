@@ -172,14 +172,14 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                |
+      | level_one_permit                                                                | level_two_permit                                                                |
       # | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search         |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
-      | Use of non-intrinsically safe Camera | NA                                                                              |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                              |
   # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Submit for Termination with RA

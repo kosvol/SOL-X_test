@@ -113,15 +113,15 @@ Feature: Section2ApprovalAuthority
     Then I should see correct approval details OA <office approval> and ship approval <ship approval>
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                | ship approval | office approval                                                 |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         | Master        | Head, Fleet Operations                                          |
-      | Underwater Operations                | Underwater Operation at night or concurrent with other operations               | Master        | Director, Fleet Operations                                      |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         | Master        | Head, Fleet Operations                                          |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
-      | Use of non-intrinsically safe Camera | NA                                                                              | Master        | MS/VS                                                           |
-      | Use of ODME in Manual Mode           | NA                                                                              | Master        | Director, Fleet Operations (shore Approving Authority)          |
+      | level_one_permit                                                                | level_two_permit                                                                | ship approval | office approval                                                 |
+      | Underwater Operations                                                           | Underwater Operation during daytime without any simultaneous operations         | Master        | Head, Fleet Operations                                          |
+      | Underwater Operations                                                           | Underwater Operation at night or concurrent with other operations               | Master        | Director, Fleet Operations                                      |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search         | Master        | Head, Fleet Operations                                          |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Master        | Head, Fleet Operations                                          |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Master        | Director, Fleet Operations in concurrence with Director, QAHSSE |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Master        | VS/MS                                                           |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                              | Master        | MS/VS                                                           |
+      | Use of ODME in Manual Mode                                                      | NA                                                                              | Master        | Director, Fleet Operations (shore Approving Authority)          |
 
   Scenario: Verify section2 screen text
     Given I launch sol-x portal without unlinking wearable

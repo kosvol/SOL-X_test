@@ -32,7 +32,7 @@ Feature: PendingApprovalPermit
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin for rank C/O
-    And I select Use of non-intrinsically safe Camera permit
+    And I select Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces permit
     And I select NA permit for level 2
     And I fill a full OA permit
     And I click on pending approval filter
@@ -45,7 +45,7 @@ Feature: PendingApprovalPermit
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin for rank C/O
-    And I select Use of non-intrinsically safe Camera permit
+    And I select Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces permit
     And I select NA permit for level 2
     And I fill a full OA permit
     And I click on pending approval filter

@@ -67,21 +67,21 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter pin for rank A/M
     Then I should see a list of available forms for selections
-      | Cold Work                                                    |
-      | Critical Equipment Maintenance                               |
-      | Enclosed Spaces Entry                                        |
-      | Helicopter Operations                                        |
-      | Hot Work                                                     |
-      | Personnel Transfer By Transfer Basket                        |
-      | Rigging of Gangway & Pilot Ladder                            |
-      | Rotational Portable Power Tools                              |
-      | Underwater Operations                                        |
-      | Use of non-intrinsically safe Camera                         |
-      | Use of ODME in Manual Mode                                   |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Work on Pressure Pipeline/Vessels                            |
-      | Working Aloft/Overside                                       |
-      | Working on Deck During Heavy Weather                         |
+      | Cold Work                                                                       |
+      | Critical Equipment Maintenance                                                  |
+      | Enclosed Spaces Entry                                                           |
+      | Helicopter Operations                                                           |
+      | Hot Work                                                                        |
+      | Personnel Transfer By Transfer Basket                                           |
+      | Rigging of Gangway & Pilot Ladder                                               |
+      | Rotational Portable Power Tools                                                 |
+      | Underwater Operations                                                           |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces |
+      | Use of ODME in Manual Mode                                                      |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage                    |
+      | Work on Pressure Pipeline/Vessels                                               |
+      | Working Aloft/Overside                                                          |
+      | Working on Deck During Heavy Weather                                            |
 
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable
