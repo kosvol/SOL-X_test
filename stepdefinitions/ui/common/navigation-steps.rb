@@ -22,29 +22,16 @@ end
 
 And(/^I click on back arrow$/) do
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  step 'I set permit id'
+  step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
 end
 
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
-  sleep 1
-  index = 1
-  while index <= times.to_i
-    condition == 'next' ? on(Section0Page).click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
-    index += 1
-  end
+  on(NavigationPage).click_new_or_previous(condition, times)
 end
 
 And(/^I click on back to home$/) do
-  begin
-    sleep 2
-    BrowserActions.poll_exists_and_click(on(Section6Page).back_to_home_btn_element)
-  rescue StandardError
-    sleep 1
-    BrowserActions.js_click("//button[contains(.,'Back to')]")
-  rescue StandardError
-    BrowserActions.js_click("//button[contains(.,'Home')]")
-  end
-  step 'I set permit id'
+  on(NavigationPage).click_back_home
+  step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
 end
 
 And(/^I navigate to section (.+)$/) do |which_section|
