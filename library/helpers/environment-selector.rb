@@ -7,7 +7,7 @@ module EnvironmentSelector
       tmp_url
     end
 
-    def get_beacons_env_prefix
+    def get_vessel_name
       if $current_environment.include? 'lng'
         "LNG#{get_env_type_prefix}"
       elsif $current_environment.include? 'cot'

@@ -11,7 +11,7 @@ end
 Then(/^I should see permit details are pre-filled$/) do
   Log.instance.info "#{on(Section1Page).get_section1_filled_data}"
   is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
+  is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
 
 Then(/^I should see a list of (sea states|wind forces)$/) do |_state, _table|
