@@ -89,7 +89,7 @@ And(/^I clear wearable history and active users$/) do
 end
 
 Given(/^I clear postgres db$/) do
-  Postgres_clearing.clear_postgres_db(EnvironmentSelector.get_env_type_prefix)
+  Postgres_clearing.clear_postgres_db(EnvironmentSelector.get_vessel_name)
 end
 
 Given(/^I clear work rest table$/) do
