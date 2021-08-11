@@ -88,8 +88,8 @@ And(/^I clear wearable history and active users$/) do
   SmartFormDBPage.delete_table_wearable_alerts_row('edge', 'delete_alerts_histories_entries')
 end
 
-Given(/^I clear postgres db for (.*)$/) do |env|
-  Postgres_clearing.clear_postgres_db(env)
+Given(/^I clear postgres db$/) do
+  Postgres_clearing.clear_postgres_db(EnvironmentSelector.get_env_type_prefix)
 end
 
 Given(/^I clear work rest table$/) do
