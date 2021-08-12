@@ -32,6 +32,7 @@ end
 And(/^I click on back to home$/) do
   on(NavigationPage).click_back_home
   step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
+  sleep 5
 end
 
 And(/^I navigate to section (.+)$/) do |which_section|

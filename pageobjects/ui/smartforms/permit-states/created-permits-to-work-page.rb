@@ -35,14 +35,16 @@ class CreatedPermitToWorkPage < Section9Page
     edit_permit_btn_elements[get_permit_index(_permit_id)]
   end
 
-  def get_permit_index(_permit_id)
-    parent_container_elements.each_with_index do |_permit, _index|
-      next unless ptw_id_elements[_index].text === _permit_id
-
-      p ">> #{_permit_id}"
-      p "-- #{_index}"
-      return _index.to_i
-      # break
+  def get_permit_index(permit_id)
+    @tmp_index = nil
+    sleep 1
+    parent_container_elements.each_with_index do |permit, index|
+      next unless ptw_id_elements[index].text === permit_id
+      Log.instance.info "Permit ID: #{ptw_id_elements[index].text} ::: #{permit_id}"
+      Log.instance.info "Index: #{index}"
+      @tmp_index = index
+      break
     end
+    @tmp_index
   end
 end
