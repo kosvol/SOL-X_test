@@ -89,7 +89,7 @@ end
 
 And (/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
   step 'I sleep for 3 seconds'
 end
 
