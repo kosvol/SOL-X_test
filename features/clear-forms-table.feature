@@ -11,9 +11,9 @@ Feature: DB reset
     And I clear oa forms table
     And I clear gas reader entries
     And I clear geofence
-    Given I clear gas reader entries
+    And I clear gas reader entries
     And I clear wearable history and active users
-    Given I clear postgres db for auto
+    And I clear postgres db
 
   @load-workload-data
   Scenario: Load workload data

@@ -87,8 +87,8 @@ And(/^I set permit id$/) do
   if @via_service_or_not === false
     Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
+    Log.instance.info "New Permit ID: #{CommonPage.get_permit_id}"
   end
-  sleep 5
 end
 
 And(/^I set time$/) do

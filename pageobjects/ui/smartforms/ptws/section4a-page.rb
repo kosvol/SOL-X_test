@@ -106,17 +106,17 @@ class Section4APage < Section3DPage
   def is_signed_user_details?(entered_pin)
     BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
     rank_and_name = get_user_details_by_pin(entered_pin)
-      Log.instance.info(">> #{rank_and_name_stamp_elements.first.text}")
-      @@tmp_rank_name = rank_and_name_stamp_elements.first.text
-    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+    @@tmp_rank_name = rank_and_name_stamp_elements.first.text
+    Log.instance.info(">> #{@@tmp_rank_name}")
+    Log.instance.info(">> Rank/Name: #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
-    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time.to_s))
+    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? date_and_time_stamp_element.text))
   end
 
   def is_signed_user_details_plus_1_min?(entered_pin)
     rank_and_name = get_user_details_by_pin(entered_pin)
-    ((@@tmp_rank_name.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
+    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
 
   def is_signed_user_details_integration?(entered_pin)
@@ -151,7 +151,7 @@ class Section4APage < Section3DPage
       next unless checklist_obj.text === checklist
 
       BrowserActions.scroll_down(element_yes[index + 1])
-      element_yes[index+1].click
+      element_yes[index + 1].click
     end
   end
 
@@ -164,10 +164,10 @@ class Section4APage < Section3DPage
   end
 
   def is_checklist_questions?
-    span_arr = get_checklist_questions("div > span")
-    label_arr = get_checklist_questions("div > label")
-    p_arr = get_checklist_questions("div > p")
-    h4_arr = get_checklist_questions("div > h4")
+    span_arr = get_checklist_questions('div > span')
+    label_arr = get_checklist_questions('div > label')
+    p_arr = get_checklist_questions('div > p')
+    h4_arr = get_checklist_questions('div > h4')
     is_questions = false
 
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
@@ -189,7 +189,7 @@ class Section4APage < Section3DPage
     end
     is_questions
   end
-  
+
   private
 
   def get_checklist_questions(css_input)

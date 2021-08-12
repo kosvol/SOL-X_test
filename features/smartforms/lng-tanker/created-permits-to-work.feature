@@ -56,9 +56,9 @@ Feature: CreatedPermitToWork
         And I should see Save EIC and Close button enabled
 
         Examples:
-            | rank |
-            | C/E  |
-    # | A C/E |
+            | rank  |
+            # | C/E   |
+            | A C/E |
 
     @sol-6981
     Scenario Outline: Verify EIC certification signature component for competent person

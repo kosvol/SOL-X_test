@@ -168,7 +168,7 @@ Then(/^I request update needed$/) do
   step 'I press the "Back to Home" button'
 end
 
-And(/^\(for pre\) I should see update needed message$/) do
+And('(for pre) I should see update needed message') do
   step 'I navigate to "Updates Needed" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE('Edit/Update')
   step 'I enter pin for rank C/O'

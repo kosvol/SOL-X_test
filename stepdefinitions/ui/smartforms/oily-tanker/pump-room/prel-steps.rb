@@ -1,5 +1,5 @@
-And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |_cond,_condition|
- # step 'I sleep for 10 seconds'
+And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |_cond, _condition|
+  # step 'I sleep for 10 seconds'
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
 
@@ -12,14 +12,14 @@ And (/^I (enter|enter without sign) (new|same|without toxic|different|random) en
     step 'I sign for gas'
     step 'I enter pin via service for rank A/M'
   end
-#  step 'I sleep for 1 seconds'
+  #  step 'I sleep for 1 seconds'
 end
 
 Then (/^I should see correct signed in entrants$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).sign_out_btn_elements.first)
   sleep 2
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M Atif Hayat')
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M COT A/M')
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size, 1)
 end
 
@@ -67,7 +67,6 @@ And ('I select required entrants {int}') do |_entrants_number|
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).confirm_btn_elements.first)
 end
 
-
 Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condition, _count|
   if _condition === 'entrant'
     BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
@@ -80,8 +79,8 @@ Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |_condit
   elsif _condition === 'required entrants'
     while _count.to_i.positive?
       is_enabled($browser
-                   .find_element(:xpath,
-                                 "//*[starts-with(@class,'UnorderedList')]/li[#{_count.to_s}]"))
+        .find_element(:xpath,
+                      "//*[starts-with(@class,'UnorderedList')]/li[#{_count.to_s}]"))
       _count = _count.to_i - 1
       p 'enabled'
     end
@@ -90,14 +89,14 @@ end
 
 And (/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
   step 'I sleep for 3 seconds'
 end
 
 And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 6 seconds'
-  @@pre_number = CommonPage.get_permit_id
-  SmartFormDBPage.acknowledge_pre_entry_log
+  # @@pre_number = CommonPage.get_permit_id
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
   step 'I sleep for 3 seconds'
 end
 
@@ -112,7 +111,7 @@ Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |_condition|
 end
 
 And (/^I terminate from dashboard$/) do
-    ## pending frontend implementation
+  ## pending frontend implementation
 end
 
 And (/^I signout "([^"]*)" entrants by rank$/) do |_arr_entry|
@@ -134,13 +133,12 @@ Then (/^I check the Send Report button is (enabled|disabled)$/) do |_condition|
   end
 end
 
-
 Then ('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?
     entr_arr.push($browser
-                    .find_element(:xpath, '//*[starts-with(@class,\'UnorderedList\')]/li[' + item.to_s + ']')
-                    .attribute('aria-label'))
+      .find_element(:xpath, '//*[starts-with(@class,\'UnorderedList\')]/li[' + item.to_s + ']')
+      .attribute('aria-label'))
     item = item - 1
   end
   p entr_arr.to_s
@@ -153,12 +151,12 @@ Then (/^I check that entrants "([^"]*)" not present in list$/) do |_arr_entrants
   sleep 1
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
   _arr_entrants.split(',').each do |_i|
-      if $browser.find_elements(:xpath, "//*[contains(.,'#{_i}')]").empty?
-        puts("Entrant #{_i} not exists in list")
-      else
-        raise("Entrant #{_i} is exists in list")
-      end
+    if $browser.find_elements(:xpath, "//*[contains(.,'#{_i}')]").empty?
+      puts("Entrant #{_i} not exists in list")
+    else
+      raise("Entrant #{_i} is exists in list")
     end
+  end
 end
 
 And (/^I (send|just send) Report$/) do |_condition|
@@ -180,7 +178,7 @@ end
 
 And (/^I (save|check) permit date on Dashboard LOG$/) do |_action|
   if _action === 'save'
-    current  = DateTime.now.strftime('%Y-%m-%d')
+    current = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
   elsif _action === 'check'
     data = on(DashboardPage).get_arr_data
@@ -215,22 +213,22 @@ And (/^I check the entrants "([^"]*)" are (presents|not presents) in dashboard l
   arr_elements_text = []
   elements.each { |element| arr_elements_text.push(element.text) }
   case _condition
-  when "presents"
+  when 'presents'
     _entrants.split(',').each { |x| expect(arr_elements_text).to include(x.to_s) }
-  when "not presents"
+  when 'not presents'
     _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(x.to_s) }
   else
-    raise "Wrong condition"
+    raise 'Wrong condition'
   end
 end
 
-Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |_type,_condition|
+Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |_type, _condition|
   sleep 5
   BrowserActions.wait_until_is_visible(on(DashboardPage).pre_cre_title_indicator_element)
-  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Pump Room Entry Permit:") if _type ==='PRE'
-  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text,"Compressor/Motor Room Entry Permit:") if _type ==='CRE'
-  is_equal(on(DashboardPage).pre_indicator_element.text,"Active") if _condition ==='active'
-  is_equal(on(DashboardPage).pre_indicator_element.text,"Inactive") if _condition ==='inactive'
+  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text, 'Pump Room Entry Permit:') if _type === 'PRE'
+  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text, 'Compressor/Motor Room Entry Permit:') if _type === 'CRE'
+  is_equal(on(DashboardPage).pre_indicator_element.text, 'Active') if _condition === 'active'
+  is_equal(on(DashboardPage).pre_indicator_element.text, 'Inactive') if _condition === 'inactive'
 end
 
 Then (/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry page$/) do |_entrants, _condition|
@@ -241,12 +239,11 @@ Then (/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry 
   arr_elements_text = []
   elements.each { |element| arr_elements_text.push(element.text) }
   case _condition
-  when "presents"
-    _entrants.split(',').each { |x| expect(arr_elements_text).to include(yml_id["rank_name"][x.to_s])}
-  when "not presents"
-    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(yml_id["rank_name"][x.to_s]) }
+  when 'presents'
+    _entrants.split(',').each { |x| expect(arr_elements_text).to include(yml_id['rank_name'][x.to_s]) }
+  when 'not presents'
+    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(yml_id['rank_name'][x.to_s]) }
   else
-    raise "Wrong condition"
+    raise 'Wrong condition'
   end
 end
-

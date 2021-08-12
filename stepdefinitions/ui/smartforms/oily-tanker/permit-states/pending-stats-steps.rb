@@ -67,7 +67,7 @@ Then(/^I should see the newly pending approval permit details listed on Pending 
   step 'I set time'
   on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Submitted By')
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text,
-               "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
+               "#{EnvironmentSelector.get_vessel_name}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
   p "base >> #{on(Section1Page).get_section1_filled_data[3]}"
   if on(Section1Page).get_section1_filled_data[3] === on(CreatedPermitToWorkPage).created_date_time_elements.first.text
@@ -103,7 +103,7 @@ end
 Then(/^I should be able to open permit as master without seeing blank screen$/) do
   on(PendingStatePage).master_approval_btn_elements.first.click
   step 'I enter pin for rank MAS'
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
+  is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
 
 And(/^I reapprove the updated permit$/) do

@@ -112,10 +112,14 @@ end
 
 And(/^I sign EIC section 8 with RA (.+) rank$/) do |rank|
   on(Section3APage).scroll_multiple_times(4)
-  on(Section8Page).submit_termination_btn_elements.first.click
+  step 'I submit permit for termination'
   step "I sign with valid #{rank} rank"
   sleep 2
   step 'I click on back to home'
+end
+
+And(/^I submit permit for termination$/) do
+  on(Section8Page).submit_termination_btn_elements.first.click
 end
 
 And(/^I manually put the permit to pending termination state$/) do
