@@ -23,6 +23,7 @@ end
 And(/^I click on back arrow$/) do
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
   step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
+  sleep 3
 end
 
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
