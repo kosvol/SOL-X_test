@@ -247,16 +247,16 @@ Feature: PumpRoomEntry
     And I should see green background color
 
   Scenario: Verify PRE permit is terminated after terminating via dashboard popup
-     Given I submit a activated PRE permit
-     And I launch sol-x portal without unlinking wearable
-     And I navigate to PRE Display
-     And I enter pin via service for rank C/O
-     Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
-     And I terminate the PRE permit via service
-     And I sleep for 10 seconds
-     # Then I should see PRE activity status change to inactive
-     And I should see Permit Terminated PRE status on screen
-     Then I should see red background color
+    Given I submit a activated PRE permit
+    And I launch sol-x portal without unlinking wearable
+    And I navigate to PRE Display
+    And I enter pin via service for rank C/O
+    Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
+    And I terminate the PRE permit via service
+    And I sleep for 10 seconds
+    # Then I should see PRE activity status change to inactive
+    And I should see Permit Terminated PRE status on screen
+    Then I should see red background color
 
   Scenario: [PRED] Verify PRED displays green screen automatically after PRE becomes active
     Given I launch sol-x portal without unlinking wearable

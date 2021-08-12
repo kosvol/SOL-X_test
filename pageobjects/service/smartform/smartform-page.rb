@@ -69,10 +69,10 @@ module SmartFormDBPage
       end
     end
 
-    def acknowledge_pre_entry_log
-      entry_id = get_pre_gas_entry_log_id('edge', 'get_pre_gas_entry_log', get_mod_permit_id)
+    def acknowledge_pre_entry_log(pre_number)
+      entry_id = get_pre_gas_entry_log_id('edge', 'get_pre_gas_entry_log', get_mod_permit_id(pre_number))
       acknowledge_entry_log_payload = JSON.parse JsonUtil.read_json('pre/02.acknowledge-entry-log')
-      acknowledge_entry_log_payload['variables']['formId'] = @@pre_number
+      acknowledge_entry_log_payload['variables']['formId'] = pre_number
       acknowledge_entry_log_payload['variables']['entryId'] = entry_id
       JsonUtil.create_request_file('pre/mod_02.acknowledge-entry-log', acknowledge_entry_log_payload)
       ServiceUtil.post_graph_ql('pre/mod_02.acknowledge-entry-log', '8383')
@@ -103,8 +103,8 @@ module SmartFormDBPage
       count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
     end
 
-    def get_mod_permit_id
-      @@pre_number.gsub('/', '%2F')
+    def get_mod_permit_id(pre_number)
+      pre_number.gsub('/', '%2F')
     end
 
     def get_pre_gas_entry_log_id(which_db, url_map, which_pre_entry_log)
