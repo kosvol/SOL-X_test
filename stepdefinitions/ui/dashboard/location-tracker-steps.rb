@@ -8,16 +8,17 @@ Given (/^I unlink all crew from wearable$/) do
 end
 
 Then (/^I should see correct table headers for crew list$/) do
-  is_equal(on(DashboardPage).crew_list_headers_elements.first.text,"Rank")
-  is_equal(on(DashboardPage).crew_list_headers_elements[1].text,"Surname")
-  is_equal(on(DashboardPage).crew_list_headers_elements[2].text,"Location")
-  is_equal(on(DashboardPage).crew_list_headers_elements[3].text,"Permit No.")
-  is_equal(on(DashboardPage).crew_list_headers_elements.last.text,"Last Seen")
+  is_equal(on(DashboardPage).crew_list_headers_elements.first.text, 'Rank')
+  is_equal(on(DashboardPage).crew_list_headers_elements[1].text, 'Surname')
+  is_equal(on(DashboardPage).crew_list_headers_elements[2].text, 'Location')
+  is_equal(on(DashboardPage).crew_list_headers_elements[3].text, 'Permit No.')
+  is_equal(on(DashboardPage).crew_list_headers_elements.last.text, 'Last Seen')
 end
 
 Then (/^I should see crew link to PTW$/) do
-  p ">> #{on(DashboardPage).permit_to_work_element.text}"
-  does_include(on(DashboardPage).permit_to_work_element.text,CommonPage.get_permit_id)
+  Log.instance.info "Permit Listing: #{on(DashboardPage).permit_to_work_element.text}"
+  sleep 2
+  does_include(on(DashboardPage).permit_to_work_element.text, CommonPage.get_permit_id)
 end
 
 Then (/^I should see active crew details$/) do
@@ -83,20 +84,20 @@ When (/^I link wearable$/) do
   sleep 2
 end
 
-When (/^I link wearable to zone (.+) and mac (.+)$/) do |_zoneid, _mac|
+When (/^I link wearable to zone (.+) and mac (.+)$/) do |zoneid, mac|
   step 'I link crew to wearable'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
-  step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
+  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
   sleep 1
   step 'I hit graphql'
   sleep 2
 end
 
-When (/^I link wearable to rank (.+) and zone (.+) and mac (.+)$/) do |_rank, _zoneid, _mac|
-  step "I link #{_rank} to wearable"
+When (/^I link wearable to rank (.+) and zone (.+) and mac (.+)$/) do |rank, zoneid, mac|
+  step "I link #{rank} to wearable"
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
-  step "I manipulate wearable requeset payload with #{_zoneid} and #{_mac}"
+  step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
   sleep 1
   step 'I hit graphql'
@@ -119,24 +120,27 @@ When (/^I link wearable to rank (.+) to zone$/) do |_rank|
 end
 
 And (/^I click on any ptw$/) do
-  selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size-1))
+  selected_ptw = rand((on(DashboardPage).permit_to_work_link_elements.size - 1))
   @ptw_id = on(DashboardPage).permit_to_work_link_elements[selected_ptw].text
   p ">> #{@ptw_id}"
   on(DashboardPage).permit_to_work_link_elements[selected_ptw].click
 end
 
 Then (/^I should see correct permit display$/) do
-  is_equal(on(Section0Page).ptw_id_element.text,@ptw_id)
+  is_equal(on(Section0Page).ptw_id_element.text, @ptw_id)
 end
 
 When (/^I link (.+) user wearable$/) do |_condition|
   WearablePage.link_default_crew_to_wearable(_condition)
-  step "I get wearable-simulator/mod-base-link-crew-to-wearable request payload"
+  step 'I get wearable-simulator/mod-base-link-crew-to-wearable request payload'
+  step 'I hit graphql'
+  step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
+  step 'I manipulate wearable requeset payload with Z-AFT-STATION and 00:00:00:00:00:10'
   step 'I hit graphql'
 end
 
 And (/^I update location to new zone (.+) and mac (.+)$/) do |zoneid, mac|
-  sleep 30
+  sleep 15
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
   step "I manipulate wearable requeset payload with #{zoneid} and #{mac}"
   step 'I hit graphql'
@@ -173,12 +177,12 @@ And (/^I should not see (.+) location indicator$/) do |_location|
 end
 
 When (/^I submit a (scheduled|activated) PRE permit$/) do |_condition|
-  on(BypassPage).trigger_pre_submission('8383',_condition)
+  on(BypassPage).trigger_pre_submission('8383', _condition)
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
   sleep 5
-  is_equal(on(DashboardPage).crew_list_elements.size,25)
+  is_equal(on(DashboardPage).crew_list_elements.size, 25)
 end
 
 Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
@@ -191,13 +195,13 @@ Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
   end
 end
 
-When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |_action,_permit_type|
-  on(BypassPage).terminate_pre_permit('8383') if _action == "terminate"
-  on(BypassPage).close_permit(_permit_type,'8383',ENV['ENVIRONMENT']) if _action == "close"
+When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |_action, _permit_type|
+  on(BypassPage).terminate_pre_permit('8383') if _action == 'terminate'
+  on(BypassPage).close_permit(_permit_type, '8383', ENV['ENVIRONMENT']) if _action == 'close'
 end
 
 When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
-  on(BypassPage).close_permit(_permit_type,'9015',_env)
+  on(BypassPage).close_permit(_permit_type, '9015', _env)
 end
 
 When (/^I submit a (scheduled|current) CRE permit via service$/) do |_type|
@@ -210,5 +214,3 @@ When (/^I signout entrants "([^"]*)"$/) do |_entrants|
     on(BypassPage).signout_entrants(item.to_s)
   end
 end
-
-

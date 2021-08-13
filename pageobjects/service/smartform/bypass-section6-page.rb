@@ -5,15 +5,16 @@ require './././support/env'
 class BypassPage < CommonFormsPage
   include PageObject
 
-  def get_rank_id_from_service(_rank, _vessel = nil)
-    if _vessel == nil
+  def get_rank_id_from_service(rank, vessel = nil)
+    if vessel == nil
       ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
-      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', _vessel)
+      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
     end
-    ServiceUtil.get_response_body['data']['users'].each do |_crew|
-      if _crew['crewMember']['rank'] === _rank
-        CommonPage.set_rank_id = _crew['_id']
+    ServiceUtil.get_response_body['data']['users'].each do |crew|
+      if crew['crewMember']['rank'] === rank
+        CommonPage.set_rank_id = crew['_id']
+        @@get_rank = crew['crewMember']['rank']
         break
       end
     end
@@ -499,22 +500,23 @@ class BypassPage < CommonFormsPage
     ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user)
   end
 
-  def set_update_require_for_permit(_permit_type, _user)
-    _update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
-    _update_permit['variables']['formId'] = CommonPage.get_permit_id
-    _update_permit['variables']['submissionTimestamp'] = get_current_date_time
-    _update_permit['variables']['answers'][2]['value'] = get_default_signature_payload
-    _update_permit['variables']['answers'][3].to_h['value'] =
+  def set_update_require_for_permit(permit_type, user)
+    update_permit = JSON.parse JsonUtil.read_json('ptw/16.update-active-status')
+    update_permit['variables']['formId'] = CommonPage.get_permit_id
+    update_permit['variables']['submissionTimestamp'] = get_current_date_time
+    get_rank_id_from_service('MAS')
+    update_permit['variables']['answers'][2]['value'] = get_default_signature_payload
+    update_permit['variables']['answers'][3].to_h['value'] =
       "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
-    if _permit_type != 'submit_underwater_simultaneou'
-      _update_permit['variables']['answers'].last['value'] =
+    if permit_type != 'submit_underwater_simultaneou'
+      update_permit['variables']['answers'].last['value'] =
         "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
     else
-      _update_permit['variables']['answers'].last['value'] =
+      update_permit['variables']['answers'].last['value'] =
         "{\"dateTime\":\"#{get_current_date_time_cal(4)}\",\"utcOffset\":#{@get_offset}}"
     end
-    JsonUtil.create_request_file('ptw/mod_16.update-active-status', _update_permit)
-    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', _user)
+    JsonUtil.create_request_file('ptw/mod_16.update-active-status', update_permit)
+    ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', user)
   end
 
   def set_permit_status(_status)
@@ -831,9 +833,10 @@ class BypassPage < CommonFormsPage
   private
 
   def get_default_signature_payload
-    "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+    # "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
+    "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"#{@@get_rank}\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAMH/8QAGxABAQADAQEBAAAAAAAAAAAAAAECAxESIUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAT3bMteHrDTnuvrGecLjLy2S37ZOTvb+8nzt+KAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q==\",\"signedAt\":\"#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
   end
-
+  
   def cal_new_minutes_offset_time
     @current_minute = Time.now.utc.strftime('%M')
     current_minute = @current_minute.to_i + 1
