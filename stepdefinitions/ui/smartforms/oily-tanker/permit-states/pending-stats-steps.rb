@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-Then(/^I should see Note from (.*)$/) do |_requested_from|
-  p ">> #{on(PendingStatePage).action_required_note_elements.first.text}"
-  if _requested_from === 'Office'
-    is_equal(on(PendingStatePage).action_required_note_elements.first.text, 'See Notes from Office')
-  elsif _requested_from === 'Master'
-    is_equal(on(PendingStatePage).action_required_note_elements.first.text, 'See Notes from Master')
+Then(/^I should see Note from (.*)$/) do |requested_from|
+  if requested_from === 'Office'
+    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Office')
+  elsif requested_from === 'Master'
+    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Master')
   end
 end
 

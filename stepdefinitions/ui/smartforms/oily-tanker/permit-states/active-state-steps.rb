@@ -77,7 +77,7 @@ Then(/^I should see data persisted on page 2$/) do
   sleep 1
   tmp = on(Section3DPage).get_filled_section
   p ">> #{tmp}"
-  does_include(tmp[1], 'SOLX Automation Test')
+  does_include(tmp[1], 'COTAUTO')
   does_include(tmp[2], on(CommonFormsPage).get_timezone)
   does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
   tmp.delete_at(2)

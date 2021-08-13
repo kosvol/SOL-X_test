@@ -66,7 +66,7 @@ When(/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
   step 'I open rol permit with rank A/M'
-  on(ActiveStatePage).terminate_permit_btn_elements.first.click
+  step 'I submit permit for termination'
   step 'I sign with valid A/M rank'
   sleep 1
   step 'I click on back to home'
