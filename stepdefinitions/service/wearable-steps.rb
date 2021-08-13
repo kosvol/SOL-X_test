@@ -21,7 +21,7 @@ And (/^I manipulate wearable requeset payload$/) do
 end
 
 And (/^I manipulate wearable requeset payload with (.+) and (.+)$/) do |zoneid, mac|
-  WearablePage.swap_payload(@which_json, zoneid, mac)
+  WearablePage.swap_payload(@which_json, "#{EnvironmentSelector.get_vessel_name}-#{zoneid}", mac)
 end
 
 Then (/^I get list of beacons detail$/) do

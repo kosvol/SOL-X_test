@@ -47,8 +47,8 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
-      | AUTO_SOLX0019 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
+      | user          | zoneid        | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
+      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
@@ -66,10 +66,10 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | rank | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0011 | C/O  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0004 | 2/E  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0021 | ETO  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | rank | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
+      | AUTO_SOLX0011 | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0004 | 2/E  | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0021 | ETO  | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
@@ -87,8 +87,8 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0002 | COTAUTO-Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | zoneid       | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
+      | AUTO_SOLX0002 | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
 
   Scenario Outline: Verify non RA cannot sign on responsible authority
     Given I launch sol-x portal without unlinking wearable

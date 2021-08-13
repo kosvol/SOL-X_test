@@ -19,8 +19,8 @@ Feature: Section3DDRA
     Then I should see location of work button enabled
 
     Examples:
-      | user          | zoneid                | mac               | location_stamp |
-      | AUTO_SOLX0019 | COTAUTO-Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
+      | user          | zoneid        | mac               | location_stamp |
+      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario Outline: Verify location of work can be manual selected after pre-select via wearable
     Given I launch sol-x portal
@@ -34,8 +34,8 @@ Feature: Section3DDRA
     Then I should see location of work button enabled
 
     Examples:
-      | user          | zoneid                | mac               | location_stamp |
-      | AUTO_SOLX0019 | COTAUTO-Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
+      | user          | zoneid        | mac               | location_stamp |
+      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario: Verify done button is disabled when location of work not filled
     Given I launch sol-x portal
@@ -60,8 +60,8 @@ Feature: Section3DDRA
     And I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                | mac               | location_stamp |
-      | AUTO_SOLX0019 | COTAUTO-Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
+      | user          | zoneid        | mac               | location_stamp |
+      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario Outline: Verify only DRA signoff can sign on section 3d for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
