@@ -126,7 +126,6 @@ Feature: Section8
     And I press next for 1 times
     And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
@@ -152,7 +151,6 @@ Feature: Section8
     And I press next for 1 times
     And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
