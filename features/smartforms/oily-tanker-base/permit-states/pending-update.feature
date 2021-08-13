@@ -510,7 +510,7 @@ Feature: PendingUpdate
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | rank  | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      # | AUTO_SOLX0011 | C/O   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0004 | A 2/E | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-# | AUTO_SOLX0021 | ETO   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | rank  | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            |
+      # | AUTO_SOLX0011 | C/O   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | AUTO_SOLX0004 | A 2/E | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
+# | AUTO_SOLX0021 | ETO   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
