@@ -110,7 +110,6 @@ Feature: PendingUpdate
       | A 4/E |
   # | CGENG |
 
-
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -448,3 +447,70 @@ Feature: PendingUpdate
     Then I should not see checklist selections fields enabled
     And I press next for 1 times
     And I should not see checklist questions fields enabled
+
+  Scenario Outline: Verify location stamping on signature section for issuing authority
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Enclosed Spaces Entry permit
+    And I select NA permit for level 2
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with MAS rank
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with <rank> rank
+    And I navigate to section 4b
+    And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
+    And I select yes to EIC
+    And I click on create EIC certification button
+    Then I sign EIC as issuing authority with rank <rank>
+    And I set time
+    And I should see signed details
+    Then I should see location <location_stamp> stamp
+
+    Examples:
+      | user          | rank  | zoneid       | mac               | location_stamp | level_one_permit                | level_two_permit            |
+      # | AUTO_SOLX0002 | C/E   | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | AUTO_SOLX0002 | A C/E | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
+
+  Scenario Outline: Verify location stamping on signature section for competent person
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Enclosed Spaces Entry permit
+    And I select NA permit for level 2
+    And I fill only location of work
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    And I submit permit for Master Approval
+    And I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with MAS rank
+    And I navigate to section 7
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    And I update permit in pending update state with <rank> rank
+    And I navigate to section 4b
+    And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
+    And I select yes to EIC
+    And I click on create EIC certification button
+    Then I sign EIC as competent person with rank <rank>
+    And I set time
+    And I should see signed details
+    Then I should see location <location_stamp> stamp
+
+    Examples:
+      | user          | rank  | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
+      # | AUTO_SOLX0011 | C/O   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | AUTO_SOLX0004 | A 2/E | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+# | AUTO_SOLX0021 | ETO   | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |

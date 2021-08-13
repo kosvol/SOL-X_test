@@ -85,8 +85,8 @@ Feature: CreatedPermitToWork
 
         Examples:
             | rank  |
-            | C/O   |
+            # | C/O   |
             | A C/O |
 # | 2/E   |
 # | A 2/E |
-# | ETO   |
+# | ETO  |
