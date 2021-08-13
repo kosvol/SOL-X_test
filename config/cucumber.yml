@@ -3,6 +3,10 @@ mac_chrome_sit_dashboard_incognito_local: --profile dir --profile html --profile
 mac_chrome_sit_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit DEVICE=dashboard
 mac_chrome_auto_dashboard_incognito: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_incognito OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=dashboard LOCAL=local
 
+### clear rubbish permit ###
+clear_sit_on_fsu_sit_env: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+clear_sit_on_auto_env: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet
+
 ### Own's machine profiles ### 
 mac_chrome_tablet_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet
 mac_chrome_auto_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet

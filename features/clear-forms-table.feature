@@ -15,6 +15,10 @@ Feature: DB reset
     And I clear wearable history and active users
     And I clear postgres db
 
+  @clear-rubbish
+  Scenario: Clear rubbish
+    Given I clear rubbish
+
   @load-workload-data
   Scenario: Load workload data
     Given I clear work rest table
