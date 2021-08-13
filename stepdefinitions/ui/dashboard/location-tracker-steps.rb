@@ -16,7 +16,8 @@ Then (/^I should see correct table headers for crew list$/) do
 end
 
 Then (/^I should see crew link to PTW$/) do
-  p ">> #{on(DashboardPage).permit_to_work_element.text}"
+  Log.instance.info "Permit Listing: #{on(DashboardPage).permit_to_work_element.text}"
+  sleep 2
   does_include(on(DashboardPage).permit_to_work_element.text,CommonPage.get_permit_id)
 end
 

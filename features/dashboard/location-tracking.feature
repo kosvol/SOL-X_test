@@ -27,12 +27,11 @@ Feature: LocationTracking
     Then I should see crew link to PTW
     And I unlink all crew from wearable
 
-@new
   Scenario: Verify PTW is tied to submitted RA crew
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I sleep for 5 seconds
     When I launch sol-x portal
-    And I link C/O user wearable
+    And I link A/M user wearable
     Then I should see crew link to PTW
     And I unlink all crew from wearable
 
@@ -73,8 +72,8 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
     Examples:
-      | zone        | zoneid                        | mac               | new_zone    | new_zoneid                  | new_mac           |
-      | Engine Room | COTAUTO-Z-ENGINE-CONTROL-ROOM | 00:00:00:00:00:30 | Aft Station | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 |
+      | zone        | zoneid                        | mac               | new_zone    | new_zoneid            | new_mac           |
+      | Engine Room | COTAUTO-Z-ENGINE-CONTROL-ROOM | 00:00:00:00:00:30 | Aft Station | COTAUTO-Z-AFT-STATION | 00:00:00:00:00:10 |
 
   Scenario: Verify active duration countdown starts at 15s
     Given I launch sol-x portal
@@ -96,6 +95,7 @@ Feature: LocationTracking
     Then I should see activity indicator is yellow after 5 minutes
     And I unlink all crew from wearable
 
+  @test
   Scenario Outline: Verify active crew member count is correct on engine room against full ship
     Given I launch sol-x portal
     When I link wearable to zone <zoneid> and mac <mac>
@@ -114,10 +114,10 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
     Examples:
-      | zone         | zoneid                      | mac               | location      |
-      | Main Deck    | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station   |
-      | Pump Room    | COTAUTO-Z-PUMP-ROOM-TOP | 00:00:00:00:00:1A | Pump Room Top |
-      | Forecastle | COTAUTO-Z-FORECASTLE | 00:00:00:00:00:01 | Forecastle |
+      | zone       | zoneid                  | mac               | location      |
+      | Main Deck  | COTAUTO-Z-AFT-STATION   | 00:00:00:00:00:10 | Aft Station   |
+      | Pump Room  | COTAUTO-Z-PUMP-ROOM-TOP | 00:00:00:00:00:1A | Pump Room Top |
+      | Forecastle | COTAUTO-Z-FORECASTLE    | 00:00:00:00:00:01 | Forecastle    |
   # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
   # | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
   # | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
