@@ -42,7 +42,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify EIC certification signature component for issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin via service for rank C/O
+    And I enter pin via service for rank A/M
     And I select Use of ODME in Manual Mode permit
     And I select NA permit for level 2
     And I click on back arrow
@@ -64,13 +64,13 @@ Feature: CreatedPermitToWork
     Examples:
       | rank  |
       # | C/E   |
-      | A C/E |
+      | A C/O |
 
   @sol-6981
   Scenario Outline: Verify EIC certification signature component for competent person
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin via service for rank C/E
+    And I enter pin via service for rank A/M
     And I select Use of ODME in Manual Mode permit
     And I select NA permit for level 2
     And I click on back arrow
@@ -93,7 +93,7 @@ Feature: CreatedPermitToWork
       | rank  |
       # | C/O   |
       # | A C/O |
-      | 2/E   |
+      | A C/E |
       | A 2/E |
       | ETO   |
 
