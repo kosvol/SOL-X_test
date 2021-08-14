@@ -113,10 +113,10 @@ Feature: LocationTracking
     And I unlink all crew from wearable
 
     Examples:
-      | zone       | zoneid          | mac               | location      |
-      | Main Deck  | Z-AFT-STATION   | 00:00:00:00:00:10 | Aft Station   |
-      | Pump Room  | Z-PUMP-ROOM-TOP | 00:00:00:00:00:1A | Pump Room Top |
-      | Forecastle | Z-FORECASTLE    | 00:00:00:00:00:01 | Forecastle    |
+      | zone      | zoneid          | mac               | location      |
+      | Main Deck | Z-AFT-STATION   | 00:00:00:00:00:10 | Aft Station   |
+      | Pump Room | Z-PUMP-ROOM-TOP | 00:00:00:00:00:1A | Pump Room Top |
+      | Main Deck | Z-FORECASTLE    | 00:00:00:00:00:01 | Forecastle    |
   # | Upper Deck   | CDEV_0PKFCRX6C6FDCAGKDP3A0 | 48:46:00:00:41:43 |
   # | Accomm.      | CDEV_0PKFGWR2F7ZP8MFAC8FR3 | A0:E6:F8:2D:08:78 |
   # | Nav. Bridge  | CDEV_0PKFJZ4B7F7C3K8RZMXJG | B0:B4:48:FC:71:5E |
