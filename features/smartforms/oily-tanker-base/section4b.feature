@@ -127,7 +127,9 @@ Feature: Section4BEIC
     And I navigate to section 4b
     And I select yes to EIC
     And I click on create EIC certification button
-    Then I should see issuing authority sign button disabled
+    Then I should see competent person sign button enabled
+    Then I should see issuing authority sign button enabled
+    Then I should see Save EIC button disabled
 
   Scenario: Verify non competent person cannot sign as competent person
     Given I launch sol-x portal without unlinking wearable
@@ -139,8 +141,9 @@ Feature: Section4BEIC
     And I navigate to section 4b
     And I select yes to EIC
     And I click on create EIC certification button
-    Then I should see competent person sign button disabled
+    Then I should see competent person sign button enabled
     Then I should see issuing authority sign button enabled
+    Then I should see Save EIC button disabled
 
   #   Examples:
   #     | rank                       | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |

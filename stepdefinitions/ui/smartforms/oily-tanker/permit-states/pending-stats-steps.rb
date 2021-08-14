@@ -36,7 +36,7 @@ Then(/^I should not be able to edit EIC certification$/) do
   if on(Section3APage).total_p_elements.size === 27
     is_equal(on(Section3APage).total_p_elements.size, 27)
   else
-    is_equal(on(Section3APage).total_p_elements.size, 29)
+    is_equal(on(Section3APage).total_p_elements.size, 28)
   end
 end
 
