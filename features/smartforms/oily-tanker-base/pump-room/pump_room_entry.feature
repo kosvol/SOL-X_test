@@ -39,22 +39,22 @@ Feature: PumpRoomEntry
     Then I should see not authorize error message
 
     Examples:
-      | rank  | pin  |
-      | MAS   | 1111 |
-      | A/M   | 9015 |
-      | C/E   | 8248 |
-      | 2/E   | 2523 |
-      | ETO   | 0856 |
-      | A 2/E | 3030 |
-      | D/C   | 2317 |
-      | 3/E   | 4685 |
-      | A 3/E | 6727 |
-      | 4/E   | 1311 |
-      | A 4/E | 0703 |
-      | BOS   | 1018 |
-      | A/B   | 6316 |
-      | O/S   | 7669 |
-      | OLR   | 0450 |
+      | rank  |
+      | MAS   |
+      | A/M   |
+      | C/E   |
+      | 2/E   |
+      | ETO   |
+      | A 2/E |
+      | D/C   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
   Scenario: Verify in the form there are all questions
     Given I launch sol-x portal without unlinking wearable
@@ -248,3 +248,34 @@ Feature: PumpRoomEntry
     And I getting a permanent number from indexedDB
     And I navigate to "Pending Approval" screen for PRE
     Then I check scheduled date
+
+  Scenario Outline: Pure Gas Tester2 should not be able to edit gas reading
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new PRE
+    And I enter pin via service for rank C/O
+    Then I fill up PRE. Duration 4. Delay to activate 2
+    And Get PRE id
+    And for pre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    Then I request update needed
+    And I should see that form is open for read by rank <rank>
+
+    Examples:
+      | rank  |
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | 5/E   |
+      | E/C   |
+      | ETO   |
+      | ELC   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+
