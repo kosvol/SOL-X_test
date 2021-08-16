@@ -14,16 +14,15 @@ class ROLPage < Section9Page
   buttons(:date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_createdDate']")
   buttons(:issued_date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_permitIssuedOnDate']")
   buttons(:valid_until_date_and_time_fields, xpath: "//button[@id='cl_riggingOfLadder_permitValidUntil']")
-  buttons(:submit_btn, xpath: "//div[starts-with(@class,'Section__Description')]/div[2]/button")
   button(:updates_needed_btn, xpath: "//button[contains(.,'Updates Needed')]")
   @@duration = "//button[contains(.,'%s')]"
 
   def fill_rol_forms
-    rol_inputs_elements.first.send_keys("Test Automation")
+    rol_inputs_elements.first.send_keys('Test Automation')
     rol_inputs_elements[1].click
     work_side_inspected_by
     sleep 1
-    member_name_btn_elements.first.click
+    options_text_elements.first.click
     confirm_btn_elements.last.click
     rol_inputs_elements[4].click
     rol_inputs_elements[7].click
@@ -31,7 +30,7 @@ class ROLPage < Section9Page
     sleep 1
     current_date
     sleep 1
-    last_assessment_element.send_keys("Test Automation")
+    last_assessment_element.send_keys('Test Automation')
     rol_inputs_elements[11].click
     rol_inputs_elements[14].click
     rol_inputs_elements[17].click
@@ -44,7 +43,7 @@ class ROLPage < Section9Page
     boarding_ddl_elements.first.click
     sleep 1
     boarding_value_elements.first.click
-    
+
     tmp = 0
     (0..((radio_btn_elements.size / 3) - 1)).each do |_i|
       radio_btn_elements[0 + tmp].click
@@ -59,7 +58,7 @@ class ROLPage < Section9Page
     sleep 1
     scroll_multiple_times(2)
     sleep 1
-    tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration+ " hour"}"])
+    tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration + ' hour'}"])
     tmp_hour.click
     BrowserActions.scroll_down(tmp_hour)
     sleep 1
@@ -67,14 +66,14 @@ class ROLPage < Section9Page
 
   def submit_rol_permit_w_duration(_duration)
     select_rol_duration(_duration)
-    submit_btn_elements.first.click
+    BrowserActions.poll_exists_and_click(activate_permit_btn_element)
   end
 
-  def is_duration?(permit_validity_timer, _duration, _timer_mins="59")
+  def is_duration?(permit_validity_timer, _duration, _timer_mins = '59')
     if permit_validity_timer.include? ":#{_timer_mins}:"
-      return permit_validity_timer.include? "0#{(_duration.to_i-1)}:#{_timer_mins}:"# if _duration === '1'
+      return permit_validity_timer.include? "0#{(_duration.to_i - 1)}:#{_timer_mins}:" # if _duration === '1'
     else
-      is_duration?(permit_validity_timer, _duration, (_timer_mins.to_i-1))
+      is_duration?(permit_validity_timer, _duration, (_timer_mins.to_i - 1))
     end
   end
 end

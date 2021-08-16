@@ -9,9 +9,9 @@ Then(/^I should see navigation dropdown$/) do
 end
 
 Then(/^I should see permit details are pre-filled$/) do
-  p ">> #{on(Section1Page).get_section1_filled_data}"
+  Log.instance.info "#{on(Section1Page).get_section1_filled_data}"
   is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
+  is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
 
 Then(/^I should see a list of (sea states|wind forces)$/) do |_state, _table|
@@ -21,7 +21,6 @@ end
 
 Then(/^I should not see previous button exists$/) do
   on(Section3APage).scroll_multiple_times(10)
-  # is_equal(on(Section1Page).btn_list_elements[0].text, 'Next')
   is_equal(on(Section1Page).btn_list_elements[0].text, 'Save & Next')
 end
 
@@ -46,7 +45,8 @@ end
 And(/^I fill up section 1 with default value$/) do
   permits_arr = YAML.load_file('data/permit-types.yml')['Critical Equipment Maintenance']
   on(Section1Page).fill_default_section_1
-  if permits_arr.include? on(Section0Page).get_selected_level2_permit
+  Log.instance.info "Permit: #{on(Section0Page).get_section1_filled_data.last}"
+  if permits_arr.include? on(Section0Page).get_section1_filled_data.last
     on(Section1Page).set_maintenance_duration(%w[more less].sample)
   end
 end

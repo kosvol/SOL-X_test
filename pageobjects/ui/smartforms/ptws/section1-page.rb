@@ -23,10 +23,6 @@ class Section1Page < Section0Page
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
 
-  def get_section1_filled_data
-    @@section1_data_collector
-  end
-
   def set_section1_filled_data(_entered_pin, _create_or_submitted)
     rank_and_name = get_user_details_by_pin(_entered_pin)
     @@section1_data_collector << "#{_create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
@@ -101,18 +97,6 @@ class Section1Page < Section0Page
     BrowserActions.scroll_click(dd_list_value_elements.first)
     sleep 1
   end
-
-  # ### Hack for fsu; zone setup differently
-  # def fsu_select_location_of_work
-  #   sleep 1
-  #   zone_btn
-  #   begin
-  #     dd_list_value_elements[1].click
-  #   rescue
-  #     dd_list_value_elements[2].click
-  #   end
-  #   sleep 1
-  # end
 
   private
 

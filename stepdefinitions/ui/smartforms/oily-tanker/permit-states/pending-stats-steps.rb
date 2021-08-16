@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-Then(/^I should see Note from (.*)$/) do |_requested_from|
-  p ">> #{on(PendingStatePage).action_required_note_elements.first.text}"
-  if _requested_from === 'Office'
-    is_equal(on(PendingStatePage).action_required_note_elements.first.text, 'See Notes from Office')
-  elsif _requested_from === 'Master'
-    is_equal(on(PendingStatePage).action_required_note_elements.first.text, 'See Notes from Master')
+Then(/^I should see Note from (.*)$/) do |requested_from|
+  if requested_from === 'Office'
+    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Office')
+  elsif requested_from === 'Master'
+    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Master')
   end
 end
 
@@ -16,16 +15,16 @@ Then(/^I should see correct OA submission text$/) do
            "The relevant authority will review this permit.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard.")
 end
 
-Then(/^I should not be able to edit (.*) DRA$/) do |_permit|
+Then(/^I should not be able to edit (.*) DRA$/) do |permit|
   sleep 1
   step 'I click on View Edit Hazard'
   sleep 1
   on(Section3APage).scroll_multiple_times(2)
-  on(Section3APage).delete_btn_elements.each do |_elem|
-    is_disabled(_elem)
+  on(Section3APage).delete_btn_elements.each do |elem|
+    is_disabled(elem)
   end
-  is_equal(on(Section3APage).total_p_elements.size, 14) if _permit === 'Enclosed Spaces Entry'
-  is_equal(on(Section3APage).total_p_elements.size, 4) if _permit === 'Use of non-intrinsically safe Camera'
+  is_equal(on(Section3APage).total_p_elements.size, 14) if permit === 'Enclosed Spaces Entry'
+  is_equal(on(Section3APage).total_p_elements.size, 4) if permit === 'Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces'
   on(Section3APage).scroll_multiple_times(2)
   on(CommonFormsPage).close_btn_elements.first.click
 end
@@ -37,7 +36,7 @@ Then(/^I should not be able to edit EIC certification$/) do
   if on(Section3APage).total_p_elements.size === 27
     is_equal(on(Section3APage).total_p_elements.size, 27)
   else
-    is_equal(on(Section3APage).total_p_elements.size, 29)
+    is_equal(on(Section3APage).total_p_elements.size, 28)
   end
 end
 
@@ -67,7 +66,7 @@ Then(/^I should see the newly pending approval permit details listed on Pending 
   step 'I set time'
   on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Submitted By')
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text,
-               "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
+               "#{EnvironmentSelector.get_vessel_name}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
   p "base >> #{on(Section1Page).get_section1_filled_data[3]}"
   if on(Section1Page).get_section1_filled_data[3] === on(CreatedPermitToWorkPage).created_date_time_elements.first.text
@@ -103,7 +102,7 @@ end
 Then(/^I should be able to open permit as master without seeing blank screen$/) do
   on(PendingStatePage).master_approval_btn_elements.first.click
   step 'I enter pin for rank MAS'
-  is_equal(on(Section1Page).generic_data_elements[0].text, 'SOLX Automation Test')
+  is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
 
 And(/^I reapprove the updated permit$/) do

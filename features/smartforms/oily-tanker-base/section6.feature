@@ -10,7 +10,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I fill zone details
     And I navigate to section 3c
     And I uncheck dra member
@@ -23,7 +23,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     Then I should see gas reading copy text
@@ -33,7 +33,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     Then I should see submit button disabled
 
@@ -42,7 +42,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings and cancel from pin screen
@@ -53,7 +53,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings and back from signing screen
@@ -64,7 +64,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I am able to delete toxic gas inputs
@@ -74,7 +74,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
@@ -93,7 +93,7 @@ Feature: Section6
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I navigate to section 4a
     And I press next for 1 times
@@ -109,44 +109,44 @@ Feature: Section6
     And I should see submit button enabled
 
     Examples:
-      | rank  | pin  | rank_name       |
-      | MAS   | 1111 | MAS COT MAS     |
-      # | Additional Master          | 9015 | By A/M Atif Hayat       |
-      # | Chief Officer              | 8383 | By C/O Alister Leong    |
-      # | Additional Chief  Officer  | 2761 | By A C/O Nigel Koh      |
-      | 2/O   | 6268 | 2/O COT 2/O     |
-      # | Additional Second Officer  | 7865 | By A 2/O Qasim Khan     |
-      # | Third Officer              | 0159 | By 3/O Tim Kinzer       |
-      | A 3/O | 2674 | A 3/O COT A 3/O |
-      # | Chief Engineer             | 8248 | By C/E Alex Pisarev     |
-      | A C/E | 5718 | A C/E COT A C/E |
-      # | Second Engineer            | 2523 | By 2/E Poon Choryi      |
-      | A 2/E | 3030 | A 2/E COT A 2/E |
-      # | Third Engineer             | 4685 | By 3/E Cs Ow            |
-      | A 3/E | 6727 | A 3/E COT A 3/E |
-      | A 4/E | 1311 | 4/E COT 4/E     |
-      | CGENG | 1311 | CGENG COT CGENG |
+      | rank  | rank_name       |
+      | MAS   | MAS COT MAS     |
+      # | Additional Master         | By A/M Atif Hayat    |
+      # | Chief Officer             | By C/O Alister Leong |
+      # | Additional Chief  Officer | By A C/O Nigel Koh   |
+      | 2/O   | 2/O COT 2/O     |
+      # | Additional Second Officer | By A 2/O Qasim Khan  |
+      # | Third Officer             | By 3/O Tim Kinzer    |
+      | A 3/O | A 3/O COT A 3/O |
+      # | Chief Engineer            | By C/E Alex Pisarev  |
+      | A C/E | A C/E COT A C/E |
+      # | Second Engineer           | By 2/E Poon Choryi   |
+      | A 2/E | A 2/E COT A 2/E |
+      # | Third Engineer            | By 3/E Cs Ow         |
+      | A 3/E | A 3/E COT A 3/E |
+      | A 4/E | A 4/E COT A 4/E |
+      | CGENG | CGENG COT CGENG |
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Helicopter Operations permit
-    And I select Helicopter Operations permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
     And I add all gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M COT A/M crew rank and name
+    Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and By A/M COT A/M as gas signer
+    Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
     And I add only normal gas readings
     And I enter pin for rank A/M
     And I set time
-    Then I will see popup dialog with By A/M COT A/M crew rank and name
+    Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display without toxic gas and By A/M COT A/M as gas signer
+    Then I should see gas reading display without toxic gas and A/M COT A/M as gas signer
 
   # Scenario Outline: Verify non-OA Hotwork ptw display submit for master approval on button
   #   Given I launch sol-x portal without unlinking wearable
@@ -175,21 +175,21 @@ Feature: Section6
       | level_one_permit                                             | level_two_permit                                                | checklist                                                    |
       | Hot Work                                                     | Hot Work Level-2 in Designated Area                             | Hot Work Within Designated Area                              |
       | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                     | Hot Work Outside Designated Area                             |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                           | Enclosed Space Entry Checklist                               |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                                        | Working Aloft/Overside                                       |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                     | Work on Pressure Pipelines                                   |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                           | Personnel Transfer by Transfer Basket                        |
-      | Helicopter Operations                                        | Helicopter Operation                                            | Helicopter Operation Checklist                               |
+      | Enclosed Spaces Entry                                        | NA                                                              | Enclosed Space Entry Checklist                               |
+      | Working Aloft/Overside                                       | NA                                                              | Working Aloft/Overside                                       |
+      | Work on Pressure Pipeline/Vessels                            | NA                                                              | Work on Pressure Pipelines                                   |
+      | Personnel Transfer By Transfer Basket                        | NA                                                              | Personnel Transfer by Transfer Basket                        |
+      | Helicopter Operations                                        | NA                                                              | Helicopter Operation Checklist                               |
       # | Rotational Portable Power Tools      | Use of Portable Power Tools                 | Rotational Portable Power Tools (PPT) |
       | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools           | Rotational Portable Power Tools (PPT)                        |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage              | Work on Electrical Equipment and Circuits – Low/High Voltage |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                                              | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings | Cold Work Operation Checklist                                |
       # | Cold Work                            | Cold Work - Cleaning Up of Spill            | Cold Work Operation Checklist          |
       # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               | Cold Work Operation Checklist                                 |
       # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   | Cold Work Operation Checklist                                 |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                            | Work on Deck During Heavy Weather                            |
+      | Working on Deck During Heavy Weather                         | NA                                                              | Work on Deck During Heavy Weather                            |
 
   Scenario: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
     Given I launch sol-x portal without unlinking wearable
@@ -243,14 +243,14 @@ Feature: Section6
     And I should not see extra previous and save button
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                        | checklist                        |
-      | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
+      | level_one_permit                                                                | level_two_permit                                                        | checklist                        |
+      | Underwater Operations                                                           | Underwater Operation during daytime without any simultaneous operations | Underwater Operation             |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           | Underwater Operation             |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search | Underwater Operation             |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search | Underwater Operation             |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area |
-      | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R (Loaded Passage)                           | Hot Work Outside Designated Area |
       # | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                    | Use of Camera Checklist          |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                      | Use of Camera Checklist          |
   # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode       |
 
   Scenario Outline: Verify gas reading can disable and enable
@@ -276,5 +276,5 @@ Feature: Section6
     And I should see gas_last_calibration_button
 
     Examples:
-      | level_one_permit      | level_two_permit     |
-      | Helicopter Operations | Helicopter Operation |
+      | level_one_permit      | level_two_permit |
+      | Helicopter Operations | NA               |

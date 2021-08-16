@@ -321,30 +321,7 @@ class WorkResetrHoursPage
       tmp_payload['docs'][29]['endTime'] = ttt
 
       JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
-      ServiceUtil.fauxton(get_environment_link('fauxton', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
-    end
-
-    ## to create a module on this
-    def get_environment_link(_which_db, _url_map)
-      if $current_environment === 'sit' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'dev' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_dev_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'auto' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_auto_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'uat' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_uat_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'sit-fsu' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_sit_fsu_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif $current_environment === 'sit-cot' && _which_db != 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_sit_cot_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      elsif _which_db === 'oa_db'
-        $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      # elsif ENV['env'] === 'ngrok'
-      #   'http://d0b02eada7fb.ngrok.io/' + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      else
-        $obj_env_yml[_which_db.to_s]['base_sit_url'] + $obj_env_yml[_which_db.to_s][_url_map.to_s]
-      end
+      ServiceUtil.fauxton(EnvironmentSelector.get_db_url('fauxton_url', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
     end
   end
 end

@@ -275,20 +275,9 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-# ##DEPRECATED; by refactoring, logic sit inside OfficeApproval.get_office_approval_link
-# When(/^I wait for OA event/) do
-#   form_id = CommonPage.get_permit_id
-#   # docs = []
-#   # i = 30
-#   # while i > 0 && docs == [] do
-#   #   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post', { selector: { formId: form_id } }.to_json.to_s)
-#   #   docs = (JSON.parse request.to_s)['docs']
-#   #   i -= 1
-#   #   sleep(20)
-#   # end
-#   is_true(OfficeApproval.get_event_id != [])
-# end
-
+################################################################################################################
+######## Konstantine please refactor this step; Method implementation should never be in step definition #######
+################################################################################################################
 When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _server|
   form_id = CommonPage.get_permit_id
   status = nil
@@ -299,7 +288,7 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _se
                 ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               else
-                ServiceUtil.fauxton($obj_env_yml[_server]['get_form_status'], 'post',
+                ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               end
     # p "request >> #{request}"
@@ -519,7 +508,7 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
   to_exists(on(CommonFormsPage).previous_btn_elements.first)
   to_exists(on(CommonFormsPage).close_btn_elements.first)
   not_to_exists(on(Section7Page).update_btn_element)
-  not_to_exists(on(CommonFormsPage).request_update_btn_element)
+  not_to_exists(on(Section7Page).request_update_btn_element)
 end
 
 And(/^I leave additional instructions$/) do

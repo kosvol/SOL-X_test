@@ -17,3 +17,5 @@
 Gemfile.lock
 /ms/*
 .idea
+Gemfile
+.rufo

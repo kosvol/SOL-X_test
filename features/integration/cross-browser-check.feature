@@ -10,7 +10,7 @@ Feature: CrossBrowserRiggingOfLadder
         And I navigate to create new permit
         And I enter pin for rank A/M
         And I select Rigging of Gangway & Pilot Ladder permit
-        And I select Rigging of Gangway & Pilot Ladder permit for level 2
+        And I select NA permit for level 2
         And I fill rol permit
         And I submit permit for Master Approval
         And I click on back to home

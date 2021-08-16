@@ -18,18 +18,12 @@ class Section6Page < Section5Page
   button(:gas_last_calibration_button, xpath: "//button[@id='gasLastCalibrationDate']")
   buttons(:last_calibration_btn, xpath: "//button[@id='gasLastCalibrationDate']")
   buttons(:submit_btn, xpath: "//div[starts-with(@class,'Section__Description')]/button")
-  @@gas_yes_no_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]//label"
-  @@gas_added_by = "//span[contains(.,'%s')]"
-  @@inf_box_disable_gas = "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]"
+  span(:gas_added_by, css: 'div[role="dialog"] > div > section > div > span')
 
   def is_gas_reading_fields_enabled?
     gas_equipment_input_element.text
     gas_sr_number_input_element.text
     gas_yes_no_elements.size === 2
-  end
-
-  def get_gas_added_by(_agt)
-    @browser.find_element(:xpath, format(@@gas_added_by, _agt))
   end
 
   def is_gas_reader_section?
@@ -45,15 +39,7 @@ class Section6Page < Section5Page
     else
       gas_yes_no_elements.last.click
     end
-    # select_checkbox(@@gas_yes_no_btn, value)
   end
-
-  # def is_info_box_disable_gas_exist?
-  #   $browser.find_element(:xpath, @@inf_box_disable_gas)
-  #   true
-  # rescue StandardError
-  #   false
-  # end
 
   private
 

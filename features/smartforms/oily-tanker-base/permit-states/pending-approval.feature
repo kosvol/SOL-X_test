@@ -20,7 +20,7 @@ Feature: PendingApprovalPermit
     When I navigate to create new permit
     And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill a full enclosed workspace permit
     And I click on pending approval filter
     And I click on permit for master approval
@@ -32,8 +32,8 @@ Feature: PendingApprovalPermit
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin for rank C/O
-    And I select Use of non-intrinsically safe Camera permit
-    And I select Use of non-intrinsically safe Camera permit for level 2
+    And I select Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces permit
+    And I select NA permit for level 2
     And I fill a full OA permit
     And I click on pending approval filter
     And I click on permit for master approval
@@ -45,8 +45,8 @@ Feature: PendingApprovalPermit
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
     And I enter pin for rank C/O
-    And I select Use of non-intrinsically safe Camera permit
-    And I select Use of non-intrinsically safe Camera permit for level 2
+    And I select Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces permit
+    And I select NA permit for level 2
     And I fill a full OA permit
     And I click on pending approval filter
     And I click on permit for master approval
@@ -61,7 +61,7 @@ Feature: PendingApprovalPermit
     When I navigate to create new permit
     And I enter pin for rank <creator_rank>
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill a full enclosed workspace permit
     And I click on pending approval filter
     And I click on permit for master approval
@@ -73,10 +73,10 @@ Feature: PendingApprovalPermit
 
     Examples:
       | rank | creator_rank |
-      | ETO  | A/M          |
+      | ETO  | ETO          |
       | 3/E  | C/O          |
       | PMAN | A C/O        |
-      | MAS  | 2/O          |
+      | MAS  | 2/E          |
 
   Scenario: Verify user is brough back to listing screen after cancelling from pinpad
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
@@ -179,7 +179,7 @@ Feature: PendingApprovalPermit
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5
@@ -217,7 +217,7 @@ Feature: PendingApprovalPermit
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill only location of work
     And I press next for 7 times
     And I sign checklist and section 5

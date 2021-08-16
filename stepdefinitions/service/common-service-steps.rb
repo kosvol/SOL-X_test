@@ -5,7 +5,7 @@ Given (/^I get (.+) request payload$/) do |request_payload_locality|
 end
 
 When (/^I hit graphql$/) do
-  ServiceUtil.post_graph_ql(@which_json, $master_pin)
+  ServiceUtil.post_graph_ql(@which_json)
 end
 
 Then (/^I should see error message (.+)$/) do |err_msg|
@@ -16,14 +16,10 @@ And (/^I verify method (.+) is successful$/) do |table|
   is_true(CommonPage.is_successful(table))
 end
 
-And (/^I switch vessel to (.*)$/) do |_vesselType|
-  ServiceUtil.switch_vessel_type(_vesselType)
-end
+# And (/^I switch vessel to (.*)$/) do |_vesselType|
+#   ServiceUtil.switch_vessel_type(_vesselType)
+# end
 
-Given (/^I update master pin$/) do
-  ServiceUtil.update_mas_pin
-end
-
-Given (/^I update crew members to (.*) vessel$/) do |_vesselType|
-  ServiceUtil.update_crew_members_vessel(_vesselType)
+Given (/^I update crew members to (.*) vessel with (.*) regex$/) do |vesselType,regex|
+  ServiceUtil.update_crew_members_vessel(vesselType,regex)
 end

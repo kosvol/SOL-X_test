@@ -4,9 +4,6 @@ Feature: LNGSmartFormsPermission
     I want to ...
     So that ...
 
-    Background:
-        Given I switch vessel to FSU
-
     Scenario Outline: EIC section 8 competent person label change to CO 2E
         Given I submit permit <permit_payload> via service with 9015 user and set to active state
         And I set oa permit to ACTIVE state
@@ -14,7 +11,6 @@ Feature: LNGSmartFormsPermission
         And I click on active filter
         And I review and withdraw permit with <rank> rank
         Then I should see competent person label change
-        And I switch vessel to LNG
 
         Examples:
             | permit_types       | permit_payload                 | rank |
@@ -33,11 +29,7 @@ Feature: LNGSmartFormsPermission
         And I set time
         And I should see signed details
         Then I should see location <location_stamp> stamp
-        And I switch vessel to LNG
 
         Examples:
-            | user         | zoneid                     | mac               | location_stamp                   |
-            | SIT_SOLX0001 | 000000YGJ2DC7WQPN532HRVVMV | A0:E6:F8:25:A6:7E | Bridge Electrical Equipment Room |
-
-    Scenario: Switch back to LNG
-        Given I switch vessel to LNG
+            | user        | zoneid             | mac               | location_stamp   |
+            | SITFSU_0001 | Z-STBD-BRIDGE-WING | 00:00:00:00:00:19 | Stbd Bridge Wing |

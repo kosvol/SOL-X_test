@@ -2,7 +2,6 @@
 
 module BrowserActions
   class << self
-
     def poll_exists_and_click(_element)
       wait_until_is_visible(_element) ? _element.click : poll_exists_and_click(_element)
     end
@@ -14,7 +13,7 @@ module BrowserActions
     def turn_wifi_off_on
       $browser.toggle_wifi
       p 'WIFI turned on/off'
-      sleep 11
+      sleep 17
     end
 
     def turn_on_wifi_by_default
@@ -59,11 +58,13 @@ module BrowserActions
     end
 
     def scroll_down(_element = nil)
+      sleep 1
       begin
         scroll_to_element(_element)
       rescue StandardError
         scroll_down_by_dist
       end
+      sleep 1
     end
 
     def get_attribute_value(xpath)

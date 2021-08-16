@@ -23,7 +23,6 @@ Feature: ActivePermit
     And I click on pending approval filter
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
@@ -140,12 +139,12 @@ Feature: ActivePermit
       | level_one_permit           | level_two_permit                                                                |
       | Underwater Operations      | Underwater Operation during daytime without any simultaneous operations         |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
-      # | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search                                                   |
+      # | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search     |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
       | Hot Work                   | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
       # | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
-      | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                                      |
+      | Use of ODME in Manual Mode | NA                                                                              |
 
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
@@ -172,14 +171,14 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit                     | level_two_permit                                                                |
+      | level_one_permit                                                                | level_two_permit                                                                |
       # | Underwater Operations                | Underwater Operation during daytime without any simultaneous operations         |
       # | Underwater Operations                | Underwater Operation at night or concurrent with other operations           |
-      | Underwater Operations                | Underwater Operations at night for mandatory drug and contraband search         |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search         |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Ballast Passage)                                  |
       # | Hot Work                             | Hot Work Level-2 outside E/R (Loaded Passage)                                   |
-      | Hot Work                             | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
-      | Use of non-intrinsically safe Camera | Use of Non-Intrinsically Safe Camera                                            |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                              |
   # | Use of ODME in Manual Mode           | Use of ODME in Manual Mode                                                      |
 
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Submit for Termination with RA
@@ -202,12 +201,12 @@ Feature: ActivePermit
     Then I should see section 8 screen
 
     Examples:
-      | level_one_permit                  | level_two_permit                            |
+      | level_one_permit                  | level_two_permit |
       # | Hot Work                          | Hot Work Level-2 in Designated Area                   |
       # | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)           |
       # | Enclosed Spaces Entry             | Enclosed Spaces Entry                                 |
       # | Working Aloft/Overside                                       | Working Aloft / Overside                              |
-      | Work on Pressure Pipeline/Vessels | Work on pressure pipelines/pressure vessels |
+      | Work on Pressure Pipeline/Vessels | NA               |
   # | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                 |
   # | Helicopter Operations                | Helicopter Operation                                  |
   # # | Rotational Portable Power Tools                              | Use of Portable Power Tools                           |
@@ -247,9 +246,9 @@ Feature: ActivePermit
       # | Hot Work                                                     | Hot Work Level-2 in Designated Area                 |
       | Hot Work                              | Hot Work Level-1 (Loaded & Ballast Passage)        |
       # | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                               |
-      | Working Aloft/Overside                | Working Aloft / Overside                           |
-      # | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels         |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer by Transfer Basket              |
+      | Working Aloft/Overside                | NA                                                 |
+      | Work on Pressure Pipeline/Vessels     | NA                                                 |
+      | Personnel Transfer By Transfer Basket | NA                                                 |
       # | Helicopter Operations                                        | Helicopter Operation                                |
       # | Rotational Portable Power Tools       | Use of Portable Power Tools                         |
       # | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools |
@@ -307,7 +306,7 @@ Feature: ActivePermit
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -375,7 +374,6 @@ Feature: ActivePermit
     And I set oa permit to office approval state manually
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
@@ -388,7 +386,7 @@ Feature: ActivePermit
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     Then I submit permit for Master Approval
     When I click on back to home
@@ -429,25 +427,25 @@ Feature: ActivePermit
     Then I should see permit valid for 8 hours
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                   |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                |
+      | level_one_permit                                             | level_two_permit                    |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area |
       # | Hot Work                                                      | Hot Work Level-1 (Loaded & Ballast Passage)                             |
       # | Enclosed Spaces Entry                                         | Enclosed Spaces Entry                                                   |
       # | Working Aloft/Overside                                        | Working Aloft / Overside                                                |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels        |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket              |
-      | Helicopter Operations                                        | Helicopter Operation                               |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                        |
+      | Work on Pressure Pipeline/Vessels                            | NA                                  |
+      | Personnel Transfer By Transfer Basket                        | NA                                  |
+      | Helicopter Operations                                        | NA                                  |
+      | Rotational Portable Power Tools                              | Use of Portable Power Tools         |
       # | Rotational Portable Power Tools                               | Use of Hydro blaster/working with High-pressure tools                   |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                  |
       # | Cold Work                                                     | Cold Work - Blanking/Deblanking of Pipelines and Other Openings |
-      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                   |
+      | Cold Work                                                    | Cold Work - Cleaning Up of Spill    |
       # | Cold Work                                                     | Cold Work - Connecting and Disconnecting Pipelines                      |
       # | Cold Work                                                     | Cold Work - Maintenance on Closed Electrical Equipment and Circuits     |
       # | Cold Work                                                     | Cold Work - Maintenance Work on Machinery                               |
       # | Cold Work                                                     | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds   |
       # | Cold Work                                                     | Cold Work - Working in Hazardous or Dangerous Areas                     |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather               |
+      | Working on Deck During Heavy Weather                         | NA                                  |
 
   Scenario Outline: Verify AGT can add gas reading when permit is in active state if Gas Reader is needed for OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
@@ -470,7 +468,6 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state and no gas reading
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
@@ -489,7 +486,6 @@ Feature: ActivePermit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    #And I sleep for 230 seconds
     And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit

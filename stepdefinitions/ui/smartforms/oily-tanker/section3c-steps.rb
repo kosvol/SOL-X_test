@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 And(/^I uncheck dra member$/) do
-  # on(Section3CPage).dra_team_btn
   on(Section3CPage).cross_btn_elements.first.click
-  # on(Section3CPage).cancel_btn
 end
 
 Then(/^I should see dra member prefilled$/) do
@@ -29,7 +27,7 @@ end
 
 And(/^I remove one of the member from list$/) do
   on(Section3CPage).dra_team_btn
-  on(Section3CPage).member_name_btn_elements[1].click
+  on(Section3CPage).options_text_elements[1].click
   on(Section3CPage).confirm_btn_elements.first.click
 end
 
@@ -40,5 +38,5 @@ end
 And(/^I should see a list of crew$/) do
   on(Section3CPage).dra_team_btn
   sleep 1
-  is_equal(on(Section3CPage).member_name_btn_elements.last.text, 'OLR COT OLR')
+  is_equal(on(Section3CPage).options_text_elements.last.text, 'OLR COT OLR')
 end

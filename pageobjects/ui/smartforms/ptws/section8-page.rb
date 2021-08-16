@@ -10,8 +10,6 @@ class Section8Page < Section7Page
   buttons(:submit_termination_btn, xpath: "//button[contains(.,'Submit For Termination')]")
   button(:competent_person_btn, xpath: "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]")
   button(:issuing_authority_btn, xpath: "//button[contains(.,'Issuing Authorized (C/E)')]")
-  # @@competent_person_btn = "//button[contains(.,'Competent Person (C/O, 2/E, E/O)')]"
-  # @@issuing_authority_btn = "//button[contains(.,'Issuing Authorized (C/E)')]"
   buttons(:task_commerce_at, xpath: "//button[@id='taskCommencedAt']")
 
   span(:default_section8_question1,

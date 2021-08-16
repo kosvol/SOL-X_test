@@ -26,7 +26,7 @@ Feature: Offline Mode
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I turn off wifi
     And I navigate to section 4b
     And I select yes to EIC
@@ -41,7 +41,7 @@ Feature: Offline Mode
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I turn off wifi
     And I navigate to section 6
     Then I should see wifi inconsistent popup display for section 6
@@ -66,7 +66,7 @@ Feature: Offline Mode
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I turn off wifi
     And I navigate to section 4b
     And I select yes to EIC
@@ -79,7 +79,7 @@ Feature: Offline Mode
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I turn off wifi
     And I navigate to section 6
     Then I should see wifi inconsistent popup display for section 6
@@ -90,7 +90,7 @@ Feature: Offline Mode
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I turn off wifi
     Then I should see wifi inconsistent popup display for smartform
     And I turn off wifi

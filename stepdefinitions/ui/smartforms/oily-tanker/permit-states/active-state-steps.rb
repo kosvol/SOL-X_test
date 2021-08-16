@@ -12,11 +12,9 @@ Then(/^I should see issue date display$/) do
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text,
                on(CommonFormsPage).get_current_date_format_with_offset)
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_current_hour)
-  # is_equal(@@created_permit_data[1], on(CreatedPermitToWorkPage).issued_date_time_elements.first.text)
 end
 
 Then(/^I should see (.+) as button text$/) do |update_or_view|
-  # update_reading_or_view_btn = on(CreatedPermitToWorkPage).select_created_permit_with_param(CommonPage.get_permit_id)
   update_reading_or_view_btn = on(ActiveStatePage).add_gas_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
   if update_or_view === 'Update Readings'
     is_equal(update_reading_or_view_btn.text, 'Update Readings')
@@ -79,7 +77,7 @@ Then(/^I should see data persisted on page 2$/) do
   sleep 1
   tmp = on(Section3DPage).get_filled_section
   p ">> #{tmp}"
-  does_include(tmp[1], 'SOLX Automation Test')
+  does_include(tmp[1], 'COTAUTO')
   does_include(tmp[2], on(CommonFormsPage).get_timezone)
   does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
   tmp.delete_at(2)

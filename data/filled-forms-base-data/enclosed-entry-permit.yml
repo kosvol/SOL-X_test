@@ -1,6 +1,6 @@
 section1_without_duration:
   [
-    "SOLX Automation Test",
+    "COTAUTO",
     "Enclosed Space Entry",
     "In Port",
     "Loaded",
@@ -8,7 +8,7 @@ section1_without_duration:
     "0 : Calm (glassy)",
     "0 : Calm",
     "Test Automation",
-    "Deck 3 Corridor",
+    "A Deck Alleyway",
     "Test Automation",
   ]
 
@@ -32,15 +32,15 @@ section3b:
 
 section3c: ["MAS COT MAS", "C/O COT C/O"]
 
-section3d-yes: ["No", "No", "Test Automation", "No", "No", "Deck 3 Corridor"]
+section3d-yes: ["No", "No", "Test Automation", "No", "No", "A Deck Alleyway"]
 
-section3d-no: ["Yes", "Yes", "", "Yes", "Yes", "Deck 3 Corridor"]
+section3d-no: ["Yes", "Yes", "", "Yes", "Yes", "A Deck Alleyway"]
 
 section4b: ["Yes"]
 
 section4b_eic:
   [
-    "SOLX Automation Test",
+    "COTAUTO",
     "Test AutomationTest automation",
     "Yes",
     "Test automation",
@@ -93,7 +93,7 @@ section4a:
 
 checklist:
   [
-    "SOLX Automation Test",
+    "COTAUTO",
     "Test automation",
     "Test automation",
     "Yes",

@@ -27,7 +27,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -47,7 +47,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank A C/O
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -66,7 +66,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank <rank>
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -86,7 +86,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank <rank>
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -98,19 +98,19 @@ Feature: RiggingOfLadder
     Then I should not see extra previous and close button
 
     Examples:
-      | rank  |
-      | C/E   |
-      | A 3/O |
-      | C/O   |
-      | 2/E   |
-      | A 2/E |
+      | rank |
+      | C/E  |
+  # | A 3/O |
+  # | C/O   |
+  # | 2/E   |
+  # | A 2/E |
 
   Scenario Outline: SOL-5189 Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
     And I enter pin for rank A 2/O
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -150,7 +150,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank A C/E
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home
@@ -173,7 +173,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank A 3/O
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     Then I should see ROL checklist questions
     And I should see rol info box
@@ -183,7 +183,7 @@ Feature: RiggingOfLadder
     And I navigate to create new permit
     And I enter pin for rank ETO
     And I select Rigging of Gangway & Pilot Ladder permit
-    And I select Rigging of Gangway & Pilot Ladder permit for level 2
+    And I select NA permit for level 2
     When I press next for 1 times
     And I submit permit for Master Approval
     And I click on back to home

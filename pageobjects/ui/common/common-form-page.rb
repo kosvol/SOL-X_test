@@ -5,7 +5,7 @@ require './././support/env'
 class CommonFormsPage < CommonPage
   include PageObject
 
-  element(:main_clock, xpath: "//h3[@data-testid='main-clock']")
+  element(:main_clock, css: 'h3[data-testid=main-clock]')
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
@@ -36,7 +36,6 @@ class CommonFormsPage < CommonPage
   buttons(:save_and_close_btn, xpath: "//button[contains(.,'Save & Close')]")
   buttons(:save_btn, xpath: "//button[contains(.,'Save')]")
   buttons(:view_btn, xpath: "//button[contains(.,'View')]")
-  button(:request_update_btn, xpath: "//button[contains(.,'Request Updates')]")
   buttons(:submit_for_master_approval_btn, xpath: "//button[contains(.,\"Submit for Master's Approval\")]")
   buttons(:submit_master_review_btn, xpath: "//button[contains(.,\"Submit for Master's Review\")]")
 

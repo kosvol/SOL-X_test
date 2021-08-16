@@ -6,9 +6,9 @@ class DashboardPage < WearablePage
   include PageObject
 
   element(:dismiss_area_dd, xpath: "//div[@data-testid='dropdown-overlay-container']")
-  elements(:crew_list_headers, xpath: "//th")
+  elements(:crew_list_headers, xpath: '//th')
   element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
-  elements(:permit_to_work_link, xpath: "//td/ul/li/a") #same as above
+  elements(:permit_to_work_link, xpath: '//td/ul/li/a') #same as above
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
@@ -25,13 +25,14 @@ class DashboardPage < WearablePage
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
-  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]"#"//a[@data-testid='location-pin']"
+  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]" #"//a[@data-testid='location-pin']"
   @@arr_data = []
 
   #Gas reading alert
-  element(:gas_alert, xpath: "//div[starts-with(.,'GasReaderAlert')]")
-  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
-  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_alert, css: "div[data-testid='gas-reader-alert'] > div > section > h2")
+  element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
+  element(:gas_alert_discard_new, xpath: "//span[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_close_btn, css: "button[aria-label='Close']")
   element(:pre_cre_title_indicator, xpath: "//button[contains(.,'EntryStatusIndicator__Title')]")
 
   def set_arr_data(data)
@@ -52,9 +53,9 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    BrowserActions.js_clicks("//div/button/span",2)
-    toggle_zone_filter(location)
-    sleep 1
+    BrowserActions.js_clicks('//div/button/span', 2)
+    # toggle_zone_filter(location)
+    # sleep 1
     begin
       location_pin_txt
     rescue StandardError
@@ -86,7 +87,7 @@ class DashboardPage < WearablePage
     Log.instance.info("beacon >> \n\n#{tmp}")
     get_ui_active_crew_details.all? do |crew|
       Log.instance.info("crew >> \n\n#{crew}")
-      tmp.include? crew
+      crew.include? tmp
     end
   end
 
@@ -118,9 +119,9 @@ class DashboardPage < WearablePage
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       unless wearable['crewMember'].nil?
         if ui_or_service === 'service'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, "N/A"]
+          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
         elsif ui_or_service === 'ui'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, "N/A"]
+          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, 'N/A']
         end
       end
     end

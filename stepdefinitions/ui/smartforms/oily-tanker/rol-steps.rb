@@ -21,18 +21,8 @@ And(/^I open up active rol permit$/) do
 end
 
 Then(/^I should see view and termination buttons$/) do
-  is_equal(on(ActiveStatePage).first_permit_buttons_elements.first.text, 'View')
-  is_equal(on(ActiveStatePage).first_permit_buttons_elements.last.text, 'View / Terminate')
-end
-
-And(/^I request for update without submitting$/) do
-  begin
-    on(Section7Page).update_btn
-  rescue StandardError
-    on(Section7Page).request_update_btn
-  end
-  sleep 1
-  BrowserActions.enter_text(on(Section0Page).enter_comment_box_element, 'Test Automation')
+  is_equal(on(ActiveStatePage).view_btn_elements.first.text, 'View')
+  is_equal(on(ActiveStatePage).terminate_permit_btn_elements.first.text, 'View / Terminate')
 end
 
 And(/^I request update for permit$/) do
@@ -72,15 +62,11 @@ Then(/^I should not see permit duration selectable$/) do
   not_to_exists(on(ROLPage).rol_duration_element)
 end
 
-And(/^I submit permit for termination$/) do
-  on(Section8Page).submit_termination_btn_elements.first.click
-end
-
 When(/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
   step 'I open rol permit with rank A/M'
-  on(Section8Page).submit_termination_btn_elements.first.click
+  step 'I submit permit for termination'
   step 'I sign with valid A/M rank'
   sleep 1
   step 'I click on back to home'

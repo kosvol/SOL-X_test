@@ -9,7 +9,7 @@ Feature: LNGSection4AChecklistSelection
         And I navigate to create new permit
         And I enter pin for rank A/M
         And I select Enclosed Spaces Entry permit
-        And I select Enclosed Spaces Entry permit for level 2
+        And I select NA permit for level 2
         And I navigate to section 4a
         Then I should see this list of available checklist
             | Cold Work Operation Checklist             |
