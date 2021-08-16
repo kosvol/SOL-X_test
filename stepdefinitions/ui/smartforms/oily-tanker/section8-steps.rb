@@ -68,7 +68,7 @@ end
 
 And(/^I should see signed date and time for section 8$/) do
   is_equal(on(Section8Page).rank_name_and_date_elements[1].text,
-           "Date & Time\n#{on(Section8Page).get_signed_date_time}")
+           "#{on(Section8Page).get_signed_date_time}")
 end
 
 Then(/^I should see default section 8 questions$/) do

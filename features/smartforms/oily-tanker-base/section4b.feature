@@ -143,7 +143,7 @@ Feature: Section4BEIC
     And I click on create EIC certification button
     Then I should see competent person sign button enabled
     Then I should see issuing authority sign button enabled
-    Then I should see Save EIC button disabled
+    Then I should see Save EIC button enabled
 
   #   Examples:
   #     | rank                       | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |
