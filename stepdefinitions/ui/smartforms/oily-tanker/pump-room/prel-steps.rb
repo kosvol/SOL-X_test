@@ -25,7 +25,7 @@ end
 
 Then (/^I should not see entered entrant on list$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
-  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS Daniel Alcantara'))
+  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS COT MAS'))
 end
 
 Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |_condition|

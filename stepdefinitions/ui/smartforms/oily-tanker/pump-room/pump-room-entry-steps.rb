@@ -277,9 +277,9 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |_con
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
   case _condition
   when 'filled api'
-    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'MAS Default Master') # why MAS Default Master on auto or sit if api call???????
+    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'MAS COT MAS') # why MAS Default Master on auto or sit if api call???????
   else
-    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O Alister Leong')
+    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O COT C/O')
   end
 end
 
