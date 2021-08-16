@@ -290,8 +290,8 @@ Feature: PumpRoomEntry
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
-    And I sleep for 3 seconds
-    And I acknowledge the new entry log pre via service
+    #And I sleep for 3 seconds
+    #And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
     And I should see Entry Log tab
 
