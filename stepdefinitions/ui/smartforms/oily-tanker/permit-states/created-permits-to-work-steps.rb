@@ -44,7 +44,6 @@ Then(/^I should see EIC section with fields enabled$/) do
 end
 
 Then(/^I should see deleted permit deleted$/) do
-  sleep 1
   is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)
 end
 

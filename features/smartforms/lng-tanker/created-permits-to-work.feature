@@ -19,8 +19,8 @@ Feature: CreatedPermitToWork
         And I enter pin via service for rank <rank>
         And I navigate to section 4b
         And I click on create EIC certification button
-        And I should see competent person sign button disabled
-        And I should see issuing authority sign button disabled
+        And I should see competent person sign button enabled
+        And I should see issuing authority sign button enabled
         And I should see Save EIC button disabled
         And I should see Close button enabled
 
@@ -52,7 +52,7 @@ Feature: CreatedPermitToWork
         And I sign on canvas
         And I set time
         Then I should see signed details
-        And I should see competent person sign button disabled
+        And I should see competent person sign button enabled
         And I should see Save EIC and Close button enabled
 
         Examples:
@@ -80,13 +80,13 @@ Feature: CreatedPermitToWork
         And I sign on canvas
         And I set time
         Then I should see signed details
-        And I should see issuing authority sign button disabled
+        And I should see issuing authority sign button enabled
         And I should see Save EIC and Close button enabled
 
         Examples:
             | rank  |
-            | C/O   |
+            # | C/O   |
             | A C/O |
 # | 2/E   |
 # | A 2/E |
-# | ETO   |
+# | ETO  |

@@ -47,13 +47,13 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
-      | AUTO_SOLX0019 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
+      | user          | zoneid        | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
+      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
 
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank C/O
+    And I enter pin for rank <rank_create>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
@@ -66,29 +66,30 @@ Feature: Section4BEIC
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | rank | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0011 | C/O  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0004 | 2/E  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
-      | AUTO_SOLX0021 | ETO  | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | rank | rank_create | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            |
+      | AUTO_SOLX0011 | C/O  | C/E         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | AUTO_SOLX0004 | 2/E  | C/O         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | AUTO_SOLX0021 | ETO  | 2/E         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank C/E
+    And I enter pin for rank <rank_create>
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
     And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC
     And I click on create EIC certification button
-    Then I sign EIC as issuing authority with rank C/E
+    Then I sign EIC as issuing authority with rank <rank>
     And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
 
     Examples:
-      | user          | zoneid                      | mac               | location_stamp | level_one_permit                | level_two_permit            | checklist                             |
-      | AUTO_SOLX0002 | COTAUTO-Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools | Rotational Portable Power Tools (PPT) |
+      | user          | rank  | rank_create | zoneid       | mac               | location_stamp | level_one_permit                | level_two_permit            |
+      | AUTO_SOLX0002 | C/E   | C/E         | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | AUTO_SOLX0002 | A C/E | C/O         | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
 
   Scenario Outline: Verify non RA cannot sign on responsible authority
     Given I launch sol-x portal without unlinking wearable
@@ -96,53 +97,53 @@ Feature: Section4BEIC
     And I enter pin for rank A/M
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
-    And I navigate to section 4a
-    And I uncheck the pre-selected checklist
-    And I select the matching <checklist> checklist
-    And I press next for 2 times
+    And I navigate to section 4b
     And I select yes to EIC
     And I sign EIC section 4b with non RA rank <rank>
     Then I should see not authorize error message
 
     Examples:
-      | rank | pin  | level_one_permit | level_two_permit                    | checklist                       |
-      | MAS  | 1111 | Hot Work         | Hot Work Level-2 in Designated Area | Hot Work Within Designated Area |
-  # | 4/O    | 1010 | Working Aloft/Overside                    | Working Aloft / Overside                                                   | Working Aloft/Overside                    |
-  # | D/C    | 2317 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
-  # | 3/E    | 4685 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
-  # | A 3/E  | 6727 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
-  # | 4/E    | 1311 | Rotational Portable Power Tools            | Use of Portable Power Tools                                                | Rotational Portable Power Tools (PPT)     |
-  # | A 4/E  | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         | Work on Electrical Equipment and Circuits – Low/High Voltage |
-  # | BOS    | 1018 | Cold Work                                 | Cold Work - Blanking/Deblanking of Pipelines and Other Openings    | Cold Work Operation Checklist             |
-  # | PMN    | 4236 | Working Aloft/Overside                                        | Working Aloft / Overside                                                   | Working Aloft/Overside                                        |
-  # | A/B    | 6316 | Critical Equipment Maintenance                                | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist                      |
-  # | O/S    | 7669 | Personnel Transfer By Transfer Basket      | Personnel Transfer by Transfer Basket                                      | Personnel Transfer by Transfer Basket     |
-  # | OLR    | 0450 | Helicopter Operations                                         | Helicopter Operation                                                       | Helicopter Operation Checklist                                |
+      | rank | pin  | level_one_permit | level_two_permit                    |
+      | MAS  | 1111 | Hot Work         | Hot Work Level-2 in Designated Area |
+  # | 4/O   | 1010 | Working Aloft/Overside                                       | Working Aloft / Overside                                                   |
+  # | D/C   | 2317 | Critical Equipment Maintenance                               | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+  # | 3/E   | 4685 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                      |
+  # | A 3/E | 6727 | Helicopter Operations                                        | Helicopter Operation                                                       |
+  # | 4/E   | 1311 | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                |
+  # | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         |
+  # | BOS   | 1018 | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings            |
+  # | PMN   | 4236 | Working Aloft/Overside                                       | Working Aloft / Overside                                                   |
+  # | A/B   | 6316 | Critical Equipment Maintenance                               | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+  # | O/S   | 7669 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                      |
+  # | OLR   | 0450 | Helicopter Operations                                        | Helicopter Operation                                                       |
 
   Scenario: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank C/O
+    And I enter pin for rank A/M
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill only location of work and duration more than 2 hours
     And I navigate to section 4b
     And I select yes to EIC
     And I click on create EIC certification button
-    Then I should see issuing authority sign button disabled
+    Then I should see competent person sign button enabled
+    Then I should see issuing authority sign button enabled
+    Then I should see Save EIC button disabled
 
   Scenario: Verify non competent person cannot sign as competent person
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank 3/O
+    And I enter pin for rank ETO
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill only location of work and duration more than 2 hours
     And I navigate to section 4b
     And I select yes to EIC
     And I click on create EIC certification button
-    Then I should see competent person sign button disabled
+    Then I should see competent person sign button enabled
     Then I should see issuing authority sign button enabled
+    Then I should see Save EIC button enabled
 
   #   Examples:
   #     | rank                       | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |

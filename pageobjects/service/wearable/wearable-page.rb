@@ -14,7 +14,7 @@ class WearablePage
       tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
       if _user != 'default'
         yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{$current_environment}"][_user]
+        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{EnvironmentSelector.get_env_type_prefix.downcase}"][_user]
       end
       JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
     end

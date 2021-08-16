@@ -98,12 +98,12 @@ Feature: RiggingOfLadder
     Then I should not see extra previous and close button
 
     Examples:
-      | rank  |
-      | C/E   |
-      | A 3/O |
-      | C/O   |
-      | 2/E   |
-      | A 2/E |
+      | rank |
+      | C/E  |
+  # | A 3/O |
+  # | C/O   |
+  # | 2/E   |
+  # | A 2/E |
 
   Scenario Outline: SOL-5189 Verify duration is not selectable on active permit, pending termination, termination update needed states
     Given I launch sol-x portal without unlinking wearable

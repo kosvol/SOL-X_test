@@ -114,3 +114,8 @@ end
 Given(/^I truncate and dump step records$/) do
   Postgres_clearing.import_step_record_csv_postgres
 end
+
+Given (/^I clear rubbish$/) do
+  SmartFormDBPage.get_table_data('edge', 'get_forms')
+  SmartFormDBPage.delete_rubbish_row('edge', 'delete_form')
+end

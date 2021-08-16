@@ -17,6 +17,7 @@ class Section0Page < NavigationPage
   element(:select_permit_type, xpath: "//h3[contains(.,'Select Permit Type')]")
   element(:wifi_blob, xpath: "//nav[contains(@class,'NavigationBar__NavBar')]/div/div[1]")
   button(:save_next, css: "button[type='submit']")
+  element(:permit_alert, css: "div[role='alert']")
 
   def is_level_1_permit?
     list_permit_type_elements.each do |_element|

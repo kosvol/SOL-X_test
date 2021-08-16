@@ -110,7 +110,7 @@ class CrewListPage < DashboardPage
 
       Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
       Log.instance.info("Actual: #{get_active_crew_details_frm_service.first.first}")
-      return (location.text.gsub!(/\s+/, ' ').to_s === get_active_crew_details_frm_service.first.first)
+      return (location.text.gsub!(/\s+/, ' ').to_s.include? get_active_crew_details_frm_service.first.first)
     end
   end
 
@@ -122,7 +122,7 @@ class CrewListPage < DashboardPage
       ServiceUtil.get_response_body['data']['wearables'].each do |_wearable|
         next if _wearable['crewMember'].nil?
 
-        crew_details << ["#{get_beacon_location} - Just now"]
+        crew_details << ["#{get_beacon_location} - "]
       end
     else
       crew_details << ["#{_location} - Just now"]

@@ -31,5 +31,5 @@ Feature: LNGSmartFormsPermission
         Then I should see location <location_stamp> stamp
 
         Examples:
-            | user        | zoneid                    | mac               | location_stamp   |
-            | SITFSU_0001 | FSUSIT-Z-STBD-BRIDGE-WING | 00:00:00:00:00:19 | Stbd Bridge Wing |
+            | user        | zoneid             | mac               | location_stamp   |
+            | SITFSU_0001 | Z-STBD-BRIDGE-WING | 00:00:00:00:00:19 | Stbd Bridge Wing |

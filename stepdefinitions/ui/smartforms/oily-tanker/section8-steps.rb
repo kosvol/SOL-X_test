@@ -19,9 +19,9 @@ Then(/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question2_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8-questions.yml')
+  section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
-    does_include(@@section8_questions['pipe'], elem.text)
+    does_include(section8_questions['pipe'], elem.text)
   end
   step 'I should see first 32 input fields else 30 input fields'
 end
@@ -32,9 +32,9 @@ Then(/^I should see extra section8 questions for critical maintenance permit$/) 
   to_exists(on(Section8Page).normalization_crit_question3_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8-questions.yml')
+  section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
-    does_include(@@section8_questions['critical'], elem.text)
+    does_include(section8_questions['critical'], elem.text)
   end
   step 'I should see first 37 input fields else 35 input fields'
 end
@@ -44,9 +44,9 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
   to_exists(on(Section8Page).normalization_elec_question2_element)
   step 'I should see default section 8 questions'
   tmp = $browser.find_elements(:xpath, '//div/span')
-  @@section8_questions = YAML.load_file('data/section8-questions.yml')
+  section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
-    does_include(@@section8_questions['electrical'], elem.text)
+    does_include(section8_questions['electrical'], elem.text)
   end
   step 'I should see first 34 input fields else 32 input fields'
 end
@@ -63,12 +63,12 @@ end
 And(/^I should see (.+) rank and name for section 8$/) do |rank|
   BrowserActions.scroll_down
   sleep 1
-  is_equal(on(Section8Page).rank_name_and_date_elements.first.text, "Rank/Name\n#{rank}")
+  is_equal(on(Section8Page).rank_name_and_date_elements.first.text, rank)
 end
 
 And(/^I should see signed date and time for section 8$/) do
   is_equal(on(Section8Page).rank_name_and_date_elements[1].text,
-           "Date & Time\n#{on(Section8Page).get_signed_date_time}")
+           "#{on(Section8Page).get_signed_date_time}")
 end
 
 Then(/^I should see default section 8 questions$/) do

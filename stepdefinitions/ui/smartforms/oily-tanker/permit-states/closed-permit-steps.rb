@@ -10,9 +10,7 @@ And(/^I terminate the permit with (.*) rank via Pending Withdrawal$/) do |_rank|
   step "I enter pin for rank #{_rank}"
   on(Section9Page).submit_permit_termination_btn
   step "I sign with valid #{_rank} rank"
-  BrowserActions.poll_exists_and_click(on(CommonFormsPage).back_to_home_btn_element)
-  sleep 2
-  step 'I set permit id'
+  step 'I click on back to home'
 end
 
 Then(/^I should see termination date display$/) do

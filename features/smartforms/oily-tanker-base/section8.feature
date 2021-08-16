@@ -126,7 +126,6 @@ Feature: Section8
     And I press next for 1 times
     And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
@@ -152,7 +151,6 @@ Feature: Section8
     And I press next for 1 times
     And I sign checklist with C/O as valid rank
     And I press next for 1 times
-    And I sign checklist with C/O as valid rank
     And I sign checklist and section 5
     And I press next for 1 times
     And I submit permit for Master Approval
@@ -212,8 +210,8 @@ Feature: Section8
     And I sign EIC section 8 with RA A/M rank
 
     Examples:
-      | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user          | zoneid                      | mac               | location_stamp |
-      | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | AUTO_SOLX0012 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    |
+      | permit_types          | permit_payload               | terminator_rank | terminator_pin | rank           | pin  | user          | zoneid        | mac               | location_stamp |
+      | Work on Pressure Line | submit_work_on_pressure_line | C/O             | 8383           | A/M Atif Hayat | 9015 | AUTO_SOLX0012 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario Outline: Verify section 8 EIC can only be signed by Issue authority for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -228,8 +226,8 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank_name   | rank | user          | zoneid                      | mac               | location_stamp |
-      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E COT C/E | C/E  | AUTO_SOLX0002 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    |
+      | permit_types                     | permit_payload               | terminator_rank | terminator_pin | rank_name   | rank | user          | zoneid        | mac               | location_stamp |
+      | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O             | 8383           | C/E COT C/E | C/E  | AUTO_SOLX0002 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario Outline: Verify section 8 EIC can only be signed by EIC competent person for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state
@@ -245,10 +243,10 @@ Feature: Section8
     And I should see location <location_stamp> stamp
 
     Examples:
-      | permit_types | permit_payload | rank_name   | rank | user          | zoneid                      | mac               | location_stamp |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station |
-      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    |
-      | Hot Work     | submit_hotwork | ETO COT ETO | ETO  | AUTO_SOLX0017 | COTAUTO-Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    |
+      | permit_types | permit_payload | rank_name   | rank | user          | zoneid        | mac               | location_stamp |
+      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | C/O Alister Leong | 8383 | AUTO_SOLX0004 | Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station |
+      # | Enclosed Spaces Entry | submit_enclose_space_entry | 2/E Poon Choryi | 2523 | AUTO_SOLX0013 | Z-AFT-STATION  | 00:00:00:00:00:10 | Aft Station    |
+      | Hot Work     | submit_hotwork | ETO COT ETO | ETO  | AUTO_SOLX0017 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    |
 
   Scenario Outline: Verify EIC normalization not displayed when EIC is No during permit creation for non OA permit
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
