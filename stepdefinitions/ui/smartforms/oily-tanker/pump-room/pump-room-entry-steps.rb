@@ -254,10 +254,10 @@ And(/^I should see PRE display timezone$/) do
   end
 end
 
-Then(/^I should see entry log details display as (filled|filled api)$/) do |_condition|
+Then(/^I should see entry log details display as (filled|filled api)$/) do |condition|
   is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M COT A/M')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'Test Automation')
-  case _condition
+  case condition
   when 'filled'
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,
                  on(PumpRoomEntry).get_entry_log_validity_start_details)
@@ -275,7 +275,7 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |_con
   is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text, '4 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
-  case _condition
+  case condition
   when 'filled api'
     is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'MAS COT MAS') # why MAS Default Master on auto or sit if api call???????
   else
