@@ -262,20 +262,20 @@ Feature: PumpRoomEntry
     And I should see that form is open for read by rank <rank>
 
     Examples:
-    |rank|
-    |4/O|
-    |A 4/O|
-    |5/O|
-    |D/C|
-    |BOS|
-    |A/B|
-    |O/S|
-    |5/E|
-    |E/C|
-    |ETO|
-    |ELC|
-    |T/E|
-    |PMN|
-    |FTR|
-    |OLR|
+      | rank  |
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | 5/E   |
+      | E/C   |
+      | ETO   |
+      | ELC   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
+      | OLR   |
 
