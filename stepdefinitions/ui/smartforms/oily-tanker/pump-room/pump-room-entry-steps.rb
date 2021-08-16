@@ -176,6 +176,15 @@ And('(for pre) I should see update needed message') do
   step "I should see the text 'Test Automation'"
 end
 
+And(/^I should see that form is open for read by rank (.*)$/) do |rank|
+  step 'I navigate to "Updates Needed" screen for PRE'
+  on(PumpRoomEntry).press_button_for_current_PRE('Edit/Update')
+  step format('I enter pin via service for rank %s', rank)
+  step 'Button "Submit for Approval" should be disabled'
+  step 'Button "Add Gas Test Record" should be disabled'
+
+end
+
 And(/^Get (PRE|CRE|PWT) id$/) do |_permit_type|
   @temp_id = on(Section0Page).ptw_id_element.text
   @@pre_number = on(Section0Page).ptw_id_element.text
