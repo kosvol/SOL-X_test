@@ -33,7 +33,7 @@ class DashboardPage < WearablePage
   element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
   element(:gas_alert_discard_new, xpath: "//span[contains(.,\"Terminate Current Permit\")]")
   element(:gas_close_btn, css: "button[aria-label='Close']")
-  element(:pre_cre_title_indicator, xpath: "//button[contains(.,'EntryStatusIndicator__Title')]")
+  element(:pre_cre_title_indicator, xpath: "//h3[contains(@class,'EntryStatusIndicator__Title')]")
 
   def set_arr_data(data)
     @@arr_data.push(data)

@@ -25,12 +25,12 @@ end
 
 Then (/^I should not see entered entrant on list$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
-  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS Daniel Alcantara'))
+  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS COT MAS'))
 end
 
-Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |_condition|
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_names_dd_element) if _condition === 'optional'
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if _condition === 'required'
+Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |condition|
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_names_dd_element) if condition === 'optional'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if condition === 'required'
   sleep 1
   arr_before = on(PumpRoomEntry).get_entrants
   on(PumpRoomEntry).options_text_elements.each do |item|
