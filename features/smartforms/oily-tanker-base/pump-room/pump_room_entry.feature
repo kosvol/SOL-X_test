@@ -264,7 +264,7 @@ Feature: PumpRoomEntry
     Examples:
     |rank|
     |4/O|
-    |A4O|
+    |A 4/O|
     |5/O|
     |D/C|
     |BOS|
