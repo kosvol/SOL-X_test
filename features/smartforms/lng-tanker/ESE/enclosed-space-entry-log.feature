@@ -165,7 +165,7 @@ Feature: EnclosedSpaceEntryLog
     And I click New Entrant button on Enclose Space Entry PWT
     And I enter new entry log
     Then I should not see entered entrant on required entrant list
-
+@wip
   Scenario: User have to choose yourself in "Add entrants" field for displaying in the log
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
     When I launch sol-x portal without unlinking wearable
