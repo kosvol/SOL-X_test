@@ -40,7 +40,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the officer name is pre-filled
 
   Scenario: Verify an Office Approval Authority can see the Successfully Submission page after pressing the "Approve This Permit" button
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
     And I navigate to OA link
     And I click on "Approve This Permit”
@@ -53,7 +53,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the Successfully Submission page after approval
 
   Scenario: Verify an Office Approval Authority can see the Warning page after approving the already approved PTW
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
     And I navigate to OA link
     And I open a new tab and switch to it
@@ -90,7 +90,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the Warning Screen
 
   Scenario: Verify Captain can review a form after approval (5300)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
     And I navigate to OA link
     And I approve oa permit via oa link manually
@@ -99,7 +99,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the View Permit Page with all attributes after approval
 
   Scenario: Verify an Office Approval Authority can review a form after activation (5301)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
     And I navigate to OA link
     And I approve oa permit via oa link manually
@@ -123,7 +123,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the View Permit Page with all attributes after termination
 
   Scenario: Verify Section 7 details are displayed in the final copy of PTW after termination (3609)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on "Approve This Permit”
     And I answer all questions on the page
@@ -140,14 +140,14 @@ Feature: OfficeApprovalMainFlow
     Then I should see the Section 7 shows the correct data
 
   Scenario: PTW - Section 7 - Verify the section UI when the form is in the Pending_Office_Approval state (3398, 5781)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I open a permit pending Master Approval with MAS rank
     Then I should see correct Section 7 details before Office Approval
 
   Scenario: Verify the expiry time of the form, specified in the office when approving the form, is set as the scheduled expiry time of the form after its activation (5341)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on "Approve This Permit”
     And I answer all questions on the page
@@ -168,7 +168,7 @@ Feature: OfficeApprovalMainFlow
     Then I should see the Issued till time is set according to OA issued To time
 
   Scenario: PTW - Section 7 - Verify the section UI when the form is in the Pending_Master_Approval state (3378)
-    Given I submit permit submit_non_intrinsical_camera via service with 9015 user and set to pending office approval state
+    Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I navigate to OA link
     And I click on "Approve This Permit”
     And I answer all questions on the page
