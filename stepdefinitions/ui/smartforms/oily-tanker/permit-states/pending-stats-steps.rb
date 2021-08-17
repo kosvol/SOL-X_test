@@ -40,6 +40,10 @@ Then(/^I should not be able to edit EIC certification$/) do
   end
 end
 
+Then (/^I should not see submit for approval button$/) do
+  is_equal(on(PendingStatePage).submit_for_master_approval_btn_elements.size, 0)
+end
+
 Then(/^I should be navigated back to (.*) screen$/) do |which_screen|
   if which_screen === 'pending approval'
     is_equal(on(Section0Page).ptw_id_element.text, 'Pending Approval Permits to Work')

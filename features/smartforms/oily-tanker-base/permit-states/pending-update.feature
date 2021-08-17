@@ -71,7 +71,8 @@ Feature: PendingUpdate
     And I click on update needed filter
     And I update permit in pending update state with A/M rank
     And I navigate to section 6
-    Then I should see submit button enabled
+    Then I should not see submit for approval button
+    And I should see x button enabled
 
   Scenario: Verify section 6 Add Gas button should be disabled via pending termination state
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state

@@ -22,7 +22,10 @@ end
 
 And(/^I click on back arrow$/) do
   BrowserActions.poll_exists_and_click(on(Section0Page).back_arrow_element)
-  BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
+  rescue StandardError
+  end
   step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
 end
 
@@ -32,7 +35,10 @@ end
 
 And(/^I click on back to home$/) do
   on(NavigationPage).click_back_home
-  BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
+  begin
+    BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
+  rescue StandardError
+  end
   step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
 end
 
