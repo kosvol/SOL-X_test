@@ -33,7 +33,6 @@ class PumpRoomEntry < PreDisplay
   element(:entry_log_btn, xpath: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span")
   element(:input_field, xpath: "//div[starts-with(@class,'Input')]")
   element(:resp_off_signature, xpath: "//h2[contains(.,'Responsible Officer Signature:')]")
-  elements(:resp_off_signature_title, xpath: "//h2[contains(.,'Signature')]")
   elements(:resp_off_signature_rank, xpath: "//h3[contains(.,'Rank/Name')]")
   @@element_value = "//div[contains(.,'%s')]"
   ### gx
@@ -149,10 +148,10 @@ class PumpRoomEntry < PreDisplay
       puts(person_checkbox_elements.size)
       #person_checkbox_elements[entrants].click
       $browser.find_element(:xpath,
-                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/button").click
+                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/label/span").click
       entr_arr.push($browser.
         find_element(:xpath,
-                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/button").text)
+                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
       entrants = entrants - 1
     end
     set_entrants(entr_arr)

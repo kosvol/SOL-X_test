@@ -30,6 +30,7 @@ mac_chrome_auto_cot_tablet_headless: --profile dir --profile html --profile xml 
 mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
 mac_chrome_sit_cot_tablet: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet
 mac_chrome_sit_fsu_tablet: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
+mac_chrome_sit_lng_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=dashboard
 
 ### Use in sit-sol-x-web-app-dashboard-crel-ui-test ###
 android_chrome_dashboard_sit: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=ue_dashboard_chrome RESOLUTION=dashboard

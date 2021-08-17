@@ -231,18 +231,19 @@ Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |_type, _
   is_equal(on(DashboardPage).pre_indicator_element.text, 'Inactive') if _condition === 'inactive'
 end
 
-Then (/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry page$/) do |_entrants, _condition|
+Then(/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry page$/) do |_entrants, _condition|
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
   sleep 2
-  yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
+  list_of_ranks = on(BypassPage).get_rank_list_from_service
+  list_of_ranks.each{|element| puts(element)}
   elements = on(PumpRoomEntry).options_text_elements
   arr_elements_text = []
-  elements.each { |element| arr_elements_text.push(element.text) }
+  elements.each { |element| arr_elements_text.push(element.text)}
   case _condition
   when 'presents'
-    _entrants.split(',').each { |x| expect(arr_elements_text).to include(yml_id['rank_name'][x.to_s]) }
+    _entrants.split(',').each { |x| expect(arr_elements_text).to include( x+" "+list_of_ranks[x])}
   when 'not presents'
-    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include(yml_id['rank_name'][x.to_s]) }
+    _entrants.split(',').each { |x| expect(arr_elements_text).not_to include( x+" "+list_of_ranks[x]) }
   else
     raise 'Wrong condition'
   end
