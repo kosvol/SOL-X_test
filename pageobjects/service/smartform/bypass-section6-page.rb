@@ -5,8 +5,8 @@ require './././support/env'
 class BypassPage < CommonFormsPage
   include PageObject
 
-  def get_rank_id_from_service(rank, vessel = nil)
-    if vessel == nil
+  def get_rank_id_from_service(rank, vessel=nil)
+    if vessel.nil?
       ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
       ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
@@ -20,9 +20,9 @@ class BypassPage < CommonFormsPage
     end
   end
 
-  def get_rank_list_from_service( vessel = nil)
-    rank_name_list = Hash.new
-    if vessel == nil
+  def get_rank_list_from_service(vessel=nil)
+    rank_name_list = {}
+    if vessel.nil?
       ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
       ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
