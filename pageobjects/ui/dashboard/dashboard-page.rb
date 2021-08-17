@@ -87,7 +87,7 @@ class DashboardPage < WearablePage
     Log.instance.info("beacon >> \n\n#{tmp}")
     get_ui_active_crew_details.all? do |crew|
       Log.instance.info("crew >> \n\n#{crew}")
-      crew.include? tmp
+      crew.include? tmp.first
     end
   end
 

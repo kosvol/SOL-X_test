@@ -72,6 +72,8 @@ Feature: PendingUpdate
     And I update permit in pending update state with A/M rank
     And I navigate to section 6
     Then I should see submit button enabled
+  # Then I should not see submit for approval button
+  # And I should see x button enabled
 
   Scenario: Verify section 6 Add Gas button should be disabled via pending termination state
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
@@ -174,6 +176,38 @@ Feature: PendingUpdate
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
     Then I should see Note from Office
+
+  @SOL-7468
+  Scenario: Verify action required note respect sender
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Critical Equipment Maintenance permit
+    And I select Maintenance on Magnetic Compass permit for level 2
+    And I fill only location of work and duration more than 2 hours
+    And I press next for 7 times
+    And I sign checklist and section 5
+    And I press next for 1 times
+    Then I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I set oa permit to office approval state manually
+    And I navigate to OA link
+    And I request the permit for update via oa link manually
+    And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
+    And I click on update needed filter
+    Then I should see Note from Office
+    And I update permit in pending update state with A/M rank
+    And I navigate to section 6
+    And I submit permit for Master Review
+    When I click on back to home
+    And I click on pending approval filter
+    And I open a permit pending Master Approval with MAS rank
+    And I navigate to section 6
+    And I request update for permit
+    And I click on back to home
+    And I click on update needed filter
+    Then I should see Note from Master
 
   Scenario: Comment is not saved for the EIC when requesting the form for updates
     Given I launch sol-x portal without unlinking wearable

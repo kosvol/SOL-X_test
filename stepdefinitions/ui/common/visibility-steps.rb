@@ -41,6 +41,7 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       is_enabled(on(Section5Page).sign_btn_role_elements.first)
     when 'submit'
       on(Section3APage).scroll_multiple_times(3)
+      sleep 1
       is_equal(on(CommonFormsPage).submit_for_master_approval_btn_elements.size, 1)
       is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
     when 'Approve for Activation'
@@ -62,6 +63,8 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       is_enabled(on(Section4BPage).close_btn_elements.first)
     when 'Close'
       is_enabled(on(Section4BPage).close_btn_elements.first)
+      # when 'x'
+      #   is_enabled(on(PendingStatePage).x_btn_element)
     end
   end
 end
