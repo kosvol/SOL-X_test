@@ -39,8 +39,9 @@ Feature: RiggingOfLadder
     And I click on update needed filter
     Then I should not see extra buttons
     When I press next for 1 times
-    Then I should not see submit for approval button
-    And I should see x button enabled
+    Then I should see submit button enabled
+    # Then I should not see submit for approval button
+    # And I should see x button enabled
     And I should not see extra previous and save button
 
   Scenario: Verify no duplicate previous and close button when viewing permit with checklist creator only crew via pending update

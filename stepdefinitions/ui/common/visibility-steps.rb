@@ -63,8 +63,8 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       is_enabled(on(Section4BPage).close_btn_elements.first)
     when 'Close'
       is_enabled(on(Section4BPage).close_btn_elements.first)
-    when 'x'
-      is_enabled(on(PendingStatePage).x_btn_element)
+      # when 'x'
+      #   is_enabled(on(PendingStatePage).x_btn_element)
     end
   end
 end
