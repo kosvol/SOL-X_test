@@ -16,7 +16,7 @@ module OfficeApproval
 
     def get_event_id(form_id)
       docs = []
-      i = 70
+      i = 100
       while i > 0 && docs == []
         request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post',
                                       { selector: { formId: form_id } }.to_json.to_s)
@@ -31,7 +31,7 @@ module OfficeApproval
 
     def get_staff_id(role, name)
       docs = []
-      i = 70
+      i = 100
       while i > 0 && docs == []
         request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_staff_id'], 'post',
                                       { selector: { role: role, name: name } }.to_json.to_s)
