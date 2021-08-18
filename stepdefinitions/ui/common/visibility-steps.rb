@@ -17,7 +17,6 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       not_to_exists(on(Section6Page).gas_last_calibration_button_element)
       not_to_exists(on(Section6Page).gas_equipment_input_element)
       not_to_exists(on(Section6Page).gas_sr_number_input_element)
-      # _enable_or_disable === 'enabled' ? is_enabled(on(Section6Page).add_gas_btn_element) : is_disabled(on(Section6Page).add_gas_btn_element)
       is_disabled(on(Section6Page).add_gas_btn_element)
     when 'Retrieve My Data'
       on(CrewListPage).add_new_crew_btn

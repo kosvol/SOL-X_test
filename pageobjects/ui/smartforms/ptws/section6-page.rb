@@ -5,7 +5,7 @@ require './././support/env'
 class Section6Page < Section5Page
   include PageObject
   include GasReading
-  
+
   element(:rank_and_name_stamp, xpath: "//button[starts-with(@data-testid,'show-signature-display')]/span/span")
   element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
   elements(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
@@ -32,9 +32,8 @@ class Section6Page < Section5Page
     total_sections_elements.size === 5
   end
 
-
   def gas_testing_switcher(value)
-    if value === "Yes"
+    if value === 'Yes'
       gas_yes_no_elements.first.click
     else
       gas_yes_no_elements.last.click
@@ -43,7 +42,7 @@ class Section6Page < Section5Page
 
   private
 
-  def toxic_gas_readings(_gas_name,_threhold,_reading,_unit)
+  def toxic_gas_readings(_gas_name, _threhold, _reading, _unit)
     gas_name_input_element.send_keys(_gas_name)
     threshold_input_element.send_keys(_threhold)
     reading_input_element.send_keys(_reading)
@@ -53,12 +52,13 @@ class Section6Page < Section5Page
     sleep 1
   end
 
-  def normal_gas_readings(_o2,_hc,_h2s,_co)
+  def normal_gas_readings(_o2, _hc, _h2s, _co)
     sleep 1
     o2_input_element.send_keys(_o2)
     hc_input_element.send_keys(_hc)
     h2s_input_element.send_keys(_h2s)
     co_input_element.send_keys(_co)
     continue_btn
+    sleep 1
   end
 end
