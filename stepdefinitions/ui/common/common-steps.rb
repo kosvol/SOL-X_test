@@ -38,8 +38,7 @@ And(/^I sign on canvas$/) do
 end
 
 Then(/^I sign with (invalid|valid) (.*) rank$/) do |condition, rank|
-  step "I enter pin for rank #{rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-  step "I enter pin via service for rank #{rank}" if $current_environment === 'uat'
+  step "I enter pin via service for rank #{rank}"
   step 'I sign on canvas' if condition != 'invalid'
 end
 
