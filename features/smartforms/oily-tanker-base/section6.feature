@@ -69,6 +69,17 @@ Feature: Section6
     And I press the Yes button to enable gas testing
     And I am able to delete toxic gas inputs
 
+  Scenario: Verify gas reader placeholder text
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Helicopter Operations permit
+    And I select NA permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I trigger gas readings input with A/M rank
+    Then I should see correct placeholder text for gas input
+
   Scenario: Verify gas submit button is enabled after signing and location filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit

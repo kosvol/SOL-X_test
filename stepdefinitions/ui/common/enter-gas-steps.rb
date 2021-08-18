@@ -19,6 +19,13 @@ And (/^I trigger gas readings input with (.*) rank$/) do |rank|
   step "I enter pin for rank #{rank}"
 end
 
+Then ('I should see correct placeholder text for gas input') do
+  is_equal(on(Section6Page).o2_input_element.attribute('placeholder'), 'Required (Limit 20.9 %)')
+  is_equal(on(Section6Page).hc_input_element.attribute('placeholder'), 'Required (Limit 1 % LEL)')
+  is_equal(on(Section6Page).h2s_input_element.attribute('placeholder'), 'Required (TLV-TWA 5 PPM)')
+  is_equal(on(Section6Page).co_input_element.attribute('placeholder'), 'Required (TLV-TWA 25 PPM)')
+end
+
 Then('I should see submit button disabled before signing and location filled') do
   on(Section6Page).normal_gas_readings('1', '2', '3', '4')
   on(Section6Page).review_sign_btn
