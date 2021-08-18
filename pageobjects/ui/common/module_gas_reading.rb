@@ -2,7 +2,7 @@ require './././support/env'
 
 module GasReading
   include PageObject
-  
+
   text_field(:gas_equipment_input, xpath: "//input[@id='gasEquipment']")
   text_field(:gas_sr_number_input, xpath: "//input[@id='gasSrNumber']")
   buttons(:last_calibration_btn, xpath: "//button[@id='gasLastCalibrationDate']")
@@ -23,19 +23,12 @@ module GasReading
   button(:add_toxic_gas_btn, xpath: "//button[contains(.,'Add Toxic Gas')]")
   button(:review_sign_btn, xpath: "//button[contains(.,'Review & Sign')]")
   button(:continue_btn, xpath: "//button[contains(.,'Continue')]")
-  button(:enter_pin_and_submit_btn, xpath: "//button[contains(.,'Enter PIN & Submit')]")
+  button(:enter_pin_and_submit_btn, css: 'div[role="dialog"] > div > div > div > button:nth-child(2)')
 
   def add_all_gas_readings
-    add_gas_btn
-    normal_gas_readings('1','2','3','4')
+    normal_gas_readings('1', '2', '3', '4')
     sleep 1
-    toxic_gas_readings('Test','20','1.5','cc')
-  end
-
-  def add_normal_gas_readings
-    add_gas_btn
-    normal_gas_readings('1','2','3','4')
-    sleep 1
+    toxic_gas_readings('Test', '20', '1.5', 'cc')
   end
 
   def toxic_gas_del_row
@@ -44,7 +37,4 @@ module GasReading
       del_row_stage2
     end
   end
-
 end
-
-

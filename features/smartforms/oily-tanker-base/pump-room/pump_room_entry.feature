@@ -96,8 +96,7 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
     And I enter pin via service for rank C/O
-    And I add all gas readings
-    And I enter pin via service for rank A/M
+    And I add all gas readings with A/M rank
     And I set time
     Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
