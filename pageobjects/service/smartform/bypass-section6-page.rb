@@ -6,13 +6,13 @@ class BypassPage < CommonFormsPage
   include PageObject
 
   def get_rank_id_from_service(rank, vessel = nil)
-    if vessel == nil
+    if vessel.nil?
       ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
       ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
     end
     ServiceUtil.get_response_body['data']['users'].each do |crew|
-      if crew['crewMember']['rank'] === rank
+      if crew['crewMember']['rank'] == rank
         CommonPage.set_rank_id = crew['_id']
         @@get_rank = crew['crewMember']['rank']
         break
@@ -22,13 +22,13 @@ class BypassPage < CommonFormsPage
 
   def get_rank_list_from_service(vessel = nil)
     rank_name_list = {}
-    if vessel == nil
+    if vessel.nil?
       ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
     else
       ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
     end
     ServiceUtil.get_response_body['data']['users'].each do |crew|
-      rank_name_list[crew['crewMember']['rank']]= "#{crew['crewMember']['firstName']} #{crew['crewMember']['lastName']}"
+      rank_name_list[crew['crewMember']['rank']] = "#{crew['crewMember']['firstName']} #{crew['crewMember']['lastName']}"
     end
     rank_name_list
   end
