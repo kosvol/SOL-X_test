@@ -2,6 +2,7 @@ And (/^I (enter|enter without sign) (new|same|without toxic|different|random) en
   # step 'I sleep for 10 seconds'
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
+  step 'I enter pin via service for rank C\O'
 
   on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if condition == 'same'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if condition == 'new'
@@ -209,14 +210,13 @@ end
 
 And (/^I check the entrants "([^"]*)" are (presents|not presents) in dashboard log$/) do |entrants, condition|
   BrowserActions.wait_until_is_visible(on(Section6Page).gas_reading_table_elements[0])
-  elements = on(Section6Page).gas_reading_table_elements
   arr_elements_text = []
-  elements.each { |element| arr_elements_text.push(element.text) }
+  on(Section6Page).gas_reading_table_elements.each { |element| arr_elements_text.push(element.text) }
   case condition
   when 'presents'
-    entrants.split(',').each { |x| expect(arr_elements_text).to include(x.to_s) }
+    entrants.split(',').each { |x| does_include(arr_elements_text, x.to_s) }
   when 'not presents'
-    entrants.split(',').each { |x| expect(arr_elements_text).not_to include(x.to_s) }
+    entrants.split(',').each { |x| does_not_include(arr_elements_text, x.to_s) }
   else
     raise 'Wrong condition'
   end
@@ -235,14 +235,13 @@ Then(/^I check the entrants "([^"]*)" are (presents|not presents) on New Entry p
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element)
   sleep 2
   list_of_ranks = on(BypassPage).get_rank_list_from_service
-  elements = on(PumpRoomEntry).options_text_elements
   arr_elements_text = []
-  elements.each { |element| arr_elements_text.push(element.text) }
+  on(PumpRoomEntry).options_text_elements.each { |element| arr_elements_text.push(element.text) }
   case condition
   when 'presents'
-    entrants.split(',').each { |x| expect(arr_elements_text).to include("#{x} #{list_of_ranks[x]}") }
+    entrants.split(',').each { |x| does_include(arr_elements_text, "#{x} #{list_of_ranks[x]}") }
   when 'not presents'
-    entrants.split(',').each { |x| expect(arr_elements_text).not_to include("#{x} #{list_of_ranks[x]}") }
+    entrants.split(',').each { |x| does_not_include(arr_elements_text, "#{x} #{list_of_ranks[x]}") }
   else
     raise 'Wrong condition'
   end
