@@ -5,8 +5,8 @@ require './././support/env'
 class BypassPage < CommonFormsPage
   include PageObject
 
-  def get_rank_id_from_service(rank, vessel = nil)
-    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
+  def get_rank_id_from_service(rank)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', '1111')
     ServiceUtil.get_response_body['data']['users'].each do |crew|
       if crew['crewMember']['rank'] == rank
         CommonPage.set_rank_id = crew['_id']
