@@ -30,42 +30,23 @@ module ServiceUtil
       error_logging('Response Body: ', @response)
     end
 
-    def post_graph_ql_to_uri(which_json, _user = '1111', _uri)
-      uri = EnvironmentSelector.get_service_url
-      content_body = JsonUtil.read_json(which_json)
-      error_logging('URI: ', uri)
-      error_logging('Request Body: ', content_body)
-      @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
-      error_logging('Response Body: ', @response)
-      error_logging('Status Code: ', get_http_response_status_code)
-      JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
-    end
-
-    # def switch_vessel_type(_vesselType, _user = '1111')
-    #   uri = EnvironmentSelector.get_vessel_switch_url
-    #   if $current_environment === 'auto'
-    #     content_body = JsonUtil.read_json('vessel-switch/get_auto_vessel_details')
-    #   elsif $current_environment === 'sit'
-    #     content_body = JsonUtil.read_json('vessel-switch/get_sit_vessel_details')
-    #   end
+    # def post_graph_ql_to_uri(which_json, user = '1111')
+    #   uri = EnvironmentSelector.get_service_url
+    #   content_body = JsonUtil.read_json(which_json)
     #   error_logging('URI: ', uri)
     #   error_logging('Request Body: ', content_body)
-    #   @response = HTTParty.get(uri, { body: content_body }.merge(ql_headers('_user')))
+    #   @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(user)))
     #   error_logging('Response Body: ', @response)
-
-    #   vessel_details = JSON.parse response.to_s
-    #   vessel_details['vesselType'] = _vesselType.upcase
-    #   p "> #{vessel_details.to_json}"
-    #   @response = HTTParty.put(uri, { body: vessel_details.to_json }.merge(ql_headers('_user')))
-    #   error_logging('Switch Response Body: ', @response)
+    #   error_logging('Status Code: ', get_http_response_status_code)
+    #   JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
     # end
 
-    def post_graph_ql(which_json, _user = '1111')
+    def post_graph_ql(which_json, user = '1111')
       uri = EnvironmentSelector.get_service_url
       content_body = JsonUtil.read_json(which_json)
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(_user)))
+      @response = HTTParty.post(uri, { body: content_body }.merge(ql_headers(user)))
       error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
       JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
