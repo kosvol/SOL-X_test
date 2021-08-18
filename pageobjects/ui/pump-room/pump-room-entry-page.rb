@@ -13,6 +13,7 @@ class PumpRoomEntry < PreDisplay
   button(:four_hours_duration, xpath: "//button[contains(.,'4 hours')]")
   button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
+  elements(:cre_scrap, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
 
   # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
   elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
