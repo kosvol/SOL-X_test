@@ -11,8 +11,8 @@ Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|
   sleep(1)
 end
 
-When(/^I enter a (valid|invalid) password$/) do |_condition|
-  if _condition === 'valid'
+When(/^I enter a (valid|invalid) password$/) do |condition|
+  if condition == 'valid'
     on(OfficePortalPage).op_password_element.send_keys($password)
   else
     on(OfficePortalPage).op_password_element.send_keys('text')
@@ -32,13 +32,12 @@ Then(/^I should see the Vessel List page$/) do
 end
 
 And(/^I see the checkbox is (checked|unchecked)$/) do |condition|
-  if condition == "checked"
+  if condition == 'checked'
     is_true(on(OfficePortalPage).remember_checkbox_element.checked?)
-    sleep(1)
   else
     is_false(on(OfficePortalPage).remember_checkbox_element.checked?)
-    sleep(1)
   end
+  sleep(1)
 end
 
 When(/^I uncheck the checkbox$/) do
@@ -68,8 +67,8 @@ And(/^I should see Since item on the vessel card$/) do
   does_include(on(OfficePortalPage).vessel_card_since_date(@vessel), 'Since')
 end
 
-And(/^I should see Last Permit (\d+) days ago on the vessel card$/) do |_days|
-  is_equal(on(OfficePortalPage).vessel_card_last_permit_date(@vessel), ('Last Permit ' + _days.to_s + ' day(s) ago'))
+And(/^I should see Last Permit (\d+) days ago on the vessel card$/) do |days|
+  is_equal(on(OfficePortalPage).vessel_card_last_permit_date(@vessel), ('Last Permit ' + days.to_s + ' day(s) ago'))
 end
 
 When(/^I select the "([^"]*)" vessel$/) do |vessel|
@@ -108,10 +107,10 @@ Then(/^I should see vessel cards are in alphanumeric order$/) do
   sleep(1)
 end
 
-And(/^I select the permit (\d+)$/) do |_whatPermit|
-  on(OfficePortalPage).permit_check_box_elements[_whatPermit].click
-  @permit_number = on(OfficePortalPage).get_permit_number(_whatPermit + 1)
-  @permit_name = on(OfficePortalPage).get_permit_name(_whatPermit + 1)
+And(/^I select the permit (\d+)$/) do |what_permit|
+  on(OfficePortalPage).permit_check_box_elements[what_permit].click
+  @permit_number = on(OfficePortalPage).get_permit_number(what_permit + 1)
+  @permit_name = on(OfficePortalPage).get_permit_name(what_permit + 1)
 end
 
 And(/^I click on View Permit button$/) do
@@ -122,8 +121,8 @@ end
 
 Then(/^I should see the selected form in a new tab$/) do
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[2])
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_number)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
   sleep(1)
 end
 
@@ -132,34 +131,34 @@ And(/^I click on Add Filter button$/) do
 end
 
 Then(/^I should the Permit Types list for filter$/) do
-  permitTypesList = []
-  on(OfficePortalPage).filter_permit_type_elements.each do |_whatType|
-    type = _whatType.text
-    permitTypesList << type
+  permit_types_list = []
+  on(OfficePortalPage).filter_permit_type_elements.each do |what_type|
+    type = what_type.text
+    permit_types_list << type
   end
-  base_data = YAML.load_file("data/office-portal/office-portal-filters.yml")['types']
-  is_true(permitTypesList == base_data)
+  base_data = YAML.load_file('data/office-portal/office-portal-filters.yml')['types']
+  is_true(permit_types_list == base_data)
 end
 
 And(/^I check the checkbox near the Permit No. title$/) do
   on(OfficePortalPage).permit_check_box_elements[0].click
 end
 
-Then(/^I should see all the forms are (selected|not selected)$/) do |_whatChoiсe|
-  if _whatChoiсe == "selected"
-    on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
-        is_true(_selection.checked?)
+Then(/^I should see all the forms are (selected|not selected)$/) do |what_choiсe|
+  if what_choiсe == 'selected'
+    on(OfficePortalPage).permit_checkbox_elements.each do |selection|
+        is_true(selection.checked?)
       end
   else
-    on(OfficePortalPage).permit_checkbox_elements.each do |_selection|
-        is_false(_selection.checked?)
+    on(OfficePortalPage).permit_checkbox_elements.each do |selection|
+        is_false(selection.checked?)
       end
   end
 end
 
 And(/^I should see the forms quantity on the top bar is the same as on the All Permits title$/) do
-  bottomQuantity = on(OfficePortalPage).bottom_bar_permits_quantity_element.text
-  does_include(on(OfficePortalPage).all_permits_btn_element.text, bottomQuantity)
+  bottom_quantity = on(OfficePortalPage).bottom_bar_permits_quantity_element.text
+  does_include(on(OfficePortalPage).all_permits_btn_element.text, bottom_quantity)
 end
 
 
@@ -169,13 +168,13 @@ And(/^I should see the Print Permit button at the bottom bar$/) do
 end
 
 Then(/^I should see the form contains 9 sections$/) do
-  sectionsList = []
-  on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
-    section = _whatSection.text
-    sectionsList << section
+  sections_list = []
+  on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+    section = what_section.text
+    sections_list << section
   end
-  sections_data = YAML.load_file("data/office-portal/permit-states-sections.yml")['terminated']
-  is_true(sectionsList == sections_data)
+  sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['terminated']
+  is_true(sections_list == sections_data)
 end
 
 And(/^I should see This Permit Has been approved on label with the correct date$/) do
@@ -186,23 +185,23 @@ And(/^I should see This Permit Has been approved on label with the correct date$
   does_include(approved_date, date)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |_permit_type, _user, _vessel|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, nil)
-  @permitType = _permit_type
-  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
-  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-  @formNumber = dataFileResp['data']['createForm']['_id']
-  @formName = dateFileReq['variables']['permitType']
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel$/) do |permit_type, user, vessel|
+  on(BypassPage).trigger_forms_termination(permit_type, user, vessel, nil, nil, nil)
+  @permit_type = permit_type
+  data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @form_number = data_file_resp['data']['createForm']['_id']
+  @form_name = date_file_req['variables']['permitType']
   sleep(2)
 end
 
 Then(/^I should see the terminated form at the top of the forms list$/) do
-  does_include(on(OfficePortalPage).first_permit_with_time, @formNumber)
-  does_include(on(OfficePortalPage).first_permit_with_time, @formName)
+  does_include(on(OfficePortalPage).first_permit_with_time, @form_number)
+  does_include(on(OfficePortalPage).first_permit_with_time, @form_name)
 end
 
 And(/^I select the recently terminated form$/) do
-  on(OfficePortalPage).select_permit_by_number(@formNumber)
+  on(OfficePortalPage).select_permit_by_number(@form_number)
 end
 
 Then(/^I should see the the form number is updated$/) do
@@ -218,7 +217,7 @@ end
 And(/^I check that Entry log is present$/) do
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[2])
   sleep 2
-  expect(on(OfficePortalPage).section_headers_all_elements.last.text).to include("Entry Log")
+  expect(on(OfficePortalPage).section_headers_all_elements.last.text).to include('Entry Log')
 end
 
 And(/^I check all headers of Entry Log table without toxic gas on portal$/) do
@@ -234,25 +233,25 @@ And(/^I check all headers of Entry Log table without toxic gas on portal$/) do
   is_equal(on(OfficePortalPage).ese_log_table_title_or_value_elements[9].text, 'Competent Person')
 end
 
-And(/^I create ([^"]*) via service with static env$/) do |_type|
+And(/^I create ([^"]*) via service with static env$/) do |type|
   ENV['ENV_OLD'] = ENV['ENVIRONMENT']
-  ENV['ENVIRONMENT'] = "auto"
-  if _type === 'PRE'
+  ENV['ENVIRONMENT'] = 'auto'
+  if type === 'PRE'
     step 'I submit a scheduled PRE permit'
     step 'I sleep for 85 seconds'
     step 'I terminate the PRE permit via service'
-  elsif _type === 'submit_enclose_space_entry'
-    step "I submit permit #{_type} via service with 8383 user and set to active state with gas reading require"
+  elsif type === 'submit_enclose_space_entry'
+    step "I submit permit #{type} via service with 8383 user and set to active state with gas reading require"
     step 'I add new entry "A 2/O" PTW'
     step 'I sleep for 3 seconds'
     step 'I acknowledge the new entry log via service'
     step 'I sleep for 3 seconds'
     step 'I Close Permit submit_enclose_space_entry via service auto'
     step 'I sleep for 3 seconds'
-  elsif _type === 'CRE'
-    puts "to do"
+  elsif type === 'CRE'
+    puts 'to do'
   else
-    raise "Wrong condition"
+    raise 'Wrong condition'
   end
   ENV['ENVIRONMENT'] = ENV['ENV_OLD']
 end
@@ -276,199 +275,199 @@ And(/^I check rank and full name of Entrant without toxic "([^"]*)"$/) do |array
   end
 end
 
-And(/^I select filter value with permit type (.+)$/) do |_permit_type|
-  #on(OfficePortalPage).input_field_element.send_keys(_permit_type)
-  @browser.find_element(:xpath, "//span[contains(text(), #{_permit_type})]/parent::button").click
+And(/^I select filter value with permit type (.+)$/) do |permit_type|
+  #on(OfficePortalPage).input_field_element.send_keys(permit_type)
+  @browser.find_element(:xpath, "//span[contains(text(), #{permit_type})]/parent::button").click
 end
 
-And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |_value, _title|
-  is_equal(on(OfficePortalPage).select_element_by_text_near(_title).text, _value)
+And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |value, title|
+  is_equal(on(OfficePortalPage).select_element_by_text_near(title).text, value)
 end
 
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |_permit_type, _user, _vessel, _checklist|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, _checklist, nil, nil)
-  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
-  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-  @formNumber = dataFileResp['data']['createForm']['_id']
-  @formName = dateFileReq['variables']['permitType']
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |permit_type, user, vessel, checklist|
+  on(BypassPage).trigger_forms_termination(permit_type, user, vessel, checklist, nil, nil)
+  data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @form_number = data_file_resp['data']['createForm']['_id']
+  @form_name = date_file_req['variables']['permitType']
   sleep(2)
 end
 
-Then(/^I should see (.+) checklist questions in Office Portal$/) do |_checklist|
-  questionsArr = []
-  if _checklist == "Work on Pressure Pipelines"
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |_question|
-      questionsArr << _question.text
+Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
+  questions_arr = []
+  if checklist == 'Work on Pressure Pipelines'
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
+      questions_arr << question.text
     end
-  elsif _checklist == "Working Aloft Overside"
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |_question|
-      questionsArr << _question.text
+  elsif checklist == 'Working Aloft Overside'
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
+      questions_arr << question.text
     end
-  elsif _checklist == "Enclosed Spaces Entry Checklist"
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |_question|
-      questionsArr << _question.text
-    end
-  elsif
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_checklist}')]/../..//h4").each do |_question|
-      questionsArr << _question.text
-    end
-  end
-  base_data = ["Vessel Name:", "Created On:"]
-  base_data = base_data + YAML.load_file("data/checklist/#{_checklist}.yml")['questions'] - YAML.load_file("data/checklist/checklist_exceptions.yml")['exceptions']
-  p "> difference #{questionsArr - base_data}"
-  is_equal(questionsArr, base_data)
-end
-
-Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do |_whatSection|
-  fieldsArr = []
-  labelsArr = []
-  subheadersArr = []
-  if _whatSection == 'Energy Isolation Certificate'
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//h4").each do |_field|
-      fieldsArr << _field.text
-    end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//label").each do |_label|
-      labelsArr << _label.text
-    end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_whatSection}')])[2]/../..//h2").each do |_subheader|
-      subheadersArr << _subheader.text
+  elsif checklist == 'Enclosed Spaces Entry Checklist'
+    $browser.find_elements(:xpath, "//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
+      questions_arr << question.text
     end
   else
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h4").each do |_field|
-      fieldsArr << _field.text
-    end
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//label").each do |_label|
-      labelsArr << _label.text
-    end
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{_whatSection}')]/../..//h2").each do |_subheader|
-      subheadersArr << _subheader.text
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
+      questions_arr << question.text
     end
   end
-  if @permitType == 'submit_maintenance_on_anchor'
-    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields_maintenance']
+  base_data = ['Vessel Name:', 'Created On:']
+  base_data = base_data + YAML.load_file("data/checklist/#{checklist}.yml")['questions'] - YAML.load_file('data/checklist/checklist_exceptions.yml')['exceptions']
+  p "> difference #{questions_arr - base_data}"
+  is_equal(questions_arr, base_data)
+end
+
+Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do |what_section|
+  fields_arr = []
+  labels_arr = []
+  subheaders_arr = []
+  if what_section == 'Energy Isolation Certificate'
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//h4").each do |field|
+      fields_arr << field.text
+    end
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//label").each do |label|
+      labels_arr << label.text
+    end
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//h2").each do |subheader|
+      subheaders_arr << subheader.text
+    end
   else
-    baseFields = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields']
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h4").each do |field|
+      fields_arr << field.text
+    end
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//label").each do |label|
+      labels_arr << label.text
+    end
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h2").each do |subheader|
+      subheaders_arr << subheader.text
+    end
   end
-  baseLabels  = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels']
-  baseSubheaders = [] + YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders']
+  if @permit_type == 'submit_maintenance_on_anchor'
+    base_fields = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields_maintenance']
+  else
+    base_fields = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields']
+  end
+  base_labels  = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['labels']
+  base_subheaders = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
   #exceptions
-  fieldsArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['fields_exceptions']
-  labelsArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['labels_exceptions']
-  subheadersArr -= YAML.load_file("data/screens-label/#{_whatSection}.yml")['subheaders_exceptions']
-  p ">>> difference #{fieldsArr - baseFields}"
-  p ">> difference #{labelsArr - baseLabels}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(labelsArr, baseLabels)
-  is_equal(subheadersArr, baseSubheaders)
+  fields_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['fields_exceptions']
+  labels_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['labels_exceptions']
+  subheaders_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_exceptions']
+  p ">>> difference #{fields_arr - base_fields}"
+  p ">> difference #{labels_arr - base_labels}"
+  p "> difference #{subheaders_arr - base_subheaders}"
+  is_equal(fields_arr, base_fields)
+  is_equal(labels_arr, base_labels)
+  is_equal(subheaders_arr, base_subheaders)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the EIC (.+)$/) do |_permit_type, _user, _vessel, _eic|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, _eic, nil)
-  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
-  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-  @formNumber = dataFileResp['data']['createForm']['_id']
-  @formName = dateFileReq['variables']['permitType']
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the EIC (.+)$/) do |permit_type, user, vessel, eic|
+  on(BypassPage).trigger_forms_termination(permit_type, user, vessel, nil, eic, nil)
+  data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @form_number = data_file_resp['data']['createForm']['_id']
+  @form_name = date_file_req['variables']['permitType']
   sleep(2)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the Gas Readings (.+)$/) do |_permit_type, _user, _vessel, _gas|
-  on(BypassPage).trigger_forms_termination(_permit_type, _user, _vessel, nil, nil, _gas)
-  dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
-  dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-  @formNumber = dataFileResp['data']['createForm']['_id']
-  @formName = dateFileReq['variables']['permitType']
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the Gas Readings (.+)$/) do |permit_type, user, vessel, gas|
+  on(BypassPage).trigger_forms_termination(permit_type, user, vessel, nil, nil, gas)
+  data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+  date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+  @form_number = data_file_resp['data']['createForm']['_id']
+  @form_name = date_file_req['variables']['permitType']
   sleep(2)
 end
 
-Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in the Client app$/) do |_condition|
-  fieldsArr = []
-  subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |_field|
-    fieldsArr << _field.text
+Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in the Client app$/) do |condition|
+  fields_arr = []
+  subheaders_arr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
+    fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |_subheader|
-    subheadersArr << _subheader.text
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|
+    subheaders_arr << subheader.text
   end
-  baseFields = [] + YAML.load_file("data/screens-label/Section 6.yml")["fields_#{_condition}"]
-  baseSubheaders = [] + YAML.load_file("data/screens-label/Section 6.yml")['subheaders']
+  base_fields = [] + YAML.load_file('data/screens-label/Section 6.yml')["fields_#{condition}"]
+  base_subheaders = [] + YAML.load_file('data/screens-label/Section 6.yml')['subheaders']
   #exceptions
-  fieldsArr -= YAML.load_file("data/screens-label/Section 6.yml")['fields_exceptions']
-  subheadersArr -= YAML.load_file("data/screens-label/Section 6.yml")['subheaders_exceptions']
-  p ">>> difference #{fieldsArr - baseFields}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(subheadersArr, baseSubheaders)
+  fields_arr -= YAML.load_file('data/screens-label/Section 6.yml')['fields_exceptions']
+  subheaders_arr -= YAML.load_file('data/screens-label/Section 6.yml')['subheaders_exceptions']
+  p ">>> difference #{fields_arr - base_fields}"
+  p "> difference #{subheaders_arr - base_subheaders}"
+  is_equal(fields_arr, base_fields)
+  is_equal(subheaders_arr, base_subheaders)
 end
 
-Then(/^I should see the (.*) shows the same fields as in the Client app with (.*)$/) do |_section, _condition|
-  fieldsArr = []
-  subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h4").each do |_field|
-    fieldsArr << _field.text
+Then(/^I should see the (.*) shows the same fields as in the Client app with (.*)$/) do |section, condition|
+  fields_arr = []
+  subheaders_arr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h4").each do |field|
+    fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h2").each do |_subheader|
-    subheadersArr << _subheader.text
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h2").each do |subheader|
+    subheaders_arr << subheader.text
   end
-  baseFields = [] + YAML.load_file("data/screens-label/#{_section}.yml")["fields_#{_condition}"]
-  baseSubheaders = [] + YAML.load_file("data/screens-label/#{_section}.yml")["subheaders_#{_condition}"]
+  base_fields = [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_#{condition}"]
+  base_subheaders = [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}"]
   #exceptions
-  fieldsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['fields_exceptions']
-  subheadersArr -= YAML.load_file("data/screens-label/#{_section}.yml")['subheaders_exceptions']
-  p ">>> difference #{fieldsArr - baseFields}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(subheadersArr, baseSubheaders)
+  fields_arr -= YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions']
+  subheaders_arr -= YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions']
+  p ">>> difference #{fields_arr - base_fields}"
+  p "> difference #{subheaders_arr - base_subheaders}"
+  is_equal(fields_arr, base_fields)
+  is_equal(subheaders_arr, base_subheaders)
 end
 
-Then(/^I should see Section 8 shows the same fields as in the Client app with (.*)$/) do |_checklist|
-  case _checklist
-  when "Critical Equipment Maintenance"
-    _checklist = "critical"
-  when "Work on Electrical Equipment and Circuits"
-    _checklist = "electrical"
-  when "Work on Pressure Pipelines"
-    _checklist = "pipe"
+Then(/^I should see Section 8 shows the same fields as in the Client app with (.*)$/) do |checklist|
+  case checklist
+  when 'Critical Equipment Maintenance'
+    checklist = 'critical'
+  when 'Work on Electrical Equipment and Circuits'
+    checklist = 'electrical'
+  when 'Work on Pressure Pipelines'
+    checklist = 'pipe'
   end
-  fieldsArr = []
-  subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |_field|
-    fieldsArr << _field.text
+  fields_arr = []
+  subheaders_arr = []
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |field|
+    fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |_subheader|
-    subheadersArr << _subheader.text
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |subheader|
+    subheaders_arr << subheader.text
   end
-  baseFields = [] + YAML.load_file("data/screens-label/Section 8.yml")["fields_#{_checklist}"]
-  baseSubheaders = [] + YAML.load_file("data/screens-label/Section 8.yml")["subheaders_eic_no"]
+  base_fields = [] + YAML.load_file('data/screens-label/Section 8.yml')["fields_#{checklist}"]
+  base_subheaders = [] + YAML.load_file('data/screens-label/Section 8.yml')['subheaders_eic_no']
   #exceptions
-  fieldsArr -= YAML.load_file("data/screens-label/Section 8.yml")['fields_exceptions']
-  subheadersArr -= YAML.load_file("data/screens-label/Section 8.yml")['subheaders_exceptions']
-  p ">>> difference #{fieldsArr - baseFields}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(subheadersArr, baseSubheaders)
+  fields_arr -= YAML.load_file('data/screens-label/Section 8.yml')['fields_exceptions']
+  subheaders_arr -= YAML.load_file('data/screens-label/Section 8.yml')['subheaders_exceptions']
+  p ">>> difference #{fields_arr - base_fields}"
+  p "> difference #{subheaders_arr - base_subheaders}"
+  is_equal(fields_arr, base_fields)
+  is_equal(subheaders_arr, base_subheaders)
 end
 
 Then(/^I should see the PRE form shows the same fields as in the client app$/) do
-  fieldsArr = []
-  subheadersArr = []
-  $browser.find_elements(:xpath, "//h4").each do |_field|
-    fieldsArr << _field.text
+  fields_arr = []
+  subheaders_arr = []
+  $browser.find_elements(:xpath, '//h4').each do |field|
+    fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2").each do |_subheader|
-    subheadersArr << _subheader.text
+  $browser.find_elements(:xpath, '//h2').each do |subheader|
+    subheaders_arr << subheader.text
   end
-  baseFields = [] + YAML.load_file("data/pre/pre-display.yml")["pre_structure_on_pred"]["with_interval"]
-  baseSubheaders = [] + YAML.load_file("data/pre/pre-display.yml")["subheaders"]
-  baseFields  -= YAML.load_file("data/pre/pre-display.yml")["fields_exceptions"]
-  p ">>> difference #{fieldsArr - baseFields}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(subheadersArr, baseSubheaders)
+  base_fields = [] + YAML.load_file('data/pre/pre-display.yml')['pre_structure_on_pred']['with_interval']
+  base_subheaders = [] + YAML.load_file('data/pre/pre-display.yml')['subheaders']
+  base_fields -= YAML.load_file('data/pre/pre-display.yml')['fields_exceptions']
+  p ">>> difference #{fields_arr - base_fields}"
+  p "> difference #{subheaders_arr - base_subheaders}"
+  is_equal(fields_arr, base_fields)
+  is_equal(subheaders_arr, base_subheaders)
 end
 
 And(/^I open the recently terminated form with link$/) do
-  $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@formNumber])
+  $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@form_number])
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
 end
