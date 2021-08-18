@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-Then(/^I should see (green|red) online blob$/) do |_color|
-  wifi_blob_color_code = @browser.find_element(:xpath,
-                                               "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']").attribute('class')
-  p ">> #{wifi_blob_color_code}"
-  if _color === 'green'
+Then(/^I should see (green|red) online blob$/) do |color|
+  wifi_blob_locator = "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']"
+  if color === 'green'
+    BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, 'online')
+    wifi_blob_color_code = @browser.find_element(:xpath, wifi_blob_locator).attribute('class').to_s
+    Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, 'online')
-  elsif _color === 'red'
+  elsif color === 'red'
+    BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, '')
+    wifi_blob_color_code = @browser.find_element(:xpath, wifi_blob_locator).attribute('class').to_s
+    Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, '')
   end
 end

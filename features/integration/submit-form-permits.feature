@@ -64,8 +64,7 @@ Feature: SubmitPermit
     And I press next for 1 times
     And I fill up section 5
     And I press next for 1 times
-    And I add all gas readings
-    And I enter pin for rank A/M
+    And I add all gas readings with A/M rank
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
@@ -101,8 +100,7 @@ Feature: SubmitPermit
   #   And I press next for 1 times
   #   And I fill up section 5
   #   And I press next for 1 times
-  #   And I add all gas readings
-  #   And I enter pin for rank A/M
+  #   And I add all gas readings with A/M rank
   #   And I dismiss gas reader dialog box
   #   And I submit smoke test permit
   #   And I click on back to home

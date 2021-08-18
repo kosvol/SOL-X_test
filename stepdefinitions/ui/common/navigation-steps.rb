@@ -38,6 +38,7 @@ And(/^I click on back to home$/) do
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
   rescue StandardError
+    sleep 5
   end
   step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
 end
