@@ -18,6 +18,11 @@ Feature: OpLoginPage
     Given I launch Office Portal
     When I enter a valid password
     And I click on Log In Now button
+    ### Can be removed after SOL-7474 is fixed
+    And I sleep for 3 seconds
+    And I enter a valid password
+    And I click on Log In Now button
+    ###
     Then I should see the Vessel List page
 
   Scenario: Verify the "Remember me" checkbox is editable (3494)

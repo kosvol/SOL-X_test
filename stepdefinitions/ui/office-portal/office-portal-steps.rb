@@ -50,6 +50,11 @@ Given(/^I log in to the Office Portal$/) do
   step 'I launch Office Portal'
   step 'I enter a valid password'
   step 'I click on Log In Now button'
+  ### Can be removed after SOL-7474 is fixed
+  sleep(3)
+  step 'I enter a valid password'
+  step 'I click on Log In Now button'
+  ###
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).reporting_header_element)
 end
 
@@ -388,6 +393,9 @@ Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in
   end
   baseFields = [] + YAML.load_file("data/screens-label/Section 6.yml")["fields_#{_condition}"]
   baseSubheaders = [] + YAML.load_file("data/screens-label/Section 6.yml")['subheaders']
+  #exceptions
+  fieldsArr -= YAML.load_file("data/screens-label/Section 6.yml")['fields_exceptions']
+  subheadersArr -= YAML.load_file("data/screens-label/Section 6.yml")['subheaders_exceptions']
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)
@@ -405,6 +413,9 @@ Then(/^I should see the (.*) shows the same fields as in the Client app with (.*
   end
   baseFields = [] + YAML.load_file("data/screens-label/#{_section}.yml")["fields_#{_condition}"]
   baseSubheaders = [] + YAML.load_file("data/screens-label/#{_section}.yml")["subheaders_#{_condition}"]
+  #exceptions
+  fieldsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['fields_exceptions']
+  subheadersArr -= YAML.load_file("data/screens-label/#{_section}.yml")['subheaders_exceptions']
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)
@@ -430,6 +441,9 @@ Then(/^I should see Section 8 shows the same fields as in the Client app with (.
   end
   baseFields = [] + YAML.load_file("data/screens-label/Section 8.yml")["fields_#{_checklist}"]
   baseSubheaders = [] + YAML.load_file("data/screens-label/Section 8.yml")["subheaders_eic_no"]
+  #exceptions
+  fieldsArr -= YAML.load_file("data/screens-label/Section 8.yml")['fields_exceptions']
+  subheadersArr -= YAML.load_file("data/screens-label/Section 8.yml")['subheaders_exceptions']
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)

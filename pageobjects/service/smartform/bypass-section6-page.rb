@@ -204,6 +204,7 @@ class BypassPage < CommonFormsPage
       section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
       section3d['variables']['formId'] = CommonPage.get_permit_id
       section3d['variables']['submissionTimestamp'] = get_current_date_time
+      get_rank_id_from_service('A/M', vessel)
       section3d['variables']['answers'].last['value'] = get_default_signature_payload
       JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section)
       ServiceUtil.post_graph_ql_to_uri('ptw/mod_8.save_section3d_details', user, vessel)
