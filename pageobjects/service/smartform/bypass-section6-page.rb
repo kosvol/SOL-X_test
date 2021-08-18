@@ -16,14 +16,15 @@ class BypassPage < CommonFormsPage
     end
   end
 
-  def get_rank_list_from_service
+  def get_rank_list_from_service(vessel = nil)
     rank_name_list = {}
-    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', '1111')
+    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
     ServiceUtil.get_response_body['data']['users'].each do |crew|
       rank_name_list[crew['crewMember']['rank']] = "#{crew['crewMember']['firstName']} #{crew['crewMember']['lastName']}"
     end
     rank_name_list
   end
+
 
   def trigger_pre_submission(_user, _condition)
     create_form_pre = JSON.parse JsonUtil.read_json('pre/01.create-pre-form')
