@@ -110,6 +110,7 @@ module BrowserActions
     def wait_condition(_count, _condition)
       i = 0
       until _condition
+        sleep 1
         i += 1
         break if i == _count
       end
