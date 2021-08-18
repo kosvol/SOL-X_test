@@ -4,6 +4,6 @@ labels: []
 
 subheaders: ["Section 4A: Safety Checklist"]
 
-fields_exceptions: []
-labels_exceptions: []
-subheaders_exceptions: []
+fields_exceptions: [""]
+labels_exceptions: [""]
+subheaders_exceptions: [""]

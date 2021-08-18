@@ -41,9 +41,10 @@ subheaders:
 fields_exceptions:
   [
       "Ship's Approval",
-      "Office Approval"
+      "Office Approval",
+      ""
   ]
 
-labels_exceptions: []
+labels_exceptions: [""]
 
-subheaders_exceptions: ["Section 2: Approving Authority"]
+subheaders_exceptions: ["Section 2: Approving Authority", ""]

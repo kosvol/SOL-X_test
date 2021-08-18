@@ -12,6 +12,6 @@ subheaders:
     "Permit Withdrawn By:"
   ]
 
-fields_exceptions: []
-labels_exceptions: []
-subheaders_exceptions: []
+fields_exceptions: [""]
+labels_exceptions: [""]
+subheaders_exceptions: [""]
