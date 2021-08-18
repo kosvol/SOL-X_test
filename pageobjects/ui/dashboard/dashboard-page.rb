@@ -81,13 +81,13 @@ class DashboardPage < WearablePage
     $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end
 
-  def is_crew_location_detail_correct?(ui_or_service, _new_zone = nil)
+  def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)
     sleep 2
-    tmp = get_active_crew_details(ui_or_service, _new_zone)
-    Log.instance.info("beacon >> \n\n#{tmp}")
+    tmp = get_active_crew_details(ui_or_service, new_zone).first
     get_ui_active_crew_details.all? do |crew|
+      Log.instance.info("beacon >> \n\n#{tmp}")
       Log.instance.info("crew >> \n\n#{crew}")
-      crew.include? tmp.first
+      tmp == crew
     end
   end
 

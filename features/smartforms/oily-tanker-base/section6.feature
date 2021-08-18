@@ -69,6 +69,28 @@ Feature: Section6
     And I press the Yes button to enable gas testing
     And I am able to delete toxic gas inputs
 
+  Scenario: Verify gas reader placeholder text
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Helicopter Operations permit
+    And I select NA permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I trigger gas readings input with A/M rank
+    Then I should see correct placeholder text for gas input
+
+  Scenario: Verify gas submit button is enabled after signing and location filled
+    Given I launch sol-x portal without unlinking wearable
+    And I navigate to create new permit
+    And I enter pin for rank A/M
+    And I select Helicopter Operations permit
+    And I select NA permit for level 2
+    And I navigate to section 6
+    And I press the Yes button to enable gas testing
+    And I trigger gas readings input with A/M rank
+    Then I should see submit button disabled before signing and location filled
+
   Scenario Outline: Verify non AGT cannot add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
@@ -77,8 +99,7 @@ Feature: Section6
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I add all gas readings
-    And I enter pin for rank <rank>
+    And I add all gas readings with <rank> rank
     Then I should see not authorize error message
 
     Examples:
@@ -100,8 +121,7 @@ Feature: Section6
     And I sign checklist and section 5
     And I press next for 1 times
     And I press the Yes button to enable gas testing
-    And I add all gas readings
-    And I enter pin for rank <rank>
+    And I add all gas readings with <rank> rank
     And I set time
     Then I will see popup dialog with <rank_name> crew rank and name
     When I dismiss gas reader dialog box
@@ -135,14 +155,12 @@ Feature: Section6
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I add all gas readings
-    And I enter pin for rank A/M
+    And I add all gas readings with A/M rank
     And I set time
     Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
-    And I add only normal gas readings
-    And I enter pin for rank A/M
+    And I add only normal gas readings with A/M rank
     And I set time
     Then I will see popup dialog with A/M COT A/M crew rank and name
     When I dismiss gas reader dialog box
