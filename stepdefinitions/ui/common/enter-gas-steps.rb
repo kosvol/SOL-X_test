@@ -26,8 +26,8 @@ And (/^I add (all|only normal) gas readings with (.*) rank$/) do |condition, ran
   sleep 1
   on(Section6Page).select_todays_date_from_calendar
   step "I trigger gas readings input with #{rank} rank"
-  on(Section6Page).add_all_gas_readings if condition === 'all'
-  on(Section6Page).normal_gas_readings('1', '2', '3', '4') if condition === 'only normal'
+  on(Section6Page).add_all_gas_readings if condition == 'all'
+  on(Section6Page).normal_gas_readings('1', '2', '3', '4') if condition == 'only normal'
   sleep 1
   step 'I sign for gas'
 end

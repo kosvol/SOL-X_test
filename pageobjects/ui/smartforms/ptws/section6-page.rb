@@ -33,7 +33,7 @@ class Section6Page < Section5Page
   end
 
   def gas_testing_switcher(value)
-    if value === 'Yes'
+    if value == 'Yes'
       gas_yes_no_elements.first.click
     else
       gas_yes_no_elements.last.click
@@ -42,22 +42,22 @@ class Section6Page < Section5Page
 
   private
 
-  def toxic_gas_readings(_gas_name, _threhold, _reading, _unit)
-    gas_name_input_element.send_keys(_gas_name)
-    threshold_input_element.send_keys(_threhold)
-    reading_input_element.send_keys(_reading)
-    unit_input_element.send_keys(_unit)
+  def toxic_gas_readings(gas_name, threhold, reading, unit)
+    gas_name_input_element.send_keys(gas_name)
+    threshold_input_element.send_keys(threhold)
+    reading_input_element.send_keys(reading)
+    unit_input_element.send_keys(unit)
     sleep 1
     add_toxic_gas_btn
     sleep 1
   end
 
-  def normal_gas_readings(_o2, _hc, _h2s, _co)
+  def normal_gas_readings(o2, hc, h2s, co)
     sleep 1
-    o2_input_element.send_keys(_o2)
-    hc_input_element.send_keys(_hc)
-    h2s_input_element.send_keys(_h2s)
-    co_input_element.send_keys(_co)
+    o2_input_element.send_keys(o2)
+    hc_input_element.send_keys(hc)
+    h2s_input_element.send_keys(h2s)
+    co_input_element.send_keys(co)
     continue_btn
     sleep 1
   end
