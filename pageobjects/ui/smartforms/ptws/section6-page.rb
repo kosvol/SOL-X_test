@@ -40,6 +40,16 @@ class Section6Page < Section5Page
     end
   end
 
+  def normal_gas_readings(o2, hc, h2s, co)
+    sleep 1
+    o2_input_element.send_keys(o2)
+    hc_input_element.send_keys(hc)
+    h2s_input_element.send_keys(h2s)
+    co_input_element.send_keys(co)
+    continue_btn
+    sleep 1
+  end
+
   private
 
   def toxic_gas_readings(gas_name, threhold, reading, unit)
@@ -49,16 +59,6 @@ class Section6Page < Section5Page
     unit_input_element.send_keys(unit)
     sleep 1
     add_toxic_gas_btn
-    sleep 1
-  end
-
-  def normal_gas_readings(o2, hc, h2s, co)
-    sleep 1
-    o2_input_element.send_keys(o2)
-    hc_input_element.send_keys(hc)
-    h2s_input_element.send_keys(h2s)
-    co_input_element.send_keys(co)
-    continue_btn
     sleep 1
   end
 end
