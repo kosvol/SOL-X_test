@@ -10,7 +10,9 @@ end
 And (/^I add all gas readings and cancel from pin screen$/) do
   step 'I trigger gas readings input with A/M rank'
   on(Section6Page).add_all_gas_readings
-  step 'I sign for gas'
+  on(Section6Page).review_sign_btn
+  on(SignaturePage).sign_and_select_location
+  sleep 1
   on(Section6Page).cancel_btn
 end
 
@@ -25,6 +27,7 @@ And (/^I add (all|only normal) gas readings with (.*) rank$/) do |condition, ran
   on(Section6Page).gas_last_calibration_button
   sleep 1
   on(Section6Page).select_todays_date_from_calendar
+  sleep 1
   step "I trigger gas readings input with #{rank} rank"
   on(Section6Page).add_all_gas_readings if condition == 'all'
   on(Section6Page).normal_gas_readings('1', '2', '3', '4') if condition == 'only normal'
@@ -40,6 +43,7 @@ And (/^I sign for gas$/) do
 end
 
 And (/^I am able to delete toxic gas inputs$/) do
+  step 'I trigger gas readings input with A/M rank'
   on(Section6Page).add_all_gas_readings
   sleep 1
   is_equal(on(Section6Page).toxic_gas_reading_elements.size, 4)
