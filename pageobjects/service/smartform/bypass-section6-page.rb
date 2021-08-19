@@ -6,19 +6,25 @@ class BypassPage < CommonFormsPage
   include PageObject
 
   def get_rank_id_from_service(rank, vessel = nil)
-    if vessel == nil
-      ServiceUtil.post_graph_ql('pinpad/get-pin-by-role')
-    else
-      ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
-    end
+    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
     ServiceUtil.get_response_body['data']['users'].each do |crew|
-      if crew['crewMember']['rank'] === rank
+      if crew['crewMember']['rank'] == rank
         CommonPage.set_rank_id = crew['_id']
         @@get_rank = crew['crewMember']['rank']
         break
       end
     end
   end
+
+  def get_rank_list_from_service(vessel = nil)
+    rank_name_list = {}
+    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
+    ServiceUtil.get_response_body['data']['users'].each do |crew|
+      rank_name_list[crew['crewMember']['rank']] = "#{crew['crewMember']['firstName']} #{crew['crewMember']['lastName']}"
+    end
+    rank_name_list
+  end
+
 
   def trigger_pre_submission(_user, _condition)
     create_form_pre = JSON.parse JsonUtil.read_json('pre/01.create-pre-form')
@@ -702,7 +708,6 @@ class BypassPage < CommonFormsPage
           _entry_record['variables']['otherEntrantIds'].push(crew['_id'])
           break
         end
-        #id = yml_id["ranks_id_#{ENV['ENVIRONMENT']}"][item]
       end
       _entry_record['variables']['gasReadings'][0]['reading'] = '99'
     end
@@ -715,7 +720,6 @@ class BypassPage < CommonFormsPage
   def signout_entrants(_entrant_name)
     _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
     _entry_record['variables']['formId'] = CommonPage.get_permit_id
-    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     get_rank_id_from_service(_entrant_name)
     _entry_record['variables']['crewId'] = CommonPage.get_rank_id
     JsonUtil.create_request_file('cre/18.mod_signout_entrants', _entry_record)
@@ -763,7 +767,6 @@ class BypassPage < CommonFormsPage
     update_form_pre['variables']['answers'][8]['value'] = start_time
     update_form_pre['variables']['answers'][9]['value'] = end_time
     update_form_pre['variables']['answers'][11]['value']['2021-02-19T13:00:46.786Z'] = get_current_date_time
-    yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
     update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] =
       CommonPage.get_rank_id
     update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] =
@@ -793,7 +796,6 @@ class BypassPage < CommonFormsPage
     update_form_pre['variables']['answers'][7]['value']['AUTO_SOLX0012'] =
       CommonPage.get_rank_id
     update_form_pre['variables']['answers'][11]['value']['AUTO_SOLX0004'] =
-      #yml_id["ranks_id_#{ENV['ENVIRONMENT']}"]['C/O']
       CommonPage.get_rank_id
     update_form_pre['variables']['answers'][12]['value']['AUTO_SOLX0005'] =
       CommonPage.get_rank_id

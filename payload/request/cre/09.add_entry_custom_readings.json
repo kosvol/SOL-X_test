@@ -6,25 +6,25 @@
     "gasReadings": [
       {
         "gasName": "O2",
-        "reading": "1",
+        "reading": "2",
         "unit": "%",
         "threshold": "20.9"
       },
       {
         "gasName": "HC",
-        "reading": "2",
+        "reading": "3",
         "unit": "% LEL",
         "threshold": "66"
       },
       {
         "gasName": "H2S",
-        "reading": "3",
+        "reading": "4",
         "unit": "PPM",
         "threshold": "10"
       },
       {
         "gasName": "CO",
-        "reading": "4",
+        "reading": "5",
         "unit": "PPM",
         "threshold": "26"
       }

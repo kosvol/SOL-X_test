@@ -68,8 +68,7 @@ And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, rank|
   when 'withdraw'
     on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
   end
-  step "I enter pin for rank #{rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
-  step "I enter pin via service for rank #{rank}" if $current_environment === 'uat'
+  step "I enter pin via service for rank #{rank}"
 end
 
 And('I take note of issued date and time') do
@@ -103,8 +102,8 @@ And(/^I go to (CRE|PRE|ESE) log in dashboard$/) do |condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  if condition === 'PRE' || condition === 'CRE'
+  if condition == 'PRE' || condition == 'CRE'
     BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   end
-  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if condition === 'ESE'
+  BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if condition == 'ESE'
 end
