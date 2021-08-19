@@ -1,120 +1,105 @@
-# frozen_string_literal: true
-
-And (/^I turn (off|on) wifi$/) do |on_or_off|
+And(/^I turn (off|on) wifi$/) do |on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
-Given (/^I launch sol-x portal$/) do
+Given(/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
   $browser.get(EnvironmentSelector.get_environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  rescue
+  rescue StandardError
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
-Given (/^I launch sol-x portal without unlinking wearable$/) do
+Given(/^I launch sol-x portal without unlinking wearable$/) do
   $browser.get(EnvironmentSelector.get_environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
-  rescue
-    BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+  rescue StandardError
+    begin
+      BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
+    rescue StandardError
+      BrowserActions.wait_until_is_visible(on(Section0Page).uat_create_permit_btn_element)
+    end
   end
   # sleep 5
   # puts "screen size: #{$browser.window_size}"
 end
 
-And ('I sleep for {int} seconds') do |sec|
+And('I sleep for {int} seconds') do |sec|
   sleep sec
 end
 
-Then (/^I sign on canvas with (invalid|valid) (.*) pin$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
-  on(SignaturePage).sign_and_done if _condition != "invalid"
+And(/^I sign on canvas$/) do
+  on(SignaturePage).sign_and_done
 end
 
-### fsu hack quick fix because of difference in zone setup across SIT and AUTO
-Then (/^I sign on canvas with (invalid|valid) (.*) pin for fsu$/) do |_condition,_pin|
-  step "I enter pin #{_pin}"
-  on(SignaturePage).sign_and_done_fsu if _condition != "invalid"
+Then(/^I sign with (invalid|valid) (.*) rank$/) do |condition, rank|
+  step "I enter pin via service for rank #{rank}"
+  step 'I sign on canvas' if condition != 'invalid'
 end
 
-Then (/^I sign on canvas only with valid (.*) pin$/) do |_pin|
-  # step 'I sleep for 1 seconds'
-  BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
-  # on(CommonFormsPage).sign_btn_elements.first.click
-  step "I enter pin #{_pin}"
-  on(SignaturePage).sign_for_gas
-end
-
-And (/^I wait for pinpad element to exists$/) do
-  p "polling...."
+And(/^I enter pure pin (.*)$/) do |pin|
+  CommonPage.set_entered_pin = pin
   sleep 1
-  if on(PinPadPage).pin_pad_elements.size === 0 
-    step 'I wait for pinpad element to exists'
+  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
+end
+
+And(/^I enter pin via service for rank (.*)$/) do |rank|
+  step 'I get pinpad/get-pin-by-role request payload'
+  step 'I hit graphql'
+  ServiceUtil.get_response_body['data']['users'].each do |crew|
+    if crew['crewMember']['rank'] == rank
+      step "I enter pure pin #{crew['pin']}"
+      break
+    else
+      CommonPage.set_entered_pin = nil
+    end
   end
-end
-
-And ('I enter pin {int}') do |pin|
-  @@entered_pin = pin
-  step 'I wait for pinpad element to exists'
-  on(PinPadPage).enter_pin(pin)
-  sleep 1
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  @@entered_pin = $sit_rank_and_pin_yml[rank]
-  p "pin: #{@@entered_pin}"
-  step "I enter pin #{@@entered_pin.to_i}"
+  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+    CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
+  end
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
   sleep 1
+  step "I enter pure pin #{CommonPage.get_entered_pin}"
 end
 
-When (/^I select (.+) permit$/) do |_permit|
+When(/^I select (.+) permit$/) do |permit|
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
-  on(Section0Page).select_level1_permit(_permit)
+  on(Section0Page).select_level1_permit(permit)
 end
 
-When (/^I select (.+) permit for level 2$/) do |_permit|
+When(/^I select (.+) permit for level 2$/) do |permit|
   @via_service_or_not = false
-  on(Section0Page).select_level2_permit_and_next(_permit)
+  on(Section0Page).select_level2_permit_and_next(permit)
   BrowserActions.wait_until_is_visible(on(Section0Page).ptw_id_element)
-  @temp_id = on(Section0Page).ptw_id_element.text
+  @get_permit_creation_datetime = on(CommonFormsPage).get_current_date_and_time
 end
 
-And (/^I set permit id$/) do
-  sleep 10
+And(/^I set permit id$/) do
   if @via_service_or_not === false
-    p "Temp ID >> #{@temp_id}"
-    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(@temp_id))
+    Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
+    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
+    Log.instance.info "New Permit ID: #{CommonPage.get_permit_id}"
   end
 end
 
-And (/^I tear down created form$/) do
-  begin
-    SmartFormDBPage.tear_down_ptw_form(on(Section1Page).get_section1_filled_data[1])
-  rescue StandardError
-    SmartFormDBPage.tear_down_ptw_form(on(Section0Page).ptw_id_element.text)
-  end
-end
-
-And (/^I set time$/) do
+And(/^I set time$/) do
   on(CommonFormsPage).set_current_time
 end
 
-Given (/^I launch sol-x portal dashboard$/) do
-  if ENV['ENVIRONMENT'] === 'sit'
-    $browser.get(EnvironmentSelector.get_environment_url + "/dashboard")
-  elsif ENV['ENVIRONMENT'] === 'auto'
-    $browser.get(EnvironmentSelector.get_environment_url + "dashboard")
-  else
-    raise "Wrong Environment"
-  end
+Given(/^I launch sol-x portal dashboard$/) do
+  $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
+  BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
-  rescue
+  rescue StandardError
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   end
   # sleep 5

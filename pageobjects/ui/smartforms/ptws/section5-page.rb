@@ -6,7 +6,7 @@ class Section5Page < Section4BPage
   include PageObject
 
   button(:roles_and_resp_btn, xpath: "//div[starts-with(@class,'values-area')]/button")
-  buttons(:roles_btn, xpath: '//ul/li/button')
+  elements(:roles_btn, xpath: "//div[starts-with(@data-testid,'combo-box-with-buttons-sheet')]/div[2]/div/ul/li")#'//ul/li/button')
   elements(:responsibility_box, xpath: "//li[@data-testid='responsibility-box']")
   elements(:non_crew_checkbox, xpath: "//li[@data-testid='responsibility-box']/div/label/span")
   text_field(:other_name, xpath: "//input[@id='otherName']")
@@ -62,13 +62,6 @@ class Section5Page < Section4BPage
   end
 
   def delete_roles_and_responsibility(_total_roles)
-    roles_and_resp_btn
-    sleep 1
-    # (_total_roles.to_i..((_total_roles.to_i + _total_roles.to_i) - 1)).each do |i|
-      roles_btn_elements[_total_roles.to_i+1].click
-    # end
-    sleep 1
-    confirm_btn_elements.last.click
-    sleep 1
+    cross_btn_elements[_total_roles.to_i-1].click
   end
 end

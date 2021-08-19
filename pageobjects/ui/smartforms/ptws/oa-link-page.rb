@@ -6,9 +6,11 @@ require 'date'
 class OAPage < Section9Page
   include PageObject
 
+  element(:sol_logo, xpath: "//nav[contains(@class,'NavigationBar')]//img[@alt='SOL-X']")
   element(:xxx, xpath: "//label[contains(.,'Your comments to the ship')]")
   button(:approve_permit_btn, xpath: "//button[contains(.,'Approve This Permit')]")
   button(:update_permit_btn, xpath: "//button[contains(.,'Request Updates')]")
+  button(:permit_has_been_btn, xpath: "//button[contains(.,'This Permit Has Been')]")
   element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
   button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
@@ -18,18 +20,28 @@ class OAPage < Section9Page
   elements(:date_time_from, xpath: "//button[@id='date-from']")
   elements(:date_time_to, xpath: "//button[@id='date-to']")
   elements(:to_date_calender, xpath: "//button[starts-with(@class,'Day__DayButton-')]")
-  # button(:designation, xpath: "//button[@name='designation']")
-  # button(:designation, xpath: "/html[1]/body[1]/div[1]/div[1]/main[1]/form[1]/div[3]/div[2]/div[1]/button[1]")
-  # button(:set_vs_designation, xpath: "//button[contains(.,'VS')]")
   elements(:yes_to_checkbox, xpath: "//input[starts-with(@value,'yes')]")
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
 
   element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
+  element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]/section")
 
-  ## Comment elements ###  
+  ## Web Confirmation Page
+  element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
+  element(:main_description, xpath: "//section[contains(@class, 'Section__SectionMain')]")
+  elements(:confirmation_question, xpath: '//ul/li')
+  elements(:radio_button, xpath: "//input[starts-with(@type,'radio')]")
+  element(:text_area_header, xpath: "//div[contains(@class, 'Textarea')]/label")
+  text_area(:instruction_text_area, xpath: "//textarea[@placeholder='Optional']")
+  element(:name_input_field, xpath: "//input[@type='text']")
+  button(:designation_dd_btn, xpath: "//button[@name='designation']")
+  element(:bottom_hint, xpath: "//section[@class='hint']/p")
+  element(:warning_infobox, xpath: "//div[contains(@class, 'InfoBox__')]")
+  # #End Web Confirmation Page ###
+
+  ## Comment elements ###
   element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
-  #element(:comment_box, xpath: "//section[starts-with(@class,'messages')]/p")
   element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
   text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
@@ -37,10 +49,10 @@ class OAPage < Section9Page
   elements(:designation, xpath: "//ul[contains(@class,'UnorderedList')]/li")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
   element(:comment_bottom_notification, xpath: "//div[contains(@class,'CommentForm')]")
-  @@comment_base = "Head, Fleet Operations (Backup)
+  @@comment_base = 'Head, Fleet Operations (Backup)
   Test Automation
   %s %s (GMT+0)
-  Test Automation"
+  Test Automation'
   ## END Comment elements ###
 
   ## Comment attributes ###
@@ -51,8 +63,8 @@ class OAPage < Section9Page
   elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
   # after Termination #
   element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
-  elements(:comment_date_after_term, xpath: "//time")
-  elements(:comment_text_after_term, xpath: "//li[@class='sc-AxgMl uGkHd']/div[3]")
+  elements(:comment_date_after_term, xpath: '//time')
+  elements(:comment_text_after_term, xpath: "//div[@class='sender-info']/../div[3]")
   ## END Comment attributes ###
 
   def sol_6553
@@ -73,7 +85,7 @@ class OAPage < Section9Page
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     sleep 1
     date_time_to_elements[1].click
-    select_to_hour_minutes(1,0)
+    select_to_hour_minutes(1, 0)
     dismiss_picker_element.click
     sleep 1
     BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
@@ -89,59 +101,64 @@ class OAPage < Section9Page
   end
 
   def navigate_to_oa_link
-    sleep 100
     tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
-    p "OA Link : #{tmp}"
+    Log.instance.info "OA Link : #{tmp}"
     tmp
   end
 
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    current_hour = get_current_hour
+    scroll_multiple_times(3)
     ### set from time
     date_time_from_elements[1].click
-    starttime = current_hour.to_i+1
+    starttime = Time.now.utc.strftime('%k').to_i + 1
     if starttime <= 23
-      select_to_hour(starttime)
+      hour_from_picker_elements[starttime].click
       sleep 1
       minute_from_picker_elements[1].click
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{starttime}"
     else
-      select_to_hour((starttime)-24)
+      hour_from_picker_elements[starttime - 24].click
       sleep 1
       minute_from_picker_elements[1].click
+      sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      date_time_from_elements.first.click
+      p " #{starttime - 24}"
+      date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"
       select_todays_date_from_calendar(1)
     end
+
     ### set to time
-    sleep 1
+    sleep 2
     date_time_to_elements[1].click
     sleep 2
-    endtime = current_hour.to_i+9
+    endtime = Time.now.utc.strftime('%k').to_i + 9
     if endtime <= 23
-      select_to_hour(endtime)
+      hour_from_picker_elements[endtime].click
       sleep 1
-      select_to_minute(0)
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{endtime}"
     else
-      select_to_hour((endtime)-24)
+      hour_from_picker_elements[endtime - 24].click
       sleep 1
-      select_to_minute(0)
+      minute_from_picker_elements[1].click
       sleep 1
       dismiss_picker_element.click
       sleep 1
       BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      p " #{endtime - 24}"
       date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"
@@ -184,7 +201,6 @@ class OAPage < Section9Page
     BrowserActions.js_click("//button[@name='designation']")
     sleep 2
     BrowserActions.scroll_down
-    # set_vs_designation
     BrowserActions.js_click("//button[contains(.,'VS')]")
   end
 
@@ -193,7 +209,7 @@ class OAPage < Section9Page
     designation_elements.each do |_element|
       tmp_arr << _element.text
     end
-    tmp_arr === YAML.load_file("data/office-approval/designation-list.yml")['roles']
+    tmp_arr === YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
   private
@@ -202,7 +218,7 @@ class OAPage < Section9Page
     false
   end
 
-  def select_to_hour_minutes(_hour_index,_minute_index)
+  def select_to_hour_minutes(_hour_index, _minute_index)
     sleep 2
     select_to_hour(_hour_index)
     sleep 1
@@ -211,10 +227,10 @@ class OAPage < Section9Page
   end
 
   def select_to_hour(_hour_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li",_hour_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li", _hour_index)
   end
 
   def select_to_minute(_minute_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li",_minute_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", _minute_index)
   end
 end

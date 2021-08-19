@@ -5,22 +5,24 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
-  elements(:crew_list_headers, xpath: "//th")
+  element(:dismiss_area_dd, xpath: "//div[@data-testid='dropdown-overlay-container']")
+  elements(:crew_list_headers, xpath: '//th')
   element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
-  elements(:permit_to_work_link, xpath: "//td/ul/li/a") #same as above
+  elements(:permit_to_work_link, xpath: '//td/ul/li/a') #same as above
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[5]')
   spans(:permits_count, xpath: '//span[@class="stat"]')
-  span(:location_pin_txt, xpath: "//a[@data-testid='location-pin']/span")
+  span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]/span")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
   element(:entry_status_indicator, xpath: "//div[starts-with(@class,'ActiveEntrantIndicator__ButtonContent')]")
   elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
   elements(:date_log, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entarnt, xpath: "//span[@data-testid='entrant-count']")
-  #Gas reading alert 
+  @@ship_area = "//button[contains(.,'%s')]"
+  #Gas reading alert
   element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
   element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
   element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
@@ -30,8 +32,15 @@ class DashboardPage < WearablePage
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
-  @@location_pin = "//a[@data-testid='location-pin']"
+  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]" #"//a[@data-testid='location-pin']"
   @@arr_data = []
+
+  #Gas reading alert
+  element(:gas_alert, css: "div[data-testid='gas-reader-alert'] > div > section > h2")
+  element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
+  element(:gas_alert_discard_new, xpath: "//span[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_close_btn, css: "button[aria-label='Close']")
+  element(:pre_cre_title_indicator, xpath: "//h3[contains(@class,'EntryStatusIndicator__Title')]")
 
   def set_arr_data(data)
     @@arr_data.push(data)
@@ -51,9 +60,9 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    BrowserActions.js_clicks("//div/button/span",1)
-    toggle_zone_filter(location)
-    sleep 1
+    BrowserActions.js_clicks('//div/button/span', 2)
+    # toggle_zone_filter(location)
+    # sleep 1
     begin
       location_pin_txt
     rescue StandardError
@@ -79,22 +88,13 @@ class DashboardPage < WearablePage
     $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end
 
-  # DEPRECATED
-  # def get_serv_active_crew_count
-  #   active_crew_count = 0
-  #   ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
-  #     active_crew_count += 1 unless wearable['crewMember'].nil?
-  #   end
-  #   active_crew_count
-  # end
-
-  def is_crew_location_detail_correct?(ui_or_service, _new_zone = nil)
+  def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)
     sleep 2
-    tmp = get_active_crew_details(ui_or_service, _new_zone)
-    Log.instance.info("beacon >> \n\n#{tmp}")
+    tmp = get_active_crew_details(ui_or_service, new_zone).first
     get_ui_active_crew_details.all? do |crew|
+      Log.instance.info("beacon >> \n\n#{tmp}")
       Log.instance.info("crew >> \n\n#{crew}")
-      tmp.include? crew
+      tmp == crew
     end
   end
 
@@ -107,10 +107,18 @@ class DashboardPage < WearablePage
   end
 
   def get_map_zone_count(which_zone, total_crew)
-    area_dd
-    sleep 1
+    expand_area_dd
+    sleep 2
     xpath_str = format(@@ship_area, "#{which_zone} (#{total_crew})")
     @browser.find_element('xpath', xpath_str).text
+  end
+
+  def expand_area_dd
+    area_dd
+  end
+
+  def dismiss_area_dd
+    dismiss_area_dd_element.click
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)
@@ -118,9 +126,9 @@ class DashboardPage < WearablePage
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       unless wearable['crewMember'].nil?
         if ui_or_service === 'service'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, "N/A"]
+          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
         elsif ui_or_service === 'ui'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, "N/A"]
+          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, 'N/A']
         end
       end
     end

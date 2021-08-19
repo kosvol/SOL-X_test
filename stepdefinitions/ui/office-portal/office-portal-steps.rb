@@ -26,7 +26,8 @@ And(/^I click on Log In Now button$/) do
 end
 
 Then(/^I should see the Vessel List page$/) do
-  to_exists(on(OfficePortalPage).home_btn_element)
+  to_exists(on(OfficePortalPage).reporting_header_element)
+  to_exists(on(OfficePortalPage).permit_archive_tab_element)
   not_to_exists(on(OfficePortalPage).permit_list_element)
 end
 
@@ -49,7 +50,7 @@ Given(/^I log in to the Office Portal$/) do
   step 'I launch Office Portal'
   step 'I enter a valid password'
   step 'I click on Log In Now button'
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).home_btn_element)
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).reporting_header_element)
 end
 
 Then(/^I should see the vessel name at the top bar and permits list$/) do
@@ -438,16 +439,22 @@ end
 Then(/^I should see the PRE form shows the same fields as in the client app$/) do
   fieldsArr = []
   subheadersArr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h4").each do |_field|
+  $browser.find_elements(:xpath, "//h4").each do |_field|
     fieldsArr << _field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{_section}')]/../..//h2").each do |_subheader|
+  $browser.find_elements(:xpath, "//h2").each do |_subheader|
     subheadersArr << _subheader.text
   end
   baseFields = [] + YAML.load_file("data/pre/pre-display.yml")["pre_structure_on_pred"]["with_interval"]
   baseSubheaders = [] + YAML.load_file("data/pre/pre-display.yml")["subheaders"]
+  baseFields  -= YAML.load_file("data/pre/pre-display.yml")["fields_exceptions"]
   p ">>> difference #{fieldsArr - baseFields}"
   p "> difference #{subheadersArr - baseSubheaders}"
   is_equal(fieldsArr, baseFields)
   is_equal(subheadersArr, baseSubheaders)
+end
+
+And(/^I open the recently terminated form with link$/) do
+  $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@formNumber])
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
 end

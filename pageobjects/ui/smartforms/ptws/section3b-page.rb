@@ -10,15 +10,11 @@ class Section3BPage < Section3APage
   text_field(:last_assessment, xpath: "//input[@id='lastAssessmentDra']")
   button(:work_side_inspected_by, xpath: "//button[@id='workInspectionBy']")
   element(:get_inspection_by, xpath: "//*[starts-with(@class,'Input__Answer')]")
-  elements(:radio_btn, xpath: "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/label/input")
-  elements(:crew_list, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content')]/div/ul/li")
+  elements(:radio_btn, css: 'input[type=radio]')
+  elements(:checkbox_btn, css: 'input[type=checkbox]')
 
-  def is_last_crew?(_exit)
-    return false if _exit === 10
-
-    BrowserActions.scroll_down
-    p "--- #{crew_list_elements.last.text}"
-    crew_list_elements.last.text != 'OLR Thaian Oliveira' ? is_last_crew?(_exit.to_i + 1) : (return true)
+  def last_crew?
+    options_text_elements.last.text == 'OLR COT OLR'
   end
 
   def fill_section_3b
@@ -26,6 +22,7 @@ class Section3BPage < Section3APage
     last_assessment_date_element.click
     sleep 1
     select_todays_date_from_calendar
+    checkbox_btn_elements.first.click
     radio_btn_elements[0].click
     radio_btn_elements[3].click
     radio_btn_elements[6].click
@@ -33,12 +30,12 @@ class Section3BPage < Section3APage
     BrowserActions.enter_text(last_assessment_element, 'Test automation')
     radio_btn_elements[9].click
     radio_btn_elements[12].click
-    radio_btn_elements[15].click
+    sleep 50
   end
 
-  def is_crew_list_populated?
+  def crew_list_populated?
     work_side_inspected_by
-    !crew_list_elements.empty?
+    !options_text_elements.empty?
   end
 
   def get_filled_section

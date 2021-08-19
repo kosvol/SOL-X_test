@@ -5,79 +5,43 @@ require './././support/env'
 class Section4APage < Section3DPage
   include PageObject
 
-  elements(:occurrence, xpath: "(//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')])[1]/div[2]/label")
+  elements(:occurrence,
+           xpath: "(//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')])[1]/div[2]/label")
   elements(:tool_box, xpath: '//input')
   elements(:input_type_text, xpath: "//input[@type='text']")
   elements(:input_type_number, xpath: "//input[@type='number']")
   text_field(:equipment_used, xpath: "//input[@id='cl_enclosedSpacesEntry_srNoOfEquipmentUsed']")
-  elements(:yes_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]")
-  @@yes_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[1]/span"
-  elements(:no_input, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]")
-  @@na_input = "//div[starts-with(@class,'Section__Description')]/div/div[2]/label[2]/span"
-  element(:rank_and_name_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
-  element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
+  @@yes_input = 'div > label:nth-child(1) > span'
+  @@na_input = 'div > label:nth-child(2) > span'
+  elements(:rank_and_name_stamp,
+           xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][1]")
+  element(:date_and_time_stamp,
+          xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
-  # elements(:enclosed_space_interval_filled_data, xpath: '//input')
-
-  elements(:nav_dd_text, xpath: "//h3[starts-with(@class,'Heading__HeadingSmall')]") # second index
-  elements(:sub_headers, xpath: '//h2')
-  elements(:label_text, xpath: "//label[starts-with(@class,'Heading__HeadingSmall')]")
-
-  elements(:section2, xpath: "//label[starts-with(@for,'cl_')]")
-  divs(:subsection1, xpath: "//div[starts-with(@id,'4A_HWODA_subsection')]")
-
-  spans(:list_of_checklist, xpath: "//section[starts-with(@class,'Section__SectionMain')][2]/div/div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
-  elements(:section1, xspath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p']")
-  elements(:section4a, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
+  spans(:list_of_checklist,
+        css: 'form > section > div >section:nth-child(2) > div > div > div > span')
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
-  element(:rol_dd_label, xpath: "//div[starts-with(@class,'ComboButtonMultiselect__Container-')]/label")
-
-  divs(:subsectionESE1, xpath: "//div[starts-with(@id,'4A_ESE_subsection1')]")
-  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection22')]")
-  divs(:subsectionESE2, xpath: "//div[starts-with(@id,'4A_ESE_subsection36')]")
-
   divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
-
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")
   elements(:warning_box, xpath: "//div[starts-with(@class,'WarningBox__')]")
-
   text_fields(:disabled_fields, xpath: "//input[starts-with(@name,'energyIsolationCertIssued')]")
-  # elements(:disabled_fields, xpath: "//div[starts-with(@class,'Section__Description')]/div/div[2]/input")
 
-  text_field(:interval, xpath: "//input[@id='cl_enclosedSpacesEntry_reportingIntervalMinutes']")
-  button(:ppe_btn, xpath: "//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
-  button(:ppe1_btn, xpath: "//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
   # index 1 is date, index 2 is time
   elements(:checklist_date_and_time, xpath: "//button[contains(@id,'createdDate')]")
   text_field(:checklist_permit_number, xpath: "//input[contains(@name,'formNumber')]")
-  # @@checklist_permit_number = "//input[contains(@name,'formNumber')]"
   button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
   def click_on_enter_pin
     BrowserActions.js_click("//button[contains(.,'Sign')]")
-    # @browser.execute_script(%(document.evaluate("//button[contains(.,'Enter Pin')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   end
-
-  # def is_checklist_question_displayed(_checklist)
-  #   base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
-  #   base_data.each do |_element|
-  #     p ">> #{_element}"
-  #     span = @browser.find_elements(:xpath, "//span[contains(., '#{_element}')]")
-  #     label = @browser.find_elements(:xpath, "//label[contains(., \"#{_element}\")]")
-  #     ptag = @browser.find_elements(:xpath, "//p[contains(., \"#{_element}\")]")
-  #     h4 = @browser.find_element(:xpath, "//h4[contains(., \'#{_element}\')]")
-      
-  #     is_equal(tmp.size,1)
-  #   end
-  # end
 
   ### hack
   def select_ppe_equipment
     begin
       BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
       sleep 1
-      member_name_btn_elements.first.click
+      options_text_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError
@@ -86,21 +50,19 @@ class Section4APage < Section3DPage
     begin
       BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
       sleep 1
-      member_name_btn_elements.first.click
+      options_text_elements.first.click
       confirm_btn_elements.last.click
       sleep 1
     rescue StandardError
     end
   end
 
-  def fill_textarea(_elems,_input)
-    begin
-      _elems.each do |text_area|
-      BrowserActions.enter_text(text_area, _input)
+  def fill_textarea(elems, input)
+    elems.each do |text_area|
+      BrowserActions.enter_text(text_area, input)
     end
-    rescue StandardError
-      p "Error: #{StandardError}"
-    end
+  rescue StandardError
+    p "Error: #{StandardError}"
   end
 
   def fill_up_checkbox_inputs
@@ -122,10 +84,10 @@ class Section4APage < Section3DPage
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{get_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
-    if (generic_data_elements[1].text.include? get_current_date_and_time)
-      return ((generic_data_elements[1].text.include? get_current_date_and_time))# && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
+    if generic_data_elements[1].text.include? get_current_date_and_time
+      ((generic_data_elements[1].text.include? get_current_date_and_time)) # && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
     else
-      return (generic_data_elements[1].text.include? "#{get_current_date_and_time_minus_a_min}")
+      (generic_data_elements[1].text.include? get_current_date_and_time_minus_a_min.to_s)
     end
   end
 
@@ -133,96 +95,117 @@ class Section4APage < Section3DPage
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |_checklist, _index|
       next if _index === 0
-
-      BrowserActions.scroll_down(element_yes[_index])
-      sleep 1
       if element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
+        BrowserActions.scroll_down(element_yes[_index + 3])
+        sleep 1
         get_na_elements[_index].click
       end
     end
   end
 
-  def is_signed_user_details?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp)
-    sleep 1
-    BrowserActions.scroll_down
-    time_offset = get_current_time_format
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info(">> #{rank_and_name_stamp_element.text}")
-    Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
+  def is_signed_user_details?(entered_pin)
+    BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
+    rank_and_name = get_user_details_by_pin(entered_pin)
+    @@tmp_rank_name = rank_and_name_stamp_elements.first.text
+    Log.instance.info(">> #{@@tmp_rank_name}")
+    Log.instance.info(">> Rank/Name: #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
     Log.instance.info(">> UI #{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time}"))
-  end
-  
-  def is_signed_user_details_plus_1_min?(_entered_pin)
-    BrowserActions.scroll_down(rank_and_name_stamp)
-    sleep 1
-    BrowserActions.scroll_down
-    time_offset = get_current_time_format
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_and_time_minus_a_min}"))
+    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? date_and_time_stamp_element.text))
   end
 
-  def is_signed_user_details_integration?(_entered_pin)
-    sleep 1
-    BrowserActions.scroll_down(rank_and_name_stamp)
-    sleep 1
-    BrowserActions.scroll_down
+  def is_signed_user_details_plus_1_min?(entered_pin)
+    rank_and_name = get_user_details_by_pin(entered_pin)
+    ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
+  end
+
+  def is_signed_user_details_integration?(entered_pin)
     # time_offset = get_current_time_format
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_element.text}")
+    rank_and_name = get_user_details_by_pin(entered_pin)
+    Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
-    ((rank_and_name_stamp_element.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? "#{get_current_date_format_with_offset}") && (date_and_time_stamp_element.text.include? "#{get_timezone}"))
+    ((rank_and_name_stamp_elements.first.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s) && (date_and_time_stamp_element.text.include? get_timezone.to_s))
   end
 
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)
-  def is_checklist_preselected(_checklist)
+  def is_checklist_preselected(checklist)
     element_yes = get_yes_elements
-    list_of_checklist_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === _checklist
-      BrowserActions.scroll_down(element_yes[_index])
-      if _checklist.include? "Cold Work"
-        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
+    list_of_checklist_elements.each_with_index do |checklist_obj, index|
+      next unless checklist_obj.text === checklist
+      BrowserActions.scroll_down(element_yes[index])
+      if checklist.include? 'Cold Work'
+        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
       else
-        return (element_yes[_index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[_index].css_value('color') === 'rgba(255, 255, 255, 1)')
+        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('color') === 'rgba(255, 255, 255, 1)')
       end
     end
   end
 
-  def select_checklist(_checklist)
+  def select_checklist(checklist)
     sleep 1
     BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
-    list_of_checklist_elements.each_with_index do |checklist, _index|
-      next unless checklist.text === _checklist
+    list_of_checklist_elements.each_with_index do |checklist_obj, index|
+      next unless checklist_obj.text === checklist
 
-      BrowserActions.scroll_down(element_yes[_index+1])
-      element_yes[_index+1].click
+      BrowserActions.scroll_down(element_yes[index + 1])
+      element_yes[index + 1].click
     end
+  end
+
+  def signature_scroll
+    sleep 1
+    BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
+    sleep 1
+    BrowserActions.scroll_down
+    sleep 1
+  end
+
+  def is_checklist_questions?
+    span_arr = get_checklist_questions('div > span')
+    label_arr = get_checklist_questions('div > label')
+    p_arr = get_checklist_questions('div > p')
+    h4_arr = get_checklist_questions('div > h4')
+    is_questions = false
+
+    base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['questions']
+    base_data.each do |element|
+      Log.instance.info("Checking on question >>>> #{element}")
+      is_questions = (span_arr.include? "#{element}")
+      next if is_questions == true
+      is_questions = (label_arr.include? "#{element}")
+      next if is_questions == true
+      is_questions = (p_arr.include? "#{element}")
+      next if is_questions == true
+      is_questions = (h4_arr.include? "#{element}")
+      next if is_questions == true
+      if (element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (element === 'Is vessel movement in seaway acceptable for personnel transfer?')
+        is_equal(h4_arr.size, 2)
+      else
+        is_equal(h4_arr.size, 1)
+      end
+    end
+    is_questions
   end
 
   private
 
+  def get_checklist_questions(css_input)
+    tmp_arr = []
+    tmp = @browser.find_elements(:css, "#{css_input}")
+    tmp.each do |element|
+      tmp_arr << element.text
+    end
+    tmp_arr
+  end
+
   def get_yes_elements
-    $browser.find_elements(:xpath, @@yes_input)
+    $browser.find_elements(:css, @@yes_input)
   end
 
   def get_na_elements
-    $browser.find_elements(:xpath, @@na_input)
-  end
-
-  def get_user_details_by_pin(entered_pin)
-    tmp_payload = JSON.parse JsonUtil.read_json('get_user_detail_by_pin')
-    tmp_payload['variables']['pin'] = format('%04d', entered_pin).to_s
-    JsonUtil.create_request_file('mod_get_user_detail_by_pin', tmp_payload)
-    ServiceUtil.post_graph_ql('mod_get_user_detail_by_pin')
-    tmp_arr = []
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['rank']
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['firstName']
-    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['lastName']
-    tmp_arr
+    $browser.find_elements(:css, @@na_input)
   end
 end

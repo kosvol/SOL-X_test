@@ -7,7 +7,7 @@
     "answers": [
       {
         "fieldId": "team",
-        "value": "[\"SIT_SOLX0004\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",
@@ -16,6 +16,10 @@
       {
         "fieldId": "openChecklistCriticalEquipMaintenance",
         "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "value": "\"8\""
       },
       {
         "fieldId": "gasReaderRequired",

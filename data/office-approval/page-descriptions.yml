@@ -1,0 +1,13 @@
+before_appr: "Do you confirm the approval of this Permit?\nAs soon as you confirm it, the crew at LNGSIT will be able to activate it.\nOnce the permit is active, you will receive an email with link to the Permit to Work."
+
+before_appr_section7: "The permit is currently pending Office Approval.\n\nOnce this permit is approved, you will receive a confirmation via email and will be able to find it under \"Pending Approval\" on the dashboard."
+
+after_appr: "Your approval has been successfully submitted.\nThe vessel LNGSIT is going to receive it in a few minutes and the permit will be able to be activated.\nOnce the permit is terminated, you will be able to view the complete Permit to Work on the Office Portal."
+
+after_appr_section7: "The permit is approved by the Office"
+
+is_already_approved: "This permit has already been approved\nThis permit was approved by VS Automation on %s and doesn't need to be approved again.\nIf you have any doubts, please confirm it with the approving officer or the vessel captain.\nIf you don't intend to approve this permit, please close this window and return to the approval page."
+
+before_rejection: "Comments from Approving Authority"
+
+after_rejection: "Your comment has been successfully submitted.\nThe vessel is going to receive it in a few minutes and their crew will proceed with the updates."

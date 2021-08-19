@@ -13,7 +13,7 @@ Feature: Section9
     And I set non oa permit to ACTIVE state
     And I set non oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
-    And I open a permit pending termination with 5/E rank and 7551 pin
+    And I open a permit pending termination with 5/E rank
     Then I should see previous and close buttons
 
   Scenario Outline: Verify Master can see terminate and update buttons for non oa permit
@@ -52,21 +52,21 @@ Feature: Section9
     And I set oa permit to ACTIVE state
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
-    And I open a permit pending termination with <rank> rank and <pin> pin
+    And I open a permit pending termination with <rank> rank
     Then I should not see terminate permit to work and request update buttons
 
     Examples:
-      | rank                      | pin  | permit_types                         | permit_payload                |
-      # | Addtional Master | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 3/E                       | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 3/E                     | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 4/E                       | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 4/E                     | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | rank  | pin  | permit_types                         | permit_payload                |
+      # | A/M | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | 3/E   | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | A 3/E | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | 4/E   | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | A 4/E | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Additional Chief Engineer  | 5718 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | Electro Technical Officer | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | ETO   | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
 
   Scenario Outline: Verify non Master will not see approve and request update button for non oa permit
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
@@ -74,12 +74,12 @@ Feature: Section9
     And I set oa permit to ACTIVE state
     And I set oa permit to PENDING_TERMINATION state
     And I click on pending withdrawal filter
-    And I open a permit pending termination with <rank> rank and <pin> pin
+    And I open a permit pending termination with <rank> rank
     Then I should not see terminate permit to work and request update buttons
 
     Examples:
-      | rank             | pin  | permit_types          | permit_payload             |
-      | Addtional Master | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | rank | pin  | permit_types | permit_payload             |
+      | A/M  | 9015 | NA           | submit_enclose_space_entry |
 
   Scenario Outline: Verify Status Update display as completed when user submit as continue
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

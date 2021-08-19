@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-And (/^I fill up section 3d$/) do
+And(/^I fill up section 3d$/) do
   tmp = 1
   (0..((on(Section3DPage).radio_btn_elements.size / 2) - 1)).each do |_i|
     on(Section3DPage).radio_btn_elements[[0 + tmp].sample].click
@@ -9,18 +9,23 @@ And (/^I fill up section 3d$/) do
   BrowserActions.enter_text(on(CommonFormsPage).enter_comment_box_element, 'Test Automation')
 end
 
-And (/^I resign with valid (.*) pin$/) do |_pin|
+And(/^I resign with valid (.*) rank$/) do |_rank|
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
   sleep 1
-  step "I sign DRA section 3d with #{_pin} as valid pin"
+  step "I sign on canvas only with valid #{_rank} rank"
 end
 
-And (/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) pin$/) do |_page,_pin,_condition|
-  @@entered_pin = _pin
-  # sleep 1
+And(/^I sign (checklist|section|DRA section 3d) with (.*) as (valid|invalid) rank$/) do |_page, _rank, _condition|
+  sleep 1
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
-  # on(CommonFormsPage).sign_btn_elements.first.click
-  step "I enter pin #{_pin}" if _condition === "invalid"
-  step "I sign on canvas with valid #{@@entered_pin} pin" if _condition === "valid"
+  step "I enter pin for rank #{_rank}" if _condition == 'invalid'
+  step "I sign with valid #{_rank} rank" if _condition === 'valid'
   step 'I set time'
+end
+
+Then(/^I sign on canvas only with valid (.*) rank$/) do |_rank|
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).sign_btn_elements.first)
+  step "I enter pin for rank #{_rank}" if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step 'I enter pin via service for rank C/O' if $current_environment === 'uat'
+  on(SignaturePage).sign_on_canvas
 end

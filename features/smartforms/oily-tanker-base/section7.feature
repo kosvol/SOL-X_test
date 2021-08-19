@@ -28,11 +28,9 @@ Feature: Section7
   #   And I approve permit
   #   And I click on back to home
   #   And I click on update needed filter
-  #   And I update permit with A/M rank and 9015 pin
+  #   And I update permit with A/M rank
   #   And I navigate to section 7
   #   # And I click on active filter   ### should be using this step but due to bug ####
-  #   # And I view permit with A/M rank and 9015 pin
-  #   # And I press previous for 2 times
   #   Then I should see valid validity from 8 to 9
   #   When I press next for 1 times
   #   Then I should see valid validity date and time
@@ -42,9 +40,9 @@ Feature: Section7
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 4a
     And I press next for 1 times
@@ -56,16 +54,16 @@ Feature: Section7
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I view permit with A/M rank and 9015 pin
+    And I view permit with A/M rank
     And I press previous for 1 times
     Then I should see valid validity date and time
 
   @sol-6553
   Scenario: Verify validity from and to is correct for OA permit
     Given I change ship local time to +8 GMT
-    Given I launch sol-x portal without unlinking wearable
+    And I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) permit for level 2
     And I fill up section 1 with default value
@@ -78,15 +76,14 @@ Feature: Section7
     And I click on pending approval filter
     And I set oa permit to office approval state manually
     And I click on pending approval filter
-    # And I sleep for 230 seconds
     And I navigate to OA link
     And I approve oa permit via oa link manually
-    And I sleep for 230 seconds
+    And I wait for form status get changed to PENDING_MASTER_APPROVAL on auto
     And I click on pending approval filter
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I view permit with A/M rank and 9015 pin
+    And I view permit with A/M rank
     And I press previous for 1 times
     Then I should see valid validity date and time
 
@@ -123,14 +120,14 @@ Feature: Section7
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     And I press next for 10 times
     Then I should not see submit for office approval and request update buttons
     And I should see close button
 
     Examples:
-      | rank             | pin  | permit_types                         | permit_payload                |
-      | Addtional Master | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | rank | pin  | permit_types                         | permit_payload                |
+      | A/M  | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Chief Officer              | 8383 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Additional Chief Officer   | 2761 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Second Officer             | 6268 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -145,14 +142,14 @@ Feature: Section7
     Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
-    And I open a permit pending Master Approval with <rank> rank and <pin> pin
+    And I open a permit pending Master Approval with <rank> rank
     And I press next for 10 times
     Then I should not see approve and request update buttons
     And I should see close button
 
     Examples:
-      | rank             | pin  | permit_types          | permit_payload             |
-      | Addtional Master | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | rank | pin  | permit_types          | permit_payload             |
+      | A/M  | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Chief Officer              | 8383 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Chief Officer   | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Second Officer             | 6268 | Enclosed Spaces Entry | submit_enclose_space_entry |

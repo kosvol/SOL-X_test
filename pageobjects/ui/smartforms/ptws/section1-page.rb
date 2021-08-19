@@ -18,21 +18,16 @@ class Section1Page < Section0Page
 
   @@maint_require_text = '//div[@id="1_6"]'
   @@maint_duration_dd = '//button[@id="duration_of_maintenance_over_2_hours"]'
-  
+
   @@location_check_btn = "//span[contains(.,'%s')]"
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
 
-  def get_section1_filled_data
-    @@section1_data_collector
-  end
-
-  def set_section1_filled_data
-    # probably need to dynamic this created by
-    @@section1_data_collector << 'Created By A/M Atif Hayat at'
+  def set_section1_filled_data(_entered_pin, _create_or_submitted)
+    rank_and_name = get_user_details_by_pin(_entered_pin)
+    @@section1_data_collector << "#{_create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
     sleep 1
     @@section1_data_collector << get_current_date_and_time.to_s
-    p ">>> #{@@section1_data_collector}"
     Log.instance.info(@@section1_data_collector)
     @@section1_data_collector
   end
@@ -84,48 +79,25 @@ class Section1Page < Section0Page
     _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
   end
 
+  def fill_partial_section_1
+    sleep 1
+    set_default_section1
+  end
+
   def fill_default_section_1
     sleep 2
-    fill_default_section1
+    set_default_section1
+    select_location_of_work
   end
 
   def select_location_of_work
     sleep 1
     BrowserActions.scroll_click(zone_btn_element)
+    BrowserActions.scroll_click(dd_list_value_elements.first)
+    BrowserActions.scroll_click(dd_list_value_elements.first)
     sleep 1
-    if dd_list_value_elements.size < 9
-      BrowserActions.scroll_click(dd_list_value_elements.first)
-    else
-      BrowserActions.scroll_click(dd_list_value_elements[1])
-    end
-    sleep 1
-    if dd_list_value_elements.size < 3
-      BrowserActions.scroll_click(dd_list_value_elements.first)
-    else
-      BrowserActions.scroll_click(dd_list_value_elements[1])
-    end
-    sleep 2
   end
 
-  ### Hack for fsu; zone setup differently
-  def fsu_select_location_of_work
-    sleep 1
-    zone_btn
-    sleep 1
-    begin
-      dd_list_value_elements[1].click
-    rescue
-      dd_list_value_elements[2].click
-    end
-    sleep 1
-    begin
-      dd_list_value_elements[1].click
-    rescue
-      dd_list_value_elements[2].click
-    end
-    sleep 1
-  end
-  
   private
 
   def select_sea_and_wind_state
@@ -135,22 +107,19 @@ class Section1Page < Section0Page
     BrowserActions.scroll_click(dd_list_value_elements[0])
   end
 
-  def fill_default_section1
+  def set_default_section1
     select_checkbox(@@location_check_btn, 'In Port')
     select_checkbox(@@condition_check_btn, 'Loaded')
     select_sea_and_wind_state
     fill_text_area(@@text_areas, 'Test Automation')
-    select_location_of_work
-    zone_details_input_element.send_keys("Test Automation")
+    zone_details_input_element.send_keys('Test Automation')
     sleep 5
     BrowserActions.hide_keyboard
   end
 
   def select_checkbox(_input, _location)
     sleep 1
-    p ">> #{_input % [_location]}"
-    BrowserActions.js_click("#{_input % [_location]}")
-    # browser.execute_script(%(document.evaluate("#{_input % [_location]}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    BrowserActions.js_click(format(_input, _location).to_s)
   end
 
   def fill_text_area(_input, _text)
@@ -178,5 +147,17 @@ class Section1Page < Section0Page
     end
     p ">>> #{drop_down_list_values}"
     drop_down_list_values
+  end
+
+  def get_user_details_by_pin(entered_pin)
+    tmp_payload = JSON.parse JsonUtil.read_json('get_user_detail_by_pin')
+    tmp_payload['variables']['pin'] = "#{entered_pin}"
+    JsonUtil.create_request_file('mod_get_user_detail_by_pin', tmp_payload)
+    ServiceUtil.post_graph_ql('mod_get_user_detail_by_pin')
+    tmp_arr = []
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['rank']
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['firstName']
+    tmp_arr << ServiceUtil.get_response_body['data']['validatePin']['crewMember']['lastName']
+    tmp_arr
   end
 end

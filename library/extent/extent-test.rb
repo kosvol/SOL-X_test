@@ -25,7 +25,7 @@ module RelevantCodes
     def info(status, step_name = nil, details, _scenario_name, browser)
       log = RelevantCodes::Model::Log.new
       log.status = status
-      Log.instance.info details
+      # Log.instance.info details
       screenshotpath = ReportUtils.get_screenshot(browser)
       # if status.to_s == "pass"
       log.step_name = step_name + "<a href=\"#{screenshotpath}\" target=\"_blank\"><p>Full Image</p></a>"

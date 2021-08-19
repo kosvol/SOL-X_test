@@ -16,6 +16,7 @@ class PreDisplay < Section9Page
   element(:entry_log_btn, xpath: "//a[contains(.,'Entry Log')]")
   elements(:sign_out_btn, xpath: "//span[contains(text(),'Sign Out')]")
   elements(:cross_btn, xpath: "//button[contains(@class,'Button__ButtonStyled-')]/span")
+  elements(:cross_button, xpath: "//button[starts-with(@class,'Button__ButtonStyled')]")
   element(:home_tab, xpath: "//a[contains(.,'Home')]")
   element(:entry_log_tab, xpath: "//a[contains(.,'Entry Log')]")
   element(:permit_tab, xpath: "//a[contains(.,'Permit')]")

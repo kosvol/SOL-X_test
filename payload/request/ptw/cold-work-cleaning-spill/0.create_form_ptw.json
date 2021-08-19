@@ -2,12 +2,12 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 4,
+    "templateVersion": 5,
     "permitType": "Cold Work - Cleaning Up of Spill",
     "answers": [
       {
         "fieldId": "team",
-        "value": "[\"AUTO_SOLX0012\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",
@@ -16,6 +16,10 @@
       {
         "fieldId": "openChecklistColdWorkOp",
         "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "value": "\"8\""
       },
       {
         "fieldId": "gasReaderRequired",

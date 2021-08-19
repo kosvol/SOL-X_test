@@ -12,6 +12,15 @@ class CommonPage
       ServiceUtil.get_response_body['data'][table.to_s]
     end
 
+    def get_entered_pin
+      @entered_pin
+    end
+
+    def set_entered_pin=(_pin)
+      @entered_pin = nil
+      @entered_pin = _pin
+    end
+
     def set_permit_id(_permit)
       @@permit_id = _permit
     end
@@ -26,6 +35,16 @@ class CommonPage
 
     def get_dra_permit_id
       @@dra_permit_id
+    end
+
+    def set_rank_id=(_rank_id)
+      @rank_id = nil
+      @rank_id = _rank_id
+      p "current rank id >> #{@rank_id}"
+    end
+
+    def get_rank_id
+      @rank_id
     end
   end
 end

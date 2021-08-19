@@ -16,27 +16,26 @@ class Section3APage < Section2Page
   # to change to generic_data
   elements(:method_detail, xpath: "//p[starts-with(@class,'AnswerComponent__Answer-')]")
   buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
-  # buttons(:date_and_time_fields, xpath: "//button[@id='draCreatedDate']")
   spans(:likelihood, xpath: "//span[@data-testid='likelihood']")
   spans(:consequence, xpath: "//span[@data-testid='consequence']")
   elements(:risk_indicator, xpath: "//div[starts-with(@class,'RiskIndicator__Indicator')]")
   buttons(:likelihood_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[1]/div/button")
   buttons(:consequence_btn, xpath: "//div[starts-with(@class,'RiskCalculator__Container-')]/div[2]/div/button")
-  elements(:level_to_choose, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'items')][1]/ul[1]/li/button")
-  buttons(:cancel_btn, xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
+  elements(:active_risk, xpath: "//div[starts-with(@data-testid,'combo-box-with-buttons-sheet')]/div[2]/div/ul/li")
+  elements(:options_text, css: 'div.option-text')
+  buttons(:cancel_btn,
+          xpath: "//div[starts-with(@class,'ComboBoxWithButtons__Content-')]/div[starts-with(@class,'buttons')][1]/button[1]")
   elements(:identified_hazard_name, xpath: "//label[@data-testid='identified-hazard']")
 
-  # elements(:ih_details1, xpath: "//div[contains(@class,'Hazard__HazardDescriptionTextarea-')]")
   elements(:ih_details2, xpath: "//div[contains(@class,'row-wrapper')][1]/div[contains(@class,'row-container')]")
-  # elements(:ecm_details, xpath: "//textarea[contains(@aria-labelledby,'existing-measures')]")
   elements(:ecm_details, xpath: "//div[contains(@class,'row-wrapper')][3]/div[contains(@class,'row-container')]")
   elements(:hazard_risk_details, xpath: "//div[contains(@class,'RiskCalculator__Container-')]")
   elements(:hazard_risk_details1, xpath: "//div[contains(@class,'ViewRiskCalculator__ViewContainer')]")
 
   elements(:hazard_existing_control_details, xpath: "//div[contains(@class,'Hazard__Container')]//textarea")
 
-  elements(:total_textarea, xpath: "//textarea")
-  elements(:total_p, xpath: "//p")
+  elements(:total_textarea, xpath: '//textarea')
+  elements(:total_p, xpath: '//p')
   @@add_hazard_btn = "//button/span[contains(.,'Add Hazard')]"
 
   def navigate_front_back
@@ -62,10 +61,10 @@ class Section3APage < Section2Page
       p ">> #{hazard_risk_details_elements[23].text}"
       p ">> #{hazard_risk_details_elements[24].text}"
       (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
-    rescue
+    rescue StandardError
       p ">> #{hazard_risk_details1_elements[23].text}"
       p ">> #{hazard_risk_details1_elements[24].text}"
-      (tmp === "Test Automation" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details1_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      (tmp === 'Test Automation' && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details1_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     end
   end
 
@@ -90,12 +89,12 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_add_hazard(_likelihood, _consequence)
     # for without applying measure
     # scroll_multiple_times(1)
-    likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
-    select_dra_risk(1)
-    sleep 1
-    consequence_btn_elements[(consequence_btn_elements.size - 2)].click
-    select_dra_risk(1)
-    sleep 1
+    # likelihood_btn_elements[(likelihood_btn_elements.size - 2)].click
+    # select_dra_risk(1)
+    # sleep 1
+    # consequence_btn_elements[(consequence_btn_elements.size - 2)].click
+    # select_dra_risk(1)
+    # sleep 1
 
     # for existing control measure
     scroll_multiple_times(2)
@@ -111,6 +110,7 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 2
+    BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times(1)
     likelihood_btn_elements[0].click
     select_dra_risk(_likelihood)
@@ -122,6 +122,7 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
     view_edit_btn
     sleep 1
+    BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times(3)
     sleep 1
     likelihood_btn_elements[1].click
@@ -133,9 +134,9 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
-    @@swap_flag === 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(4)
-    BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]",0)
-    scroll_multiple_times(1)
+    @@swap_flag == 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(2)
+    BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]", 0)
+    scroll_multiple_times(2)
     likelihood_btn_elements[2].click
     select_dra_risk(_likelihood)
     consequence_btn_elements[2].click
@@ -176,8 +177,10 @@ class Section3APage < Section2Page
   end
 
   def select_dra_risk(_risk)
-    sleep 2
-    level_to_choose_elements[(_risk.to_i - 1)].click
+    sleep 1
+    if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s != 'active'
+      options_text_elements[(_risk.to_i - 1)].click
+    end
     confirm_btn_elements.first.click
   end
 end

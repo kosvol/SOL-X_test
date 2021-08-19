@@ -2,12 +2,12 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 4,
+    "templateVersion": 5,
     "permitType": "Underwater Operation during daytime without any simultaneous operations",
     "answers": [
       {
         "fieldId": "team",
-        "value": "[\"AUTO_SOLX0012\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",
@@ -16,6 +16,10 @@
       {
         "fieldId": "openChecklistUnderwaterOp",
         "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "value": "\"4\""
       },
       {
         "fieldId": "gasReaderRequired",
@@ -30,7 +34,7 @@
         "value": "\"Head, Fleet Operations\""
       }
     ],
-    "submissionTimestamp": "2020-10-29T06:17:57.870Z"
+    "submissionTimestamp": "2021-07-12T05:46:14.824Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }

@@ -1,23 +1,23 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "cucumber", "3.1.2"
-gem "bundler", "2.1.4"
-gem "solargraph"
-gem "page-object", "2.2.6"
-gem "require_all", "~> 1.4.0"
-gem "appium_lib", "11.2.0"
-gem "logger"
-gem "httparty"
-gem "liquid"
-gem "os"
-gem "rspec", :require => "spec"
-gem "json-schema"
-gem "screenshot"
-gem "facets"
-gem "sinatra"
-gem "sinatra-contrib"
-gem "rake"
-gem "rufo"
+gem 'appium_lib', '11.2.0'
+gem 'bundler', '2.2.25'
+gem 'cucumber', '3.1.2'
+gem 'facets'
+gem 'httparty'
+gem 'json-schema'
+gem 'liquid'
+gem 'logger'
+gem 'os'
+gem 'page-object', '2.2.6'
+gem 'rake'
+gem 'require_all', '~> 1.4.0'
+gem 'rspec', require: 'spec'
+gem 'rufo', '~> 0.13.0'
+gem 'screenshot'
+gem 'sinatra'
+gem 'sinatra-contrib'
+gem 'solargraph'
 # gem "mysql2"
-gem "pg"
+gem 'pg'
 # gem "sinatra-cross_origin", "~> 0.3.1"

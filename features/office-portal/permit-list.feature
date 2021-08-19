@@ -11,6 +11,7 @@ Feature: PermitList
   Scenario: Verify the vessel name is displayed at the top bar and permits list after selecting (3579)
     Given I terminate permit submit_cold_work_clean_spill via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     Then I should see the vessel name at the top bar and permits list
@@ -36,6 +37,7 @@ Feature: PermitList
   Scenario: Verify the last terminated permit appears at the top of the list in the Office Portal (5133)
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select filter value with permit type "Permit to Work Forms"
@@ -47,6 +49,7 @@ Feature: PermitList
     And I remember the current permits quantity
     And I terminate permit submit_enclose_space_entry via service with 9015 user on the auto vessel
     And I wait for form status get changed to CLOSED on Cloud
+    And I sleep for 10 seconds
     And I refresh the browser
     And I check the forms number on the vessel card
     Then I should see the the form number is updated
@@ -63,6 +66,7 @@ Feature: PermitList
   Scenario: Verify users can select a form for review (4807, 3316)
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     When I wait for form status get changed to CLOSED on Cloud
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I select filter value with permit type "Permit to Work Forms"
@@ -71,10 +75,6 @@ Feature: PermitList
     Then I should see the selected form in a new tab
     And I should see the form contains 9 sections
     And I should see the Print Permit button at the bottom bar
-
-  #Scenario: Verify the stand alone RoL permit is displayed in the Office Portal
-
-  #Scenario: Verify the stand alone PRE permit is displayed in the Office Portal (COT)
 
   #Scenario: Verify the stand alone CRE permit is displayed in the Office Portal (LNG)
 
@@ -89,6 +89,7 @@ Feature: PermitList
     Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
     And I terminate permit submit_cold_work_clean_spill via service with 9015 user on the sit vessel
     When I wait for form status get changed to CLOSED on Cloud
+    And I sleep for 10 seconds
     And I log in to the Office Portal
     And I select the "Auto" vessel
     And I check the checkbox near the Permit No. title

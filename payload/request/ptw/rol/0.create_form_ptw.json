@@ -2,12 +2,12 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 4,
+    "templateVersion": 5,
     "permitType": "Rigging of Gangway & Pilot Ladder",
     "answers": [
       {
         "fieldId": "team",
-        "value": "[\"SIT_SOLX0012\"]"
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",

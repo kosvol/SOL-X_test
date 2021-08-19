@@ -1,29 +1,27 @@
 page1:
   [
-    "SOLX Automation Test",
+    "COTAUTO",
     "Rigging of Gangway & Pilot Ladder",
     "Standard procedure for rigging Pilot/Combination Ladder",
     "Test Automation",
     "Yes",
-    "MAS Daniel Alcantara",
+    "MAS COT MAS",
     "People",
     "Yes",
     "Master",
-    "Test Automation",
     "Yes",
     "Yes",
     "Yes",
-    "A/M Atif Hayat",
+    "A/M COT A/M",
     "Yes",
     "Yes",
     "Yes",
-    "Deck 3 Corridor",
   ]
 
 page2:
   [
     "Rigging of Gangway & Pilot Ladder",
-    "SOLX Automation Test",
+    "COTAUTO",
     "Port Pilot Ladder",
     "Yes",
     "Yes",

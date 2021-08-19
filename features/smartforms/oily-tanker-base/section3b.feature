@@ -9,17 +9,16 @@ Feature: Section3BDRA
     When I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I click on Submit for Termination
-    And I enter pin for rank A/M
+    And I review and withdraw permit with A/M rank
     And I submit permit for termination
-    And I sign on canvas with valid 9015 pin
+    And I sign with valid A/M rank
     And I click on back to home
     And I click on pending withdrawal filter
-    And I terminate the permit with 1111 pin
+    And I terminate the permit with MAS rank via Pending Withdrawal
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 3b
     Then I should see dra number and last assessment date populated
 
@@ -28,7 +27,7 @@ Feature: Section3BDRA
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 3b
     Then I should see work site inspected by crew member list display all crews
 
@@ -47,8 +46,8 @@ Feature: Section3BDRA
       | Critical Equipment Maintenance        | Maintenance on Fire Detection Alarm System                        | Standard Procedure for Maintenance on Fire Detection Alarm System                                 |
       | Cold Work                             | Cold Work - Connecting and Disconnecting Pipelines                | Standard procedures for connecting and disconnecting pipelines                                    |
       | Hot Work                              | Hot Work Level-2 in Designated Area                               | General / Standard Hot Work Procedure                                                             |
-      | Personnel Transfer By Transfer Basket | Personnel Transfer By Transfer Basket                             | Standard procedures for Personnel Transfer by Transfer Basket                                     |
-      | Enclosed Spaces Entry                 | Enclosed Spaces Entry                                             | General procedures for Enclosed Space Entry                                                       |
+      | Personnel Transfer By Transfer Basket | NA                                                                | Standard procedures for Personnel Transfer by Transfer Basket                                     |
+      | Enclosed Spaces Entry                 | NA                                                                | General procedures for Enclosed Space Entry                                                       |
       | Underwater Operations                 | Underwater Operation at night or concurrent with other operations | Standard/General procedures for Underwater Operation at night or concurrent with other operations |
 
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office

@@ -27,13 +27,18 @@ class OfficePortalPage
   element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
   element(:input_field, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
   element(:rol_dd_label, xpath: "//h4[contains(text(),'boarding arrangement:')]")
+  element(:s7_issued_from_date, xpath: "//h4[contains(text(),'Issued from')]/following-sibling::p")
+  element(:s7_issued_to_date, xpath: "//h4[contains(text(),'Issued till')]/following-sibling::p")
+  element(:s7_date_time, xpath: "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  element(:reporting_header, xpath: "//h1[contains(text(),'Reporting')]")
+  element(:permit_archive_tab, xpath: "//a[contains(text(),'Permit Archive')]")
+  element(:copy_header_attribute, xpath: "(//span[@class='form-id'][contains(text(),'AUTO')])[1]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
   elements(:permit_section_header, xpath: "//h2[contains(text(),'Section')]")
   elements(:permit_title_number, xpath: "//div[starts-with(@class,'PermitList__List-sc')]/..//span[starts-with(@class,'Text__TextSmall-sc')]")
   elements(:section_headers_all, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
-
 
   checkbox(:remember_checkbox, xpath: "//input[@type='checkbox']")
   checkboxes(:permit_checkbox, xpath: "//input[@type='checkbox']")
@@ -73,5 +78,42 @@ class OfficePortalPage
 
   def select_element_by_text_near(_text_title)
     $browser.find_element(:xpath, "//h4[contains(text(),'%s')]/..//p[starts-with(@class,'AnswerComponent__Answer')]"%_text_title)
+  end
+
+  def get_section_headers_list(_section)
+    subheadersArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//h2").each do |_subheader|
+      subheadersArr << _subheader.text
+    end
+    subheadersArr -= YAML.load_file("data/screens-label/#{_section}.yml")['subheaders_exceptions']
+    return subheadersArr
+  end
+
+  def get_section_subheaders_list(_section)
+    labelsArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//label").each do |_label|
+      labelsArr << _label.text
+    end
+    labelsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['labels_exceptions']
+    return labelsArr
+  end
+
+  def get_section_fields_list(_section)
+    fieldsArr = []
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{_section}')])/../..//h4").each do |_field|
+      fieldsArr << _field.text
+    end
+    fieldsArr -= YAML.load_file("data/screens-label/#{_section}.yml")['fields_exceptions']
+    return fieldsArr
+  end
+
+  def oa_date_time_with_offset(_approve_time, _time_offset)
+    if _time_offset.to_s[0] != "-"
+      date_time = (_approve_time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT+#{_time_offset})")
+    else
+      date_time = (_approve_time + (60*60*_time_offset)).strftime("%d/%b/%Y %H:%M LT (GMT#{_time_offset})")
+    end
+    p "#{date_time}"
+    return date_time
   end
 end

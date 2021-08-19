@@ -5,7 +5,6 @@ Feature: SmartFormsPermission
   So that ...
 
   Scenario: Verify permits filter displaying the right counts on smartform screen
-    Given I switch vessel to COT
     When I launch sol-x portal without unlinking wearable
     Then I should see permits match backend results
 
@@ -34,32 +33,32 @@ Feature: SmartFormsPermission
       | A C/O |
       | 2/O   |
       | A 2/O |
+      | 3/O   |
+      | A 3/O |
       | C/E   |
       | A C/E |
       | 2/E   |
       | A 2/E |
       | ETO   |
-      | 3/O   |
-      | A 3/O |
 
   Scenario Outline: Verify non RA cannot create permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
 
     Examples:
-      | rank   | pin  |
-      | Master | 1111 |
+      | rank  | pin  |
+      | MAS   | 1111 |
       # | 4/O    | 1010 |
-      | D/C    | 2317 |
+      | D/C   | 2317 |
       # | 3/E    | 4685 |
-      | A 3/E  | 6727 |
+      | A 3/E | 6727 |
       #     | 4/E    | 1311 |
       #     | A 4/E  | 0703 |
-      | BOS    | 1018 |
-      | PMN    | 4421 |
-      | A/B    | 6316 |
+      | BOS   | 1018 |
+      | PMN   | 4421 |
+      | A/B   | 6316 |
   # | O/S    | 7669 |
   # | OLR    | 0450 |
 
@@ -68,21 +67,21 @@ Feature: SmartFormsPermission
     And I navigate to create new permit
     And I enter pin for rank A/M
     Then I should see a list of available forms for selections
-      | Cold Work                                                    |
-      | Critical Equipment Maintenance                               |
-      | Enclosed Spaces Entry                                        |
-      | Helicopter Operations                                        |
-      | Hot Work                                                     |
-      | Personnel Transfer By Transfer Basket                        |
-      | Rigging of Gangway & Pilot Ladder                            |
-      | Rotational Portable Power Tools                              |
-      | Underwater Operations                                        |
-      | Use of non-intrinsically safe Camera                         |
-      | Use of ODME in Manual Mode                                   |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage |
-      | Work on Pressure Pipeline/Vessels                            |
-      | Working Aloft/Overside                                       |
-      | Working on Deck During Heavy Weather                         |
+      | Cold Work                                                                       |
+      | Critical Equipment Maintenance                                                  |
+      | Enclosed Spaces Entry                                                           |
+      | Helicopter Operations                                                           |
+      | Hot Work                                                                        |
+      | Personnel Transfer By Transfer Basket                                           |
+      | Rigging of Gangway & Pilot Ladder                                               |
+      | Rotational Portable Power Tools                                                 |
+      | Underwater Operations                                                           |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces |
+      | Use of ODME in Manual Mode                                                      |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage                    |
+      | Work on Pressure Pipeline/Vessels                                               |
+      | Working Aloft/Overside                                                          |
+      | Working on Deck During Heavy Weather                                            |
 
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable

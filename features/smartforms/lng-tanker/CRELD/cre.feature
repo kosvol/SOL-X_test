@@ -4,31 +4,31 @@ Feature: LNGCRE
   I want to ...
   So that ...
 
-  Background:
-    Given I switch vessel to LNG
+  #  Background:
+  #    Given I switch vessel to LNG
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
 
   Scenario: Verify user can see all the CRE questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     Then I should see CRE form questions
 
   Scenario Outline: Verify only these crew can create CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin <pin>
+    And I enter pin for rank <rank>
     Then I should see CRE landing screen
 
     Examples:
-      | rank                      | pin  |
-      # | Chief Officer             | 8383 |
-      | Additional Chief Officer  | 2761 |
-      # | Second Officer | 6268 |
-      | Additional Second Officer | 7865 |
-      # | 3/O                       | 0159 |
-      | A 3/O                     | 2674 |
+      | rank  |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario: Verify these crew cannot create CRE permit
     Given I launch sol-x portal without unlinking wearable
@@ -39,20 +39,18 @@ Feature: LNGCRE
   Scenario: Verify AGT can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
-    And I add all gas readings
-    And I enter pin for rank A/M
+    And I enter pin via service for rank C/O
+    And I add all gas readings with A/M rank
     And I set time
-    Then I will see popup dialog with By A/M Atif Hayat crew rank and name
+    Then I will see popup dialog with A/M LNG A/M crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas
+    Then I should see gas reading display with toxic gas and A/M LNG A/M as gas signer
 
   Scenario Outline: Verify any rank can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
-    And I add all gas readings
-    And I enter pin 4421
+    And I enter pin via service for rank C/O
+    And I add all gas readings with <rank> rank
     When I dismiss gas reader dialog box
 
     Examples:
@@ -66,7 +64,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for C/O Approval
     And I getting a permanent number from indexedDB
@@ -77,7 +75,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank <rank>
+    And I enter pin via service for rank <rank>
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for <rank> Approval
     And I getting a permanent number from indexedDB
@@ -95,7 +93,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -106,9 +104,8 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank <rank>
+    And I enter pin via service for rank <rank>
     Then I fill up CRE. Duration 4. Delay to activate 3
-    # And Get PRE id
     And for cre I submit permit for <rank> Approval
     And I getting a permanent number from indexedDB
     Then I activate the current CRE form
@@ -116,7 +113,7 @@ Feature: LNGCRE
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 180 seconds
+    And I activate CRE form via service
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     And I click on back arrow
@@ -136,7 +133,7 @@ Feature: LNGCRE
   Scenario: Verify only MAS can delete CRE permit in Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I click on back arrow
     And I navigate to "Created" screen for CRE
     And I delete the permit created
@@ -145,14 +142,14 @@ Feature: LNGCRE
   Scenario: Verify user cannot send CRE for approval with start time and duration
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And for cre I should see the disabled "Submit for Approval" button
 
   Scenario: Verify these roles can request update for CRE permit in Pending Approval State
     Given I launch sol-x portal without unlinking wearable
     # When I clear gas reader entries
     When I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -164,7 +161,7 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -173,7 +170,7 @@ Feature: LNGCRE
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
     And I click on back arrow
-    And I sleep for 180 seconds
+    And I activate CRE form via service
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active PRE" list
 
@@ -181,19 +178,19 @@ Feature: LNGCRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Rank: C/O
     Then I should see Add Gas button enabled
     And I should see Updates Needed button disabled
-  @wip
+
   Scenario: The Responsible Officer Signature should be displayed CRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 10
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -201,27 +198,27 @@ Feature: LNGCRE
     And I take note of start and end validity time for CRE
     And I check "Responsible Officer Signature" is present
     When I press the "Approve for Activation" button
-    And I sign on canvas with valid 8383 pin
+    And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
-    When I view permit with A/M rank and 8383 pin
+    When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin via service for rank C/O
     And I fill up CRE. Duration 4. Delay to activate 3
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
     And I take note of start and end validity time for CRE
     When I press the "Approve for Activation" button
-    And I sign on canvas with valid 8383 pin
+    And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
     And I sleep for 1 seconds
@@ -230,5 +227,28 @@ Feature: LNGCRE
     Then I terminate the PRE
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Terminated" list
-    When I view permit with A/M rank and 8383 pin
+    When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
+
+  Scenario: Gas Reader location stamp should not be missing
+    Given I launch sol-x portal
+    When I link wearable to rank C/O to zone
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin via service for rank C/O
+    And I fill up with gas readings CRE. Duration 4. Delay to activate 3
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I open the current CRE with status Pending approval. Rank: C/O
+    And I take note of start and end validity time for CRE
+    When I press the "Approve for Activation" button
+    And I sign with valid C/O rank
+    And I should see the page 'Permit Successfully Scheduled for Activation'
+    Then I press the "Back to Home" button
+    And I sleep for 1 seconds
+    And I activate CRE form via service
+    And I sleep for 1 seconds
+    When I navigate to "Active" screen for CRE
+    When I view permit with C/O rank
+    Then I check location in gas readings signature is present
+

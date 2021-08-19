@@ -41,7 +41,7 @@
       },
       {
         "fieldId": "locationOfWork",
-        "value": "{\"zone\":\"000000YGJ11ZSESBYNRXYRVVMK\",\"zoneDetails\":\"Test Automation\"}"
+        "value": "{\"zone\":\"COTAUTO-Z-AFT-STATION\",\"zoneDetails\":\"Test Automation\"}"
       },
       {
         "fieldId": "officeApproval",

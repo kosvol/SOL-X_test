@@ -5,30 +5,20 @@ require './././support/env'
 class SignaturePage < Section1Page
   include PageObject
 
-  element(:signing_canvas, xpath: '//canvas[@data-testid="signature-canvas"]')
-  element(:signature, xpath: "//div[@class='signature']/img")
+  element(:signing_canvas, css: 'canvas[data-testid="signature-canvas"]')
+  element(:signature, xpath: 'div.signature > img')
 
   def sign_and_done
-    sleep 1
-    sign_for_gas
-    sleep 1
-    select_location_of_work if zone_btn_element.text === "Select"
-    sleep 2
-    BrowserActions.poll_exists_and_click(done_btn_elements.first)
+    sign_and_select_location
+    done_btn_elements.first.click
   end
 
-  def sign_and_done_fsu
+  def sign_and_select_location
     sleep 1
-    sign_for_gas
+    sign_on_canvas
     sleep 1
-    fsu_select_location_of_work if zone_btn_element.text === "Select"
+    select_location_of_work if zone_btn_element.text === 'Select'
     sleep 1
-    BrowserActions.poll_exists_and_click(done_btn_elements.first)
-  end
-
-  def sign_for_gas
-    tmp = $browser.find_element(:xpath, '//canvas[@data-testid="signature-canvas"]')
-    $browser.action.click(tmp).perform
   end
 
   def is_signature_pad?
@@ -36,5 +26,10 @@ class SignaturePage < Section1Page
     true
   rescue StandardError
     false
+  end
+
+  def sign_on_canvas
+    BrowserActions.poll_exists_and_click(signing_canvas_element)
+    BrowserActions.poll_exists_and_click(signing_canvas_element)
   end
 end

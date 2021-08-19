@@ -10,7 +10,7 @@ fields_exceptions:
     "Reason",
     "Work Site Inspection Carried Out?",
     "By:",
-    "Who is at Risk?",
+    "At Risk?",
     "Has this DRA been sent to the office for review?",
     "By:",
     "Last Assessment for similar work activity",

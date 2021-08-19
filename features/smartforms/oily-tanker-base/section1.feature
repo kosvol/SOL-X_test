@@ -9,7 +9,7 @@ Feature: Section1
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     Then I should see navigation dropdown
 
   Scenario: Verify permits details are pre-filled
@@ -17,7 +17,7 @@ Feature: Section1
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     Then I should see permit details are pre-filled
 
   Scenario: Verify sea state dropdown input fields are correct
@@ -25,7 +25,7 @@ Feature: Section1
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     Then I should see a list of sea states
       | 0 : Calm (glassy)     |
       | 1 : Calm (rippled)    |
@@ -44,7 +44,7 @@ Feature: Section1
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     Then I should see a list of wind forces
       | 0 : Calm             |
       | 1 : Light Air        |
@@ -65,7 +65,7 @@ Feature: Section1
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Use of ODME in Manual Mode permit
-    And I select Use of ODME in Manual Mode permit for level 2
+    And I select NA permit for level 2
     Then I should not see previous button exists
 
   Scenario Outline: Verify question input field exists for critical maintenance permit
@@ -105,20 +105,20 @@ Feature: Section1
     Then I should not see maintenance duration section and require text
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                                        |
-      | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                        |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                   |
-      | Helicopter Operations                                        | Helicopter Operations                                                   |
-      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                             |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer By Transfer Basket                                   |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                             |
-      | Underwater Operations                                        | Underwater Operations at night for mandatory drug and contraband search |
-      | Use of non-intrinsically safe Camera                         | Use of non-intrinsically safe Camera                                    |
-      | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                              |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Work on Electrical Equipment and Circuits – Low/High Voltage            |
-      | Work on Pressure Pipeline/Vessels                            | Work on Pressure Pipeline/Vessels                                       |
-      | Working Aloft/Overside                                       | Working Aloft/Overside                                                  |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                                    |
+      | level_one_permit                                                                | level_two_permit                                                        |
+      | Cold Work                                                                       | Cold Work - Cleaning Up of Spill                                        |
+      | Enclosed Spaces Entry                                                           | NA                                                                      |
+      | Helicopter Operations                                                           | NA                                                                      |
+      | Hot Work                                                                        | Hot Work Level-1 (Loaded & Ballast Passage)                             |
+      | Personnel Transfer By Transfer Basket                                           | NA                                                                      |
+      | Rotational Portable Power Tools                                                 | Use of Portable Power Tools                                             |
+      | Underwater Operations                                                           | Underwater Operations at night for mandatory drug and contraband search |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                      |
+      | Use of ODME in Manual Mode                                                      | NA                                                                      |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage                    | NA                                                                      |
+      | Work on Pressure Pipeline/Vessels                                               | NA                                                                      |
+      | Working Aloft/Overside                                                          | NA                                                                      |
+      | Working on Deck During Heavy Weather                                            | NA                                                                      |
 
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given I launch sol-x portal without unlinking wearable

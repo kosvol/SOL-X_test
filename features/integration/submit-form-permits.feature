@@ -1,4 +1,4 @@
-@submit-permits-on-section6
+@ptw-integration
 Feature: SubmitPermit
   As a ...
   I want to ...
@@ -37,9 +37,9 @@ Feature: SubmitPermit
   Scenario: Submit permit data Enclosed Spaces Entry into pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I fill up section 1 with default value
     And I navigate to section 3a
     And I add a new hazard
@@ -52,20 +52,19 @@ Feature: SubmitPermit
     And I add additional dra member
     And I press next for 1 times
     And I fill up section 3d
-    And I sign section with 9015 as valid pin
+    And I sign section with A/M as valid rank
     And I press next for 1 times
     And I fill up section 4a
     And I press next for 1 times
     And I fill up checklist
-    And I sign checklist with 9015 as valid pin
+    And I sign checklist with A/M as valid rank
     And I press next for 1 times
     And I select yes to EIC
     And I fill up EIC certificate
     And I press next for 1 times
     And I fill up section 5
     And I press next for 1 times
-    And I add all gas readings
-    And I enter pin for rank A/M
+    And I add all gas readings with A/M rank
     And I dismiss gas reader dialog box
     And I submit smoke test permit
     And I click on back to home
@@ -77,7 +76,7 @@ Feature: SubmitPermit
   #   And I navigate to create new permit
   #   And I enter pin for rank A/M
   #   And I select Enclosed Spaces Entry permit
-  #   And I select Enclosed Spaces Entry permit for level 2
+  #   And I select NA permit for level 2
   #   And I fill up section 1 with default value
   #   And I navigate to section 3a
   #   And I add a new hazard
@@ -94,15 +93,14 @@ Feature: SubmitPermit
   #   And I fill up section 4a
   #   And I press next for 1 times
   #   And I fill up checklist
-  #   And I sign checklist with 9015 as valid pin
+  #   And I sign checklist with A/M as valid rank
   #   And I press next for 1 times
   #   And I select yes to EIC
   #   And I fill up EIC certificate
   #   And I press next for 1 times
   #   And I fill up section 5
   #   And I press next for 1 times
-  #   And I add all gas readings
-  #   And I enter pin for rank A/M
+  #   And I add all gas readings with A/M rank
   #   And I dismiss gas reader dialog box
   #   And I submit smoke test permit
   #   And I click on back to home
@@ -123,7 +121,6 @@ Feature: SubmitPermit
     And I review page 3c of submitted enclose workspace permit
     And I review page 3d of submitted enclose workspace permit
     And I review page 4a of submitted enclose workspace permit
-    # And I navigate to section 4b
     And I review page 4a checklist of submitted enclose workspace permit
     And I review page 4b of submitted enclose workspace permit
     And I review page 5 of submitted enclose workspace permit

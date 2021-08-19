@@ -9,9 +9,9 @@ Feature: Section4AChecklist
   Scenario: Verify I should not see location of work in these checklist
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4a
     And I uncheck the pre-selected checklist
     And I select the matching Cold Work Operation Checklist checklist
@@ -48,66 +48,65 @@ Feature: Section4AChecklist
     And I press next for 1 times
     Then I should not see location of work in checklist
 
-  @test1
   Scenario: Verify checklist questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4a
-    # And I press next for 1 times
-    # Then I should see Enclosed Spaces Entry Checklist checklist questions
-    # And I should see info boxes
-    # And I should see warning boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Hot Work Outside Designated Area checklist
-    # And I press next for 1 times
-    # Then I should see Hot Work Outside Designated Area checklist questions
-    # And I should see info boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Underwater Operation checklist
-    # And I press next for 1 times
-    # Then I should see Underwater Operation checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Working Aloft/Overside checklist
-    # And I press next for 1 times
-    # Then I should see Working Aloft Overside checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Work on Pressure Pipelines checklist
-    # And I press next for 1 times
-    # Then I should see Work on Pressure Pipelines checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Use of ODME in Manual Mode checklist
-    # And I press next for 1 times
-    # Then I should see Use of ODME in Manual Mode checklist questions
-    # And I should see warning boxes
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Personnel Transfer by Transfer Basket checklist
-    # And I press next for 1 times
-    # Then I should see Personnel Transfer by Transfer Basket checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Helicopter Operation Checklist checklist
-    # And I press next for 1 times
-    # Then I should see Helicopter Operation checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Rotational Portable Power Tools (PPT) checklist
-    # And I press next for 1 times
-    # Then I should see Rotational Portable Power Tools (PPT) checklist questions
-    # And I press previous for 1 times
-    # And I uncheck the pre-selected checklist
-    # And I select the matching Work on Electrical Equipment and Circuits checklist
-    # And I press next for 1 times
-    # Then I should see Work on Electrical Equipment and Circuits checklist questions
-    # And I press previous for 1 times
+    And I press next for 1 times
+    Then I should see Enclosed Spaces Entry Checklist checklist questions
+    And I should see info boxes
+    And I should see warning boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Hot Work Outside Designated Area checklist
+    And I press next for 1 times
+    Then I should see Hot Work Outside Designated Area checklist questions
+    And I should see info boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Underwater Operation checklist
+    And I press next for 1 times
+    Then I should see Underwater Operation checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Working Aloft/Overside checklist
+    And I press next for 1 times
+    Then I should see Working Aloft Overside checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Pressure Pipelines checklist
+    And I press next for 1 times
+    Then I should see Work on Pressure Pipelines checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Use of ODME in Manual Mode checklist
+    And I press next for 1 times
+    Then I should see Use of ODME in Manual Mode checklist questions
+    And I should see warning boxes
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Personnel Transfer by Transfer Basket checklist
+    And I press next for 1 times
+    Then I should see Personnel Transfer by Transfer Basket checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Helicopter Operation Checklist checklist
+    And I press next for 1 times
+    Then I should see Helicopter Operation checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Rotational Portable Power Tools (PPT) checklist
+    And I press next for 1 times
+    Then I should see Rotational Portable Power Tools (PPT) checklist questions
+    And I press previous for 1 times
+    And I uncheck the pre-selected checklist
+    And I select the matching Work on Electrical Equipment and Circuits checklist
+    And I press next for 1 times
+    Then I should see Work on Electrical Equipment and Circuits checklist questions
+    And I press previous for 1 times
     And I uncheck the pre-selected checklist
     And I select the matching Critical Equipment Maintenance Checklist checklist
     And I press next for 1 times
@@ -143,53 +142,52 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as valid pin
-    And I set time
+    And I sign checklist with <rank> as valid rank
     Then I should see signed details
 
     Examples:
-      | Rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
+      | rank  | pin  | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
       | A/M   | 9015 | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
-      | C/O   | 8383 | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
+      # | C/O   | 8383 | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
       | A C/O | 2761 | Hot Work                                                     | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
-      | 2/O   | 6268 | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
+      # | 2/O   | 6268 | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
       | A 2/O | 7865 | Hot Work                                                     | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      | 3/O   | 0159 | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
+      # | 3/O   | 0159 | Enclosed Spaces Entry                                        | NA                                                           | Enclosed Space Entry Checklist            |
       | A 3/O | 2674 | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
       | C/E   | 8248 | Underwater Operations                                        | Underwater Operation at night or concurrent with other operations               | Underwater Operation                      |
       # | A C/E | 5718 | Underwater Operations                                         | Underwater Operations at night for mandatory drug and contraband search                                                   | Underwater Operation                                          |
-      | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
-      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
-      | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | 4/E   | 1311 | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
+      # | 2/E   | 2523 | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
+      | A 2/E | 3030 | Work on Pressure Pipeline/Vessels                            | NA                                                                              | Work on Pressure Pipelines                |
+      # | 3/E   | 4685 | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
+      | A 3/E | 6727 | Personnel Transfer By Transfer Basket                        | NA                                                                              | Personnel Transfer by Transfer Basket     |
+      # | 4/E   | 1311 | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
+      | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                                                              | Work on Electrical Equipment and Circuits |
       | ETO   | 0856 | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
 
   Scenario Outline: Verify non checklist creator signature cannot be signed on checklist for non maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
     And I select the matching <checklist> checklist
     When I press next for 1 times
-    And I sign checklist with <pin> as invalid pin
+    And I sign checklist with <rank> as invalid rank
     Then I should see not authorize error message
 
     Examples:
-      | Rank   | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
-      | Master | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
-      | D/C    | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
-      # | SAA    | 6445 | Enclosed Spaces Entry | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist  |
-      | BOS    | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
+      | rank | pin  | level_one_permit      | level_two_permit                                                                | checklist                        |
+      | MAS  | 1111 | Hot Work              | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area  |
+      | D/C  | 2317 | Hot Work              | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area |
+      # | SAA    | 6445 | Enclosed Spaces Entry | NA                                                           | Enclosed Space Entry Checklist  |
+      | BOS  | 1018 | Underwater Operations | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation             |
   # | 5/E    | 6322 | Working Aloft/Overside     | Working Aloft / Overside                                                | Working Aloft/Overside          |
   # | E/C    | 9985 | Work on Pressure Pipeline/Vessels                             | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                                    |
   # | ELC    | 9298 | Use of ODME in Manual Mode | Use of ODME in Manual Mode                                              | Use of ODME in Manual Mode      |
@@ -205,43 +203,42 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist creator signature can be signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as valid pin
-    And I set time
+    And I sign checklist with <rank> as valid rank
     Then I should see signed details
 
     Examples:
-      | Rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
+      | rank | pin  | level_one_permit               | level_two_permit                          | checklist                                |
       | ETO  | 0856 | Critical Equipment Maintenance | Maintenance on Fixed Fire Fighting System | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify non checklist creator signature cannot signed on checklist for maintenance permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
     And I navigate to section 4a
     Then I should see correct checklist <checklist> pre-selected
     When I press next for 1 times
-    And I sign checklist with <pin> as invalid pin
+    And I sign checklist with <rank> as invalid rank
     Then I should see not authorize error message
 
     Examples:
-      | Rank   | pin  | level_one_permit               | level_two_permit      | checklist                                |
-      | Master | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
+      | rank | pin  | level_one_permit               | level_two_permit      | checklist                                |
+      | MAS  | 1111 | Critical Equipment Maintenance | Maintenance on Anchor | Critical Equipment Maintenance Checklist |
   # | 4/O    | 1010 | Critical Equipment Maintenance | Maintenance on Emergency Fire Pump | Critical Equipment Maintenance Checklist |
 
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for non maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4a
@@ -249,8 +246,8 @@ Feature: Section4AChecklist
     And I should see permit number, date and time populated
 
     Examples:
-      | level_one_permit      | level_two_permit      | checklist                      |
-      | Enclosed Spaces Entry | Enclosed Spaces Entry | Enclosed Space Entry Checklist |
+      | level_one_permit      | level_two_permit | checklist                      |
+      | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
   # | Underwater Operations                 | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                   |
   # | Working Aloft/Overside                | Working Aloft / Overside                                                | Working Aloft/Overside                 |
   # | Work on Pressure Pipeline/Vessels     | Work on pressure pipelines/pressure vessels                             | Work on Pressure Pipelines             |
@@ -264,7 +261,7 @@ Feature: Section4AChecklist
   Scenario Outline: Verify checklist form is pre-populated with PTW permit number, data and time for maintenance permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin 2523
+    And I enter pin for rank 2/E
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration less than 2 hours

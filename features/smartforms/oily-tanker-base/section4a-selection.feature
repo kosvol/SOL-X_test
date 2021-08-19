@@ -9,7 +9,7 @@ Feature: Section4AChecklistSelection
     And I navigate to create new permit
     And I enter pin for rank A/M
     And I select Enclosed Spaces Entry permit
-    And I select Enclosed Spaces Entry permit for level 2
+    And I select NA permit for level 2
     And I navigate to section 4a
     Then I should see this list of available checklist
       | Cold Work Operation Checklist             |
@@ -19,7 +19,7 @@ Feature: Section4AChecklistSelection
       | Hot Work Outside Designated Area          |
       | Hot Work Within Designated Area           |
       | Personnel Transfer by Transfer Basket     |
-      | Pump Room/Compressor Room Entry Checklist |
+      | Pump Room Entry Checklist                 |
       | Rotational Portable Power Tools (PPT)     |
       | Underwater Operation                      |
       | Use of Camera Checklist                   |
@@ -70,31 +70,31 @@ Feature: Section4AChecklistSelection
     Then I should see correct checklist <checklist> pre-selected
 
     Examples:
-      | level_one_permit                                             | level_two_permit                                                                | checklist                                 |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area           |
-      | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
+      | level_one_permit                                                                | level_two_permit                                                                | checklist                                 |
+      | Hot Work                                                                        | Hot Work Level-2 in Designated Area                                             | Hot Work Within Designated Area           |
+      | Hot Work                                                                        | Hot Work Level-1 (Loaded & Ballast Passage)                                     | Hot Work Outside Designated Area          |
       # | Hot Work                                                     | Hot Work Level-2 outside E/R (Ballast Passage)                                  | Hot Work Outside Designated Area          |
       # | Hot Work                                                     | Hot Work Level-2 outside E/R (Loaded Passage)                                   | Hot Work Outside Designated Area          |
-      | Hot Work                                                     | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
-      | Enclosed Spaces Entry                                        | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
-      | Underwater Operations                                        | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
+      | Hot Work                                                                        | Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage) | Hot Work Outside Designated Area          |
+      | Enclosed Spaces Entry                                                           | NA                                                                              | Enclosed Space Entry Checklist            |
+      | Underwater Operations                                                           | Underwater Operation during daytime without any simultaneous operations         | Underwater Operation                      |
       # | Underwater Operations                                        | Underwater Operation at night or concurrent with other operations           | Underwater Operation                      |
       # | Underwater Operations                                        | Underwater Operations at night for mandatory drug and contraband search                                                   | Underwater Operation                      |
-      | Working Aloft/Overside                                       | Working Aloft / Overside                                                        | Working Aloft/Overside                    |
-      | Work on Pressure Pipeline/Vessels                            | Work on pressure pipelines/pressure vessels                                     | Work on Pressure Pipelines                |
-      | Use of ODME in Manual Mode                                   | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | Helicopter Operations                                        | Helicopter Operation                                                            | Helicopter Operation Checklist            |
-      | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                              | Work on Electrical Equipment and Circuits |
-      | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
-      | Rotational Portable Power Tools                              | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
-      | Use of non-intrinsically safe Camera                         | Use of Non-Intrinsically Safe Camera                                            | Use of Camera Checklist                   |
-      | Working on Deck During Heavy Weather                         | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings                 | Cold Work Operation Checklist             |
+      | Working Aloft/Overside                                                          | NA                                                                              | Working Aloft/Overside                    |
+      | Work on Pressure Pipeline/Vessels                                               | NA                                                                              | Work on Pressure Pipelines                |
+      | Use of ODME in Manual Mode                                                      | NA                                                                              | Use of ODME in Manual Mode                |
+      | Personnel Transfer By Transfer Basket                                           | NA                                                                              | Personnel Transfer by Transfer Basket     |
+      | Helicopter Operations                                                           | NA                                                                              | Helicopter Operation Checklist            |
+      | Work on Electrical Equipment and Circuits – Low/High Voltage                    | NA                                                                              | Work on Electrical Equipment and Circuits |
+      | Rotational Portable Power Tools                                                 | Use of Portable Power Tools                                                     | Rotational Portable Power Tools (PPT)     |
+      | Rotational Portable Power Tools                                                 | Use of Hydro blaster/working with High-pressure tools                           | Rotational Portable Power Tools (PPT)     |
+      | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | NA                                                                              | Use of Camera Checklist                   |
+      | Working on Deck During Heavy Weather                                            | NA                                                                              | Work on Deck During Heavy Weather         |
+      | Cold Work                                                                       | Cold Work - Blanking/Deblanking of Pipelines and Other Openings                 | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Cleaning Up of Spill                                                | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Connecting and Disconnecting Pipelines                              | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Maintenance on Closed Electrical Equipment and Circuits             | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Maintenance Work on Machinery                                       | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Removing and Fitting of Valves, Blanks, Spades, or Blinds           | Cold Work Operation Checklist             |
       # | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                             | Cold Work Operation Checklist             |
-      | Cold Work                                                    | Cold Work - Working in Hazardous or Dangerous Areas                             | Work on Hazardous Substances              |
+      | Cold Work                                                                       | Cold Work - Working in Hazardous or Dangerous Areas                             | Work on Hazardous Substances              |

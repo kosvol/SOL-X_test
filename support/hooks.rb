@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-'' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
-'' ' DO NOT TOUCH THIS WHEN UNSURE ' ''
-'' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' '' ''
+#########################################################
+############ DO NOT TOUCH THIS WHEN UNSURE ##############
+#########################################################
 
 AfterConfiguration do |config|
-  unless %w[MAC WINDOWS Android iOS iOS-web Android-web].include? (ENV['OS']).to_s
-    raise "Invalid OS => #{ENV['OS']}"
-  end
+  raise "Invalid OS => #{ENV['OS']}" unless %w[MAC WINDOWS Android iOS iOS-web Android-web
+                                               WIN].include? (ENV['OS']).to_s
 
   $client = Selenium::WebDriver::Remote::Http::Default.new
   $client.read_timeout = 60
@@ -40,17 +39,18 @@ end
 After do |scenario|
   begin
     if scenario.failed?
-      @log.info("Exception: #{scenario.exception}")
-      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
-    elsif scenario.status.to_s == "undefined"
-      $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}", scenario.name.gsub(' ', '_'), @browser)
+      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
+                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+    elsif scenario.status.to_s == 'undefined'
+      $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}",
+                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}", scenario.name.gsub(' ', '_'), @browser)
     end
   rescue Exception => e
     $extent_test.info(:fail, 'Exception raised from after scenario rescue', scenario, @browser)
   end
-  
+
   begin
-    @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
+    # @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
 
@@ -59,16 +59,16 @@ After do |scenario|
 end
 
 AfterStep do |scenario|
-  begin
-    if scenario.passed?
-      $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully", scenario, @browser)
-      @step += 1
-    else
-      $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
-    end
-  rescue Exception => e
-    $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
+  if scenario.passed?
+    $extent_test.info(:pass, "Step #{@step + 1}: #{@all_steps[@step]}", "Executed #{@all_steps[@step]} successfully",
+                      scenario, @browser)
+    @step += 1
+  elsif scenario.status.to_s == 'undefined'
+    $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}",
+                      "Executed #{@all_steps[@step]} - ERROR: Undefined Step", scenario, @browser)
   end
+rescue Exception => e
+  $extent_test.info(:fail, 'Exception raised from after step rescue', scenario, @browser)
 end
 
 at_exit do
