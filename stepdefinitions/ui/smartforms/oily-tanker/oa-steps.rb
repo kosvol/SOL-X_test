@@ -36,7 +36,7 @@ And(/^I approve oa permit via oa link manually with from 0 hour to 01 hour$/) do
 end
 
 And(/^I approve oa permit via oa link manually$/) do
-  # $browser.get("https://office.dev.safevue.ai/permit-preview/01F23C5B44MVT2A3WRFABN85NB?formId=AUTO/PTW/2021/191&staffId=410ab5c6feb3d2f1b030b9d9ce036138")
+  # $browser.get("https://office.dev.safevue.ai/permit-preview/01FDDK9Z9DEBEJR3XVSCM8FX6F?staffId=410ab5c6feb3d2f1b030b9d9ce036138")
   sleep 5
   on(OAPage).approve_permit_btn_element.click
   on(OAPage).select_yes_on_checkbox

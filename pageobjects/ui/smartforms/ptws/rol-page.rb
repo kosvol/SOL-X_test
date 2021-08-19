@@ -26,6 +26,7 @@ class ROLPage < Section9Page
     confirm_btn_elements.last.click
     rol_inputs_elements[4].click
     rol_inputs_elements[7].click
+    scroll_multiple_times(3)
     last_assessment_date_element.click
     sleep 1
     current_date

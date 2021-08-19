@@ -49,10 +49,10 @@ class OAPage < Section9Page
   elements(:designation, xpath: "//ul[contains(@class,'UnorderedList')]/li")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
   element(:comment_bottom_notification, xpath: "//div[contains(@class,'CommentForm')]")
-  @@comment_base = "Head, Fleet Operations (Backup)
+  @@comment_base = 'Head, Fleet Operations (Backup)
   Test Automation
   %s %s (GMT+0)
-  Test Automation"
+  Test Automation'
   ## END Comment elements ###
 
   ## Comment attributes ###
@@ -109,6 +109,7 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
+    scroll_multiple_times(3)
     ### set from time
     date_time_from_elements[1].click
     starttime = Time.now.utc.strftime('%k').to_i + 1
@@ -136,7 +137,7 @@ class OAPage < Section9Page
     end
 
     ### set to time
-    sleep 1
+    sleep 2
     date_time_to_elements[1].click
     sleep 2
     endtime = Time.now.utc.strftime('%k').to_i + 9
