@@ -94,7 +94,7 @@ Feature: PermitOverview
       | condition |
       | gas_yes   |
       | gas_no    |
-  @ska
+
   Scenario: Verify the EIC section shows the same fields as in the Client app
     Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the EIC eic_yes
     When I wait for form status get changed to CLOSED on Cloud
