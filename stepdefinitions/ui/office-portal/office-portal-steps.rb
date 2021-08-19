@@ -49,11 +49,6 @@ Given(/^I log in to the Office Portal$/) do
   step 'I launch Office Portal'
   step 'I enter a valid password'
   step 'I click on Log In Now button'
-  ### Can be removed after SOL-7474 is fixed
-  sleep(3)
-  step 'I enter a valid password'
-  step 'I click on Log In Now button'
-  ###
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).reporting_header_element)
 end
 
