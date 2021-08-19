@@ -37,16 +37,17 @@ Feature: Section6
     And I navigate to section 6
     Then I should see submit button disabled
 
-  Scenario: Verify gas reading don't get cleared after cancel from signing
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank A/M
-    And I select Helicopter Operations permit
-    And I select NA permit for level 2
-    And I navigate to section 6
-    And I press the Yes button to enable gas testing
-    And I add all gas readings and cancel from pin screen
-    Then I should see gas reading still exists
+  ### Not a valid scenario anymore - Leave it first ###
+  # Scenario: Verify gas reading don't get cleared after cancel from signing
+  #   Given I launch sol-x portal without unlinking wearable
+  #   And I navigate to create new permit
+  #   And I enter pin for rank A/M
+  #   And I select Helicopter Operations permit
+  #   And I select NA permit for level 2
+  #   And I navigate to section 6
+  #   And I press the Yes button to enable gas testing
+  #   And I add all gas readings and cancel from pin screen
+  #   Then I should see gas reading still exists
 
   Scenario: Verify gas reading dead flow not exists
     Given I launch sol-x portal without unlinking wearable
@@ -99,7 +100,7 @@ Feature: Section6
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I add all gas readings with <rank> rank
+    And I trigger gas readings input with <rank> rank
     Then I should see not authorize error message
 
     Examples:
@@ -116,7 +117,7 @@ Feature: Section6
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I fill only location of work
-    And I navigate to section 4a
+    And I navigate to section 6
     And I press next for 1 times
     And I sign checklist and section 5
     And I press next for 1 times

@@ -300,8 +300,7 @@ Feature: PumpRoomEntry
     And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
-    And I enter without sign new entry log
-    And I sign for gas
+    And I click on new entry log button
     And I enter pin via service for rank <rank>
     Then I should see not authorize error message
 
@@ -324,9 +323,10 @@ Feature: PumpRoomEntry
     And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
+    And I click on new entry log button
+    And I enter pin via service for rank <rank>
     And I enter without sign new entry log
     And I sign for gas
-    And I enter pin via service for rank <rank>
     And I send entry report with 1 optional entrants
     Examples:
       | rank  |
@@ -345,9 +345,10 @@ Feature: PumpRoomEntry
     And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
+    And I click on new entry log button
+    And I enter pin via service for rank <rank>
     And I enter without sign new entry log
     And I sign for gas
-    And I enter pin via service for rank <rank>
     And I send entry report with 1 optional entrants
     Examples:
       | rank  |
