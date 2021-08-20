@@ -41,7 +41,7 @@ Feature: Section8
     And I submit permit for Master Approval
     And I click on back to home
     And I click on pending approval filter
-    And I open a permit pending Master Approval with MAS rank
+    And I open a permit pending Master Approval with A/M rank
     And I press next for 11 times
     And I sign the permit for submission to active state
     And I click on back to home
