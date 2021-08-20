@@ -48,20 +48,20 @@ Feature: SmartFormsPermission
     Then I should see not authorize error message
 
     Examples:
-      | rank  | pin  |
-      | A/M   | 1234 |
-      | MAS   | 1111 |
-      # | 4/O    | 1010 |
-      | D/C   | 2317 |
-      # | 3/E    | 4685 |
-      | A 3/E | 6727 |
-      #     | 4/E    | 1311 |
-      #     | A 4/E  | 0703 |
-      | BOS   | 1018 |
-      | PMN   | 4421 |
-      | A/B   | 6316 |
-  # | O/S    | 7669 |
-  # | OLR    | 0450 |
+      | rank  |
+      | A/M   |
+      | MAS   |
+      | 4/O   |
+      | D/C   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | BOS   |
+      | PMN   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
