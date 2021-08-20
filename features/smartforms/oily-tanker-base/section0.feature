@@ -49,6 +49,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank  | pin  |
+      | A/M   | 1234 |
       | MAS   | 1111 |
       # | 4/O    | 1010 |
       | D/C   | 2317 |

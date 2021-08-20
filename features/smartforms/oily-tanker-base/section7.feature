@@ -127,7 +127,7 @@ Feature: Section7
 
     Examples:
       | rank | pin  | permit_types                         | permit_payload                |
-      | A/M  | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      | C/O  | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Chief Officer              | 8383 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Additional Chief Officer   | 2761 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
   # | Second Officer             | 6268 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -149,7 +149,7 @@ Feature: Section7
 
     Examples:
       | rank | pin  | permit_types          | permit_payload             |
-      | A/M  | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | 2/O  | 9015 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Chief Officer              | 8383 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Additional Chief Officer   | 2761 | Enclosed Spaces Entry | submit_enclose_space_entry |
 #     | Second Officer             | 6268 | Enclosed Spaces Entry | submit_enclose_space_entry |

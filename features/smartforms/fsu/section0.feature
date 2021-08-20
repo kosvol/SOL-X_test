@@ -14,7 +14,7 @@ Feature: LNGSmartFormsPermission
         And I submit permit for Master Approval
         And I click on back to home
         And I click on pending approval filter
-        And I open a permit pending Master Approval with C/E rank
+        And I open a permit pending Master Approval with A/M rank
         And I press next for 1 times
         And I select rol permit active duration 1 hour
         And I should see ROL submit button enabled
