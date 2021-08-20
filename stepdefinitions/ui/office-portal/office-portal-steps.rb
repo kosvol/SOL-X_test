@@ -319,13 +319,13 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
   labels_arr = []
   subheaders_arr = []
   if what_section == 'Energy Isolation Certificate'
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//h4").each do |field|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h4").each do |field|
       fields_arr << field.text
     end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//label").each do |label|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//label").each do |label|
       labels_arr << label.text
     end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[2]/../..//h2").each do |subheader|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h2").each do |subheader|
       subheaders_arr << subheader.text
     end
   else
