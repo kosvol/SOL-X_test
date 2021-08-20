@@ -105,7 +105,7 @@ Feature: CreatedPermitToWork
   Scenario: Verify section 6 buttons display are correct
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Use of ODME in Manual Mode permit
     And I select NA permit for level 2
     And I click on back arrow
@@ -118,19 +118,19 @@ Feature: CreatedPermitToWork
   Scenario: Verify created permit data matched on edit screen for Permit Details
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Use of ODME in Manual Mode permit
     And I select NA permit for level 2
     And I click on back arrow
     When I navigate to "Created" screen for forms
     And I want to edit the newly created permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     Then I should see correct permit details
 
   Scenario: Verify created permit is under Created Permit to Work
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
@@ -140,7 +140,7 @@ Feature: CreatedPermitToWork
   Scenario: Verify deleted permit under Created Permit to Work refresh listing after deletion
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I click on back arrow
@@ -151,7 +151,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify AGT can add gas reading on section 6 for permit on Created state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
@@ -168,7 +168,7 @@ Feature: CreatedPermitToWork
     Examples:
       | rank  | level_one_permit      | level_two_permit |
       # | MAS   | Enclosed Spaces Entry | NA |
-      # | A/M   | Enclosed Spaces Entry | NA |
+      # | C/O   | Enclosed Spaces Entry | NA |
       # | C/O   | Enclosed Spaces Entry | NA |
       # | A C/O | Enclosed Spaces Entry | NA |
       # | 2/O   | Enclosed Spaces Entry | NA |
@@ -188,7 +188,7 @@ Feature: CreatedPermitToWork
   Scenario Outline: Verify checklist creator can only edit checklist and eic in PTW Created State
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I click on back arrow
@@ -209,7 +209,7 @@ Feature: CreatedPermitToWork
       | A 3/E |
       | 4/E   |
       | A 4/E |
-      | A/M   |
+      | C/O   |
       | C/O   |
       | A C/O |
       | 2/O   |

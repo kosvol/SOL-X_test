@@ -52,9 +52,9 @@ Feature: LNGClosedPermit
         Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
         When I launch sol-x portal without unlinking wearable
         And I click on active filter
-        And I review and withdraw permit with A/M rank
+        And I review and withdraw permit with C/O rank
         And I submit permit for termination
-        And I sign with valid A/M rank
+        And I sign with valid C/O rank
         And I click on back to home
         And I click on pending withdrawal filter
         And I terminate the permit with C/E rank via Pending Withdrawal
@@ -66,9 +66,9 @@ Feature: LNGClosedPermit
         Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
         When I launch sol-x portal without unlinking wearable
         And I click on active filter
-        And I review and withdraw permit with A/M rank
+        And I review and withdraw permit with C/O rank
         And I submit permit for termination
-        And I sign with valid A/M rank
+        And I sign with valid C/O rank
         And I click on back to home
         And I click on pending withdrawal filter
         And I request terminating permit to be updated with C/E rank

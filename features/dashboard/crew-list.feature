@@ -116,7 +116,7 @@ Feature: CrewList
     Examples:
       | crew_id       | current_rank |
       | CDEV_SOLX0001 | MAS          |
-      | CDEV_SOLX0012 | A/M          |
+      | CDEV_SOLX0012 | C/O          |
       | CDEV_TEST0001 | C/O          |
       | CDEV_SOLX0005 | A C/O        |
       # | CDEV_SOLX0006 | 2/O          |

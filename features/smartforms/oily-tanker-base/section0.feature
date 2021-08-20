@@ -28,7 +28,6 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank  |
-      | A/M   |
       | C/O   |
       | A C/O |
       | 2/O   |
@@ -49,7 +48,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank  |
-      | A/M   |
+      | C/O   |
       | MAS   |
       | 4/O   |
       | D/C   |
@@ -66,7 +65,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     Then I should see a list of available forms for selections
       | Cold Work                                                                       |
       | Critical Equipment Maintenance                                                  |
@@ -87,7 +86,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     When I select <permit> permit
     Then I should see second level permits details
 
@@ -102,7 +101,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
