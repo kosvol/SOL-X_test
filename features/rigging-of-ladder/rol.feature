@@ -7,7 +7,7 @@ Feature: RiggingOfLadder
   # Scenario Outline: RA can submit Rigging of ladder permit
   #   Examples:
   #     | rank  | pin  |
-  #     | A/M   | 9015 |
+  #     | C/O   | 9015 |
   #     | C/O   | 8383 |
   #     | A C/O | 2761 |
   #     | 2/O   | 6268 |
@@ -25,7 +25,7 @@ Feature: RiggingOfLadder
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select NA permit for level 2
     When I press next for 1 times
@@ -163,7 +163,7 @@ Feature: RiggingOfLadder
 
     Examples:
       | rank  |
-      | A/M   |
+      | C/O   |
       | A/B   |
       | 3/E   |
       | A 3/E |
@@ -193,9 +193,9 @@ Feature: RiggingOfLadder
     And I set rol permit to active state with 1 duration
     And I click on back to home
     And I click on active filter
-    Then I open rol permit with rank A/M
+    Then I open rol permit with rank C/O
     And I submit permit for termination
-    And I sign with valid A/M rank
+    And I sign with valid C/O rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I withdraw permit with 5/E rank

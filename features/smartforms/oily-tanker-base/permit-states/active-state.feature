@@ -9,7 +9,7 @@ Feature: ActivePermit
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -28,7 +28,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank
+    And I add gas to permit with C/O rank
     Then I should see section 6 screen
 
     Examples:
@@ -38,7 +38,7 @@ Feature: ActivePermit
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration less than 2 hours
@@ -51,7 +51,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank
+    And I add gas to permit with C/O rank
     Then I should see section 6 screen
 
     Examples:
@@ -61,7 +61,7 @@ Feature: ActivePermit
   Scenario Outline: Verify maintenance more than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -80,7 +80,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     Then I should see section 8 screen
 
     Examples:
@@ -90,7 +90,7 @@ Feature: ActivePermit
   Scenario Outline: Verify maintenance less than 2 hours AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration less than 2 hours
@@ -103,7 +103,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     Then I should see section 8 screen
 
     Examples:
@@ -113,7 +113,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non maintenance AND oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work
@@ -132,7 +132,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank
+    And I add gas to permit with C/O rank
     Then I should see section 6 screen
 
     Examples:
@@ -149,7 +149,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non maintenance AND oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work
@@ -167,7 +167,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     Then I should see section 8 screen
 
     Examples:
@@ -184,7 +184,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non maintenance AND non oa permits land at section 8 via Submit for Termination with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work
@@ -197,7 +197,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     Then I should see section 8 screen
 
     Examples:
@@ -224,7 +224,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non maintenance AND non oa permits land at section 6 via Update Reading with RA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work
@@ -237,7 +237,7 @@ Feature: ActivePermit
     And I approve permit
     And I click on back to home
     And I click on active filter
-    And I add gas to permit with A/M rank
+    And I add gas to permit with C/O rank
     Then I should see section 6 screen
 
 
@@ -286,7 +286,7 @@ Feature: ActivePermit
   Scenario: Verify maintenance permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration less than 2 hours
@@ -304,7 +304,7 @@ Feature: ActivePermit
   Scenario: Verify RoL permit issue date is display
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select NA permit for level 2
     When I press next for 1 times
@@ -319,7 +319,7 @@ Feature: ActivePermit
   Scenario: Verify all underwater permit only valid for 4 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Underwater Operations permit
     And I select Underwater Operation at night or concurrent with other operations permit for level 2
     And I fill only location of work
@@ -343,7 +343,7 @@ Feature: ActivePermit
   Scenario: Verify all maintenance permit with duration less than 2 hours should have 2 hours validity
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration less than 2 hours
@@ -361,7 +361,7 @@ Feature: ActivePermit
   Scenario: Verify all maintenance permit with duration more than 2 hours should have 8 hours validity
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -384,7 +384,7 @@ Feature: ActivePermit
   Scenario Outline: Verify RoL permit validity will be based on user selection
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select NA permit for level 2
     When I press next for 1 times
@@ -411,7 +411,7 @@ Feature: ActivePermit
   Scenario Outline: Verify non maintenance non oa permits valid for 8 hour
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work

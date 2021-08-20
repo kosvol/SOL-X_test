@@ -124,10 +124,10 @@ end
 
 And(/^I manually put the permit to pending termination state$/) do
   sleep 1
-  step 'I review and withdraw permit with A/M rank'
+  step 'I review and withdraw permit with C/O rank'
   sleep 1
   on(Section8Page).task_status_completed_element.click
-  step 'I sign EIC section 8 with RA A/M rank'
+  step 'I sign EIC section 8 with RA C/O rank'
 end
 
 Then(/^I should see task commenced data and time populated with permit activated date and timestamp$/) do

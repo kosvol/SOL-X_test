@@ -8,7 +8,7 @@ end
 And(/^I fill rol permit$/) do
   step 'I add a new hazard'
   on(ROLPage).fill_rol_forms
-  step 'I sign section with A/M as valid rank'
+  step 'I sign section with C/O as valid rank'
   step 'I should see signed details'
   step 'I press next for 1 times'
   sleep 1
@@ -32,7 +32,7 @@ And(/^I request update for permit$/) do
 end
 
 Then(/^I should not see extra buttons$/) do
-  step 'I update permit with A/M rank'
+  step 'I update permit with C/O rank'
   sleep 1
   is_equal(on(PendingStatePage).previous_btn_elements.size, 0)
   is_equal(on(NavigationPage).save_and_next_btn_elements.size, 1)
@@ -65,9 +65,9 @@ end
 When(/^I put the permit to termination state/) do
   step 'I click on back arrow'
   step 'I click on active filter'
-  step 'I open rol permit with rank A/M'
+  step 'I open rol permit with rank C/O'
   step 'I submit permit for termination'
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
   sleep 1
   step 'I click on back to home'
 end

@@ -175,7 +175,7 @@ Feature: PumpRoomEntry
 
     Examples:
       | role |
-      | A/M  |
+      | C/O  |
       | ETO  |
       | D/C  |
       | BOS  |
@@ -331,7 +331,7 @@ Feature: PumpRoomEntry
     Examples:
       | rank  |
       | MAS   |
-      | A/M   |
+      | C/O   |
       | C/O   |
       | A C/O |
       | 2/O   |

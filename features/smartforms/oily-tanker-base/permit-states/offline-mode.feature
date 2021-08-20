@@ -16,7 +16,7 @@ Feature: Offline Mode
     Given I submit permit submit_work_on_pressure_line via service with 9015 user and set to active state with EIC not require
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     And I turn off wifi
     Then I should see wifi inconsistent popup display for section 8
     And I turn on wifi
@@ -24,7 +24,7 @@ Feature: Offline Mode
   Scenario: Verify wifi restore dialog in section 4b EIC certification
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I turn off wifi
@@ -39,7 +39,7 @@ Feature: Offline Mode
   Scenario: Verify wifi restore dialog in section 6
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I turn off wifi
@@ -54,7 +54,7 @@ Feature: Offline Mode
     And I launch sol-x portal without unlinking wearable
     And I click on pending approval filter
     And I click on permit for master approval
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I turn off wifi
     And I navigate to section 3a
     And I click on View Edit Hazard
@@ -64,7 +64,7 @@ Feature: Offline Mode
   Scenario: Verify Wifi popup display when during no wifi on EIC certification screen
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I turn off wifi
@@ -77,7 +77,7 @@ Feature: Offline Mode
   Scenario: Verify Wifi popup display when during no wifi on section 6 screen
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I turn off wifi
@@ -88,7 +88,7 @@ Feature: Offline Mode
   Scenario: Verify offline popup display when offline on smartform screen
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I turn off wifi
