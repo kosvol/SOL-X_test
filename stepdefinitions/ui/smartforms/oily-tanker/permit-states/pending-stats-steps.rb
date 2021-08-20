@@ -111,11 +111,9 @@ end
 
 And(/^I reapprove the updated permit$/) do
   step 'I click on update needed filter'
-  step 'I update permit with A/M rank'
-  # BrowserActions.click_element(on(PendingStatePage).edit_update_btn_elements.first)
-  # step 'I enter pin for rank A/M'
+  step 'I update permit with C/O rank'
   step 'I navigate to section 6'
   BrowserActions.click_element(on(PendingStatePage).submit_master_review_btn_elements.first)
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
   step 'I click on back to home'
 end

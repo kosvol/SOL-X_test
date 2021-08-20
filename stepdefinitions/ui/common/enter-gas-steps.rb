@@ -1,5 +1,5 @@
 And (/^I add all gas readings and back from signing screen$/) do
-  step 'I trigger gas readings input with A/M rank'
+  step 'I trigger gas readings input with C/O rank'
   on(Section6Page).add_all_gas_readings
   on(Section6Page).review_sign_btn
   sleep 1
@@ -8,7 +8,7 @@ And (/^I add all gas readings and back from signing screen$/) do
 end
 
 And (/^I add all gas readings and cancel from pin screen$/) do
-  step 'I trigger gas readings input with A/M rank'
+  step 'I trigger gas readings input with C/O rank'
   on(Section6Page).add_all_gas_readings
   on(Section6Page).review_sign_btn
   on(SignaturePage).sign_and_select_location
@@ -57,7 +57,7 @@ And (/^I sign for gas$/) do
 end
 
 And (/^I am able to delete toxic gas inputs$/) do
-  step 'I trigger gas readings input with A/M rank'
+  step 'I trigger gas readings input with C/O rank'
   on(Section6Page).add_all_gas_readings
   sleep 1
   is_equal(on(Section6Page).toxic_gas_reading_elements.size, 4)

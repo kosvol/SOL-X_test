@@ -7,7 +7,7 @@ Feature: Section3CDRA
   Scenario: Verify ra user is automatically selected
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
@@ -16,7 +16,7 @@ Feature: Section3CDRA
   Scenario: Verify user can select additional dra team member
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
@@ -26,7 +26,7 @@ Feature: Section3CDRA
   Scenario: Verify user can remove specific DRA team member via cross
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
@@ -37,7 +37,7 @@ Feature: Section3CDRA
   Scenario: Verify user can remove specific DRA team member via deselecting from menu
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
@@ -48,7 +48,7 @@ Feature: Section3CDRA
   Scenario: Verify user can see a list of crew sorted descending order by rank
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c
@@ -57,7 +57,7 @@ Feature: Section3CDRA
   Scenario: Verify user selection stays selected after toggling through sections
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3c

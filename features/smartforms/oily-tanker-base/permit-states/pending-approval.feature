@@ -50,7 +50,7 @@ Feature: PendingApprovalPermit
     And I fill a full OA permit
     And I click on pending approval filter
     And I click on permit for master approval
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I navigate to section 3a
     Then I should not be able to edit Use of non-intrinsically safe Camera DRA
     When I press next for 6 times
@@ -144,18 +144,18 @@ Feature: PendingApprovalPermit
   Scenario: Master can ask for update on all permit with duration more than 2 hours
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
     And I navigate to section 2
     Then I should see correct approval details for maintenance duration more than 2 hours
     When I press next for 4 times
-    And I sign DRA section 3d with A/M as valid rank
+    And I sign DRA section 3d with C/O as valid rank
     When I press next for 1 times
     Then I should see correct checklist Critical Equipment Maintenance Checklist pre-selected
     When I press next for 1 times
-    And I sign checklist with A/M as valid rank
+    And I sign checklist with C/O as valid rank
     And I press next for 2 times
     And I select 1 role from list
     And I sign on role
@@ -177,7 +177,7 @@ Feature: PendingApprovalPermit
   Scenario Outline: Verify these rank can sign off DRA on section 3D
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -195,7 +195,7 @@ Feature: PendingApprovalPermit
     Examples:
       | rank | pin  |
       | MAS  | 1111 |
-  # | A/M   | 9015 |
+  # | C/O   | 9015 |
   # | C/O   | 8383 |
   # | A C/O | 2761 |
   # | 2/O   | 6268 |
@@ -215,7 +215,7 @@ Feature: PendingApprovalPermit
   Scenario Outline: Verify these rank canotn sign off DRA on section 3D when in Pending Master Approval state
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work

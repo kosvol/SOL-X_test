@@ -57,7 +57,7 @@ Feature: Section9
 
     Examples:
       | rank  | pin  | permit_types                         | permit_payload                |
-      # | A/M | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+      # | C/O | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | 3/E   | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | A 3/E | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
       | 4/E   | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
@@ -79,7 +79,7 @@ Feature: Section9
 
     Examples:
       | rank | pin  | permit_types | permit_payload             |
-      | A/M  | 9015 | NA           | submit_enclose_space_entry |
+      | C/O  | 9015 | NA           | submit_enclose_space_entry |
 
   Scenario Outline: Verify Status Update display as completed when user submit as continue
     Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require

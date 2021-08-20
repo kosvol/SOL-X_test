@@ -8,7 +8,7 @@ Feature: Section6
     Given I change ship local time to +8 GMT
     When I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I fill zone details
@@ -21,7 +21,7 @@ Feature: Section6
   Scenario: Verify copy text display when gas selection is yes
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
@@ -31,7 +31,7 @@ Feature: Section6
   Scenario: Verify submit button is disable before compulsory fields filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
@@ -41,7 +41,7 @@ Feature: Section6
   # Scenario: Verify gas reading don't get cleared after cancel from signing
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin for rank A/M
+  #   And I enter pin for rank C/O
   #   And I select Helicopter Operations permit
   #   And I select NA permit for level 2
   #   And I navigate to section 6
@@ -52,7 +52,7 @@ Feature: Section6
   Scenario: Verify gas reading dead flow not exists
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
@@ -63,7 +63,7 @@ Feature: Section6
   Scenario: Verify user can delete added toxic gas
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
@@ -73,29 +73,29 @@ Feature: Section6
   Scenario: Verify gas reader placeholder text
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I trigger gas readings input with A/M rank
+    And I trigger gas readings input with C/O rank
     Then I should see correct placeholder text for gas input
 
   Scenario: Verify gas submit button is enabled after signing and location filled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I trigger gas readings input with A/M rank
+    And I trigger gas readings input with C/O rank
     Then I should see submit button disabled before signing and location filled
 
   Scenario Outline: Verify non AGT cannot add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
@@ -113,7 +113,7 @@ Feature: Section6
   Scenario Outline: Verify AGT can add gas readings
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -132,7 +132,7 @@ Feature: Section6
     Examples:
       | rank  | rank_name       |
       | MAS   | MAS COT MAS     |
-      # | Additional Master         | By A/M Atif Hayat    |
+      # | Additional Master         | By C/O Atif Hayat    |
       # | Chief Officer             | By C/O Alister Leong |
       # | Additional Chief  Officer | By A C/O Nigel Koh   |
       | 2/O   | 2/O COT 2/O     |
@@ -151,26 +151,26 @@ Feature: Section6
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I navigate to section 6
     And I press the Yes button to enable gas testing
-    And I add all gas readings with A/M rank
+    And I add all gas readings with C/O rank
     And I set time
-    Then I will see popup dialog with A/M COT A/M crew rank and name
+    Then I will see popup dialog with C/O COT C/O crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
-    And I add only normal gas readings with A/M rank
+    Then I should see gas reading display with toxic gas and C/O COT C/O as gas signer
+    And I add only normal gas readings with C/O rank
     And I set time
-    Then I will see popup dialog with A/M COT A/M crew rank and name
+    Then I will see popup dialog with C/O COT C/O crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display without toxic gas and A/M COT A/M as gas signer
+    Then I should see gas reading display without toxic gas and C/O COT C/O as gas signer
 
   # Scenario Outline: Verify non-OA Hotwork ptw display submit for master approval on button
   #   Given I launch sol-x portal without unlinking wearable
   #   And I navigate to create new permit
-  #   And I enter pin for rank A/M
+  #   And I enter pin for rank C/O
   #   And I select <level_one_permit> permit
   #   And I select <level_two_permit> permit for level 2
   #   And I navigate to section 6
@@ -184,7 +184,7 @@ Feature: Section6
   Scenario Outline: Verify non-OA ptw display submit for master approval on button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
@@ -213,7 +213,7 @@ Feature: Section6
   Scenario: Verify Cold Work - Working in Hazardous or Dangerous Areas have two checklist selected
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Cold Work permit
     And I select Cold Work - Working in Hazardous or Dangerous Areas permit for level 2
     And I navigate to section 4a
@@ -224,7 +224,7 @@ Feature: Section6
   Scenario Outline: Verify OA ptw display submit for master review on button for maintenance duration more than 2 hours
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -254,7 +254,7 @@ Feature: Section6
   Scenario Outline: Verify OA ptw display submit for master review on button
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 6
@@ -275,7 +275,7 @@ Feature: Section6
   Scenario Outline: Verify gas reading can disable and enable
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill only location of work
