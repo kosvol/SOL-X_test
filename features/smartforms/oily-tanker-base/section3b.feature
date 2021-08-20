@@ -9,14 +9,14 @@ Feature: Section3BDRA
     When I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     And I submit permit for termination
-    And I sign with valid A/M rank
+    And I sign with valid C/O rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I terminate the permit with MAS rank via Pending Withdrawal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I navigate to section 3b
@@ -25,7 +25,7 @@ Feature: Section3BDRA
   Scenario: Verify Work site inspection Yes name list display all crews
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I navigate to section 3b
@@ -34,7 +34,7 @@ Feature: Section3BDRA
   Scenario Outline: Verify method name is populated
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I fill up section 1 with default value
@@ -53,7 +53,7 @@ Feature: Section3BDRA
   Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -63,7 +63,7 @@ Feature: Section3BDRA
   Scenario: Verify By: Master is not display after clicking No on is DRA sent to office
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -73,7 +73,7 @@ Feature: Section3BDRA
   Scenario: Verify crew drop down is displayed after clicking Yes on inspection carried out
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours
@@ -84,7 +84,7 @@ Feature: Section3BDRA
   Scenario: Verify crew drop down is not displayed after clicking No on inspection carried out
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Fixed Fire Fighting System permit for level 2
     And I fill section 1 of maintenance permit with duration more than 2 hours

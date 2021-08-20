@@ -35,7 +35,7 @@ Feature: LocationTracking
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I sleep for 5 seconds
     When I launch sol-x portal
-    And I link A/M user wearable
+    And I link C/O user wearable
     Then I should see crew link to PTW
     And I unlink all crew from wearable
 

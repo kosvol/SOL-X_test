@@ -148,7 +148,7 @@ And(/^I fill up EIC certificate$/) do
   sleep 1
   on(Section4BPage).save_eic
   sleep 1
-  step 'I sign EIC section 4b with RA rank A/M'
+  step 'I sign EIC section 4b with RA rank C/O'
 end
 
 Then(/^I should see these sub questions$/) do |_table|

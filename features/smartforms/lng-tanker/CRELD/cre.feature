@@ -33,18 +33,18 @@ Feature: LNGCRE
   Scenario: Verify these crew cannot create CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     Then I should see not authorize error message
 
   Scenario: Verify AGT can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
     And I enter pin via service for rank C/O
-    And I add all gas readings with A/M rank
+    And I add all gas readings with C/O rank
     And I set time
-    Then I will see popup dialog with A/M LNG A/M crew rank and name
+    Then I will see popup dialog with C/O LNG C/O crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and A/M LNG A/M as gas signer
+    Then I should see gas reading display with toxic gas and C/O LNG C/O as gas signer
 
   Scenario Outline: Verify any rank can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable

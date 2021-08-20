@@ -41,7 +41,7 @@ Feature: PumpRoomEntry
     Examples:
       | rank  |
       | MAS   |
-      | A/M   |
+      | C/O   |
       | C/E   |
       | 2/E   |
       | ETO   |
@@ -96,11 +96,11 @@ Feature: PumpRoomEntry
     Given I launch sol-x portal without unlinking wearable
     When I navigate to create new PRE
     And I enter pin via service for rank C/O
-    And I add all gas readings with A/M rank
+    And I add all gas readings with C/O rank
     And I set time
-    Then I will see popup dialog with A/M COT A/M crew rank and name
+    Then I will see popup dialog with C/O COT C/O crew rank and name
     When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and A/M COT A/M as gas signer
+    Then I should see gas reading display with toxic gas and C/O COT C/O as gas signer
 
   Scenario: Verify PRE can be terminated manually
     Given I launch sol-x portal without unlinking wearable
@@ -160,7 +160,7 @@ Feature: PumpRoomEntry
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
       | MAS   |
-      | A/M   |
+      | C/O   |
       | C/E   |
       | 2/E   |
       | ETO   |

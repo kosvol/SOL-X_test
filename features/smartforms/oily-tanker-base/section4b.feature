@@ -35,13 +35,13 @@ Feature: Section4BEIC
   Scenario Outline: Verify location stamping on signature section as RA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
     And I select yes to EIC
-    And I sign EIC section 4b with RA rank A/M
+    And I sign EIC section 4b with RA rank C/O
     And I set time
     And I should see signed details
     Then I should see location <location_stamp> stamp
@@ -94,7 +94,7 @@ Feature: Section4BEIC
   Scenario Outline: Verify non RA cannot sign on responsible authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select <level_one_permit> permit
     And I select <level_two_permit> permit for level 2
     And I navigate to section 4b
@@ -120,7 +120,7 @@ Feature: Section4BEIC
   Scenario: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill only location of work and duration more than 2 hours

@@ -7,7 +7,7 @@ Feature: LNGSection4AChecklistSelection
     Scenario: Verify checklist display are correct to vessel type
         Given I launch sol-x portal without unlinking wearable
         And I navigate to create new permit
-        And I enter pin for rank A/M
+        And I enter pin for rank C/O
         And I select Enclosed Spaces Entry permit
         And I select NA permit for level 2
         And I navigate to section 4a

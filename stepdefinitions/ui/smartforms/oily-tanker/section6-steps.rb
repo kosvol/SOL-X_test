@@ -46,7 +46,7 @@ Then(/^I submit permit for Master (.+)$/) do |approval_or_review|
   if approval_or_review === 'Review'
     BrowserActions.scroll_click(on(PendingStatePage).submit_master_review_btn_elements.first)
   end
-  step 'I sign with valid A/M rank' if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  step 'I sign with valid C/O rank' if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
   if $current_environment === 'uat'
     step 'I enter pin via service for rank C/O'
     step 'I sign on canvas'
@@ -57,7 +57,7 @@ Then(/^I submit smoke test permit$/) do
   sleep 1
   BrowserActions.scroll_click(on(PendingStatePage).submit_for_master_approval_btn_elements.first)
   sleep 1
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
 end
 
 And(/^I press the (.+) button to (disable|enable) gas testing$/) do |key, type|

@@ -25,7 +25,7 @@ When (/^I fill a full enclosed workspace permit$/) do
   step 'I sleep for 1 seconds'
   step 'I fill up checklist'
   step 'I sleep for 1 seconds'
-  step 'I sign checklist with A/M as valid rank'
+  step 'I sign checklist with C/O as valid rank'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
   step 'I fill up EIC certificate'
@@ -42,7 +42,7 @@ end
 When (/^I fill a full OA permit$/) do
   step 'I fill up section 1 with default value'
   step 'I press next for 7 times'
-  step 'I sign checklist with A/M as valid rank'
+  step 'I sign checklist with C/O as valid rank'
   step 'I press next for 1 times'
   step 'I select yes to EIC'
   step 'I fill up EIC certificate'
