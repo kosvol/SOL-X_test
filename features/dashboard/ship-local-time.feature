@@ -16,6 +16,7 @@ Feature: ShipLocalTime
 
     Examples:
       | rank |
+      | A/M  |
       | MAS  |
       | C/O  |
       | 2/O  |
