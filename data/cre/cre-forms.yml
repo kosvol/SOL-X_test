@@ -33,3 +33,36 @@ questions:
     "Save",
     "Close",
   ]
+
+titles:
+  [
+    "Compressor/Motor Room Entry Checklist",
+    "Gas Reading",
+    "Permit Validity",
+    "Responsible Officer Signature:"
+  ]
+
+gas_readings_section:
+  [
+    "Add Gas Test Record",
+    "Note",
+    "1. Gas shall be checked once every entry.
+     2. Permit to be cancelled if any change in condition.
+     3. Other toxic gases to be tested and recorded if applicable"
+  ]
+
+subtitles:
+  [
+    "Applicable for Gas Tankers",
+    "Not Answered"
+  ]
+
+permit_validity_section:
+  [
+    "Start Time",
+    "Date",
+    "Time",
+    "Permit Duration"
+  ]
+
+

@@ -8,6 +8,28 @@ Feature: LNGCRE
   #    Given I switch vessel to LNG
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
+  Scenario: Verify new active CRE permit will replace existing active CRE permit
+    Given I launch sol-x portal without unlinking wearable
+    When I clear gas reader entries
+    And I navigate to create new CRE
+    And I enter pin via service for rank C/O
+    And I fill up CRE. Duration 4. Delay to activate 3
+    And Get CRE id
+    And for cre I submit permit for A C/O Approval
+    And I getting a permanent number from indexedDB
+    And I activate the current CRE form
+    And I activate CRE form via service
+    And I navigate to "Active" screen for CRE
+    And I should see the current CRE in the "Active CRE" list
+    When I submit a current CRE permit via service
+    And I sleep for 5 seconds
+    And I click on back arrow
+    And I navigate to "Active" screen for CRE
+    And I should not see the current CRE in the "Active CRE" list
+    Then I should see that existed CRE number not equal with number Active list
+    And I click on back arrow
+    When I navigate to "Terminated" screen for CRE
+    And I should see the current CRE in the "Closed CRE" list
 
   Scenario: Verify user can see all the CRE questions
     Given I launch sol-x portal without unlinking wearable
