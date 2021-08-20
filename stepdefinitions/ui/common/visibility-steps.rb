@@ -68,15 +68,14 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
   end
 end
 
-Then(/^I should see section (.*) screen$/) do |_which_section|
+Then(/^I should see section (.*) screen$/) do |which_section|
   sleep 1
-  if _which_section != '0'
+  if which_section != '0'
     screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text
   end
-  case _which_section
+  case which_section
   when '0'
-    screen_title = @browser.find_elements(:xpath, "//div/header/h3[starts-with(@class,'Heading__H3')]").first.text
-    is_equal(screen_title, 'Select Permit Type')
+    BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   when '1'
     is_equal(screen_title, 'Section 1: Task Description')
   when '2'
