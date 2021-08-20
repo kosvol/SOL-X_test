@@ -88,9 +88,9 @@ Then(/^I should see section (.*) screen$/) do |_which_section|
   end
 end
 
-Then (/^I should see alert message$/) do
-  sleep 1
-  BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_element)
-  BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_accept_new_element)
-  BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_discard_new_element)
-end
+# Then (/^I should see alert message$/) do
+#   sleep 1
+#   BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_element)
+#   BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_accept_new_element)
+#   BrowserActions.wait_until_is_visible(on(DashboardPage).gas_alert_discard_new_element)
+# end

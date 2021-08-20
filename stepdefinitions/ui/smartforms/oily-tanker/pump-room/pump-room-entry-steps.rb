@@ -381,7 +381,3 @@ Then(/^I check report not send$/) do
   not_to_exists(on(PreDisplay).permit_tab_element)
 end
 
-And(/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |_array, _type|
-  @@pre_number = CommonPage.get_permit_id
-  on(BypassPage).create_entry_record_custom_gas_readings(_array, _type)
-end

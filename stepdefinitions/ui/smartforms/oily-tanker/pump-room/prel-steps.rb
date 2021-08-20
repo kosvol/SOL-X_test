@@ -15,6 +15,23 @@ And (/^I (enter|enter without sign) (new|same|without toxic|different|random) en
   step 'I sign for gas' if cond == 'enter'
 end
 
+And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log with role (.*)$/) do |cond, condition, role|
+  # step 'I sleep for 10 seconds'
+  if cond == 'enter'
+    BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
+    BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
+    step "I enter pin via service for rank #{role}"
+  end
+
+  on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if condition == 'same'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if condition == 'new'
+  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if condition == 'without toxic'
+  on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc') if condition == 'different'
+  on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(5..10).to_s, rand(7..15).to_s, rand(6..25).to_s, 'Test', rand(20..29).to_s, '2', 'cc') if condition == 'random'
+
+  step 'I sign for gas' if cond == 'enter'
+end
+
 Then (/^I click on new entry log button$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
