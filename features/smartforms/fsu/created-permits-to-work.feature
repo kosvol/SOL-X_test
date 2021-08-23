@@ -82,7 +82,7 @@ Feature: CreatedPermitToWork
 
         Examples:
             | rank  |
-            | C/O   |
+            | MAS   |
             | C/E   |
             | A C/E |
 
