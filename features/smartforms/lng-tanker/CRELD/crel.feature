@@ -99,6 +99,7 @@ Feature: LNGCREL
     And I enter pin via service for rank A C/O
     And I enter new entry log
     And I send entry report with 5 optional entrants
+    And I dismiss gas reader dialog box
     And I enter random entry log
     And I sleep for 3 seconds
     And I send entry report with 1 optional entrants

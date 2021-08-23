@@ -136,13 +136,13 @@ And(/^I take note of start and end validity time for (.*)$/) do |_permit_type|
 end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
-  p "PRE ID: #{@@pre_number}"
+  Log.instance.info("form id >> #{@@pre_number}")
   step "I should see the text '#{@@pre_number}'"
 end
 
 And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
-  p "PRE ID existed: #{@@pre_number}"
-  p "PRE ID in list: #{on(Section0Page).ptw_id_element.text}"
+  Log.instance.info("Form id existed: >> #{@@pre_number}")
+  Log.instance.info("Form id in list: >> #{on(Section0Page).ptw_id_element.text}")
   on(Section0Page).ptw_id_element.text != @@pre_number
 end
 
