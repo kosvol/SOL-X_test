@@ -58,6 +58,7 @@ class WearablePage
       when 'wearable-simulator/mod-update-wearable-location-by-zone'
         tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
         @@beacon = custom_value1
+        p "wearable id >> #{@wearableid}"
         tmp_req_payload['variables']['id'] = @wearableid
         tmp_req_payload['variables']['beacons'][0]['id'] = @@beacon
         tmp_req_payload['variables']['beacons'][0]['mac'] = custom_value2
