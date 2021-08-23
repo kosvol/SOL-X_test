@@ -19,10 +19,11 @@ fields_exceptions:
       "Wind Force",
       "Description of work",
       "Zone:",
-      "Zone Details:"
+      "Zone Details:",
+      ""
   ]
 
-labels_exceptions: ["Location of work:"]
+labels_exceptions: ["Location of work:", ""]
 
 subheaders_exceptions:
   [
@@ -30,5 +31,6 @@ subheaders_exceptions:
       "Permit Details",
       "Vessel Information",
       "Weather Condition",
-      "Task Information"
+      "Task Information",
+      ""
   ]

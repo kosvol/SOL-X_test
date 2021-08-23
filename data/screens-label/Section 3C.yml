@@ -22,14 +22,16 @@ fields_exceptions:
     "DRA carried out?",
     "Reason",
     "Safety Meeting carried out?",
-    "Office Approval required?"
+    "Office Approval required?",
+    ""
   ]
-labels_exceptions: []
+labels_exceptions: [""]
 subheaders_exceptions:
   [
     "Section 3B: DRA - Checks and Measures",
     "Checks and Measures",
     "Measures for Unplanned Occurrences",
     "Section 3D: DRA - Summary & Assessment",
-    "DRA Approved By"
+    "DRA Approved By",
+    ""
   ]
