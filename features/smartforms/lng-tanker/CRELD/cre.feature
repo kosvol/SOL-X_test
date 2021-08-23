@@ -30,7 +30,7 @@ Feature: LNGCRE
     And I click on back arrow
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Closed CRE" list
-
+@wip
   Scenario: Verify user can see all the CRE questions
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE

@@ -129,41 +129,4 @@ class CommonFormsPage < CommonPage
     end
   end
 
-  def match_screen_labels(data_arr)
-    data_arr.each do |element|
-      @browser.find_element(:xpath, "//span[contains(., \"#{element.text}\")]")
-    rescue StandardError
-      begin
-        @browser.find_element(:xpath, "//label[contains(., \"#{element.text}\")]")
-      rescue StandardError
-        begin
-          @browser.find_element(:xpath, "//p[contains(., \"#{element.text}\")]")
-        rescue StandardError
-          begin
-            @browser.find_element(:xpath, "//h4[contains(., \"#{element.text}\")]")
-          rescue StandardError
-            @browser.find_element(:xpath, "//button[contains(., \"#{element.text}\")]")
-          end
-        end
-      end
-    end
-  end
-
-  def match_screen_elements(data_arr)
-    data_arr.each do |element|
-      @browser.find_element(:xpath, "//span[contains(., \"#{element}\")]")
-    rescue StandardError
-      begin
-        @browser.find_element(:xpath, "//label[contains(., \"#{element}\")]")
-      rescue StandardError
-        begin
-          @browser.find_element(:xpath, "//p[contains(., \"#{element}\")]")
-        rescue StandardError
-          begin
-            @browser.find_element(:xpath, "//h4[contains(., \"#{element}\")]")
-          end
-        end
-      end
-    end
-  end
 end

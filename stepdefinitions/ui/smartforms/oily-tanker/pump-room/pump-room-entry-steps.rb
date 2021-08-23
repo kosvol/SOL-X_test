@@ -58,17 +58,16 @@ Then(/^I press the "([^"]*)" button$/) do |button|
   on(PumpRoomEntry).press_the_button(button)
 end
 
-And(/^I (should|should not) see the (text|label|page|header) '(.*)'$/) do |condition,like, text|
+And(/^I (should|should not) see the (text|label|page|header) '(.*)'$/) do |condition, like, text|
   sleep 1
-  BrowserActions.wait_condition(20, on(PumpRoomEntry).is_text_displayed?(like, text)) if condition == 'should'
-  !on(PumpRoomEntry).is_text_displayed?(like, text) if condition == 'should not'
-  # is_true(on(PumpRoomEntry).is_text_displayed?(like,text))
+  is_true(on(PumpRoomEntry).is_text_displayed?(like, text)) if condition == 'should'
+  is_false(on(PumpRoomEntry).is_text_displayed?(like, text)) if condition == 'should not'
 end
 
-And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type, _condition, button|
-  is_false(on(PumpRoomEntry).is_button_enabled?(button)) if _condition === 'disabled'
+And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type, condition, button|
+  is_false(on(PumpRoomEntry).is_button_enabled?(button)) if condition == 'disabled'
 
-  is_true(on(PumpRoomEntry).is_button_enabled?(button)) if _condition === 'enabled'
+  is_true(on(PumpRoomEntry).is_button_enabled?(button)) if condition == 'enabled'
 end
 
 And('I fill up {string}') do |section|
@@ -138,8 +137,7 @@ end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
   p "PRE ID: #{@@pre_number}"
-  step "I should see the text '#{@@pre_number}'" if condition == 'should'
-  step "I should not see the text '#{@@pre_number}'" if condition == 'should not'
+  step "I should see the text '#{@@pre_number}'"
 end
 
 And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
