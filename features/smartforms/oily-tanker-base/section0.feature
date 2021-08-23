@@ -48,7 +48,7 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank  |
-      | C/O   |
+      | A/M   |
       | MAS   |
       | 4/O   |
       | D/C   |

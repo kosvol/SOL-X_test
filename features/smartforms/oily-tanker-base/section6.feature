@@ -117,7 +117,7 @@ Feature: Section6
     And I select Helicopter Operations permit
     And I select NA permit for level 2
     And I fill only location of work
-    And I navigate to section 6
+    And I navigate to section 4a
     And I press next for 1 times
     And I sign checklist and section 5
     And I press next for 1 times

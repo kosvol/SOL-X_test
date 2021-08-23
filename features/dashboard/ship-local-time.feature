@@ -29,8 +29,8 @@ Feature: ShipLocalTime
 
     Examples:
       | rank  |
-      | C/O   |
-      | A 2/O |
+      # | C/O   |
+      # | A 2/O |
       | 3/O   |
       | A 3/O |
       # | 1010 |

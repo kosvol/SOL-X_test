@@ -16,7 +16,6 @@ Feature: CrossBrowserRiggingOfLadder
         And I click on back to home
         And I click on pending approval filter
         And I set rol permit to active state with 1 duration
-        And I click on back to home
         And I sleep for 3 seconds
 
     @cb-rigging-of-ladder-2

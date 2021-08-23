@@ -59,6 +59,7 @@ And(/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I sign with valid MAS rank'
+  step 'I click on back to home'
 end
 
 And(/^I set rol permit to active state with (.+) duration with CE$/) do |_duration|
