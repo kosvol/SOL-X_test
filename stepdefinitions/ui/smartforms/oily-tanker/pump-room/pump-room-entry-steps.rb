@@ -137,8 +137,7 @@ end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
   Log.instance.info("form id >> #{@@pre_number}")
-  step "I should see the text '#{@@pre_number}'" if condition == 'should'
-  step "I should not see the text '#{@@pre_number}'" if condition == 'should not'
+  step "I #{condition} the text '#{@@pre_number}'"
 end
 
 And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
