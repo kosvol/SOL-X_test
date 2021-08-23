@@ -27,11 +27,13 @@ subheaders_OA_yes:
 fields_exceptions:
   [
       "Permit issued on:",
-      "Permit valid until:"
+      "Permit valid until:",
+      ""
   ]
-labels_exceptions: []
+labels_exceptions: [""]
 subheaders_exceptions:
   [
       "Section 7B: Validity of Permit",
-      "Approval Authority:"
+      "Approval Authority:",
+      ""
   ]

@@ -42,6 +42,6 @@ subheaders:
     "Issuing Authorized (C/E):"
   ]
 
-fields_exceptions: []
-labels_exceptions: []
-subheaders_exceptions: []
+fields_exceptions: [""]
+labels_exceptions: [""]
+subheaders_exceptions: [""]

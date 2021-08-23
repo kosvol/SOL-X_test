@@ -112,6 +112,6 @@ subheaders_eic_yes:
     "Responsible Authority:"
   ]
 
-fields_exceptions: []
-labels_exceptions: []
-subheaders_exceptions: []
+fields_exceptions: [""]
+labels_exceptions: [""]
+subheaders_exceptions: [""]

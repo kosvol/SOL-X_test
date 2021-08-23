@@ -28,13 +28,15 @@ fields_exceptions:
       "DRA number of last assessment",
       "Contingency & evacuation plans and recovery procedures available to manage the emergencies",
       "Availability of necessary emergency equipment relevant to the specific hazards",
-      "Personnel training and skills adequate for the specific task"
+      "Personnel training and skills adequate for the specific task",
+      ""
   ]
-labels_exceptions: []
+labels_exceptions: [""]
 subheaders_exceptions:
   [
       "Section 3B: DRA - Checks and Measures",
       "Checks and Measures",
       "Measures for Unplanned Occurrences",
-      "Section 3C: DRA - Team Members"
+      "Section 3C: DRA - Team Members",
+      ""
   ]

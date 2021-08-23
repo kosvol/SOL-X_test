@@ -15,13 +15,14 @@ subheaders:
     "Method No: 1"
   ]
 
-fields_exceptions: []
+fields_exceptions: [""]
 
 labels_exceptions:
   [
       "Gaseous atmosphere",
       "Flammable materials",
-      "Fire hazard in adjacent compartments"
+      "Fire hazard in adjacent compartments",
+      ""
   ]
 
-subheaders_exceptions: []
+subheaders_exceptions: [""]

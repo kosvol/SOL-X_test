@@ -8,6 +8,6 @@ labels: []
 
 subheaders: ["Section 5: Responsibility Acceptance"]
 
-fields_exceptions: []
-labels_exceptions: []
-subheaders_exceptions: []
+fields_exceptions: [""]
+labels_exceptions: [""]
+subheaders_exceptions: [""]
