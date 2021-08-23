@@ -23,14 +23,14 @@ Feature: PermitOverview
     And I check rank and full name of Entrant without toxic "A 2/O"
 
   Scenario: Verify the ROL checklist questions are displayed the same as in the Client app
-    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the auto vessel
+    Given I terminate permit submit_rigging_of_ladder via service with 9015 user on the auto-cot vessel
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
     Then I should see ROL checklist questions
 
   Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the <checklist> checklist
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
@@ -56,7 +56,7 @@ Feature: PermitOverview
       | Working Aloft Overside                       |
 
   Scenario Outline: Verify the PTW Sections shows the same fields as in the Client app (non-maintenance)
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
@@ -77,14 +77,14 @@ Feature: PermitOverview
       | Section 9  |
 
   Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
-    Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the auto vessel
+    Given I terminate permit submit_maintenance_on_anchor via service with 9015 user on the auto-cot vessel
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
     Then I should see the Section 1 shows the same fields as in the Client app
 
   Scenario Outline: Verify Section 6 with Gas Readings shows the same fields as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the Gas Readings <condition>
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the Gas Readings <condition>
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
@@ -96,14 +96,14 @@ Feature: PermitOverview
       | gas_no    |
 
   Scenario: Verify the EIC section shows the same fields as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC eic_yes
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the EIC eic_yes
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
     Then I should see the Energy Isolation Certificate shows the same fields as in the Client app
 
   Scenario Outline: Verify section 4B and 8 shows the same fields as in the Client app with or without the EIC
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the EIC <condition>
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the EIC <condition>
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
@@ -117,7 +117,7 @@ Feature: PermitOverview
       | eic_no    | Section 8  |
 
   Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto vessel with the <checklist> checklist
+    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the <checklist> checklist
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
