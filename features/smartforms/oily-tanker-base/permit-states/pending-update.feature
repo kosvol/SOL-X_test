@@ -8,13 +8,13 @@ Feature: PendingUpdate
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     Then I should see section 8 editable
 
   Scenario Outline: Verify AGT can add gas reading via pending approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -44,7 +44,7 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | MAS   |
-      # | A/M   |
+      # | C/O   |
       # | C/O   |
       # | A C/O |
       | A 4/E |
@@ -54,7 +54,7 @@ Feature: PendingUpdate
   Scenario: SOL-4773 Verify submit for master approval button is enabled
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -69,7 +69,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with A/M rank
+    And I update permit in pending update state with C/O rank
     And I navigate to section 6
     Then I should see submit button enabled
   # Then I should not see submit for approval button
@@ -79,9 +79,9 @@ Feature: PendingUpdate
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     And I submit permit for termination
-    And I sign with valid A/M rank
+    And I sign with valid C/O rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I request terminating permit to be updated with MAS rank
@@ -95,9 +95,9 @@ Feature: PendingUpdate
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
-    And I review and withdraw permit with A/M rank
+    And I review and withdraw permit with C/O rank
     And I submit permit for termination
-    And I sign with valid A/M rank
+    And I sign with valid C/O rank
     And I click on back to home
     And I click on pending withdrawal filter
     And I request terminating permit to be updated with MAS rank
@@ -115,7 +115,7 @@ Feature: PendingUpdate
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -135,7 +135,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify user should not see master's note on all section while viewing as Master, non RA, non Checklist Creator and non AGT via Pending Approval state
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -160,7 +160,7 @@ Feature: PendingUpdate
   Scenario: Verify update note shows from Office if request update via OA office
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -181,7 +181,7 @@ Feature: PendingUpdate
   Scenario: Verify action required note respect sender
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -197,7 +197,7 @@ Feature: PendingUpdate
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
     Then I should see Note from Office
-    And I update permit in pending update state with A/M rank
+    And I update permit in pending update state with C/O rank
     And I navigate to section 6
     And I submit permit for Master Review
     When I click on back to home
@@ -249,7 +249,7 @@ Feature: PendingUpdate
   #   And I request update for permit
   #   And I click on back to home
   #   And I click on update needed filter
-  #   And I update permit in pending update state with A/M rank
+  #   And I update permit in pending update state with C/O rank
   #   And I navigate to section 4b
   #   And I click on view EIC certification button
   #   Then I should see request update comment box
@@ -294,7 +294,7 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with A/M rank
+    And I update permit in pending update state with C/O rank
     Then I should see request update comment
     And I press next for 1 times
     Then I should see request update comment
@@ -320,7 +320,7 @@ Feature: PendingUpdate
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -344,7 +344,7 @@ Feature: PendingUpdate
   Scenario: Verify checklist user should see comment box on EIC screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -367,7 +367,7 @@ Feature: PendingUpdate
   Scenario: Verify user is able to update DRA after Office request for update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
@@ -382,7 +382,7 @@ Feature: PendingUpdate
     And I request the permit for update via oa link manually
     And I wait for form status get changed to APPROVAL_UPDATES_NEEDED on auto
     And I click on update needed filter
-    And I update permit in pending update state with A/M rank
+    And I update permit in pending update state with C/O rank
     And I navigate to section 3a
     And I click on View Edit Hazard
     Then I should see DRA content editable
@@ -390,7 +390,7 @@ Feature: PendingUpdate
   Scenario: Verify section 6 buttons display are correct via pending master approval state as a reader after requesting permit update
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -412,7 +412,7 @@ Feature: PendingUpdate
   Scenario: Verify checklist creator can edit rol checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Rigging of Gangway & Pilot Ladder permit
     And I select NA permit for level 2
     When I press next for 1 times
@@ -431,7 +431,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify checklist creator can edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -461,7 +461,7 @@ Feature: PendingUpdate
   Scenario: Verify non checklist creator cannot edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -485,7 +485,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify location stamping on signature section for issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work
@@ -518,7 +518,7 @@ Feature: PendingUpdate
   Scenario Outline: Verify location stamping on signature section for competent person
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Enclosed Spaces Entry permit
     And I select NA permit for level 2
     And I fill only location of work

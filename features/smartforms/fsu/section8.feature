@@ -14,7 +14,7 @@ Feature: LNGSmartFormsPermission
 
         Examples:
             | permit_types       | permit_payload                 | rank |
-            | intrinsical camera | submit_non_intrinsical_camera  | A/M  |
+            | intrinsical camera | submit_non_intrinsical_camera  | ETO  |
             | underwater         | submit_underwater_simultaneous | C/O  |
 
     Scenario Outline: EIC section 8 issuing authority to change to Master and CE
@@ -23,7 +23,7 @@ Feature: LNGSmartFormsPermission
         And I launch sol-x portal without unlinking wearable
         And I click on active filter
         And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
-        And I review and withdraw permit with A/M rank
+        And I review and withdraw permit with C/O rank
         Then I should see issuing authority label change
         When I sign EIC as issuing authority with rank MAS
         And I set time

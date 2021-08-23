@@ -50,7 +50,7 @@ end
 
 And(/^I enter a invalid master pin$/) do
   step 'I click on view pin button'
-  step 'I enter pin for rank A/M'
+  step 'I enter pin for rank C/O'
 end
 
 And(/^I click on view pin button$/) do

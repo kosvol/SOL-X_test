@@ -14,7 +14,7 @@ end
 
 And(/^I sign on listed role$/) do
   BrowserActions.scroll_click(on(Section5Page).sign_btn_role_elements.first)
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
   sleep 1
 end
 
@@ -47,13 +47,13 @@ end
 
 And(/^I sign on role$/) do
   on(Section5Page).sign_btn_role_elements.first.click
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
   step 'I set time'
 end
 
 And(/^I sign on next role with same user$/) do
   on(Section5Page).sign_btn_role_elements.last.click
-  step 'I sign with valid A/M rank'
+  step 'I sign with valid C/O rank'
   step 'I set time'
 end
 

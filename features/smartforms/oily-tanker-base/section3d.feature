@@ -8,12 +8,12 @@ Feature: Section3DDRA
     Given I clear wearable history and active users
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign on canvas only with valid A/M rank
+    And I sign on canvas only with valid C/O rank
     Then I should see location of work button enabled
     When I resign with valid C/O rank
     Then I should see location of work button enabled
@@ -25,12 +25,12 @@ Feature: Section3DDRA
   Scenario Outline: Verify location of work can be manual selected after pre-select via wearable
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign on canvas only with valid A/M rank
+    And I sign on canvas only with valid C/O rank
     Then I should see location of work button enabled
 
     Examples:
@@ -40,22 +40,22 @@ Feature: Section3DDRA
   Scenario: Verify done button is disabled when location of work not filled
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
-    And I sign on canvas only with valid A/M rank
+    And I sign on canvas only with valid C/O rank
     Then I should see done button disabled
 
   Scenario Outline: Verify location stamping on signature section 3d as RA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
     And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I sign DRA section 3d with A/M as valid rank
+    And I sign DRA section 3d with C/O as valid rank
     Then I should see signed details
     And I should see location <location_stamp> stamp
 
@@ -76,8 +76,8 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit                                             | level_two_permit                            | rank  | created_rank |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area         | MAS   | A/M          |
-      | Hot Work                                                     | Hot Work Level-2 in Designated Area         | A/M   | A/M          |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area         | MAS   | C/O          |
+      | Hot Work                                                     | Hot Work Level-2 in Designated Area         | C/O   | C/O          |
       | Hot Work                                                     | Hot Work Level-1 (Loaded & Ballast Passage) | C/O   | C/O          |
       | Enclosed Spaces Entry                                        | NA                                          | A C/O | A C/O        |
       | Working Aloft/Overside                                       | NA                                          | 2/O   | 2/O          |
@@ -88,10 +88,10 @@ Feature: Section3DDRA
       | Work on Electrical Equipment and Circuits – Low/High Voltage | NA                                          | A 2/E | A 2/E        |
       | Working on Deck During Heavy Weather                         | NA                                          | 3/O   | 3/O          |
       | Working on Deck During Heavy Weather                         | NA                                          | A 3/O | A 3/O        |
-      | Working on Deck During Heavy Weather                         | NA                                          | 3/E   | A/M          |
-      | Working on Deck During Heavy Weather                         | NA                                          | A 3/E | A/M          |
-      | Working on Deck During Heavy Weather                         | NA                                          | 4/E   | A/M          |
-      | Working on Deck During Heavy Weather                         | NA                                          | A 4/E | A/M          |
+      | Working on Deck During Heavy Weather                         | NA                                          | 3/E   | C/O          |
+      | Working on Deck During Heavy Weather                         | NA                                          | A 3/E | C/O          |
+      | Working on Deck During Heavy Weather                         | NA                                          | 4/E   | C/O          |
+      | Working on Deck During Heavy Weather                         | NA                                          | A 4/E | C/O          |
 
   Scenario Outline: Verify only RA can sign on section 3d for maintenance permits
     Given I launch sol-x portal without unlinking wearable
@@ -122,7 +122,7 @@ Feature: Section3DDRA
 
     Examples:
       | level_one_permit                      | level_two_permit                    | rank  | non_ra_rank |
-      | Hot Work                              | Hot Work Level-2 in Designated Area | A/M   | 4/O         |
+      | Hot Work                              | Hot Work Level-2 in Designated Area | C/O   | 4/O         |
       | Work on Pressure Pipeline/Vessels     | NA                                  | A 2/O | D/C         |
       | Personnel Transfer By Transfer Basket | NA                                  | C/E   | A 4/O       |
       | Helicopter Operations                 | NA                                  | A C/E | ETO         |
@@ -148,7 +148,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify these rank cannot sign off DRA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
@@ -164,7 +164,7 @@ Feature: Section3DDRA
   Scenario Outline: Verify these rank can sign off DRA
     Given I launch sol-x portal
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I select Hot Work Level-2 in Designated Area permit for level 2
     And I navigate to section 3d
@@ -174,7 +174,7 @@ Feature: Section3DDRA
     Examples:
       | rank  | pin  |
       # | MAS   | 1111 |
-      # | A/M   | 9015 |
+      # | C/O   | 9015 |
       # | C/O   | 8383 |
       | A C/O | 2761 |
       # | 2/O   | 6268 |

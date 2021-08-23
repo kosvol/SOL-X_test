@@ -28,7 +28,6 @@ Feature: SmartFormsPermission
 
     Examples:
       | rank  |
-      | A/M   |
       | C/O   |
       | A C/O |
       | 2/O   |
@@ -48,24 +47,25 @@ Feature: SmartFormsPermission
     Then I should see not authorize error message
 
     Examples:
-      | rank  | pin  |
-      | MAS   | 1111 |
-      # | 4/O    | 1010 |
-      | D/C   | 2317 |
-      # | 3/E    | 4685 |
-      | A 3/E | 6727 |
-      #     | 4/E    | 1311 |
-      #     | A 4/E  | 0703 |
-      | BOS   | 1018 |
-      | PMN   | 4421 |
-      | A/B   | 6316 |
-  # | O/S    | 7669 |
-  # | OLR    | 0450 |
+      | rank  |
+      | C/O   |
+      | MAS   |
+      | 4/O   |
+      | D/C   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | BOS   |
+      | PMN   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
 
   Scenario: Verify user can see a list of available PTW form
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     Then I should see a list of available forms for selections
       | Cold Work                                                                       |
       | Critical Equipment Maintenance                                                  |
@@ -86,7 +86,7 @@ Feature: SmartFormsPermission
   Scenario Outline: Verify user see the correct second level permits
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     When I select <permit> permit
     Then I should see second level permits details
 
@@ -101,7 +101,7 @@ Feature: SmartFormsPermission
   Scenario: Verify user can navigate back to permit selection screen after navigating to level 2 permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank A/M
+    And I enter pin for rank C/O
     And I select Hot Work permit
     And I navigate back to permit selection screen
     Then I should see smart form landing screen
