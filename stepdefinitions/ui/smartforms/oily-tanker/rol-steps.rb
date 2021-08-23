@@ -63,7 +63,6 @@ Then(/^I should not see permit duration selectable$/) do
 end
 
 When(/^I put the permit to termination state/) do
-  step 'I click on back arrow'
   step 'I click on active filter'
   step 'I open rol permit with rank C/O'
   step 'I submit permit for termination'

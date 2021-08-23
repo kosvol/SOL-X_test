@@ -120,7 +120,7 @@ Feature: Section4BEIC
   Scenario: Verify non chief engineer cannot sign as issuing authority
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new permit
-    And I enter pin for rank C/O
+    And I enter pin for rank 2/O
     And I select Critical Equipment Maintenance permit
     And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
     And I fill only location of work and duration more than 2 hours
