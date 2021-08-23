@@ -102,16 +102,6 @@ module BrowserActions
       end
     end
 
-    ### Uselsss method
-    def wait_condition(_count, _condition)
-      i = 0
-      until _condition
-        sleep 1
-        i += 1
-        break if i == _count
-      end
-    end
-
     def poll_ui_update_by_attribute(locator, condition)
       count = 0
       until ($browser.find_element(:xpath, locator).attribute('class').to_s == condition)
