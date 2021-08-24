@@ -199,8 +199,8 @@ And (/^I (save|check) permit date on Dashboard LOG$/) do |action|
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |number|
-  BrowserActions.wait_condition(20, on(DashboardPage).active_entarnt_element.text == number.to_s)
-  expect(on(DashboardPage).active_entarnt_element.text).to include(number.to_s)
+  BrowserActions.wait_until_is_visible(on(DashboardPage).active_entrant_element)
+  expect(on(DashboardPage).active_entrant_element.text).to include(number.to_s)
 end
 
 And (/^I open new dashboard page$/) do

@@ -96,7 +96,6 @@ end
 
 Given(/^I launch sol-x portal dashboard$/) do
   $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
-  BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue StandardError
