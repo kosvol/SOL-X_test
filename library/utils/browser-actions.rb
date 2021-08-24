@@ -10,6 +10,10 @@ module BrowserActions
       $wait.until { _element.exists? }
     end
 
+    def wait_until_is_displayed(_element)
+      $wait.until { _element.visible? }
+    end
+
     def turn_wifi_off_on
       $browser.toggle_wifi
       sleep 3

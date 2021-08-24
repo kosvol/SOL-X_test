@@ -24,6 +24,8 @@ module EnvironmentSelector
         "COT"
       elsif $current_environment.include? 'fsu'
         "FSU"
+      else
+        raise("Vessel type #{$current_environment} is not defined")
       end
     end
 
