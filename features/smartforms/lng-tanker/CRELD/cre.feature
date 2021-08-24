@@ -52,11 +52,30 @@ Feature: LNGCRE
       | 3/O   |
       | A 3/O |
 
-  Scenario: Verify these crew cannot create CRE permit
+  Scenario Outline: Verify these crew cannot create CRE permit
     Given I launch sol-x portal without unlinking wearable
     And I navigate to create new CRE
-    And I enter pin for rank C/O
+    And I enter pin for rank <rank>
     Then I should see not authorize error message
+
+    Examples:
+      | rank  |
+      | MAS   |
+      | A/M   |
+      | C/E   |
+      | 2/E   |
+      | ETO   |
+      | A 2/E |
+      | D/C   |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | OLR   |
+
 
   Scenario: Verify AGT can add gas reading in CRE permit
     Given I launch sol-x portal without unlinking wearable

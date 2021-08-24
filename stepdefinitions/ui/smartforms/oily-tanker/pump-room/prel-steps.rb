@@ -1,5 +1,5 @@
 And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |cond, condition|
-  # step 'I sleep for 10 seconds'
+   step 'I sleep for 10 seconds'
   if cond == 'enter'
     BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
  BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
@@ -16,6 +16,7 @@ And (/^I (enter|enter without sign) (new|same|without toxic|different|random) en
 end
 
 Then (/^I click on new entry log button$/) do
+  sleep(10)
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
 end

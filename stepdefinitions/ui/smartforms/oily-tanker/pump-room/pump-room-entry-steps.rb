@@ -137,7 +137,7 @@ end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
   Log.instance.info("form id >> #{@@pre_number}")
-  step "I #{condition} the text '#{@@pre_number}'"
+  step "I #{condition} see the text '#{@@pre_number}'"
 end
 
 And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
@@ -270,7 +270,7 @@ And(/^I should see PRE display timezone$/) do
 end
 
 Then(/^I should see entry log details display as (filled|filled api)$/) do |condition|
-  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, 'A/M COT A/M')
+  is_equal(on(PumpRoomEntry).entry_log_table_elements.first.text, "A/M #{EnvironmentSelector.get_vessel_type} A/M")
   is_equal(on(PumpRoomEntry).entry_log_table_elements[1].text, 'Test Automation')
   case condition
   when 'filled'
@@ -290,12 +290,8 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
   is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text, '4 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
-  case condition
-  when 'filled api'
-    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'MAS COT MAS') # why MAS Default Master on auto or sit if api call???????
-  else
-    is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, 'C/O COT C/O')
-  end
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, "C/O #{EnvironmentSelector.get_vessel_type} C/O")
+
 end
 
 Then('I should see timer countdown') do
