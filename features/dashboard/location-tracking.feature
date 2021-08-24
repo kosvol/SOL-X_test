@@ -39,7 +39,6 @@ Feature: LocationTracking
     Then I should see crew link to PTW
     And I unlink all crew from wearable
 
-  @debug
   Scenario: Verify crew able to access ptw via dashboard crew list
     Given I submit permit submit_enclose_space_entry via service with 9015 user and set to active state
     And I sleep for 3 seconds
