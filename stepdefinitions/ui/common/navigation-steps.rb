@@ -6,6 +6,7 @@ end
 
 And(/^I open hamburger menu$/) do
   BrowserActions.wait_until_is_visible(on(Section0Page).hamburger_menu_element)
+  BrowserActions.wait_until_is_displayed(on(Section0Page).hamburger_menu_element)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 

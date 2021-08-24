@@ -41,7 +41,7 @@ Feature: PumpRoomEntry
     Examples:
       | rank  |
       | MAS   |
-      | C/O   |
+      | A/M   |
       | C/E   |
       | 2/E   |
       | ETO   |
