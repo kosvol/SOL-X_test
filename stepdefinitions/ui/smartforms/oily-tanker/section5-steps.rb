@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+Then('I should see both signature canvas exists') do
+  is_equal(on(SignaturePage).signature_elements.size, 2)
+end
+
 And(/^I (select|delete) (.+) role from list$/) do |condition, roles|
   on(Section5Page).select_roles_and_responsibility(roles) if condition === 'select'
   on(Section5Page).delete_roles_and_responsibility(roles) if condition === 'delete'
