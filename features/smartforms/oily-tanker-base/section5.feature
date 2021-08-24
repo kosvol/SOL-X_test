@@ -4,6 +4,23 @@ Feature: Section5
   I want to ...
   So that ...
 
+  @SOL-7490
+  Scenario: Verify signature exists after navigating
+    Given I launch sol-x portal
+    And I navigate to create new permit
+    And I enter pin for rank C/O
+    And I select Enclosed Spaces Entry permit
+    And I select NA permit for level 2
+    And I navigate to section 5
+    And I select 2 role from list
+    And I sign on role
+    Then I should see first signed role details with 8383 pin
+    When I sign on next role with same user
+    Then I should see second signed role details with 8383 pin
+    And I press next for 1 times
+    And I press previous for 1 times
+    Then I should see both signature canvas exists
+
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities from drop down
     Given I launch sol-x portal
     And I navigate to create new permit
