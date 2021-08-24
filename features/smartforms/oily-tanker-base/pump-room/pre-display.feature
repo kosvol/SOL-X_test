@@ -317,7 +317,7 @@ Feature: PumpRoomEntry
       | RDCRW |
       | SPM   |
 
-@wip
+
   Scenario Outline: Verify AGT  can submit entry log in PRED
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
