@@ -39,8 +39,8 @@ And(/^I should see gas reading section with fields enabled$/) do
   is_enabled(on(Section6Page).gas_yes_no_elements[1])
 end
 
-Then(/^I should see EIC section with fields enabled$/) do
-  is_equal(on(Section4APage).disabled_fields_elements.size, '2')
+Then(/^I should see EIC section with fields disabled$/) do
+  is_equal(on(Section4APage).disabled_fields_elements.size, 0)
 end
 
 Then(/^I should see deleted permit deleted$/) do

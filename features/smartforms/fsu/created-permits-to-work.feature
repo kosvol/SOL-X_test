@@ -69,8 +69,7 @@ Feature: CreatedPermitToWork
         And I want to edit the newly created permit
         And I enter pin via service for rank <rank>
         And I navigate to section 4b
-        Then I should see EIC section with fields enabled
-        When I select yes to EIC
+        Then I should see EIC section with fields disabled
         And I click on create EIC certification button
         And I click on sign button for issuing authority
         And I enter pin via service for rank <rank>

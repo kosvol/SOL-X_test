@@ -74,7 +74,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
     Then I should see view and termination buttons
 
@@ -118,7 +117,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
     Then I open rol permit with rank <rank>
     Then I should not see permit duration selectable
@@ -191,7 +189,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
     Then I open rol permit with rank C/O
     And I submit permit for termination
