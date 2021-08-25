@@ -718,6 +718,14 @@ class BypassPage < CommonFormsPage
     ServiceUtil.post_graph_ql(permit_mod)
   end
 
+  def retrieve_active_form(type)
+    json = JSON.parse JsonUtil.read_json('pre/08.get_active_permits')
+    json['variables']['types'] = type
+    JsonUtil.create_request_file('pre/08.get_active_permits', json)
+    ServiceUtil.post_graph_ql('pre/08.get_active_permits')
+    ServiceUtil.get_response_body
+  end
+
   def signout_entrants(_entrant_name)
     _entry_record = JSON.parse JsonUtil.read_json('cre/08.signout_entrants')
     _entry_record['variables']['formId'] = CommonPage.get_permit_id
