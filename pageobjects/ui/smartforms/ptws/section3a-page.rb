@@ -72,6 +72,7 @@ class Section3APage < Section2Page
     tmp = $browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
     scroll_multiple_times(2)
+    sleep 1
   end
 
   def add_new_hazard

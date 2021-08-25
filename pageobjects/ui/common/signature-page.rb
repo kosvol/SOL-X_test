@@ -6,7 +6,7 @@ class SignaturePage < Section1Page
   include PageObject
 
   element(:signing_canvas, css: 'canvas[data-testid="signature-canvas"]')
-  elements(:signature, xpath: 'div.signature > img')
+  elements(:signature, css: 'div.signature > img')
 
   def sign_and_done
     sign_and_select_location
@@ -22,8 +22,7 @@ class SignaturePage < Section1Page
   end
 
   def is_signature_pad?
-    signature_elements.first
-    true
+    signature_elements.size > 0 ? true : false
   rescue StandardError
     false
   end
