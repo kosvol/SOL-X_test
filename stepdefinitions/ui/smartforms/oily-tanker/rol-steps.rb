@@ -63,7 +63,6 @@ Then(/^I should not see permit duration selectable$/) do
 end
 
 When(/^I put the permit to termination state/) do
-  step 'I click on active filter'
   step 'I open rol permit with rank C/O'
   step 'I submit permit for termination'
   step 'I sign with valid C/O rank'
@@ -72,7 +71,6 @@ When(/^I put the permit to termination state/) do
 end
 
 When(/^I put the permit to pending termination update status$/) do
-  step 'I click on pending withdrawal filter'
   on(PendingWithdrawalPage).review_n_withdraw_elements.first.click
   step 'I enter pin for rank MAS'
   on(ROLPage).request_update_btn
