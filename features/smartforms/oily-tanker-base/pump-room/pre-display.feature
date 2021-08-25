@@ -13,9 +13,10 @@ Feature: PumpRoomEntry
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
+    And I click on back arrow
     When I submit a scheduled PRE permit
-    And  I activate PRE form via service
-    #And I dismiss gas reader dialog box
+    And I activate PRE form via service
+    And I navigate to PRE Display
     And I click on permit tab
     Then I should see new PRE permit number
     And I terminate the PRE permit via service

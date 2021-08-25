@@ -90,7 +90,7 @@ And('I click New Entry button on PTW screen') do
 end
 
 And(/^I click on (.*) tab$/) do |which_tab|
-  sleep 5
+  sleep 10
   case which_tab
   when 'entry log'
     BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)

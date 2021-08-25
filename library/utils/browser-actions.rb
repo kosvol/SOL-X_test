@@ -11,7 +11,7 @@ module BrowserActions
     end
 
     def wait_until_is_displayed(element)
-      $wait.until { element.visible? }
+      $wait.until { element.present? }
     end
 
     def turn_wifi_off_on
