@@ -16,3 +16,12 @@ When(/^I fill and submit PRE permit details via (service|ui|without gas readings
   step 'I enter pin via service for rank C/O'
   step 'I sleep for 5 seconds'
 end
+
+And(/^I get active (CRE|PRE) permit and terminate$/) do |permit_type|
+  response = on(BypassPage).retrieve_active_form(permit_type)
+  if response['data']['forms']['edges'] != []
+    permit_id = response['data']['forms']['edges'][0]['node']['_id']
+    CommonPage.set_permit_id(permit_id)
+    step "I terminate the #{permit_type} permit via service"
+  end
+end
