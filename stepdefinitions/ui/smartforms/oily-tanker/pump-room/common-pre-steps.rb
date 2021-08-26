@@ -14,3 +14,12 @@ When(/^I fill and submit PRE permit details via (service|ui|without gas readings
   step 'I activate PRE form via service' if condition != 'ui'
   step 'I navigate to PRE Display until see active permit'
 end
+
+And(/^I get active (CRE|PRE) permit and terminate$/) do |permit_type|
+  response = on(BypassPage).retrieve_active_form(permit_type)
+  if response['data']['forms']['edges'] != []
+    permit_id = response['data']['forms']['edges'][0]['node']['_id']
+    CommonPage.set_permit_id(permit_id)
+    step "I terminate the #{permit_type} permit via service"
+  end
+end
