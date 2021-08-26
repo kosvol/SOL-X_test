@@ -93,6 +93,7 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
+    And I click on active filter
     When I put the permit to termination state
     And I click on pending withdrawal filter
     And I withdraw permit with MAS rank
