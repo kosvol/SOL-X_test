@@ -18,7 +18,7 @@ class DashboardPage < WearablePage
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
   element(:entry_status_indicator, xpath: "//div[starts-with(@class,'ActiveEntrantIndicator__ButtonContent')]")
   elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
-  element(:entry_log_title, xpath: "//h2[@class='Heading__H2-ir5eos-1 kBnVEC']")
+  element(:entry_log_title, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entrant, xpath: "//span[@data-testid='entrant-count']")
   @@ship_area = "//button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"

@@ -20,7 +20,7 @@ class PumpRoomEntry < PreDisplay
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
   elements(:person_checkbox, xpath: "//span[@class='checkbox']")
-  element(:enter_pin_and_apply, xpath: '//button[@class="Button__ButtonStyled-w803xw-0 geNOWa"]')
+  element(:enter_pin_and_apply, xpath: "//button[contains(.,'Enter Pin & Apply')]")
 
   @@radio_buttons = "//span[contains(text(),'%s')]/following::*[1]/label" # for questions
   @@interval_period_id = 'pre_section2_reportingIntervalPeriod'

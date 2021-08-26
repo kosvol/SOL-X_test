@@ -15,8 +15,6 @@ And(/^I (enter|enter without sign) (new|same|without toxic|different|random) ent
     on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc')
   when 'without toxic'
     on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '')
-  when 'different'
-    on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc')
   else
     on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
   end
@@ -114,12 +112,11 @@ And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 3 seconds'
 end
 
-Then (/^I (should not|should) see dashboard gas reading popup$/) do |condition|
+Then(/^I (should not|should) see dashboard gas reading popup$/) do |condition|
   step 'I acknowledge the new entry log via service'
-  step 'I sleep for 1 seconds'
   if condition == 'should not'
     is_equal(SmartFormDBPage.get_error_message, 'No pending PRED record')
-  elsif condition == 'should'
+  else
     ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
   end
 end
@@ -146,13 +143,13 @@ Then (/^I check the Send Report button is (enabled|disabled)$/) do |condition|
     raise 'wrong condition'
   end
 end
-
+1
 Then ('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?
     entr_arr.push($browser
-                    .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item.to_s}]")
-                    .attribute('aria-label'))
+      .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item.to_s}]")
+      .attribute('aria-label'))
     item = item - 1
   end
   p entr_arr.to_s
