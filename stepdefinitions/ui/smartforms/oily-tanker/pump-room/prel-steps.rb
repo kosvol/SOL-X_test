@@ -1,17 +1,25 @@
-And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |condition, gas_reading_value|
-  #step 'I sleep for 10 seconds'
-   if condition == 'enter'
-     BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
-     BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
-     step 'I enter pin via service for rank A/M'
-   end
-  BrowserActions.wait_until_is_displayed(on(PumpRoomEntry).gas_O2_element)
-  on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if gas_reading_value == 'same'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if gas_reading_value == 'new'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if gas_reading_value == 'without toxic'
-  on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc') if gas_reading_value == 'different'
-  on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc') if gas_reading_value == 'random'
+# frozen_string_literal: true
 
+And(/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |condition, gas_reading_value|
+  if condition == 'enter'
+    BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
+    BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
+    step 'I enter pin via service for rank A/M'
+  end
+  BrowserActions.wait_until_is_displayed(on(PumpRoomEntry).gas_O2_element)
+
+  case gas_reading_value
+  when 'same'
+    on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc')
+  when 'new'
+    on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc')
+  when 'without toxic'
+    on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '')
+  when 'different'
+    on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc')
+  else
+    on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
+  end
   step 'I sign for gas' if condition == 'enter'
 end
 
@@ -20,7 +28,6 @@ Then (/^I click on new entry log button$/) do
   BrowserActions.wait_until_is_displayed(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
 end
-
 
 Then (/^I should see correct signed in entrants$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
@@ -107,7 +114,7 @@ And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 3 seconds'
 end
 
-Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |condition|
+Then (/^I (should not|should) see dashboard gas reading popup$/) do |condition|
   step 'I acknowledge the new entry log via service'
   step 'I sleep for 1 seconds'
   if condition == 'should not'
@@ -144,8 +151,8 @@ Then ('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?
     entr_arr.push($browser
-      .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item.to_s}]")
-      .attribute('aria-label'))
+                    .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item.to_s}]")
+                    .attribute('aria-label'))
     item = item - 1
   end
   p entr_arr.to_s
@@ -184,16 +191,15 @@ And (/^I (send|just send) Report$/) do |condition|
 end
 
 And (/^I (save|check) permit date on Dashboard LOG$/) do |action|
-  if action == 'save'
+  case action
+  when 'save'
     current = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
-  elsif action == 'check'
+  when 'check'
     data = on(DashboardPage).get_arr_data
-    puts(data[0].to_s)
-    puts(DateTime.parse(on(DashboardPage).date_log_elements[0].text))
-    puts(DateTime.parse(on(DashboardPage).date_log_elements[1].text))
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[0].to_s)
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).not_to include(data[0].to_s)
+    unless is_equal(DateTime.parse(on(DashboardPage).entry_log_title_element.text), DateTime.parse(data[0]))
+      raise 'date time verification fail'
+    end
   else
     raise 'wrong action'
   end

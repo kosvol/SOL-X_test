@@ -35,10 +35,11 @@ Feature: PumpRoomEntry
     And I add new entry "3/O,A 3/O" PRE with different gas readings
     And I sleep for 20 seconds
     Then I should see alert message
-
+  @ooo
   Scenario: Dashboard - Verify updated view and icon is displayed in Dashboard main page for entry log and PRE status
     Given I launch sol-x portal
     And I get active PRE permit and terminate
+    And I get active CRE permit and terminate
     When I check PRE elements on dashboard inactive
     When I submit a activated PRE permit
     And I add new entry "A 2/O" PRE
