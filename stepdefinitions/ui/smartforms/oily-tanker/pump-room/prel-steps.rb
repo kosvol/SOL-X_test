@@ -1,11 +1,11 @@
 And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |condition, gas_reading_value|
-  #step 'I sleep for 10 seconds'
+  step 'I sleep for 10 seconds'
    if condition == 'enter'
      BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
      BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
      step 'I enter pin via service for rank A/M'
    end
-  BrowserActions.wait_until_is_displayed(on(PumpRoomEntry).gas_O2_element)
+  BrowserActions.wait_until_is_visible(on(PumpRoomEntry).gas_O2_element)
   on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if gas_reading_value == 'same'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if gas_reading_value == 'new'
   on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if gas_reading_value == 'without toxic'

@@ -58,7 +58,7 @@ class CommonFormsPage < CommonPage
   def scroll_multiple_times(times)
     (1..times).each do |_i|
       BrowserActions.scroll_down
-      sleep 1
+      sleep 3
     end
   end
 
@@ -66,7 +66,7 @@ class CommonFormsPage < CommonPage
     (1..times).each do |_i|
       BrowserActions.scroll_down if direction === 'down'
       BrowserActions.scroll_up if direction === 'up'
-      sleep 1
+      sleep 3
     end
   end
 

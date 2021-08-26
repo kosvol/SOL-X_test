@@ -25,12 +25,26 @@ Then(/^I should see (no new|only) entry log message$/) do |_condition|
   end
 end
 
-And(/^I navigate to (PRE|CRE) Display$/) do |_type|
+And(/^I navigate to (PRE|CRE) Display$/) do |type|
   step 'I navigate to "Settings" screen for setting'
   # on(PumpRoomEntry).pump_room_display_setting_element.click
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if _type === 'PRE'
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if _type === 'CRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type === 'PRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type === 'CRE'
   step 'I press the "Enter Pin & Apply" button'
+end
+
+And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
+  i = 0
+  until @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color') == 'rgba(67, 160, 71, 1)'
+    step 'I navigate to "Settings" screen for setting'
+    BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type == 'PRE'
+    BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type == 'CRE'
+    step 'I press the "Enter Pin & Apply" button'
+    step 'I enter pin via service for rank C/O'
+    sleep(10)
+    i += 1
+    break if i == 10
+  end
 end
 
 And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
