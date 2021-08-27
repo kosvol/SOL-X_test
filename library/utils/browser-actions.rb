@@ -16,7 +16,7 @@ module BrowserActions
 
     def turn_wifi_off_on
       $browser.toggle_wifi
-      sleep 3
+      sleep 10
     end
 
     def turn_on_wifi_by_default
@@ -24,7 +24,7 @@ module BrowserActions
 
       $wifi_on_off = `adb -s #{device['deviceName']} shell settings get global wifi_on`
       p "Wifi Status: #{$wifi_on_off}"
-      if $wifi_on_off.strip === '0'
+      if $wifi_on_off.strip == '0'
         $browser.toggle_wifi
         sleep 10
       end
@@ -106,13 +106,15 @@ module BrowserActions
       end
     end
 
-    def poll_ui_update_by_attribute(locator, condition)
+    def poll_ui_update_by_attribute(locator, condition, attribute)
       count = 0
-      until ($browser.find_element(:xpath, locator).attribute('class').to_s == condition)
+      tmp_ele = $browser.find_element(:xpath, locator).attribute(attribute)
+      until (tmp_ele.to_s == condition)
         count += 1
         sleep 1
         break if count == 15
       end
+      return tmp_ele.to_s
     end
 
     private

@@ -28,8 +28,9 @@ end
 And(/^I navigate to (PRE|CRE) Display$/) do |type|
   step 'I navigate to "Settings" screen for setting'
   # on(PumpRoomEntry).pump_room_display_setting_element.click
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type === 'PRE'
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type === 'CRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if _type == 'PRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if _type == 'CRE'
+  BrowserActions.wait_until_is_visible(on(PumpRoomEntry).enter_pin_and_apply_element)
   step 'I press the "Enter Pin & Apply" button'
 end
 

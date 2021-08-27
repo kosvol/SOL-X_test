@@ -235,7 +235,6 @@ Feature: Section8
     And I click on active filter
     And I review and withdraw permit with C/O rank
     And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    # And I navigate to section 8
     Then I sign EIC as competent person with rank <rank>
     And I set time
     And I should see <rank_name> rank and name for section 8
