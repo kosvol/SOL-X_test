@@ -112,7 +112,6 @@ module BrowserActions
       until (tmp_ele.to_s == condition)
         count += 1
         sleep 1
-        p "sleep #{count}"
         break if count == 15
       end
       return tmp_ele.to_s
