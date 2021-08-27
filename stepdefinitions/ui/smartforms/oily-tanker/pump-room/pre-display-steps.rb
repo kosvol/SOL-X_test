@@ -28,8 +28,8 @@ end
 And(/^I navigate to (PRE|CRE) Display$/) do |type|
   step 'I navigate to "Settings" screen for setting'
   # on(PumpRoomEntry).pump_room_display_setting_element.click
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if _type == 'PRE'
-  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if _type == 'CRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type == 'PRE'
+  BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type == 'CRE'
   BrowserActions.wait_until_is_visible(on(PumpRoomEntry).enter_pin_and_apply_element)
   step 'I press the "Enter Pin & Apply" button'
 end
@@ -48,10 +48,10 @@ And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
   end
 end
 
-And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |_condition, button|
-  is_true(on(PreDisplay).is_element_disabled_by_att?(button)) if _condition === 'disabled'
+And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |condition, button|
+  is_true(on(PreDisplay).is_element_disabled_by_att?(button)) if condition == 'disabled'
 
-  is_false(on(PreDisplay).is_element_disabled_by_att?(button)) if _condition === 'enabled'
+  is_false(on(PreDisplay).is_element_disabled_by_att?(button)) if condition == 'enabled'
 end
 
 And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|
@@ -81,11 +81,11 @@ Then(/^I should see (green|red) background color$/) do |condition|
   end
 end
 
-And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |_status, _type|
+And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |status, type|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
-  BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element) if _status === 'Permit Activated'
-  4.times { is_equal(on(PreDisplay).permit_status_element.text, _status) }
+  BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element) if status == 'Permit Activated'
+  4.times { is_equal(on(PreDisplay).permit_status_element.text, status) }
 end
 
 And(/^\(for pred\) I should see warning box "Gas reading is missing" on "Entry log"$/) do

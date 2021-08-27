@@ -49,7 +49,7 @@ class Section3APage < Section2Page
   def is_additional_hazard_saved?
     view_edit_btn
     sleep 1
-    scroll_multiple_times(3)
+    scroll_multiple_times_with_direction(3,'down')
     description_elements[2].text === 'Test Automation'
   end
 
@@ -71,7 +71,7 @@ class Section3APage < Section2Page
   def scroll_to_new_hazard
     tmp = $browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
-    scroll_multiple_times(2)
+    scroll_multiple_times_with_direction(2,'down')
     sleep 1
   end
 
@@ -98,7 +98,7 @@ class Section3APage < Section2Page
     # sleep 1
 
     # for existing control measure
-    scroll_multiple_times(2)
+    scroll_multiple_times_with_direction(2,'down')
     likelihood_btn_elements.last.click
     sleep 1
     select_dra_risk(1)
@@ -112,7 +112,7 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 2
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
-    scroll_multiple_times(1)
+    scroll_multiple_times_with_direction(1,'down')
     likelihood_btn_elements[0].click
     select_dra_risk(_likelihood)
     sleep 1
@@ -124,7 +124,7 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 1
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
-    scroll_multiple_times(3)
+    scroll_multiple_times_with_direction(3,'down')
     sleep 1
     likelihood_btn_elements[1].click
     select_dra_risk(_likelihood)
@@ -135,9 +135,10 @@ class Section3APage < Section2Page
 
   def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
     sleep 2
-    @@swap_flag == 'evaluation_matrix' ? scroll_multiple_times(1) : scroll_multiple_times(2)
+    @@swap_flag == 'evaluation_matrix' ? scroll_multiple_times_with_direction(1,
+'down') : scroll_multiple_times_with_direction(2, 'down')
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]", 0)
-    scroll_multiple_times(2)
+    scroll_multiple_times_with_direction(2,'down')
     likelihood_btn_elements[2].click
     select_dra_risk(_likelihood)
     consequence_btn_elements[2].click
@@ -149,11 +150,11 @@ class Section3APage < Section2Page
     base_color = get_color_code(_status)
     case _measure
     when 'without applying measure'
-      risk_indicators[0].css_value('background-color') === base_color
+      risk_indicators[0].css_value('background-color') == base_color
     when 'existing control measure'
-      risk_indicators[1].css_value('background-color') === base_color
+      risk_indicators[1].css_value('background-color') == base_color
     when 'additional hazard'
-      risk_indicators[2].css_value('background-color') === base_color
+      risk_indicators[2].css_value('background-color') == base_color
     end
   end
 

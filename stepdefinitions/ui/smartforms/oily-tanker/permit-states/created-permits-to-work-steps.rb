@@ -58,7 +58,7 @@ And(/^I delete the permit created$/) do
 end
 
 Then(/^I should see the total permits in CREATED state match backend results$/) do
-  on(Section3APage).scroll_multiple_times(15)
+  on(Section3APage).scroll_multiple_times_with_direction(15,'down')
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'

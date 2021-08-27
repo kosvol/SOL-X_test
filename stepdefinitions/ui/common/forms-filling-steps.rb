@@ -32,7 +32,7 @@ When (/^I fill a full enclosed workspace permit$/) do
   step 'I press next for 1 times'
   step 'I fill up section 5'
   step 'I press next for 1 times'
-  on(Section3APage).scroll_multiple_times(3)
+  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
   step 'I submit smoke test permit'
   step 'I sleep for 2 seconds'
   step 'I click on back to home'
@@ -49,7 +49,7 @@ When (/^I fill a full OA permit$/) do
   step 'I press next for 1 times'
   step 'I fill up section 5'
   step 'I press next for 1 times'
-  on(Section3APage).scroll_multiple_times(3)
+  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
   step 'I submit permit for Master Review'
   step 'I sleep for 2 seconds'
   step 'I click on back to home'
