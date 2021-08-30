@@ -11,7 +11,7 @@ Then(/^I should see incomplete fields warning message display$/) do
 end
 
 And(/^I should see incomplete signature field warning message display$/) do
-  on(Section3APage).scroll_multiple_times(5)
+  on(Section3APage).scroll_multiple_times_with_direction(5,'down')
   is_equal(on(Section6Page).info_warning_boxes_elements[2].text,
            'This permit has required fields missing. To submit it for approval, please sign at the following sections')
   does_include(on(Section6Page).info_warning_boxes_elements[3].text, 'Helicopter Operation')
@@ -20,7 +20,7 @@ end
 Then(/^I should see master (approval|review) button only$/) do |condition|
   sleep 1
   BrowserActions.wait_until_is_visible(on(Section6Page).submit_btn_elements.first)
-  on(Section3APage).scroll_multiple_times(4)
+  on(Section3APage).scroll_multiple_times_with_direction(4,'down')
   is_equal(on(Section6Page).submit_btn_elements.size, 1)
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Approval") if condition === 'approval'
   is_equal(on(Section6Page).submit_btn_elements.first.text, "Submit for Master's Review") if condition === 'review'
@@ -100,7 +100,7 @@ And(/^I will see popup dialog with (.+) crew rank and name$/) do |rank_name|
 end
 
 Then(/^I should see gas reading display (with|without) toxic gas and (.*) as gas signer$/) do |condition, rank_name|
-  on(Section3APage).scroll_multiple_times(2)
+  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
   is_equal(on(Section6Page).gas_reading_table_elements[1].text, 'Initial') if condition === 'with'
   is_equal(on(Section6Page).gas_reading_table_elements[1].text, '2nd Reading') if condition === 'without'
   # is_equal(on(Section6Page).gas_reading_table_elements[2].text, "#{on(Section6Page).get_current_date_format_with_offset} #{on(Section6Page).get_current_time_format}")

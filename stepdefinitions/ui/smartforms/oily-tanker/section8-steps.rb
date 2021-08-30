@@ -111,7 +111,7 @@ Then(/^I should see EIC extra questions for work on pressure pipe permit$/) do
 end
 
 And(/^I sign EIC section 8 with RA (.+) rank$/) do |rank|
-  on(Section3APage).scroll_multiple_times(4)
+  on(Section3APage).scroll_multiple_times_with_direction(4, 'down')
   step 'I submit permit for termination'
   step "I sign with valid #{rank} rank"
   sleep 2

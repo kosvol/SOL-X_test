@@ -109,7 +109,7 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    scroll_multiple_times(3)
+    scroll_multiple_times_with_direction(3,'down')
     ### set from time
     date_time_from_elements[1].click
     starttime = Time.now.utc.strftime('%k').to_i + 1

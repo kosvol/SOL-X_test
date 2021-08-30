@@ -26,7 +26,7 @@ class ROLPage < Section9Page
     confirm_btn_elements.last.click
     rol_inputs_elements[4].click
     rol_inputs_elements[7].click
-    scroll_multiple_times(3)
+    scroll_multiple_times_with_direction(3,'down')
     last_assessment_date_element.click
     sleep 1
     current_date
@@ -57,7 +57,7 @@ class ROLPage < Section9Page
     sleep 1
     rol_duration
     sleep 1
-    scroll_multiple_times(2)
+    scroll_multiple_times_with_direction(2,'down')
     sleep 1
     tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration + ' hour'}"])
     tmp_hour.click

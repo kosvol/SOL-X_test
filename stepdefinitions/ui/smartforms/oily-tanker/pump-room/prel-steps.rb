@@ -143,7 +143,7 @@ Then (/^I check the Send Report button is (enabled|disabled)$/) do |condition|
     raise 'wrong condition'
   end
 end
-1
+
 Then ('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?

@@ -27,7 +27,7 @@ And(/^I click on permit for (.+)$/) do |status|
 end
 
 Then(/^I (should|should not) see approve and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times(4)
+  on(Section3APage).scroll_multiple_times_with_direction(4,'down')
   if condition === 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 4)
     is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
@@ -41,7 +41,7 @@ Then(/^I (should|should not) see approve and request update buttons$/) do |condi
 end
 
 Then(/^I (should|should not) see submit for office approval and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times(3)
+  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
   if condition === 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 7) # previous 5
     is_equal(on(Section7Page).submit_oa_btn_element.text, 'Submit for Office Approval')
