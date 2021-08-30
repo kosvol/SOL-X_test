@@ -108,7 +108,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter same entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
     And I terminate the PRE permit via service
@@ -118,7 +117,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
     And I terminate the PRE permit via service
