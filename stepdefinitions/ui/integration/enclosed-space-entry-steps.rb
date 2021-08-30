@@ -78,11 +78,10 @@ end
 And(/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  p "--- #{on(Section3DPage).get_filled_section}"
+  Log.instance.info "#{on(Section3DPage).get_filled_section}"
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
-  CommonPage.set_entered_pin = '9015'
+  CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
-  # step 'I should map to partial sign details'
 end
 
 And(/^I review page 4a of submitted (.+) permit$/) do |_permit_type|
