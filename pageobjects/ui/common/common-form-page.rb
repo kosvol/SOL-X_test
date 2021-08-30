@@ -55,7 +55,7 @@ class CommonFormsPage < CommonPage
     sleep 1
   end
 
-  def scroll_multi_times_with_direct(time, direct)
+  def scroll_multiple_times_with_direction(time, direct)
     time.times do
       BrowserActions.scroll_down if direct == 'down'
       BrowserActions.scroll_up if direct == 'up'
