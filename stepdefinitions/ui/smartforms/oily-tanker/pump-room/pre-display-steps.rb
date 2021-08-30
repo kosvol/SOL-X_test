@@ -42,9 +42,9 @@ And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
     BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type == 'CRE'
     step 'I press the "Enter Pin & Apply" button'
     step 'I enter pin via service for rank C/O'
-    sleep(10)
+    sleep(5)
     i += 1
-    break if i == 10
+    break if i == 12
   end
 end
 
