@@ -48,7 +48,7 @@ And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
   end
 end
 
-And(/^I wait on (PRE|CRE) Display until see (red|green) background$/) do |type, color|
+And(/^I wait on (PRE|CRE) Display until see (red|green) background$/) do |_type, color|
   i = 0
   colors_hash = { 'red' => 'rgba(216, 75, 75, 1)',
                   'green' => 'rgba(67, 160, 71, 1)' }
