@@ -21,23 +21,6 @@ And(/^I (enter|enter without sign) (new|same|without toxic|different|random) ent
   step 'I sign for gas' if condition == 'enter'
 end
 
-And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log with role (.*)$/) do |cond, condition, role|
-  # step 'I sleep for 10 seconds'
-  if cond == 'enter'
-    BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
-    BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
-    step "I enter pin via service for rank #{role}"
-  end
-
-  on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if condition == 'same'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if condition == 'new'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if condition == 'without toxic'
-  on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc') if condition == 'different'
-  on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(5..10).to_s, rand(7..15).to_s, rand(6..25).to_s, 'Test', rand(20..29).to_s, '2', 'cc') if condition == 'random'
-
-  step 'I sign for gas' if cond == 'enter'
-end
-
 Then (/^I click on new entry log button$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
   BrowserActions.wait_until_is_displayed(on(PreDisplay).new_entry_log_element)
@@ -48,13 +31,13 @@ Then (/^I should see correct signed in entrants$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).sign_out_btn_elements.first)
   sleep 2
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, "A/M #{EnvironmentSelector.get_vessel_type} A/M")
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M COT A/M')
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size, 1)
 end
 
 Then (/^I should not see entered entrant on list$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
-  is_false(on(PumpRoomEntry).is_entered_entrant_listed?("MAS #{EnvironmentSelector.get_vessel_type} MAS"))
+  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS COT MAS'))
 end
 
 Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |condition|

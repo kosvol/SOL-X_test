@@ -57,6 +57,9 @@ Feature: PumpRoomEntry
     And I get active CRE permit and terminate
     When I check PRE elements on dashboard inactive
     When I submit a activated PRE permit
+    And I sleep for 3 seconds
     And I add new entry "A 2/O" PRE
+    And I sleep for 3 seconds
     And I acknowledge the new entry log pre via service
+    And I sleep for 5 seconds
     When I check PRE elements on dashboard active
