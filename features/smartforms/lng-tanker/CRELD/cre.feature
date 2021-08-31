@@ -270,7 +270,7 @@ Feature: LNGCRE
     And I should see the current CRE in the "Terminated" list
     When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
-@wip
+
   Scenario: Gas Reader location stamp should not be missing
     Given I launch sol-x portal
     When I link wearable to rank C/O to zone
