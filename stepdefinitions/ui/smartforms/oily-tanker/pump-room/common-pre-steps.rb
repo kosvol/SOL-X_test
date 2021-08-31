@@ -11,10 +11,8 @@ When(/^I fill and submit PRE permit details via (service|ui|without gas readings
   step 'I getting a permanent number from indexedDB'
   step 'I activate the current PRE form'
   step 'I sleep for 120 seconds' if condition == 'ui'
-  step 'I activate PRE form via service' if (condition == 'service') || (_condition === 'without gas readings')
-  step 'I navigate to PRE Display'
-  step 'I enter pin via service for rank C/O'
-  step 'I sleep for 5 seconds'
+  step 'I activate PRE form via service' if condition != 'ui'
+  step 'I navigate to PRE Display until see active permit'
 end
 
 And(/^I get active (CRE|PRE) permit and terminate$/) do |permit_type|

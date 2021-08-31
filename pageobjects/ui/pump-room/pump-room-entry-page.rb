@@ -159,13 +159,13 @@ class PumpRoomEntry < PreDisplay
     set_entrants(entr_arr)
   end
 
-  def add_all_gas_readings_pre(_o2, _hc, _h2s, _co, _gas_name, _threhold, _reading, _unit)
-    if _gas_name === '' or _threhold === '' or _reading === '' or _unit === ''
-      normal_gas_readings(_o2, _hc, _h2s, _co)
+  def add_all_gas_readings_pre(o2, hc, h2s, co, gas_name, threhold, reading, unit)
+    if (gas_name == '') || (threhold == '') || (reading == '') || (unit == '')
+      normal_gas_readings(o2, hc, h2s, co)
     else
-      normal_gas_readings(_o2, _hc, _h2s, _co)
-      sleep 1
-      toxic_gas_readings(_gas_name, _threhold, _reading, _unit)
+      normal_gas_readings(o2, hc, h2s, co)
+      sleep 2
+      toxic_gas_readings(gas_name, threhold, reading, unit)
     end
   end
 
@@ -278,7 +278,7 @@ class PumpRoomEntry < PreDisplay
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    scroll_multiple_times(5)
+    scroll_multiple_times_with_direction(5,'down')
     sleep 1
     case duration.to_i
     when 4

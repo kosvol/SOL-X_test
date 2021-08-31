@@ -16,7 +16,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
   end
 
   def is_permit_listing_count?(_which_filter)
-    scroll_multiple_times(10)
+    scroll_multiple_times_with_direction(10,'down')
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
     case _which_filter
     when 'pending approval'

@@ -28,9 +28,9 @@ Feature: CreatedPermitToWork
             | rank |
             | 3/E  |
             | FTR  |
-    # | PMN  |
-    # | 4/E  |
-    # | MAS  |
+            | PMN  |
+            | 4/E  |
+            | MAS  |
 
     @sol-6981
     Scenario Outline: Verify EIC certification signature component for issuing authority
