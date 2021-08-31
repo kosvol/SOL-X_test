@@ -48,6 +48,17 @@ And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
   end
 end
 
+And(/^I wait on (PRE|CRE) Display until see (red|green) background$/) do |type, color|
+  i = 0
+  colors_hash = { 'red' => 'rgba(216, 75, 75, 1)',
+                  'green' => 'rgba(67, 160, 71, 1)' }
+  until @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color') == colors_hash[color]
+    sleep(5)
+    i += 1
+    break if i == 12
+  end
+end
+
 And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |condition, button|
   is_true(on(PreDisplay).is_element_disabled_by_att?(button)) if condition == 'disabled'
 
