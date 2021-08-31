@@ -12,7 +12,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
 
   def does_permit_counter_match
     get_permits_counter
-    (@total_pending_approval.to_s === pending_approval) && (@total_update_needed.to_s === pending_update) && (@total_active.to_s === active) && (@total_terminal.to_s === pending_termination)
+    (@total_pending_approval.to_s == pending_approval) && (@total_update_needed.to_s == pending_update) && (@total_active.to_s == active) && (@total_terminal.to_s == pending_termination)
   end
 
   def is_permit_listing_count?(which_filter)
@@ -46,7 +46,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
   def match_permit_counter(compare, expected)
     if compare.to_i != 0
       Log.instance.info("\n\nExpected: #{expected}\n\n")
-      parent_container_elements.size === expected
+      parent_container_elements.size == expected
     else
       to_exists(on(CommonFormsPage).no_permits_found_element)
     end
