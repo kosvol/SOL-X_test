@@ -95,14 +95,12 @@ And(/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  # does_include(on(Section4APage).generic_data_elements[1].text, "#{$current_environment.upcase}/PTW")
   extract = on(Section4APage).get_filled_section
-  p "--- #{extract}"
+  Log.instance.info "--- #{extract}"
   extract.delete_at(1)
-  p "<<< #{extract}"
+  Log.instance.info "<<< #{extract}"
   is_equal(extract, @@form_data['checklist'])
-  CommonPage.set_entered_pin = '9015'
-  # is_equal(@browser.find_element(:xpath, '//input').attribute('value').to_s, '1')
+  CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
 end
 
@@ -124,7 +122,7 @@ And(/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   step 'I should see signed details for integration test'
   on(CommonFormsPage).close_btn_elements.first.click
   sleep 1
-  CommonPage.set_entered_pin = '9015'
+  CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
 end
 
