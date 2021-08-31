@@ -104,7 +104,7 @@ When (/^I link wearable to rank (.+) and zone (.+) and mac (.+)$/) do |rank, zon
   sleep 2
 end
 
-When (/^I link wearable to rank (.+) to zone$/) do |_rank|
+When (/^I link wearable to rank ([^"]*) to zone$/) do |_rank|
   step "I link #{_rank} to wearable"
   step 'I get wearable-simulator/base-get-beacons-details request payload'
   step 'I hit graphql'
