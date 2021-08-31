@@ -104,12 +104,12 @@ class NavigationPage < CommonFormsPage
   private
 
   def click_nav_category(category, which_category)
-    if which_category === 'forms'
+    if which_category == 'forms'
       @browser.find_element(:xpath, @@which_category % [category]).click
-    elsif (which_category === 'PRE' || which_category === 'CRE')
+    elsif (which_category == 'PRE' || which_category == 'CRE')
       category_objs = @browser.find_elements(:xpath, @@which_category % [category])
-      category_objs.size === 2 ? category_objs.last.click : category_objs.first.click
-    elsif which_category === 'setting'
+      category_objs.size == 2 ? category_objs.last.click : category_objs.first.click
+    elsif which_category == 'setting'
       BrowserActions.js_click("//a[contains(text(),'Settings')]")
     else
       @browser.find_element(:xpath, @@which_category % [category]).click
