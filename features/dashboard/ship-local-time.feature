@@ -16,7 +16,7 @@ Feature: ShipLocalTime
 
     Examples:
       | rank |
-      | C/O  |
+      | A/M  |
       | MAS  |
       | C/O  |
       | 2/O  |
@@ -29,14 +29,10 @@ Feature: ShipLocalTime
 
     Examples:
       | rank  |
-      | C/O   |
-      | A 2/O |
       | 3/O   |
       | A 3/O |
-      # | 1010 |
       | D/C   |
       | C/E   |
-      # | 2761 |
       | 2/E   |
       | A 2/E |
       | 3/E   |
@@ -45,23 +41,6 @@ Feature: ShipLocalTime
       | A 4/E |
       | ETO   |
       | BOS   |
-      # | 4236 |
       | A/B   |
       | O/S   |
       | OLR   |
-
-# @manual
-# Scenario: Verify ship's local time only limit at -12 to +14
-
-
-################## ----WILL NOT BE HERE----- ##################
-
-# @manual
-# Scenario: Verify local time with timezone change reflect on PDF and EMAIL (DRA,Gas Reading,Checklist,Toolbox and section 7) ie. xxx LT (GTM -/+ 8)
-#           Entry to reflect entry time, as time shifted, it should use the shifted time until submission
-
-# Scenario: Verify PRED show ship local time change on active PRE
-
-# Scenario: Verify section 1 of PRE gas reading display ship's local time with timezone change
-
-# Scenario: Verify section 6 of standard PTW gas reading display ship's local time with timezone change

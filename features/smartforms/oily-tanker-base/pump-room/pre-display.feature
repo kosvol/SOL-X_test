@@ -13,9 +13,11 @@ Feature: PumpRoomEntry
     And I sleep for 10 seconds
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
+    And I click on back arrow
     When I submit a scheduled PRE permit
-    And  I activate PRE form via service
-    #And I dismiss gas reader dialog box
+    And I activate PRE form via service
+    And I sleep for 10 seconds
+    And I navigate to PRE Display until see active permit
     And I click on permit tab
     Then I should see new PRE permit number
     And I terminate the PRE permit via service
@@ -25,8 +27,7 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
@@ -38,8 +39,7 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
@@ -74,8 +74,8 @@ Feature: PumpRoomEntry
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
     And I activate PRE form via service
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I sleep for 10 seconds
+    And I navigate to PRE Display until see active permit
     Then I should see the PRE permit creator name on PRED
     And I terminate the PRE permit via service
 
@@ -93,8 +93,7 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
@@ -109,7 +108,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter same entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
     And I sleep for 3 seconds
     Then I shoud not see dashboard gas reading popup
     And I terminate the PRE permit via service
@@ -119,7 +117,6 @@ Feature: PumpRoomEntry
     When I fill and submit PRE permit details via service
     And I enter new entry log
     And I send entry report with 0 optional entrants
-    #And I dismiss gas reader dialog box
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
     And I terminate the PRE permit via service
@@ -128,8 +125,7 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
@@ -142,8 +138,7 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 5 seconds
@@ -157,13 +152,11 @@ Feature: PumpRoomEntry
     Given I clear gas reader entries
     When I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I sleep for 3 seconds
     And I dismiss gas reader dialog box
-    #And I sleep for 3 seconds
     Then I should see entrant count equal 0
     And I terminate the PRE permit via service
 
@@ -175,7 +168,6 @@ Feature: PumpRoomEntry
 
     Examples:
       | role |
-      | C/O  |
       | ETO  |
       | D/C  |
       | BOS  |
@@ -238,8 +230,7 @@ Feature: PumpRoomEntry
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     When I submit a scheduled PRE permit
@@ -249,8 +240,7 @@ Feature: PumpRoomEntry
   Scenario: Verify PRE permit is terminated after terminating via dashboard popup
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
     And I terminate the PRE permit via service
     And I sleep for 10 seconds
@@ -283,15 +273,12 @@ Feature: PumpRoomEntry
   Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I enter new entry log
     And I send entry report with 2 optional entrants
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
-    #And I sleep for 3 seconds
-    #And I acknowledge the new entry log pre via service
     And I sleep for 3 seconds
     And I should see Entry Log tab
 
@@ -321,8 +308,7 @@ Feature: PumpRoomEntry
   Scenario Outline: Verify AGT  can submit entry log in PRED
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I click on new entry log button
     And I enter pin via service for rank <rank>
     And I enter without sign new entry log
@@ -339,12 +325,10 @@ Feature: PumpRoomEntry
       | 3/O   |
       | A 3/O |
 
-
   Scenario Outline: Verify gas testers can submit entry log in PRED
     Given I submit a activated PRE permit
     And I launch sol-x portal without unlinking wearable
-    And I navigate to PRE Display
-    And I enter pin via service for rank C/O
+    And I navigate to PRE Display until see active permit
     And I click on new entry log button
     And I enter pin via service for rank <rank>
     And I enter without sign new entry log

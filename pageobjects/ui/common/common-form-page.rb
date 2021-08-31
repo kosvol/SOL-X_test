@@ -55,18 +55,11 @@ class CommonFormsPage < CommonPage
     sleep 1
   end
 
-  def scroll_multiple_times(times)
-    (1..times).each do |_i|
-      BrowserActions.scroll_down
-      sleep 1
-    end
-  end
-
-  def scroll_multiple_times_with_direction(times, direction)
-    (1..times).each do |_i|
-      BrowserActions.scroll_down if direction === 'down'
-      BrowserActions.scroll_up if direction === 'up'
-      sleep 1
+  def scroll_multiple_times_with_direction(time, direct)
+    time.times do
+      BrowserActions.scroll_down if direct == 'down'
+      BrowserActions.scroll_up if direct == 'up'
+      sleep 3
     end
   end
 
@@ -129,23 +122,4 @@ class CommonFormsPage < CommonPage
     end
   end
 
-  def match_screen_labels(_data_arr)
-    _data_arr.each do |_element|
-      @browser.find_element(:xpath, "//span[contains(., \"#{_element.text}\")]")
-    rescue StandardError
-      begin
-        @browser.find_element(:xpath, "//label[contains(., \"#{_element.text}\")]")
-      rescue StandardError
-        begin
-          @browser.find_element(:xpath, "//p[contains(., \"#{_element.text}\")]")
-        rescue StandardError
-          begin
-            @browser.find_element(:xpath, "//h4[contains(., \"#{_element.text}\")]")
-          rescue StandardError
-            @browser.find_element(:xpath, "//button[contains(., \"#{_element.text}\")]")
-          end
-        end
-      end
-    end
-  end
 end

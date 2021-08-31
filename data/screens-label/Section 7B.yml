@@ -23,11 +23,13 @@ fields_exceptions:
       "Office Approval Issued till:",
       "Office Approval Authority's Name:",
       "Designation:",
-      "Date/Time:"
+      "Date/Time:",
+      ""
   ]
-labels_exceptions: []
+labels_exceptions: [""]
 subheaders_exceptions:
   [
       "Section 7: Office Approval",
-      "Validity of Office Approval"
+      "Validity of Office Approval",
+      ""
   ]

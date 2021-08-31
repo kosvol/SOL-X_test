@@ -100,10 +100,6 @@ And(/^I should see location (.+) stamp$/) do |_location|
   end
 end
 
-And(/^I should see signature$/) do
-  to_exists(on(Section4BPage).signature_element)
-end
-
 And(/^I should see (.+) rank and name$/) do |_rank|
   is_equal(on(Section4BPage).eic_signer_name_elements.first.text, _rank)
 end

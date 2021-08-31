@@ -17,6 +17,18 @@ module EnvironmentSelector
       end
     end
 
+    def get_vessel_type
+      if $current_environment.include? 'lng'
+        "LNG"
+      elsif $current_environment.include? 'cot'
+        "COT"
+      elsif $current_environment.include? 'fsu'
+        "FSU"
+      else
+        raise("Vessel type #{$current_environment} is not defined")
+      end
+    end
+
     def get_env_type_prefix
       if $current_environment.include? 'sit'
         'SIT'

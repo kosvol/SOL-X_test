@@ -88,7 +88,8 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with C/O rank
+    And I update permit in pending update state with A/M rank
+    And I press previous for 3 times
     Then I should see Add Gas button disabled
 
   Scenario Outline: Verify user should see master's note on all section while viewing as AGT via Pending Withdrawal state

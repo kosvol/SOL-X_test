@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then(/^I should not see competent and issuing person sign button exists$/) do
-  on(Section3APage).scroll_multiple_times(8)
+  on(Section3APage).scroll_multiple_times_with_direction(8,'down')
   not_to_exists(on(Section8Page).competent_person_btn_element)
   not_to_exists(on(Section8Page).issuing_authority_btn_element)
   is_equal(on(Section5Page).sign_btn_role_elements.size, 0)
@@ -59,6 +59,7 @@ And(/^I set rol permit to active state with (.+) duration$/) do |_duration|
   step 'I press next for 1 times'
   on(ROLPage).submit_rol_permit_w_duration(_duration)
   step 'I sign with valid MAS rank'
+  step 'I click on back to home'
 end
 
 And(/^I set rol permit to active state with (.+) duration with CE$/) do |_duration|

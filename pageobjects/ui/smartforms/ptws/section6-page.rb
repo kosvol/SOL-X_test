@@ -53,6 +53,8 @@ class Section6Page < Section5Page
   private
 
   def toxic_gas_readings(gas_name, threhold, reading, unit)
+    BrowserActions.wait_until_is_visible(gas_name_input_element)
+    BrowserActions.wait_until_is_displayed(gas_name_input_element)
     gas_name_input_element.send_keys(gas_name)
     threshold_input_element.send_keys(threhold)
     reading_input_element.send_keys(reading)

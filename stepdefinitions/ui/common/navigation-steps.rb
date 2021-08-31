@@ -5,7 +5,8 @@ And(/^I should see entire hamburger categories$/) do
 end
 
 And(/^I open hamburger menu$/) do
-  BrowserActions.wait_condition(20, on(NavigationPage).hamburger_menu_element.enabled?)
+  BrowserActions.wait_until_is_visible(on(Section0Page).hamburger_menu_element)
+  BrowserActions.wait_until_is_displayed(on(Section0Page).hamburger_menu_element)
   BrowserActions.poll_exists_and_click(on(NavigationPage).hamburger_menu_element)
 end
 
@@ -89,7 +90,6 @@ And('I click New Entry button on PTW screen') do
 end
 
 And(/^I click on (.*) tab$/) do |which_tab|
-  sleep 5
   case which_tab
   when 'entry log'
     BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)

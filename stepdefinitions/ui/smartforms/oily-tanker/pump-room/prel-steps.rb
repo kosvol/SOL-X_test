@@ -1,18 +1,24 @@
-And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |cond, condition|
-  # step 'I sleep for 10 seconds'
-  if cond == 'enter'
+# frozen_string_literal: true
+
+And(/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log$/) do |condition, gas_reading_value|
+  if condition == 'enter'
     BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
- BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
- step 'I enter pin via service for rank A/M'
+    BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
+    step 'I enter pin via service for rank A/M'
   end
+  BrowserActions.wait_until_is_displayed(on(PumpRoomEntry).gas_O2_element)
 
-  on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc') if condition == 'same'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc') if condition == 'new'
-  on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '') if condition == 'without toxic'
-  on(PumpRoomEntry).add_all_gas_readings_pre('3', '4', '5', '5', 'Test', '20', '2', 'cc') if condition == 'different'
-  on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc') if condition == 'random'
-
-  step 'I sign for gas' if cond == 'enter'
+  case gas_reading_value
+  when 'same'
+    on(PumpRoomEntry).add_all_gas_readings_pre('1', '2', '3', '4', 'Test', '20', '1.5', 'cc')
+  when 'new'
+    on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', 'Test', '20', '2', 'cc')
+  when 'without toxic'
+    on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '')
+  else
+    on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
+  end
+  step 'I sign for gas' if condition == 'enter'
 end
 
 And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log with role (.*)$/) do |cond, condition, role|
@@ -34,21 +40,21 @@ end
 
 Then (/^I click on new entry log button$/) do
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
+  BrowserActions.wait_until_is_displayed(on(PreDisplay).new_entry_log_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
 end
-
 
 Then (/^I should see correct signed in entrants$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
   BrowserActions.poll_exists_and_click(on(PreDisplay).sign_out_btn_elements.first)
   sleep 2
-  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, 'A/M COT A/M')
+  is_equal(on(PumpRoomEntry).signed_in_entrants_elements.first.text, "A/M #{EnvironmentSelector.get_vessel_type} A/M")
   is_equal(on(PumpRoomEntry).signed_in_entrants_elements.size, 1)
 end
 
 Then (/^I should not see entered entrant on list$/) do
   BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
-  is_false(on(PumpRoomEntry).is_entered_entrant_listed?('MAS COT MAS'))
+  is_false(on(PumpRoomEntry).is_entered_entrant_listed?("MAS #{EnvironmentSelector.get_vessel_type} MAS"))
 end
 
 Then (/^I should not see entered entrant on (optional|required) entrant list$/) do |condition|
@@ -123,12 +129,11 @@ And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 3 seconds'
 end
 
-Then (/^I (shoud not|should) see dashboard gas reading popup$/) do |condition|
+Then(/^I (should not|should) see dashboard gas reading popup$/) do |condition|
   step 'I acknowledge the new entry log via service'
-  step 'I sleep for 1 seconds'
   if condition == 'should not'
     is_equal(SmartFormDBPage.get_error_message, 'No pending PRED record')
-  elsif condition == 'should'
+  else
     ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
   end
 end
@@ -200,24 +205,23 @@ And (/^I (send|just send) Report$/) do |condition|
 end
 
 And (/^I (save|check) permit date on Dashboard LOG$/) do |action|
-  if action == 'save'
+  case action
+  when 'save'
     current = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
-  elsif action == 'check'
+  when 'check'
     data = on(DashboardPage).get_arr_data
-    puts(data[0].to_s)
-    puts(DateTime.parse(on(DashboardPage).date_log_elements[0].text))
-    puts(DateTime.parse(on(DashboardPage).date_log_elements[1].text))
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[1].text).to_s).to include(data[0].to_s)
-    expect(DateTime.parse(on(DashboardPage).date_log_elements[0].text).to_s).not_to include(data[0].to_s)
+    unless is_equal(DateTime.parse(on(DashboardPage).entry_log_title_element.text), DateTime.parse(data[0]))
+      raise 'date time verification fail'
+    end
   else
     raise 'wrong action'
   end
 end
 
 And (/^I check number (.*) of entrants on dashboard$/) do |number|
-  BrowserActions.wait_condition(20, on(DashboardPage).active_entarnt_element.text == number.to_s)
-  expect(on(DashboardPage).active_entarnt_element.text).to include(number.to_s)
+  BrowserActions.wait_until_is_visible(on(DashboardPage).active_entrant_element)
+  expect(on(DashboardPage).active_entrant_element.text).to include(number.to_s)
 end
 
 And (/^I open new dashboard page$/) do

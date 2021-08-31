@@ -74,7 +74,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
     Then I should see view and termination buttons
 
@@ -94,6 +93,7 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
+    And I click on active filter
     When I put the permit to termination state
     And I click on pending withdrawal filter
     And I withdraw permit with MAS rank
@@ -118,11 +118,11 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
-    Then I open rol permit with rank <rank>
+    And I open rol permit with rank <rank>
     Then I should not see permit duration selectable
-    When I put the permit to termination state
+    When I click on back arrow
+    And I put the permit to termination state
     And I click on pending withdrawal filter
     And I withdraw permit with <rank> rank
     And I press previous for 1 times
@@ -136,16 +136,8 @@ Feature: RiggingOfLadder
     Then I should not see permit duration selectable
 
     Examples:
-      | rank | pin  |
-      | A/B  | 6316 |
-      | OLR  | 0450 |
-      | BOS  | 1018 |
-      | PMN  | 4637 |
-      | ETR  | 6877 |
-      | T/E  | 6109 |
-      | ELC  | 2719 |
-      | O/S  | 7669 |
-      | D/C  | 2317 |
+      | rank |
+      | A/B  |
 
   Scenario Outline: SOL-5210 Verify RA, Checklist Creator and other Crew ranks cannot edit the Duration field when the form is in the PENDING_MASTER'S_APPROVAL state
     Given I launch sol-x portal without unlinking wearable
@@ -191,7 +183,6 @@ Feature: RiggingOfLadder
     And I click on back to home
     And I click on pending approval filter
     And I set rol permit to active state with 1 duration
-    And I click on back to home
     And I click on active filter
     Then I open rol permit with rank C/O
     And I submit permit for termination

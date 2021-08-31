@@ -19,20 +19,20 @@ Then(/^I should not be able to edit (.*) DRA$/) do |permit|
   sleep 1
   step 'I click on View Edit Hazard'
   sleep 1
-  on(Section3APage).scroll_multiple_times(2)
+  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
   on(Section3APage).delete_btn_elements.each do |elem|
     is_disabled(elem)
   end
   is_equal(on(Section3APage).total_p_elements.size, 14) if permit === 'Enclosed Spaces Entry'
   is_equal(on(Section3APage).total_p_elements.size, 4) if permit === 'Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces'
-  on(Section3APage).scroll_multiple_times(2)
+  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
   on(CommonFormsPage).close_btn_elements.first.click
 end
 
 Then(/^I should not be able to edit EIC certification$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
-  on(Section3APage).scroll_multiple_times(5)
+  on(Section3APage).scroll_multiple_times_with_direction(5,'down')
   if on(Section3APage).total_p_elements.size === 27
     is_equal(on(Section3APage).total_p_elements.size, 27)
   else

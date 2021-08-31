@@ -5,7 +5,6 @@ require './././support/env'
 class DashboardPage < WearablePage
   include PageObject
 
-  element(:dismiss_area_dd, xpath: "//div[@data-testid='dropdown-overlay-container']")
   elements(:crew_list_headers, xpath: '//th')
   element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
   elements(:permit_to_work_link, xpath: '//td/ul/li/a') #same as above
@@ -19,8 +18,8 @@ class DashboardPage < WearablePage
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
   element(:entry_status_indicator, xpath: "//div[starts-with(@class,'ActiveEntrantIndicator__ButtonContent')]")
   elements(:radio_button_enclosed, xpath: "//label[starts-with(@class,'RadioButton__RadioLabel')]")
-  elements(:date_log, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
-  element(:active_entarnt, xpath: "//span[@data-testid='entrant-count']")
+  element(:entry_log_title, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
+  element(:active_entrant, xpath: "//span[@data-testid='entrant-count']")
   @@ship_area = "//button[contains(.,'%s')]"
   #Gas reading alert
   element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
@@ -118,7 +117,7 @@ class DashboardPage < WearablePage
   end
 
   def dismiss_area_dd
-    dismiss_area_dd_element.click
+    BrowserActions.js_click("//div[@data-testid='dropdown-overlay-container']")
   end
 
   def get_active_crew_details(ui_or_service, _new_zone = nil)

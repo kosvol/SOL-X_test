@@ -2,17 +2,21 @@
 
 module BrowserActions
   class << self
-    def poll_exists_and_click(_element)
-      wait_until_is_visible(_element) ? _element.click : poll_exists_and_click(_element)
+    def poll_exists_and_click(element)
+      wait_until_is_visible(element) ? element.click : poll_exists_and_click(element)
     end
 
-    def wait_until_is_visible(_element)
-      $wait.until { _element.exists? }
+    def wait_until_is_visible(element)
+      $wait.until { element.exists? }
+    end
+
+    def wait_until_is_displayed(element)
+      $wait.until { element.present? }
     end
 
     def turn_wifi_off_on
       $browser.toggle_wifi
-      sleep 3
+      sleep 10
     end
 
     def turn_on_wifi_by_default
@@ -20,27 +24,27 @@ module BrowserActions
 
       $wifi_on_off = `adb -s #{device['deviceName']} shell settings get global wifi_on`
       p "Wifi Status: #{$wifi_on_off}"
-      if $wifi_on_off.strip === '0'
+      if $wifi_on_off.strip == '0'
         $browser.toggle_wifi
         sleep 10
       end
     end
 
-    def scroll_click(_element)
+    def scroll_click(element)
       sleep 1
       scroll_down_by_custom_dist(100)
       begin
-        _element.click
+        element.click
       rescue StandardError
         p 'Scrolling.....'
         scroll_down_by_custom_dist(100)
-        _element.click
+        element.click
       end
       sleep 1
     end
 
-    def enter_text(field, _text)
-      field.send_keys(_text)
+    def enter_text(field, text)
+      field.send_keys(text)
       hide_keyboard
     end
 
@@ -48,18 +52,18 @@ module BrowserActions
       $browser.hide_keyboard if %w[Android].include? ENV['PLATFORM']
     end
 
-    def scroll_up(_element = nil)
+    def scroll_up(element = nil)
       begin
-        scroll_to_element(_element)
+        scroll_to_element(element)
       rescue StandardError
         scroll_up_by_dist
       end
     end
 
-    def scroll_down(_element = nil)
+    def scroll_down(element = nil)
       sleep 1
       begin
-        scroll_to_element(_element)
+        scroll_to_element(element)
       rescue StandardError
         scroll_down_by_dist
       end
@@ -70,20 +74,20 @@ module BrowserActions
       Time.now.strftime('%Y')
     end
 
-    def scroll_down_by_custom_dist(_distance)
-      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    def scroll_down_by_custom_dist(distance)
+      $browser.execute_script("window.scrollBy(0,#{distance})", '')
     end
 
-    def scroll_up_by_custom_dist(_distance)
-      $browser.execute_script("window.scrollBy(0,#{_distance})", '')
+    def scroll_up_by_custom_dist(distance)
+      $browser.execute_script("window.scrollBy(0,#{distance})", '')
     end
 
-    def js_click(_xpath)
-      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+    def js_click(xpath)
+      $browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 
-    def js_clicks(_xpath, _index)
-      $browser.execute_script(%(document.evaluate("#{_xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{_index}").click()))
+    def js_clicks(xpath, index)
+      $browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{index}").click()))
     end
 
     def open_new_page
@@ -91,8 +95,8 @@ module BrowserActions
       $browser.switch_to.window($browser.window_handles.last)
     end
 
-    def switch_browser_tab(_condition)
-      case _condition
+    def switch_browser_tab(condition)
+      case condition
       when 'last'
         $browser.switch_to.window($browser.window_handles.last)
       when 'first'
@@ -102,29 +106,21 @@ module BrowserActions
       end
     end
 
-    ### Uselsss method
-    def wait_condition(_count, _condition)
-      i = 0
-      until _condition
-        sleep 1
-        i += 1
-        break if i == _count
-      end
-    end
-
-    def poll_ui_update_by_attribute(locator, condition)
+    def poll_ui_update_by_attribute(locator, condition, attribute)
       count = 0
-      until ($browser.find_element(:xpath, locator).attribute('class').to_s == condition)
+      tmp_ele = $browser.find_element(:xpath, locator).attribute(attribute)
+      until (tmp_ele.to_s == condition)
         count += 1
         sleep 1
         break if count == 15
       end
+      return tmp_ele.to_s
     end
 
     private
 
-    def scroll_to_element(_element)
-      $browser.action.move_to(_element).perform
+    def scroll_to_element(element)
+      $browser.action.move_to(element).perform
     end
 
     def scroll_down_by_dist

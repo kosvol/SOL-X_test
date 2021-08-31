@@ -6,19 +6,19 @@ class BypassPage < CommonFormsPage
   include PageObject
 
   def get_rank_id_from_service(rank, vessel = nil)
-    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', '1111', vessel)
     ServiceUtil.get_response_body['data']['users'].each do |crew|
-      if crew['crewMember']['rank'] == rank
-        CommonPage.set_rank_id = crew['_id']
-        @@get_rank = crew['crewMember']['rank']
-        break
-      end
+    if crew['crewMember']['rank'] == rank
+      CommonPage.set_rank_id = crew['_id']
+      @@get_rank = crew['crewMember']['rank']
+      break
     end
+  end
   end
 
   def get_rank_list_from_service(vessel = nil)
     rank_name_list = {}
-    ServiceUtil.post_graph_ql_to_uri('pinpad/get-pin-by-role', '1111', vessel)
+    ServiceUtil.post_graph_ql('pinpad/get-pin-by-role', '1111', vessel)
     ServiceUtil.get_response_body['data']['users'].each do |crew|
       rank_name_list[crew['crewMember']['rank']] = "#{crew['crewMember']['firstName']} #{crew['crewMember']['lastName']}"
     end
@@ -112,14 +112,14 @@ class BypassPage < CommonFormsPage
       create_form_ptw['variables']['answers'][2].to_h['fieldId'] = $checklist_name_in_code_yml[checklist]
     end
     JsonUtil.create_request_file('ptw/0.mod_create_form_ptw', create_form_ptw)
-    ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_ptw', user, vessel)
+    ServiceUtil.post_graph_ql('ptw/0.mod_create_form_ptw', user, vessel)
     CommonPage.set_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     ### add time offset to ptw
     # add_time_offset_to_ptw = JSON.parse JsonUtil.read_json(payload_mapper(_permit_type, '1'))
     # add_time_offset_to_ptw['variables']['id'] = CommonPage.get_permit_id
     # JsonUtil.create_request_file('ship-loca/1.mod_date_with_offset', add_time_offset_to_ptw)
-    ServiceUtil.post_graph_ql_to_uri('ship-local-time/base-get-current-time', user, vessel)
+    ServiceUtil.post_graph_ql('ship-local-time/base-get-current-time', user, vessel)
     @get_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
 
     ### init dra form
@@ -127,7 +127,7 @@ class BypassPage < CommonFormsPage
     init_dra['variables']['parentFormId'] = CommonPage.get_permit_id
     init_dra['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/0.mod_create_form_dra', init_dra)
-    ServiceUtil.post_graph_ql_to_uri('ptw/0.mod_create_form_dra', user, vessel)
+    ServiceUtil.post_graph_ql('ptw/0.mod_create_form_dra', user, vessel)
     CommonPage.set_dra_permit_id(ServiceUtil.get_response_body['data']['createForm']['_id'])
 
     if permit_type == 'submit_rigging_of_ladder'
@@ -137,7 +137,7 @@ class BypassPage < CommonFormsPage
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
       JsonUtil.create_request_file('ptw/mod_2.save_rol_dra_section_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_2.save_rol_dra_section_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_2.save_rol_dra_section_details', user, vessel)
 
       # Checklist
       _which_json = payload_mapper(permit_type, '3')
@@ -145,7 +145,7 @@ class BypassPage < CommonFormsPage
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
       JsonUtil.create_request_file('ptw/mod_3.save_rol_checklist_section_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_3.save_rol_checklist_section_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_3.save_rol_checklist_section_details', user, vessel)
 
       submit_active = set_permit_status('PENDING_MASTER_APPROVAL')
       submit_permit_for_status_change_to_uri(submit_active, user, permit_type, vessel)
@@ -164,7 +164,7 @@ class BypassPage < CommonFormsPage
       section['variables']['answers'].last['value'] =
         "{\"dateTime\":\"#{get_current_date_time_cal(2)}\",\"utcOffset\":#{@get_offset}}"
       JsonUtil.create_request_file('ptw/mod_16.update-active-status_rol', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_16.update-active-status_rol', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status_rol', user, vessel)
 
       section = JSON.parse JsonUtil.read_json('ptw/rol/17.save_rol_task_status_section_details')
       section['variables']['formId'] = CommonPage.get_permit_id
@@ -172,7 +172,7 @@ class BypassPage < CommonFormsPage
       get_rank_id_from_service('A/M', vessel)
       section['variables']['answers'][10]['value']['AUTO_SOLX0012'] = CommonPage.get_rank_id
       JsonUtil.create_request_file('ptw/mod_17.save_rol_task_status_section_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_17.save_rol_task_status_section_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_17.save_rol_task_status_section_details', user, vessel)
 
       submit_active = set_permit_status('PENDING_TERMINATION')
       submit_permit_for_status_change_to_uri(submit_active, user, permit_type, vessel)
@@ -184,7 +184,7 @@ class BypassPage < CommonFormsPage
       section['variables']['answers'].last['value'] =
         "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_rol_task_status_before_termination', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_20.save_rol_task_status_before_termination', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_20.save_rol_task_status_before_termination', user, vessel)
     else
 
       ### Section 1
@@ -196,7 +196,7 @@ class BypassPage < CommonFormsPage
       section['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION"
       # end
       JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_3.save_section1_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_3.save_section1_details', user, vessel)
 
       ### Section 3b
       _which_json = payload_mapper(permit_type, '3b')
@@ -204,15 +204,16 @@ class BypassPage < CommonFormsPage
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
       JsonUtil.create_request_file('ptw/mod_3b.save_section3b_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_3b.save_section3b_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_3b.save_section3b_details', user, vessel)
 
       ### Section 3d
       section3d = JSON.parse JsonUtil.read_json('ptw/8.save_section3d_details')
       section3d['variables']['formId'] = CommonPage.get_permit_id
       section3d['variables']['submissionTimestamp'] = get_current_date_time
+      get_rank_id_from_service('A/M', vessel)
       section3d['variables']['answers'].last['value'] = get_default_signature_payload
       JsonUtil.create_request_file('ptw/mod_8.save_section3d_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_8.save_section3d_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_8.save_section3d_details', user, vessel)
 
       ### Section 4a with no checklists
       if checklist.nil?
@@ -220,7 +221,7 @@ class BypassPage < CommonFormsPage
         section['variables']['formId'] = CommonPage.get_permit_id
         section['variables']['submissionTimestamp'] = get_current_date_time
         JsonUtil.create_request_file('ptw/mod_21.save_section4a_details', section)
-        ServiceUtil.post_graph_ql_to_uri('ptw/mod_21.save_section4a_details', user, vessel)
+        ServiceUtil.post_graph_ql('ptw/mod_21.save_section4a_details', user, vessel)
       end
       ### create eic ###
       unless eic.nil?
@@ -228,7 +229,7 @@ class BypassPage < CommonFormsPage
         create_eic['variables']['parentFormId'] = CommonPage.get_permit_id
         create_eic['variables']['submissionTimestamp'] = get_current_date_time
         JsonUtil.create_request_file('ptw/mod_11.create_eic', create_eic)
-        ServiceUtil.post_graph_ql_to_uri('ptw/mod_11.create_eic', user, vessel)
+        ServiceUtil.post_graph_ql('ptw/mod_11.create_eic', user, vessel)
 
         ### save eic cert details ###
         save_eic = JSON.parse JsonUtil.read_json('ptw/11.save_eic_cert_details')
@@ -236,7 +237,7 @@ class BypassPage < CommonFormsPage
         save_eic['variables']['formId'] = ServiceUtil.get_response_body['data']['createForm']['_id']
         save_eic['variables']['submissionTimestamp'] = get_current_date_time
         JsonUtil.create_request_file('ptw/mod_11.save_eic_cert_details', save_eic)
-        ServiceUtil.post_graph_ql_to_uri('ptw/mod_11.save_eic_cert_details', user, vessel)
+        ServiceUtil.post_graph_ql('ptw/mod_11.save_eic_cert_details', user, vessel)
 
         ### section 4b ###
         section4b = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
@@ -252,7 +253,7 @@ class BypassPage < CommonFormsPage
           section4b['variables']['answers'].pop
         end
         JsonUtil.create_request_file('ptw/mod_11.save_section4b_details', section4b)
-        ServiceUtil.post_graph_ql_to_uri('ptw/mod_11.save_section4b_details', user, vessel)
+        ServiceUtil.post_graph_ql('ptw/mod_11.save_section4b_details', user, vessel)
       end
 
       ### Section 5
@@ -260,7 +261,7 @@ class BypassPage < CommonFormsPage
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
       JsonUtil.create_request_file('ptw/mod_12.save_section5_details', section)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_12.save_section5_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_12.save_section5_details', user, vessel)
 
       ### Section 6
       unless gas.nil?
@@ -276,7 +277,7 @@ class BypassPage < CommonFormsPage
           section2['variables']['answers'].delete_at(2)
         end
         JsonUtil.create_request_file('ptw/mod_13.save_section6_details', section2)
-        ServiceUtil.post_graph_ql_to_uri('ptw/mod_13.save_section6_details', user, vessel)
+        ServiceUtil.post_graph_ql('ptw/mod_13.save_section6_details', user, vessel)
       end
 
       submit_active = set_permit_status('PENDING_MASTER_APPROVAL')
@@ -294,7 +295,7 @@ class BypassPage < CommonFormsPage
       _update_permit['variables']['answers'].last['value'] =
         "{\"dateTime\":\"#{get_current_date_time_cal(8)}\",\"utcOffset\":#{@get_offset}}"
       JsonUtil.create_request_file('ptw/mod_16.update-active-status', _update_permit)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_16.update-active-status', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_16.update-active-status', user, vessel)
       sleep(2)
 
       ### Section 8
@@ -307,7 +308,7 @@ class BypassPage < CommonFormsPage
       submit_active['variables']['answers'][5].to_h['value'] =
         "{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}"
       JsonUtil.create_request_file('ptw/mod_17.submit-for-termination-wo-eic-normalization', submit_active)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_17.submit-for-termination-wo-eic-normalization', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_17.submit-for-termination-wo-eic-normalization', user, vessel)
 
       submit_active = set_permit_status('PENDING_TERMINATION')
       submit_permit_for_status_change_to_uri(submit_active, user, permit_type, vessel)
@@ -321,7 +322,7 @@ class BypassPage < CommonFormsPage
       submit_active['variables']['answers'].last['value'] =
         "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
       JsonUtil.create_request_file('ptw/mod_20.save_section9_details', submit_active)
-      ServiceUtil.post_graph_ql_to_uri('ptw/mod_20.save_section9_details', user, vessel)
+      ServiceUtil.post_graph_ql('ptw/mod_20.save_section9_details', user, vessel)
     end
     submit_active = set_permit_status('CLOSED')
     submit_permit_for_status_change_to_uri(submit_active, user, permit_type, vessel)
@@ -495,7 +496,7 @@ class BypassPage < CommonFormsPage
     _submit_active['variables']['formId'] = CommonPage.get_permit_id
     _submit_active['variables']['submissionTimestamp'] = get_current_date_time
     JsonUtil.create_request_file('ptw/mod_15.submit-to-active', _submit_active)
-    ServiceUtil.post_graph_ql_to_uri('ptw/mod_15.submit-to-active', _user, _uri)
+    ServiceUtil.post_graph_ql('ptw/mod_15.submit-to-active', _user, _uri)
   end
 
   def submit_permit_for_status_change(_submit_active, _user, _permit_type)
@@ -639,7 +640,7 @@ class BypassPage < CommonFormsPage
       time_w_offset = @current_time.to_i + get_current_time_offset.to_i
     end
     count_hour = if time_w_offset >= 24
-        (time_w_offset - 24).abs
+                   (time_w_offset - 24).abs
       else
         time_w_offset
       end
@@ -715,6 +716,14 @@ class BypassPage < CommonFormsPage
     _entry_record['variables']['crewId'] = CommonPage.get_rank_id if (_type == 'CRE') || (_type == 'PRE')
     JsonUtil.create_request_file(permit_mod, _entry_record)
     ServiceUtil.post_graph_ql(permit_mod)
+  end
+
+  def retrieve_active_form(type)
+    json = JSON.parse JsonUtil.read_json('pre/08.get_active_permits')
+    json['variables']['types'] = type
+    JsonUtil.create_request_file('pre/08.get_active_permits', json)
+    ServiceUtil.post_graph_ql('pre/08.get_active_permits')
+    ServiceUtil.get_response_body
   end
 
   def signout_entrants(_entrant_name)

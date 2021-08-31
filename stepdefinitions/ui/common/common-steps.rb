@@ -65,7 +65,6 @@ And(/^I enter pin for rank (.*)$/) do |rank|
   if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
-  CommonPage.set_entered_pin = $sit_rank_and_pin_yml['uat_rank'][rank] if $current_environment === 'uat'
   sleep 1
   step "I enter pure pin #{CommonPage.get_entered_pin}"
 end
@@ -96,7 +95,6 @@ end
 
 Given(/^I launch sol-x portal dashboard$/) do
   $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
-  BrowserActions.wait_condition(20, on(CommonFormsPage).is_dashboard_screen_element.visible?)
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue StandardError
