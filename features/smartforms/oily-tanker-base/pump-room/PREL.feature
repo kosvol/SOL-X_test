@@ -23,7 +23,7 @@ Feature: PumpRoomEntry
     And I switch to first tab in browser
     Then I should see red background color
     And I should see Permit Terminated PRE status on screen
-
+@wip
   Scenario: PRE Dashboard Gas reading pop up should have a independent close option
     Given I get active PRE permit and terminate
     When I get active CRE permit and terminate
@@ -39,6 +39,7 @@ Feature: PumpRoomEntry
     And I acknowledge the new entry log pre via service
     And I sleep for 5 seconds
     And I dismiss gas reader dialog box
+    And I click on back arrow
     And I enter random entry log with role 2/O
     And I send entry report with 1 optional entrants
     And I sleep for 5 seconds

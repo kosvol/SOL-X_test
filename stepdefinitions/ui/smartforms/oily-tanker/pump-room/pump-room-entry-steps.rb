@@ -155,7 +155,7 @@ Then(/^I should see current PRE is auto terminated$/) do
   is_true(on(PumpRoomEntry).is_auto_terminated_displayed?(@@pre_number))
 end
 
-Then(/^I terminate the (PRE|CRE)$/) do |_type|
+Then(/^I terminate the (PRE|CRE)$/) do |type|
   step 'I navigate to "Active" screen for PRE' if type == 'PRE'
   step 'I navigate to "Active" screen for CRE' if type == 'CRE'
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
