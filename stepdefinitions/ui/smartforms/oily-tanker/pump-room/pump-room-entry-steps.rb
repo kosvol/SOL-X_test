@@ -167,8 +167,7 @@ Then(/^I terminate the (PRE|CRE)$/) do |type|
 end
 
 Then(/^I terminate the (PRE|CRE) with rank ([^"]*)$/) do |type, rank|
-  step 'I navigate to "Active" screen for PRE' if type == 'PRE'
-  step 'I navigate to "Active" screen for CRE' if type == 'CRE'
+  step "I navigate to \"Active\" screen for #{type}"
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step "I enter pin for rank #{rank}"
   step 'I press the "Terminate" button'
