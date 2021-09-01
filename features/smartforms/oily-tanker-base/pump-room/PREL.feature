@@ -23,7 +23,7 @@ Feature: PumpRoomEntry
     And I switch to first tab in browser
     Then I should see red background color
     And I should see Permit Terminated PRE status on screen
-@wip
+
   Scenario: PRE Dashboard Gas reading pop up should have a independent close option
     Given I get active PRE permit and terminate
     When I get active CRE permit and terminate
