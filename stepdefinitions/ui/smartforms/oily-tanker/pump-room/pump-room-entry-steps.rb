@@ -155,12 +155,24 @@ Then(/^I should see current PRE is auto terminated$/) do
   is_true(on(PumpRoomEntry).is_auto_terminated_displayed?(@@pre_number))
 end
 
-Then(/^I terminate the PRE$/) do
+Then(/^I terminate the (PRE|CRE)$/) do |_type|
   step 'I navigate to "Active" screen for PRE'
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
   step 'I sign with valid C/O rank'
+  step "I should see the text 'Permit Has Been Closed'"
+  sleep 1
+  step 'I press the "Back to Home" button'
+end
+
+Then(/^I terminate the (PRE|CRE) with rank ([^"]*)$/) do |type, rank|
+  step 'I navigate to "Active" screen for PRE' if type == 'PRE'
+  step 'I navigate to "Active" screen for CRE' if type == 'CRE'
+  on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
+  step "I enter pin for rank #{rank}"
+  step 'I press the "Terminate" button'
+  step "I sign with valid #{rank} rank"
   step "I should see the text 'Permit Has Been Closed'"
   sleep 1
   step 'I press the "Back to Home" button'

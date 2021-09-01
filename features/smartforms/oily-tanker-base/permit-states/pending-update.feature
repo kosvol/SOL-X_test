@@ -111,6 +111,7 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | A 4/E |
+      | A/M   |
   # | CGENG |
 
   Scenario: Verify update note shows from Master if request update via non OA
