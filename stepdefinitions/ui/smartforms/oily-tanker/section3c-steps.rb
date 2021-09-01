@@ -38,5 +38,5 @@ end
 And(/^I should see a list of crew$/) do
   on(Section3CPage).dra_team_btn
   sleep 1
-  is_equal(on(Section3CPage).options_text_elements.last.text, 'OLR COT OLR')
+  is_equal(on(Section3CPage).options_text_elements.last.text, 'SPM COT SPM')
 end
