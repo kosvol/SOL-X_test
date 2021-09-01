@@ -107,12 +107,10 @@ Given(/^I remove crew from vessel$/) do
 end
 
 And(/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |array, type|
-  @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record(array, type)
 end
 
 And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |_array, _type|
-  @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record_custom_gas_readings(_array, _type)
 end
 
