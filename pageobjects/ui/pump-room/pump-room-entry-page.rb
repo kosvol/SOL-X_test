@@ -11,8 +11,8 @@ class PumpRoomEntry < PreDisplay
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
   button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button(:four_hours_duration, xpath: "//button[contains(.,'4 hours')]")
-  button(:six_hours_duration, xpath: "//button[contains(text(),'6 hours')]")
-  button(:eight_hours_duration, xpath: "//button[contains(text(),'8 hours')]")
+  button(:six_hours_duration, xpath: "//button[contains(.,'6 hours')]")
+  button(:eight_hours_duration, xpath: "//button[contains(.,'8 hours')]")
   elements(:cre_scrap, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
 
   # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
@@ -206,11 +206,11 @@ class PumpRoomEntry < PreDisplay
     current_day_date = "//*[contains(@class,'current')]"
     @browser.find_element(:xpath, picker).click
     sleep 1
-    if @@selected_date === nil
+    if @@selected_date == nil
       current_day = @browser.find_element(:xpath, selected_current_day).text
       @@selected_date = current_day.to_i + _number.to_i
     else
-      if _point === 'current'
+      if _point == 'current'
         current_day = @browser.find_element(:xpath, current_day_date).text
       else
         current_day = @browser.find_element(:xpath, selected_day).text

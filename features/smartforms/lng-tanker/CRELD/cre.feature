@@ -163,13 +163,13 @@ Feature: LNGCRE
     And I should see the current CRE in the "Closed CRE" list
 
     Examples:
-      | rank |
-      | C/O  |
-      # | Additional Chief Officer  | 2761 |
-      | 2/O  |
-      # | Additional Second Officer | 7865 |
-      | 3/O  |
-  # | A 3/O                     | 2674 |
+      | rank  |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario: Verify only MAS can delete CRE permit in Created State
     Given I launch sol-x portal without unlinking wearable
