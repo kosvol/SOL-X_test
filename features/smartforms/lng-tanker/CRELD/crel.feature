@@ -61,15 +61,12 @@ Feature: LNGCREL
     When I launch sol-x portal dashboard
     And I sleep for 5 seconds
     And I open new dashboard page
-    And I sleep for 5 seconds
     And I switch to first tab in browser
     And I navigate to CRE Display
     And I enter pin via service for rank A C/O
-    And I sleep for 5 seconds
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I acknowledge the new entry log cre via service
-    And I sleep for 5 seconds
     And I dismiss gas reader dialog box
     And I enter random entry log with role 2/O
     And I send entry report with 1 optional entrants

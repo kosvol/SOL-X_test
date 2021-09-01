@@ -31,11 +31,9 @@ Feature: PumpRoomEntry
     When I launch sol-x portal dashboard
     And I sleep for 5 seconds
     And I open new dashboard page
-    And I sleep for 5 seconds
     And I switch to first tab in browser
     And I navigate to PRE Display
     And I enter pin via service for rank A C/O
-    And I sleep for 5 seconds
     And I enter new entry log
     And I send entry report with 0 optional entrants
     And I acknowledge the new entry log pre via service
