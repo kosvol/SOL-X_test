@@ -205,8 +205,8 @@ When (/^I Close Permit (.+) via service (.+)$/) do |permit_type, env|
 end
 
 When (/^I submit a (scheduled|current) (CRE|PRE) permit via service$/) do |type, permit_type|
-  on(BypassPage).trigger_cre_submission('8383', 'current') if type == 'current' && permit_type =='CRE'
-  on(BypassPage).trigger_cre_submission('8383', 'scheduled') if type == 'scheduled' && permit_type =='CRE'
+  on(BypassPage).trigger_cre_submission('8383', type) if permit_type == 'CRE'
+  on(BypassPage).trigger_pre_submission('8383', type) if permit_type == 'PRE'
 end
 
 When (/^I signout entrants "([^"]*)"$/) do |entrants|
