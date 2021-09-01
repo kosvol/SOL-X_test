@@ -10,7 +10,7 @@ Then(/^I should see the newly created permit details listed on Created Permits t
 end
 
 And(/^I want to edit the newly created permit$/) do
-  sleep 1
+  BrowserActions.wait_until_is_visible(on(CreatedPermitToWorkPage).edit_permit_btn_elements.first)
   on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
 end
 
@@ -58,7 +58,7 @@ And(/^I delete the permit created$/) do
 end
 
 Then(/^I should see the total permits in CREATED state match backend results$/) do
-  on(Section3APage).scroll_multiple_times_with_direction(15,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(15, 'down')
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'

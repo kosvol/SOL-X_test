@@ -113,6 +113,12 @@ ranks_sorted_auto:
     PMAN,
     PMN,
     OLR,
+    WPR,
+    CCK,
+    2CK,
+    STWD,
+    RDCRW,
+    SPM
   ]
 
 ranks_sorted:

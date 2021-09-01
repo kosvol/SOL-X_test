@@ -158,7 +158,6 @@ Feature: CreatedPermitToWork
     And I sleep for 1 seconds
     And I press the Yes button to enable gas testing
     And I click on back arrow
-    And I sleep for 3 seconds
     When I navigate to "Created" screen for forms
     And I edit ptw with rank <rank>
     And I navigate to section 6

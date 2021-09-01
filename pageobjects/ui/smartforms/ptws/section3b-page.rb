@@ -13,10 +13,6 @@ class Section3BPage < Section3APage
   elements(:radio_btn, css: 'input[type=radio]')
   elements(:checkbox_btn, css: 'input[type=checkbox]')
 
-  def last_crew?
-    options_text_elements.last.text == 'OLR COT OLR'
-  end
-
   def fill_section_3b
     BrowserActions.enter_text(method_reason_element, 'Test automation')
     last_assessment_date_element.click
