@@ -110,8 +110,8 @@ And(/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |array, type|
   on(BypassPage).create_entry_record(array, type)
 end
 
-And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |_array, _type|
-  on(BypassPage).create_entry_record_custom_gas_readings(_array, _type)
+And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
+  on(BypassPage).create_entry_record_custom_gas_readings(array, type)
 end
 
 Given (/^I truncate and dump step records$/) do
