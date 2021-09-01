@@ -265,7 +265,7 @@ Feature: LNGCRE
     And I sleep for 1 seconds
     And I activate CRE form via service
     And I sleep for 10 seconds
-    Then I terminate the PRE
+    Then I terminate the CRE permit via service
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Terminated" list
     When I view permit with C/O rank

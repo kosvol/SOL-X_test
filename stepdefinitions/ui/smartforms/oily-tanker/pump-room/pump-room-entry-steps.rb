@@ -156,7 +156,8 @@ Then(/^I should see current PRE is auto terminated$/) do
 end
 
 Then(/^I terminate the (PRE|CRE)$/) do |_type|
-  step 'I navigate to "Active" screen for PRE'
+  step 'I navigate to "Active" screen for PRE' if type == 'PRE'
+  step 'I navigate to "Active" screen for CRE' if type == 'CRE'
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
