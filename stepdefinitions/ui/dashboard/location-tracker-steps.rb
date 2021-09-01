@@ -163,7 +163,7 @@ Then (/^I (should|should not) see ui location updated to (.+)$/) do |condition, 
   step 'I hit graphql'
   if condition == 'should'
     is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', new_zone))
-  elsif condition == 'should not'
+  else
     is_equal(on(DashboardPage).get_ui_active_crew_details.size, '0')
   end
 end
@@ -189,7 +189,7 @@ Then (/^I (should not|should) see PRE tab active on dashboard$/) do |condition|
   if condition == 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('active'))
-  elsif condition == 'should not'
+  else
     is_equal(on(DashboardPage).pre_indicator, 'Inactive')
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
