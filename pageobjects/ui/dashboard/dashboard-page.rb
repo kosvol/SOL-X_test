@@ -27,7 +27,7 @@ class DashboardPage < WearablePage
   element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
 
 
-  @@ship_area = "//li/button[contains(.,'%s')]"
+  #@@ship_area = "//li/button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
@@ -49,12 +49,12 @@ class DashboardPage < WearablePage
     @@arr_data
   end
 
-  def is_pre_indicator_color?(_condition)
+  def is_pre_indicator_color?(condition)
     tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
-    if _condition.downcase === 'active'
-      tmp.css_value('color').to_s === 'rgba(67, 160, 71, 1)'
-    elsif _condition.downcase === 'inactive'
-      tmp.css_value('color').to_s === 'rgba(216, 75, 75, 1)'
+    if condition.downcase == 'active'
+      tmp.css_value('color').to_s == 'rgba(67, 160, 71, 1)'
+    elsif condition.downcase == 'inactive'
+      tmp.css_value('color').to_s == 'rgba(216, 75, 75, 1)'
     end
   end
 

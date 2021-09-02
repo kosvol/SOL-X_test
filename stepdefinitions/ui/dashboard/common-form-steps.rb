@@ -12,3 +12,4 @@ And (/^I click (accept|terminate|close) new gas readings on dashboard page$/) do
   BrowserActions.poll_exists_and_click(on(DashboardPage).gas_alert_discard_new_element) if condition == 'terminate'
   BrowserActions.poll_exists_and_click(on(DashboardPage).gas_close_btn_element) if condition == 'close'
 end
+
