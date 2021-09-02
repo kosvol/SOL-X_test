@@ -270,7 +270,6 @@ Feature: PumpRoomEntry
       | O/S   |
       | 5/E   |
       | E/C   |
-      | ETO   |
       | ELC   |
       | T/E   |
       | PMN   |
