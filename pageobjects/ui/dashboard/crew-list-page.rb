@@ -66,8 +66,9 @@ class CrewListPage < DashboardPage
     crew_rank_elements.each do |x|
       rank_arr << x.text
     end
-    p ">>> #{rank_arr.uniq}"
-    rank_arr.uniq === $sit_rank_and_pin_yml['ranks_sorted_auto']
+    Log.instance.info "Sorted Ranks: #{rank_arr.uniq}"
+    Log.instance.info "YAML Ranks: #{$sit_rank_and_pin_yml['ranks_sorted_auto']}"
+    rank_arr.uniq == $sit_rank_and_pin_yml['ranks_sorted_auto']
   end
 
   def get_crew_table_headers

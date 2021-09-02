@@ -48,7 +48,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
       Log.instance.info("\n\nExpected: #{expected}\n\n")
       parent_container_elements.size == expected
     else
-      to_exists(on(CommonFormsPage).no_permits_found_element)
+      to_exists(no_permits_found_element)
     end
   end
 end
