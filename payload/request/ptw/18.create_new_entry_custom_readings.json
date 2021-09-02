@@ -1,0 +1,36 @@
+{
+    "operationName": "createEntryRecord",
+    "variables": {
+        "formId": "LNGSIT/CRE/2021/009",
+        "signature": "data:image/jpeg;base64,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",
+        "gasReadings": [
+            {
+                "gasName": "O2",
+                "reading": "3",
+                "unit": "%",
+                "threshold": "20.9"
+            },
+            {
+                "gasName": "HC",
+                "reading": "4",
+                "unit": "% LEL",
+                "threshold": "1"
+            },
+            {
+                "gasName": "H2S",
+                "reading": "5",
+                "unit": "PPM",
+                "threshold": "5"
+            },
+            {
+                "gasName": "CO",
+                "reading": "6",
+                "unit": "PPM",
+                "threshold": "25"
+            }
+        ],
+        "purposeOfEntry": "Autotest",
+        "otherEntrantIds": []
+    },
+    "query": "fragment dateTimeWithOffsetFragment on DateTimeWithOffset {\n  dateTime\n  utcOffset\n  __typename\n}\n\nmutation createEntryRecord($formId: ID!, $crewId: ID, $signature: String!, $locationId: ID, $gasReadings: [GasReadingInput!]!, $otherEntrantIds: [ID!]!, $purposeOfEntry: String!) {\n  createEntryRecord(formId: $formId, crewId: $crewId, signature: $signature, locationId: $locationId, gasReadings: $gasReadings, otherEntrantIds: $otherEntrantIds, purposeOfEntry: $purposeOfEntry) {\n    crewId\n    entryStatus\n    entryId\n    gasReadingStatus\n    signature\n    locationId\n    purposeOfEntry\n    entrant {\n      _id\n      rank\n      firstName\n      lastName\n      __typename\n    }\n    gasReadings {\n      gasName\n      threshold\n      reading\n      unit\n      __typename\n    }\n    timeIn {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignIn\n    timeOut {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    autoSignOut\n    validityStart {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    validityEnd {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    gasReadingTime {\n      ...dateTimeWithOffsetFragment\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

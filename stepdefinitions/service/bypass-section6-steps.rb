@@ -107,11 +107,14 @@ Given(/^I remove crew from vessel$/) do
 end
 
 And(/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |array, type|
-  @@pre_number = CommonPage.get_permit_id
   on(BypassPage).create_entry_record(array, type)
 end
 
-Given(/^I truncate and dump step records$/) do
+And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
+  on(BypassPage).create_entry_record_custom_gas_readings(array, type)
+end
+
+Given (/^I truncate and dump step records$/) do
   Postgres_clearing.import_step_record_csv_postgres
 end
 

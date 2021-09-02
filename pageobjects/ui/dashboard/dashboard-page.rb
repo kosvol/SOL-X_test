@@ -21,6 +21,13 @@ class DashboardPage < WearablePage
   element(:entry_log_title, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entrant, xpath: "//span[@data-testid='entrant-count']")
   @@ship_area = "//button[contains(.,'%s')]"
+  #Gas reading alert
+  element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
+  element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
+  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+
+
+  #@@ship_area = "//li/button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
@@ -42,12 +49,12 @@ class DashboardPage < WearablePage
     @@arr_data
   end
 
-  def is_pre_indicator_color?(_condition)
+  def is_pre_indicator_color?(condition)
     tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
-    if _condition.downcase === 'active'
-      tmp.css_value('color').to_s === 'rgba(67, 160, 71, 1)'
-    elsif _condition.downcase === 'inactive'
-      tmp.css_value('color').to_s === 'rgba(216, 75, 75, 1)'
+    if condition.downcase == 'active'
+      tmp.css_value('color').to_s == 'rgba(67, 160, 71, 1)'
+    elsif condition.downcase == 'inactive'
+      tmp.css_value('color').to_s == 'rgba(216, 75, 75, 1)'
     end
   end
 

@@ -38,19 +38,6 @@ Feature: LNGCREL
     And I activate CRE form via service
     When I launch sol-x portal dashboard
     And I sleep for 5 seconds
-    #    And I navigate to "SmartForms" screen for forms
-    #    When I clear gas reader entries
-    #    And I navigate to create new CRE
-    #    And I enter pin for rank C/O
-    #    And I fill up CRE. Duration 4. Delay to activate 2
-    #    And I add only normal gas readings
-    #    And I enter pin for rank A C/O
-    #    And I dismiss gas reader dialog box
-    #    And for cre I submit permit for A C/O Approval
-    #    And I getting a permanent number from indexedDB
-    #    Then I activate the current CRE form
-    #    And I sleep for 180 seconds
-    #    And I activate CRE form via service
     And I open new dashboard page
     And I sleep for 5 seconds
     And I switch to first tab in browser
@@ -65,6 +52,31 @@ Feature: LNGCREL
     And I switch to first tab in browser
     Then I should see red background color
     And I should see Permit Terminated CRE status on screen
+
+  Scenario: CRE Dashboard Gas reading pop up should have a independent close option
+    Given I get active PRE permit and terminate
+    When I get active CRE permit and terminate
+    Then I submit a current CRE permit via service
+    And I activate CRE form via service
+    When I launch sol-x portal dashboard
+    And I sleep for 5 seconds
+    And I open new dashboard page
+    And I switch to first tab in browser
+    And I navigate to CRE Display
+    And I enter pin via service for rank A C/O
+    And I enter new entry log
+    And I send entry report with 0 optional entrants
+    And I acknowledge the new entry log cre via service
+    And I dismiss gas reader dialog box
+    And I enter random entry log with role 2/O
+    And I send entry report with 1 optional entrants
+    And I sleep for 5 seconds
+    And I switch to last tab in browser
+    Then I should see alert message
+    And I click close new gas readings on dashboard page
+    And I enter pin for rank A C/O
+    And I switch to first tab in browser
+    Then I should see alert message
 
   Scenario: [ESEL] The ESEL is displayed separately from the PREL CREL and independent of it
     Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require

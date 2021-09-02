@@ -39,10 +39,10 @@ end
 
 Then (/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
-  if indicator_color === 'green below'
+  if indicator_color == 'green below'
     is_true(on(DashboardPage).is_activity_indicator_status('rgba(67, 160, 71, 1)'))
   end
-  if indicator_color === 'yellow after'
+  if indicator_color == 'yellow after'
     is_true(on(DashboardPage).is_activity_indicator_status('rgba(242, 204, 84, 1)'))
   end
 end
@@ -52,20 +52,20 @@ Then (/^I should see (.+) count represent (.+)$/) do |zone, count|
   on(DashboardPage).dismiss_area_dd
 end
 
-And (/^I link (.+) to wearable$/) do |_user|
+And (/^I link (.+) to wearable$/) do |user|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
   step 'I get wearable-simulator/base-get-list-of-crew request payload'
   step 'I hit graphql'
-  if _user === 'crew'
+  if user == 'crew'
     step 'I get a list of crews'
     step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
     step 'I manipulate wearable requeset payload'
     step 'I hit graphql'
   else
     step 'I get a hash of crews'
-    step "I create rq for rank #{_user}"
+    step "I create rq for rank #{user}"
   end
 end
 
@@ -130,8 +130,8 @@ Then (/^I should see correct permit display$/) do
   is_equal(on(Section0Page).ptw_id_element.text, @ptw_id)
 end
 
-When (/^I link (.+) user wearable$/) do |_condition|
-  WearablePage.link_default_crew_to_wearable(_condition)
+When (/^I link (.+) user wearable$/) do |condition|
+  WearablePage.link_default_crew_to_wearable(condition)
   step 'I get wearable-simulator/mod-base-link-crew-to-wearable request payload'
   step 'I hit graphql'
   step 'I get wearable-simulator/mod-update-wearable-location-by-zone request payload'
@@ -158,26 +158,26 @@ And (/^I collapse location drop down menu$/) do
   on(DashboardPage).dismiss_area_dd
 end
 
-Then (/^I (should|should not) see ui location updated to (.+)$/) do |_condition, _new_zone|
+Then (/^I (should|should not) see ui location updated to (.+)$/) do |condition, new_zone|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  if _condition === 'should'
-    is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', _new_zone))
-  elsif _condition === 'should not'
+  if condition == 'should'
+    is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', new_zone))
+  else
     is_equal(on(DashboardPage).get_ui_active_crew_details.size, '0')
   end
 end
 
-Then (/^I should see (.+) location indicator showing (.+) on location pin$/) do |_location, _count|
-  is_equal(on(DashboardPage).get_location_pin_text(_location), _count)
+Then (/^I should see (.+) location indicator showing (.+) on location pin$/) do |location, count|
+  is_equal(on(DashboardPage).get_location_pin_text(location), count)
 end
 
-And (/^I should not see (.+) location indicator$/) do |_location|
-  is_true(!on(DashboardPage).get_location_pin_text(_location))
+And (/^I should not see (.+) location indicator$/) do |location|
+  is_true(!on(DashboardPage).get_location_pin_text(location))
 end
 
-When (/^I submit a (scheduled|activated) PRE permit$/) do |_condition|
-  on(BypassPage).trigger_pre_submission('8383', _condition)
+When (/^I submit a (scheduled|activated) PRE permit$/) do |condition|
+  on(BypassPage).trigger_pre_submission('8383', condition)
 end
 
 Then (/^I should see 25 crews link to dashboard$/) do
@@ -185,32 +185,32 @@ Then (/^I should see 25 crews link to dashboard$/) do
   is_equal(on(DashboardPage).crew_list_elements.size, 25)
 end
 
-Then (/^I (should not|should) see PRE tab active on dashboard$/) do |_condition|
-  if _condition === 'should'
+Then (/^I (should not|should) see PRE tab active on dashboard$/) do |condition|
+  if condition == 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
     is_true(on(DashboardPage).is_pre_indicator_color?('active'))
-  elsif _condition === 'should not'
+  else
     is_equal(on(DashboardPage).pre_indicator, 'Inactive')
     is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
   end
 end
 
-When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |_action, _permit_type|
-  on(BypassPage).terminate_pre_permit('8383') if _action == 'terminate'
-  on(BypassPage).close_permit(_permit_type, '8383', ENV['ENVIRONMENT']) if _action == 'close'
+When (/^I (terminate|close) the (PRE|CRE) permit via service$/) do |action, permit_type|
+  on(BypassPage).terminate_pre_permit('8383') if action == 'terminate'
+  on(BypassPage).close_permit(permit_type, '8383', ENV['ENVIRONMENT']) if action == 'close'
 end
 
-When (/^I Close Permit (.+) via service (.+)$/) do |_permit_type, _env|
-  on(BypassPage).close_permit(_permit_type, '9015', _env)
+When (/^I Close Permit (.+) via service (.+)$/) do |permit_type, env|
+  on(BypassPage).close_permit(permit_type, '9015', env)
 end
 
-When (/^I submit a (scheduled|current) CRE permit via service$/) do |_type|
-  on(BypassPage).trigger_cre_submission('8383', 'current') if _type == 'current'
-  on(BypassPage).trigger_cre_submission('8383', 'scheduled') if _type == 'scheduled'
+When (/^I submit a (scheduled|current) (CRE|PRE) permit via service$/) do |type, permit_type|
+  on(BypassPage).trigger_cre_submission('8383', type) if permit_type == 'CRE'
+  on(BypassPage).trigger_pre_submission('8383', type) if permit_type == 'PRE'
 end
 
-When (/^I signout entrants "([^"]*)"$/) do |_entrants|
-  _entrants.split(',').each do |item|
+When (/^I signout entrants "([^"]*)"$/) do |entrants|
+  entrants.split(',').each do |item|
     on(BypassPage).signout_entrants(item.to_s)
   end
 end

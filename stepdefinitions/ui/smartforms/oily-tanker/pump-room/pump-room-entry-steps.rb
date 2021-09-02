@@ -155,8 +155,8 @@ Then(/^I should see current PRE is auto terminated$/) do
   is_true(on(PumpRoomEntry).is_auto_terminated_displayed?(@@pre_number))
 end
 
-Then(/^I terminate the (PRE|CRE)$/) do |_type|
-  step 'I navigate to "Active" screen for PRE'
+Then(/^I terminate the (PRE|CRE)$/) do |type|
+  step "I navigate to \"Active\" screen for #{type}"
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
@@ -167,8 +167,7 @@ Then(/^I terminate the (PRE|CRE)$/) do |_type|
 end
 
 Then(/^I terminate the (PRE|CRE) with rank ([^"]*)$/) do |type, rank|
-  step 'I navigate to "Active" screen for PRE' if type == 'PRE'
-  step 'I navigate to "Active" screen for CRE' if type == 'CRE'
+  step "I navigate to \"Active\" screen for #{type}"
   on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
   step "I enter pin for rank #{rank}"
   step 'I press the "Terminate" button'
@@ -393,9 +392,4 @@ Then(/^I check report not send$/) do
   not_to_exists(on(PreDisplay).entry_log_btn_element)
   not_to_exists(on(PreDisplay).home_tab_element)
   not_to_exists(on(PreDisplay).permit_tab_element)
-end
-
-And(/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
-  @@pre_number = CommonPage.get_permit_id
-  on(BypassPage).create_entry_record_custom_gas_readings(array, type)
 end

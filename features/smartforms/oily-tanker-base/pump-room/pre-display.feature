@@ -1,5 +1,5 @@
 @PRE-display
-Feature: PumpRoomEntry
+Feature: PumpRoomEntryDisplay
   As a ...
   I want to ...
   So that ...
@@ -255,6 +255,7 @@ Feature: PumpRoomEntry
 
   Scenario: [PRED] Verify PRED displays green screen automatically after PRE becomes active
     Given I launch sol-x portal without unlinking wearable
+    And I get active PRE permit and terminate
     When I clear gas reader entries
     Then I fill and submit PRE permit details via ui
     And I should see Permit Activated PRE status on screen
@@ -266,8 +267,10 @@ Feature: PumpRoomEntry
 
   Scenario: [PRED] Verify PRED can't add entry without initial gas readings
     Given I launch sol-x portal without unlinking wearable
+    And I get active PRE permit and terminate
     When I clear gas reader entries
     Then I fill and submit PRE permit details via without gas readings
+    And I wait on PRE Display until see green background
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     And (for pred) I should see warning box for activated status
