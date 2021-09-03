@@ -15,6 +15,7 @@ android_chrome_tablet_auto_local: --profile dir --profile html --profile xml --p
 android_chrome_tablet_fsu_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet_chrome RESOLUTION=tablet_a
 android_chrome_tablet_sit_fsu_local: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet_chrome RESOLUTION=tablet_a
 win_chrome_tablet_lng_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=tablet
+win_chrome_tablet_fsu_sit: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
 win_chrome_tablet_cot_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet
 win_chrome_tablet_cot_full_auto: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=dashboard
 win_chrome_auto_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=WIN APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=dashboard
