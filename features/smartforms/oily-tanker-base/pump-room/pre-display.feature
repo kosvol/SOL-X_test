@@ -247,7 +247,7 @@ Feature: PumpRoomEntryDisplay
     And I launch sol-x portal without unlinking wearable
     And I navigate to PRE Display until see active permit
     Then I add new entry "A 2/O,3/O,A 3/O,4/O" PRE
-    And I terminate the PRE permit via service
+    And I get active PRE permit and terminate
     And I sleep for 10 seconds
     And I wait on PRE Display until see red background
     And I should see Permit Terminated PRE status on screen

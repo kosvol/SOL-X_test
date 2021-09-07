@@ -17,7 +17,7 @@ class SignaturePage < Section1Page
     sleep 1
     sign_on_canvas
     sleep 1
-    select_location_of_work if zone_btn_element.text === 'Select'
+    select_location_of_work if zone_btn_element.text == 'Select'
     sleep 1
   end
 
