@@ -50,9 +50,9 @@ Feature: PumpRoomEntryLog
     Then I should see alert message
 
   Scenario: Dashboard - Verify updated view and icon is displayed in Dashboard main page for entry log and PRE status
-    Given I launch sol-x portal
-    And I get active PRE permit and terminate
+    Given I get active PRE permit and terminate
     And I get active CRE permit and terminate
+    And I launch sol-x portal
     When I check PRE elements on dashboard inactive
     When I submit a activated PRE permit
     And I add new entry "A 2/O" PRE
