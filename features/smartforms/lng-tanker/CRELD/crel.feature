@@ -23,11 +23,13 @@ Feature: LNGCREL
     Then I check permit date on Dashboard LOG
 
   Scenario: Entrant counter in Dashboard is updating
-    Given I submit a current CRE permit via service
+    Given I get active PRE permit and terminate
+    And I get active CRE permit and terminate
+    And I submit a current CRE permit via service
     And I add new entry "A 2/O,3/O,A 3/O,4/O" CRE
-    And I sleep for 10 seconds
     And I acknowledge the new entry log cre via service
     When I launch sol-x portal dashboard
+    And I sleep for 5 seconds
     And I check number 5 of entrants on dashboard
     When I signout entrants "A 2/O"
     And I check number 4 of entrants on dashboard
