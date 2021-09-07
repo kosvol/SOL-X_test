@@ -160,14 +160,9 @@ Feature: PumpRoomEntry
     And I getting a permanent number from indexedDB
     Then (table) Buttons should be missing for the following role:
       | MAS   |
-      | C/O   |
-      | C/E   |
-      | 2/E   |
+      | A/M   |
       | ETO   |
-      | A 2/E |
       | D/C   |
-      | 3/E   |
-      | A 3/E |
       | 4/E   |
       | A 4/E |
       | BOS   |

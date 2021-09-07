@@ -18,7 +18,7 @@ end
 
 And (/^I trigger gas readings input with (.*) rank$/) do |rank|
   on(Section6Page).add_gas_btn
-  step "I enter pin for rank #{rank}"
+  step "I enter pin via service for rank #{rank}"
 end
 
 Then ('I should see correct placeholder text for gas input') do

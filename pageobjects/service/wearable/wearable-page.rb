@@ -21,7 +21,7 @@ class WearablePage
 
     def get_crew_id_from_rank(_user)
       get_one_wearable_id
-      tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/mod-link-crew-to-wearable')
+      tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
       @crewid = @list_of_crew_id.key(_user)
       tmp_req_payload['variables']['wearableId'] = @wearableid
       tmp_req_payload['variables']['userId'] = @crewid

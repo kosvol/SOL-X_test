@@ -84,12 +84,14 @@ Then(/^\(for pre\) I sign on canvas$/) do
 end
 
 Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, permit_type, duration, delay|
-  on(Section3APage).scroll_multiple_times_with_direction(1,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   if gas == 'fill up with gas readings'
+    sleep 1
+    step 'I trigger gas readings input with C/O rank'
     on(Section6Page).add_all_gas_readings
     step 'I sign for gas'
-    step 'I enter pin via service for rank C/O'
-    step 'I dismiss gas reader dialog box'
+    sleep 1
+    BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
   end
   on(Section3APage).scroll_multiple_times_with_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration)
@@ -225,6 +227,8 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
     is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
+    step 'I click on back arrow'
+    sleep 1
     step 'I click on back arrow'
   end
 end
