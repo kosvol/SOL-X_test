@@ -140,7 +140,7 @@ Feature: LNGCRE
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: A C/O
     Then I should see CRE landing screen
-
+@wip
   Scenario Outline: Verify these roles can terminate CRE permit
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
@@ -158,7 +158,7 @@ Feature: LNGCRE
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     And I click on back arrow
-    Then I terminate the PRE
+    Then I terminate the CRE with rank <rank>
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Closed CRE" list
 

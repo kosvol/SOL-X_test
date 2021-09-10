@@ -111,8 +111,8 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | A 4/E |
-      | A/M   |
-  # | CGENG |
+     # | A/M   |????
+     # | CGENG |????
 
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
@@ -231,6 +231,7 @@ Feature: PendingUpdate
     And I press previous for 3 times
     And I click on view EIC certification button
     Then I should see request update comment box
+    #Then I should not see request update comment box not filled
 
   # Scenario: Verify comment box displayed in EIC Certificate when requesting the form for updates
   #   Given I launch sol-x portal without unlinking wearable
@@ -276,6 +277,7 @@ Feature: PendingUpdate
     And I press previous for 9 times
     And I click on View Edit Hazard
     Then I should see request update comment box
+    #Then I should see request update comment box not filled
 
   Scenario: Verify comment box display on all section after requesting for update
     Given I launch sol-x portal without unlinking wearable

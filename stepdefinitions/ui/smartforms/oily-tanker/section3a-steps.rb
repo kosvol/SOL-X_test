@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
-Then(/^I (should|should not) see request update comment box$/) do |_condition|
-  if _condition === 'should'
+Then(/^I (should|should not) see request update comment (box|box not filled)$/) do |condition, box_condition|
+  if condition == 'should' && box_condition == 'box'
     to_exists(on(Section0Page).enter_comment_box_element)
     is_equal(on(Section3APage).enter_comment_box_element.text, 'Test Automation')
-  elsif _condition === 'should not'
+  elsif condition == 'should' && box_condition == 'box not filled'
+    to_exists(on(Section0Page).enter_comment_box_element)
+    is_equal(on(Section3APage).enter_comment_box_element.text, '')
+  elsif condition == 'should not' && box_condition == 'box'
     not_to_exists(on(Section0Page).enter_comment_box_element)
+  elsif condition == 'should not' && box_condition == 'box not filled'
+    is_not_equal(on(Section3APage).enter_comment_box_element.text, 'Test Automation')
+    is_equal(on(Section3APage).enter_comment_box_element.text, '')
   end
 end
 

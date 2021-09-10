@@ -278,13 +278,13 @@ end
 ################################################################################################################
 ######## Konstantine please refactor this step; Method implementation should never be in step definition #######
 ################################################################################################################
-When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _server|
+When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, server|
   form_id = CommonPage.get_permit_id
   status = nil
   docs = []
   i = 80
-  while i > 0 && status != _whatStatus.to_s
-    request = if _server == 'Cloud'
+  while i.positive? && status != whatStatus.to_s
+    request = if server == 'Cloud'
                 ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               else
@@ -293,15 +293,16 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |_whatStatus, _se
               end
     # p "request >> #{request}"
     docs = (JSON.parse request.to_s)['docs']
-    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] === _whatStatus)
+    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] == whatStatus)
       status = (JSON.parse request.to_s)['docs'][0]['status']
       break
     end
     i -= 1
+    puts("status >>> #{(JSON.parse request.to_s)['docs'][0]['status']}")
     sleep(20)
   end
-  is_true(status == _whatStatus.to_s)
   Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
+  is_true(status == whatStatus.to_s)
   sleep 2
 end
 
@@ -541,11 +542,11 @@ And(/^I remove (comment|name)$/) do |_input|
   case _input
   when 'comment'
     on(OAPage).update_comments_element.click
-    on(OAPage).update_comments_element.send_keys("\ue03D" + 'a')
+    on(OAPage).update_comments_element.send_keys("a")
     on(OAPage).update_comments_element.send_keys("\ue017")
   when 'name'
     on(OAPage).name_input_field_element.click
-    on(OAPage).name_input_field_element.send_keys("\ue03D" + 'a')
+    on(OAPage).name_input_field_element.send_keys("a")
     on(OAPage).name_input_field_element.send_keys("\ue017")
   end
 end
