@@ -44,18 +44,18 @@ class CrewListPage < DashboardPage
     pin_text_field_element.text != '••••'
   end
 
-  def is_rank_correctly_displayed?(_current_rank)
+  def is_rank_correctly_displayed?(current_rank)
     sleep 1
     rank_list_btn
     rank_list = $sit_rank_and_pin_yml['ranks_sorted']
     sleep 1
     rank_list.each_with_index do |rank, index|
-      next unless _current_rank === rank
+      next unless current_rank == rank
 
-      if _current_rank != 'MAS'
-        return (rank_list_selection_elements[0].text === rank_list[index - 1]) && (rank_list_selection_elements[2].text === rank_list[index + 1])
+      if current_rank != 'MAS'
+        return (rank_list_selection_elements[0].text == rank_list[index - 1]) && (rank_list_selection_elements[2].text == rank_list[index + 1])
       end
-      return (rank_list_selection_elements[1].text === rank_list[index + 1]) if _current_rank === 'MAS'
+      return (rank_list_selection_elements[1].text == rank_list[index + 1]) if current_rank == 'MAS'
 
       break
     end

@@ -20,8 +20,8 @@ end
 
 Then(/^I should see crew list location indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
-  is_true(on(CrewListPage).is_activity_indicator_status('rgba(67, 160, 71, 1)')) if indicator_color === 'green below'
-  is_true(on(CrewListPage).is_activity_indicator_status('rgba(242, 204, 84, 1)')) if indicator_color === 'yellow after'
+  is_true(on(CrewListPage).is_activity_indicator_status('rgba(67, 160, 71, 1)')) if indicator_color == 'green below'
+  is_true(on(CrewListPage).is_activity_indicator_status('rgba(242, 204, 84, 1)')) if indicator_color == 'yellow after'
 end
 
 Then(/^I should see crew location details on crew screen$/) do
@@ -29,8 +29,8 @@ Then(/^I should see crew location details on crew screen$/) do
   is_true(on(CrewListPage).is_location_details)
 end
 
-Then(/^I should see crew location (.+) details on crew screen$/) do |_location|
-  is_true(on(CrewListPage).is_location_details(_location))
+Then(/^I should see crew location (.+) details on crew screen$/) do |location|
+  is_true(on(CrewListPage).is_location_details(location))
 end
 
 And(/^I view pin$/) do
@@ -38,9 +38,9 @@ And(/^I view pin$/) do
   step 'I enter pin for rank MAS'
 end
 
-Then(/^I (should|should not) see pin reviewed$/) do |_condition|
-  is_true(!on(CrewListPage).is_pin_hidden?) if _condition === 'should not'
-  is_true(!on(CrewListPage).is_pin_reviewed?) if _condition === 'should'
+Then(/^I (should|should not) see pin reviewed$/) do |condition|
+  is_true(!on(CrewListPage).is_pin_hidden?) if condition == 'should not'
+  is_true(!on(CrewListPage).is_pin_reviewed?) if condition == 'should'
 end
 
 And(/^I enter a non-existent pin$/) do
@@ -90,14 +90,14 @@ And(/^I add crew$/) do
   BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
 end
 
-And(/^I add crew (.+) id$/) do |_crew|
+And(/^I add crew (.+) id$/) do |crew|
   on(CrewListPage).add_new_crew_btn
-  on(CrewListPage).crew_id = _crew
+  on(CrewListPage).crew_id = crew
   BrowserActions.poll_exists_and_click(on(CrewListPage).retrieve_data_btn_element)
 end
 
-Then(/^I should see rank listing for (.+) showing 1 rank before and after$/) do |_current_rank|
-  is_true(on(CrewListPage).is_rank_correctly_displayed?(_current_rank))
+Then(/^I should see rank listing for (.+) showing 1 rank before and after$/) do |current_rank|
+  is_true(on(CrewListPage).is_rank_correctly_displayed?(current_rank))
 end
 
 And(/^I change the crew rank$/) do
@@ -109,11 +109,11 @@ Then(/^I should see pin review$/) do
 end
 
 Then(/^I should see count down start from 10 seconds$/) do
-  if on(CrewListPage).countdown_elements[0].text === 'Hiding in 9 secs'
+  if on(CrewListPage).countdown_elements[0].text == 'Hiding in 9 secs'
     true
-  elsif on(CrewListPage).countdown_elements[0].text === 'Hiding in 8 secs'
+  elsif on(CrewListPage).countdown_elements[0].text == 'Hiding in 8 secs'
     true
-  elsif on(CrewListPage).countdown_elements[0].text === 'Hiding in 7 secs'
+  elsif on(CrewListPage).countdown_elements[0].text == 'Hiding in 7 secs'
     true
   end
 end
