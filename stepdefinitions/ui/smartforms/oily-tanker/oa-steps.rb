@@ -298,7 +298,6 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, serv
       break
     end
     i -= 1
-    puts("status >>> #{(JSON.parse request.to_s)['docs'][0]['status']}")
     sleep(20)
   end
   Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)

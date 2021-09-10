@@ -140,7 +140,7 @@ Feature: LNGCRE
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: A C/O
     Then I should see CRE landing screen
-@wip
+
   Scenario Outline: Verify these roles can terminate CRE permit
     Given I launch sol-x portal without unlinking wearable
     When I clear gas reader entries
