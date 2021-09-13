@@ -61,7 +61,7 @@ android_chrome_tablet_b_auto: --profile dir --profile html --profile xml --profi
 # android_chrome_tablet_b_fsu_auto: --profile dir --profile html --profile xml --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### use in sit-sol-x-web-app-office-comment-ui-test ###
-# mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=dashboard
+mac_chrome_sit_dashboard_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=dashboard
 mac_chrome_sit_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-lng DEVICE=tablet
 
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
