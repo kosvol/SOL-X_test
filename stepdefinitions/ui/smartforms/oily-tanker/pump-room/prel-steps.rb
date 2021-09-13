@@ -23,7 +23,8 @@ end
 
 And (/^I (enter|enter without sign) (new|same|without toxic|different|random) entry log with role ([^"]*)$/) do |condition, gas_reading_value, role|
   if condition == 'enter'
-    BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element)
+    BrowserActions.wait_until_is_visible(on(PreDisplay).home_tab_element)
+    BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
     BrowserActions.poll_exists_and_click(on(PreDisplay).new_entry_log_element)
     step "I enter pin via service for rank #{role}"
   end
