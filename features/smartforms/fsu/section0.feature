@@ -38,8 +38,8 @@ Feature: LNGSmartFormsPermission
         Then I should see Activate Permit to Work button enabled
 
         Examples:
-            | level_one_permit               | level_two_permit                          | pin  | rank |
-            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
+            | level_one_permit               | level_two_permit                          | rank |
+            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | C/E  |
 
     Scenario: Verify ROL can be approved by CE
         Given I launch sol-x portal without unlinking wearable
@@ -142,7 +142,7 @@ Feature: LNGSmartFormsPermission
             | level_one_permit               | level_two_permit                          | pin  | rank |
             | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
 
-    Scenario Outline: CE can ask for update on all permit for FSU with duration more than 2 hours Updates needed button
+    Scenario Outline: CE and MAS can ask for update on all permit for FSU with duration more than 2 hours Updates needed button
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
         And I enter pin for rank C/O
@@ -170,6 +170,7 @@ Feature: LNGSmartFormsPermission
         Then I should see Updates Needed button enabled
 
         Examples:
-            | level_one_permit               | level_two_permit                          | pin  | rank |
-            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
+            | level_one_permit               | level_two_permit                            | rank |
+           # | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System   | C/E  |
+            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System   | MAS  |
 
