@@ -49,13 +49,13 @@ And(/^I navigate back to permit selection screen$/) do
 end
 
 And(/^I click on (.+) filter$/) do |state|
-  if state === 'pending approval'
+  if state == 'pending approval'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements.first)
-  elsif state === 'update needed'
+  elsif state == 'update needed'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[1])
-  elsif state === 'active'
+  elsif state == 'active'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
-  elsif state === 'pending withdrawal'
+  elsif state == 'pending withdrawal'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
   end
 end
