@@ -171,6 +171,6 @@ Feature: LNGSmartFormsPermission
 
         Examples:
             | level_one_permit               | level_two_permit                            | rank |
-           # | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System   | C/E  |
+            | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System   | C/E  |
             | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System   | MAS  |
 
