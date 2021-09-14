@@ -76,11 +76,11 @@ When(/^I select yes to EIC$/) do
   on(Section4BPage).yes_no_btn_elements[0].click
 end
 
-And(/^I click on (.*) EIC certification button$/) do |_which_type|
+And(/^I click on (.*) EIC certification button$/) do |which_type|
   sleep 2
-  if _which_type === 'create'
+  if which_type == 'create'
     on(Section4BPage).create_eic_btn
-  elsif _which_type === 'view'
+  elsif which_type == 'view'
     on(Section4BPage).view_eic_btn
   end
 end

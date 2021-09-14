@@ -15,12 +15,12 @@ Then(/^I (should|should not) see request update comment (box|box not filled)$/) 
   end
 end
 
-Then(/^I (should|should not) see request update comment$/) do |_condition|
-  if _condition === 'should'
+Then(/^I (should|should not) see request update comment$/) do |condition|
+  if condition == 'should'
     # is_equal(on(Section3APage).total_p_elements.size, 6)
-    is_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation')
-  elsif _condition === 'should not'
-    is_not_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation')
+    is_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation Update')
+  elsif condition == 'should not'
+    is_not_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation Update')
     is_equal(on(Section3APage).total_p_elements.size, 8)
   end
 end

@@ -353,7 +353,7 @@ Feature: PendingUpdate
     And I select Maintenance on Magnetic Compass permit for level 2
     And I fill only location of work and duration more than 2 hours
     And I press next for 7 times
-    And I sign checklist and section 5
+    And I sign checklist and section 5 and EIC cert add
     And I press next for 1 times
     Then I submit permit for Master Review
     When I click on back to home
