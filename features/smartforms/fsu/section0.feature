@@ -4,7 +4,7 @@ Feature: LNGSmartFormsPermission
     I want to ...
     So that ...
 
-    Scenario Outline: CE and Master can ask for update on all permit for FSU with duration more than 2 hours
+    Scenario Outline:  CE and Master can activate all permit for FSU with duration more than 2 hours
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
         And I enter pin for rank C/O
