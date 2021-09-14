@@ -158,6 +158,7 @@ Feature: LNGCRE
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     And I click on back arrow
+    And I sleep for 1 seconds
     Then I terminate the CRE with rank <rank>
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Closed CRE" list

@@ -8,6 +8,18 @@ And (/^I sign checklist and section 5$/) do
   step 'I fill up section 5'
 end
 
+And (/^I sign checklist and section 5 and EIC cert add$/) do
+  step 'I sign checklist with C/O as valid rank'
+  step 'I press next for 1 times'
+  sleep 1
+  step 'I select yes to EIC'
+  step 'I fill up EIC certificate'
+  sleep 1
+  step 'I press next for 1 times'
+  sleep 1
+  step 'I fill up section 5'
+end
+
 And (/^I fill up compulsory fields$/) do
   step 'I sign checklist with C/O as valid rank'
   step 'I press next for 1 times'
