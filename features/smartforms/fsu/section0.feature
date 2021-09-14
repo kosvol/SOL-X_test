@@ -142,7 +142,7 @@ Feature: LNGSmartFormsPermission
             | level_one_permit               | level_two_permit                          | pin  | rank |
             | Critical Equipment Maintenance | Maintenance on Fixed Gas Detection System | 8248 | C/E  |
 
-    Scenario Outline: CE and Master can ask for update on all permit for FSU with duration more than 2 hours
+    Scenario Outline: CE can ask for update on all permit for FSU with duration more than 2 hours Updates needed button
         Given I launch sol-x portal without unlinking wearable
         When I navigate to create new permit
         And I enter pin for rank C/O
