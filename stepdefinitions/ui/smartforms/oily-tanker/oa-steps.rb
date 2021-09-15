@@ -270,7 +270,7 @@ Then(%r{^I should not see the Add/Show Comments button$}) do
 end
 
 Then(/^I scroll down to This Permit Approved On element$/) do
-  el = $browser.find_element(:xpath, "//div[contains(@class,'ApprovedTagWrapper')]")
+  el = $browser.find_element(:xpath, "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
   $browser.action.move_to(el).perform
   sleep(3)
 end
@@ -305,26 +305,24 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, serv
   sleep 2
 end
 
-Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
+Then(/^I should see the View Permit Page with all attributes (.+)$/) do |condition|
   to_exists(on(OAPage).sol_logo_element)
   does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
   does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
-  case _when
+  case condition
   when 'before approval'
-    sectionsList = []
-    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
-      section = _whatSection.text
-      sectionsList << section
+    sections_list = []
+    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+      sections_list << what_section.text
     end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_office_approval']
     is_enabled(on(OAPage).approve_permit_btn_element)
     is_enabled(on(OAPage).update_permit_btn_element)
     is_enabled(on(OAPage).add_comments_btn_element)
   when 'after approval'
-    sectionsList = []
-    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
-      section = _whatSection.text
-      sectionsList << section
+    sections_list = []
+    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+      sections_list << what_section.text
     end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_master_approval']
     is_disabled(on(OAPage).permit_has_been_btn_element)
@@ -332,10 +330,9 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after activation'
-    sectionsList = []
-    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
-      section = _whatSection.text
-      sectionsList << section
+    sections_list = []
+    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+      sections_list << what_section.text
     end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['active']
     is_disabled(on(OAPage).permit_has_been_btn_element)
@@ -343,10 +340,9 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after termination'
-    sectionsList = []
-    on(OfficePortalPage).permit_section_header_elements.each do |_whatSection|
-      section = _whatSection.text
-      sectionsList << section
+    sections_list = []
+    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+      sections_list << what_section.text
     end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['terminated']
     not_to_exists(on(OAPage).permit_has_been_btn_element)
@@ -354,8 +350,7 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |_when|
     not_to_exists(on(OAPage).add_comments_btn_element)
     to_exists(on(OfficePortalPage).print_permit_btn_element)
   end
-  p ">> #{sections_data - sectionsList}"
-  is_true(sectionsList == sections_data)
+  is_true(sections_list == sections_data)
   not_to_exists(on(OfficePortalPage).home_btn_element)
 end
 
@@ -576,7 +571,7 @@ And(/^I should see the (comment|name|designation) entered$/) do |_input|
 end
 
 Then(/^I should see the Section 7 shows the correct data$/) do
-  el = $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  el = $browser.find_element(:xpath, "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
   $browser.action.move_to(el).perform
   baseFields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   baseSubheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']

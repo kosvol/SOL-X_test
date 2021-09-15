@@ -13,7 +13,7 @@ class OAPage < Section9Page
   button(:permit_has_been_btn, xpath: "//button[contains(.,'This Permit Has Been')]")
   element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
-  button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
+  button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsSidebar__Container')]/header/button")
   button(:add_comments_btn1, xpath: "//button[contains(.,'Show Comments')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
   button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
@@ -41,7 +41,7 @@ class OAPage < Section9Page
   # #End Web Confirmation Page ###
 
   ## Comment elements ###
-  element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
+  element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsSidebar__Container')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
   text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
