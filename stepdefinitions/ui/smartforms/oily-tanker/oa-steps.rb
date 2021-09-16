@@ -2,7 +2,6 @@
 
 And(/^I navigate to OA link$/) do
   $browser.get(on(OAPage).navigate_to_oa_link)
-   sleep 3
   begin
     BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
   rescue StandardError
