@@ -44,11 +44,7 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | MAS   |
-      # | C/O   |
-      # | C/O   |
-      # | A C/O |
       | A 4/E |
-      # | A 2/O |
       | CGENG |
 
   Scenario: SOL-4773 Verify submit for master approval button is enabled
@@ -111,8 +107,6 @@ Feature: PendingUpdate
     Examples:
       | rank  |
       | A 4/E |
-     # | A/M   |????
-     # | CGENG |????
 
   Scenario: Verify update note shows from Master if request update via non OA
     Given I launch sol-x portal without unlinking wearable
@@ -366,7 +360,7 @@ Feature: PendingUpdate
     And I update permit in pending update state with 3/E rank
     And I navigate to section 4b
     And I click on create EIC certification button
-    Then I should see request update comment
+    Then I should see request update comment modified
 
   Scenario: Verify user is able to update DRA after Office request for update
     Given I launch sol-x portal without unlinking wearable
