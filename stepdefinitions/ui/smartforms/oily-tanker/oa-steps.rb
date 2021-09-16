@@ -208,8 +208,8 @@ And(/^I submit permit via service to pending office approval state$/) do
   on(BypassPage).set_oa_permit_to_pending_office_appr
 end
 
-And(/^I should see the correct notification at the bottom after (approval|activation)$/) do |_whichState|
-  case _whichState
+And(/^I should see the correct notification at the bottom after (approval|activation)$/) do |which_state|
+  case which_state
   when 'approval'
     is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to approved Permits")
   when 'activation'
@@ -224,7 +224,6 @@ And(/^I should not see active fields and buttons$/) do
 end
 
 And(/^I submit permit via service to closed state$/) do
-  # on(BypassPage).set_oa_permit_to_state('ACTIVE')
   step 'I click on pending approval filter'
   step 'I approve permit'
   step 'I click on back to home'
@@ -252,8 +251,8 @@ end
 
 And(/^I take note of comments counter$/) do
   sleep(5)
-  counterText = on(OAPage).comment_counter_element.text
-  counter = counterText.sub('Comments (', '')
+  counter_text = on(OAPage).comment_counter_element.text
+  counter = counter_text.sub('Comments (', '')
   @counter = counter.sub(')', '')
 end
 
@@ -303,8 +302,8 @@ end
 
 Then(/^I should see the View Permit Page with all attributes (.+)$/) do |condition|
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_number)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
   case condition
   when 'before approval'
     sections_list = []
@@ -350,17 +349,17 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |conditi
   not_to_exists(on(OfficePortalPage).home_btn_element)
 end
 
-And(/^I get (PTW|PRE) permit info$/) do |_permitType|
-  case _permitType
+And(/^I get (PTW|PRE) permit info$/) do |permit_type|
+  case permit_type
   when 'PTW'
-    dataFileResp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
-    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-    @formNumber = dataFileResp['data']['createForm']['_id']
-    @formName = dateFileReq['variables']['permitType']
+    data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
+    data_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @form_number = data_file_resp['data']['createForm']['_id']
+    @form_name = data_file_req['variables']['permitType']
   when 'PRE'
-    dataFileResp = JSON.parse JsonUtil.read_json_response('pre/mod-01.create-pre-form')
-    dateFileReq = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
-    @formNumber = dataFileResp['data']['createForm']['_id']
+    data_file_resp = JSON.parse JsonUtil.read_json_response('pre/mod-01.create-pre-form')
+    data_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
+    @form_number = data_file_resp['data']['createForm']['_id']
   end
 end
 
@@ -372,9 +371,9 @@ end
 
 Then(/^I should see the Web Confirmation page with all attributes$/) do
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
-  baseDescription = YAML.load_file('data/office-approval/page-descriptions.yml')['before_appr']
-  is_equal(on(OAPage).main_description_element.text, baseDescription)
+  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@form_number}")
+  base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['before_appr']
+  is_equal(on(OAPage).main_description_element.text, base_description)
   is_equal(on(OAPage).confirmation_question_elements[0].text, "DRA & Work Plan Reviewed?\nYes\nN/A")
   is_equal(on(OAPage).confirmation_question_elements[1].text, "Safety Meeting Minutes Reviewed?\nYes\nN/A")
   is_equal(on(OAPage).confirmation_question_elements[2].text, "Any Intermediate Reporting Required?\nYes\nN/A")
@@ -391,57 +390,58 @@ end
 
 Then(/^I should see the Web Rejection page with all attributes$/) do
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
-  baseDescription = YAML.load_file('data/office-approval/page-descriptions.yml')['before_rejection']
-  is_equal(on(OAPage).main_header_element.text, baseDescription)
+  does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@form_number}")
+  base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['before_rejection']
+  is_equal(on(OAPage).main_header_element.text, base_description)
   to_exists(on(OAPage).update_comments_element)
   to_exists(on(OAPage).name_input_field_element)
   to_exists(on(OAPage).designation_dd_btn_element)
   is_disabled(on(OAPage).update_permit_btn_element)
 end
 
-Then(/^I should see the Successfully Submission page after (approval|double approval|rejection)$/) do |_when|
+Then(/^I should see the Successfully Submission page after (approval|double approval|rejection)$/) do |what_state|
   to_exists(on(OAPage).sol_logo_element)
-  case _when
+  case what_state
   when 'approval'
-    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
-    baseDescription = YAML.load_file('data/office-approval/page-descriptions.yml')['after_appr']
-    is_equal(on(OAPage).main_description_element.text, baseDescription)
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@form_number}")
+    base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['after_appr']
+    is_equal(on(OAPage).main_description_element.text, base_description)
   when 'double approval'
-    approveDate = @time_now.strftime('%B %d, %Y')
-    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@formNumber}")
-    baseDescription = format(YAML.load_file('data/office-approval/page-descriptions.yml')['is_already_approved'],
-                             approveDate)
-    is_equal(on(OAPage).main_description_element.text, baseDescription)
+    approve_date = @time_now.strftime('%B %d, %Y')
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@form_number}")
+    base_description = format(YAML.load_file('data/office-approval/page-descriptions.yml')['is_already_approved'],
+                             approve_date)
+    is_equal(on(OAPage).main_description_element.text, base_description)
   when 'rejection'
-    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@formNumber}")
-    baseDescription = YAML.load_file('data/office-approval/page-descriptions.yml')['after_rejection']
-    is_equal(on(OAPage).main_description_element.text, baseDescription)
+    does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@form_number}")
+    base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['after_rejection']
+    is_equal(on(OAPage).main_description_element.text, base_description)
   end
   sleep(1)
 end
 
-And(/^I select Issued (From|To) time as (.+):(.+)$/) do |_whatTime, _hours, _mins|
-  case _whatTime
+And(/^I select Issued (From|To) time as (.+):(.+)$/) do |what_time, hours, minutes|
+  case what_time
   when 'From'
     on(OAPage).date_time_from_elements[1].click
   when 'To'
     on(OAPage).date_time_to_elements[1].click
   end
-  if _hours == 'current_hour'
-    _hours = Time.now.utc.strftime('%k')
-  elsif _hours == 'plus_two_hours'
-    _hours = Time.now.utc.strftime('%k').to_i + 2
+  case hours
+  when 'current_hour'
+    hours = Time.now.utc.strftime('%k')
+  when 'plus_two_hours'
+    hours = Time.now.utc.strftime('%k').to_i + 2
   end
-  on(OAPage).hour_from_picker_elements[_hours.to_i].click
-  on(OAPage).minute_from_picker_elements[_mins.to_i].click
+  on(OAPage).hour_from_picker_elements[hours.to_i].click
+  on(OAPage).minute_from_picker_elements[minutes.to_i].click
   on(OAPage).dismiss_picker_element.click
   BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
   sleep 1
 end
 
-Then(/^I should see the correct warning message for (less|more)$/) do |_validity|
-  case _validity
+Then(/^I should see the correct warning message for (less|more)$/) do |validity|
+  case validity
   when 'less'
     is_equal(on(OAPage).warning_infobox_element.text,
              "Validity Time too short\nCheck validity time too short, permit duration can't be less than 1 hr.")
@@ -457,8 +457,8 @@ end
 
 Then(/^I should see the Warning Screen$/) do
   to_exists(on(OAPage).sol_logo_element)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formNumber)
-  does_include(on(OfficePortalPage).topbar_header_element.text, @formName)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_number)
+  does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
   not_to_exists(on(OfficePortalPage).home_btn_element)
   is_equal(on(OAPage).warning_link_expired_element.text,
            "Link has expired as this Permit to Work has been sent again for Office Approval\nA new link has been sent out via email. If it hasn't arrive yet, please wait for a few minutes.\nYour previous comments won't be lost.")
@@ -478,8 +478,8 @@ And(/^I navigate to OA link as Master$/) do
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
 
-Then(/^I should see correct Section 7 details (before|after) Office Approval$/) do |_when|
-  case _when
+Then(/^I should see correct Section 7 details (before|after) Office Approval$/) do |what_state|
+  case what_state
   when 'before'
     is_equal(on(Section7Page).oa_description_element.text,
              YAML.load_file('data/office-approval/page-descriptions.yml')['before_appr_section7'])
@@ -518,8 +518,8 @@ And(/^I click on "Request Updates"$/) do
   on(OAPage).update_permit_btn
 end
 
-And(/^I enter (comment|name)$/) do |_input|
-  case _input
+And(/^I enter (comment|name)$/) do |input|
+  case input
   when 'comment'
     on(OAPage).update_comments_element.send_keys('Test Automation')
   when 'name'
@@ -528,8 +528,8 @@ And(/^I enter (comment|name)$/) do |_input|
   sleep(1)
 end
 
-And(/^I remove (comment|name)$/) do |_input|
-  case _input
+And(/^I remove (comment|name)$/) do |input|
+  case input
   when 'comment'
     on(OAPage).update_comments_element.click
     on(OAPage).update_comments_element.send_keys("a")
@@ -554,8 +554,8 @@ And(/^I close the tab and navigate back$/) do
   sleep(1)
 end
 
-And(/^I should see the (comment|name|designation) entered$/) do |_input|
-  case _input
+And(/^I should see the (comment|name|designation) entered$/) do |input|
+  case input
   when 'comment'
     is_equal(on(OAPage).update_comments_element.text, 'Test Automation')
   when 'name'
@@ -567,20 +567,19 @@ And(/^I should see the (comment|name|designation) entered$/) do |_input|
 end
 
 Then(/^I should see the Section 7 shows the correct data$/) do
-  el = $browser.find_element(:xpath, "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  el = $browser.find_element(:xpath,
+                             "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
   $browser.action.move_to(el).perform
-  baseFields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
-  baseSubheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
-  fieldsArr = on(OfficePortalPage).get_section_fields_list('Section 7')
-  subheadersArr = on(OfficePortalPage).get_section_headers_list('Section 7')
+  base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
+  base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
+  fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7')
+  subheaders_arr = on(OfficePortalPage).get_section_headers_list('Section 7')
   time_offset = on(CommonFormsPage).get_current_time_offset
   time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
   time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
   date_time = on(OfficePortalPage).oa_date_time_with_offset(@time_now, time_offset)
-  p ">>> difference #{fieldsArr - baseFields}"
-  p "> difference #{subheadersArr - baseSubheaders}"
-  is_equal(fieldsArr, baseFields)
-  is_equal(subheadersArr, baseSubheaders)
+  is_equal(fields_arr, base_fields)
+  is_equal(subheaders_arr, base_subheaders)
   is_equal(on(Section7Page).additional_instruction_element.text, 'Test Automation')
   is_equal(on(OfficePortalPage).s7_issued_from_date_element.text, time_ship_from.to_s)
   is_equal(on(OfficePortalPage).s7_issued_to_date_element.text, time_ship_to.to_s)
