@@ -23,20 +23,20 @@ class OfficePortalPage
   element(:permits_list_name, xpath: "(//h2[contains(@class,'Heading')])[2]")
   element(:remember_box, xpath: "//span[@class='checkbox']")
   element(:bottom_bar_permits_quantity, xpath: "//span[contains(@class,'BottomBar')]/span")
-  element(:permit_approved_on, xpath: "//div[contains(@class,'ApprovedTagWrapper')]")
+  element(:permit_approved_on, xpath: "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
   element(:first_permit_with_time, xpath: "(//span[contains(text(),'GMT')])[1]/parent::div")
   element(:input_field, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
   element(:rol_dd_label, xpath: "//h4[contains(text(),'boarding arrangement:')]")
-  element(:s7_issued_from_date, xpath: "//h4[contains(text(),'Issued from')]/following-sibling::p")
-  element(:s7_issued_to_date, xpath: "//h4[contains(text(),'Issued till')]/following-sibling::p")
-  element(:s7_date_time, xpath: "//h4[contains(text(),'Date/Time:')]/following-sibling::p")
+  element(:s7_issued_from_date, xpath: "//div[@class='screen-only']//h4[contains(text(),'Issued from')]/following-sibling::p")
+  element(:s7_issued_to_date, xpath: "//div[@class='screen-only']//h4[contains(text(),'Issued till')]/following-sibling::p")
+  element(:s7_date_time, xpath: "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
   element(:reporting_header, xpath: "//h1[contains(text(),'Reporting')]")
   element(:permit_archive_tab, xpath: "//a[contains(text(),'Permit Archive')]")
   element(:copy_header_attribute, xpath: "(//span[@class='form-id'][contains(text(),'AUTO')])[1]")
   elements(:permit_check_box, xpath: "//span[@class='checkbox']")
   elements(:vessel_card_name, xpath: "//div[contains(@class,'VesselItem')]/h3")
   elements(:filter_permit_type, xpath: "//div[contains(@class,'PermitType__Container')]//span")
-  elements(:permit_section_header, xpath: "//h2[contains(text(),'Section')]")
+  elements(:permit_section_header, xpath: "//div[@class='screen-only']//h2[contains(text(),'Section')]")
   elements(:permit_title_number, xpath: "//div[starts-with(@class,'PermitList__List-sc')]/..//span[starts-with(@class,'Text__TextSmall-sc')]")
   elements(:section_headers_all, xpath: "//h2[starts-with(@class,'Heading__H2-sc')]")
 
@@ -73,7 +73,7 @@ class OfficePortalPage
   end
 
   def get_approved_date_time
-    $browser.find_element(:xpath, "//h4[contains(text(),'Date/Time:')]/following-sibling::p").text
+    $browser.find_element(:xpath, "(//h4[contains(text(),'Date/Time:')]/following-sibling::p)[2]").text
   end
 
   def select_element_by_text_near(_text_title)
