@@ -13,7 +13,7 @@ class OAPage < Section9Page
   button(:permit_has_been_btn, xpath: "//button[contains(.,'This Permit Has Been')]")
   element(:update_comments, xpath: "//textarea[contains(@id,'comment')]")
   button(:add_comments_btn, xpath: "//button[contains(.,'Add Comments')]")
-  button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/button")
+  button(:comments_cross_icon_btn, xpath: "//div[starts-with(@class,'CommentsSidebar__Container')]/header/button")
   button(:add_comments_btn1, xpath: "//button[contains(.,'Show Comments')]")
   button(:send_comments_btn, xpath: "//button[contains(.,'Send')]")
   button(:see_more_less_btn, xpath: "//button[contains(text(),'See')]")
@@ -41,7 +41,7 @@ class OAPage < Section9Page
   # #End Web Confirmation Page ###
 
   ## Comment elements ###
-  element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsPanel__Container-')]/header/h3")
+  element(:comment_counter, xpath: "//div[starts-with(@class,'CommentsSidebar__Container')]/header/h3")
   element(:comment_box, xpath: "//section[starts-with(@class,'CommentsSection__Section')]/p")
   text_area(:comment_input_box, xpath: "//textarea[@placeholder='Type your comments here...']")
   text_field(:name_box, xpath: "//input[@id='user-name']")
@@ -62,9 +62,11 @@ class OAPage < Section9Page
   elements(:comment_date, xpath: "//div[@class='message-date']")
   elements(:comment_text, xpath: "//li[contains(@data-testid,'comment-message')]/div[3]")
   # after Termination #
-  element(:approval_comments_block, xpath: "//h2[contains(text(),'Approval Comments')]")
-  elements(:comment_date_after_term, xpath: '//time')
-  elements(:comment_text_after_term, xpath: "//div[@class='sender-info']/../div[3]")
+  element(:approval_comments_block, xpath: "//div[@class='screen-only']//h2[contains(text(),'Approval Comments')]")
+  elements(:comment_rank_after_term, xpath: "//div[@class='screen-only']//div[@class='message-rank']")
+  elements(:comment_name_after_term, xpath: "//div[@class='screen-only']//div[@class='message-name']")
+  elements(:comment_date_after_term, xpath: "//div[@class='screen-only']//time")
+  elements(:comment_text_after_term, xpath: "//div[@class='screen-only']//div[@class='sender-info']/../div[3]")
   ## END Comment attributes ###
 
   def sol_6553
@@ -109,7 +111,7 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    scroll_multiple_times_with_direction(3,'down')
+    scroll_multiple_times_with_direction(3, 'down')
     ### set from time
     date_time_from_elements[1].click
     starttime = Time.now.utc.strftime('%k').to_i + 1
@@ -186,9 +188,6 @@ class OAPage < Section9Page
     send_comments_btn
     sleep 1
     comment_counter_element.text === 'Comments (1)'
-    # tmp = @@comment_base % [get_current_date_format_with_offset, get_current_time_format_with_offset(0)]
-    # p tmp
-    # comments_element.text === tmp
   end
 
   def select_yes_on_checkbox
@@ -206,8 +205,8 @@ class OAPage < Section9Page
 
   def is_designation_list?
     tmp_arr = []
-    designation_elements.each do |_element|
-      tmp_arr << _element.text
+    designation_elements.each do |element|
+      tmp_arr << element.text
     end
     tmp_arr === YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
@@ -218,19 +217,19 @@ class OAPage < Section9Page
     false
   end
 
-  def select_to_hour_minutes(_hour_index, _minute_index)
+  def select_to_hour_minutes(hour_index, minute_index)
     sleep 2
-    select_to_hour(_hour_index)
+    select_to_hour(hour_index)
     sleep 1
-    select_to_minute(_minute_index)
+    select_to_minute(minute_index)
     sleep 1
   end
 
-  def select_to_hour(_hour_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li", _hour_index)
+  def select_to_hour(hour_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][1]/ul/li", hour_index)
   end
 
-  def select_to_minute(_minute_index)
-    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", _minute_index)
+  def select_to_minute(minute_index)
+    BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", minute_index)
   end
 end

@@ -292,19 +292,19 @@ end
 Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
   questions_arr = []
   if checklist == 'Work on Pressure Pipelines'
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
+    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   elsif checklist == 'Working Aloft Overside'
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
+    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   elsif checklist == 'Enclosed Spaces Entry Checklist'
-    $browser.find_elements(:xpath, "//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
+    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   else
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
+    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   end
