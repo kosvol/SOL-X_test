@@ -10,7 +10,6 @@ Then(/^I (should|should not) see request update comment (box|box not filled)$/) 
     to_exists(on(Section0Page).enter_comment_box_element)
     is_equal(on(Section3APage).enter_comment_box_element.text, '')
   elsif condition == 'should not' && box_condition == 'box'
-    BrowserActions.wait_until_is_visible(on(Section3APage).enter_comment_box_element)
     not_to_exists(on(Section0Page).enter_comment_box_element)
   elsif condition == 'should not' && box_condition == 'box not filled'
     BrowserActions.wait_until_is_visible(on(Section3APage).enter_comment_box_element)
