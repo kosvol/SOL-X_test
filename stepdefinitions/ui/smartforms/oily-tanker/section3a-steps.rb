@@ -2,25 +2,22 @@
 
 Then(/^I (should|should not) see request update comment (box|box not filled)$/) do |condition, box_condition|
   if condition == 'should' && box_condition == 'box'
-    to_exists(on(Section0Page).enter_comment_box_element)
+    BrowserActions.wait_until_is_visible(on(Section3APage).enter_comment_box_element)
     is_equal(on(Section3APage).enter_comment_box_element.text, 'Test Automation')
   elsif condition == 'should' && box_condition == 'box not filled'
-    to_exists(on(Section0Page).enter_comment_box_element)
+    BrowserActions.wait_until_is_visible(on(Section3APage).enter_comment_box_element)
     is_equal(on(Section3APage).enter_comment_box_element.text, '')
-  elsif condition == 'should not' && box_condition == 'box'
+  elsif condition == 'should not'
     not_to_exists(on(Section0Page).enter_comment_box_element)
-  elsif condition == 'should not' && box_condition == 'box not filled'
-    is_not_equal(on(Section3APage).enter_comment_box_element.text, 'Test Automation')
-    is_equal(on(Section3APage).enter_comment_box_element.text, '')
   end
 end
 
-Then(/^I (should|should not) see request update comment$/) do |condition|
+Then(/^I (should|should not) see request update comment is (.+)$/) do |condition, comment|
+  target_element = on(Section3APage).total_p_elements.first.text
   if condition == 'should'
-    # is_equal(on(Section3APage).total_p_elements.size, 6)
-    is_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation Update')
-  elsif condition == 'should not'
-    is_not_equal(on(Section3APage).total_p_elements.first.text, 'Test Automation Update')
+    is_equal(target_element, comment)
+  else
+    is_not_equal(target_element, comment)
     is_equal(on(Section3APage).total_p_elements.size, 8)
   end
 end

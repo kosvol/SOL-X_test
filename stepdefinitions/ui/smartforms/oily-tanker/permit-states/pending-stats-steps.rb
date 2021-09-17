@@ -53,15 +53,16 @@ Then(/^I should be navigated back to (.*) screen$/) do |which_screen|
 end
 
 Then(/^I should see (.+) button$/) do |state|
-  if state === 'Office Approval'
+  case state
+  when 'Office Approval'
     is_equal(on(PendingStatePage).office_approval_btn_elements.first.text, 'Office Approval')
-  elsif state === 'Master Approval'
+  when 'Master Approval'
     is_equal(on(PendingStatePage).master_approval_btn_elements.first.text, 'Master Approval')
-  elsif state === 'Master Review'
+  when 'Master Review'
     is_equal(on(PendingStatePage).master_review_btn_elements.first.text, 'Master Review')
-  elsif state === 'View EIC certification'
+  when 'View EIC certification'
     is_equal(on(Section4BPage).view_eic_btn_element.text, 'View/Edit Energy Isolation Certificate')
-  elsif state === 'close'
+  when 'close'
     is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
   end
 end
@@ -73,7 +74,7 @@ Then(/^I should see the newly pending approval permit details listed on Pending 
                "#{EnvironmentSelector.get_vessel_name}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
   p "base >> #{on(Section1Page).get_section1_filled_data[3]}"
-  if on(Section1Page).get_section1_filled_data[3] === on(CreatedPermitToWorkPage).created_date_time_elements.first.text
+  if on(Section1Page).get_section1_filled_data[3] == on(CreatedPermitToWorkPage).created_date_time_elements.first.text
     is_equal(on(Section1Page).get_section1_filled_data[3],
              on(CreatedPermitToWorkPage).created_date_time_elements.first.text)
   else
@@ -82,13 +83,13 @@ Then(/^I should see the newly pending approval permit details listed on Pending 
   end
 end
 
-And(/^I set oa permit to office (approval|review) state manually$/) do |_condition|
-  on(PendingStatePage).master_review_btn_elements.first.click if _condition === 'approval'
-  on(PendingStatePage).master_approval_btn_elements.first.click if _condition === 'review'
+And(/^I set oa permit to office (approval|review) state manually$/) do |condition|
+  on(PendingStatePage).master_review_btn_elements.first.click if condition == 'approval'
+  on(PendingStatePage).master_approval_btn_elements.first.click if condition == 'review'
   step 'I enter pin for rank MAS'
   sleep 1
-  step 'I navigate to section 6' if _condition === 'approval'
-  step 'I navigate to section 7' if _condition === 'review'
+  step 'I navigate to section 6' if condition == 'approval'
+  step 'I navigate to section 7' if condition == 'review'
   on(PendingStatePage).submit_oa_btn
   sleep 1
   step 'I click on back to home'
