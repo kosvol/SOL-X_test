@@ -19,16 +19,12 @@ Then(/^I (should|should not) see request update comment (box|box not filled)$/) 
   end
 end
 
-Then(/^I (should|should not) see request update (comment|comment modified)$/) do |condition, comment_type|
-  case condition
-  when 'should'
-    # is_equal(on(Section3APage).total_p_elements.size, 6)
-    target_element = on(Section3APage).total_p_elements.first.text
-    is_equal(target_element, 'Test Automation') if comment_type == 'comment'
-    is_equal(target_element, 'Test Automation Update') if comment_type == 'comment modified'
-  when 'should not'
-    is_not_equal(target_element, 'Test Automation') if comment_type == 'comment'
-    is_equal(target_element, 'Test Automation Update') if comment_type == 'comment modified'
+Then(/^I (should|should not) see request update comment is (.+)$/) do |condition, comment|
+  target_element = on(Section3APage).total_p_elements.first.text
+  if condition == 'should'
+    is_equal(target_element, comment)
+  else
+    is_not_equal(target_element, comment)
     is_equal(on(Section3APage).total_p_elements.size, 8)
   end
 end

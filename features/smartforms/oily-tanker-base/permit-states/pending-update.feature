@@ -102,7 +102,7 @@ Feature: PendingUpdate
     And I click on back to home
     And I click on update needed filter
     And I update permit in pending update state with <rank> rank
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
 
     Examples:
       | rank  |
@@ -291,27 +291,27 @@ Feature: PendingUpdate
     And I click on back to home
     And I click on update needed filter
     And I update permit in pending update state with C/O rank
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
     And I press next for 1 times
-    Then I should see request update comment
+    Then I should see request update comment is Test Automation
 
   Scenario: Verify Master should not see comment box on EIC Certification screen after Office request for update
     Given I launch sol-x portal without unlinking wearable
@@ -358,7 +358,8 @@ Feature: PendingUpdate
     And I update permit in pending update state with 3/E rank
     And I navigate to section 4b
     And I click on create EIC certification button
-    Then I should see request update comment modified
+    Then I should see request update comment is Test Automation Updated
+
 
   Scenario: Verify user is able to update DRA after Office request for update
     Given I launch sol-x portal without unlinking wearable
@@ -442,17 +443,17 @@ Feature: PendingUpdate
     And I request update for permit
     And I click on back to home
     And I click on update needed filter
-    And I update permit in pending update state with 3/E rank
+    And I update permit in pending update state with <rank> rank
     And I navigate to section 4a
     Then I should see checklist selections fields enabled
     And I press next for 1 times
     And I should see checklist questions fields enabled
 
     Examples:
-      | rank  | pin  |
-      | 3/E   | 4685 |
-      | 4/E   | 1311 |
-      | A 4/E | 0703 |
+      | rank  |
+      | 3/E   |
+      | 4/E   |
+      | A 4/E |
 
   Scenario: Verify non checklist creator cannot edit checklist during active state via pending approval
     Given I launch sol-x portal without unlinking wearable
