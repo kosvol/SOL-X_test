@@ -51,9 +51,10 @@ class DashboardPage < WearablePage
 
   def is_pre_indicator_color?(condition)
     tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
-    if condition.downcase == 'active'
+    case condition.downcase
+    when 'active'
       tmp.css_value('color').to_s == 'rgba(67, 160, 71, 1)'
-    elsif condition.downcase == 'inactive'
+    when 'inactive'
       tmp.css_value('color').to_s == 'rgba(216, 75, 75, 1)'
     end
   end
@@ -124,9 +125,10 @@ class DashboardPage < WearablePage
     crew_details = []
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       unless wearable['crewMember'].nil?
-        if ui_or_service === 'service'
+        case ui_or_service
+        when 'service'
           crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
-        elsif ui_or_service === 'ui'
+        when 'ui'
           crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, 'N/A']
         end
       end
@@ -154,7 +156,7 @@ class DashboardPage < WearablePage
 
   def get_beacon_location
     @@list_of_beacon.each do |beacon|
-      return beacon[1] if beacon.first === @@beacon.first
+      return beacon[1] if beacon.first == @@beacon.first
     end
   end
 end

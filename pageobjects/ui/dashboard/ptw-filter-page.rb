@@ -29,6 +29,8 @@ class PtwFilterPage < CreatedPermitToWorkPage
       match_permit_counter(permit_counter_arr[2], @total_active)
     when 'pending withdrawal'
       match_permit_counter(permit_counter_arr.last, @total_terminal)
+    else
+      raise "Wrong condition >> #{which_filter}"
     end
   end
 
@@ -40,7 +42,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
     @total_update_needed = form_stats_response['approvalUpdatesNeeded'] + form_stats_response['activeUpdatesNeeded'] + form_stats_response['terminationUpdatesNeeded']
     @total_active = form_stats_response['active']
     @total_terminal = form_stats_response['pendingTermination']
-    return [@total_pending_approval, @total_update_needed, @total_active, @total_terminal]
+    [@total_pending_approval, @total_update_needed, @total_active, @total_terminal]
   end
 
   def match_permit_counter(compare, expected)

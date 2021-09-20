@@ -34,7 +34,7 @@ class CrewAssistPage < DashboardPage
       next if wearable['crewMember'].nil?
 
       @crew_rank = wearable['crewMember']['rank']
-      @crew_name = wearable['crewMember']['firstName'] + ' ' + wearable['crewMember']['lastName']
+      @crew_name = "#{wearable['crewMember']['firstName']} #{wearable['crewMember']['lastName']}"
       @crew_location = get_beacon_location
     end
     Log.instance.info("\n\n#{@crew_rank}\n\n#{@crew_name}\n\n#{@crew_location}")
