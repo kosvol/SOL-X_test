@@ -9,10 +9,12 @@ Then(/^I should see (green|red) online blob$/) do |color|
     wifi_blob_color_code = BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, 'online', 'class')
     Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, 'online')
-    else
+  when 'red'
     wifi_blob_color_code = BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, '', 'class')
     Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, '')
+  else
+    raise "#{color} is not implemented"
   end
 end
 
@@ -59,6 +61,8 @@ And(/^I click on (.+) filter$/) do |state|
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
   when 'pending withdrawal'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
+  else
+    raise "#{state} is not implemented"
   end
 end
 
