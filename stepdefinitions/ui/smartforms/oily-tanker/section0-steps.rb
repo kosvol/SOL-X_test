@@ -2,23 +2,26 @@
 
 Then(/^I should see (green|red) online blob$/) do |color|
   wifi_blob_locator = "//nav[contains(@class,'NavigationBar__NavBar')]/section[contains(@class, 'NavigationBar__RightContent')]//*[local-name()='svg']"
-  if color === 'green'
+  case color
+  when 'green'
     sleep 2
     step 'I open hamburger menu'
     wifi_blob_color_code = BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, 'online', 'class')
     Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, 'online')
-  elsif color === 'red'
+  when 'red'
     wifi_blob_color_code = BrowserActions.poll_ui_update_by_attribute(wifi_blob_locator, '', 'class')
     Log.instance.info "Wifi Blob Status: #{wifi_blob_color_code}"
     is_equal(wifi_blob_color_code.to_s, '')
+  else
+    raise "#{color} is not implemented"
   end
 end
 
-Then('I should see a list of available forms for selections') do |_table|
+Then('I should see a list of available forms for selections') do |table|
   BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
-  _table.raw.each_with_index do |_element, _index|
-    is_equal(_element.first, on(Section0Page).list_permit_type_elements[_index].text)
+  table.raw.each_with_index do |element, index|
+    is_equal(element.first, on(Section0Page).list_permit_type_elements[index].text)
   end
 end
 
@@ -49,14 +52,17 @@ And(/^I navigate back to permit selection screen$/) do
 end
 
 And(/^I click on (.+) filter$/) do |state|
-  if state == 'pending approval'
+  case state
+  when 'pending approval'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements.first)
-  elsif state == 'update needed'
+  when 'update needed'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[1])
-  elsif state == 'active'
+  when 'active'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[2])
-  elsif state == 'pending withdrawal'
+  when 'pending withdrawal'
     BrowserActions.poll_exists_and_click(on(Section0Page).permit_filter_elements[3])
+  else
+    raise "#{state} is not implemented"
   end
 end
 

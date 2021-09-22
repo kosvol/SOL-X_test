@@ -24,7 +24,7 @@ class DashboardPage < WearablePage
   #Gas reading alert
   element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
   element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
-  element(:gas_alert_discard_new, xpath: "//button[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_alert_discard_new, xpath: '//button[contains(.,"Terminate Current Permit")]')
 
 
   #@@ship_area = "//li/button[contains(.,'%s')]"
@@ -37,7 +37,7 @@ class DashboardPage < WearablePage
   #Gas reading alert
   element(:gas_alert, css: "div[data-testid='gas-reader-alert'] > div > section > h2")
   element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
-  element(:gas_alert_discard_new, xpath: "//span[contains(.,\"Terminate Current Permit\")]")
+  element(:gas_alert_discard_new, xpath: '//span[contains(.,"Terminate Current Permit")]')
   element(:gas_close_btn, css: "button[aria-label='Close']")
   element(:pre_cre_title_indicator, xpath: "//h3[contains(@class,'EntryStatusIndicator__Title')]")
 
@@ -51,11 +51,11 @@ class DashboardPage < WearablePage
 
   def is_pre_indicator_color?(condition)
     tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
-    if condition.downcase == 'active'
-      tmp.css_value('color').to_s == 'rgba(67, 160, 71, 1)'
-    elsif condition.downcase == 'inactive'
-      tmp.css_value('color').to_s == 'rgba(216, 75, 75, 1)'
-    end
+    tmp.css_value('color').to_s == if condition.downcase == 'active'
+                                     'rgba(67, 160, 71, 1)'
+                                   else
+                                     'rgba(216, 75, 75, 1)'
+                                   end
   end
 
   def get_location_pin_text(location)
@@ -120,16 +120,16 @@ class DashboardPage < WearablePage
     BrowserActions.js_click("//div[@data-testid='dropdown-overlay-container']")
   end
 
-  def get_active_crew_details(ui_or_service, _new_zone = nil)
+  def get_active_crew_details(ui_or_service, new_zone = nil)
     crew_details = []
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
-      unless wearable['crewMember'].nil?
-        if ui_or_service === 'service'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
-        elsif ui_or_service === 'ui'
-          crew_details << [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], _new_zone, 'N/A']
-        end
-      end
+      next if wearable['crewMember'].nil?
+
+      crew_details << if ui_or_service == 'service'
+                        [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
+                      else
+                        [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], new_zone, 'N/A']
+                      end
     end
     crew_details
   end
@@ -154,7 +154,7 @@ class DashboardPage < WearablePage
 
   def get_beacon_location
     @@list_of_beacon.each do |beacon|
-      return beacon[1] if beacon.first === @@beacon.first
+      return beacon[1] if beacon.first == @@beacon.first
     end
   end
 end
