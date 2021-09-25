@@ -1,0 +1,40 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 5,
+    "permitType": "Hot Work Level-2 in Designated Area",
+    "answers": [
+      {
+        "fieldId": "team",
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "value": "\"Hot Work Level-2 in Designated Area\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "value": "\"8\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2020-10-29T06:16:55.864Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

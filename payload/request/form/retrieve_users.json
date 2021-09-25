@@ -1,0 +1,3 @@
+{
+  "query": "query{  \r\n  users {    _id\r\n      crewMember {      firstName\r\n            lastName\r\n            rank    }\r\n          pin  }\r\n          }\r\n        "
+}
