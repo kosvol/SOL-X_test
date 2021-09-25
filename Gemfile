@@ -2,7 +2,6 @@
 source 'https://rubygems.org'
 
 gem 'appium_lib', '11.2.0'
-gem 'bundler', '2.2.24'
 gem 'cucumber', '3.1.2'
 gem 'facets'
 gem 'httparty'
