@@ -89,11 +89,11 @@ class PumpRoomEntry < PreDisplay
     @@entrants_arr
   end
 
-  def signout_entrant(_entrants)
+  def signout_entrant(entrants)
     sleep 1
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
-    (1.._entrants.to_i).each do |_i|
-      cross_btn_elements[_i].click
+    (1..entrants.to_i).each do |i|
+      cross_btn_elements[i].click
       sleep 1
       BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
     end
@@ -101,17 +101,16 @@ class PumpRoomEntry < PreDisplay
     set_current_time
   end
 
-  def signout_entrant_by_name(_entrants)
+  def signout_entrant_by_name(entrants)
     sleep 1
     entrants_arr = get_entrants
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
-    _entrants.split(',').each do |_i|
-      puts (_entrants.index(_i))
+    entrants.split(',').each do |i|
       find_element(:xpath,
-                   "//*[contains(.,'#{_i}')]/button").click
+                   "//*[contains(.,'#{i}')]/button").click
       sleep 1
       BrowserActions.poll_exists_and_click(sign_out_btn_elements.last)
-      entrants_arr.delete(_i)
+      entrants_arr.delete(i)
     end
     set_entrants(entrants_arr)
     sleep 1
@@ -121,24 +120,22 @@ class PumpRoomEntry < PreDisplay
   def is_entered_entrant_listed?(entrant)
     entrant_names_dd_element.click
     sleep 1
-    options_text_elements.each do |_crew|
-      if entrant === _crew.text
-        return false
-      end
+    options_text_elements.each do |crew|
+      return false if entrant == crew.text
     end
-    return true
+    true
   end
 
-  def additional_entrant(_additional_entrants)
+  def additional_entrant(additional_entrants)
     entr_arr = []
     purpose_of_entry = 'Test Automation'
     puts entrant_names_dd_element.text
     entrant_names_dd_element.click
-    sleep 2
-    while _additional_entrants > 0
-      options_text_elements[_additional_entrants].click
-      entr_arr.push(options_text_elements[_additional_entrants].text)
-      _additional_entrants = _additional_entrants - 1
+    sleep 1
+    while additional_entrants.positive?
+      options_text_elements[additional_entrants].click
+      entr_arr.push(options_text_elements[additional_entrants].text)
+      additional_entrants -= 1
     end
     set_entrants(entr_arr)
     confirm_btn_elements.first.click
@@ -146,7 +143,7 @@ class PumpRoomEntry < PreDisplay
 
   def required_entrants(entrants)
     entr_arr = []
-    while entrants > 0
+    while entrants.positive?
       puts(person_checkbox_elements.size)
       #person_checkbox_elements[entrants].click
       $browser.find_element(:xpath,
@@ -154,7 +151,7 @@ class PumpRoomEntry < PreDisplay
       entr_arr.push($browser.
         find_element(:xpath,
                      "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
-      entrants = entrants - 1
+      entrants -= 1
     end
     set_entrants(entr_arr)
   end
@@ -199,30 +196,37 @@ class PumpRoomEntry < PreDisplay
     BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
   end
 
-  def select_day(_condition, _number, _point)
+  def select_day(condition, number, point)
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='days']"
     selected_current_day = "//*[contains(@class,'selected current')]"
     selected_day = "//*[contains(@class,'selected')]"
     current_day_date = "//*[contains(@class,'current')]"
     @browser.find_element(:xpath, picker).click
     sleep 1
-    if @@selected_date == nil
+    if @@selected_date.nil?
       current_day = @browser.find_element(:xpath, selected_current_day).text
-      @@selected_date = current_day.to_i + _number.to_i
+      @@selected_date = current_day.to_i + number.to_i
     else
-      if _point == 'current'
-        current_day = @browser.find_element(:xpath, current_day_date).text
-      else
-        current_day = @browser.find_element(:xpath, selected_day).text
-      end
+      current_day = if point == 'current'
+                      @browser.find_element(:xpath, current_day_date).text
+                    else
+                      @browser.find_element(:xpath, selected_day).text
+                    end
     end
     sleep 1
-    changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{(current_day.to_i + _number.to_i)}')]" if _condition === 'Future'
-    changed_day = format("//div[starts-with(@class,'DatePicker__OverlayContainer')]//*[contains(text(),'%s')]", (current_day.to_i - _number.to_i)) if _condition === 'Past'
+    case condition
+    when 'Future'
+      changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{current_day.to_i + number.to_i}')]"
+    when 'Past'
+      changed_day = format("//div[starts-with(@class,'DatePicker__OverlayContainer')]//*[contains(text(),'%s')]",
+                           (current_day.to_i - number.to_i))
+    else
+      raise "Wrong condition >>> #{condition}"
+    end
     sleep 1
     @browser.find_element(:xpath, changed_day).click
     sleep 1
-    BrowserActions.js_click("//h2[contains(text(),'Permit Validity')]")
+    @browser.find_element(:xpath, "//h2[contains(text(),'Permit Validity')]").click
   end
 
   def press_button_for_current_PRE(button)
@@ -252,17 +256,18 @@ class PumpRoomEntry < PreDisplay
   end
 
   def is_text_displayed?(like, _value)
-    if like == 'alert_text'
+    case like
+    when 'alert_text'
       xpath = "//div[contains(.,'%s')]"
-    elsif like == 'text'
+    when 'text'
       xpath = "//*[contains(text(),'%s')]"
-    elsif like == 'auto_terminated'
+    when 'auto_terminated'
       xpath = "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]"
-    elsif ((like == 'label') || (like == 'page'))
+    when 'label', 'page'
       xpath = "//h2[contains(text(),'%s')]"
-    elsif like == 'header'
+    when 'header'
       xpath = "//h1[contains(text(),'%s')]"
-    elsif like == 'button'
+    when 'button'
       xpath = @@button
     end
     is_element_displayed(xpath, _value)
@@ -369,10 +374,10 @@ class PumpRoomEntry < PreDisplay
     mm = mm.to_i
     hh = hh.to_i
 
-    mm = mm + add_mm.to_i
+    mm += add_mm.to_i
     if mm >= 60
-      mm = mm - 60
-      hh = hh + 1
+      mm -= 60
+      hh += 1
     end
     return format('%02d', hh), format('%02d', mm)
   end

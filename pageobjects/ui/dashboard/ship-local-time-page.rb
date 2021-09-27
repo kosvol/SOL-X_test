@@ -14,10 +14,10 @@ class ShipLocalTimePage
   button(:increment, xpath: "//div[starts-with(@class,'ClockModal__')]/button[2]")
 
   def is_utc_time
-    if ((Time.now.utc.strftime('%k').to_i < 12) && (Time.now.utc.strftime('%k').to_i > 0))
-      return Time.now.utc.strftime('%I:%M')
+    if (Time.now.utc.strftime('%k').to_i < 12) && Time.now.utc.strftime('%k').to_i.positive?
+      Time.now.utc.strftime('%I:%M')
     elsif Time.now.utc.strftime('%k').to_i >= 12
-      return Time.now.utc.strftime('%H:%M')
+      Time.now.utc.strftime('%H:%M')
     end
   end
 
@@ -40,7 +40,7 @@ class ShipLocalTimePage
   private
 
   def get_new_current_offset_text(get_current_offset)
-    get_current_offset < 0 ? "Local Time #{get_current_offset}h" : "Local Time +#{get_current_offset}h"
+    get_current_offset.negative? ? "Local Time #{get_current_offset}h" : "Local Time +#{get_current_offset}h"
   end
 
   def cal_new_offset_time(get_current_offset)

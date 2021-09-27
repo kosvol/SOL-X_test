@@ -3,7 +3,9 @@
 module SmartFormDBPage
   class << self
     def get_table_data(which_db, url_map)
-      ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s), 'get', 'fauxton/get_forms')
+      ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
+                          'get',
+                          'fauxton/get_forms')
     end
 
     def delete_table_row(which_db, url_map)
@@ -15,7 +17,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -29,7 +33,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -41,7 +47,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -54,7 +62,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -67,7 +77,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -79,7 +91,9 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s), 'post', 'fauxton/delete_form')
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+                            'post',
+                            'fauxton/delete_form')
       end
     end
 
@@ -110,11 +124,11 @@ module SmartFormDBPage
         time_w_offset = @current_time.to_i + get_current_time_offset.to_i
       end
       count_hour = if time_w_offset >= 24
-          (time_w_offset - 24).abs
-        else
-          time_w_offset
-        end
-      count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
+                     (time_w_offset - 24).abs
+                   else
+                     time_w_offset
+                   end
+      count_hour.to_s.size == 2 ? count_hour.to_s : "0#{count_hour}"
     end
 
     def get_mod_permit_id(pre_number)

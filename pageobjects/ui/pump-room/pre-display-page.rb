@@ -23,13 +23,13 @@ class PreDisplay < Section9Page
   element(:pre_creator_display, xpath: "//span[contains(@class,'ActivePermitDetails')]")
   element(:time_shifted_by_text, xpath: "//p[contains(@class,'PermitValidUntil__TextSmall')]")
   element(:pre_duration_timer, xpath: "//h4/strong[contains(@class,'PermitValidUntil__')]") #""//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
-  buttons(:send_report_btn, xpath: "//button[contains(.,\"Send Report\")]")
+  buttons(:send_report_btn, xpath: '//button[contains(.,"Send Report")]')
 
   def is_element_disabled_by_att?(text)
     #enable? - doesn't work for PRED. for 'li' elements
     xpath_str = @@button_li % [text]
     el = @browser.find_element('xpath', xpath_str)
-    !el.attribute("disabled").nil?
+    !el.attribute('disabled').nil?
   rescue StandardError
     false
   end

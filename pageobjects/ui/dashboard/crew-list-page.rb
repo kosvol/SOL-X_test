@@ -27,7 +27,7 @@ class CrewListPage < DashboardPage
 
   def is_rank_changed?
     rank_list.each_with_index do |rank, _index|
-      next unless @@changed_rank === rank
+      next unless @@changed_rank == rank
 
       break
     end
@@ -47,7 +47,7 @@ class CrewListPage < DashboardPage
   def is_rank_correctly_displayed?(current_rank)
     sleep 1
     rank_list_btn
-    rank_list = $sit_rank_and_pin_yml['ranks_sorted']
+    rank_list = return_sit_and_rank_yaml
     sleep 1
     rank_list.each_with_index do |rank, index|
       next unless current_rank == rank
@@ -66,9 +66,10 @@ class CrewListPage < DashboardPage
     crew_rank_elements.each do |x|
       rank_arr << x.text
     end
+    rank_list = return_sit_and_rank_yaml
     Log.instance.info "Sorted Ranks: #{rank_arr.uniq}"
-    Log.instance.info "YAML Ranks: #{$sit_rank_and_pin_yml['ranks_sorted_auto']}"
-    rank_arr.uniq == $sit_rank_and_pin_yml['ranks_sorted_auto']
+    Log.instance.info "YAML Ranks: #{rank_list['ranks_sorted_auto']}"
+    rank_arr.uniq == rank_list['ranks_sorted_auto']
   end
 
   def get_crew_table_headers
@@ -81,13 +82,13 @@ class CrewListPage < DashboardPage
 
   def is_pin_hidden?
     sleep 1
-    crew_pin_list_elements.first.text === '••••'
+    crew_pin_list_elements.first.text == '••••'
   end
 
   def is_pin_reviewed?
     sleep 1
     crew_pin_list_elements.all? do |pin|
-      pin.text === '••••'
+      pin.text == '••••'
     end
   end
 
@@ -96,8 +97,8 @@ class CrewListPage < DashboardPage
   def is_activity_indicator_status(color)
     _element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
-    color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
-    _element.css_value('background-color') === color
+    color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
+    _element.css_value('background-color') == color
   end
 
   def is_location_details(location = nil)
@@ -107,7 +108,7 @@ class CrewListPage < DashboardPage
     BrowserActions.scroll_down(element)
     BrowserActions.scroll_down
     location_details_elements.each do |location|
-      next if location.text === ''
+      next if location.text == ''
 
       Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
       Log.instance.info("Actual: #{get_active_crew_details_frm_service.first.first}")

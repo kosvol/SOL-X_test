@@ -6,6 +6,10 @@ class WearablePage
       @wearableid = wearable_id
     end
 
+    def return_sit_and_rank_yaml
+      YAML.load_file('data/sit_rank_and_pin.yml')
+    end
+
     def get_beacon_id
       @@beacon
     end

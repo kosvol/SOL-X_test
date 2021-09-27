@@ -25,9 +25,6 @@ class DashboardPage < WearablePage
   element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
   element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
   element(:gas_alert_discard_new, xpath: '//button[contains(.,"Terminate Current Permit")]')
-
-
-  #@@ship_area = "//li/button[contains(.,'%s')]"
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
@@ -59,7 +56,8 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    BrowserActions.js_clicks('//div/button/span', 2)
+    $browser.find_elements(:xpath, '//div/button/span')[2].click
+    #BrowserActions.js_clicks('//div/button/span', 2)
     # toggle_zone_filter(location)
     # sleep 1
     begin
@@ -82,7 +80,7 @@ class DashboardPage < WearablePage
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
-    color === 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
+    color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     $browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
     $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end

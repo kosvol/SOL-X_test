@@ -572,8 +572,8 @@ Then(/^I should see the Section 7 shows the correct data$/) do
   $browser.action.move_to(el).perform
   base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
-  fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7')
-  subheaders_arr = on(OfficePortalPage).get_section_headers_list('Section 7')
+  fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7', 'h4')
+  subheaders_arr = on(OfficePortalPage).get_section_elements_list('Section 7', 'h2')
   time_offset = on(CommonFormsPage).get_current_time_offset
   time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
   time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
