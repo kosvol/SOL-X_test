@@ -1,7 +1,7 @@
-source 'http://rubygems.org'
+# frozen_string_literal: true
+source 'https://rubygems.org'
 
 gem 'appium_lib', '11.2.0'
-gem 'bundler', '2.2.25'
 gem 'cucumber', '3.1.2'
 gem 'facets'
 gem 'httparty'
@@ -10,14 +10,13 @@ gem 'liquid'
 gem 'logger'
 gem 'os'
 gem 'page-object', '2.2.6'
+gem 'pg'
 gem 'rake'
 gem 'require_all', '~> 1.4.0'
+gem 'rest-client', '2.1.0'
 gem 'rspec', require: 'spec'
-gem 'rufo', '~> 0.13.0'
+gem 'rufo'
 gem 'screenshot'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'solargraph'
-# gem "mysql2"
-gem 'pg'
-# gem "sinatra-cross_origin", "~> 0.3.1"

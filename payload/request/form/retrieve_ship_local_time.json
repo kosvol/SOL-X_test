@@ -1,0 +1,5 @@
+{
+  "operationName": "currentTime",
+  "variables": {},
+  "query": "query currentTime {\n  currentTime {\n    secondsSinceEpoch\n    utcOffset\n    __typename\n  }\n}\n"
+}
