@@ -1,0 +1,14 @@
+{
+  "operationName": "AttachPermitPhoto",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/087",
+    "photo": {
+      "id": "01FFJC2W544YY9R5YATZGFG3M1",
+      "file": "null",
+      "takenAtStage": "BEFORE_APPROVAL",
+      "takenAt": "2021-09-14T14:41:27.416Z",
+      "utcOffset": 12
+    }
+  },
+  "query": "mutation AttachPermitPhoto($formId: ID!, $photo: PhotoAttachmentInput!) {\n  attachPermitPhoto(formId: $formId, photo: $photo) {\n    id\n    takenAtStage\n    uri\n    createdAt {\n      dateTime\n      utcOffset\n      __typename\n    }\n    __typename\n  }\n}\n"
+}

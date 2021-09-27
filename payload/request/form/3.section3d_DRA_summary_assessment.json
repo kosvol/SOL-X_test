@@ -1,0 +1,38 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "AUTO/PTW/2021/019",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "planCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "draCarriedOut",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "draCarriedOutReason",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "safetyMeetingCarriedOut",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "officeApprovalRequired",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "dra_submit",
+        "value": "{\"signedBy\":\"AUTO_SOLX0012\",\"signed\":{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAGwABAQEBAQADAAAAAAAAAAAAAAQDAgUBBgf/xAArEAEAAgIBBAEDBAEFAAAAAAAAAQIDEQQFEiExURNBYQYUIjIjQ3FykaH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A/ZgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxlyVw4b5bRaa0rNpilJtbUfERuZn8R5T9N6rwOr8b9z07l4uTiie2047bmltb7bR7rbzG4nUwCsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4PUP0nw+R1O/WOn5svS+rWp2zy+Nr/JGpiIyUndbx69xvxGpjUPeAfXo651TpF/p/qDp3dg346j0+lsmLX8vOTH5vj8RG5/lWN+bQ9zjcnj8zj05PFz48+HJG6ZMV4tW0fMTHiWqG3SeNHIvyeN3cPPknuyZMGq/UnxubV81tOoiNzEzEepgFwg/d8zh6jm8ec1IjzyOLSbR6j3j82jczqO3v9bmYV4c+Hk4q5sGWmXHb1elotE/b3ANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEuXgYr5pz45vx8867suKdTb/lHq3jx5idb8aVAJZz5+PSbcjF9WtYmZyYKzM6iJmZ7PM/iIr3TLfHlx5qzbFkresTNZms7jcTqY/7dsM/Ex5pm8TbFl1qMuOdWj3r8TEbmdTExv7A3EsZeRx51np9bHM+MmKs7jzOu6vmfEdsbje5mZ1WIUY8lMuOuTHet6WjdbVncTHzEg6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYX4tfqTlxWnDltO5tX1afH9o9T6iN+9ephuAmryrY7RTlUjFMzquSJ3S27aiN/aZ/j4n721E20pfFq1vWa2iLVmNTEx4mEs4c3EjfEj6mOP9C9vX8tz22n14mdVnx4rEdsArGWHPjzxbsnzS3besxqaz8TH/AL+YmJ9S1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABjl49Mt6ZN2pkxzut6zqdfeJ+Yn4n/f3ETHOLkWreuHkxXHltaYpMf1ya8+J+dee33Gp9xG1Dm9KZKzW9YtWfcWjcA6EVslum0r9W18vFjcWy2ndsUfabfNY9d3uNRM782i0AAAAAAAABnmnLXBe2ClcmWKzNKXt2xaftEzqdR+dS0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHGHDjwYoxYq9tK/wBax6iPiPiPx9gB2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z\",\"signedAt\":\"COTAUTO-Z-AFT-STATION\",\"signedOn\":{\"dateTime\":\"2021-02-08T03:40:38.859Z\",\"utcOffset\":9}}"
+      }
+    ],
+    "submissionTimestamp": "2021-02-08T03:47:40.815Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

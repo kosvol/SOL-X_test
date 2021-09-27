@@ -1,0 +1,40 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 5,
+    "permitType": "Enclosed Space Entry",
+    "answers": [
+      {
+        "fieldId": "team",
+        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"C/O\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "value": "\"Enclosed Space Entry\""
+      },
+      {
+        "fieldId": "openChecklistEnclosedSpaceEntry",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "value": "\"8\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2021-02-08T03:39:49.682Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}
