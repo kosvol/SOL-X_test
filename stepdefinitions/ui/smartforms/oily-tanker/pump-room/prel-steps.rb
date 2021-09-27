@@ -102,7 +102,8 @@ And ('I select required entrants {int}') do |entrants_number|
 end
 
 Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |condition, count|
-  if condition == 'entrant'
+  case condition
+  when 'entrant'
     BrowserActions.poll_exists_and_click(on(PreDisplay).home_tab_element)
     step 'I sleep for 1 seconds'
     if count == '0'
@@ -110,7 +111,7 @@ Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |conditi
     else
       is_equal(on(PreDisplay).entrant_count_element.text, count)
     end
-  elsif condition == 'required entrants'
+  when 'required entrants'
     while count.to_i.positive?
       is_enabled($browser
         .find_element(:xpath,
@@ -118,6 +119,8 @@ Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |conditi
       count = count.to_i - 1
       p 'enabled'
     end
+  else
+    raise "Wrong condition>>> #{condition}"
   end
 end
 

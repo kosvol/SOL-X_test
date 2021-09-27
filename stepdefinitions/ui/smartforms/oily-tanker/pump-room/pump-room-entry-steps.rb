@@ -207,7 +207,7 @@ end
 And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
   @temp_id = on(Section0Page).ptw_id_element.text
   @@pre_number = on(Section0Page).ptw_id_element.text
-  @@issue_time = on(PreDisplay).pre_duration_timer_element.text if permit_type === 'PWT'
+  @@issue_time = on(PreDisplay).pre_duration_timer_element.text if permit_type == 'PWT'
 end
 
 Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do |permit_type, condition, rank|

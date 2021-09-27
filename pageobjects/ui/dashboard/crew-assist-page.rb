@@ -23,7 +23,7 @@ class CrewAssistPage < DashboardPage
   end
 
   def is_crew_location_indicator_green
-    $browser.find_element(:xpath, "//div[starts-with(@class,'CrewListItem__Indicator')]")
+    @browser.find_element(:xpath, "//div[starts-with(@class,'CrewListItem__Indicator')]")
             .css_value('background-color')
             .to_s == 'rgba(216, 75, 75, 1)'
   end

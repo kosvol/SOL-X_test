@@ -53,7 +53,8 @@ class CrewListPage < DashboardPage
       next unless current_rank == rank
 
       if current_rank != 'MAS'
-        return (rank_list_selection_elements[0].text == rank_list[index - 1]) && (rank_list_selection_elements[2].text == rank_list[index + 1])
+        return (rank_list_selection_elements[0]
+                  .text == rank_list[index - 1]) && (rank_list_selection_elements[2].text == rank_list[index + 1])
       end
       return (rank_list_selection_elements[1].text == rank_list[index + 1]) if current_rank == 'MAS'
 
@@ -95,16 +96,16 @@ class CrewListPage < DashboardPage
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
-    _element = @browser.find_element(:xpath, @@location_indicator)
+    element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
-    _element.css_value('background-color') == color
+    element.css_value('background-color') == color
   end
 
   def is_location_details(location = nil)
     sleep 1
     get_active_crew_details_frm_service = get_active_crew_details_frm_service(location)
-    element = $browser.find_element(:xpath, @@location_indicator)
+    element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(element)
     BrowserActions.scroll_down
     location_details_elements.each do |location|
@@ -118,16 +119,16 @@ class CrewListPage < DashboardPage
 
   private
 
-  def get_active_crew_details_frm_service(_location = nil)
+  def get_active_crew_details_frm_service(location = nil)
     crew_details = []
-    if _location.nil?
-      ServiceUtil.get_response_body['data']['wearables'].each do |_wearable|
-        next if _wearable['crewMember'].nil?
+    if location.nil?
+      ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
+        next if wearable['crewMember'].nil?
 
         crew_details << ["#{get_beacon_location} - "]
       end
     else
-      crew_details << ["#{_location} - Just now"]
+      crew_details << ["#{location} - Just now"]
     end
     p '>> stuck'
     crew_details

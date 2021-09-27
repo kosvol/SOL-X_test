@@ -32,4 +32,5 @@ end
 
 Then (/^I (should|should not) see CRE landing screen$/) do |condition|
   is_true(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should'
+  is_false(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should not'
 end

@@ -70,6 +70,8 @@ class PumpRoomEntry < PreDisplay
     when 'PRE'
       @@pre_permit_start_time = permit_start_time_element.text
       @@pre_permit_end_time = permit_end_time_element.text
+    else
+      raise "Wrong permit type >>> #{permit_type}"
     end
   end
 
@@ -145,12 +147,11 @@ class PumpRoomEntry < PreDisplay
     entr_arr = []
     while entrants.positive?
       puts(person_checkbox_elements.size)
-      #person_checkbox_elements[entrants].click
-      $browser.find_element(:xpath,
+      @browser.find_element(:xpath,
                             "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/label/span").click
-      entr_arr.push($browser.
-        find_element(:xpath,
-                     "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
+      entr_arr.push(@browser
+        .find_element(:xpath,
+                      "//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
       entrants -= 1
     end
     set_entrants(entr_arr)
@@ -181,8 +182,8 @@ class PumpRoomEntry < PreDisplay
     hh, mm = add_minutes(delay)
 
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']"
-    picker_hh = "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]" % [hh]
-    picker_mm = "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]" % [mm]
+    picker_hh = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]", hh)
+    picker_mm = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]", mm)
 
     sleep 1
     @browser.find_element(:xpath, picker).click
@@ -230,13 +231,13 @@ class PumpRoomEntry < PreDisplay
   end
 
   def press_button_for_current_PRE(button)
-    xpath_str = "//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]" % [@@pre_number, button]
+    xpath_str = format("//span[contains(text(),'%s')]//following::span[contains(text(),'%s')][1]", @@pre_number, button)
     @browser.find_element(:xpath, xpath_str).click
   end
 
   def compare_scheduled_date
     #//*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
-    xpath_str = "//*[contains(.,'Scheduled for')]/parent::*//span[1]" % [@@pre_number]
+    xpath_str = format("//*[contains(.,'Scheduled for')]/parent::*//span[1]", @@pre_number)
     text = @browser.find_element(:xpath, xpath_str).text
     text.include? @@selected_date.to_s
   end
@@ -249,13 +250,13 @@ class PumpRoomEntry < PreDisplay
 
   def has_three_types_answers?(table)
     table.all? do |question|
-      xpath_str = @@radio_buttons % [question[0]]
-      elements = $browser.find_elements('xpath', xpath_str)
-      elements.size === 3
+      xpath_str = format(@@radio_buttons, question[0])
+      elements = @browser.find_elements('xpath', xpath_str)
+      elements.size == 3
     end
   end
 
-  def is_text_displayed?(like, _value)
+  def is_text_displayed?(like, value)
     case like
     when 'alert_text'
       xpath = "//div[contains(.,'%s')]"
@@ -269,21 +270,23 @@ class PumpRoomEntry < PreDisplay
       xpath = "//h1[contains(text(),'%s')]"
     when 'button'
       xpath = @@button
+    else
+      raise "Wrong argument >>> #{like}"
     end
-    is_element_displayed(xpath, _value)
+    is_element_displayed(xpath, value)
   end
 
-  def is_alert_text_displayed?(_value)
-    is_element_displayed("//div[contains(.,'%s')]", _value)
+  def is_alert_text_displayed?(value)
+    is_element_displayed("//div[contains(.,'%s')]", value)
   end
 
-  def is_auto_terminated_displayed?(_value)
-    is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]", _value)
+  def is_auto_terminated_displayed?(value)
+    is_element_displayed("//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]", value)
   end
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    scroll_multiple_times_with_direction(5,'down')
+    scroll_multiple_times_with_direction(5, 'down')
     sleep 1
     case duration.to_i
     when 4
@@ -292,11 +295,13 @@ class PumpRoomEntry < PreDisplay
       six_hours_duration
     when 8
       eight_hours_duration
+    else
+      raise "Wrong duration >>> #{duration}"
     end
   end
 
   def is_button_enabled?(button_text)
-    xpath_str = @@button % [button_text]
+    xpath_str = format(@@button, button_text)
     el = @browser.find_element('xpath', xpath_str)
     BrowserActions.scroll_down(el)
     BrowserActions.scroll_down
@@ -304,12 +309,12 @@ class PumpRoomEntry < PreDisplay
   end
 
   def select_answer(answer, question)
-    xpath_str = @@radio_buttons % [question]
+    xpath_str = format(@@radio_buttons, question)
     select_checkbox(xpath_str, answer)
   end
 
   def press_the_button(button)
-    xpath_str = @@button % [button]
+    xpath_str = format(@@button, button)
     el = @browser.find_element('xpath', xpath_str)
     BrowserActions.scroll_click(el)
   end
@@ -327,12 +332,12 @@ class PumpRoomEntry < PreDisplay
     time_to_finish = get_current_time + 60 * finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
     url = EnvironmentSelector.get_edge_db_data_by_uri('forms/%s?conflicts=true')
-    url = url % [web_pre_id]
+    url = format(url, web_pre_id)
     p "url >> #{url}"
 
     request = HTTParty.get(url, {
-      headers: { 'Content-Type': 'application/json' },
-    })
+                             headers: { 'Content-Type': 'application/json' }
+                           })
 
     p "request >> #{request}"
 
@@ -340,23 +345,23 @@ class PumpRoomEntry < PreDisplay
     full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
 
     request = HTTParty.put(url, {
-      headers: { 'Content-Type': 'application/json' },
-      body: full_form.to_json,
-    })
+                             headers: { 'Content-Type': 'application/json' },
+                             body: full_form.to_json
+                           })
     (JSON.parse request.to_s)
   end
 
   def get_element_by_value(_element_value_text, _count)
-    xpath_str = @@element_value % [_element_value_text]
+    xpath_str = format(@@element_value, _element_value_text)
     el_arr = @browser.find_elements('xpath', xpath_str)
-    return el_arr[_count.to_i]
+    el_arr[_count.to_i]
   end
 
   private
 
   def is_element_displayed(_xpath, _value = nil)
     begin
-      value = _xpath % [_value]
+      value = format(_xpath, _value)
       @browser.find_element('xpath', value).displayed?
     rescue
       false

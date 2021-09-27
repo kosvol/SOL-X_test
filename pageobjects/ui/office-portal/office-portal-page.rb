@@ -47,52 +47,52 @@ class OfficePortalPage
   elements(:ese_log_table_title_or_value,
            xpath: "//div[starts-with(@class,'Section__Description')][last()]/..//td[starts-with(@class,'sc-')]")
   def select_vessel(vessel_name)
-    $browser.find_element(:xpath, "//h3[contains(text(),'%s')]" % vessel_name).click
+    @browser.find_element(:xpath, "//h3[contains(text(),'%s')]" % vessel_name).click
   end
 
   def vessel_card_permits_quantity(forms_quantity)
-    $browser
+    @browser
       .find_element(:xpath,
                     "//h3[contains(text(), '#{forms_quantity}')]/parent::div/following-sibling::div//span[contains(@class,'value')]").text
   end
 
   def vessel_card_since_date(since_date)
-    $browser
+    @browser
       .find_element(:xpath,
                     "//h3[contains(text(),'#{since_date}')]/following-sibling::div//span[contains(text(),'Since')]").text
   end
 
   def vessel_card_last_permit_date(last_permit_date)
-    $browser
+    @browser
       .find_element(:xpath,
                     "//h3[contains(text(),'#{last_permit_date}')]/following-sibling::div//span[contains(text(),'Last Permit')]").text
   end
 
   def select_permit_by_number(what_number)
-    $browser.find_element(:xpath,
+    @browser.find_element(:xpath,
                           "//span[contains(text(),'#{what_number}')]/..//span[contains(@class,'check')]").click
   end
 
   def get_permit_number(permit_number)
-    $browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[1]" % permit_number).text
+    @browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[1]" % permit_number).text
   end
 
   def get_permit_name(permit_name)
-    $browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[2]" % permit_name).text
+    @browser.find_element(:xpath, "//div[%s][contains(@class,'PermitItem')]/span[2]" % permit_name).text
   end
 
   def get_approved_date_time
-    $browser.find_element(:xpath, "(//h4[contains(text(),'Date/Time:')]/following-sibling::p)[2]").text
+    @browser.find_element(:xpath, "(//h4[contains(text(),'Date/Time:')]/following-sibling::p)[2]").text
   end
 
   def select_element_by_text_near(text_title)
-    $browser.find_element(:xpath,
+    @browser.find_element(:xpath,
                           "//h4[contains(text(),'#{text_title}')]/..//p[starts-with(@class,'AnswerComponent__Answer')]")
   end
 
   def get_section_elements_list(section, element_type)
     fields_arr = []
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{section}')])/../..//#{element_type}").each do |field|
+    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{section}')])/../..//#{element_type}").each do |field|
       fields_arr << field.text
     end
     YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions'] if element_type == 'h2'

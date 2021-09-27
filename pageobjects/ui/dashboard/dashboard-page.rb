@@ -47,7 +47,7 @@ class DashboardPage < WearablePage
   end
 
   def is_pre_indicator_color?(condition)
-    tmp = $browser.find_element(:xpath, @@pre_indicator.to_s)
+    tmp = @browser.find_element(:xpath, @@pre_indicator.to_s)
     tmp.css_value('color').to_s == if condition.downcase == 'active'
                                      'rgba(67, 160, 71, 1)'
                                    else
@@ -56,7 +56,7 @@ class DashboardPage < WearablePage
   end
 
   def get_location_pin_text(location)
-    $browser.find_elements(:xpath, '//div/button/span')[2].click
+    @browser.find_elements(:xpath, '//div/button/span')[2].click
     #BrowserActions.js_clicks('//div/button/span', 2)
     # toggle_zone_filter(location)
     # sleep 1
@@ -81,8 +81,8 @@ class DashboardPage < WearablePage
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
-    $browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
-    $browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
+    @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
+    @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
   end
 
   def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)
@@ -145,7 +145,7 @@ class DashboardPage < WearablePage
   def toggle_zone_filter(which_zone)
     xpath_str = format(@@ship_area, which_zone)
     sleep 1
-    BrowserActions.js_click("#{xpath_str}")
+    @browser.find_element(:xpath, xpath_str.to_s).click
   end
 
   private

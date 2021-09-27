@@ -211,7 +211,7 @@ end
 And(/^I should see the correct notification at the bottom after (approval|activation)$/) do |which_state|
   case which_state
   when 'approval'
-    is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to approved Permits")
+    is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to approved permits")
   when 'activation'
     is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to activated permits")
   end
