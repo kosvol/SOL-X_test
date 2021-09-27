@@ -46,7 +46,7 @@ class UserService
                            "utcOffset": time_service.retrieve_ship_utc_offset },
        "signature": "data:image/jpeg;base64, #{encoded_string}",
        "signed": { "userId": rank_id, "rank": rank },
-       "gasReadingStatus": 'PENDING', "entryStatus": 'ACTIVE', "purposeOfEntry": '',
+       "gasReadingStatus": 'PENDING', "entryStatus": 'ACTIVE', "purposeOfEntry": 'Test Automation',
        "entrant": { "clientId": '', "_id": rank_id, "accessGroups": [], "firstName": 'COT', "lastName": rank,
                     "rank": rank },
        "locationId": "#{vessel}-Z-AFT-STATION" }].to_json
