@@ -30,8 +30,7 @@ Then (/^I should see CRE form questions$/) do
   is_true((answears_for_section_second & base_permit_validity).any? { |x| base_permit_validity.include?(x) })
 end
 
-Then (/^I (should|should not) see CRE landing screen$/) do |_condition|
-  if _condition === 'should'
-    is_true(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry')
-  end
+Then (/^I (should|should not) see CRE landing screen$/) do |condition|
+  is_true(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should'
+  is_false(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should not'
 end

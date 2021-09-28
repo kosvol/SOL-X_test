@@ -52,29 +52,29 @@ class ROLPage < Section9Page
     end
   end
 
-  def select_rol_duration(_duration)
+  def select_rol_duration(duration)
     BrowserActions.scroll_down(rol_duration_element)
     sleep 1
     rol_duration
     sleep 1
     scroll_multiple_times_with_direction(2,'down')
     sleep 1
-    tmp_hour = @browser.find_element('xpath', @@duration % ["#{_duration + ' hour'}"])
+    tmp_hour = @browser.find_element('xpath', @@duration % ["#{duration} hour".to_s])
     tmp_hour.click
     BrowserActions.scroll_down(tmp_hour)
     sleep 1
   end
 
-  def submit_rol_permit_w_duration(_duration)
-    select_rol_duration(_duration)
+  def submit_rol_permit_w_duration(duration)
+    select_rol_duration(duration)
     BrowserActions.poll_exists_and_click(activate_permit_btn_element)
   end
 
-  def is_duration?(permit_validity_timer, _duration, _timer_mins = '59')
-    if permit_validity_timer.include? ":#{_timer_mins}:"
-      return permit_validity_timer.include? "0#{(_duration.to_i - 1)}:#{_timer_mins}:" # if _duration === '1'
+  def is_duration?(permit_validity_timer, duration, timer_mins = '59')
+    if permit_validity_timer.include? ":#{timer_mins}:"
+      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration === '1'
     else
-      is_duration?(permit_validity_timer, _duration, (_timer_mins.to_i - 1))
+      is_duration?(permit_validity_timer, duration, (timer_mins.to_i - 1))
     end
   end
 end

@@ -39,8 +39,8 @@ class CreatedPermitToWorkPage < Section9Page
   def get_permit_index(permit_id)
     @tmp_index = nil
     sleep 1
-    parent_container_elements.each_with_index do |permit, index|
-      next unless ptw_id_elements[index].text === permit_id
+    parent_container_elements.each_with_index do |_permit, index|
+      next unless ptw_id_elements[index].text == permit_id
       Log.instance.info "Permit ID: #{ptw_id_elements[index].text} ::: #{permit_id}"
       Log.instance.info "Index: #{index}"
       @tmp_index = index

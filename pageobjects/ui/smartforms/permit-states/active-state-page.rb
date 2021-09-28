@@ -11,16 +11,16 @@ class ActiveStatePage < CreatedPermitToWorkPage
   buttons(:add_gas_btn, xpath: "//button[contains(.,'Gas Test')]")
   buttons(:new_entrant_btn, xpath: "//button[contains(.,'New Entrant')]")
 
-  def get_permit_validity_period(_index)
-    permit_validity_timer_elements[_index].text
+  def get_permit_validity_period(index)
+    permit_validity_timer_elements[index].text
   end
 
-  def get_termination_btn(_permit_id)
-    parent_container_elements.each_with_index do |_permit, _index|
-      next unless ptw_id_elements[_index].text === _permit_id
+  def get_termination_btn(permit_id)
+    parent_container_elements.each_with_index do |_permit, index|
+      next unless ptw_id_elements[index].text == permit_id
 
-      p ">> #{ptw_id_elements[_index].text}"
-      return terminate_permit_btn_elements[_index]
+      p ">> #{ptw_id_elements[index].text}"
+      return terminate_permit_btn_elements[index]
       # break
     end
   end

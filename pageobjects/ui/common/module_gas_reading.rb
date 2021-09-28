@@ -32,7 +32,7 @@ module GasReading
   end
 
   def toxic_gas_del_row
-    if toxic_gas_rows_elements.size === 1
+    if toxic_gas_rows_elements.size == 1
       del_row_stage1
       del_row_stage2
     end

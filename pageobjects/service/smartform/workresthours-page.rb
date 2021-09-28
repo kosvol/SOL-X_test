@@ -6,7 +6,7 @@ class WorkResetrHoursPage
       tmp_payload = JSON.parse JsonUtil.read_json('wrh/work-rest-hour')
       tmp_payload['docs'].each_with_index do |_doc, _index|
         userid = _doc['userId']
-        userid[0, 4] = 'SIT' if $current_environment === 'sit'
+        userid[0, 4] = 'SIT' if $current_environment == 'sit'
         tmp_payload['docs'][_index]['userId'] = userid
       end
 

@@ -51,7 +51,7 @@ class CommonFormsPage < CommonPage
   rescue StandardError
     calendar_next_month
     sleep 1
-    BrowserActions.js_clicks("//button[contains(.,'01')]", '1')
+    @browser.find_elements(:xpath, "//button[contains(.,'01')]")[1].click
     sleep 1
   end
 
