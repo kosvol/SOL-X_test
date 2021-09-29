@@ -5,8 +5,8 @@ Then('I should see both signature canvas exists') do
 end
 
 And(/^I (select|delete) (.+) role from list$/) do |condition, roles|
-  on(Section5Page).select_roles_and_responsibility(roles) if condition === 'select'
-  on(Section5Page).delete_roles_and_responsibility(roles) if condition === 'delete'
+  on(Section5Page).select_roles_and_responsibility(roles) if condition == 'select'
+  on(Section5Page).delete_roles_and_responsibility(roles) if condition == 'delete'
 end
 
 And(/^I fill up section 5$/) do
@@ -28,9 +28,9 @@ end
 
 And(/^I (should|should not) see (.+) role$/) do |condition, role|
   sleep 1
-  if condition === 'should'
+  if condition == 'should'
     is_true(on(Section5Page).is_role?(role))
-  elsif condition === 'should not'
+  elsif condition == 'should not'
     is_false(on(Section5Page).is_role?(role))
   end
 end
@@ -89,11 +89,15 @@ end
 Then(/^I should see non crew details$/) do
   sleep 1
   is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
-  if on(Section5Page).get_non_crew_date_time_element.text === "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}"
+  if on(Section5Page)
+       .get_non_crew_date_time_element.text == "#{on(Section5Page)
+                                                    .get_current_date_format_with_offset} #{on(Section5Page)
+                                                                                              .get_current_time_format}"
     is_equal(on(Section5Page).get_non_crew_date_time_element.text,
              "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
   else
-    is_equal(on(Section5Page).get_non_crew_date_time_element.text, on(CommonFormsPage).get_current_date_and_time_minus_a_min)
+    is_equal(on(Section5Page).get_non_crew_date_time_element.text, on(CommonFormsPage)
+                                                                     .get_current_date_and_time_minus_a_min)
   end
 end
 

@@ -32,7 +32,7 @@ And(/^Button "([^"]*)" (should|should not) be disabled$/) do |button_text, condi
   is_true(on(PumpRoomEntry).is_button_enabled?(button_text)) if condition == 'should not'
 end
 
-Then(/^I select current day for field "([^"]*)"$/) do |button|
+Then(/^I select current day for field "([^"]*)"$/) do |_button|
   on(PumpRoomEntry).gas_last_calibration_button
   sleep 1
   on(PumpRoomEntry).current_day_button_btn
@@ -83,7 +83,7 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, permit_type, duration, delay|
+Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, _permit_type, duration, delay|
   on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   if gas == 'fill up with gas readings'
     sleep 1
@@ -106,7 +106,7 @@ Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with cu
   on(PumpRoomEntry).select_start_time_to_activate(delay) if condition == 'fill up'
 end
 
-And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |permit_type, role|
+And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type, role|
   step 'Get PRE id'
   step 'I press the "Submit for Approval" button'
   step format('I enter pin for rank %s', role.to_s)
@@ -142,7 +142,7 @@ And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) d
   step "I #{condition} see the text '#{@@pre_number}'"
 end
 
-And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
+And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |_permit|
   Log.instance.info("Form id existed: >> #{@@pre_number}")
   Log.instance.info("Form id in list: >> #{on(Section0Page).ptw_id_element.text}")
   on(Section0Page).ptw_id_element.text != @@pre_number
@@ -298,6 +298,8 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
     p (@@issue_time[12, 5]).to_s
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, (@@issued_date_and_time[12, 5]).to_s)
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, (@@issue_time[12, 5]).to_s)
+  else
+    raise "Wrong condition #{condition}"
   end
   is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text, on(CommonFormsPage).get_current_time_offset.to_s)
   is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text, '2 %')
@@ -341,6 +343,8 @@ Then(/^I check all header-cells in Entry log table on (PWT|Dashboard)$/) do |con
   when 'PTW'
     # shoud be "Competent Person"
     is_equal(on(PumpRoomEntry).header_cell_elements[10].text, 'OOW')
+  else
+    raise "Wrong condition >>> #{condition}"
   end
 end
 
@@ -351,9 +355,9 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
       is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
       is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
     elsif type == 'previous'
-      is_not_equal($browser
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[9].text, 'Test')
-      is_not_equal($browser
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[9].text, '2 CC')
     end
   when 'dashboard'
@@ -364,10 +368,10 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
     is_not_equal(on(PumpRoomEntry).header_pwt_elements[1].text, @@pre_number)
     i = 0
     while i < 5
-      is_not_equal($browser
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text, 'Test')
-      puts($browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
-      is_not_equal($browser
+      puts(@browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[i].text, '2 CC')
       i += 1
     end

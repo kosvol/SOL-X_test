@@ -37,11 +37,11 @@ Then(/^I should see DRA content editable$/) do
   to_exists(on(Section3APage).save_dra_element)
 end
 
-And(/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, _measure|
+And(/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likelihood, consequence, measure|
   sleep 1
-  @measure = _measure
+  @measure = measure
   @@swap_flag = ''
-  case _measure
+  case measure
   when 'without applying measure'
     on(Section3APage).toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
   when 'existing control measure'
@@ -51,12 +51,14 @@ And(/^I toggle likelihood (.+) and (.+) consequence matrix for (.+)$/) do |likel
   when 'additional hazard follow through'
     @@swap_flag = 'evaluation_matrix'
     on(Section3APage).toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
+  else
+    raise "Wrong measure >>> #{measure}"
   end
   sleep 1
 end
 
-Then(/^I should see risk as (.+) risk$/) do |_condition|
-  case _condition
+Then(/^I should see risk as (.+) risk$/) do |condition|
+  case condition
   when 'low'
     is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'low'))
   when 'medium'
@@ -65,6 +67,8 @@ Then(/^I should see risk as (.+) risk$/) do |_condition|
     is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'high'))
   when 'very high'
     is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'very high'))
+  else
+    raise "Wrong condition >>>> #{condition}"
   end
 end
 

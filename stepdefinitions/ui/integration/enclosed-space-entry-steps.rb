@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-And(/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
+And(/^I review page 1 of submitted (.+) permit$/) do |permit_type|
   # step 'I click on permit for Master Approval'
   on(PendingStatePage).pending_approval_status_btn_elements[0].click
 
   step 'I enter pin for rank MAS'
-  if _permit_type === 'enclose workspace'
+  if permit_type === 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-forms-base-data/enclosed-entry-permit.yml')
-  elsif _permit_type === 'hot work'
+  elsif permit_type === 'hot work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work.yml')
-  elsif _permit_type === 'cold work'
+  elsif permit_type === 'cold work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/cold-work.yml')
-  elsif _permit_type === 'hot work with hazard'
+  elsif permit_type === 'hot work with hazard'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work-hazardous.yml')
   end
   p ">>> #{on(Section1Page).get_filled_section1}"

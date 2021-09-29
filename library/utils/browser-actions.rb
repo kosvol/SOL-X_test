@@ -91,30 +91,30 @@ module BrowserActions
     end
 
     def open_new_page
-      $browser.execute_script('window.open()')
-      $browser.switch_to.window($browser.window_handles.last)
+      @browser.execute_script('window.open()')
+      @browser.switch_to.window($browser.window_handles.last)
     end
 
     def switch_browser_tab(condition)
       case condition
       when 'last'
-        $browser.switch_to.window($browser.window_handles.last)
+        @browser.switch_to.window(@browser.window_handles.last)
       when 'first'
-        $browser.switch_to.window($browser.window_handles.first)
+        @browser.switch_to.window(@browser.window_handles.first)
       else
-        raise('wrong condition')
+        raise "Wrong condition >>> #{condition}"
       end
     end
 
     def poll_ui_update_by_attribute(locator, condition, attribute)
       count = 0
       tmp_ele = $browser.find_element(:xpath, locator).attribute(attribute)
-      until (tmp_ele.to_s == condition)
+      until tmp_ele.to_s == condition
         count += 1
         sleep 1
         break if count == 15
       end
-      return tmp_ele.to_s
+      tmp_ele.to_s
     end
 
     private

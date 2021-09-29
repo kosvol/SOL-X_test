@@ -52,7 +52,11 @@ Then(/^I should not see extra previous and save button$/) do
 end
 
 Then(/^I (open|edit) rol permit with rank (.+)$/) do |_condition, _rank|
-  _condition === 'open' ? on(ActiveStatePage).view_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click : on(PendingStatePage).edit_update_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  _condition == 'open' ? on(ActiveStatePage)
+                            .view_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)]
+                            .click : on(PendingStatePage)
+                                       .edit_update_btn_elements[on(CreatedPermitToWorkPage)
+                                                                   .get_permit_index(CommonPage.get_permit_id)].click
   step "I enter pin for rank #{_rank}"
 end
 

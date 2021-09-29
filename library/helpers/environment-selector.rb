@@ -54,5 +54,9 @@ module EnvironmentSelector
         $obj_env_yml[which_db.to_s]['base_cloud_url'] + $obj_env_yml[which_db.to_s][url_map.to_s]
       end
     end
+
+    def current_environment
+      ENV['ENVIRONMENT']
+    end
   end
 end

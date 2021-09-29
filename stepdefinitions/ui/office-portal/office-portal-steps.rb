@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given(/^I launch Office Portal$/) do
-  $browser.get(EnvironmentSelector.get_environment_url)
+  @browser.get(EnvironmentSelector.get_environment_url)
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).op_login_btn_element)
 end
 
@@ -111,7 +111,7 @@ end
 And(/^I click on View Permit button$/) do
   on(OfficePortalPage).view_permit_btn
   sleep(1)
-  $browser.switch_to.window($browser.window_handles[1])
+  @browser.switch_to.window($browser.window_handles[1])
 end
 
 Then(/^I should see the selected form in a new tab$/) do
@@ -139,8 +139,8 @@ And(/^I check the checkbox near the Permit No. title$/) do
   on(OfficePortalPage).permit_check_box_elements[0].click
 end
 
-Then(/^I should see all the forms are (selected|not selected)$/) do |what_choiсe|
-  if what_choiсe == 'selected'
+Then(/^I should see all the forms are (selected|not selected)$/) do |what_choice|
+  if what_choice == 'selected'
     on(OfficePortalPage).permit_checkbox_elements.each do |selection|
         is_true(selection.checked?)
       end
@@ -292,19 +292,19 @@ end
 Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
   questions_arr = []
   if checklist == 'Work on Pressure Pipelines'
-    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
+    @browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   elsif checklist == 'Working Aloft Overside'
-    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
+    @browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   elsif checklist == 'Enclosed Spaces Entry Checklist'
-    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
+    @browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   else
-    $browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
+    @browser.find_elements(:xpath, "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
       questions_arr << question.text
     end
   end
@@ -319,23 +319,23 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
   labels_arr = []
   subheaders_arr = []
   if what_section == 'Energy Isolation Certificate'
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h4").each do |field|
+    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h4").each do |field|
       fields_arr << field.text
     end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//label").each do |label|
+    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//label").each do |label|
       labels_arr << label.text
     end
-    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h2").each do |subheader|
+    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h2").each do |subheader|
       subheaders_arr << subheader.text
     end
   else
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h4").each do |field|
+    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h4").each do |field|
       fields_arr << field.text
     end
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//label").each do |label|
+    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//label").each do |label|
       labels_arr << label.text
     end
-    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h2").each do |subheader|
+    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h2").each do |subheader|
       subheaders_arr << subheader.text
     end
   end
@@ -379,10 +379,10 @@ end
 Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in the Client app$/) do |condition|
   fields_arr = []
   subheaders_arr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 6.yml')["fields_#{condition}"]
@@ -399,10 +399,10 @@ end
 Then(/^I should see the (.*) shows the same fields as in the Client app with (.*)$/) do |section, condition|
   fields_arr = []
   subheaders_arr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h4").each do |field|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h2").each do |subheader|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_#{condition}"]
@@ -424,13 +424,15 @@ Then(/^I should see Section 8 shows the same fields as in the Client app with (.
     checklist = 'electrical'
   when 'Work on Pressure Pipelines'
     checklist = 'pipe'
+  else
+    raise "Wrong Checklist >>> #{checklist}"
   end
   fields_arr = []
   subheaders_arr = []
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |field|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |subheader|
+  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 8.yml')["fields_#{checklist}"]
@@ -447,10 +449,10 @@ end
 Then(/^I should see the PRE form shows the same fields as in the client app$/) do
   fields_arr = []
   subheaders_arr = []
-  $browser.find_elements(:xpath, '//h4').each do |field|
+  @browser.find_elements(:xpath, '//h4').each do |field|
     fields_arr << field.text
   end
-  $browser.find_elements(:xpath, '//h2').each do |subheader|
+  @browser.find_elements(:xpath, '//h2').each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/pre/pre-display.yml')['pre_structure_on_pred']['with_interval']
@@ -463,6 +465,6 @@ Then(/^I should see the PRE form shows the same fields as in the client app$/) d
 end
 
 And(/^I open the recently terminated form with link$/) do
-  $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@form_number])
+  @browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@form_number])
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
 end

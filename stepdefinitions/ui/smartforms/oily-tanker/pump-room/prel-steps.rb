@@ -16,7 +16,9 @@ And(/^I (enter|enter without sign) (new|same|without toxic|different|random) ent
   when 'without toxic'
     on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '')
   else
-    on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
+    on(PumpRoomEntry)
+      .add_all_gas_readings_pre(rand(1..10).to_s,
+                                rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
   end
   step 'I sign for gas' if condition == 'enter'
 end
@@ -38,7 +40,9 @@ And (/^I (enter|enter without sign) (new|same|without toxic|different|random) en
   when 'without toxic'
     on(PumpRoomEntry).add_all_gas_readings_pre('2', '3', '4', '5', '', '', '', '')
   else
-    on(PumpRoomEntry).add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
+    on(PumpRoomEntry)
+      .add_all_gas_readings_pre(rand(1..10).to_s, rand(1..10).to_s,
+                                rand(1..10).to_s, rand(1..10).to_s, 'Test', '20', '2', 'cc')
   end
   step 'I sign for gas' if condition == 'enter'
 end
@@ -72,20 +76,15 @@ Then (/^I should not see entered entrant on (optional|required) entrant list$/) 
   end
 end
 
-# And ('I send entry report with {int} optional entrants') do |_optional_entrant|
-#   on(PumpRoomEntry).additional_entrant(_optional_entrant) if _optional_entrant > 0
-#   sleep 1
-#   BrowserActions.js_click("//span[contains(text(),'Send Report')]")
-# end
 And (/^I (send|fill) entry report with (.*) (optional|required) entrants$/) do |condition1, optional_entrant, condition|
   if (condition == 'optional') && (condition1 == 'send')
     on(PumpRoomEntry).additional_entrant(optional_entrant.to_i) if optional_entrant.to_i.positive?
     sleep 1
-    BrowserActions.js_click("//span[contains(text(),'Send Report')]")
+    @browser.find_element(:xpath, "//span[contains(text(),'Send Report')]").click
   elsif (condition == 'required') && (condition1 == 'send')
     step "I select required entrants #{optional_entrant.to_i}"
     sleep 1
-    BrowserActions.js_click("//span[contains(text(),'Send Report')]")
+    @browser.find_element(:xpath, "//span[contains(text(),'Send Report')]").click
   elsif (condition == 'required') && (condition1 == 'fill')
     step "I select required entrants #{optional_entrant.to_i}"
   elsif (condition == 'optional') && (condition1 == 'fill')
@@ -113,7 +112,7 @@ Then (/^I should see (entrant|required entrants) count equal (.*)$/) do |conditi
     end
   when 'required entrants'
     while count.to_i.positive?
-      is_enabled($browser
+      is_enabled(@browser
         .find_element(:xpath,
                       "//*[starts-with(@class,'UnorderedList')]/li[#{count}]"))
       count = count.to_i - 1
@@ -132,7 +131,6 @@ end
 
 And (/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 6 seconds'
-  # @@pre_number = CommonPage.get_permit_id
   SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
   step 'I sleep for 3 seconds'
 end
@@ -144,10 +142,6 @@ Then(/^I (should not|should) see dashboard gas reading popup$/) do |condition|
   else
     ServiceUtil.get_response_body['data']['acknowledgeUnsafeGasReading']
   end
-end
-
-And (/^I terminate from dashboard$/) do
-  ## pending frontend implementation
 end
 
 And (/^I signout "([^"]*)" entrants by rank$/) do |arr_entry|
@@ -172,7 +166,7 @@ end
 Then ('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?
-    entr_arr.push($browser
+    entr_arr.push(@browser
       .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item.to_s}]")
       .attribute('aria-label'))
     item = item - 1
@@ -187,7 +181,7 @@ Then (/^I check that entrants "([^"]*)" not present in list$/) do |arr_entrants|
   sleep 1
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
   arr_entrants.split(',').each do |i|
-    if $browser.find_elements(:xpath, "//*[contains(.,'#{i}')]").empty?
+    if @browser.find_elements(:xpath, "//*[contains(.,'#{i}')]").empty?
       puts("Entrant #{i} not exists in list")
     else
       raise("Entrant #{i} is exists in list")
@@ -260,7 +254,8 @@ Then(/^I check (CRE|PRE) elements on dashboard (active|inactive)$/) do |type, co
   sleep 5
   BrowserActions.wait_until_is_visible(on(DashboardPage).pre_cre_title_indicator_element)
   is_equal(on(DashboardPage).pre_cre_title_indicator_element.text, 'Pump Room Entry Permit:') if type == 'PRE'
-  is_equal(on(DashboardPage).pre_cre_title_indicator_element.text, 'Compressor/Motor Room Entry Permit:') if type == 'CRE'
+  is_equal(on(DashboardPage)
+             .pre_cre_title_indicator_element.text, 'Compressor/Motor Room Entry Permit:') if type == 'CRE'
   is_equal(on(DashboardPage).pre_indicator_element.text, 'Active') if condition == 'active'
   is_equal(on(DashboardPage).pre_indicator_element.text, 'Inactive') if condition == 'inactive'
 end

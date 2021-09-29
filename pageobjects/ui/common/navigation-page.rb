@@ -43,7 +43,7 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    BrowserActions.js_click("//button[contains(.,'Next')]")
+    @browser.find_element("//button[contains(.,'Next')]").click
   rescue StandardError
     sleep 1
     BrowserActions.js_click("//button[contains(.,'Next')]")

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And(/^I navigate to OA link$/) do
-  $browser.get(on(OAPage).navigate_to_oa_link)
+  @browser.get(on(OAPage).navigate_to_oa_link)
   begin
     BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
   rescue StandardError
@@ -17,10 +17,11 @@ And(/^I request the permit for update via oa link manually$/) do
   sleep 1
   BrowserActions.enter_text(on(OAPage).update_comments_element, 'Test Automation Update')
   sleep 2
-  x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
-  @browser.execute_script(x)
+  #x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+  # @browser.execute_script(x)
+  @browser.find_element(:xpath,"//span[contains(text(),'Request Updates')]").click
   sleep 3
-  $browser.get(EnvironmentSelector.get_environment_url)
+  @browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
@@ -40,9 +41,10 @@ And(/^I approve oa permit via oa link manually$/) do
   on(OAPage).set_from_to_details
   on(OAPage).set_designation
   sleep 2
-  BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
+  #BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
+  @browser.find_element(:xpath,"//button[contains(.,'Approve This Permit to Work')]")
   sleep 2
-  $browser.get(EnvironmentSelector.get_environment_url)
+  @browser.get(EnvironmentSelector.get_environment_url)
   sleep 1
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
@@ -99,6 +101,8 @@ Then(/^I should see the (Send|Request Updates) button is (disabled|enabled)$/) d
       is_enabled(on(OAPage).send_comments_btn_element)
     when 'disabled'
       is_disabled(on(OAPage).send_comments_btn_element)
+    else
+      raise "Wrong condition >>> #{condition}"
     end
   when 'Request Updates'
     case condition
@@ -106,7 +110,11 @@ Then(/^I should see the (Send|Request Updates) button is (disabled|enabled)$/) d
       is_enabled(on(OAPage).update_permit_btn_element)
     when 'disabled'
       is_disabled(on(OAPage).update_permit_btn_element)
+    else
+      raise "Wrong condition >>> #{condition}"
     end
+  else
+    raise "Wrong Button >>> #{button}"
   end
   sleep(1)
 end
@@ -119,6 +127,8 @@ And(/^I key a (comment|long comment|name)$/) do |what_input|
     on(OAPage).comment_input_box_element.send_keys(YAML.load_file('data/office-approval/comments.yml')['long'])
   when 'name'
     on(OAPage).name_box_element.send_keys('Test Automation 2')
+  else
+    raise "Wrong input type>>>#{what_input}"
   end
 end
 
@@ -128,6 +138,8 @@ And(/^I add a (short|long) comment$/) do |length|
     step 'I key a comment'
   when 'long'
     step 'I key a long comment'
+  else
+    raise "Wrong lenght>>> #{length}"
   end
   step 'I key a name'
   step 'I click on Send button'
@@ -360,6 +372,8 @@ And(/^I get (PTW|PRE) permit info$/) do |permit_type|
     data_file_resp = JSON.parse JsonUtil.read_json_response('pre/mod-01.create-pre-form')
     data_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
     @form_number = data_file_resp['data']['createForm']['_id']
+  else
+    raise "Wrong permit type >>> #{permit_type}"
   end
 end
 

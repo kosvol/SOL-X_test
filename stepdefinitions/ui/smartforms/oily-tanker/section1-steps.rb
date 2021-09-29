@@ -14,9 +14,9 @@ Then(/^I should see permit details are pre-filled$/) do
   is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
 
-Then(/^I should see a list of (sea states|wind forces)$/) do |_state, _table|
-  is_true(on(Section1Page).is_sea_states?(_table.raw)) if _state === 'sea states'
-  is_true(on(Section1Page).is_wind_forces?(_table.raw)) if _state === 'wind forces'
+Then(/^I should see a list of (sea states|wind forces)$/) do |state, table|
+  is_true(on(Section1Page).is_sea_states?(table.raw)) if state == 'sea states'
+  is_true(on(Section1Page).is_wind_forces?(table.raw)) if state == 'wind forces'
 end
 
 Then(/^I should not see previous button exists$/) do
@@ -24,17 +24,17 @@ Then(/^I should not see previous button exists$/) do
   is_equal(on(Section1Page).btn_list_elements[0].text, 'Save & Next')
 end
 
-Then(/^I (should|should not) see maintenance duration section and require text$/) do |_condition|
-  if _condition === 'should'
+Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
+  if condition == 'should'
     is_true(on(Section1Page).is_maint_duration_dd_exists?)
-  elsif _condition === 'should not'
+  elsif condition == 'should not'
     is_true(!on(Section1Page).is_maint_duration_dd_exists?)
   end
 end
 
-And(/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |_condition|
+And(/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).fill_default_section_1
-  on(Section1Page).set_maintenance_duration(_condition)
+  on(Section1Page).set_maintenance_duration(condition)
   sleep 1
 end
 
@@ -51,9 +51,9 @@ And(/^I fill up section 1 with default value$/) do
   end
 end
 
-And(/^I fill only location of work and duration (more|less) than 2 hours$/) do |_condition|
+And(/^I fill only location of work and duration (more|less) than 2 hours$/) do |condition|
   on(Section1Page).select_location_of_work
-  on(Section1Page).set_maintenance_duration(_condition)
+  on(Section1Page).set_maintenance_duration(condition)
 end
 
 And(/^I fill only location of work$/) do

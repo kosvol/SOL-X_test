@@ -16,12 +16,19 @@ Then (/^I should see CRE form questions$/) do
   $browser.find_elements(:xpath, '//label').each do |field|
     answears_for_section_second << field.text
   end
-  base_titles_and_questions = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_and_questions']
-  base_titles_of_sections = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_of_sections']
-  base_answears_first_section = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['answears_first_section']
+  base_titles_and_questions =
+    [] + YAML
+           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_and_questions']
+  base_titles_of_sections =
+    [] + YAML
+           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_of_sections']
+  base_answears_first_section =
+    [] + YAML
+           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['answears_first_section']
   base_entry_titles = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['entry_titles']
   base_gas_section = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['gas_section']
-  base_permit_validity = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['permit_validity']
+  base_permit_validity =
+    [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['permit_validity']
   is_equal(titles_and_questions_arr, base_titles_and_questions)
   is_equal(titles_of_sections, base_titles_of_sections)
   is_true((answears_for_section & base_answears_first_section).any? { |x| base_answears_first_section.include?(x) })
