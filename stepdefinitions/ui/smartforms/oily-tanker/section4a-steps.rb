@@ -3,12 +3,13 @@
 Then(/^I should not see location of work in checklist$/) do
   sleep 2
   tmp = @browser.find_elements(:xpath, "//span[contains(., 'Location of work:')]")
-  if tmp.size == 0
+  case tmp.size
+  when 0
     tmp = @browser.find_elements(:xpath, '//label[contains(., "Location of work:")]')
-  elsif tmp.size == 0
+  when 0
     tmp = @browser.find_elements(:xpath, '//p[contains(., "Location of work:")]')
-  elsif tmp.size == 0
-    #tmp = @browser.find_element(:xpath, "//h4[contains(., \'Location of work:\')]")
+  when 0
+    # tmp = @browser.find_element(:xpath, "//h4[contains(., \'Location of work:\')]")
     tmp = @browser.find_element(:xpath, "//h4[contains(., 'Location of work:')]")
   end
   is_equal(tmp.size, 0)
@@ -96,13 +97,14 @@ Then(/^I should see (.+) checklist questions$/) do |checklist|
 end
 
 And(/^I should see (info|warning|heavy) boxes$/) do |which_box|
-  if which_box == 'info'
+  case which_box
+  when 'info'
     box_obj = on(Section4APage).info_box_elements
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['info_box']
-  elsif which_box == 'warning'
+  when 'warning'
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['warning_box']
     box_obj = on(Section4APage).warning_box_elements
-  elsif which_box == 'heavy'
+  when 'heavy'
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['heavy']
     box_obj = on(Section4APage).heavy_weather_note_elements
   end

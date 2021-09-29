@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 4b eic detail
 class Section4bEicDetailApi < BaseSectionApi
-
   def request(permit_id, eic_id, pin)
     payload = create_payload(permit_id, eic_id)
     response = RestClient.post(retrieve_api_url,

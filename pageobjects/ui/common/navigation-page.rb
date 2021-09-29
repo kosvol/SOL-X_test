@@ -10,7 +10,8 @@ class NavigationPage < CommonFormsPage
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
   buttons(:save_and_next_btn, css: 'button.next')
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
-  @@menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active', 'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval', 'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
+  @@menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active',
+                            'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval', 'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
   @@which_category = "//a[contains(text(),'%s')]"
 
   def click_hamburger_menu
@@ -31,7 +32,7 @@ class NavigationPage < CommonFormsPage
     sleep 1
     begin
       click_nav_category(category, which_category)
-    rescue
+    rescue StandardError
       click_show_more(which_category) if category != 'Settings'
       click_nav_category(category, which_category)
     end
@@ -61,15 +62,13 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_back_home
-    begin
-      sleep 2
-      BrowserActions.poll_exists_and_click(back_to_home_btn_element)
-    rescue StandardError
-      sleep 1
-      BrowserActions.js_click("//button[contains(.,'Back to')]")
-    rescue StandardError
-      BrowserActions.js_click("//button[contains(.,'Home')]")
-    end
+    sleep 2
+    BrowserActions.poll_exists_and_click(back_to_home_btn_element)
+  rescue StandardError
+    sleep 1
+    BrowserActions.js_click("//button[contains(.,'Back to')]")
+  rescue StandardError
+    BrowserActions.js_click("//button[contains(.,'Home')]")
   end
 
   def get_total_steps_to_section6(which_section)
@@ -106,14 +105,14 @@ class NavigationPage < CommonFormsPage
   def click_nav_category(category, which_category)
     case which_category
     when 'forms'
-      @browser.find_element(:xpath, @@which_category % [category]).click
+      @browser.find_element(:xpath, format(@@which_category, category)).click
     when 'PRE', 'CRE'
-      category_objs = @browser.find_elements(:xpath, @@which_category % [category])
+      category_objs = @browser.find_elements(:xpath, format(@@which_category, category))
       category_objs.size == 2 ? category_objs.last.click : category_objs.first.click
     when 'setting'
       BrowserActions.js_click("//a[contains(text(),'Settings')]")
     else
-      @browser.find_element(:xpath, @@which_category % [category]).click
+      @browser.find_element(:xpath, format(@@which_category, category)).click
     end
   end
 end

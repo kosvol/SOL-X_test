@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 9
 class Section9Api < BaseSectionApi
-
   def request(permit_id, pin)
     payload = create_payload(permit_id)
     response = RestClient.post(retrieve_api_url,
@@ -26,5 +25,4 @@ class Section9Api < BaseSectionApi
       @user_service.create_default_signature('MAS', retrieve_vessel_name)
     payload
   end
-
 end

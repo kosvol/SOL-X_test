@@ -15,10 +15,8 @@ class CreatedPermitToWorkPage < Section9Page
 
   def is_created_permit_deleted?
     sleep 1
-    parent_container_elements.each_with_index do |_permit, _index|
-      if ptw_id_elements[_index].text === CommonPage.get_permit_id
-        return false
-      end
+    parent_container_elements.each_with_index do |_permit, index|
+      return false if ptw_id_elements[index].text == CommonPage.get_permit_id
     end
     true
   end
@@ -31,9 +29,9 @@ class CreatedPermitToWorkPage < Section9Page
   #   # end
   # end
 
-  def select_created_permit_with_param(_permit_id)
+  def select_created_permit_with_param(permit_id)
     sleep 1
-    edit_permit_btn_elements[get_permit_index(_permit_id)]
+    edit_permit_btn_elements[get_permit_index(permit_id)]
   end
 
   def get_permit_index(permit_id)
@@ -41,6 +39,7 @@ class CreatedPermitToWorkPage < Section9Page
     sleep 1
     parent_container_elements.each_with_index do |_permit, index|
       next unless ptw_id_elements[index].text == permit_id
+
       Log.instance.info "Permit ID: #{ptw_id_elements[index].text} ::: #{permit_id}"
       Log.instance.info "Index: #{index}"
       @tmp_index = index

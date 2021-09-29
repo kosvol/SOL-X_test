@@ -4,7 +4,6 @@
 require 'rest-client'
 # section0 api request
 class Section0API < BaseSectionApi
-
   def request(permit_type, pin)
     payload = create_payload(permit_type)
     response = RestClient.post(retrieve_api_url,

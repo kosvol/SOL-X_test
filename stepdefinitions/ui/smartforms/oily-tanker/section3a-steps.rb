@@ -121,7 +121,7 @@ end
 
 Then(/^I should see hazard deleted$/) do
   sleep 2
-  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(2, 'down')
   is_equal(on(Section3APage).identified_hazard_name_elements[0].text, 'Personal injury')
   is_equal(on(Section3APage).identified_hazard_name_elements[1].text, 'Falling down anchor chain')
   is_equal(on(Section3APage).identified_hazard_name_elements.size, '2')

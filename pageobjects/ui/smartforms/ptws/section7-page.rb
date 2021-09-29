@@ -15,12 +15,15 @@ class Section7Page < Section6Page
   elements(:permit_valid_until,
            xpath: "//div[starts-with(@class,'Section__Description')]/div[starts-with(@class,'ViewGenericAnswer__')]")
   element(:oa_description, xpath: "//p[contains(@class, 'ViewFormSection__Description')]")
-  element(:additional_instruction, xpath: "//div[@class='screen-only']//h4[contains(text(),'Additional Instruction')]/following-sibling::p")
+  element(:additional_instruction,
+          xpath: "//div[@class='screen-only']//h4[contains(text(),'Additional Instruction')]/following-sibling::p")
   element(:issued_from_date, xpath: "//h4[contains(text(),'Issued From')]/following-sibling::p")
   element(:issued_to_date, xpath: "//h4[contains(text(),'To')]/following-sibling::p")
   element(:valid_until_date_7b, xpath: "//h4[contains(text(),'valid until')]/following-sibling::p")
-  element(:approver_name, xpath: '//div[@class="screen-only"]//h4[contains(text(),"Authority\'s Name:")]/following-sibling::p')
-  element(:approver_designation, xpath: "//div[@class='screen-only']//h4[contains(text(),'Designation')]/following-sibling::p")
+  element(:approver_name,
+          xpath: '//div[@class="screen-only"]//h4[contains(text(),"Authority\'s Name:")]/following-sibling::p')
+  element(:approver_designation,
+          xpath: "//div[@class='screen-only']//h4[contains(text(),'Designation')]/following-sibling::p")
 
   def get_validity_until(_offset_hours)
     tmp = (Time.parse(@@issue_time_date) + ((60 * 60) * _offset_hours))

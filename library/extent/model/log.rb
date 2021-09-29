@@ -1,5 +1,7 @@
-require "rubygems"
-require "liquid"
+# frozen_string_literal: true
+
+require 'rubygems'
+require 'liquid'
 
 module RelevantCodes
   module Model
@@ -14,30 +16,30 @@ module RelevantCodes
 
       def get_status
         # p "Get status in log >>> #{@status.to_s}"
-        return @status.to_s
+        @status.to_s
       end
 
       def get_icon
-        case self.get_status
-        when "pass"
-          ret_val = "mdi-action-check-circle"
-        when "fail"
-          ret_val = "mdi-navigation-cancel"
-        when "fatal"
-          ret_val = "mdi-navigation-cancel"
-        when "error"
-          ret_val = "mdi-alert-error"
-        when "warning"
-          ret_val = "mdi-alert-warning"
-        when "skip"
-          ret_val = "mdi-content-redo"
-        when "info"
-          ret_val = "mdi-action-info-outline"
-        when "undefined"
-          ret_val = "mdi-action-info-outline"
-        else
-          ret_val = "mdi-action-help"
-        end
+        ret_val = case get_status
+                  when 'pass'
+                    'mdi-action-check-circle'
+                  when 'fail'
+                    'mdi-navigation-cancel'
+                  when 'fatal'
+                    'mdi-navigation-cancel'
+                  when 'error'
+                    'mdi-alert-error'
+                  when 'warning'
+                    'mdi-alert-warning'
+                  when 'skip'
+                    'mdi-content-redo'
+                  when 'info'
+                    'mdi-action-info-outline'
+                  when 'undefined'
+                    'mdi-action-info-outline'
+                  else
+                    'mdi-action-help'
+                  end
       end
     end
   end

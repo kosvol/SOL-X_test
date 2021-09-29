@@ -30,9 +30,7 @@ module RelevantCodes
       }
     end
 
-    attr_reader :tests
-
-    attr_reader :get_start_time
+    attr_reader :tests, :get_start_time
 
     def get_end_time
       Time.new.strftime(DATE_TIME_FORMAT)

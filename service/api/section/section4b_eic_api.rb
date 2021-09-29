@@ -23,5 +23,4 @@ class Section4bEicApi
     payload['variables']['submissionTimestamp'] = TimeService.new.retrieve_current_date_time
     payload
   end
-
 end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Then(/^I should see (.*) button (disabled|enabled)$/) do |which_button, condition|
   sleep 1
-  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
   if condition == 'disabled'
     case which_button
     when 'Add Gas'
@@ -41,7 +43,7 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |which_button, conditio
     when 'sign'
       is_enabled(on(Section5Page).sign_btn_role_elements.first)
     when 'submit'
-      on(Section3APage).scroll_multiple_times_with_direction(3,'down')
+      on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
       sleep 1
       is_equal(on(CommonFormsPage).submit_for_master_approval_btn_elements.size, 1)
       is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)

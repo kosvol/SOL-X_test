@@ -1,9 +1,9 @@
 # frozen_string_literal: true
+
 require_relative '../../form/permit_map'
 require 'rest-client'
 # service to request section4A
 class Section4AAPI < BaseSectionApi
-
   def request(form_id, permit_type, pin)
     payload = create_payload(form_id, permit_type)
     response = RestClient.post(retrieve_api_url,
@@ -28,5 +28,4 @@ class Section4AAPI < BaseSectionApi
       answers['value'] = 'yes' if answers['fieldId'] == checklist_key # find the field and update value
     end
   end
-
 end

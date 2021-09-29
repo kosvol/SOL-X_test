@@ -28,9 +28,10 @@ end
 
 And(/^I (should|should not) see (.+) role$/) do |condition, role|
   sleep 1
-  if condition == 'should'
+  case condition
+  when 'should'
     is_true(on(Section5Page).is_role?(role))
-  elsif condition == 'should not'
+  when 'should not'
     is_false(on(Section5Page).is_role?(role))
   end
 end
@@ -90,7 +91,7 @@ Then(/^I should see non crew details$/) do
   sleep 1
   is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
   if on(Section5Page)
-       .get_non_crew_date_time_element.text == "#{on(Section5Page)
+     .get_non_crew_date_time_element.text == "#{on(Section5Page)
                                                     .get_current_date_format_with_offset} #{on(Section5Page)
                                                                                               .get_current_time_format}"
     is_equal(on(Section5Page).get_non_crew_date_time_element.text,

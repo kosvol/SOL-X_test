@@ -7,7 +7,6 @@ require_all 'service/api'
 
 # builder to create sections
 class PermitBuilder
-
   def initialize(permit_type)
     @permit_type = permit_type
     @permit = Permit.new

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then(/^I should see new PRE permit number$/) do
   p "base: #{on(CommonFormsPage).generic_data_elements[2].text}"
   p "exact: #{CommonPage.get_permit_id}"
@@ -84,16 +86,17 @@ end
 
 Then(/^I should see (green|red) background color$/) do |condition|
   background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
-  if condition == 'green'
+  case condition
+  when 'green'
     green = 'rgba(67, 160, 71, 1)'
     is_equal(background_color, green)
-  elsif condition == 'red'
+  when 'red'
     red = 'rgba(216, 75, 75, 1)'
     is_equal(background_color, red)
   end
 end
 
-And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |status, type|
+And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |status, _type|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element) if status == 'Permit Activated'
@@ -137,15 +140,15 @@ Then(/^I check location in gas readings signature is present$/) do
   sleep 2
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).show_signature_display_element)
   on(PumpRoomEntry).get_element_by_value('C/O COT C/O', 0)
-  is_not_equal($browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text, '')
+  is_not_equal(@browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text, '')
 end
 
-Then(/^I should see (Home|Entry Log|Permit) tab$/) do |_condition|
+Then(/^I should see (Home|Entry Log|Permit) tab$/) do |condition|
   sleep 1
-  if _condition == 'Entry Log'
+  if condition == 'Entry Log'
     is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
 
-    if $browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
+    if @browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
       puts('Entry log is not exist')
     else
       raise('Entry log is exist')

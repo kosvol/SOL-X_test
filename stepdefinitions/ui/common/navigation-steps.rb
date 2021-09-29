@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 And(/^I should see entire hamburger categories$/) do
   on(NavigationPage).menu_categories_elements.each_with_index do |element, index|
     is_equal((on(NavigationPage).get_menu_categories)[index], element.text)
@@ -76,8 +78,8 @@ end
 
 And('I take note of issued date and time') do
   @@issued_date_and_time = on(CreatedPermitToWorkPage)
-                             .issued_date_time_elements[on(CreatedPermitToWorkPage)
-                                                          .get_permit_index(CommonPage.get_permit_id)].text
+                           .issued_date_time_elements[on(CreatedPermitToWorkPage)
+                           .get_permit_index(CommonPage.get_permit_id)].text
 end
 
 And('I click New Entrant button on Enclose Space Entry PWT') do
@@ -108,7 +110,7 @@ And(/^I go to (CRE|PRE|ESE) log in dashboard$/) do |condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  if condition == 'PRE' || condition == 'CRE'
+  if %w[PRE CRE].include?(condition)
     BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   end
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if condition == 'ESE'

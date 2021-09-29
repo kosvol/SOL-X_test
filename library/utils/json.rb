@@ -5,7 +5,7 @@ module JsonUtil
     def get_json_keys(json_response, keystore_arr)
       json_response.map do |key, value|
         keystore_arr << key.to_s
-        Hash === value ? get_json_keys(value, keystore_arr) : key
+        value.is_a?(Hash) ? get_json_keys(value, keystore_arr) : key
         begin
           value.each do |item|
             get_json_keys(item.to_hash, keystore_arr)
@@ -41,7 +41,7 @@ module JsonUtil
       if response_status_code === 200
         FileUtils.mkdir_p(File.expand_path("#{filename.split('/').first}/", 'payload/response'))
         file = File.open(File.expand_path("#{@@response_payload_fpath}#{filename}.json", __FILE__), 'w')
-        file.puts response_body.to_s.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_')
+        file.puts response_body.to_s.encode('utf-8', invalid: :replace, undef: :replace, replace: '_')
         file.close
       end
     end

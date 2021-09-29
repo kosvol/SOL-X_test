@@ -9,7 +9,7 @@ Then(/^I should see navigation dropdown$/) do
 end
 
 Then(/^I should see permit details are pre-filled$/) do
-  Log.instance.info "#{on(Section1Page).get_section1_filled_data}"
+  Log.instance.info on(Section1Page).get_section1_filled_data.to_s
   is_equal(on(Section1Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
   is_equal(on(Section1Page).generic_data_elements[0].text, EnvironmentSelector.get_vessel_name)
 end
@@ -20,14 +20,15 @@ Then(/^I should see a list of (sea states|wind forces)$/) do |state, table|
 end
 
 Then(/^I should not see previous button exists$/) do
-  on(Section3APage).scroll_multiple_times_with_direction(10,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(10, 'down')
   is_equal(on(Section1Page).btn_list_elements[0].text, 'Save & Next')
 end
 
 Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
-  if condition == 'should'
+  case condition
+  when 'should'
     is_true(on(Section1Page).is_maint_duration_dd_exists?)
-  elsif condition == 'should not'
+  when 'should not'
     is_true(!on(Section1Page).is_maint_duration_dd_exists?)
   end
 end

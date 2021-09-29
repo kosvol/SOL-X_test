@@ -23,12 +23,12 @@ end
 
 And(/^I click on permit for (.+)$/) do |_status|
   on(PendingStatePage).pending_approval_status_btn_elements[on(CreatedPermitToWorkPage)
-                                                              .get_permit_index(CommonPage.get_permit_id)].click
+                                                            .get_permit_index(CommonPage.get_permit_id)].click
   sleep 1
 end
 
 Then(/^I (should|should not) see approve and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times_with_direction(4,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(4, 'down')
   case condition
   when 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 4)
@@ -45,7 +45,7 @@ Then(/^I (should|should not) see approve and request update buttons$/) do |condi
 end
 
 Then(/^I (should|should not) see submit for office approval and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
   case condition
   when 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 7) # previous 5

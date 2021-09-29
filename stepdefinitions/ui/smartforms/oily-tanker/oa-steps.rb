@@ -17,7 +17,7 @@ And(/^I request the permit for update via oa link manually$/) do
   sleep 1
   BrowserActions.enter_text(on(OAPage).update_comments_element, 'Test Automation Update')
   sleep 2
-  #x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
+  # x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
   # @browser.execute_script(x)
   @browser.find_element(:xpath, "//span[contains(text(),'Request Updates')]").click
   sleep 3
@@ -41,8 +41,7 @@ And(/^I approve oa permit via oa link manually$/) do
   on(OAPage).set_from_to_details
   on(OAPage).set_designation
   sleep 2
-  #BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
-  BrowserActions.click_xpath_native("//button[contains(.,'Approve This Permit to Work')]")
+  BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
   sleep 2
   $browser.get(EnvironmentSelector.get_environment_url)
   sleep 1
@@ -436,7 +435,7 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
     approve_date = @time_now.strftime('%B %d, %Y')
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW #: #{@form_number}")
     base_description = format(YAML.load_file('data/office-approval/page-descriptions.yml')['is_already_approved'],
-                             approve_date)
+                              approve_date)
     is_equal(on(OAPage).main_description_element.text, base_description)
   when 'rejection'
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@form_number}")
@@ -466,7 +465,7 @@ And(/^I select Issued (From|To) time as (.+):(.+)$/) do |what_time, hours, minut
   on(OAPage).hour_from_picker_elements[hours.to_i].click
   on(OAPage).minute_from_picker_elements[minutes.to_i].click
   on(OAPage).dismiss_picker_element.click
-  @browser.find_element(:xpath,"//textarea[contains(@placeholder,'Optional')]" ).click
+  @browser.find_element(:xpath, "//textarea[contains(@placeholder,'Optional')]").click
   sleep 1
 end
 
@@ -566,11 +565,11 @@ And(/^I remove (comment|name)$/) do |input|
   case input
   when 'comment'
     on(OAPage).update_comments_element.click
-    on(OAPage).update_comments_element.send_keys("a")
+    on(OAPage).update_comments_element.send_keys('a')
     on(OAPage).update_comments_element.send_keys("\ue017")
   when 'name'
     on(OAPage).name_input_field_element.click
-    on(OAPage).name_input_field_element.send_keys("a")
+    on(OAPage).name_input_field_element.send_keys('a')
     on(OAPage).name_input_field_element.send_keys("\ue017")
   else
     raise "Wrong input >>> #{input}"

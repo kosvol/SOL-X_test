@@ -30,7 +30,7 @@ module ServiceUtil
       error_logging('Response Body: ', @response)
     end
 
-    #def post_graph_ql_to_uri(which_json, user = '1111', vessel)
+    # def post_graph_ql_to_uri(which_json, user = '1111', vessel)
     #  if vessel.include? 'auto'
     #    env = 'auto'
     #  elsif vessel.include? 'sit'
@@ -44,7 +44,7 @@ module ServiceUtil
     #  error_logging('Response Body: ', @response)
     #  error_logging('Status Code: ', get_http_response_status_code)
     #  JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
-    #end
+    # end
 
     # def switch_vessel_type(_vesselType, _user = '1111')
     #   uri = EnvironmentSelector.get_vessel_switch_url
@@ -133,7 +133,7 @@ module ServiceUtil
       { headers: {
         'Content-Type' => 'application/json',
         'Accept' => '/',
-        'x-auth-pin' => authorization_pin,
+        'x-auth-pin' => authorization_pin
       } }
     end
 

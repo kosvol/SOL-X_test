@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require '././support/env'
 
 class PumpRoomEntry < PreDisplay
@@ -9,14 +11,16 @@ class PumpRoomEntry < PreDisplay
   element(:create_new_pre_btn, xpath: "//span[contains(.,'Pump Room')]")
   element(:create_new_cre_btn, xpath: "//span[contains(.,'Compressor/Motor')]")
   button(:permit_validation_btn, xpath: "//button[@id='permitValidDuration']")
-  button(:current_day_button_btn, xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
+  button(:current_day_button_btn,
+         xpath: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]")
   button(:four_hours_duration, xpath: "//button[contains(.,'4 hours')]")
   button(:six_hours_duration, xpath: "//button[contains(.,'6 hours')]")
   button(:eight_hours_duration, xpath: "//button[contains(.,'8 hours')]")
   elements(:cre_scrap, xpath: "//div/*/*[local-name()='span' or local-name()='label']")
 
   # elements(:form_structure, xpath: "//div/*[local-name()='span' or local-name()='label' or local-name()='p' and not(contains(text(),'PRE/TEMP/'))]")
-  elements(:form_structure, xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
+  elements(:form_structure,
+           xpath: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span")
   text_field(:reporting_interval, xpath: "//input[@id='pre_section2_reportingIntervalPeriod']")
   element(:pre_creator_form, xpath: "//div[contains(@class,'Cell__Description')][1]")
   elements(:person_checkbox, xpath: "//span[@class='checkbox']")
@@ -76,18 +80,18 @@ class PumpRoomEntry < PreDisplay
   end
 
   def get_entry_log_validity_start_details
-    "#{@@pre_permit_start_time[12, 5]}"
+    (@@pre_permit_start_time[12, 5]).to_s
   end
 
   def get_entry_log_validity_end_details
-    "#{@@pre_permit_end_time[12, 5]}"
+    (@@pre_permit_end_time[12, 5]).to_s
   end
 
   def set_entrants(entrants)
     @@entrants_arr = entrants
   end
 
-  def get_entrants()
+  def get_entrants
     @@entrants_arr
   end
 
@@ -158,10 +162,9 @@ class PumpRoomEntry < PreDisplay
   end
 
   def add_all_gas_readings_pre(o2, hc, h2s, co, gas_name, threhold, reading, unit)
+    normal_gas_readings(o2, hc, h2s, co)
     if (gas_name == '') || (threhold == '') || (reading == '') || (unit == '')
-      normal_gas_readings(o2, hc, h2s, co)
     else
-      normal_gas_readings(o2, hc, h2s, co)
       sleep 2
       toxic_gas_readings(gas_name, threhold, reading, unit)
     end
@@ -182,8 +185,10 @@ class PumpRoomEntry < PreDisplay
     hh, mm = add_minutes(delay)
 
     picker = "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']"
-    picker_hh = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]", hh)
-    picker_mm = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]", mm)
+    picker_hh = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
+                       hh)
+    picker_mm = format("//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
+                       mm)
 
     sleep 1
     @browser.find_element(:xpath, picker).click
@@ -236,7 +241,7 @@ class PumpRoomEntry < PreDisplay
   end
 
   def compare_scheduled_date
-    #//*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
+    # //*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
     xpath_str = format("//*[contains(.,'Scheduled for')]/parent::*//span[1]", @@pre_number)
     text = @browser.find_element(:xpath, xpath_str).text
     text.include? @@selected_date.to_s
@@ -342,7 +347,8 @@ class PumpRoomEntry < PreDisplay
     p "request >> #{request}"
 
     full_form = (JSON.parse request.to_s)
-    full_form['answers']['permitValidUntil']['value']['dateTime'] = Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
+    full_form['answers']['permitValidUntil']['value']['dateTime'] =
+      Time.at(time_to_finish).utc.strftime('%Y-%m-%dT%H:%M:%S.001Z')
 
     request = HTTParty.put(url, {
                              headers: { 'Content-Type': 'application/json' },
@@ -360,12 +366,10 @@ class PumpRoomEntry < PreDisplay
   private
 
   def is_element_displayed(_xpath, _value = nil)
-    begin
-      value = format(_xpath, _value)
-      @browser.find_element('xpath', value).displayed?
-    rescue
-      false
-    end
+    value = format(_xpath, _value)
+    @browser.find_element('xpath', value).displayed?
+  rescue StandardError
+    false
   end
 
   def get_current_time
@@ -384,6 +388,6 @@ class PumpRoomEntry < PreDisplay
       mm -= 60
       hh += 1
     end
-    return format('%02d', hh), format('%02d', mm)
+    [format('%02d', hh), format('%02d', mm)]
   end
 end

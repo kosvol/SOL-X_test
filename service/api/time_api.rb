@@ -14,5 +14,4 @@ class TimeApi
                                { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
     JSON.parse response.body
   end
-
 end

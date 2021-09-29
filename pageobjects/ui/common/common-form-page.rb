@@ -121,5 +121,4 @@ class CommonFormsPage < CommonPage
       " LT (GMT#{@@time_offset})"
     end
   end
-
 end

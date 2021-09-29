@@ -84,21 +84,18 @@ class OAPage < Section9Page
     ### set to time
     dismiss_picker_element.click
     sleep 1
-    #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     sleep 1
     date_time_to_elements[1].click
     select_to_hour_minutes(1, 0)
     dismiss_picker_element.click
     sleep 1
-    #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-    BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
+    BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
     date_time_to_elements.first.click
     sleep 1
     set_designation
     sleep 2
-    #BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
-    BrowserActions.click_xpath_native("//button[contains(.,'Approve This Permit to Work')]")
+    BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
     sleep 2
     $browser.get(EnvironmentSelector.get_environment_url)
     sleep 1
@@ -124,8 +121,7 @@ class OAPage < Section9Page
       minute_from_picker_elements[1].click
       dismiss_picker_element.click
       sleep 1
-      #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{starttime}"
     else
       hour_from_picker_elements[starttime - 24].click
@@ -134,8 +130,7 @@ class OAPage < Section9Page
       sleep 1
       dismiss_picker_element.click
       sleep 1
-      #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{starttime - 24}"
       date_time_to_elements.first.click
       sleep 1
@@ -155,8 +150,7 @@ class OAPage < Section9Page
       sleep 1
       dismiss_picker_element.click
       sleep 1
-      #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
+      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime}"
     else
       hour_from_picker_elements[endtime - 24].click
@@ -165,7 +159,6 @@ class OAPage < Section9Page
       sleep 1
       dismiss_picker_element.click
       sleep 1
-      #BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
       BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime - 24}"
       date_time_to_elements.first.click
@@ -204,11 +197,11 @@ class OAPage < Section9Page
 
   def set_designation
     # designation
-    #BrowserActions.js_click("//button[@name='designation']")
+    # BrowserActions.js_click("//button[@name='designation']")
     BrowserActions.click_xpath_native("//button[@name='designation']")
     sleep 2
     BrowserActions.scroll_down
-    #BrowserActions.js_click("//button[contains(.,'VS')]")
+    # BrowserActions.js_click("//button[contains(.,'VS')]")
     BrowserActions.click_xpath_native("//button[contains(.,'VS')]")
   end
 

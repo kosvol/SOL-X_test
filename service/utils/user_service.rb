@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'base64'
 require_relative '../api/users_api'
 require_relative '../utils/time_service'

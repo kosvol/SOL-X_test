@@ -1,4 +1,6 @@
-Then (/^I should see CRE form questions$/) do
+# frozen_string_literal: true
+
+Then(/^I should see CRE form questions$/) do
   titles_and_questions_arr = []
   titles_of_sections = []
   answears_for_section = []
@@ -18,13 +20,13 @@ Then (/^I should see CRE form questions$/) do
   end
   base_titles_and_questions =
     [] + YAML
-           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_and_questions']
+    .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_and_questions']
   base_titles_of_sections =
     [] + YAML
-           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_of_sections']
+    .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_of_sections']
   base_answears_first_section =
     [] + YAML
-           .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['answears_first_section']
+    .load_file('data/cre/cre-forms.yml')['cre_structure_creation']['answears_first_section']
   base_entry_titles = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['entry_titles']
   base_gas_section = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['gas_section']
   base_permit_validity =
@@ -37,7 +39,7 @@ Then (/^I should see CRE form questions$/) do
   is_true((answears_for_section_second & base_permit_validity).any? { |x| base_permit_validity.include?(x) })
 end
 
-Then (/^I (should|should not) see CRE landing screen$/) do |condition|
+Then(/^I (should|should not) see CRE landing screen$/) do |condition|
   is_true(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should'
   is_false(on(PumpRoomEntry).heading_text == 'Compressor/Motor Room Entry') if condition == 'should not'
 end

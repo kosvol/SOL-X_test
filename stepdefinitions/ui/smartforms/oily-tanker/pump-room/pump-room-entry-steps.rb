@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 And(/^I navigate to create new (PRE|CRE)$/) do |permit_type|
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_pre_btn_element) if permit_type == 'PRE'
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_cre_btn_element) if permit_type == 'CRE'
@@ -47,9 +49,10 @@ end
 And(/^I (should|should not) see Reporting interval$/) do |condition|
   sleep 1
   BrowserActions.scroll_down
-  if condition == 'should not'
+  case condition
+  when 'should not'
     not_to_exists(on(PumpRoomEntry).reporting_interval_element)
-  elsif condition == 'should'
+  when 'should'
     to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
@@ -95,13 +98,13 @@ Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to
   end
   on(Section3APage).scroll_multiple_times_with_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration)
-  on(Section3APage).scroll_multiple_times_with_direction(1,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
-Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |condition, permit_type, duration, delay, days, direction, point|
+Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |condition, _permit_type, duration, delay, days, direction, point|
   on(PumpRoomEntry).fill_up_pre(duration) if condition == 'fill up'
-  on(Section3APage).scroll_multiple_times_with_direction(1,'down') if condition == 'fill up'
+  on(Section3APage).scroll_multiple_times_with_direction(1, 'down') if condition == 'fill up'
   on(PumpRoomEntry).select_day(direction, days, point)
   on(PumpRoomEntry).select_start_time_to_activate(delay) if condition == 'fill up'
 end
@@ -127,7 +130,7 @@ And(/^I activate the current (PRE|CRE) form$/) do |permit_type|
   step 'I press the "Back to Home" button'
 end
 
-And(/^I activate (PRE|CRE) form via service$/) do |permit_type|
+And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
   sleep 1
   on(BypassPage).activate_pre_cre
   sleep 5
@@ -201,7 +204,6 @@ And(/^I should see that form is open for read by rank (.*)$/) do |rank|
   step format('I enter pin via service for rank %s', rank)
   step 'Button "Submit for Approval" should be disabled'
   step 'Button "Add Gas Test Record" should be disabled'
-
 end
 
 And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
@@ -223,7 +225,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   # table is a table.hashes.keys # => [:Chief Officer, :8383]
   roles.raw.each do |role|
     step format('I open the current PRE with status Pending approval. Rank: %s', role[0].to_s)
-    on(CommonFormsPage).scroll_multiple_times_with_direction(20,'down')
+    on(CommonFormsPage).scroll_multiple_times_with_direction(20, 'down')
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
     is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
@@ -308,7 +310,6 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
   is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, "C/O #{EnvironmentSelector.get_vessel_type} C/O")
-
 end
 
 Then('I should see timer countdown') do
@@ -351,10 +352,11 @@ end
 Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashboard)$/) do |type, condition|
   case condition
   when 'table'
-    if type == 'last'
+    case type
+    when 'last'
       is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
       is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
-    elsif type == 'previous'
+    when 'previous'
       is_not_equal(@browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[9].text, 'Test')
       is_not_equal(@browser
