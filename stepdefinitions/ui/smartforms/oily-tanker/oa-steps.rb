@@ -19,7 +19,7 @@ And(/^I request the permit for update via oa link manually$/) do
   sleep 2
   #x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
   # @browser.execute_script(x)
-  @browser.find_element(:xpath,"//span[contains(text(),'Request Updates')]").click
+  @browser.find_element(:xpath, "//span[contains(text(),'Request Updates')]").click
   sleep 3
   @browser.get(EnvironmentSelector.get_environment_url)
   sleep 2
@@ -42,9 +42,9 @@ And(/^I approve oa permit via oa link manually$/) do
   on(OAPage).set_designation
   sleep 2
   #BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
-  @browser.find_element(:xpath,"//button[contains(.,'Approve This Permit to Work')]")
+  BrowserActions.click_xpath_native("//button[contains(.,'Approve This Permit to Work')]")
   sleep 2
-  @browser.get(EnvironmentSelector.get_environment_url)
+  $browser.get(EnvironmentSelector.get_environment_url)
   sleep 1
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
@@ -128,7 +128,7 @@ And(/^I key a (comment|long comment|name)$/) do |what_input|
   when 'name'
     on(OAPage).name_box_element.send_keys('Test Automation 2')
   else
-    raise "Wrong input type>>>#{what_input}"
+    raise "Wrong input type >>> #{what_input}"
   end
 end
 
@@ -139,7 +139,7 @@ And(/^I add a (short|long) comment$/) do |length|
   when 'long'
     step 'I key a long comment'
   else
-    raise "Wrong lenght>>> #{length}"
+    raise "Wrong lenght >>> #{length}"
   end
   step 'I key a name'
   step 'I click on Send button'
@@ -157,6 +157,8 @@ Then(/^I should see the See (More|Less) button for a long comment$/) do |conditi
     is_true(on(OAPage).see_more_less_btn_element.text == 'See More')
   when 'Less'
     is_true(on(OAPage).see_more_less_btn_element.text == ' See Less')
+  else
+    raise "Wrong condition >>> #{condition}"
   end
 end
 
@@ -182,6 +184,8 @@ Then(/^I should see comment attributes (before|after) termination$/) do |see_whe
     is_true(on(OAPage).comment_name_after_term_elements.first.text == 'Test Automation 2')
     does_include(on(OAPage).comment_date_after_term_elements.first.text, @when)
     is_true(on(OAPage).comment_text_after_term_elements.first.text == 'Test Automation 2')
+  else
+    raise "Wrong condition >>> #{see_when}"
   end
 end
 
@@ -200,6 +204,8 @@ And(/^I click on (See More|See Less) button$/) do |see_what|
     on(OAPage).see_more_less_btn
   when 'See Less'
     on(OAPage).see_more_less_btn
+  else
+    raise "Wrong condition >>> #{see_what}"
   end
 end
 
@@ -210,6 +216,8 @@ Then(/^I should see the full comment text (before|after) termination$/) do |see_
   when 'after'
     step 'I scroll down to This Permit Approved On element'
     comment_text = on(OAPage).comment_text_after_term_elements.first.text
+  else
+    raise "Wrong condition >>> #{see_when}"
   end
   base_text = YAML.load_file('data/office-approval/comments.yml')['long']
   is_equal(comment_text, base_text)
@@ -226,6 +234,8 @@ And(/^I should see the correct notification at the bottom after (approval|activa
     is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to approved permits")
   when 'activation'
     is_equal(on(OAPage).comment_bottom_notification, "You can't add comments to activated permits")
+  else
+    raise "Wrong state >>> #{which_state}"
   end
   sleep(1)
 end
@@ -277,22 +287,22 @@ Then(%r{^I should not see the Add/Show Comments button$}) do
 end
 
 Then(/^I scroll down to This Permit Approved On element$/) do
-  el = $browser.find_element(:xpath, "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
-  $browser.action.move_to(el).perform
+  el = @browser.find_element(:xpath, "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
+  @browser.action.move_to(el).perform
   sleep(3)
 end
 
 ################################################################################################################
 ######## Konstantine please refactor this step; Method implementation should never be in step definition #######
 ################################################################################################################
-When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, server|
+When(/^I wait for form status get changed to (.+) on (.+)/) do |what_status, server|
   form_id = CommonPage.get_permit_id
   status = nil
   docs = []
   i = 80
-  while i.positive? && status != whatStatus.to_s
+  while i.positive? && status != what_status.to_s
     request = if server == 'Cloud'
-                ServiceUtil.fauxton($obj_env_yml['office_approval']['get_form_status'], 'post',
+                ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',
                                     { selector: { _id: form_id } }.to_json.to_s)
               else
                 ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
@@ -300,7 +310,7 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, serv
               end
     # p "request >> #{request}"
     docs = (JSON.parse request.to_s)['docs']
-    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] == whatStatus)
+    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] == what_status)
       status = (JSON.parse request.to_s)['docs'][0]['status']
       break
     end
@@ -308,7 +318,7 @@ When(/^I wait for form status get changed to (.+) on (.+)/) do |whatStatus, serv
     sleep(20)
   end
   Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
-  is_true(status == whatStatus.to_s)
+  is_true(status == what_status.to_s)
   sleep 2
 end
 
@@ -356,6 +366,8 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |conditi
     not_to_exists(on(OAPage).update_permit_btn_element)
     not_to_exists(on(OAPage).add_comments_btn_element)
     to_exists(on(OfficePortalPage).print_permit_btn_element)
+  else
+    raise "Wrong condition >>> #{condition}"
   end
   is_true(sections_list == sections_data)
   not_to_exists(on(OfficePortalPage).home_btn_element)
@@ -440,17 +452,21 @@ And(/^I select Issued (From|To) time as (.+):(.+)$/) do |what_time, hours, minut
     on(OAPage).date_time_from_elements[1].click
   when 'To'
     on(OAPage).date_time_to_elements[1].click
+  else
+    raise "Wrong time condition >>> #{what_time}"
   end
   case hours
   when 'current_hour'
     hours = Time.now.utc.strftime('%k')
   when 'plus_two_hours'
     hours = Time.now.utc.strftime('%k').to_i + 2
+  else
+    raise "Wrong hours value >>> #{hours}"
   end
   on(OAPage).hour_from_picker_elements[hours.to_i].click
   on(OAPage).minute_from_picker_elements[minutes.to_i].click
   on(OAPage).dismiss_picker_element.click
-  BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+  @browser.find_element(:xpath,"//textarea[contains(@placeholder,'Optional')]" ).click
   sleep 1
 end
 
@@ -462,6 +478,8 @@ Then(/^I should see the correct warning message for (less|more)$/) do |validity|
   when 'more'
     is_equal(on(OAPage).warning_infobox_element.text,
              "Validity Time too long\nCheck validity time too long, permit duration can't be more than 8 hrs.")
+  else
+    raise "Wrong condition >>> #{validity}"
   end
 end
 
@@ -488,7 +506,7 @@ And(/^I navigate to OA link as Master$/) do
   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post',
                                 { selector: { formId: form_id } }.to_json.to_s)
   event_id = (JSON.parse request.to_s)['docs'][0]['_id']
-  $browser.get("https://office.dev.safevue.ai/permit-preview/#{event_id}")
+  @browser.get("https://office.dev.safevue.ai/permit-preview/#{event_id}")
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
 
@@ -538,6 +556,8 @@ And(/^I enter (comment|name)$/) do |input|
     on(OAPage).update_comments_element.send_keys('Test Automation')
   when 'name'
     on(OAPage).name_input_field_element.send_keys('Test Automation 2')
+  else
+    raise "Wrong input >>> #{input}"
   end
   sleep(1)
 end
@@ -552,19 +572,21 @@ And(/^I remove (comment|name)$/) do |input|
     on(OAPage).name_input_field_element.click
     on(OAPage).name_input_field_element.send_keys("a")
     on(OAPage).name_input_field_element.send_keys("\ue017")
+  else
+    raise "Wrong input >>> #{input}"
   end
 end
 
 And(/^I open a new tab and switch to it$/) do
-  $browser.manage.new_window(:tab)
+  @browser.manage.new_window(:tab)
   sleep(1)
-  $browser.switch_to.window($browser.window_handles[1])
+  @browser.switch_to.window(@browser.window_handles[1])
   sleep(1)
 end
 
 And(/^I close the tab and navigate back$/) do
-  $browser.close
-  $browser.switch_to.window($browser.window_handles[0])
+  @browser.close
+  @browser.switch_to.window(@browser.window_handles[0])
   sleep(1)
 end
 
@@ -576,14 +598,16 @@ And(/^I should see the (comment|name|designation) entered$/) do |input|
     is_equal(on(OAPage).name_input_field_element.attribute('value'), 'Test Automation 2')
   when 'designation'
     is_equal(on(OAPage).designation_dd_btn_element.text, 'VS')
+  else
+    raise "Wrong input >>> #{input}"
   end
   sleep(1)
 end
 
 Then(/^I should see the Section 7 shows the correct data$/) do
-  el = $browser.find_element(:xpath,
+  el = @browser.find_element(:xpath,
                              "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
-  $browser.action.move_to(el).perform
+  @browser.action.move_to(el).perform
   base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
   fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7', 'h4')

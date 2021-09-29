@@ -5,14 +5,17 @@ And(/^I review page 1 of submitted (.+) permit$/) do |permit_type|
   on(PendingStatePage).pending_approval_status_btn_elements[0].click
 
   step 'I enter pin for rank MAS'
-  if permit_type === 'enclose workspace'
+  case permit_type
+  when 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-forms-base-data/enclosed-entry-permit.yml')
-  elsif permit_type === 'hot work'
+  when 'hot work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work.yml')
-  elsif permit_type === 'cold work'
+  when 'cold work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/cold-work.yml')
-  elsif permit_type === 'hot work with hazard'
+  when 'hot work with hazard'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work-hazardous.yml')
+  else
+    raise "Wrong permit type >>> #{permit_type}"
   end
   p ">>> #{on(Section1Page).get_filled_section1}"
   is_equal(on(Section1Page).get_filled_section1, @@form_data['section1_without_duration'])
@@ -63,7 +66,7 @@ And(/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
     does_include(on(Section3BPage).method_detail_elements[7].text, 'Test automation')
     # capture_data.delete_at(6)
   end
-  p "=== #{capture_data}"
+  p "== #{capture_data}"
   is_equal(capture_data, base_data)
   # is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
 end

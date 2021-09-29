@@ -15,7 +15,7 @@ module BrowserActions
     end
 
     def turn_wifi_off_on
-      $browser.toggle_wifi
+      @browser.toggle_wifi
       sleep 10
     end
 
@@ -25,7 +25,7 @@ module BrowserActions
       $wifi_on_off = `adb -s #{device['deviceName']} shell settings get global wifi_on`
       p "Wifi Status: #{$wifi_on_off}"
       if $wifi_on_off.strip == '0'
-        $browser.toggle_wifi
+        @browser.toggle_wifi
         sleep 10
       end
     end
@@ -75,24 +75,24 @@ module BrowserActions
     end
 
     def scroll_down_by_custom_dist(distance)
-      $browser.execute_script("window.scrollBy(0,#{distance})", '')
+      @browser.execute_script("window.scrollBy(0,#{distance})", '')
     end
 
     def scroll_up_by_custom_dist(distance)
-      $browser.execute_script("window.scrollBy(0,#{distance})", '')
+      @browser.execute_script("window.scrollBy(0,#{distance})", '')
     end
 
     def js_click(xpath)
-      $browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+      @browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
     end
 
     def js_clicks(xpath, index)
-      $browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{index}").click()))
+      @browser.execute_script(%(document.evaluate("#{xpath}", document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null).snapshotItem("#{index}").click()))
     end
 
     def open_new_page
       @browser.execute_script('window.open()')
-      @browser.switch_to.window($browser.window_handles.last)
+      @browser.switch_to.window(@browser.window_handles.last)
     end
 
     def switch_browser_tab(condition)
@@ -108,7 +108,7 @@ module BrowserActions
 
     def poll_ui_update_by_attribute(locator, condition, attribute)
       count = 0
-      tmp_ele = $browser.find_element(:xpath, locator).attribute(attribute)
+      tmp_ele = @browser.find_element(:xpath, locator).attribute(attribute)
       until tmp_ele.to_s == condition
         count += 1
         sleep 1
@@ -117,18 +117,22 @@ module BrowserActions
       tmp_ele.to_s
     end
 
+    def click_xpath_native(xpath)
+      @browser.find_element(:xpath, xpath).click
+    end
+
     private
 
     def scroll_to_element(element)
-      $browser.action.move_to(element).perform
+      @browser.action.move_to(element).perform
     end
 
     def scroll_down_by_dist
-      $browser.execute_script('window.scrollBy(0,250)', '')
+      @browser.execute_script('window.scrollBy(0,250)', '')
     end
 
     def scroll_up_by_dist
-      $browser.execute_script('window.scrollBy(0,-350)', '')
+      @browser.execute_script('window.scrollBy(0,-350)', '')
     end
   end
 end

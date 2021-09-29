@@ -1,7 +1,7 @@
 Then(/^I should see (.*) button (disabled|enabled)$/) do |which_button, condition|
   sleep 1
   on(Section3APage).scroll_multiple_times_with_direction(3,'down')
-  if condition === 'disabled'
+  if condition == 'disabled'
     case which_button
     when 'Add Gas'
       is_disabled(on(Section6Page).add_gas_btn_element)

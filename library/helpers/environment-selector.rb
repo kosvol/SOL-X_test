@@ -47,6 +47,10 @@ module EnvironmentSelector
       format($obj_env_yml[get_env_type_prefix.downcase]['service'], $current_environment)
     end
 
+    def oa_form_status
+      $obj_env_yml['office_approval']['get_form_status']
+    end
+
     def get_db_url(which_db, url_map)
       if which_db != 'cloud'
         get_edge_db_data_by_uri("#{$obj_env_yml[which_db.to_s][url_map.to_s]}")
