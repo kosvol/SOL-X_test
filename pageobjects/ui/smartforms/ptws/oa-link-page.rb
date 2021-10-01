@@ -25,7 +25,7 @@ class OAPage < Section9Page
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
 
   element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
-  element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]/section")
+  element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]")
 
   ## Web Confirmation Page
   element(:main_header, xpath: "//h2[contains(@class, 'Heading__H2')]")
