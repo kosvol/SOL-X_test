@@ -112,6 +112,17 @@ subheaders_eic_yes:
     "Responsible Authority:"
   ]
 
+subheaders_eic_yes_fsu:
+  [
+      "Section 8: Task Status",
+      "Energy Isolation Certificate",
+      "EIC Normalization:",
+      "Competent Person (C/O, 2/E):",
+      "Issuing Authorized (Master, C/E):",
+      "Submit For Termination",
+      "Responsible Authority:"
+  ]
+
 fields_exceptions: [""]
 labels_exceptions: [""]
 subheaders_exceptions: [""]

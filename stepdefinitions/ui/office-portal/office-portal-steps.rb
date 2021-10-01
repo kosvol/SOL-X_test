@@ -260,7 +260,7 @@ And(/^I check the checkbox near the first permit in the list$/) do
 end
 
 And(/^I check rank and full name of Entrant without toxic "([^"]*)"$/) do |array|
-  #add full name after fix parent task
+  # add full name after fix parent task
   i = 1
   yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
   array.split(',').each do |item|
@@ -271,7 +271,7 @@ And(/^I check rank and full name of Entrant without toxic "([^"]*)"$/) do |array
 end
 
 And(/^I select filter value with permit type (.+)$/) do |permit_type|
-  #on(OfficePortalPage).input_field_element.send_keys(permit_type)
+  # on(OfficePortalPage).input_field_element.send_keys(permit_type)
   @browser.find_element(:xpath, "//span[contains(text(), #{permit_type})]/parent::button").click
 end
 
@@ -339,14 +339,18 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
       subheaders_arr << subheader.text
     end
   end
-  if @permit_type == 'submit_maintenance_on_anchor'
-    base_fields = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields_maintenance']
-  else
-    base_fields = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields']
-  end
-  base_labels  = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['labels']
-  base_subheaders = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
-  #exceptions
+  base_fields = if @permit_type == 'submit_maintenance_on_anchor'
+                  [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields_maintenance']
+                else
+                  [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields']
+                end
+  base_labels = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['labels']
+  base_subheaders = if @form_number.include? 'FSU'
+                      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_fsu']
+                    else
+                      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
+                    end
+  # exceptions
   fields_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['fields_exceptions']
   labels_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['labels_exceptions']
   subheaders_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_exceptions']
@@ -387,7 +391,7 @@ Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 6.yml')["fields_#{condition}"]
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 6.yml')['subheaders']
-  #exceptions
+  # exceptions
   fields_arr -= YAML.load_file('data/screens-label/Section 6.yml')['fields_exceptions']
   subheaders_arr -= YAML.load_file('data/screens-label/Section 6.yml')['subheaders_exceptions']
   p ">>> difference #{fields_arr - base_fields}"
@@ -406,8 +410,12 @@ Then(/^I should see the (.*) shows the same fields as in the Client app with (.*
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_#{condition}"]
-  base_subheaders = [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}"]
-  #exceptions
+  base_subheaders = if @form_number.include? 'FSU'
+                      [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}_fsu"]
+                    else
+                      [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}"]
+                    end
+  # exceptions
   fields_arr -= YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions']
   subheaders_arr -= YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions']
   p ">>> difference #{fields_arr - base_fields}"
@@ -435,7 +443,7 @@ Then(/^I should see Section 8 shows the same fields as in the Client app with (.
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 8.yml')["fields_#{checklist}"]
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 8.yml')['subheaders_eic_no']
-  #exceptions
+  # exceptions
   fields_arr -= YAML.load_file('data/screens-label/Section 8.yml')['fields_exceptions']
   subheaders_arr -= YAML.load_file('data/screens-label/Section 8.yml')['subheaders_exceptions']
   p ">>> difference #{fields_arr - base_fields}"
@@ -464,5 +472,5 @@ end
 
 And(/^I open the recently terminated form with link$/) do
   $browser.get($obj_env_yml['office_approval']['office_portal_permit_view'] % [@form_number])
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
