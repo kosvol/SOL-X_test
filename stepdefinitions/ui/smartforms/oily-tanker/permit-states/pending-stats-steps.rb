@@ -12,6 +12,8 @@ Then(/^I should see Note from (.*)$/) do |requested_from|
                .action_required_note_elements[on(CreatedPermitToWorkPage)
                                                 .get_permit_index(CommonPage.get_permit_id)]
                .text, 'See Notes from Master')
+  else
+    raise "Wrong request form >>> #{requested_from}"
   end
 end
 
@@ -30,7 +32,7 @@ Then(/^I should not be able to edit (.*) DRA$/) do |permit|
   on(Section3APage).delete_btn_elements.each do |elem|
     is_disabled(elem)
   end
-  is_equal(on(Section3APage).total_p_elements.size, 14) if permit === 'Enclosed Spaces Entry'
+  is_equal(on(Section3APage).total_p_elements.size, 14) if permit == 'Enclosed Spaces Entry'
   if permit == 'Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces'
     is_equal(on(Section3APage)
                .total_p_elements

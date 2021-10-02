@@ -12,8 +12,8 @@ Then(/^I get a hash of crews$/) do
   WearablePage.get_list_of_crews_id_hash
 end
 
-Then(/^I create rq for rank (.+)$/) do |_rank|
-  WearablePage.get_crew_id_from_rank(_rank)
+Then(/^I create rq for rank (.+)$/) do |rank|
+  WearablePage.get_crew_id_from_rank(rank)
 end
 
 And(/^I manipulate wearable requeset payload$/) do

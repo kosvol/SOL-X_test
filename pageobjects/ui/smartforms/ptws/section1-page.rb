@@ -61,22 +61,22 @@ class Section1Page < Section0Page
   def is_maint_duration_dd_exists?
     _element = $browser.find_element(:xpath, @@maint_require_text)
     BrowserActions.scroll_down(_element)
-    _element.text === 'Please answer question `Will the duration of this Maintenance be over 2 hours` before continuing.'
+    _element.text == 'Please answer question `Will the duration of this Maintenance be over 2 hours` before continuing.'
   rescue StandardError
     false
   end
 
   def is_sea_states?(_table)
-    get_dd_list_values(sea_state_btn_element) === serialize_table_input(_table)
+    get_dd_list_values(sea_state_btn_element) == serialize_table_input(_table)
   end
 
   def is_wind_forces?(_table)
-    get_dd_list_values(wind_force_btn_element) === serialize_table_input(_table)
+    get_dd_list_values(wind_force_btn_element) == serialize_table_input(_table)
   end
 
   def set_maintenance_duration(_condition)
     $browser.find_element(:xpath, @@maint_duration_dd).click
-    _condition === 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
+    _condition == 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
   end
 
   def fill_partial_section_1

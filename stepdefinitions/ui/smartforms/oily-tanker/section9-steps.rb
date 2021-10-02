@@ -6,12 +6,10 @@ Then(/^I (should|should not) see terminate permit to work and request update but
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 6)
     is_equal(on(Section7Page).non_oa_buttons_elements[2].text, 'Withdraw Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[3].text, 'Request Updates')
-  when 'should not'
+  else
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 2)
     is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  else
-    raise "Wrong condition >>> #{condition}"
   end
 end
 
@@ -21,12 +19,10 @@ Then(/^I (should|should not) see terminate permit to work and request update but
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     is_equal(on(Section7Page).non_oa_buttons_elements[1].text, 'Withdraw Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[2].text, 'Request Updates')
-  when 'should not'
+  else
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 2)
     is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  else
-    raise "Wrong condition >>> #{condition}"
   end
 end
 

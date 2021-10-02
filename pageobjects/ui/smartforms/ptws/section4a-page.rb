@@ -76,7 +76,7 @@ class Section4APage < Section3DPage
   end
 
   def is_checklist_fields_disabled?
-    !(disabled_fields_elements.size === 0)
+    !(disabled_fields_elements.size == 0)
   end
 
   def is_checklist_details_prepopulated?
@@ -93,14 +93,14 @@ class Section4APage < Section3DPage
 
   def uncheck_all_checklist
     element_yes = get_yes_elements
-    list_of_checklist_elements.each_with_index do |_checklist, _index|
-      next if _index === 0
+    list_of_checklist_elements.each_with_index do |_checklist, index|
+      next if index == 0
 
-      next unless element_yes[_index].css_value('background-color') === 'rgba(24, 144, 255, 1)'
+      next unless element_yes[index].css_value('background-color') == 'rgba(24, 144, 255, 1)'
 
-      BrowserActions.scroll_down(element_yes[_index + 3])
+      BrowserActions.scroll_down(element_yes[index + 3])
       sleep 1
-      get_na_elements[_index].click
+      get_na_elements[index].click
     end
   end
 
@@ -134,13 +134,15 @@ class Section4APage < Section3DPage
   def is_checklist_preselected(checklist)
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist_obj, index|
-      next unless checklist_obj.text === checklist
+      next unless checklist_obj.text == checklist
 
       BrowserActions.scroll_down(element_yes[index])
       if checklist.include? 'Cold Work'
-        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('background-color') === 'rgba(255, 255, 255, 1)')
+        return (element_yes[index].css_value('color') == 'rgba(24, 144, 255, 1)') &&
+          (get_na_elements[index].css_value('background-color') == 'rgba(255, 255, 255, 1)')
       else
-        return (element_yes[index].css_value('color') === 'rgba(24, 144, 255, 1)') && (get_na_elements[index].css_value('color') === 'rgba(255, 255, 255, 1)')
+        return (element_yes[index].css_value('color') == 'rgba(24, 144, 255, 1)') &&
+          (get_na_elements[index].css_value('color') == 'rgba(255, 255, 255, 1)')
       end
     end
   end
@@ -150,7 +152,7 @@ class Section4APage < Section3DPage
     BrowserActions.scroll_up_by_custom_dist(-600)
     element_yes = get_yes_elements
     list_of_checklist_elements.each_with_index do |checklist_obj, index|
-      next unless checklist_obj.text === checklist
+      next unless checklist_obj.text == checklist
 
       BrowserActions.scroll_down(element_yes[index + 1])
       element_yes[index + 1].click
@@ -187,7 +189,8 @@ class Section4APage < Section3DPage
       is_questions = (h4_arr.include? element.to_s)
       next if is_questions == true
 
-      if (element === 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') || (element === 'Is vessel movement in seaway acceptable for personnel transfer?')
+      if (element == 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') ||
+        (element == 'Is vessel movement in seaway acceptable for personnel transfer?')
         is_equal(h4_arr.size, 2)
       else
         is_equal(h4_arr.size, 1)

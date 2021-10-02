@@ -162,8 +162,8 @@ class PumpRoomEntry < PreDisplay
   end
 
   def add_all_gas_readings_pre(o2, hc, h2s, co, gas_name, threhold, reading, unit)
-    normal_gas_readings(o2, hc, h2s, co)
     if (gas_name == '') || (threhold == '') || (reading == '') || (unit == '')
+      normal_gas_readings(o2, hc, h2s, co)
     else
       sleep 2
       toxic_gas_readings(gas_name, threhold, reading, unit)
@@ -241,7 +241,6 @@ class PumpRoomEntry < PreDisplay
   end
 
   def compare_scheduled_date
-    # //*[@id="root"]/div/ul/li/div[2]/div/div[2]/span[2]
     xpath_str = format("//*[contains(.,'Scheduled for')]/parent::*//span[1]", @@pre_number)
     text = @browser.find_element(:xpath, xpath_str).text
     text.include? @@selected_date.to_s

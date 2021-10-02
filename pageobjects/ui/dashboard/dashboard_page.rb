@@ -58,9 +58,6 @@ class DashboardPage < WearablePage
 
   def get_location_pin_text(_location)
     @browser.find_elements(:xpath, '//div/button/span')[2].click
-    # BrowserActions.js_clicks('//div/button/span', 2)
-    # toggle_zone_filter(location)
-    # sleep 1
     begin
       location_pin_txt
     rescue StandardError
@@ -82,8 +79,8 @@ class DashboardPage < WearablePage
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
-    @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
-    @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
+    @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s == color
+    @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s == color
   end
 
   def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)

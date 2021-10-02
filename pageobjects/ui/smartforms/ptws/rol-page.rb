@@ -72,7 +72,7 @@ class ROLPage < Section9Page
 
   def is_duration?(permit_validity_timer, duration, timer_mins = '59')
     if permit_validity_timer.include? ":#{timer_mins}:"
-      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration === '1'
+      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration == '1'
     else
       is_duration?(permit_validity_timer, duration, (timer_mins.to_i - 1))
     end

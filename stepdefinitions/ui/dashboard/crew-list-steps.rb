@@ -117,6 +117,8 @@ Then(/^I should see count down start from 10 seconds$/) do
     true
   when 'Hiding in 7 secs'
     true
+  else
+    raise "Wrong count down text >>> #{on(CrewListPage).countdown_elements[0].text}"
   end
 end
 

@@ -22,11 +22,11 @@ Given(/^I submit permit (.+) via service with (.+) user and set to active state 
 end
 
 Given(/^I submit permit (.+) via service with (.+) user and set to active state with gas reading (not require|require)$/) do |_permit_type, _user, _condition|
-  if _condition === 'not require'
+  if _condition == 'not require'
     on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes',
                                             'gas_no')
   end
-  if _condition === 'require'
+  if _condition == 'require'
     on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes',
                                             'gas_yes')
   end

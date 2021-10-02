@@ -2,17 +2,10 @@
 
 Then(/^I should not see location of work in checklist$/) do
   sleep 2
-  tmp = @browser.find_elements(:xpath, "//span[contains(., 'Location of work:')]")
-  case tmp.size
-  when 0
-    tmp = @browser.find_elements(:xpath, '//label[contains(., "Location of work:")]')
-  when 0
-    tmp = @browser.find_elements(:xpath, '//p[contains(., "Location of work:")]')
-  when 0
-    # tmp = @browser.find_element(:xpath, "//h4[contains(., \'Location of work:\')]")
-    tmp = @browser.find_element(:xpath, "//h4[contains(., 'Location of work:')]")
+  %w[span label p h4].each do |element|
+    tmp = @browser.find_elements(:xpath, "//#{element}[contains(., 'Location of work:')]")
+    raise "Location of Work is present on screen #{element}" if is_not_equal(tmp.size, 0)
   end
-  is_equal(tmp.size, 0)
 end
 
 And(/^I fill up checklist$/) do
@@ -107,6 +100,8 @@ And(/^I should see (info|warning|heavy) boxes$/) do |which_box|
   when 'heavy'
     base_data = YAML.load_file("data/checklist/#{@@checklist}.yml")['heavy']
     box_obj = on(Section4APage).heavy_weather_note_elements
+  else
+    raise "Wrong box type #{which_box}"
   end
 
   box_obj.each_with_index do |element, index|

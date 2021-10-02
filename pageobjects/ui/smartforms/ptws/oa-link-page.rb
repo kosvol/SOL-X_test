@@ -174,7 +174,7 @@ class OAPage < Section9Page
 
   def is_comment_box_reset?
     puts comment_counter_element.text
-    (comment_counter_element.text === 'Comments (0)' && comment_box_element.text === 'This Permit has no comments')
+    (comment_counter_element.text == 'Comments (0)' && comment_box_element.text == 'This Permit has no comments')
   end
 
   def set_comment
@@ -187,7 +187,7 @@ class OAPage < Section9Page
     sleep 1
     send_comments_btn
     sleep 1
-    comment_counter_element.text === 'Comments (1)'
+    comment_counter_element.text == 'Comments (1)'
   end
 
   def select_yes_on_checkbox

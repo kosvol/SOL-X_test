@@ -230,11 +230,11 @@ end
 And(/^I create ([^"]*) via service with static env$/) do |type|
   ENV['ENV_OLD'] = ENV['ENVIRONMENT']
   ENV['ENVIRONMENT'] = 'auto'
-  if type === 'PRE'
+  if type == 'PRE'
     step 'I submit a scheduled PRE permit'
     step 'I sleep for 85 seconds'
     step 'I terminate the PRE permit via service'
-  elsif type === 'submit_enclose_space_entry'
+  elsif type == 'submit_enclose_space_entry'
     step "I submit permit #{type} via service with 8383 user and set to active state with gas reading require"
     step 'I add new entry "A 2/O" PTW'
     step 'I sleep for 3 seconds'
@@ -242,7 +242,7 @@ And(/^I create ([^"]*) via service with static env$/) do |type|
     step 'I sleep for 3 seconds'
     step 'I Close Permit submit_enclose_space_entry via service auto'
     step 'I sleep for 3 seconds'
-  elsif type === 'CRE'
+  elsif type == 'CRE'
     puts 'to do'
   else
     raise 'Wrong condition'

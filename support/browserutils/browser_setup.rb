@@ -67,9 +67,9 @@ class BrowserSetup
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'
-    @device = if ENV['DEVICE'] === 'dashboard'
+    @device = if ENV['DEVICE'] == 'dashboard'
                 YAML.load_file('config/devices.yml')['dashboard_chrome']
-              elsif ENV['DEVICE'] === 'tablet'
+              elsif ENV['DEVICE'] == 'tablet'
                 YAML.load_file('config/devices.yml')['tablet_chrome']
               else
                 YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]

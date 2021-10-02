@@ -50,7 +50,7 @@ class Section0Page < NavigationPage
   def select_permit(selected_permit)
     sleep 1
     list_permit_type_elements.each_with_index do |permit, _index|
-      next unless permit.text === selected_permit
+      next unless permit.text == selected_permit
 
       permit.click
       @@section1_data_collector << selected_permit

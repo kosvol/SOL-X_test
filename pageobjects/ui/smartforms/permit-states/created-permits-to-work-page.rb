@@ -23,7 +23,7 @@ class CreatedPermitToWorkPage < Section9Page
 
   # def delete_created_permit
   #   # parent_container_elements.each_with_index do |_permit, _index|
-  #   # if ptw_id_elements[_index].text === get_section1_filled_data[1]
+  #   # if ptw_id_elements[_index].text == get_section1_filled_data[1]
   #   delete_permit_btn_elements.first.click
   #   # end
   #   # end

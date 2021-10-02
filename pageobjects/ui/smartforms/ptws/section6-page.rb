@@ -24,13 +24,13 @@ class Section6Page < Section5Page
   def is_gas_reading_fields_enabled?
     gas_equipment_input_element.text
     gas_sr_number_input_element.text
-    gas_yes_no_elements.size === 2
+    gas_yes_no_elements.size == 2
   end
 
   def is_gas_reader_section?
     sleep 1
     p ">> #{total_sections_elements.size}"
-    total_sections_elements.size === 5
+    total_sections_elements.size == 5
   end
 
   def gas_testing_switcher(value)

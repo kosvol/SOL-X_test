@@ -73,9 +73,9 @@ class WearablePage
     def is_location_updated
       @tmp = ServiceUtil.get_response_body['data']['wearables']
       @tmp.each do |wearable|
-        if wearable['_id'] === @wearableid
+        if wearable['_id'] == @wearableid
           Log.instance.info("\n\n>>>>> #{wearable['location'].to_h['zone']['name']} #{@@beacon[1]}\n\n")
-          return (wearable['userId'] === @crewid) && (wearable['location'].to_h['zone']['name'] === @@beacon[1])
+          return (wearable['userId'] == @crewid) && (wearable['location'].to_h['zone']['name'] == @@beacon[1])
         end
       end
     end
@@ -106,7 +106,7 @@ class WearablePage
     # not needed now
     # def get_alternate_beacon
     #   @tmp = @@list_of_beacon.sample
-    #   @@beacon === @tmp ? get_alternate_beacon : @@beacon = @tmp
+    #   @@beacon == @tmp ? get_alternate_beacon : @@beacon = @tmp
     # end
 
     private

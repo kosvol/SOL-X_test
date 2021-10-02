@@ -116,8 +116,11 @@ module BrowserActions
     end
 
     def click_xpath_native(xpath)
-      el = $browser.find_element(:xpath, xpath)
-      el.click
+      if wait_until_is_visible((el = $browser.find_element(:xpath, xpath)))
+        el.click
+      else
+        poll_exists_and_click($browser.find_element(:xpath, xpath))
+      end
     end
 
     private

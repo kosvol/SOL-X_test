@@ -22,39 +22,47 @@ class Section5Page < Section4BPage
   element(:get_non_crew_date_time, xpath: '//div/time')
 
   @@list_of_roles = ['Authorized Entrant 1', 'Authorized Entrant 2', 'Authorized Entrant 3', 'Authorized Entrant 4',
-                     'Authorized Gas Tester', 'Diving Supervisor', 'Fire Watch 1', 'Fire Watch 2', 'Responsible for Safety', 'Standby Person', 'Task Leader', 'Task Performer 1', 'Task Performer 2', 'Task Performer 3', 'Task Performer 4', 'Task Performer - Assisting for Hot Work', 'Task Performer - Carrying out Hot Work', 'Task Performer - Diver (Underwater Operation)', 'Task Performer - Working Aloft', 'Task Performer - Working Overside']
+                     'Authorized Gas Tester', 'Diving Supervisor', 'Fire Watch 1', 'Fire Watch 2',
+                     'Responsible for Safety', 'Standby Person', 'Task Leader', 'Task Performer 1',
+                     'Task Performer 2', 'Task Performer 3', 'Task Performer 4',
+                     'Task Performer - Assisting for Hot Work', 'Task Performer - Carrying out Hot Work',
+                     'Task Performer - Diver (Underwater Operation)', 'Task Performer - Working Aloft',
+                     'Task Performer - Working Overside']
 
-  def is_role_signed_user_details?(_which_role, _entered_pin)
-    rank_and_name = get_user_details_by_pin(_entered_pin)
+  def is_role_signed_user_details?(which_role, entered_pin)
+    rank_and_name = get_user_details_by_pin(entered_pin)
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{get_current_date_and_time}")
-    if _which_role === 'first'
-      ((signed_rank_and_name_elements.first.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.first.text === get_current_date_and_time.to_s))
-    elsif _which_role === 'second'
-      ((signed_rank_and_name_elements.last.text === "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.last.text === get_current_date_and_time.to_s))
+    case which_role
+    when 'first'
+      ((signed_rank_and_name_elements.first.text == "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.first.text == get_current_date_and_time.to_s))
+    when 'second'
+      ((signed_rank_and_name_elements.last.text == "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (signed_time_elements.last.text == get_current_date_and_time.to_s))
+    else
+      raise "Wrong role >>> #{which_role}"
     end
   end
 
   def is_list_of_roles?
     tmp_arr = []
-    roles_btn_elements.each do |_element|
-      tmp_arr << _element.text
+    roles_btn_elements.each do |element|
+      tmp_arr << element.text
     end
-    tmp_arr === @@list_of_roles
+    tmp_arr == @@list_of_roles
   end
 
-  def is_role?(_role)
-    roles_name_elements.each do |_element|
-      return true if _element.text === _role
+  def is_role?(role)
+    roles_name_elements.each do |element|
+      return true if element.text == role
     end
     false
   end
 
-  def select_roles_and_responsibility(_roles)
+  def select_roles_and_responsibility(roles)
     sleep 1
     roles_and_resp_btn
     sleep 1
-    (0..(_roles.to_i - 1)).each do |i|
+    (0..(roles.to_i - 1)).each do |i|
       roles_btn_elements[i].click
     end
     sleep 1
@@ -62,7 +70,7 @@ class Section5Page < Section4BPage
     sleep 1
   end
 
-  def delete_roles_and_responsibility(_total_roles)
-    cross_btn_elements[_total_roles.to_i - 1].click
+  def delete_roles_and_responsibility(total_roles)
+    cross_btn_elements[total_roles.to_i - 1].click
   end
 end

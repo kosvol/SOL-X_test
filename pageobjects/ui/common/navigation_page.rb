@@ -9,6 +9,7 @@ class NavigationPage < CommonFormsPage
   elements(:menu_categories, xpath: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])")
   buttons(:show_more, xpath: "//button[contains(text(),'Show More')]")
   buttons(:save_and_next_btn, css: 'button.next')
+  button(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
   @@menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active',
                             'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval', 'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
@@ -44,10 +45,10 @@ class NavigationPage < CommonFormsPage
 
   def click_next
     sleep 1
-    @browser.find_element("//button[contains(.,'Next')]").click
+    BrowserActions.poll_exists_and_click(next_btn_button)
   rescue StandardError
     sleep 1
-    BrowserActions.js_click("//button[contains(.,'Next')]")
+    @browser.find_element("//button[contains(.,'Next')]").click
   rescue StandardError
     BrowserActions.js_click("//button[contains(.,'Next')]")
   end
@@ -56,7 +57,8 @@ class NavigationPage < CommonFormsPage
     sleep 1
     index = 1
     while index <= times.to_i
-      condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+      #condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+      condition == 'next' ? click_next : BrowserActions.poll_exists_and_click(previous_btn_button)
       index += 1
     end
   end
@@ -66,9 +68,9 @@ class NavigationPage < CommonFormsPage
     BrowserActions.poll_exists_and_click(back_to_home_btn_element)
   rescue StandardError
     sleep 1
-    BrowserActions.js_click("//button[contains(.,'Back to')]")
+    @browser.find_element(:xpath, "//button[contains(.,'Back to')]").click
   rescue StandardError
-    BrowserActions.js_click("//button[contains(.,'Home')]")
+    @browser.find_element(:xpath, "//button[contains(.,'Home')]").click
   end
 
   def get_total_steps_to_section6(which_section)

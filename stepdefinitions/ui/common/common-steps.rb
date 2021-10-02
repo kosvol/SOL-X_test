@@ -64,7 +64,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  if (EnvironmentSelector.current_environment.include? 'sit') || (EnvironmentSelector.current_environment.include? 'auto')
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
   sleep 1
@@ -84,7 +84,7 @@ When(/^I select (.+) permit for level 2$/) do |permit|
 end
 
 And(/^I set permit id$/) do
-  if @via_service_or_not === false
+  if @via_service_or_not == false
     Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
     Log.instance.info "New Permit ID: #{CommonPage.get_permit_id}"

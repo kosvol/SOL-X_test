@@ -71,15 +71,18 @@ end
 
 Then(/^I (should|should not) see warning label$/) do |condition|
   info_text = "Gas Testing Disabled\nYou have selected to disable gas testing for this permit."
-  is_equal(on(Section6Page).info_box_disable_gas_elements.first.text, info_text) if condition == 'should'
-  is_equal(on(Section6Page).info_box_disable_gas_elements.size, 0) if condition == 'should not'
+  if condition == 'should'
+    is_equal(on(Section6Page).info_box_disable_gas_elements.first.text, info_text)
+  else
+    is_equal(on(Section6Page).info_box_disable_gas_elements.size, 0)
+  end
 end
 
 And(/^I (should|should not) see gas_equipment_input$/) do |condition|
   case condition
   when 'should'
     to_exists(on(Section6Page).gas_equipment_input_element)
-  when 'should not'
+  else
     not_to_exists(on(Section6Page).gas_equipment_input_element)
   end
 end
@@ -88,7 +91,7 @@ And(/^I (should|should not) see gas_sr_number_input$/) do |condition|
   case condition
   when 'should'
     to_exists(on(Section6Page).gas_sr_number_input_element)
-  when 'should not'
+  else
     not_to_exists(on(Section6Page).gas_sr_number_input_element)
   end
 end
@@ -97,7 +100,7 @@ And(/^I (should|should not) see gas_last_calibration_button$/) do |condition|
   case condition
   when 'should'
     to_exists(on(Section6Page).gas_last_calibration_button_element)
-  when 'should not'
+  else
     not_to_exists(on(Section6Page).gas_last_calibration_button_element)
   end
 end

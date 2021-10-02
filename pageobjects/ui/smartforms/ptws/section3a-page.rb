@@ -50,7 +50,7 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 1
     scroll_multiple_times_with_direction(3, 'down')
-    description_elements[2].text === 'Test Automation'
+    description_elements[2].text == 'Test Automation'
   end
 
   def is_new_hazard_added?
@@ -60,16 +60,24 @@ class Section3APage < Section2Page
     begin
       p ">> #{hazard_risk_details_elements[23].text}"
       p ">> #{hazard_risk_details_elements[24].text}"
-      (tmp === "Test Automation\nDelete" && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      (tmp == "Test Automation\nDelete" && ecm_details_elements[10]
+              .text == "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23]
+              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
+              hazard_risk_details_elements[24]
+                                                                                                                                                                                                  .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     rescue StandardError
       p ">> #{hazard_risk_details1_elements[23].text}"
       p ">> #{hazard_risk_details1_elements[24].text}"
-      (tmp === 'Test Automation' && ecm_details_elements[10].text === "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" && hazard_risk_details1_elements[24].text === "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      (tmp == 'Test Automation' && ecm_details_elements[10]
+              .text == "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23]
+              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
+        hazard_risk_details1_elements[24]
+                                                                                                                                                                                          .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     end
   end
 
   def scroll_to_new_hazard
-    tmp = $browser.find_element(:xpath, @@add_hazard_btn)
+    tmp = @browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
     scroll_multiple_times_with_direction(2, 'down')
     sleep 1
@@ -108,65 +116,67 @@ class Section3APage < Section2Page
     select_dra_risk(1)
   end
 
-  def toggle_likelihood_consequence_matrix_without_applying_measure(_likelihood, _consequence)
+  def toggle_likelihood_consequence_matrix_without_applying_measure(likelihood, consequence)
     view_edit_btn
     sleep 2
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times_with_direction(1, 'down')
     likelihood_btn_elements[0].click
-    select_dra_risk(_likelihood)
+    select_dra_risk(likelihood)
     sleep 1
     consequence_btn_elements[0].click
-    select_dra_risk(_consequence)
+    select_dra_risk(consequence)
   end
 
-  def toggle_likelihood_consequence_matrix_existing_control_measure(_likelihood, _consequence)
+  def toggle_likelihood_consequence_matrix_existing_control_measure(likelihood, consequence)
     view_edit_btn
     sleep 1
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
     scroll_multiple_times_with_direction(3, 'down')
     sleep 1
     likelihood_btn_elements[1].click
-    select_dra_risk(_likelihood)
+    select_dra_risk(likelihood)
     sleep 1
     consequence_btn_elements[1].click
-    select_dra_risk(_consequence)
+    select_dra_risk(consequence)
   end
 
-  def toggle_likelihood_consequence_matrix_addition_hazard(_likelihood, _consequence)
+  def toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
     sleep 2
     if @@swap_flag == 'evaluation_matrix'
-      scroll_multiple_times_with_direction(1,
-                                           'down')
+      scroll_multiple_times_with_direction(1, 'down')
     else
-      scroll_multiple_times_with_direction(
-        2, 'down'
-      )
+      scroll_multiple_times_with_direction(2, 'down')
     end
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]", 0)
     scroll_multiple_times_with_direction(2, 'down')
     likelihood_btn_elements[2].click
-    select_dra_risk(_likelihood)
+    select_dra_risk(likelihood)
     consequence_btn_elements[2].click
-    select_dra_risk(_consequence)
+    select_dra_risk(consequence)
   end
 
-  def is_risk_indicator_color?(_measure, _status)
-    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    base_color = get_color_code(_status)
-    case _measure
+  def is_risk_indicator_color?(measure, status)
+    risk_indicators = @browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    base_color = get_color_code(status)
+    case measure
     when 'without applying measure'
       risk_indicators[0].css_value('background-color') == base_color
     when 'existing control measure'
       risk_indicators[1].css_value('background-color') == base_color
     when 'additional hazard'
       risk_indicators[2].css_value('background-color') == base_color
+    else
+      raise "Wrong measure >>> #{measure}"
     end
   end
 
-  def evaluation_matrix(color, _color1, _color2)
-    risk_indicators = $browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    (risk_indicators[risk_indicators.size - 3].css_value('background-color') === get_color_code(color) && risk_indicators[risk_indicators.size - 2].css_value('background-color') === get_color_code(_color1) && risk_indicators[risk_indicators.size - 1].css_value('background-color') === get_color_code(_color2))
+  def evaluation_matrix(color, color1, color2)
+    risk_indicators = @browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
+    (risk_indicators[risk_indicators.size - 3]
+       .css_value('background-color') == get_color_code(color) && risk_indicators[risk_indicators.size - 2]
+        .css_value('background-color') == get_color_code(color1) && risk_indicators[risk_indicators.size - 1]
+         .css_value('background-color') == get_color_code(color2))
   end
 
   private
@@ -181,13 +191,15 @@ class Section3APage < Section2Page
       'rgba(216, 75, 75, 1)'
     when 'very high'
       'rgba(160, 16, 35, 1)'
+    else
+      raise "Wrong color >>> #{color}"
     end
   end
 
-  def select_dra_risk(_risk)
+  def select_dra_risk(risk)
     sleep 1
-    if active_risk_elements[(_risk.to_i - 1)].attribute('class').to_s != 'active'
-      options_text_elements[(_risk.to_i - 1)].click
+    if active_risk_elements[(risk.to_i - 1)].attribute('class').to_s != 'active'
+      options_text_elements[(risk.to_i - 1)].click
     end
     confirm_btn_elements.first.click
   end

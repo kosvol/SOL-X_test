@@ -69,7 +69,7 @@ And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |c
 end
 
 And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|
-  if which_box === 'warning'
+  if which_box == 'warning'
     begin
       box_text = on(PreDisplay).warning_box_element.text
     rescue StandardError

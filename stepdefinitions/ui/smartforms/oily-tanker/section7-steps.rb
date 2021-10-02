@@ -35,12 +35,10 @@ Then(/^I (should|should not) see approve and request update buttons$/) do |condi
     is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[1].text, 'Request Updates')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  when 'should not'
+  else
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     # is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  else
-    raise "Wrong condition #{condition}"
   end
 end
 
@@ -52,11 +50,9 @@ Then(/^I (should|should not) see submit for office approval and request update b
     is_equal(on(Section7Page).submit_oa_btn_element.text, 'Submit for Office Approval')
     is_equal(on(Section7Page).update_btn_element.text, 'Updates Needed')
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  when 'should not'
+  else
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 5) # previous 3
     is_equal(on(Section7Page).previous_btn_elements.first.text, 'Previous')
-  else
-    raise "Wrong condition #{condition}"
   end
 end
 
