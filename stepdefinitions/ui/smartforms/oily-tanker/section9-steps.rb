@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 Then(/^I (should|should not) see terminate permit to work and request update buttons$/) do |condition|
-  case condition
-  when 'should'
+  if condition == 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 6)
     is_equal(on(Section7Page).non_oa_buttons_elements[2].text, 'Withdraw Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[3].text, 'Request Updates')
@@ -14,8 +13,7 @@ Then(/^I (should|should not) see terminate permit to work and request update but
 end
 
 Then(/^I (should|should not) see terminate permit to work and request update buttons for FSU$/) do |condition|
-  case condition
-  when 'should'
+  if condition == 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 5)
     is_equal(on(Section7Page).non_oa_buttons_elements[1].text, 'Withdraw Permit To Work')
     is_equal(on(Section7Page).non_oa_buttons_elements[2].text, 'Request Updates')

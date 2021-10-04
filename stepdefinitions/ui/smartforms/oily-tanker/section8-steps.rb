@@ -90,8 +90,7 @@ Then(/^I (should|should not) see EIC normalize extra questions$/) do |condition|
     to_exists(on(Section8Page).normalization_question4_element)
     to_exists(on(Section8Page).normalization_question5_element)
     step 'I should see default section 8 questions'
-  end
-  if condition == 'should not'
+  else
     step 'I should see first 18 input fields else 16 input fields'
     # is_equal($browser.find_elements(:xpath, '//input').size, '18')
     not_to_exists(on(Section8Page).normalization_question1_element)
