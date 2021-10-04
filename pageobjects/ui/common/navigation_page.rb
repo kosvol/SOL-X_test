@@ -12,7 +12,8 @@ class NavigationPage < CommonFormsPage
   button(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
   @@menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active',
-                            'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval', 'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
+                            'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval',
+                            'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
   @@which_category = "//a[contains(text(),'%s')]"
 
   def click_hamburger_menu
@@ -48,7 +49,7 @@ class NavigationPage < CommonFormsPage
     BrowserActions.poll_exists_and_click(next_btn_button)
   rescue StandardError
     sleep 1
-    @browser.find_element("//button[contains(.,'Next')]").click
+    @browser.find_element(:xpath, "//button[contains(.,'Next')]").click
   rescue StandardError
     BrowserActions.js_click("//button[contains(.,'Next')]")
   end
