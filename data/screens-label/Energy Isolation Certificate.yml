@@ -42,6 +42,15 @@ subheaders:
     "Issuing Authorized (C/E):"
   ]
 
+subheaders_fsu:
+  [
+      "Energy Isolation Certificate",
+      "Method of Isolation",
+      "Confirmation and Acceptance",
+      "Competent Person (C/O, 2/E):",
+      "Issuing Authorized (Master, C/E):"
+  ]
+
 fields_exceptions: [""]
 labels_exceptions: [""]
 subheaders_exceptions: [""]

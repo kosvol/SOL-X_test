@@ -95,26 +95,32 @@ Feature: PermitOverview
       | gas_yes   |
       | gas_no    |
 
-  Scenario: Verify the EIC section shows the same fields as in the Client app
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the EIC eic_yes
+  Scenario Outline: Verify the EIC section shows the same fields as in the Client app
+    Given I terminate permit submit_hotwork via service with 9015 user on the <vessel> vessel with the EIC eic_yes
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
     Then I should see the Energy Isolation Certificate shows the same fields as in the Client app
 
+    Examples:
+    | vessel   |
+    | auto-cot |
+    | sit-fsu  |
+
   Scenario Outline: Verify section 4B and 8 shows the same fields as in the Client app with or without the EIC
-    Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the EIC <condition>
+    Given I terminate permit submit_hotwork via service with 9015 user on the <vessel> vessel with the EIC <condition>
     When I wait for form status get changed to CLOSED on Cloud
     And I log in to the Office Portal
     And I open the recently terminated form with link
     Then I should see the <section> shows the same fields as in the Client app with <condition>
 
     Examples:
-      | condition | section    |
-      | eic_yes   | Section 4B |
-      | eic_no    | Section 4B |
-      | eic_yes   | Section 8  |
-      | eic_no    | Section 8  |
+      | vessel   | condition | section    |
+      | auto-cot | eic_yes   | Section 4B |
+      | auto-cot | eic_no    | Section 4B |
+      | auto-cot | eic_yes   | Section 8  |
+      | sit-fsu  | eic_yes   | Section 8  |
+      | auto-cot | eic_no    | Section 8  |
 
   Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
     Given I terminate permit submit_hotwork via service with 9015 user on the auto-cot vessel with the <checklist> checklist

@@ -348,7 +348,11 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
                   [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields']
                 end
   base_labels = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['labels']
-  base_subheaders = [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
+  base_subheaders = if @form_number.include? 'FSU'
+                      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_fsu']
+                    else
+                      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
+                    end
   # exceptions
   fields_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['fields_exceptions']
   labels_arr -= YAML.load_file("data/screens-label/#{what_section}.yml")['labels_exceptions']
@@ -409,7 +413,11 @@ Then(/^I should see the (.*) shows the same fields as in the Client app with (.*
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_#{condition}"]
-  base_subheaders = [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}"]
+  base_subheaders = if @form_number.include? 'FSU'
+                      [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}_fsu"]
+                    else
+                      [] + YAML.load_file("data/screens-label/#{section}.yml")["subheaders_#{condition}"]
+                    end
   # exceptions
   fields_arr -= YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions']
   subheaders_arr -= YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions']
@@ -469,5 +477,5 @@ end
 
 And(/^I open the recently terminated form with link$/) do
   $browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).copy_header_attribute_element)
+  BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
