@@ -3,7 +3,6 @@
 require 'rest-client'
 # photo attach api requests
 class PhotoAPI < BaseSectionApi
-
   def request(form_id, stage, photo_num, pin)
     payload = create_payload(form_id, stage)
     photo_num.times do

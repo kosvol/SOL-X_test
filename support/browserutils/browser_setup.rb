@@ -4,15 +4,15 @@ $browser
 
 class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
-  def self.get_browser(os, platform, _noreset = false, _fullreset = true)
+  def self.get_browser(os, platform, noreset = false, fullreset = true)
     $browser = case ENV['PLATFORM'].upcase
-      when 'CHROME', 'CHROME_HEADLESS', 'CHROME_INCOGNITO'
-        load_chrome(os)
-      when 'ANDROID'
-        load_web_app(os, _noreset, _fullreset)
-      else
-        raise "Invalid Platform => #{platform} for the OS => #{os}"
-      end
+               when 'CHROME', 'CHROME_HEADLESS', 'CHROME_INCOGNITO'
+                 load_chrome(os)
+               when 'ANDROID'
+                 load_web_app(os, noreset, fullreset)
+               else
+                 raise "Invalid Platform => #{platform} for the OS => #{os}"
+               end
     $wait = Selenium::WebDriver::Wait.new(timeout: 10)
     $browser.manage.timeouts.script_timeout = 10
     $browser.manage.timeouts.page_load = 10
@@ -33,11 +33,12 @@ class BrowserSetup
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
-      ENV['DEVICE'] === 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
+      ENV['DEVICE'] == 'dashboard' ? options.add_argument('--window-size=2560,1440') : options.add_argument('--window-size=720,1280')
       begin
-        if ENV['PLATFORM'] === 'chrome_headless'
+        case ENV['PLATFORM']
+        when 'chrome_headless'
           options.add_argument('--headless')
-        elsif ENV['PLATFORM'] === 'chrome_incognito'
+        when 'chrome_incognito'
           options.add_argument('--incognito')
           options.add_argument('--private')
         end
@@ -50,13 +51,13 @@ class BrowserSetup
       # windows
       Selenium::WebDriver::Chrome::Service.driver_path = File.join(File.absolute_path('../../../../', File.dirname(__FILE__)),
                                                                    '/Downloads/chromedriver.exe')
-      if ENV['DEVICE'] === 'tablet'
+      if ENV['DEVICE'] == 'tablet'
         caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
       end
-      if ENV['DEVICE'] === 'dashboard'
+      if ENV['DEVICE'] == 'dashboard'
         caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },
                                                                 'chromeOptions' => {
-                                                                  w3c: false, args: ['start-maximized'],
+                                                                  w3c: false, args: ['start-maximized']
                                                                 })
       end
       $browser = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:9515/', desired_capabilities: caps,
@@ -66,13 +67,13 @@ class BrowserSetup
 
   def self.load_web_app(_os, noreset, _fullreset)
     p '*********************************************************'
-    @device = if ENV['DEVICE'] === 'dashboard'
-        YAML.load_file('config/devices.yml')['dashboard_chrome']
-      elsif ENV['DEVICE'] === 'tablet'
-        YAML.load_file('config/devices.yml')['tablet_chrome']
-      else
-        YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
-      end
+    @device = if ENV['DEVICE'] == 'dashboard'
+                YAML.load_file('config/devices.yml')['dashboard_chrome']
+              elsif ENV['DEVICE'] == 'tablet'
+                YAML.load_file('config/devices.yml')['tablet_chrome']
+              else
+                YAML.load_file('config/devices.yml')[(ENV['DEVICE']).to_s]
+              end
 
     # p "Test Started:: Invoking #{@device['platformName']}  #{ENV['OS']} APP..!"
     if ENV['RESOLUTION'] == 'tablet_b' || ENV['RESOLUTION'] == 'dashboard'
@@ -99,11 +100,11 @@ class BrowserSetup
             skipLogcatCapture: true,
             # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
             chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security',
-                                   '--allow-running-insecure-content', '--no-sandbox'] },
+                                    '--allow-running-insecure-content', '--no-sandbox'] },
             # :fullReset => fullreset,
-            noReset: noreset,
+            noReset: noreset
           },
-          appium_lib: { port: @device['appiumPort'], wait: 180 },
+          appium_lib: { port: @device['appiumPort'], wait: 180 }
         }
     end
 
@@ -131,11 +132,11 @@ class BrowserSetup
             chromedriverPort: @device['chromedriverPort'],
             # chromeOptions: { args: ['--unsafely-treat-insecure-origin-as-secure=http://192.168.1.52:8080,http://23.97.50.121:8080,http://52.230.70.68:8080,http://104.215.192.113:8080,http://cloud-edge.dev.solas.magellanx.io:8080,http://cloud-edge.stage.solas.magellanx.io:8080', '--ignore-certificate-errors', '--disable-web-security', '--allow-running-insecure-content'] },
             chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security',
-                                   '--allow-running-insecure-content', '--no-sandbox'] },
+                                    '--allow-running-insecure-content', '--no-sandbox'] },
             # :fullReset => fullreset,
-            noReset: noreset,
+            noReset: noreset
           },
-          appium_lib: { port: @device['appiumPort'], wait: 180 },
+          appium_lib: { port: @device['appiumPort'], wait: 180 }
         }
     end
 

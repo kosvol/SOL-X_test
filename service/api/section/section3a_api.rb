@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 3A
 class Section3AAPI < BaseSectionApi
-
   def request(form_id, pin)
     payload = create_payload(form_id)
     response = RestClient.post(retrieve_api_url,
@@ -20,5 +19,4 @@ class Section3AAPI < BaseSectionApi
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     payload
   end
-
 end

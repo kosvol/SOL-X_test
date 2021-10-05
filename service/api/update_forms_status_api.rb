@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request submit master approval
 class UpdateFormsStatusApi < BaseSectionApi
-
   def request(permit_id, status, pin)
     payload = create_payload(permit_id, status)
     response = RestClient.post(retrieve_api_url,
@@ -21,5 +20,4 @@ class UpdateFormsStatusApi < BaseSectionApi
     payload['variables']['newStatus'] = status
     payload
   end
-
 end

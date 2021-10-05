@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-Then(/^I (should not|should) see comment box exists$/) do |_condition|
-  not_to_exists(on(PendingStatePage).update_comment_box_element) if _condition === 'should not'
-  to_exists(on(PendingStatePage).update_comment_box_element) if _condition === 'should'
+Then(/^I (should not|should) see comment box exists$/) do |condition|
+  not_to_exists(on(PendingStatePage).update_comment_box_element) if condition == 'should not'
+  to_exists(on(PendingStatePage).update_comment_box_element) if condition == 'should'
 end
 
 Then(/^I should see description of work pre-populated$/) do
@@ -10,45 +10,51 @@ Then(/^I should see description of work pre-populated$/) do
 end
 
 Then(/^I should see wifi inconsistent popup display for (.*)$/) do |which_category|
-  if which_category === 'EIC'
+  case which_category
+  when 'EIC'
     is_equal(on(Section4BPage).wifi_popup_elements[1].text, 'Inconsistent Wi-Fi')
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,
              "Due to a Wi-Fi issue, you are doing this Energy Isolation Certificate in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
-  elsif which_category === 'section 6'
+  when 'section 6'
     is_equal(on(Section4BPage).wifi_popup_elements[1].text, 'Inconsistent Wi-Fi')
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,
              "Due to a Wi-Fi issue, you are doing this Section 6: Gas Testing/Equipment in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
-  elsif which_category === 'smartform'
+  when 'smartform'
     on(Section0Page).back_arrow_element.click
     sleep 3
     is_equal(on(CommonFormsPage).wifi_popup_smartform_elements[0].text,
              "Permit Update in Progress\nIf the update is taking too long, move to a location with better WiFi.")
-  elsif which_category === 'section 8'
+  when 'section 8'
     is_equal(on(Section4BPage).wifi_popup_elements[1].text, 'Inconsistent Wi-Fi')
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,
              "Due to a Wi-Fi issue, you are doing this Section 8: Task Status & EIC Normalisation in Offline Mode.\nTo ensure you will be able to receive approval, try moving to a location with a better Wi-Fi signal.")
+  else
+    raise "Wrong category >>>> #{which_category}"
   end
 end
 
 Then(/^I should see wifi restore popup display for (.*)$/) do |which_category|
   step 'I turn on wifi'
   BrowserActions.wait_until_is_visible(on(CommonFormsPage).wifi_restore_popup_element)
-  if which_category === 'EIC'
+  case which_category
+  when 'EIC'
     is_equal(on(Section4BPage).wifi_popup_elements[1].text, 'Wi-Fi restored')
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,
              "You are Online Now\nNow you can submit Energy Isolation Certificate so other crew members will be able to access it in other devices.")
-  elsif which_category === 'section 6'
+  when 'section 6'
     is_equal(on(Section4BPage).wifi_popup_elements[1].text, 'Wi-Fi restored')
     is_equal(on(Section4BPage).wifi_popup_elements[2].text,
              "You are Online Now\nNow you can submit Section 6: Gas Testing/Equipment so other crew members will be able to access it in other devices.")
+  else
+    raise "Wrong category >>> #{which_category}"
   end
 end
 
-And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, _user, zoneid, mac|
+And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
-  WearablePage.set_list_of_crews_id(_user)
+  WearablePage.set_list_of_crews_id(user)
   step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
@@ -58,17 +64,20 @@ And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link
   sleep 4
 end
 
-Then(/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do |_condition, _rank|
-  on(Section4BPage).sign_eic_or_issuer(_condition)
-  if _condition === 'issuing authority' || _condition === 'competent person'
-    step "I sign with valid #{_rank} rank"
-  elsif _condition === 'non issuing authority' || _condition === 'non competent person'
-    step "I enter pin for rank #{_rank}"
+Then(/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do |condition, rank|
+  on(Section4BPage).sign_eic_or_issuer(condition)
+  case condition
+  when 'issuing authority', 'competent person'
+    step "I sign with valid #{rank} rank"
+  when 'non issuing authority', 'non competent person'
+    step "I enter pin for rank #{rank}"
+  else
+    raise "Wrong condition >>> #{condition}"
   end
 end
 
-And(/^I click on sign button for (issuing authority|non issuing authority|competent person|non competent person)$/) do |_condition|
-  on(Section4BPage).sign_eic_or_issuer(_condition)
+And(/^I click on sign button for (issuing authority|non issuing authority|competent person|non competent person)$/) do |condition|
+  on(Section4BPage).sign_eic_or_issuer(condition)
 end
 
 When(/^I select yes to EIC$/) do
@@ -78,30 +87,37 @@ end
 
 And(/^I click on (.*) EIC certification button$/) do |which_type|
   sleep 2
-  if which_type == 'create'
+  case which_type
+  when 'create'
     on(Section4BPage).create_eic_btn
-  elsif which_type == 'view'
+  when 'view'
     on(Section4BPage).view_eic_btn
+  else
+    raise "Wrong type >>> #{which_type}"
   end
 end
 
-And(/^I sign EIC section 4b with (RA|non RA) rank (.+)$/) do |_condition, _rank|
+And(/^I sign EIC section 4b with (RA|non RA) rank (.+)$/) do |condition, rank|
   BrowserActions.wait_until_is_visible(on(Section4APage).sign_btn_elements.first)
   BrowserActions.scroll_click(on(Section4APage).sign_btn_elements.first)
-  step "I enter pin for rank #{_rank}"
-  on(SignaturePage).sign_and_done if _condition === 'RA'
+  step "I enter pin for rank #{rank}"
+  on(SignaturePage).sign_and_done if condition == 'RA'
 end
 
-And(/^I should see location (.+) stamp$/) do |_location|
-  if (on(Section8Page).rank_name_and_date_elements[0].text.include? 'Rank/Name') && (on(Section8Page).rank_name_and_date_elements.last.text.include? 'Rank/Name')
-    is_equal(on(Section8Page).rank_name_and_date_elements[2].text, "Location Stamp:\n#{_location}")
-  elsif (on(Section8Page).rank_name_and_date_elements[0].text.include? 'Rank/Name') && (on(Section8Page).rank_name_and_date_elements[1].text.include? 'Rank/Name')
-    is_equal(on(Section8Page).rank_name_and_date_elements.last.text, "Location Stamp:\n#{_location}")
+And(/^I should see location (.+) stamp$/) do |location|
+  if (on(Section8Page).rank_name_and_date_elements[0]
+                      .text.include? 'Rank/Name') && (on(Section8Page)
+                                                        .rank_name_and_date_elements.last.text.include? 'Rank/Name')
+    is_equal(on(Section8Page).rank_name_and_date_elements[2].text, "Location Stamp:\n#{location}")
+  elsif (on(Section8Page).rank_name_and_date_elements[0]
+                         .text.include? 'Rank/Name') && (on(Section8Page)
+                                                           .rank_name_and_date_elements[1].text.include? 'Rank/Name')
+    is_equal(on(Section8Page).rank_name_and_date_elements.last.text, "Location Stamp:\n#{location}")
   end
 end
 
-And(/^I should see (.+) rank and name$/) do |_rank|
-  is_equal(on(Section4BPage).eic_signer_name_elements.first.text, _rank)
+And(/^I should see (.+) rank and name$/) do |rank|
+  is_equal(on(Section4BPage).eic_signer_name_elements.first.text, rank)
 end
 
 Then(/^I should see EIC permit number, date and time populated$/) do
@@ -147,11 +163,11 @@ And(/^I fill up EIC certificate$/) do
   step 'I sign EIC section 4b with RA rank C/O'
 end
 
-Then(/^I should see these sub questions$/) do |_table|
+Then(/^I should see these sub questions$/) do |table|
   on(Section4BPage).loto_rdo_element.click
   on(Section4BPage).electrical_rdo_element.click
   on(Section4BPage).phy_rdo_element.click
-  _table.raw.each do |_element|
-    step "I should see the text '#{_element.first}'"
+  table.raw.each do |element|
+    step "I should see the text '#{element.first}'"
   end
 end

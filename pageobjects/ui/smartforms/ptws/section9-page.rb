@@ -19,6 +19,6 @@ class Section9Page < Section8Page
   end
 
   def is_termination_date_time_filled?
-    (get_current_time_format === permit_terminated_on_date_elements.last.text) && (get_current_date_format_with_offset === permit_terminated_on_date_elements.first.text)
+    (get_current_time_format == permit_terminated_on_date_elements.last.text) && (get_current_date_format_with_offset == permit_terminated_on_date_elements.first.text)
   end
 end

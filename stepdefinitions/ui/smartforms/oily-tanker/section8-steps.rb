@@ -18,7 +18,7 @@ Then(/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
   step 'I should see default section 8 questions'
-  tmp = $browser.find_elements(:xpath, '//div/span')
+  tmp = @browser.find_elements(:xpath, '//div/span')
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['pipe'], elem.text)
@@ -31,7 +31,7 @@ Then(/^I should see extra section8 questions for critical maintenance permit$/) 
   to_exists(on(Section8Page).normalization_crit_question2_element)
   to_exists(on(Section8Page).normalization_crit_question3_element)
   step 'I should see default section 8 questions'
-  tmp = $browser.find_elements(:xpath, '//div/span')
+  tmp = @browser.find_elements(:xpath, '//div/span')
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['critical'], elem.text)
@@ -43,7 +43,7 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
   to_exists(on(Section8Page).normalization_elec_question1_element)
   to_exists(on(Section8Page).normalization_elec_question2_element)
   step 'I should see default section 8 questions'
-  tmp = $browser.find_elements(:xpath, '//div/span')
+  tmp = @browser.find_elements(:xpath, '//div/span')
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['electrical'], elem.text)
@@ -52,7 +52,7 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
 end
 
 And('I should see first {int} input fields else {int} input fields') do |first_input_fields_length, second_input_fields_length|
-  input_fields = $browser.find_elements(:xpath, '//input').size
+  input_fields = @browser.find_elements(:xpath, '//input').size
   if input_fields == first_input_fields_length
     is_equal(input_fields, first_input_fields_length)
   elsif input_fields == second_input_fields_length
@@ -68,7 +68,7 @@ end
 
 And(/^I should see signed date and time for section 8$/) do
   is_equal(on(Section8Page).rank_name_and_date_elements[1].text,
-           "#{on(Section8Page).get_signed_date_time}")
+           on(Section8Page).get_signed_date_time.to_s)
 end
 
 Then(/^I should see default section 8 questions$/) do
@@ -90,8 +90,7 @@ Then(/^I (should|should not) see EIC normalize extra questions$/) do |condition|
     to_exists(on(Section8Page).normalization_question4_element)
     to_exists(on(Section8Page).normalization_question5_element)
     step 'I should see default section 8 questions'
-  end
-  if condition == 'should not'
+  else
     step 'I should see first 18 input fields else 16 input fields'
     # is_equal($browser.find_elements(:xpath, '//input').size, '18')
     not_to_exists(on(Section8Page).normalization_question1_element)
@@ -105,7 +104,6 @@ end
 Then(/^I should see EIC extra questions for work on pressure pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
-  # is_equal($browser.find_elements(:xpath, '//input').size, '22')
   step 'I should see first 22 input fields else 20 input fields'
   step 'I should see default section 8 questions'
 end

@@ -16,8 +16,8 @@ end
 
 Then(/^I should see (.+) as button text$/) do |update_or_view|
   update_reading_or_view_btn = on(ActiveStatePage)
-                                 .add_gas_btn_elements[on(CreatedPermitToWorkPage)
-                                                         .get_permit_index(CommonPage.get_permit_id)].click
+                               .add_gas_btn_elements[on(CreatedPermitToWorkPage)
+                               .get_permit_index(CommonPage.get_permit_id)].click
   case update_or_view
   when 'Update Readings'
     is_equal(update_reading_or_view_btn.text, 'Update Readings')

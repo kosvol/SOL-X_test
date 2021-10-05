@@ -18,7 +18,8 @@ class WearablePage
       tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
       if user != 'default'
         yml_id = YAML.load_file('data/sit_rank_and_pin.yml')
-        tmp_req_payload['variables']['userId'] = yml_id["ranks_id_#{EnvironmentSelector.get_env_type_prefix.downcase}"][user]
+        tmp_req_payload['variables']['userId'] =
+          yml_id["ranks_id_#{EnvironmentSelector.get_env_type_prefix.downcase}"][user]
       end
       JsonUtil.create_request_file('wearable-simulator/mod-base-link-crew-to-wearable', tmp_req_payload)
     end
@@ -72,9 +73,9 @@ class WearablePage
     def is_location_updated
       @tmp = ServiceUtil.get_response_body['data']['wearables']
       @tmp.each do |wearable|
-        if wearable['_id'] === @wearableid
+        if wearable['_id'] == @wearableid
           Log.instance.info("\n\n>>>>> #{wearable['location'].to_h['zone']['name']} #{@@beacon[1]}\n\n")
-          return (wearable['userId'] === @crewid) && (wearable['location'].to_h['zone']['name'] === @@beacon[1])
+          return (wearable['userId'] == @crewid) && (wearable['location'].to_h['zone']['name'] == @@beacon[1])
         end
       end
     end
@@ -105,7 +106,7 @@ class WearablePage
     # not needed now
     # def get_alternate_beacon
     #   @tmp = @@list_of_beacon.sample
-    #   @@beacon === @tmp ? get_alternate_beacon : @@beacon = @tmp
+    #   @@beacon == @tmp ? get_alternate_beacon : @@beacon = @tmp
     # end
 
     private
@@ -125,7 +126,7 @@ class WearablePage
     def get_crews_id
       @tmp_list = []
       ServiceUtil.get_response_body['data']['users'].each do |list|
-        if (list['crewMember']['_id'].include? EnvironmentSelector.get_env_type_prefix)
+        if list['crewMember']['_id'].include? EnvironmentSelector.get_env_type_prefix
           @tmp_list << list['crewMember']['_id']
         end
       end
@@ -136,7 +137,7 @@ class WearablePage
     def get_crews_id_rank
       @tmp_list = {}
       ServiceUtil.get_response_body['data']['users'].each do |list|
-        if (list['crewMember']['rank'].include? EnvironmentSelector.get_env_type_prefix)
+        if list['crewMember']['rank'].include? EnvironmentSelector.get_env_type_prefix
           @tmp_list[list['_id']] = list['crewMember']['rank']
         end
       end

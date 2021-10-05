@@ -1,8 +1,8 @@
 # frozen_string_literal: true
+
 require_relative '../api/time_api'
 # service for time
 class TimeService
-
   def retrieve_current_date_time
     Time.now.utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
   end

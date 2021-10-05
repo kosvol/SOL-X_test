@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # builder for pending approval permit
 
 require_relative 'permit_builder'
@@ -60,5 +62,4 @@ class PermitGenerator
     @builder.create_section4b_eic
     @builder.create_section4b_eic_detail
   end
-
 end

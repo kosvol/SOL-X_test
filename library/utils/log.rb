@@ -1,5 +1,7 @@
-require "logger"
-require "singleton"
+# frozen_string_literal: true
+
+require 'logger'
+require 'singleton'
 
 class Log < Logger
   include Singleton
@@ -7,11 +9,11 @@ class Log < Logger
 
   def initialize
     if @start_new_log
-      @timestamp = Time.now.strftime("%Y_%m_%d-%HH_%MM_%SS_%LS")
+      @timestamp = Time.now.strftime('%Y_%m_%d-%HH_%MM_%SS_%LS')
       @log_file_path = "#{Dir.getwd}/testreport/log/#{@scenario_name}_#{@timestamp}.log"
       super(@log_file_path)
       @formatter = Formatter.new
-      @datetime_format = "%Y-%m-%d %H:%M:%S.%L "
+      @datetime_format = '%Y-%m-%d %H:%M:%S.%L '
     end
   end
 
@@ -26,7 +28,7 @@ class Log < Logger
     if info?
       # Always log to console so info statements show up in cucumber report.
       # cucumber_world is injected into this object via the common hooks to give us access to cucumber world.
-      @cucumber_world.puts(message) if @cucumber_world
+      @cucumber_world&.puts(message)
       message = format_log_message(message)
       super
     end
@@ -34,7 +36,7 @@ class Log < Logger
 
   def debug(message)
     if debug?
-      #console(message)
+      # console(message)
       message = format_log_message(message)
       super
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EnvironmentSelector
   class << self
     def get_environment_url
@@ -19,11 +21,11 @@ module EnvironmentSelector
 
     def get_vessel_type
       if $current_environment.include? 'lng'
-        "LNG"
+        'LNG'
       elsif $current_environment.include? 'cot'
-        "COT"
+        'COT'
       elsif $current_environment.include? 'fsu'
-        "FSU"
+        'FSU'
       else
         raise("Vessel type #{$current_environment} is not defined")
       end
@@ -47,12 +49,20 @@ module EnvironmentSelector
       format($obj_env_yml[get_env_type_prefix.downcase]['service'], $current_environment)
     end
 
+    def oa_form_status
+      $obj_env_yml['office_approval']['get_form_status']
+    end
+
     def get_db_url(which_db, url_map)
       if which_db != 'cloud'
-        get_edge_db_data_by_uri("#{$obj_env_yml[which_db.to_s][url_map.to_s]}")
+        get_edge_db_data_by_uri(($obj_env_yml[which_db.to_s][url_map.to_s]).to_s)
       else
         $obj_env_yml[which_db.to_s]['base_cloud_url'] + $obj_env_yml[which_db.to_s][url_map.to_s]
       end
+    end
+
+    def current_environment
+      ENV['ENVIRONMENT']
     end
   end
 end

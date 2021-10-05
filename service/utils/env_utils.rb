@@ -3,7 +3,6 @@
 require 'yaml'
 # module for environment
 module EnvUtils
-
   def retrieve_api_url
     env = ENV['ENVIRONMENT']
     env_file = File.read("#{Dir.pwd}/config/environment.yml")

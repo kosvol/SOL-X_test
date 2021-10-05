@@ -1,10 +1,19 @@
 # frozen_string_literal: true
 
 Then(/^I should see Note from (.*)$/) do |requested_from|
-  if requested_from === 'Office'
-    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Office')
-  elsif requested_from === 'Master'
-    is_equal(on(PendingStatePage).action_required_note_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text, 'See Notes from Master')
+  case requested_from.to_s.downcase
+  when 'office'
+    is_equal(on(PendingStatePage)
+               .action_required_note_elements[on(CreatedPermitToWorkPage)
+                                                .get_permit_index(CommonPage.get_permit_id)]
+               .text, 'See Notes from Office')
+  when 'master'
+    is_equal(on(PendingStatePage)
+               .action_required_note_elements[on(CreatedPermitToWorkPage)
+                                                .get_permit_index(CommonPage.get_permit_id)]
+               .text, 'See Notes from Master')
+  else
+    raise "Wrong request form >>> #{requested_from}"
   end
 end
 
@@ -19,35 +28,36 @@ Then(/^I should not be able to edit (.*) DRA$/) do |permit|
   sleep 1
   step 'I click on View Edit Hazard'
   sleep 1
-  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(2, 'down')
   on(Section3APage).delete_btn_elements.each do |elem|
     is_disabled(elem)
   end
-  is_equal(on(Section3APage).total_p_elements.size, 14) if permit === 'Enclosed Spaces Entry'
-  is_equal(on(Section3APage).total_p_elements.size, 4) if permit === 'Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces'
-  on(Section3APage).scroll_multiple_times_with_direction(2,'down')
+  is_equal(on(Section3APage).total_p_elements.size, 14) if permit == 'Enclosed Spaces Entry'
+  if permit == 'Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces'
+    is_equal(on(Section3APage)
+               .total_p_elements
+               .size, 4)
+  end
+  on(Section3APage).scroll_multiple_times_with_direction(2, 'down')
   on(CommonFormsPage).close_btn_elements.first.click
 end
 
 Then(/^I should not be able to edit EIC certification$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
-  on(Section3APage).scroll_multiple_times_with_direction(5,'down')
-  if on(Section3APage).total_p_elements.size === 27
+  on(Section3APage).scroll_multiple_times_with_direction(5, 'down')
+  if on(Section3APage).total_p_elements.size == 27
     is_equal(on(Section3APage).total_p_elements.size, 27)
   else
     is_equal(on(Section3APage).total_p_elements.size, 28)
   end
 end
 
-# Then (/^I should not see submit for approval button$/) do
-#   is_equal(on(PendingStatePage).submit_for_master_approval_btn_elements.size, 0)
-# end
-
 Then(/^I should be navigated back to (.*) screen$/) do |which_screen|
-  if which_screen === 'pending approval'
+  case which_screen
+  when 'pending approval'
     is_equal(on(Section0Page).ptw_id_element.text, 'Pending Approval Permits to Work')
-  elsif which_screen === 'active'
+  when 'active'
     is_equal(on(Section0Page).ptw_id_element.text, 'Active Permits to Work')
   end
 end
@@ -64,6 +74,8 @@ Then(/^I should see (.+) button$/) do |state|
     is_equal(on(Section4BPage).view_eic_btn_element.text, 'View/Edit Energy Isolation Certificate')
   when 'close'
     is_equal(on(Section7Page).close_btn_elements.first.text, 'Close')
+  else
+    raise "Wrong state >>> #{state}"
   end
 end
 

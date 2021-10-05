@@ -6,14 +6,15 @@ class DashboardPage < WearablePage
   include PageObject
 
   elements(:crew_list_headers, xpath: '//th')
-  element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') #same as below
-  elements(:permit_to_work_link, xpath: '//td/ul/li/a') #same as above
+  element(:permit_to_work, xpath: '//table/tbody/tr/td[4]') # same as below
+  elements(:permit_to_work_link, xpath: '//td/ul/li/a') # same as above
   elements(:active_crew_details, xpath: '//table/tbody/tr')
   elements(:crew_list, xpath: '//table/tbody/tr')
   element(:active_switch, xpath: "//label[starts-with(@class,'ToggleSwitch__Switch')]")
   element(:last_seen, xpath: '//table/tbody/tr/td[5]')
   spans(:permits_count, xpath: '//span[@class="stat"]')
-  span(:location_pin_txt, xpath: "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]/span")
+  span(:location_pin_txt,
+       xpath: "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]/span")
   button(:area_dd, xpath: "//div[starts-with(@class,'values-area')]/button")
   span(:pre_indicator, xpath: "//span[starts-with(@class,'EntryStatusIndicator__Status')]")
   element(:entry_status_indicator, xpath: "//div[starts-with(@class,'ActiveEntrantIndicator__ButtonContent')]")
@@ -21,17 +22,17 @@ class DashboardPage < WearablePage
   element(:entry_log_title, xpath: "//div[starts-with(@class,'EntryLogDisplay__EntryLogs')]/h2")
   element(:active_entrant, xpath: "//span[@data-testid='entrant-count']")
   @@ship_area = "//button[contains(.,'%s')]"
-  #Gas reading alert
+  # Gas reading alert
   element(:gas_alert, xpath: "//div[starts-with(@class,'GasReaderAlert')]")
   element(:gas_alert_accept_new, xpath: "//span[starts-with(@class,'Button__Button')][0]")
   element(:gas_alert_discard_new, xpath: '//button[contains(.,"Terminate Current Permit")]')
   @@pre_indicator = "//span[starts-with(@class,'EntryStatusIndicator__Status')]"
 
   @@activity_indicator = '//table/tbody/tr/td/div'
-  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]" #"//a[@data-testid='location-pin']"
+  @@location_pin = "//button[@data-testid='location-pin']/div[starts-with(@class, 'Pin__MarkerPin')]" # "//a[@data-testid='location-pin']"
   @@arr_data = []
 
-  #Gas reading alert
+  # Gas reading alert
   element(:gas_alert, css: "div[data-testid='gas-reader-alert'] > div > section > h2")
   element(:gas_alert_accept_new, xpath: "//span[contains(.,'Accept New Reading')]")
   element(:gas_alert_discard_new, xpath: '//span[contains(.,"Terminate Current Permit")]')
@@ -55,11 +56,8 @@ class DashboardPage < WearablePage
                                    end
   end
 
-  def get_location_pin_text(location)
+  def get_location_pin_text(_location)
     @browser.find_elements(:xpath, '//div/button/span')[2].click
-    #BrowserActions.js_clicks('//div/button/span', 2)
-    # toggle_zone_filter(location)
-    # sleep 1
     begin
       location_pin_txt
     rescue StandardError
@@ -81,8 +79,8 @@ class DashboardPage < WearablePage
   ### "rgba(242, 204, 84, 1)" - yellow
   def is_activity_indicator_status(color)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
-    @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s === color
-    @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s === color
+    @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s == color
+    @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s == color
   end
 
   def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)

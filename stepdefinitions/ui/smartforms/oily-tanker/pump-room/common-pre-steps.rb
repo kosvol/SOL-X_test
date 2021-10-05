@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^I fill and submit PRE permit details via (service|ui|without gas readings)$/) do |condition|
   step 'I clear gas reader entries'
   step 'I navigate to create new PRE'

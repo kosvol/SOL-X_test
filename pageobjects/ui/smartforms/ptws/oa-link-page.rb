@@ -159,7 +159,7 @@ class OAPage < Section9Page
       sleep 1
       dismiss_picker_element.click
       sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
+      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
       p " #{endtime - 24}"
       date_time_to_elements.first.click
       sleep 1
@@ -174,7 +174,7 @@ class OAPage < Section9Page
 
   def is_comment_box_reset?
     puts comment_counter_element.text
-    (comment_counter_element.text === 'Comments (0)' && comment_box_element.text === 'This Permit has no comments')
+    (comment_counter_element.text == 'Comments (0)' && comment_box_element.text == 'This Permit has no comments')
   end
 
   def set_comment
@@ -187,7 +187,7 @@ class OAPage < Section9Page
     sleep 1
     send_comments_btn
     sleep 1
-    comment_counter_element.text === 'Comments (1)'
+    comment_counter_element.text == 'Comments (1)'
   end
 
   def select_yes_on_checkbox
@@ -197,10 +197,12 @@ class OAPage < Section9Page
 
   def set_designation
     # designation
-    BrowserActions.js_click("//button[@name='designation']")
+    # BrowserActions.js_click("//button[@name='designation']")
+    BrowserActions.click_xpath_native("//button[@name='designation']")
     sleep 2
     BrowserActions.scroll_down
-    BrowserActions.js_click("//button[contains(.,'VS')]")
+    # BrowserActions.js_click("//button[contains(.,'VS')]")
+    BrowserActions.click_xpath_native("//button[contains(.,'VS')]")
   end
 
   def is_designation_list?
@@ -208,7 +210,7 @@ class OAPage < Section9Page
     designation_elements.each do |element|
       tmp_arr << element.text
     end
-    tmp_arr === YAML.load_file('data/office-approval/designation-list.yml')['roles']
+    tmp_arr == YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
   private

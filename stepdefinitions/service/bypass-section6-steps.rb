@@ -22,11 +22,11 @@ Given(/^I submit permit (.+) via service with (.+) user and set to active state 
 end
 
 Given(/^I submit permit (.+) via service with (.+) user and set to active state with gas reading (not require|require)$/) do |_permit_type, _user, _condition|
-  if _condition === 'not require'
+  if _condition == 'not require'
     on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes',
                                             'gas_no')
   end
-  if _condition === 'require'
+  if _condition == 'require'
     on(BypassPage).trigger_forms_submission(_permit_type, _user, 'active', 'eic_yes',
                                             'gas_yes')
   end
@@ -110,15 +110,15 @@ And(/^I add new entry "([^"]*)" (CRE|PTW|PRE)$/) do |array, type|
   on(BypassPage).create_entry_record(array, type)
 end
 
-And (/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
+And(/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
   on(BypassPage).create_entry_record_custom_gas_readings(array, type)
 end
 
-Given (/^I truncate and dump step records$/) do
+Given(/^I truncate and dump step records$/) do
   Postgres_clearing.import_step_record_csv_postgres
 end
 
-Given (/^I clear rubbish$/) do
+Given(/^I clear rubbish$/) do
   SmartFormDBPage.get_table_data('edge', 'get_forms')
   SmartFormDBPage.delete_rubbish_row('edge', 'delete_form')
 end

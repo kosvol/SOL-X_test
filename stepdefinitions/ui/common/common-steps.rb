@@ -1,4 +1,6 @@
-And(/^I turn (off|on) wifi$/) do |on_or_off|
+# frozen_string_literal: true
+
+And(/^I turn (off|on) wifi$/) do |_on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
@@ -62,7 +64,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  if ($current_environment.include? 'sit') || ($current_environment.include? 'auto')
+  if (EnvironmentSelector.current_environment.include? 'sit') || (EnvironmentSelector.current_environment.include? 'auto')
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
   sleep 1
@@ -82,7 +84,7 @@ When(/^I select (.+) permit for level 2$/) do |permit|
 end
 
 And(/^I set permit id$/) do
-  if @via_service_or_not === false
+  if @via_service_or_not == false
     Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
     CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
     Log.instance.info "New Permit ID: #{CommonPage.get_permit_id}"
@@ -94,7 +96,7 @@ And(/^I set time$/) do
 end
 
 Given(/^I launch sol-x portal dashboard$/) do
-  $browser.get(EnvironmentSelector.get_environment_url + 'dashboard')
+  @browser.get("#{EnvironmentSelector.get_environment_url}dashboard")
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue StandardError

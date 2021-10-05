@@ -4,7 +4,6 @@
 # To add new permit type, you need to add section0 and section4 checklist json to folder
 # Also add checklist map here
 class PermitMap
-
   PERMIT_MAP = {
     enclosed_spaces_entry: 'enclosed_spaces_entry',
     use_of_camera: 'use_of_camera',

@@ -9,8 +9,6 @@ class ReportUtils
     screenshotpath
   end
 
-  private
-
   def self.insert_example_values_into_step(step, examples)
     step_holders = step.scan(/<\w*\S*>/).to_a
     unless step_holders.empty?
@@ -20,8 +18,6 @@ class ReportUtils
     end
     step
   end
-
-  private
 
   def self.reset_examples_counter(outline_examples)
     if $examples_count != outline_examples.size - 1
@@ -36,9 +32,7 @@ class ReportUtils
     if feature_.class.to_s == 'Cucumber::RunningTestCase::ScenarioOutlineExample'
       # match scenario
       feature_.feature.feature_elements.size.times do |z|
-        unless feature_.feature.feature_elements[z].to_s == scenario.name.gsub(/, Examples \(#\d*\)/, '')
-          next
-        end
+        next unless feature_.feature.feature_elements[z].to_s == scenario.name.gsub(/, Examples \(#\d*\)/, '')
 
         @outline_examples = feature_.feature.feature_elements[z].examples_tables[0].example_rows.to_s.scan(/{([^}]*)/)
         (1..feature_.scenario_outline.step_count.to_i).each do |i|
@@ -98,9 +92,7 @@ class ReportUtils
       # if %w[testreport/jsonreports testreport/log testreport/reports testreport/xmlreports testreport/livingdoc].include? subfolder.to_s
       #   FileUtils.rm_r(subfolder)
       # end
-      unless %w[testreport/css testreport/img].include? subfolder
-        FileUtils.rm_r(subfolder)
-      end
+      FileUtils.rm_r(subfolder) unless %w[testreport/css testreport/img].include? subfolder
     end
   end
 end

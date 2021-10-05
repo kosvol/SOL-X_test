@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section1
 class Section1API < BaseSectionApi
-
   def request(form_id, pin)
     payload = create_payload(form_id)
     response = RestClient.post(retrieve_api_url,
@@ -21,5 +20,4 @@ class Section1API < BaseSectionApi
     payload['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{retrieve_vessel_name}-Z-AFT-STATION"
     payload
   end
-
 end

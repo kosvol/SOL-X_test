@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../service/form/permit_generator'
 
 Given(/^PermitGenerator create permit$/) do |table|
