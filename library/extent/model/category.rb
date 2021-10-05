@@ -1,4 +1,6 @@
-require "liquid"
+# frozen_string_literal: true
+
+require 'liquid'
 
 module RelevantCodes
   module Model

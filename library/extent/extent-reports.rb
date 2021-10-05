@@ -9,10 +9,6 @@ require_relative 'extent-test'
 
 module RelevantCodes
   class ExtentReports < Report
-    def initialize(file_path)
-      super(file_path)
-    end
-
     def start_test(test_name, description = nil)
       @tests << RelevantCodes::ExtentTest.new(test_name, description)
       @tests[-1]

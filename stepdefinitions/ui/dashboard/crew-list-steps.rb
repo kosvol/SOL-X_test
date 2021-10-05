@@ -3,7 +3,8 @@
 Then(/^I should see correct column headers$/) do
   p ">> #{on(CrewListPage).get_crew_table_headers}"
   is_equal(on(CrewListPage).get_crew_table_headers,
-           '["Rank", "Surname", "First Name", "Location", "PIN", "Work Availability*", "Rank", "Surname", "First Name", "Location", "PIN", "Work Availability*", "", "", "", "", "", "", "", "", "", ""]')
+           '["Rank", "Surname", "First Name", "Location", "PIN", "Work Availability*", "Rank", "Surname", "First Name",
+ "Location", "PIN", "Work Availability*", "", "", "", "", "", "", "", "", "", ""]')
 end
 
 Then(/^I should see total crew count match inactive crew$/) do
@@ -109,12 +110,15 @@ Then(/^I should see pin review$/) do
 end
 
 Then(/^I should see count down start from 10 seconds$/) do
-  if on(CrewListPage).countdown_elements[0].text == 'Hiding in 9 secs'
+  case on(CrewListPage).countdown_elements[0].text
+  when 'Hiding in 9 secs'
     true
-  elsif on(CrewListPage).countdown_elements[0].text == 'Hiding in 8 secs'
+  when 'Hiding in 8 secs'
     true
-  elsif on(CrewListPage).countdown_elements[0].text == 'Hiding in 7 secs'
+  when 'Hiding in 7 secs'
     true
+  else
+    raise "Wrong count down text >>> #{on(CrewListPage).countdown_elements[0].text}"
   end
 end
 

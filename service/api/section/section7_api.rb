@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 7
 class Section7Api < BaseSectionApi
-
   def request(permit_id, pin)
     payload = create_payload(permit_id)
     response = RestClient.post(retrieve_api_url,
@@ -28,5 +27,4 @@ class Section7Api < BaseSectionApi
       "{\"dateTime\":\"#{@time_service.get_current_date_time_cal(8)}\",\"utcOffset\":#{utc_offset}}"
     payload
   end
-
 end

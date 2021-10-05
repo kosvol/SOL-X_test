@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
-And(/^I review page 1 of submitted (.+) permit$/) do |_permit_type|
+And(/^I review page 1 of submitted (.+) permit$/) do |permit_type|
   # step 'I click on permit for Master Approval'
   on(PendingStatePage).pending_approval_status_btn_elements[0].click
 
   step 'I enter pin for rank MAS'
-  if _permit_type === 'enclose workspace'
+  case permit_type
+  when 'enclose workspace'
     @@form_data = YAML.load_file('data/filled-forms-base-data/enclosed-entry-permit.yml')
-  elsif _permit_type === 'hot work'
+  when 'hot work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work.yml')
-  elsif _permit_type === 'cold work'
+  when 'cold work'
     @@form_data = YAML.load_file('data/filled-forms-base-data/cold-work.yml')
-  elsif _permit_type === 'hot work with hazard'
+  when 'hot work with hazard'
     @@form_data = YAML.load_file('data/filled-forms-base-data/hot-work-hazardous.yml')
+  else
+    raise "Wrong permit type >>> #{permit_type}"
   end
   p ">>> #{on(Section1Page).get_filled_section1}"
   is_equal(on(Section1Page).get_filled_section1, @@form_data['section1_without_duration'])
@@ -63,7 +66,7 @@ And(/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
     does_include(on(Section3BPage).method_detail_elements[7].text, 'Test automation')
     # capture_data.delete_at(6)
   end
-  p "=== #{capture_data}"
+  p "== #{capture_data}"
   is_equal(capture_data, base_data)
   # is_equal(on(Section3BPage).get_inspection_by_element.text,"MAS Daniel Alcantara")
 end
@@ -78,7 +81,7 @@ end
 And(/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  Log.instance.info "#{on(Section3DPage).get_filled_section}"
+  Log.instance.info on(Section3DPage).get_filled_section.to_s
   is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
   CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'

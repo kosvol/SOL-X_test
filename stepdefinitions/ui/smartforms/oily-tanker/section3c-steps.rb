@@ -5,8 +5,8 @@ And(/^I uncheck dra member$/) do
 end
 
 Then(/^I should see dra member prefilled$/) do
-  on(Section3CPage).dra_team_name_list_elements.each do |_element|
-    is_equal(_element.text, 'A/M Atif Hayat')
+  on(Section3CPage).dra_team_name_list_elements.each do |element|
+    is_equal(element.text, 'A/M Atif Hayat')
   end
 end
 
@@ -16,8 +16,8 @@ end
 
 Then(/^I should see list of dra member$/) do
   dra_members = ['Edit Selection', 'MAS Daniel Alcantara', 'A/M Atif Hayat']
-  on(Section3CPage).dra_team_name_list_elements.each_with_index do |_element, _index|
-    is_equal(_element.text, dra_members[_index])
+  on(Section3CPage).dra_team_name_list_elements.each_with_index do |element, index|
+    is_equal(element.text, dra_members[index])
   end
 end
 

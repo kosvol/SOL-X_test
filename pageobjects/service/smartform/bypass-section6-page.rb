@@ -192,7 +192,7 @@ class BypassPage < CommonFormsPage
       section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
       section['variables']['formId'] = CommonPage.get_permit_id
       section['variables']['submissionTimestamp'] = get_current_date_time
-      # if $current_environment === 'sit' #todo: need to fix that with actual
+      # if $current_environment == 'sit' #todo: need to fix that with actual
       section['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION"
       # end
       JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
@@ -243,12 +243,12 @@ class BypassPage < CommonFormsPage
         section4b = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
         section4b['variables']['formId'] = CommonPage.get_permit_id
         section4b['variables']['submissionTimestamp'] = get_current_date_time
-        if eic === 'eic_yes'
+        if eic == 'eic_yes'
           section4b['variables']['answers'][1].to_h['value'] = '"yes"'
           get_rank_id_from_service('C/O', vessel)
           section4b['variables']['answers'].last['value'] =
             "{\"signedBy\":\"#{CommonPage.get_rank_id}\",\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABYAyADASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIH/8QAGxABAQEAAwEBAAAAAAAAAAAAAAECAxEhIjH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A2YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARy8ueHE1qbsus5+MXV7tknkl87vt/JO7epLVgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedOn\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}}}"
-        elsif eic === 'eic_no'
+        elsif eic == 'eic_no'
           section4b['variables']['answers'][1].to_h['value'] = '"no"'
           section4b['variables']['answers'].pop
         end
@@ -268,9 +268,9 @@ class BypassPage < CommonFormsPage
         section2 = JSON.parse JsonUtil.read_json('ptw/13.save_section6_details')
         section2['variables']['formId'] = CommonPage.get_permit_id
         section2['variables']['submissionTimestamp'] = get_current_date_time
-        if gas === 'gas_yes'
+        if gas == 'gas_yes'
           section2['variables']['answers'][1].to_h['value'] = '"yes"'
-        elsif gas === 'gas_no'
+        elsif gas == 'gas_no'
           section2['variables']['answers'][1].to_h['value'] = '"no"'
           section2['variables']['answers'].delete_at(2)
           section2['variables']['answers'].delete_at(2)
@@ -358,7 +358,7 @@ class BypassPage < CommonFormsPage
     section = JSON.parse JsonUtil.read_json("ptw/#{_which_json}")
     section['variables']['formId'] = CommonPage.get_permit_id
     section['variables']['submissionTimestamp'] = get_current_date_time
-    # if $current_environment === 'sit'
+    # if $current_environment == 'sit'
     section['variables']['answers'].last['value']['COTAUTO-Z-AFT-STATION'] = "#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION"
     # end
     JsonUtil.create_request_file('ptw/mod_3.save_section1_details', section)
@@ -438,11 +438,11 @@ class BypassPage < CommonFormsPage
     section4b = JSON.parse JsonUtil.read_json('ptw/11.save_section4b_details')
     section4b['variables']['formId'] = CommonPage.get_permit_id
     section4b['variables']['submissionTimestamp'] = get_current_date_time
-    if eic === 'eic_yes'
+    if eic == 'eic_yes'
       section4b['variables']['answers'][1].to_h['value'] = '"yes"'
       get_rank_id_from_service('A/M')
       section4b['variables']['answers'].last['value'] = get_default_signature_payload
-    elsif eic === 'eic_no'
+    elsif eic == 'eic_no'
       section4b['variables']['answers'][1].to_h['value'] = '"no"'
       section4b['variables']['answers'].pop
     end
@@ -464,14 +464,14 @@ class BypassPage < CommonFormsPage
     section2 = JSON.parse JsonUtil.read_json('ptw/13.save_section6_details')
     section2['variables']['formId'] = CommonPage.get_permit_id
     section2['variables']['submissionTimestamp'] = get_current_date_time
-    if _gas === 'gas_yes'
+    if _gas == 'gas_yes'
       section2['variables']['answers'][1].to_h['value'] = '"yes"'
       get_rank_id_from_service('A/M')
       section2['variables']['answers'][-3]['value'] =
         "[{\"formId\":\"\",\"entryId\":\"entry\",\"crewId\":\"#{CommonPage.get_rank_id}\",\"gasReadings\":[{\"gasName\":\"O2\",\"reading\":\"1\",\"unit\":\"%\",\"threshold\":\"20.9\"},{\"gasName\":\"HC\",\"reading\":\"2\",\"unit\":\"% LEL\",\"threshold\":\"1\"},{\"gasName\":\"H2S\",\"reading\":\"3\",\"unit\":\"PPM\",\"threshold\":\"5\"},{\"gasName\":\"CO\",\"reading\":\"4\",\"unit\":\"PPM\",\"threshold\":\"25\"}],\"gasReadingTime\":{\"dateTime\":\"#{get_current_date_time}\",\"utcOffset\":#{@get_offset}},\"signature\":\"data:image/jpeg;base64,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\",\"signed\":{\"userId\":\"#{CommonPage.get_rank_id}\",\"rank\":\"A/M\"},\"gasReadingStatus\":\"PENDING\",\"entryStatus\":\"ACTIVE\",\"purposeOfEntry\":\"\",\"entrant\":{\"clientId\":\"\",\"_id\":\"#{CommonPage.get_rank_id}\",\"accessGroups\":[],\"firstName\":\"COT\",\"lastName\":\"A/M\",\"rank\":\"A/M\"},\"locationId\":\"#{EnvironmentSelector.get_vessel_name}-Z-AFT-STATION\"}]"
       get_rank_id_from_service('A/M')
       section2['variables']['answers'][-2]['value'] = get_default_signature_payload
-    elsif _gas === 'gas_no'
+    elsif _gas == 'gas_no'
       section2['variables']['answers'][1].to_h['value'] = '"no"'
       section2['variables']['answers'].delete_at(2)
       section2['variables']['answers'].delete_at(2)
@@ -484,7 +484,7 @@ class BypassPage < CommonFormsPage
     save_different_form_section(payload_mapper(_permit_type, '14'), _user)
 
     ### put to states
-    if _state === 'active'
+    if _state == 'active'
       submit_active = set_permit_status('ACTIVE')
       submit_permit_for_status_change(submit_active, '1111', _permit_type)
       set_update_require_for_permit(_permit_type, '1111')
@@ -644,7 +644,7 @@ class BypassPage < CommonFormsPage
       else
         time_w_offset
       end
-    count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
+    count_hour.to_s.size == 2 ? count_hour.to_s : "0#{count_hour}"
   end
 
   def create_entry_record(_array, _type)
@@ -656,7 +656,7 @@ class BypassPage < CommonFormsPage
 
       _array.split(',').each do |item|
         ServiceUtil.get_response_body['data']['users'].each do |crew|
-          if crew['crewMember']['rank'] === item
+          if crew['crewMember']['rank'] == item
             _entry_record['variables']['otherEntrantIds'].push(crew['_id'])
             break
           end
@@ -672,7 +672,7 @@ class BypassPage < CommonFormsPage
       _entry_record['variables']['formId'] = CommonPage.get_permit_id
       _array.split(',').each do |item|
         ServiceUtil.get_response_body['data']['users'].each do |crew|
-          if crew['crewMember']['rank'] === item
+          if crew['crewMember']['rank'] == item
             _entry_record['variables']['otherEntrantIds'].push(crew['_id'])
             break
           end
@@ -705,7 +705,7 @@ class BypassPage < CommonFormsPage
     _entry_record['variables']['formId'] = CommonPage.get_permit_id
     _array.split(',').each do |item|
       ServiceUtil.get_response_body['data']['users'].each do |crew|
-        if crew['crewMember']['rank'] === item
+        if crew['crewMember']['rank'] == item
           _entry_record['variables']['otherEntrantIds'].push(crew['_id'])
           break
         end
@@ -852,9 +852,9 @@ class BypassPage < CommonFormsPage
     current_minute = @current_minute.to_i + 1
     if current_minute > 60
       current_minute -= 60
-      current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
+      current_minute.to_s.size == 2 ? current_minute.to_s : "0#{current_minute}"
     else
-      current_minute.to_s.size === 2 ? current_minute.to_s : "0#{current_minute}"
+      current_minute.to_s.size == 2 ? current_minute.to_s : "0#{current_minute}"
     end
   end
 

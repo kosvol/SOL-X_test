@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section3B
 class Section3BAPI < BaseSectionApi
-
   def request(form_id, pin)
     payload = create_payload(form_id)
     response = RestClient.post(retrieve_api_url,
@@ -22,5 +21,4 @@ class Section3BAPI < BaseSectionApi
     payload['variables']['answers'][2]['value'] = "[{\"userId\":\"#{master_rank_id}\",\"rank\":\"MAS\"}]"
     payload
   end
-
 end

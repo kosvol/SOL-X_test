@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section3D
 class Section3DAPI < BaseSectionApi
-
   def request(form_id, pin)
     payload = create_payload(form_id)
     response = RestClient.post(retrieve_api_url,

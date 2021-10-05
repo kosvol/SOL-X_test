@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 8
 class Section8Api < BaseSectionApi
-
   def request(permit_id, pin)
     payload = create_payload(permit_id)
     response = RestClient.post(retrieve_api_url,

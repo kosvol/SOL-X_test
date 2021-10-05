@@ -22,7 +22,7 @@ class SignaturePage < Section1Page
   end
 
   def is_signature_pad?
-    signature_elements.size > 0 ? true : false
+    signature_elements.size.positive? ? true : false
   rescue StandardError
     false
   end

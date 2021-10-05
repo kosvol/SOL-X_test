@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 6
 class Section6Api < BaseSectionApi
-
   def request(permit_id, gas_reading, pin)
     payload = create_payload(permit_id, gas_reading)
     response = RestClient.post(retrieve_api_url,

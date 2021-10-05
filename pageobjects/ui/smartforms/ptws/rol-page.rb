@@ -26,7 +26,7 @@ class ROLPage < Section9Page
     confirm_btn_elements.last.click
     rol_inputs_elements[4].click
     rol_inputs_elements[7].click
-    scroll_multiple_times_with_direction(3,'down')
+    scroll_multiple_times_with_direction(3, 'down')
     last_assessment_date_element.click
     sleep 1
     current_date
@@ -57,9 +57,9 @@ class ROLPage < Section9Page
     sleep 1
     rol_duration
     sleep 1
-    scroll_multiple_times_with_direction(2,'down')
+    scroll_multiple_times_with_direction(2, 'down')
     sleep 1
-    tmp_hour = @browser.find_element('xpath', @@duration % ["#{duration} hour".to_s])
+    tmp_hour = @browser.find_element('xpath', format(@@duration, "#{duration} hour".to_s))
     tmp_hour.click
     BrowserActions.scroll_down(tmp_hour)
     sleep 1
@@ -72,7 +72,7 @@ class ROLPage < Section9Page
 
   def is_duration?(permit_validity_timer, duration, timer_mins = '59')
     if permit_validity_timer.include? ":#{timer_mins}:"
-      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration === '1'
+      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration == '1'
     else
       is_duration?(permit_validity_timer, duration, (timer_mins.to_i - 1))
     end

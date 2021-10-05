@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Then(/^I should see new PRE permit number$/) do
   p "base: #{on(CommonFormsPage).generic_data_elements[2].text}"
   p "exact: #{CommonPage.get_permit_id}"
@@ -36,7 +38,8 @@ end
 
 And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
   i = 0
-  until @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color') == 'rgba(67, 160, 71, 1)'
+  until @browser.find_element(:xpath, "//*[@id='root']/div/main")
+                .css_value('background-color') == 'rgba(67, 160, 71, 1)'
     step 'I navigate to "Settings" screen for setting'
     BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type == 'PRE'
     BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type == 'CRE'
@@ -66,7 +69,7 @@ And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |c
 end
 
 And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|
-  if which_box === 'warning'
+  if which_box == 'warning'
     begin
       box_text = on(PreDisplay).warning_box_element.text
     rescue StandardError
@@ -83,16 +86,17 @@ end
 
 Then(/^I should see (green|red) background color$/) do |condition|
   background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
-  if condition == 'green'
+  case condition
+  when 'green'
     green = 'rgba(67, 160, 71, 1)'
     is_equal(background_color, green)
-  elsif condition == 'red'
+  when 'red'
     red = 'rgba(216, 75, 75, 1)'
     is_equal(background_color, red)
   end
 end
 
-And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |status, type|
+And(/^I should see (Permit Activated|Permit Terminated) (PRE|CRE) status on screen$/) do |status, _type|
   sleep 2
   BrowserActions.wait_until_is_visible(on(PreDisplay).permit_status_element)
   BrowserActions.wait_until_is_visible(on(PreDisplay).new_entry_log_element) if status == 'Permit Activated'
@@ -110,8 +114,6 @@ end
 
 And(/^I take note of PRE permit creator name and activate the the current PRE form$/) do
   step 'I open the current PRE with status Pending approval. Rank: C/O'
-  # @preCreatorName = on(PumpRoomEntry).pre_creator_form_element.text
-  # p "PRE Creator>> #{@preCreatorName}"
   sleep 1
   step 'I press the "Approve for Activation" button'
   step 'I sign with valid C/O rank'
@@ -138,15 +140,15 @@ Then(/^I check location in gas readings signature is present$/) do
   sleep 2
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).show_signature_display_element)
   on(PumpRoomEntry).get_element_by_value('C/O COT C/O', 0)
-  is_not_equal($browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text, '')
+  is_not_equal(@browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text, '')
 end
 
-Then(/^I should see (Home|Entry Log|Permit) tab$/) do |_condition|
+Then(/^I should see (Home|Entry Log|Permit) tab$/) do |condition|
   sleep 1
-  if _condition == 'Entry Log'
+  if condition == 'Entry Log'
     is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
 
-    if $browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
+    if @browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
       puts('Entry log is not exist')
     else
       raise('Entry log is exist')

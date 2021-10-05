@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request sra
 class DraAPI < BaseSectionApi
-
   def request(permit_id, permit_type, pin)
     payload = create_payload(permit_id, permit_type)
     response = RestClient.post(retrieve_api_url,

@@ -321,7 +321,8 @@ class WorkResetrHoursPage
       tmp_payload['docs'][29]['endTime'] = ttt
 
       JsonUtil.create_request_file('wrh/mod-wrk-rest-hr', tmp_payload)
-      ServiceUtil.fauxton(EnvironmentSelector.get_db_url('fauxton_url', 'add-work-rest-hour'), 'post', 'wrh/mod-wrk-rest-hr')
+      ServiceUtil.fauxton(EnvironmentSelector.get_db_url('fauxton_url', 'add-work-rest-hour'), 'post',
+                          'wrh/mod-wrk-rest-hr')
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 And(/^I navigate to create new (PRE|CRE)$/) do |permit_type|
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_pre_btn_element) if permit_type == 'PRE'
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).create_new_cre_btn_element) if permit_type == 'CRE'
@@ -32,7 +34,7 @@ And(/^Button "([^"]*)" (should|should not) be disabled$/) do |button_text, condi
   is_true(on(PumpRoomEntry).is_button_enabled?(button_text)) if condition == 'should not'
 end
 
-Then(/^I select current day for field "([^"]*)"$/) do |button|
+Then(/^I select current day for field "([^"]*)"$/) do |_button|
   on(PumpRoomEntry).gas_last_calibration_button
   sleep 1
   on(PumpRoomEntry).current_day_button_btn
@@ -47,9 +49,10 @@ end
 And(/^I (should|should not) see Reporting interval$/) do |condition|
   sleep 1
   BrowserActions.scroll_down
-  if condition == 'should not'
+  case condition
+  when 'should not'
     not_to_exists(on(PumpRoomEntry).reporting_interval_element)
-  elsif condition == 'should'
+  when 'should'
     to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
@@ -83,7 +86,7 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, permit_type, duration, delay|
+Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, _permit_type, duration, delay|
   on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   if gas == 'fill up with gas readings'
     sleep 1
@@ -95,18 +98,18 @@ Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to
   end
   on(Section3APage).scroll_multiple_times_with_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration)
-  on(Section3APage).scroll_multiple_times_with_direction(1,'down')
+  on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
-Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |condition, permit_type, duration, delay, days, direction, point|
+Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |condition, _permit_type, duration, delay, days, direction, point|
   on(PumpRoomEntry).fill_up_pre(duration) if condition == 'fill up'
-  on(Section3APage).scroll_multiple_times_with_direction(1,'down') if condition == 'fill up'
+  on(Section3APage).scroll_multiple_times_with_direction(1, 'down') if condition == 'fill up'
   on(PumpRoomEntry).select_day(direction, days, point)
   on(PumpRoomEntry).select_start_time_to_activate(delay) if condition == 'fill up'
 end
 
-And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |permit_type, role|
+And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type, role|
   step 'Get PRE id'
   step 'I press the "Submit for Approval" button'
   step format('I enter pin for rank %s', role.to_s)
@@ -127,7 +130,7 @@ And(/^I activate the current (PRE|CRE) form$/) do |permit_type|
   step 'I press the "Back to Home" button'
 end
 
-And(/^I activate (PRE|CRE) form via service$/) do |permit_type|
+And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
   sleep 1
   on(BypassPage).activate_pre_cre
   sleep 5
@@ -142,7 +145,7 @@ And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) d
   step "I #{condition} see the text '#{@@pre_number}'"
 end
 
-And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |permit|
+And(/^I should see that existed (PRE|CRE) number not equal with number Active list$/) do |_permit|
   Log.instance.info("Form id existed: >> #{@@pre_number}")
   Log.instance.info("Form id in list: >> #{on(Section0Page).ptw_id_element.text}")
   on(Section0Page).ptw_id_element.text != @@pre_number
@@ -201,7 +204,6 @@ And(/^I should see that form is open for read by rank (.*)$/) do |rank|
   step format('I enter pin via service for rank %s', rank)
   step 'Button "Submit for Approval" should be disabled'
   step 'Button "Add Gas Test Record" should be disabled'
-
 end
 
 And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
@@ -223,7 +225,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   # table is a table.hashes.keys # => [:Chief Officer, :8383]
   roles.raw.each do |role|
     step format('I open the current PRE with status Pending approval. Rank: %s', role[0].to_s)
-    on(CommonFormsPage).scroll_multiple_times_with_direction(20,'down')
+    on(CommonFormsPage).scroll_multiple_times_with_direction(20, 'down')
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
     is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
@@ -298,6 +300,8 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
     p (@@issue_time[12, 5]).to_s
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, (@@issued_date_and_time[12, 5]).to_s)
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text, (@@issue_time[12, 5]).to_s)
+  else
+    raise "Wrong condition #{condition}"
   end
   is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text, on(CommonFormsPage).get_current_time_offset.to_s)
   is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text, '2 %')
@@ -306,7 +310,6 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
   is_equal(on(PumpRoomEntry).entry_log_table_elements[8].text, '5 PPM')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[10].text, "C/O #{EnvironmentSelector.get_vessel_type} C/O")
-
 end
 
 Then('I should see timer countdown') do
@@ -341,19 +344,22 @@ Then(/^I check all header-cells in Entry log table on (PWT|Dashboard)$/) do |con
   when 'PTW'
     # shoud be "Competent Person"
     is_equal(on(PumpRoomEntry).header_cell_elements[10].text, 'OOW')
+  else
+    raise "Wrong condition >>> #{condition}"
   end
 end
 
 Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashboard)$/) do |type, condition|
   case condition
   when 'table'
-    if type == 'last'
+    case type
+    when 'last'
       is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
       is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
-    elsif type == 'previous'
-      is_not_equal($browser
+    when 'previous'
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[9].text, 'Test')
-      is_not_equal($browser
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[9].text, '2 CC')
     end
   when 'dashboard'
@@ -364,10 +370,10 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
     is_not_equal(on(PumpRoomEntry).header_pwt_elements[1].text, @@pre_number)
     i = 0
     while i < 5
-      is_not_equal($browser
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text, 'Test')
-      puts($browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
-      is_not_equal($browser
+      puts(@browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
+      is_not_equal(@browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[i].text, '2 CC')
       i += 1
     end

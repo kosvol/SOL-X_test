@@ -24,7 +24,7 @@ class ShipLocalTimePage
   def adjust_ship_local_time
     clock_btn_element.click
     sleep 1
-    %w[1 2].sample === '1' ? decrement : increment
+    %w[1 2].sample == '1' ? decrement : increment
   end
 
   def is_update_ship_time
@@ -34,7 +34,7 @@ class ShipLocalTimePage
     get_current_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     Log.instance.info(utc_timezone_elements[1].text)
     Log.instance.info("#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}")
-    ((utc_time_text === get_new_current_offset_text(get_current_offset)) && (utc_timezone_elements[1].text === "#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}"))
+    ((utc_time_text == get_new_current_offset_text(get_current_offset)) && (utc_timezone_elements[1].text == "#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}"))
   end
 
   private
@@ -51,6 +51,6 @@ class ShipLocalTimePage
                  else
                    time_w_offset
                  end
-    count_hour.to_s.size === 2 ? count_hour.to_s : "0#{count_hour}"
+    count_hour.to_s.size == 2 ? count_hour.to_s : "0#{count_hour}"
   end
 end

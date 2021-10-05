@@ -7,7 +7,8 @@ class Section6Page < Section5Page
   include GasReading
 
   element(:rank_and_name_stamp, xpath: "//button[starts-with(@data-testid,'show-signature-display')]/span/span")
-  element(:date_and_time_stamp, xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
+  element(:date_and_time_stamp,
+          xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
   elements(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
   elements(:info_warning_boxes, xpath: "//div[starts-with(@class,'InfoBox__')]/*")
   element(:gas_notes, xpath: "//div[starts-with(@class,'WarningBox__')]/*")
@@ -23,13 +24,13 @@ class Section6Page < Section5Page
   def is_gas_reading_fields_enabled?
     gas_equipment_input_element.text
     gas_sr_number_input_element.text
-    gas_yes_no_elements.size === 2
+    gas_yes_no_elements.size == 2
   end
 
   def is_gas_reader_section?
     sleep 1
     p ">> #{total_sections_elements.size}"
-    total_sections_elements.size === 5
+    total_sections_elements.size == 5
   end
 
   def gas_testing_switcher(value)

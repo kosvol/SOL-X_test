@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 And(/^I should see entire hamburger categories$/) do
   on(NavigationPage).menu_categories_elements.each_with_index do |element, index|
     is_equal((on(NavigationPage).get_menu_categories)[index], element.text)
@@ -52,11 +54,11 @@ And(/^I update permit in pending update state with (.*) rank$/) do |rank|
   step "I update permit with #{rank} rank"
 end
 
-And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, rank|
+And(/^I (.+) permit with (.+) rank$/) do |update_or_terminate, rank|
   sleep 1
   permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
 
-  case _update_or_terminate
+  case update_or_terminate
   when 'add gas to'
     on(ActiveStatePage).add_gas_btn_elements[permit_id].click
   when 'update'
@@ -68,12 +70,16 @@ And(/^I (.+) permit with (.+) rank$/) do |_update_or_terminate, rank|
     on(ActiveStatePage).terminate_permit_btn_elements[permit_id].click
   when 'withdraw'
     on(PendingWithdrawalPage).review_n_withdraw_elements[permit_id].click
+  else
+    raise "Wrong condition >>> #{update_or_terminate}"
   end
   step "I enter pin via service for rank #{rank}"
 end
 
 And('I take note of issued date and time') do
-  @@issued_date_and_time = on(CreatedPermitToWorkPage).issued_date_time_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].text
+  @@issued_date_and_time = on(CreatedPermitToWorkPage)
+                           .issued_date_time_elements[on(CreatedPermitToWorkPage)
+                           .get_permit_index(CommonPage.get_permit_id)].text
 end
 
 And('I click New Entrant button on Enclose Space Entry PWT') do
@@ -95,6 +101,8 @@ And(/^I click on (.*) tab$/) do |which_tab|
     BrowserActions.poll_exists_and_click(on(PreDisplay).entry_log_tab_element)
   when 'permit'
     BrowserActions.poll_exists_and_click(on(PreDisplay).permit_tab_element)
+  else
+    raise "Wrong condition >>> #{which_tab}"
   end
 end
 
@@ -102,7 +110,7 @@ And(/^I go to (CRE|PRE|ESE) log in dashboard$/) do |condition|
   sleep 1
   BrowserActions.poll_exists_and_click(on(DashboardPage).entry_status_indicator_element)
   sleep 1
-  if condition == 'PRE' || condition == 'CRE'
+  if %w[PRE CRE].include?(condition)
     BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[0])
   end
   BrowserActions.poll_exists_and_click(on(DashboardPage).radio_button_enclosed_elements[1]) if condition == 'ESE'

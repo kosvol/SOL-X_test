@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section 5
 class Section5Api < BaseSectionApi
-
   def request(permit_id, pin)
     payload = create_payload(permit_id)
     response = RestClient.post(retrieve_api_url,
@@ -22,5 +21,4 @@ class Section5Api < BaseSectionApi
       @user_service.create_section5_signature('C/O', retrieve_vessel_name)
     payload
   end
-
 end

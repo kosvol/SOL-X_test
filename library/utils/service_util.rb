@@ -30,7 +30,7 @@ module ServiceUtil
       error_logging('Response Body: ', @response)
     end
 
-    #def post_graph_ql_to_uri(which_json, user = '1111', vessel)
+    # def post_graph_ql_to_uri(which_json, user = '1111', vessel)
     #  if vessel.include? 'auto'
     #    env = 'auto'
     #  elsif vessel.include? 'sit'
@@ -44,13 +44,13 @@ module ServiceUtil
     #  error_logging('Response Body: ', @response)
     #  error_logging('Status Code: ', get_http_response_status_code)
     #  JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
-    #end
+    # end
 
     # def switch_vessel_type(_vesselType, _user = '1111')
     #   uri = EnvironmentSelector.get_vessel_switch_url
-    #   if $current_environment === 'auto'
+    #   if $current_environment == 'auto'
     #     content_body = JsonUtil.read_json('vessel-switch/get_auto_vessel_details')
-    #   elsif $current_environment === 'sit'
+    #   elsif $current_environment == 'sit'
     #     content_body = JsonUtil.read_json('vessel-switch/get_sit_vessel_details')
     #   end
     #   error_logging('URI: ', uri)
@@ -89,19 +89,19 @@ module ServiceUtil
       content_body = JsonUtil.read_json(_json_payload) if _json_payload != '' && _json_payload.size < 20
       error_logging('URI: ', _uri)
       error_logging('Request Body: ', content_body)
-      if _trans_method === 'put'
+      if _trans_method == 'put'
         @response = HTTParty.put(_uri,
                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      if _trans_method === 'post'
+      if _trans_method == 'post'
         @response = HTTParty.post(_uri,
                                   { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      if _trans_method === 'get'
+      if _trans_method == 'get'
         @response = HTTParty.get(_uri,
                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
-      if _trans_method === 'delete'
+      if _trans_method == 'delete'
         @response = HTTParty.delete(_uri,
                                     { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
       end
@@ -133,7 +133,7 @@ module ServiceUtil
       { headers: {
         'Content-Type' => 'application/json',
         'Accept' => '/',
-        'x-auth-pin' => authorization_pin,
+        'x-auth-pin' => authorization_pin
       } }
     end
 

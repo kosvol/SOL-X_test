@@ -1,8 +1,10 @@
-Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condition|
+# frozen_string_literal: true
+
+Then(/^I should see (.*) button (disabled|enabled)$/) do |which_button, condition|
   sleep 1
-  on(Section3APage).scroll_multiple_times_with_direction(3,'down')
-  if _condition === 'disabled'
-    case _which_button
+  on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
+  if condition == 'disabled'
+    case which_button
     when 'Add Gas'
       is_disabled(on(Section6Page).add_gas_btn_element)
     when 'submit'
@@ -33,13 +35,15 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       is_disabled(on(Section4APage).sign_btn_elements.first)
     when 'Save EIC'
       is_disabled(on(Section4BPage).save_eic_element)
+    else
+      raise "Wrong button >>> #{which_button}"
     end
-  elsif _condition === 'enabled'
-    case _which_button
+  else
+    case which_button
     when 'sign'
       is_enabled(on(Section5Page).sign_btn_role_elements.first)
     when 'submit'
-      on(Section3APage).scroll_multiple_times_with_direction(3,'down')
+      on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
       sleep 1
       is_equal(on(CommonFormsPage).submit_for_master_approval_btn_elements.size, 1)
       is_enabled(on(CommonFormsPage).submit_for_master_approval_btn_elements.first)
@@ -64,25 +68,30 @@ Then(/^I should see (.*) button (disabled|enabled)$/) do |_which_button, _condit
       is_enabled(on(Section4BPage).close_btn_elements.first)
       # when 'x'
       #   is_enabled(on(PendingStatePage).x_btn_element)
+    else
+      raise "Wrong button >>> #{which_button}"
     end
   end
 end
 
 Then(/^I should see section (.*) screen$/) do |which_section|
   sleep 1
-  if which_section != '0'
-    screen_title = @browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text
-  end
   case which_section
   when '0'
     BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   when '1'
-    is_equal(screen_title, 'Section 1: Task Description')
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+             'Section 1: Task Description')
   when '2'
-    is_equal(screen_title, 'Section 2: Approving Authority')
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+             'Section 2: Approving Authority')
   when '8'
-    is_equal(screen_title, 'Section 8: Task Status & EIC Normalisation')
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+             'Section 8: Task Status & EIC Normalisation')
   when '6'
-    is_equal(screen_title, 'Section 6: Gas Testing/Equipment')
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+             'Section 6: Gas Testing/Equipment')
+  else
+    raise "Wrong section name >>>> #{which_section}"
   end
 end

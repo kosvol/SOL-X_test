@@ -53,11 +53,9 @@ module BrowserActions
     end
 
     def scroll_up(element = nil)
-      begin
-        scroll_to_element(element)
-      rescue StandardError
-        scroll_up_by_dist
-      end
+      scroll_to_element(element)
+    rescue StandardError
+      scroll_up_by_dist
     end
 
     def scroll_down(element = nil)
@@ -102,19 +100,27 @@ module BrowserActions
       when 'first'
         $browser.switch_to.window($browser.window_handles.first)
       else
-        raise('wrong condition')
+        raise "Wrong condition >>> #{condition}"
       end
     end
 
     def poll_ui_update_by_attribute(locator, condition, attribute)
       count = 0
       tmp_ele = $browser.find_element(:xpath, locator).attribute(attribute)
-      until (tmp_ele.to_s == condition)
+      until tmp_ele.to_s == condition
         count += 1
         sleep 1
         break if count == 15
       end
-      return tmp_ele.to_s
+      tmp_ele.to_s
+    end
+
+    def click_xpath_native(xpath)
+      if wait_until_is_visible((el = $browser.find_element(:xpath, xpath)))
+        el.click
+      else
+        poll_exists_and_click($browser.find_element(:xpath, xpath))
+      end
     end
 
     private

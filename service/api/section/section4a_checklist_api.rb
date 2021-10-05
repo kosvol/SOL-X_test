@@ -3,7 +3,6 @@
 require 'rest-client'
 # service to request section4A checklist
 class Section4AChecklistAPI < BaseSectionApi
-
   def request(form_id, permit_type, pin)
     payload = create_payload(form_id, permit_type)
     response = RestClient.post(retrieve_api_url,

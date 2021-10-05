@@ -44,7 +44,7 @@ class CommonFormsPage < CommonPage
   def select_todays_date_from_calendar(advance_days = 0)
     current_day_elements.each_with_index do |element, index|
       if element.attribute('class').include? 'current'
-        BrowserActions.js_click("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]")
+        @browser.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click
         break
       end
     end
@@ -121,5 +121,4 @@ class CommonFormsPage < CommonPage
       " LT (GMT#{@@time_offset})"
     end
   end
-
 end
