@@ -197,12 +197,10 @@ class OAPage < Section9Page
 
   def set_designation
     # designation
-    BrowserActions.js_click("//button[@name='designation']")
-    # BrowserActions.click_xpath_native("//button[@name='designation']")
+    @browser.find_element(:xpath, "//button[@name='designation']").click
     sleep 2
     BrowserActions.scroll_down
-    BrowserActions.js_click("//button[contains(.,'VS')]")
-    # BrowserActions.click_xpath_native("//button[contains(.,'VS')]")
+    @browser.find_element(:xpath, "//button[contains(.,'VS')]").click
   end
 
   def is_designation_list?
