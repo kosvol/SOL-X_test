@@ -492,7 +492,9 @@ Then(/^I should see the Warning Screen$/) do
   does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
   not_to_exists(on(OfficePortalPage).home_btn_element)
   is_equal(on(OAPage).warning_link_expired_element.text,
-           "Link has expired as this Permit to Work has been sent again for Office Approval\nA new link has been sent out via email. If it hasn't arrived yet, please wait for a few minutes.\nYour previous comments won't be lost.")
+           "Link has expired as this Permit to Work has been sent again for Office Approval\n"\
+           "A new link has been sent out via email. If it hasn't arrived yet, please wait for a few minutes.\n"\
+           "Your previous comments won't be lost.")
   not_to_exists(on(OAPage).approve_permit_btn_element)
 end
 

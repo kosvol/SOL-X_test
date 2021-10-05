@@ -69,7 +69,7 @@ Feature: OfficeApprovalMainFlow
     And I close the tab and navigate back
     And I click on "Approve This Permit”
     Then I should see the Successfully Submission page after double approval
-
+@ska
   Scenario: Verify an Office Approval Authority can see the Warning screen after the form goes to the Approval Updates Needed state (after Pending Office Approval state) (5330)
     Given I submit permit submit_underwater_simultaneous via service with 9015 user and set to pending office approval state
     And I get PTW permit info
