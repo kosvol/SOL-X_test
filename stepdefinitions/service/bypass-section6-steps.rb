@@ -88,10 +88,6 @@ And(/^I clear wearable history and active users$/) do
   SmartFormDBPage.delete_table_wearable_alerts_row('edge', 'delete_alerts_histories_entries')
 end
 
-Given(/^I clear postgres db$/) do
-  Postgres_clearing.clear_postgres_db(EnvironmentSelector.get_vessel_name)
-end
-
 Given(/^I clear work rest table$/) do
   SmartFormDBPage.get_table_data('edge', 'get_workrest')
   SmartFormDBPage.delete_table_row('edge', 'add-work-rest-hour')
