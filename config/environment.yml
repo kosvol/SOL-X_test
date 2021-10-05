@@ -50,11 +50,14 @@ office_approval:
   office_portal_permit_view: https://office.dev.safevue.ai/permit-overview?formId=%s
   password: 13-dead-CENT-think-56
 postgres:
-  adapter: postgresql
-  database: safevue
-  encoding: unicode
-  host: safevue-dev.postgres.database.azure.com
-  password: 79-window-CHOOSE-nation-38
-  pool: 5
-  username: safevue_user@safevue-dev
+  safevue:
+    database: safevue
+    host: safevue-dev.postgres.database.azure.com
+    password: 79-window-CHOOSE-nation-38
+    username: safevue_user@safevue-dev
+  dataiku:
+    database: dataiku
+    host: safevue-dev.postgres.database.azure.com
+    password: 41-pass-STREAM-deep-36
+    username: safevue_dataiku@safevue-dev
 screenshot: 'true'

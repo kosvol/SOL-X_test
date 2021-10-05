@@ -1,36 +1,62 @@
 # frozen_string_literal: true
 
 require 'pg'
+require 'yaml'
+require 'logger'
+require_relative '../../service/utils/env_utils'
+# integration with postgres db
+class Postgres
+  include EnvUtils
 
-module Postgres_clearing
-  class << self
-    def clear_postgres_db(env)
-      connection = PG::Connection.new(host: $obj_env_yml['postgres']['host'],
-                                      user: $obj_env_yml['postgres']['username'],
-                                      dbname: $obj_env_yml['postgres']['database'],
-                                      port: '5432',
-                                      password: $obj_env_yml['postgres']['password'])
-      puts 'Successfully created connection to database'
+  def initialize
+    @logger = Logger.new($stdout)
+    @env = retrieve_vessel_name
+  end
 
-      connection.exec("DELETE FROM form WHERE id LIKE '%#{env.upcase}%';")
-      puts 'SIT vessel deleted'
-      connection.exec("DELETE FROM comment WHERE form_id LIKE '%#{env.upcase}%';")
-      puts 'SIT comment deleted'
+  def clear_savefue_db
+    connection = generate_connection('safevue')
+    connection.exec("DELETE FROM form WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} safevue vessel deleted")
 
-      result_set = connection.exec("SELECT * FROM comment WHERE form_id LIKE '%#{env.upcase}%';")
-      result_set.each do |row|
-        puts "Comment data row = #{row}"
-      end
+    connection.exec("DELETE FROM comment WHERE form_id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} safevue comment deleted")
+  end
 
-      result_set = connection.exec("SELECT * FROM form WHERE id LIKE '%#{env.upcase}%';")
-      result_set.each do |row|
-        puts "Form data row = #{row}"
-      end
-    rescue PG::Error => e
-      puts e.message
-    ensure
-      connection&.close
-    end
+  def clear_dataiku_db
+    connection = generate_connection('dataiku')
+    # risk tables
+    connection.exec("DELETE FROM risk_assessment_best_practices WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku risk_assessment_best_practices deleted")
 
+    connection.exec("DELETE FROM risk_assessment_near_misses WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku risk_assessment_near_misses deleted")
+
+    connection.exec("DELETE FROM risk_assessment_new_hazards WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku risk_assessment_new_hazards deleted")
+
+    connection.exec("DELETE FROM risk_assessment_new_measures WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku risk_assessment_new_measures deleted")
+
+    # vm tables
+    connection.exec("DELETE FROM vw_enclosed_space_entry WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku vw_enclosed_space_entry deleted")
+
+    connection.exec("DELETE FROM vw_permit_archive WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku vw_permit_archive deleted")
+
+    # form table
+    connection.exec("DELETE FROM ods_form WHERE id LIKE '%#{@env.upcase}%';")
+    @logger.info("#{@env} dataiku ods_form deleted")
+  end
+
+  private
+
+  def generate_connection(database)
+    env_file = File.read("#{Dir.pwd}/config/environment.yml")
+    config = YAML.safe_load(env_file)['postgres'][database]
+    connection = PG::Connection.new(host: config['host'], user: config['username'], dbname: config['database'],
+                                    port: '5432', password: config['password'])
+    @logger.info("Successfully created connection to #{database}")
+    connection
   end
 end
