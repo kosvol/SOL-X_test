@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given(/^I launch Office Portal$/) do
-  $browser.get(EnvironmentSelector.get_environment_url)
+  @browser.get(EnvironmentSelector.environment_url)
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).op_login_btn_element)
 end
 
@@ -111,7 +111,7 @@ end
 And(/^I click on View Permit button$/) do
   on(OfficePortalPage).view_permit_btn
   sleep(1)
-  @browser.switch_to.window($browser.window_handles[1])
+  @browser.switch_to.window(@browser.window_handles[1])
 end
 
 Then(/^I should see the selected form in a new tab$/) do
@@ -230,11 +230,12 @@ end
 And(/^I create ([^"]*) via service with static env$/) do |type|
   ENV['ENV_OLD'] = ENV['ENVIRONMENT']
   ENV['ENVIRONMENT'] = 'auto'
-  if type == 'PRE'
+  case type
+  when 'PRE'
     step 'I submit a scheduled PRE permit'
     step 'I sleep for 85 seconds'
     step 'I terminate the PRE permit via service'
-  elsif type == 'submit_enclose_space_entry'
+  when 'submit_enclose_space_entry'
     step "I submit permit #{type} via service with 8383 user and set to active state with gas reading require"
     step 'I add new entry "A 2/O" PTW'
     step 'I sleep for 3 seconds'
@@ -242,7 +243,7 @@ And(/^I create ([^"]*) via service with static env$/) do |type|
     step 'I sleep for 3 seconds'
     step 'I Close Permit submit_enclose_space_entry via service auto'
     step 'I sleep for 3 seconds'
-  elsif type == 'CRE'
+  when 'CRE'
     puts 'to do'
   else
     raise 'Wrong condition'
@@ -278,7 +279,8 @@ And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |value, title
   is_equal(on(OfficePortalPage).select_element_by_text_near(title).text, value)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |permit_type, user, vessel, checklist|
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the (.*) checklist$/) do |permit_type,
+  user, vessel, checklist|
   on(BypassPage).trigger_forms_termination(permit_type, user, vessel, checklist, nil, nil)
   data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
@@ -292,27 +294,33 @@ Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
   case checklist
   when 'Work on Pressure Pipelines'
     @browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4").each do |question|
+             "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
+            .each do |question|
       questions_arr << question.text
     end
   when 'Working Aloft Overside'
     @browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4").each do |question|
+                           "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4")
+            .each do |question|
       questions_arr << question.text
     end
   when 'Enclosed Spaces Entry Checklist'
     @browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4").each do |question|
+                           "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4")
+            .each do |question|
       questions_arr << question.text
     end
   else
     @browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4").each do |question|
+                           "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
+            .each do |question|
       questions_arr << question.text
     end
   end
   base_data = ['Vessel Name:', 'Created On:']
-  base_data = base_data + YAML.load_file("data/checklist/#{checklist}.yml")['questions'] - YAML.load_file('data/checklist/checklist_exceptions.yml')['exceptions']
+  base_data = base_data + YAML
+              .load_file("data/checklist/#{checklist}.yml")['questions'] - YAML
+              .load_file('data/checklist/checklist_exceptions.yml')['exceptions']
   p "> difference #{questions_arr - base_data}"
   is_equal(questions_arr, base_data)
 end
@@ -365,7 +373,8 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
   is_equal(subheaders_arr, base_subheaders)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the EIC (.+)$/) do |permit_type, user, vessel, eic|
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the EIC (.+)$/) do |permit_type, user,
+  vessel, eic|
   on(BypassPage).trigger_forms_termination(permit_type, user, vessel, nil, eic, nil)
   data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
@@ -374,7 +383,8 @@ Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel wi
   sleep(2)
 end
 
-Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the Gas Readings (.+)$/) do |permit_type, user, vessel, gas|
+Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel with the Gas Readings (.+)$/) do |permit_type,
+  user, vessel, gas|
   on(BypassPage).trigger_forms_termination(permit_type, user, vessel, nil, nil, gas)
   data_file_resp = JSON.parse JsonUtil.read_json_response('ptw/0.mod_create_form_ptw')
   date_file_req = JSON.parse JsonUtil.read_json('ptw/0.mod_create_form_ptw')
@@ -476,6 +486,6 @@ Then(/^I should see the PRE form shows the same fields as in the client app$/) d
 end
 
 And(/^I open the recently terminated form with link$/) do
-  $browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
+  @browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end

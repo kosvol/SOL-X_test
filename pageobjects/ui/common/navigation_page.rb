@@ -41,7 +41,11 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_show_more(which_category)
-    which_category == 'forms' ? BrowserActions.poll_exists_and_click(show_more_elements.first) : BrowserActions.poll_exists_and_click(show_more_elements.last)
+    if which_category == 'forms'
+      BrowserActions.poll_exists_and_click(show_more_elements.first)
+    else
+      BrowserActions.poll_exists_and_click(show_more_elements.last)
+    end
   end
 
   def click_next
@@ -100,6 +104,8 @@ class NavigationPage < CommonFormsPage
       9
     when '2'
       1
+    else
+      raise "Wrong section number >>> #{which_section}"
     end
   end
 
