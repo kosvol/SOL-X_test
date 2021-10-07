@@ -80,16 +80,16 @@ Then(/^I should see section (.*) screen$/) do |which_section|
   when '0'
     BrowserActions.poll_exists_and_click(on(Section0Page).click_permit_type_ddl_element)
   when '1'
-    is_equal(@browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
              'Section 1: Task Description')
   when '2'
-    is_equal(@browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
              'Section 2: Approving Authority')
   when '8'
-    is_equal(@browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
              'Section 8: Task Status & EIC Normalisation')
   when '6'
-    is_equal(@browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
+    is_equal($browser.find_elements(:xpath, "//nav/h3[starts-with(@class,'Heading__H3')]").first.text,
              'Section 6: Gas Testing/Equipment')
   else
     raise "Wrong section name >>>> #{which_section}"

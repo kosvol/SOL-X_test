@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given(/^I launch Office Portal$/) do
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvironmentSelector.environment_url)
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).op_login_btn_element)
 end
 
@@ -111,7 +111,7 @@ end
 And(/^I click on View Permit button$/) do
   on(OfficePortalPage).view_permit_btn
   sleep(1)
-  @browser.switch_to.window(@browser.window_handles[1])
+  $browser.switch_to.window($browser.window_handles[1])
 end
 
 Then(/^I should see the selected form in a new tab$/) do
@@ -272,7 +272,7 @@ end
 
 And(/^I select filter value with permit type (.+)$/) do |permit_type|
   # on(OfficePortalPage).input_field_element.send_keys(permit_type)
-  @browser.find_element(:xpath, "//span[contains(text(), #{permit_type})]/parent::button").click
+  $browser.find_element(:xpath, "//span[contains(text(), #{permit_type})]/parent::button").click
 end
 
 And(/^I check the element value "([^"]*)" by title "([^"]*)"$/) do |value, title|
@@ -293,25 +293,25 @@ Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
   questions_arr = []
   case checklist
   when 'Work on Pressure Pipelines'
-    @browser.find_elements(:xpath,
+    $browser.find_elements(:xpath,
                            "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
             .each do |question|
       questions_arr << question.text
     end
   when 'Working Aloft Overside'
-    @browser.find_elements(:xpath,
+    $browser.find_elements(:xpath,
                            "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4")
             .each do |question|
       questions_arr << question.text
     end
   when 'Enclosed Spaces Entry Checklist'
-    @browser.find_elements(:xpath,
+    $browser.find_elements(:xpath,
                            "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4")
             .each do |question|
       questions_arr << question.text
     end
   else
-    @browser.find_elements(:xpath,
+    $browser.find_elements(:xpath,
                            "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
             .each do |question|
       questions_arr << question.text
@@ -330,23 +330,23 @@ Then(/^I should see the ([^"]*) shows the same fields as in the Client app$/) do
   labels_arr = []
   subheaders_arr = []
   if what_section == 'Energy Isolation Certificate'
-    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h4").each do |field|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h4").each do |field|
       fields_arr << field.text
     end
-    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//label").each do |label|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//label").each do |label|
       labels_arr << label.text
     end
-    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h2").each do |subheader|
+    $browser.find_elements(:xpath, "(//h2[contains(text(),'#{what_section}')])[5]/../..//h2").each do |subheader|
       subheaders_arr << subheader.text
     end
   else
-    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h4").each do |field|
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h4").each do |field|
       fields_arr << field.text
     end
-    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//label").each do |label|
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//label").each do |label|
       labels_arr << label.text
     end
-    @browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h2").each do |subheader|
+    $browser.find_elements(:xpath, "//h2[contains(text(),'#{what_section}')]/../..//h2").each do |subheader|
       subheaders_arr << subheader.text
     end
   end
@@ -396,7 +396,7 @@ end
 Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in the Client app$/) do |condition|
   fields_arr = []
   subheaders_arr = []
-  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
     fields_arr << field.text
   end
   @browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|

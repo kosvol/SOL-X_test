@@ -6,16 +6,16 @@ Then(/^I should see CRE form questions$/) do
   answears_for_section = []
   answears_for_section_second = []
 
-  @browser.find_elements(:xpath, '//h4').each do |field|
+  $browser.find_elements(:xpath, '//h4').each do |field|
     titles_and_questions_arr << field.text
   end
-  @browser.find_elements(:xpath, '//h2').each do |field|
+  $browser.find_elements(:xpath, '//h2').each do |field|
     titles_of_sections << field.text
   end
-  @browser.find_elements(:xpath, '//span').each do |field|
+  $browser.find_elements(:xpath, '//span').each do |field|
     answears_for_section << field.text
   end
-  @browser.find_elements(:xpath, '//label').each do |field|
+  $browser.find_elements(:xpath, '//label').each do |field|
     answears_for_section_second << field.text
   end
   base_titles_and_questions =

@@ -28,14 +28,14 @@ Then(/^I should crew location indicator is red$/) do
 end
 
 And(/^I launch sol-x portal on another tab$/) do
-  @browser.execute_script('window.open()')
-  @browser.switch_to.window(@browser.window_handles.last)
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.execute_script('window.open()')
+  $browser.switch_to.window($browser.window_handles.last)
+  $browser.get(EnvironmentSelector.environment_url)
 end
 
 And(/^I acknowledge the assistance with (pin|invalid pin) (.+)$/) do |type, pin|
   sleep 1
-  @browser
+  $browser
     .execute_script(%(document.evaluate("//div[starts-with(@class, 'CrewAssistModal__Content')]/button",document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   if type == 'pin'
     step 'I enter pin for rank MAS'
@@ -47,7 +47,7 @@ end
 Then(/^I should see crew assist dialog dismiss in both tab$/) do
   sleep 3
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)
-  @browser.switch_to.window(@browser.window_handles.first)
+  $browser.switch_to.window($browser.window_handles.first)
   is_equal(on(CrewAssistPage).crew_assist_dialogs_elements.size, 0)
 end
 
@@ -71,5 +71,5 @@ Then(/^I should not see crew assist dialog$/) do
 end
 
 When(/^I refresh the browser$/) do
-  @browser.navigate.refresh
+  $browser.navigate.refresh
 end

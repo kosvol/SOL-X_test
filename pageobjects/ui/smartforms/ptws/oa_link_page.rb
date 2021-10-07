@@ -76,7 +76,7 @@ class OAPage < Section9Page
 
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    current_hour = get_current_hour
+    get_current_hour
     ### set from time
     date_time_from_elements[1].click
     hour_from_picker_elements.first.click

@@ -1,11 +1,10 @@
 # frozen_string_literal: true
-
-@browser
+$browser
 
 class BrowserSetup
   # turn on fullreset=true, turn on no reset noreset=false
   def self.get_browser(os, platform, noreset = false, fullreset = true)
-    @browser = case ENV['PLATFORM'].upcase
+    $browser = case ENV['PLATFORM'].upcase
                when 'CHROME', 'CHROME_HEADLESS', 'CHROME_INCOGNITO'
                  load_chrome(os)
                when 'ANDROID'
@@ -14,15 +13,15 @@ class BrowserSetup
                  raise "Invalid Platform => #{platform} for the OS => #{os}"
                end
     $wait = Selenium::WebDriver::Wait.new(timeout: 10)
-    @browser.manage.timeouts.script_timeout = 10
-    @browser.manage.timeouts.page_load = 10
-    @browser.manage.timeouts.implicit_wait = 10
+    $browser.manage.timeouts.script_timeout = 10
+    $browser.manage.timeouts.page_load = 10
+    $browser.manage.timeouts.implicit_wait = 10
 
     if $current_application
        .upcase == 'WEBSITE' || $current_application
        .upcase == 'MOBILEWEBSITE' || $current_application
        .upcase == 'C2_PREVIEW'
-      @browser.manage.delete_all_cookies
+      $browser.manage.delete_all_cookies
     end
 
     if $current_platform
@@ -31,7 +30,7 @@ class BrowserSetup
        .upcase != 'CHROME_INCOGNITO'
       BrowserActions.turn_on_wifi_by_default
     end
-    @browser
+    $browser
   end
 
   def self.load_chrome(os)
@@ -50,14 +49,16 @@ class BrowserSetup
         case ENV['PLATFORM']
         when 'chrome_headless'
           options.add_argument('--headless')
-        else
+        when 'chrome_incognito'
           options.add_argument('--incognito')
           options.add_argument('--private')
+        else
+          puts 'Browser setup without added arguments'
         end
         caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
-        @browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
+        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
       rescue StandardError
-        @browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
+        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
       end
     else
       # windows
@@ -74,7 +75,7 @@ class BrowserSetup
                                                                   w3c: false, args: ['start-maximized']
                                                                 })
       end
-      @browser = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:9515/', desired_capabilities: caps,
+      $browser = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:9515/', desired_capabilities: caps,
                                                   http_client: $client, options: options
     end
   end

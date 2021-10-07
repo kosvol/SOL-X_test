@@ -106,6 +106,8 @@ module ServiceUtil
         @response = HTTParty.delete(uri,
                                     { body: content_body }
                                       .merge({ headers: { 'Content-Type' => 'application/json' } }))
+      else
+        raise "Wrong method type >>> #{trans_method}"
       end
       error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)

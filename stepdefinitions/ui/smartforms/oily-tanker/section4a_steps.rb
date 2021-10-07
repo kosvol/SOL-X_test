@@ -3,7 +3,7 @@
 Then(/^I should not see location of work in checklist$/) do
   sleep 2
   %w[span label p h4].each do |element|
-    tmp = @browser.find_elements(:xpath, "//#{element}[contains(., 'Location of work:')]")
+    tmp = $browser.find_elements(:xpath, "//#{element}[contains(., 'Location of work:')]")
     raise "Location of Work is present on screen #{element}" if is_not_equal(tmp.size, 0)
   end
 end
@@ -55,7 +55,7 @@ Then(/^I should see signed details$/) do
   if on(Section4APage).signed_user_details?(CommonPage.get_entered_pin)
     is_true(on(Section4APage).signed_user_details?(CommonPage.get_entered_pin))
   else
-    is_true(on(Section4APage).signed_user_details_plus_1_min?(CommonPage.get_entered_pin))
+    is_true(on(Section4APage).user_details_plus_1_min(CommonPage.get_entered_pin))
   end
   is_true(on(SignaturePage).is_signature_pad?)
 end

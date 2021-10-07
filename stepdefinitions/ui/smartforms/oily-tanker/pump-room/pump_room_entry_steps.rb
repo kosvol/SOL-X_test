@@ -352,9 +352,9 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
       is_equal(on(PumpRoomEntry).header_cell_elements[9].text, 'Test')
       is_equal(on(PumpRoomEntry).entry_log_table_elements[9].text, '2 CC')
     else
-      is_not_equal(@browser
+      is_not_equal($browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[9].text, 'Test')
-      is_not_equal(@browser
+      is_not_equal($browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[9].text, '2 CC')
     end
   when 'dashboard'
@@ -365,10 +365,10 @@ Then(/^I check toxic gas readings on (last|previous) PTW Entry log (table|dashbo
     is_not_equal(on(PumpRoomEntry).header_pwt_elements[1].text, @@pre_number)
     i = 0
     while i < 5
-      is_not_equal(@browser
+      is_not_equal($browser
         .find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text, 'Test')
-      puts(@browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
-      is_not_equal(@browser
+      puts($browser.find_elements(:xpath, "//div[starts-with(@class,'header-column')][1]/div")[i].text)
+      is_not_equal($browser
         .find_elements(:xpath, "//div[@data-testid='entry-log-column'][1]/div")[i].text, '2 CC')
       i += 1
     end

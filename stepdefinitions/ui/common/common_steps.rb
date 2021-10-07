@@ -6,18 +6,18 @@ end
 
 Given(/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvironmentSelector.environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue StandardError
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   end
   # sleep 5
-  # puts "screen size: #{@browser.window_size}"
+  # puts "screen size: #{$browser.window_size}"
 end
 
 Given(/^I launch sol-x portal without unlinking wearable$/) do
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvironmentSelector.environment_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue StandardError
@@ -28,7 +28,7 @@ Given(/^I launch sol-x portal without unlinking wearable$/) do
     end
   end
   # sleep 5
-  # puts "screen size: #{@browser.window_size}"
+  # puts "screen size: #{$browser.window_size}"
 end
 
 And('I sleep for {int} seconds') do |sec|
@@ -96,12 +96,12 @@ And(/^I set time$/) do
 end
 
 Given(/^I launch sol-x portal dashboard$/) do
-  @browser.get("#{EnvironmentSelector.environment_url}dashboard")
+  $browser.get("#{EnvironmentSelector.environment_url}dashboard")
   begin
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).is_dashboard_screen_element)
   rescue StandardError
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   end
   # sleep 5
-  # puts "screen size: #{@browser.window_size}"
+  # puts "screen size: #{$browser.window_size}"
 end
