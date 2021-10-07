@@ -50,7 +50,8 @@ Then(/^I should see wifi restore popup display for (.*)$/) do |which_category|
   end
 end
 
-And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do |_condition, user, zoneid, mac|
+And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link to zoneid (.*) and mac (.*)$/) do
+|_condition, user, zoneid, mac|
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
@@ -64,7 +65,8 @@ And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link
   sleep 4
 end
 
-Then(/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do |condition, rank|
+And(/^I sign EIC as (issuing authority|non issuing authority|competent person|non competent person) with rank (.+)$/) do
+|condition, rank|
   on(Section4BPage).sign_eic_or_issuer(condition)
   case condition
   when 'issuing authority', 'competent person'
@@ -76,7 +78,8 @@ Then(/^I sign EIC as (issuing authority|non issuing authority|competent person|n
   end
 end
 
-And(/^I click on sign button for (issuing authority|non issuing authority|competent person|non competent person)$/) do |condition|
+And(/^I click on sign button for (issuing authority|non issuing authority|competent person|non competent person)$/) do
+|condition|
   on(Section4BPage).sign_eic_or_issuer(condition)
 end
 

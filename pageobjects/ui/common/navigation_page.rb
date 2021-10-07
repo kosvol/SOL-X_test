@@ -62,7 +62,7 @@ class NavigationPage < CommonFormsPage
     sleep 1
     index = 1
     while index <= times.to_i
-      #condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+      # condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
       condition == 'next' ? click_next : BrowserActions.poll_exists_and_click(previous_btn_button)
       index += 1
     end

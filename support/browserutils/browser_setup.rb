@@ -39,9 +39,13 @@ class BrowserSetup
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
     if os.casecmp('mac').zero?
       options = Selenium::WebDriver::Chrome::Options.new
-      ENV['DEVICE'] == 'dashboard' ? options
-        .add_argument('--window-size=2560,1440') : options
+      if ENV['DEVICE'] == 'dashboard'
+        options
+          .add_argument('--window-size=2560,1440')
+      else
+        options
           .add_argument('--window-size=720,1280')
+      end
       begin
         case ENV['PLATFORM']
         when 'chrome_headless'
@@ -111,7 +115,8 @@ class BrowserSetup
             skipLogcatCapture: true,
             chromeOptions: {
               args: %w[--ignore-certificate-errors --disable-web-security --allow-running-insecure-content
-                       --no-sandbox] },
+                       --no-sandbox]
+            },
             # :fullReset => fullreset,
             noReset: noreset
           },
@@ -136,9 +141,9 @@ class BrowserSetup
             skipLogcatCapture: true,
             uiautomator2ServerLaunchTimeout: 300_000,
             chromedriverPort: @device['chromedriverPort'],
-            #chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security',
-            #'--allow-running-insecure-content', '--no-sandbox'] },
-            chromeOptions: { args: %w[--ignore-certificate-errors --disable-web-security 
+            # chromeOptions: { args: ['--ignore-certificate-errors', '--disable-web-security',
+            # '--allow-running-insecure-content', '--no-sandbox'] },
+            chromeOptions: { args: %w[--ignore-certificate-errors --disable-web-security
                                       --allow-running-insecure-content --no-sandbox] },
             noReset: noreset
           },

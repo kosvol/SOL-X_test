@@ -70,11 +70,11 @@ class ROLPage < Section9Page
     BrowserActions.poll_exists_and_click(activate_permit_btn_element)
   end
 
-  def is_duration?(permit_validity_timer, duration, timer_mins = '59')
-    if permit_validity_timer.include? ":#{timer_mins}:"
-      permit_validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration == '1'
+  def is_duration?(validity_timer, duration, timer_mins = '59')
+    if validity_timer.include? ":#{timer_mins}:"
+      validity_timer.include? "0#{duration.to_i - 1}:#{timer_mins}:" # if _duration == '1'
     else
-      is_duration?(permit_validity_timer, duration, (timer_mins.to_i - 1))
+      is_duration?(validity_timer, duration, (timer_mins.to_i - 1))
     end
   end
 end

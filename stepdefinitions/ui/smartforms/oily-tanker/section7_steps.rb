@@ -54,7 +54,8 @@ end
 
 And(/^I open a permit (.+) with (.+) rank$/) do |_status, rank|
   sleep 2
-  on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage)
+                                            .get_permit_index(CommonPage.get_permit_id)].click
   step "I enter pin for rank #{rank}" if (EnvironmentSelector
                                             .current_environment.include? 'sit') || (EnvironmentSelector
                                                                                        .current_environment

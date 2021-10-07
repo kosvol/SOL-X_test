@@ -294,7 +294,7 @@ Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
   case checklist
   when 'Work on Pressure Pipelines'
     @browser.find_elements(:xpath,
-             "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
+                           "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
             .each do |question|
       questions_arr << question.text
     end

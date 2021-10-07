@@ -15,8 +15,8 @@ Then(/^I should see permit details are pre-filled$/) do
 end
 
 Then(/^I should see a list of (sea states|wind forces)$/) do |state, table|
-  is_true(on(Section1Page).is_sea_states?(table.raw)) if state == 'sea states'
-  is_true(on(Section1Page).is_wind_forces?(table.raw)) if state == 'wind forces'
+  is_true(on(Section1Page).sea_states?(table.raw)) if state == 'sea states'
+  is_true(on(Section1Page).wind_forces?(table.raw)) if state == 'wind forces'
 end
 
 Then(/^I should not see previous button exists$/) do
@@ -27,9 +27,9 @@ end
 Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
   case condition
   when 'should'
-    is_true(on(Section1Page).is_maint_duration_dd_exists?)
+    is_true(on(Section1Page).maint_duration_dd_exists?)
   when 'should not'
-    is_true(!on(Section1Page).is_maint_duration_dd_exists?)
+    is_true(!on(Section1Page).maint_duration_dd_exists?)
   end
 end
 

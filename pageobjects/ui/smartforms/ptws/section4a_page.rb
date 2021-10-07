@@ -76,7 +76,7 @@ class Section4APage < Section3DPage
   end
 
   def is_checklist_fields_disabled?
-    !(disabled_fields_elements.size == 0)
+    !disabled_fields_elements.empty?
   end
 
   def is_checklist_details_prepopulated?
@@ -94,7 +94,7 @@ class Section4APage < Section3DPage
   def uncheck_all_checklist
     element_yes = yes_elements_list
     list_of_checklist_elements.each_with_index do |_checklist, index|
-      next if index == 0
+      next if index.zero?
 
       next unless element_yes[index].css_value('background-color') == 'rgba(24, 144, 255, 1)'
 
