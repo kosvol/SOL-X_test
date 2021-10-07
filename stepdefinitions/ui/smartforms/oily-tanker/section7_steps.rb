@@ -18,7 +18,7 @@ Then(/^I should see valid validity date and time$/) do
   sleep 1
   does_include(on(Section7Page).permit_issued_on_elements.first.text, @@issue_time_date)
   p ">> #{on(Section7Page).permit_valid_until_elements.last.text}"
-  does_include(on(Section7Page).permit_valid_until_elements.last.text, on(Section7Page).get_validity_until(8))
+  does_include(on(Section7Page).permit_valid_until_elements.last.text, on(Section7Page).validity_until(8))
 end
 
 And(/^I click on permit for (.+)$/) do |_status|

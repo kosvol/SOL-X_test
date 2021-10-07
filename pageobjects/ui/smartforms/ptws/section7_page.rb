@@ -25,7 +25,7 @@ class Section7Page < Section6Page
   element(:approver_designation,
           xpath: "//div[@class='screen-only']//h4[contains(text(),'Designation')]/following-sibling::p")
 
-  def get_validity_until(offset_hours)
+  def validity_until(offset_hours)
     tmp = (Time.parse(@@issue_time_date) + ((60 * 60) * offset_hours))
     "#{tmp.strftime('%d/%b/%Y %H:%M')} #{@@issue_time_date[18, 29]}"
   end

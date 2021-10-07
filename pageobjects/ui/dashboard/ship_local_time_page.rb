@@ -13,7 +13,7 @@ class ShipLocalTimePage
   button(:decrement, xpath: "//div[starts-with(@class,'ClockModal__')]/button[1]")
   button(:increment, xpath: "//div[starts-with(@class,'ClockModal__')]/button[2]")
 
-  def is_utc_time
+  def utc_time?
     if (Time.now.utc.strftime('%k').to_i < 12) && Time.now.utc.strftime('%k').to_i.positive?
       Time.now.utc.strftime('%I:%M')
     elsif Time.now.utc.strftime('%k').to_i >= 12
@@ -27,14 +27,15 @@ class ShipLocalTimePage
     %w[1 2].sample == '1' ? decrement : increment
   end
 
-  def is_update_ship_time
+  def update_ship_time?
     sleep 1
     clock_btn_element.click
     sleep 1
     get_current_offset = ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
     Log.instance.info(utc_timezone_elements[1].text)
     Log.instance.info("#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}")
-    ((utc_time_text == get_new_current_offset_text(get_current_offset)) && (utc_timezone_elements[1].text == "#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}"))
+    ((utc_time_text == get_new_current_offset_text(get_current_offset)) &&
+      (utc_timezone_elements[1].text == "#{cal_new_offset_time(get_current_offset)}:#{@current_time[1]}"))
   end
 
   private

@@ -23,9 +23,9 @@ class Section1Page < Section0Page
   @@condition_check_btn = "//div[starts-with(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')][2]/div/label"
   @@text_areas = '//textarea'
 
-  def set_section1_filled_data(_entered_pin, _create_or_submitted)
-    rank_and_name = get_user_details_by_pin(_entered_pin)
-    @@section1_data_collector << "#{_create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
+  def set_section1_filled_data(entered_pin, create_or_submitted)
+    rank_and_name = get_user_details_by_pin(entered_pin)
+    @@section1_data_collector << "#{create_or_submitted} #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]} at"
     sleep 1
     @@section1_data_collector << get_current_date_and_time.to_s
     Log.instance.info(@@section1_data_collector)
@@ -66,17 +66,19 @@ class Section1Page < Section0Page
     false
   end
 
-  def is_sea_states?(_table)
-    get_dd_list_values(sea_state_btn_element) == serialize_table_input(_table)
+  def is_sea_states?(table)
+    get_dd_list_values(sea_state_btn_element) == serialize_table_input(table)
   end
 
-  def is_wind_forces?(_table)
-    get_dd_list_values(wind_force_btn_element) == serialize_table_input(_table)
+  def is_wind_forces?(table)
+    get_dd_list_values(wind_force_btn_element) == serialize_table_input(table)
   end
 
-  def set_maintenance_duration(_condition)
+  def set_maintenance_duration(condition)
     @browser.find_element(:xpath, @@maint_duration_dd).click
-    _condition == 'more' ? BrowserActions.scroll_click(dd_list_value_elements[0]) : BrowserActions.scroll_click(dd_list_value_elements[1])
+    condition == 'more' ? BrowserActions
+                            .scroll_click(dd_list_value_elements[0]) : BrowserActions
+                                                                         .scroll_click(dd_list_value_elements[1])
   end
 
   def fill_partial_section_1
@@ -117,33 +119,33 @@ class Section1Page < Section0Page
     BrowserActions.hide_keyboard
   end
 
-  def select_checkbox(_input, _location)
+  def select_checkbox(input, location)
     sleep 1
-    BrowserActions.js_click(format(_input, _location).to_s)
+    BrowserActions.js_click(format(input, location).to_s)
   end
 
-  def fill_text_area(_input, _text)
-    tmp_elements = @browser.find_elements(:xpath, _input)
-    tmp_elements.each do |_element|
-      _element.send_keys(_text)
+  def fill_text_area(input, text)
+    tmp_elements = @browser.find_elements(:xpath, input)
+    tmp_elements.each do |element|
+      element.send_keys(text)
     end
   end
 
-  def serialize_table_input(_table)
+  def serialize_table_input(table)
     serialized_input = []
-    _table.each do |_input|
-      serialized_input << _input.first
+    table.each do |input|
+      serialized_input << input.first
     end
     serialized_input
   end
 
-  def get_dd_list_values(_states)
+  def get_dd_list_values(states)
     sleep 1
-    BrowserActions.scroll_click(_states)
+    BrowserActions.scroll_click(states)
     drop_down_list_values = []
-    dd_list_value_elements.each do |_elem|
-      BrowserActions.scroll_down(_elem)
-      drop_down_list_values << _elem.text
+    dd_list_value_elements.each do |elem|
+      BrowserActions.scroll_down(elem)
+      drop_down_list_values << elem.text
     end
     p ">>> #{drop_down_list_values}"
     drop_down_list_values

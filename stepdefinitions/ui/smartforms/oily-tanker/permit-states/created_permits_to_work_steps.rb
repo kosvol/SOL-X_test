@@ -48,7 +48,7 @@ Then(/^I should see EIC section with fields (disabled|enabled)$/) do |condition|
 end
 
 Then(/^I should see deleted permit deleted$/) do
-  is_true(on(CreatedPermitToWorkPage).is_created_permit_deleted?)
+  is_true(on(CreatedPermitToWorkPage).created_permit_deleted?)
 end
 
 And(/^I delete the permit created$/) do

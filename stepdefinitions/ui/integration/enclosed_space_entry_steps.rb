@@ -49,7 +49,7 @@ end
 And(/^I review page 3b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   base_data = @@form_data['section3b']
-  capture_data = on(Section3BPage).get_filled_section
+  capture_data = on(Section3BPage).filled_section
   base_data.delete_at(7)
   base_data.delete_at(7)
   p ">> #{base_data}"
@@ -81,16 +81,16 @@ end
 And(/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   sleep 1
-  Log.instance.info on(Section3DPage).get_filled_section.to_s
-  is_equal(on(Section3DPage).get_filled_section, @@form_data['section3d-yes'])
+  Log.instance.info on(Section3DPage).filled_section.to_s
+  is_equal(on(Section3DPage).filled_section, @@form_data['section3d-yes'])
   CommonPage.set_entered_pin = '8383'
   step 'I should see signed details for integration test'
 end
 
 And(/^I review page 4a of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  p "+++ #{on(Section4APage).get_filled_section}"
-  is_equal(on(Section4APage).get_filled_section, @@form_data['section4a'])
+  p "+++ #{on(Section4APage).filled_section}"
+  is_equal(on(Section4APage).filled_section, @@form_data['section4a'])
 end
 
 And(/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
@@ -98,7 +98,7 @@ And(/^I review page 4a checklist of submitted (.+) permit$/) do |_permit_type|
   sleep 1
   does_include(on(Section4APage).generic_data_elements[1].text, "/#{BrowserActions.get_year}")
   does_include(on(Section4APage).generic_data_elements[1].text, 'LT (GMT')
-  extract = on(Section4APage).get_filled_section
+  extract = on(Section4APage).filled_section
   Log.instance.info "--- #{extract}"
   extract.delete_at(1)
   Log.instance.info "<<< #{extract}"
@@ -111,7 +111,7 @@ And(/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
   step 'I click on view EIC certification button'
   sleep 1
-  tmp = on(Section4BPage).get_filled_section
+  tmp = on(Section4BPage).filled_section
   tmp.delete_at(1)
   tmp.delete_at(1)
   # tmp.delete_at(3)
@@ -145,7 +145,7 @@ end
 
 And(/^I review page 6 of submitted (.+) permit$/) do |_permit_type|
   on(Section0Page).click_next
-  tmp = on(Section6Page).get_filled_section
+  tmp = on(Section6Page).filled_section
   tmp.delete_at(3)
   is_equal(tmp, @@form_data['section6'])
   is_equal(on(Section4APage).generic_data_elements.last.text, on(CommonFormsPage).get_current_date_format_with_offset)

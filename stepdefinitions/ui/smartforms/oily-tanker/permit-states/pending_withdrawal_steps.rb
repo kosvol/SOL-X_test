@@ -6,5 +6,5 @@ end
 
 Then(/^I should (.+) as task status$/) do |status|
   is_equal(on(PendingWithdrawalPage)
-             .get_task_status_text(on(ActiveStatePage).get_permit_index(CommonPage.get_permit_id)), status)
+             .task_status_text(on(ActiveStatePage).get_permit_index(CommonPage.get_permit_id)), status)
 end

@@ -34,7 +34,7 @@ class Section3BPage < Section3APage
     !options_text_elements.empty?
   end
 
-  def get_filled_section
+  def filled_section
     tmp = []
     generic_data_elements.each_with_index do |_data, index|
       p ">> #{generic_data_elements[index].text}"

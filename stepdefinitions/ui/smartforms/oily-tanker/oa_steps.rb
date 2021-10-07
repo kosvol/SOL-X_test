@@ -79,7 +79,7 @@ And(/^I click on Designation drop-down$/) do
 end
 
 Then(/^I should see the Designation list contains all necessary roles$/) do
-  is_true(on(OAPage).is_designation_list?)
+  is_true(on(OAPage).designation_list?)
 end
 
 And(/^I select any role$/) do

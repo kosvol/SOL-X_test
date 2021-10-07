@@ -75,7 +75,7 @@ Then(/^I should see data persisted on page (.*)$/) do |page_number|
   case page_number
   when '1'
     step 'I press previous for 2 times'
-    tmp = on(Section3DPage).get_filled_section
+    tmp = on(Section3DPage).filled_section
     does_include(tmp[1], "AUTO/DRA/#{BrowserActions.get_year}/")
     # does_include(tmp[2],on(CommonFormsPage).get_timezone)
     does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
@@ -88,7 +88,7 @@ Then(/^I should see data persisted on page (.*)$/) do |page_number|
     is_equal(tmp, rol_data['page1'])
   when '2'
     sleep 1
-    tmp = on(Section3DPage).get_filled_section
+    tmp = on(Section3DPage).filled_section
     p ">> #{tmp}"
     does_include(tmp[1], 'COTAUTO')
     does_include(tmp[2], on(CommonFormsPage).get_timezone)

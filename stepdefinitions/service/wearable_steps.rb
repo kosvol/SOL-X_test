@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 Then(/^I get a list of wearable id$/) do
-  WearablePage.get_list_of_wearables_id
+  WearablePage.list_of_wearables_id
 end
 
 Then(/^I get a list of crews$/) do
-  WearablePage.get_list_of_crews_id
+  WearablePage.list_of_crews_id
 end
 
 Then(/^I get a hash of crews$/) do
-  WearablePage.get_list_of_crews_id_hash
+  WearablePage.list_of_crews_id_hash
 end
 
 Then(/^I create rq for rank (.+)$/) do |rank|
@@ -25,7 +25,7 @@ And(/^I manipulate wearable requeset payload with (.+) and (.+)$/) do |zoneid, m
 end
 
 Then(/^I get list of beacons detail$/) do
-  WearablePage.get_list_of_beacons_id_n_mac
+  WearablePage.list_of_beacons_id_n_mac
 end
 
 And(/^I should see location updated$/) do

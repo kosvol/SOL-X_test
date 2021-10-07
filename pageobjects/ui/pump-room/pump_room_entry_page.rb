@@ -66,7 +66,7 @@ class PumpRoomEntry < PreDisplay
   ### end
   @@selected_date = nil
 
-  def get_validity_start_and_end_time(permit_type)
+  def validity_start_and_end_time(permit_type)
     case permit_type
     when 'CRE'
       @@pre_permit_start_time = permit_start_time1_element.text
@@ -79,11 +79,11 @@ class PumpRoomEntry < PreDisplay
     end
   end
 
-  def get_entry_log_validity_start_details
+  def entry_log_validity_start_details
     (@@pre_permit_start_time[12, 5]).to_s
   end
 
-  def get_entry_log_validity_end_details
+  def entry_log_validity_end_details
     (@@pre_permit_end_time[12, 5]).to_s
   end
 

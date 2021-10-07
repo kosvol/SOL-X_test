@@ -92,7 +92,7 @@ class Section4APage < Section3DPage
   end
 
   def uncheck_all_checklist
-    element_yes = get_yes_elements
+    element_yes = yes_elements_list
     list_of_checklist_elements.each_with_index do |_checklist, index|
       next if index == 0
 
@@ -100,11 +100,11 @@ class Section4APage < Section3DPage
 
       BrowserActions.scroll_down(element_yes[index + 3])
       sleep 1
-      get_na_elements[index].click
+      na_elements_list[index].click
     end
   end
 
-  def is_signed_user_details?(entered_pin)
+  def signed_user_details?(entered_pin)
     BrowserActions.wait_until_is_visible(rank_and_name_stamp_elements.first)
     rank_and_name = get_user_details_by_pin(entered_pin)
     @@tmp_rank_name = rank_and_name_stamp_elements.first.text
@@ -115,7 +115,7 @@ class Section4APage < Section3DPage
     ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? date_and_time_stamp_element.text))
   end
 
-  def is_signed_user_details_plus_1_min?(entered_pin)
+  def signed_user_details_plus_1_min?(entered_pin)
     rank_and_name = get_user_details_by_pin(entered_pin)
     ((@@tmp_rank_name.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") && (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
@@ -131,18 +131,18 @@ class Section4APage < Section3DPage
 
   # ##Blue rgba(24, 144, 255, 1)
   # ##White rgba(255, 255, 255, 1)
-  def is_checklist_preselected(checklist)
-    element_yes = get_yes_elements
+  def checklist_preselected?(checklist)
+    element_yes = yes_elements_list
     list_of_checklist_elements.each_with_index do |checklist_obj, index|
       next unless checklist_obj.text == checklist
 
       BrowserActions.scroll_down(element_yes[index])
       if checklist.include? 'Cold Work'
         return (element_yes[index].css_value('color') == 'rgba(24, 144, 255, 1)') &&
-          (get_na_elements[index].css_value('background-color') == 'rgba(255, 255, 255, 1)')
+               (na_elements_list[index].css_value('background-color') == 'rgba(255, 255, 255, 1)')
       else
         return (element_yes[index].css_value('color') == 'rgba(24, 144, 255, 1)') &&
-          (get_na_elements[index].css_value('color') == 'rgba(255, 255, 255, 1)')
+               (na_elements_list[index].css_value('color') == 'rgba(255, 255, 255, 1)')
       end
     end
   end
@@ -150,7 +150,7 @@ class Section4APage < Section3DPage
   def select_checklist(checklist)
     sleep 1
     BrowserActions.scroll_up_by_custom_dist(-600)
-    element_yes = get_yes_elements
+    element_yes = yes_elements_list
     list_of_checklist_elements.each_with_index do |checklist_obj, index|
       next unless checklist_obj.text == checklist
 
@@ -167,7 +167,7 @@ class Section4APage < Section3DPage
     sleep 1
   end
 
-  def is_checklist_questions?
+  def checklist_questions?
     span_arr = get_checklist_questions('div > span')
     label_arr = get_checklist_questions('div > label')
     p_arr = get_checklist_questions('div > p')
@@ -190,7 +190,7 @@ class Section4APage < Section3DPage
       next if is_questions == true
 
       if (element == 'If necessary, arrangements have been made with LSV regarding LEE, SPEED etc?') ||
-        (element == 'Is vessel movement in seaway acceptable for personnel transfer?')
+         (element == 'Is vessel movement in seaway acceptable for personnel transfer?')
         is_equal(h4_arr.size, 2)
       else
         is_equal(h4_arr.size, 1)
@@ -210,11 +210,11 @@ class Section4APage < Section3DPage
     tmp_arr
   end
 
-  def get_yes_elements
+  def yes_elements_list
     @browser.find_elements(:css, @@yes_input)
   end
 
-  def get_na_elements
+  def na_elements_list
     @browser.find_elements(:css, @@na_input)
   end
 end

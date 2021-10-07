@@ -44,7 +44,7 @@ class CrewListPage < DashboardPage
     pin_text_field_element.text != '••••'
   end
 
-  def is_rank_correctly_displayed?(current_rank)
+  def rank_correctly_displayed?(current_rank)
     sleep 1
     rank_list_btn
     rank_list = return_sit_and_rank_yaml
@@ -62,7 +62,7 @@ class CrewListPage < DashboardPage
     end
   end
 
-  def is_crew_sorted_descending_seniority?
+  def crew_sorted_desc_seniority?
     rank_arr = []
     crew_rank_elements.each do |x|
       rank_arr << x.text
@@ -73,7 +73,7 @@ class CrewListPage < DashboardPage
     rank_arr.uniq == rank_list['ranks_sorted_auto']
   end
 
-  def get_crew_table_headers
+  def crew_table_headers_list
     data_collector = []
     crew_table_header_elements.each do |header|
       data_collector << header.text
@@ -81,12 +81,12 @@ class CrewListPage < DashboardPage
     data_collector
   end
 
-  def is_pin_hidden?
+  def pin_hidden?
     sleep 1
     crew_pin_list_elements.first.text == '••••'
   end
 
-  def is_pin_reviewed?
+  def pin_reviewed?
     sleep 1
     crew_pin_list_elements.all? do |pin|
       pin.text == '••••'
@@ -95,14 +95,14 @@ class CrewListPage < DashboardPage
 
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
-  def is_activity_indicator_status(color)
+  def activity_indicator_status?(color)
     element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(_element)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     element.css_value('background-color') == color
   end
 
-  def is_location_details(location = nil)
+  def location_details?(location = nil)
     sleep 1
     get_active_crew_details_frm_service = get_active_crew_details_frm_service(location)
     element = @browser.find_element(:xpath, @@location_indicator)

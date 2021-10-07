@@ -7,7 +7,7 @@ require 'date'
 module ServiceUtil
   include HTTParty
   class << self
-    def update_crew_members_vessel(vesselType, regex)
+    def update_crew_members_vessel(vessel_type, regex)
       uri = EnvironmentSelector.get_db_url('cloud', 'get_crew_members')
       content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
       content_body['selector']['_id']['$regex'] = regex
@@ -18,7 +18,7 @@ module ServiceUtil
 
       crew_members = JSON.parse @response.to_s
       crew_members['docs'].each do |crew|
-        crew['vesselId'] = vesselType
+        crew['vesselId'] = vessel_type
       end
       error_logging('Request Body: ', crew_members)
       uri = EnvironmentSelector.get_db_url('cloud', 'set_crew_members')
@@ -89,22 +89,20 @@ module ServiceUtil
       content_body = JsonUtil.read_json(json_payload) if json_payload != '' && json_payload.size < 20
       error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      if trans_method == 'put'
+      case trans_method
+      when 'put'
         @response = HTTParty.put(uri,
                                  { body: content_body }
                                    .merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if trans_method == 'post'
+      when 'post'
         @response = HTTParty.post(uri,
                                   { body: content_body }
                                     .merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if trans_method == 'get'
+      when 'get'
         @response = HTTParty.get(uri,
                                  { body: content_body }
                                    .merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if trans_method == 'delete'
+      when 'delete'
         @response = HTTParty.delete(uri,
                                     { body: content_body }
                                       .merge({ headers: { 'Content-Type' => 'application/json' } }))

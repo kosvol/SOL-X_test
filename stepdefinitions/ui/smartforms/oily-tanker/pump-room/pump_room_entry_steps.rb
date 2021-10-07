@@ -132,7 +132,7 @@ And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
 end
 
 And(/^I take note of start and end validity time for (.*)$/) do |permit_type|
-  on(PumpRoomEntry).get_validity_start_and_end_time(permit_type.to_s)
+  on(PumpRoomEntry).validity_start_and_end_time(permit_type.to_s)
 end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
@@ -287,9 +287,9 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
   case condition
   when 'filled'
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,
-                 on(PumpRoomEntry).get_entry_log_validity_start_details)
+                 on(PumpRoomEntry).entry_log_validity_start_details)
     does_include(on(PumpRoomEntry).entry_log_table_elements[2].text,
-                 on(PumpRoomEntry).get_entry_log_validity_end_details)
+                 on(PumpRoomEntry).entry_log_validity_end_details)
   when 'filled api'
     p (@@issued_date_and_time[12, 5]).to_s
     p (@@issue_time[12, 5]).to_s

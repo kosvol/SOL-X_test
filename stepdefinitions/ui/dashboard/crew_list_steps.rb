@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Then(/^I should see correct column headers$/) do
-  p ">> #{on(CrewListPage).get_crew_table_headers}"
-  is_equal(on(CrewListPage).get_crew_table_headers,
+  p ">> #{on(CrewListPage).crew_table_headers_list}"
+  is_equal(on(CrewListPage).crew_table_headers_list,
            '["Rank", "Surname", "First Name", "Location", "PIN", "Work Availability*", "Rank", "Surname", "First Name",
  "Location", "PIN", "Work Availability*", "", "", "", "", "", "", "", "", "", ""]')
 end
@@ -12,7 +12,7 @@ Then(/^I should see total crew count match inactive crew$/) do
 end
 
 Then(/^I should see pin hidden$/) do
-  is_true(on(CrewListPage).is_pin_hidden?)
+  is_true(on(CrewListPage).pin_hidden?)
 end
 
 Then(/^I should see all crew details match$/) do
@@ -21,17 +21,17 @@ end
 
 Then(/^I should see crew list location indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
-  is_true(on(CrewListPage).is_activity_indicator_status('rgba(67, 160, 71, 1)')) if indicator_color == 'green below'
-  is_true(on(CrewListPage).is_activity_indicator_status('rgba(242, 204, 84, 1)')) if indicator_color == 'yellow after'
+  is_true(on(CrewListPage).activity_indicator_status?('rgba(67, 160, 71, 1)')) if indicator_color == 'green below'
+  is_true(on(CrewListPage).activity_indicator_status?('rgba(242, 204, 84, 1)')) if indicator_color == 'yellow after'
 end
 
 Then(/^I should see crew location details on crew screen$/) do
   step 'I sleep for 2 seconds'
-  is_true(on(CrewListPage).is_location_details)
+  is_true(on(CrewListPage).location_details?)
 end
 
 Then(/^I should see crew location (.+) details on crew screen$/) do |location|
-  is_true(on(CrewListPage).is_location_details(location))
+  is_true(on(CrewListPage).location_details?(location))
 end
 
 And(/^I view pin$/) do
@@ -40,8 +40,8 @@ And(/^I view pin$/) do
 end
 
 Then(/^I (should|should not) see pin reviewed$/) do |condition|
-  is_true(!on(CrewListPage).is_pin_hidden?) if condition == 'should not'
-  is_true(!on(CrewListPage).is_pin_reviewed?) if condition == 'should'
+  is_true(!on(CrewListPage).pin_hidden?) if condition == 'should not'
+  is_true(!on(CrewListPage).pin_reviewed?) if condition == 'should'
 end
 
 And(/^I enter a non-existent pin$/) do
@@ -67,7 +67,7 @@ Then(/^I should see not authorize error message$/) do
 end
 
 Then(/^I should see crews are sorted by descending order on seniority$/) do
-  is_true(on(CrewListPage).is_crew_sorted_descending_seniority?)
+  is_true(on(CrewListPage).crew_sorted_desc_seniority?)
 end
 
 And(/^I add an existing crew id$/) do
@@ -98,7 +98,7 @@ And(/^I add crew (.+) id$/) do |crew|
 end
 
 Then(/^I should see rank listing for (.+) showing 1 rank before and after$/) do |current_rank|
-  is_true(on(CrewListPage).is_rank_correctly_displayed?(current_rank))
+  is_true(on(CrewListPage).rank_correctly_displayed?(current_rank))
 end
 
 And(/^I change the crew rank$/) do

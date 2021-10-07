@@ -203,7 +203,7 @@ class OAPage < Section9Page
     @browser.find_element(:xpath, "//button[contains(.,'VS')]").click
   end
 
-  def is_designation_list?
+  def designation_list?
     tmp_arr = []
     designation_elements.each do |element|
       tmp_arr << element.text

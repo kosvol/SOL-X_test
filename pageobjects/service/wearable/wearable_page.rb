@@ -25,7 +25,7 @@ class WearablePage
     end
 
     def get_crew_id_from_rank(user)
-      get_one_wearable_id
+      one_wearable_id
       tmp_req_payload = JSON.parse JsonUtil.read_json('wearable-simulator/base-link-crew-to-wearable')
       @crewid = @list_of_crew_id.key(user)
       tmp_req_payload['variables']['wearableId'] = @wearableid
@@ -38,30 +38,30 @@ class WearablePage
     def swap_payload(which_json, custom_value1 = nil, custom_value2 = nil)
       case which_json
       when 'wearable-simulator/mod-dismiss-panic'
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         tmp_req_payload['variables']['id'] = @wearableid
       when 'wearable-simulator/mod-trigger-panic'
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         tmp_req_payload['variables']['id'] = @wearableid
       when 'wearable-simulator/mod-link-crew-to-wearable'
-        get_one_wearable_id
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        one_wearable_id
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         # @list_of_crew_id.delete(tmp_req_payload['variables']['userId'])
         @crewid = @list_of_crew_id.sample
         tmp_req_payload['variables']['wearableId'] = @wearableid
         tmp_req_payload['variables']['userId'] = @crewid
         p ">> #{tmp_req_payload['variables']['userId']}"
       when 'wearable-simulator/mod-unlink-crew-to-wearable'
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         tmp_req_payload['variables']['id'] = @wearableid
       when 'wearable-simulator/mod-update-wearable-location'
         @@beacon = @@list_of_beacon.sample
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         tmp_req_payload['variables']['id'] = @wearableid
         tmp_req_payload['variables']['beacons'][0]['id'] = @@beacon.first
         tmp_req_payload['variables']['beacons'][0]['mac'] = @@beacon.last
       when 'wearable-simulator/mod-update-wearable-location-by-zone'
-        tmp_req_payload = JSON.parse JsonUtil.read_json(get_base_json(which_json))
+        tmp_req_payload = JSON.parse JsonUtil.read_json(base_json(which_json))
         @@beacon = custom_value1
         tmp_req_payload['variables']['id'] = @wearableid
         tmp_req_payload['variables']['beacons'][0]['id'] = @@beacon
@@ -80,26 +80,26 @@ class WearablePage
       end
     end
 
-    def get_list_of_wearables_id
-      @list_of_wearables = get_wearables_id
+    def list_of_wearables_id
+      @list_of_wearables = wearables_id
     end
 
-    def get_list_of_crews_id
-      @list_of_crew_id = get_crews_id
+    def list_of_crews_id
+      @list_of_crew_id = crews_id
     end
 
-    def get_list_of_crews_id_hash
-      @list_of_crew_id = get_crews_id_rank
+    def list_of_crews_id_hash
+      @list_of_crew_id = crews_id_rank
       puts(@list_of_crew_id)
     end
 
-    def set_list_of_crews_id(_define)
+    def fill_list_of_crews_id(define)
       tmp = []
-      tmp << _define
+      tmp << define
       @list_of_crew_id = tmp
     end
 
-    def get_list_of_beacons_id_n_mac
+    def list_of_beacons_id_n_mac
       @@list_of_beacon = get_beacon_mac
     end
 
@@ -113,28 +113,26 @@ class WearablePage
 
     @wearableid = ''
 
-    def get_one_wearable_id
+    def one_wearable_id
       tmp = @list_of_wearables.sample
       begin
-        @wearableid != tmp.to_s ? set_wearable_id(tmp) : get_one_wearable_id
+        @wearableid != tmp.to_s ? set_wearable_id(tmp) : one_wearable_id
       rescue StandardError
         p(@list_of_wearables)
         p 'Empty wearables array'
       end
     end
 
-    def get_crews_id
+    def crews_id
       @tmp_list = []
       ServiceUtil.get_response_body['data']['users'].each do |list|
-        if list['crewMember']['_id'].include? EnvironmentSelector.env_type_prefix
-          @tmp_list << list['crewMember']['_id']
-        end
+        @tmp_list << list['crewMember']['_id'] if list['crewMember']['_id'].include? EnvironmentSelector.env_type_prefix
       end
       puts(@tmp_list)
       @tmp_list
     end
 
-    def get_crews_id_rank
+    def crews_id_rank
       @tmp_list = {}
       ServiceUtil.get_response_body['data']['users'].each do |list|
         if list['crewMember']['rank'].include? EnvironmentSelector.env_type_prefix
@@ -144,7 +142,7 @@ class WearablePage
       @tmp_list
     end
 
-    def get_wearables_id
+    def wearables_id
       @tmp_list = []
       ServiceUtil.get_response_body['data']['wearables'].each do |list|
         next unless ServiceUtil.get_response_body['crewMember'].nil?
@@ -164,7 +162,7 @@ class WearablePage
       @tmp_list
     end
 
-    def get_base_json(json)
+    def base_json(json)
       case json
       when 'wearable-simulator/mod-update-wearable-location',
            'wearable-simulator/mod-update-wearable-location-by-zone'
@@ -177,6 +175,8 @@ class WearablePage
         'wearable-simulator/base-trigger-panic'
       when 'wearable-simulator/mod-dismiss-panic'
         'wearable-simulator/base-dismiss-panic'
+      else
+        raise "Wrong json name >>> #{json}"
       end
     end
   end

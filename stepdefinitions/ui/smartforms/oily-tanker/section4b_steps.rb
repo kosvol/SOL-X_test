@@ -54,7 +54,7 @@ And(/^I link wearable to a (RA|competent person|issuing authority) (.*) and link
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   step 'I get a list of wearable id'
-  WearablePage.set_list_of_crews_id(user)
+  WearablePage.fill_list_of_crews_id(user)
   step 'I get wearable-simulator/mod-link-crew-to-wearable request payload'
   step 'I manipulate wearable requeset payload'
   step 'I hit graphql'
@@ -121,7 +121,7 @@ And(/^I should see (.+) rank and name$/) do |rank|
 end
 
 Then(/^I should see EIC permit number, date and time populated$/) do
-  is_true(on(Section4BPage).is_eic_details_prepopulated?)
+  is_true(on(Section4BPage).eic_details_prepopulated?)
 end
 
 And(/^I fill up EIC certificate$/) do

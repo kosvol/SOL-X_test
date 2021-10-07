@@ -39,8 +39,8 @@ end
 
 Then(/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color|
   step 'I link wearable'
-  is_true(on(DashboardPage).is_activity_indicator_status('rgba(67, 160, 71, 1)')) if indicator_color == 'green below'
-  is_true(on(DashboardPage).is_activity_indicator_status('rgba(242, 204, 84, 1)')) if indicator_color == 'yellow after'
+  is_true(on(DashboardPage).activity_indicator_status?('rgba(67, 160, 71, 1)')) if indicator_color == 'green below'
+  is_true(on(DashboardPage).activity_indicator_status?('rgba(242, 204, 84, 1)')) if indicator_color == 'yellow after'
 end
 
 Then(/^I should see (.+) count represent (.+)$/) do |zone, count|

@@ -13,7 +13,7 @@ class CreatedPermitToWorkPage < Section9Page
   buttons(:delete_permit_btn, xpath: "//button[contains(.,'Delete')]")
   buttons(:edit_permit_btn, xpath: "//button[contains(.,'Edit')]")
 
-  def is_created_permit_deleted?
+  def created_permit_deleted?
     sleep 1
     parent_container_elements.each_with_index do |_permit, index|
       return false if ptw_id_elements[index].text == CommonPage.get_permit_id

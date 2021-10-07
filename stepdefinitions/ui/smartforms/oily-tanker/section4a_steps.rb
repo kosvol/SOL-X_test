@@ -22,7 +22,7 @@ And(/^I fill up section 4a$/) do
 end
 
 Then(/^I should see correct checklist (.+) pre-selected$/) do |checklist|
-  is_true(on(Section4APage).is_checklist_preselected(checklist))
+  is_true(on(Section4APage).checklist_preselected?(checklist))
 end
 
 Then(/^I should see correct checklist content for (.+) checklist$/) do |checklist|
@@ -52,10 +52,10 @@ end
 
 Then(/^I should see signed details$/) do
   on(Section4APage).signature_scroll
-  if on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin)
-    is_true(on(Section4APage).is_signed_user_details?(CommonPage.get_entered_pin))
+  if on(Section4APage).signed_user_details?(CommonPage.get_entered_pin)
+    is_true(on(Section4APage).signed_user_details?(CommonPage.get_entered_pin))
   else
-    is_true(on(Section4APage).is_signed_user_details_plus_1_min?(CommonPage.get_entered_pin))
+    is_true(on(Section4APage).signed_user_details_plus_1_min?(CommonPage.get_entered_pin))
   end
   is_true(on(SignaturePage).is_signature_pad?)
 end
@@ -86,7 +86,7 @@ Then(/^I should see (.+) checklist questions$/) do |checklist|
   sleep 2
   BrowserActions.scroll_down
   @@checklist = checklist
-  is_true(on(Section4APage).is_checklist_questions?)
+  is_true(on(Section4APage).checklist_questions?)
 end
 
 And(/^I should see (info|warning|heavy) boxes$/) do |which_box|

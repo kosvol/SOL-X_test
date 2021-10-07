@@ -61,18 +61,20 @@ class Section3APage < Section2Page
       p ">> #{hazard_risk_details_elements[23].text}"
       p ">> #{hazard_risk_details_elements[24].text}"
       (tmp == "Test Automation\nDelete" && ecm_details_elements[10]
-              .text == "Existing Control Measures\nTest Automation" && hazard_risk_details_elements[23]
+              .text == "Existing Control Measures\nTest Automation" &&
+              hazard_risk_details_elements[23]
               .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
               hazard_risk_details_elements[24]
-                                                                                                                                                                                                  .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+                .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     rescue StandardError
       p ">> #{hazard_risk_details1_elements[23].text}"
       p ">> #{hazard_risk_details1_elements[24].text}"
       (tmp == 'Test Automation' && ecm_details_elements[10]
-              .text == "Existing Control Measures\nTest Automation" && hazard_risk_details1_elements[23]
+              .text == "Existing Control Measures\nTest Automation" &&
+        hazard_risk_details1_elements[23]
               .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
         hazard_risk_details1_elements[24]
-                                                                                                                                                                                          .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
     end
   end
 
@@ -156,9 +158,9 @@ class Section3APage < Section2Page
     select_dra_risk(consequence)
   end
 
-  def is_risk_indicator_color?(measure, status)
+  def risk_indicator_color?(measure, status)
     risk_indicators = @browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
-    base_color = get_color_code(status)
+    base_color = color_code(status)
     case measure
     when 'without applying measure'
       risk_indicators[0].css_value('background-color') == base_color
@@ -174,14 +176,14 @@ class Section3APage < Section2Page
   def evaluation_matrix(color, color1, color2)
     risk_indicators = @browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
     (risk_indicators[risk_indicators.size - 3]
-       .css_value('background-color') == get_color_code(color) && risk_indicators[risk_indicators.size - 2]
-        .css_value('background-color') == get_color_code(color1) && risk_indicators[risk_indicators.size - 1]
-         .css_value('background-color') == get_color_code(color2))
+       .css_value('background-color') == color_code(color) && risk_indicators[risk_indicators.size - 2]
+        .css_value('background-color') == color_code(color1) && risk_indicators[risk_indicators.size - 1]
+         .css_value('background-color') == color_code(color2))
   end
 
   private
 
-  def get_color_code(color)
+  def color_code(color)
     case color
     when 'low'
       'rgba(118, 210, 117, 1)'

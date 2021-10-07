@@ -60,13 +60,13 @@ end
 Then(/^I should see risk as (.+) risk$/) do |condition|
   case condition
   when 'low'
-    is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'low'))
+    is_true(on(Section3APage).risk_indicator_color?(@measure, 'low'))
   when 'medium'
-    is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'medium'))
+    is_true(on(Section3APage).risk_indicator_color?(@measure, 'medium'))
   when 'high'
-    is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'high'))
+    is_true(on(Section3APage).risk_indicator_color?(@measure, 'high'))
   when 'very high'
-    is_true(on(Section3APage).is_risk_indicator_color?(@measure, 'very high'))
+    is_true(on(Section3APage).risk_indicator_color?(@measure, 'very high'))
   else
     raise "Wrong condition >>>> #{condition}"
   end

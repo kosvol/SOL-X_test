@@ -9,7 +9,8 @@ class Section3CPage < Section3BPage
   spans(:dra_team_name_list, xpath: '//div[starts-with(@class,"Section__Description")]/div/div/div/ul/li')
   element(:master, xpath: "//li[starts-with(.,'MAS COT MAS')]")
   element(:am, xpath: "//li[starts-with(.,'C/O COT C/O')]")
-  buttons(:cross_btn, xpath: '//ul[starts-with(@aria-label,"Selected values")]/li/div[starts-with(@class,"ValueTree__ValueTreeNodeWrapper")]/button') # '//div[starts-with(@class,"Section__Description")]/div/div/div/ul/li/button')
+  buttons(:cross_btn,
+          xpath: '//ul[starts-with(@aria-label,"Selected values")]/li/div[starts-with(@class,"ValueTree__ValueTreeNodeWrapper")]/button') # '//div[starts-with(@class,"Section__Description")]/div/div/div/ul/li/button')
 
   def select_dra_team_member(index)
     dra_team_btn
