@@ -112,4 +112,35 @@ class OfficePortalPage
     p date_time.to_s
     date_time
   end
+
+  def questions?(checklist)
+    questions_arr = []
+    case checklist
+    when 'Work on Pressure Pipelines'
+      @browser.find_elements(:xpath,
+                             "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
+              .each do |question|
+        questions_arr << question.text
+      end
+    when 'Working Aloft Overside'
+      @browser.find_elements(:xpath,
+                             "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4")
+              .each do |question|
+        questions_arr << question.text
+      end
+    when 'Enclosed Spaces Entry Checklist'
+      @browser.find_elements(:xpath,
+                             "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4")
+              .each do |question|
+        questions_arr << question.text
+      end
+    else
+      @browser.find_elements(:xpath,
+                             "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
+              .each do |question|
+        questions_arr << question.text
+      end
+    end
+    questions_arr
+  end
 end

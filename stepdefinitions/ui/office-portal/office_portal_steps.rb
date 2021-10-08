@@ -290,33 +290,7 @@ Given(/^I terminate permit (.+) via service with (.+) user on the (.+) vessel wi
 end
 
 Then(/^I should see (.+) checklist questions in Office Portal$/) do |checklist|
-  questions_arr = []
-  case checklist
-  when 'Work on Pressure Pipelines'
-    $browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
-            .each do |question|
-      questions_arr << question.text
-    end
-  when 'Working Aloft Overside'
-    $browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4")
-            .each do |question|
-      questions_arr << question.text
-    end
-  when 'Enclosed Spaces Entry Checklist'
-    $browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'Enclosed Spaces Entry')]/../..//h4")
-            .each do |question|
-      questions_arr << question.text
-    end
-  else
-    $browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
-            .each do |question|
-      questions_arr << question.text
-    end
-  end
+  questions_arr = on(OfficePortalPage).questions?(checklist)
   base_data = ['Vessel Name:', 'Created On:']
   base_data = base_data + YAML
               .load_file("data/checklist/#{checklist}.yml")['questions'] - YAML
@@ -399,7 +373,7 @@ Then(/^Then I should see the Section 6 with gas (.+) shows the same fields as in
   $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 6')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 6.yml')["fields_#{condition}"]
@@ -416,10 +390,10 @@ end
 Then(/^I should see the (.*) shows the same fields as in the Client app with (.*)$/) do |section, condition|
   fields_arr = []
   subheaders_arr = []
-  @browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h4").each do |field|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  @browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h2").each do |subheader|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'#{section}')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_#{condition}"]
@@ -450,10 +424,10 @@ Then(/^I should see Section 8 shows the same fields as in the Client app with (.
   end
   fields_arr = []
   subheaders_arr = []
-  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |field|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h4").each do |field|
     fields_arr << field.text
   end
-  @browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |subheader|
+  $browser.find_elements(:xpath, "//h2[contains(text(),'Section 8')]/../..//h2").each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/screens-label/Section 8.yml')["fields_#{checklist}"]
@@ -470,10 +444,10 @@ end
 Then(/^I should see the PRE form shows the same fields as in the client app$/) do
   fields_arr = []
   subheaders_arr = []
-  @browser.find_elements(:xpath, '//h4').each do |field|
+  $browser.find_elements(:xpath, '//h4').each do |field|
     fields_arr << field.text
   end
-  @browser.find_elements(:xpath, '//h2').each do |subheader|
+  $browser.find_elements(:xpath, '//h2').each do |subheader|
     subheaders_arr << subheader.text
   end
   base_fields = [] + YAML.load_file('data/pre/pre-display.yml')['pre_structure_on_pred']['with_interval']
@@ -486,6 +460,6 @@ Then(/^I should see the PRE form shows the same fields as in the client app$/) d
 end
 
 And(/^I open the recently terminated form with link$/) do
-  @browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
+  $browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
