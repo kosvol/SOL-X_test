@@ -109,7 +109,7 @@ module Formatter
 
       $value << value
 
-      @cell_type = @outline_row.zero? ? :th : :td
+      @cell_type = @outline_row == 0 ? :th : :td
       attributes = { id: "#{@row_id}_#{@col_index}", class: 'step' }
       attributes[:class] += " #{status}" if status
       build_cell(@cell_type, value, attributes)
