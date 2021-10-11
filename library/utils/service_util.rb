@@ -7,7 +7,7 @@ require 'date'
 module ServiceUtil
   include HTTParty
   class << self
-    def update_crew_members_vessel(vesselType, regex)
+    def update_crew_members_vessel(vessel_type, regex)
       uri = EnvironmentSelector.get_db_url('cloud', 'get_crew_members')
       content_body = JSON.parse JsonUtil.read_json('vessel-switch/get_crew_members')
       content_body['selector']['_id']['$regex'] = regex
@@ -18,7 +18,7 @@ module ServiceUtil
 
       crew_members = JSON.parse @response.to_s
       crew_members['docs'].each do |crew|
-        crew['vesselId'] = vesselType
+        crew['vesselId'] = vessel_type
       end
       error_logging('Request Body: ', crew_members)
       uri = EnvironmentSelector.get_db_url('cloud', 'set_crew_members')
@@ -68,7 +68,7 @@ module ServiceUtil
     def post_graph_ql(which_json, user = '1111', vessel = nil)
       uri =
         if vessel.nil?
-          EnvironmentSelector.get_service_url
+          EnvironmentSelector.service_url
         elsif vessel.include? 'auto'
           $obj_env_yml['auto']['service'] % vessel
         elsif vessel.include? 'sit'
@@ -83,32 +83,36 @@ module ServiceUtil
       JsonUtil.create_response_file(which_json, @response, get_http_response_status_code)
     end
 
-    def fauxton(_uri, _trans_method, _json_payload = '')
-      content_body = _json_payload
+    def fauxton(uri, trans_method, json_payload = '')
+      content_body = json_payload
       # switch
-      content_body = JsonUtil.read_json(_json_payload) if _json_payload != '' && _json_payload.size < 20
-      error_logging('URI: ', _uri)
+      content_body = JsonUtil.read_json(json_payload) if json_payload != '' && json_payload.size < 20
+      error_logging('URI: ', uri)
       error_logging('Request Body: ', content_body)
-      if _trans_method == 'put'
-        @response = HTTParty.put(_uri,
-                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if _trans_method == 'post'
-        @response = HTTParty.post(_uri,
-                                  { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if _trans_method == 'get'
-        @response = HTTParty.get(_uri,
-                                 { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
-      end
-      if _trans_method == 'delete'
-        @response = HTTParty.delete(_uri,
-                                    { body: content_body }.merge({ headers: { 'Content-Type' => 'application/json' } }))
+      case trans_method
+      when 'put'
+        @response = HTTParty.put(uri,
+                                 { body: content_body }
+                                   .merge({ headers: { 'Content-Type' => 'application/json' } }))
+      when 'post'
+        @response = HTTParty.post(uri,
+                                  { body: content_body }
+                                    .merge({ headers: { 'Content-Type' => 'application/json' } }))
+      when 'get'
+        @response = HTTParty.get(uri,
+                                 { body: content_body }
+                                   .merge({ headers: { 'Content-Type' => 'application/json' } }))
+      when 'delete'
+        @response = HTTParty.delete(uri,
+                                    { body: content_body }
+                                      .merge({ headers: { 'Content-Type' => 'application/json' } }))
+      else
+        raise "Wrong method type >>> #{trans_method}"
       end
       error_logging('Response Body: ', @response)
       error_logging('Status Code: ', get_http_response_status_code)
-      unless _json_payload.include? '{'
-        JsonUtil.create_response_file(_json_payload, @response, get_http_response_status_code)
+      unless json_payload.include? '{'
+        JsonUtil.create_response_file(json_payload, @response, get_http_response_status_code)
       end
       @response
     end
@@ -123,8 +127,8 @@ module ServiceUtil
       @response if !@response.body.nil? && !@response.body.empty?
     end
 
-    def craft_date_time_format(_year, _month, _day, _hour, _min, _seconds)
-      DateTime.new(_year, _month, _day, _hour, _min, _seconds).strftime('%Y-%m-%dT%H:%M:%S.%LZ')
+    def craft_date_time_format(year, month, day, hour, min, seconds)
+      DateTime.new(year, month, day, hour, min, seconds).strftime('%Y-%m-%dT%H:%M:%S.%LZ')
     end
 
     private

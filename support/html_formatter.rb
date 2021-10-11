@@ -39,6 +39,8 @@ module Formatter
         embed_image(str_src, str_label)
       when %r{^text/plain}
         embed_file(str_src, str_label)
+      else
+        raise "Wrong type >>> #{str_mime_type}"
       end
     end
 
@@ -51,8 +53,11 @@ module Formatter
     def embed_file(str_src, str_label = 'Click to view embedded file')
       id = "object_#{Time.now.strftime('%y%m%d%H%M%S')}"
       @builder.span(class: 'embed') do |pre|
-        pre << %{<a href="" onclick="o=document.getElementById('#{id}'); o.style.display = (o.style.display == 'none' ? 'block' : 'none');return false">#{str_label}</a><br>&nbsp;
-	        <object id="#{id}" data="#{str_src}" type="text/plain" width="100%" style="height: 10em;display: none"></object>}
+        pre << %{<a href="" onclick="o=document.getElementById('#{id}');
+          o.style.display = (o.style.display == 'none' ? 'block' : 'none');
+          return false">#{str_label}</a><br>&nbsp;
+	        <object id="#{id}" data="#{str_src}" type="text/plain" width="100%" style="height: 10em;
+          display: none"></object>}
       end
     end
 
@@ -104,7 +109,7 @@ module Formatter
 
       $value << value
 
-      @cell_type = @outline_row.zero? ? :th : :td
+      @cell_type = @outline_row == 0 ? :th : :td
       attributes = { id: "#{@row_id}_#{@col_index}", class: 'step' }
       attributes[:class] += " #{status}" if status
       build_cell(@cell_type, value, attributes)

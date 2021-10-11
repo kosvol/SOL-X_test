@@ -2,24 +2,24 @@
 
 module EnvironmentSelector
   class << self
-    def get_environment_url
-      tmp_url = format($obj_env_yml[get_env_type_prefix.downcase][$current_application],
+    def environment_url
+      tmp_url = format($obj_env_yml[env_type_prefix.downcase][$current_application],
                        $current_environment)
       Log.instance.info tmp_url
       tmp_url
     end
 
-    def get_vessel_name
+    def vessel_name
       if $current_environment.include? 'lng'
-        "LNG#{get_env_type_prefix}"
+        "LNG#{env_type_prefix}"
       elsif $current_environment.include? 'cot'
-        "COT#{get_env_type_prefix}"
+        "COT#{env_type_prefix}"
       elsif $current_environment.include? 'fsu'
-        "FSU#{get_env_type_prefix}"
+        "FSU#{env_type_prefix}"
       end
     end
 
-    def get_vessel_type
+    def vessel_type
       if $current_environment.include? 'lng'
         'LNG'
       elsif $current_environment.include? 'cot'
@@ -31,7 +31,7 @@ module EnvironmentSelector
       end
     end
 
-    def get_env_type_prefix
+    def env_type_prefix
       if $current_environment.include? 'sit'
         'SIT'
       elsif $current_environment.include? 'auto'
@@ -42,11 +42,11 @@ module EnvironmentSelector
     end
 
     def get_edge_db_data_by_uri(uri)
-      format($obj_env_yml[get_env_type_prefix.downcase]['fauxton_url'], $current_environment) + uri
+      format($obj_env_yml[env_type_prefix.downcase]['fauxton_url'], $current_environment) + uri
     end
 
-    def get_service_url
-      format($obj_env_yml[get_env_type_prefix.downcase]['service'], $current_environment)
+    def service_url
+      format($obj_env_yml[env_type_prefix.downcase]['service'], $current_environment)
     end
 
     def oa_form_status
