@@ -566,13 +566,9 @@ end
 And(/^I remove (comment|name)$/) do |input|
   case input
   when 'comment'
-    on(OAPage).update_comments_element.click
-    on(OAPage).update_comments_element.send_keys('a')
-    on(OAPage).update_comments_element.send_keys("\ue017")
+    on(OAPage).remove_text(on(OAPage).update_comments_element)
   when 'name'
-    on(OAPage).name_input_field_element.click
-    on(OAPage).name_input_field_element.send_keys('a')
-    on(OAPage).name_input_field_element.send_keys("\ue017")
+    on(OAPage).remove_text(on(OAPage).name_input_field_element)
   else
     raise "Wrong input >>> #{input}"
   end

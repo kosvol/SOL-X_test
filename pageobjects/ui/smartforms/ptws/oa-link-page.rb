@@ -211,6 +211,10 @@ class OAPage < Section9Page
     tmp_arr == YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
+  def remove_text(element)
+    element.send_keys("\ue003") until element.attribute('value').length == 0
+  end
+
   private
 
   def add_instruction
