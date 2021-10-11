@@ -40,21 +40,23 @@ After do |scenario|
   begin
     if scenario.failed?
       $extent_test.info(:fail, "Step #{@step + 1}: #{@all_steps[@step]}",
-                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}", scenario.name.gsub(' ', '_'), @browser)
+                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.exception}",
+                        scenario.name.gsub(' ', '_'), @browser)
     elsif scenario.status.to_s == 'undefined'
       $extent_test.info(:undefined, "Step #{@step + 1}: #{@all_steps[@step]}",
-                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}", scenario.name.gsub(' ', '_'), @browser)
+                        "Executed #{@all_steps[@step]} - ERROR: #{scenario.status}",
+                        scenario.name.gsub(' ', '_'), @browser)
     end
   rescue Exception => e
     $extent_test.info(:fail, 'Exception raised from after scenario rescue', scenario, @browser)
   end
 
   begin
-    # @log.info("Chrome Console Log: #{$browser.manage.logs.get(:browser)}")
+    # @log.info("Chrome Console Log: #{@browser.manage.logs.get(:browser)}")
   rescue StandardError
   end
 
-  $browser.close
+  @browser.close
   $extent.end_test($extent_test)
 end
 

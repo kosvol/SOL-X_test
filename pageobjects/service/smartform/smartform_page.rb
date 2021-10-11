@@ -12,7 +12,7 @@ module SmartFormDBPage
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['id'].include? EnvironmentSelector.get_vessel_name
+        next unless form['id'].include? EnvironmentSelector.vessel_name
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
@@ -39,7 +39,7 @@ module SmartFormDBPage
       end
     end
 
-    def delete_table_wearable_alerts_row(_which_db, _url_map)
+    def delete_table_wearable_alerts_row(which_db, url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
@@ -47,43 +47,43 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
                             'post',
                             'fauxton/delete_form')
       end
     end
 
-    def delete_oa_event_table_row(_which_db, _url_map)
+    def delete_oa_event_table_row(which_db, url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['doc']['formId'].include? EnvironmentSelector.get_vessel_name
+        next unless form['doc']['formId'].include? EnvironmentSelector.vessel_name
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
                             'post',
                             'fauxton/delete_form')
       end
     end
 
-    def delete_geofence_row(_which_db, _url_map)
+    def delete_geofence_row(which_db, url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if form['id'].include? '_design'
-        next unless form['doc']['externalId'].include? EnvironmentSelector.get_vessel_name
+        next unless form['doc']['externalId'].include? EnvironmentSelector.vessel_name
 
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
                             'post',
                             'fauxton/delete_form')
       end
     end
 
-    def delete_crew_from_vessel(_which_db, _url_map)
+    def delete_crew_from_vessel(which_db, url_map)
       tmp_payload = JSON.parse JsonUtil.read_json('fauxton/delete_form')
       ServiceUtil.get_response_body['rows'].each do |form|
         next if (form['id'].include? '_design') || (form['id'].include? 'SIT') || (form['id'].include? 'AUTO')
@@ -91,14 +91,15 @@ module SmartFormDBPage
         tmp_payload['docs'][0]['_id'] = form['id']
         tmp_payload['docs'][0]['_rev'] = form['value']['rev']
         JsonUtil.create_request_file('fauxton/delete_form', tmp_payload)
-        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(_which_db.to_s, _url_map.to_s),
+        ServiceUtil.fauxton(EnvironmentSelector.get_db_url(which_db.to_s, url_map.to_s),
                             'post',
                             'fauxton/delete_form')
       end
     end
 
     def acknowledge_pre_entry_log(pre_number)
-      entry_id = get_pre_gas_entry_log_id('edge', 'get_pre_gas_entry_log', get_mod_permit_id(pre_number))
+      entry_id = get_pre_gas_entry_log_id('edge', 'get_pre_gas_entry_log',
+                                          get_mod_permit_id(pre_number))
       acknowledge_entry_log_payload = JSON.parse JsonUtil.read_json('pre/02.acknowledge-entry-log')
       acknowledge_entry_log_payload['variables']['formId'] = pre_number
       acknowledge_entry_log_payload['variables']['entryId'] = entry_id
@@ -116,10 +117,10 @@ module SmartFormDBPage
     #   DateTime.new(_year,_month,_day,_hour,_min,_seconds).strftime("%d-%b-%YT:%H:%M:%S.%LZ")
     # end
 
-    def get_date_time_with_offset(_offset)
+    def get_date_time_with_offset(offset)
       @current_time = Time.now.utc.strftime('%H')
       begin
-        time_w_offset = @current_time.to_i + _offset.to_i
+        time_w_offset = @current_time.to_i + offset.to_i
       rescue StandardError
         time_w_offset = @current_time.to_i + get_current_time_offset.to_i
       end
