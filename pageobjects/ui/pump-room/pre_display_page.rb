@@ -54,4 +54,7 @@ class PreDisplay < Section9Page
                     "//*[starts-with(@class,'UnorderedList')]/li[#{count}]")
   end
 
+  def check_entrant_name(name)
+    @browser.find_elements(:xpath, "//*[contains(.,'#{name}')]").empty?
+  end
 end

@@ -42,6 +42,7 @@ class CommonFormsPage < CommonPage
   @@text_obj = "//*[contains(.,'%s')]"
 
   def select_todays_date_from_calendar(advance_days = 0)
+    wait_until(current_day_elements)
     current_day_elements.each_with_index do |element, index|
       if element.attribute('class').include? 'current'
         @browser.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click

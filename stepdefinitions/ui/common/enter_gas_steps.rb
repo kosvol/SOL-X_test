@@ -41,9 +41,9 @@ And(/^I add (all|only normal) gas readings with (.*) rank$/) do |condition, rank
   on(Section6Page).gas_equipment_input = 'Test Automation'
   on(Section6Page).gas_sr_number_input = 'Test Automation'
   on(Section6Page).gas_last_calibration_button
-  sleep 2
+  sleep 1
   on(Section6Page).select_todays_date_from_calendar
-  sleep 2
+  sleep 1
   step "I trigger gas readings input with #{rank} rank"
   on(Section6Page).add_all_gas_readings if condition == 'all'
   on(Section6Page).normal_gas_readings('1', '2', '3', '4') if condition == 'only normal'

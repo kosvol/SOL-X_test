@@ -179,11 +179,7 @@ Then(/^I check that entrants "([^"]*)" not present in list$/) do |arr_entrants|
   sleep 1
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
   arr_entrants.split(',').each do |i|
-    if $browser.find_elements(:xpath, "//*[contains(.,'#{i}')]").empty?
-      puts("Entrant #{i} not exists in list")
-    else
-      raise("Entrant #{i} is exists in list")
-    end
+    raise("Entrant #{i} is exists in list") unless on(PreDisplay).check_entrant_name(i)
   end
 end
 

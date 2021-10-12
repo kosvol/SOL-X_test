@@ -442,7 +442,7 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
     base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['after_rejection']
     is_equal(on(OAPage).main_description_element.text, base_description)
   else
-    # type code here
+    raise "Wrong state >>> #{what_state}"
   end
   sleep(1)
 end

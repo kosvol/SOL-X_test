@@ -52,11 +52,14 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
 end
 
 And('I should see first {int} input fields else {int} input fields') do |first_input_fields_length, second_input_fields_length|
-  input_fields = $browser.find_elements(:xpath, '//input').size
-  if input_fields == first_input_fields_length
+  input_fields = on(Section4APage).tool_box_elements.size
+  case input_fields
+  when first_input_fields_length
     is_equal(input_fields, first_input_fields_length)
-  elsif input_fields == second_input_fields_length
+  when second_input_fields_length
     is_equal(input_fields, second_input_fields_length)
+  else
+    raise "Wrong type of input fields >>> #{input_fields}"
   end
 end
 
