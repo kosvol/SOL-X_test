@@ -28,6 +28,7 @@ mac_chrome_sit_cot_tablet_headless: --profile dir --profile html --profile xml -
 mac_chrome_sit_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-fsu DEVICE=tablet
 # mac_chrome_auto_lng_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-lng DEVICE=tablet
 mac_chrome_auto_cot_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet
+mac_chrome_auto_cot_tablet: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-cot DEVICE=tablet
 # mac_chrome_auto_fsu_tablet_headless: --profile dir --profile html --profile xml --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=auto-fsu DEVICE=tablet
 mac_chrome_sit_cot_dashboard: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=dashboard
 mac_chrome_sit_cot_tablet: --profile dir --profile html --profile xml --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=sit-cot DEVICE=tablet

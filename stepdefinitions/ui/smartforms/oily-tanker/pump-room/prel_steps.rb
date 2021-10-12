@@ -82,11 +82,11 @@ And(/^I (send|fill) entry report with (.*) (optional|required) entrants$/) do |c
   if (condition == 'optional') && (condition1 == 'send')
     on(PumpRoomEntry).additional_entrant(optional_entrant.to_i) if optional_entrant.to_i.positive?
     sleep 1
-    @browser.find_element(:xpath, "//span[contains(text(),'Send Report')]").click
+    on(PreDisplay).send_report_element.click
   elsif (condition == 'required') && (condition1 == 'send')
     step "I select required entrants #{optional_entrant.to_i}"
     sleep 1
-    @browser.find_element(:xpath, "//span[contains(text(),'Send Report')]").click
+    on(PreDisplay).send_report_element.click
   elsif (condition == 'required') && (condition1 == 'fill')
     step "I select required entrants #{optional_entrant.to_i}"
   elsif (condition == 'optional') && (condition1 == 'fill')
@@ -114,9 +114,7 @@ Then(/^I should see (entrant|required entrants) count equal (.*)$/) do |conditio
     end
   when 'required entrants'
     while count.to_i.positive?
-      is_enabled(@browser
-        .find_element(:xpath,
-                      "//*[starts-with(@class,'UnorderedList')]/li[#{count}]"))
+      is_enabled(on(PreDisplay).ret_required_entrants(count))
       count = count.to_i - 1
       p 'enabled'
     end
@@ -168,9 +166,7 @@ end
 Then('I check names of entrants {int} on New Entry page') do |item|
   entr_arr = []
   while item.positive?
-    entr_arr.push(@browser
-      .find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{item}]")
-      .attribute('aria-label'))
+    entr_arr.push(on(PreDisplay).ret_required_entrants(item).attribute('aria-label'))
     item -= 1
   end
   p entr_arr.to_s
@@ -183,7 +179,7 @@ Then(/^I check that entrants "([^"]*)" not present in list$/) do |arr_entrants|
   sleep 1
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).sign_out_btn_elements.first)
   arr_entrants.split(',').each do |i|
-    if @browser.find_elements(:xpath, "//*[contains(.,'#{i}')]").empty?
+    if $browser.find_elements(:xpath, "//*[contains(.,'#{i}')]").empty?
       puts("Entrant #{i} not exists in list")
     else
       raise("Entrant #{i} is exists in list")
@@ -196,7 +192,6 @@ And(/^I (send|just send) Report$/) do |condition|
   when 'send'
     BrowserActions.wait_until_is_visible(on(PreDisplay).send_report_element)
     on(PreDisplay).send_report_btn_elements.first.click
-    # on(PreDisplay).send_report_element.click
     step 'I sleep for 5 seconds'
     BrowserActions.wait_until_is_visible(on(CommonFormsPage).done_btn_elements.first)
     on(CommonFormsPage).done_btn_elements.first.click
