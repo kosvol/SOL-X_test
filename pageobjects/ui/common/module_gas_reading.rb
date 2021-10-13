@@ -32,11 +32,4 @@ module GasReading
     sleep 1
     toxic_gas_readings('Test', '20', '1.5', 'cc')
   end
-
-  def toxic_gas_del_row
-    if toxic_gas_rows_elements.size == 1
-      del_row_stage1
-      del_row_stage2
-    end
-  end
 end

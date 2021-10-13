@@ -41,7 +41,11 @@ class NavigationPage < CommonFormsPage
   end
 
   def click_show_more(which_category)
-    which_category == 'forms' ? BrowserActions.poll_exists_and_click(show_more_elements.first) : BrowserActions.poll_exists_and_click(show_more_elements.last)
+    if which_category == 'forms'
+      BrowserActions.poll_exists_and_click(show_more_elements.first)
+    else
+      BrowserActions.poll_exists_and_click(show_more_elements.last)
+    end
   end
 
   def click_next
@@ -58,7 +62,7 @@ class NavigationPage < CommonFormsPage
     sleep 1
     index = 1
     while index <= times.to_i
-      #condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
+      # condition == 'next' ? click_next : BrowserActions.js_click("//button[contains(.,'Previous')]")
       condition == 'next' ? click_next : BrowserActions.poll_exists_and_click(previous_btn_button)
       index += 1
     end
@@ -100,6 +104,8 @@ class NavigationPage < CommonFormsPage
       9
     when '2'
       1
+    else
+      raise "Wrong section number >>> #{which_section}"
     end
   end
 
