@@ -10,11 +10,17 @@ Feature: Generate various permit type
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
 
+  @create_pending_office_approval
+  Scenario: Create pending office approval permit
+    Given PermitGenerator create permit
+      | permit_type     | permit_status    | eic | gas_reading | bfr_photo |
+      | use_safe_camera | pending_approval | yes | yes         | 2         |
+
   @create_active
   Scenario: Create active permit
     Given PermitGenerator create permit
-      | permit_type   | permit_status | eic | gas_reading | bfr_photo | aft_photo |
-      | use_of_camera | active        | yes | no          | 2         | 2         |
+      | permit_type         | permit_status | eic | gas_reading | bfr_photo | aft_photo |
+      | hot_work_designated | active        | yes | no          | 2         | 2         |
 
   @create_pending_withdrawal
   Scenario: Create pending withdrawal permit
@@ -25,5 +31,29 @@ Feature: Generate various permit type
   @create_withdrawn
   Scenario: Create withdrawn permit
     Given PermitGenerator create permit
-      | permit_type | permit_status | eic | gas_reading | bfr_photo | aft_photo |
-      | hot_work    | withdrawn     | yes | yes         | 1         | 3         |
+      | permit_type         | permit_status | eic | gas_reading | bfr_photo | aft_photo |
+      | hot_work_designated | withdrawn     | yes | yes         | 1         | 3         |
+
+  @create_pre
+  Scenario Outline: Create pre permit
+    Given PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | pre        | <permit_status> |
+    Examples:
+      | permit_status            |
+      | PENDING_OFFICER_APPROVAL |
+      | APPROVED_FOR_ACTIVATION  |
+      | ACTIVE                   |
+      | CLOSED                   |
+
+  @create_cre
+  Scenario Outline: Create cre permit
+    Given PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | cre        | <permit_status> |
+    Examples:
+      | permit_status            |
+      | PENDING_OFFICER_APPROVAL |
+      | APPROVED_FOR_ACTIVATION  |
+      | ACTIVE                   |
+      | CLOSED                   |

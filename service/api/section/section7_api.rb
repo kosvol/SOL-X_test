@@ -24,7 +24,7 @@ class Section7Api < BaseSectionApi
     payload['variables']['answers'][3]['value'] =
       "{\"dateTime\":\"#{current_time}\",\"utcOffset\":#{utc_offset}}"
     payload['variables']['answers'].last['value'] =
-      "{\"dateTime\":\"#{@time_service.get_current_date_time_cal(8)}\",\"utcOffset\":#{utc_offset}}"
+      "{\"dateTime\":\"#{@time_service.retrieve_time_cal_hours(8)}\",\"utcOffset\":#{utc_offset}}"
     payload
   end
 end
