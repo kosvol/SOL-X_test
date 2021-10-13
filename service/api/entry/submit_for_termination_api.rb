@@ -17,8 +17,7 @@ class SubmitForTerminationAPI < BaseSectionApi
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/#{entry_type}/3.submit_for_termination.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
-    payload['variables']['answers'][0]['value'] =
-      @user_service.create_default_signature('C/O', retrieve_vessel_name)
+    payload['variables']['answers'][0]['value'] = @user_service.create_default_signature('C/O', retrieve_vessel_name)
     payload
   end
 end

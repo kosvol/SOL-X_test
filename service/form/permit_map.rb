@@ -22,8 +22,8 @@ class PermitMap
     enclosed_spaces_entry: 'PENDING_MASTER_APPROVAL',
     use_safe_camera: 'PENDING_OFFICE_APPROVAL',
     hot_work_designated: 'PENDING_MASTER_APPROVAL',
-    pre: 'PENDING_OFFICE_APPROVAL',
-    cre: 'PENDING_OFFICE_APPROVAL'
+    pre: 'PENDING_OFFICER_APPROVAL',
+    cre: 'PENDING_OFFICER_APPROVAL'
   }.freeze
 
   def retrieve_permit_type(permit_type_plain)
