@@ -49,10 +49,9 @@ end
 And(/^I (should|should not) see Reporting interval$/) do |condition|
   sleep 1
   BrowserActions.scroll_down
-  case condition
-  when 'should not'
+  if condition == 'should not'
     not_to_exists(on(PumpRoomEntry).reporting_interval_element)
-  when 'should'
+    else
     to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
@@ -81,7 +80,8 @@ Then(/^\(for pre\) I sign on canvas$/) do
   on(PumpRoomEntry).sign
 end
 
-Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do |gas, _permit_type, duration, delay|
+Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do
+|gas, _permit_type, duration, delay|
   on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
   if gas == 'fill up with gas readings'
     sleep 1
@@ -97,7 +97,8 @@ Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
-Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do |condition, _permit_type, duration, delay, days, direction, point|
+Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do
+|condition, _permit_type, duration, delay, days, direction, point|
   on(PumpRoomEntry).fill_up_pre(duration) if condition == 'fill up'
   on(Section3APage).scroll_multiple_times_with_direction(1, 'down') if condition == 'fill up'
   on(PumpRoomEntry).select_day(direction, days, point)
@@ -207,7 +208,8 @@ And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
   @@issue_time = on(PreDisplay).pre_duration_timer_element.text if permit_type == 'PWT'
 end
 
-Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do |permit_type, condition, rank|
+Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank: (.*)$/) do
+|permit_type, condition, rank|
   step "I navigate to \"Pending Approval\" screen for #{permit_type}" if condition == 'Pending approval'
   step "I navigate to \"Active\" screen for #{permit_type}" if condition == 'Active'
   on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval') if condition == 'Pending approval'
@@ -248,7 +250,6 @@ Then(/^I getting a permanent number from indexedDB$/) do
   p(@temp_id)
   @@pre_number = WorkWithIndexeddb.get_id_from_indexeddb(@temp_id)
   CommonPage.set_permit_id(@@pre_number)
-  # is_equal(@@pre_number.include?("PRE"), true)
 end
 
 Then(/^I edit pre and should see the old number previously written down$/) do

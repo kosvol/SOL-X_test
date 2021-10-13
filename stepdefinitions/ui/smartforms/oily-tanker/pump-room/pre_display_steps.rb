@@ -38,8 +38,7 @@ end
 
 And(/^I navigate to (PRE|CRE) Display until see active permit$/) do |type|
   i = 0
-  until @browser.find_element(:xpath, "//*[@id='root']/div/main")
-                .css_value('background-color') == 'rgba(67, 160, 71, 1)'
+  until on(PreDisplay).background_color? == 'rgba(67, 160, 71, 1)'
     step 'I navigate to "Settings" screen for setting'
     BrowserActions.poll_exists_and_click(on(PumpRoomEntry).pump_room_display_setting_element) if type == 'PRE'
     BrowserActions.poll_exists_and_click(on(PumpRoomEntry).compressor_room_display_setting_element) if type == 'CRE'
@@ -55,7 +54,7 @@ And(/^I wait on (PRE|CRE) Display until see (red|green) background$/) do |_type,
   i = 0
   colors_hash = { 'red' => 'rgba(216, 75, 75, 1)',
                   'green' => 'rgba(67, 160, 71, 1)' }
-  until @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color') == colors_hash[color]
+  until on(PreDisplay).background_color? == colors_hash[color]
     sleep(5)
     i += 1
     break if i == 12
@@ -74,9 +73,9 @@ And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) s
       box_text = on(PreDisplay).warning_box_element.text
     rescue StandardError
       begin
-        box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'WarningBox__AlertWrapper')]").text
+        box_text = on(PreDisplay).warning_box_alert_wiper_element.text
       rescue StandardError
-        box_text = @browser.find_element(:xpath, "//div[starts-with(@class,'CreateEntryRecord__EntryDisclaimer')]").text
+        box_text = on(PreDisplay).entry_disclaimer_element.text
       end
     end
     base_data_text = YAML.load_file('data/pre/pre-display.yml')['warning_box'][status]
@@ -85,7 +84,7 @@ And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) s
 end
 
 Then(/^I should see (green|red) background color$/) do |condition|
-  background_color = @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
+  background_color = on(PreDisplay).background_color?
   case condition
   when 'green'
     green = 'rgba(67, 160, 71, 1)'
@@ -140,7 +139,7 @@ Then(/^I check location in gas readings signature is present$/) do
   sleep 2
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).show_signature_display_element)
   on(PumpRoomEntry).get_element_by_value('C/O COT C/O', 0)
-  is_not_equal(@browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text, '')
+  is_not_equal(on(PreDisplay).sign_component_text?, '')
 end
 
 Then(/^I should see (Home|Entry Log|Permit) tab$/) do |condition|
@@ -148,6 +147,6 @@ Then(/^I should see (Home|Entry Log|Permit) tab$/) do |condition|
   if condition == 'Entry Log'
     is_enabled(on(PumpRoomEntry).entry_log_table_elements.first)
 
-    raise('Entry log is exist') unless @browser.find_elements(:xpath, "(//h2[contains(text(),'No Entry Yet')])").empty?
+    raise('Entry log is exist') unless on(PreDisplay).no_entry_yet_element.empty?
   end
 end

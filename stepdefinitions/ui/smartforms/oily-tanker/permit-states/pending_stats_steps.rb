@@ -59,6 +59,8 @@ Then(/^I should be navigated back to (.*) screen$/) do |which_screen|
     is_equal(on(Section0Page).ptw_id_element.text, 'Pending Approval Permits to Work')
   when 'active'
     is_equal(on(Section0Page).ptw_id_element.text, 'Active Permits to Work')
+  else
+    raise "Unsupported screen name >>> #{which_screen}"
   end
 end
 

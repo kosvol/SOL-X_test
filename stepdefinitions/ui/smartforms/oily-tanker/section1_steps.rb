@@ -25,10 +25,9 @@ Then(/^I should not see previous button exists$/) do
 end
 
 Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
-  case condition
-  when 'should'
+  if condition == 'should'
     is_true(on(Section1Page).maint_duration_dd_exists?)
-  when 'should not'
+    else
     is_true(!on(Section1Page).maint_duration_dd_exists?)
   end
 end
