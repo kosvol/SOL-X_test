@@ -61,7 +61,7 @@ class Log < Logger
   private
 
   def format_log_message(message)
-    "#{message} [[#{caller[1].sub(/.*\//, "")}]]"
+    "#{message} [[#{caller[1].sub(%r{.*/}, '')}]]"
   end
 
   def log_directory

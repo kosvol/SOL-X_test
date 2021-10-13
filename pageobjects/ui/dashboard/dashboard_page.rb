@@ -77,7 +77,7 @@ class DashboardPage < WearablePage
 
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
-  def is_activity_indicator_status(color)
+  def activity_indicator_status?(color)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     @browser.find_element(:xpath, @@activity_indicator.to_s).css_value('background-color').to_s == color
     @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s == color

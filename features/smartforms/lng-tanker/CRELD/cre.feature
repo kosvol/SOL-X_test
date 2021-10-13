@@ -4,9 +4,6 @@ Feature: LNGCRE
   I want to ...
   So that ...
 
-  #  Background:
-  #    Given I switch vessel to LNG
-
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
   Scenario: Verify new active CRE permit will replace existing active CRE permit
     Given I launch sol-x portal without unlinking wearable
