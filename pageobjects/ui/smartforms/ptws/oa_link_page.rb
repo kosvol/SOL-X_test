@@ -111,60 +111,29 @@ class OAPage < Section9Page
 
   def set_from_to_details
     sleep 1
-    BrowserActions.scroll_down(date_time_from_elements[0])
-    scroll_multiple_times_with_direction(3, 'down')
     ### set from time
-    date_time_from_elements[1].click
-    starttime = Time.now.utc.strftime('%k').to_i + 1
-    if starttime <= 23
-      hour_from_picker_elements[starttime].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{starttime}"
+    start_time = Time.now.utc.strftime('%k').to_i + 1
+    if start_time <= 23
+      select_time('From', start_time, 1)
+      Log.instance.info("start time >>> #{start_time}")
     else
-      hour_from_picker_elements[starttime - 24].click
+      select_time('From', start_time - 24, 1)
+      Log.instance.info("start time >>> #{start_time - 24}")
+      date_time_from_elements.first.click
       sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{starttime - 24}"
-      date_time_to_elements.first.click
-      sleep 1
-      p ">> #{current_day_elements.size}"
       select_todays_date_from_calendar(1)
     end
-
     ### set to time
     sleep 2
-    date_time_to_elements[1].click
-    sleep 2
-    endtime = Time.now.utc.strftime('%k').to_i + 9
-    if endtime <= 23
-      hour_from_picker_elements[endtime].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{endtime}"
+    end_time = Time.now.utc.strftime('%k').to_i + 9
+    if end_time <= 23
+      select_time('To', end_time, 1)
+      Log.instance.info("end time >>> #{end_time}")
     else
-      hour_from_picker_elements[endtime - 24].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
-      p " #{endtime - 24}"
+      select_time('To', end_time - 24, 1)
+      Log.instance.info("end time >>> #{end_time - 24}")
       date_time_to_elements.first.click
       sleep 1
-      p ">> #{current_day_elements.size}"
       select_todays_date_from_calendar(1)
     end
   end

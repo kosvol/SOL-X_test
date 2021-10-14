@@ -300,41 +300,29 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |conditi
   to_exists(on(OAPage).sol_logo_element)
   does_include(on(OfficePortalPage).topbar_header_element.text, @form_number)
   does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
+  sections_list = []
+  on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+    sections_list << what_section.text
+  end
   case condition
   when 'before approval'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_office_approval']
     is_enabled(on(OAPage).approve_permit_btn_element)
     is_enabled(on(OAPage).update_permit_btn_element)
     is_enabled(on(OAPage).add_comments_btn_element)
   when 'after approval'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_master_approval']
     is_disabled(on(OAPage).permit_has_been_btn_element)
     is_equal(on(OAPage).permit_has_been_btn_element.text, 'This Permit Has Been Approved')
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after activation'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['active']
     is_disabled(on(OAPage).permit_has_been_btn_element)
     is_equal(on(OAPage).permit_has_been_btn_element.text, 'This Permit Has Been Activated')
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after termination'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['terminated']
     not_to_exists(on(OAPage).permit_has_been_btn_element)
     not_to_exists(on(OAPage).update_permit_btn_element)
