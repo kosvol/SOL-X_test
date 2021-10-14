@@ -18,7 +18,7 @@ Then(/^I should see extra section8 questions for pipe permit$/) do
   to_exists(on(Section8Page).normalization_pipe_question1_element)
   to_exists(on(Section8Page).normalization_pipe_question2_element)
   step 'I should see default section 8 questions'
-  tmp = @browser.find_elements(:xpath, '//div/span')
+  tmp = on(Section8Page).ret_all_page_span
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['pipe'], elem.text)
@@ -31,7 +31,7 @@ Then(/^I should see extra section8 questions for critical maintenance permit$/) 
   to_exists(on(Section8Page).normalization_crit_question2_element)
   to_exists(on(Section8Page).normalization_crit_question3_element)
   step 'I should see default section 8 questions'
-  tmp = @browser.find_elements(:xpath, '//div/span')
+  tmp = on(Section8Page).ret_all_page_span
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['critical'], elem.text)
@@ -43,7 +43,7 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
   to_exists(on(Section8Page).normalization_elec_question1_element)
   to_exists(on(Section8Page).normalization_elec_question2_element)
   step 'I should see default section 8 questions'
-  tmp = @browser.find_elements(:xpath, '//div/span')
+  tmp = on(Section8Page).ret_all_page_span
   section8_questions = YAML.load_file('data/section8-questions.yml')
   tmp.each do |elem|
     does_include(section8_questions['electrical'], elem.text)
@@ -52,11 +52,14 @@ Then(/^I should see extra section8 questions for electrical permit$/) do
 end
 
 And('I should see first {int} input fields else {int} input fields') do |first_input_fields_length, second_input_fields_length|
-  input_fields = @browser.find_elements(:xpath, '//input').size
-  if input_fields == first_input_fields_length
+  input_fields = on(Section4APage).tool_box_elements.size
+  case input_fields
+  when first_input_fields_length
     is_equal(input_fields, first_input_fields_length)
-  elsif input_fields == second_input_fields_length
+  when second_input_fields_length
     is_equal(input_fields, second_input_fields_length)
+  else
+    raise "Wrong type of input fields >>> #{input_fields}"
   end
 end
 

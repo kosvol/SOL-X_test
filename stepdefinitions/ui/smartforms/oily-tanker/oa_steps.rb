@@ -286,8 +286,8 @@ Then(%r{^I should not see the Add/Show Comments button$}) do
 end
 
 Then(/^I scroll down to This Permit Approved On element$/) do
-  el = @browser.find_element(:xpath, "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
-  @browser.action.move_to(el).perform
+  el = $browser.find_element(:xpath, "(//div[contains(@class,'ApprovedTagWrapper')])[2]")
+  $browser.action.move_to(el).perform
   sleep(3)
 end
 
@@ -416,6 +416,8 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
     does_include(on(OfficePortalPage).topbar_header_element.text, "PTW#: #{@form_number}")
     base_description = YAML.load_file('data/office-approval/page-descriptions.yml')['after_rejection']
     is_equal(on(OAPage).main_description_element.text, base_description)
+  else
+    raise "Wrong state >>> #{what_state}"
   end
   sleep(1)
 end
@@ -462,7 +464,7 @@ And(/^I navigate to OA link as Master$/) do
   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post',
                                 { selector: { formId: form_id } }.to_json.to_s)
   event_id = (JSON.parse request.to_s)['docs'][0]['_id']
-  @browser.get("https://office.dev.safevue.ai/permit-preview/#{event_id}")
+  $browser.get("https://office.dev.safevue.ai/permit-preview/#{event_id}")
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
 
@@ -483,6 +485,8 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
     is_equal(on(Section7Page).approver_name_element.text, 'VS Automation')
     is_equal(on(Section7Page).approver_designation_element.text, 'VS')
     to_exists(on(Section7Page).activate_permit_btn_element)
+  else
+    raise "Unsupported state >>> #{what_state}"
   end
   to_exists(on(CommonFormsPage).previous_btn_elements.first)
   to_exists(on(CommonFormsPage).close_btn_elements.first)
@@ -530,15 +534,15 @@ And(/^I remove (comment|name)$/) do |input|
 end
 
 And(/^I open a new tab and switch to it$/) do
-  @browser.manage.new_window(:tab)
+  $browser.manage.new_window(:tab)
   sleep(1)
-  @browser.switch_to.window(@browser.window_handles[1])
+  $browser.switch_to.window($browser.window_handles[1])
   sleep(1)
 end
 
 And(/^I close the tab and navigate back$/) do
-  @browser.close
-  @browser.switch_to.window(@browser.window_handles[0])
+  $browser.close
+  $browser.switch_to.window($browser.window_handles[0])
   sleep(1)
 end
 
@@ -557,9 +561,9 @@ And(/^I should see the (comment|name|designation) entered$/) do |input|
 end
 
 Then(/^I should see the Section 7 shows the correct data$/) do
-  el = @browser.find_element(:xpath,
+  el = $browser.find_element(:xpath,
                              "//div[@class='screen-only']//h4[contains(text(),'Date/Time:')]/following-sibling::p")
-  @browser.action.move_to(el).perform
+  $browser.action.move_to(el).perform
   base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
   fields_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h4')

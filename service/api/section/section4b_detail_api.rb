@@ -18,18 +18,25 @@ class Section4bDetailApi < BaseSectionApi
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     update_eic(payload, eic)
-    payload
   end
 
   def update_eic(payload, eic)
     if eic == 'yes'
-      payload['variables']['answers'][1].to_h['value'] = '"yes"'
-      payload['variables']['answers'].last['value'] =
-        @user_service.create_default_signature('C/O', retrieve_vessel_name)
+      update_yes_answers(payload)
     else
-      payload['variables']['answers'][1].to_h['value'] = '"no"'
-      payload['variables']['answers'].pop
+      update_no_answers(payload)
     end
+  end
+
+  def update_yes_answers(payload)
+    payload['variables']['answers'][1]['value'] = '"yes"'
+    payload['variables']['answers'].last['value'] = @user_service.create_default_signature('C/O', retrieve_vessel_name)
+    payload
+  end
+
+  def update_no_answers(payload)
+    payload['variables']['answers'][1]['value'] = '"no"'
+    payload['variables']['answers'].pop
     payload
   end
 end

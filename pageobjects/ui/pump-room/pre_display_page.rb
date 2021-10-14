@@ -27,6 +27,9 @@ class PreDisplay < Section9Page
   element(:time_shifted_by_text, xpath: "//p[contains(@class,'PermitValidUntil__TextSmall')]")
   element(:pre_duration_timer, xpath: "//h4/strong[contains(@class,'PermitValidUntil__')]") # ""//div[contains(@class,'PermitValidUntil__SecondaryHeaderText')]/span")
   buttons(:send_report_btn, xpath: '//button[contains(.,"Send Report")]')
+  element(:no_entry_yet, xpath: "(//h2[contains(text(),'No Entry Yet')])")
+  element(:warning_box_alert_wiper, xpath: "//div[starts-with(@class,'WarningBox__AlertWrapper')]")
+  element(:entry_disclaimer, xpath: "//div[starts-with(@class,'CreateEntryRecord__EntryDisclaimer')]")
 
   def is_element_disabled_by_att?(text)
     # enable? - doesn't work for PRED. for 'li' elements
@@ -35,5 +38,23 @@ class PreDisplay < Section9Page
     !el.attribute('disabled').nil?
   rescue StandardError
     false
+  end
+
+  def background_color?
+    @browser.find_element(:xpath, "//*[@id='root']/div/main").css_value('background-color')
+  end
+
+  def sign_component_text?
+    @browser.find_element(:xpath, "(//div[@class='children']/div/div/div/div[3]/div/div)").text
+  end
+
+  def ret_required_entrants(count)
+    @browser
+      .find_element(:xpath,
+                    "//*[starts-with(@class,'UnorderedList')]/li[#{count}]")
+  end
+
+  def check_entrant_name(name)
+    @browser.find_elements(:xpath, "//*[contains(.,'#{name}')]").empty?
   end
 end

@@ -103,19 +103,21 @@ module Formatter
         $tables << $table
       end
     end
+    # comment out buz this method will affect example in table
+    # will remove this file in SXQT-110
 
-    def table_cell_value(value, status)
-      return if @hide_this_step
-
-      $value << value
-
-      @cell_type = @outline_row == 0 ? :th : :td
-      attributes = { id: "#{@row_id}_#{@col_index}", class: 'step' }
-      attributes[:class] += " #{status}" if status
-      build_cell(@cell_type, value, attributes)
-      set_scenario_color(status) if @inside_outline
-      @col_index += 1
-    end
+    # def table_cell_value(value, status)
+    #   return if @hide_this_step
+    #
+    #   $value << value
+    #
+    #   @cell_type = @outline_row == 0 ? :th : :td
+    #   attributes = { id: "#{@row_id}_#{@col_index}", class: 'step' }
+    #   attributes[:class] += " #{status}" if status
+    #   build_cell(@cell_type, value, attributes)
+    #   set_scenario_color(status) if @inside_outline
+    #   @col_index += 1
+    # end
 
     def self.examples
       $tables

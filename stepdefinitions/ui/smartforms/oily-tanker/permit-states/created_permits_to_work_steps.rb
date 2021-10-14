@@ -11,15 +11,15 @@ end
 
 And(/^I want to edit the newly created permit$/) do
   BrowserActions.wait_until_is_visible(on(CreatedPermitToWorkPage).edit_permit_btn_elements.first)
-  on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)].click
+  on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage)
+                                                         .get_permit_index(CommonPage.get_permit_id)].click
 end
 
 Then(/^I should see correct permit details$/) do
   on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Created By')
   is_equal(on(Section0Page).generic_data_elements[0].text, EnvironmentSelector.vessel_name)
   is_equal(on(Section0Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
-  # does_include(on(Section0Page).generic_data_elements[1].text, "#{$current_environment.upcase}/PTW/#{BrowserActions.get_year}/")
-  # is_equal(on(Section0Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[1])
+
 end
 
 And(/^I edit ptw with rank (.+)$/) do |rank|

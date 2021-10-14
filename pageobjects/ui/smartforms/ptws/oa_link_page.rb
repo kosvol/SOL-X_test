@@ -49,6 +49,7 @@ class OAPage < Section9Page
   elements(:designation, xpath: "//ul[contains(@class,'UnorderedList')]/li")
   element(:comments, xpath: "//li[contains(@data-testid,'comment-message')]")
   element(:comment_bottom_notification, xpath: "//div[contains(@class,'CommentForm')]")
+  element(:optional, xpath: "//textarea[contains(@placeholder,'Optional')]")
   @@comment_base = 'Head, Fleet Operations (Backup)
   Test Automation
   %s %s (GMT+0)

@@ -54,4 +54,8 @@ class Section8Page < Section7Page
     sleep 1
     "#{get_current_date_format_with_offset} #{get_current_time_format}"
   end
+
+  def ret_all_page_span
+    @browser.find_elements(:xpath, '//div/span')
+  end
 end

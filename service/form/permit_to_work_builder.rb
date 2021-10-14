@@ -3,19 +3,15 @@
 require 'require_all'
 require 'logger'
 require_relative 'permit'
+require_relative 'base_permit_builder'
 require_all 'service/api'
 
-# builder to create sections
-class PermitBuilder
-  def initialize(permit_type)
-    @permit_type = permit_type
-    @permit = Permit.new
-    @logger = Logger.new($stdout)
-  end
+# ptw builder to create sections
+class PermitToWorkBuilder < BasePermitBuilder
 
   def create_section0(permit_type = @permit_type, pin = '1111')
-    @permit.section0 = Section0API.new.request(permit_type, pin)
-    @permit.permit_id = @permit.section0['data']['createForm']['_id']
+    response = Section0API.new.request(permit_type, pin)
+    @permit.permit_id = response['data']['createForm']['_id']
     @logger.info("created permit id: #{@permit.permit_id}")
   end
 
@@ -87,9 +83,5 @@ class PermitBuilder
 
   def create_section9(permit_id = @permit.permit_id, pin = '1111')
     Section9Api.new.request(permit_id, pin)
-  end
-
-  def update_form_status(status, permit_id = @permit.permit_id, pin = '1111')
-    UpdateFormsStatusApi.new.request(permit_id, status, pin)
   end
 end

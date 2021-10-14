@@ -18,6 +18,10 @@ class Section4bEicDetailApi < BaseSectionApi
     payload['variables']['parentFormId'] = permit_id
     payload['variables']['formId'] = eic_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
+    update_signature(payload)
+  end
+
+  def update_signature(payload)
     vessel_name = retrieve_vessel_name
     payload['variables']['answers'][-3]['value'] = @user_service.create_default_signature('C/O', vessel_name)
     payload['variables']['answers'][-2]['value'] = @user_service.create_default_signature('C/E', vessel_name)
