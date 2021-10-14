@@ -11,7 +11,7 @@ module OfficeApproval
       Log.instance.info("form id >> #{form_id}")
       Log.instance.info("event id >> #{event_id}")
       Log.instance.info("staff id >> #{staff_id}")
-      format($obj_env_yml['office_approval']['format_link'], event_id.to_s, form_id.to_s, staff_id.to_s)
+      $obj_env_yml['office_approval']['format_link'] % [event_id.to_s, form_id.to_s, staff_id.to_s]
     end
 
     def get_event_id(form_id)

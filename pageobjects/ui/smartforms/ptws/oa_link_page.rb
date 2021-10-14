@@ -24,7 +24,7 @@ class OAPage < Section9Page
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
 
-  element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
+  element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer')]")
   element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]")
 
   ## Web Confirmation Page
@@ -211,8 +211,45 @@ class OAPage < Section9Page
     tmp_arr == YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
+  def wait_until_state(what_status, server)
+    iteration = 80
+    status = nil
+    while iteration.positive? && status != what_status.to_s
+      request = request_to_server(server)
+      docs = (JSON.parse request.to_s)['docs']
+      status = what_status if (docs != []) && (docs[0]['status'] == what_status)
+      iteration -= 1
+      sleep(20)
+    end
+    Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
+    status
+  end
+
+  def select_time(what_time, hours, minutes)
+    case what_time
+    when 'From'
+      date_time_from_elements[1].click
+    when 'To'
+      date_time_to_elements[1].click
+    else
+      raise "Wrong time condition >>> #{what_time}"
+    end
+    hours = case hours
+            when 'current_hour'
+              Time.now.utc.strftime('%k')
+            when 'plus_two_hours'
+              Time.now.utc.strftime('%k').to_i + 2
+            else
+              hours.to_i
+            end
+    hour_from_picker_elements[hours.to_i].click
+    minute_from_picker_elements[minutes.to_i].click
+    @browser.action.move_to_location(20, 20).click.perform
+    sleep 1
+  end
+
   def remove_text(element)
-    element.send_keys("\ue003") until element.attribute('value').length == 0
+    element.send_keys("\ue003") until element.attribute('value').length.zero?
   end
 
   private
@@ -235,5 +272,17 @@ class OAPage < Section9Page
 
   def select_to_minute(minute_index)
     BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", minute_index)
+  end
+
+  def request_to_server(server)
+    form_id = CommonPage.get_permit_id
+    case server
+    when 'Cloud'
+      ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',
+                          { selector: { _id: form_id } }.to_json.to_s)
+    else
+      ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
+                          { selector: { _id: form_id } }.to_json.to_s)
+    end
   end
 end

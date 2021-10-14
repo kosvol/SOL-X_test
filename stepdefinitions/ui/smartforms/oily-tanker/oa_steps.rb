@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And(/^I navigate to OA link$/) do
-  @browser.get(on(OAPage).navigate_to_oa_link)
+  $browser.get(on(OAPage).navigate_to_oa_link)
   begin
     BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
   rescue StandardError
@@ -19,9 +19,9 @@ And(/^I request the permit for update via oa link manually$/) do
   sleep 2
   # x = %(document.evaluate("//span[contains(text(),'Request Updates')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click())
   # @browser.execute_script(x)
-  @browser.find_element(:xpath, "//span[contains(text(),'Request Updates')]").click
+  $browser.find_element(:xpath, "//span[contains(text(),'Request Updates')]").click
   sleep 3
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvironmentSelector.environment_url)
   sleep 2
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
@@ -43,7 +43,7 @@ And(/^I approve oa permit via oa link manually$/) do
   sleep 2
   BrowserActions.js_click("//button[contains(.,'Approve This Permit to Work')]")
   sleep 2
-  @browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvironmentSelector.environment_url)
   sleep 1
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
@@ -291,33 +291,8 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-################################################################################################################
-######## Konstantine please refactor this step; Method implementation should never be in step definition #######
-################################################################################################################
 When(/^I wait for form status get changed to (.+) on (.+)/) do |what_status, server|
-  form_id = CommonPage.get_permit_id
-  status = nil
-  docs = []
-  i = 80
-  while i.positive? && status != what_status.to_s
-    request = if server == 'Cloud'
-                ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',
-                                    { selector: { _id: form_id } }.to_json.to_s)
-              else
-                ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
-                                    { selector: { _id: form_id } }.to_json.to_s)
-              end
-    # p "request >> #{request}"
-    docs = (JSON.parse request.to_s)['docs']
-    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] == what_status)
-      status = (JSON.parse request.to_s)['docs'][0]['status']
-      break
-    end
-    i -= 1
-    sleep(20)
-  end
-  Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
-  is_true(status == what_status.to_s)
+  is_true(on(OAPage).wait_until_state(what_status, server) == what_status.to_s)
   sleep 2
 end
 
@@ -446,27 +421,7 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
 end
 
 And(/^I select Issued (From|To) time as (.+):(.+)$/) do |what_time, hours, minutes|
-  case what_time
-  when 'From'
-    on(OAPage).date_time_from_elements[1].click
-  when 'To'
-    on(OAPage).date_time_to_elements[1].click
-  else
-    raise "Wrong time condition >>> #{what_time}"
-  end
-  case hours
-  when 'current_hour'
-    hours = Time.now.utc.strftime('%k')
-  when 'plus_two_hours'
-    hours = Time.now.utc.strftime('%k').to_i + 2
-  else
-    raise "Wrong hours value >>> #{hours}"
-  end
-  on(OAPage).hour_from_picker_elements[hours.to_i].click
-  on(OAPage).minute_from_picker_elements[minutes.to_i].click
-  on(OAPage).dismiss_picker_element.click
-  @browser.find_element(:xpath, "//textarea[contains(@placeholder,'Optional')]").click
-  sleep 1
+  on(OAPage).select_time(what_time, hours, minutes)
 end
 
 Then(/^I should see the correct warning message for (less|more)$/) do |validity|
@@ -607,8 +562,8 @@ Then(/^I should see the Section 7 shows the correct data$/) do
   @browser.action.move_to(el).perform
   base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
-  fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7', 'h4')
-  subheaders_arr = on(OfficePortalPage).get_section_elements_list('Section 7', 'h2')
+  fields_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h4')
+  subheaders_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h2')
   time_offset = on(CommonFormsPage).get_current_time_offset
   time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
   time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
