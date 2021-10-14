@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require 'rest-client'
-# dra api requests
-class DraAPI < BaseSectionApi
-  def request(permit_id, permit_type, pin)
-    payload = create_payload(permit_id, permit_type)
+# pre create form api requests
+class CreatePreFormAPI < BaseSectionApi
+  def request(pin)
+    payload = create_payload
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
                                { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
@@ -13,9 +13,8 @@ class DraAPI < BaseSectionApi
 
   private
 
-  def create_payload(permit_id, permit_type)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/dra/#{permit_type}.json")
-    payload['variables']['parentFormId'] = permit_id
+  def create_payload
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/pre/0.create_pump_room_entry_permit.json")
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     payload
   end

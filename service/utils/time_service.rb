@@ -15,7 +15,11 @@ class TimeService
     TimeApi.new.request_ship_local_time['data']['currentTime']['utcOffset']
   end
 
-  def get_current_date_time_cal(duration)
-    (Time.now + (60 * 60 * duration.to_i)).utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
+  def retrieve_time_cal_hours(hours)
+    (Time.now + (60 * 60 * hours.to_i)).utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
+  end
+
+  def retrieve_time_cal_minutes(minutes)
+    (Time.now + (60 * minutes.to_i)).utc.strftime('%Y-%m-%dT%H:%M:%S.901Z')
   end
 end

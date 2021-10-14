@@ -21,18 +21,23 @@ class Section6Api < BaseSectionApi
   end
 
   def update_answers(payload, gas_reading)
-    if gas_reading == 'yes'
-      payload['variables']['answers'][1].to_h['value'] = '"yes"'
-      payload['variables']['answers'][-3]['value'] =
-        @user_service.create_gas_reading('C/O', retrieve_vessel_name)
-    else
-      payload['variables']['answers'][1].to_h['value'] = '"no"'
-      4.times do
-        payload['variables']['answers'].delete_at(2) # delete gas reading keys
-      end
+    payload['variables']['answers'][-2]['value'] = @user_service.create_default_signature('C/O', retrieve_vessel_name)
+    update_gas_yes_answers(payload) if gas_reading == 'yes'
+    update_gas_no_answers(payload)
+  end
+
+  def update_gas_yes_answers(payload)
+    payload['variables']['answers'][1].to_h['value'] = '"yes"'
+    payload['variables']['answers'][-3]['value'] =
+      @user_service.create_gas_reading('C/O', retrieve_vessel_name)
+    payload
+  end
+
+  def update_gas_no_answers(payload)
+    payload['variables']['answers'][1].to_h['value'] = '"no"'
+    4.times do
+      payload['variables']['answers'].delete_at(2) # delete gas reading keys
     end
-    payload['variables']['answers'][-2]['value'] =
-      @user_service.create_default_signature('C/O', retrieve_vessel_name)
     payload
   end
 end

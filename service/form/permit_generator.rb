@@ -2,13 +2,20 @@
 
 # builder for pending approval permit
 
-require_relative 'permit_builder'
+require_relative 'permit_to_work_builder'
+require_relative 'entry_permit_builder'
 require_relative 'permit_map'
 # service to generate permit
 class PermitGenerator
   def initialize(permit_type_plain)
-    permit_type = PermitMap.new.retrieve_permit_type(permit_type_plain)
-    @builder = PermitBuilder.new(permit_type)
+    permit_map = PermitMap.new
+    permit_type = permit_map.retrieve_permit_type(permit_type_plain)
+    @approve_type = permit_map.retrieve_approve_type(permit_type)
+    @builder = if %w[pre cre].include?(permit_type)
+                 EntryPermitBuilder.new(permit_type)
+               else
+                 PermitToWorkBuilder.new(permit_type)
+               end
   end
 
   def create_pending_approval(eic, gas_reading, bfr_photo)
@@ -20,7 +27,7 @@ class PermitGenerator
     create_section4(eic)
     @builder.create_section5
     @builder.create_section6(gas_reading)
-    @builder.update_form_status('PENDING_MASTER_APPROVAL')
+    update_pending_status
   end
 
   def create_active(eic, gas_reading, bfr_photo, aft_photo)
@@ -42,6 +49,14 @@ class PermitGenerator
     @builder.update_form_status('CLOSED')
   end
 
+  def create_entry(permit_status)
+    @builder.create_entry_form
+    @builder.update_entry_answer
+    @builder.update_form_status(@approve_type)
+    approve_entry_permit(permit_status) unless permit_status == 'PENDING_OFFICER_APPROVAL'
+    terminate_entry_permit if permit_status == 'CLOSED'
+  end
+
   private
 
   def create_section3
@@ -61,5 +76,25 @@ class PermitGenerator
   def create_eic_sections
     @builder.create_section4b_eic
     @builder.create_section4b_eic_detail
+  end
+
+  def update_pending_status
+    if @approve_type == 'PENDING_OFFICE_APPROVAL'
+      @builder.update_form_status('PENDING_MASTER_REVIEW')
+      @builder.update_form_status('PENDING_OFFICE_APPROVAL')
+    else
+      @builder.update_form_status('PENDING_MASTER_APPROVAL')
+    end
+  end
+
+  def approve_entry_permit(permit_status)
+    @builder.approve_entry_permit
+    @builder.update_form_status('APPROVED_FOR_ACTIVATION')
+    @builder.update_form_status('ACTIVE') if permit_status == 'ACTIVE'
+  end
+
+  def terminate_entry_permit
+    @builder.terminate_entry_permit
+    @builder.update_form_status('CLOSED')
   end
 end
