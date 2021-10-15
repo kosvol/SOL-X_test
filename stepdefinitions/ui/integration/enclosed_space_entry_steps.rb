@@ -81,7 +81,7 @@ And(/^I review page 3b of submitted (.+) permit$/) do |permit_type|
       p "== #{capture_data}"
       is_equal(capture_data, base_data)
     end
-    else
+  else
     on(Section1Page).next_btn_elements.last.click
     is_equal(on(Section3BPage).get_filled_section, @@form_data['section3b'])
   end
@@ -204,12 +204,7 @@ And(/^I review page 5 of submitted (.+) permit$/) do |permit_type|
                  on(CommonFormsPage).get_current_date_format_with_offset)
     does_include(on(Section5Page).get_non_crew_date_time_element.text, ' LT (GMT')
     is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, 'Test Automation Company')
-  when 'cold work'
-    on(Section1Page).next_btn_elements.last.click
-    ### PENDING
-  when 'hot work'
-    on(Section1Page).next_btn_elements.last.click
-    ### PENDING
+    #hot_work and cold_work under development
   else
     raise "Wrong permit type >>> #{permit_type}"
   end
