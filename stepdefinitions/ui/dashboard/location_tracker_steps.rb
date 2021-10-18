@@ -18,23 +18,23 @@ end
 Then(/^I should see crew link to PTW$/) do
   Log.instance.info "Permit Listing: #{on(DashboardPage).permit_to_work_element.text}"
   sleep 2
-  does_include(on(DashboardPage).permit_to_work_element.text, CommonPage.get_permit_id)
+  does_include(on(DashboardPage).permit_to_work_element.text, CommonPage.return_permit_id)
 end
 
 Then(/^I should see active crew details$/) do
-  is_true(on(DashboardPage).is_crew_location_detail_correct?('service'))
+  is_true(on(DashboardPage).crew_location_detail_correct?('service'))
 end
 
 Then(/^I should see countdown starts at 15s$/) do
   step 'I link wearable'
   sleep 12
-  is_true(on(DashboardPage).is_last_seen.include?('secs'))
+  is_true(on(DashboardPage).last_seen?.include?('secs'))
 end
 
 Then(/^I should see Just now as current active crew$/) do
   step 'I link wearable'
   sleep 1
-  is_equal(on(DashboardPage).is_last_seen, 'Just now')
+  is_equal(on(DashboardPage).last_seen?, 'Just now')
 end
 
 Then(/^I should see activity indicator is (.+) 5 minutes$/) do |indicator_color|
@@ -158,9 +158,9 @@ Then(/^I (should|should not) see ui location updated to (.+)$/) do |condition, n
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
   if condition == 'should'
-    is_true(on(DashboardPage).is_crew_location_detail_correct?('ui', new_zone))
+    is_true(on(DashboardPage).crew_location_detail_correct?('ui', new_zone))
   else
-    is_equal(on(DashboardPage).get_ui_active_crew_details.size, '0')
+    is_equal(on(DashboardPage).return_ui_active_crew_details.size, '0')
   end
 end
 
@@ -184,10 +184,10 @@ end
 Then(/^I (should not|should) see PRE tab active on dashboard$/) do |condition|
   if condition == 'should'
     is_equal(on(DashboardPage).pre_indicator, 'Active')
-    is_true(on(DashboardPage).is_pre_indicator_color?('active'))
+    is_true(on(DashboardPage).pre_indicator_color?('active'))
   else
     is_equal(on(DashboardPage).pre_indicator, 'Inactive')
-    is_true(on(DashboardPage).is_pre_indicator_color?('inactive'))
+    is_true(on(DashboardPage).pre_indicator_color?('inactive'))
   end
 end
 

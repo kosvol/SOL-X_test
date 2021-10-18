@@ -77,7 +77,7 @@ class OAPage < Section9Page
 
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    get_current_hour
+    return_current_hour
     ### set from time
     date_time_from_elements[1].click
     hour_from_picker_elements.first.click
@@ -104,7 +104,7 @@ class OAPage < Section9Page
   end
 
   def navigate_to_oa_link
-    tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
+    tmp = OfficeApproval.get_office_approval_link(CommonPage.return_permit_id, 'VS', 'VS Automation').to_s
     Log.instance.info "OA Link : #{tmp}"
     tmp
   end
@@ -112,7 +112,7 @@ class OAPage < Section9Page
   def set_from_to_details
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    scroll_multiple_times_with_direction(3, 'down')
+    scroll_times_direction(3, 'down')
     ### set from time
     date_time_from_elements[1].click
     starttime = Time.now.utc.strftime('%k').to_i + 1
@@ -136,7 +136,7 @@ class OAPage < Section9Page
       date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"
-      select_todays_date_from_calendar(1)
+      select_todays(1)
     end
 
     ### set to time
@@ -165,7 +165,7 @@ class OAPage < Section9Page
       date_time_to_elements.first.click
       sleep 1
       p ">> #{current_day_elements.size}"
-      select_todays_date_from_calendar(1)
+      select_todays(1)
     end
   end
 

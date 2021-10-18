@@ -14,12 +14,12 @@ class Section9Page < Section8Page
     BrowserActions.scroll_down(rank_and_name_stamp)
     sleep 1
     set_current_time
-    time_offset = get_current_time_format
-    "#{get_current_date_format_with_offset} #{time_offset}"
+    time_offset = ret_current_time_format
+    "#{ret_current_date_format_with_offset} #{time_offset}"
   end
 
   def termintn_date_time_filled?
-    (get_current_time_format == permit_terminated_on_date_elements.last.text) &&
-      (get_current_date_format_with_offset == permit_terminated_on_date_elements.first.text)
+    (ret_current_time_format == permit_terminated_on_date_elements.last.text) &&
+      (ret_current_date_format_with_offset == permit_terminated_on_date_elements.first.text)
   end
 end

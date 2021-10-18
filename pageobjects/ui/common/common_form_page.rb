@@ -41,7 +41,7 @@ class CommonFormsPage < CommonPage
 
   @@text_obj = "//*[contains(.,'%s')]"
 
-  def select_todays_date_from_calendar(advance_days = 0)
+  def select_todays(advance_days = 0)
     wait_until(current_day_elements)
     current_day_elements.each_with_index do |element, index|
       if element.attribute('class').include? 'current'
@@ -56,7 +56,7 @@ class CommonFormsPage < CommonPage
     sleep 1
   end
 
-  def scroll_multiple_times_with_direction(time, direct)
+  def scroll_times_direction(time, direct)
     time.times do
       BrowserActions.scroll_down if direct == 'down'
       BrowserActions.scroll_up if direct == 'up'
@@ -68,11 +68,11 @@ class CommonFormsPage < CommonPage
     @@time = main_clock_element.text
   end
 
-  def get_current_time
+  def return_current_time
     @@time
   end
 
-  def get_current_time_format
+  def ret_current_time_format
     "#{@@time}#{get_timezone}"
   end
 
@@ -87,35 +87,35 @@ class CommonFormsPage < CommonPage
   end
 
   def get_current_date_and_time_minus_a_min
-    "#{get_current_date_format_with_offset} #{move_date_time_by_minus_1_minute}"
+    "#{ret_current_date_format_with_offset} #{move_date_time_by_minus_1_minute}"
   end
 
   def get_current_date_and_time_add_a_min
-    "#{get_current_date_format_with_offset} #{move_date_time_by_1_minute}"
+    "#{ret_current_date_format_with_offset} #{move_date_time_by_1_minute}"
   end
 
   def get_current_date_and_time
-    "#{get_current_date_format_with_offset} #{get_current_time_format}"
+    "#{ret_current_date_format_with_offset} #{ret_current_time_format}"
   end
 
-  def get_current_hour
-    time_offset = get_current_time_offset
+  def return_current_hour
+    time_offset = ret_current_time_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%H')
   end
 
-  def get_current_date_format_with_offset
-    time_offset = get_current_time_offset
+  def ret_current_date_format_with_offset
+    time_offset = ret_current_time_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
 
-  def get_current_time_offset
+  def ret_current_time_offset
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     ServiceUtil.get_response_body['data']['currentTime']['utcOffset']
   end
 
   def get_timezone
-    @@time_offset = get_current_time_offset
+    @@time_offset = ret_current_time_offset
     if @@time_offset.to_s[0] != '-'
       " LT (GMT+#{@@time_offset})"
     else

@@ -125,13 +125,13 @@ end
 
 And(/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.return_permit_id)
   step 'I sleep for 3 seconds'
 end
 
 And(/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.return_permit_id)
   step 'I sleep for 3 seconds'
 end
 
@@ -205,7 +205,7 @@ And(/^I (save|check) permit date on Dashboard LOG$/) do |action|
     current = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
   when 'check'
-    data = on(DashboardPage).get_arr_data
+    data = on(DashboardPage).return_arr_data
     unless is_equal(DateTime.parse(on(DashboardPage).entry_log_title_element.text), DateTime.parse(data[0]))
       raise 'date time verification fail'
     end

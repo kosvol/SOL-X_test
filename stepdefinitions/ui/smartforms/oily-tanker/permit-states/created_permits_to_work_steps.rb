@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then(/^I should see the newly created permit details listed on Created Permits to Work$/) do
-  on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Created By')
+  on(Section1Page).set_section1_filled_data(CommonPage.return_entered_pin, 'Created By')
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text,
                "#{EnvironmentSelector.vessel_name}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)
@@ -12,11 +12,11 @@ end
 And(/^I want to edit the newly created permit$/) do
   BrowserActions.wait_until_is_visible(on(CreatedPermitToWorkPage).edit_permit_btn_elements.first)
   on(CreatedPermitToWorkPage).edit_permit_btn_elements[on(CreatedPermitToWorkPage)
-                                                         .get_permit_index(CommonPage.get_permit_id)].click
+                                                         .get_permit_index(CommonPage.return_permit_id)].click
 end
 
 Then(/^I should see correct permit details$/) do
-  on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Created By')
+  on(Section1Page).set_section1_filled_data(CommonPage.return_entered_pin, 'Created By')
   is_equal(on(Section0Page).generic_data_elements[0].text, EnvironmentSelector.vessel_name)
   is_equal(on(Section0Page).generic_data_elements[1].text, on(Section1Page).get_section1_filled_data[0])
 
@@ -58,7 +58,7 @@ And(/^I delete the permit created$/) do
 end
 
 Then(/^I should see the total permits in CREATED state match backend results$/) do
-  on(Section3APage).scroll_multiple_times_with_direction(15, 'down')
+  on(Section3APage).scroll_times_direction(15, 'down')
   sleep 1
   step 'I get forms-filter/get-created-permits request payload'
   step 'I hit graphql'

@@ -7,11 +7,11 @@ And(/^I should see previous and (next|close|not close) buttons$/) do |type|
     to_exists(on(Section2Page).previous_btn_elements.first)
     to_exists(on(Section2Page).next_btn_element)
   when 'close'
-    on(Section3APage).scroll_multiple_times_with_direction(5, 'down')
+    on(Section3APage).scroll_times_direction(5, 'down')
     is_equal(on(Section2Page).previous_btn_elements.size, 1)
     to_exists(on(Section2Page).previous_btn_elements.first)
   when 'not close'
-    on(Section3APage).scroll_multiple_times_with_direction(5, 'down')
+    on(Section3APage).scroll_times_direction(5, 'down')
     is_equal(on(Section2Page).previous_btn_elements.size, 1)
     to_exists(on(Section2Page).previous_btn_elements.first)
     is_equal(on(Section2Page).close_btn_elements.size, 0)

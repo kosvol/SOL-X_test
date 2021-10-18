@@ -290,7 +290,7 @@ class PumpRoomEntry < PreDisplay
 
   def select_permit_duration(duration)
     BrowserActions.scroll_click(permit_validation_btn_element)
-    scroll_multiple_times_with_direction(5, 'down')
+    scroll_times_direction(5, 'down')
     sleep 1
     case duration.to_i
     when 4
@@ -333,7 +333,7 @@ class PumpRoomEntry < PreDisplay
 
   def reduce_time_activity(finish_in_x_minutes)
     p "permit no: >> #{@@pre_number}"
-    time_to_finish = get_current_time + 60 * finish_in_x_minutes
+    time_to_finish = return_current_time + 60 * finish_in_x_minutes
     web_pre_id = @@pre_number.gsub('/', '%2F')
     url = EnvironmentSelector.get_edge_db_data_by_uri('forms/%s?conflicts=true')
     url = format(url, web_pre_id)
@@ -371,7 +371,7 @@ class PumpRoomEntry < PreDisplay
     false
   end
 
-  def get_current_time
+  def return_current_time
     @which_json = 'ship-local-time/base-get-current-time'
     ServiceUtil.post_graph_ql(@which_json, '1111')
     ServiceUtil.get_response_body['data']['currentTime']['secondsSinceEpoch']
