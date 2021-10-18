@@ -169,6 +169,5 @@ Feature: CreatedPermitToWork
 
         Examples:
             | rank  |
-            | C/O   |
             | C/E   |
             | A C/E |
