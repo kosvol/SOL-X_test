@@ -46,7 +46,7 @@ And(/^I review page 3a of submitted (.+) permit$/) do |permit_type|
   when 'cold work'
     on(Section1Page).next_btn_elements.last.click
     does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
-    does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
+    does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT')
     does_include(on(Section3APage).generic_data_elements[0].text, 'COTAUTO')
     does_include(on(Section3APage).generic_data_elements[1].text, 'COTAUTO/DRA')
     does_include(on(Section3APage).generic_data_elements[3].text,
@@ -54,7 +54,7 @@ And(/^I review page 3a of submitted (.+) permit$/) do |permit_type|
   when 'hot work'
     on(Section1Page).next_btn_elements.last.click
     does_include(on(Section3APage).date_and_time_fields_elements[0].text, '/')
-    does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT+')
+    does_include(on(Section3APage).date_and_time_fields_elements[1].text, 'LT (GMT')
     does_include(on(Section3APage).generic_data_elements[1].text, 'COTAUTO/DRA')
   else
     raise "Wrong permit type >>> #{permit_type}"
@@ -87,42 +87,20 @@ And(/^I review page 3b of submitted (.+) permit$/) do |permit_type|
   end
 end
 
-And(/^I review page 3c of submitted (.+) permit$/) do |permit_type|
-  case permit_type
-  when 'enclose workspace'
-    on(Section0Page).click_next
+And(/^I review page 3c of submitted (.+) permit$/) do |_permit_type|
+  on(Section0Page).click_next
     sleep 2
     is_equal(on(Section3CPage).master_element.text, @@form_data['section3c'][0])
     is_equal(on(Section3CPage).am_element.text, @@form_data['section3c'][1])
-  else
-    on(Section1Page).next_btn_elements.last.click
-    sleep 1
-    is_equal(on(Section3CPage).dra_team_name, @@form_data['section3c'])
-  end
 end
 
-And(/^I review page 3d of submitted (.+) permit$/) do |permit_type|
-  case permit_type
-  when 'enclose workspace'
+And(/^I review page 3d of submitted (.+) permit$/) do |_permit_type|
     on(Section0Page).click_next
     sleep 1
     Log.instance.info on(Section3DPage).filled_section.to_s
     is_equal(on(Section3DPage).filled_section, @@form_data['section3d-yes'])
     CommonPage.set_entered_pin = '8383'
     step 'I should see signed details for integration test'
-  when 'cold work'
-    on(Section1Page).next_btn_elements.last.click
-    sleep 1
-    p "--- #{on(Section3DPage).filled_section}"
-    is_equal(on(Section3DPage).filled_section, @@form_data['section3d-yes'])
-  when 'hot work'
-    on(Section1Page).next_btn_elements.last.click
-    sleep 1
-    p "--- #{on(Section3DPage).filled_section}"
-    is_equal(on(Section3DPage).filled_section, @@form_data['section3d-yes'])
-  else
-    raise "Wrong permit type >>> #{permit_type}"
-  end
 end
 
 And(/^I review page 4a of submitted (.+) permit$/) do |permit_type|
@@ -157,7 +135,7 @@ And(/^I review page 4a checklist of submitted (.+) permit$/) do |permit_type|
   else
     on(Section1Page).next_btn_elements.last.click
     does_include(on(Section4APage).checklist_date_and_time_elements[0].text, '/')
-    does_include(on(Section4APage).checklist_date_and_time_elements[1].text, 'LT (GMT+')
+    does_include(on(Section4APage).checklist_date_and_time_elements[1].text, 'LT (GMT')
     does_include(on(Section4APage).checklist_permit_number, 'SIT/PTW')
     extract = on(Section4APage).get_filled_section
     extract.delete_at(1)
@@ -165,9 +143,7 @@ And(/^I review page 4a checklist of submitted (.+) permit$/) do |permit_type|
   end
 end
 
-And(/^I review page 4b of submitted (.+) permit$/) do |permit_type|
-  case permit_type
-  when 'enclose workspace'
+And(/^I review page 4b of submitted (.+) permit$/) do |_permit_type|
     on(Section0Page).click_next
     step 'I click on view EIC certification button'
     sleep 1
@@ -184,15 +160,9 @@ And(/^I review page 4b of submitted (.+) permit$/) do |permit_type|
     sleep 1
     CommonPage.set_entered_pin = '8383'
     step 'I should see signed details for integration test'
-  else
-    on(Section1Page).next_btn_elements.last.click
-    is_equal(on(Section4BPage).get_filled_section, @@form_data['section4b'])
-  end
 end
 
-And(/^I review page 5 of submitted (.+) permit$/) do |permit_type|
-  case permit_type
-  when 'enclose workspace'
+And(/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
     on(Section0Page).click_next
     sleep 1
     is_equal(on(Section5Page).get_filled_roles_responsibility_elements.first.text, 'Authorized Entrant 1')
@@ -204,10 +174,6 @@ And(/^I review page 5 of submitted (.+) permit$/) do |permit_type|
                  on(CommonFormsPage).get_current_date_format_with_offset)
     does_include(on(Section5Page).get_non_crew_date_time_element.text, ' LT (GMT')
     is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, 'Test Automation Company')
-    #hot_work and cold_work under development
-  else
-    raise "Wrong permit type >>> #{permit_type}"
-  end
 end
 
 And(/^I review page 6 of submitted (.+) permit$/) do |permit_type|
