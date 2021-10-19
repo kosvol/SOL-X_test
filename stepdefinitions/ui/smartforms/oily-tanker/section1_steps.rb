@@ -27,7 +27,7 @@ end
 Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
   if condition == 'should'
     is_true(on(Section1Page).maint_duration_dd_exists?)
-    else
+  else
     is_true(!on(Section1Page).maint_duration_dd_exists?)
   end
 end
