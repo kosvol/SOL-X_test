@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require './././support/env'
 
+require './././features/support/env'
 class Section0Page < NavigationPage
   include PageObject
 
