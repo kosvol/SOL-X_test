@@ -72,7 +72,7 @@ Then(/^I should not see entered entrant on (optional|required) entrant list$/) d
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_names_dd_element) if condition == 'optional'
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if condition == 'required'
   sleep 1
-  arr_before = on(PumpRoomEntry).get_entrants
+  arr_before = on(PumpRoomEntry).return_entrants
   on(PumpRoomEntry).options_text_elements.each do |item|
     expect(arr_before).not_to include(item.text)
   end
@@ -170,7 +170,7 @@ Then('I check names of entrants {int} on New Entry page') do |item|
     item -= 1
   end
   p entr_arr.to_s
-  arr_before = on(PumpRoomEntry).get_entrants
+  arr_before = on(PumpRoomEntry).return_entrants
   p arr_before
   expect(arr_before.to_a).to match_array entr_arr.to_a
 end

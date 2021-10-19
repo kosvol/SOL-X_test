@@ -245,7 +245,7 @@ class OAPage < Section9Page
   end
 
   def request_to_server(server)
-    form_id = CommonPage.get_permit_id
+    form_id = CommonPage.return_permit_id
     case server
     when 'Cloud'
       ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',

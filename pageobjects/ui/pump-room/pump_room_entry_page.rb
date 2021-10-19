@@ -91,7 +91,7 @@ class PumpRoomEntry < PreDisplay
     @@entrants_arr = entrants
   end
 
-  def get_entrants
+  def return_entrants
     @@entrants_arr
   end
 
@@ -109,7 +109,7 @@ class PumpRoomEntry < PreDisplay
 
   def signout_entrant_by_name(entrants)
     sleep 1
-    entrants_arr = get_entrants
+    entrants_arr = return_entrants
     BrowserActions.poll_exists_and_click(sign_out_btn_elements.first)
     entrants.split(',').each do |i|
       find_element(:xpath,

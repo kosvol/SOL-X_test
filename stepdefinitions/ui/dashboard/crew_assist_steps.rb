@@ -35,7 +35,6 @@ end
 
 And(/^I acknowledge the assistance with (pin|invalid pin) (.+)$/) do |type, pin|
   sleep 1
-  # $browser.execute_script(%(document.evaluate("//div[starts-with(@class, 'CrewAssistModal__Content')]/button",document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
   $browser.find_element(:xpath, "//div[starts-with(@class, 'CrewAssistModal__Content')]/button").click
   if type == 'pin'
     step 'I enter pin for rank MAS'
