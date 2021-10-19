@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And(/^I navigate to OA link$/) do
-  @browser.get(on(OAPage).navigate_to_oa_link)
+  $browser.get(on(OAPage).navigate_to_oa_link)
   begin
     BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
   rescue StandardError
@@ -291,33 +291,8 @@ Then(/^I scroll down to This Permit Approved On element$/) do
   sleep(3)
 end
 
-################################################################################################################
-######## Konstantine please refactor this step; Method implementation should never be in step definition #######
-################################################################################################################
 When(/^I wait for form status get changed to (.+) on (.+)/) do |what_status, server|
-  form_id = CommonPage.get_permit_id
-  status = nil
-  docs = []
-  i = 80
-  while i.positive? && status != what_status.to_s
-    request = if server == 'Cloud'
-                ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',
-                                    { selector: { _id: form_id } }.to_json.to_s)
-              else
-                ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
-                                    { selector: { _id: form_id } }.to_json.to_s)
-              end
-    # p "request >> #{request}"
-    docs = (JSON.parse request.to_s)['docs']
-    if (docs != []) && ((JSON.parse request.to_s)['docs'][0]['status'] == what_status)
-      status = (JSON.parse request.to_s)['docs'][0]['status']
-      break
-    end
-    i -= 1
-    sleep(20)
-  end
-  Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
-  is_true(status == what_status.to_s)
+  is_true(on(OAPage).wait_until_state(what_status, server) == what_status.to_s)
   sleep 2
 end
 
@@ -325,41 +300,29 @@ Then(/^I should see the View Permit Page with all attributes (.+)$/) do |conditi
   to_exists(on(OAPage).sol_logo_element)
   does_include(on(OfficePortalPage).topbar_header_element.text, @form_number)
   does_include(on(OfficePortalPage).topbar_header_element.text, @form_name)
+  sections_list = []
+  on(OfficePortalPage).permit_section_header_elements.each do |what_section|
+    sections_list << what_section.text
+  end
   case condition
   when 'before approval'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_office_approval']
     is_enabled(on(OAPage).approve_permit_btn_element)
     is_enabled(on(OAPage).update_permit_btn_element)
     is_enabled(on(OAPage).add_comments_btn_element)
   when 'after approval'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['pending_master_approval']
     is_disabled(on(OAPage).permit_has_been_btn_element)
     is_equal(on(OAPage).permit_has_been_btn_element.text, 'This Permit Has Been Approved')
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after activation'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['active']
     is_disabled(on(OAPage).permit_has_been_btn_element)
     is_equal(on(OAPage).permit_has_been_btn_element.text, 'This Permit Has Been Activated')
     is_disabled(on(OAPage).update_permit_btn_element)
     is_disabled(on(OAPage).add_comments_btn_element)
   when 'after termination'
-    sections_list = []
-    on(OfficePortalPage).permit_section_header_elements.each do |what_section|
-      sections_list << what_section.text
-    end
     sections_data = YAML.load_file('data/office-portal/permit-states-sections.yml')['terminated']
     not_to_exists(on(OAPage).permit_has_been_btn_element)
     not_to_exists(on(OAPage).update_permit_btn_element)
@@ -448,27 +411,7 @@ Then(/^I should see the Successfully Submission page after (approval|double appr
 end
 
 And(/^I select Issued (From|To) time as (.+):(.+)$/) do |what_time, hours, minutes|
-  case what_time
-  when 'From'
-    on(OAPage).date_time_from_elements[1].click
-  when 'To'
-    on(OAPage).date_time_to_elements[1].click
-  else
-    raise "Wrong time condition >>> #{what_time}"
-  end
-  case hours
-  when 'current_hour'
-    hours = Time.now.utc.strftime('%k')
-  when 'plus_two_hours'
-    hours = Time.now.utc.strftime('%k').to_i + 2
-  else
-    raise "Wrong hours value >>> #{hours}"
-  end
-  on(OAPage).hour_from_picker_elements[hours.to_i].click
-  on(OAPage).minute_from_picker_elements[minutes.to_i].click
-  on(OAPage).dismiss_picker_element.click
-  on(OAPage).optional_element.click
-  sleep 1
+  on(OAPage).select_time(what_time, hours, minutes)
 end
 
 Then(/^I should see the correct warning message for (less|more)$/) do |validity|
@@ -570,13 +513,9 @@ end
 And(/^I remove (comment|name)$/) do |input|
   case input
   when 'comment'
-    on(OAPage).update_comments_element.click
-    on(OAPage).update_comments_element.send_keys('a')
-    on(OAPage).update_comments_element.send_keys("\ue017")
+    on(OAPage).remove_text(on(OAPage).update_comments_element)
   when 'name'
-    on(OAPage).name_input_field_element.click
-    on(OAPage).name_input_field_element.send_keys('a')
-    on(OAPage).name_input_field_element.send_keys("\ue017")
+    on(OAPage).remove_text(on(OAPage).name_input_field_element)
   else
     raise "Wrong input >>> #{input}"
   end
@@ -615,8 +554,8 @@ Then(/^I should see the Section 7 shows the correct data$/) do
   $browser.action.move_to(el).perform
   base_fields = [] + YAML.load_file('data/screens-label/Section 7.yml')['fields_OA_yes']
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
-  fields_arr = on(OfficePortalPage).get_section_fields_list('Section 7', 'h4')
-  subheaders_arr = on(OfficePortalPage).get_section_elements_list('Section 7', 'h2')
+  fields_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h4')
+  subheaders_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h2')
   time_offset = on(CommonFormsPage).get_current_time_offset
   time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
   time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)

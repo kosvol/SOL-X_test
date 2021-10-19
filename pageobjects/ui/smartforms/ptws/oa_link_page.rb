@@ -24,7 +24,7 @@ class OAPage < Section9Page
   list_items(:hour_from_picker, xpath: "//div[starts-with(@class,'picker')][1]/ul/li")
   list_items(:minute_from_picker, xpath: "//div[starts-with(@class,'picker')][2]/ul/li")
 
-  element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer-')]")
+  element(:dismiss_picker, xpath: "//div[starts-with(@class,'TimePicker__OverlayContainer')]")
   element(:warning_link_expired, xpath: "//div[contains(@class, 'WarningLinkExpired')]")
 
   ## Web Confirmation Page
@@ -111,60 +111,29 @@ class OAPage < Section9Page
 
   def set_from_to_details
     sleep 1
-    BrowserActions.scroll_down(date_time_from_elements[0])
-    scroll_multiple_times_with_direction(3, 'down')
     ### set from time
-    date_time_from_elements[1].click
-    starttime = Time.now.utc.strftime('%k').to_i + 1
-    if starttime <= 23
-      hour_from_picker_elements[starttime].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{starttime}"
+    start_time = Time.now.utc.strftime('%k').to_i + 1
+    if start_time <= 23
+      select_time('From', start_time, 1)
+      Log.instance.info("start time >>> #{start_time}")
     else
-      hour_from_picker_elements[starttime - 24].click
+      select_time('From', start_time - 24, 1)
+      Log.instance.info("start time >>> #{start_time - 24}")
+      date_time_from_elements.first.click
       sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{starttime - 24}"
-      date_time_to_elements.first.click
-      sleep 1
-      p ">> #{current_day_elements.size}"
       select_todays_date_from_calendar(1)
     end
-
     ### set to time
     sleep 2
-    date_time_to_elements[1].click
-    sleep 2
-    endtime = Time.now.utc.strftime('%k').to_i + 9
-    if endtime <= 23
-      hour_from_picker_elements[endtime].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.js_click("//textarea[contains(@placeholder,'Optional')]")
-      p " #{endtime}"
+    end_time = Time.now.utc.strftime('%k').to_i + 9
+    if end_time <= 23
+      select_time('To', end_time, 1)
+      Log.instance.info("end time >>> #{end_time}")
     else
-      hour_from_picker_elements[endtime - 24].click
-      sleep 1
-      minute_from_picker_elements[1].click
-      sleep 1
-      dismiss_picker_element.click
-      sleep 1
-      BrowserActions.click_xpath_native("//textarea[contains(@placeholder,'Optional')]")
-      p " #{endtime - 24}"
+      select_time('To', end_time - 24, 1)
+      Log.instance.info("end time >>> #{end_time - 24}")
       date_time_to_elements.first.click
       sleep 1
-      p ">> #{current_day_elements.size}"
       select_todays_date_from_calendar(1)
     end
   end
@@ -212,6 +181,47 @@ class OAPage < Section9Page
     tmp_arr == YAML.load_file('data/office-approval/designation-list.yml')['roles']
   end
 
+  def wait_until_state(what_status, server)
+    iteration = 80
+    status = nil
+    while iteration.positive? && status != what_status.to_s
+      request = request_to_server(server)
+      docs = (JSON.parse request.to_s)['docs']
+      status = what_status if (docs != []) && (docs[0]['status'] == what_status)
+      iteration -= 1
+      sleep(20)
+    end
+    Log.instance.info(((JSON.parse request.to_s)['docs'][0]['status']).to_s)
+    status
+  end
+
+  def select_time(what_time, hours, minutes)
+    case what_time
+    when 'From'
+      date_time_from_elements[1].click
+    when 'To'
+      date_time_to_elements[1].click
+    else
+      raise "Wrong time condition >>> #{what_time}"
+    end
+    hours = case hours
+            when 'current_hour'
+              Time.now.utc.strftime('%k')
+            when 'plus_two_hours'
+              Time.now.utc.strftime('%k').to_i + 2
+            else
+              hours.to_i
+            end
+    hour_from_picker_elements[hours.to_i].click
+    minute_from_picker_elements[minutes.to_i].click
+    @browser.action.move_to_location(20, 20).click.perform
+    sleep 1
+  end
+
+  def remove_text(element)
+    element.send_keys("\ue003") until element.attribute('value').length.zero?
+  end
+
   private
 
   def add_instruction
@@ -232,5 +242,17 @@ class OAPage < Section9Page
 
   def select_to_minute(minute_index)
     BrowserActions.js_clicks("//div[starts-with(@class,'picker')][2]/ul/li", minute_index)
+  end
+
+  def request_to_server(server)
+    form_id = CommonPage.get_permit_id
+    case server
+    when 'Cloud'
+      ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',
+                          { selector: { _id: form_id } }.to_json.to_s)
+    else
+      ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
+                          { selector: { _id: form_id } }.to_json.to_s)
+    end
   end
 end

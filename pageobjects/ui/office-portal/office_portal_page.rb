@@ -93,14 +93,22 @@ class OfficePortalPage
                           "//h4[contains(text(),'#{text_title}')]/..//p[starts-with(@class,'AnswerComponent__Answer')]")
   end
 
-  def get_section_elements_list(section, element_type)
+  def section_elements_list(section, element_type)
     fields_arr = []
-    @browser.find_elements(:xpath, "(//h2[contains(text(),'#{section}')])/../..//#{element_type}").each do |field|
+    @browser.find_elements(:xpath,
+                           "//div[@class='screen-only']//h2[contains(text(),'#{section}')]/../..//#{element_type}").each do |field|
       fields_arr << field.text
     end
-    YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions'] if element_type == 'h2'
-    YAML.load_file("data/screens-label/#{section}.yml")['labels_exceptions'] if element_type == 'label'
-    YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions'] if element_type == 'h4'
+    case element_type
+    when 'h2'
+      fields_arr - YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions']
+    when 'label'
+      fields_arr - YAML.load_file("data/screens-label/#{section}.yml")['labels_exceptions']
+    when 'h4'
+      fields_arr - YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions']
+    else
+      raise "Wrong criteria >>> #{element_type}"
+    end
   end
 
   def oa_date_time_with_offset(approve_time, time_offset)
