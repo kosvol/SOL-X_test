@@ -45,8 +45,6 @@ class BrowserSetup
         options
           .add_argument('--window-size=720,1280')
       end
-      p ENV['DEVICE']
-      p ENV['PLATFORM']
       begin
         case ENV['PLATFORM']
         when 'chrome_headless'
