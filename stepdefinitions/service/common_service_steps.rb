@@ -13,7 +13,7 @@ Then(/^I should see error message (.+)$/) do |err_msg|
 end
 
 And(/^I verify method (.+) is successful$/) do |table|
-  is_true(CommonPage.is_successful(table))
+  is_true(CommonPage.successful?(table))
 end
 
 Given(/^I update crew members to (.*) vessel with (.*) regex$/) do |vesselType, regex|

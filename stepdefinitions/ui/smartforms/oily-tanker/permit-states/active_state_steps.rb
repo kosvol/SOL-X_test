@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Then(/^I should not see competent and issuing person sign button exists$/) do
-  on(Section3APage).scroll_multiple_times_with_direction(8, 'down')
+  on(Section3APage).scroll_times_direction(8, 'down')
   not_to_exists(on(Section8Page).competent_person_btn_element)
   not_to_exists(on(Section8Page).issuing_authority_btn_element)
   is_equal(on(Section5Page).sign_btn_role_elements.size, 0)
@@ -10,14 +10,14 @@ end
 Then(/^I should see issue date display$/) do
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_timezone)
   does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text,
-               on(CommonFormsPage).get_current_date_format_with_offset)
-  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).get_current_hour)
+               on(CommonFormsPage).ret_current_date_format_with_offset)
+  does_include(on(CreatedPermitToWorkPage).issued_date_time_elements.first.text, on(CommonFormsPage).return_current_hour)
 end
 
 Then(/^I should see (.+) as button text$/) do |update_or_view|
   update_reading_or_view_btn = on(ActiveStatePage)
                                .add_gas_btn_elements[on(CreatedPermitToWorkPage)
-                               .get_permit_index(CommonPage.get_permit_id)].click
+                               .get_permit_index(CommonPage.return_permit_id)].click
   case update_or_view
   when 'Update Readings'
     is_equal(update_reading_or_view_btn.text, 'Update Readings')
@@ -43,8 +43,9 @@ end
 
 Then(/^I should see permit valid for (.+) hours$/) do |duration|
   sleep 1
-  permit_validity_timer = on(ActiveStatePage).get_permit_validity_period(on(ActiveStatePage)
-                                                                           .get_permit_index(CommonPage.get_permit_id))
+  permit_validity_timer = on(ActiveStatePage)
+                          .get_permit_validity_period(on(ActiveStatePage)
+                                                        .get_permit_index(CommonPage.return_permit_id))
   p ">> timer: #{permit_validity_timer}"
   is_true(on(ROLPage).is_duration?(permit_validity_timer, duration))
 end
@@ -77,8 +78,7 @@ Then(/^I should see data persisted on page (.*)$/) do |page_number|
     step 'I press previous for 2 times'
     tmp = on(Section3DPage).filled_section
     does_include(tmp[1], "AUTO/DRA/#{BrowserActions.get_year}/")
-    # does_include(tmp[2],on(CommonFormsPage).get_timezone)
-    does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
+    does_include(tmp[2], on(Section0Page).ret_current_date_format_with_offset)
     # data cleanse after first assertion
     tmp.delete_at(1)
     tmp.delete_at(1)
@@ -92,12 +92,12 @@ Then(/^I should see data persisted on page (.*)$/) do |page_number|
     p ">> #{tmp}"
     does_include(tmp[1], 'COTAUTO')
     does_include(tmp[2], on(CommonFormsPage).get_timezone)
-    does_include(tmp[2], on(Section0Page).get_current_date_format_with_offset)
+    does_include(tmp[2], on(Section0Page).ret_current_date_format_with_offset)
     tmp.delete_at(2)
     does_include(tmp[19], on(CommonFormsPage).get_timezone)
     does_include(tmp[21], on(CommonFormsPage).get_timezone)
-    does_include(tmp[19], on(Section0Page).get_current_date_format_with_offset)
-    does_include(tmp[21], on(Section0Page).get_current_date_format_with_offset)
+    does_include(tmp[19], on(Section0Page).ret_current_date_format_with_offset)
+    does_include(tmp[21], on(Section0Page).ret_current_date_format_with_offset)
     tmp.delete_at(19)
     tmp.delete_at(20)
     p "<< #{tmp}"

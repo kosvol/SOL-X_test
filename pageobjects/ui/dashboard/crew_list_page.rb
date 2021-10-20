@@ -40,7 +40,7 @@ class CrewListPage < DashboardPage
     view_pin_btn
   end
 
-  def is_pin_viewed?
+  def pin_viewed?
     pin_text_field_element.text != '••••'
   end
 
@@ -97,40 +97,38 @@ class CrewListPage < DashboardPage
   ### "rgba(242, 204, 84, 1)" - yellow
   def activity_indicator_status?(color)
     element = @browser.find_element(:xpath, @@location_indicator)
-    BrowserActions.scroll_down(_element)
+    BrowserActions.scroll_down(element)
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     element.css_value('background-color') == color
   end
 
   def location_details?(location = nil)
-    sleep 1
-    get_active_crew_details_frm_service = get_active_crew_details_frm_service(location)
+    active_crew_details = active_crew_details_api(location)
     element = @browser.find_element(:xpath, @@location_indicator)
     BrowserActions.scroll_down(element)
     BrowserActions.scroll_down
-    location_details_elements.each do |location|
-      next if location.text == ''
+    location_details_elements.each do |locate|
+      next if locate.text == ''
 
-      Log.instance.info("Expected: #{location.text.gsub!(/\s+/, ' ')}")
-      Log.instance.info("Actual: #{get_active_crew_details_frm_service.first.first}")
-      return (location.text.gsub!(/\s+/, ' ').to_s.include? get_active_crew_details_frm_service.first.first)
+      Log.instance.info("Expected: #{locate.text.gsub!(/\s+/, ' ')}")
+      Log.instance.info("Actual: #{active_crew_details.first.first}")
+      return (locate.text.gsub!(/\s+/, ' ').to_s.include? active_crew_details.first.first)
     end
   end
 
   private
 
-  def get_active_crew_details_frm_service(location = nil)
+  def active_crew_details_api(location = nil)
     crew_details = []
     if location.nil?
       ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
         next if wearable['crewMember'].nil?
 
-        crew_details << ["#{get_beacon_location} - "]
+        crew_details << ["#{return_beacon_location} - "]
       end
     else
       crew_details << ["#{location} - Just now"]
     end
-    p '>> stuck'
     crew_details
   end
 end

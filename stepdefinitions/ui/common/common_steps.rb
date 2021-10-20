@@ -47,7 +47,7 @@ end
 And(/^I enter pure pin (.*)$/) do |pin|
   CommonPage.set_entered_pin = pin
   sleep 1
-  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
+  on(PinPadPage).enter_pin(CommonPage.return_entered_pin)
 end
 
 And(/^I enter pin via service for rank (.*)$/) do |rank|
@@ -68,7 +68,7 @@ And(/^I enter pin for rank (.*)$/) do |rank|
     CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   end
   sleep 1
-  step "I enter pure pin #{CommonPage.get_entered_pin}"
+  step "I enter pure pin #{CommonPage.return_entered_pin}"
 end
 
 When(/^I select (.+) permit$/) do |permit|
@@ -85,9 +85,9 @@ end
 
 And(/^I set permit id$/) do
   if @via_service_or_not == false
-    Log.instance.info("Temp ID >> #{CommonPage.get_permit_id}")
-    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
-    Log.instance.info "New Permit ID: #{CommonPage.get_permit_id}"
+    Log.instance.info("Temp ID >> #{CommonPage.return_permit_id}")
+    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.return_permit_id))
+    Log.instance.info "New Permit ID: #{CommonPage.return_permit_id}"
   end
 end
 

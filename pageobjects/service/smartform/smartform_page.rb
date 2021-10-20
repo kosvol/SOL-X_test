@@ -122,7 +122,7 @@ module SmartFormDBPage
       begin
         time_w_offset = @current_time.to_i + offset.to_i
       rescue StandardError
-        time_w_offset = @current_time.to_i + get_current_time_offset.to_i
+        time_w_offset = @current_time.to_i + ret_current_time_offset.to_i
       end
       count_hour = if time_w_offset >= 24
                      (time_w_offset - 24).abs

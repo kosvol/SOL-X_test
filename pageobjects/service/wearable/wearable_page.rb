@@ -100,7 +100,7 @@ class WearablePage
     end
 
     def list_of_beacons_id_n_mac
-      @@list_of_beacon = get_beacon_mac
+      @@list_of_beacon = return_beacon_mac
     end
 
     # not needed now
@@ -152,7 +152,7 @@ class WearablePage
       @tmp_list
     end
 
-    def get_beacon_mac
+    def return_beacon_mac
       @tmp_list = []
       ServiceUtil.get_response_body['data']['beacons'].each do |list|
         next if list['location']['zone'].nil?

@@ -83,7 +83,7 @@ class Section4APage < Section3DPage
   def is_checklist_details_prepopulated?
     sleep 1
     Log.instance.info("--- #{get_current_date_and_time}")
-    Log.instance.info("--- #{get_current_time_format}")
+    Log.instance.info("--- #{ret_current_time_format}")
     Log.instance.info("--- #{generic_data_elements[1].text}")
     if generic_data_elements[1].text.include? get_current_date_and_time
       ((generic_data_elements[1].text.include? get_current_date_and_time)) # && (generic_data_elements[2].text.include? 'PTW/TEMP/'))
@@ -130,7 +130,7 @@ class Section4APage < Section3DPage
     Log.instance.info(">> Rank/Name #{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}")
     Log.instance.info(">> Date & Time #{date_and_time_stamp_element.text}")
     ((rank_and_name_stamp_elements.first.text.include? "#{rank_and_name[0]} #{rank_and_name[1]} #{rank_and_name[2]}") &&
-      (date_and_time_stamp_element.text.include? get_current_date_format_with_offset.to_s) &&
+      (date_and_time_stamp_element.text.include? ret_current_date_format_with_offset.to_s) &&
       (date_and_time_stamp_element.text.include? get_timezone.to_s))
   end
 

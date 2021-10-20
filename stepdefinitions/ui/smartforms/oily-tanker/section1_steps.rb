@@ -20,14 +20,14 @@ Then(/^I should see a list of (sea states|wind forces)$/) do |state, table|
 end
 
 Then(/^I should not see previous button exists$/) do
-  on(Section3APage).scroll_multiple_times_with_direction(10, 'down')
+  on(Section3APage).scroll_times_direction(10, 'down')
   is_equal(on(Section1Page).btn_list_elements[0].text, 'Save & Next')
 end
 
 Then(/^I (should|should not) see maintenance duration section and require text$/) do |condition|
   if condition == 'should'
     is_true(on(Section1Page).maint_duration_dd_exists?)
-    else
+  else
     is_true(!on(Section1Page).maint_duration_dd_exists?)
   end
 end

@@ -52,10 +52,10 @@ end
 
 Then(/^I should see signed details$/) do
   on(Section4APage).signature_scroll
-  if on(Section4APage).signed_user_details?(CommonPage.get_entered_pin)
-    is_true(on(Section4APage).signed_user_details?(CommonPage.get_entered_pin))
+  if on(Section4APage).signed_user_details?(CommonPage.return_entered_pin)
+    is_true(on(Section4APage).signed_user_details?(CommonPage.return_entered_pin))
   else
-    is_true(on(Section4APage).user_details_plus_1_min(CommonPage.get_entered_pin))
+    is_true(on(Section4APage).user_details_plus_1_min(CommonPage.return_entered_pin))
   end
   is_true(on(SignaturePage).is_signature_pad?)
 end

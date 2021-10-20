@@ -43,11 +43,11 @@ class DashboardPage < WearablePage
     @@arr_data.push(data)
   end
 
-  def get_arr_data
+  def return_arr_data
     @@arr_data
   end
 
-  def is_pre_indicator_color?(condition)
+  def pre_indicator_color?(condition)
     tmp = @browser.find_element(:xpath, @@pre_indicator.to_s)
     tmp.css_value('color').to_s == if condition.downcase == 'active'
                                      'rgba(67, 160, 71, 1)'
@@ -83,10 +83,10 @@ class DashboardPage < WearablePage
     @browser.find_element(:xpath, @@location_pin.to_s).css_value('background-color').to_s == color
   end
 
-  def is_crew_location_detail_correct?(ui_or_service, new_zone = nil)
+  def crew_location_detail_correct?(ui_or_service, new_zone = nil)
     sleep 2
-    tmp = get_active_crew_details(ui_or_service, new_zone).first
-    get_ui_active_crew_details.all? do |crew|
+    tmp = return_active_crew_details(ui_or_service, new_zone).first
+    return_ui_active_crew_details.all? do |crew|
       Log.instance.info("beacon >> \n\n#{tmp}")
       Log.instance.info("crew >> \n\n#{crew}")
       tmp == crew
@@ -97,7 +97,7 @@ class DashboardPage < WearablePage
     active_switch_element.click
   end
 
-  def is_last_seen
+  def last_seen?
     last_seen_element.text
   end
 
@@ -116,13 +116,13 @@ class DashboardPage < WearablePage
     BrowserActions.js_click("//div[@data-testid='dropdown-overlay-container']")
   end
 
-  def get_active_crew_details(ui_or_service, new_zone = nil)
+  def return_active_crew_details(ui_or_service, new_zone = nil)
     crew_details = []
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       next if wearable['crewMember'].nil?
 
       crew_details << if ui_or_service == 'service'
-                        [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], get_beacon_location, 'N/A']
+                        [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], return_beacon_location, 'N/A']
                       else
                         [wearable['crewMember']['rank'], wearable['crewMember']['lastName'], new_zone, 'N/A']
                       end
@@ -130,7 +130,7 @@ class DashboardPage < WearablePage
     crew_details
   end
 
-  def get_ui_active_crew_details
+  def return_ui_active_crew_details
     crew_details = []
     active_crew_details_elements.each do |crew|
       tmp = crew.text.split(/\n/)
@@ -148,7 +148,7 @@ class DashboardPage < WearablePage
 
   private
 
-  def get_beacon_location
+  def return_beacon_location
     @@list_of_beacon.each do |beacon|
       return beacon[1] if beacon.first == @@beacon.first
     end

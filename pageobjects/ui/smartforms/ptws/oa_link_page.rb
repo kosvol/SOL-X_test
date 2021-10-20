@@ -77,7 +77,7 @@ class OAPage < Section9Page
 
     sleep 1
     BrowserActions.scroll_down(date_time_from_elements[0])
-    get_current_hour
+    return_current_hour
     ### set from time
     date_time_from_elements[1].click
     hour_from_picker_elements.first.click
@@ -104,7 +104,7 @@ class OAPage < Section9Page
   end
 
   def navigate_to_oa_link
-    tmp = OfficeApproval.get_office_approval_link(CommonPage.get_permit_id, 'VS', 'VS Automation').to_s
+    tmp = OfficeApproval.get_office_approval_link(CommonPage.return_permit_id, 'VS', 'VS Automation').to_s
     Log.instance.info "OA Link : #{tmp}"
     tmp
   end
@@ -245,7 +245,7 @@ class OAPage < Section9Page
   end
 
   def request_to_server(server)
-    form_id = CommonPage.get_permit_id
+    form_id = CommonPage.return_permit_id
     case server
     when 'Cloud'
       ServiceUtil.fauxton(EnvironmentSelector.oa_form_status, 'post',

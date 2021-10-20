@@ -5,12 +5,12 @@ Then(/^I should see Note from (.*)$/) do |requested_from|
   when 'office'
     is_equal(on(PendingStatePage)
                .action_required_note_elements[on(CreatedPermitToWorkPage)
-                                                .get_permit_index(CommonPage.get_permit_id)]
+                                                .get_permit_index(CommonPage.return_permit_id)]
                .text, 'See Notes from Office')
   when 'master'
     is_equal(on(PendingStatePage)
                .action_required_note_elements[on(CreatedPermitToWorkPage)
-                                                .get_permit_index(CommonPage.get_permit_id)]
+                                                .get_permit_index(CommonPage.return_permit_id)]
                .text, 'See Notes from Master')
   else
     raise "Wrong request form >>> #{requested_from}"
@@ -28,7 +28,7 @@ Then(/^I should not be able to edit (.*) DRA$/) do |permit|
   sleep 1
   step 'I click on View Edit Hazard'
   sleep 1
-  on(Section3APage).scroll_multiple_times_with_direction(2, 'down')
+  on(Section3APage).scroll_times_direction(2, 'down')
   on(Section3APage).delete_btn_elements.each do |elem|
     is_disabled(elem)
   end
@@ -38,14 +38,14 @@ Then(/^I should not be able to edit (.*) DRA$/) do |permit|
                .total_p_elements
                .size, 4)
   end
-  on(Section3APage).scroll_multiple_times_with_direction(2, 'down')
+  on(Section3APage).scroll_times_direction(2, 'down')
   on(CommonFormsPage).close_btn_elements.first.click
 end
 
 Then(/^I should not be able to edit EIC certification$/) do
   sleep 1
   BrowserActions.poll_exists_and_click(on(Section4BPage).view_eic_btn_element)
-  on(Section3APage).scroll_multiple_times_with_direction(5, 'down')
+  on(Section3APage).scroll_times_direction(5, 'down')
   if on(Section3APage).total_p_elements.size == 27
     is_equal(on(Section3APage).total_p_elements.size, 27)
   else
@@ -83,7 +83,7 @@ end
 
 Then(/^I should see the newly pending approval permit details listed on Pending Approval filter$/) do
   step 'I set time'
-  on(Section1Page).set_section1_filled_data(CommonPage.get_entered_pin, 'Submitted By')
+  on(Section1Page).set_section1_filled_data(CommonPage.return_entered_pin, 'Submitted By')
   does_include(on(CreatedPermitToWorkPage).ptw_id_elements.first.text,
                "#{EnvironmentSelector.vessel_name}/PTW/#{BrowserActions.get_year}/")
   is_equal(on(Section1Page).get_section1_filled_data[2], on(CreatedPermitToWorkPage).created_by_elements.first.text)

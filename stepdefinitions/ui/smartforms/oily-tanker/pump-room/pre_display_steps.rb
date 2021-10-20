@@ -2,8 +2,8 @@
 
 Then(/^I should see new PRE permit number$/) do
   p "base: #{on(CommonFormsPage).generic_data_elements[2].text}"
-  p "exact: #{CommonPage.get_permit_id}"
-  is_equal(on(CommonFormsPage).generic_data_elements[2].text, CommonPage.get_permit_id)
+  p "exact: #{CommonPage.return_permit_id}"
+  is_equal(on(CommonFormsPage).generic_data_elements[2].text, CommonPage.return_permit_id)
 end
 
 Then(/^I should see (no new|only) entry log message$/) do |condition|

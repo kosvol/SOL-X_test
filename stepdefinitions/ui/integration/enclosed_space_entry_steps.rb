@@ -37,7 +37,7 @@ And(/^I review page 3a of submitted (.+) permit$/) do |permit_type|
     does_include(on(Section3APage).method_detail_elements[0].text, 'COTAUTO')
     does_include(on(Section3APage).method_detail_elements[1].text, "COTAUTO/DRA/#{BrowserActions.get_year}")
     does_include(on(Section3APage).method_detail_elements[2].text,
-                 on(CommonFormsPage).get_current_date_format_with_offset)
+                 on(CommonFormsPage).ret_current_date_format_with_offset)
     does_include(on(Section3APage).method_detail_elements[2].text, ' LT (GMT')
     does_include(on(Section3APage).method_detail_elements[3].text, 'Enclosed Space Entry')
     BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
@@ -170,10 +170,10 @@ And(/^I review page 5 of submitted (.+) permit$/) do |_permit_type|
     is_equal(on(Section5Page).get_filled_crew_details_elements[0].text, 'C/O COT C/O')
     is_equal(on(Section5Page).get_filled_crew_details_elements[1].text, 'Test Automation')
 
-    does_include(on(Section5Page).get_non_crew_date_time_element.text,
-                 on(CommonFormsPage).get_current_date_format_with_offset)
-    does_include(on(Section5Page).get_non_crew_date_time_element.text, ' LT (GMT')
-    is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, 'Test Automation Company')
+  does_include(on(Section5Page).get_non_crew_date_time_element.text,
+               on(CommonFormsPage).ret_current_date_format_with_offset)
+  does_include(on(Section5Page).get_non_crew_date_time_element.text, ' LT (GMT')
+  is_equal(on(Section5Page).get_filled_crew_details_elements.last.text, 'Test Automation Company')
 end
 
 And(/^I review page 6 of submitted (.+) permit$/) do |permit_type|
@@ -183,7 +183,7 @@ And(/^I review page 6 of submitted (.+) permit$/) do |permit_type|
     tmp = on(Section6Page).filled_section
     tmp.delete_at(3)
     is_equal(tmp, @@form_data['section6'])
-    is_equal(on(Section4APage).generic_data_elements.last.text, on(CommonFormsPage).get_current_date_format_with_offset)
+    is_equal(on(Section4APage).generic_data_elements.last.text, on(CommonFormsPage).ret_current_date_format_with_offset)
     does_include(on(Section6Page).rank_and_name_stamp_elements.first.text, 'C/O COT C/O')
     does_include(on(Section6Page).date_and_time_stamp_element.text, 'LT (GMT')
     does_include(on(Section6Page).date_and_time_stamp_element.text, "/#{BrowserActions.get_year}")
@@ -206,6 +206,6 @@ end
 
 Then(/^I should see signed details for integration test$/) do
   on(Section4APage).signature_scroll
-  is_true(on(Section4APage).is_signed_user_details_integration?(CommonPage.get_entered_pin))
+  is_true(on(Section4APage).is_signed_user_details_integration?(CommonPage.return_entered_pin))
   is_true(on(SignaturePage).is_signature_pad?)
 end

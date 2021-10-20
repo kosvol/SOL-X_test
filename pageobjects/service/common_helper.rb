@@ -8,42 +8,42 @@ class CommonPage
       ServiceUtil.get_response_body.key?('errors')
     end
 
-    def is_successful(table)
+    def successful?(table)
       ServiceUtil.get_response_body['data'][table.to_s]
     end
 
-    def get_entered_pin
+    def return_entered_pin
       @entered_pin
     end
 
-    def set_entered_pin=(_pin)
+    def set_entered_pin=(pin)
       @entered_pin = nil
-      @entered_pin = _pin
+      @entered_pin = pin
     end
 
-    def set_permit_id(_permit)
-      @@permit_id = _permit
+    def set_permit_id(permit)
+      @@permit_id = permit
     end
 
-    def get_permit_id
+    def return_permit_id
       @@permit_id
     end
 
-    def set_dra_permit_id(_dra_permit)
-      @@dra_permit_id = _dra_permit
+    def set_dra_permit_id(dra_permit)
+      @@dra_permit_id = dra_permit
     end
 
-    def get_dra_permit_id
+    def return_dra_permit_id
       @@dra_permit_id
     end
 
-    def set_rank_id=(_rank_id)
+    def set_rank_id=(rank_id)
       @rank_id = nil
-      @rank_id = _rank_id
+      @rank_id = rank_id
       p "current rank id >> #{@rank_id}"
     end
 
-    def get_rank_id
+    def return_rank_id
       @rank_id
     end
   end
