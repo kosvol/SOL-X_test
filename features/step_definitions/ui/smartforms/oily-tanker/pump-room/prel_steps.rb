@@ -72,7 +72,7 @@ Then(/^I should not see entered entrant on (optional|required) entrant list$/) d
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_names_dd_element) if condition == 'optional'
   BrowserActions.poll_exists_and_click(on(PumpRoomEntry).entrant_select_btn_element) if condition == 'required'
   sleep 1
-  arr_before = on(PumpRoomEntry).get_entrants
+  arr_before = on(PumpRoomEntry).return_entrants
   on(PumpRoomEntry).options_text_elements.each do |item|
     expect(arr_before).not_to include(item.text)
   end
@@ -125,13 +125,13 @@ end
 
 And(/^I acknowledge the new entry log via service$/) do
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.return_permit_id)
   step 'I sleep for 3 seconds'
 end
 
 And(/^I acknowledge the new entry log (cre|pre) via service$/) do |_condition|
   step 'I sleep for 6 seconds'
-  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.get_permit_id)
+  SmartFormDBPage.acknowledge_pre_entry_log(CommonPage.return_permit_id)
   step 'I sleep for 3 seconds'
 end
 
@@ -170,7 +170,7 @@ Then('I check names of entrants {int} on New Entry page') do |item|
     item -= 1
   end
   p entr_arr.to_s
-  arr_before = on(PumpRoomEntry).get_entrants
+  arr_before = on(PumpRoomEntry).return_entrants
   p arr_before
   expect(arr_before.to_a).to match_array entr_arr.to_a
 end
@@ -205,7 +205,7 @@ And(/^I (save|check) permit date on Dashboard LOG$/) do |action|
     current = DateTime.now.strftime('%Y-%m-%d')
     on(DashboardPage).set_arr_data(current)
   when 'check'
-    data = on(DashboardPage).get_arr_data
+    data = on(DashboardPage).return_arr_data
     unless is_equal(DateTime.parse(on(DashboardPage).entry_log_title_element.text), DateTime.parse(data[0]))
       raise 'date time verification fail'
     end

@@ -11,16 +11,16 @@ class PtwFilterPage < CreatedPermitToWorkPage
   span(:pending_termination, xpath: "//span[@data-testid='pendingTermination-stat']")
 
   def does_permit_counter_match
-    get_permits_counter
+    return_permits_counter
     (@total_pending_approval.to_s == pending_approval) &&
       (@total_update_needed.to_s == pending_update) &&
       (@total_active.to_s == active) &&
       (@total_terminal.to_s == pending_termination)
   end
 
-  def is_permit_listing_count?(which_filter)
-    permit_counter_arr = get_permits_counter
-    scroll_multiple_times_with_direction(10, 'down')
+  def permit_listing_count?(which_filter)
+    permit_counter_arr = return_permits_counter
+    scroll_times_direction(10, 'down')
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
 
     case which_filter
@@ -39,7 +39,7 @@ class PtwFilterPage < CreatedPermitToWorkPage
 
   private
 
-  def get_permits_counter
+  def return_permits_counter
     form_stats_response = ServiceUtil.get_response_body['data']['formStats']
     @total_pending_approval = form_stats_response['pendingOfficerApproval'] +
                               form_stats_response['pendingOfficeApproval'] +

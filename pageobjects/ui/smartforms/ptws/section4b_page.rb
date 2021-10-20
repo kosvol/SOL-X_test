@@ -36,7 +36,7 @@ class Section4BPage < Section4APage
 
   def eic_details_prepopulated?
     sleep 1
-    Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_time_format}")
+    Log.instance.info(">>> #{generic_data_elements[1].text} vs #{ret_current_time_format}")
     Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_date_and_time}")
     ((generic_data_elements[1].text == get_current_date_and_time) &&
       (generic_data_elements[2].text.include? 'EIC/TEMP/'))

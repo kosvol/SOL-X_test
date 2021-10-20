@@ -11,17 +11,17 @@ class NavigationPage < CommonFormsPage
   buttons(:save_and_next_btn, css: 'button.next')
   button(:previous_btn, xpath: "//button[contains(.,'Previous')]")
   button(:next_btn, xpath: "//button[contains(.,'Next')]")
-  @@menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active',
-                            'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval',
-                            'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
-  @@which_category = "//a[contains(text(),'%s')]"
+  @menu_categories_base = ['SmartForms', 'Created', 'Pending Approval', 'Updates Needed', 'Active',
+                           'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval',
+                           'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
+  @which_category = "//a[contains(text(),'%s')]"
 
   def click_hamburger_menu
     BrowserActions.poll_exists_and_click(hamburger_menu_element)
   end
 
-  def get_menu_categories
-    @@menu_categories_base
+  def return_menu_categories
+    @menu_categories_base
   end
 
   def toggle_to_section(which_section)
@@ -78,50 +78,36 @@ class NavigationPage < CommonFormsPage
     @browser.find_element(:xpath, "//button[contains(.,'Home')]").click
   end
 
+  SECTIONS_STEPS = {
+    '6' => 10,
+    '7' => 11,
+    '7b' => 12,
+    '8' => 13,
+    '4a' => 6,
+    '3a' => 2,
+    '3b' => 3,
+    '3c' => 4,
+    '3d' => 5,
+    '4b' => 8,
+    '5' => 9,
+    '2' => 1
+  }.freeze
+
   def get_total_steps_to_section6(which_section)
-    case which_section
-    when '6'
-      10
-    when '7'
-      11
-    when '7b'
-      12
-    when '8'
-      13
-    when '4a'
-      6
-    when '3a'
-      2
-    when '3b'
-      3
-    when '3c'
-      4
-    when '3d'
-      5
-    when '4b'
-      8
-    when '5'
-      9
-    when '2'
-      1
-    else
-      raise "Wrong section number >>> #{which_section}"
-    end
+    raise "Wrong section number >>> #{which_section}" unless SECTIONS_STEPS.key?(which_section)
   end
 
   private
 
   def click_nav_category(category, which_category)
     case which_category
-    when 'forms'
-      @browser.find_element(:xpath, format(@@which_category, category)).click
     when 'PRE', 'CRE'
-      category_objs = @browser.find_elements(:xpath, format(@@which_category, category))
+      category_objs = @browser.find_elements(:xpath, format(@which_category, category))
       category_objs.size == 2 ? category_objs.last.click : category_objs.first.click
     when 'setting'
-      BrowserActions.js_click("//a[contains(text(),'Settings')]")
+      @browser.find_element(:xpath, "//a[contains(text(),'Settings')]").click
     else
-      @browser.find_element(:xpath, format(@@which_category, category)).click
+      @browser.find_element(:xpath, format(@which_category, category)).click
     end
   end
 end

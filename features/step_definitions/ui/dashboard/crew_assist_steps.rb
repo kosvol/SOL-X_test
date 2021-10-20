@@ -20,11 +20,11 @@ Then(/^I should see crew assist popup display crew rank,name and location on das
   sleep 1
   step 'I get wearable-simulator/base-get-wearable-details request payload'
   step 'I hit graphql'
-  is_true(on(CrewAssistPage).is_crew_assist_dialog_details)
+  is_true(on(CrewAssistPage).crew_assist_dialog_details?)
 end
 
 Then(/^I should crew location indicator is red$/) do
-  is_true(on(CrewAssistPage).is_crew_location_indicator_green)
+  is_true(on(CrewAssistPage).crew_location_indicator_green?)
 end
 
 And(/^I launch sol-x portal on another tab$/) do
@@ -35,8 +35,7 @@ end
 
 And(/^I acknowledge the assistance with (pin|invalid pin) (.+)$/) do |type, pin|
   sleep 1
-  $browser
-    .execute_script(%(document.evaluate("//div[starts-with(@class, 'CrewAssistModal__Content')]/button",document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()))
+  $browser.find_element(:xpath, "//div[starts-with(@class, 'CrewAssistModal__Content')]/button").click
   if type == 'pin'
     step 'I enter pin for rank MAS'
   else

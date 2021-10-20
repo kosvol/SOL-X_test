@@ -448,7 +448,7 @@ And(/^I submit permit via service to pending master review state$/) do
 end
 
 And(/^I navigate to OA link as Master$/) do
-  form_id = CommonPage.get_permit_id
+  form_id = CommonPage.return_permit_id
   request = ServiceUtil.fauxton($obj_env_yml['office_approval']['get_event_id'], 'post',
                                 { selector: { formId: form_id } }.to_json.to_s)
   event_id = (JSON.parse request.to_s)['docs'][0]['_id']
@@ -462,7 +462,7 @@ Then(/^I should see correct Section 7 details (before|after) Office Approval$/) 
     is_equal(on(Section7Page).oa_description_element.text,
              YAML.load_file('data/office-approval/page-descriptions.yml')['before_appr_section7'])
   when 'after'
-    time_offset = on(CommonFormsPage).get_current_time_offset
+    time_offset = on(CommonFormsPage).ret_current_time_offset
     time_ship_from = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
     time_ship_to = on(OAPage).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
     is_equal(on(Section7Page).oa_description_element.text,
@@ -556,7 +556,7 @@ Then(/^I should see the Section 7 shows the correct data$/) do
   base_subheaders = [] + YAML.load_file('data/screens-label/Section 7.yml')['subheaders_OA_yes']
   fields_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h4')
   subheaders_arr = on(OfficePortalPage).section_elements_list('Section 7', 'h2')
-  time_offset = on(CommonFormsPage).get_current_time_offset
+  time_offset = on(CommonFormsPage).ret_current_time_offset
   time_ship_from = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 0, 0)
   time_ship_to = on(Section7Page).oa_from_to_time_with_offset(@time_now, time_offset, 8, 0)
   date_time = on(OfficePortalPage).oa_date_time_with_offset(@time_now, time_offset)
@@ -571,7 +571,7 @@ Then(/^I should see the Section 7 shows the correct data$/) do
 end
 
 Then(/^I should see the Issued till time is set according to OA issued To time$/) do
-  time_offset = on(CommonFormsPage).get_current_time_offset
+  time_offset = on(CommonFormsPage).ret_current_time_offset
   valid_to_date = on(Section7Page).permit_valid_until_with_offset(@time_now, time_offset, 2)
   is_equal(on(Section7Page).valid_until_date_7b_element.text, valid_to_date)
 end

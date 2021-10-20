@@ -12,7 +12,7 @@ Then(/^I should see (.+) permits listing match counter$/) do |which_filter|
   step 'I get forms-filter/smart-form-filter request payload'
   step 'I hit graphql'
 
-  on(CommonFormsPage).scroll_multiple_times_with_direction(10, 'down')
+  on(CommonFormsPage).scroll_times_direction(10, 'down')
   sleep 1
-  is_true(on(PtwFilterPage).is_permit_listing_count?(which_filter))
+  is_true(on(PtwFilterPage).permit_listing_count?(which_filter))
 end

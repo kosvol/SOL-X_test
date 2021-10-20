@@ -106,7 +106,7 @@ And(/^I change the crew rank$/) do
 end
 
 Then(/^I should see pin review$/) do
-  is_true(on(CrewListPage).is_pin_viewed?)
+  is_true(on(CrewListPage).pin_viewed?)
 end
 
 Then(/^I should see count down start from 10 seconds$/) do
@@ -125,5 +125,5 @@ end
 When(/^I create the ptw with the new pin$/) do
   step 'I navigate to "SmartForms" screen for forms'
   step 'I navigate to create new permit'
-  step "I enter pure pin #{CommonPage.get_entered_pin}"
+  step "I enter pure pin #{CommonPage.return_entered_pin}"
 end

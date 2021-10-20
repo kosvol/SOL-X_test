@@ -49,7 +49,7 @@ class Section3APage < Section2Page
   def is_additional_hazard_saved?
     view_edit_btn
     sleep 1
-    scroll_multiple_times_with_direction(3, 'down')
+    scroll_times_direction(3, 'down')
     description_elements[2].text == 'Test Automation'
   end
 
@@ -81,7 +81,7 @@ class Section3APage < Section2Page
   def scroll_to_new_hazard
     tmp = @browser.find_element(:xpath, @@add_hazard_btn)
     BrowserActions.scroll_down(tmp)
-    scroll_multiple_times_with_direction(2, 'down')
+    scroll_times_direction(2, 'down')
     sleep 1
   end
 
@@ -108,7 +108,7 @@ class Section3APage < Section2Page
     # sleep 1
 
     # for existing control measure
-    scroll_multiple_times_with_direction(2, 'down')
+    scroll_times_direction(2, 'down')
     likelihood_btn_elements.last.click
     sleep 1
     select_dra_risk(1)
@@ -122,7 +122,7 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 2
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
-    scroll_multiple_times_with_direction(1, 'down')
+    scroll_times_direction(1, 'down')
     likelihood_btn_elements[0].click
     select_dra_risk(likelihood)
     sleep 1
@@ -134,7 +134,7 @@ class Section3APage < Section2Page
     view_edit_btn
     sleep 1
     BrowserActions.wait_until_is_visible(likelihood_btn_elements[0])
-    scroll_multiple_times_with_direction(3, 'down')
+    scroll_times_direction(3, 'down')
     sleep 1
     likelihood_btn_elements[1].click
     select_dra_risk(likelihood)
@@ -146,12 +146,12 @@ class Section3APage < Section2Page
   def toggle_likelihood_consequence_matrix_addition_hazard(likelihood, consequence)
     sleep 2
     if @@swap_flag == 'evaluation_matrix'
-      scroll_multiple_times_with_direction(1, 'down')
+      scroll_times_direction(1, 'down')
     else
-      scroll_multiple_times_with_direction(2, 'down')
+      scroll_times_direction(2, 'down')
     end
     BrowserActions.js_clicks("//span[contains(.,'Add Additional Measures')]", 0)
-    scroll_multiple_times_with_direction(2, 'down')
+    scroll_times_direction(2, 'down')
     likelihood_btn_elements[2].click
     select_dra_risk(likelihood)
     consequence_btn_elements[2].click

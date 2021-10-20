@@ -48,7 +48,7 @@ end
 And(/^I enter pure pin (.*)$/) do |pin|
   CommonPage.set_entered_pin = pin
   sleep 1
-  on(PinPadPage).enter_pin(CommonPage.get_entered_pin)
+  on(PinPadPage).enter_pin(CommonPage.return_entered_pin)
 end
 
 And(/^I enter pin via service for rank (.*)$/) do |rank|
@@ -67,7 +67,7 @@ end
 And(/^I enter pin for rank (.*)$/) do |rank|
   CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   sleep 1
-  step "I enter pure pin #{CommonPage.get_entered_pin}"
+  step "I enter pure pin #{CommonPage.return_entered_pin}"
 end
 
 When(/^I select (.+) permit$/) do |permit|

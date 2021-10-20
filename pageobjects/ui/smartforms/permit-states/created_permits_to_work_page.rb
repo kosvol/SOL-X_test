@@ -16,7 +16,7 @@ class CreatedPermitToWorkPage < Section9Page
   def created_permit_deleted?
     sleep 1
     parent_container_elements.each_with_index do |_permit, index|
-      return false if ptw_id_elements[index].text == CommonPage.get_permit_id
+      return false if ptw_id_elements[index].text == CommonPage.return_permit_id
     end
     true
   end

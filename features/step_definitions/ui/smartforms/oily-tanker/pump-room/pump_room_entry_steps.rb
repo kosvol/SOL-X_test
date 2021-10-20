@@ -82,7 +82,7 @@ end
 
 Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do
 |gas, _permit_type, duration, delay|
-  on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
+  on(Section3APage).scroll_times_direction(1, 'down')
   if gas == 'fill up with gas readings'
     sleep 1
     step 'I trigger gas readings input with C/O rank'
@@ -91,16 +91,16 @@ Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to
     sleep 1
     BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
   end
-  on(Section3APage).scroll_multiple_times_with_direction(1, 'up')
+  on(Section3APage).scroll_times_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration)
-  on(Section3APage).scroll_multiple_times_with_direction(1, 'down')
+  on(Section3APage).scroll_times_direction(1, 'down')
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
 Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do
 |condition, _permit_type, duration, delay, days, direction, point|
   on(PumpRoomEntry).fill_up_pre(duration) if condition == 'fill up'
-  on(Section3APage).scroll_multiple_times_with_direction(1, 'down') if condition == 'fill up'
+  on(Section3APage).scroll_times_direction(1, 'down') if condition == 'fill up'
   on(PumpRoomEntry).select_day(direction, days, point)
   on(PumpRoomEntry).select_start_time_to_activate(delay) if condition == 'fill up'
 end
@@ -222,7 +222,7 @@ Then(/^\(table\) Buttons should be missing for the following role:$/) do |roles|
   # table is a table.hashes.keys # => [:Chief Officer, :8383]
   roles.raw.each do |role|
     step format('I open the current PRE with status Pending approval. Rank: %s', role[0].to_s)
-    on(CommonFormsPage).scroll_multiple_times_with_direction(20, 'down')
+    on(CommonFormsPage).scroll_times_direction(20, 'down')
     not_to_exists(on(PumpRoomEntry).approve_activation_element)
     not_to_exists(on(Section7Page).update_btn_element)
     is_equal(on(CommonFormsPage).close_btn_elements.size, 1)
@@ -267,18 +267,18 @@ end
 Then(/^I should see exit timestamp updated$/) do
   on(PumpRoomEntry).entry_log_btn_element.click
   sleep 1
-  does_include(on(PumpRoomEntry).entry_log_table_elements[3].text, on(CommonFormsPage).get_current_time)
+  does_include(on(PumpRoomEntry).entry_log_table_elements[3].text, on(CommonFormsPage).return_current_time)
 end
 
 And(/^I should see PRE display timezone$/) do
   on(PumpRoomEntry).home_tab_element.click
   step 'I sleep for 1 seconds'
-  if on(CommonFormsPage).get_current_time_offset.to_i.abs <= 1
+  if on(CommonFormsPage).ret_current_time_offset.to_i.abs <= 1
     is_equal(on(PreDisplay).time_shifted_by_text_element.text,
-             "Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hour")
+             "Local time adjusted by #{on(CommonFormsPage).ret_current_time_offset} hour")
   else
     is_equal(on(PreDisplay).time_shifted_by_text_element.text,
-             "Local time adjusted by #{on(CommonFormsPage).get_current_time_offset} hours")
+             "Local time adjusted by #{on(CommonFormsPage).ret_current_time_offset} hours")
   end
 end
 
@@ -299,7 +299,7 @@ Then(/^I should see entry log details display as (filled|filled api)$/) do |cond
   else
     raise "Wrong condition #{condition}"
   end
-  is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text, on(CommonFormsPage).get_current_time_offset.to_s)
+  is_equal(on(PumpRoomEntry).entry_log_table_elements[4].text, on(CommonFormsPage).ret_current_time_offset.to_s)
   is_equal(on(PumpRoomEntry).entry_log_table_elements[5].text, '2 %')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[6].text, '3 % LEL')
   is_equal(on(PumpRoomEntry).entry_log_table_elements[7].text, '4 PPM')

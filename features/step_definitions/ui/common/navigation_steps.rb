@@ -2,7 +2,7 @@
 
 And(/^I should see entire hamburger categories$/) do
   on(NavigationPage).menu_categories_elements.each_with_index do |element, index|
-    is_equal((on(NavigationPage).get_menu_categories)[index], element.text)
+    is_equal((on(NavigationPage).return_menu_categories)[index], element.text)
   end
 end
 
@@ -29,7 +29,7 @@ And(/^I click on back arrow$/) do
     BrowserActions.wait_until_is_visible(on(Section0Page).permit_alert_element)
   rescue StandardError
   end
-  step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
+  step 'I set permit id' if CommonPage.return_permit_id.include? '/TEMP/'
 end
 
 And(/^I press (next|previous) for (.+) times$/) do |condition, times|
@@ -43,7 +43,7 @@ And(/^I click on back to home$/) do
   rescue StandardError
     sleep 5
   end
-  step 'I set permit id' if CommonPage.get_permit_id.include? '/TEMP/'
+  step 'I set permit id' if CommonPage.return_permit_id.include? '/TEMP/'
 end
 
 And(/^I navigate to section (.+)$/) do |which_section|
@@ -56,7 +56,7 @@ end
 
 And(/^I (.+) permit with (.+) rank$/) do |update_or_terminate, rank|
   sleep 1
-  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
+  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.return_permit_id)
 
   case update_or_terminate
   when 'add gas to'
@@ -78,13 +78,13 @@ end
 
 And('I take note of issued date and time') do
   @@issued_date_and_time = on(CreatedPermitToWorkPage)
-                           .issued_date_time_elements[on(CreatedPermitToWorkPage)
-                           .get_permit_index(CommonPage.get_permit_id)].text
+                             .issued_date_time_elements[on(CreatedPermitToWorkPage)
+                           .get_permit_index(CommonPage.return_permit_id)].text
 end
 
 And('I click New Entrant button on Enclose Space Entry PWT') do
   sleep 1
-  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.get_permit_id)
+  permit_id = on(CreatedPermitToWorkPage).get_permit_index(CommonPage.return_permit_id)
   p "index >> #{permit_id}"
   on(ActiveStatePage).new_entrant_btn_elements[permit_id].click
   sleep 2

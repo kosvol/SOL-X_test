@@ -23,12 +23,12 @@ end
 
 And(/^I click on permit for (.+)$/) do |_status|
   on(PendingStatePage).pending_approval_status_btn_elements[on(CreatedPermitToWorkPage)
-                                                            .get_permit_index(CommonPage.get_permit_id)].click
+                                                            .get_permit_index(CommonPage.return_permit_id)].click
   sleep 1
 end
 
 Then(/^I (should|should not) see approve and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times_with_direction(4, 'down')
+  on(Section3APage).scroll_times_direction(4, 'down')
   if condition == 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 4)
     is_equal(on(Section7Page).non_oa_buttons_elements.first.text, 'Activate Permit To Work')
@@ -41,7 +41,7 @@ Then(/^I (should|should not) see approve and request update buttons$/) do |condi
 end
 
 Then(/^I (should|should not) see submit for office approval and request update buttons$/) do |condition|
-  on(Section3APage).scroll_multiple_times_with_direction(3, 'down')
+  on(Section3APage).scroll_times_direction(3, 'down')
   if condition == 'should'
     is_equal(on(Section7Page).non_oa_buttons_elements.size, 7) # previous 5
     is_equal(on(Section7Page).submit_oa_btn_element.text, 'Submit for Office Approval')
@@ -55,7 +55,7 @@ end
 And(/^I open a permit (.+) with (.+) rank$/) do |_status, rank|
   sleep 2
   on(Section0Page).master_approval_elements[on(CreatedPermitToWorkPage)
-                                            .get_permit_index(CommonPage.get_permit_id)].click
+                                            .get_permit_index(CommonPage.return_permit_id)].click
   step "I enter pin for rank #{rank}" if (EnvironmentSelector
                                             .current_environment.include? 'sit') || (EnvironmentSelector
                                                                                        .current_environment

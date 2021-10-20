@@ -9,9 +9,9 @@ Then(/^I should see method description (.+) populated$/) do |method_desc|
 end
 
 Then(/^I should see dra number and last assessment date populated$/) do
-  p "permit id: #{CommonPage.get_dra_permit_id}"
-  is_equal(on(Section3BPage).last_assessment, CommonPage.get_dra_permit_id)
-  is_equal(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).get_current_date_format_with_offset)
+  p "permit id: #{CommonPage.return_dra_permit_id}"
+  is_equal(on(Section3BPage).last_assessment, CommonPage.return_dra_permit_id)
+  is_equal(on(Section3BPage).last_assessment_date_element.text, on(CommonFormsPage).ret_current_date_format_with_offset)
 end
 
 Then(/^I should see By: Master after clicking Yes on Is DRA sent to office$/) do

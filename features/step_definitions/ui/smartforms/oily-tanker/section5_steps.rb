@@ -92,10 +92,10 @@ Then(/^I should see non crew details$/) do
   is_equal(on(Section5Page).signed_rank_and_name_elements.first.text, 'Test Automation')
   if on(Section5Page)
      .get_non_crew_date_time_element.text == "#{on(Section5Page)
-                                                    .get_current_date_format_with_offset} #{on(Section5Page)
-                                                                                              .get_current_time_format}"
+                                                    .ret_current_date_format_with_offset} #{on(Section5Page)
+                                                                                              .ret_current_time_format}"
     is_equal(on(Section5Page).get_non_crew_date_time_element.text,
-             "#{on(Section5Page).get_current_date_format_with_offset} #{on(Section5Page).get_current_time_format}")
+             "#{on(Section5Page).ret_current_date_format_with_offset} #{on(Section5Page).ret_current_time_format}")
   else
     is_equal(on(Section5Page).get_non_crew_date_time_element.text, on(CommonFormsPage)
                                                                      .get_current_date_and_time_minus_a_min)

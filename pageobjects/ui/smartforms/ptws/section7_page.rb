@@ -56,6 +56,6 @@ class Section7Page < Section6Page
   def activate_permit
     set_current_time
     reset_data_collector
-    set_section1_filled_data(CommonPage.get_entered_pin, 'Submitted By')
+    set_section1_filled_data(CommonPage.return_entered_pin, 'Submitted By')
   end
 end
