@@ -9,7 +9,6 @@ clear_sit_on_auto_env: --profile json PLATFORM=chrome_headless OS=MAC APPLICATIO
 
 ### Own's machine profiles ### 
 mac_chrome_tablet_auto: --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
-mac_chrome_auto_tablet_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
 mac_chrome_auto_dashboard_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet_chrome RESOLUTION=tablet_a
 android_chrome_tablet_fsu_local: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome RESOLUTION=tablet_a
@@ -23,19 +22,10 @@ mac_chrome_auto_lng_tablet_headless: --profile json PLATFORM=chrome_headless OS=
 mac_chrome_auto_cot_tablet_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
 mac_chrome_auto_fsu_tablet_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=tablet
 
-### Use in sit-sol-x-web-app-dashboard-crel-ui-test ###
-android_chrome_dashboard_sit: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-
-### Use in sit-sol-x-web-app-fsu-ui-test ###
-android_chrome_tablet_a_fsu_sit: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-
-### Use in sit-sol-x-web-app-cre-ui-test ###
-android_chrome_tablet_b_sit: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
-
 ### Jenkins AUTO COT ###
-android_chrome_dashboard_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
-android_chrome_tablet_a_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
-android_chrome_tablet_b_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
+android_chrome_dashboard_cot_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
+android_chrome_tablet_a_cot_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_a_chrome RESOLUTION=tablet_a
+android_chrome_tablet_b_cot_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### Jenkins AUTO LNG ###
 android_chrome_dashboard_lng_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_dashboard_chrome RESOLUTION=dashboard
@@ -48,8 +38,7 @@ android_chrome_tablet_a_fsu_auto: --profile json PLATFORM=Android OS=MAC APPLICA
 android_chrome_tablet_b_fsu_auto: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=ue_tablet_b_chrome RESOLUTION=tablet_b
 
 ### use in sit-sol-x-web-app-office-comment-ui-test ###
-mac_chrome_sit_dashboard_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=dashboard
-mac_chrome_sit_tablet_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=tablet
+mac_chrome_auto_lng_dashboard_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=dashboard
 
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
 mac_chrome_dashboard_office_approval: --profile json PLATFORM=chrome OS=MAC APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
