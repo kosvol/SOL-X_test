@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './././support/env'
+require './././features/support/env'
 
 class Section5Page < Section4BPage
   include PageObject

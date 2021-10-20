@@ -3,22 +3,26 @@
 require 'yaml'
 # module for environment
 module EnvUtils
+
   def retrieve_api_url
-    env = ENV['ENVIRONMENT']
+    env = ENV['ENVIRONMENT'][0..3]
     env_file = File.read("#{Dir.pwd}/config/environment.yml")
-    config = YAML.safe_load(env_file)
-    if env.include? 'sit'
-      config['sit']['service'] % env
-    elsif env.include? 'uat'
-      config['uat']['service'] % env
-    else
-      config['auto']['service'] % env
-    end
+    config = YAML.safe_load(env_file)[env]
+    api_url = config[env]['service'] % ENV['ENVIRONMENT']
+    raise if api_url.nil?
+
+    api_url
   end
 
   def retrieve_vessel_name
-    string_arr = ENV['ENVIRONMENT'].split('-')
-    vessel_name = string_arr[1] + string_arr[0]
+    vessel_name = ENV['ENVIRONMENT'][4..6] + ENV['ENVIRONMENT'][0..3]
     vessel_name.upcase
+  end
+
+  def retrieve_env_url
+    env = ENV['ENVIRONMENT'][0..3]
+    application = ENV['APPLICATION']
+    env_file = File.read("#{Dir.pwd}/config/environment.yml")
+    YAML.safe_load(env_file)[env][application] % ENV['ENVIRONMENT']
   end
 end

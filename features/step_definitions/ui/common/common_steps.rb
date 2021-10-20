@@ -1,12 +1,13 @@
 # frozen_string_literal: true
-
+require_relative '../../../../service/utils/env_utils'
+include EnvUtils
 And(/^I turn (off|on) wifi$/) do |_on_or_off|
   BrowserActions.turn_wifi_off_on
 end
 
 Given(/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
-  $browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvUtils.retrieve_env_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue StandardError
@@ -17,7 +18,7 @@ Given(/^I launch sol-x portal$/) do
 end
 
 Given(/^I launch sol-x portal without unlinking wearable$/) do
-  $browser.get(EnvironmentSelector.environment_url)
+  $browser.get(EnvUtils.retrieve_env_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   rescue StandardError
@@ -64,9 +65,7 @@ And(/^I enter pin via service for rank (.*)$/) do |rank|
 end
 
 And(/^I enter pin for rank (.*)$/) do |rank|
-  if (EnvironmentSelector.current_environment.include? 'sit') || (EnvironmentSelector.current_environment.include? 'auto')
-    CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
-  end
+  CommonPage.set_entered_pin = $sit_rank_and_pin_yml['sit_auto_rank'][rank]
   sleep 1
   step "I enter pure pin #{CommonPage.return_entered_pin}"
 end
@@ -84,9 +83,9 @@ When(/^I select (.+) permit for level 2$/) do |permit|
 end
 
 And(/^I set permit id$/) do
-  if @via_service_or_not == false
+  unless @via_service_or_not
     Log.instance.info("Temp ID >> #{CommonPage.return_permit_id}")
-    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.return_permit_id))
+    CommonPage.set_permit_id(WorkWithIndexeddb.get_id_from_indexeddb(CommonPage.get_permit_id))
     Log.instance.info "New Permit ID: #{CommonPage.return_permit_id}"
   end
 end

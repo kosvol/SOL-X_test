@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './././support/env'
+require_relative '../../features/support/env'
 
 class CommonPage
   class << self
