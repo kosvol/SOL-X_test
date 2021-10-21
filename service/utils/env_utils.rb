@@ -8,7 +8,7 @@ module EnvUtils
     env = ENV['ENVIRONMENT'][0..3]
     env_file = File.read("#{Dir.pwd}/config/environment.yml")
     config = YAML.safe_load(env_file)[env]
-    api_url = config[env]['service'] % ENV['ENVIRONMENT']
+    api_url = config['service'] % ENV['ENVIRONMENT']
     raise if api_url.nil?
 
     api_url
