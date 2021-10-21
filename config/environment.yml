@@ -1,14 +1,14 @@
 ---
 sit:
   c2_preview: https://%s.edge.solx.safevue.ai:8080/
-  fauxton_url: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/
+  fauxton_url: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/
   service: https://%s.edge.solx.safevue.ai:4000/
-  switch_vessel: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/sit-vessel
+  switch_vessel: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/vessels/sit-vessel
 auto:
   c2_preview: https://%s.edge.solx.safevue.ai:8080/
-  fauxton_url: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/
+  fauxton_url: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/
   service: https://%s.edge.solx.safevue.ai:4000/
-  switch_vessel: https://admin:magellanx@%s.edge.dev.safevue.ai:5984/vessels/auto-vessel
+  switch_vessel: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/vessels/auto-vessel
 edge:
   add-work-rest-hour: work_rest_hour/_bulk_docs
   delete_alerts_histories_entries: alerts/_bulk_docs
