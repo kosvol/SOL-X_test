@@ -62,9 +62,9 @@ And(/^I wait on (PRE|CRE) Display until see (red|green) background$/) do |_type,
 end
 
 And(/^\(for pred\) I should see the (disabled|enabled) "([^"]*)" button$/) do |condition, button|
-  is_true(on(PreDisplay).is_element_disabled_by_att?(button)) if condition == 'disabled'
+  is_true(on(PreDisplay).element_disabled_by_att?(button)) if condition == 'disabled'
 
-  is_false(on(PreDisplay).is_element_disabled_by_att?(button)) if condition == 'enabled'
+  is_false(on(PreDisplay).element_disabled_by_att?(button)) if condition == 'enabled'
 end
 
 And(/^\(for pred\) I should see (info|warning) box for (activated|deactivated) status$/) do |which_box, status|

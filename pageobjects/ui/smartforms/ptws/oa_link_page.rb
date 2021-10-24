@@ -113,29 +113,11 @@ class OAPage < Section9Page
     sleep 1
     ### set from time
     start_time = Time.now.utc.strftime('%k').to_i + 1
-    if start_time <= 23
-      select_time('From', start_time, 1)
-      Log.instance.info("start time >>> #{start_time}")
-    else
-      select_time('From', start_time - 24, 1)
-      Log.instance.info("start time >>> #{start_time - 24}")
-      date_time_from_elements.first.click
-      sleep 1
-      select_todays_date_from_calendar(1)
-    end
+    to_from_time(start_time, 'From')
     ### set to time
     sleep 2
     end_time = Time.now.utc.strftime('%k').to_i + 9
-    if end_time <= 23
-      select_time('To', end_time, 1)
-      Log.instance.info("end time >>> #{end_time}")
-    else
-      select_time('To', end_time - 24, 1)
-      Log.instance.info("end time >>> #{end_time - 24}")
-      date_time_to_elements.first.click
-      sleep 1
-      select_todays_date_from_calendar(1)
-    end
+    to_from_time(end_time, 'To')
   end
 
   def set_to_date_plus_one_day(_current_date)
@@ -253,6 +235,19 @@ class OAPage < Section9Page
     else
       ServiceUtil.fauxton(EnvironmentSelector.get_edge_db_data_by_uri('forms/_find'), 'post',
                           { selector: { _id: form_id } }.to_json.to_s)
+    end
+  end
+
+  def to_from_time(time_type, condition)
+    if time_type <= 23
+      select_time(condition, time_type, 1)
+      Log.instance.info("Time >>> #{time_type}")
+    else
+      select_time(condition, time_type - 24, 1)
+      Log.instance.info("Time >>> #{time_type - 24}")
+      date_time_from_elements.first.click
+      sleep 1
+      select_todays_date_from_calendar(1)
     end
   end
 end

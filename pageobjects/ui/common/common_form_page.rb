@@ -6,6 +6,7 @@ class CommonFormsPage < CommonPage
   include PageObject
 
   element(:main_clock, css: 'h3[data-testid=main-clock]')
+  element(:clock, xpath: '//*[@id="permitActiveAt"]/span')
   element(:back_arrow, xpath: "//button/*[@data-testid='arrow']")
   elements(:generic_data, xpath: "//*[starts-with(@class,'AnswerComponent__Answer')]")
   element(:enter_comment_box, xpath: '//textarea')
@@ -65,7 +66,8 @@ class CommonFormsPage < CommonPage
   end
 
   def set_current_time
-    @@time = main_clock_element.text
+    #@@time = main_clock_element.text
+    @@time = clock_element.text
   end
 
   def return_current_time

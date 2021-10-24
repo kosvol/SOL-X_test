@@ -25,7 +25,9 @@ class CrewListPage < DashboardPage
   element(:pin_text_field, xpath: "//div[@class='pin-code']")
   @@location_indicator = "//div[@data-testid='location-indicator']"
 
-  def is_rank_changed?
+
+
+  def rank_changed?
     rank_list.each_with_index do |rank, _index|
       next unless @@changed_rank == rank
 
@@ -92,20 +94,17 @@ class CrewListPage < DashboardPage
       pin.text == '••••'
     end
   end
-
   ### "rgba(67, 160, 71, 1), 1)" - green
   ### "rgba(242, 204, 84, 1)" - yellow
   def activity_indicator_status?(color)
-    element = @browser.find_element(:xpath, @@location_indicator)
-    BrowserActions.scroll_down(element)
+    scroll_to_indicator
     color == 'rgba(242, 204, 84, 1)' ? (sleep 297) : (sleep 150)
     element.css_value('background-color') == color
   end
 
   def location_details?(location = nil)
     active_crew_details = active_crew_details_api(location)
-    element = @browser.find_element(:xpath, @@location_indicator)
-    BrowserActions.scroll_down(element)
+    scroll_to_indicator
     BrowserActions.scroll_down
     location_details_elements.each do |locate|
       next if locate.text == ''
@@ -130,5 +129,10 @@ class CrewListPage < DashboardPage
       crew_details << ["#{location} - Just now"]
     end
     crew_details
+  end
+
+  def scroll_to_indicator
+    element = @browser.find_element(:xpath, @@location_indicator)
+    BrowserActions.scroll_down(element)
   end
 end

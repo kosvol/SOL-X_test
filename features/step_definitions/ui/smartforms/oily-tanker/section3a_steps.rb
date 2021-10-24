@@ -100,7 +100,7 @@ end
 
 Then(/^I should see additional hazard data save$/) do
   on(Section3APage).navigate_front_back
-  is_true(on(Section3APage).is_additional_hazard_saved?)
+  is_true(on(Section3APage).additional_hazard_saved?)
 end
 
 And(/^I add a new hazard$/) do
@@ -132,5 +132,5 @@ Then(/^I should see added new hazard$/) do
   BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
   on(Section3APage).scroll_to_new_hazard
   BrowserActions.scroll_up
-  is_true(on(Section3APage).is_new_hazard_added?)
+  is_true(on(Section3APage).new_hazard_added?)
 end

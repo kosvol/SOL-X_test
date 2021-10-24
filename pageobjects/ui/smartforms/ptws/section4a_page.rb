@@ -32,29 +32,15 @@ class Section4APage < Section3DPage
   button(:checklist_date, xpath: "//button[contains(@id, '_createdDate')]")
   span(:checklist_time, xpath: "//button[contains(@id, '_createdDate')]/span")
 
-  def click_on_enter_pin
-    BrowserActions.js_click("//button[contains(.,'Sign')]")
-  end
-
   ### hack
   def select_ppe_equipment
-    begin
-      BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
-      sleep 1
-      options_text_elements.first.click
-      confirm_btn_elements.last.click
-      sleep 1
-    rescue StandardError
-    end
-
-    begin
-      BrowserActions.js_click("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
-      sleep 1
-      options_text_elements.first.click
-      confirm_btn_elements.last.click
-      sleep 1
-    rescue StandardError
-    end
+    select_ppe("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+  rescue StandardError
+    p "Error: #{StandardError}"
+    select_ppe("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
+    # begin
+    # rescue
+    # end
   end
 
   def fill_textarea(elems, input)
@@ -76,11 +62,11 @@ class Section4APage < Section3DPage
     end
   end
 
-  def is_checklist_fields_disabled?
+  def checklist_fields_disabled?
     !disabled_fields_elements.empty?
   end
 
-  def is_checklist_details_prepopulated?
+  def checklist_prepopulated?
     sleep 1
     Log.instance.info("--- #{get_current_date_and_time}")
     Log.instance.info("--- #{ret_current_time_format}")
@@ -123,7 +109,7 @@ class Section4APage < Section3DPage
       (date_and_time_stamp_element.text.include? get_current_date_and_time_minus_a_min.to_s))
   end
 
-  def is_signed_user_details_integration?(entered_pin)
+  def signed_user_details_integration?(entered_pin)
     # time_offset = get_current_time_format
     rank_and_name = get_user_details_by_pin(entered_pin)
     Log.instance.info("Base Rank/Name >> #{rank_and_name_stamp_elements.first.text}")
@@ -205,6 +191,15 @@ class Section4APage < Section3DPage
   end
 
   private
+
+  def select_ppe(xpath)
+    @browser.find_element(:xpath, xpath).click
+    #BrowserActions.js_click("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
+    sleep 1
+    options_text_elements.first.click
+    confirm_btn_elements.last.click
+    sleep 1
+  end
 
   def get_checklist_questions(css_input)
     tmp_arr = []

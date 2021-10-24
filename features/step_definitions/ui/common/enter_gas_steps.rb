@@ -19,8 +19,7 @@ And(/^I add all gas readings and cancel from pin screen$/) do
 end
 
 And(/^I trigger gas readings input with (.*) rank$/) do |rank|
-  BrowserActions.wait_until_is_visible(on(Section6Page).add_gas_btn_button)
-  on(Section6Page).add_gas_btn_button
+  BrowserActions.poll_exists_and_click(on(Section6Page).add_gas_btn_element)
   step "I enter pin via service for rank #{rank}"
 end
 

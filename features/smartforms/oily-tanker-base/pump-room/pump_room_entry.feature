@@ -235,8 +235,7 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin via service for rank C/O
     Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
-    And Get PRE id
-    And for pre I submit permit for A C/O Approval
+    And for pre I submit permit for C/O Approval
     And I getting a permanent number from indexedDB
     And I navigate to "Pending Approval" screen for PRE
     Then I check scheduled date
@@ -247,7 +246,6 @@ Feature: PumpRoomEntry
     And I navigate to create new PRE
     And I enter pin via service for rank C/O
     Then I fill up PRE. Duration 4. Delay to activate 2
-    And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I request update needed

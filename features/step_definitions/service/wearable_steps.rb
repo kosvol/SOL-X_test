@@ -26,8 +26,9 @@ end
 
 Then(/^I get list of beacons detail$/) do
   WearablePage.list_of_beacons_id_n_mac
+  WearablePage.list_of_beacon
 end
 
 And(/^I should see location updated$/) do
-  is_true(WearablePage.is_location_updated)
+  is_true(WearablePage.location_updated?)
 end

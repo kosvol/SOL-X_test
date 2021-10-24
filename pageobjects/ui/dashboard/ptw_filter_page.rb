@@ -22,7 +22,6 @@ class PtwFilterPage < CreatedPermitToWorkPage
     permit_counter_arr = return_permits_counter
     scroll_times_direction(10, 'down')
     Log.instance.info("\n\nActual: #{parent_container_elements.size}\n\n")
-
     case which_filter
     when 'pending approval'
       match_permit_counter(permit_counter_arr.first, @total_pending_approval)
@@ -41,16 +40,31 @@ class PtwFilterPage < CreatedPermitToWorkPage
 
   def return_permits_counter
     form_stats_response = ServiceUtil.get_response_body['data']['formStats']
+    [total_pending_approval(form_stats_response),
+     total_update_needed(form_stats_response),
+     total_active(form_stats_response),
+     total_terminal(form_stats_response)]
+  end
+
+  def total_pending_approval(form_stats_response)
     @total_pending_approval = form_stats_response['pendingOfficerApproval'] +
                               form_stats_response['pendingOfficeApproval'] +
                               form_stats_response['pendingMasterApproval'] +
                               form_stats_response['pendingMasterReview']
+  end
+
+  def total_update_needed(form_stats_response)
     @total_update_needed = form_stats_response['approvalUpdatesNeeded'] +
                            form_stats_response['activeUpdatesNeeded'] +
                            form_stats_response['terminationUpdatesNeeded']
+  end
+
+  def total_active(form_stats_response)
     @total_active = form_stats_response['active']
+  end
+
+  def total_terminal(form_stats_response)
     @total_terminal = form_stats_response['pendingTermination']
-    [@total_pending_approval, @total_update_needed, @total_active, @total_terminal]
   end
 
   def match_permit_counter(compare, expected)

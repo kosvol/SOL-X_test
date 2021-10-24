@@ -84,7 +84,7 @@ class OfficePortalPage
     @browser.find_element(:xpath, "//div[#{permit_name}][contains(@class,'PermitItem')]/span[2]").text
   end
 
-  def get_approved_date_time
+  def approved_date_time
     @browser.find_element(:xpath, "(//h4[contains(text(),'Date/Time:')]/following-sibling::p)[2]").text
   end
 
@@ -96,7 +96,8 @@ class OfficePortalPage
   def section_elements_list(section, element_type)
     fields_arr = []
     @browser.find_elements(:xpath,
-                           "//div[@class='screen-only']//h2[contains(text(),'#{section}')]/../..//#{element_type}").each do |field|
+                           "//div[@class='screen-only']//h2[contains(text(),'#{section}')]/../..//#{element_type}")
+            .each do |field|
       fields_arr << field.text
     end
     case element_type

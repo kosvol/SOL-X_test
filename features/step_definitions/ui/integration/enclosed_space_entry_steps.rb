@@ -41,7 +41,7 @@ And(/^I review page 3a of submitted (.+) permit$/) do |permit_type|
     does_include(on(Section3APage).method_detail_elements[2].text, ' LT (GMT')
     does_include(on(Section3APage).method_detail_elements[3].text, 'Enclosed Space Entry')
     BrowserActions.scroll_click(on(Section3APage).view_edit_btn_element)
-    is_true(on(Section3APage).is_new_hazard_added?)
+    is_true(on(Section3APage).new_hazard_added?)
     on(Section3APage).close_btn_elements.first.click
   when 'cold work'
     on(Section1Page).next_btn_elements.last.click
@@ -206,6 +206,6 @@ end
 
 Then(/^I should see signed details for integration test$/) do
   on(Section4APage).signature_scroll
-  is_true(on(Section4APage).is_signed_user_details_integration?(CommonPage.return_entered_pin))
-  is_true(on(SignaturePage).is_signature_pad?)
+  is_true(on(Section4APage).signed_user_details_integration?(CommonPage.return_entered_pin))
+  is_true(on(SignaturePage).signature_pad?)
 end

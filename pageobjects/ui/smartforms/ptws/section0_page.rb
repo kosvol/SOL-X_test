@@ -19,11 +19,6 @@ class Section0Page < NavigationPage
   button(:save_next, css: "button[type='submit']")
   element(:permit_alert, css: "div[role='alert']")
 
-  def is_level_1_permit?
-    list_permit_type_elements.each do |_element|
-    end
-  end
-
   def reset_data_collector
     @@section1_data_collector = []
   end

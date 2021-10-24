@@ -26,5 +26,5 @@ end
 
 Then(/^I should see date and time pre-fill on section 9$/) do
   step 'I set time'
-  is_true(on(Section9Page).termintn_date_time_filled?)
+  is_true(on(Section9Page).termntd_date_time_filled?)
 end

@@ -124,7 +124,7 @@ And(/^I should see (.+) rank and name$/) do |rank|
 end
 
 Then(/^I should see EIC permit number, date and time populated$/) do
-  is_true(on(Section4BPage).eic_details_prepopulated?)
+  is_true(on(Section4BPage).eic_prepopulated?)
 end
 
 And(/^I fill up EIC certificate$/) do
