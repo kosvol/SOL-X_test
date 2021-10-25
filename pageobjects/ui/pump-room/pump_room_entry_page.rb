@@ -312,7 +312,6 @@ class PumpRoomEntry < PreDisplay
 
   def select_answer(answer, question)
     xpath_str = format(@@radio_buttons, question)
-    p(format(@@radio_buttons, question))
     select_checkbox(xpath_str, answer)
   end
 

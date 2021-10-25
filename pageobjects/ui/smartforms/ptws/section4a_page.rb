@@ -36,11 +36,7 @@ class Section4APage < Section3DPage
   def select_ppe_equipment
     select_ppe("//button[@id='cl_coldWork_followingPersonProtectiveToBeWorn']")
   rescue StandardError
-    p "Error: #{StandardError}"
     select_ppe("//button[@id='cl_workOnHazardousSubstance_ProtectiveEquipment']")
-    # begin
-    # rescue
-    # end
   end
 
   def fill_textarea(elems, input)

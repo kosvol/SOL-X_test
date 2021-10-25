@@ -10,7 +10,6 @@ end
 
 Given(/^I launch sol-x portal$/) do
   step 'I unlink all crew from wearable'
-  p(EnvUtils.retrieve_env_url)
   $browser.get(EnvUtils.retrieve_env_url)
   begin
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
