@@ -123,7 +123,7 @@ class PumpRoomEntry < PreDisplay
     set_current_time
   end
 
-  def is_entered_entrant_listed?(entrant)
+  def entered_entrant_listed?(entrant)
     entrant_names_dd_element.click
     sleep 1
     options_text_elements.each do |crew|
@@ -218,7 +218,8 @@ class PumpRoomEntry < PreDisplay
     sleep 1
     case condition
     when 'Future'
-      changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{current_day.to_i + number.to_i}')]"
+      changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{current_day.to_i +
+        number.to_i}')]"
     when 'Past'
       changed_day = format("//div[starts-with(@class,'DatePicker__OverlayContainer')]//*[contains(text(),'%s')]",
                            (current_day.to_i - number.to_i))
