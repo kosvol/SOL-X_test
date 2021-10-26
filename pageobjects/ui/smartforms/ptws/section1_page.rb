@@ -48,16 +48,6 @@ class Section1Page < Section0Page
     tmp
   end
 
-  # def is_fields_enabled?
-  #   bool = true
-  #   generic_data_elements.each do |field|
-  #     bool &&= field.enabled?
-  #   end
-  #   bool
-  # rescue StandardError
-  #   false
-  # end
-
   def maint_duration_dd_exists?
     element = @browser.find_element(:xpath, @@maint_require_text)
     BrowserActions.scroll_down(element)
@@ -83,12 +73,12 @@ class Section1Page < Section0Page
     end
   end
 
-  def fill_partial_section_1
+  def fill_partial_section1
     sleep 1
     set_default_section1
   end
 
-  def fill_default_section_1
+  def fill_default_section1
     sleep 2
     set_default_section1
     select_location_of_work

@@ -57,12 +57,12 @@ Then(/^I should see signed details$/) do
   else
     is_true(on(Section4APage).user_details_plus_1_min(CommonPage.return_entered_pin))
   end
-  is_true(on(SignaturePage).is_signature_pad?)
+  is_true(on(SignaturePage).signature_pad?)
 end
 
 Then(/^I should see permit number, date and time populated$/) do
   step 'I press next for 1 times'
-  is_true(on(Section4APage).is_checklist_details_prepopulated?)
+  is_true(on(Section4APage).checklist_prepopulated?)
 end
 
 And(/^I select PPE equipment$/) do

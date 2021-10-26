@@ -1,6 +1,9 @@
 # frozen_string_literal: true
+
 require_relative '../../../../service/utils/env_utils'
+
 include EnvUtils
+
 And(/^I turn (off|on) wifi$/) do |_on_or_off|
   BrowserActions.turn_wifi_off_on
 end
@@ -101,6 +104,4 @@ Given(/^I launch sol-x portal dashboard$/) do
   rescue StandardError
     BrowserActions.wait_until_is_visible(on(Section0Page).click_create_permit_btn_element)
   end
-  # sleep 5
-  # puts "screen size: #{$browser.window_size}"
 end

@@ -10,7 +10,7 @@ class Section9Page < Section8Page
   element(:task_status_completed, xpath: "//input[@value = 'Completed']")
   button(:submit_permit_termination_btn, xpath: "//button[contains(.,'Withdraw Permit To Work')]")
 
-  def get_signed_date_time
+  def signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp)
     sleep 1
     set_current_time
@@ -18,7 +18,7 @@ class Section9Page < Section8Page
     "#{ret_current_date_format_with_offset} #{time_offset}"
   end
 
-  def termintn_date_time_filled?
+  def termntd_date_time_filled?
     (ret_current_time_format == permit_terminated_on_date_elements.last.text) &&
       (ret_current_date_format_with_offset == permit_terminated_on_date_elements.first.text)
   end

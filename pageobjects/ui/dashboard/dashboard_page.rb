@@ -69,7 +69,7 @@ class DashboardPage < WearablePage
     ServiceUtil.get_response_body['data']['wearables'].each do |wearable|
       next if wearable['userId'].nil?
 
-      WearablePage.set_wearable_id(wearable['_id'])
+      WearablePage.wearable_id(wearable['_id'])
       WearablePage.swap_payload('wearable-simulator/mod-unlink-crew-to-wearable')
       ServiceUtil.post_graph_ql('wearable-simulator/mod-unlink-crew-to-wearable')
     end

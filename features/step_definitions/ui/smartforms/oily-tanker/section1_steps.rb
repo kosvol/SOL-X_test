@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 And(/^I fill zone details$/) do
-  on(Section1Page).fill_partial_section_1
+  on(Section1Page).fill_partial_section1
 end
 
 Then(/^I should see navigation dropdown$/) do
@@ -33,7 +33,7 @@ Then(/^I (should|should not) see maintenance duration section and require text$/
 end
 
 And(/^I fill section 1 of maintenance permit with duration (more|less) than 2 hours$/) do |condition|
-  on(Section1Page).fill_default_section_1
+  on(Section1Page).fill_default_section1
   on(Section1Page).set_maintenance_duration(condition)
   sleep 1
 end
@@ -44,7 +44,7 @@ end
 
 And(/^I fill up section 1 with default value$/) do
   permits_arr = YAML.load_file('data/permit-types.yml')['Critical Equipment Maintenance']
-  on(Section1Page).fill_default_section_1
+  on(Section1Page).fill_default_section1
   Log.instance.info "Permit: #{on(Section0Page).get_section1_filled_data.last}"
   if permits_arr.include? on(Section0Page).get_section1_filled_data.last
     on(Section1Page).set_maintenance_duration(%w[more less].sample)

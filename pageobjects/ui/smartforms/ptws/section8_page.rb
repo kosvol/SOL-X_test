@@ -41,14 +41,6 @@ class Section8Page < Section7Page
   span(:normalization_pipe_question2,
        xpath: "//span[contains(.,'Has the section of pipe or vessel to be worked upon been purged with inert gas or Gas freed?')]")
 
-  def sign_eic_or_issuer(condition)
-    if ['competent person', 'non competent person'].include? condition
-      BrowserActions.scroll_click(sign_btn_role_elements.first)
-    elsif ['issuing authority', 'non issuing authority'].include? condition
-      BrowserActions.scroll_click(sign_btn_role_elements.last)
-    end
-  end
-
   def get_signed_date_time
     BrowserActions.scroll_down(rank_and_name_stamp_elements.first)
     sleep 1

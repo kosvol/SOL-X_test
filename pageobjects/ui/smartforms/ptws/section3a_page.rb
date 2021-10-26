@@ -46,35 +46,21 @@ class Section3APage < Section2Page
     sleep 1
   end
 
-  def is_additional_hazard_saved?
+  def additional_hazard_saved?
     view_edit_btn
     sleep 1
     scroll_times_direction(3, 'down')
     description_elements[2].text == 'Test Automation'
   end
 
-  def is_new_hazard_added?
+  def new_hazard_added?
     p ">> #{ecm_details_elements[10].text}"
     tmp = ih_details2_elements[10].text
     p ">> #{tmp}"
     begin
-      p ">> #{hazard_risk_details_elements[23].text}"
-      p ">> #{hazard_risk_details_elements[24].text}"
-      (tmp == "Test Automation\nDelete" && ecm_details_elements[10]
-              .text == "Existing Control Measures\nTest Automation" &&
-              hazard_risk_details_elements[23]
-              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
-              hazard_risk_details_elements[24]
-                .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      hazard_error(tmp, hazard_risk_details_elements)
     rescue StandardError
-      p ">> #{hazard_risk_details1_elements[23].text}"
-      p ">> #{hazard_risk_details1_elements[24].text}"
-      (tmp == 'Test Automation' && ecm_details_elements[10]
-              .text == "Existing Control Measures\nTest Automation" &&
-        hazard_risk_details1_elements[23]
-              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
-        hazard_risk_details1_elements[24]
-              .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+      hazard_error(tmp, hazard_risk_details1_elements)
     end
   end
 
@@ -161,16 +147,8 @@ class Section3APage < Section2Page
   def risk_indicator_color?(measure, status)
     risk_indicators = @browser.find_elements(:xpath, "//div[starts-with(@class,'RiskIndicator__Indicator-')]")
     base_color = color_code(status)
-    case measure
-    when 'without applying measure'
-      risk_indicators[0].css_value('background-color') == base_color
-    when 'existing control measure'
-      risk_indicators[1].css_value('background-color') == base_color
-    when 'additional hazard'
-      risk_indicators[2].css_value('background-color') == base_color
-    else
-      raise "Wrong measure >>> #{measure}"
-    end
+    measure_arr = ['without applying measure', 'existing control measure', 'additional hazard']
+    is_equal(risk_indicators[measure_arr.index(measure)].css_value('background-color'), base_color)
   end
 
   def evaluation_matrix(color, color1, color2)
@@ -183,16 +161,27 @@ class Section3APage < Section2Page
 
   private
 
+  def hazard_error(tmp, type)
+    p ">> #{type[23].text}"
+    p ">> #{type[24].text}"
+    (tmp == 'Test Automation' && ecm_details_elements[10]
+                                     .text == "Existing Control Measures\nTest Automation" &&
+      type[23]
+          .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk" &&
+      type[24]
+          .text == "Likelihood\n1 - Remotely Likely\nConsequence\n1 - Insignificant\nLow Risk")
+  end
+
+  COLOR_CODE_HASH = {
+    'low' => 'rgba(118, 210, 117, 1)',
+    'medium' => 'rgba(242, 204, 84, 1)',
+    'high' => 'rgba(216, 75, 75, 1)',
+    'very high' => 'rgba(160, 16, 35, 1)'
+  }.freeze
+
   def color_code(color)
-    case color
-    when 'low'
-      'rgba(118, 210, 117, 1)'
-    when 'medium'
-      'rgba(242, 204, 84, 1)'
-    when 'high'
-      'rgba(216, 75, 75, 1)'
-    when 'very high'
-      'rgba(160, 16, 35, 1)'
+    if COLOR_CODE_HASH.key?(color)
+      COLOR_CODE_HASH[color]
     else
       raise "Wrong color >>> #{color}"
     end
