@@ -16,7 +16,7 @@ Feature: Section0 Form prelude
 #      | update needed      |
 #      | active             |
 #      | pending withdrawal |
-  @test
+
   Scenario Outline: Verify only RA can create permit
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -35,7 +35,7 @@ Feature: Section0 Form prelude
       | 2/E   |
 #      | A 2/E |
       | ETO   |
-  @test9
+
   Scenario Outline: Verify non RA cannot create permit
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -56,7 +56,7 @@ Feature: Section0 Form prelude
       | A/B   |
       | O/S   |
       | OLR   |
-  @ss
+
   Scenario: Verify user can see a list of available PTW form
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -77,7 +77,7 @@ Feature: Section0 Form prelude
       | Work on Pressure Pipeline/Vessels                                               |
       | Working Aloft/Overside                                                          |
       | Working on Deck During Heavy Weather                                            |
-  @test2
+
   Scenario Outline: Verify user see the correct second level permits
     Given SmartForms open page
     And SmartForms click create permit to work

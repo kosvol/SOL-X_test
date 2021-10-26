@@ -41,7 +41,7 @@ class FormPreludePage < BasePage
   def verify_level1_list(table)
     click(FORM_PRELUDE[:dropdown_list])
     level1_elements = @driver.find_elements(css: FORM_PRELUDE[:permit_type_list])
-    WAIT.until { level1_elements }
+    WAIT.until { level1_elements.size.positive? }
     table.raw.each_with_index do |item, index|
       WAIT.until { level1_elements[index].displayed? }
       compare_string(item.first, level1_elements[index].text)
@@ -51,7 +51,7 @@ class FormPreludePage < BasePage
   def verify_level2_list(permit)
     expected_list = YAML.load_file('data/permit_types.yml')[permit]
     element_list = @driver.find_elements(css: FORM_PRELUDE[:permit_type_list])
-    WAIT.until { element_list }
+    WAIT.until { element_list.size.positive? }
     element_list.each_with_index do |element, index|
       WAIT.until { element.displayed? }
       compare_string(element.text, expected_list[index])
