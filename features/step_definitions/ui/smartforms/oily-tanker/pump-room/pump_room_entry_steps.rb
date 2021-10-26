@@ -19,9 +19,9 @@ Then(/^I should see the right order of elements$/) do
 end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |condition, alert|
-  is_true(on(PumpRoomEntry).is_alert_text_displayed?(alert)) if condition == 'should'
+  is_true(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should'
 
-  is_false(on(PumpRoomEntry).is_alert_text_displayed?(alert)) if condition == 'should not'
+  is_false(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should not'
 end
 
 Then('I select Permit Duration {int}') do |duration|
@@ -29,9 +29,9 @@ Then('I select Permit Duration {int}') do |duration|
 end
 
 And(/^Button "([^"]*)" (should|should not) be disabled$/) do |button_text, condition|
-  is_false(on(PumpRoomEntry).is_button_enabled?(button_text)) if condition == 'should'
+  is_false(on(PumpRoomEntry).button_enabled?(button_text)) if condition == 'should'
 
-  is_true(on(PumpRoomEntry).is_button_enabled?(button_text)) if condition == 'should not'
+  is_true(on(PumpRoomEntry).button_enabled?(button_text)) if condition == 'should not'
 end
 
 Then(/^I select current day for field "([^"]*)"$/) do |_button|
@@ -62,14 +62,14 @@ end
 
 And(/^I (should|should not) see the (text|label|page|header) '(.*)'$/) do |condition, like, text|
   sleep 1
-  is_true(on(PumpRoomEntry).is_text_displayed?(like, text)) if condition == 'should'
-  is_false(on(PumpRoomEntry).is_text_displayed?(like, text)) if condition == 'should not'
+  is_true(on(PumpRoomEntry).text_displayed?(like, text)) if condition == 'should'
+  is_false(on(PumpRoomEntry).text_displayed?(like, text)) if condition == 'should not'
 end
 
 And(/^for (pre|cre) I should see the (disabled|enabled) "([^"]*)" button$/) do |_permit_type, condition, button|
-  is_false(on(PumpRoomEntry).is_button_enabled?(button)) if condition == 'disabled'
+  is_false(on(PumpRoomEntry).button_enabled?(button)) if condition == 'disabled'
 
-  is_true(on(PumpRoomEntry).is_button_enabled?(button)) if condition == 'enabled'
+  is_true(on(PumpRoomEntry).button_enabled?(button)) if condition == 'enabled'
 end
 
 And('I fill up {string}') do |section|
@@ -81,34 +81,41 @@ Then(/^\(for pre\) I sign on canvas$/) do
 end
 
 Then(/^I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)$/) do
-|gas, _permit_type, duration, delay|
+|gas, permit_type, duration, delay|
   on(Section3APage).scroll_times_direction(1, 'down')
-  if gas == 'fill up with gas readings'
-    sleep 1
-    step 'I trigger gas readings input with C/O rank'
-    on(Section6Page).add_all_gas_readings
-    step 'I sign for gas'
-    sleep 1
-    BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
-  end
+  step "I fill up gas readings #{permit_type}" if gas == 'fill up with gas readings'
   on(Section3APage).scroll_times_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration)
   on(Section3APage).scroll_times_direction(1, 'down')
   on(PumpRoomEntry).select_start_time_to_activate(delay)
 end
 
+Then(/^I fill up gas readings (PRE.|CRE.)$/) do |_permit_type|
+  sleep 1
+  on(Section3APage).scroll_times_direction(3, 'down')
+  sleep 1
+  step 'I trigger gas readings input with C/O rank'
+  on(Section6Page).add_all_gas_readings
+  step 'I sign for gas'
+  sleep 1
+  BrowserActions.poll_exists_and_click(on(CommonFormsPage).done_btn_elements.first)
+end
+
+
 Then(/^I (fill up|change) (PRE|CRE) Duration (.*) Delay to activate (.*) with custom days (.*) in (Future|Past) from (selected|current)$/) do
-|condition, _permit_type, duration, delay, days, direction, point|
+|condition, permit_type, duration, delay, days, direction, point|
+  step "I fill up gas readings #{permit_type}."
+  on(Section3APage).scroll_times_direction(1, 'up')
   on(PumpRoomEntry).fill_up_pre(duration) if condition == 'fill up'
   on(Section3APage).scroll_times_direction(1, 'down') if condition == 'fill up'
   on(PumpRoomEntry).select_day(direction, days, point)
   on(PumpRoomEntry).select_start_time_to_activate(delay) if condition == 'fill up'
 end
 
-And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |_permit_type, role|
-  step 'Get PRE id'
+And(/^for (pre|cre) I submit permit for (.*) Approval$/) do |permit_type, role|
+  step "Get #{permit_type.to_s.upcase} id"
   step 'I press the "Submit for Approval" button'
-  step format('I enter pin for rank %s', role.to_s)
+  step "I enter pin via service for rank #{role}"
   sleep 3
   on(SignaturePage).sign_and_done
   step "I should see the page 'Successfully Submitted'"
@@ -153,12 +160,12 @@ And('I set the activity end time in {int} minutes') do |minutes|
 end
 
 Then(/^I should see current PRE is auto terminated$/) do
-  is_true(on(PumpRoomEntry).is_auto_terminated_displayed?(@@pre_number))
+  is_true(on(PumpRoomEntry).auto_terminated_displayed?(@@pre_number))
 end
 
 Then(/^I terminate the (PRE|CRE)$/) do |type|
   step "I navigate to \"Active\" screen for #{type}"
-  on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
+  on(PumpRoomEntry).press_for_pre('Submit for Termination')
   step 'I enter pin for rank C/O'
   step 'I press the "Terminate" button'
   step 'I sign with valid C/O rank'
@@ -169,7 +176,7 @@ end
 
 Then(/^I terminate the (PRE|CRE) with rank ([^"]*)$/) do |type, rank|
   step "I navigate to \"Active\" screen for #{type}"
-  on(PumpRoomEntry).press_button_for_current_PRE('Submit for Termination')
+  on(PumpRoomEntry).press_for_pre('Submit for Termination')
   step "I enter pin for rank #{rank}"
   step 'I press the "Terminate" button'
   step "I sign with valid #{rank} rank"
@@ -188,7 +195,7 @@ end
 
 And('(for pre) I should see update needed message') do
   step 'I navigate to "Updates Needed" screen for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE('Edit/Update')
+  on(PumpRoomEntry).press_for_pre('Edit/Update')
   step 'I enter pin for rank C/O'
   step "I should see the text 'Comments from Approving Authority'"
   step "I should see the text 'Test Automation'"
@@ -196,7 +203,7 @@ end
 
 And(/^I should see that form is open for read by rank (.*)$/) do |rank|
   step 'I navigate to "Updates Needed" screen for PRE'
-  on(PumpRoomEntry).press_button_for_current_PRE('Edit/Update')
+  on(PumpRoomEntry).press_for_pre('Edit/Update')
   step format('I enter pin via service for rank %s', rank)
   step 'Button "Submit for Approval" should be disabled'
   step 'Button "Add Gas Test Record" should be disabled'
@@ -212,7 +219,7 @@ Then(/^I open the current (PRE|CRE) with status (Pending approval|Active). Rank:
 |permit_type, condition, rank|
   step "I navigate to \"Pending Approval\" screen for #{permit_type}" if condition == 'Pending approval'
   step "I navigate to \"Active\" screen for #{permit_type}" if condition == 'Active'
-  on(PumpRoomEntry).press_button_for_current_PRE('Officer Approval') if condition == 'Pending approval'
+  on(PumpRoomEntry).press_for_pre('Officer Approval') if condition == 'Pending approval'
   on(PumpRoomEntry).view_btn_element.click if condition == 'Active'
   step format('I enter pin via service for rank %s', rank)
   sleep 1
@@ -253,7 +260,7 @@ Then(/^I getting a permanent number from indexedDB$/) do
 end
 
 Then(/^I edit pre and should see the old number previously written down$/) do
-  on(PumpRoomEntry).press_button_for_current_PRE('Edit')
+  on(PumpRoomEntry).press_for_pre('Edit')
   step 'I enter pin for rank C/O'
   sleep 1
   is_equal(on(PumpRoomEntry).purpose_of_entry, 'Test Automation')

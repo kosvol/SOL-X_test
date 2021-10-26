@@ -31,7 +31,7 @@ class PreDisplay < Section9Page
   element(:warning_box_alert_wiper, xpath: "//div[starts-with(@class,'WarningBox__AlertWrapper')]")
   element(:entry_disclaimer, xpath: "//div[starts-with(@class,'CreateEntryRecord__EntryDisclaimer')]")
 
-  def is_element_disabled_by_att?(text)
+  def element_disabled_by_att?(text)
     # enable? - doesn't work for PRED. for 'li' elements
     xpath_str = format(@@button_li, text)
     el = @browser.find_element('xpath', xpath_str)

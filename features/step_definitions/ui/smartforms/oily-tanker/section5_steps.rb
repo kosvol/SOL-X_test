@@ -31,7 +31,7 @@ And(/^I (should|should not) see (.+) role$/) do |condition, role|
   case condition
   when 'should'
     is_true(on(Section5Page).role?(role))
-  when 'should not'
+  else
     is_false(on(Section5Page).role?(role))
   end
 end

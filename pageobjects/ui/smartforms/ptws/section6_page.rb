@@ -9,6 +9,9 @@ class Section6Page < Section5Page
   element(:rank_and_name_stamp, xpath: "//button[starts-with(@data-testid,'show-signature-display')]/span/span")
   element(:date_and_time_stamp,
           xpath: "//div[starts-with(@class,'FormFieldGasReaderDisplay__GasReadingColumn')]/div[2]")
+  element(:add_gas_text, xpath: "//span[contains(.,'Add Gas Test Record')]")
+  element(:add_gas_btn,
+          xpath: "//span[contains(.,'Add Gas Test Record')]/parent::button")
   elements(:info_box_disable_gas, xpath: "//div[starts-with(@class,'InfoBox__InfoBoxWrapper')]")
   elements(:info_warning_boxes, xpath: "//div[starts-with(@class,'InfoBox__')]/*")
   element(:gas_notes, xpath: "//div[starts-with(@class,'WarningBox__')]/*")

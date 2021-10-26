@@ -29,7 +29,7 @@ class CreatedPermitToWorkPage < Section9Page
   #   # end
   # end
 
-  def select_created_permit_with_param(permit_id)
+  def permit_with_param(permit_id)
     sleep 1
     edit_permit_btn_elements[get_permit_index(permit_id)]
   end

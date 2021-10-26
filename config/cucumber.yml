@@ -10,6 +10,7 @@ clear_sit_on_auto_env: --profile json PLATFORM=chrome_headless OS=MAC APPLICATIO
 ### Own's machine profiles ### 
 mac_chrome_tablet_auto: --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
 mac_chrome_auto_dashboard_headless: --profile json PLATFORM=chrome_headless OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard
+mac_chrome_auto_dashboard: --profile json PLATFORM=chrome OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet_chrome RESOLUTION=tablet_a
 android_chrome_tablet_fsu_local: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome RESOLUTION=tablet_a
 android_chrome_tablet_sit_fsu_local: --profile json PLATFORM=Android OS=MAC APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome RESOLUTION=tablet_a

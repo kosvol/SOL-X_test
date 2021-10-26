@@ -70,7 +70,7 @@ class WearablePage
       JsonUtil.create_request_file(which_json, tmp_req_payload)
     end
 
-    def is_location_updated
+    def location_updated?
       @tmp = ServiceUtil.get_response_body['data']['wearables']
       @tmp.each do |wearable|
         if wearable['_id'] == @wearableid
@@ -162,22 +162,17 @@ class WearablePage
       @tmp_list
     end
 
+    BASE_JSON_MAP = {
+      'wearable-simulator/mod-update-wearable-location' => 'wearable-simulator/base-update-wearable-location',
+      'wearable-simulator/mod-update-wearable-location-by-zone' => 'wearable-simulator/base-update-wearable-location',
+      'wearable-simulator/mod-unlink-crew-to-wearable' => 'wearable-simulator/base-unlink-crew-to-wearable',
+      'wearable-simulator/mod-link-crew-to-wearable' => 'wearable-simulator/base-link-crew-to-wearable',
+      'wearable-simulator/mod-trigger-panic' => 'wearable-simulator/base-trigger-panic',
+      'wearable-simulator/mod-dismiss-panic' => 'wearable-simulator/base-dismiss-panic'
+    }.freeze
+
     def base_json(json)
-      case json
-      when 'wearable-simulator/mod-update-wearable-location',
-           'wearable-simulator/mod-update-wearable-location-by-zone'
-        'wearable-simulator/base-update-wearable-location'
-      when 'wearable-simulator/mod-unlink-crew-to-wearable'
-        'wearable-simulator/base-unlink-crew-to-wearable'
-      when 'wearable-simulator/mod-link-crew-to-wearable'
-        'wearable-simulator/base-link-crew-to-wearable'
-      when 'wearable-simulator/mod-trigger-panic'
-        'wearable-simulator/base-trigger-panic'
-      when 'wearable-simulator/mod-dismiss-panic'
-        'wearable-simulator/base-dismiss-panic'
-      else
-        raise "Wrong json name >>> #{json}"
-      end
+      BASE_JSON_MAP[json]
     end
   end
 end

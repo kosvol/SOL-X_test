@@ -34,7 +34,7 @@ class Section4BPage < Section4APage
     end
   end
 
-  def eic_details_prepopulated?
+  def eic_prepopulated?
     sleep 1
     Log.instance.info(">>> #{generic_data_elements[1].text} vs #{ret_current_time_format}")
     Log.instance.info(">>> #{generic_data_elements[1].text} vs #{get_current_date_and_time}")

@@ -15,6 +15,7 @@ class NavigationPage < CommonFormsPage
                            'Pending Withdrawal', 'Withdrawn', 'Deleted', 'Created', 'Pending Approval',
                            'Updates Needed', 'Active', 'Scheduled', 'Terminated', 'Deleted', 'Settings']
   @which_category = "//a[contains(text(),'%s')]"
+  elements(:section_header, xpath: "//nav/h3[starts-with(@class,'Heading__H3')]")
 
   def click_hamburger_menu
     BrowserActions.poll_exists_and_click(hamburger_menu_element)

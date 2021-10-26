@@ -33,50 +33,29 @@ class BrowserSetup
     $browser
   end
 
-  def self.load_chrome(os)
+  def self.load_chrome(_os)
     # p "*********************************************************"
     # p "Test Started:: Invoking Chrome #{ENV['DEVICE']}..!"
-    if os.casecmp('mac').zero?
-      options = Selenium::WebDriver::Chrome::Options.new
-      if ENV['DEVICE'] == 'dashboard'
-        options
-          .add_argument('--window-size=2560,1440')
-      else
-        options
-          .add_argument('--window-size=720,1280')
-      end
-      begin
-        case ENV['PLATFORM']
-        when 'chrome_headless'
-          options.add_argument('--headless')
-        when 'chrome_incognito'
-          options.add_argument('--incognito')
-          options.add_argument('--private')
-        else
-          puts 'Browser setup without added arguments'
-        end
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
-        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
-      rescue StandardError
-        $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
-      end
+    options = Selenium::WebDriver::Chrome::Options.new
+    if ENV['DEVICE'] == 'dashboard'
+      options.add_argument('--window-size=2560,1440')
     else
-      # windows
-      Selenium::WebDriver::Chrome::Service
-        .driver_path = File
-                       .join(File.absolute_path('../../../../', File.dirname(__FILE__)),
-                             '/Downloads/chromedriver.exe')
-      if ENV['DEVICE'] == 'tablet'
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
+      options.add_argument('--window-size=720,1280')
+    end
+    begin
+      case ENV['PLATFORM']
+      when 'chrome_headless'
+        options.add_argument('--headless')
+      when 'chrome_incognito'
+        options.add_argument('--incognito')
+        options.add_argument('--private')
+      else
+        puts 'Browser setup without added arguments'
       end
-      if ENV['DEVICE'] == 'dashboard'
-        caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' },
-                                                                'chromeOptions' => {
-                                                                  w3c: false, args: ['start-maximized']
-                                                                })
-      end
-      $browser = Selenium::WebDriver.for :remote, url: 'http://127.0.0.1:9515/', desired_capabilities: caps,
-                                                  http_client: $client, options: options
+      caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
+      $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
+    rescue StandardError
+      $browser = Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: $client, options: options
     end
   end
 
