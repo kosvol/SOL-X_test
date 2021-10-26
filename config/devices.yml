@@ -2,7 +2,6 @@ dashboard_chrome:
   platformName: "Android"
   platformVersion: "7.1"
   deviceName: "201902230863"
-  app: ""
   port: 4723
   browserName: "Chrome"
   isHeadless: true
@@ -12,7 +11,6 @@ tablet_chrome:
   platformName: "Android"
   platformVersion: "8.1"
   deviceName: "4aa590af"
-  app: ""
   port: 8200
   browserName: "Chrome"
   chromedriverPort: 9515
@@ -24,7 +22,6 @@ ue_tablet_a_chrome:
   platformName: "Android"
   platformVersion: "8.1"
   deviceName: "6572e096"
-  app: ""
   port: 8200
   udid: "6572e096"
   browserName: "Chrome"
@@ -39,7 +36,6 @@ ue_tablet_b_chrome:
   platformVersion: "8.1"
   deviceName: "409f97da"
   udid: "409f97da"
-  app: ""
   port: 8201
   browserName: "Chrome"
   chromedriverPort: 9516
@@ -53,7 +49,6 @@ ue_dashboard_chrome:
   platformVersion: "7.1"
   deviceName: "202092300E49"
   udid: "202092300E49"
-  app: ""
   port: 8202
   browserName: "Chrome"
   chromedriverPort: 9517
@@ -66,7 +61,6 @@ thinktouch_android_ue_dashboard_chrome:
   platformName: "Android"
   platformVersion: "9.1"
   deviceName: "10.100.1.72:5555"
-  app: ""
   port: 8201
   browserName: "Chrome"
   isHeadless: true

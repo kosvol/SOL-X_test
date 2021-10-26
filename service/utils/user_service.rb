@@ -12,6 +12,13 @@ class UserService
     end
   end
 
+  def retrieve_pin_by_rank(rank)
+    user_list = UsersApi.new.request
+    user_list['data']['users'].each do |user|
+      return user['pin'] if user['crewMember']['rank'] == rank
+    end
+  end
+
   def create_default_signature(rank, vessel)
     rank_id = retrieve_user_id_by_rank(rank)
     time_service = TimeService.new
