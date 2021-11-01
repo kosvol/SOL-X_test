@@ -58,6 +58,8 @@ class DriverConfiguration
     case ENV['PLATFORM']
     when 'chrome_headless'
       @options.add_argument('--headless')
+    when 'chrome'
+      p('without any driver arguments')
     when 'chrome_incognito'
       @options.add_argument('--incognito')
       @options.add_argument('--private')

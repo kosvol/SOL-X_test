@@ -20,7 +20,6 @@ end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |condition, alert|
   is_true(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should'
-
   is_false(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should not'
 end
 
@@ -140,7 +139,9 @@ And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
 end
 
 And(/^I take note of start and end validity time for (.*)$/) do |permit_type|
-  on(PumpRoomEntry).validity_start_and_end_time(permit_type.to_s)
+  @pre_cre_page ||= PRECREBase.new(@driver)
+  @pre_cre_page.valid_start_end_time=(permit_type.to_s)
+  #on(PumpRoomEntry).validity_start_and_end_time(permit_type.to_s)
 end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|

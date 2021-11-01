@@ -16,6 +16,7 @@ android_chrome_tablet_sit_fsu_local: --profile json PLATFORM=Android  APPLICATIO
 
 ### Profile for clearing SIT/AUTO data ###
 mac_chrome_sit_lng_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitlng DEVICE=tablet
+mac_chrome_sit_lng_tablet: --profile json PLATFORM=chrome APPLICATION=c2_preview ENVIRONMENT=sitlng DEVICE=tablet
 mac_chrome_sit_cot_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitcot DEVICE=tablet
 mac_chrome_sit_fsu_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet
 mac_chrome_auto_lng_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=tablet

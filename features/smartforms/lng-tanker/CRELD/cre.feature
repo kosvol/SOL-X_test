@@ -224,9 +224,9 @@ Feature: LNGCRE
     Then I open the current PRE with status Pending approval. Rank: C/O
     Then I should see Add Gas button enabled
     And I should see Updates Needed button disabled
-
+@wip
   Scenario: The Responsible Officer Signature should be displayed CRE
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
     When I clear gas reader entries
     And I navigate to create new CRE
     And I enter pin via service for rank C/O
