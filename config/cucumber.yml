@@ -8,7 +8,7 @@ clear_sit_on_fsu_sit_env: --profile json PLATFORM=chrome_headless APPLICATION=c2
 clear_sit_on_auto_env: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
 
 ### Own's machine profiles ### 
-mac_chrome_tablet_auto: --profile json PLATFORM=chrome APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
+mac_chrome_tablet_auto: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
 mac_chrome_auto_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard
 android_chrome_tablet_auto_local: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet_chrome
 android_chrome_tablet_fsu_local: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome
@@ -43,6 +43,9 @@ mac_chrome_auto_lng_dashboard_headless: --profile json PLATFORM=chrome_headless 
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
 mac_chrome_dashboard_office_approval: --profile json PLATFORM=chrome APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
 mac_chrome_dashboard_office_approval_headless: --profile json PLATFORM=chrome_headless APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
+
+### SIT 2.0 environment sample ###
+mac_chrome_sit_cot_tablet_headless_2.0: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sit VESSEL=lng DEVICE=tablet VERSION=2.0
 
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
 json: --format pretty --expand -f json -o testreport/jsonreports/json_report.json
