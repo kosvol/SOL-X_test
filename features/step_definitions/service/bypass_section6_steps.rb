@@ -110,12 +110,3 @@ end
 And(/^I add new entry "([^"]*)" (CRE|PTW|PRE) with different gas readings$/) do |array, type|
   on(BypassPage).create_entry_record_custom_gas_readings(array, type)
 end
-
-Given(/^I truncate and dump step records$/) do
-  Postgres_clearing.import_step_record_csv_postgres
-end
-
-Given(/^I clear rubbish$/) do
-  SmartFormDBPage.get_table_data('edge', 'get_forms')
-  SmartFormDBPage.delete_rubbish_row('edge', 'delete_form')
-end

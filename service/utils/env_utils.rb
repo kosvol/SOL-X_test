@@ -5,24 +5,40 @@ require 'yaml'
 module EnvUtils
 
   def retrieve_api_url
-    env = ENV['ENVIRONMENT'][0..3]
-    env_file = File.read("#{Dir.pwd}/config/environment.yml")
-    config = YAML.safe_load(env_file)[env]
-    api_url = config['service'] % ENV['ENVIRONMENT']
-    raise if api_url.nil?
+    env = ENV['ENVIRONMENT']
+    retrieve_env_file[env]['service'] % retrieve_prefix
+  end
 
-    api_url
+  def retrieve_db_url(db_type)
+    case db_type
+    when 'cloud'
+      retrieve_env_file['cloud']['base_cloud_url']
+    when 'edge'
+      retrieve_env_file[ENV['ENVIRONMENT']]['couch_db'] % retrieve_prefix
+    else
+      "#{db_type} is not supported"
+    end
   end
 
   def retrieve_vessel_name
-    vessel_name = ENV['ENVIRONMENT'][4..6] + ENV['ENVIRONMENT'][0..3]
+    vessel_name = ENV['VESSEL'] + ENV['ENVIRONMENT']
+    return "#{vessel_name}20".upcase if ENV['VERSION'] == '2.0'
+
     vessel_name.upcase
   end
 
   def retrieve_env_url
-    env = ENV['ENVIRONMENT'][0..3]
-    application = ENV['APPLICATION']
-    env_file = File.read("#{Dir.pwd}/config/environment.yml")
-    YAML.safe_load(env_file)[env][application] % ENV['ENVIRONMENT']
+    retrieve_env_file[ENV['ENVIRONMENT']][ENV['APPLICATION']] % retrieve_prefix
+  end
+
+  def retrieve_env_file
+    YAML.safe_load(File.read("#{Dir.pwd}/config/environment.yml"))
+  end
+
+  def retrieve_prefix
+    prefix = "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}"
+    return "#{prefix}-2-0" if ENV['VERSION'] == '2.0'
+
+    prefix
   end
 end
