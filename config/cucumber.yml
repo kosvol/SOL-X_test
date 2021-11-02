@@ -1,48 +1,29 @@
 #************** Browser Profiles *************#
-mac_chrome_sit_dashboard_incognito_local: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=sitlng DEVICE=dashboard LOCAL=local
-mac_chrome_sit_dashboard_incognito: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=sitlng DEVICE=dashboard
-mac_chrome_auto_dashboard_incognito: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard LOCAL=local
-
-### clear rubbish permit ###
-clear_sit_on_fsu_sit_env: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet
-clear_sit_on_auto_env: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
-
-### Own's machine profiles ### 
-mac_chrome_tablet_auto: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
-mac_chrome_auto_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=dashboard
-android_chrome_tablet_auto_local: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet_chrome
-android_chrome_tablet_fsu_local: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome
-android_chrome_tablet_sit_fsu_local: --profile json PLATFORM=Android  APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet_chrome
-
-### Profile for clearing SIT/AUTO data ###
-mac_chrome_sit_lng_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitlng DEVICE=tablet
-mac_chrome_sit_cot_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitcot DEVICE=tablet
-mac_chrome_sit_fsu_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sitfsu DEVICE=tablet
-mac_chrome_auto_lng_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=tablet
-mac_chrome_auto_cot_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=tablet
-mac_chrome_auto_fsu_tablet_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=tablet
+tablet_sample: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=tablet
+dashboard_sample: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=fsu DEVICE=dashboard
 
 ### Jenkins AUTO COT ###
-android_chrome_dashboard_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_dashboard_chrome
-android_chrome_tablet_a_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_a_chrome
-android_chrome_tablet_b_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autocot DEVICE=ue_tablet_b_chrome
+android_chrome_dashboard_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=ue_dashboard_chrome
+android_chrome_tablet_a_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=ue_tablet_a_chrome
+android_chrome_tablet_b_cot_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=ue_tablet_b_chrome
 
 ### Jenkins AUTO LNG ###
-android_chrome_dashboard_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_dashboard_chrome
-android_chrome_tablet_a_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_tablet_a_chrome
-android_chrome_tablet_b_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=ue_tablet_b_chrome
+android_chrome_dashboard_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=lng DEVICE=ue_dashboard_chrome
+android_chrome_tablet_a_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=lng DEVICE=ue_tablet_a_chrome
+android_chrome_tablet_b_lng_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=lng DEVICE=ue_tablet_b_chrome
 
 ### Jenkins AUTO FSU ###
-android_chrome_dashboard_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=ue_dashboard_chrome
-android_chrome_tablet_a_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=ue_tablet_a_chrome
-android_chrome_tablet_b_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=autofsu DEVICE=ue_tablet_b_chrome
+android_chrome_dashboard_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=fsu DEVICE=ue_dashboard_chrome
+android_chrome_tablet_a_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=fsu DEVICE=ue_tablet_a_chrome
+android_chrome_tablet_b_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=fsu DEVICE=ue_tablet_b_chrome
 
 ### use in sit-sol-x-web-app-office-comment-ui-test ###
-mac_chrome_auto_lng_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=autolng DEVICE=dashboard
+mac_chrome_auto_lng_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=lng DEVICE=dashboard
 
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
-mac_chrome_dashboard_office_approval: --profile json PLATFORM=chrome APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
-mac_chrome_dashboard_office_approval_headless: --profile json PLATFORM=chrome_headless APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
+#mac_chrome_dashboard_office_approval: --profile json PLATFORM=chrome_incognito APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
+#mac_chrome_dashboard_office_approval_headless: --profile json PLATFORM=chrome_headless APPLICATION=office_portal ENVIRONMENT=office_approval DEVICE=dashboard
+# TODO: to comment back when office approval done the refactoring
 
 ### SIT 2.0 environment sample ###
 mac_chrome_sit_cot_tablet_headless_2.0: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sit VESSEL=lng DEVICE=tablet VERSION=2.0
