@@ -1,6 +1,6 @@
 # # frozen_string_literal: true
 # $browser
-# TODO to delete this file after refactoring is done
+# TODO: to delete this file after refactoring is done
 # class InitialPage
 #   # turn on fullreset=true, turn on no reset noreset=false
 #   def self.get_browser(os, platform, noreset = false, fullreset = true)

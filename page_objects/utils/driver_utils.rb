@@ -30,6 +30,12 @@ module DriverUtils
     element
   end
 
+  def find_elements(xpath)
+    elements = @driver.find_elements(:xpath, xpath)
+    WAIT.until { elements.size.positive? }
+    elements
+  end
+
   def verify_element_not_exist(xpath)
     @driver.manage.timeouts.implicit_wait = 0
     raise "#{xpath} element should not displayed" if @driver.find_elements(xpath: xpath).size.positive?
