@@ -135,34 +135,3 @@ Feature: Section3DDRA
       | Helicopter Operations                 | ETR         |
       | Helicopter Operations                 | ELC         |
       | Helicopter Operations                 | PMN         |
-
-
-  Scenario Outline: Verify these rank can sign off DRA
-    Given Wearable service unlink all wearables
-    And SmartForms open page
-    And SmartForms click create permit to work
-    And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Working on Deck During Heavy Weather"
-    And CommonSection navigate to "Section 3D"
-    And CommonSection click sign button
-    And PinEntry enter pin for rank "<signed_rank>"
-    When SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
-    Then Section3D should see location stamp "No. 1 Cargo Tank Port"
-    And Section3D verify signature rank "<signed_rank>"
-    Examples:
-      | signed_rank |
-#      | A C/O |
-      | 2/O         |
-#      | A 2/O |
-      | 3/O         |
-#      | A 3/O |
-      | C/E         |
-#      | A C/E |
-      | 2/E         |
-#      | A 2/E |
-      | 3/E         |
-#      | A 3/E |
-      | 4/E         |
-#      | A 4/E |
