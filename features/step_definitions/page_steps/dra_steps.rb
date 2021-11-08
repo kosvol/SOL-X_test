@@ -3,7 +3,7 @@
 require_relative '../../../page_objects/dra_page'
 
 Given('DRA edit hazards') do |table|
-  @dra_page = DRAPage.new(@driver)
+  @dra_page ||= DRAPage.new(@driver)
   params = table.hashes.first
   @dra_page.edit_hazards(params['type'], params['likelihood'], params['consequence'])
 end
@@ -20,7 +20,7 @@ Given('DRA verify evaluation of residual risk') do |table|
 end
 
 Given('DRA add additional measures') do
-  @dra_page = DRAPage.new(@driver)
+  @dra_page ||= DRAPage.new(@driver)
   @dra_page.add_additional_measures
 end
 
@@ -33,7 +33,7 @@ Given('DRA should see additional measures') do
 end
 
 Given('DRA delete a hazard') do
-  @dra_page = DRAPage.new(@driver)
+  @dra_page ||= DRAPage.new(@driver)
   @dra_page.delete_hazard
 end
 
@@ -42,7 +42,7 @@ Given('DRA should see a hazard is deleted') do
 end
 
 Given('DRA add extra hazard') do
-  @dra_page = DRAPage.new(@driver)
+  @dra_page ||= DRAPage.new(@driver)
   @dra_page.add_extra_hazard
 end
 
