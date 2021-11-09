@@ -40,11 +40,16 @@ class SectionThreeBPage < BasePage
     compare_string(expected, actual_description)
   end
 
-  def verify_dra_been_sent
-    @driver.find_element(:xpath, SECTION_THREE_B[:dra_sent] % 'yes').click
-    find_element(SECTION_THREE_B[:dra_sent_answer])
-    @driver.find_element(:xpath, SECTION_THREE_B[:dra_sent] % 'no').click
-    verify_element_not_exist(SECTION_THREE_B[:dra_sent_answer])
+  def answer_dra_is_sent(answer)
+    scroll_click(SECTION_THREE_B[:dra_sent] % answer)
+  end
+
+  def verify_dra_been_sent(expected)
+    if expected == 'should'
+      find_element(SECTION_THREE_B[:dra_sent_answer])
+    else
+      verify_element_not_exist(SECTION_THREE_B[:dra_sent_answer])
+    end
   end
 
   private

@@ -13,7 +13,7 @@ module DriverUtils
   end
 
   def scroll_click(xpath)
-    element = find_element(xpath)
+    element = @driver.find_element(:xpath, xpath)
     element.location_once_scrolled_into_view
     element.click
   end

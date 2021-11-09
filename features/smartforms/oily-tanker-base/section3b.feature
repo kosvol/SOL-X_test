@@ -45,7 +45,6 @@ Feature: Section3BDRA
     And FormPrelude select level1 "<level_one_permit>"
     When CommonSection navigate to "Section 3B"
     Then Section3B verify method description "<method_desc>"
-
     Examples:
       | level_one_permit                      | method_desc                                                   |
       | Personnel Transfer By Transfer Basket | Standard procedures for Personnel Transfer by Transfer Basket |
@@ -66,11 +65,17 @@ Feature: Section3BDRA
       | Hot Work                       | Hot Work Level-2 in Designated Area                               | General / Standard Hot Work Procedure                                                             |
       | Underwater Operations          | Underwater Operation at night or concurrent with other operations | Standard/General procedures for Underwater Operation at night or concurrent with other operations |
 
-  Scenario: Verify By: Master display after clicking Yes on is DRA sent to office
+
+  Scenario Outline: Verify By: Master display answer on is DRA sent to office
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
     And FormPrelude select level1 "Critical Equipment Maintenance"
     And FormPrelude select level2 "Maintenance on Fixed Fire Fighting System"
-    When CommonSection navigate to "Section 3B"
-    Then Section3B verify DRA been sent answer
+    And CommonSection navigate to "Section 3B"
+    When Section3B answer DRA been sent to the office for review as "<answer>"
+    Then Section3B "<expected>" see By: Master displayed
+    Examples:
+      | answer | expected   |
+      | yes    | should     |
+      | no     | should not |
