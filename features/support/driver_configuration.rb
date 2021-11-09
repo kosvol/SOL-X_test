@@ -26,6 +26,7 @@ class DriverConfiguration
     @options = Selenium::WebDriver::Chrome::Options.new
     setup_chrome_window
     setup_chrome_mode
+    setup_camera
     caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.read_timeout = 60
@@ -64,5 +65,10 @@ class DriverConfiguration
     else
       raise "#{ENV['PLATFORM']} is not supported"
     end
+  end
+
+  def setup_camera
+    @options.add_argument('--use-fake-device-for-media-stream')
+    @options.add_argument('--use-fake-ui-for-media-stream')
   end
 end

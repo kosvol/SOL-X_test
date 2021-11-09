@@ -24,6 +24,7 @@ class FormPreludePage < BasePage
 
   def select_level1_permit(permit)
     click(FORM_PRELUDE[:dropdown_list])
+    sleep 0.25 # will find the way to remove it
     scroll_click(FORM_PRELUDE[:permit_option] % permit)
     click(FORM_PRELUDE[:save_btn]) unless TWO_LEVEL_PERMITS.include? permit
   end

@@ -13,7 +13,7 @@ module DriverUtils
   end
 
   def scroll_click(xpath)
-    element = find_element(xpath)
+    element = @driver.find_element(:xpath, xpath)
     element.location_once_scrolled_into_view
     element.click
   end
@@ -28,6 +28,12 @@ module DriverUtils
     element = @driver.find_element(:xpath, xpath)
     WAIT.until { element.displayed? }
     element
+  end
+
+  def find_elements(xpath)
+    elements = @driver.find_elements(:xpath, xpath)
+    WAIT.until { elements.size.positive? }
+    elements
   end
 
   def verify_element_not_exist(xpath)

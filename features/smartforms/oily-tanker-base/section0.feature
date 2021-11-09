@@ -34,7 +34,7 @@ Feature: Section0 Form prelude
 #      | A C/E |
       | 2/E   |
 #      | A 2/E |
-      | ETO   |
+#      | ETO   |
 
   Scenario Outline: Verify non RA cannot create permit
     Given SmartForms open page
@@ -54,7 +54,6 @@ Feature: Section0 Form prelude
       | BOS   |
       | PMN   |
       | A/B   |
-      | O/S   |
       | OLR   |
 
   Scenario: Verify user can see a list of available PTW form

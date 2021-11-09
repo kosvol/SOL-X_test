@@ -1,0 +1,5 @@
+{
+  "operationName": null,
+  "variables": {},
+  "query": "{\n  wearables {\n    _id\n    lastSeen\n    lastLocationUpdate\n    location {\n    zoneId\n    zone {\n name\n __typename\n  }__typename\n   } \n    userId\n    crewMember {\n      firstName\n      rank\n      lastName\n      __typename\n    }\n    __typename\n  }\n}\n"
+}
