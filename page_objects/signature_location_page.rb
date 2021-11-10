@@ -22,8 +22,13 @@ class SignatureLocationPage < BasePage
 
   def verify_default_zone_selected(expected)
     actual_element = find_element(SIGNATURE_LOCATION[:default_zone])
-    unless expected == 'Select'
-      sleep 0.5 until actual_element.text != 'Select' # wait for default zone pops up
+    if expected != 'Select'
+      wait = 0
+      until actual_element.text != 'Select' # to wait for the text change for wearable linked user
+        sleep 0.5
+        wait += 1
+        break if wait > 5
+      end
     end
     compare_string(expected, actual_element.text)
   end

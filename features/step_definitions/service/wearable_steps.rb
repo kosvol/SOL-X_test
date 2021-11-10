@@ -38,7 +38,7 @@ And('Wearable service link crew member') do |table|
   @wearable_service ||= WearableService.new
   wearables = @wearable_service.retrieve_wearables
   unused_wearable_id = @wearable_service.retrieve_unused_wearable_id(wearables)
-  @wearable_service.link_crew_member(unused_wearable_id, params['user_id'])
+  @wearable_service.link_crew_member(unused_wearable_id, params['rank'])
   @wearable_service.update_wearable_location(unused_wearable_id, params['zone_id'], params['mac'])
 end
 
