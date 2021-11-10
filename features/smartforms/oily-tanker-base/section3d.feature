@@ -7,15 +7,15 @@ Feature: Section3DDRA
     And Wearable service link crew member
       | rank | zone_id       | mac               |
       | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
-#    And SmartForms open page
-#    And SmartForms click create permit to work
-#    And PinEntry enter pin for rank "C/O"
-#    And FormPrelude select level1 "Hot Work"
-#    And FormPrelude select level2 "Hot Work Level-2 in Designated Area"
-#    And CommonSection navigate to "Section 3D"
-#    And CommonSection click sign button
-#    And PinEntry enter pin for rank "C/O"
-#    And SignatureLocation should see zone as "Aft Station"
+    And SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Hot Work"
+    And FormPrelude select level2 "Hot Work Level-2 in Designated Area"
+    And CommonSection navigate to "Section 3D"
+    And CommonSection click sign button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation should see zone as "Aft Station"
 
 
   Scenario: Verify location of work can be manual selected after pre-select via wearable
