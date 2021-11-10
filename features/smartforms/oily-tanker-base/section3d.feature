@@ -1,7 +1,7 @@
 @section3d
 Feature: Section3DDRA
 
-  @www
+
   Scenario: Verify wearable can be picked up consistently
     Given Wearable service unlink all wearables
     And Wearable service link crew member
