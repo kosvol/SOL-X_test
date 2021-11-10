@@ -1,11 +1,12 @@
 @section3d
 Feature: Section3DDRA
 
+
   Scenario: Verify wearable can be picked up consistently
     Given Wearable service unlink all wearables
     And Wearable service link crew member
-      | user_id      | zone_id       | mac               |
-      | COTAUTO_0002 | Z-AFT-STATION | 00:00:00:00:00:10 |
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -20,8 +21,8 @@ Feature: Section3DDRA
   Scenario: Verify location of work can be manual selected after pre-select via wearable
     Given Wearable service unlink all wearables
     And Wearable service link crew member
-      | user_id      | zone_id       | mac               |
-      | COTAUTO_0002 | Z-AFT-STATION | 00:00:00:00:00:10 |
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"

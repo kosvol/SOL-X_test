@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../service/api/wearable_api'
+require_relative '../service/utils/user_service'
 
 # service for wearable
 class WearableService
@@ -23,7 +24,8 @@ class WearableService
     end
   end
 
-  def link_crew_member(wearable_id, user_id, pin = '1111')
+  def link_crew_member(wearable_id, rank, pin = '1111')
+    user_id = UserService.new.retrieve_user_id_by_rank(rank)
     @logger.info("link wearable: #{wearable_id} with user: #{user_id}")
     @wearable_api.link_crew_wearable(wearable_id, user_id, pin)
   end
