@@ -13,9 +13,20 @@ class UserService
   end
 
   def retrieve_pin_by_rank(rank)
+    pin = nil
     user_list = UsersApi.new.request
     user_list['data']['users'].each do |user|
-      return user['pin'] if user['crewMember']['rank'] == rank
+      pin = user['pin'] if user['crewMember']['rank'] == rank
+    end
+    pin
+  end
+
+  def retrieve_rank_and_name(rank)
+    user_list = UsersApi.new.request
+    user_list['data']['users'].each do |user|
+      if user['crewMember']['rank'] == rank
+        return "#{user['crewMember']['rank']} #{user['crewMember']['firstName']} #{user['crewMember']['lastName']}"
+      end
     end
   end
 

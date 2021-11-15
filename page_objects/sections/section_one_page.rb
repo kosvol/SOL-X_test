@@ -58,9 +58,6 @@ class SectionOnePage < BasePage
 
   def answer_duration_maintenance(option)
     scroll_click(SECTION_ONE[:duration_ddl])
-    @driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
-    element = @driver.find_element(xpath: "//button[contains(.,'#{option}')]")
-    WAIT.until { element.displayed? }
-    element.click
+    scroll_click("//button[contains(.,'#{option}')]")
   end
 end

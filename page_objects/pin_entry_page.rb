@@ -33,6 +33,9 @@ class PinEntryPage < BasePage
   private
 
   def retrieve_pin(rank)
-    UserService.new.retrieve_pin_by_rank(rank)
+    pin = UserService.new.retrieve_pin_by_rank(rank)
+    raise "no pin data for #{rank}" if pin.nil?
+
+    pin
   end
 end

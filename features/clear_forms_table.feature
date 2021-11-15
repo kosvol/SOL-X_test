@@ -1,23 +1,22 @@
 @global-reset
 Feature: DB reset
-  As a ...
-  I want to ...
-  So that ...
 
-  @clear-forms-table
-  Scenario: DB reset
-    Given I clear forms table
-    And I clear oa event table
-    And I clear oa forms table
-    And I clear gas reader entries
-    And I clear geofence
-    And I clear gas reader entries
-    And I clear wearable history and active users
-    And I clear postgres db
+  @clear_couch
+  Scenario: clean couch db data
+    Given DB service clear couch table
+      | db_type | table                  |
+      | edge    | forms                  |
+      | cloud   | forms                  |
+      | cloud   | office_approval_events |
+      | edge    | gas_reader_entry       |
+      | cloud   | gas_reader_entry       |
+      | edge    | geofence               |
+      | edge    | wearables_history      |
+      | edge    | alerts                 |
 
-  @clear-rubbish
-  Scenario: Clear rubbish
-    Given I clear rubbish
+  @clear_postgres
+  Scenario: clean postgres data
+    Given DB service clear postgres data
 
   @load-workload-data
   Scenario: Load workload data
