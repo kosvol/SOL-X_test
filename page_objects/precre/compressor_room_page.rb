@@ -4,6 +4,7 @@
 require_relative '../base_page'
 require_relative 'pre_cre_base_page'
 
+# CompressorRoomPage object
 class CompressorRoomPage < PRECREBase
   include EnvUtils
   COMPRESSOR_ROOM = {

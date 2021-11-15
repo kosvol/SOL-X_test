@@ -2,6 +2,7 @@
 
 require_relative '../base_page'
 
+# PRECREBase object
 class PRECREBase < BasePage
   include EnvUtils
 

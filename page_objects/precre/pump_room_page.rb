@@ -3,6 +3,7 @@
 require_relative '../base_page'
 require_relative 'pre_cre_base_page'
 
+# PumpRoomPage object
 class PumpRoomPage < PRECREBase
   include EnvUtils
 
