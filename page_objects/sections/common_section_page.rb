@@ -5,6 +5,7 @@ require_relative '../base_page'
 # CommonSectionPage object
 class CommonSectionPage < BasePage
   include EnvUtils
+  attr_accessor :time
 
   COMMON_SECTION = {
     navigation_header: '//*[@id="navigation-wrapper"]',
@@ -13,7 +14,10 @@ class CommonSectionPage < BasePage
     next_btn: "//button[contains(.,'Next')]",
     save_next_btn: "//button[contains(.,'Save & Next')]",
     previous_btn: "//button[contains(.,'Previous')]",
-    sign_btn: "//button[contains(.,'Sign')]"
+    sign_btn: "//button[contains(.,'Sign')]",
+    time_element: '//*[@id="permitActiveAt"]/span',
+    current_day: "//button[contains(@class,'Day__DayButton')]",
+    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]"
   }.freeze
 
   def initialize(driver)
@@ -41,6 +45,30 @@ class CommonSectionPage < BasePage
 
   def click_sign_sign
     click(COMMON_SECTION[:sign_btn])
+  end
+
+  def add_minutes(time, add_mm)
+    hh, mm = time.split(':')
+    mm = mm.to_i
+    hh = hh.to_i
+    mm += add_mm.to_i
+    if mm >= 60
+      mm -= 60
+      hh += 1
+    end
+    [format('%02d', hh), format('%02d', mm)]
+  end
+
+  def select_next_date(advance_days = 0)
+    find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
+      if element.attribute('class').include? 'current'
+        @driver.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click
+        break
+      end
+    end
+  rescue StandardError
+    click(COMMON_SECTION[:next_month_button])
+    find_elements("//button[contains(.,'01')]")[0].click
   end
 end
 

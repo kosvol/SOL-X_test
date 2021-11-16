@@ -124,7 +124,7 @@ end
 
 And(/^I activate the current (PRE|CRE) form$/) do |permit_type|
   step "I open the current #{permit_type} with status Pending approval. Rank: C/O"
-  step format('I take note of start and end validity time for %s', permit_type.to_s)
+  step format('PRE Page save current start and end validity time for %s', permit_type.to_s)
   step 'I press the "Approve for Activation" button'
   step 'I sign with valid C/O rank'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
@@ -136,12 +136,6 @@ And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
   sleep 1
   on(BypassPage).activate_pre_cre
   sleep 5
-end
-
-And(/^I take note of start and end validity time for (.*)$/) do |permit_type|
-  @pre_cre_page ||= PRECREBase.new(@driver)
-  @pre_cre_page.valid_start_end_time=(permit_type.to_s)
-  #on(PumpRoomEntry).validity_start_and_end_time(permit_type.to_s)
 end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|

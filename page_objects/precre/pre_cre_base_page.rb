@@ -101,7 +101,7 @@ class PRECREBase < BasePage
 
   def entered_entrant_listed?(entrant)
     click(BASE_PRE_CRE[:entrant_names_dd])
-    find_elements_css(BASE_PRE_CRE[:options_text]).each do |crew|
+    @driver.find_elements(css: BASE_PRE_CRE[:options_text]).each do |crew|
       return false if entrant == crew.text
     end
     true
@@ -111,8 +111,8 @@ class PRECREBase < BasePage
     entr_arr = []
     click(BASE_PRE_CRE[:entrant_names_dd])
     while additional_entrants.positive?
-      find_elements_css(BASE_PRE_CRE[:options_text])[additional_entrants].click
-      entr_arr.push(find_elements_css(BASE_PRE_CRE[:options_text])[additional_entrants].text)
+      @driver.find_elements(css:BASE_PRE_CRE[:options_text])[additional_entrants].click
+      entr_arr.push(@driver.find_elements(css: BASE_PRE_CRE[:options_text])[additional_entrants].text)
       additional_entrants -= 1
     end
     self.entrants= (entr_arr)
@@ -136,13 +136,7 @@ class PRECREBase < BasePage
     DURATION[duration]
   end
 
-  def button_enabled?(value)
-    element_enabled?(BASE_PRE_CRE[:button], value)
-  end
 
-  def button_disabled?(value)
-    element_disabled?(BASE_PRE_CRE[:button], value)
-  end
 
   private
 

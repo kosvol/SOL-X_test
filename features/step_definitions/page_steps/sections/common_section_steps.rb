@@ -25,3 +25,8 @@ Given('CommonSection click sign button') do
   @section_navigation_page ||= CommonSectionPage.new(@driver)
   @section_navigation_page.click_sign_sign
 end
+
+And('CommonSection select next date') do
+  @common_page ||= CommonSectionPage.new(@driver)
+  @common_page.select_next_date
+end

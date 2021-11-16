@@ -12,12 +12,6 @@ module DriverUtils
     element.click
   end
 
-  def click_css(css)
-    element = @driver.find_element(:css, css)
-    WAIT.until { element.displayed? }
-    element.click
-  end
-
   def scroll_click(xpath)
     element = @driver.find_element(:xpath, xpath)
     element.location_once_scrolled_into_view
@@ -39,12 +33,6 @@ module DriverUtils
   def find_elements(xpath)
     elements = @driver.find_elements(:xpath, xpath)
     WAIT.until { elements.size.positive? }
-    elements
-  end
-
-  def find_elements_css(css)
-    elements = @driver.find_elements(:css, css)
-    WAIT.until { elements.first.displayed? }
     elements
   end
 
@@ -70,13 +58,13 @@ module DriverUtils
     xpath_value = format(xpath, value)
     element = @driver.find_element(:xpath, xpath_value)
     element.location_once_scrolled_into_view
-    is_true(element.enabled?, true)
+    true?(element.enabled?)
   end
 
   def element_disabled?(xpath, value)
     xpath_value = format(xpath, value)
     element = @driver.find_element(:xpath, xpath_value)
-    is_false(element.enabled?, true)
+    false?(element.enabled?)
   end
 
   def scroll_times_direction(time, direct)
@@ -84,6 +72,25 @@ module DriverUtils
       scroll_down_by_dist if direct == 'down'
       scroll_up_by_dist if direct == 'up'
     end
+  end
+
+  def fill_all_text_areas(input, text)
+    tmp_elements = find_elements(input)
+    tmp_elements.each do |element|
+      element.send_keys(text)
+    end
+  end
+
+  def checkbox_click(xpath, text)
+    click(format(xpath, text).to_s)
+  end
+
+  def true?(element)
+    expect(element).to be true
+  end
+
+  def false?(element)
+    expect(element).to be false
   end
 
   private

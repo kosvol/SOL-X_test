@@ -234,7 +234,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And PRE Page save current start and end validity time for CRE
     And I check "Responsible Officer Signature" is present
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
@@ -255,7 +255,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And PRE Page save current start and end validity time for CRE
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
@@ -279,7 +279,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And PRE Page save current start and end validity time for CRE
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'

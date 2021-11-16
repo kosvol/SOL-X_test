@@ -4,17 +4,21 @@ Feature: PumpRoomEntry
   I want to ...
   So that ...
 
-#  Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
-#    Given I launch sol-x portal without unlinking wearable
-#    Given I fill and submit PRE permit details via service
-#    Then I should see no new entry log message
-
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-
-    Given I fill and submit PRE permit details via service
+    And Pre fill up permit with Duration 4 and delay to activate 3
+    And GasReadings fill equipment fields
+    And CommonSection select next date
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off
+    And GasReadings click Enter pin and Submit button
+    #Given I fill and submit PRE permit details via service
     Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
