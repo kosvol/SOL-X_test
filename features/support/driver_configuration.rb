@@ -62,7 +62,6 @@ class DriverConfiguration
     when 'chrome_incognito'
       @options.add_argument('--incognito')
       @options.add_argument('--private')
-      @options.add_argument('-disable-gpu')
     else
       raise "#{ENV['PLATFORM']} is not supported"
     end
