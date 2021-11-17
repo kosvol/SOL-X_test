@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative '../../../page_objects/precre/pre_cre_base_page'
+require_relative '../../../page_objects/precre/pump_room_page'
+
 #I (should|should not) see PRE landing screen
 Then(/^Pre verify PRE landing screen is (present|not present)$/) do |condition|
   @pre_page ||= PumpRoomPage.new(@driver)
@@ -31,6 +34,7 @@ Then('Pre select Permit Duration {int}') do |duration|
 end
 #Button "([^"]*)" (should|should not) be disabled
 And(/^Pre verify Button "([^"]*)" (enabled|disabled)$/) do |button_text, condition|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.element_enabled?(BASE_PRE_CRE[:button], button_text) if condition == 'enabled'
   @pre_page.element_disabled?(BASE_PRE_CRE[:button], button_text) if condition == 'disabled'
 end
@@ -43,15 +47,18 @@ end
 
 #I select current day for field "([^"]*)"
 Then(/^PRE select Date of Last Calibration as current day"$/) do
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.select_calibration_date
 end
 
 #^I click (Yes|No|N/A) to answer the question "(.*)"
 Then(%r{^Pre Select (Yes|No|N/A) answer for the question "(.*)"$}) do |answer, question|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.select_checkbox(answer, question)
 end
 #I (fill up|fill up with gas readings) (PRE.|CRE.) Duration (.*). Delay to activate (.*)
 Then(/^Pre fill up permit with Duration (.*) and delay to activate (.*)$/) do |duration, delay|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.fill_pre_form(duration)
   @pre_page.scroll_times_direction(1, 'down')
   @pre_page.activate_time_picker(delay)

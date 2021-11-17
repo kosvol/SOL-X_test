@@ -33,4 +33,3 @@ And(/^GasReadings click Enter pin and Submit button$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @driver.find_element(:css, @gas_readings_page.GAS_READINGS[:enter_pin_and_submit_btn]).click
 end
-

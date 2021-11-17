@@ -3,7 +3,7 @@ Feature: PumpRoomEntry
   As a ...
   I want to ...
   So that ...
-
+@wip
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When SmartForms click create PRE
@@ -17,8 +17,11 @@ Feature: PumpRoomEntry
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And GasReadings click Enter pin and Submit button
-    #Given I fill and submit PRE permit details via service
+
+    Given I fill and submit PRE permit details via service
     Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu

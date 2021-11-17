@@ -1,15 +1,15 @@
 # frozen_string_literal: true"
 
 require_relative '../base_page'
-require_relative 'pre_cre_base_page'
+require_relative '../sections/common_section_page'
 
 # PumpRoomPage object
 class PumpRoomPage < PRECREBase
   include EnvUtils
-  include CommonSectionPage
 
   PUMP_ROOM = {
     current_activity_pre: "//*[contains(text(),'Pump Room Entry Permit')]/parent::span",
+    pre_header: "//*[contains(text(),'Section 1: Pump Room Entry Permit')]",
     pre_id: "//h4[contains(text(),'PRE No:')]/following::p",
     pump_room_display_setting: "//span[contains(.,'Pump Room')]",
     gas_last_calibration_button: "//button[@id='gasLastCalibrationDate']",
@@ -19,8 +19,14 @@ class PumpRoomPage < PRECREBase
     picker: "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']",
     picker_hh: "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
     picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
-    permit_validity: "//h2[contains(text(),'Permit Validity')]"
+    permit_validity: "//h2[contains(text(),'Permit Validity')]",
+    time_element: '//*[@id="permitActiveAt"]'
   }.freeze
+
+  def initialize(driver)
+    super
+    find_element(PUMP_ROOM[:pre_header])
+  end
 
   def pre_landing_false?
     false?(BASE_PRE_CRE[:heading_text].text.eql?('Section 1: Pump Room Entry Permit'))
@@ -56,7 +62,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def activate_time_picker(delay)
-    time = find_element(COMMON_SECTION[:time_element].text)
+    time = find_element(PUMP_ROOM[:time_element].text)
     hh, mm = add_minutes(time, delay)
     picker_hh = format(PUMP_ROOM[:picker_hh], hh)
     picker_mm = format(PUMP_ROOM[:picker_mm], mm)

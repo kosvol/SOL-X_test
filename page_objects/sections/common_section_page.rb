@@ -17,7 +17,8 @@ class CommonSectionPage < BasePage
     sign_btn: "//button[contains(.,'Sign')]",
     time_element: '//*[@id="permitActiveAt"]/span',
     current_day: "//button[contains(@class,'Day__DayButton')]",
-    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]"
+    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
+    done_button: "//button[contains(.,'Done')]"
   }.freeze
 
   def initialize(driver)
@@ -69,6 +70,10 @@ class CommonSectionPage < BasePage
   rescue StandardError
     click(COMMON_SECTION[:next_month_button])
     find_elements("//button[contains(.,'01')]")[0].click
+  end
+
+  def click_done_dialog
+    find_elements(COMMON_SECTION[:done_button]).first.click
   end
 end
 

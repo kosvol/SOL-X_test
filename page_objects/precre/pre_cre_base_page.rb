@@ -51,6 +51,11 @@ class PRECREBase < BasePage
     confirm_btn: "//button[contains(.,'Confirm')]"
   }.freeze
 
+  def initialize(driver)
+    super
+    find_element(BASE_PRE_CRE[:heading_text])
+  end
+
   def valid_start_end_time=(permit_type)
     if permit_type == 'CRE'
       self.pre_permit_start_time = retrieve_text(BASE_PRE_CRE[:permit_start_time_cre])
