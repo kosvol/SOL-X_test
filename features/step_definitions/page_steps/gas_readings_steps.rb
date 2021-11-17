@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative '../../../page_objects/gas_readings_page'
+
 #I add (all|only normal) gas readings with (.*) rank 1
 And(/^GasReadings fill equipment fields$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
