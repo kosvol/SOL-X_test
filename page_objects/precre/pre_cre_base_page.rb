@@ -16,10 +16,10 @@ class PRECREBase < BasePage
     six_hours_duration: "//button[contains(.,'6 hours')]",
     eight_hours_duration: "//button[contains(.,'8 hours')]",
     view_btn: "//button[contains(.,'View')]",
-    permit_end_time: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p",
-    permit_start_time: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p",
-    permit_start_time1: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p",
-    permit_end_time1: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p",
+    permit_end_time_pre: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p",
+    permit_start_time_pre: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p",
+    permit_start_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p",
+    permit_end_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p",
     form_structure: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span",
     reporting_interval: "//input[@id='pre_section2_reportingIntervalPeriod']",
     pre_creator_form: "//div[contains(@class,'Cell__Description')][1]",
@@ -48,17 +48,16 @@ class PRECREBase < BasePage
     cross_btn: "//button[contains(@class,'Button__ButtonStyled-')]/span",
     options_text: 'div.option-text',
     clock: '//*[@id="permitActiveAt"]/span',
-    confirm_btn: "//button[contains(.,'Confirm')]",
-    button: "//button[contains(.,'%s')]"
+    confirm_btn: "//button[contains(.,'Confirm')]"
   }.freeze
 
   def valid_start_end_time=(permit_type)
     if permit_type == 'CRE'
-      self.pre_permit_start_time = retrieve_text(BASE_PRE_CRE[:permit_start_time1])
-      self.pre_permit_end_time = retrieve_text(BASE_PRE_CRE[:permit_end_time1])
+      self.pre_permit_start_time = retrieve_text(BASE_PRE_CRE[:permit_start_time_cre])
+      self.pre_permit_end_time = retrieve_text(BASE_PRE_CRE[:permit_end_time_cre])
     else
-      self.pre_permit_start_time = retrieve_text(BASE_PRE_CRE[:permit_end_time])
-      self.pre_permit_end_time = retrieve_text(BASE_PRE_CRE[:permit_end_time])
+      self.pre_permit_start_time = retrieve_text(BASE_PRE_CRE[:permit_end_time_pre])
+      self.pre_permit_end_time = retrieve_text(BASE_PRE_CRE[:permit_end_time_pre])
     end
   end
 
@@ -135,8 +134,6 @@ class PRECREBase < BasePage
     scroll_times_direction(5, 'down')
     DURATION[duration]
   end
-
-
 
   private
 

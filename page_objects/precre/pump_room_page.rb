@@ -23,7 +23,7 @@ class PumpRoomPage < PRECREBase
   }.freeze
 
   def pre_landing_false?
-    false?(BASE_PRE_CRE[:heading_text].text.eql? 'Section 1: Pump Room Entry Permit')
+    false?(BASE_PRE_CRE[:heading_text].text.eql?('Section 1: Pump Room Entry Permit'))
   end
 
   def pre_questions(base_data)
@@ -55,7 +55,7 @@ class PumpRoomPage < PRECREBase
     select_permit_duration(duration)
   end
 
-  def time_picker_activate(delay)
+  def activate_time_picker(delay)
     time = find_element(COMMON_SECTION[:time_element].text)
     hh, mm = add_minutes(time, delay)
     picker_hh = format(PUMP_ROOM[:picker_hh], hh)
@@ -64,6 +64,12 @@ class PumpRoomPage < PRECREBase
     scroll_click(picker_hh)
     scroll_click(picker_mm)
     click(PUMP_ROOM[:permit_validity])
+  end
+
+  def select_calibration_date
+    click(PUMP_ROOM[:gas_last_calibration_button])
+    select_current_day
+    compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
   end
 
 end

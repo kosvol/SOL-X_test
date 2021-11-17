@@ -42,10 +42,8 @@ And(/^Pre save current start and end validity time for (.*)$/) do |permit_type|
 end
 
 #I select current day for field "([^"]*)"
-Then(/^Pre select current day for field "Date of Last Calibration"$/) do
-  @pre_page.click(PUMP_ROOM[:gas_last_calibration_button])
-  @pre_page.select_current_day
-  @pre_page.compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
+Then(/^PRE select Date of Last Calibration as current day"$/) do
+  @pre_page.select_calibration_date
 end
 
 #^I click (Yes|No|N/A) to answer the question "(.*)"
@@ -56,5 +54,5 @@ end
 Then(/^Pre fill up permit with Duration (.*) and delay to activate (.*)$/) do |duration, delay|
   @pre_page.fill_pre_form(duration)
   @pre_page.scroll_times_direction(1, 'down')
-  @pre_page.time_picker_activate(delay)
+  @pre_page.activate_time_picker(delay)
 end
