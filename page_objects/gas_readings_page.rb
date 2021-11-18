@@ -34,7 +34,7 @@ class GasReadingsPage < BasePage
     @driver.find_element(:xpath, GAS_INFORMATION[:gas_sr_number_input]).send_keys('Test Automation')
   end
 
-  def normal_gas_readings(o2, hc, h2s, co)
+  def add_normal_gas_readings(o2, hc, h2s, co)
     @driver.find_element(:xpath, GAS_READINGS[:o2_input]).send_keys(o2)
     @driver.find_element(:xpath, GAS_READINGS[:hc_input]).send_keys(hc)
     @driver.find_element(:xpath, GAS_READINGS[:h2s_input]).send_keys(h2s)
@@ -42,7 +42,7 @@ class GasReadingsPage < BasePage
     click(GAS_INFORMATION[:continue_btn])
   end
 
-  def toxic_gas_readings(gas_name, threhold, reading, unit)
+  def add_toxic_gas_readings(gas_name, threhold, reading, unit)
     find_element(GAS_READINGS[:gas_name_input]).send_keys(gas_name)
     find_element(GAS_READINGS[:threshold_input]).send_keys(threhold)
     find_element(GAS_READINGS[:reading_input]).send_keys(reading)

@@ -17,13 +17,13 @@ end
 #I add (all|only normal) gas readings with (.*) rank 3
 And(/^GasReadings add normal gas readings$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @gas_readings_page.normal_gas_readings('1', '2', '3', '4')
+  @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
 end
 
 #I add (all|only normal) gas readings with (.*) rank 4
 And(/^GasReadings add toxic gas readings$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @gas_readings_page.toxic_gas_readings('Test', '20', '1.5', 'cc')
+  @gas_readings_page.add_toxic_gas_readings('Test', '20', '1.5', 'cc')
 end
 
 #I add (all|only normal) gas readings with (.*) rank 5

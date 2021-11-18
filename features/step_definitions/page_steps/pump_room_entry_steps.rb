@@ -7,8 +7,7 @@ require_relative '../../../page_objects/precre/pump_room_page'
 Then(/^Pre verify PRE landing screen is (present|not present)$/) do |condition|
   @pre_page ||= PumpRoomPage.new(@driver)
   if condition.to_s.downcase == 'present'
-    @pre_page.compare_string('Section 1: Pump Room Entry Permit',
-                             BASE_PRE_CRE[:heading_text].text)
+    @pre_page.verify_pre_section_title
   end
   @pre_page.pre_landing_false? if condition.to_s.downcase == 'not present'
 end
@@ -31,12 +30,6 @@ end
 #'I select Permit Duration {int}'
 Then('Pre select Permit Duration {int}') do |duration|
   @pre_page.select_permit_duration(duration)
-end
-#Button "([^"]*)" (should|should not) be disabled
-And(/^Pre verify Button "([^"]*)" (enabled|disabled)$/) do |button_text, condition|
-  @pre_page ||= PumpRoomPage.new(@driver)
-  @pre_page.element_enabled?(BASE_PRE_CRE[:button], button_text) if condition == 'enabled'
-  @pre_page.element_disabled?(BASE_PRE_CRE[:button], button_text) if condition == 'disabled'
 end
 
 #I take note of start and end validity time for (.*)

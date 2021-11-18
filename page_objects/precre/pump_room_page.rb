@@ -78,4 +78,7 @@ class PumpRoomPage < PRECREBase
     compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
   end
 
+  def verify_pre_section_title
+    compare_string('Section 1: Pump Room Entry Permit', BASE_PRE_CRE[:heading_text].text)
+  end
 end
