@@ -3,23 +3,20 @@ Feature: PumpRoomEntry
   As a ...
   I want to ...
   So that ...
-
+@wip
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
     And Pre fill up permit with Duration 4 and delay to activate 3
     And GasReadings fill equipment fields
-    #And CommonSection select next date
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
-    And SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
-    And GasReadings click Enter pin and Submit button
+    And SignatureLocation sign off static zone area
+
 
     Given I fill and submit PRE permit details via service
     Then I should see no new entry log message

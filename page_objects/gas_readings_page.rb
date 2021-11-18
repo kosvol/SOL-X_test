@@ -51,11 +51,11 @@ class GasReadingsPage < BasePage
   end
 
   def click_add_gas_button
-    click(GAS_INFORMATION[:add_gas_btn])
+    scroll_click(GAS_INFORMATION[:add_gas_btn])
   end
 
   def click_review_and_sign
-    click(GAS_INFORMATION[:review_sign_btn])
+    scroll_click(GAS_INFORMATION[:review_sign_btn])
   end
 
   def click_pin_and_submit
