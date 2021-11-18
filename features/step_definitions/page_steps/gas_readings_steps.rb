@@ -11,7 +11,7 @@ end
 #I add (all|only normal) gas readings with (.*) rank 2
 And(/^GasReadings click add gas readings$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  click(@gas_readings_page.GAS_READINGS[:add_gas_btn])
+  @gas_readings_page.click_add_gas_button
 end
 
 #I add (all|only normal) gas readings with (.*) rank 3
@@ -29,11 +29,11 @@ end
 #I add (all|only normal) gas readings with (.*) rank 5
 And(/^GasReadings click Review & Sign button$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  click(@gas_readings_page.GAS_READINGS[:review_sign_btn])
+  @gas_readings_page.click_review_and_sign
 end
 
 #I add (all|only normal) gas readings with (.*) rank 6
 And(/^GasReadings click Enter pin and Submit button$/) do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @driver.find_element(:css, @gas_readings_page.GAS_READINGS[:enter_pin_and_submit_btn]).click
+  @gas_readings_page.click_pin_and_submit
 end

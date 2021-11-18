@@ -49,4 +49,16 @@ class GasReadingsPage < BasePage
     find_element(GAS_READINGS[:unit_input]).send_keys(unit)
     click(GAS_INFORMATION[:add_toxic_gas_btn])
   end
+
+  def click_add_gas_button
+    click(GAS_INFORMATION[:add_gas_btn])
+  end
+
+  def click_review_and_sign
+    click(GAS_INFORMATION[:review_sign_btn])
+  end
+
+  def click_pin_and_submit
+    @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn]).click
+  end
 end
