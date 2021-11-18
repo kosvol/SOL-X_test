@@ -10,7 +10,7 @@ Feature: PumpRoomEntry
     Then PinEntry enter pin for rank "C/O"
     And Pre fill up permit with Duration 4 and delay to activate 3
     And GasReadings fill equipment fields
-    And CommonSection select next date
+    #And CommonSection select next date
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings

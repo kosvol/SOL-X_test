@@ -48,18 +48,6 @@ class CommonSectionPage < BasePage
     click(COMMON_SECTION[:sign_btn])
   end
 
-  def add_minutes(time, add_mm)
-    hh, mm = time.split(':')
-    mm = mm.to_i
-    hh = hh.to_i
-    mm += add_mm.to_i
-    if mm >= 60
-      mm -= 60
-      hh += 1
-    end
-    [format('%02d', hh), format('%02d', mm)]
-  end
-
   def select_next_date(advance_days = 0)
     find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
       if element.attribute('class').include? 'current'

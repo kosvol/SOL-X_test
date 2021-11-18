@@ -137,15 +137,15 @@ class PRECREBase < BasePage
   def select_permit_duration(duration)
     scroll_click(BASE_PRE_CRE[:permit_validation_btn])
     scroll_times_direction(5, 'down')
-    DURATION[duration]
+    click(DURATION[duration])
   end
 
   private
 
   DURATION = {
-    4 => BASE_PRE_CRE[:four_hours_duration],
-    6 => BASE_PRE_CRE[:six_hours_duration],
-    8 => BASE_PRE_CRE[:eight_hours_duration]
+    '4' => BASE_PRE_CRE[:four_hours_duration],
+    '6' => BASE_PRE_CRE[:six_hours_duration],
+    '8' => BASE_PRE_CRE[:eight_hours_duration]
   }.freeze
 
 end

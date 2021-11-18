@@ -62,14 +62,15 @@ class PumpRoomPage < PRECREBase
   end
 
   def activate_time_picker(delay)
-    time = find_element(PUMP_ROOM[:time_element].text)
+    time = find_element(PUMP_ROOM[:time_element]).text
     hh, mm = add_minutes(time, delay)
     picker_hh = format(PUMP_ROOM[:picker_hh], hh)
     picker_mm = format(PUMP_ROOM[:picker_mm], mm)
     click(PUMP_ROOM[:picker])
     scroll_click(picker_hh)
     scroll_click(picker_mm)
-    click(PUMP_ROOM[:permit_validity])
+    @driver.action.move_to(@driver.find_element(:xpath, PUMP_ROOM[:picker]), 50, 50).click.perform
+    #click(PUMP_ROOM[:permit_validity])
   end
 
   def select_calibration_date
@@ -80,5 +81,19 @@ class PumpRoomPage < PRECREBase
 
   def verify_pre_section_title
     compare_string('Section 1: Pump Room Entry Permit', BASE_PRE_CRE[:heading_text].text)
+  end
+
+  private
+
+  def add_minutes(time, add_mm)
+    hh, mm = time.split(':')
+    mm = mm.to_i
+    hh = hh.to_i
+    mm += add_mm.to_i
+    if mm >= 60
+      mm -= 60
+      hh += 1
+    end
+    [format('%02d', hh), format('%02d', mm)]
   end
 end
