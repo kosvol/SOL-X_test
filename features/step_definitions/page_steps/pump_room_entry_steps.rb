@@ -56,3 +56,4 @@ Then(/^Pre fill up permit with Duration (.*) and delay to activate (.*)$/) do |d
   @pre_page.scroll_times_direction(1, 'down')
   @pre_page.activate_time_picker(delay)
 end
+
