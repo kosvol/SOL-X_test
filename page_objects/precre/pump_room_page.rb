@@ -39,7 +39,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def alert_text_displayed?(value)
-    element_displayed?("//div[contains(.,'%s')]", value)
+    raise 'Verify failed' unless element_displayed?("//div[contains(.,'%s')]", value) == true
   end
 
   def alert_not_present?(text)
@@ -70,7 +70,6 @@ class PumpRoomPage < PRECREBase
     scroll_click(picker_hh)
     scroll_click(picker_mm)
     @driver.action.move_to(@driver.find_element(:xpath, PUMP_ROOM[:picker]), 50, 50).click.perform
-    #click(PUMP_ROOM[:permit_validity])
   end
 
   def select_calibration_date
