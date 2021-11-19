@@ -15,11 +15,10 @@ Feature: PumpRoomEntry
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
-    And SignatureLocation sign off static zone area
+    And SignatureLocation sign off first zone area
 
-
-    Given I fill and submit PRE permit details via service
-    Then I should see no new entry log message
+    #Given I fill and submit PRE permit details via service
+   # Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page

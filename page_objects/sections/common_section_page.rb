@@ -5,7 +5,6 @@ require_relative '../base_page'
 # CommonSectionPage object
 class CommonSectionPage < BasePage
   include EnvUtils
-  attr_accessor :time
 
   COMMON_SECTION = {
     navigation_header: '//*[@id="navigation-wrapper"]',
@@ -15,7 +14,6 @@ class CommonSectionPage < BasePage
     save_next_btn: "//button[contains(.,'Save & Next')]",
     previous_btn: "//button[contains(.,'Previous')]",
     sign_btn: "//button[contains(.,'Sign')]",
-    time_element: '//*[@id="permitActiveAt"]/span',
     current_day: "//button[contains(@class,'Day__DayButton')]",
     next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
     done_button: "//button[contains(.,'Done')]"

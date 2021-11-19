@@ -55,16 +55,20 @@ class SignatureLocationPage < BasePage
     click(SIGNATURE_LOCATION[:done_btn])
   end
 
-  def sign_off_static_zone_area
+  def sign_off_first_zone_area
     click(SIGNATURE_LOCATION[:signature_pad])
     click_location_dropdown
-    area = find_elements(SIGNATURE_LOCATION[:zone_list]).first
-    area.location_once_scrolled_into_view
-    area.click
-    zone = find_elements(SIGNATURE_LOCATION[:zone_list]).first
-    zone.location_once_scrolled_into_view
-    zone.click
+    select_first_aria_zone
+    select_first_aria_zone
     click(SIGNATURE_LOCATION[:submit_btn])
     click(SIGNATURE_LOCATION[:done_btn])
+  end
+
+  private
+
+  def select_first_aria_zone
+    area_zone = find_elements(SIGNATURE_LOCATION[:zone_list]).first
+    area_zone.location_once_scrolled_into_view
+    area_zone.click
   end
 end

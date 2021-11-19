@@ -11,8 +11,7 @@ class FormPreludePage < BasePage
     save_btn: '//button[contains(.,"Save & Next")]',
     back_btn: '//button[contains(.,"Back")]',
     close_btn: '//button[contains(.,"Close")]',
-    permit_type_list: "div[role='dialog'] > div:nth-child(2) > div > ul > li > button",
-    confirm_btn: "//button[contains(.,'Confirm')]"
+    permit_type_list: "div[role='dialog'] > div:nth-child(2) > div > ul > li > button"
   }.freeze
 
   TWO_LEVEL_PERMITS = ['Cold Work', 'Critical Equipment Maintenance', 'Hot Work', 'Rotational Portable Power Tools',

@@ -45,7 +45,8 @@ class SmartFormsPage < BasePage
 
   def verify_base_menu
     menu_categories = YAML.load_file('data/menu.yml')['Menu base']
-    @driver.find_elements(:xpath, SMART_FORMS[:menu_categories]).each_with_index do |element, index|
+    menu_elements = @driver.find_elements(:xpath, SMART_FORMS[:menu_categories])
+    menu_elements.each_with_index do |element, index|
       compare_string(menu_categories[index], element.text)
     end
   end

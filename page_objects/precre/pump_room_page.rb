@@ -29,7 +29,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def pre_landing_false?
-    false?(BASE_PRE_CRE[:heading_text].text.eql?('Section 1: Pump Room Entry Permit'))
+    raise 'Verify failed' unless (BASE_PRE_CRE[:heading_text].text.eql?('Section 1: Pump Room Entry Permit')) == true
   end
 
   def pre_questions(base_data)
@@ -39,7 +39,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def alert_text_displayed?(value)
-    raise 'Verify failed' unless element_enabled?("//div[contains(.,'%s')]", value) == true
+    raise 'Verify failed' unless find_element(format("//div[contains(.,'%s')]", value).to_s).enabled? == true
   end
 
   def alert_not_present?(text)
@@ -56,19 +56,18 @@ class PumpRoomPage < PRECREBase
   end
 
   def fill_pre_form(duration)
-    fill_all_text_areas(PUMP_ROOM[:text_area], 'Test Automation')
-    checkbox_click(PUMP_ROOM[:button_sample], ['At Sea', 'In Port'].sample)
+    tmp_elements = find_elements(PUMP_ROOM[:text_area])
+    tmp_elements.each do |element|
+      element.send_keys('Test Automation')
+    end
+    click(format(PUMP_ROOM[:button_sample], ['At Sea', 'In Port'].sample).to_s)
     select_permit_duration(duration)
   end
 
   def activate_time_picker(delay)
-    time = find_element(PUMP_ROOM[:time_element]).text
-    hh, mm = add_minutes(time, delay)
-    picker_hh = format(PUMP_ROOM[:picker_hh], hh)
-    picker_mm = format(PUMP_ROOM[:picker_mm], mm)
     click(PUMP_ROOM[:picker])
-    scroll_click(picker_hh)
-    scroll_click(picker_mm)
+    scroll_click(picker_hh_mm(delay).first)
+    scroll_click(picker_hh_mm(delay).last)
     @driver.action.move_to(@driver.find_element(:xpath, PUMP_ROOM[:picker]), 50, 50).click.perform
   end
 
@@ -83,6 +82,14 @@ class PumpRoomPage < PRECREBase
   end
 
   private
+
+  def picker_hh_mm(delay)
+    time = find_element(PUMP_ROOM[:time_element]).text
+    hh, mm = add_minutes(time, delay)
+    picker_hh = format(PUMP_ROOM[:picker_hh], hh)
+    picker_mm = format(PUMP_ROOM[:picker_mm], mm)
+    [picker_hh, picker_mm]
+  end
 
   def add_minutes(time, add_mm)
     hh, mm = time.split(':')

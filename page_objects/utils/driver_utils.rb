@@ -47,52 +47,22 @@ module DriverUtils
     raise "verify failed, expected: #{expected}, actual:#{actual}" unless expected == actual
   end
 
-  def element_enabled?(xpath, value)
-    xpath_value = format(xpath, value)
-    element = @driver.find_element(:xpath, xpath_value)
-    element.location_once_scrolled_into_view
-    true?(element.enabled?)
-  end
-
   def element_disabled?(xpath, value)
     xpath_value = format(xpath, value)
     element = @driver.find_element(:xpath, xpath_value)
-    false?(element.enabled?)
+    element.enabled?
   end
 
   def scroll_times_direction(time, direct)
     time.times do
-      scroll_down_by_dist if direct == 'down'
-      scroll_up_by_dist if direct == 'up'
+      scroll_by_dist(0, 250) if direct == 'down'
+      scroll_by_dist(0, -350) if direct == 'up'
     end
-  end
-
-  def fill_all_text_areas(input, text)
-    tmp_elements = find_elements(input)
-    tmp_elements.each do |element|
-      element.send_keys(text)
-    end
-  end
-
-  def checkbox_click(xpath, text)
-    click(format(xpath, text).to_s)
-  end
-
-  def true?(element)
-    expect(element).to be true
-  end
-
-  def false?(element)
-    expect(element).to be false
   end
 
   private
 
-  def scroll_down_by_dist
-    @driver.execute_script('window.scrollBy(0,250)', '')
-  end
-
-  def scroll_up_by_dist
-    @driver.execute_script('window.scrollBy(0,-350)', '')
+  def scroll_by_dist(x_coordinate, y_coordinate)
+    @driver.execute_script("window.scrollBy(#{x_coordinate},#{y_coordinate})", '')
   end
 end
