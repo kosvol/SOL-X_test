@@ -39,7 +39,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def alert_text_displayed?(value)
-    raise 'Verify failed' unless element_displayed?("//div[contains(.,'%s')]", value) == true
+    raise 'Verify failed' unless element_enabled?("//div[contains(.,'%s')]", value) == true
   end
 
   def alert_not_present?(text)

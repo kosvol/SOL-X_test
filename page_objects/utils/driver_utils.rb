@@ -47,13 +47,6 @@ module DriverUtils
     raise "verify failed, expected: #{expected}, actual:#{actual}" unless expected == actual
   end
 
-  def element_displayed?(xpath, value)
-    xpath_value = format(xpath, value)
-    element = @driver.find_element(:xpath, xpath_value)
-    element.location_once_scrolled_into_view
-    element.displayed?
-  end
-
   def element_enabled?(xpath, value)
     xpath_value = format(xpath, value)
     element = @driver.find_element(:xpath, xpath_value)
