@@ -18,11 +18,11 @@ end
 
 #I (should|should not) see alert message "(.*)" 1
 Then(/^PRE verify alert message "([^"]*)" doesn't show up$/) do |message|
-  @pre_page.alert_not_present?(message) if condition.downcase.to_s == 'not present'
+  @pre_page.alert_not_present?(message)
 end
 #I (should|should not) see alert message "(.*)" 2
 Then(/^PRE verify alert message "([^"]*)"$/) do |message|
-  @pre_page.verify_error_msg(message) if condition.downcase.to_s == 'present'
+  @pre_page.verify_error_msg(message)
 end
 
 #'I select Permit Duration {int}'
@@ -32,8 +32,8 @@ end
 
 #I take note of start and end validity time for (.*)
 And(/^PRE save current start and end validity time for (.*)$/) do |permit_type|
-  @pre_cre_page ||= PRECREBasePage.new(@driver)
-  @pre_cre_page.retrieve_start_end_time(permit_type.to_s)
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.retrieve_start_end_time(permit_type.to_s)
 end
 
 #I select current day for field "([^"]*)"
@@ -57,3 +57,22 @@ Then(/^PRE fill up permit$/) do |table|
   @pre_page.activate_time_picker(params['delay to activate'])
 end
 
+#And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
+And(/^PRE get permit id$/) do
+  @create_entry_permit_page.retrieve_permit_id
+end
+
+#Then(/^I press the "([^"]*)" button$/) do |button|
+Then(/^PRE click 'Submit for Approval' button$/) do
+  @create_entry_permit_page.click_submit_for_approval
+end
+#And(/^I (should|should not) see Reporting interval$/) do |condition|
+And(/^PRE verify Reporting interval doesn't show up$/) do
+  @pre_page.scroll_times_direction(1, 'down')
+  @create_entry_permit_page.verify_reporting_interval('disabled')
+end
+
+And(/^PRE verify Reporting interval$/) do
+  @pre_page.scroll_times_direction(1, 'down')
+  @create_entry_permit_page.verify_reporting_interval('enabled')
+end

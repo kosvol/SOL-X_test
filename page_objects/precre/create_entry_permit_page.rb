@@ -6,7 +6,7 @@ require_relative '../base_page'
 class CreateEntryPermitPage < BasePage
   include EnvUtils
 
-  attr_accessor :pre_permit_start_time, :pre_permit_end_time
+  attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id, :permit_number
 
   CREATE_ENTRY_PERMIT = {
     heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
@@ -40,7 +40,10 @@ class CreateEntryPermitPage < BasePage
     header_cell: "//div[starts-with(@class,'header-cell')]",
     header_pwt: "//h4[starts-with(@class,'Heading__H4')]",
     clock: '//*[@id="permitActiveAt"]/span',
-    confirm_btn: "//button[contains(.,'Confirm')]"
+    confirm_btn: "//button[contains(.,'Confirm')]",
+    ptw_id: 'header > h1',
+    duration_timer: "//h4/strong[contains(@class,'PermitValidUntil__')]",
+    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]"
   }.freeze
 
   def initialize(driver)
@@ -64,6 +67,28 @@ class CreateEntryPermitPage < BasePage
     scroll_click(CREATE_ENTRY_PERMIT[:permit_validation_btn])
     scroll_times_direction(5, 'down')
     click(DURATION[duration])
+  end
+
+  def retrieve_permit_id
+    self.temp_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
+    self.permit_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
+    self.permit_duration = retrieve_text(CREATE_ENTRY_PERMIT[:duration_timer])
+    permit_id
+    permit_duration
+    temp_id
+  end
+
+  def click_submit_for_approval
+    click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
+  end
+
+  def verify_reporting_interval(condition)
+    if condition == 'enabled'
+      compare_string(@driver.find_element(:xpath, CREATE_ENTRY_PERMIT[:reporting_interval]).enabled?.to_s.downcase,
+                     true.to_s.downcase)
+    else
+      verify_element_not_exist(CREATE_ENTRY_PERMIT[:reporting_interval])
+    end
   end
 
   private

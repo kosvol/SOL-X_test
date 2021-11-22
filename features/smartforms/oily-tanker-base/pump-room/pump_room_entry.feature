@@ -1,5 +1,5 @@
 @Pump-Room-Entry
-Feature: PumpRoomEntry
+Feature: Pump room entry permit creation
   As a ...
   I want to ...
   So that ...
@@ -18,8 +18,13 @@ Feature: PumpRoomEntry
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+    And PRE get permit id
+    And PRE click 'Submit for Approval' button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
 
-    #Given I fill and submit PRE permit details via service
+
+    Given I fill and submit PRE permit details via service
    # Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
@@ -78,10 +83,10 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I should see alert message "Please select the start time and duration before submitting."
+    Then PRE verify alert message "Please select the start time and duration before submitting."
     And Button "Submit for Approval" should be disabled
-    Then I select Permit Duration <duration>
-    And I should not see alert message "Please select the start time and duration before submitting."
+    Then PRE select Permit Duration <duration>
+    Then PRE verify alert message "Please select the start time and duration before submitting." doesn't show up
     And Button "Submit for Approval" should not be disabled
 
     Examples:
@@ -100,15 +105,22 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And I should not see Reporting interval
-    Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
-    And I should see Reporting interval
+    And PRE verify Reporting interval doesn't show up
+    Then PRE answer question
+      | answer | question                                                                  |
+      | Yes    | Are the personnel entering the pump room aware of the reporting interval? |
+    And PRE verify Reporting interval
 
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And I add all gas readings with C/O rank
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I set time
     Then I will see popup dialog with C/O COT C/O crew rank and name
     When I dismiss gas reader dialog box
@@ -121,7 +133,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -144,7 +156,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -158,7 +170,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -172,7 +184,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
@@ -192,7 +204,7 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And Get PRE id
+    And PRE get permit id
     Then I press the "Close" button
     And I getting a permanent number from indexedDB
     And I navigate to "Created" screen for PRE
@@ -205,7 +217,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -240,7 +252,7 @@ Feature: PumpRoomEntry
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And Get PRE id
+    And PRE get permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -254,7 +266,6 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And I enter pin via service for rank C/O
     Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
     And for pre I submit permit for C/O Approval
     And I getting a permanent number from indexedDB
