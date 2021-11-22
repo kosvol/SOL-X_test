@@ -2,10 +2,10 @@
 
 
 require_relative '../base_page'
-require_relative 'pre_cre_base_page'
+require_relative 'create_entry_permit_page'
 
 # CompressorRoomPage object
-class CompressorRoomPage < PRECREBase
+class CompressorRoomPage < CreateEntryPermitPage
   include EnvUtils
   COMPRESSOR_ROOM = {
     cre_scrap: "//div/*/*[local-name()='span' or local-name()='label']",

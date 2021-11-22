@@ -47,17 +47,15 @@ module DriverUtils
     raise "verify failed, expected: #{expected}, actual:#{actual}" unless expected == actual
   end
 
-  def element_disabled?(xpath, value)
-    xpath_value = format(xpath, value)
-    element = @driver.find_element(:xpath, xpath_value)
-    element.enabled?
-  end
-
   def scroll_times_direction(time, direct)
     time.times do
       scroll_by_dist(0, 250) if direct == 'down'
       scroll_by_dist(0, -350) if direct == 'up'
     end
+  end
+
+  def enter_text(xpath, text)
+    @driver.find_element(:xpath, xpath).send_keys(text)
   end
 
   private

@@ -8,7 +8,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And Pre fill up permit with Duration 4 and delay to activate 3
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And GasReadings fill equipment fields
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
@@ -31,7 +33,7 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "<rank>"
-    Then Pre verify PRE landing screen is present
+    Then PRE verify PRE landing screen is present
 
     Examples:
       | rank  |
@@ -70,7 +72,7 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then Pre verify questions order for PRE
+    Then PRE verify questions order
 
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given SmartForms open page
@@ -92,7 +94,7 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I select current day for field "Date of Last Calibration"
+    Then PRE select Date of Last Calibration as current day
 
   Scenario: Verify user able to see reporting interval when YES is selected
     Given SmartForms open page
@@ -116,7 +118,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 3
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -137,7 +141,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
@@ -149,7 +155,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
@@ -161,7 +169,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
@@ -192,7 +202,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
@@ -225,7 +237,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE. Duration 4. Delay to activate 3
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
     And Get PRE id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -251,7 +265,9 @@ Feature: PumpRoomEntry
     Given SmartForms open page
     When SmartForms click create PRE
     Then PinEntry enter pin for rank "C/O"
-    And Pre fill up permit with Duration 4 and delay to activate 2
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I request update needed

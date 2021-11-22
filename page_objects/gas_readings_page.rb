@@ -30,23 +30,23 @@ class GasReadingsPage < BasePage
   }.freeze
 
   def fill_gas_equipment_fields
-    @driver.find_element(:xpath, GAS_INFORMATION[:gas_equipment_input]).send_keys('Test Automation')
-    @driver.find_element(:xpath, GAS_INFORMATION[:gas_sr_number_input]).send_keys('Test Automation')
+    enter_text(GAS_INFORMATION[:gas_equipment_input], 'Test Automation')
+    enter_text(GAS_INFORMATION[:gas_sr_number_input], 'Test Automation')
   end
 
   def add_normal_gas_readings(o2, hc, h2s, co)
-    @driver.find_element(:xpath, GAS_READINGS[:o2_input]).send_keys(o2)
-    @driver.find_element(:xpath, GAS_READINGS[:hc_input]).send_keys(hc)
-    @driver.find_element(:xpath, GAS_READINGS[:h2s_input]).send_keys(h2s)
-    @driver.find_element(:xpath, GAS_READINGS[:co_input]).send_keys(co)
+    enter_text(GAS_READINGS[:o2_input], o2)
+    enter_text(GAS_READINGS[:hc_input], hc)
+    enter_text(GAS_READINGS[:h2s_input], h2s)
+    enter_text(GAS_READINGS[:co_input], co)
     click(GAS_INFORMATION[:continue_btn])
   end
 
   def add_toxic_gas_readings(gas_name, threhold, reading, unit)
-    find_element(GAS_READINGS[:gas_name_input]).send_keys(gas_name)
-    find_element(GAS_READINGS[:threshold_input]).send_keys(threhold)
-    find_element(GAS_READINGS[:reading_input]).send_keys(reading)
-    find_element(GAS_READINGS[:unit_input]).send_keys(unit)
+    enter_text(GAS_READINGS[:gas_name_input], gas_name)
+    enter_text(GAS_READINGS[:threshold_input],threhold)
+    enter_text(GAS_READINGS[:reading_input], reading)
+    enter_text(GAS_READINGS[:unit_input], unit)
     click(GAS_INFORMATION[:add_toxic_gas_btn])
   end
 

@@ -4,7 +4,7 @@ require_relative '../base_page'
 require_relative '../sections/common_section_page'
 
 # PumpRoomPage object
-class PumpRoomPage < PRECREBase
+class PumpRoomPage < CreateEntryPermitPage
   include EnvUtils
 
   PUMP_ROOM = {
@@ -20,7 +20,8 @@ class PumpRoomPage < PRECREBase
     picker_hh: "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
     picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
     permit_validity: "//h2[contains(text(),'Permit Validity')]",
-    time_element: '//*[@id="permitActiveAt"]'
+    time_element: '//*[@id="permitActiveAt"]',
+    error_msg: "//div[contains(.,'%s')]"
   }.freeze
 
   def initialize(driver)
@@ -28,18 +29,15 @@ class PumpRoomPage < PRECREBase
     find_element(PUMP_ROOM[:pre_header])
   end
 
-  def pre_landing_false?
-    raise 'Verify failed' unless (BASE_PRE_CRE[:heading_text].text.eql?('Section 1: Pump Room Entry Permit')) == true
-  end
-
-  def pre_questions(base_data)
-    find_elements(BASE_PRE_CRE[:form_structure]).each_with_index do |element, index|
+  def verify_pre_questions(base_data)
+    find_elements(CREATE_ENTRY_PERMIT[:form_structure]).each_with_index do |element, index|
       compare_string(element.text, base_data[index])
     end
   end
 
-  def alert_text_displayed?(value)
-    raise 'Verify failed' unless find_element(format("//div[contains(.,'%s')]", value).to_s).enabled? == true
+  def verify_error_msg(error_msg)
+    actual_msg = retrieve_text(CREATE_ENTRY_PERMIT[:error_msg])
+    compare_string(error_msg, actual_msg)
   end
 
   def alert_not_present?(text)
@@ -47,7 +45,7 @@ class PumpRoomPage < PRECREBase
   end
 
   def select_current_day
-    click(BASE_PRE_CRE[:current_day_button])
+    click(CREATE_ENTRY_PERMIT[:current_day_button])
   end
 
   def select_checkbox(answer, question)
@@ -77,8 +75,14 @@ class PumpRoomPage < PRECREBase
     compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
   end
 
-  def verify_pre_section_title
-    compare_string('Section 1: Pump Room Entry Permit', BASE_PRE_CRE[:heading_text].text)
+  def verify_pre_section_title(condition)
+    if condition == true
+      compare_string('Section 1: Pump Room Entry Permit', CREATE_ENTRY_PERMIT[:heading_text].text)
+    else
+      unless (CREATE_ENTRY_PERMIT[:heading_text].text.eql?('Section 1: Pump Room Entry Permit')) == true
+        raise 'Verify failed'
+      end
+    end
   end
 
   private

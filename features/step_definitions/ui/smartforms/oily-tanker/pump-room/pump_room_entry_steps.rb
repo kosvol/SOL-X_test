@@ -50,7 +50,7 @@ And(/^I (should|should not) see Reporting interval$/) do |condition|
   BrowserActions.scroll_down
   if condition == 'should not'
     not_to_exists(on(PumpRoomEntry).reporting_interval_element)
-    else
+  else
     to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
