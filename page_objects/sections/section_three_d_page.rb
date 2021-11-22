@@ -19,15 +19,26 @@ class SectionThreeDPage < BasePage
 
   def verify_location_stamp(zone)
     actual_element = find_element(SECTION_THREE_D[:location_stamp])
-    sleep 0.5 until actual_element.text != 'Not Answered' # wait for location update
+    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(zone, actual_element.text)
   end
 
   def verify_rank(rank)
     expected_rank_name = UserService.new.retrieve_rank_and_name(rank)
     actual_element = find_element(SECTION_THREE_D[:rank_name])
-    sleep 0.5 until actual_element.text != 'Not Answered' # wait for location update
+    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
+  end
+
+  private
+
+  def wait_util_text_update(element, text_to_update)
+    wait = 0
+    until element.text != text_to_update
+      sleep 0.5
+      wait += 1
+      break if wait > 5
+    end
   end
 end
 

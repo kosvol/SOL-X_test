@@ -13,7 +13,8 @@ class SectionOnePage < BasePage
     zone_btn: '//button[@id="zone"]',
     dd_list_value: "//ul[starts-with(@class,'UnorderedList-')]/li/button",
     duration_ddl: '//*[@id="duration_of_maintenance_over_2_hours"]',
-    save_next_btn: "//button[contains(.,'Save & Next')]"
+    save_next_btn: "//button[contains(.,'Save & Next')]",
+    desc_of_work: '//textarea[@id="descOfWork"]'
   }.freeze
 
   def initialize(driver)
@@ -59,5 +60,9 @@ class SectionOnePage < BasePage
   def answer_duration_maintenance(option)
     scroll_click(SECTION_ONE[:duration_ddl])
     scroll_click("//button[contains(.,'#{option}')]")
+  end
+
+  def enter_desc_of_work(text)
+    @driver.find_element(:xpath, SECTION_ONE[:desc_of_work]).send_keys(text)
   end
 end

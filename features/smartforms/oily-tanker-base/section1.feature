@@ -1,5 +1,5 @@
 @section1
-Feature: Section1 Task Description
+Feature: Section 1: Task Description
 
   Scenario: Verify navigation dropdown is display on section 0
     Given SmartForms open page

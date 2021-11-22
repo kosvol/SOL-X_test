@@ -1,178 +1,146 @@
 @section4BEIC
-Feature: Section4BEIC
-  As a ...
-  I want to ...
-  So that ...
+Feature: Section 4B: Energy Isolation Certificate
 
   Scenario: Verify description of work is pre-populated
-    Given I change ship local time to +8 GMT
-    When I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank 2/E
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4b
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I should see description of work pre-populated
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And Section1 enter Description of work "Test Automation"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    Then EIC verify Description of work "Test Automation"
+
 
   Scenario: Verify data,time and EIC number is pre-populated
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank 2/E
-    And I select Hot Work permit
-    And I select Hot Work Level-1 (Loaded & Ballast Passage) permit for level 2
-    And I navigate to section 4a
-    And I uncheck the pre-selected checklist
-    And I select the matching Hot Work Outside Designated Area checklist
-    And I press next for 2 times
-    And I select yes to EIC
-    And I click on create EIC certification button
-    And I set time
-    Then I should see EIC permit number, date and time populated
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    Then EIC verify pre-filled answers
 
-  Scenario Outline: Verify location stamping on signature section as RA
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I navigate to section 4b
-    And I link wearable to a RA <user> and link to zoneid <zoneid> and mac <mac>
-    And I select yes to EIC
-    And I sign EIC section 4b with RA rank C/O
-    And I set time
-    And I should see signed details
-    Then I should see location <location_stamp> stamp
 
-    Examples:
-      | user          | zoneid        | mac               | location_stamp | level_one_permit      | level_two_permit | checklist                      |
-      | AUTO_SOLX0019 | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Enclosed Spaces Entry | NA               | Enclosed Space Entry Checklist |
+  Scenario: Verify location stamping on signature section as RA
+    Given Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
+    And SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And CommonSection click sign button
+    When PinEntry enter pin for rank "C/O"
+    Then SignatureLocation should see zone as "Aft Station"
+
 
   Scenario Outline: Verify location stamping on signature section for competent person
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank <rank_create>
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I navigate to section 4b
-    And I link wearable to a competent person <user> and link to zoneid <zoneid> and mac <mac>
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I sign EIC as competent person with rank <rank>
-    And I set time
-    And I should see signed details
-    Then I should see location <location_stamp> stamp
-
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "<rank_create>"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    And EIC click competent person sign button
+    When PinEntry enter pin for rank "<sign_rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    Then EIC verify signed detail
+      | rank        | location_stamp        |
+      | <sign_rank> | No. 1 Cargo Tank Port |
     Examples:
-      | user          | rank | rank_create | zoneid        | mac               | location_stamp | level_one_permit                | level_two_permit            |
-      | AUTO_SOLX0011 | C/O  | C/E         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
-      | AUTO_SOLX0004 | 2/E  | C/O         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
-      | AUTO_SOLX0021 | ETO  | 2/E         | Z-AFT-STATION | 00:00:00:00:00:10 | Aft Station    | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | sign_rank | rank_create |
+      | C/O       | C/E         |
+      | 2/E       | C/O         |
+#      |   E/O    | 2/E         |
 
   Scenario Outline: Verify location stamping on signature section for issuing authority
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank <rank_create>
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I navigate to section 4b
-    And I link wearable to a issuing authority <user> and link to zoneid <zoneid> and mac <mac>
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I sign EIC as issuing authority with rank <rank>
-    And I set time
-    And I should see signed details
-    Then I should see location <location_stamp> stamp
-
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "<rank_create>"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    And EIC click issuing person sign button
+    When PinEntry enter pin for rank "<sign_rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    Then EIC verify signed detail
+      | rank        | location_stamp        |
+      | <sign_rank> | No. 1 Cargo Tank Port |
     Examples:
-      | user          | rank  | rank_create | zoneid       | mac               | location_stamp | level_one_permit                | level_two_permit            |
-      | AUTO_SOLX0002 | C/E   | C/E         | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
-      | AUTO_SOLX0002 | A C/E | C/O         | Z-FORECASTLE | 00:00:00:00:00:01 | IG Platform 2  | Rotational Portable Power Tools | Use of Portable Power Tools |
+      | sign_rank | rank_create |
+      | C/E       | C/O         |
+
 
   Scenario Outline: Verify non RA cannot sign on responsible authority
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select <level_one_permit> permit
-    And I select <level_two_permit> permit for level 2
-    And I navigate to section 4b
-    And I select yes to EIC
-    And I sign EIC section 4b with non RA rank <rank>
-    Then I should see not authorize error message
-
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "<level_one_permit>"
+    And FormPrelude select level2 "<level_two_permit>"
+    And CommonSection navigate to "Section 4B"
+    And Section4B click sign button
+    When PinEntry enter pin for rank "<sign_rank>"
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
     Examples:
-      | rank | pin  | level_one_permit | level_two_permit                    |
-      | MAS  | 1111 | Hot Work         | Hot Work Level-2 in Designated Area |
-  # | 4/O   | 1010 | Working Aloft/Overside                                       | Working Aloft / Overside                                                   |
-  # | D/C   | 2317 | Critical Equipment Maintenance                               | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
-  # | 3/E   | 4685 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                      |
-  # | A 3/E | 6727 | Helicopter Operations                                        | Helicopter Operation                                                       |
-  # | 4/E   | 1311 | Rotational Portable Power Tools                              | Use of Portable Power Tools                                                |
-  # | A 4/E | 0703 | Work on Electrical Equipment and Circuits – Low/High Voltage | Working on Electrical Equipment - Low/High Voltage                         |
-  # | BOS   | 1018 | Cold Work                                                    | Cold Work - Blanking/Deblanking of Pipelines and Other Openings            |
-  # | PMN   | 4236 | Working Aloft/Overside                                       | Working Aloft / Overside                                                   |
-  # | A/B   | 6316 | Critical Equipment Maintenance                               | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
-  # | O/S   | 7669 | Personnel Transfer By Transfer Basket                        | Personnel Transfer by Transfer Basket                                      |
-  # | OLR   | 0450 | Helicopter Operations                                        | Helicopter Operation                                                       |
+      | sign_rank | level_one_permit               | level_two_permit                                                           |
+      | MAS       | Hot Work                       | Hot Work Level-2 in Designated Area                                        |
+      | D/C       | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+      | BOS       | Cold Work                      | Cold Work - Blanking/Deblanking of Pipelines and Other Openings            |
+      | A/B       | Critical Equipment Maintenance | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment |
+      | 4/O       | Underwater Operations          | Underwater Operation during daytime without any simultaneous operations    |
+      | PMN       | Underwater Operations          | Underwater Operations at night for mandatory drug and contraband search    |
+      | OLR       | Hot Work                       | Hot Work Level-2 outside E/R (Loaded Passage)                              |
+
 
   Scenario: Verify non chief engineer cannot sign as issuing authority
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank 2/O
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
-    And I fill only location of work and duration more than 2 hours
-    And I navigate to section 4b
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I should see competent person sign button enabled
-    Then I should see issuing authority sign button enabled
-    Then I should see Save EIC button disabled
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    And EIC should see "competent_person_sign" button "enabled"
+    And EIC should see "issuing_authorized_sign" button "enabled"
+    And EIC should see "save_eic" button "disabled"
+
 
   Scenario: Verify non competent person cannot sign as competent person
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank ETO
-    And I select Critical Equipment Maintenance permit
-    And I select Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment permit for level 2
-    And I fill only location of work and duration more than 2 hours
-    And I navigate to section 4b
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I should see competent person sign button enabled
-    Then I should see issuing authority sign button enabled
-    Then I should see Save EIC button enabled
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/E"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    And EIC should see "competent_person_sign" button "enabled"
+    And EIC should see "issuing_authorized_sign" button "enabled"
+    And EIC should see "save_eic" button "enabled"
 
-  #   Examples:
-  #     | rank                       | pin  | level_one_permit                | level_two_permit                                                           | checklist                                |
-  #     | Addtional Master           | 9015 | Critical Equipment Maintenance  | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     # | Additional Chief Officer   | 2761 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     | Second Officer             | 6268 | Enclosed Spaces Entry           | Enclosed Spaces Entry                                                      | Enclosed Space Entry Checklist           |
-  #     # | Additional Second Officer  | 7865 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     | Chief Engineer             | 8248 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-  #     # | Additional Chief Engineer  | 5718 | Cold Work                      | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  #     | Additional Second Engineer | 3030 | Underwater Operations           | Underwater Operations at night for mandatory drug and contraband search    | Underwater Operation                     |
-  #     | Master                     | 1111 | Critical Equipment Maintenance  | Maintenance on Emergency Stop Switches for Engine Room and Cargo Equipment | Critical Equipment Maintenance Checklist |
-  #     | 3/O                        | 0159 | Hot Work                        | Hot Work Level-1 (Loaded & Ballast Passage)                                | Hot Work Outside Designated Area         |
-  #     # | 4/O                        | 1010 | Enclosed Spaces Entry          | Enclosed Spaces Entry                                                       | Enclosed Space Entry Checklist           |
-  #     | A 3/E                      | 6727 | Hot Work                        | Hot Work Level-2 in Designated Area                                        | Hot Work Within Designated Area          |
-  #     # | 4/E                        | 1311 | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                      | Rotational Portable Power Tools (PPT)    |
-  #     | BOS                        | 1018 | Cold Work                       | Cold Work - Connecting and Disconnecting Pipelines                         | Cold Work Operation Checklist            |
-  # # | PMN                        | 4236 | Underwater Operations          | Underwater Operations at night for mandatory drug and contraband search                                              | Underwater Operation                     |
 
   Scenario: Verify sub questions
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new permit
-    And I enter pin for rank 2/E
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I fill up section 1 with default value
-    And I navigate to section 4b
-    And I select yes to EIC
-    And I click on create EIC certification button
-    Then I should see these sub questions
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/E"
+    And FormPrelude select level1 "Use of ODME in Manual Mode"
+    And CommonSection navigate to "Section 4B"
+    And Section4B select Yes for EIC
+    And Section4B click create EIC
+    And CommonSection sleep for "2" sec
+    And EIC answers yes to Method of Isolation
+    Then EIC verify sub questions
       | Lock Out                                                                                 |
       | Tag Out                                                                                  |
       | Sanction to Test (High Voltage) (Checklist)                                              |
