@@ -1,27 +1,37 @@
 @op-login-page
-Feature: OpLoginPage
-  As a ...
-  I want to ...
-  So that ...
+Feature: Office Portal Login Page
 
-  Scenario: Verify the name of the portal is "Office Portal"(5761)
-    Given I launch Office Portal
-    Then I should see the "Office Portal" name on the top bar and page body
+  Scenario: Verify new login page attributes (Desktop) (7782)
+    Given OfficeLogin open page
+    Then OfficeLogin should see all the Login page attributes
 
-  Scenario: Verify the warning message appears for an invalid password (3501)
-    Given I launch Office Portal
-    When I enter a invalid password
-    And I click on Log In Now button
-    Then I should see the text 'Incorrect uid or password'
+  Scenario: Verify the correct error message when leave all fields empty (7899)
+    Given OfficeLogin open page
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the "Email" field is highlighted in red
+    And OfficeLogin should see the error message "Please enter your Email Address" below the "Email" heading
+    And OfficeLogin should see the "Password" field is highlighted in red
+    And OfficeLogin should see the error message "Please enter your password" below the "Password" heading
 
-  Scenario: Verify users can log in to the Office Portal (3099)
-    Given I launch Office Portal
-    When I enter a valid password
-    And I click on Log In Now button
-    Then I should see the Vessel List page
+  Scenario Outline: Verify the correct error message when enter an invalid Email (7900)
+    Given OfficeLogin open page
+    When OfficeLogin enters an "<example>" in the "Email" field
+    And OfficeLogin enters an "test" in the "Password" field
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the "Email" field is highlighted in red
+    And OfficeLogin should see the error message "Please enter a valid email address." below the "Email" heading
+    Examples:
+    |example       |
+    |test          |
+    |test@         |
+    |test@.com     |
+    |test.test.com |
+    |test@@test.com|
+    |test@test/com |
 
-  Scenario: Verify the "Remember me" checkbox is editable (3494)
-    Given I launch Office Portal
-    And I see the checkbox is checked
-    When I uncheck the checkbox
-    Then I see the checkbox is unchecked
+  Scenario: Verify the correct error message when enter an incorrect password (7901)
+    Given OfficeLogin open page
+    When OfficeLogin enters an "valid_creds" in the "Email" field
+    And OfficeLogin enters an "test" in the "Password" field
+    And OfficeLogin click the Sign in button
+    And OfficeLogin should see the error message "Your password is incorrect" below the "Log in" heading

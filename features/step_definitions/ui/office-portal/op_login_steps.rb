@@ -1,9 +1,38 @@
 # frozen_string_literal: true
 
-Given(/^I launch Office Portal$/) do
-  $browser.get(EnvironmentSelector.environment_url)
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).op_login_btn_element)
+require_relative '../../../../page_objects/office_portal/op_login_page'
+
+Given('OfficeLogin open page') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.open_op_page
 end
+
+Then('OfficeLogin should see all the Login page attributes') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_login_page_attributes
+end
+
+And('OfficeLogin click the Sign in button') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.click_sign_in
+end
+
+And('OfficeLogin should see the error message {string} below the {string} heading') do |message, heading|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_error_message(message, heading)
+end
+
+And('OfficeLogin should see the {string} field is highlighted in red') do |field|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_highlighted_in_red(field)
+end
+
+And('OfficeLogin enters an {string} in the {string} field') do |text, field|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.enter_text(text, field)
+end
+
+#The following steps to be removed after refactoring is finished
 
 Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|
   is_equal(on(OfficePortalPage).topbar_header_element.text, name)
@@ -463,3 +492,5 @@ And(/^I open the recently terminated form with link$/) do
   $browser.get(format($obj_env_yml['office_approval']['office_portal_permit_view'], @form_number))
   BrowserActions.wait_until_is_visible(on(OfficePortalPage).permit_section_header_elements[0])
 end
+
+
