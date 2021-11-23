@@ -35,3 +35,10 @@ Feature: Office Portal Login Page
     And OfficeLogin enters an "test" in the "Password" field
     And OfficeLogin click the Sign in button
     And OfficeLogin should see the error message "Your password is incorrect" below the "Log in" heading
+
+  Scenario: Verify the correct error message when enter an unregistered Email (7903)
+    Given OfficeLogin open page
+    When OfficeLogin enters an "test@test.com" in the "Email" field
+    And OfficeLogin enters an "valid_creds" in the "Password" field
+    And OfficeLogin click the Sign in button
+    And OfficeLogin should see the error message "We can't seem to find your account" below the "Log in" heading
