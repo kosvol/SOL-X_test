@@ -6,7 +6,7 @@ Feature: Pump room entry permit creation
 
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
@@ -18,8 +18,8 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And PRE get permit id
-    And PRE click 'Submit for Approval' button
+    And PRE save permit id
+    And PRE click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
 
@@ -36,9 +36,9 @@ Feature: Pump room entry permit creation
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "<rank>"
-    Then PRE verify PRE landing screen is present
+    Then PRE verify landing screen is "Section 1: Pump Room Entry Permit"
 
     Examples:
       | rank  |
@@ -51,7 +51,7 @@ Feature: Pump room entry permit creation
 
   Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "<rank>"
     Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
@@ -75,18 +75,18 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify in the form there are all questions
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify questions order
 
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify alert message "Please select the start time and duration before submitting."
     And Button "Submit for Approval" should be disabled
     Then PRE select Permit Duration <duration>
-    Then PRE verify alert message "Please select the start time and duration before submitting." doesn't show up
+    Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
     And Button "Submit for Approval" should not be disabled
 
     Examples:
@@ -97,23 +97,23 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify user able to fill Date of Last Calibration
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE select Date of Last Calibration as current day
 
   Scenario: Verify user able to see reporting interval when YES is selected
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE verify Reporting interval doesn't show up
+    And PRE "should not" see Reporting interval
     Then PRE answer question
       | answer | question                                                                  |
       | Yes    | Are the personnel entering the pump room aware of the reporting interval? |
-    And PRE verify Reporting interval
+    And PRE "should" see Reporting interval
 
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
@@ -128,12 +128,12 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify PRE can be terminated manually
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -151,12 +151,12 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify Update needed text can be input and displayed after
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -165,12 +165,12 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify creator PRE cannot request update needed
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -179,12 +179,12 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
@@ -202,9 +202,9 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify Created PRE is displayed in Created PRE list
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE get permit id
+    And PRE save permit id
     Then I press the "Close" button
     And I getting a permanent number from indexedDB
     And I navigate to "Created" screen for PRE
@@ -212,12 +212,12 @@ Feature: Pump room entry permit creation
 
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -235,7 +235,7 @@ Feature: Pump room entry permit creation
 
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And I get a temporary number and writing it down
     Then I sleep for 3 seconds
@@ -247,12 +247,12 @@ Feature: Pump room entry permit creation
 
   Scenario: The Responsible Officer Signature should be displayed PRE
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE get permit id
+    And PRE save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -264,7 +264,7 @@ Feature: Pump room entry permit creation
 
   Scenario: Permit Validity date should match the final date selected from the date picker
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
     And for pre I submit permit for C/O Approval
@@ -274,7 +274,7 @@ Feature: Pump room entry permit creation
 
   Scenario Outline: Pure Gas Tester2 should not be able to edit gas reading
     Given SmartForms open page
-    When SmartForms click create PRE
+    When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |

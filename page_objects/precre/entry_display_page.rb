@@ -43,18 +43,18 @@ class EntryDisplayPage < BasePage
     find_element(ENTRY_DISPLAY[:heading_text])
   end
 
-  def signout_entrants(entrants)
+  def signout_entrants_by_order(entrants)
     find_elements(ENTRY_DISPLAY[:sign_out_btn]).first.click
-    by_order(entrants)
-    self.time= ENTRY_DISPLAY[:clock].text
+    signout_by_order(entrants)
+    self.time = ENTRY_DISPLAY[:clock].text
   end
 
-  def signout_by_name(entrants)
+  def signout_entrants_by_name(entrants)
     entrants_arr = self.entrants_arr
     find_elements(ENTRY_DISPLAY[:sign_out_btn]).first.click
-    by_name(entrants)
-    self.entrants_arr= (entrants_arr)
-    self.time= ENTRY_DISPLAY[:clock].text
+    signout_by_name(entrants)
+    self.entrants_arr = (entrants_arr)
+    self.time = ENTRY_DISPLAY[:clock].text
   end
 
   def entered_entrant_listed?(entrant)
@@ -66,43 +66,40 @@ class EntryDisplayPage < BasePage
   end
 
   def additional_entrant(additional_entrants)
-    entr_arr = []
+    self.entrants_arr = []
     click(ENTRY_DISPLAY[:entrant_names_dd])
-    add_entrants(additional_entrants, entr_arr)
-    self.entrants_arr= (entr_arr)
+    add_entrants(additional_entrants)
     find_elements(ENTRY_DISPLAY[:confirm_btn]).first.click
   end
 
   def required_entrants(entrants)
-    entr_arr = []
+    self.entrants_arr = []
     while entrants.positive?
       find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/label/span").click
-      entr_arr
+      entrants_arr
         .push(find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
       entrants -= 1
     end
-    self.entrants_arr= (entr_arr)
   end
 
   private
 
-  def add_entrants(additional_entrants, entr_arr)
+  def add_entrants(additional_entrants)
     while additional_entrants.positive?
       @driver.find_elements(css: ENTRY_DISPLAY[:options_text])[additional_entrants].click
-      entr_arr.push(@driver.find_elements(css: ENTRY_DISPLAY[:options_text])[additional_entrants].text)
+      entrants_arr.push(@driver.find_elements(css: ENTRY_DISPLAY[:options_text])[additional_entrants].text)
       additional_entrants -= 1
     end
-    entr_arr
   end
 
-  def by_order(entrants)
+  def signout_by_order(entrants)
     (1..entrants.to_i).each do |i|
       find_elements(ENTRY_DISPLAY[:cross_btn])[i].click
       find_elements(ENTRY_DISPLAY[:sign_out_btn]).last.click
     end
   end
 
-  def by_name(entrants)
+  def signout_by_name(entrants)
     entrants.split(',').each do |i|
       find_element("//*[contains(.,'#{i}')]/button").click
       find_elements(ENTRY_DISPLAY[:sign_out_btn]).last.click

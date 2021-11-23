@@ -71,13 +71,10 @@ class CreateEntryPermitPage < BasePage
     click(DURATION[duration])
   end
 
-  def retrieve_permit_id
+  def save_permit_id
     self.temp_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_duration = retrieve_text(CREATE_ENTRY_PERMIT[:duration_timer])
-    permit_id
-    permit_duration
-    temp_id
   end
 
   def click_submit_for_approval
@@ -85,9 +82,9 @@ class CreateEntryPermitPage < BasePage
   end
 
   def verify_reporting_interval(condition)
-    if condition == 'enabled'
-      compare_string(@driver.find_element(:xpath, CREATE_ENTRY_PERMIT[:reporting_interval]).enabled?.to_s.downcase,
-                     true.to_s.downcase)
+    if condition == 'should'
+      reporting_interval = find_element(CREATE_ENTRY_PERMIT[:reporting_interval])
+      compare_string(reporting_interval.enabled?.to_s.downcase, 'true')
     else
       verify_element_not_exist(CREATE_ENTRY_PERMIT[:reporting_interval])
     end

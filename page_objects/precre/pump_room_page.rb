@@ -29,7 +29,8 @@ class PumpRoomPage < CreateEntryPermitPage
     find_element(PUMP_ROOM[:pre_header])
   end
 
-  def verify_pre_questions(base_data)
+  def verify_pre_questions
+    base_data = YAML.load_file('data/pre/pump-room-entries.yml')['questions']
     find_elements(CREATE_ENTRY_PERMIT[:form_structure]).each_with_index do |element, index|
       compare_string(element.text, base_data[index])
     end
@@ -40,7 +41,7 @@ class PumpRoomPage < CreateEntryPermitPage
     compare_string(error_msg, actual_msg)
   end
 
-  def alert_not_present?(text)
+  def verify_text_not_present(text)
     verify_element_not_exist(format("//div[contains(.,'%s')]", text).to_s)
   end
 
