@@ -328,7 +328,7 @@ Feature: Section 3A: DRA - Method & Hazards
       | without_measures | after_measures | residual_risk |
       | Medium Risk      | Very High Risk | Low Risk      |
 
-  @ww
+
   Scenario: Verify added additional hazard is saved
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -341,7 +341,7 @@ Feature: Section 3A: DRA - Method & Hazards
     And DRA Save DRA
     And Section3A click edit hazards
     Then DRA should see additional measures
-  @ww
+
   Scenario: Verify delete risk button
     Given SmartForms open page
     And SmartForms click create permit to work
