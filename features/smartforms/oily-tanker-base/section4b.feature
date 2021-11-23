@@ -103,11 +103,11 @@ Feature: Section 4B: Energy Isolation Certificate
       | PMN       | Underwater Operations          | Underwater Operations at night for mandatory drug and contraband search    |
       | OLR       | Hot Work                       | Hot Work Level-2 outside E/R (Loaded Passage)                              |
 
-
-  Scenario: Verify non chief engineer cannot sign as issuing authority
+  @SOL-6981
+  Scenario Outline: Verify non chief engineer cannot sign as issuing authority
     Given SmartForms open page
     And SmartForms click create permit to work
-    And PinEntry enter pin for rank "C/O"
+    And PinEntry enter pin for rank "<rank>"
     And FormPrelude select level1 "Use of ODME in Manual Mode"
     And CommonSection navigate to "Section 4B"
     And Section4B select Yes for EIC
@@ -115,12 +115,16 @@ Feature: Section 4B: Energy Isolation Certificate
     And EIC should see "competent_person_sign" button "enabled"
     And EIC should see "issuing_authorized_sign" button "enabled"
     And EIC should see "save_eic" button "disabled"
+    Examples:
+      | rank |
+      | 2/O  |
+      | 3/O  |
 
-
-  Scenario: Verify non competent person cannot sign as competent person
+  @SOL-6981
+  Scenario Outline: Verify non competent person cannot sign as competent person
     Given SmartForms open page
     And SmartForms click create permit to work
-    And PinEntry enter pin for rank "C/E"
+    And PinEntry enter pin for rank "<rank>"
     And FormPrelude select level1 "Use of ODME in Manual Mode"
     And CommonSection navigate to "Section 4B"
     And Section4B select Yes for EIC
@@ -128,6 +132,12 @@ Feature: Section 4B: Energy Isolation Certificate
     And EIC should see "competent_person_sign" button "enabled"
     And EIC should see "issuing_authorized_sign" button "enabled"
     And EIC should see "save_eic" button "enabled"
+    Examples:
+      | rank |
+      | C/O  |
+      | 2/E  |
+      | ETO  |
+      | C/E  |
 
 
   Scenario: Verify sub questions

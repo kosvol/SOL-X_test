@@ -52,7 +52,6 @@ class SectionFourAPage < BasePage
       next unless element.text == checklist
 
       wait_selected_css(yes_elements[index])
-      compare_string('rgba(24, 144, 255, 1)', yes_elements[index].css_value('background-color'))
     end
   end
 
@@ -60,7 +59,7 @@ class SectionFourAPage < BasePage
 
   def wait_selected_css(element)
     wait = 0
-    until element.css_value('background-color') == 'rgba(24, 144, 255, 1)'
+    until element.css_value('background-color') == SELECTED_BACKGROUND
       sleep 0.5
       wait += 1
       break if wait > 5

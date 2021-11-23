@@ -63,6 +63,6 @@ class SectionOnePage < BasePage
   end
 
   def enter_desc_of_work(text)
-    @driver.find_element(:xpath, SECTION_ONE[:desc_of_work]).send_keys(text)
+    enter_text(SECTION_ONE[:desc_of_work], text)
   end
 end

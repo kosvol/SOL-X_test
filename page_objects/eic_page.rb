@@ -12,8 +12,8 @@ class EICPage < BasePage
     vessel_name: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",
     created_on: "(//*[starts-with(@class,'AnswerComponent__Answer')])[2]",
     eic_no: "(//*[starts-with(@class,'AnswerComponent__Answer')])[3]",
-    competent_sign_btn: "(//button[contains(.,'Sign')])[1]",
-    issuing_sign_btn: "(//button[contains(.,'Sign')])[2]",
+    competent_person_sign_btn: "(//button[contains(.,'Sign')])[1]",
+    issuing_authorized_sign_btn: "(//button[contains(.,'Sign')])[2]",
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[4]",
     rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]",
     save_eic_btn: "//button[contains(.,'Save EIC')]",
@@ -38,11 +38,11 @@ class EICPage < BasePage
   end
 
   def click_competent_sign_btn
-    scroll_click(EIC[:competent_sign_btn])
+    scroll_click(EIC[:competent_person_sign_btn])
   end
 
   def click_issuing_sign_btn
-    scroll_click(EIC[:issuing_sign_btn])
+    scroll_click(EIC[:issuing_authorized_sign_btn])
   end
 
   def verify_signed_detail(table)
@@ -54,12 +54,13 @@ class EICPage < BasePage
     compare_string(params['location_stamp'], retrieve_text(EIC[:location_stamp]))
   end
 
-  def verify_button_behavior(button, expected)
-    element = retrieve_button_element(button)
+  def verify_button_behavior(button_type, expected)
+    button_key = "#{button_type}_btn".to_sym
+    element = find_element(EIC[button_key])
     if expected == 'enabled'
-      raise "verify failed: expected: #{button} to be #{expected}" unless element.enabled?
-    elsif element.enabled
-      raise "verify failed: expected: #{button} to be #{expected}"
+      raise "verify failed: expected: #{button_type} to be #{expected}" unless element.enabled?
+    elsif element.enabled?
+      raise "verify failed: expected: #{button_type} to be #{expected}"
     end
   end
 
@@ -93,18 +94,5 @@ class EICPage < BasePage
     actual = retrieve_text(EIC[:eic_no])
     expected = 'EIC/TEMP'
     raise 'verify eic no failed' unless actual.include? expected
-  end
-
-  def retrieve_button_element(button)
-    case button
-    when 'competent_person_sign'
-      find_element(EIC[:competent_sign_btn])
-    when 'issuing_authorized_sign'
-      find_element(EIC[:issuing_sign_btn])
-    when 'save_eic'
-      find_element(EIC[:save_eic_btn])
-    else
-      raise "#{button} button is not expected"
-    end
   end
 end

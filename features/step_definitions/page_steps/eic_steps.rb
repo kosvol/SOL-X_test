@@ -27,9 +27,9 @@ Given('EIC verify signed detail') do |table|
   @eic_page.verify_signed_detail(table)
 end
 
-Given('EIC should see {string} button {string}') do |button, expected|
+Given('EIC should see {string} button {string}') do |button_type, expected|
   @eic_page ||= EICPage.new(@driver)
-  @eic_page.verify_button_behavior(button, expected)
+  @eic_page.verify_button_behavior(button_type, expected)
 end
 
 Given('EIC answers yes to Method of Isolation') do

@@ -38,14 +38,14 @@ class ChecklistPage < BasePage
 
   def verify_location_stamp(zone)
     actual_element = find_element(CHECKLIST[:location_stamp])
-    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
+    wait_until_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(zone, actual_element.text)
   end
 
   def verify_rank_name(rank)
     expected_rank_name = UserService.new.retrieve_rank_and_name(rank)
     actual_element = find_element(CHECKLIST[:rank_name])
-    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
+    wait_until_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
   end
 
@@ -81,7 +81,7 @@ class ChecklistPage < BasePage
     raise 'verify check list time failed' unless actual_date_time.include? expected_date
   end
 
-  def wait_util_text_update(element, text_to_update)
+  def wait_until_text_update(element, text_to_update)
     wait = 0
     until element.text != text_to_update
       sleep 0.5
