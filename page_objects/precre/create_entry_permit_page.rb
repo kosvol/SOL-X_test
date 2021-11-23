@@ -43,7 +43,9 @@ class CreateEntryPermitPage < BasePage
     confirm_btn: "//button[contains(.,'Confirm')]",
     ptw_id: 'header > h1',
     duration_timer: "//h4/strong[contains(@class,'PermitValidUntil__')]",
-    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]"
+    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]",
+    current_day: "//button[contains(@class,'Day__DayButton')]",
+    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]"
   }.freeze
 
   def initialize(driver)
@@ -89,6 +91,18 @@ class CreateEntryPermitPage < BasePage
     else
       verify_element_not_exist(CREATE_ENTRY_PERMIT[:reporting_interval])
     end
+  end
+
+  def select_next_date(advance_days = 0)
+    find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
+      if element.attribute('class').include? 'current'
+        @driver.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click
+        break
+      end
+    end
+  rescue StandardError
+    click(COMMON_SECTION[:next_month_button])
+    find_elements("//button[contains(.,'01')]")[0].click
   end
 
   private

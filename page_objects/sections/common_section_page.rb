@@ -14,8 +14,6 @@ class CommonSectionPage < BasePage
     save_next_btn: "//button[contains(.,'Save & Next')]",
     previous_btn: "//button[contains(.,'Previous')]",
     sign_btn: "//button[contains(.,'Sign')]",
-    current_day: "//button[contains(@class,'Day__DayButton')]",
-    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
     done_button: "//button[contains(.,'Done')]"
   }.freeze
 
@@ -44,18 +42,6 @@ class CommonSectionPage < BasePage
 
   def click_sign_sign
     click(COMMON_SECTION[:sign_btn])
-  end
-
-  def select_next_date(advance_days = 0)
-    find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
-      if element.attribute('class').include? 'current'
-        @driver.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click
-        break
-      end
-    end
-  rescue StandardError
-    click(COMMON_SECTION[:next_month_button])
-    find_elements("//button[contains(.,'01')]")[0].click
   end
 
   def click_done_dialog

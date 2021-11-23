@@ -44,10 +44,6 @@ class PumpRoomPage < CreateEntryPermitPage
     verify_element_not_exist(format("//div[contains(.,'%s')]", text).to_s)
   end
 
-  def select_current_day
-    click(CREATE_ENTRY_PERMIT[:current_day_button])
-  end
-
   def select_checkbox(answer, question)
     xpath_str = format(PUMP_ROOM[:checkbox], question)
     click(format(xpath_str, answer).to_s)
@@ -86,6 +82,10 @@ class PumpRoomPage < CreateEntryPermitPage
   end
 
   private
+
+  def select_current_day
+    click(CREATE_ENTRY_PERMIT[:current_day_button])
+  end
 
   def picker_hh_mm(delay)
     time = find_element(PUMP_ROOM[:time_element]).text
