@@ -1,5 +1,5 @@
 @section3c
-Feature: Section3CDRA
+Feature: Section 3C: DRA - Team Members
 
   Scenario Outline: Verify ra user is automatically selected
     Given SmartForms open page

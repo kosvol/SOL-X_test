@@ -1,6 +1,5 @@
 @section3d
-Feature: Section3DDRA
-
+Feature: Section 3D: DRA - Summary & Assessment
 
   Scenario: Verify wearable can be picked up consistently
     Given Wearable service unlink all wearables

@@ -1,5 +1,5 @@
 @section3a
-Feature: Section3ADRA
+Feature: Section 3A: DRA - Method & Hazards
 
   Scenario: Verify permit number date and time is pre-filled in section 3a
     Given SmartForms open page

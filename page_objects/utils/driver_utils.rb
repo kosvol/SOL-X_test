@@ -46,4 +46,8 @@ module DriverUtils
   def compare_string(expected, actual)
     raise "verify failed, expected: #{expected}, actual:#{actual}" unless expected == actual
   end
+
+  def enter_text(xpath, text)
+    @driver.find_element(:xpath, xpath).send_keys(text)
+  end
 end

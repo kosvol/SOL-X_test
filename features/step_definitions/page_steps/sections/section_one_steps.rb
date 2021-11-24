@@ -35,3 +35,8 @@ Given('Section1 answer duration of maintenance over 2 hours as {string}') do |op
   @section_one_page ||= SectionOnePage.new(@driver)
   @section_one_page.answer_duration_maintenance(option)
 end
+
+Given('Section1 enter Description of work {string}') do |text|
+  @section_one_page ||= SectionOnePage.new(@driver)
+  @section_one_page.enter_desc_of_work(text)
+end
