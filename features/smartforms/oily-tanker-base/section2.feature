@@ -1,5 +1,5 @@
 @section2
-Feature: Section2ApprovalAuthority
+Feature: Section 2: Approving Authority
 
   Scenario: Verify user can see previous and next button
     Given SmartForms open page

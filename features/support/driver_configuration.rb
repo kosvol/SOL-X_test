@@ -30,6 +30,7 @@ class DriverConfiguration
     caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.read_timeout = 60
+    @options.add_option('excludeSwitches', ['enable-automation']) # to disable chrome info bar
     Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: client, options: @options
   end
 
@@ -58,7 +59,7 @@ class DriverConfiguration
   def setup_chrome_mode
     case ENV['PLATFORM']
     when 'chrome_headless'
-      @options.add_argument('--headless')
+      @options.headless!
     when 'chrome_incognito'
       @options.add_argument('--incognito')
       @options.add_argument('--private')

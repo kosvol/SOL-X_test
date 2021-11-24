@@ -1,5 +1,5 @@
 @section3b
-Feature: Section3BDRA
+Feature: Section 3B: DRA - Checks & Measures
 # will add it back later
 #  Scenario: Verify last assessment is pre-populated
 #    Given I change ship local time to +8 GMT
