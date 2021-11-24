@@ -29,7 +29,7 @@ end
 
 And('OfficeLogin enters an {string} in the {string} field') do |text, field|
   @office_portal_login ||= OPLoginPage.new(@driver)
-  @office_portal_login.enter_text(text, field)
+  @office_portal_login.enter_creds(text, field)
 end
 
 #The following steps to be removed after refactoring is finished

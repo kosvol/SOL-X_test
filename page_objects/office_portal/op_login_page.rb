@@ -41,16 +41,10 @@ class OPLoginPage < BasePage
     verify_password_block
   end
 
-  def enter_text(text, field)
-    case field
-    when 'Email'
-      element = @driver.find_element(xpath: OP_LOGIN[:email_field])
-    when 'Password'
-      element = @driver.find_element(xpath: OP_LOGIN[:password_field])
-    else
-      raise "#{field} field is not expected"
-    end
-    enter_creds_in_field(text, element, field)
+  def enter_creds(creds, field)
+    xpath_key = "#{field.downcase}_field".to_sym
+    element = find_element(OP_LOGIN[xpath_key])
+    enter_creds_in_field(creds, element, field)
   end
 
   def click_sign_in
@@ -65,9 +59,9 @@ class OPLoginPage < BasePage
   def verify_highlighted_in_red(field)
     case field
     when 'Email'
-      element = @driver.find_element(xpath: OP_LOGIN[:email_field])
+      element = find_element(OP_LOGIN[:email_field])
     when 'Password'
-      element = @driver.find_element(xpath: OP_LOGIN[:password_field])
+      element = find_element(OP_LOGIN[:password_field])
     else
       raise "#{field} field is not expected"
     end
@@ -80,30 +74,28 @@ class OPLoginPage < BasePage
   def verify_logos_and_names
     find_element(OP_LOGIN[:company_logo])
     find_element(OP_LOGIN[:app_logo])
-    actual_name = retrieve_text(OP_LOGIN[:portal_name])
-    actual_heading = retrieve_text(OP_LOGIN[:login_heading])
-    actual_footer = retrieve_text(OP_LOGIN[:page_footer])
-    compare_string('Office Portal', actual_name)
-    compare_string('Log in', actual_heading)
-    compare_string('© 2021 SOL-X Pte. Ltd. All Rights Reserved', actual_footer)
+    portal_name = YAML.load_file('data/office-portal/common_items.yml')['portal_name']
+    portal_footer = YAML.load_file('data/office-portal/common_items.yml')['portal_footer']
+    compare_string(portal_name, retrieve_text(OP_LOGIN[:portal_name]))
+    compare_string('Log in', retrieve_text(OP_LOGIN[:login_heading]))
+    compare_string(portal_footer, retrieve_text(OP_LOGIN[:page_footer]))
   end
 
   def verify_email_block
-    actual_name = retrieve_text(OP_LOGIN[:email_heading])
-    email_field = @driver.find_element(xpath: OP_LOGIN[:email_field])
+    portal_placeholder = YAML.load_file('data/office-portal/common_items.yml')['portal_placeholder']
+    email_field = find_element(OP_LOGIN[:email_field])
     actual_placeholder = email_field.attribute('placeholder')
-    compare_string('Email', actual_name)
-    compare_string('Required', actual_placeholder)
+    compare_string('Email', retrieve_text(OP_LOGIN[:email_heading]))
+    compare_string(portal_placeholder, actual_placeholder)
   end
 
   def verify_password_block
-    actual_name = retrieve_text(OP_LOGIN[:password_heading])
-    link_name = retrieve_text(OP_LOGIN[:forgot_password_link])
-    password_field = @driver.find_element(xpath: OP_LOGIN[:password_field])
+    portal_placeholder = YAML.load_file('data/office-portal/common_items.yml')['portal_placeholder']
+    password_field = find_element(OP_LOGIN[:password_field])
     actual_placeholder = password_field.attribute('placeholder')
-    compare_string('Password', actual_name)
-    compare_string('Forgot Password?', link_name)
-    compare_string('Required', actual_placeholder)
+    compare_string('Password', retrieve_text(OP_LOGIN[:password_heading]))
+    compare_string('Forgot Password?', retrieve_text(OP_LOGIN[:forgot_password_link]))
+    compare_string(portal_placeholder, actual_placeholder)
   end
 
   def retrieve_error_message(heading)
@@ -120,7 +112,7 @@ class OPLoginPage < BasePage
   end
 
   def enter_creds_in_field(creds, element, field)
-    if creds == 'valid_creds'
+    if creds.downcase == 'valid_creds'
       element.send_keys(VALID_CREDS[:"#{field.downcase}"])
     else
       element.send_keys(creds)
