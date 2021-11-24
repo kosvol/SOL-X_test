@@ -11,7 +11,7 @@ class OPLoginPage < BasePage
     app_logo: "//div[@id='background_branding_container']//img[@class='app-logo']",
     portal_name: "//div[@id='background_branding_container']//img[@class='app-logo']/following-sibling::span",
     login_heading: "//h1[@class='reset-password-heading']",
-    unregistered_error: "//div[@class='error pageLevel']",
+    login_error: "//div[@class='error pageLevel']",
     email_heading: "//label[contains(text(),'Email')]",
     email_error: "//label[contains(text(),'Email')]/following-sibling::div/p",
     email_field: "//input[@type='email']",
@@ -23,7 +23,7 @@ class OPLoginPage < BasePage
     page_footer: "//footer[contains(text(),'SOL-X Pte.')]"
   }.freeze
 
-  VALID_CREDS = {
+  CORRECT_CREDS = {
     email: 'qa-test-group@sol-x.co',
     password: 'Solxqa12345!'
   }.freeze
@@ -41,19 +41,23 @@ class OPLoginPage < BasePage
     verify_password_block
   end
 
-  def enter_creds(creds, field)
-    xpath_key = "#{field.downcase}_field".to_sym
-    element = find_element(OP_LOGIN[xpath_key])
-    enter_creds_in_field(creds, element, field)
+  def enter_creds(table)
+    table.hashes.each do |sub_table|
+      xpath_key = "#{sub_table['field'].downcase}_field".to_sym
+      element = find_element(OP_LOGIN[xpath_key])
+      enter_creds_in_field(sub_table['text'], element, sub_table['field'])
+    end
   end
 
   def click_sign_in
     click(OP_LOGIN[:sign_in_btn])
   end
 
-  def verify_error_message(message, place)
-    actual_message = retrieve_error_message(place)
-    compare_string(message, actual_message)
+  def verify_error_message(table)
+    table.hashes.each do |sub_table|
+      actual_message = retrieve_error_message(sub_table['heading'])
+      compare_string(sub_table['message'], actual_message)
+    end
   end
 
   def verify_highlighted_in_red(field)
@@ -99,21 +103,13 @@ class OPLoginPage < BasePage
   end
 
   def retrieve_error_message(heading)
-    case heading
-    when 'Log in'
-      retrieve_text(OP_LOGIN[:unregistered_error])
-    when 'Email'
-      retrieve_text(OP_LOGIN[:email_error])
-    when 'Password'
-      retrieve_text(OP_LOGIN[:password_error])
-    else
-      raise "#{heading} heading is not expected"
-    end
+    xpath_key = "#{heading.downcase}_error".to_sym
+    retrieve_text(OP_LOGIN[xpath_key])
   end
 
   def enter_creds_in_field(creds, element, field)
-    if creds.downcase == 'valid_creds'
-      element.send_keys(VALID_CREDS[:"#{field.downcase}"])
+    if creds.downcase == 'correct_creds'
+      element.send_keys(CORRECT_CREDS[:"#{field.downcase}"])
     else
       element.send_keys(creds)
     end

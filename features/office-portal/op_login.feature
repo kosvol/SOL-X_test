@@ -9,17 +9,22 @@ Feature: Office Portal Login Page
     Given OfficeLogin open page
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the "Email" field is highlighted in red
-    And OfficeLogin should see the error message "Please enter your Email Address" below the "Email" heading
     And OfficeLogin should see the "Password" field is highlighted in red
-    And OfficeLogin should see the error message "Please enter your password" below the "Password" heading
+    And OfficeLogin should see the error message below the heading
+      | heading  | message                         |
+      | Email    | Please enter your Email Address |
+      | Password | Please enter your password      |
 
   Scenario Outline: Verify the correct error message when enter an invalid Email (7900)
     Given OfficeLogin open page
-    When OfficeLogin enters an "<example>" in the "Email" field
-    And OfficeLogin enters an "test" in the "Password" field
+    When OfficeLogin enter text to field
+      | field    | text      |
+      | Email    | <example> |
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the "Email" field is highlighted in red
-    And OfficeLogin should see the error message "Please enter a valid email address." below the "Email" heading
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                             |
+      | Email   | Please enter a valid email address. |
     Examples:
     |example       |
     |test          |
@@ -31,14 +36,22 @@ Feature: Office Portal Login Page
 
   Scenario: Verify the correct error message when enter an incorrect password (7901)
     Given OfficeLogin open page
-    When OfficeLogin enters an "valid_creds" in the "Email" field
-    And OfficeLogin enters an "test" in the "Password" field
+    When OfficeLogin enter text to field
+      | field    | text          |
+      | Email    | correct_creds |
+      | Password | test          |
     And OfficeLogin click the Sign in button
-    And OfficeLogin should see the error message "Your password is incorrect" below the "Log in" heading
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                    |
+      | Login   | Your password is incorrect |
 
   Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page
-    When OfficeLogin enters an "test@test.com" in the "Email" field
-    And OfficeLogin enters an "valid_creds" in the "Password" field
+    When OfficeLogin enter text to field
+      | field    | text          |
+      | Email    | test@test.com |
+      | Password | correct_creds |
     And OfficeLogin click the Sign in button
-    And OfficeLogin should see the error message "We can't seem to find your account" below the "Log in" heading
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                            |
+      | Login   | We can't seem to find your account |
