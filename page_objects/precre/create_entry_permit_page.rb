@@ -82,9 +82,10 @@ class CreateEntryPermitPage < BasePage
   end
 
   def verify_reporting_interval(condition)
+    scroll_times_direction(1, 'down')
     if condition == 'should'
       reporting_interval = find_element(CREATE_ENTRY_PERMIT[:reporting_interval])
-      compare_string(reporting_interval.enabled?.to_s.downcase, 'true')
+      raise 'reporting interval verify failed' unless reporting_interval.enabled?
     else
       verify_element_not_exist(CREATE_ENTRY_PERMIT[:reporting_interval])
     end
@@ -92,10 +93,11 @@ class CreateEntryPermitPage < BasePage
 
   def select_next_date(advance_days = 0)
     find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
-      if element.attribute('class').include? 'current'
-        @driver.find_element("//button[contains(@class,'Day__DayButton')][(#{index}+#{advance_days})+1]").click
-        break
-      end
+      next unless element.attribute('class').include? 'current'
+
+      element_index = index + advance_days + 1
+      @driver.find_element("//button[contains(@class,'Day__DayButton')][(#{element_index}]").click
+      break
     end
   rescue StandardError
     click(COMMON_SECTION[:next_month_button])

@@ -72,13 +72,11 @@ class PumpRoomPage < CreateEntryPermitPage
     compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
   end
 
-  def verify_pre_section_title(condition)
+  def verify_pre_section_title(text, condition)
     if condition == true
-      compare_string('Section 1: Pump Room Entry Permit', CREATE_ENTRY_PERMIT[:heading_text].text)
+      raise 'Verify failed' unless CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)
     else
-      unless (CREATE_ENTRY_PERMIT[:heading_text].text.eql?('Section 1: Pump Room Entry Permit')) == true
-        raise 'Verify failed'
-      end
+      raise 'Verify failed' unless (CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)) == true
     end
   end
 

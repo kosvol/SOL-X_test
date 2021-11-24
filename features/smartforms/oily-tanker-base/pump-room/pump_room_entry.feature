@@ -18,8 +18,8 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And PRE save permit id
-    And PRE click Submit for Approval button
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
 
@@ -133,7 +133,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -156,7 +156,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -170,7 +170,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -184,7 +184,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
@@ -204,7 +204,7 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     Then I press the "Close" button
     And I getting a permanent number from indexedDB
     And I navigate to "Created" screen for PRE
@@ -217,7 +217,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -252,7 +252,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
-    And PRE save permit id
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form

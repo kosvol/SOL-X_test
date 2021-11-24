@@ -3,15 +3,15 @@
 require_relative '../../../page_objects/precre/create_entry_permit_page'
 require_relative '../../../page_objects/precre/pump_room_page'
 #I (should|should not) see PRE landing screen
-Then('PRE verify landing screen is "Section 1: Pump Room Entry Permit"') do
+Then('PRE verify landing screen is {string}') do |text|
   @pre_page ||= PumpRoomPage.new(@driver)
-  @pre_page.verify_pre_section_title(true)
+  @pre_page.verify_pre_section_title('Section 1: Pump Room Entry Permit', true)
 end
 
 #I (should|should not) see PRE landing screen
-Then('PRE verify landing screen is "Section 1: Pump Room Entry Permit" does not show up') do
+Then('PRE verify landing screen is not {string}') do |text|
   @pre_page ||= PumpRoomPage.new(@driver)
-  @pre_page.verify_pre_section_title(false)
+  @pre_page.verify_pre_section_title(text, false)
 end
 
 #I should see the right order of elements
@@ -34,12 +34,6 @@ Then('PRE select Permit Duration {int}') do |duration|
   @pre_page.select_permit_duration(duration)
 end
 
-#I take note of start and end validity time for (.*)
-And('PRE save current start and end validity time for {string}') do |permit_type|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.retrieve_start_end_time(permit_type)
-end
-
 #I select current day for field "([^"]*)"
 Then('PRE select Date of Last Calibration as current day') do
   @pre_page ||= PumpRoomPage.new(@driver)
@@ -60,24 +54,3 @@ Then('PRE fill up permit') do |table|
   @pre_page.scroll_times_direction(1, 'down')
   @pre_page.activate_time_picker(params['delay to activate'])
 end
-
-#And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
-And('PRE save permit id') do
-  @create_entry_permit_page.save_permit_id
-end
-
-#Then(/^I press the "([^"]*)" button$/) do |button|
-Then('PRE click Submit for Approval button') do
-  @create_entry_permit_page.click_submit_for_approval
-end
-#And(/^I (should|should not) see Reporting interval$/) do |condition|
-And('PRE {string} see Reporting interval') do |option|
-  @pre_page.scroll_times_direction(1, 'down')
-  @create_entry_permit_page.verify_reporting_interval(option)
-end
-
-And('PRE select next date') do
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.select_next_date
-end
-

@@ -6,7 +6,7 @@ require_relative '../base_page'
 class EntryDisplayPage < BasePage
   include EnvUtils
 
-  attr_accessor :entrants_arr, :time
+  attr_accessor :entrants, :time
 
   ENTRY_DISPLAY = {
     heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
@@ -50,10 +50,8 @@ class EntryDisplayPage < BasePage
   end
 
   def signout_entrants_by_name(entrants)
-    entrants_arr = self.entrants_arr
     find_elements(ENTRY_DISPLAY[:sign_out_btn]).first.click
     signout_by_name(entrants)
-    self.entrants_arr = (entrants_arr)
     self.time = ENTRY_DISPLAY[:clock].text
   end
 
@@ -65,30 +63,34 @@ class EntryDisplayPage < BasePage
     true
   end
 
-  def additional_entrant(additional_entrants)
-    self.entrants_arr = []
+  def additional_entrant(entrant_count)
+    entrants = []
     click(ENTRY_DISPLAY[:entrant_names_dd])
-    add_entrants(additional_entrants)
+    add_entrants(entrant_count, entrants)
+    self.entrants = entrants
     find_elements(ENTRY_DISPLAY[:confirm_btn]).first.click
   end
 
-  def required_entrants(entrants)
-    self.entrants_arr = []
-    while entrants.positive?
-      find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/label/span").click
-      entrants_arr
-        .push(find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrants + 1}]/label/div").text)
-      entrants -= 1
+  def required_entrants(entrant_count)
+    entrants = []
+    while entrant_count.positive?
+      find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrant_count + 1}]/label/label/span").click
+      new_entrant = find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrant_count + 1}]/label/div")
+                      .text
+      entrants.push(new_entrant)
+      entrant_count -= 1
     end
+    self.entrants = entrants
   end
 
   private
 
-  def add_entrants(additional_entrants)
-    while additional_entrants.positive?
-      @driver.find_elements(css: ENTRY_DISPLAY[:options_text])[additional_entrants].click
-      entrants_arr.push(@driver.find_elements(css: ENTRY_DISPLAY[:options_text])[additional_entrants].text)
-      additional_entrants -= 1
+  def add_entrants(entrant_count, entrants)
+    while entrant_count.positive?
+      @driver.find_elements(css: ENTRY_DISPLAY[:options_text])[entrant_count].click
+      new_entrant = @driver.find_elements(css: ENTRY_DISPLAY[:options_text])[entrant_count].text
+      entrants.push(new_entrant)
+      entrant_count -= 1
     end
   end
 
@@ -103,7 +105,7 @@ class EntryDisplayPage < BasePage
     entrants.split(',').each do |i|
       find_element("//*[contains(.,'#{i}')]/button").click
       find_elements(ENTRY_DISPLAY[:sign_out_btn]).last.click
-      entrants_arr.delete(i)
+      entrants.delete(i)
     end
   end
 end
