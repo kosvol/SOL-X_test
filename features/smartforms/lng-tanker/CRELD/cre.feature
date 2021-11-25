@@ -226,7 +226,7 @@ Feature: LNGCRE
     And I should see Updates Needed button disabled
 
   Scenario: The Responsible Officer Signature should be displayed CRE
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
     When I clear gas reader entries
     And I navigate to create new CRE
     And I enter pin via service for rank C/O
@@ -234,7 +234,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And Pre save current start and end validity time for CRE
     And I check "Responsible Officer Signature" is present
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
@@ -255,7 +255,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And Pre save current start and end validity time for CRE
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
@@ -279,7 +279,7 @@ Feature: LNGCRE
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
-    And I take note of start and end validity time for CRE
+    And Pre save current start and end validity time for CRE
     When I press the "Approve for Activation" button
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'

@@ -1,26 +1,44 @@
 @Pump-Room-Entry
-Feature: PumpRoomEntry
+Feature: Pump room entry permit creation
   As a ...
   I want to ...
   So that ...
 
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+
+
     Given I fill and submit PRE permit details via service
-    Then I should see no new entry log message
+   # Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
-    Given I launch sol-x portal without unlinking wearable
-    When I open hamburger menu
-    And I click on PRE show more
-    And I click on forms show more
-    And I should see entire hamburger categories
+    Given SmartForms open page
+    When SmartForms open hamburger menu
+    And SmartForms click show more on "PRE"
+    And SmartForms click show more on "Forms"
+    And SmartForms verify hamburger categories
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank <rank>
-    Then I should see PRE landing screen
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "<rank>"
+    Then PRE verify landing screen is "Section 1: Pump Room Entry Permit"
 
     Examples:
       | rank  |
@@ -32,10 +50,10 @@ Feature: PumpRoomEntry
       | A 3/O |
 
   Scenario Outline: Verify not Pump Room Entry RO cannot create PRE
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin for rank <rank>
-    Then I should see not authorize error message
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "<rank>"
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
     Examples:
       | rank  |
@@ -56,19 +74,19 @@ Feature: PumpRoomEntry
       | OLR   |
 
   Scenario: Verify in the form there are all questions
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I should see the right order of elements
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    Then PRE verify questions order
 
   Scenario Outline: Verify submit for approval button is disable when mandatory fields not fill
-    Given  I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I should see alert message "Please select the start time and duration before submitting."
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    Then PRE verify alert message "Please select the start time and duration before submitting."
     And Button "Submit for Approval" should be disabled
-    Then I select Permit Duration <duration>
-    And I should not see alert message "Please select the start time and duration before submitting."
+    Then PRE select Permit Duration <duration>
+    Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
     And Button "Submit for Approval" should not be disabled
 
     Examples:
@@ -78,36 +96,44 @@ Feature: PumpRoomEntry
       | 8        |
 
   Scenario: Verify user able to fill Date of Last Calibration
-    Given  I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I select current day for field "Date of Last Calibration"
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    Then PRE select Date of Last Calibration as current day
 
   Scenario: Verify user able to see reporting interval when YES is selected
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I should not see Reporting interval
-    Then I click Yes to answer the question "Are the personnel entering the pump room aware of the reporting interval?"
-    And I should see Reporting interval
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE "should not" see Reporting interval
+    Then PRE answer question
+      | answer | question                                                                  |
+      | Yes    | Are the personnel entering the pump room aware of the reporting interval? |
+    And PRE "should" see Reporting interval
 
   Scenario: Verify user can add Gas Test Record with toxic gas
-    Given I launch sol-x portal without unlinking wearable
-    When I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I add all gas readings with C/O rank
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I set time
     Then I will see popup dialog with C/O COT C/O crew rank and name
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas and C/O COT C/O as gas signer
 
   Scenario: Verify PRE can be terminated manually
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 3
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -124,11 +150,13 @@ Feature: PumpRoomEntry
     And I should see the current PRE in the "Closed PRE" list
 
   Scenario: Verify Update needed text can be input and displayed after
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -136,12 +164,13 @@ Feature: PumpRoomEntry
     And for pre I should see update needed message
 
   Scenario: Verify creator PRE cannot request update needed
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -149,11 +178,13 @@ Feature: PumpRoomEntry
     And for pre I should see the disabled "Updates Needed" button
 
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 2 seconds
     And I getting a permanent number from indexedDB
@@ -170,22 +201,23 @@ Feature: PumpRoomEntry
       | OLR   |
 
   Scenario: Verify Created PRE is displayed in Created PRE list
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CreateEntryPermit save permit id
     Then I press the "Close" button
     And I getting a permanent number from indexedDB
     And I navigate to "Created" screen for PRE
     Then I should see the current PRE in the "Created PRE" list
 
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank <rank>
-    Then I fill up PRE. Duration 4. Delay to activate 2
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I sleep for 5 seconds
     And I getting a permanent number from indexedDB
@@ -202,9 +234,9 @@ Feature: PumpRoomEntry
       | A 3/O | disabled  |
 
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
     And I get a temporary number and writing it down
     Then I sleep for 3 seconds
     And I should see the text 'Permit Updated'
@@ -214,12 +246,13 @@ Feature: PumpRoomEntry
     Then I edit pre and should see the old number previously written down
 
   Scenario: The Responsible Officer Signature should be displayed PRE
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 3
-    And Get PRE id
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 2                 |
+    And CreateEntryPermit save permit id
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current PRE form
@@ -230,10 +263,9 @@ Feature: PumpRoomEntry
     And I check "Responsible Officer Signature" is present
 
   Scenario: Permit Validity date should match the final date selected from the date picker
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
     Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
     And for pre I submit permit for C/O Approval
     And I getting a permanent number from indexedDB
@@ -241,11 +273,12 @@ Feature: PumpRoomEntry
     Then I check scheduled date
 
   Scenario Outline: Pure Gas Tester2 should not be able to edit gas reading
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    Then I fill up PRE. Duration 4. Delay to activate 2
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I request update needed

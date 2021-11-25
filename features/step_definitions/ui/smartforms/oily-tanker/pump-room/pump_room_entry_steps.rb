@@ -20,7 +20,6 @@ end
 
 Then(/^I (should|should not) see alert message "(.*)"$/) do |condition, alert|
   is_true(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should'
-
   is_false(on(PumpRoomEntry).alert_text_displayed?(alert)) if condition == 'should not'
 end
 
@@ -51,7 +50,7 @@ And(/^I (should|should not) see Reporting interval$/) do |condition|
   BrowserActions.scroll_down
   if condition == 'should not'
     not_to_exists(on(PumpRoomEntry).reporting_interval_element)
-    else
+  else
     to_exists(on(PumpRoomEntry).reporting_interval_element)
   end
 end
@@ -125,7 +124,7 @@ end
 
 And(/^I activate the current (PRE|CRE) form$/) do |permit_type|
   step "I open the current #{permit_type} with status Pending approval. Rank: C/O"
-  step format('I take note of start and end validity time for %s', permit_type.to_s)
+  step format('PRE Page save current start and end validity time for %s', permit_type.to_s)
   step 'I press the "Approve for Activation" button'
   step 'I sign with valid C/O rank'
   step "I should see the page 'Permit Successfully Scheduled for Activation'"
@@ -137,10 +136,6 @@ And(/^I activate (PRE|CRE) form via service$/) do |_permit_type|
   sleep 1
   on(BypassPage).activate_pre_cre
   sleep 5
-end
-
-And(/^I take note of start and end validity time for (.*)$/) do |permit_type|
-  on(PumpRoomEntry).validity_start_and_end_time(permit_type.to_s)
 end
 
 And(/^I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list$/) do |condition, _permit_type, _list|
