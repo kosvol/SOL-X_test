@@ -14,7 +14,7 @@ class OPLoginPage < BasePage
     login_error: "//div[@class='error pageLevel']",
     email_heading: "//label[contains(text(),'Email')]",
     email_error: "//label[contains(text(),'Email')]/following-sibling::div/p",
-    email_field: "//input[@type='email']",
+    email_field: "//input[@id='email']",
     password_heading: "//label[contains(text(),'Password')]",
     forgot_password_link: "//a[@id='forgotPassword']",
     password_error: "//div[@class='password-label']/following-sibling::div/p",
@@ -29,10 +29,8 @@ class OPLoginPage < BasePage
   }.freeze
 
   def open_op_page
-    @driver.manage.timeouts.page_load = 15
     @driver.get(retrieve_env_url)
     find_element(OP_LOGIN[:login_heading])
-    @driver.manage.timeouts.page_load = TIMEOUT
   end
 
   def verify_login_page_attributes
