@@ -9,10 +9,12 @@ class SignatureLocationPage < BasePage
   SIGNATURE_LOCATION = {
     zone_ddl: '//button[@name="zone"]',
     default_zone: '//button[@name="zone"]/span',
+    zone_list: "//ul[starts-with(@class,'UnorderedList-')]/li/button",
     zone_option: '//button[contains(.,"%s")]',
     back_btn: '//button[contains(.,"Back")]',
     signature_pad: '//*[@data-testid="signature-canvas"]',
-    done_btn: '//button[contains(.,"Done")]'
+    done_btn: '//button[contains(.,"Done")]',
+    submit_btn: "//div[starts-with(@class,'MainGasesInput__ButtonContainer')]/button[2]"
   }.freeze
 
   def initialize(driver)
@@ -52,5 +54,21 @@ class SignatureLocationPage < BasePage
     select_zone(zone)
     click(SIGNATURE_LOCATION[:done_btn])
   end
-end
 
+  def sign_off_first_zone_area
+    click(SIGNATURE_LOCATION[:signature_pad])
+    click_location_dropdown
+    select_first_aria_zone
+    select_first_aria_zone
+    click(SIGNATURE_LOCATION[:submit_btn])
+    click(SIGNATURE_LOCATION[:done_btn])
+  end
+
+  private
+
+  def select_first_aria_zone
+    area_zone = find_elements(SIGNATURE_LOCATION[:zone_list]).first
+    area_zone.location_once_scrolled_into_view
+    area_zone.click
+  end
+end

@@ -26,3 +26,8 @@ And('SignatureLocation sign off') do |table|
   @signature_page ||= SignatureLocationPage.new(@driver)
   @signature_page.sign_off(params['area'], params['zone'])
 end
+
+And('SignatureLocation sign off first zone area') do
+  @signature_page ||= SignatureLocationPage.new(@driver)
+  @signature_page.sign_off_first_zone_area
+end
