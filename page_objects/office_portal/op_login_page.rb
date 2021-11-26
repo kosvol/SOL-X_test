@@ -39,12 +39,12 @@ class OPLoginPage < BasePage
     verify_password_block
   end
 
-  def enter_creds(table)
-    table.hashes.each do |sub_table|
-      xpath_key = "#{sub_table['field'].downcase}_field".to_sym
-      element = find_element(OP_LOGIN[xpath_key])
-      enter_creds_in_field(sub_table['text'], element, sub_table['field'])
-    end
+  def enter_password(text)
+    enter_text(OP_LOGIN[:password_field], text)
+  end
+
+  def enter_email(text)
+    enter_text(OP_LOGIN[:email_field], text)
   end
 
   def click_sign_in
@@ -59,14 +59,8 @@ class OPLoginPage < BasePage
   end
 
   def verify_highlighted_in_red(field)
-    case field
-    when 'Email'
-      element = find_element(OP_LOGIN[:email_field])
-    when 'Password'
-      element = find_element(OP_LOGIN[:password_field])
-    else
-      raise "#{field} field is not expected"
-    end
+    xpath_key = "#{field.downcase}_field".to_sym
+    element = find_element(OP_LOGIN[xpath_key])
     border_colour = element.css_value('border-color')
     compare_string('rgb(216, 75, 75)', border_colour)
   end
@@ -103,13 +97,5 @@ class OPLoginPage < BasePage
   def retrieve_error_message(heading)
     xpath_key = "#{heading.downcase}_error".to_sym
     retrieve_text(OP_LOGIN[xpath_key])
-  end
-
-  def enter_creds_in_field(creds, element, field)
-    if creds.downcase == 'correct_creds'
-      element.send_keys(CORRECT_CREDS[:"#{field.downcase}"])
-    else
-      element.send_keys(creds)
-    end
   end
 end

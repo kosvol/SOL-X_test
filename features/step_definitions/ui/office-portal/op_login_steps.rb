@@ -22,9 +22,14 @@ And('OfficeLogin should see the {string} field is highlighted in red') do |field
   @office_portal_login.verify_highlighted_in_red(field)
 end
 
-When('OfficeLogin enter text to field') do |table|
+When('OfficeLogin enter email {string}') do |text|
   @office_portal_login ||= OPLoginPage.new(@driver)
-  @office_portal_login.enter_creds(table)
+  @office_portal_login.enter_email(text)
+end
+
+When('OfficeLogin enter password {string}') do |text|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.enter_password(text)
 end
 
 And('OfficeLogin should see the error message below the heading') do |table|

@@ -1,5 +1,8 @@
 @op-login-page
 Feature: Office Portal Login Page
+  Correct credentials for test
+  email: qa-test-group@sol-x.co
+  password: Solxqa12345!
 
   Scenario: Verify new login page attributes (Desktop) (7782)
     Given OfficeLogin open page
@@ -17,9 +20,7 @@ Feature: Office Portal Login Page
 
   Scenario Outline: Verify the correct error message when enter an invalid Email (7900)
     Given OfficeLogin open page
-    When OfficeLogin enter text to field
-      | field    | text      |
-      | Email    | <example> |
+    When OfficeLogin enter email "<example>"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the "Email" field is highlighted in red
     Then OfficeLogin should see the error message below the heading
@@ -36,10 +37,8 @@ Feature: Office Portal Login Page
 
   Scenario: Verify the correct error message when enter an incorrect password (7901)
     Given OfficeLogin open page
-    When OfficeLogin enter text to field
-      | field    | text          |
-      | Email    | correct_creds |
-      | Password | test          |
+    When OfficeLogin enter email "qa-test-group@sol-x.co"
+    When OfficeLogin enter password "test"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                    |
@@ -47,10 +46,8 @@ Feature: Office Portal Login Page
 
   Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page
-    When OfficeLogin enter text to field
-      | field    | text          |
-      | Email    | test@test.com |
-      | Password | correct_creds |
+    When OfficeLogin enter email "test@test.com"
+    When OfficeLogin enter password "Solxqa12345!"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                            |
