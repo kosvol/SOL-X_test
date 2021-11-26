@@ -67,7 +67,7 @@ Feature: Section 5: Responsibility Acceptance
       | Authorized Entrant 1  |
       | Authorized Gas Tester |
 
-  @qq
+
   Scenario: Verify user can see a list of roles
     Given SmartForms open page
     And SmartForms click create permit to work
