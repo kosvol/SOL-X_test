@@ -37,6 +37,7 @@ module EnvUtils
 
   def retrieve_prefix
     prefix = "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}"
+    prefix = (ENV['ENVIRONMENT']).to_s if ENV['APPLICATION'] == 'office_portal'
     return "#{prefix}-2-0" if ENV['VERSION'] == '2.0'
 
     prefix
