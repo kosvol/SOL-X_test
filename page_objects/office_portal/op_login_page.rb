@@ -23,11 +23,6 @@ class OPLoginPage < BasePage
     page_footer: "//footer[contains(text(),'SOL-X Pte.')]"
   }.freeze
 
-  CORRECT_CREDS = {
-    email: 'qa-test-group@sol-x.co',
-    password: 'Solxqa12345!'
-  }.freeze
-
   def open_op_page
     @driver.get(retrieve_env_url)
     find_element(OP_LOGIN[:login_heading])
