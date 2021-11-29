@@ -44,7 +44,10 @@ Feature: Section 5: Responsibility Acceptance
     And Section5 select role
       | Authorized Entrant 1  |
       | Authorized Gas Tester |
-    Then Section5 verify role list
+    Then Section5 verify "role_list"
+      | Authorized Entrant 2 |
+      | Authorized Entrant 3 |
+    And Section5 verify "signature_list"
       | Authorized Entrant 2 |
       | Authorized Entrant 3 |
 
@@ -63,7 +66,10 @@ Feature: Section 5: Responsibility Acceptance
     And Section5 delete role
       | Authorized Entrant 2 |
       | Authorized Entrant 3 |
-    Then Section5 verify role list
+    Then Section5 verify "role_list"
+      | Authorized Entrant 1  |
+      | Authorized Gas Tester |
+    And Section5 verify "signature_list"
       | Authorized Entrant 1  |
       | Authorized Gas Tester |
 

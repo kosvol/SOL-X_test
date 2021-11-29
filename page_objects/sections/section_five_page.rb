@@ -16,6 +16,7 @@ class SectionFivePage < BasePage
     rank_name: "(//*[starts-with(@class, 'Text')])[%s]",
     location_stamp: "(//*[starts-with(@class, 'AnswerComponent')])[%s]",
     role_list: "(//*[starts-with(@class, 'ValueTree')])",
+    signature_list: '//*[@data-testid="responsibility-box"]/h3',
     role_options: '//div[@class="option-text"]',
     non_crew_checkbox: '//*[@class="checkbox"]',
     other_name: '//*[@id="otherName"]',
@@ -62,8 +63,8 @@ class SectionFivePage < BasePage
     end
   end
 
-  def verify_role_list(table)
-    role_elements = find_elements(SECTION_FIVE[:role_list])
+  def verify_role_list(list_type, table)
+    role_elements = find_elements(SECTION_FIVE[list_type.to_sym])
     table.raw.each_with_index do |row, index|
       compare_string(row.first, role_elements[index].text)
     end
@@ -108,6 +109,19 @@ class SectionFivePage < BasePage
     compare_string(expected_supervised, retrieve_text(SECTION_FIVE[:supervised_by]))
     compare_string(expected_values['role'], retrieve_text(SECTION_FIVE[:role_headings] % '1'))
     verify_signed_columns(expected_values)
+  end
+
+  def verify_signature_list(table)
+
+    role_elements = find_elements(SECTION_FIVE[:role_list])
+    table.raw.each_with_index do |row, index|
+      compare_string(row.first, role_elements[index].text)
+    end
+
+
+    table.hashes.each do |row|
+      compare_string(row['role'], retrieve_text(SECTION_FIVE[:role_headings] % element_index))
+    end
   end
 
   private

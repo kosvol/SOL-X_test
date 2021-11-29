@@ -8,6 +8,7 @@ Given('Section5 select role') do |table|
 end
 
 Given('Section5 click Enter PIN & Sign button') do
+  @section_five_page ||= SectionFivePage.new(@driver)
   @section_five_page.click_sign_btn
 end
 
@@ -19,8 +20,8 @@ Given('Section5 delete role') do |table|
   @section_five_page.delete_role(table)
 end
 
-Given('Section5 verify role list') do |table|
-  @section_five_page.verify_role_list(table)
+Given('Section5 verify {string}') do |list_type, table|
+  @section_five_page.verify_role_list(list_type, table)
 end
 
 Given('Section5 verify role full list') do
