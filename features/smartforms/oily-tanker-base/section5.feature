@@ -1,177 +1,228 @@
 @section5
-Feature: Section5
-  As a ...
-  I want to ...
-  So that ...
+Feature: Section 5: Responsibility Acceptance
 
   @SOL-7490
   Scenario: Verify signature exists after navigating
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 2 role from list
-    And I sign on role
-    Then I should see first signed role details with 8383 pin
-    When I sign on next role with same user
-    Then I should see second signed role details with 8383 pin
-    And I press next for 1 times
-    And I press previous for 1 times
-    Then I should see both signature canvas exists
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+      | Authorized Entrant 2 |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/E"
+    When SignatureLocation sign off
+      | area        | zone             |
+      | Bridge Deck | Port Bridge Wing |
+    And CommonSection click Save & Next
+    And CommonSection sleep for "2" sec
+    When CommonSection click Previous
+    Then Section5 verify signature
+      | role                 | rank |
+      | Authorized Entrant 1 | C/O  |
+      | Authorized Entrant 2 | C/E  |
+
 
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities from drop down
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    Then I should see 1 role listed
-    And I should see Authorized Entrant 1 role
-    When I delete 1 role from list
-    Then I should see 0 role listed
-    And I should not see Authorized Entrant 1 role
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1  |
+      | Authorized Entrant 2  |
+      | Authorized Entrant 3  |
+      | Authorized Gas Tester |
+    And Section5 select role
+      | Authorized Entrant 1  |
+      | Authorized Gas Tester |
+    Then Section5 verify "role_list"
+      | Authorized Entrant 2 |
+      | Authorized Entrant 3 |
+    And Section5 verify "signature_list"
+      | Authorized Entrant 2 |
+      | Authorized Entrant 3 |
+
 
   Scenario: Verify signature component is deleted after removing Roles & Responsibilities via cross
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 2 role from list
-    Then I should see 2 role listed
-    And I should see Authorized Entrant 1 role
-    And I should see Authorized Entrant 2 role
-    When I delete the role from cross
-    Then I should see 1 role listed
-    And I should not see Authorized Entrant 1 role
-    And I should see Authorized Entrant 2 role
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1  |
+      | Authorized Entrant 2  |
+      | Authorized Entrant 3  |
+      | Authorized Gas Tester |
+    And Section5 delete role
+      | Authorized Entrant 2 |
+      | Authorized Entrant 3 |
+    Then Section5 verify "role_list"
+      | Authorized Entrant 1  |
+      | Authorized Gas Tester |
+    And Section5 verify "signature_list"
+      | Authorized Entrant 1  |
+      | Authorized Gas Tester |
+
 
   Scenario: Verify user can see a list of roles
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    Then I should see a list of roles
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    Then Section5 verify role full list
 
-  Scenario: Verify user can sign on responsiblity and reflected as roles for the crew
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I sign on role
-    Then I should see first signed role details with 8383 pin
 
   Scenario: Verify same user can sign for multiple roles
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 2 role from list
-    And I sign on role
-    Then I should see first signed role details with 8383 pin
-    When I sign on next role with same user
-    Then I should see second signed role details with 8383 pin
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+      | Authorized Entrant 2 |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area        | zone             |
+      | Bridge Deck | Port Bridge Wing |
+    Then Section5 verify signature
+      | role                 | rank |
+      | Authorized Entrant 1 | C/O  |
+      | Authorized Entrant 2 | C/O  |
+
 
   Scenario: Verify Enter Pin and Sign button is disable if sign as non crew checked
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I check non crew member checkbox
-    Then I should see sign role button disabled
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Sign as non-crew member
+    Then Section5 verify sign button is 'disabled'
+
 
   Scenario: Verify Enter Pin and Sign button is enabled if name and company fields filled
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I fill up non crew details
-    Then I should see sign button enabled
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Sign as non-crew member
+    And Section5 enter non-crew info
+      | name      | company      |
+      | test_crew | test_company |
+    Then Section5 verify sign button is 'enabled'
+    And Section5 verify non-crew hint
 
-  Scenario: Verify ship staff copy text display after name and company fields filled
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I fill up non crew details
-    Then I should see non crew copy text
 
   Scenario Outline: Verify only sponsor crews can sign
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I fill up non crew details
-    And I sign on role with sponsor crew <rank> rank
-    Then I should see non crew details
-    And I should see supervise by <supervized> detail and Test Automation Company detail
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Sign as non-crew member
+    And Section5 enter non-crew info
+      | name                 | company                 |
+      | test_crew_automation | test_company_automation |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area        | zone             |
+      | Bridge Deck | Port Bridge Wing |
+    Then Section5 verify supervised signature
+      | rank   | role                 | name                 | company                 |
+      | <rank> | Authorized Entrant 1 | test_crew_automation | test_company_automation |
 
     Examples:
-      | rank  | pin  | supervized      |
-      | C/O   | 8383 | C/O COT C/O     |
-      | A C/O | 2761 | A C/O COT A C/O |
-      | 2/O   | 6268 | 2/O COT 2/O     |
-      | A 2/O | 7865 | A 2/O COT A 2/O |
-      | 3/O   | 0159 | 3/O COT 3/O     |
-      | C/E   | 8248 | C/E COT C/E     |
-      | A C/E | 5718 | A C/E COT A C/E |
-      | 2/E   | 2523 | 2/E COT 2/E     |
-      | A 2/E | 3030 | A 2/E COT A 2/E |
-      | 3/E   | 4685 | 3/E COT 3/E     |
-      | A 3/E | 6727 | A 3/E COT A 3/E |
-      | 4/E   | 1311 | 4/E COT 4/E     |
+      | rank |
+      | C/O  |
+#      | A C/O |
+      | 2/O  |
+#      | A 2/O |
+      | 3/O  |
+      | C/E  |
+#      | A C/E |
+      | 2/E  |
+#      | A 2/E |
+      | 3/E  |
+#      | A 3/E |
+      | 4/E  |
 
-  Scenario Outline: Verify non sponsor crews cannot sign
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I fill up non crew details
-    And I sign on role with non sponsor crew <rank> rank
-    Then I should see not authorize error message
+  Scenario: Verify non sponsor crews cannot sign
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Sign as non-crew member
+    And Section5 enter non-crew info
+      | name      | company      |
+      | test_crew | test_company |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "MAS"
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-    Examples:
-      | rank | pin  |
-      | MAS  | 1111 |
 
-  Scenario Outline: Verify crew can sign
-    Given I launch sol-x portal
-    And I navigate to create new permit
-    And I enter pin for rank C/O
-    And I select Enclosed Spaces Entry permit
-    And I select NA permit for level 2
-    And I navigate to section 5
-    And I select 1 role from list
-    And I sign on role with sponsor crew <rank> rank
-    Then I should see first signed role details with <pin> pin
+  Scenario: Verify crew can sign
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Sign as non-crew member
+    And Section5 enter non-crew info
+      | name      | company      |
+      | test_crew | test_company |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area        | zone             |
+      | Bridge Deck | Port Bridge Wing |
+    Then Section5 verify supervised signature
+      | rank | role                 | name      | company      |
+      | C/O  | Authorized Entrant 1 | test_crew | test_company |
 
-    Examples:
-      | rank | pin  | supervized        |
-      | C/O  | 8383 | C/O Alister Leong |
+
+  Scenario:  Verify linked user will show the default location in section5 signature
+    Given Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Enter PIN & Sign button
+    When PinEntry enter pin for rank "C/O"
+    And SignatureLocation should see zone as "Aft Station"
