@@ -80,6 +80,10 @@ class PumpRoomPage < CreateEntryPermitPage
     end
   end
 
+  def click_close_button
+    click("//button[contains(.,'Close')]")
+  end
+
   private
 
   def select_current_day

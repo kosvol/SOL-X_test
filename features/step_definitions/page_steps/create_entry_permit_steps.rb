@@ -19,12 +19,39 @@ Then('CreateEntryPermit click Submit for Approval button') do
   @create_entry_permit_page.click_submit_for_approval
 end
 
-#And(/^I (should|should not) see Reporting interval$/) do |condition|
-And('PRE {string} see Reporting interval') do |option|
-  @create_entry_permit_page.verify_reporting_interval(option)
-end
-
 And('CreateEntryPermit select next date') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.select_next_date
+end
+
+And('CreateEntryPermit save form time') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.save_time
+end
+
+And('CreateEntryPermit verify popup dialog with {string} crew member') do |rank_name|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_crew_in_popup(rank_name)
+end
+
+#And(/^I (should|should not) see the (text|label|page|header) '(.*)'$/) do |condition, like, text|
+And('CreateEntryPermit verify element type {string} with text {string}') do |type, text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_element_and_text(type, text)
+end
+
+Then('CreateEntryPermit click Back to Home button') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.click_back_to_home
+end
+
+#And(/^I (should|should not) see Reporting interval$/) do |condition|
+And('CreateEntryPermit {string} see Reporting interval') do |option|
+  @create_entry_permit_page.verify_reporting_interval(option)
+end
+
+#I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list
+And('CreateEntryPermit verify current permit presents in the list') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_element_and_text('text', @create_entry_permit_page.permit_id)
 end

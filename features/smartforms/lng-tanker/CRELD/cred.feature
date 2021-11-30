@@ -5,11 +5,12 @@ Feature: LNGCRED
   So that ...
 
   Scenario: CRED should not displayed permit terminated when new CRE permit is created
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And Get CRE id
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -28,7 +29,7 @@ Feature: LNGCRED
     And I add new entry "A 2/O,3/O,A 3/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
-    When I launch sol-x portal without unlinking wearable
+    When SmartForms open page
     And I navigate to CRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen
@@ -42,7 +43,7 @@ Feature: LNGCRED
 
   Scenario: CRED Just exited entrant can create new entry again
     Given I submit a current CRE permit via service
-    And I launch sol-x portal without unlinking wearable
+    And SmartForms open page
     And I open the current CRE with status Active. Rank: A C/O
     And Get CRE id
     And I click on back arrow
@@ -70,11 +71,12 @@ Feature: LNGCRED
     And I terminate the PRE permit via service
 
   Scenario: Verify user can't add new entry without an initial gas readings
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And Get CRE id
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -93,7 +95,7 @@ Feature: LNGCRED
     And I terminate the PRE permit via service
 
   Scenario: Displaying CRED without an active CRE[SOL-6222]
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
     And I navigate to CRE Display
     And I enter pin via service for rank C/O
     And I should see red background color
@@ -107,7 +109,7 @@ Feature: LNGCRED
     And I add new entry "A 2/O,3/O,A 3/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
-    When I launch sol-x portal without unlinking wearable
+    When SmartForms open page
     And I navigate to CRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen

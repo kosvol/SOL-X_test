@@ -27,3 +27,12 @@ end
 And('SmartForms verify hamburger categories') do
   @smart_form_page.verify_base_menu
 end
+
+And('SmartForms navigate to {string} page for {string}') do |page, category|
+  @smart_form_page.click_hamburger_menu_btn
+  @smart_form_page.navigate_to_page(page, category)
+end
+
+And('SmartForms navigate to {string} display until see active permit') do |permit_type|
+  @smart_form_page.wait_until_permit_activate(permit_type)
+end

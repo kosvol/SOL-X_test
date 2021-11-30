@@ -68,11 +68,15 @@ Feature: PumpRoomEntryDisplay
     Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
+
     And I get active PRE permit and terminate
-    When I navigate to create new PRE
-    And I enter pin via service for rank 3/O
-    And I fill up PRE. Duration 4. Delay to activate 3
+
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form

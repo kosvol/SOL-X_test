@@ -15,7 +15,8 @@ class GasReadingsPage < BasePage
     add_toxic_gas_btn: "//button[contains(.,'Add Toxic Gas')]",
     review_sign_btn: "//button[contains(.,'Review & Sign')]",
     continue_btn: "//button[contains(.,'Continue')]",
-    enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)'
+    enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)',
+    done_btn: '//button[contains(.,"Done")]'
   }.freeze
 
   GAS_READINGS = {
@@ -60,5 +61,9 @@ class GasReadingsPage < BasePage
 
   def click_pin_and_submit
     @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn]).click
+  end
+
+  def click_done_button
+    find_elements(GAS_INFORMATION[:done_btn]).first.click
   end
 end

@@ -22,9 +22,17 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-
-
-    Given I fill and submit PRE permit details via service
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+    And CreateEntryPermit save current start and end validity time for "PRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And Service Activate "PRE" permit
+    Then SmartForms navigate to "PRE" display until see active permit
+   # Given I fill and submit PRE permit details via service
    # Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
@@ -87,6 +95,7 @@ Feature: Pump room entry permit creation
     And Button "Submit for Approval" should be disabled
     Then PRE select Permit Duration <duration>
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
+
     And Button "Submit for Approval" should not be disabled
 
     Examples:
@@ -105,11 +114,11 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE "should not" see Reporting interval
+    And CreateEntryPermit "should not" see Reporting interval
     Then PRE answer question
       | answer | question                                                                  |
       | Yes    | Are the personnel entering the pump room aware of the reporting interval? |
-    And PRE "should" see Reporting interval
+    And CreateEntryPermit "should" see Reporting interval
 
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given SmartForms open page
@@ -121,8 +130,9 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I set time
-    Then I will see popup dialog with C/O COT C/O crew rank and name
+    And CreateEntryPermit save form time
+    And CreateEntryPermit verify popup dialog with "C/O COT C/O" crew member
+
     When I dismiss gas reader dialog box
     Then I should see gas reading display with toxic gas and C/O COT C/O as gas signer
 
@@ -134,12 +144,24 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for PRE
-    And I should see the current PRE in the "Scheduled" list
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+    And CreateEntryPermit save current start and end validity time for "PRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And SmartForms navigate to "Scheduled" page for "PRE"
+    Then CreateEntryPermit verify current permit presents in the list
+
     And I click on back arrow
     And I sleep for 180 seconds
     And I navigate to "Active" screen for PRE
@@ -157,9 +179,13 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
     Then I request update needed
     And for pre I should see update needed message
 
@@ -171,10 +197,18 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Rank: C/O
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+    And CreateEntryPermit save current start and end validity time for "PRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+
     And for pre I should see the disabled "Updates Needed" button
 
   Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
@@ -185,9 +219,13 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 2 seconds
-    And I getting a permanent number from indexedDB
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
     Then (table) Buttons should be missing for the following role:
       | MAS   |
       | A/M   |
@@ -205,10 +243,10 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
-    Then I press the "Close" button
-    And I getting a permanent number from indexedDB
-    And I navigate to "Created" screen for PRE
-    Then I should see the current PRE in the "Created PRE" list
+    Then PRE click Close button
+   # And I getting a permanent number from indexedDB (need to refactor IndexedDb class)
+    And SmartForms navigate to "Created" page for "PRE"
+    Then CreateEntryPermit verify current permit presents in the list
 
   Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
     Given SmartForms open page
@@ -218,9 +256,13 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
     Then I open the current PRE with status Pending approval. Rank: <rank>
     And for pre I should see the <condition> "Approve for Activation" button
 
@@ -237,12 +279,14 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And I get a temporary number and writing it down
-    Then I sleep for 3 seconds
-    And I should see the text 'Permit Updated'
-    Then I getting a permanent number from indexedDB
-    And I navigate to "Created" screen for PRE
-    And I should see the current PRE in the "Created" list
+    And CreateEntryPermit save permit id
+    #And I get a temporary number and writing it down
+    And CreateEntryPermit verify element type "text" with text "Permit Updated"
+    #Then I getting a permanent number from indexedDB
+    And SmartForms navigate to "Created" page for "PRE"
+    #And I should see the current PRE in the "Created" list
+    Then CreateEntryPermit verify current permit presents in the list
+
     Then I edit pre and should see the old number previously written down
 
   Scenario: The Responsible Officer Signature should be displayed PRE
@@ -253,11 +297,19 @@ Feature: Pump room entry permit creation
       | duration | delay to activate |
       | 4        | 2                 |
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for PRE
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+    And CreateEntryPermit save current start and end validity time for "PRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And SmartForms navigate to "Scheduled" page for "PRE"
+
     And I should see the current PRE in the "Scheduled" list
     When I view permit with C/O rank
     And I check "Responsible Officer Signature" is present
@@ -266,10 +318,18 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
+
     Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
-    And for pre I submit permit for C/O Approval
-    And I getting a permanent number from indexedDB
-    And I navigate to "Pending Approval" screen for PRE
+
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+
     Then I check scheduled date
 
   Scenario Outline: Pure Gas Tester2 should not be able to edit gas reading
@@ -279,8 +339,14 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
     Then I request update needed
     And I should see that form is open for read by rank <rank>
 

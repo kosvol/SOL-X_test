@@ -54,3 +54,11 @@ Then('PRE fill up permit') do |table|
   @pre_page.scroll_times_direction(1, 'down')
   @pre_page.activate_time_picker(params['delay to activate'])
 end
+
+And('PRE click Close button') do
+  @pre_page ||= PumpRoomPage.new(@driver)
+  @pre_page.click_close_button
+end
+
+
+

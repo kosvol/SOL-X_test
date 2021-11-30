@@ -37,3 +37,9 @@ And('GasReadings click Enter pin and Submit button') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.click_pin_and_submit
 end
+
+#i dismiss gas reader dialog box
+And('GasReadings click done button on gas reader dialog box') do
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.click_done_button
+end
