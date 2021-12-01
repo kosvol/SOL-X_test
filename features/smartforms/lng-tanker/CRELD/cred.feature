@@ -1,5 +1,5 @@
 @lng-cred
-Feature: LNGCRED
+Feature: Compressor room entry display
   As a ...
   I want to ...
   So that ...
@@ -11,10 +11,27 @@ Feature: LNGCRED
     And CRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
-    And Get CRE id
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current CRE form
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    #And I getting a permanent number from indexedDB
+    And SmartForms navigate to "Pending Approval" page for "CRE"
+    And CreateEntryPermit save current start and end validity time for "CRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+
     And I navigate to CRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen

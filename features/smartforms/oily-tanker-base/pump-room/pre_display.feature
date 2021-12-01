@@ -1,5 +1,5 @@
 @PRE-display
-Feature: PumpRoomEntryDisplay
+Feature: Pump room entry display
   As a ...
   I want to ...
   So that ...
@@ -206,16 +206,37 @@ Feature: PumpRoomEntryDisplay
       | A 4/E |
 
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
+
     When I clear gas reader entries
     And I get active PRE permit and terminate
-    Then I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I fill up PRE. Duration 4. Delay to activate 3
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current PRE form
-    And I activate PRE form via service
+
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And SmartForms navigate to "Pending Approval" page for "PRE"
+    And CreateEntryPermit save current start and end validity time for "PRE"
+    When PendingApproval click Officer Approval button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And Service Activate "PRE" permit
+
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen

@@ -1,5 +1,5 @@
 @lng-cre
-Feature: LNGCRE
+Feature: Compressor room entry creation
   As a ...
   I want to ...
   So that ...
@@ -21,9 +21,14 @@ Feature: LNGCRE
     And SignatureLocation sign off first zone area
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And Service Activate "CRE" permit
     #And I getting a permanent number from indexedDB
-    And I activate the current CRE form
-    And I activate CRE form via service
+
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     When I submit a current CRE permit via service
@@ -39,14 +44,16 @@ Feature: LNGCRE
   Scenario: Verify user can see all the CRE questions
     Given SmartForms open page
     When SmartForms click create "CRE"
-    Then PinEntry enter pin for rank "C/O"
-    Then I should see CRE form questions
+    And PinEntry enter pin for rank "C/O"
+    Then CRE Verify form titles and questions
+    Then CRE Verify form titles of sections
+    Then CRE Verify form answers for questions
 
   Scenario Outline: Verify only these crew can create CRE permit
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "<rank>"
-    Then I should see CRE landing screen
+    Then CRE verify landing screen is "Compressor/Motor Room Entry"
 
     Examples:
       | rank  |
@@ -102,6 +109,7 @@ Feature: LNGCRE
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
+
     And I add all gas readings with <rank> rank
     When I dismiss gas reader dialog box
 
@@ -116,9 +124,25 @@ Feature: LNGCRE
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for C/O Approval
-    And I getting a permanent number from indexedDB
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
+    #And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
     And for cre I should see the enabled "Approve for Activation" button
 
@@ -126,9 +150,25 @@ Feature: LNGCRE
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for <rank> Approval
-    And I getting a permanent number from indexedDB
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
+    #And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: <rank>
     And for cre I should see the disabled "Approve for Activation" button
     Examples:
@@ -143,9 +183,25 @@ Feature: LNGCRE
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "A C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+
+    #And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: A C/O
     Then I should see CRE landing screen
 
@@ -153,9 +209,24 @@ Feature: LNGCRE
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "<rank>"
-    Then I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for <rank> Approval
-    And I getting a permanent number from indexedDB
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    #And I getting a permanent number from indexedDB
     Then I activate the current CRE form
     And I sleep for 1 seconds
     When I navigate to "Scheduled" screen for CRE

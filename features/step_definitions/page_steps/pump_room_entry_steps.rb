@@ -5,7 +5,7 @@ require_relative '../../../page_objects/precre/pump_room_page'
 #I (should|should not) see PRE landing screen
 Then('PRE verify landing screen is {string}') do |text|
   @pre_page ||= PumpRoomPage.new(@driver)
-  @pre_page.verify_pre_section_title('Section 1: Pump Room Entry Permit', true)
+  @pre_page.verify_pre_section_title(text, true)
 end
 
 #I (should|should not) see PRE landing screen
