@@ -24,10 +24,11 @@ class SmartFormsPage < BasePage
 
   def open_page
     @driver.get(retrieve_env_url)
+    find_element(SMART_FORMS[:hamburger_menu_btn])
   end
 
   def click_create_permit_to_work
-    click(SMART_FORMS[:click_create_permit_btn])
+    scroll_click(SMART_FORMS[:click_create_permit_btn])
   end
 
   def click_create_new_pre_btn

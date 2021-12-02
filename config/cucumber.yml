@@ -29,4 +29,4 @@ mac_chrome_sit_fsu_office_portal_dashboard_headless: --profile json PLATFORM=chr
 mac_chrome_sit_cot_tablet_headless_2.0: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sit VESSEL=lng DEVICE=tablet VERSION=2.0
 
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
-json: --format pretty --expand -f json -o testreport/jsonreports/json_report.json
+json: --format pretty --expand -f json -o json_report.json
