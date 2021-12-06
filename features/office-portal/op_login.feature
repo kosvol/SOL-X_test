@@ -52,3 +52,8 @@ Feature: Office Portal Login Page
     Then OfficeLogin should see the error message below the heading
       | heading | message                            |
       | Login   | We can't seem to find your account |
+
+  Scenario: Verify users should be redirected to the email verification page when click Forgot Password
+    Given OfficeLogin open page
+    When OfficeLogin click Forgot password
+    Then EmailVerification should see all the page attributes

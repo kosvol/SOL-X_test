@@ -37,6 +37,10 @@ And('OfficeLogin should see the error message below the heading') do |table|
   @office_portal_login.verify_error_message(table)
 end
 
+When('OfficeLogin click Forgot password') do
+  @office_portal_login.click_forgot_password
+end
+
 #The following steps to be removed after refactoring is finished
 
 Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|
