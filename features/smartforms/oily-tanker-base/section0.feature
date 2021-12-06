@@ -23,16 +23,16 @@ Feature: Section0 Form prelude
     When PinEntry enter pin for rank "<rank>"
     Then FormPrelude should see select permit type header
     Examples:
-      | rank  |
-      | C/O   |
+      | rank |
+      | C/O  |
 #      | A C/O |
-      | 2/O   |
+      | 2/O  |
 #      | A 2/O |
-      | 3/O   |
+      | 3/O  |
 #      | A 3/O |
-      | C/E   |
+      | C/E  |
 #      | A C/E |
-      | 2/E   |
+      | 2/E  |
 #      | A 2/E |
 #      | ETO   |
 
@@ -42,19 +42,19 @@ Feature: Section0 Form prelude
     When PinEntry enter pin for rank "<rank>"
     Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
     Examples:
-      | rank  |
+      | rank |
 #      | A/M   |
-      | MAS   |
-      | 4/O   |
-      | D/C   |
-      | 3/E   |
+      | MAS  |
+      | 4/O  |
+      | D/C  |
+      | 3/E  |
 #      | A 3/E |
-      | 4/E   |
+      | 4/E  |
 #      | A 4/E |
-      | BOS   |
-      | PMN   |
-      | A/B   |
-      | OLR   |
+      | BOS  |
+      | PMN  |
+      | A/B  |
+      | OLR  |
 
   Scenario: Verify user can see a list of available PTW form
     Given SmartForms open page
