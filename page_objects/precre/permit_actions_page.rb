@@ -21,6 +21,7 @@ class PermitActionsPage < CreateEntryPermitPage
     update_btn: "//button[contains(.,'Updates Needed')]",
     close_btn: "//button[contains(.,'Close')]",
     purpose_of_entry: "//textarea[@id='reasonForEntry']",
+    delete_btn: "//button[contains(.,'Delete')]"
   }.freeze
 
   def initialize(driver)
@@ -84,6 +85,10 @@ class PermitActionsPage < CreateEntryPermitPage
 
   def verify_purpose_of_entry(text)
     raise 'Verify failed' unless PERMIT_ACTIONS[:purpose_of_entry].text.eql?(text)
+  end
+
+  def delete_current_permit
+    click(PERMIT_ACTIONS[:delete_btn])
   end
 
   private

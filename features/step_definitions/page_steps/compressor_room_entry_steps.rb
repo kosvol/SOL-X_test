@@ -41,4 +41,8 @@ Then('CRE verify landing screen is not {string}') do |text|
   @cre_page.verify_cre_section_title(text, false)
 end
 
-
+#Then I will see popup dialog with C/O LNG C/O crew rank and name
+Then('CRE verify gas added by {string}') do |text|
+  @cre_page ||= CompressorRoomPage.new(@driver)
+  @cre_page.verify_gas_added_by(text)
+end

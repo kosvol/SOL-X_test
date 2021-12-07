@@ -8,11 +8,18 @@ require_relative 'create_entry_permit_page'
 class CompressorRoomPage < CreateEntryPermitPage
   include EnvUtils
   COMPRESSOR_ROOM = {
+    cre_header: "//*[contains(text(),'Section 1: Compressor Room Entry Permit')]",
     cre_scrap: "//div/*/*[local-name()='span' or local-name()='label']",
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
     button_sample: "//span[contains(.,'%s')]",
-    text_area: '//textarea'
+    text_area: '//textarea',
+    gas_added_by: 'div[role="dialog"] > div > section > div > span'
   }.freeze
+
+  def initialize(driver)
+    super
+    find_element(COMPRESSOR_ROOM[:cre_header])
+  end
 
   def fill_cre_form(duration)
     tmp_elements = find_elements(COMPRESSOR_ROOM[:text_area])
@@ -68,10 +75,15 @@ class CompressorRoomPage < CreateEntryPermitPage
 
   def verify_cre_section_title(text, condition)
     if condition == true
-      raise 'Verify failed' unless CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)
+      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text.eql?(text) == false
     else
-      raise 'Verify failed' unless (CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)) == true
+      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text.eql?(text) == true
     end
+  end
+
+  def verify_gas_added_by(text)
+    gas_added_by_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:gas_added_by]).text
+    raise 'Verify failed' unless gas_added_by_actual.eql?(text) == false
   end
 
   private

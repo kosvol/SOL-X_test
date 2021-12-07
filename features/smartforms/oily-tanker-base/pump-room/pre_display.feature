@@ -235,7 +235,7 @@ Feature: Pump room entry display
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
-    And Service Activate "PRE" permit
+    And Service activate "PRE" permit
 
     And I navigate to PRE Display
     And I enter pin via service for rank C/O

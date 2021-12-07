@@ -105,13 +105,10 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-
-    And I set time
-    Then I will see popup dialog with C/O LNG C/O crew rank and name
-
+    And CreateEntryPermit save form time
+    Then CRE verify gas added by "C/O STG C/O"
     When GasReadings click done button on gas reader dialog box
-
-    Then I should see gas reading display with toxic gas and C/O LNG C/O as gas signer
+    Then GasReadings verify gas table titles
 
   Scenario Outline: Verify any rank can add gas reading in CRE permit
     Given SmartForms open page
@@ -128,7 +125,6 @@ Feature: Compressor room entry creation
     When GasReadings click done button on gas reader dialog box
 
     Examples:
-
       | rank |
       | PMAN |
       | ETO  |
@@ -192,7 +188,6 @@ Feature: Compressor room entry creation
     And SignatureLocation sign off first zone area
     And PermitActions verify button "Approve for Activation" is disabled
     Examples:
-
       | rank  |
       | 2/O   |
       | A 2/O |
@@ -250,18 +245,11 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-
-    Then I activate the current CRE form
-
     And CommonSection sleep for "1" sec
     And SmartForms navigate to "Scheduled" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
     And SmartForms click back arrow button
     And Service activate "PRE" permit
-    And SmartForms navigate to "Active" page for "CRE"
-    And CreateEntryPermit verify current permit presents in the list
-    And SmartForms click back arrow button
-    And CommonSection sleep for "1" sec
     And SmartForms navigate to "Active" page for "CRE"
     Then PinEntry enter pin for rank "C/O"
     Then CreateEntryPermit verify current permit presents in the list
@@ -276,7 +264,6 @@ Feature: Compressor room entry creation
     And SmartForms navigate to "Terminated" page for "CRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit verify current permit presents in the list
-
     Examples:
       | rank  |
       | C/O   |
@@ -292,8 +279,8 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And SmartForms click back arrow button
     And SmartForms navigate to "Created" page for "CRE"
-
-    And I delete the permit created
+    And CreateEntryPermit save permit id
+    And PermitActions click button Delete
     Then I should see deleted permit deleted
 
   Scenario: Verify user cannot send CRE for approval with start time and duration

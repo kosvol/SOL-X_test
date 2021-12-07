@@ -58,3 +58,8 @@ And('PermitActions verify button {string} is disabled') do |button|
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_button_disabled(button)
 end
+#I delete the permit created
+And('PermitActions click button Delete') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.verify_button_disabled(button)
+end
