@@ -27,7 +27,8 @@ class GasReadingsPage < BasePage
     gas_name_input: "//input[@id='gasName']",
     threshold_input: "//input[@id='threshold']",
     reading_input: "//input[@id='reading']",
-    unit_input: "//input[@id='unit']"
+    unit_input: "//input[@id='unit']",
+    gas_reading_table: "//div[starts-with(@class,'cell')]"
   }.freeze
 
   def fill_gas_equipment_fields
@@ -45,7 +46,7 @@ class GasReadingsPage < BasePage
 
   def add_toxic_gas_readings(gas_name, threhold, reading, unit)
     enter_text(GAS_READINGS[:gas_name_input], gas_name)
-    enter_text(GAS_READINGS[:threshold_input],threhold)
+    enter_text(GAS_READINGS[:threshold_input], threhold)
     enter_text(GAS_READINGS[:reading_input], reading)
     enter_text(GAS_READINGS[:unit_input], unit)
     click(GAS_INFORMATION[:add_toxic_gas_btn])
@@ -66,4 +67,24 @@ class GasReadingsPage < BasePage
   def click_done_button
     find_elements(GAS_INFORMATION[:done_btn]).first.click
   end
+
+  def verify_gas_table_titles
+    gas_reading_table = find_elements(GAS_READINGS[:gas_reading_table])
+    compare_string(gas_reading_table[1].text, GAS_TABLE_TITLES[1])
+    verify_gas_titles(gas_reading_table)
+  end
+
+  private
+
+  def verify_gas_titles(gas_reading_table)
+    (3..8).each { |number| compare_string(gas_reading_table[number].text, GAS_TABLE_TITLES[number]) }
+  end
+
+  GAS_TABLE_TITLES = { 1 => 'Initial',
+                       3 => '1 %',
+                       4 => '2 % LEL',
+                       5 => '3 PPM',
+                       6 => '4 PPM',
+                       7 => '1.5 CC',
+                       8 => 'C/O STG C/O' }.freeze
 end

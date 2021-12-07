@@ -8,7 +8,7 @@ class CreateEntryPermitPage < BasePage
   include EnvUtils
 
   attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id, :permit_number,
-                :time
+                :time, :permit_index, :issue_time_date, :selected_date
 
   CREATE_ENTRY_PERMIT = {
     heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
@@ -21,13 +21,11 @@ class CreateEntryPermitPage < BasePage
     permit_start_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p",
     permit_end_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p",
     reporting_interval: "//input[@id='pre_section2_reportingIntervalPeriod']",
-    purpose_of_entry: "//textarea[@id='reasonForEntry']",
     entry_log_table: "//div[@data-testid='entry-log-column']/div",
     clock_element: '//*[@id="permitActiveAt"]/span',
     confirm_btn: "//button[contains(.,'Confirm')]",
     ptw_id: 'header > h1',
     duration_timer: "//h4/strong[contains(@class,'PermitValidUntil__')]",
-    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]",
     current_day: "//button[contains(@class,'Day__DayButton')]",
     next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
     gas_added_by: 'div[role="dialog"] > div > section > div > span',
@@ -61,10 +59,6 @@ class CreateEntryPermitPage < BasePage
     self.temp_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_duration = retrieve_text(CREATE_ENTRY_PERMIT[:duration_timer])
-  end
-
-  def click_submit_for_approval
-    click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
   end
 
   def verify_reporting_interval(condition)
@@ -106,8 +100,6 @@ class CreateEntryPermitPage < BasePage
   def click_back_to_home
     click(CREATE_ENTRY_PERMIT[:back_to_home_btn])
   end
-
-
 
   private
 

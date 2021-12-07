@@ -19,7 +19,8 @@ class SmartFormsPage < BasePage
     settings_btn: "//a[contains(text(),'Settings')]",
     main_page: "//*[@id='root']/div/main",
     pump_room_display_setting: "//span[contains(.,'Pump Room')]",
-    compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]"
+    compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
+    back_arrow: "//button/*[@data-testid='arrow']"
   }.freeze
 
   def open_page
@@ -75,6 +76,10 @@ class SmartFormsPage < BasePage
       attempt += 1
       break if attempt == 6
     end
+  end
+
+  def click_back_arrow
+    click(SMART_FORMS[:back_arrow])
   end
 
   private

@@ -26,18 +26,18 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    And Service Activate "CRE" permit
+    And Service activate "CRE" permit
     #And I getting a permanent number from indexedDB
 
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
     When I submit a current CRE permit via service
-    And I sleep for 5 seconds
-    And I click on back arrow
+    And CommonSection sleep for "5" sec
+    And SmartForms click back arrow button
     And I navigate to "Active" screen for CRE
     And I should not see the current CRE in the "Active CRE" list
     Then I should see that existed CRE number not equal with number Active list
-    And I click on back arrow
+    And SmartForms click back arrow button
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Closed CRE" list
 
@@ -227,16 +227,17 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
+
     Then I activate the current CRE form
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
-    And I click on back arrow
+    And SmartForms click back arrow button
     And I activate CRE form via service
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active CRE" list
-    And I click on back arrow
-    And I sleep for 1 seconds
+    And SmartForms click back arrow button
+    And CommonSection sleep for "1" sec
     Then I terminate the CRE with rank <rank>
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Closed CRE" list
@@ -254,7 +255,8 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I click on back arrow
+
+    And SmartForms click back arrow button
     And I navigate to "Created" screen for CRE
     And I delete the permit created
     Then I should see deleted permit deleted
@@ -263,15 +265,26 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
+
     And for cre I should see the disabled "Submit for Approval" button
 
   Scenario: Verify these roles can request update for CRE permit in Pending Approval State
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
+
+   # And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: A 3/O
     Then I should see Approve for Activation button enabled
     Then I should see Updates Needed button enabled
@@ -280,14 +293,24 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I activate the current CRE form
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
-    And I click on back arrow
+    And SmartForms click back arrow button
     And I activate CRE form via service
     And I navigate to "Active" screen for CRE
     And I should see the current CRE in the "Active PRE" list
@@ -296,7 +319,17 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     Then I open the current PRE with status Pending approval. Rank: C/O
@@ -307,7 +340,17 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 10
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 10                |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
@@ -317,7 +360,7 @@ Feature: Compressor room entry creation
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     When I navigate to "Scheduled" screen for CRE
     And I should see the current CRE in the "Scheduled" list
     When I view permit with C/O rank
@@ -327,7 +370,17 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And I fill up CRE. Duration 4. Delay to activate 3
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
@@ -336,9 +389,9 @@ Feature: Compressor room entry creation
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     And I activate CRE form via service
-    And I sleep for 10 seconds
+    And CommonSection sleep for "10" sec
     Then I terminate the CRE permit via service
     When I navigate to "Terminated" screen for CRE
     And I should see the current CRE in the "Terminated" list
@@ -347,11 +400,24 @@ Feature: Compressor room entry creation
 
   Scenario: Gas Reader location stamp should not be missing
     Given SmartForms open page
+
     When I link wearable to rank C/O to zone
     When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up with gas readings CRE. Duration 4. Delay to activate 3
+
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I open the current CRE with status Pending approval. Rank: C/O
@@ -360,9 +426,9 @@ Feature: Compressor room entry creation
     And I sign with valid C/O rank
     And I should see the page 'Permit Successfully Scheduled for Activation'
     Then I press the "Back to Home" button
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     And I activate CRE form via service
-    And I sleep for 1 seconds
+    And CommonSection sleep for "1" sec
     When I navigate to "Active" screen for CRE
     When I view permit with C/O rank
     Then I check location in gas readings signature is present

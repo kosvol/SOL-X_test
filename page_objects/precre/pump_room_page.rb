@@ -21,7 +21,12 @@ class PumpRoomPage < CreateEntryPermitPage
     picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
     permit_validity: "//h2[contains(text(),'Permit Validity')]",
     time_element: '//*[@id="permitActiveAt"]',
-    error_msg: "//div[contains(.,'%s')]"
+    error_msg: "//div[contains(.,'%s')]",
+    purpose_of_entry: "//textarea[@id='reasonForEntry']",
+    picker_days: "//label[contains(text(),'Start Time')]//following::button[@data-testid='days']",
+    selected_day: "//*[contains(@class, 'selected')]",
+    current_day_date: "//*[contains(@class, 'current')]",
+    scheduled_date: "//*[contains(.,'Scheduled for')]/parent::*//span[1]"
   }.freeze
 
   def initialize(driver)
@@ -80,8 +85,18 @@ class PumpRoomPage < CreateEntryPermitPage
     end
   end
 
-  def click_close_button
-    click("//button[contains(.,'Close')]")
+  def select_day_in_future(number)
+    click(PumpRoomEntry[:picker_days])
+    current_day = find_element(PumpRoomEntry[:current_day_date]).text
+    self.selected_date = current_day.to_i + number.to_i
+    changed_day = "//div[starts-with(@class,'DatePicker__OverlayContainer')]//button[contains(.,'#{current_day.to_i +
+      number.to_i}')]"
+    click(changed_day)
+  end
+
+  def verify_scheduled_date
+    text = retrieve_text(PUMP_ROOM[:scheduled_date])
+    raise 'Element disabled' unless text.include? selected_date.to_s
   end
 
   private

@@ -55,10 +55,22 @@ Then('PRE fill up permit') do |table|
   @pre_page.activate_time_picker(params['delay to activate'])
 end
 
-And('PRE click Close button') do
+And('PRE scroll {string} direction {int} times') do |times, direction|
   @pre_page ||= PumpRoomPage.new(@driver)
-  @pre_page.click_close_button
+  @pre_page.scroll_times_direction(times, direction)
 end
 
+#I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
+Then('PRE fill up permit in future') do |table|
+  @pre_page ||= PumpRoomPage.new(@driver)
+  params = table.hashes.first
+  @pre_page.fill_pre_form(params['duration'])
+  @pre_page.scroll_times_direction(1, 'down')
+  @pre_page.select_day_in_future(params['days'])
+  @pre_page.activate_time_picker(params['delay to activate'])
+end
 
-
+And('PRE verify scheduled date') do
+  @pre_page ||= PumpRoomPage.new(@driver)
+  @pre_page.verify_scheduled_date
+end

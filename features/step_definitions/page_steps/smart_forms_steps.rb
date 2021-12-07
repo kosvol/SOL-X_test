@@ -36,3 +36,7 @@ end
 And('SmartForms navigate to {string} display until see active permit') do |permit_type|
   @smart_form_page.wait_until_permit_activate(permit_type)
 end
+
+And('SmartForms click back arrow button') do
+  @smart_form_page.click_back_arrow
+end

@@ -6,7 +6,7 @@ require_relative '../../../page_objects/precre/create_entry_permit_page'
 require_relative '../../../page_objects/precre/pump_room_page'
 require_relative '../../../page_objects/precre/compressor_room_page'
 
-And('Service Activate {string} permit') do |permit|
+And('Service activate {string} permit') do |permit|
   @activate_permit_service ||= ActivateEntryPermitApi.new
   @activate_permit_service.request(CreateEntryPermitPage.permit_id, permit, '1111')
 end
