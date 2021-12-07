@@ -91,10 +91,10 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify alert message "Please select the start time and duration before submitting."
-    And PRE verify button "Submit for Approval" is disabled
+    And PermitActions verify button "Submit for Approval" is disabled
     Then PRE select Permit Duration <duration>
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
-    And PRE verify button "Submit for Approval"
+    And PermitActions verify button "Submit for Approval"
 
     Examples:
       | duration |
@@ -241,7 +241,7 @@ Feature: Pump room entry permit creation
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
-    And PRE verify button "Updates Needed" is disabled
+    And PermitActions verify button "Updates Needed" is disabled
 
   Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given SmartForms open page
@@ -319,7 +319,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save current start and end validity time for "PRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And PRE verify button "Approve for Activation"
+    And PermitActions verify button "Approve for Activation"
 
   Scenario Outline: Verify a creator PRE cannot activate PRE
     Given SmartForms open page
@@ -347,7 +347,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save current start and end validity time for "PRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And PRE verify button "Approve for Activation" is disabled
+    And PermitActions verify button "Approve for Activation" is disabled
 
     Examples:
       | rank  |
@@ -463,8 +463,8 @@ Feature: Pump room entry permit creation
     And SmartForms navigate to "Updates Needed" page for "PRE"
     Then PermitActions click Edit Update button
     Then PinEntry enter pin for rank "<rank>"
-    And PRE verify button "Submit for Approval" is disabled
-    And PRE verify button "Add Gas Test Record" is disabled
+    And PermitActions verify button "Submit for Approval" is disabled
+    And PermitActions verify button "Add Gas Test Record" is disabled
 
     Examples:
       | rank  |

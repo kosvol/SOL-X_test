@@ -49,12 +49,12 @@ And('PermitActions verify purpose of entry') do
   @permit_action.verify_purpose_of_entry('Test Automation')
 end
 
-And('PRE verify button {string}') do |button|
+And('PermitActions verify button {string}') do |button|
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_button_enabled(button)
 end
 
-And('PRE verify button {string} is disabled') do |button|
+And('PermitActions verify button {string} is disabled') do |button|
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_button_disabled(button)
 end

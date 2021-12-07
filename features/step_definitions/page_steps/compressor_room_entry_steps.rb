@@ -41,3 +41,4 @@ Then('CRE verify landing screen is not {string}') do |text|
   @cre_page.verify_cre_section_title(text, false)
 end
 
+
