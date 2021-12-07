@@ -95,12 +95,11 @@ class OPEmailVerificationPage < BasePage
   def verify_logos_and_names
     find_element(OP_EMAIL_VERIFICATION[:company_logo])
     find_element(OP_EMAIL_VERIFICATION[:app_logo])
-    portal_name = YAML.load_file('data/office-portal/common_items.yml')['portal_name']
-    portal_footer = YAML.load_file('data/office-portal/common_items.yml')['portal_footer']
-    compare_string(portal_name, retrieve_text(OP_EMAIL_VERIFICATION[:portal_name]))
+    expected_items = YAML.load_file('data/office-portal/common_items.yml')
+    compare_string(expected_items['portal_name'], retrieve_text(OP_EMAIL_VERIFICATION[:portal_name]))
     compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
-    compare_string(portal_footer, retrieve_text(OP_EMAIL_VERIFICATION[:page_footer]))
-  end
+    compare_string(expected_items['portal_footer'], retrieve_text(OP_EMAIL_VERIFICATION[:page_footer]))
+end
 
   def verify_email_block
     portal_placeholder = YAML.load_file('data/office-portal/common_items.yml')['portal_placeholder']

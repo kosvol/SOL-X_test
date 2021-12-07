@@ -1,5 +1,5 @@
-@op-login-page
-Feature: Office Portal Login Page
+@op_login_page
+Feature: Office Portal Login
   Correct credentials for test
   email: qa-test-group@sol-x.co
   password: Solxqa12345!

@@ -22,12 +22,6 @@ Then('EmailVerification should see the error message below the heading') do |tab
   @op_email_verification.verify_error_message(table)
 end
 
-Given('EmailVerification is opened') do
-  step 'OfficeLogin open page'
-  step 'OfficeLogin click Forgot password'
-  step 'EmailVerification should see all the page attributes'
-end
-
 When('EmailVerification enter email {string}') do |email|
   @op_email_verification ||= OPEmailVerificationPage.new(@driver)
   @op_email_verification.enter_email(email)
