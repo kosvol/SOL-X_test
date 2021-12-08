@@ -63,3 +63,13 @@ And('PermitActions click button Delete') do
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_button_disabled(button)
 end
+
+Then('PermitActions check Responsible Officer Signature') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.check_ra_signature('C/O STG C/O', 'A Deck Alleyway')#'3 Cargo Tank Vent'
+end
+
+Then('PermitActions verify deleted permit') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.verify_deleted_permit
+end

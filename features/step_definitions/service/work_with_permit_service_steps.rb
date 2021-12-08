@@ -10,3 +10,8 @@ And('Service activate {string} permit') do |permit|
   @activate_permit_service ||= ActivateEntryPermitApi.new
   @activate_permit_service.request(CreateEntryPermitPage.permit_id, permit, '1111')
 end
+#I terminate the CRE permit via service
+And('Service submit {string} permit for termination') do |permit|
+  @activate_permit_service ||= SubmitForTerminationAPI.new
+  @activate_permit_service.request(CreateEntryPermitPage.permit_id, permit, '1111')
+end

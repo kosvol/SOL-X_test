@@ -13,7 +13,8 @@ class CompressorRoomPage < CreateEntryPermitPage
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
     button_sample: "//span[contains(.,'%s')]",
     text_area: '//textarea',
-    gas_added_by: 'div[role="dialog"] > div > section > div > span'
+    gas_added_by: 'div[role="dialog"] > div > section > div > span',
+    ptw_id: 'header > h1'
   }.freeze
 
   def initialize(driver)
@@ -84,6 +85,11 @@ class CompressorRoomPage < CreateEntryPermitPage
   def verify_gas_added_by(text)
     gas_added_by_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:gas_added_by]).text
     raise 'Verify failed' unless gas_added_by_actual.eql?(text) == false
+  end
+
+  def verify_permit_not_in_list
+    permit_number_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:ptw_id]).text
+    raise 'Verify failed' unless permit_number_actual.eql?(permit_number) == false
   end
 
   private

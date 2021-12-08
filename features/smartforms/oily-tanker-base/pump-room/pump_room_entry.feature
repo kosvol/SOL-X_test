@@ -371,7 +371,6 @@ Feature: Pump room entry permit creation
     Then PermitActions click Edit button
     And PinEntry enter pin for rank "C/O"
     Then PermitActions verify purpose of entry
-    Then I edit pre and should see the old number previously written down
 
   Scenario: The Responsible Officer Signature should be displayed PRE
     Given SmartForms open page
@@ -405,7 +404,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify current permit presents in the list
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
-    And I check "Responsible Officer Signature" is present
+    And PermitActions check Responsible Officer Signature
 
   Scenario: Permit Validity date should match the final date selected from the date picker
     Given SmartForms open page

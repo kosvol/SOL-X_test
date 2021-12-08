@@ -21,7 +21,10 @@ class PermitActionsPage < CreateEntryPermitPage
     update_btn: "//button[contains(.,'Updates Needed')]",
     close_btn: "//button[contains(.,'Close')]",
     purpose_of_entry: "//textarea[@id='reasonForEntry']",
-    delete_btn: "//button[contains(.,'Delete')]"
+    delete_btn: "//button[contains(.,'Delete')]",
+    resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
+    resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]",
+
   }.freeze
 
   def initialize(driver)
@@ -89,6 +92,19 @@ class PermitActionsPage < CreateEntryPermitPage
 
   def delete_current_permit
     click(PERMIT_ACTIONS[:delete_btn])
+  end
+
+  def check_ra_signature(rank, location)
+    compare_string(retrieve_text(PERMIT_ACTIONS[:resp_of_signature]), 'Responsible Officer Signature:')
+    compare_string(retrieve_text(PERMIT_ACTIONS[:resp_of_sig_rank]), 'Rank/Name')
+    raise 'Element not exists' unless find_elements("//*[contains(.,'#{rank}')]")[0].enabled? == false
+    raise 'Element not exists' unless find_elements("//*[contains(.,'#{location}')]")[0].enabled? == false
+  end
+
+  def verify_deleted_permit
+    find_elements(PERMIT_ACTIONS[:parent_container]).each_with_index do |_permit, index|
+      raise 'Verification failed' unless @driver.find_elements(:css, PERMIT_ACTIONS[:ptw_id])[index].text == permit_id
+    end
   end
 
   private

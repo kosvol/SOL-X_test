@@ -31,16 +31,15 @@ Feature: Compressor room entry creation
     And SmartForms navigate to "Active" page for "CRE"
     Then PinEntry enter pin for rank "A C/O"
     Then CreateEntryPermit verify current permit presents in the list
-
-    When I submit a current CRE permit via service
-
+    #When I submit a current CRE permit via service
+    When PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | cre        | ACTIVE          |
     And CommonSection sleep for "5" sec
     And SmartForms click back arrow button
     And SmartForms navigate to "Active" page for "CRE"
     Then PinEntry enter pin for rank "A C/O"
-
-    Then I should see that existed CRE number not equal with number Active list
-
+    Then CRE verify permit not present in list
     And SmartForms click back arrow button
     And SmartForms navigate to "Terminated" page for "CRE"
     Then PinEntry enter pin for rank "A C/O"
@@ -249,7 +248,7 @@ Feature: Compressor room entry creation
     And SmartForms navigate to "Scheduled" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
     And SmartForms click back arrow button
-    And Service activate "PRE" permit
+    And Service activate "CRE" permit
     And SmartForms navigate to "Active" page for "CRE"
     Then PinEntry enter pin for rank "C/O"
     Then CreateEntryPermit verify current permit presents in the list
@@ -281,7 +280,7 @@ Feature: Compressor room entry creation
     And SmartForms navigate to "Created" page for "CRE"
     And CreateEntryPermit save permit id
     And PermitActions click button Delete
-    Then I should see deleted permit deleted
+    Then PermitActions verify deleted permit
 
   Scenario: Verify user cannot send CRE for approval with start time and duration
     Given SmartForms open page
@@ -350,11 +349,11 @@ Feature: Compressor room entry creation
     When SmartForms navigate to "Scheduled" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
     And SmartForms click back arrow button
-    And I activate CRE form via service
+    And Service activate "CRE" permit
     When SmartForms navigate to "Active" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
 
-  Scenario: Verify creator PRE cannot request update needed
+  Scenario: Verify creator CRE cannot request update needed
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
@@ -408,17 +407,15 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
     And CreateEntryPermit save current start and end validity time for "CRE"
-
-    And I check "Responsible Officer Signature" is present
-
+    And PermitActions check Responsible Officer Signature
     And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "1" sec
     When SmartForms navigate to "Scheduled" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
-
-    When I view permit with C/O rank
-    And I check "Responsible Officer Signature" is present
+    And PermitActions open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    And PermitActions check Responsible Officer Signature
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
     Given SmartForms open page
@@ -451,24 +448,21 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "1" sec
     And Service activate "CRE" permit
     And CommonSection sleep for "10" sec
-
-    Then I terminate the CRE permit via service
-
+    Then Service submit "CRE" permit for termination
     When SmartForms navigate to "Terminated" page for "CRE"
     And CreateEntryPermit verify current permit presents in the list
-
-    When I view permit with C/O rank
-    And I check "Responsible Officer Signature" is present
+    And PermitActions open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    And PermitActions check Responsible Officer Signature
 
   Scenario: Gas Reader location stamp should not be missing
     Given SmartForms open page
-
-    When I link wearable to rank C/O to zone
-    When I clear gas reader entries
-
+    Then Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-
     And CRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
@@ -498,7 +492,6 @@ Feature: Compressor room entry creation
     And Service activate "CRE" permit
     And CommonSection sleep for "1" sec
     When SmartForms navigate to "Active" page for "CRE"
-
-    When I view permit with C/O rank
-    Then I check location in gas readings signature is present
-
+    And PermitActions open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    Then GasReadings verify location in sign

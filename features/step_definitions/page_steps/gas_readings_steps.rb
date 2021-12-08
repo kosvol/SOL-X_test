@@ -49,4 +49,9 @@ And('GasReadings verify gas table titles') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.verify_gas_table_titles
 end
+#I check location in gas readings signature is present
+And('GasReadings verify location in sign') do
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.verify_location_in_sign
+end
 

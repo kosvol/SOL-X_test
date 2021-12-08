@@ -16,7 +16,8 @@ class GasReadingsPage < BasePage
     review_sign_btn: "//button[contains(.,'Review & Sign')]",
     continue_btn: "//button[contains(.,'Continue')]",
     enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)',
-    done_btn: '//button[contains(.,"Done")]'
+    done_btn: '//button[contains(.,"Done")]',
+    show_signature_btn: "//button[@data-testid='show-signature-display']"
   }.freeze
 
   GAS_READINGS = {
@@ -73,6 +74,13 @@ class GasReadingsPage < BasePage
     compare_string(gas_reading_table[1].text, GAS_TABLE_TITLES[1])
     verify_gas_titles(gas_reading_table)
   end
+
+  def verify_location_in_sign
+    click(GAS_INFORMATION[:show_signature_btn])
+    signature = retrieve_text("(//div[@class='children']/div/div/div/div[3]/div/div)")
+    raise 'Verify failed' unless compare_string(signature, 'Z-AFT-STATION').eql?(false)
+  end
+
 
   private
 
