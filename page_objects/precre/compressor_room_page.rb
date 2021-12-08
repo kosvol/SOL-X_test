@@ -8,7 +8,8 @@ require_relative 'create_entry_permit_page'
 class CompressorRoomPage < CreateEntryPermitPage
   include EnvUtils
   COMPRESSOR_ROOM = {
-    cre_header: "//*[contains(text(),'Section 1: Compressor Room Entry Permit')]",
+    heading_text: "//*[@id='root']/div/nav/header",
+    cre_header: "//*[contains(text(),'Compressor/Motor Room Entry')]",
     cre_scrap: "//div/*/*[local-name()='span' or local-name()='label']",
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
     button_sample: "//span[contains(.,'%s')]",
@@ -19,7 +20,7 @@ class CompressorRoomPage < CreateEntryPermitPage
 
   def initialize(driver)
     super
-    find_element(COMPRESSOR_ROOM[:cre_header])
+    find_element(COMPRESSOR_ROOM[:heading_text])
   end
 
   def fill_cre_form(duration)
@@ -90,6 +91,13 @@ class CompressorRoomPage < CreateEntryPermitPage
   def verify_permit_not_in_list
     permit_number_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:ptw_id]).text
     raise 'Verify failed' unless permit_number_actual.eql?(permit_number) == false
+  end
+
+  def activate_time_picker(delay)
+    click(CREATE_ENTRY_PERMIT[:picker])
+    scroll_click(picker_hh_mm(delay).first)
+    scroll_click(picker_hh_mm(delay).last)
+    @driver.action.move_to(@driver.find_element(:xpath, CREATE_ENTRY_PERMIT[:picker]), 50, 50).click.perform
   end
 
   private

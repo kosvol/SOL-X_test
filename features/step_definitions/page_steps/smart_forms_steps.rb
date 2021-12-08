@@ -40,3 +40,7 @@ end
 And('SmartForms click back arrow button') do
   @smart_form_page.click_back_arrow
 end
+
+And('SmartForms click go back button') do
+  @smart_form_page.click_go_back
+end

@@ -3,18 +3,19 @@
 require_relative '../base_page'
 
 # Work with permit
-class PermitActionsPage < CreateEntryPermitPage
+class PermitActionsPage < BasePage
   include EnvUtils
 
+  attr_accessor :ptw_id, :tmp_id
+
   PERMIT_ACTIONS = {
-    heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
+    heading_text: "//*[@id='root']/div/nav/header",
     terminate_btn: "//button[contains(.,'Terminate')]",
     request_update_btn: "//button[contains(.,'Request Updates')]",
     comment_box: '//textarea',
     submit_update_btn: "//button[contains(.,'Submit')]",
     edit_update_btn: "//button[contains(.,'Edit/Update')]",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
-    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]",
     ptw_id: 'header > h1',
     view_btn: "//button[contains(.,'View')]",
     issued_time_date: "//ul[starts-with(@class,'FormsList__Container')]/li/div/div/div[2]/span[2]",
@@ -24,7 +25,10 @@ class PermitActionsPage < CreateEntryPermitPage
     delete_btn: "//button[contains(.,'Delete')]",
     resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
     resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]",
-
+    submit_for_approval_btn: "//*[contains(.,'Submit for Approval')]",
+    ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span",
+    request_for_update: "//button[contains(.,'Updates Needed')]",
+    update_comment_box: "//textarea[@id='updatesNeededComment']"
   }.freeze
 
   def initialize(driver)
@@ -42,7 +46,7 @@ class PermitActionsPage < CreateEntryPermitPage
 
   def request_for_update
     click(PERMIT_ACTIONS[:request_for_update])
-    enter_text(PERMIT_ACTIONS[:request_for_update], 'Test Automation')
+    enter_text(PERMIT_ACTIONS[:update_comment_box], 'Test Automation')
     find_elements(PERMIT_ACTIONS[:submit_update_btn]).last.click
   end
 
@@ -52,10 +56,6 @@ class PermitActionsPage < CreateEntryPermitPage
 
   def click_edit_btn
     click("//span[contains(text(),'#{permit_number}')]//following::span[contains(text(),'Edit')][1]")
-  end
-
-  def click_submit_for_approval
-    click(PERMIT_ACTIONS[:submit_for_approval_btn])
   end
 
   def open_ptw_for_view
@@ -97,14 +97,23 @@ class PermitActionsPage < CreateEntryPermitPage
   def check_ra_signature(rank, location)
     compare_string(retrieve_text(PERMIT_ACTIONS[:resp_of_signature]), 'Responsible Officer Signature:')
     compare_string(retrieve_text(PERMIT_ACTIONS[:resp_of_sig_rank]), 'Rank/Name')
-    raise 'Element not exists' unless find_elements("//*[contains(.,'#{rank}')]")[0].enabled? == false
-    raise 'Element not exists' unless find_elements("//*[contains(.,'#{location}')]")[0].enabled? == false
+    verify_element_not_exist("//*[contains(.,'#{rank}')]")
+    verify_element_not_exist("//*[contains(.,'#{location}')]")
   end
 
   def verify_deleted_permit
     find_elements(PERMIT_ACTIONS[:parent_container]).each_with_index do |_permit, index|
       raise 'Verification failed' unless @driver.find_elements(:css, PERMIT_ACTIONS[:ptw_id])[index].text == permit_id
     end
+  end
+
+  def save_ptw_id_from_list
+    self.tmp_id = find_element(PERMIT_ACTIONS[:ptw_id_in_list]).text
+    self.ptw_id = find_element(PERMIT_ACTIONS[:ptw_id_in_list]).text
+  end
+
+  def verify_permit
+    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{ptw_id}')]")
   end
 
   private

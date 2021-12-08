@@ -46,6 +46,7 @@ Then('CRE verify gas added by {string}') do |text|
   @cre_page ||= CompressorRoomPage.new(@driver)
   @cre_page.verify_gas_added_by(text)
 end
+
 #Then I should see that existed CRE number not equal with number Active list
 Then('CRE verify permit not present in list') do
   @cre_page ||= CompressorRoomPage.new(@driver)

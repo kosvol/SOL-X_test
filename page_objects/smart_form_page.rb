@@ -20,7 +20,8 @@ class SmartFormsPage < BasePage
     main_page: "//*[@id='root']/div/main",
     pump_room_display_setting: "//span[contains(.,'Pump Room')]",
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
-    back_arrow: "//button/*[@data-testid='arrow']"
+    back_arrow: "//button/*[@data-testid='arrow']",
+    go_back_btn: "//*[@id='root']/div/nav/header/button"
   }.freeze
 
   def open_page
@@ -63,7 +64,7 @@ class SmartFormsPage < BasePage
   def navigate_to_page(page, category)
     select_category(page, category)
   rescue StandardError
-    click_show_more(page) if category.downcase != 'settings'
+    click_show_more_btn(page) if category.downcase != 'settings'
     select_category(page, category)
   end
 
@@ -80,6 +81,10 @@ class SmartFormsPage < BasePage
 
   def click_back_arrow
     click(SMART_FORMS[:back_arrow])
+  end
+
+  def click_go_back
+    click(SMART_FORMS[:go_back_btn])
   end
 
   private

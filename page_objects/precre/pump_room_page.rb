@@ -65,10 +65,10 @@ class PumpRoomPage < CreateEntryPermitPage
   end
 
   def activate_time_picker(delay)
-    click(PUMP_ROOM[:picker])
+    click(CREATE_ENTRY_PERMIT[:picker])
     scroll_click(picker_hh_mm(delay).first)
     scroll_click(picker_hh_mm(delay).last)
-    @driver.action.move_to(@driver.find_element(:xpath, PUMP_ROOM[:picker]), 50, 50).click.perform
+    @driver.action.move_to(@driver.find_element(:xpath, CREATE_ENTRY_PERMIT[:picker]), 50, 50).click.perform
   end
 
   def select_calibration_date
@@ -103,25 +103,5 @@ class PumpRoomPage < CreateEntryPermitPage
 
   def select_current_day
     click(CREATE_ENTRY_PERMIT[:current_day_button])
-  end
-
-  def picker_hh_mm(delay)
-    time = find_element(PUMP_ROOM[:time_element]).text
-    hh, mm = add_minutes(time, delay)
-    picker_hh = format(PUMP_ROOM[:picker_hh], hh)
-    picker_mm = format(PUMP_ROOM[:picker_mm], mm)
-    [picker_hh, picker_mm]
-  end
-
-  def add_minutes(time, add_mm)
-    hh, mm = time.split(':')
-    mm = mm.to_i
-    hh = hh.to_i
-    mm += add_mm.to_i
-    if mm >= 60
-      mm -= 60
-      hh += 1
-    end
-    [format('%02d', hh), format('%02d', mm)]
   end
 end

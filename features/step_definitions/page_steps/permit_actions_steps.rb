@@ -66,10 +66,22 @@ end
 
 Then('PermitActions check Responsible Officer Signature') do
   @permit_action ||= PermitActionsPage.new(@driver)
-  @permit_action.check_ra_signature('C/O STG C/O', 'A Deck Alleyway')#'3 Cargo Tank Vent'
+  @permit_action.check_ra_signature('C/O STG C/O', '3 Cargo Tank Vent')#'3 Cargo Tank Vent'
 end
 
 Then('PermitActions verify deleted permit') do
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_deleted_permit
+end
+
+#And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
+And('PermitActions save permit id from list') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.save_ptw_id_from_list
+end
+
+#I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list
+And('PermitActions verify current permit presents in the list') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.verify_permit
 end

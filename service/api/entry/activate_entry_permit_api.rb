@@ -9,6 +9,7 @@ class ActivateEntryPermitApi < BaseSectionApi
                                payload.to_json,
                                { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
     JSON.parse response.body
+    puts(response.body)
   end
 
   private

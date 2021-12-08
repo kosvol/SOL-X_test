@@ -53,5 +53,6 @@ end
 #I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list
 And('CreateEntryPermit verify current permit presents in the list') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  puts("permit = #{@create_entry_permit_page.permit_id}")
   @create_entry_permit_page.verify_element_and_text('text', @create_entry_permit_page.permit_id)
 end

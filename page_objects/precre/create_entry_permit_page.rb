@@ -11,7 +11,8 @@ class CreateEntryPermitPage < BasePage
                 :time, :permit_index, :issue_time_date, :selected_date
 
   CREATE_ENTRY_PERMIT = {
-    heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
+    heading_text: "//*[@id='root']/div/nav/header",
+    submit_for_approval_btn: "//*[contains(.,'Submit for Approval')]/parent::button",
     permit_validation_btn: "//button[@id='permitValidDuration']",
     four_hours_duration: "//button[contains(.,'4 hours')]",
     six_hours_duration: "//button[contains(.,'6 hours')]",
@@ -29,7 +30,12 @@ class CreateEntryPermitPage < BasePage
     current_day: "//button[contains(@class,'Day__DayButton')]",
     next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
     gas_added_by: 'div[role="dialog"] > div > section > div > span',
-    back_to_home_btn: "//button[contains(.,'Back to Home')]"
+    back_to_home_btn: "//button[contains(.,'Back to Home')]",
+    picker: "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']",
+    picker_hh: "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
+    picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
+    permit_validity: "//h2[contains(text(),'Permit Validity')]",
+    time_element: '//*[@id="permitActiveAt"]'
   }.freeze
 
   def initialize(driver)
@@ -58,7 +64,6 @@ class CreateEntryPermitPage < BasePage
   def save_permit_id
     self.temp_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
-    self.permit_duration = retrieve_text(CREATE_ENTRY_PERMIT[:duration_timer])
   end
 
   def verify_reporting_interval(condition)
@@ -94,14 +99,38 @@ class CreateEntryPermitPage < BasePage
   end
 
   def verify_element_and_text(element, value)
-    raise 'Element verify failed' unless find_element(format(TYPE_OF_ELEMENT[element.downcase], value)).enabled?
+    raise 'Element verify failed' unless find_element(format(TYPE_OF_ELEMENT[element.downcase], value))
   end
 
   def click_back_to_home
     click(CREATE_ENTRY_PERMIT[:back_to_home_btn])
   end
 
+  def click_submit_for_approval
+    click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
+  end
+
   private
+
+  def picker_hh_mm(delay)
+    time = find_element(CREATE_ENTRY_PERMIT[:time_element]).text
+    hh, mm = add_minutes(time, delay)
+    picker_hh = format(CREATE_ENTRY_PERMIT[:picker_hh], hh)
+    picker_mm = format(CREATE_ENTRY_PERMIT[:picker_mm], mm)
+    [picker_hh, picker_mm]
+  end
+
+  def add_minutes(time, add_mm)
+    hh, mm = time.split(':')
+    mm = mm.to_i
+    hh = hh.to_i
+    mm += add_mm.to_i
+    if mm >= 60
+      mm -= 60
+      hh += 1
+    end
+    [format('%02d', hh), format('%02d', mm)]
+  end
 
   TYPE_OF_ELEMENT = {
     'alert_text' => "//div[contains(.,'%s')]",

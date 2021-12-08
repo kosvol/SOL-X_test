@@ -6,32 +6,9 @@ Feature: Pump room entry permit creation
 
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
-    When SmartForms click create "PRE"
-    Then PinEntry enter pin for rank "C/O"
-    And PRE fill up permit
-      | duration | delay to activate |
-      | 4        | 3                 |
-    And GasReadings fill equipment fields
-    And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
-    And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
-    And GasReadings click Review & Sign button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Back to Home button
-    And SmartForms navigate to "Pending Approval" page for "PRE"
-    Then PinEntry enter pin for rank "C/O"
-    And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
-    And Service activate "PRE" permit
+    When  PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | pre        | ACTIVE          |
     Then SmartForms navigate to "PRE" display until see active permit
 
   Scenario: Verify menu items are displayed in hamburger menu
@@ -216,31 +193,11 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify creator PRE cannot request update needed
     Given SmartForms open page
-    When SmartForms click create "PRE"
+    When PermitGenerator create entry permit
+      | entry_type | permit_status                    |
+      | pre        | APPROVED_FOR_ACTIVATION          |
+    And SmartForms navigate to "Scheduled" page for "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE fill up permit
-      | duration | delay to activate |
-      | 4        | 2                 |
-    And GasReadings fill equipment fields
-    And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
-    And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
-    And GasReadings click Review & Sign button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Back to Home button
-    And SmartForms navigate to "Pending Approval" page for "PRE"
-    Then PinEntry enter pin for rank "C/O"
-    And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
     And PermitActions verify button "Updates Needed" is disabled
 
   Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
