@@ -151,16 +151,6 @@ class CreateEntryPermitPage < BasePage
     [format('%02d', hh), format('%02d', mm)]
   end
 
-  TYPE_OF_ELEMENT = {
-    'alert_text' => "//div[contains(.,'%s')]",
-    'text' => "//*[contains(text(),'%s')]",
-    'auto_terminated' => "//span[contains(.,'%s')]/parent::*//*[contains(.,'Auto Terminated')]",
-    'label' => "//h2[contains(text(),'%s')]",
-    'page' => "//h2[contains(text(),'%s')]",
-    'header' => "//h1[contains(text(),'%s')]",
-    'button' => "//button[contains(.,'%s')]"
-  }.freeze
-
   DURATION = {
     '4' => CREATE_ENTRY_PERMIT[:four_hours_duration],
     '6' => CREATE_ENTRY_PERMIT[:six_hours_duration],
