@@ -46,6 +46,10 @@ class OPLoginPage < BasePage
     click(OP_LOGIN[:sign_in_btn])
   end
 
+  def click_forgot_password
+    click(OP_LOGIN[:forgot_password_link])
+  end
+
   def verify_error_message(table)
     table.hashes.each do |sub_table|
       actual_message = retrieve_error_message(sub_table['heading'])
