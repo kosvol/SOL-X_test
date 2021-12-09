@@ -24,8 +24,8 @@ class CompressorRoomPage < CreateEntryPermitPage
   end
 
   def fill_cre_form(duration)
-    tmp_elements = find_elements(COMPRESSOR_ROOM[:text_area])
-    tmp_elements.each do |element|
+    all_page_text_areas = find_elements(COMPRESSOR_ROOM[:text_area])
+    all_page_text_areas.each do |element|
       element.send_keys('Test Automation')
     end
     click(format(COMPRESSOR_ROOM[:button_sample], ['At Sea', 'In Port'].sample).to_s)

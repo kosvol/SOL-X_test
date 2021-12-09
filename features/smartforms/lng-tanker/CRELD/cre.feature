@@ -10,18 +10,18 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
-    And SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
     Then PermitActions verify current permit presents in the list
-    And SmartForms click go back button
+    And NavigationDrawer click go back button
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And CommonSection sleep for "5" sec
-    And SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     Then CRE verify permit not present in list
-    And SmartForms click go back button
-    And SmartForms navigate to "Terminated" page for "CRE"
+    And NavigationDrawer click go back button
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     Then PermitActions verify current permit presents in the list
 
   Scenario: Verify user can see all the CRE questions
@@ -126,12 +126,11 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
@@ -155,15 +154,14 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "<rank>"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "<rank>"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
-    And SignatureLocation sign off first zone area
+    Then PinEntry enter pin for rank "<rank>"
     And PermitActions verify button "Approve for Activation" is disabled
     Examples:
       | rank  |
@@ -172,7 +170,7 @@ Feature: Compressor room entry creation
       | 3/O   |
       | A 3/O |
 
-  Scenario: Verify non CRE creator can approve the same permit
+  Scenario Outline: Verify non CRE creator can approve the same permit
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
@@ -188,36 +186,39 @@ Feature: Compressor room entry creation
     And SignatureLocation sign off first zone area
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "A C/O"
+    Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
-    And CreateEntryPermit save current start and end validity time for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When PendingApproval click Officer Approval button
-    And SignatureLocation sign off first zone area
-    Then CRE verify landing screen is "Compressor/Motor Room Entry"
+    Then PinEntry enter pin for rank "<rank>"
+    Then PermitActions verify button "Approve for Activation"
+    Examples:
+      | rank  |
+      | C/O   |
+      | 2/O   |
+      | 3/O   |
+      | A 3/O |
 
   Scenario Outline: Verify these roles can terminate CRE permit
     Given SmartForms open page
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
-    And SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
     And PermitActions click Submit for termination
     Then PinEntry enter pin for rank "<rank>"
     And PermitActions click Terminate button
     Then PinEntry enter pin for rank "<rank>"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "text" with text "Permit Has Been Closed"
+    And CreateEntryPermit verify element with text "Permit Has Been Closed"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
-    And SmartForms navigate to "Terminated" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     Examples:
       | rank  |
@@ -232,13 +233,13 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And SmartForms click back arrow button
-    And SmartForms navigate to "Created" page for "CRE"
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer navigate to Compressor Motor Room "Created"
     And CreateEntryPermit save permit id
     And PermitActions click button Delete
     Then PermitActions verify deleted permit
 
-  Scenario: Verify user cannot send CRE for approval with start time and duration
+  Scenario: Verify user cannot send CRE for approval without start time and duration
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
@@ -246,11 +247,24 @@ Feature: Compressor room entry creation
 
   Scenario: Verify these roles can request update for CRE permit in Pending Approval State
     Given SmartForms open page
-    When PermitGenerator create entry permit
-      | entry_type | permit_status                     |
-      | cre        | PENDING_OFFICER_APPROVAL          |
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "A 3/O"
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Back to Home button
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
@@ -275,20 +289,18 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
    # And I getting a permanent number from indexedDB
     And CreateEntryPermit click Back to Home button
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And CommonSection sleep for "1" sec
-    When SmartForms navigate to "Scheduled" page for "CRE"
-    And SmartForms click back arrow button
+    And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
+    And NavigationDrawer click back arrow button
     And CommonSection sleep for "180" sec
-    When SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit verify current permit presents in the list
 
   Scenario: Verify creator CRE cannot request update needed
@@ -310,12 +322,11 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     Then PermitActions verify button "Add Gas"
     Then PermitActions verify button "Updates Needed" is disabled
 
@@ -325,7 +336,7 @@ Feature: Compressor room entry creation
       | entry_type | permit_status                     |
       | cre        | APPROVED_FOR_ACTIVATION           |
     And CommonSection sleep for "1" sec
-    When SmartForms navigate to "Scheduled" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
@@ -336,15 +347,15 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
-    And SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
-    And SmartForms click go back button
+    And NavigationDrawer click go back button
     And PermitActions click Submit for termination
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click Terminate button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    When SmartForms navigate to "Terminated" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
@@ -372,19 +383,17 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "180" sec
-    When SmartForms navigate to "Active" page for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
     Then GasReadings verify location in sign

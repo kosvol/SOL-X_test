@@ -1,7 +1,6 @@
 # frozen_string_literal: true"
 
 require_relative '../base_page'
-require_relative '../../page_objects/sections/common_section_page'
 
 # Initial create permit object
 class CreateEntryPermitPage < BasePage
@@ -95,11 +94,31 @@ class CreateEntryPermitPage < BasePage
 
   def verify_crew_in_popup(rank_name)
     crew_member_actual = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:gas_added_by]).text
-    compare_string(crew_member_actual, "By #{rank_name}")
+    compare_string("By #{rank_name}", crew_member_actual)
   end
 
-  def verify_element_and_text(element, value)
-    raise 'Element verify failed' unless find_element(format(TYPE_OF_ELEMENT[element.downcase], value))
+  def verify_alert_text(value)
+    raise 'Element verify failed' unless find_element("//div[contains(.,'#{value}')]").eql?(true)
+  end
+
+  def verify_element_text(value)
+    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{value}')]").eql?(true)
+  end
+
+  def verify_label(value)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]").eql?(true)
+  end
+
+  def verify_page_text(value)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]").eql?(true)
+  end
+
+  def verify_header(value)
+    raise 'Element verify failed' unless find_element("//h1[contains(text(),'#{value}')]").eql?(true)
+  end
+
+  def verify_button(value)
+    raise 'Element verify failed' unless find_element("//button[contains(.,'#{value}')]").eql?(true)
   end
 
   def click_back_to_home

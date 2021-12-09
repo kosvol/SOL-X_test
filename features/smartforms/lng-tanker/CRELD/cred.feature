@@ -22,15 +22,15 @@ Feature: Compressor room entry display
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     #And I getting a permanent number from indexedDB
-    And SmartForms navigate to "Pending Approval" page for "CRE"
+    And NavigationDrawer navigate to "Pending Approval" page for "CRE"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
 
     And I navigate to CRE Display
     And I enter pin via service for rank C/O

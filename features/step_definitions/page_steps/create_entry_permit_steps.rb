@@ -35,9 +35,34 @@ And('CreateEntryPermit verify popup dialog with {string} crew member') do |rank_
 end
 
 #And(/^I (should|should not) see the (text|label|page|header) '(.*)'$/) do |condition, like, text|
-And('CreateEntryPermit verify element type {string} with text {string}') do |type, text|
+And('CreateEntryPermit verify page with text {string}') do |text|
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_element_and_text(type, text)
+  @create_entry_permit_page.verify_page_text(text)
+end
+
+And('CreateEntryPermit verify element with text {string}') do |text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_element_text(text)
+end
+
+And('CreateEntryPermit verify alert text {string}') do |text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_alert_text(text)
+end
+
+And('CreateEntryPermit verify header text {string}') do |text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_header(text)
+end
+
+And('CreateEntryPermit verify button text {string}') do |text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_button(text)
+end
+
+And('CreateEntryPermit verify label {string}') do |text|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_label(text)
 end
 
 Then('CreateEntryPermit click Back to Home button') do
