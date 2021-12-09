@@ -42,7 +42,12 @@ Feature: Section 6: Gas Testing/Equipment
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
-    When SignatureLocation sign off
+    And CommonSection click Back button
+    And CommonSection click Back button
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    When GasReadings click Review & Sign button
+    Then SignatureLocation sign off
       | area        | zone             |
       | Bridge Deck | Port Bridge Wing |
 
@@ -70,6 +75,19 @@ Feature: Section 6: Gas Testing/Equipment
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "C/O"
     And GasReadings verify placeholder text
+
+  Scenario: Verify gas submit button is disabled before signing and location filled
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "C/O"
+    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And CommonSection navigate to "Section 6"
+    And Section6 click Add Gas Test Record
+    And PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings click Review & Sign button
+    Then GasReadings verify Submit button is "disabled"
+
 
   Scenario Outline: Verify non AGT cannot add gas readings
     Given SmartForms open page
@@ -134,7 +152,7 @@ Feature: Section 6: Gas Testing/Equipment
 #      | A 4/E |
       | CGENG |
 
-
+@22
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given SmartForms open page
     And SmartForms click create permit to work

@@ -13,10 +13,9 @@ class SectionSixPage < BasePage
     note: "//div[starts-with(@class,'WarningBox__')]/h3",
     field_missing_warning: "(//h3[starts-with(@class,'Heading')])[2]",
     sign_missing_warning: "(//h3[starts-with(@class,'Heading')])[4]",
-    submit_approval_btn: "//button[contains(., 'Master')]",
     add_gas_btn: "//button[contains(., 'Add Gas Test Record')]",
     done_btn: '//button[contains(.,"Done")]',
-    submit_btn: "//*[starts-with(@class,'ViewStaticSignature')]/div/div/button",
+    submit_btn: "//button[contains(., 'Submit')]",
     gas_equipment_text: '//input[@id="gasEquipment"]',
     gas_sr_number_text: '//input[@id="gasSrNumber"]',
     gas_last_calibrate_text: '//button[@id="gasLastCalibrationDate"]',
@@ -24,12 +23,9 @@ class SectionSixPage < BasePage
   }.freeze
 
   GAS_READING = {
-    o2: '(//*[@data-testid="gas-reading"])[1]',
-    hc: '(//*[@data-testid="gas-reading"])[2]',
-    co: '(//*[@data-testid="gas-reading"])[3]',
-    h2s: '(//*[@data-testid="gas-reading"])[4]',
-    toxic: '(//*[@data-testid="gas-reading"])[5]',
-    signature: '//*[@class="cell signature"]'
+    o2: '(//*[@data-testid="gas-reading"])[1]', hc: '(//*[@data-testid="gas-reading"])[2]',
+    co: '(//*[@data-testid="gas-reading"])[3]', h2s: '(//*[@data-testid="gas-reading"])[4]',
+    toxic: '(//*[@data-testid="gas-reading"])[5]', signature: '//*[@class="cell signature"]'
   }.freeze
 
   FIELD_MISSING_NOTE = 'Please Complete The Following Sections'
@@ -58,7 +54,7 @@ class SectionSixPage < BasePage
   end
 
   def verify_submit_btn(option)
-    submit_btn_element = find_element(SECTION_SIX[:submit_approval_btn])
+    submit_btn_element = find_element(SECTION_SIX[:submit_btn])
     if option == 'enabled'
       raise 'submit btn is disabled' unless submit_btn_element.enabled?
     elsif submit_btn_element.enabled?
@@ -80,9 +76,9 @@ class SectionSixPage < BasePage
       verify_element_not_exist(SECTION_SIX[:gas_sr_number_text])
       verify_element_not_exist(SECTION_SIX[:gas_last_calibrate_text])
     else
-      @driver.find_element(:xpath, SECTION_SIX[:gas_equipment_text])
-      @driver.find_element(:xpath, SECTION_SIX[:gas_sr_number_text])
-      @driver.find_element(:xpath, SECTION_SIX[:gas_last_calibrate_text])
+      find_element(SECTION_SIX[:gas_equipment_text])
+      find_element(SECTION_SIX[:gas_sr_number_text])
+      find_element(SECTION_SIX[:gas_last_calibrate_text])
     end
   end
 
@@ -103,6 +99,10 @@ class SectionSixPage < BasePage
     verify_normal_gas_reading(params)
     verify_toxic(params['Toxic'])
     verify_signature(params['Rank'])
+  end
+
+  def click_submit_btn
+    click(SECTION_SIX[:submit_btn])
   end
 
   private

@@ -50,3 +50,8 @@ And('GasReadings verify placeholder text') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.verify_placeholder
 end
+
+And('GasReadings verify Submit button is {string}') do |option|
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.verify_submit_btn(option)
+end

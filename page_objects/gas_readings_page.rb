@@ -83,4 +83,13 @@ class GasReadingsPage < BasePage
     compare_string('Required (TLV-TWA 5 PPM)', find_element(GAS_READINGS[:h2s_input]).attribute('placeholder'))
     compare_string('Required (TLV-TWA 25 PPM)', find_element(GAS_READINGS[:co_input]).attribute('placeholder'))
   end
+
+  def verify_submit_btn(option)
+    submit_btn_element = @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn])
+    if option == 'enabled'
+      raise 'submit btn is disabled' unless submit_btn_element.enabled?
+    elsif submit_btn_element.enabled?
+      raise 'submit btn is enabled'
+    end
+  end
 end
