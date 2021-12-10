@@ -152,7 +152,7 @@ Feature: Section 6: Gas Testing/Equipment
 #      | A 4/E |
       | CGENG |
 
-@22
+
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
     Given SmartForms open page
     And SmartForms click create permit to work
