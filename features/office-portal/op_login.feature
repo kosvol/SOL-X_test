@@ -1,5 +1,5 @@
-@op-login-page
-Feature: Office Portal Login Page
+@op_login_page
+Feature: Office Portal Login
   Correct credentials for test
   email: qa-test-group@sol-x.co
   password: Solxqa12345!
@@ -41,8 +41,8 @@ Feature: Office Portal Login Page
     When OfficeLogin enter password "test"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
-      | heading | message                    |
-      | Login   | Your password is incorrect |
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
 
   Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page
@@ -50,5 +50,10 @@ Feature: Office Portal Login Page
     When OfficeLogin enter password "Solxqa12345!"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
-      | heading | message                            |
-      | Login   | We can't seem to find your account |
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+
+  Scenario: Verify users should be redirected to the email verification page when click Forgot Password
+    Given OfficeLogin open page
+    When OfficeLogin click Forgot password
+    Then EmailVerification should see all the page attributes
