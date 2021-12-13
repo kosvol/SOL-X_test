@@ -37,3 +37,21 @@ And('GasReadings click Enter pin and Submit button') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.click_pin_and_submit
 end
+
+And('GasReadings delete toxic reading') do
+  @gas_readings_page.delete_toxic_readings
+end
+
+And('GasReadings verify toxic reading count {string}') do |count|
+  @gas_readings_page.verify_toxic_count(count)
+end
+
+And('GasReadings verify placeholder text') do
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.verify_placeholder
+end
+
+And('GasReadings verify Submit button is {string}') do |option|
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.verify_submit_btn(option)
+end
