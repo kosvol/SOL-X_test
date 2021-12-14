@@ -75,10 +75,10 @@ class GasReadingsPage < BasePage
     verify_gas_titles(gas_reading_table)
   end
 
-  def verify_location_in_sign
+  def verify_location_in_sign(location)
     click(GAS_INFORMATION[:show_signature_btn])
     signature = retrieve_text("(//div[@class='children']/div/div/div/div[3]/div/div)")
-    raise 'Verify failed' unless compare_string(signature, 'Z-AFT-STATION').eql?(false)
+    compare_string(signature, location)
   end
 
 

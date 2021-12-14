@@ -12,17 +12,17 @@ Then('CRE fill up permit') do |table|
   @cre_page.activate_time_picker(params['delay to activate'])
 end
 
-Then(/^CRE Verify form titles and questions$/) do
+Then(/^CRE verify form titles and questions$/) do
   @cre_page ||= CompressorRoomPage.new(@driver)
   @cre_page.verify_titles_and_questions
 end
 
-Then(/^CRE Verify form titles of sections$/) do
+Then(/^CRE verify form titles of sections$/) do
   @cre_page ||= CompressorRoomPage.new(@driver)
   @cre_page.verify_titles_of_sections
 end
 
-Then(/^CRE Verify form answers for questions$/) do
+Then(/^CRE verify form answers for questions$/) do
   @cre_page ||= CompressorRoomPage.new(@driver)
   @cre_page.verify_answers_of_sections_one
   @cre_page.verify_answers_of_sections_two

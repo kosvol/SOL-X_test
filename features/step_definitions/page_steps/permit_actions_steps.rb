@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../../page_objects/precre/create_entry_permit_page'
 require_relative '../../../page_objects/precre/permit_actions_page'
 
 

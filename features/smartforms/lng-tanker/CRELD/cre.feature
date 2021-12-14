@@ -28,9 +28,9 @@ Feature: Compressor room entry creation
     Given SmartForms open page
     When SmartForms click create "CRE"
     And PinEntry enter pin for rank "C/O"
-    Then CRE Verify form titles and questions
-    Then CRE Verify form titles of sections
-    Then CRE Verify form answers for questions
+    Then CRE verify form titles and questions
+    Then CRE verify form titles of sections
+    Then CRE verify form answers for questions
 
   Scenario Outline: Verify only these crew can create CRE permit
     Given SmartForms open page
@@ -99,7 +99,6 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    #And I add all gas readings with <rank> rank
     When GasReadings click done button on gas reader dialog box
 
     Examples:
@@ -129,7 +128,6 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
@@ -157,7 +155,6 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
@@ -191,7 +188,6 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When PendingApproval click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -289,7 +285,6 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-   # And I getting a permanent number from indexedDB
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
@@ -321,7 +316,6 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
@@ -385,7 +379,6 @@ Feature: Compressor room entry creation
     And SignatureLocation sign off first zone area
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When PendingApproval click Officer Approval button
@@ -397,3 +390,5 @@ Feature: Compressor room entry creation
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
     Then GasReadings verify location in sign
+      | location             |
+      | Z-AFT-STATION        |

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require_relative '../../../service/form/permit_generator'
-require_relative '../../../page_objects/precre/create_entry_permit_page'
 
 Given(/^PermitGenerator create permit$/) do |table|
   parms = table.hashes.first
