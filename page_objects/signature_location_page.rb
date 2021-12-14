@@ -13,7 +13,7 @@ class SignatureLocationPage < BasePage
     zone_option: '//button[contains(.,"%s")]',
     back_btn: '//button[contains(.,"Back")]',
     signature_pad: '//*[@data-testid="signature-canvas"]',
-    done_btn: '//button[contains(.,"Done")]',
+    done_btn: '(//button[contains(.,"Done") or contains(.,"Submit")])[last()]',
     submit_btn: "//div[starts-with(@class,'MainGasesInput__ButtonContainer')]/button[2]"
   }.freeze
 
@@ -40,10 +40,12 @@ class SignatureLocationPage < BasePage
   end
 
   def select_area(area)
+    sleep 0.5 # need to wait for the list loaded
     scroll_click(SIGNATURE_LOCATION[:zone_option] % area)
   end
 
   def select_zone(zone)
+    sleep 0.5 # need to wait for the list loaded
     scroll_click(SIGNATURE_LOCATION[:zone_option] % zone)
   end
 
@@ -52,7 +54,7 @@ class SignatureLocationPage < BasePage
     click_location_dropdown
     select_area(area)
     select_zone(zone)
-    click(SIGNATURE_LOCATION[:done_btn])
+    scroll_click(SIGNATURE_LOCATION[:done_btn])
   end
 
   def sign_off_first_zone_area

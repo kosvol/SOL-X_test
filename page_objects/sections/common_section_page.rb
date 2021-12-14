@@ -14,7 +14,8 @@ class CommonSectionPage < BasePage
     save_next_btn: "//button[contains(.,'Save & Next')]",
     previous_btn: "//button[contains(.,'Previous')]",
     sign_btn: "//button[contains(.,'Sign')]",
-    done_button: "//button[contains(.,'Done')]"
+    done_button: "//button[contains(.,'Done')]",
+    back_btn: "//button[contains(.,'Back')]"
   }.freeze
 
   def initialize(driver)
@@ -46,6 +47,10 @@ class CommonSectionPage < BasePage
 
   def click_done_dialog
     find_elements(COMMON_SECTION[:done_button]).first.click
+  end
+
+  def click_back_btn
+    click(COMMON_SECTION[:back_btn])
   end
 end
 
