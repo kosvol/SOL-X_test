@@ -290,7 +290,9 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
@@ -298,7 +300,9 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And CommonSection sleep for "1" sec
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
@@ -324,14 +328,18 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "CRE"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     Then PermitActions verify button "Add Gas"
     Then PermitActions verify button "Updates Needed" is disabled
@@ -360,12 +368,16 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click Terminate button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
     And PermitActions check Responsible Officer Signature
+      | rank      | zone                    |
+      | C/O STG C/O | No. 1 Cargo Tank Port |
 
   Scenario: Gas Reader location stamp should not be missing
     Given SmartForms open page
@@ -388,7 +400,9 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
@@ -397,7 +411,9 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "180" sec
@@ -405,8 +421,8 @@ Feature: Compressor room entry creation
     And PermitActions open current permit for view
     Then PinEntry enter pin for rank "C/O"
     Then GasReadings verify location in sign
-      | location             |
-      | Z-AFT-STATION        |
+      | location                     |
+      | No. 1 Cargo Tank Port        |
 
   Scenario: Verify Chief Officer can activate his/her own PRE permit
     Given SmartForms open page
@@ -425,12 +441,16 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"

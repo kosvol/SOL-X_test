@@ -129,7 +129,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -139,7 +141,9 @@ Feature: Pump room entry permit creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     Then CreateEntryPermit verify current permit presents in the list
@@ -151,7 +155,9 @@ Feature: Pump room entry permit creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click Terminate button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify element with text "Permit Has Been Closed"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
@@ -175,7 +181,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -217,7 +225,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -267,14 +277,18 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "PRE"
     When CreateEntryPermit click Officer Approval button
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And PermitActions verify button "Approve for Activation"
 
   Scenario Outline: Verify a creator PRE cannot activate PRE
@@ -294,7 +308,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -341,7 +357,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -351,7 +369,9 @@ Feature: Pump room entry permit creation
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
@@ -377,7 +397,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -401,7 +423,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button

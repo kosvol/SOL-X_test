@@ -63,9 +63,10 @@ And('PermitActions click button Delete') do
   @permit_action.delete_current_permit
 end
 
-Then('PermitActions check Responsible Officer Signature') do
+Then('PermitActions check Responsible Officer Signature') do |table|
   @permit_action ||= PermitActionsPage.new(@driver)
-  @permit_action.check_ra_signature('C/O STG C/O', '3 Cargo Tank Vent')#'3 Cargo Tank Vent'
+  params = table.hashes.first
+  @permit_action.check_ra_signature(params['rank'], params['zone'])#'3 Cargo Tank Vent'
 end
 
 Then('PermitActions verify deleted permit') do
