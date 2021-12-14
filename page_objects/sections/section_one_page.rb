@@ -73,4 +73,8 @@ class SectionOnePage < BasePage
     click(SECTION_ONE[:zone_option] % area)
     click(SECTION_ONE[:zone_option] % zone)
   end
+
+  def verify_next_btn(option)
+    find_element("//button[contains(.,'#{option}')]")
+  end
 end

@@ -46,3 +46,8 @@ Given('Section1 select zone') do |table|
   @section_one_page ||= SectionOnePage.new(@driver)
   @section_one_page.select_zone(params['area'], params['zone'])
 end
+
+Given('Section1 verify next button is {string}') do |option|
+  @section_one_page ||= SectionOnePage.new(@driver)
+  @section_one_page.verify_next_btn(option)
+end

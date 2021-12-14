@@ -3,18 +3,31 @@
 require 'yaml'
 # module for environment
 module EnvUtils
+  BASE_URL = 'https://%<env>s.edge.%<project>s.safevue.ai'
+  UI_PORT = '8080'
+  API_PORT = '4000'
+  EDGE_CREDENTIALS = 'admin:magellanx'
+  CLOUD_CREDENTIALS = 'admin:gkmQjrP6Lmsd1tvZLTez'
+
+  def generate_base_url
+    project = if ENV['PROJECT'] == 'shell'
+                'shell'
+              else
+                'solx'
+              end
+    format(BASE_URL, env: retrieve_prefix, project: project)
+  end
 
   def retrieve_api_url
-    env = ENV['ENVIRONMENT']
-    retrieve_env_file[env]['service'] % retrieve_prefix
+    "#{generate_base_url}:#{API_PORT}"
   end
 
   def retrieve_db_url(db_type)
     case db_type
     when 'cloud'
-      retrieve_env_file['cloud']['base_cloud_url']
+      "#{CLOUD_CREDENTIALS}@#{generate_base_url}"
     when 'edge'
-      retrieve_env_file[ENV['ENVIRONMENT']]['couch_db'] % retrieve_prefix
+      "#{EDGE_CREDENTIALS}@#{generate_base_url}:5984"
     else
       "#{db_type} is not supported"
     end
@@ -23,12 +36,13 @@ module EnvUtils
   def retrieve_vessel_name
     vessel_name = ENV['VESSEL'] + ENV['ENVIRONMENT']
     return "#{vessel_name}20".upcase if ENV['VERSION'] == '2.0'
+    return 'AAMIRA' if ENV['PROJECT'] == 'shell'
 
     vessel_name.upcase
   end
 
   def retrieve_env_url
-    retrieve_env_file[ENV['ENVIRONMENT']][ENV['APPLICATION']] % retrieve_prefix
+    "#{generate_base_url}:8080"
   end
 
   def retrieve_env_file

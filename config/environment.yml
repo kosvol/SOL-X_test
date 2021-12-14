@@ -1,14 +1,4 @@
 ---
-sit:
-  c2_preview: https://%s.edge.solx.safevue.ai:8080
-  couch_db: https://admin:magellanx@%s.edge.solx.safevue.ai:5984
-  service: https://%s.edge.solx.safevue.ai:4000
-  switch_vessel: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/vessels/sit-vessel
-auto:
-  c2_preview: https://%s.edge.solx.safevue.ai:8080
-  couch_db: https://admin:magellanx@%s.edge.solx.safevue.ai:5984
-  service: https://%s.edge.solx.safevue.ai:4000
-  switch_vessel: https://admin:magellanx@%s.edge.solx.safevue.ai:5984/vessels/auto-vessel
 edge:
   add-work-rest-hour: work_rest_hour/_bulk_docs
   get_pre_gas_entry_log: gas_reader_entry/%s

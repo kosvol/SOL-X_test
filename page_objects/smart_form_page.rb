@@ -20,6 +20,10 @@ class SmartFormsPage < BasePage
     find_element(SMART_FORMS[:hamburger_menu_btn])
   end
 
+  def open_state_page(state)
+    @driver.get("#{retrieve_env_url}/forms/ptw/#{state}")
+  end
+
   def click_create_permit_to_work
     scroll_click(SMART_FORMS[:click_create_permit_btn])
   end

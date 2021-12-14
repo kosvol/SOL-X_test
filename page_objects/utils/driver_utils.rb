@@ -63,4 +63,13 @@ module DriverUtils
   def scroll_by_dist(x_coordinate, y_coordinate)
     @driver.execute_script("window.scrollBy(#{x_coordinate},#{y_coordinate})", '')
   end
+
+  def wait_for_update(actual, expected, timeout = 5)
+    wait = 0
+    until actual == expected
+      sleep 0.5
+      wait += 1
+      break if wait > timeout
+    end
+  end
 end

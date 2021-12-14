@@ -27,3 +27,7 @@ end
 And('SmartForms verify hamburger categories') do
   @smart_form_page.verify_base_menu
 end
+
+And('SmartForms open {string} page') do |state|
+  @smart_form_page.open_state_page(state)
+end
