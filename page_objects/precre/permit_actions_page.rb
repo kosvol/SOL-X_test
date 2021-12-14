@@ -28,7 +28,8 @@ class PermitActionsPage < BasePage
     submit_for_approval_btn: "//*[contains(.,'Submit for Approval')]",
     ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span",
     request_for_update: "//button[contains(.,'Updates Needed')]",
-    update_comment_box: "//textarea[@id='updatesNeededComment']"
+    update_comment_box: "//textarea[@id='updatesNeededComment']",
+    approve_for_activation: "//button[contains(.,'Approve for Activation')]"
   }.freeze
 
   def initialize(driver)
@@ -114,6 +115,10 @@ class PermitActionsPage < BasePage
 
   def verify_permit
     raise 'Element verify failed' unless find_element("//*[contains(text(),'#{ptw_id}')]")
+  end
+
+  def approve_for_activation
+    click(PERMIT_ACTIONS[:approve_for_activation])
   end
 
   private

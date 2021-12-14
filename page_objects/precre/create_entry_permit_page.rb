@@ -129,6 +129,11 @@ class CreateEntryPermitPage < BasePage
     click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
   end
 
+  def click_officer_approval_btn
+    xpath_str = "//span[contains(text(),#{permit_id})]//following::span[contains(text(),'Officer Approval)][1]"
+    click(xpath_str)
+  end
+
   private
 
   def picker_hh_mm(delay)

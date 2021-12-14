@@ -232,7 +232,7 @@ Feature: Pump room entry display
     And CreateEntryPermit click Back to Home button
     And SmartForms navigate to "Pending Approval" page for "PRE"
     And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
     And Service activate "PRE" permit

@@ -78,5 +78,10 @@ end
 #I (should|should not) see the current (PRE|CRE) in the "([^"]*)" list
 And('CreateEntryPermit verify current permit presents in the list') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_element_and_text('text', @create_entry_permit_page.permit_id)
+  @create_entry_permit_page.verify_element_text(@create_entry_permit_page.permit_id)
+end
+
+Then('CreateEntryPermit click Officer Approval button') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.click_officer_approval_btn
 end

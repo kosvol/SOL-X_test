@@ -37,7 +37,7 @@ end
 And('NavigationDrawer navigate to settings') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.click_hamburger_menu_btn
-  @navigation_drawer_page.navigate_to_settings
+  @navigation_drawer_page.select_settings_cat
 end
 
 And('NavigationDrawer navigate to {string} display until see active permit') do |permit_type|
@@ -53,4 +53,9 @@ end
 And('NavigationDrawer click go back button') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.click_go_back
+end
+
+And('NavigationDrawer click view button') do
+  @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
+  @navigation_drawer_page.click_view_button
 end

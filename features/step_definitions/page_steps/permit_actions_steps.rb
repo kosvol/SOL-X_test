@@ -60,7 +60,7 @@ end
 #I delete the permit created
 And('PermitActions click button Delete') do
   @permit_action ||= PermitActionsPage.new(@driver)
-  @permit_action.verify_button_disabled(button)
+  @permit_action.delete_current_permit
 end
 
 Then('PermitActions check Responsible Officer Signature') do
@@ -83,4 +83,9 @@ end
 And('PermitActions verify current permit presents in the list') do
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_permit
+end
+
+And('PermitActions click approve for activation') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.approve_for_activation
 end

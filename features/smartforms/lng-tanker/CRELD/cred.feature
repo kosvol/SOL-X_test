@@ -28,7 +28,7 @@ Feature: Compressor room entry display
     #And I getting a permanent number from indexedDB
     And NavigationDrawer navigate to "Pending Approval" page for "CRE"
     And CreateEntryPermit save current start and end validity time for "CRE"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
 

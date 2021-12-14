@@ -10,6 +10,7 @@ Feature: Pump room entry permit creation
       | entry_type | permit_status   |
       | pre        | ACTIVE          |
     Then NavigationDrawer navigate to "PRE" display until see active permit
+    Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page
@@ -134,7 +135,10 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PermitActions click approve for activation
+    Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
@@ -192,6 +196,8 @@ Feature: Pump room entry permit creation
       | entry_type | permit_status                    |
       | pre        | APPROVED_FOR_ACTIVATION          |
     And NavigationDrawer navigate to Pump Room "Scheduled"
+    And NavigationDrawer click view button
+    Then PinEntry enter pin for rank "C/O"
     And PermitActions verify button "Updates Needed" is disabled
 
   Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
@@ -216,7 +222,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
     And PRE scroll "down" direction 2 times
     And PermitActions verify buttons for not Pump Room Entry RO rank on pending approval page
@@ -267,7 +273,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
     And SignatureLocation sign off first zone area
     And PermitActions verify button "Approve for Activation"
 
@@ -293,11 +299,8 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
-    And SignatureLocation sign off first zone area
     And PermitActions verify button "Approve for Activation" is disabled
 
     Examples:
@@ -315,7 +318,6 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     #And I get a temporary number and writing it down
     And CreateEntryPermit verify element with text "Permit Updated"
-    #Then I getting a permanent number from indexedDB
     And NavigationDrawer navigate to Pump Room "Created"
     Then CreateEntryPermit verify current permit presents in the list
     Then PermitActions click Edit button
@@ -345,7 +347,10 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     And CreateEntryPermit save current start and end validity time for "PRE"
-    When PendingApproval click Officer Approval button
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PermitActions click approve for activation
+    Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
