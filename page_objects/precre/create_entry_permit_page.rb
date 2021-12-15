@@ -134,6 +134,11 @@ class CreateEntryPermitPage < BasePage
     click(xpath_str)
   end
 
+  def permit_from_indexed_db
+    permit_from_db = WorkWithIndexeddb.get_id_from_indexeddb(permit_id)
+    self.permit_id = permit_from_db
+  end
+
   private
 
   def picker_hh_mm(delay)

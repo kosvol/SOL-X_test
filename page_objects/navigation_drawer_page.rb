@@ -86,14 +86,14 @@ class NavigationDrawerPage < BasePage
     click(NAVIGATION[:view_button])
   end
 
-  private
-
   def navigate_to_display_page(permit_type)
     click_hamburger_menu_btn
     select_settings_cat
     click(NAVIGATION[:pump_room_display_setting]) if permit_type == 'PRE'
     click(NAVIGATION[:compressor_room_display_setting]) if permit_type == 'CRE'
   end
+
+  private
 
   def return_background_color
     find_element(NAVIGATION[:main_page]).css_value('background-color')

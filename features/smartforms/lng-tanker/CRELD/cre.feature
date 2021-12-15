@@ -121,18 +121,20 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
-    And CreateEntryPermit save current start and end validity time for "CRE"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And PermitActions verify button "Approve for Activation"
 
   Scenario Outline: Verify CRE roles cannot approve the same permit
@@ -151,7 +153,9 @@ Feature: Compressor room entry creation
     And SignatureLocation sign off first zone area
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -180,10 +184,11 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -193,7 +198,6 @@ Feature: Compressor room entry creation
     Then PermitActions verify button "Approve for Activation"
     Examples:
       | rank  |
-      | C/O   |
       | 2/O   |
       | 3/O   |
       | A 3/O |
@@ -209,7 +213,9 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "<rank>"
     And PermitActions click Terminate button
     Then PinEntry enter pin for rank "<rank>"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify element with text "Permit Has Been Closed"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
@@ -217,6 +223,7 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify current permit presents in the list
     Examples:
       | rank  |
+      | C/O   |
       | A C/O |
       | 2/O   |
       | A 2/O |
@@ -232,7 +239,11 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id
     And PermitActions click button Delete
     Then PinEntry enter pin for rank "MAS"
-    Then PermitActions verify deleted permit
+    Then PermitActions verify deleted permit not presents in list
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer navigate to Compressor Motor Room "Deleted"
+    Then PinEntry enter pin for rank "C/O"
+    Then PermitActions verify current permit presents in the list
 
   Scenario: Verify user cannot send CRE for approval without start time and duration
     Given SmartForms open page
@@ -254,10 +265,11 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
@@ -266,6 +278,7 @@ Feature: Compressor room entry creation
 
     Examples:
       | rank  |
+      | A C/O |
       | 2/O   |
       | A 2/O |
       | 3/O   |
@@ -287,7 +300,6 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -295,7 +307,6 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
-    And CreateEntryPermit save current start and end validity time for "CRE"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
@@ -307,6 +318,7 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "1" sec
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And NavigationDrawer click back arrow button
+    And CreateEntryPermit verify current permit presents in the list
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit verify current permit presents in the list
@@ -325,23 +337,16 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
-    And CreateEntryPermit save current start and end validity time for "CRE"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click approve for activation
-    Then PinEntry enter pin for rank "C/O"
-    When SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
-    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
-    Then PermitActions verify button "Add Gas"
+    Then PermitActions verify button "Add Gas" is disabled
     Then PermitActions verify button "Updates Needed" is disabled
 
   Scenario: The Responsible Officer Signature should be displayed CRE
@@ -363,7 +368,6 @@ Feature: Compressor room entry creation
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
-    And NavigationDrawer click go back button
     And PermitActions click Submit for termination
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click Terminate button
@@ -397,16 +401,13 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
-    And CreateEntryPermit save current start and end validity time for "CRE"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions click approve for activation
@@ -424,7 +425,7 @@ Feature: Compressor room entry creation
       | location                     |
       | No. 1 Cargo Tank Port        |
 
-  Scenario: Verify Chief Officer can activate his/her own PRE permit
+  Scenario: Verify Chief Officer can activate his/her own CRE permit
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
@@ -438,7 +439,6 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off

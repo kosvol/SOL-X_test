@@ -71,6 +71,12 @@ Feature: Pump room entry permit creation
     Then PRE verify alert message "Please select the start time and duration before submitting."
     And PermitActions verify button "Submit for Approval" is disabled
     Then PRE select Permit Duration <duration>
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
     And PermitActions verify button "Submit for Approval"
 
@@ -126,7 +132,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -178,7 +183,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -202,8 +206,8 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When PermitGenerator create entry permit
       | entry_type | permit_status                    |
-      | pre        | APPROVED_FOR_ACTIVATION          |
-    And NavigationDrawer navigate to Pump Room "Scheduled"
+      | pre        | PENDING_OFFICER_APPROVAL         |
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
     And NavigationDrawer click view button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions verify button "Updates Needed" is disabled
@@ -222,7 +226,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -256,8 +259,8 @@ Feature: Pump room entry permit creation
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
     Then PermitActions click Close button
-   # And I getting a permanent number from indexedDB (need to refactor IndexedDb class)
     And NavigationDrawer navigate to Pump Room "Created"
+    Then CreateEntryPermit set permanent permit number from IndexedDB
     Then CreateEntryPermit verify current permit presents in the list
 
   Scenario: Verify a creator PRE can activate PRE
@@ -274,7 +277,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -305,7 +307,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -334,6 +335,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     #And I get a temporary number and writing it down
     And CreateEntryPermit verify element with text "Permit Updated"
+    And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Pump Room "Created"
     Then CreateEntryPermit verify current permit presents in the list
     Then PermitActions click Edit button
@@ -354,7 +356,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -420,7 +421,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
@@ -456,4 +456,34 @@ Feature: Pump room entry permit creation
       | PMN   |
       | FTR   |
       | OLR   |
+
+  Scenario: Verify Chief Officer can activate his/her own PRE permit
+    Given SmartForms open page
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit click Back to Home button
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PermitActions click approve for activation
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
 

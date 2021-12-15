@@ -69,7 +69,7 @@ Then('PermitActions check Responsible Officer Signature') do |table|
   @permit_action.check_ra_signature(params['rank'], params['zone'])#'3 Cargo Tank Vent'
 end
 
-Then('PermitActions verify deleted permit') do
+Then('PermitActions verify deleted permit not presents in list') do
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.verify_deleted_permit
 end

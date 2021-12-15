@@ -85,3 +85,8 @@ Then('CreateEntryPermit click Officer Approval button') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.click_officer_approval_btn
 end
+
+Then('CreateEntryPermit set permanent permit number from IndexedDB') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.permit_from_indexed_db
+end

@@ -18,22 +18,24 @@ Feature: Compressor room entry display
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    #And I getting a permanent number from indexedDB
-    And NavigationDrawer navigate to "Pending Approval" page for "CRE"
-    And CreateEntryPermit save current start and end validity time for "CRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
-    And SignatureLocation sign off first zone area
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    And NavigationDrawer navigate to "CRE" display
+    Then PinEntry enter pin for rank "C/O"
 
-    And I navigate to CRE Display
-    And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen
     And I should see green background color
     When I submit a current CRE permit via service
@@ -42,7 +44,10 @@ Feature: Compressor room entry display
     And I terminate the PRE permit via service
 
   Scenario: [CRED] Just exited entrant can create new entry again api
-    Given  I submit a current CRE permit via service
+    Given SmartForms open page
+    When PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | cre        | ACTIVE          |
     And I add new entry "A 2/O,3/O,A 3/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
@@ -59,8 +64,10 @@ Feature: Compressor room entry display
     And I terminate the PRE permit via service
 
   Scenario: CRED Just exited entrant can create new entry again
-    Given I submit a current CRE permit via service
-    And SmartForms open page
+    Given SmartForms open page
+    When PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | cre        | ACTIVE          |
     And I open the current CRE with status Active. Rank: A C/O
     And Get CRE id
     And I click on back arrow
@@ -94,6 +101,7 @@ Feature: Compressor room entry display
     And CRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
+
     And Get CRE id
     And for cre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
@@ -122,7 +130,9 @@ Feature: Compressor room entry display
     And (for pred) I should see the disabled "Permit" button
 
   Scenario: [CRED] Users can exit from an active CRE[SOL-6243]
-    Given  I submit a current CRE permit via service
+    When PermitGenerator create entry permit
+      | entry_type | permit_status   |
+      | cre        | ACTIVE          |
     And I add new entry "A 2/O,3/O,A 3/O" CRE
     And I sleep for 20 seconds
     And I acknowledge the new entry log cre via service
