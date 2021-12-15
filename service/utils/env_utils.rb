@@ -35,8 +35,8 @@ module EnvUtils
 
   def retrieve_vessel_name
     vessel_name = ENV['VESSEL'] + ENV['ENVIRONMENT']
+    return 'AAMR' if ENV['PROJECT'] == 'shell'
     return "#{vessel_name}20".upcase if ENV['VERSION'] == '2.0'
-    return 'AAMIRA' if ENV['PROJECT'] == 'shell'
 
     vessel_name.upcase
   end

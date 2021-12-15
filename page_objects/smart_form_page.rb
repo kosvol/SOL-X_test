@@ -7,7 +7,7 @@ class SmartFormsPage < BasePage
   include EnvUtils
 
   SMART_FORMS = {
-    click_create_permit_btn: "//button[contains(.,'Create Permit To Work')]",
+    create_permit_btn: "//button[contains(.,'Create Permit To Work')]",
     create_new_pre_btn: "//span[contains(.,'Pump Room')]",
     create_new_cre_btn: "//span[contains(.,'Compressor/Motor')]",
     hamburger_menu_btn: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button",
@@ -25,7 +25,7 @@ class SmartFormsPage < BasePage
   end
 
   def click_create_permit_to_work
-    scroll_click(SMART_FORMS[:click_create_permit_btn])
+    scroll_click(SMART_FORMS[:create_permit_btn])
   end
 
   def click_create_new_pre_btn

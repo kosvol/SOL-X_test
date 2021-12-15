@@ -5,16 +5,20 @@
 require_relative 'permit_to_work_builder'
 require_relative 'entry_permit_builder'
 require_relative 'permit_map'
+require_relative '../utils/user_service'
 # service to generate permit
 class PermitGenerator
+  attr_accessor :permit_id
+
   def initialize(permit_type_plain)
     permit_map = PermitMap.new
     permit_type = permit_map.retrieve_permit_type(permit_type_plain)
     @approve_type = permit_map.retrieve_approve_type(permit_type)
+    default_pin = UserService.new.retrieve_pin_by_rank('C/O')
     @builder = if %w[pre cre].include?(permit_type)
-                 EntryPermitBuilder.new(permit_type)
+                 EntryPermitBuilder.new(permit_type, default_pin)
                else
-                 PermitToWorkBuilder.new(permit_type)
+                 PermitToWorkBuilder.new(permit_type, default_pin)
                end
   end
 
@@ -28,6 +32,7 @@ class PermitGenerator
     @builder.create_section5
     @builder.create_section6(gas_reading)
     update_pending_status
+    self.permit_id = @builder.permit_id
   end
 
   def create_active(eic, gas_reading, bfr_photo, aft_photo)

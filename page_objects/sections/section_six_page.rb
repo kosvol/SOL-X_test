@@ -54,12 +54,7 @@ class SectionSixPage < BasePage
   end
 
   def verify_submit_btn(option)
-    submit_btn_element = find_element(SECTION_SIX[:submit_btn])
-    if option == 'enabled'
-      raise 'submit btn is disabled' unless submit_btn_element.enabled?
-    elsif submit_btn_element.enabled?
-      raise 'submit btn is enabled'
-    end
+    verify_btn_availability(SECTION_SIX[:submit_btn], option)
   end
 
   def click_add_gas_record

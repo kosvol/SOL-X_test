@@ -7,11 +7,11 @@ require 'rest-client'
 class UsersApi
   include EnvUtils
 
-  def request(pin = '1111')
+  def request
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/retrieve_users.json")
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
-                               { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
+                               { 'Content-Type' => 'application/json', 'x-auth-user' => 'system' })
     JSON.parse response.body
   end
 end

@@ -29,5 +29,6 @@ And('SmartForms verify hamburger categories') do
 end
 
 And('SmartForms open {string} page') do |state|
+  @smart_form_page ||= SmartFormsPage.new(@driver)
   @smart_form_page.open_state_page(state)
 end

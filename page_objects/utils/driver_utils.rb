@@ -69,7 +69,16 @@ module DriverUtils
     until actual == expected
       sleep 0.5
       wait += 1
-      break if wait > timeout
+      raise "wait time out for #{actual} to #{expected}" if wait > timeout
+    end
+  end
+
+  def verify_btn_availability(xpath, option)
+    btn_element = find_element(xpath)
+    if option == 'enabled'
+      raise "#{xpath} btn is disabled" unless btn_element.enabled?
+    elsif btn_element.enabled?
+      raise "#{xpath} btn is enabled"
     end
   end
 end
