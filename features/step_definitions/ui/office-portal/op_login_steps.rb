@@ -41,6 +41,10 @@ When('OfficeLogin click Forgot password') do
   @office_portal_login.click_forgot_password
 end
 
+And('OfficeLogin remove password') do
+  @office_portal_login.remove_password
+end
+
 #The following steps to be removed after refactoring is finished
 
 Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|

@@ -35,7 +35,7 @@ Feature: Office Portal Login
     |test@@test.com|
     |test@test/com |
 
-  Scenario: Verify the correct error message when enter an incorrect password (7901)
+  Scenario: Verify the correct error message when enter a different incorrect password three times (7901, 8046)
     Given OfficeLogin open page
     When OfficeLogin enter email "qa-test-group@sol-x.co"
     When OfficeLogin enter password "test"
@@ -43,6 +43,24 @@ Feature: Office Portal Login
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
+    And OfficeLogin remove password
+    When OfficeLogin enter password "1234"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+    And OfficeLogin remove password
+    When OfficeLogin enter password "NewPassword"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+    And OfficeLogin remove password
+    When OfficeLogin enter password "Solxqa12345!"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                                                                          |
+      | Login   | Your account is temporarily locked to prevent unauthorized use. Try again later. |
 
   Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page

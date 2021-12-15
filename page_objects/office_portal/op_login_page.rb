@@ -64,6 +64,11 @@ class OPLoginPage < BasePage
     compare_string('rgb(216, 75, 75)', border_colour)
   end
 
+  def remove_password
+    element = OP_LOGIN[:password_field]
+    enter_text(element, "\ue003") until retrieve_text(element).length.zero?
+  end
+
   private
 
   def verify_logos_and_names
