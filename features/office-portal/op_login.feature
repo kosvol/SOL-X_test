@@ -1,27 +1,59 @@
-@op-login-page
-Feature: OpLoginPage
-  As a ...
-  I want to ...
-  So that ...
+@op_login_page
+Feature: Office Portal Login
+  Correct credentials for test
+  email: qa-test-group@sol-x.co
+  password: Solxqa12345!
 
-  Scenario: Verify the name of the portal is "Office Portal"(5761)
-    Given I launch Office Portal
-    Then I should see the "Office Portal" name on the top bar and page body
+  Scenario: Verify new login page attributes (Desktop) (7782)
+    Given OfficeLogin open page
+    Then OfficeLogin should see all the Login page attributes
 
-  Scenario: Verify the warning message appears for an invalid password (3501)
-    Given I launch Office Portal
-    When I enter a invalid password
-    And I click on Log In Now button
-    Then I should see the text 'Incorrect uid or password'
+  Scenario: Verify the correct error message when leave all fields empty (7899)
+    Given OfficeLogin open page
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the "Email" field is highlighted in red
+    And OfficeLogin should see the "Password" field is highlighted in red
+    And OfficeLogin should see the error message below the heading
+      | heading  | message                         |
+      | Email    | Please enter your Email Address |
+      | Password | Please enter your password      |
 
-  Scenario: Verify users can log in to the Office Portal (3099)
-    Given I launch Office Portal
-    When I enter a valid password
-    And I click on Log In Now button
-    Then I should see the Vessel List page
+  Scenario Outline: Verify the correct error message when enter an invalid Email (7900)
+    Given OfficeLogin open page
+    When OfficeLogin enter email "<example>"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the "Email" field is highlighted in red
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                             |
+      | Email   | Please enter a valid email address. |
+    Examples:
+    |example       |
+    |test          |
+    |test@         |
+    |test@.com     |
+    |test.test.com |
+    |test@@test.com|
+    |test@test/com |
 
-  Scenario: Verify the "Remember me" checkbox is editable (3494)
-    Given I launch Office Portal
-    And I see the checkbox is checked
-    When I uncheck the checkbox
-    Then I see the checkbox is unchecked
+  Scenario: Verify the correct error message when enter an incorrect password (7901)
+    Given OfficeLogin open page
+    When OfficeLogin enter email "qa-test-group@sol-x.co"
+    When OfficeLogin enter password "test"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+
+  Scenario: Verify the correct error message when enter an unregistered Email (7902)
+    Given OfficeLogin open page
+    When OfficeLogin enter email "test@test.com"
+    When OfficeLogin enter password "Solxqa12345!"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+
+  Scenario: Verify users should be redirected to the email verification page when click Forgot Password
+    Given OfficeLogin open page
+    When OfficeLogin click Forgot password
+    Then EmailVerification should see all the page attributes

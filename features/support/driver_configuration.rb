@@ -44,7 +44,7 @@ class DriverConfiguration
 
   def setup_browser_timeouts
     @driver.manage.timeouts.script_timeout = 10
-    @driver.manage.timeouts.page_load = 10
+    @driver.manage.timeouts.page_load = 15
     @driver.manage.timeouts.implicit_wait = 10
   end
 

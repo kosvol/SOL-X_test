@@ -1,9 +1,47 @@
 # frozen_string_literal: true
 
-Given(/^I launch Office Portal$/) do
-  $browser.get(EnvironmentSelector.environment_url)
-  BrowserActions.wait_until_is_visible(on(OfficePortalPage).op_login_btn_element)
+require_relative '../../../../page_objects/office_portal/op_login_page'
+
+Given('OfficeLogin open page') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.open_op_page
 end
+
+Then('OfficeLogin should see all the Login page attributes') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_login_page_attributes
+end
+
+And('OfficeLogin click the Sign in button') do
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.click_sign_in
+end
+
+And('OfficeLogin should see the {string} field is highlighted in red') do |field|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_highlighted_in_red(field)
+end
+
+When('OfficeLogin enter email {string}') do |text|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.enter_email(text)
+end
+
+When('OfficeLogin enter password {string}') do |text|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.enter_password(text)
+end
+
+And('OfficeLogin should see the error message below the heading') do |table|
+  @office_portal_login ||= OPLoginPage.new(@driver)
+  @office_portal_login.verify_error_message(table)
+end
+
+When('OfficeLogin click Forgot password') do
+  @office_portal_login.click_forgot_password
+end
+
+#The following steps to be removed after refactoring is finished
 
 Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|
   is_equal(on(OfficePortalPage).topbar_header_element.text, name)
