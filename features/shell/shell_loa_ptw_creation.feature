@@ -75,7 +75,7 @@ Feature: SHELL level of authority PTW creation
 #      | A 4/E |
 
 
-  Scenario Outline: [Section3D] Verify only MAS and A/M can sign on section 3d
+  Scenario Outline: [Section3D] Verify MAS, A/M, C/E, A C/E can sign on section 3d
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -94,9 +94,11 @@ Feature: SHELL level of authority PTW creation
     Then Section3D should see location stamp "No. 1 Cargo Tank Port"
     And Section3D verify signature rank "<rank>"
     Examples:
-      | rank |
-      | MAS  |
-      | A/M  |
+      | rank  |
+      | MAS   |
+      | A/M   |
+      | C/E   |
+      | A C/E |
 
 
   Scenario Outline: [Section3D] Verify non RA cannot sign on section 3d
@@ -391,7 +393,6 @@ Feature: SHELL level of authority PTW creation
       | 4/E   |
 #      | A 4/E |
       | CGENG |
-
 
 
   Scenario Outline: [Section6] Verify rank can not submit for master approval

@@ -66,7 +66,7 @@ Feature: Section 3D: DRA - Summary & Assessment
     And Section3D verify signature rank "C/O"
 
 
-  Scenario Outline: Verify only RA can sign on section 3d for level2 permits
+  Scenario Outline: Verify ranks can sign on section 3d for level2 permits
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -89,7 +89,7 @@ Feature: Section 3D: DRA - Summary & Assessment
       | Rotational Portable Power Tools | Use of Portable Power Tools                 | 2/E         | 2/E          |
 
 
-  Scenario Outline: Verify only RA can sign on section 3d for level1 permits
+  Scenario Outline: Verify ranks can sign on section 3d for level1 permits
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work

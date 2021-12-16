@@ -2,7 +2,7 @@
 Feature: SHELL level of authority pending approvalPTW
 
 
-  Scenario Outline: [Pending Approval] Verify rank can submit for approval
+  Scenario Outline: [Pending Approval] Verify rank can activate permit
     Given PermitGenerator create permit
       | permit_type       | permit_status    | eic | gas_reading | bfr_photo |
       | lifting_operation | pending_approval | yes | yes         | 2         |
@@ -22,7 +22,7 @@ Feature: SHELL level of authority pending approvalPTW
 
 
 
-  Scenario Outline: [Pending Approval] Verify rank can't submit for approval
+  Scenario Outline: [Pending Approval] Verify rank can't activate permit
     Given PermitGenerator create permit
       | permit_type       | permit_status    | eic | gas_reading | bfr_photo |
       | lifting_operation | pending_approval | yes | yes         | 2         |

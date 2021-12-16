@@ -32,12 +32,7 @@ class SectionThreeDPage < BasePage
   end
 
   def verify_sign_button(option)
-    sign_btn_element = find_element(SECTION_THREE_D[:sign_btn])
-    if option == 'enabled'
-      raise 'sign btn is disabled' unless sign_btn_element.enabled?
-    elsif sign_btn_element.enabled?
-      raise 'sign btn is enabled'
-    end
+    verify_btn_availability(SECTION_THREE_D[:sign_btn], option)
   end
 
   private
