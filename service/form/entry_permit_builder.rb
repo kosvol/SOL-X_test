@@ -7,7 +7,7 @@ require_all 'service/api'
 
 # entry permit builder to create sections
 class EntryPermitBuilder < BasePermitBuilder
-  def create_entry_form(pin = '8383')
+  def create_entry_form(pin = @default_pin)
     create_request = if @permit_type == 'cre'
                        CreateCreFormAPI.new
                      else
@@ -18,7 +18,7 @@ class EntryPermitBuilder < BasePermitBuilder
     @logger.info("Entry permit id: #{@permit.permit_id}")
   end
 
-  def update_entry_answer(pin = '8383')
+  def update_entry_answer(pin = @default_pin)
     update_request = if @permit_type == 'cre'
                        UpdateCreFormAnswerAPI.new
                      else
@@ -27,11 +27,11 @@ class EntryPermitBuilder < BasePermitBuilder
     update_request.request(@permit.permit_id, pin)
   end
 
-  def approve_entry_permit(pin = '8383')
+  def approve_entry_permit(pin = @default_pin)
     ActivateEntryPermitApi.new.request(@permit.permit_id, @permit_type, pin)
   end
 
-  def terminate_entry_permit(pin = '8383')
+  def terminate_entry_permit(pin = @default_pin)
     SubmitForTerminationAPI.new.request(@permit.permit_id, @permit_type, pin)
   end
 end

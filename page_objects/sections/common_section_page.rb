@@ -15,7 +15,8 @@ class CommonSectionPage < BasePage
     previous_btn: "//button[contains(.,'Previous')]",
     sign_btn: "//button[contains(.,'Sign')]",
     done_button: "//button[contains(.,'Done')]",
-    back_btn: "//button[contains(.,'Back')]"
+    back_btn: "//button[contains(.,'Back')]",
+    close_btn: "//button[contains(.,'Close')]"
   }.freeze
 
   def initialize(driver)
@@ -29,7 +30,7 @@ class CommonSectionPage < BasePage
     scroll_click(COMMON_SECTION[:section_option] % section)
   end
 
-  def click_next
+  def click_next_btn
     click(COMMON_SECTION[:next_btn])
   end
 
@@ -51,6 +52,10 @@ class CommonSectionPage < BasePage
 
   def click_back_btn
     click(COMMON_SECTION[:back_btn])
+  end
+
+  def click_close_btn
+    click(COMMON_SECTION[:close_btn])
   end
 end
 

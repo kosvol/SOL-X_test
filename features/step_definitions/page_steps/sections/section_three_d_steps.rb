@@ -10,3 +10,8 @@ end
 Given('Section3D verify signature rank {string}') do |rank|
   @section_three_d_page.verify_rank(rank)
 end
+
+Given('Section3D verify sign button is {string}') do |option|
+  @section_three_d_page ||= SectionThreeDPage.new(@driver)
+  @section_three_d_page.verify_sign_button(option)
+end

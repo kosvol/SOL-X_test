@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 5,
+    "templateVersion": 6,
     "permitType": "Hot Work Level-2 in Designated Area",
     "answers": [
       {
