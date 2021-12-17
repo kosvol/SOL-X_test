@@ -17,6 +17,7 @@ Given(/^PermitGenerator create permit$/) do |table|
   else
     raise "#{parms['permit_status']} is not implemented"
   end
+  @permit_id = permit_generator.permit_id
 end
 
 Given(/^PermitGenerator create entry permit$/) do |table|

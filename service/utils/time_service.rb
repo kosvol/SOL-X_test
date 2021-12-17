@@ -12,7 +12,12 @@ class TimeService
   end
 
   def retrieve_ship_utc_offset
-    TimeApi.new.request_ship_local_time['data']['currentTime']['utcOffset']
+    offset = TimeApi.new.request_ship_local_time['data']['currentTime']['utcOffset']
+    if offset.nil?
+      0
+    else
+      offset
+    end
   end
 
   def retrieve_time_cal_hours(hours)

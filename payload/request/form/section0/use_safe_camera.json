@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 5,
+    "templateVersion": 6,
     "permitType": "Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces",
     "answers": [
       {

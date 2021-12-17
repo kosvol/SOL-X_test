@@ -18,10 +18,10 @@ class Section9Api < BaseSectionApi
     current_time = @time_service.retrieve_current_date_time
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = current_time
-    update_answers(payload)
+    update_answers(payload, current_time)
   end
 
-  def update_answers(payload)
+  def update_answers(payload, current_time)
     utc_offset = @time_service.retrieve_ship_utc_offset
     payload['variables']['answers'][2].to_h['value'] = "{\"dateTime\":\"#{current_time}\",\"utcOffset\":#{utc_offset}}"
     payload['variables']['answers'].last['value'] = @user_service.create_default_signature('MAS', retrieve_vessel_name)
