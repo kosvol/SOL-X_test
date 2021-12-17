@@ -118,7 +118,7 @@ Feature: Section 3D: DRA - Summary & Assessment
       | Working on Deck During Heavy Weather  | 4/E         | C/O          |
 #      | Working on Deck During Heavy Weather                         | A 4/E       | C/O          |
 
-  Scenario Outline: Verify non RA cannot sign on section 3d
+  Scenario Outline: Verify ranks cannot sign on section 3d
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work

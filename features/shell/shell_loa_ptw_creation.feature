@@ -1,7 +1,7 @@
 @shell_loa_ptw_creation
 Feature: SHELL level of authority PTW creation
 
-  Scenario Outline: [Section0] Verify only RA can create permit
+  Scenario Outline: [Section0] Verify rank can create permit
     Given SmartForms open page
     And SmartForms click create permit to work
     When PinEntry enter pin for rank "<rank>"
@@ -19,7 +19,7 @@ Feature: SHELL level of authority PTW creation
       | 2/E   |
 
 
-  Scenario Outline: [Section0] Verify non RA cannot create permit
+  Scenario Outline: [Section0] Verify rank can not create permit
     Given SmartForms open page
     And SmartForms click create permit to work
     When PinEntry enter pin for rank "<rank>"
@@ -75,7 +75,7 @@ Feature: SHELL level of authority PTW creation
 #      | A 4/E |
 
 
-  Scenario Outline: [Section3D] Verify MAS, A/M, C/E, A C/E can sign on section 3d
+  Scenario Outline: [Section3D] Verify rank can sign on section 3d
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -101,7 +101,7 @@ Feature: SHELL level of authority PTW creation
       | A C/E |
 
 
-  Scenario Outline: [Section3D] Verify rank cannot sign on section 3d
+  Scenario Outline: [Section3D] Verify rank can not sign on section 3d
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -128,7 +128,7 @@ Feature: SHELL level of authority PTW creation
 #      | A 4/E |
 
 
-  Scenario Outline: [Section4A] Verify rank can't sign checklist
+  Scenario Outline: [Section4A] Verify rank can not sign checklist
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -199,7 +199,7 @@ Feature: SHELL level of authority PTW creation
       | CGENG |
 
 
-  Scenario Outline: [Section4B EIC] Verify rank can't sign for competent person
+  Scenario Outline: [Section4B EIC] Verify rank can not sign for competent person
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -241,7 +241,7 @@ Feature: SHELL level of authority PTW creation
       | A C/E |
 
 
-  Scenario Outline: [Section4B EIC] Verify rank can't sign for issuing person
+  Scenario Outline: [Section4B EIC] Verify rank can not sign for issuing person
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -259,7 +259,7 @@ Feature: SHELL level of authority PTW creation
       | 4/O  |
 
 
-  Scenario Outline: [Section4B] Verify rank can't sign on responsible authority
+  Scenario Outline: [Section4B] Verify rank can not sign on responsible authority
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
