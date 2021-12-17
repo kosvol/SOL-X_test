@@ -101,7 +101,7 @@ Feature: SHELL level of authority PTW creation
       | A C/E |
 
 
-  Scenario Outline: [Section3D] Verify non RA cannot sign on section 3d
+  Scenario Outline: [Section3D] Verify rank cannot sign on section 3d
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -259,7 +259,7 @@ Feature: SHELL level of authority PTW creation
       | 4/O  |
 
 
-  Scenario Outline: [Section4B] Verify non RA cannot sign on responsible authority
+  Scenario Outline: [Section4B] Verify rank can't sign on responsible authority
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
