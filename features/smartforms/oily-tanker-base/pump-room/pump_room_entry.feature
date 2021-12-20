@@ -209,7 +209,7 @@ Feature: Pump room entry permit creation
       | entry_type | permit_status                    |
       | pre        | PENDING_OFFICER_APPROVAL         |
     And NavigationDrawer navigate to Pump Room "Pending Approval"
-    And NavigationDrawer click view button
+    When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
     And PermitActions verify button "Updates Needed" is disabled
 
@@ -264,33 +264,6 @@ Feature: Pump room entry permit creation
     Then CreateEntryPermit set permanent permit number from IndexedDB
     Then CreateEntryPermit verify current permit presents in the list
 
-  Scenario: Verify a creator PRE can activate PRE
-    Given SmartForms open page
-    When SmartForms click create "PRE"
-    Then PinEntry enter pin for rank "C/O"
-    And PRE fill up permit
-      | duration | delay to activate |
-      | 4        | 2                 |
-    And GasReadings fill equipment fields
-    And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
-    And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
-    And GasReadings click Review & Sign button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
-    When SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
-    And CreateEntryPermit verify page with text "Successfully Submitted"
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Back to Home button
-    And NavigationDrawer navigate to Pump Room "Pending Approval"
-    When CreateEntryPermit click Officer Approval button
-    Then PinEntry enter pin for rank "C/O"
-    And PermitActions verify button "Approve for Activation"
-
   Scenario Outline: Verify a creator PRE cannot activate PRE
     Given SmartForms open page
     When SmartForms click create "PRE"
@@ -320,7 +293,6 @@ Feature: Pump room entry permit creation
 
     Examples:
       | rank  |
-      | A C/O |
       | 2/O   |
       | A 2/O |
       | 3/O   |
@@ -331,11 +303,12 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
-    #And I get a temporary number and writing it down
-    And CreateEntryPermit verify element with text "Permit Updated"
     And NavigationDrawer click back arrow button
+    And CreateEntryPermit verify element with text "Permit Updated"
     And NavigationDrawer navigate to Pump Room "Created"
-    Then CreateEntryPermit verify current permit presents in the list
+    And CreateEntryPermit verify permanent number presents in IndexedDB
+    Then CreateEntryPermit verify permanent number presents in IndexedDB
+    And PermitActions click edit button on current ptw
 
   Scenario: The Responsible Officer Signature should be displayed PRE
     Given SmartForms open page
@@ -389,13 +362,13 @@ Feature: Pump room entry permit creation
     And PRE fill up permit in future
       | duration | delay to activate | days|
       | 4        | 3                 |1    |
-    And CreateEntryPermit save permit id
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     Then PRE verify scheduled date

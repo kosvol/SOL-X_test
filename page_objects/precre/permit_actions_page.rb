@@ -15,6 +15,7 @@ class PermitActionsPage < BasePage
     comment_box: '//textarea',
     submit_update_btn: "//button[contains(.,'Submit')]",
     edit_update_btn: "//button[contains(.,'Edit/Update')]",
+    edit_btn: "//span[contains(text(),'Edit')][1]",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
     ptw_id: 'header > h1',
     view_btn: "//button[contains(.,'View')]",
@@ -104,7 +105,9 @@ class PermitActionsPage < BasePage
 
   def verify_deleted_permit
     find_elements(PERMIT_ACTIONS[:parent_container]).each_with_index do |_permit, index|
-      raise 'Verification failed' unless @driver.find_elements(:css, PERMIT_ACTIONS[:ptw_id])[index].text == permit_id
+      raise 'Verification failed' unless @driver
+                                         .find_elements(:css, PERMIT_ACTIONS[:ptw_id])[index]
+                                         .text == CreateEntryPermitPage.permit_id
     end
   end
 
@@ -119,6 +122,15 @@ class PermitActionsPage < BasePage
 
   def approve_for_activation
     click(PERMIT_ACTIONS[:approve_for_activation])
+  end
+
+  def click_edit_button_current_ptw
+    find_elements(PERMIT_ACTIONS[:parent_container]).each_with_index do |_permit, index|
+      if @driver.find_elements(:css, PERMIT_ACTIONS[:ptw_id])[index].text == CreateEntryPermitPage.permit_id
+        @driver.find_elements(:xpath, PERMIT_ACTIONS[:edit_btn])[index].click
+        break
+      end
+    end
   end
 
   private

@@ -90,3 +90,8 @@ And('PermitActions click approve for activation') do
   @permit_action ||= PermitActionsPage.new(@driver)
   @permit_action.approve_for_activation
 end
+
+And('PermitActions click edit button on current ptw') do
+  @permit_action ||= PermitActionsPage.new(@driver)
+  @permit_action.click_edit_button_current_ptw
+end

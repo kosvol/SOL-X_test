@@ -139,6 +139,11 @@ class CreateEntryPermitPage < BasePage
     self.permit_id = permit_from_db
   end
 
+  def verify_permit_in_indexed_db
+    permit_from_db = WorkWithIndexeddb.get_id_from_indexeddb(permit_id)
+    raise 'Permanent permit number not been generated' unless permit_from_db.eql?('')
+  end
+
   private
 
   def picker_hh_mm(delay)

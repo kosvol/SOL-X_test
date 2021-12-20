@@ -90,3 +90,9 @@ Then('CreateEntryPermit set permanent permit number from IndexedDB') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.permit_from_indexed_db
 end
+
+Then('CreateEntryPermit verify permanent number presents in IndexedDB') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.verify_permit_in_indexed_db
+end
+

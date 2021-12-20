@@ -107,33 +107,6 @@ Feature: Compressor room entry creation
       | ETO  |
       | ELC  |
 
-  Scenario: Verify CRE Chief Officer can approve the same permit
-    Given SmartForms open page
-    When SmartForms click create "CRE"
-    Then PinEntry enter pin for rank "C/O"
-    And CRE fill up permit
-      | duration | delay to activate |
-      | 4        | 3                 |
-    And GasReadings fill equipment fields
-    And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
-    And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
-    And GasReadings click Review & Sign button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
-    When SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
-    And CreateEntryPermit verify page with text "Successfully Submitted"
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Back to Home button
-    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
-    When CreateEntryPermit click Officer Approval button
-    Then PinEntry enter pin for rank "C/O"
-    And PermitActions verify button "Approve for Activation"
-
   Scenario Outline: Verify CRE roles cannot approve the same permit
     Given SmartForms open page
     When SmartForms click create "CRE"
@@ -362,7 +335,6 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
-    And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
     And PermitActions click Submit for termination
@@ -372,6 +344,7 @@ Feature: Compressor room entry creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     And PermitActions open current permit for view
@@ -422,32 +395,37 @@ Feature: Compressor room entry creation
       | location                     |
       | No. 1 Cargo Tank Port        |
 
-  Scenario: Verify Chief Officer can activate his/her own CRE permit
+  Scenario Outline: Verify Chief Officer can activate his/her own CRE permit
     Given SmartForms open page
     When SmartForms click create "CRE"
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     And CRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
     And GasReadings fill equipment fields
     And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
     And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     And PermitActions click approve for activation
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+
+    Examples:
+      |rank   |
+      | C/O   |
+      | A C/O |
