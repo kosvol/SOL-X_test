@@ -132,9 +132,6 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    When SignatureLocation sign off
-      | area      | zone                  |
-      | Main Deck | No. 1 Cargo Tank Port |
     And PermitActions verify button "Approve for Activation"
 
   Scenario Outline: Verify CRE roles cannot approve the same permit
@@ -236,13 +233,12 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Created"
-    And CreateEntryPermit save permit id
+    And PermitActions save permit id from list
     And PermitActions click button Delete
     Then PinEntry enter pin for rank "MAS"
     Then PermitActions verify deleted permit not presents in list
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Deleted"
-    Then PinEntry enter pin for rank "C/O"
     Then PermitActions verify current permit presents in the list
 
   Scenario: Verify user cannot send CRE for approval without start time and duration
@@ -315,10 +311,10 @@ Feature: Compressor room entry creation
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
-    And CommonSection sleep for "1" sec
+    And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
-    And NavigationDrawer click back arrow button
     And CreateEntryPermit verify current permit presents in the list
+    And NavigationDrawer click back arrow button
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit verify current permit presents in the list
@@ -366,6 +362,7 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
+    And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And PermitActions save permit id from list
     And PermitActions click Submit for termination

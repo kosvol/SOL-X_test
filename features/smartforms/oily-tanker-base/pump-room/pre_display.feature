@@ -227,15 +227,14 @@ Feature: Pump room entry display
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Successfully Submitted"
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
-    And SmartForms navigate to "Pending Approval" page for "PRE"
-    And CreateEntryPermit save current start and end validity time for "PRE"
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
-    And Service activate "PRE" permit
+    #And CreateEntryPermit verify element type "page" with text "Permit Successfully Scheduled for Activation"
+    #And Service activate "PRE" permit
 
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
