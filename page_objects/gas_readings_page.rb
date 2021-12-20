@@ -15,7 +15,8 @@ class GasReadingsPage < BasePage
     add_toxic_gas_btn: "//button[contains(.,'Add Toxic Gas')]",
     review_sign_btn: "//button[contains(.,'Review & Sign')]",
     continue_btn: "//button[contains(.,'Continue')]",
-    enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)'
+    enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)',
+    toxic_delete_btn: '//button[@aria-label="Delete"]'
   }.freeze
 
   GAS_READINGS = {
@@ -42,9 +43,9 @@ class GasReadingsPage < BasePage
     click(GAS_INFORMATION[:continue_btn])
   end
 
-  def add_toxic_gas_readings(gas_name, threhold, reading, unit)
+  def add_toxic_gas_readings(gas_name, threshold, reading, unit)
     enter_text(GAS_READINGS[:gas_name_input], gas_name)
-    enter_text(GAS_READINGS[:threshold_input],threhold)
+    enter_text(GAS_READINGS[:threshold_input], threshold)
     enter_text(GAS_READINGS[:reading_input], reading)
     enter_text(GAS_READINGS[:unit_input], unit)
     click(GAS_INFORMATION[:add_toxic_gas_btn])
@@ -60,5 +61,35 @@ class GasReadingsPage < BasePage
 
   def click_pin_and_submit
     @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn]).click
+  end
+
+  def delete_toxic_readings
+    click(GAS_INFORMATION[:toxic_delete_btn])
+    click(GAS_INFORMATION[:remove_toxic_btn])
+  end
+
+  def verify_toxic_count(count)
+    if count == '0'
+      verify_element_not_exist(GAS_INFORMATION[:toxic_gas_rows])
+      return
+    end
+    toxic_list = find_elements(GAS_INFORMATION[:toxic_gas_rows])
+    compare_string(count, toxic_list.size)
+  end
+
+  def verify_placeholder
+    compare_string('Required (Limit 20.9 %)', find_element(GAS_READINGS[:o2_input]).attribute('placeholder'))
+    compare_string('Required (Limit 1 % LEL)', find_element(GAS_READINGS[:hc_input]).attribute('placeholder'))
+    compare_string('Required (TLV-TWA 5 PPM)', find_element(GAS_READINGS[:h2s_input]).attribute('placeholder'))
+    compare_string('Required (TLV-TWA 25 PPM)', find_element(GAS_READINGS[:co_input]).attribute('placeholder'))
+  end
+
+  def verify_submit_btn(option)
+    submit_btn_element = @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn])
+    if option == 'enabled'
+      raise 'submit btn is disabled' unless submit_btn_element.enabled?
+    elsif submit_btn_element.enabled?
+      raise 'submit btn is enabled'
+    end
   end
 end

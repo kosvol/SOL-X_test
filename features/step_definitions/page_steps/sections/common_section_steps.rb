@@ -25,3 +25,18 @@ Given('CommonSection click sign button') do
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.click_sign_sign
 end
+
+Given('CommonSection click Back button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_back_btn
+end
+
+Given('CommonSection click Close button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_close_btn
+end
+
+Given('CommonSection click Next button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_next_btn
+end

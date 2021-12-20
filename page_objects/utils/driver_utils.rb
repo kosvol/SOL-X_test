@@ -63,4 +63,22 @@ module DriverUtils
   def scroll_by_dist(x_coordinate, y_coordinate)
     @driver.execute_script("window.scrollBy(#{x_coordinate},#{y_coordinate})", '')
   end
+
+  def wait_for_update(actual, expected, timeout = 5)
+    wait = 0
+    until actual == expected
+      sleep 0.5
+      wait += 1
+      raise "wait time out for #{actual} to #{expected}" if wait > timeout
+    end
+  end
+
+  def verify_btn_availability(xpath, option)
+    btn_element = find_element(xpath)
+    if option == 'enabled'
+      raise "#{xpath} btn is disabled" unless btn_element.enabled?
+    elsif btn_element.enabled?
+      raise "#{xpath} btn is enabled"
+    end
+  end
 end

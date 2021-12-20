@@ -8,6 +8,7 @@ class PermitMap
     enclosed_spaces_entry: 'enclosed_spaces_entry',
     use_safe_camera: 'use_safe_camera',
     hot_work_designated: 'hot_work_designated',
+    lifting_operation: 'lifting_operation',
     cre: 'cre',
     pre: 'pre'
   }.freeze
@@ -15,7 +16,8 @@ class PermitMap
   CHECKLIST_MAP = {
     enclosed_spaces_entry: 'openChecklistEnclosedSpaceEntry',
     use_safe_camera: 'openChecklistUseOfCamera',
-    hot_work_designated: 'openChecklistHotWorkWithinDesignatedArea'
+    hot_work_designated: 'openChecklistHotWorkWithinDesignatedArea',
+    lifting_operation: 'openChecklistLiftingOperation'
   }.freeze
 
   APPROVE_MAP = {
@@ -23,7 +25,8 @@ class PermitMap
     use_safe_camera: 'PENDING_OFFICE_APPROVAL',
     hot_work_designated: 'PENDING_MASTER_APPROVAL',
     pre: 'PENDING_OFFICER_APPROVAL',
-    cre: 'PENDING_OFFICER_APPROVAL'
+    cre: 'PENDING_OFFICER_APPROVAL',
+    lifting_operation: 'PENDING_MASTER_APPROVAL'
   }.freeze
 
   def retrieve_permit_type(permit_type_plain)

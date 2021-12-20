@@ -40,3 +40,14 @@ Given('Section1 enter Description of work {string}') do |text|
   @section_one_page ||= SectionOnePage.new(@driver)
   @section_one_page.enter_desc_of_work(text)
 end
+
+Given('Section1 select zone') do |table|
+  params = table.hashes.first
+  @section_one_page ||= SectionOnePage.new(@driver)
+  @section_one_page.select_zone(params['area'], params['zone'])
+end
+
+Given('Section1 verify next button is {string}') do |option|
+  @section_one_page ||= SectionOnePage.new(@driver)
+  @section_one_page.verify_next_btn(option)
+end

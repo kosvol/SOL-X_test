@@ -14,7 +14,9 @@ class SectionOnePage < BasePage
     dd_list_value: "//ul[starts-with(@class,'UnorderedList-')]/li/button",
     duration_ddl: '//*[@id="duration_of_maintenance_over_2_hours"]',
     save_next_btn: "//button[contains(.,'Save & Next')]",
-    desc_of_work: '//textarea[@id="descOfWork"]'
+    desc_of_work: '//textarea[@id="descOfWork"]',
+    zone_ddl: '//button[@id="zone"]',
+    zone_option: '//button[contains(.,"%s")]'
   }.freeze
 
   def initialize(driver)
@@ -64,5 +66,15 @@ class SectionOnePage < BasePage
 
   def enter_desc_of_work(text)
     enter_text(SECTION_ONE[:desc_of_work], text)
+  end
+
+  def select_zone(area, zone)
+    scroll_click(SECTION_ONE[:zone_ddl])
+    click(SECTION_ONE[:zone_option] % area)
+    click(SECTION_ONE[:zone_option] % zone)
+  end
+
+  def verify_next_btn(option)
+    find_element("//button[contains(.,'#{option}')]")
   end
 end
