@@ -307,8 +307,8 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify element with text "Permit Updated"
     And NavigationDrawer navigate to Pump Room "Created"
     And CreateEntryPermit verify permanent number presents in IndexedDB
-    Then CreateEntryPermit verify permanent number presents in IndexedDB
-    And PermitActions click edit button on current ptw
+    Then CreateEntryPermit set permanent permit number from IndexedDB
+    Then CreateEntryPermit verify current permit presents in the list
 
   Scenario: The Responsible Officer Signature should be displayed PRE
     Given SmartForms open page

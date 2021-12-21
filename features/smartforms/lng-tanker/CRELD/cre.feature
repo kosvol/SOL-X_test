@@ -72,7 +72,7 @@ Feature: Compressor room entry creation
       | OLR   |
 
 
-  Scenario: Verify AGT can add gas reading in CRE permit
+  Scenario: Verify gas table titles are saved correct on created CRE form
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
