@@ -74,4 +74,4 @@ Feature: Office Portal Login
   Scenario: Verify users should be redirected to the email verification page when click Forgot Password
     Given OfficeLogin open page
     When OfficeLogin click Forgot password
-    Then EmailVerification should see all the page attributes
+    Then EmailVerification page should be displayed

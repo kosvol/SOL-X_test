@@ -4,6 +4,9 @@ Feature: Office Portal Email Verification
   Background:
     Given OfficeLogin open page
     And OfficeLogin click Forgot password
+    And EmailVerification page should be displayed
+
+  Scenario: Verify Email Verification page attributes (Desktop)
     Then EmailVerification should see all the page attributes
 
   Scenario: Verify user should see the login page when click Cancel before entering an Email

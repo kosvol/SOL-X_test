@@ -90,6 +90,10 @@ class OPEmailVerificationPage < BasePage
     enter_text(OP_EMAIL_VERIFICATION[:email_field], "\ue003")
   end
 
+  def verify_page_header
+    compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
+  end
+
   private
 
   def verify_logos_and_names
