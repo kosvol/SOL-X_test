@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+require_relative '../../../../page_objects/permit_states/active_ptw_page'
+
+And('ActivePTW click View/Terminate button') do
+  @active_ptw ||= ActivePTWPage.new(@driver)
+  @active_ptw.click_view_terminate_btn(@permit_id)
+end

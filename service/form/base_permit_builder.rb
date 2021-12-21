@@ -15,6 +15,19 @@ class BasePermitBuilder
   end
 
   def update_form_status(status, permit_id = self.permit_id, pin = @default_pin)
-    UpdateFormsStatusApi.new.request(permit_id, status, pin)
+    request_retry = 0
+    response = UpdateFormsStatusApi.new.request(permit_id, status, pin)
+    while response.key?('errors')
+      response = UpdateFormsStatusApi.new.request(permit_id, status, pin)
+      @logger.info('retrying update form request')
+      request_retry += 1
+      break if request_retry > 5
+    end
+    @logger.info("form update response: #{response}")
+    response
+  end
+
+  def request_update(permit_id)
+    RequestUpdateAPI.new.request(permit_id, @default_pin)
   end
 end
