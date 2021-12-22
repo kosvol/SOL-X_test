@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'base_page'
-require_relative 'pin_entry_page'
-require_relative 'signature_location_page'
+
 
 # SmartFormsPage object
 class SmartFormsPage < BasePage

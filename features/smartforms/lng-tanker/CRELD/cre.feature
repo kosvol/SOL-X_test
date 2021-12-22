@@ -11,8 +11,8 @@ Feature: Compressor room entry creation
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
-    And PermitActions save permit id from list
-    Then PermitActions verify current permit presents in the list
+    And CommonSection save permit id from list
+    Then CommonSection verify current permit presents in the list
     And NavigationDrawer click go back button
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
@@ -22,7 +22,7 @@ Feature: Compressor room entry creation
     Then CRE verify permit not present in list
     And NavigationDrawer click go back button
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
-    Then PermitActions verify current permit presents in the list
+    Then CommonSection verify current permit presents in the list
 
   Scenario: Verify user can see all the CRE questions
     Given SmartForms open page
@@ -83,7 +83,6 @@ Feature: Compressor room entry creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save form time
     Then CRE verify gas added by "C/O STG C/O"
     When GasReadings click done button on gas reader dialog box
     Then GasReadings verify gas table titles
@@ -132,7 +131,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And PermitActions verify button "Approve for Activation" is disabled
+    And CommonSection verify button "Approve for Activation" is disabled
     Examples:
       | rank  |
       | 2/O   |
@@ -165,7 +164,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    Then PermitActions verify button "Approve for Activation"
+    Then CommonSection verify button "Approve for Activation"
     Examples:
       | rank  |
       | 2/O   |
@@ -178,10 +177,10 @@ Feature: Compressor room entry creation
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
-    And PermitActions save permit id from list
-    And PermitActions click Submit for termination
+    And CommonSection save permit id from list
+    And ActivatePage click Submit for termination
     Then PinEntry enter pin for rank "<rank>"
-    And PermitActions click Terminate button
+    And ActivatePage click Terminate button
     Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -206,19 +205,19 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Created"
-    And PermitActions save permit id from list
-    And PermitActions click button Delete
+    And CommonSection save permit id from list
+    And CreatedPTW click button Delete
     Then PinEntry enter pin for rank "MAS"
-    Then PermitActions verify deleted permit not presents in list
+    Then CreatedPTW verify deleted permit not presents in list
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Deleted"
-    Then PermitActions verify current permit presents in the list
+    Then CommonSection verify current permit presents in the list
 
   Scenario: Verify user cannot send CRE for approval without start time and duration
     Given SmartForms open page
     When SmartForms click create "CRE"
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions verify button "Submit for Approval" is disabled
+    And CommonSection verify button "Submit for Approval" is disabled
 
   Scenario Outline: Verify these roles can request update for CRE permit in Pending Approval State
     Given SmartForms open page
@@ -243,7 +242,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    Then PermitActions verify button "Updates Needed"
+    Then CommonSection verify button "Updates Needed"
 
     Examples:
       | rank  |
@@ -278,7 +277,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click approve for activation
+    And PendingApprovalPTW click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -315,8 +314,8 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    Then PermitActions verify button "Add Gas" is disabled
-    Then PermitActions verify button "Updates Needed" is disabled
+    Then CommonSection verify button "Add Gas" is disabled
+    Then CommonSection verify button "Updates Needed" is disabled
 
   Scenario: The Responsible Officer Signature should be displayed CRE
     Given SmartForms open page
@@ -326,9 +325,9 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "1" sec
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
-    And PermitActions open current permit for view
+    And CommonSection open current permit for view
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions check Responsible Officer Signature
+    And CommonSection check Responsible Officer Signature
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
     Given SmartForms open page
@@ -336,10 +335,10 @@ Feature: Compressor room entry creation
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
-    And PermitActions save permit id from list
-    And PermitActions click Submit for termination
+    And CommonSection save permit id from list
+    And ActivatePage click Submit for termination
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click Terminate button
+    And ActivatePage click Terminate button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -347,9 +346,9 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
-    And PermitActions open current permit for view
+    And CommonSection open current permit for view
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions check Responsible Officer Signature
+    And CommonSection check Responsible Officer Signature
       | rank      | zone                    |
       | C/O STG C/O | No. 1 Cargo Tank Port |
 
@@ -380,7 +379,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click approve for activation
+    And PendingApprovalPTW click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -389,7 +388,7 @@ Feature: Compressor room entry creation
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Compressor Motor Room "Active"
-    And PermitActions open current permit for view
+    And CommonSection open current permit for view
     Then PinEntry enter pin for rank "C/O"
     Then GasReadings verify location in sign
       | location                     |
@@ -418,7 +417,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And PermitActions click approve for activation
+    And PendingApprovalPTW click approve for activation
     Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |

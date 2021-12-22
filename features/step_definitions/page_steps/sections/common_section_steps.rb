@@ -40,3 +40,34 @@ Given('CommonSection click Next button') do
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.click_next_btn
 end
+
+And('CommonSection open current permit for view') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.open_ptw_for_view
+end
+
+And('CommonSection verify button {string}') do |button|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.verify_button_enabled(button)
+end
+
+And('CommonSection verify button {string} is disabled') do |button|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.verify_button_disabled(button)
+end
+
+Then('CommonSection check Responsible Officer Signature') do |table|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  params = table.hashes.first
+  @common_section_page.check_ra_signature(params['rank'], params['zone'])
+end
+
+And('CommonSection save permit id from list') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.save_ptw_id_from_list
+end
+
+And('CommonSection verify current permit presents in the list') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.verify_permit
+end

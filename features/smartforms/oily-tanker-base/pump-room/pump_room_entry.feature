@@ -10,6 +10,10 @@ Feature: Pump room entry permit creation
       | entry_type | permit_status   |
       | pre        | ACTIVE          |
     Then NavigationDrawer navigate to "PRE" display until see active permit
+    When NavigationDrawer navigate to settings
+    And Setting select mode for "PRE"
+    And PinEntry enter pin for rank "C/O"
+    And EntryDisplay wait for permit active
     Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
@@ -69,7 +73,7 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify alert message "Please select the start time and duration before submitting."
-    And PermitActions verify button "Submit for Approval" is disabled
+    And CommonSection verify button "Submit for Approval" is disabled
     Then PRE select Permit Duration <duration>
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
@@ -78,7 +82,7 @@ Feature: Pump room entry permit creation
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
-    And PermitActions verify button "Submit for Approval"
+    And CommonSection verify button "Submit for Approval"
 
     Examples:
       | duration |
@@ -112,7 +116,6 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit save form time
     And CreateEntryPermit verify popup dialog with "C/O COT C/O" crew member
     When GasReadings click done button on gas reader dialog box
     And PRE scroll "down" direction 2 times
@@ -143,7 +146,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click approve for activation
+    And PendingApprovalPTW click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -155,9 +158,9 @@ Feature: Pump room entry permit creation
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Pump Room "Active"
     Then CreateEntryPermit verify current permit presents in the list
-    And PermitActions click Submit for termination
+    And ActivatePage click Submit for termination
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click Terminate button
+    And ActivatePage click Terminate button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -193,12 +196,12 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions request for update
+    And PendingApprovalPTW request for update
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Updates Needed"
-    Then PermitActions click Edit Update button
+    Then UpdatesNeeded click Edit Update button
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit verify element with text "Comments from Approving Authority"
     And CreateEntryPermit verify element with text "Test Automation"
@@ -211,7 +214,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions verify button "Updates Needed" is disabled
+    And CommonSection verify button "Updates Needed" is disabled
 
   Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given SmartForms open page
@@ -239,7 +242,7 @@ Feature: Pump room entry permit creation
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
     And PRE scroll "down" direction 2 times
-    And PermitActions verify buttons for not Pump Room Entry RO rank on pending approval page
+    And PendingApprovalPTW verify buttons for not Pump Room Entry RO rank
 
     Examples:
       | rank  |
@@ -259,7 +262,7 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
-    Then PermitActions click Close button
+    Then CommonSection click close button
     And NavigationDrawer navigate to Pump Room "Created"
     Then CreateEntryPermit set permanent permit number from IndexedDB
     Then CreateEntryPermit verify current permit presents in the list
@@ -289,7 +292,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And PermitActions verify button "Approve for Activation" is disabled
+    And CommonSection verify button "Approve for Activation" is disabled
 
     Examples:
       | rank  |
@@ -335,7 +338,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions click approve for activation
+    And PendingApprovalPTW click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -343,9 +346,9 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
-    And PermitActions open current permit for view
+    And CommonSection open current permit for view
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions check Responsible Officer Signature
+    And CommonSection check Responsible Officer Signature
 
   Scenario: Permit Validity date should match the final date selected from the date picker
     Given SmartForms open page
@@ -398,15 +401,15 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PermitActions request for update
+    And PendingApprovalPTW request for update
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Updates Needed"
-    Then PermitActions click Edit Update button
+    Then UpdatesNeeded click Edit Update button
     Then PinEntry enter pin for rank "<rank>"
-    And PermitActions verify button "Submit for Approval" is disabled
-    And PermitActions verify button "Add Gas Test Record" is disabled
+    And CommonSection verify button "Submit for Approval" is disabled
+    And CommonSection verify button "Add Gas Test Record" is disabled
 
     Examples:
       | rank  |

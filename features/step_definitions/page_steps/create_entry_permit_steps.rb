@@ -24,11 +24,6 @@ And('CreateEntryPermit select next date') do
   @create_entry_permit_page.select_next_date
 end
 
-And('CreateEntryPermit save form time') do
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.save_time
-end
-
 And('CreateEntryPermit verify popup dialog with {string} crew member') do |rank_name|
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.verify_crew_in_popup(rank_name)

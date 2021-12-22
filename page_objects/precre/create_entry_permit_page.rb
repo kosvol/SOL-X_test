@@ -6,8 +6,8 @@ require_relative '../base_page'
 class CreateEntryPermitPage < BasePage
   include EnvUtils
 
-  attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id, :permit_number,
-                :time, :permit_index, :issue_time_date, :selected_date
+  attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id,
+                :permit_index, :issue_time_date, :selected_date
 
   CREATE_ENTRY_PERMIT = {
     heading_text: "//*[@id='root']/div/nav/header",
@@ -98,27 +98,27 @@ class CreateEntryPermitPage < BasePage
   end
 
   def verify_alert_text(value)
-    raise 'Element verify failed' unless find_element("//div[contains(.,'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//div[contains(.,'#{value}')]")
   end
 
   def verify_element_text(value)
-    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{value}')]")
   end
 
   def verify_label(value)
-    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]")
   end
 
   def verify_page_text(value)
-    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]")
   end
 
   def verify_header(value)
-    raise 'Element verify failed' unless find_element("//h1[contains(text(),'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//h1[contains(text(),'#{value}')]")
   end
 
   def verify_button(value)
-    raise 'Element verify failed' unless find_element("//button[contains(.,'#{value}')]").eql?(true)
+    raise 'Element verify failed' unless find_element("//button[contains(.,'#{value}')]")
   end
 
   def click_back_to_home

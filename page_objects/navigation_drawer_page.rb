@@ -13,8 +13,6 @@ class NavigationDrawerPage < BasePage
     category: "//a[contains(text(),'%s')]",
     settings_btn: "//a[contains(text(),'Settings')]",
     main_page: "//*[@id='root']/div/main",
-    pump_room_display_setting: "//span[contains(.,'Pump Room')]",
-    compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
     back_arrow: "//button/*[@data-testid='arrow']",
     go_back_btn: "//*[@id='root']/div/nav/header/button",
     view_button: "//button[contains(text(),'View')]"

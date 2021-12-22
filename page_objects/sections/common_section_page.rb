@@ -6,6 +6,8 @@ require_relative '../base_page'
 class CommonSectionPage < BasePage
   include EnvUtils
 
+  attr_accessor :ptw_id, :tmp_id
+
   COMMON_SECTION = {
     navigation_header: '//*[@id="navigation-wrapper"]',
     navigation_button: '//*[@id="navigation-wrapper"]/nav/section/button',
@@ -16,7 +18,13 @@ class CommonSectionPage < BasePage
     sign_btn: "//button[contains(.,'Sign')]",
     done_button: "//button[contains(.,'Done')]",
     back_btn: "//button[contains(.,'Back')]",
-    close_btn: "//button[contains(.,'Close')]"
+    close_btn: "//button[contains(.,'Close')]",
+    view_btn: "//button[contains(.,'View')]",
+    parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
+    ptw_id: 'header > h1',
+    resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
+    resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]",
+    ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span",
   }.freeze
 
   def initialize(driver)
@@ -56,6 +64,48 @@ class CommonSectionPage < BasePage
 
   def click_close_btn
     click(COMMON_SECTION[:close_btn])
+  end
+
+  def open_ptw_for_view
+    permit_index = retrieve_permit_index(CreateEntryPermitPage.permit_id)
+    find_elements(COMMON_SECTION[:view_btn])[permit_index].click
+  end
+
+  def verify_button_disabled(text)
+    raise 'Element enabled' unless find_element("//*[contains(.,'#{text}')]").enabled?.eql?(false)
+  end
+
+  def verify_button_enabled(text)
+    raise 'Element disabled' unless find_element("//*[contains(.,'#{text}')]").enabled?
+  end
+
+  def check_ra_signature(rank, location)
+    compare_string(retrieve_text(COMMON_SECTION[:resp_of_signature]), 'Responsible Officer Signature:')
+    compare_string(retrieve_text(COMMON_SECTION[:resp_of_sig_rank]), 'Rank/Name')
+    verify_element_not_exist("//*[contains(.,'#{rank}')]")
+    verify_element_not_exist("//*[contains(.,'#{location}')]")
+  end
+
+  def save_ptw_id_from_list
+    self.tmp_id = find_element(COMMON_SECTION[:ptw_id_in_list]).text
+    self.ptw_id = find_element(COMMON_SECTION[:ptw_id_in_list]).text
+  end
+
+  def verify_permit
+    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{ptw_id}')]")
+  end
+
+  private
+
+  def retrieve_permit_index(permit_id)
+    permit_index = nil
+    find_elements(COMMON_SECTION[:parent_container]).each_with_index do |_permit, index|
+      next unless @driver.find_elements(:css, COMMON_SECTION[:ptw_id])[index].text == permit_id
+
+      permit_index = index
+      break
+    end
+    permit_index
   end
 end
 

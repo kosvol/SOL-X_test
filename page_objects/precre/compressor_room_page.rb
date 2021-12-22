@@ -77,20 +77,20 @@ class CompressorRoomPage < CreateEntryPermitPage
 
   def verify_cre_section_title(text, condition)
     if condition == true
-      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text.eql?(text) == false
-    else
-      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text.eql?(text) == true
+      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+    elsif find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+      raise 'Verify failed'
     end
   end
 
   def verify_gas_added_by(text)
     gas_added_by_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:gas_added_by]).text
-    raise 'Verify failed' unless gas_added_by_actual.eql?(text) == false
+    raise 'Verify failed' unless gas_added_by_actual == text
   end
 
   def verify_permit_not_in_list
     permit_number_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:ptw_id]).text
-    raise 'Verify failed' unless permit_number_actual.eql?(permit_number) == false
+    raise 'Verify failed' unless permit_number_actual.eql?(permit_id) == false
   end
 
   def activate_time_picker(delay)

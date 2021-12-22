@@ -31,7 +31,6 @@ class DriverConfiguration
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.read_timeout = 60
     @options.add_option('excludeSwitches', ['enable-automation'])
-    Selenium::WebDriver::Chrome::Service.driver_path = ''
     Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: client, options: @options
   end
 
@@ -55,7 +54,6 @@ class DriverConfiguration
     else
       @options.add_argument('--window-size=720,1280')
     end
-    @options.add_argument('--remote-debugging-port=9222')
   end
 
   def setup_chrome_mode

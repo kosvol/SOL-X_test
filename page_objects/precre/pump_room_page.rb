@@ -79,9 +79,9 @@ class PumpRoomPage < CreateEntryPermitPage
 
   def verify_pre_section_title(text, condition)
     if condition == true
-      raise 'Verify failed' unless CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)
-    else
-      raise 'Verify failed' unless (CREATE_ENTRY_PERMIT[:heading_text].text.eql?(text)) == true
+      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+    elsif find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+      raise 'Verify failed'
     end
   end
 

@@ -82,21 +82,6 @@ class GasReadingsPage < BasePage
     compare_string(signature, location)
   end
 
-
-  private
-
-  def verify_gas_titles(gas_reading_table)
-    (3..8).each { |number| compare_string(gas_reading_table[number].text, GAS_TABLE_TITLES[number]) }
-  end
-
-  GAS_TABLE_TITLES = { 1 => 'Initial',
-                       3 => '1 %',
-                       4 => '2 % LEL',
-                       5 => '3 PPM',
-                       6 => '4 PPM',
-                       7 => '1.5 CC',
-                       8 => 'C/O STG C/O' }.freeze
-
   def delete_toxic_readings
     click(GAS_INFORMATION[:toxic_delete_btn])
     click(GAS_INFORMATION[:remove_toxic_btn])
@@ -126,4 +111,19 @@ class GasReadingsPage < BasePage
       raise 'submit btn is enabled'
     end
   end
+
+  private
+
+  def verify_gas_titles(gas_reading_table)
+    (3..8).each { |number| compare_string(gas_reading_table[number].text, GAS_TABLE_TITLES[number]) }
+  end
+
+  GAS_TABLE_TITLES = { 1 => 'Initial',
+                       3 => '1 %',
+                       4 => '2 % LEL',
+                       5 => '3 PPM',
+                       6 => '4 PPM',
+                       7 => '1.5 CC',
+                       8 => 'C/O STG C/O' }.freeze
+
 end
