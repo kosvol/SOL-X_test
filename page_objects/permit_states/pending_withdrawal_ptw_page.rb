@@ -15,7 +15,7 @@ class PendingWithdrawalPTWPage < BasePermitStatesPage
     find_element(PENDING_WITHDRAWAL_PTW[:page_header])
   end
 
-  def click_view_terminate_btn(permit_id)
+  def click_review_withdraw_btn(permit_id)
     permit_xpath = PENDING_WITHDRAWAL_PTW[:review_withdraw_btn] % permit_id
     wait_for_permit_display(permit_xpath)
     click(permit_xpath)

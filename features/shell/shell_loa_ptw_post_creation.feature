@@ -43,7 +43,7 @@ Feature: SHELL level of authority post ptw creation
       | permit_type       | permit_status | eic | gas_reading | bfr_photo | aft_photo |
       | lifting_operation | active        | yes | no          | 2         | 2         |
     And SmartForms open "active" page
-    And ActivePTW click View button
+    And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 8"
     Then Section8 verify RA signature section is hidden
@@ -61,7 +61,7 @@ Feature: SHELL level of authority post ptw creation
       | permit_type       | permit_status | eic | gas_reading | bfr_photo | aft_photo |
       | lifting_operation | active        | yes | no          | 2         | 2         |
     And SmartForms open "active" page
-    And ActivePTW click Terminate button
+    And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 8"
     Then Section8 verify termination button is "enabled"
@@ -112,7 +112,7 @@ Feature: SHELL level of authority post ptw creation
       | permit_type       | permit_status  | new_status              | eic | gas_reading | bfr_photo |
       | lifting_operation | updates_needed | APPROVAL_UPDATES_NEEDED | yes | yes         | 2         |
     And SmartForms open "updates-needed" page
-    And UpdatesNeededPTW click Edit button
+    And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 6"
     Then Section6 verify submit button is "disabled"
@@ -130,7 +130,7 @@ Feature: SHELL level of authority post ptw creation
       | permit_type       | permit_status  | new_status              | eic | gas_reading | bfr_photo |
       | lifting_operation | updates_needed | APPROVAL_UPDATES_NEEDED | yes | yes         | 2         |
     And SmartForms open "updates-needed" page
-    And UpdatesNeededPTW click Edit button
+    And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 6"
     Then Section6 verify submit button is "enabled"
