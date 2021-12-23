@@ -2,8 +2,8 @@
 
 require_relative '../base_page'
 
-# CreatedPTWPage object
-class CreatedPTWPage < BasePage
+# CreatedEntryPage object
+class CreatedEntryPage < BasePage
   include EnvUtils
   CREATED_PTW = {
     page_header: "//h1[contains(.,'Created Permits to Work')]",

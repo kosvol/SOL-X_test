@@ -6,7 +6,7 @@ require_relative '../base_page'
 class CommonSectionPage < BasePage
   include EnvUtils
 
-  attr_accessor :ptw_id, :tmp_id
+  attr_accessor :ptw_id
 
   COMMON_SECTION = {
     navigation_header: '//*[@id="navigation-wrapper"]',
@@ -19,7 +19,6 @@ class CommonSectionPage < BasePage
     done_button: "//button[contains(.,'Done')]",
     back_btn: "//button[contains(.,'Back')]",
     close_btn: "//button[contains(.,'Close')]",
-    view_btn: "//button[contains(.,'View')]",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
     ptw_id: 'header > h1',
     resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
@@ -66,17 +65,10 @@ class CommonSectionPage < BasePage
     click(COMMON_SECTION[:close_btn])
   end
 
-  def open_ptw_for_view
-    permit_index = retrieve_permit_index(CreateEntryPermitPage.permit_id)
-    find_elements(COMMON_SECTION[:view_btn])[permit_index].click
-  end
 
-  def verify_button_disabled(text)
-    raise 'Element enabled' unless find_element("//*[contains(.,'#{text}')]").enabled?.eql?(false)
-  end
 
-  def verify_button_enabled(text)
-    raise 'Element disabled' unless find_element("//*[contains(.,'#{text}')]").enabled?
+  def verify_button(text, option)
+    verify_btn_availability("//*[contains(.,'#{text}')]", option)
   end
 
   def check_ra_signature(rank, location)
@@ -87,12 +79,11 @@ class CommonSectionPage < BasePage
   end
 
   def save_ptw_id_from_list
-    self.tmp_id = find_element(COMMON_SECTION[:ptw_id_in_list]).text
     self.ptw_id = find_element(COMMON_SECTION[:ptw_id_in_list]).text
   end
 
   def verify_permit
-    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{ptw_id}')]")
+    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{ptw_id}')]")
   end
 
   private

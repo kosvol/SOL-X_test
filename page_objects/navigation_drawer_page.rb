@@ -15,7 +15,9 @@ class NavigationDrawerPage < BasePage
     main_page: "//*[@id='root']/div/main",
     back_arrow: "//button/*[@data-testid='arrow']",
     go_back_btn: "//*[@id='root']/div/nav/header/button",
-    view_button: "//button[contains(text(),'View')]"
+    view_button: "//button[contains(text(),'View')]",
+    entry_states: "(//a[contains(.,'%s')])[2]",
+    entry_show_more: "(//button[contains(text(),'Show More')])[2]"
   }.freeze
 
   def initialize(driver)
@@ -48,24 +50,13 @@ class NavigationDrawerPage < BasePage
     select_ptw_cat(page)
   end
 
-  def navigate_to_pre(page)
-    click_show_more_btn('pre')
-    select_pre_cre_cat(page)
+  def navigate_to_entry(state)
+    click(NAVIGATION[:entry_show_more])
+    select_entry_state(state)
   end
 
-  def navigate_to_cre(page)
-    click_show_more_btn('cre')
-    select_pre_cre_cat(page)
-  end
-
-  def navigate_until_active_ptw(permit_type)
-    attempt = 0
-    until return_background_color == 'rgba(67, 160, 71, 1)'
-      navigate_to_display_page(permit_type)
-      enter_pin('C/O')
-      attempt += 1
-      break if attempt == 6
-    end
+  def select_entry_state(state)
+    click(NAVIGATION[:entry_states] % state)
   end
 
   def click_back_arrow
@@ -96,12 +87,6 @@ class NavigationDrawerPage < BasePage
   def return_background_color
     find_element(NAVIGATION[:main_page]).css_value('background-color')
   end
-
-  def select_pre_cre_cat(page)
-    category_objs = find_elements(format(NAVIGATION[:category], page))
-    category_objs.size == 2 ? category_objs.last.click : category_objs.first.click
-  end
-
 
   def select_ptw_cat(page)
     click(format(NAVIGATION[:category], page))

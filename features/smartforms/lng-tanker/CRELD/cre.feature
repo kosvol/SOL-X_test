@@ -178,9 +178,9 @@ Feature: Compressor room entry creation
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CommonSection save permit id from list
-    And ActivatePage click Submit for termination
+    And ActiveEntry click Submit for termination
     Then PinEntry enter pin for rank "<rank>"
-    And ActivatePage click Terminate button
+    And ActiveEntry click Terminate button
     Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -206,9 +206,9 @@ Feature: Compressor room entry creation
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Created"
     And CommonSection save permit id from list
-    And CreatedPTW click button Delete
+    And CreatedEntry click button Delete
     Then PinEntry enter pin for rank "MAS"
-    Then CreatedPTW verify deleted permit not presents in list
+    Then CreatedEntry verify deleted permit not presents in list
     And NavigationDrawer click back arrow button
     And NavigationDrawer navigate to Compressor Motor Room "Deleted"
     Then CommonSection verify current permit presents in the list
@@ -277,7 +277,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW click approve for activation
+    And PendingApprovalEntry click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -325,7 +325,7 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "1" sec
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
-    And CommonSection open current permit for view
+    And ScheduledEntry open current permit for view
     Then PinEntry enter pin for rank "C/O"
     And CommonSection check Responsible Officer Signature
 
@@ -336,9 +336,9 @@ Feature: Compressor room entry creation
       | cre        | ACTIVE          |
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CommonSection save permit id from list
-    And ActivatePage click Submit for termination
+    And ActiveEntry click Submit for termination
     Then PinEntry enter pin for rank "C/O"
-    And ActivatePage click Terminate button
+    And ActiveEntry click Terminate button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -346,7 +346,7 @@ Feature: Compressor room entry creation
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
-    And CommonSection open current permit for view
+    And TerminatedEntry open current permit for view
     Then PinEntry enter pin for rank "C/O"
     And CommonSection check Responsible Officer Signature
       | rank      | zone                    |
@@ -379,7 +379,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW click approve for activation
+    And PendingApprovalEntry click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -388,7 +388,7 @@ Feature: Compressor room entry creation
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Compressor Motor Room "Active"
-    And CommonSection open current permit for view
+    And ActiveEntry open current permit for view
     Then PinEntry enter pin for rank "C/O"
     Then GasReadings verify location in sign
       | location                     |
@@ -417,7 +417,7 @@ Feature: Compressor room entry creation
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And PendingApprovalPTW click approve for activation
+    And PendingApprovalEntry click approve for activation
     Then PinEntry enter pin for rank "<rank>"
     When SignatureLocation sign off
       | area      | zone                  |

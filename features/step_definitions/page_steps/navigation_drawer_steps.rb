@@ -25,13 +25,13 @@ end
 And('NavigationDrawer navigate to Compressor Motor Room {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.click_hamburger_menu_btn
-  @navigation_drawer_page.navigate_to_cre(page)
+  @navigation_drawer_page.navigate_to_entry(page)
 end
 
 And('NavigationDrawer navigate to Pump Room {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.click_hamburger_menu_btn
-  @navigation_drawer_page.navigate_to_pre(page)
+  @navigation_drawer_page.navigate_to_entry(page)
 end
 
 And('NavigationDrawer navigate to settings') do

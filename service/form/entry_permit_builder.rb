@@ -31,10 +31,6 @@ class EntryPermitBuilder < BasePermitBuilder
     ActivateEntryPermitApi.new.request(@permit.permit_id, @permit_type, pin)
   end
 
-  def approve_entry_permit_id(permit_id, pin = @default_pin)
-    ActivateEntryPermitApi.new.request(permit_id, @permit_type, pin)
-  end
-
   def terminate_entry_permit(pin = @default_pin)
     SubmitForTerminationAPI.new.request(@permit.permit_id, @permit_type, pin)
   end

@@ -41,19 +41,14 @@ Given('CommonSection click Next button') do
   @common_section_page.click_next_btn
 end
 
-And('CommonSection open current permit for view') do
-  @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.open_ptw_for_view
-end
-
 And('CommonSection verify button {string}') do |button|
   @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.verify_button_enabled(button)
+  @common_section_page.verify_button(button, 'enabled')
 end
 
 And('CommonSection verify button {string} is disabled') do |button|
   @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.verify_button_disabled(button)
+  @common_section_page.verify_button(button, 'disabled')
 end
 
 Then('CommonSection check Responsible Officer Signature') do |table|

@@ -146,7 +146,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW click approve for activation
+    And PendingApprovalEntry click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -158,9 +158,9 @@ Feature: Pump room entry permit creation
     And CommonSection sleep for "180" sec
     And NavigationDrawer navigate to Pump Room "Active"
     Then CreateEntryPermit verify current permit presents in the list
-    And ActivatePage click Submit for termination
+    And ActiveEntry click Submit for termination
     Then PinEntry enter pin for rank "C/O"
-    And ActivatePage click Terminate button
+    And ActiveEntry click Terminate button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -196,12 +196,12 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW request for update
+    And PendingApprovalEntry request for update
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Updates Needed"
-    Then UpdatesNeeded click Edit Update button
+    Then UpdatesNeededEntry click Edit Update button
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit verify element with text "Comments from Approving Authority"
     And CreateEntryPermit verify element with text "Test Automation"
@@ -242,7 +242,7 @@ Feature: Pump room entry permit creation
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
     And PRE scroll "down" direction 2 times
-    And PendingApprovalPTW verify buttons for not Pump Room Entry RO rank
+    And PendingApprovalEntry verify buttons for not Pump Room Entry RO rank
 
     Examples:
       | rank  |
@@ -262,7 +262,7 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
-    Then CommonSection click close button
+    Then CommonSection click Close button
     And NavigationDrawer navigate to Pump Room "Created"
     Then CreateEntryPermit set permanent permit number from IndexedDB
     Then CreateEntryPermit verify current permit presents in the list
@@ -338,7 +338,7 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW click approve for activation
+    And PendingApprovalEntry click approve for activation
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
@@ -346,7 +346,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
-    And CommonSection open current permit for view
+    And ScheduledEntry open current permit for view
     Then PinEntry enter pin for rank "C/O"
     And CommonSection check Responsible Officer Signature
 
@@ -401,12 +401,12 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PendingApprovalPTW request for update
+    And PendingApprovalEntry request for update
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Updates Needed"
-    Then UpdatesNeeded click Edit Update button
+    Then UpdatesNeededEntry click Edit Update button
     Then PinEntry enter pin for rank "<rank>"
     And CommonSection verify button "Submit for Approval" is disabled
     And CommonSection verify button "Add Gas Test Record" is disabled

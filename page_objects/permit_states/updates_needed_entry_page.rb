@@ -3,7 +3,7 @@
 require_relative '../base_page'
 
 # PendingApprovalPTWPage object
-class UpdatesNeededPTWPage < BasePage
+class UpdatesNeededEntryPage < BasePage
   include EnvUtils
   UPDATES_NEEDED_PTW = {
     page_header: "//h1[contains(.,'Updates Needed Permits to Work')]",
