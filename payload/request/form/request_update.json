@@ -1,0 +1,26 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "AAMR/PTW/2021/584",
+    "answers": [
+      {
+        "fieldId": "pdf_section7_approverName",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "pdf_section7_approverDesignation",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "showUpdatesNeeded",
+        "value": "\"true\""
+      },
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"Test Automation Comment\""
+      }
+    ],
+    "submissionTimestamp": "2021-12-20T06:10:14.412Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

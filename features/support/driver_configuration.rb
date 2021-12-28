@@ -27,11 +27,12 @@ class DriverConfiguration
     setup_chrome_window
     setup_chrome_mode
     setup_camera
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
+    caps_chrome = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.read_timeout = 60
     @options.add_option('excludeSwitches', ['enable-automation']) # to disable chrome info bar
-    Selenium::WebDriver.for :chrome, desired_capabilities: caps, http_client: client, options: @options
+    caps = [caps_chrome, @options]
+    Selenium::WebDriver.for :chrome, http_client: client, capabilities: caps
   end
 
   def setup_appium_driver
@@ -43,9 +44,9 @@ class DriverConfiguration
   end
 
   def setup_browser_timeouts
-    @driver.manage.timeouts.script_timeout = 10
+    @driver.manage.timeouts.script_timeout = 15
     @driver.manage.timeouts.page_load = 15
-    @driver.manage.timeouts.implicit_wait = 10
+    @driver.manage.timeouts.implicit_wait = 15
   end
 
   def setup_chrome_window
