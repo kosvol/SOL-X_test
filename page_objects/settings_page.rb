@@ -6,7 +6,7 @@ require_relative 'base_page'
 class SettingPage < BasePage
 
   SETTINGS = {
-    page_header: "//*[@id='root']/div/nav/header",
+    page_header: "//h1[contains(.,'Settings')]",
     pump_room_display_setting: "//span[contains(.,'Pump Room')]",
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]"
   }.freeze

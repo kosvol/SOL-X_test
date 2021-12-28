@@ -22,15 +22,18 @@ end
 
 #I (should|should not) see alert message "(.*)" 1
 Then('PRE verify alert message {string} does not show up') do |message|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.verify_text_not_present(message)
 end
 #I (should|should not) see alert message "(.*)" 2
 Then('PRE verify alert message {string}') do |message|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.verify_error_msg(message)
 end
 
 #'I select Permit Duration {int}'
 Then('PRE select Permit Duration {int}') do |duration|
+  @pre_page ||= PumpRoomPage.new(@driver)
   @pre_page.select_permit_duration(duration)
 end
 

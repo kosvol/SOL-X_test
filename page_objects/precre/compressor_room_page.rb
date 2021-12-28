@@ -49,7 +49,7 @@ class CompressorRoomPage < CreateEntryPermitPage
     end
     base_titles_of_sections =
       [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['titles_of_sections']
-    raise 'Verify failed' unless (titles_of_sections - base_titles_of_sections) != []
+    raise 'Verify failed' unless (titles_of_sections - base_titles_of_sections).eql?([]) == true
   end
 
   def verify_answers_of_sections_one
@@ -60,13 +60,13 @@ class CompressorRoomPage < CreateEntryPermitPage
     base_answers_first_section =
       [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['answears_first_section']
     raise 'Verify failed' unless
-      ((answers_for_section & base_answers_first_section).any? { |x| base_answers_first_section.include?(x) }) != true
+      ((answers_for_section & base_answers_first_section).any? { |x| base_answers_first_section.include?(x) }) == true
   end
 
   def verify_answers_of_sections_two
     answers_for_sections = retrieve_answers_for_sections
     base_entry_titles = [] + YAML.load_file('data/cre/cre-forms.yml')['cre_structure_creation']['entry_titles']
-    raise 'Verify failed' unless (answers_for_sections & base_entry_titles) == base_entry_titles
+    raise 'Verify failed' unless (answers_for_sections & base_entry_titles) != base_entry_titles
   end
 
   def verify_gas_sections
@@ -77,8 +77,8 @@ class CompressorRoomPage < CreateEntryPermitPage
 
   def verify_cre_section_title(text, condition)
     if condition == true
-      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
-    elsif find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+      raise 'Verify failed' unless find_element(COMPRESSOR_ROOM[:cre_header]).text == text
+    elsif find_element(COMPRESSOR_ROOM[:cre_header]).text == text
       raise 'Verify failed'
     end
   end

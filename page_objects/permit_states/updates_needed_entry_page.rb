@@ -2,20 +2,20 @@
 
 require_relative '../base_page'
 
-# PendingApprovalPTWPage object
+# UpdatesNeededEntryPage object
 class UpdatesNeededEntryPage < BasePage
   include EnvUtils
-  UPDATES_NEEDED_PTW = {
-    page_header: "//h1[contains(.,'Updates Needed Permits to Work')]",
-    edit_update_btn: "//button[contains(.,'Edit/Update')]",
+  UPDATES_NEEDED_ENTRY = {
+    page_header: "//*[@id='root']/div/nav[1]/header/h1",
+    edit_update_btn: "//button[contains(.,'Edit/Update')]"
   }.freeze
 
   def initialize(driver)
     super
-    find_element(UPDATES_NEEDED_PTW[:page_header])
+    find_element(UPDATES_NEEDED_ENTRY[:page_header])
   end
 
   def click_edit_update
-    click(UPDATES_NEEDED_PTW[:edit_update_btn])
+    click(UPDATES_NEEDED_ENTRY[:edit_update_btn])
   end
 end

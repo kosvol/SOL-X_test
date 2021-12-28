@@ -7,9 +7,8 @@ Feature: Pump room entry permit creation
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When  PermitGenerator create entry permit
-      | entry_type | permit_status   |
-      | pre        | ACTIVE          |
-    Then NavigationDrawer navigate to "PRE" display until see active permit
+      | entry_type | permit_status |
+      | pre        | ACTIVE        |
     When NavigationDrawer navigate to settings
     And Setting select mode for "PRE"
     And PinEntry enter pin for rank "C/O"
@@ -73,7 +72,9 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify alert message "Please select the start time and duration before submitting."
-    And CommonSection verify button "Submit for Approval" is disabled
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | disabled     |
     Then PRE select Permit Duration <duration>
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
@@ -82,7 +83,9 @@ Feature: Pump room entry permit creation
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
-    And CommonSection verify button "Submit for Approval"
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | enabled      |
 
     Examples:
       | duration |
@@ -116,7 +119,7 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And CreateEntryPermit verify popup dialog with "C/O COT C/O" crew member
+    And CreateEntryPermit verify popup dialog with "C/O STG C/O" crew member
     When GasReadings click done button on gas reader dialog box
     And PRE scroll "down" direction 2 times
     Then GasReadings verify gas table titles
@@ -140,6 +143,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -151,6 +155,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     Then CreateEntryPermit verify current permit presents in the list
@@ -190,6 +195,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -209,12 +215,15 @@ Feature: Pump room entry permit creation
   Scenario: Verify creator PRE cannot request update needed
     Given SmartForms open page
     When PermitGenerator create entry permit
-      | entry_type | permit_status                    |
-      | pre        | PENDING_OFFICER_APPROVAL         |
+      | entry_type | permit_status            |
+      | pre        | PENDING_OFFICER_APPROVAL |
+    And CommonSection sleep for "2" sec
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And CommonSection verify button "Updates Needed" is disabled
+    And CommonSection verify button availability
+      | button         | availability |
+      | Updates Needed | disabled     |
 
   Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given SmartForms open page
@@ -223,6 +232,7 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And CommonSection sleep for "2" sec
     And GasReadings fill equipment fields
     And GasReadings click add gas readings
     Then PinEntry enter pin for rank "C/O"
@@ -235,6 +245,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -286,13 +297,16 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
-    And CommonSection verify button "Approve for Activation" is disabled
+    And CommonSection verify button availability
+      | button                 | availability |
+      | Approve for Activation | disabled     |
 
     Examples:
       | rank  |
@@ -332,6 +346,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -343,6 +358,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And NavigationDrawer navigate to Pump Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
@@ -363,13 +379,15 @@ Feature: Pump room entry permit creation
     And SignatureLocation sign off first zone area
     And PRE scroll "up" direction 1 times
     And PRE fill up permit in future
-      | duration | delay to activate | days|
-      | 4        | 3                 |1    |
+      | duration | delay to activate | days |
+      | 4        | 3                 | 1    |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit click Submit for Approval button
     Then PinEntry enter pin for rank "C/O"
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -395,6 +413,7 @@ Feature: Pump room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
@@ -408,8 +427,12 @@ Feature: Pump room entry permit creation
     And NavigationDrawer navigate to Pump Room "Updates Needed"
     Then UpdatesNeededEntry click Edit Update button
     Then PinEntry enter pin for rank "<rank>"
-    And CommonSection verify button "Submit for Approval" is disabled
-    And CommonSection verify button "Add Gas Test Record" is disabled
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | disabled     |
+    And CommonSection verify button availability
+      | button              | availability |
+      | Add Gas Test Record | disabled     |
 
     Examples:
       | rank  |

@@ -41,14 +41,10 @@ Given('CommonSection click Next button') do
   @common_section_page.click_next_btn
 end
 
-And('CommonSection verify button {string}') do |button|
+And('CommonSection verify button availability') do |table|
   @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.verify_button(button, 'enabled')
-end
-
-And('CommonSection verify button {string} is disabled') do |button|
-  @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.verify_button(button, 'disabled')
+  params = table.hashes.first
+  @common_section_page.verify_button(params['button'], params['availability'])
 end
 
 Then('CommonSection check Responsible Officer Signature') do |table|
@@ -57,12 +53,3 @@ Then('CommonSection check Responsible Officer Signature') do |table|
   @common_section_page.check_ra_signature(params['rank'], params['zone'])
 end
 
-And('CommonSection save permit id from list') do
-  @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.save_ptw_id_from_list
-end
-
-And('CommonSection verify current permit presents in the list') do
-  @common_section_page ||= CommonSectionPage.new(@driver)
-  @common_section_page.verify_permit
-end

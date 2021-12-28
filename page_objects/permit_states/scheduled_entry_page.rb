@@ -6,7 +6,7 @@ require_relative '../base_page'
 class ScheduledEntryPage < BasePage
   SCHEDULED_ENTRY = {
     page_header: "//*[@id='root']/div/nav[1]/header/h1",
-    view_btn: "//button[contains(.,'View')]"
+    view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]"
   }.freeze
 
 
@@ -15,9 +15,9 @@ class ScheduledEntryPage < BasePage
     find_element(SCHEDULED_ENTRY[:page_header])
   end
 
-  def open_ptw_for_view
-    permit_index = retrieve_permit_index(CreateEntryPermitPage.permit_id)
-    find_elements(SCHEDULED_ENTRY[:view_btn])[permit_index].click
+  def click_view_btn(permit_id)
+    permit_xpath = SCHEDULED_ENTRY[:view_terminate_btn] % permit_id
+    click(permit_xpath)
   end
 
 end

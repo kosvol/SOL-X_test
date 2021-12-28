@@ -22,11 +22,15 @@ class PumpRoomPage < CreateEntryPermitPage
     permit_validity: "//h2[contains(text(),'Permit Validity')]",
     time_element: '//*[@id="permitActiveAt"]',
     error_msg: "//div[contains(.,'%s')]",
+    warning_box: "//*[contains(@class, 'WarningBox__AlertWrapper')][3]",
     purpose_of_entry: "//textarea[@id='reasonForEntry']",
     picker_days: "//label[contains(text(),'Start Time')]//following::button[@data-testid='days']",
     selected_day: "//*[contains(@class, 'selected')]",
     current_day_date: "//*[contains(@class, 'current')]",
-    scheduled_date: "//*[contains(.,'Scheduled for')]/parent::*//span[1]"
+    current_day: "//button[contains(@class,'Day__DayButton')]",
+    scheduled_date: "//*[contains(.,'Scheduled for')]/parent::*//span[1]",
+    heading_text: "//*[@id='navigation-wrapper']/nav/h3",
+    form_structure: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span"
   }.freeze
 
   def initialize(driver)
@@ -36,14 +40,14 @@ class PumpRoomPage < CreateEntryPermitPage
 
   def verify_pre_questions
     base_data = YAML.load_file('data/pre/pump-room-entries.yml')['questions']
-    find_elements(CREATE_ENTRY_PERMIT[:form_structure]).each_with_index do |element, index|
+    find_elements(PUMP_ROOM[:form_structure]).each_with_index do |element, index|
       compare_string(element.text, base_data[index])
     end
   end
 
   def verify_error_msg(error_msg)
-    actual_msg = retrieve_text(CREATE_ENTRY_PERMIT[:error_msg])
-    compare_string(error_msg, actual_msg)
+    actual_msg = retrieve_text(PUMP_ROOM[:warning_box])
+    raise "Verification failed" unless actual_msg.include? error_msg
   end
 
   def verify_text_not_present(text)
@@ -74,13 +78,13 @@ class PumpRoomPage < CreateEntryPermitPage
   def select_calibration_date
     click(PUMP_ROOM[:gas_last_calibration_button])
     select_current_day
-    compare_string(PUMP_ROOM[:gas_last_calibration_button].text, Time.now.strftime('%d/%b/%Y'))
+    compare_string(find_element(PUMP_ROOM[:gas_last_calibration_button]).text, Time.now.strftime('%d/%b/%Y'))
   end
 
   def verify_pre_section_title(text, condition)
     if condition == true
-      raise 'Verify failed' unless find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
-    elsif find_element(CREATE_ENTRY_PERMIT[:heading_text]).text == text
+      raise 'Verify failed' unless find_element(PUMP_ROOM[:heading_text]).text == text
+    elsif find_element(PUMP_ROOM[:heading_text]).text == text
       raise 'Verify failed'
     end
   end
@@ -102,6 +106,6 @@ class PumpRoomPage < CreateEntryPermitPage
   private
 
   def select_current_day
-    click(CREATE_ENTRY_PERMIT[:current_day_button])
+    click(PUMP_ROOM[:current_day])
   end
 end

@@ -20,10 +20,8 @@ class CommonSectionPage < BasePage
     back_btn: "//button[contains(.,'Back')]",
     close_btn: "//button[contains(.,'Close')]",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
-    ptw_id: 'header > h1',
     resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
-    resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]",
-    ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span",
+    resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]"
   }.freeze
 
   def initialize(driver)
@@ -65,8 +63,6 @@ class CommonSectionPage < BasePage
     click(COMMON_SECTION[:close_btn])
   end
 
-
-
   def verify_button(text, option)
     verify_btn_availability("//*[contains(.,'#{text}')]", option)
   end
@@ -76,27 +72,6 @@ class CommonSectionPage < BasePage
     compare_string(retrieve_text(COMMON_SECTION[:resp_of_sig_rank]), 'Rank/Name')
     verify_element_not_exist("//*[contains(.,'#{rank}')]")
     verify_element_not_exist("//*[contains(.,'#{location}')]")
-  end
-
-  def save_ptw_id_from_list
-    self.ptw_id = find_element(COMMON_SECTION[:ptw_id_in_list]).text
-  end
-
-  def verify_permit
-    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{ptw_id}')]")
-  end
-
-  private
-
-  def retrieve_permit_index(permit_id)
-    permit_index = nil
-    find_elements(COMMON_SECTION[:parent_container]).each_with_index do |_permit, index|
-      next unless @driver.find_elements(:css, COMMON_SECTION[:ptw_id])[index].text == permit_id
-
-      permit_index = index
-      break
-    end
-    permit_index
   end
 end
 

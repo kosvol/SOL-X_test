@@ -67,6 +67,7 @@ end
 
 #And(/^I (should|should not) see Reporting interval$/) do |condition|
 And('CreateEntryPermit {string} see Reporting interval') do |option|
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.verify_reporting_interval(option)
 end
 
@@ -89,5 +90,15 @@ end
 Then('CreateEntryPermit verify permanent number presents in IndexedDB') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.verify_permit_in_indexed_db
+end
+
+And('CreateEntryPermit save permit id from list') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @create_entry_permit_page.save_ptw_id_from_list
+end
+
+And('CreateEntryPermit verify current permit presents in the list') do
+  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
+  @common_section_page.verify_permit
 end
 

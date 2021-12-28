@@ -34,7 +34,8 @@ class CreateEntryPermitPage < BasePage
     picker_hh: "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
     picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
     permit_validity: "//h2[contains(text(),'Permit Validity')]",
-    time_element: '//*[@id="permitActiveAt"]'
+    time_element: '//*[@id="permitActiveAt"]',
+    ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span"
   }.freeze
 
   def initialize(driver)
@@ -130,7 +131,7 @@ class CreateEntryPermitPage < BasePage
   end
 
   def click_officer_approval_btn
-    xpath_str = "//span[contains(text(),#{permit_id})]//following::span[contains(text(),'Officer Approval)][1]"
+    xpath_str = "//span[contains(.,'#{permit_id}')]/parent::li/div[3]/button[1]"
     click(xpath_str)
   end
 
@@ -144,10 +145,18 @@ class CreateEntryPermitPage < BasePage
     raise 'Permanent permit number not been generated' unless permit_from_db.eql?('')
   end
 
+  def save_ptw_id_from_list
+    self.permit_id = find_element(CREATE_ENTRY_PERMIT[:ptw_id_in_list]).text
+  end
+
+  def verify_permit
+    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{ptw_id}')]")
+  end
+
   private
 
   def picker_hh_mm(delay)
-    time = find_element(CREATE_ENTRY_PERMIT[:time_element]).text
+    time = find_elements(CREATE_ENTRY_PERMIT[:time_element]).last.text
     hh, mm = add_minutes(time, delay)
     picker_hh = format(CREATE_ENTRY_PERMIT[:picker_hh], hh)
     picker_mm = format(CREATE_ENTRY_PERMIT[:picker_mm], mm)

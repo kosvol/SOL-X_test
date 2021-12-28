@@ -30,7 +30,7 @@ class PendingApprovalEntryPage < BasePage
   def verify_buttons_not_ro
     verify_element_not_exist(PENDING_APPROVAL_ENTRY[:submit_for_approval_btn])
     verify_element_not_exist(PENDING_APPROVAL_ENTRY[:update_btn])
-    raise 'Element disabled' unless find_element(PENDING_APPROVAL_ENTRY[:close_btn]).enabled?
+    raise 'Close button is disabled' unless find_element(PENDING_APPROVAL_ENTRY[:close_btn]).enabled?
   end
 
   def approve_for_activation

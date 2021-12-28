@@ -14,10 +14,12 @@ class NavigationDrawerPage < BasePage
     settings_btn: "//a[contains(text(),'Settings')]",
     main_page: "//*[@id='root']/div/main",
     back_arrow: "//button/*[@data-testid='arrow']",
+    back_arr: "//button/*[@aria-label='Go back']",
     go_back_btn: "//*[@id='root']/div/nav/header/button",
     view_button: "//button[contains(text(),'View')]",
-    entry_states: "(//a[contains(.,'%s')])[2]",
-    entry_show_more: "(//button[contains(text(),'Show More')])[2]"
+    entry_states: "(//a[contains(.,'%s')])/parent::li",
+    entry_show_more: "(//*[contains(.,'Show More')][2])",
+    show_more: "//button[starts-with(@class,'CollapsibleButton__Button')][2]"
   }.freeze
 
   def initialize(driver)
@@ -38,7 +40,7 @@ class NavigationDrawerPage < BasePage
   end
 
   def verify_base_menu
-    menu_categories = YAML.load_file('data/menu.yml')['Menu base']
+    menu_categories = YAML.load_file('data/menu.yaml')['Menu base']
     menu_elements = @driver.find_elements(:xpath, NAVIGATION[:menu_categories])
     menu_elements.each_with_index do |element, index|
       compare_string(menu_categories[index], element.text)
@@ -51,35 +53,24 @@ class NavigationDrawerPage < BasePage
   end
 
   def navigate_to_entry(state)
-    click(NAVIGATION[:entry_show_more])
-    select_entry_state(state)
-  end
-
-  def select_entry_state(state)
+    scroll_click(NAVIGATION[:show_more])
     click(NAVIGATION[:entry_states] % state)
   end
 
   def click_back_arrow
-    click(NAVIGATION[:back_arrow])
+    click(NAVIGATION[:back_arr])
   end
 
   def click_go_back
     click(NAVIGATION[:go_back_btn])
   end
 
-  def select_settings_cat
+  def click_settings_btn
     click(NAVIGATION[:settings_btn])
   end
 
   def click_view_button
     click(NAVIGATION[:view_button])
-  end
-
-  def navigate_to_display_page(permit_type)
-    click_hamburger_menu_btn
-    select_settings_cat
-    click(NAVIGATION[:pump_room_display_setting]) if permit_type == 'PRE'
-    click(NAVIGATION[:compressor_room_display_setting]) if permit_type == 'CRE'
   end
 
   private
