@@ -54,6 +54,19 @@ class PermitGenerator
     @builder.update_form_status('CLOSED')
   end
 
+  def create_updates_needed(eic, gas_reading, bfr_photo, aft_photo, new_status)
+    case new_status
+    when 'APPROVAL_UPDATES_NEEDED'
+      create_pending_approval(eic, gas_reading, bfr_photo)
+    when 'TERMINATION_UPDATES_NEEDED'
+      create_pending_withdrawal(eic, gas_reading, bfr_photo, aft_photo)
+    else
+      raise "#{new_status} not supported"
+    end
+    @builder.request_update(@permit_id)
+    @builder.update_form_status(new_status)
+  end
+
   def create_entry(permit_status)
     @builder.create_entry_form
     @builder.update_entry_answer
