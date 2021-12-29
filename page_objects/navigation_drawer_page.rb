@@ -7,7 +7,6 @@ class NavigationDrawerPage < BasePage
   include EnvUtils
   NAVIGATION = {
     heading_text: "//nav[starts-with(@class,'NavigationDrawer__Drawer')]",
-    show_more_btn: "//button[contains(text(),'Show More')]",
     menu_categories: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])",
     category: "//a[contains(text(),'%s')]",
     settings_btn: "//a[contains(text(),'Settings')]",
@@ -17,21 +16,14 @@ class NavigationDrawerPage < BasePage
     go_back_btn: "//*[@id='root']/div/nav/header/button",
     view_button: "//button[contains(text(),'View')]",
     entry_states: "(//a[contains(.,'%s')])/parent::li",
-    entry_show_more: "(//*[contains(.,'Show More')][2])",
+    entry_show_more_ptw: "(//*[contains(.,'Show More')][1])",
+    entry_show_more_entry: "(//*[contains(.,'Show More')][2])",
     show_more: "//button[starts-with(@class,'CollapsibleButton__Button')][2]"
   }.freeze
 
   def initialize(driver)
     super
     find_element(NAVIGATION[:heading_text])
-  end
-
-  def click_show_more_btn(which_category)
-    if which_category.downcase == 'forms'
-      @driver.find_elements(:xpath, NAVIGATION[:show_more_btn]).first.click
-    else
-      @driver.find_elements(:xpath, NAVIGATION[:show_more_btn]).last.click
-    end
   end
 
   def verify_base_menu
@@ -43,12 +35,12 @@ class NavigationDrawerPage < BasePage
   end
 
   def navigate_to_ptw(page)
-    click_show_more_btn('forms')
-    select_ptw_cat(page)
+    scroll_click(NAVIGATION[:entry_show_more_ptw])
+    click(NAVIGATION[:category] % page)
   end
 
   def navigate_to_entry(state)
-    scroll_click(NAVIGATION[:show_more])
+    scroll_click(NAVIGATION[:entry_show_more_entry])
     click(NAVIGATION[:entry_states] % state)
   end
 
@@ -72,9 +64,5 @@ class NavigationDrawerPage < BasePage
 
   def return_background_color
     find_element(NAVIGATION[:main_page]).css_value('background-color')
-  end
-
-  def select_ptw_cat(page)
-    click(format(NAVIGATION[:category], page))
   end
 end
