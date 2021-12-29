@@ -7,6 +7,8 @@ require_all 'service/api'
 
 # entry permit builder to create sections
 class EntryPermitBuilder < BasePermitBuilder
+  attr_accessor :permit_id
+
   def create_entry_form(pin = @default_pin)
     create_request = if @permit_type == 'cre'
                        CreateCreFormAPI.new
@@ -14,8 +16,8 @@ class EntryPermitBuilder < BasePermitBuilder
                        CreatePreFormAPI.new
                      end
     response = create_request.request(pin)
-    @permit.permit_id = response['data']['createForm']['_id']
-    @logger.info("Entry permit id: #{@permit.permit_id}")
+    self.permit_id = response['data']['createForm']['_id']
+    @logger.info("Entry permit id: #{permit_id}")
   end
 
   def update_entry_answer(pin = @default_pin)
@@ -24,14 +26,14 @@ class EntryPermitBuilder < BasePermitBuilder
                      else
                        UpdatePreFormAnswerAPI.new
                      end
-    update_request.request(@permit.permit_id, pin)
+    update_request.request(permit_id, pin)
   end
 
   def approve_entry_permit(pin = @default_pin)
-    ActivateEntryPermitApi.new.request(@permit.permit_id, @permit_type, pin)
+    ActivateEntryPermitApi.new.request(permit_id, @permit_type, pin)
   end
 
   def terminate_entry_permit(pin = @default_pin)
-    SubmitForTerminationAPI.new.request(@permit.permit_id, @permit_type, pin)
+    SubmitForTerminationAPI.new.request(permit_id, @permit_type, pin)
   end
 end
