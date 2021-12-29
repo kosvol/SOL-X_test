@@ -6,7 +6,7 @@ require_relative 'base_page'
 class NavigationDrawerPage < BasePage
   include EnvUtils
   NAVIGATION = {
-    heading_text: "//*[@id='root']/div/nav/header",
+    heading_text: "//nav[starts-with(@class,'NavigationDrawer__Drawer')]",
     hamburger_menu_btn: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button",
     show_more_btn: "//button[contains(text(),'Show More')]",
     menu_categories: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])",

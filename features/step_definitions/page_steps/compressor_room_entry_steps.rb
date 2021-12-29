@@ -1,54 +1,47 @@
 # frozen_string_literal: true
 
-require_relative '../../../page_objects/precre/create_entry_permit_page'
-require_relative '../../../page_objects/precre/compressor_room_page'
+require_relative '../../../page_objects/precre/compressor_room_entry_page'
 
 
 Then('CRE fill up permit') do |table|
-  @cre_page ||= CompressorRoomPage.new(@driver)
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
   params = table.hashes.first
-  @cre_page.fill_cre_form(params['duration'])
-  @cre_page.scroll_times_direction(1, 'down')
-  @cre_page.activate_time_picker(params['delay to activate'])
+  @compressor_room_entry_page.fill_cre_form(params['duration'])
+  @compressor_room_entry_page.scroll_times_direction(1, 'down')
+  @compressor_room_entry_page.activate_time_picker(params['delay to activate'])
 end
 
 Then(/^CRE verify form titles and questions$/) do
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_titles_and_questions
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_titles_and_questions
 end
 
 Then(/^CRE verify form titles of sections$/) do
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_titles_of_sections
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_titles_of_sections
 end
 
 Then(/^CRE verify form answers for questions$/) do
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_answers_of_sections_one
-  @cre_page.verify_answers_of_sections_two
-  @cre_page.verify_gas_sections
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_answers_of_sections_one
+  @compressor_room_entry_page.verify_answers_of_sections_two
+  @compressor_room_entry_page.verify_gas_sections
 end
 
 #I (should|should not) see PRE landing screen
 Then('CRE verify landing screen is {string}') do |text|
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_cre_section_title(text, true)
-end
-
-#I (should|should not) see PRE landing screen
-Then('CRE verify landing screen is not {string}') do |text|
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_cre_section_title(text, false)
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_cre_section_title(text)
 end
 
 #Then I will see popup dialog with C/O LNG C/O crew rank and name
 Then('CRE verify gas added by {string}') do |text|
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_gas_added_by(text)
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_gas_added_by(text)
 end
 
 #Then I should see that existed CRE number not equal with number Active list
 Then('CRE verify permit not present in list') do
-  @cre_page ||= CompressorRoomPage.new(@driver)
-  @cre_page.verify_permit_not_in_list
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_permit_not_in_list
 end

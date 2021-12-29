@@ -15,6 +15,5 @@ end
 Then('CreatedEntry verify deleted permit not presents in list') do
   @created_entry_page ||= CreatedEntryPage.new(@driver)
   @create_entry_permit_page ||= CreatedEntryPage.new(@driver)
-  p(@create_entry_permit_page.permit_id)
   @created_entry_page.verify_deleted_permit(@create_entry_permit_page.permit_id)
 end

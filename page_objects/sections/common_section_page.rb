@@ -6,8 +6,6 @@ require_relative '../base_page'
 class CommonSectionPage < BasePage
   include EnvUtils
 
-  attr_accessor :ptw_id
-
   COMMON_SECTION = {
     navigation_header: '//*[@id="navigation-wrapper"]',
     navigation_button: '//*[@id="navigation-wrapper"]/nav/section/button',
@@ -70,8 +68,8 @@ class CommonSectionPage < BasePage
   def check_ra_signature(rank, location)
     compare_string(retrieve_text(COMMON_SECTION[:resp_of_signature]), 'Responsible Officer Signature:')
     compare_string(retrieve_text(COMMON_SECTION[:resp_of_sig_rank]), 'Rank/Name')
-    verify_element_not_exist("//*[contains(.,'#{rank}')]")
-    verify_element_not_exist("//*[contains(.,'#{location}')]")
+    find_element("//*[contains(.,'#{rank}')]")
+    find_element("//*[contains(.,'#{location}')]")
   end
 end
 

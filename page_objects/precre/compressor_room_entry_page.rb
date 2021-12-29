@@ -4,8 +4,8 @@
 require_relative '../base_page'
 require_relative 'create_entry_permit_page'
 
-# CompressorRoomPage object
-class CompressorRoomPage < CreateEntryPermitPage
+# CompressorRoomEntryPage object
+class CompressorRoomEntryPage < CreateEntryPermitPage
   include EnvUtils
   COMPRESSOR_ROOM = {
     heading_text: "//*[@id='root']/div/nav/header",
@@ -75,22 +75,18 @@ class CompressorRoomPage < CreateEntryPermitPage
     raise 'Verify failed' unless (answers_for_sections & base_gas_section) == base_gas_section
   end
 
-  def verify_cre_section_title(text, condition)
-    if condition == true
-      raise 'Verify failed' unless find_element(COMPRESSOR_ROOM[:cre_header]).text == text
-    elsif find_element(COMPRESSOR_ROOM[:cre_header]).text == text
-      raise 'Verify failed'
-    end
+  def verify_cre_section_title(text)
+    raise 'Compressor room header verification failed' unless find_element(COMPRESSOR_ROOM[:cre_header]).text == text
   end
 
   def verify_gas_added_by(text)
     gas_added_by_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:gas_added_by]).text
-    raise 'Verify failed' unless gas_added_by_actual == text
+    raise 'Gas added by title verification failed' unless gas_added_by_actual == text
   end
 
   def verify_permit_not_in_list
     permit_number_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:ptw_id]).text
-    raise 'Verify failed' unless permit_number_actual.eql?(permit_id) == false
+    raise "Permit #{permit_id} is present in list" unless permit_number_actual.eql?(permit_id) == false
   end
 
   def activate_time_picker(delay)

@@ -150,7 +150,7 @@ class CreateEntryPermitPage < BasePage
   end
 
   def verify_permit
-    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{ptw_id}')]")
+    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{permit_id}')]")
   end
 
   private
