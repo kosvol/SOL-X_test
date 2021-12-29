@@ -7,7 +7,6 @@ class NavigationDrawerPage < BasePage
   include EnvUtils
   NAVIGATION = {
     heading_text: "//nav[starts-with(@class,'NavigationDrawer__Drawer')]",
-    hamburger_menu_btn: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button",
     show_more_btn: "//button[contains(text(),'Show More')]",
     menu_categories: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])",
     category: "//a[contains(text(),'%s')]",
@@ -25,10 +24,6 @@ class NavigationDrawerPage < BasePage
   def initialize(driver)
     super
     find_element(NAVIGATION[:heading_text])
-  end
-
-  def click_hamburger_menu_btn
-    click(NAVIGATION[:hamburger_menu_btn])
   end
 
   def click_show_more_btn(which_category)

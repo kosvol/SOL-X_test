@@ -8,11 +8,6 @@ And('NavigationDrawer click show more on {string}') do |category|
   @navigation_drawer_page.click_show_more_btn(category)
 end
 
-And('NavigationDrawer open hamburger menu') do
-  @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_hamburger_menu_btn
-end
-
 And('NavigationDrawer verify hamburger categories') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.verify_base_menu
@@ -20,25 +15,21 @@ end
 
 And('NavigationDrawer navigate to Permit to work {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_hamburger_menu_btn
   @navigation_drawer_page.navigate_to_ptw(page)
 end
 
 And('NavigationDrawer navigate to Compressor Motor Room {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_hamburger_menu_btn
   @navigation_drawer_page.navigate_to_entry(page)
 end
 
 And('NavigationDrawer navigate to Pump Room {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_hamburger_menu_btn
   @navigation_drawer_page.navigate_to_entry(page)
 end
 
 And('NavigationDrawer navigate to settings') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_hamburger_menu_btn
   @navigation_drawer_page.click_settings_btn
 end
 

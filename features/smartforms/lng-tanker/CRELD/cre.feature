@@ -10,6 +10,7 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit save permit id from list
     Then CreateEntryPermit verify current permit presents in the list
@@ -18,9 +19,11 @@ Feature: Compressor room entry creation
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     And CommonSection sleep for "5" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     Then CRE verify permit not present in list
     And NavigationDrawer click go back button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     Then CreateEntryPermit verify current permit presents in the list
 
@@ -127,6 +130,7 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "2" sec
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -163,6 +167,7 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -180,6 +185,7 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit save permit id from list
     And ActiveEntry click Submit for termination
@@ -192,6 +198,7 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "2" sec
     And CreateEntryPermit verify element with text "Permit Has Been Closed"
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     Examples:
@@ -209,6 +216,7 @@ Feature: Compressor room entry creation
     Then PinEntry enter pin for rank "C/O"
     And NavigationDrawer click go back button
     And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Created"
     And CreateEntryPermit save permit id from list
     And CreatedEntry click button Delete
@@ -216,6 +224,7 @@ Feature: Compressor room entry creation
     Then CreatedEntry verify deleted permit not presents in list
     And NavigationDrawer click go back button
     And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Deleted"
     Then CreateEntryPermit verify current permit presents in the list
 
@@ -248,6 +257,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -284,6 +294,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -295,10 +306,12 @@ Feature: Compressor room entry creation
     And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
     And NavigationDrawer click back arrow button
     And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit verify current permit presents in the list
 
@@ -323,6 +336,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -339,6 +353,7 @@ Feature: Compressor room entry creation
       | entry_type | permit_status           |
       | cre        | APPROVED_FOR_ACTIVATION |
     And CommonSection sleep for "1" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
     And ScheduledEntry open current permit for view
@@ -350,6 +365,7 @@ Feature: Compressor room entry creation
     When PermitGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And CreateEntryPermit save permit id from list
     And ActiveEntry click Submit for termination
@@ -361,6 +377,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Terminated"
     And CreateEntryPermit verify current permit presents in the list
     And TerminatedEntry open current permit for view
@@ -394,6 +411,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -405,6 +423,7 @@ Feature: Compressor room entry creation
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
     Then CreateEntryPermit click Back to Home button
     And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Active"
     And ActiveEntry open current permit for view
     Then PinEntry enter pin for rank "C/O"
@@ -433,6 +452,7 @@ Feature: Compressor room entry creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"

@@ -3,12 +3,13 @@ Feature: Pump room entry permit creation
   As a ...
   I want to ...
   So that ...
-
+@wip
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When  PermitGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
+    Then SmartForms open hamburger menu
     When NavigationDrawer navigate to settings
     And Setting select mode for "PRE"
     And PinEntry enter pin for rank "C/O"
@@ -17,7 +18,7 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page
-    When NavigationDrawer open hamburger menu
+    Then SmartForms open hamburger menu
     And NavigationDrawer click show more on "PRE"
     And NavigationDrawer click show more on "Forms"
     And NavigationDrawer verify hamburger categories
@@ -147,6 +148,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -157,10 +159,12 @@ Feature: Pump room entry permit creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Scheduled"
     Then CreateEntryPermit verify current permit presents in the list
     And NavigationDrawer click back arrow button
     And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Active"
     Then CreateEntryPermit verify current permit presents in the list
     And ActiveEntry click Submit for termination
@@ -173,6 +177,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify element with text "Permit Has Been Closed"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Terminated"
     Then CreateEntryPermit verify current permit presents in the list
 
@@ -206,6 +211,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Updates Needed"
     Then UpdatesNeededEntry click Edit Update button
     Then PinEntry enter pin for rank "C/O"
@@ -218,6 +224,7 @@ Feature: Pump room entry permit creation
       | entry_type | permit_status            |
       | pre        | PENDING_OFFICER_APPROVAL |
     And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -249,6 +256,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -274,6 +282,7 @@ Feature: Pump room entry permit creation
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
     Then CommonSection click Close button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Created"
     Then CreateEntryPermit set permanent permit number from IndexedDB
     Then CreateEntryPermit verify current permit presents in the list
@@ -301,6 +310,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "<rank>"
@@ -322,6 +332,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit save permit id
     And NavigationDrawer click back arrow button
     And CreateEntryPermit verify element with text "Permit Updated"
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Created"
     And CreateEntryPermit verify permanent number presents in IndexedDB
     Then CreateEntryPermit set permanent permit number from IndexedDB
@@ -350,6 +361,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -360,6 +372,7 @@ Feature: Pump room entry permit creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection sleep for "2" sec
     And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Scheduled"
     And CreateEntryPermit verify current permit presents in the list
     And ScheduledEntry open current permit for view
@@ -391,6 +404,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     Then PRE verify scheduled date
 
@@ -417,6 +431,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Pending Approval"
     When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
@@ -424,6 +439,7 @@ Feature: Pump room entry permit creation
     And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
     And CommonSection sleep for "1" sec
     And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Pump Room "Updates Needed"
     Then UpdatesNeededEntry click Edit Update button
     Then PinEntry enter pin for rank "<rank>"

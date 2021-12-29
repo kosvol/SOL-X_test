@@ -1,7 +1,6 @@
 # frozen_string_literal: true"
 
 require_relative '../base_page'
-require_relative '../sections/common_section_page'
 
 # PumpRoomEntryPage object
 class PumpRoomEntryPage < CreateEntryPermitPage

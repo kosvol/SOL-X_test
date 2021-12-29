@@ -14,7 +14,7 @@ class BasePermitBuilder
     @logger.info("default pin: #{@default_pin}")
   end
 
-  def update_form_status(status, permit_id = self.permit_id, pin = @default_pin)
+  def update_form_status(status, permit_id = @permit.permit_id, pin = @default_pin)
     request_retry = 0
     response = UpdateFormsStatusApi.new.request(permit_id, status, pin)
     while response.key?('errors')
