@@ -27,4 +27,5 @@ Given('PermitGenerator create entry permit') do |table|
   parms = table.hashes.first
   permit_generator = PermitGenerator.new(parms['entry_type'])
   permit_generator.create_entry(parms['permit_status'])
+  @permit_id = permit_generator.permit_id
 end
