@@ -69,6 +69,7 @@ class PermitGenerator
 
   def create_entry(permit_status)
     @builder.create_entry_form
+    self.permit_id = @builder.permit_id
     @builder.update_entry_answer
     @builder.update_form_status(@approve_type)
     approve_entry_permit(permit_status) unless permit_status == 'PENDING_OFFICER_APPROVAL'
