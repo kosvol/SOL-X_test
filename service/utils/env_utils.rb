@@ -21,7 +21,7 @@ module EnvUtils
   def retrieve_db_url(db_type)
     case db_type
     when 'cloud'
-      format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{ENV['ENVIRONMENT']}",
+      format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-sit",
                        server: db_type, project: ENV['PROJECT'])
     when 'edge'
       format(BASE_URL, env: "#{EDGE_CREDENTIALS}@#{retrieve_prefix}",
