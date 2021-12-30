@@ -16,10 +16,6 @@ When('SmartForms click create {string}') do |permit_type|
   @smart_form_page.click_create_new_cre_btn if permit_type.to_s.upcase == 'CRE'
 end
 
-And('SmartForms click show more on {string}') do |category|
-  @smart_form_page.click_show_more_btn(category)
-end
-
 And('SmartForms open hamburger menu') do
   @smart_form_page.click_hamburger_menu_btn
 end

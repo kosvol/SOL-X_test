@@ -1,5 +1,5 @@
 @PRE-display
-Feature: PumpRoomEntryDisplay
+Feature: Pump room entry display
   As a ...
   I want to ...
   So that ...
@@ -68,11 +68,15 @@ Feature: PumpRoomEntryDisplay
     Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
+
     And I get active PRE permit and terminate
-    When I navigate to create new PRE
-    And I enter pin via service for rank 3/O
-    And I fill up PRE. Duration 4. Delay to activate 3
+
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
     And for pre I submit permit for A C/O Approval
     And I getting a permanent number from indexedDB
     And I take note of PRE permit creator name and activate the the current PRE form
@@ -202,16 +206,35 @@ Feature: PumpRoomEntryDisplay
       | A 4/E |
 
   Scenario: Verify the PRED background color and buttons depends on the activity PRE.
-    Given I launch sol-x portal without unlinking wearable
+    Given SmartForms open page
+
     When I clear gas reader entries
     And I get active PRE permit and terminate
-    Then I navigate to create new PRE
-    And I enter pin via service for rank C/O
-    And I fill up PRE. Duration 4. Delay to activate 3
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current PRE form
-    And I activate PRE form via service
+
+    When SmartForms click create "PRE"
+    Then PinEntry enter pin for rank "C/O"
+    And PRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit verify page with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    And SignatureLocation sign off first zone area
+
+
     And I navigate to PRE Display
     And I enter pin via service for rank C/O
     And I should see Permit Activated PRE status on screen

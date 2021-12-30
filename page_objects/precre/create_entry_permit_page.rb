@@ -6,46 +6,36 @@ require_relative '../base_page'
 class CreateEntryPermitPage < BasePage
   include EnvUtils
 
-  attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id, :permit_number
+  attr_accessor :pre_permit_start_time, :pre_permit_end_time, :permit_id, :permit_duration, :temp_id,
+                :permit_index, :issue_time_date, :selected_date
 
   CREATE_ENTRY_PERMIT = {
-    heading_text: "//div[starts-with(@class,'SectionNavigation__NavigationWrapper')]/nav/h3",
+    heading_text: "//*[@id='root']/div/nav/header",
+    submit_for_approval_btn: "//*[contains(.,'Submit for Approval')]/parent::button",
     permit_validation_btn: "//button[@id='permitValidDuration']",
-    current_day_button: "//button[starts-with(@class,'Day__DayButton') and contains(@class ,'current')]",
     four_hours_duration: "//button[contains(.,'4 hours')]",
     six_hours_duration: "//button[contains(.,'6 hours')]",
     eight_hours_duration: "//button[contains(.,'8 hours')]",
-    view_btn: "//button[contains(.,'View')]",
     permit_end_time_pre: "//section[contains(@class,'Section__SectionMain')][23]/div/div[2]/p",
     permit_start_time_pre: "//section[contains(@class,'Section__SectionMain')][23]/div/div[1]/p",
     permit_start_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[1]/p",
     permit_end_time_cre: "//section[contains(@class,'Section__SectionMain')][13]/div/div[2]/p",
-    form_structure: "//div[contains(@class,'FormFieldCheckButtonGroupFactory__CheckButtonGroupContainer')]/div/span",
     reporting_interval: "//input[@id='pre_section2_reportingIntervalPeriod']",
-    pre_creator_form: "//div[contains(@class,'Cell__Description')][1]",
-    person_checkbox: "//span[@class='checkbox']",
-    enter_pin_and_apply: "//button[contains(.,'Enter Pin & Apply')]",
-    entrant_select_btn: "//span[contains(text(),'Select Entrants - Required')]",
-    entry_log_btn: "//*[starts-with(@class,'TabNavigator__TabItem')][2]/a/span",
-    input_field: "//div[starts-with(@class,'Input')]",
-    resp_off_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
-    resp_off_signature_rank: "//h3[contains(.,'Rank/Name')]",
-    signed_in_entrants: '//div/div/ul/li',
-    approve_activation: "//button[contains(.,'Approve for Activation')]",
-    smartforms_display_setting: "//span[contains(.,'SmartForms')]",
-    purpose_of_entry: "//textarea[@id='reasonForEntry']",
-    entrant_names_dd: "//span[contains(.,'Select Other Entrants - Optional')]",
     entry_log_table: "//div[@data-testid='entry-log-column']/div",
-    input_field1: "//input[starts-with(@class,'Input')]",
-    header_cell: "//div[starts-with(@class,'header-cell')]",
-    header_pwt: "//h4[starts-with(@class,'Heading__H4')]",
-    clock: '//*[@id="permitActiveAt"]/span',
+    clock_element: '//*[@id="permitActiveAt"]/span',
     confirm_btn: "//button[contains(.,'Confirm')]",
     ptw_id: 'header > h1',
     duration_timer: "//h4/strong[contains(@class,'PermitValidUntil__')]",
-    submit_for_approval_btn: "//button[contains(.,'Submit For Approval')]",
     current_day: "//button[contains(@class,'Day__DayButton')]",
-    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]"
+    next_month_button: "//button[contains(@data-testid,'calendar-next-month')]",
+    gas_added_by: 'div[role="dialog"] > div > section > div > span',
+    back_to_home_btn: "//button[contains(.,'Back to Home')]",
+    picker: "//label[contains(text(),'Start Time')]//following::button[@data-testid='hours-and-minutes']",
+    picker_hh: "//div[@class='time-picker']//div[starts-with(@class,'picker')][1]//*[contains(text(),'%s')]",
+    picker_mm: "//div[@class='time-picker']//div[starts-with(@class,'picker')][2]//*[contains(text(),'%s')]",
+    permit_validity: "//h2[contains(text(),'Permit Validity')]",
+    time_element: '//*[@id="permitActiveAt"]',
+    ptw_id_in_list: "//ul[starts-with(@class,'FormsList__Container')]/li/span"
   }.freeze
 
   def initialize(driver)
@@ -74,11 +64,6 @@ class CreateEntryPermitPage < BasePage
   def save_permit_id
     self.temp_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
     self.permit_id = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:ptw_id]).text
-    self.permit_duration = retrieve_text(CREATE_ENTRY_PERMIT[:duration_timer])
-  end
-
-  def click_submit_for_approval
-    click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
   end
 
   def verify_reporting_interval(condition)
@@ -92,7 +77,7 @@ class CreateEntryPermitPage < BasePage
   end
 
   def select_next_date(advance_days = 0)
-    find_elements(COMMON_SECTION[:current_day]).each_with_index do |element, index|
+    find_elements(CREATE_ENTRY_PERMIT[:current_day]).each_with_index do |element, index|
       next unless element.attribute('class').include? 'current'
 
       element_index = index + advance_days + 1
@@ -100,11 +85,95 @@ class CreateEntryPermitPage < BasePage
       break
     end
   rescue StandardError
-    click(COMMON_SECTION[:next_month_button])
+    click(CREATE_ENTRY_PERMIT[:next_month_button])
     find_elements("//button[contains(.,'01')]")[0].click
   end
 
+  def save_time
+    self.time = retrieve_text(CREATE_ENTRY_PERMIT[:clock_element])
+  end
+
+  def verify_crew_in_popup(rank_name)
+    crew_member_actual = @driver.find_element(:css, CREATE_ENTRY_PERMIT[:gas_added_by]).text
+    compare_string("By #{rank_name}", crew_member_actual)
+  end
+
+  def verify_alert_text(value)
+    raise 'Element verify failed' unless find_element("//div[contains(.,'#{value}')]")
+  end
+
+  def verify_element_text(value)
+    raise 'Element verify failed' unless find_element("//*[contains(text(),'#{value}')]")
+  end
+
+  def verify_label(value)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]")
+  end
+
+  def verify_page_text(value)
+    raise 'Element verify failed' unless find_element("//h2[contains(text(),'#{value}')]")
+  end
+
+  def verify_header(value)
+    raise 'Element verify failed' unless find_element("//h1[contains(text(),'#{value}')]")
+  end
+
+  def verify_button(value)
+    raise 'Element verify failed' unless find_element("//button[contains(.,'#{value}')]")
+  end
+
+  def click_back_to_home
+    click(CREATE_ENTRY_PERMIT[:back_to_home_btn])
+  end
+
+  def click_submit_for_approval
+    click(CREATE_ENTRY_PERMIT[:submit_for_approval_btn])
+  end
+
+  def click_officer_approval_btn
+    xpath_str = "//span[contains(.,'#{permit_id}')]/parent::li/div[3]/button[1]"
+    click(xpath_str)
+  end
+
+  def permit_from_indexed_db
+    permit_from_db = WorkWithIndexeddb.get_id_from_indexeddb(permit_id)
+    self.permit_id = permit_from_db
+  end
+
+  def verify_permit_in_indexed_db
+    permit_from_db = WorkWithIndexeddb.get_id_from_indexeddb(permit_id)
+    raise 'Permanent permit number not been generated' unless permit_from_db.eql?('')
+  end
+
+  def save_ptw_id_from_list
+    self.permit_id = find_element(CREATE_ENTRY_PERMIT[:ptw_id_in_list]).text
+  end
+
+  def verify_permit
+    raise 'Permit id verify fail' unless find_element("//*[contains(text(),'#{permit_id}')]")
+  end
+
   private
+
+  def picker_hh_mm(delay)
+    time = find_elements(CREATE_ENTRY_PERMIT[:time_element]).last.text
+    hh, mm = add_minutes(time, delay)
+    picker_hh = format(CREATE_ENTRY_PERMIT[:picker_hh], hh)
+    picker_mm = format(CREATE_ENTRY_PERMIT[:picker_mm], mm)
+    [picker_hh, picker_mm]
+  end
+
+  def add_minutes(time, add_mm)
+    hh, mm = time.split(':')
+    mm = mm.to_i
+    hh = hh.to_i
+    mm += add_mm.to_i
+    if mm >= 60
+      mm -= 60
+      hh += 1
+    end
+    [format('%02d', hh), format('%02d', mm)]
+  end
 
   DURATION = {
     '4' => CREATE_ENTRY_PERMIT[:four_hours_duration],

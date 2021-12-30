@@ -1,45 +1,46 @@
 @lng-cre
-Feature: LNGCRE
+Feature: Compressor room entry creation
   As a ...
   I want to ...
   So that ...
 
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
   Scenario: Verify new active CRE permit will replace existing active CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And Get CRE id
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I activate the current CRE form
-    And I activate CRE form via service
-    And I navigate to "Active" screen for CRE
-    And I should see the current CRE in the "Active CRE" list
-    When I submit a current CRE permit via service
-    And I sleep for 5 seconds
-    And I click on back arrow
-    And I navigate to "Active" screen for CRE
-    And I should not see the current CRE in the "Active CRE" list
-    Then I should see that existed CRE number not equal with number Active list
-    And I click on back arrow
-    When I navigate to "Terminated" screen for CRE
-    And I should see the current CRE in the "Closed CRE" list
+    Given SmartForms open page
+    When PermitGenerator create entry permit
+      | entry_type | permit_status |
+      | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    And CreateEntryPermit save permit id from list
+    Then CreateEntryPermit verify current permit presents in the list
+    And NavigationDrawer click go back button
+    When PermitGenerator create entry permit
+      | entry_type | permit_status |
+      | cre        | ACTIVE        |
+    And CommonSection sleep for "5" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    Then CRE verify permit not present in list
+    And NavigationDrawer click go back button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
+    Then CreateEntryPermit verify current permit presents in the list
 
   Scenario: Verify user can see all the CRE questions
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    Then I should see CRE form questions
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    And PinEntry enter pin for rank "C/O"
+    Then CRE verify form titles and questions
+    Then CRE verify form titles of sections
+    Then CRE verify form answers for questions
 
   Scenario Outline: Verify only these crew can create CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin for rank <rank>
-    Then I should see CRE landing screen
-
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "<rank>"
+    Then CRE verify landing screen is "Compressor/Motor Room Entry"
+  #need to add pins to Additional roles
     Examples:
       | rank  |
       | C/O   |
@@ -50,10 +51,10 @@ Feature: LNGCRE
       | A 3/O |
 
   Scenario Outline: Verify these crew cannot create CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin for rank <rank>
-    Then I should see not authorize error message
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "<rank>"
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
     Examples:
       | rank  |
@@ -73,93 +74,133 @@ Feature: LNGCRE
       | O/S   |
       | OLR   |
 
-
-  Scenario: Verify AGT can add gas reading in CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I add all gas readings with C/O rank
-    And I set time
-    Then I will see popup dialog with C/O LNG C/O crew rank and name
-    When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and C/O LNG C/O as gas signer
+  Scenario: Verify gas table titles are saved correct on created CRE form
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    Then CRE verify gas added by "By C/O STG C/O"
+    When GasReadings click done button on gas reader dialog box
+    Then GasReadings verify gas table titles
 
   Scenario Outline: Verify any rank can add gas reading in CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I add all gas readings with <rank> rank
-    When I dismiss gas reader dialog box
-
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    When GasReadings click done button on gas reader dialog box
+# need to add PMAN rank to auto env
     Examples:
-
-      | rank | pin  |
-      | PMAN | 4421 |
-      | ETO  | 0856 |
-      | ELC  | 2719 |
-
-  Scenario: Verify CRE Chief Officer can approve the same permit
-    Given I launch sol-x portal without unlinking wearable
-    # When I clear gas reader entries
-    When I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: C/O
-    And for cre I should see the enabled "Approve for Activation" button
+      | rank |
+      | PMAN |
+      | ETO  |
+      | ELC  |
 
   Scenario Outline: Verify CRE roles cannot approve the same permit
-    Given I launch sol-x portal without unlinking wearable
-    # When I clear gas reader entries
-    When I navigate to create new CRE
-    And I enter pin via service for rank <rank>
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for <rank> Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: <rank>
-    And for cre I should see the disabled "Approve for Activation" button
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "<rank>"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And CommonSection verify button availability
+      | button                 | availability |
+      | Approve for Activation | disabled     |
     Examples:
-
       | rank  |
       | 2/O   |
       | A 2/O |
       | 3/O   |
       | A 3/O |
 
-  Scenario: Verify non CRE creator can approve the same permit
-    Given I launch sol-x portal without unlinking wearable
-    # When I clear gas reader entries
-    When I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: A C/O
-    Then I should see CRE landing screen
+  Scenario Outline: Verify non CRE creator can approve the same permit
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And CommonSection verify button availability
+      | button                 | availability |
+      | Approve for Activation | enabled      |
+    Examples:
+      | rank  |
+      | 2/O   |
+      | 3/O   |
+      | A 3/O |
 
   Scenario Outline: Verify these roles can terminate CRE permit
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank <rank>
-    Then I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for <rank> Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current CRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for CRE
-    And I should see the current CRE in the "Scheduled" list
-    And I click on back arrow
-    And I activate CRE form via service
-    And I navigate to "Active" screen for CRE
-    And I should see the current CRE in the "Active CRE" list
-    And I click on back arrow
-    And I sleep for 1 seconds
-    Then I terminate the CRE with rank <rank>
-    When I navigate to "Terminated" screen for CRE
-    And I should see the current CRE in the "Closed CRE" list
-
+    Given SmartForms open page
+    When PermitGenerator create entry permit
+      | entry_type | permit_status |
+      | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    And CreateEntryPermit save permit id from list
+    And ActiveEntry click Submit for termination
+    Then PinEntry enter pin for rank "<rank>"
+    And ActiveEntry click Terminate button
+    Then PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify element with text "Permit Has Been Closed"
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
+    And CreateEntryPermit verify current permit presents in the list
     Examples:
       | rank  |
       | C/O   |
@@ -170,124 +211,260 @@ Feature: LNGCRE
       | A 3/O |
 
   Scenario: Verify only MAS can delete CRE permit in Created State
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I click on back arrow
-    And I navigate to "Created" screen for CRE
-    And I delete the permit created
-    Then I should see deleted permit deleted
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And NavigationDrawer click go back button
+    And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Created"
+    And CreateEntryPermit save permit id from list
+    And CreatedEntry click button Delete
+    Then PinEntry enter pin for rank "MAS"
+    Then CreatedEntry verify deleted permit not presents in list
+    And NavigationDrawer click go back button
+    And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Deleted"
+    Then CreateEntryPermit verify current permit presents in the list
 
-  Scenario: Verify user cannot send CRE for approval with start time and duration
-    Given I launch sol-x portal without unlinking wearable
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And for cre I should see the disabled "Submit for Approval" button
+  Scenario: Verify user cannot send CRE for approval without start time and duration
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | disabled     |
 
-  Scenario: Verify these roles can request update for CRE permit in Pending Approval State
-    Given I launch sol-x portal without unlinking wearable
-    # When I clear gas reader entries
-    When I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: A 3/O
-    Then I should see Approve for Activation button enabled
-    Then I should see Updates Needed button enabled
+  Scenario Outline: Verify these roles can request update for CRE permit in Pending Approval State
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And CommonSection verify button availability
+      | button         | availability |
+      | Updates Needed | enabled      |
+
+    Examples:
+      | rank  |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario: Verify CRE permit turn active on schedule time
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current CRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for CRE
-    And I should see the current CRE in the "Scheduled" list
-    And I click on back arrow
-    And I activate CRE form via service
-    And I navigate to "Active" screen for CRE
-    And I should see the current CRE in the "Active PRE" list
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry click approve for activation
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
+    And CreateEntryPermit verify current permit presents in the list
+    And NavigationDrawer click back arrow button
+    And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    And CreateEntryPermit verify current permit presents in the list
 
-  Scenario: Verify creator PRE cannot request update needed
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Rank: C/O
-    Then I should see Add Gas button enabled
-    And I should see Updates Needed button disabled
+  Scenario: Verify creator CRE cannot request update needed
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And CommonSection verify button availability
+      | button  | availability |
+      | Add Gas | disabled     |
+    And CommonSection verify button availability
+      | button         | availability |
+      | Updates Needed | disabled     |
 
   Scenario: The Responsible Officer Signature should be displayed CRE
     Given SmartForms open page
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 10
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: C/O
-    And Pre save current start and end validity time for CRE
-    And I check "Responsible Officer Signature" is present
-    When I press the "Approve for Activation" button
-    And I sign with valid C/O rank
-    And I should see the page 'Permit Successfully Scheduled for Activation'
-    Then I press the "Back to Home" button
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for CRE
-    And I should see the current CRE in the "Scheduled" list
-    When I view permit with C/O rank
-    And I check "Responsible Officer Signature" is present
+    When PermitGenerator create entry permit
+      | entry_type | permit_status           |
+      | cre        | APPROVED_FOR_ACTIVATION |
+    And CommonSection sleep for "1" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Scheduled"
+    And CreateEntryPermit verify current permit presents in the list
+    And ScheduledEntry open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    And CommonSection check Responsible Officer Signature
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
-    Given I launch sol-x portal without unlinking wearable
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: C/O
-    And Pre save current start and end validity time for CRE
-    When I press the "Approve for Activation" button
-    And I sign with valid C/O rank
-    And I should see the page 'Permit Successfully Scheduled for Activation'
-    Then I press the "Back to Home" button
-    And I sleep for 1 seconds
-    And I activate CRE form via service
-    And I sleep for 10 seconds
-    Then I terminate the CRE permit via service
-    When I navigate to "Terminated" screen for CRE
-    And I should see the current CRE in the "Terminated" list
-    When I view permit with C/O rank
-    And I check "Responsible Officer Signature" is present
+    Given SmartForms open page
+    When PermitGenerator create entry permit
+      | entry_type | permit_status |
+      | cre        | ACTIVE        |
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    And CreateEntryPermit save permit id from list
+    And ActiveEntry click Submit for termination
+    Then PinEntry enter pin for rank "C/O"
+    And ActiveEntry click Terminate button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Terminated"
+    And CreateEntryPermit verify current permit presents in the list
+    And TerminatedEntry open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    And CommonSection check Responsible Officer Signature
+      | rank        | zone                  |
+      | C/O STG C/O | No. 1 Cargo Tank Port |
 
   Scenario: Gas Reader location stamp should not be missing
-    Given I launch sol-x portal
-    When I link wearable to rank C/O to zone
-    When I clear gas reader entries
-    And I navigate to create new CRE
-    And I enter pin via service for rank C/O
-    And I fill up with gas readings CRE. Duration 4. Delay to activate 3
-    And for cre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    And I open the current CRE with status Pending approval. Rank: C/O
-    And Pre save current start and end validity time for CRE
-    When I press the "Approve for Activation" button
-    And I sign with valid C/O rank
-    And I should see the page 'Permit Successfully Scheduled for Activation'
-    Then I press the "Back to Home" button
-    And I sleep for 1 seconds
-    And I activate CRE form via service
-    And I sleep for 1 seconds
-    When I navigate to "Active" screen for CRE
-    When I view permit with C/O rank
-    Then I check location in gas readings signature is present
+    Given SmartForms open page
+    Then Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank | zone_id       | mac               |
+      | C/O  | Z-AFT-STATION | 00:00:00:00:00:10 |
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "C/O"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry click approve for activation
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    Then CreateEntryPermit click Back to Home button
+    And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Active"
+    And ActiveEntry open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    Then GasReadings verify location in sign
+      | location              |
+      | No. 1 Cargo Tank Port |
 
+  Scenario Outline: Verify Chief Officer can activate his/her own CRE permit
+    Given SmartForms open page
+    When SmartForms click create "CRE"
+    Then PinEntry enter pin for rank "<rank>"
+    And CRE fill up permit
+      | duration | delay to activate |
+      | 4        | 3                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Compressor Motor Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And PendingApprovalEntry click approve for activation
+    Then PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+
+    Examples:
+      | rank  |
+      | C/O   |
+      | A C/O |

@@ -16,7 +16,10 @@ class CommonSectionPage < BasePage
     sign_btn: "//button[contains(.,'Sign')]",
     done_button: "//button[contains(.,'Done')]",
     back_btn: "//button[contains(.,'Back')]",
-    close_btn: "//button[contains(.,'Close')]"
+    close_btn: "//button[contains(.,'Close')]",
+    parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
+    resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
+    resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]"
   }.freeze
 
   def initialize(driver)
@@ -56,6 +59,17 @@ class CommonSectionPage < BasePage
 
   def click_close_btn
     click(COMMON_SECTION[:close_btn])
+  end
+
+  def verify_button(text, option)
+    verify_btn_availability("//*[contains(.,'#{text}')]", option)
+  end
+
+  def check_ra_signature(rank, location)
+    compare_string(retrieve_text(COMMON_SECTION[:resp_of_signature]), 'Responsible Officer Signature:')
+    compare_string(retrieve_text(COMMON_SECTION[:resp_of_sig_rank]), 'Rank/Name')
+    find_element("//*[contains(.,'#{rank}')]")
+    find_element("//*[contains(.,'#{location}')]")
   end
 end
 

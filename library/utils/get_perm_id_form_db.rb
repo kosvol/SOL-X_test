@@ -10,15 +10,15 @@ module WorkWithIndexeddb
 
     private
 
-    def open_indexdb(temp_id, formId)
+    def open_indexdb(temp_id, form_id)
       @browser.execute_script("openRequest = indexedDB.open('safevue')")
       @browser.execute_script('db = openRequest.result')
       @browser.execute_script("res = db.transaction(['idMap'], 'readonly').objectStore('idMap').get('%s')" % temp_id)
-      @browser.execute_script("return res.result['#{formId}']")
+      @browser.execute_script("return res.result['#{form_id}']")
     rescue StandardError
       sleep 2
       p 'Retryinggg.....'
-      open_indexdb(temp_id, formId)
+      open_indexdb(temp_id, form_id)
     end
 
     # def access_indexdb_data(_data)
