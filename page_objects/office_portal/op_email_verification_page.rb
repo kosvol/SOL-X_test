@@ -11,6 +11,8 @@ class OPEmailVerificationPage < BasePage
     app_logo: "//div[@id='background_branding_container']//img[@class='app-logo']",
     portal_name: "//div[@id='background_branding_container']//img[@class='app-logo']/following-sibling::span",
     account_heading: "//h1[@class='reset-password-heading']",
+    account_error: "//div[@id='emailVerificationControl_error_message']",
+    email_error: "//label[contains(text(),'Email')]/following-sibling::div",
     account_description: "//div[@class='verificationSuccessText']",
     email_heading: "//label[contains(text(),'Email')]",
     email_field: "//input[@id='email']",
