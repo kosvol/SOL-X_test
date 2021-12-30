@@ -2,7 +2,7 @@
 
 require_relative 'base_page'
 
-# entry display page object
+# Entry display page object
 class EntryDisplay < BasePage
 
   ENTRY_DISPLAY = {

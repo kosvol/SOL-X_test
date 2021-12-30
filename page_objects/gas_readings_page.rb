@@ -8,7 +8,6 @@ class GasReadingsPage < BasePage
   GAS_INFORMATION = {
     gas_equipment_input: "//input[@id='gasEquipment']",
     gas_sr_number_input: "//input[@id='gasSrNumber']",
-    last_calibration_btn: "//button[@id='gasLastCalibrationDate']",
     remove_toxic_btn: "//button[contains(.,'Remove')]",
     toxic_gas_rows: "//li[starts-with(@class,'GasReadingListItem')]",
     add_gas_btn: "//button[contains(.,'Add Gas Test Record')]",

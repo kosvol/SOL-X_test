@@ -2,9 +2,9 @@
 
 require_relative '../../../../page_objects/office_portal/op_email_verification_page'
 
-Then ('EmailVerification should see all the page attributes') do
+Then('EmailVerification should see all the page attributes') do
   @op_email_verification ||= OPEmailVerificationPage.new(@driver)
-  @op_email_verification.verify_verification_page_attributes
+  @op_email_verification.verify_verification_page_att
 end
 
 
