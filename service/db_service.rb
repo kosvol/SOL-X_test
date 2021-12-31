@@ -12,9 +12,7 @@ class DBService
   end
 
   def retrieve_table(db_type, table)
-    response = @couch_db_api.get_request(db_type, table)
-    @logger.info("retrieve #{table} response: #{response}")
-    response
+    @couch_db_api.get_request(db_type, table)
   end
 
   def delete_table(db_type, table, table_response)
