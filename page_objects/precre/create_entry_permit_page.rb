@@ -34,7 +34,7 @@ class CreateEntryPermitPage < BasePage
   def select_permit_duration(duration)
     scroll_click(CREATE_ENTRY_PERMIT[:permit_validation_btn])
     scroll_times_direction(5, 'down')
-    click(DURATION[duration])
+    click("//button[contains(.,'#{duration} hours')]")
   end
 
   def save_permit_id
@@ -117,11 +117,5 @@ class CreateEntryPermitPage < BasePage
     end
     [format('%02d', hh), format('%02d', mm)]
   end
-
-  DURATION = {
-    '4' => "//button[contains(.,'4 hours')]",
-    '6' => "//button[contains(.,'6 hours')]",
-    '8' => "//button[contains(.,'8 hours')]"
-  }.freeze
 
 end
