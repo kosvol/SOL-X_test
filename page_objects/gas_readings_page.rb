@@ -10,12 +10,11 @@ class GasReadingsPage < BasePage
     gas_sr_number_input: "//input[@id='gasSrNumber']",
     remove_toxic_btn: "//button[contains(.,'Remove')]",
     toxic_gas_rows: "//li[starts-with(@class,'GasReadingListItem')]",
-    add_gas_btn: "//button[contains(.,'Add Gas Test Record')]",
     add_toxic_gas_btn: "//button[contains(.,'Add Toxic Gas')]",
-    review_sign_btn: "//button[contains(.,'Review & Sign')]",
     continue_btn: "//button[contains(.,'Continue')]",
     enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)',
     toxic_delete_btn: '//button[@aria-label="Delete"]',
+    button_template: "//button[contains(.,'%s')]",
     done_btn: '//button[contains(.,"Done")]',
     show_signature_btn: "//button[@data-testid='show-signature-display']"
   }.freeze
@@ -37,11 +36,11 @@ class GasReadingsPage < BasePage
     enter_text(GAS_INFORMATION[:gas_sr_number_input], 'Test Automation')
   end
 
-  def add_normal_gas_readings(o2, hc, h2s, co)
-    enter_text(GAS_READINGS[:o2_input], o2)
-    enter_text(GAS_READINGS[:hc_input], hc)
+  def add_normal_gas_readings(o2_gas, hc_gas, h2s, co_gas)
+    enter_text(GAS_READINGS[:o2_input], o2_gas)
+    enter_text(GAS_READINGS[:hc_input], hc_gas)
     enter_text(GAS_READINGS[:h2s_input], h2s)
-    enter_text(GAS_READINGS[:co_input], co)
+    enter_text(GAS_READINGS[:co_input], co_gas)
     click(GAS_INFORMATION[:continue_btn])
   end
 
@@ -53,20 +52,17 @@ class GasReadingsPage < BasePage
     click(GAS_INFORMATION[:add_toxic_gas_btn])
   end
 
-  def click_add_gas_button
-    scroll_click(GAS_INFORMATION[:add_gas_btn])
-  end
-
-  def click_review_and_sign
-    scroll_click(GAS_INFORMATION[:review_sign_btn])
-  end
-
   def click_pin_and_submit
     @driver.find_element(:css, GAS_INFORMATION[:enter_pin_and_submit_btn]).click
   end
 
   def click_done_button
     find_elements(GAS_INFORMATION[:done_btn]).first.click
+  end
+
+  def click_button(button_name)
+    button_xpath = GAS_INFORMATION[:button_template] % button_name
+    scroll_click(button_xpath)
   end
 
   def verify_gas_table_titles

@@ -60,6 +60,11 @@ class NavigationDrawerPage < BasePage
     click(NAVIGATION[:view_button])
   end
 
+  def expand_all_menu_items
+    scroll_click(NAVIGATION[:entry_show_more_ptw])
+    scroll_click(NAVIGATION[:entry_show_more_entry])
+  end
+
   private
 
   def return_background_color
