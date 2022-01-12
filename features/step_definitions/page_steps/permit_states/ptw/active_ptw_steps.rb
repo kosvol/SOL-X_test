@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../../../page_objects/permit_states/active_ptw_page'
+require_relative '../../../../../page_objects/permit_states/ptw/active_ptw_page'
 
 And(%r{ActivePTW click View/Terminate button}) do
   @active_ptw ||= ActivePTWPage.new(@driver)

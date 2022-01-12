@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../base_page'
+require_relative '../../base_page'
 
 # ActiveEntryPage object
 class ActiveEntryPage < BasePage

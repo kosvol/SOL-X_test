@@ -2,18 +2,19 @@
 
 require_relative '../base_page'
 
-#OPEmailVerificationPage objects
+# OPEmailVerificationPage objects
 class OPEmailVerificationPage < BasePage
   include EnvUtils
+
   OP_EMAIL_VERIFICATION = {
     company_logo: "//img[@class='company-logo-img']",
     app_logo: "//div[@id='background_branding_container']//img[@class='app-logo']",
     portal_name: "//div[@id='background_branding_container']//img[@class='app-logo']/following-sibling::span",
     account_heading: "//h1[@class='reset-password-heading']",
-    account_description: "//div[@class='verificationSuccessText']",
     account_error: "//div[@id='emailVerificationControl_error_message']",
-    email_heading: "//label[contains(text(),'Email')]",
     email_error: "//label[contains(text(),'Email')]/following-sibling::div",
+    account_description: "//div[@class='verificationSuccessText']",
+    email_heading: "//label[contains(text(),'Email')]",
     email_field: "//input[@id='email']",
     verification_heading: "//label[contains(text(),'Verification Code')]",
     verification_error: "//label[contains(text(),'Verification Code')]/following-sibling::div",
@@ -30,7 +31,7 @@ class OPEmailVerificationPage < BasePage
     find_element(OP_EMAIL_VERIFICATION[:send_code_btn])
   end
 
-  def verify_verification_page_attributes
+  def verify_verification_page_attr
     find_element(OP_EMAIL_VERIFICATION[:cancel_btn])
     find_element(OP_EMAIL_VERIFICATION[:send_code_btn])
     verify_logos_and_names
@@ -99,7 +100,7 @@ class OPEmailVerificationPage < BasePage
     compare_string(expected_items['portal_name'], retrieve_text(OP_EMAIL_VERIFICATION[:portal_name]))
     compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
     compare_string(expected_items['portal_footer'], retrieve_text(OP_EMAIL_VERIFICATION[:page_footer]))
-end
+  end
 
   def verify_email_block
     portal_placeholder = YAML.load_file('data/office-portal/common_items.yml')['portal_placeholder']

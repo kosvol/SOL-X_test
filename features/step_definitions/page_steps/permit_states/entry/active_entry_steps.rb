@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../../../page_objects/permit_states/active_entry_page'
+
+require_relative '../../../../../page_objects/permit_states/entry/active_entry_page'
 
 And('ActiveEntry click Submit for termination') do
   @active_entry_page ||= ActiveEntryPage.new(@driver)

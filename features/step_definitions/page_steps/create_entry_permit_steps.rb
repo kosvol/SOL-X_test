@@ -1,11 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../../page_objects/precre/create_entry_permit_page'
 
-#I take note of start and end validity time for (.*)
-And('CreateEntryPermit save current start and end validity time for {string}') do |permit_type|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.retrieve_start_end_time(permit_type)
-end
+require_relative '../../../page_objects/precre/create_entry_permit_page'
 
 #And(/^Get (PRE|CRE|PWT) id$/) do |permit_type|
 And('CreateEntryPermit save permit id') do
@@ -17,11 +12,6 @@ end
 Then('CreateEntryPermit click Submit for Approval button') do
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.click_submit_for_approval
-end
-
-And('CreateEntryPermit select next date') do
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.select_next_date
 end
 
 And('CreateEntryPermit verify popup dialog with {string} crew member') do |rank_name|
@@ -38,26 +28,6 @@ end
 And('CreateEntryPermit verify element with text {string}') do |text|
   @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
   @create_entry_permit_page.verify_element_text(text)
-end
-
-And('CreateEntryPermit verify alert text {string}') do |text|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_alert_text(text)
-end
-
-And('CreateEntryPermit verify header text {string}') do |text|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_header(text)
-end
-
-And('CreateEntryPermit verify button text {string}') do |text|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_button(text)
-end
-
-And('CreateEntryPermit verify label {string}') do |text|
-  @create_entry_permit_page ||= CreateEntryPermitPage.new(@driver)
-  @create_entry_permit_page.verify_label(text)
 end
 
 Then('CreateEntryPermit click Back to Home button') do

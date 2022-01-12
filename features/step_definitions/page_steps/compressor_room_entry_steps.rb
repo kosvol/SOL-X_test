@@ -2,7 +2,6 @@
 
 require_relative '../../../page_objects/precre/compressor_room_entry_page'
 
-
 Then('CRE fill up permit') do |table|
   @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
   params = table.hashes.first

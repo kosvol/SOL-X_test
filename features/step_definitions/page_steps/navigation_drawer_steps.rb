@@ -3,9 +3,9 @@
 require_relative '../../../page_objects/navigation_drawer_page'
 
 
-And('NavigationDrawer click show more on {string}') do |category|
+And('NavigationDrawer expand all menu items') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.click_show_more_btn(category)
+  @navigation_drawer_page.expand_all_menu_items
 end
 
 And('NavigationDrawer verify hamburger categories') do

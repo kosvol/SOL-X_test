@@ -2,7 +2,6 @@
 
 require_relative 'base_page'
 
-
 # SmartFormsPage object
 class SmartFormsPage < BasePage
   include EnvUtils

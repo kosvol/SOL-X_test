@@ -3,7 +3,7 @@ Feature: Pump room entry permit creation
   As a ...
   I want to ...
   So that ...
-@wip
+
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
     When  PermitGenerator create entry permit
@@ -19,8 +19,7 @@ Feature: Pump room entry permit creation
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page
     Then SmartForms open hamburger menu
-    And NavigationDrawer click show more on "PRE"
-    And NavigationDrawer click show more on "Forms"
+    And NavigationDrawer expand all menu items
     And NavigationDrawer verify hamburger categories
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE

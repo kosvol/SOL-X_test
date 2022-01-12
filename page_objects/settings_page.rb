@@ -2,7 +2,7 @@
 
 require_relative 'base_page'
 
-# settings page object
+# Settings page object
 class SettingPage < BasePage
 
   SETTINGS = {

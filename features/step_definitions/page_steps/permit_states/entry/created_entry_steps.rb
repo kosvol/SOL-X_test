@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../../../page_objects/permit_states/created_entry_page'
-require_relative '../../../../page_objects/precre/create_entry_permit_page'
+
+require_relative '../../../../../page_objects/permit_states/entry/created_entry_page'
 
 And('CreatedEntry click first permit') do
   @created_entry_page ||= CreatedEntryPage.new(@driver)

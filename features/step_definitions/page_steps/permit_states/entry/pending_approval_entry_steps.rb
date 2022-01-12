@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../../../page_objects/permit_states/pending_approval_entry_page'
+require_relative '../../../../../page_objects/permit_states/entry/pending_approval_entry_page'
 
 And('PendingApprovalEntry request for update') do
   @pending_approval_entry_page ||= PendingApprovalEntryPage.new(@driver)

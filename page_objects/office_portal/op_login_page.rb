@@ -2,7 +2,7 @@
 
 require_relative '../base_page'
 
-#OPLoginPage objects
+# OPLoginPage objects
 class OPLoginPage < BasePage
   include EnvUtils
 
