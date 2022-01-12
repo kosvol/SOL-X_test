@@ -15,15 +15,22 @@ module EnvUtils
   end
 
   def retrieve_api_url
-    "#{generate_base_url}:#{API_PORT}"
+    if ENV['APPLICATION'] == 'office_portal'
+      "#{format(BASE_URL, env: "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}", server: 'edge',
+                          project: ENV['PROJECT'])}:#{API_PORT}"
+    else
+      "#{generate_base_url}:#{API_PORT}"
+    end
   end
 
   def retrieve_db_url(db_type)
     case db_type
     when 'cloud'
-      "#{CLOUD_CREDENTIALS}@#{generate_base_url}"
+      format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{ENV['ENVIRONMENT']}",
+             server: db_type, project: ENV['PROJECT'])
     when 'edge'
-      "#{EDGE_CREDENTIALS}@#{generate_base_url}:5984"
+      format(BASE_URL, env: "#{EDGE_CREDENTIALS}@#{retrieve_prefix}",
+             server: db_type, project: ENV['PROJECT']).insert(-1, ':5984')
     else
       "#{db_type} is not supported"
     end
@@ -41,7 +48,7 @@ module EnvUtils
     if ENV['APPLICATION'] == 'office_portal'
       generate_base_url
     else
-      "#{generate_base_url}:8080"
+      "#{generate_base_url}:#{UI_PORT}"
     end
   end
 

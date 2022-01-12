@@ -18,6 +18,8 @@ Given(/^PermitGenerator create permit$/) do |table|
     raise "#{parms['permit_status']} is not implemented"
   end
   @permit_id = permit_generator.permit_id
+  @eic_condition = parms['eic']
+  @gas_reading_condition = parms['gas_reading']
 end
 
 Given(/^PermitGenerator create entry permit$/) do |table|

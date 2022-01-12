@@ -16,7 +16,7 @@ office_approval:
   get_staff_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.safevue.ai/office_staff/_find
   office_portal: https://office-sit.cloud.solx.safevue.ai/
   office_portal_permit_view: https://office-sit.cloud.solx.safevue.ai/permit-overview?formId=%s
-  password: Solxqa12345!
+  password: Solxtester12345!
 postgres:
   safevue:
     database: safevue_sit
