@@ -36,10 +36,10 @@ class GasReadingsPage < BasePage
     enter_text(GAS_INFORMATION[:gas_sr_number_input], 'Test Automation')
   end
 
-  def add_normal_gas_readings(o2_gas, hc_gas, h2s, co_gas)
+  def add_normal_gas_readings(o2_gas, hc_gas, h2s_gas, co_gas)
     enter_text(GAS_READINGS[:o2_input], o2_gas)
     enter_text(GAS_READINGS[:hc_input], hc_gas)
-    enter_text(GAS_READINGS[:h2s_input], h2s)
+    enter_text(GAS_READINGS[:h2s_input], h2s_gas)
     enter_text(GAS_READINGS[:co_input], co_gas)
     click(GAS_INFORMATION[:continue_btn])
   end
