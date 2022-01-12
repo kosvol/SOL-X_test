@@ -40,3 +40,16 @@ Given('CommonSection click Next button') do
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.click_next_btn
 end
+
+And('CommonSection verify button availability') do |table|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  params = table.hashes.first
+  @common_section_page.verify_button(params['button'], params['availability'])
+end
+
+Then('CommonSection check Responsible Officer Signature') do |table|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  params = table.hashes.first
+  @common_section_page.check_ra_signature(params['rank'], params['zone'])
+end
+

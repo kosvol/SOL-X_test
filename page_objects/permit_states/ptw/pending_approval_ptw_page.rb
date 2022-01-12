@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../base_page'
+require_relative '../base_permit_states_page'
 
 # PendingApprovalPTWPage object
-class PendingApprovalPTWPage < BasePage
+class PendingApprovalPTWPage < BasePermitStatesPage
   include EnvUtils
   PENDING_APPROVAL_PTW = {
     page_header: "//h1[contains(.,'Pending Approval Permits to Work')]",
@@ -16,6 +16,9 @@ class PendingApprovalPTWPage < BasePage
   end
 
   def click_approval_btn(permit_id)
-    click(PENDING_APPROVAL_PTW[:approval_btn] % permit_id)
+    permit_xpath = PENDING_APPROVAL_PTW[:approval_btn] % permit_id
+    wait_for_permit_display(permit_xpath)
+    click(permit_xpath)
   end
+
 end

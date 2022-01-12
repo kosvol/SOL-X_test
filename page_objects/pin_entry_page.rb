@@ -2,6 +2,7 @@
 
 require_relative '../service/utils/user_service'
 require_relative 'base_page'
+
 # PinEntryPage object
 class PinEntryPage < BasePage
 

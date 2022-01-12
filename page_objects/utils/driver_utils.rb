@@ -48,7 +48,7 @@ module DriverUtils
   end
 
   def scroll_times_direction(time, direct)
-    time.times do
+    time.to_i.times do
       scroll_by_dist(0, 250) if direct == 'down'
       scroll_by_dist(0, -350) if direct == 'up'
     end

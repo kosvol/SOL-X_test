@@ -6,33 +6,21 @@ Feature: Pump room entry permit creation
 
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
-    When SmartForms click create "PRE"
-    Then PinEntry enter pin for rank "C/O"
-    And PRE fill up permit
-      | duration | delay to activate |
-      | 4        | 3                 |
-    And GasReadings fill equipment fields
-    And GasReadings click add gas readings
-    Then PinEntry enter pin for rank "C/O"
-    And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
-    And GasReadings click Review & Sign button
-    And SignatureLocation sign off first zone area
-    And CreateEntryPermit save permit id
-    And CreateEntryPermit click Submit for Approval button
-    Then PinEntry enter pin for rank "C/O"
-    And SignatureLocation sign off first zone area
-
-
-    Given I fill and submit PRE permit details via service
-   # Then I should see no new entry log message
+    When  PermitGenerator create entry permit
+      | entry_type | permit_status |
+      | pre        | ACTIVE        |
+    Then SmartForms open hamburger menu
+    When NavigationDrawer navigate to settings
+    And Setting select mode for "PRE"
+    And PinEntry enter pin for rank "C/O"
+    And EntryDisplay wait for permit active
+    Then I should see no new entry log message
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page
-    When SmartForms open hamburger menu
-    And SmartForms click show more on "PRE"
-    And SmartForms click show more on "Forms"
-    And SmartForms verify hamburger categories
+    Then SmartForms open hamburger menu
+    And NavigationDrawer expand all menu items
+    And NavigationDrawer verify hamburger categories
 
   Scenario Outline: Verify only Pump Room Entry RO can create PRE
     Given SmartForms open page
@@ -84,10 +72,20 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     Then PRE verify alert message "Please select the start time and duration before submitting."
-    And Button "Submit for Approval" should be disabled
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | disabled     |
     Then PRE select Permit Duration <duration>
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     Then PRE verify alert message "Please select the start time and duration before submitting." does not show up
-    And Button "Submit for Approval" should not be disabled
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | enabled      |
 
     Examples:
       | duration |
@@ -105,11 +103,11 @@ Feature: Pump room entry permit creation
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And PRE "should not" see Reporting interval
+    And CreateEntryPermit "should not" see Reporting interval
     Then PRE answer question
       | answer | question                                                                  |
       | Yes    | Are the personnel entering the pump room aware of the reporting interval? |
-    And PRE "should" see Reporting interval
+    And CreateEntryPermit "should" see Reporting interval
 
   Scenario: Verify user can add Gas Test Record with toxic gas
     Given SmartForms open page
@@ -121,10 +119,10 @@ Feature: Pump room entry permit creation
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I set time
-    Then I will see popup dialog with C/O COT C/O crew rank and name
-    When I dismiss gas reader dialog box
-    Then I should see gas reading display with toxic gas and C/O COT C/O as gas signer
+    And CreateEntryPermit verify popup dialog with "C/O STG C/O" crew member
+    When GasReadings click done button on gas reader dialog box
+    And PRE scroll "down" direction 2 times
+    Then GasReadings verify gas table titles
 
   Scenario: Verify PRE can be terminated manually
     Given SmartForms open page
@@ -133,21 +131,54 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for PRE
-    And I should see the current PRE in the "Scheduled" list
-    And I click on back arrow
-    And I sleep for 180 seconds
-    And I navigate to "Active" screen for PRE
-    And I should see the current PRE in the "Active PRE" list
-    And I click on back arrow
-    Then I terminate the PRE
-    When I navigate to "Terminated" screen for PRE
-    And I should see the current PRE in the "Closed PRE" list
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry click approve for activation
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Scheduled"
+    Then CreateEntryPermit verify current permit presents in the list
+    And NavigationDrawer click back arrow button
+    And CommonSection sleep for "180" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Active"
+    Then CreateEntryPermit verify current permit presents in the list
+    And ActiveEntry click Submit for termination
+    Then PinEntry enter pin for rank "C/O"
+    And ActiveEntry click Terminate button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CreateEntryPermit verify element with text "Permit Has Been Closed"
+    And CommonSection sleep for "1" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Terminated"
+    Then CreateEntryPermit verify current permit presents in the list
 
   Scenario: Verify Update needed text can be input and displayed after
     Given SmartForms open page
@@ -156,39 +187,83 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
-    Then I request update needed
-    And for pre I should see update needed message
+    And CreateEntryPermit click Back to Home button
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry request for update
+    And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
+    And CommonSection sleep for "1" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Updates Needed"
+    Then UpdatesNeededEntry click Edit Update button
+    Then PinEntry enter pin for rank "C/O"
+    And CreateEntryPermit verify element with text "Comments from Approving Authority"
+    And CreateEntryPermit verify element with text "Test Automation"
 
   Scenario: Verify creator PRE cannot request update needed
     Given SmartForms open page
-    When SmartForms click create "PRE"
+    When PermitGenerator create entry permit
+      | entry_type | permit_status            |
+      | pre        | PENDING_OFFICER_APPROVAL |
+    And CommonSection sleep for "2" sec
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
     Then PinEntry enter pin for rank "C/O"
-    And PRE fill up permit
-      | duration | delay to activate |
-      | 4        | 2                 |
-    And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Rank: C/O
-    And for pre I should see the disabled "Updates Needed" button
+    And CommonSection verify button availability
+      | button         | availability |
+      | Updates Needed | disabled     |
 
-  Scenario: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
+  Scenario Outline: Verify NOT Pump Room Entry RO CANNOT request Update needed and Approve for Activation. Only Close button
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And CommonSection sleep for "2" sec
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 2 seconds
-    And I getting a permanent number from indexedDB
-    Then (table) Buttons should be missing for the following role:
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And PRE scroll "down" direction 2 times
+    And PendingApprovalEntry verify buttons for not Pump Room Entry RO rank
+
+    Examples:
+      | rank  |
       | MAS   |
       | A/M   |
       | ETO   |
@@ -205,45 +280,62 @@ Feature: Pump room entry permit creation
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
     And CreateEntryPermit save permit id
-    Then I press the "Close" button
-    And I getting a permanent number from indexedDB
-    And I navigate to "Created" screen for PRE
-    Then I should see the current PRE in the "Created PRE" list
+    Then CommonSection click Close button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Created"
+    Then CreateEntryPermit set permanent permit number from IndexedDB
+    Then CreateEntryPermit verify current permit presents in the list
 
-  Scenario Outline: Verify a creator PRE cannot activate PRE. Exception: Chief Officer
+  Scenario Outline: Verify a creator PRE cannot activate PRE
     Given SmartForms open page
     When SmartForms click create "PRE"
-    Then PinEntry enter pin for rank "C/O"
+    Then PinEntry enter pin for rank "<rank>"
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I sleep for 5 seconds
-    And I getting a permanent number from indexedDB
-    Then I open the current PRE with status Pending approval. Rank: <rank>
-    And for pre I should see the <condition> "Approve for Activation" button
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "<rank>"
+    And CommonSection verify button availability
+      | button                 | availability |
+      | Approve for Activation | disabled     |
 
     Examples:
-      | rank  | condition |
-      | C/O   | enabled   |
-      | A C/O | disabled  |
-      | 2/O   | disabled  |
-      | A 2/O | disabled  |
-      | 3/O   | disabled  |
-      | A 3/O | disabled  |
+      | rank  |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
 
   Scenario: A temporary number should correctly become permanent. The form must be available by the permanent number.
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    And I get a temporary number and writing it down
-    Then I sleep for 3 seconds
-    And I should see the text 'Permit Updated'
-    Then I getting a permanent number from indexedDB
-    And I navigate to "Created" screen for PRE
-    And I should see the current PRE in the "Created" list
-    Then I edit pre and should see the old number previously written down
+    And CreateEntryPermit save permit id
+    And NavigationDrawer click back arrow button
+    And CreateEntryPermit verify element with text "Permit Updated"
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Created"
+    And CreateEntryPermit verify permanent number presents in IndexedDB
+    Then CreateEntryPermit set permanent permit number from IndexedDB
+    Then CreateEntryPermit verify current permit presents in the list
 
   Scenario: The Responsible Officer Signature should be displayed PRE
     Given SmartForms open page
@@ -252,25 +344,68 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 2                 |
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
     And CreateEntryPermit save permit id
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I activate the current PRE form
-    And I sleep for 1 seconds
-    When I navigate to "Scheduled" screen for PRE
-    And I should see the current PRE in the "Scheduled" list
-    When I view permit with C/O rank
-    And I check "Responsible Officer Signature" is present
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry click approve for activation
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Permit Successfully Scheduled for Activation"
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Scheduled"
+    And CreateEntryPermit verify current permit presents in the list
+    And ScheduledEntry open current permit for view
+    Then PinEntry enter pin for rank "C/O"
+    And CommonSection check Responsible Officer Signature
 
   Scenario: Permit Validity date should match the final date selected from the date picker
     Given SmartForms open page
     When SmartForms click create "PRE"
     Then PinEntry enter pin for rank "C/O"
-    Then I fill up PRE Duration 4 Delay to activate 3 with custom days 1 in Future from current
-    And for pre I submit permit for C/O Approval
-    And I getting a permanent number from indexedDB
-    And I navigate to "Pending Approval" screen for PRE
-    Then I check scheduled date
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And PRE scroll "up" direction 1 times
+    And PRE fill up permit in future
+      | duration | delay to activate | days |
+      | 4        | 3                 | 1    |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    Then PRE verify scheduled date
 
   Scenario Outline: Pure Gas Tester2 should not be able to edit gas reading
     Given SmartForms open page
@@ -279,10 +414,40 @@ Feature: Pump room entry permit creation
     And PRE fill up permit
       | duration | delay to activate |
       | 4        | 3                 |
-    And for pre I submit permit for A C/O Approval
-    And I getting a permanent number from indexedDB
-    Then I request update needed
-    And I should see that form is open for read by rank <rank>
+    And GasReadings fill equipment fields
+    And GasReadings click add gas readings
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And CreateEntryPermit click Submit for Approval button
+    Then PinEntry enter pin for rank "C/O"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "2" sec
+    And CreateEntryPermit verify page with text "Successfully Submitted"
+    And CreateEntryPermit save permit id
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Pending Approval"
+    When CreateEntryPermit click Officer Approval button
+    Then PinEntry enter pin for rank "C/O"
+    And PendingApprovalEntry request for update
+    And CreateEntryPermit verify element with text "Your Updates Have Been Successfully Requested"
+    And CommonSection sleep for "1" sec
+    And CreateEntryPermit click Back to Home button
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Pump Room "Updates Needed"
+    Then UpdatesNeededEntry click Edit Update button
+    Then PinEntry enter pin for rank "<rank>"
+    And CommonSection verify button availability
+      | button              | availability |
+      | Submit for Approval | disabled     |
+    And CommonSection verify button availability
+      | button              | availability |
+      | Add Gas Test Record | disabled     |
 
     Examples:
       | rank  |
@@ -300,4 +465,3 @@ Feature: Pump room entry permit creation
       | PMN   |
       | FTR   |
       | OLR   |
-
