@@ -8,7 +8,9 @@ class SectionSevenPage < BasePage
   SECTION_SEVEN = {
     section_header: "//h3[contains(.,'Section 7: Validity of Permit')]",
     active_btn: "//button[contains(., 'Activate Permit To Work')]",
-    request_update_btn: "//button[contains(., 'Request Updates')]"
+    request_update_btn: "//button[contains(., 'Request Updates')]",
+    permit_issued_on: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",
+    permit_valid_until: "(//*[starts-with(@class,'AnswerComponent__Answer')])[2]"
   }.freeze
 
 

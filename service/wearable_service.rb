@@ -44,5 +44,3 @@ class WearableService
     end
   end
 end
-
-

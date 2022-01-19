@@ -100,7 +100,6 @@ class PermitGenerator
   def update_pending_status
     if @approve_type == 'PENDING_OFFICE_APPROVAL'
       @builder.update_form_status('PENDING_MASTER_REVIEW')
-      @builder.update_form_status('PENDING_OFFICE_APPROVAL')
     else
       @builder.update_form_status('PENDING_MASTER_APPROVAL')
     end
