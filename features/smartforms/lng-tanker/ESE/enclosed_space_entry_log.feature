@@ -5,41 +5,68 @@ Feature: EnclosedSpaceEntryLog
   So that ...
 
   Scenario: Check Enclosed Spaces Entry log is empty
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    When SmartForms open page
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
     Then I should see no new entry log message
 
   Scenario: Check button Send Report is disabled
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    When SmartForms open page
+
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
-    And I enter new entry log
+
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     Then I check the Send Report button is disabled
 
   Scenario: Check button Send Report is enabled
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    When SmartForms open page
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 5 required entrants
     Then I check the Send Report button is enabled
 
   Scenario: Check enabled selected Entrants on New Entry page
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 5 required entrants
     Then I should see required entrants count equal 5
 
   Scenario: Check names of  selected Entrants on New Entry page
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
     And I enter new entry log
@@ -47,12 +74,19 @@ Feature: EnclosedSpaceEntryLog
     Then I check names of entrants 5 on New Entry page
 
   Scenario: Check Enclosed Spaces Entry first log
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 2 required entrants
     And I send Report
     And I sleep for 5 seconds
@@ -65,13 +99,20 @@ Feature: EnclosedSpaceEntryLog
     Then I should see only entry log message
 
   Scenario: Check Enclosed Spaces Entry LOG values
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 1 required entrants
     And I send Report
     And I sleep for 3 seconds
@@ -80,13 +121,20 @@ Feature: EnclosedSpaceEntryLog
     Then I should see entry log details display as filled api
 
   Scenario: Entry log should indicate "Competent Person" on PWT view
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 1 required entrants
     And I send Report
     And I sleep for 3 seconds
@@ -95,13 +143,20 @@ Feature: EnclosedSpaceEntryLog
     Then I check all header-cells in Entry log table on PWT
 
   Scenario: Entry log should indicate "Competent Person" on Dashboard
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 1 required entrants
     And I send Report
     And I sleep for 3 seconds
@@ -114,8 +169,10 @@ Feature: EnclosedSpaceEntryLog
     And I check all header-cells in Entry log table on Dashboard
 
   Scenario: Additional Toxic Gas Readings should be displayed only for the ESE PTW they are relating to
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
@@ -129,12 +186,19 @@ Feature: EnclosedSpaceEntryLog
     And I sleep for 5 seconds
     And I click on back arrow
     And I click on back arrow
-    When I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 1 required entrants
     Then I send Report
     And I sleep for 3 seconds
@@ -148,13 +212,20 @@ Feature: EnclosedSpaceEntryLog
     Then I check toxic gas readings on last PTW Entry log dashboard
 
   Scenario: User can't add additional entrant, who is already inside the ESE
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I fill entry report with 1 required entrants
     And I send Report
     And I sleep for 3 seconds
@@ -167,12 +238,19 @@ Feature: EnclosedSpaceEntryLog
     Then I should not see entered entrant on required entrant list
 
   Scenario: User have to choose yourself in "Add entrants" field for displaying in the log
-    Given I submit permit submit_enclose_space_entry via service with 8383 user and set to active state with gas reading require
-    When I launch sol-x portal without unlinking wearable
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    Given SmartForms open page
     And I click on active filter
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And I check the entrants "C/O" are presents on New Entry page
 

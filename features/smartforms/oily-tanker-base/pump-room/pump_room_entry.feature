@@ -13,8 +13,10 @@ Feature: Pump room entry permit creation
     When NavigationDrawer navigate to settings
     And Setting select mode for "PRE"
     And PinEntry enter pin for rank "C/O"
-    And EntryDisplay wait for permit active
-    Then I should see no new entry log message
+    And EntryDisplay wait for permit
+      | type   | background|
+      | active |  green    |
+    Then EntryDisplay check entry display without new entry
 
   Scenario: Verify menu items are displayed in hamburger menu
     Given SmartForms open page

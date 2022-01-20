@@ -6,7 +6,16 @@ require_relative 'base_page'
 class EntryDisplay < BasePage
 
   ENTRY_DISPLAY = {
-    page_header: "//*[@id='root']/div/nav/header"
+    page_header: "//*[@id='root']/div/nav/header",
+    entry_log_btn: "//a[contains(.,'Entry Log')]",
+    info_gas_testing_is_missing: "//div[starts-with(@class,'GasTesting')]/*",
+    entry_log_table: "//div[@data-testid='entry-log-column']/div",
+    new_entry_button: "//span[contains(text(),'Log Entrant(s)')]"
+  }.freeze
+
+  BACKGROUND_COLOR = {
+    green: 'rgba(216, 75, 75, 1)',
+    red: 'rgba(67, 160, 71, 1)'
   }.freeze
 
   def initialize(driver)
@@ -14,12 +23,34 @@ class EntryDisplay < BasePage
     find_element(ENTRY_DISPLAY[:page_header])
   end
 
-  def wait_for_permit_active
+  def wait_for_permit(type)
     attempt = 0
-    until return_background_color == 'rgba(67, 160, 71, 1)'
+    until return_background_color == type
       attempt += 1
-      raise 'timeout for waiting active ptw' if attempt == 6
+      raise "timeout for waiting #{type} permit" if attempt == 30
     end
+  end
+
+  def check_background_color(condition)
+    raise "Wrong background color #{condition}" unless return_background_color.eql?(BACKGROUND_COLOR[condition])
+  end
+
+  def check_without_new_entry
+    click(ENTRY_DISPLAY[:entry_log_btn])
+    no_entry_element = find_elements(ENTRY_DISPLAY[:info_gas_testing_is_missing])[2]
+    new_entry_message = find_elements(ENTRY_DISPLAY[:info_gas_testing_is_missing])[3]
+    compare_string('No Entry Yet', no_entry_element.text)
+    compare_string('Press on “New Entry” button on the “Home” page to record a new entry.',
+                   new_entry_message.text)
+  end
+
+  def check_with_new_entry
+    click(ENTRY_DISPLAY[:entry_log_btn])
+    find_elements(ENTRY_DISPLAY[:entry_log_table])
+  end
+
+  def click_new_entry_btn
+    click(ENTRY_DISPLAY[:new_entry_button])
   end
 
 end
