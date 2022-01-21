@@ -30,6 +30,6 @@ class ActivePTWPage < BasePermitStatesPage
     self.submitted_time = retrieve_text(ACTIVE_PTW[:submitted_time] % permit_id)
     self.issued_time = retrieve_text(ACTIVE_PTW[:issued_time] % permit_id)
     @logger.info("active page saved submitted time: #{submitted_time}")
-    @logger.info("active page saved submitted time: #{issued_time}")
+    @logger.info("active page saved issued time: #{issued_time}")
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-require_relative '../../../service/form/permit_generator'
 
+require_relative '../../../service/form/permit_generator'
 Given('PermitGenerator create permit') do |table|
   parms = table.hashes.first
   permit_generator = PermitGenerator.new(parms['permit_type'])
@@ -23,9 +23,9 @@ Given('PermitGenerator create permit') do |table|
   @permit_id = permit_generator.permit_id
 end
 
-Given('PermitGenerator create entry permit') do |table|
+Given('PermitGenerator create oa pending status permit') do |table|
   parms = table.hashes.first
-  permit_generator = PermitGenerator.new(parms['entry_type'])
-  permit_generator.create_entry(parms['permit_status'])
+  permit_generator = PermitGenerator.new(parms['permit_type'])
+  permit_generator.create_oa_pending(parms['oa_status'], parms['eic'], parms['gas_reading'], parms['bfr_photo'])
   @permit_id = permit_generator.permit_id
 end

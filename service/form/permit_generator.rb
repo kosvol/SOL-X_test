@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-# builder for pending approval permit
-
 require_relative 'permit_to_work_builder'
-require_relative 'entry_permit_builder'
 require_relative 'permit_map'
 require_relative '../utils/user_service'
-# service to generate permit
+# service to generate ptw permit
 class PermitGenerator
   attr_accessor :permit_id
 
@@ -15,23 +12,12 @@ class PermitGenerator
     permit_type = permit_map.retrieve_permit_type(permit_type_plain)
     @approve_type = permit_map.retrieve_approve_type(permit_type)
     default_pin = UserService.new.retrieve_pin_by_rank('C/O')
-    @builder = if %w[pre cre].include?(permit_type)
-                 EntryPermitBuilder.new(permit_type, default_pin)
-               else
-                 PermitToWorkBuilder.new(permit_type, default_pin)
-               end
+    @builder = PermitToWorkBuilder.new(permit_type, default_pin)
   end
 
   def create_pending_approval(eic, gas_reading, bfr_photo)
-    @builder.create_section0
-    @builder.create_dra
-    @builder.attach_photo('BEFORE_APPROVAL', bfr_photo.to_i) if bfr_photo.to_i.positive?
-    @builder.create_section1
-    create_section3
-    create_section4(eic)
-    @builder.create_section5
-    @builder.create_section6(gas_reading)
-    update_pending_status
+    create_pending_sections(eic, gas_reading, bfr_photo)
+    update_pending_status('PENDING_MASTER_APPROVAL')
     self.permit_id = @builder.permit_id
   end
 
@@ -67,16 +53,36 @@ class PermitGenerator
     @builder.update_form_status(new_status)
   end
 
-  def create_entry(permit_status)
-    @builder.create_entry_form
+  def update_pending_status(pending_status)
+    case pending_status
+    when 'PENDING_MASTER_REVIEW'
+      @builder.update_form_status('PENDING_MASTER_REVIEW')
+    when 'PENDING_OFFICE_APPROVAL'
+      update_oa_pending_status
+    else
+      update_oa_pending_status if @approve_type == 'PENDING_OFFICE_APPROVAL'
+      @builder.update_form_status('PENDING_MASTER_APPROVAL')
+    end
+  end
+
+  def create_oa_pending(oa_status, eic, gas_reading, bfr_photo)
+    create_pending_sections(eic, gas_reading, bfr_photo)
+    update_pending_status(oa_status)
     self.permit_id = @builder.permit_id
-    @builder.update_entry_answer
-    @builder.update_form_status(@approve_type)
-    approve_entry_permit(permit_status) unless permit_status == 'PENDING_OFFICER_APPROVAL'
-    terminate_entry_permit if permit_status == 'CLOSED'
   end
 
   private
+
+  def create_pending_sections(eic, gas_reading, bfr_photo)
+    @builder.create_section0
+    @builder.create_dra
+    @builder.attach_photo('BEFORE_APPROVAL', bfr_photo.to_i) if bfr_photo.to_i.positive?
+    @builder.create_section1
+    create_section3
+    create_section4(eic)
+    @builder.create_section5
+    @builder.create_section6(gas_reading)
+  end
 
   def create_section3
     @builder.create_section3a
@@ -97,22 +103,8 @@ class PermitGenerator
     @builder.create_section4b_eic_detail
   end
 
-  def update_pending_status
-    if @approve_type == 'PENDING_OFFICE_APPROVAL'
-      @builder.update_form_status('PENDING_MASTER_REVIEW')
-    else
-      @builder.update_form_status('PENDING_MASTER_APPROVAL')
-    end
-  end
-
-  def approve_entry_permit(permit_status)
-    @builder.approve_entry_permit
-    @builder.update_form_status('APPROVED_FOR_ACTIVATION')
-    @builder.update_form_status('ACTIVE') if permit_status == 'ACTIVE'
-  end
-
-  def terminate_entry_permit
-    @builder.terminate_entry_permit
-    @builder.update_form_status('CLOSED')
+  def update_oa_pending_status
+    @builder.update_form_status('PENDING_MASTER_REVIEW')
+    @builder.update_form_status('PENDING_OFFICE_APPROVAL')
   end
 end

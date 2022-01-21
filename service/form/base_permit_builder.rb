@@ -19,7 +19,6 @@ class BasePermitBuilder
     response = UpdateFormsStatusApi.new.request(permit_id, status, pin)
     while response.key?('errors')
       response = UpdateFormsStatusApi.new.request(permit_id, status, pin)
-      @logger.info('retrying update form request')
       sleep 0.5
       request_retry += 1
       break if request_retry > 10

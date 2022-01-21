@@ -45,7 +45,7 @@ Feature: Compressor room entry display
 
   Scenario: [CRED] Just exited entrant can create new entry again api
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And I add new entry "A 2/O,3/O,A 3/O" CRE
@@ -65,7 +65,7 @@ Feature: Compressor room entry display
 
   Scenario: CRED Just exited entrant can create new entry again
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And I open the current CRE with status Active. Rank: A C/O
@@ -130,7 +130,7 @@ Feature: Compressor room entry display
     And (for pred) I should see the disabled "Permit" button
 
   Scenario: [CRED] Users can exit from an active CRE[SOL-6243]
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And I add new entry "A 2/O,3/O,A 3/O" CRE

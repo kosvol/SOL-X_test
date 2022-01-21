@@ -55,7 +55,7 @@ class SectionEightPage < BasePage
     when 'Competent Person'
       scroll_click(SECTION_EIGHT[:competent_sign_btn])
     else
-      raise 'not implemented'
+      raise "#{type} not implemented"
     end
   end
 
@@ -63,7 +63,7 @@ class SectionEightPage < BasePage
     params = table.hashes.first
     expected_rank_name = UserService.new.retrieve_rank_and_name(params['rank'])
     actual_element = find_element(SECTION_EIGHT[:rank_name])
-    sleep 0.5 until actual_element.text != 'Not Answered' # wait for location update
+    wait_for_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
     compare_string(params['location_stamp'], retrieve_text(SECTION_EIGHT[:location_stamp]))
   end

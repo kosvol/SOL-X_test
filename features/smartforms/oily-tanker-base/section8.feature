@@ -1,6 +1,6 @@
 @section8
 Feature: Section 8: Task Status & EIC Normalisation
-  Scenario: Verify section 8 Competent Person sign button is disable for read only user via pending termination state
+  Scenario: Verify non RA cannot submit the permit for termination from Section 8
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading | bfr_photo | aft_photo |
       | enclosed_spaces_entry | active        | yes | no          | 2         | 2         |
