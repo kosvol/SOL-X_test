@@ -21,4 +21,3 @@ class SubmitForTerminationAPI < BaseSectionApi
     payload
   end
 end
-

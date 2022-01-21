@@ -296,3 +296,45 @@ Feature: Section 6: Gas Testing/Equipment
     And Section6 answer gas reading as "Yes"
     And Section6 "should" see gas text fields
     Then Section6 "should not" see gas testing disabled warning
+
+
+  Scenario: Verify Master can review and update button for oa permit
+    Given PermitGenerator create oa pending status permit
+      | permit_type     | permit_status    | oa_status             | eic | gas_reading | bfr_photo |
+      | use_safe_camera | pending_approval | PENDING_MASTER_REVIEW | yes | yes         | 2         |
+    And SmartForms open "pending-approval" page
+    And PendingApprovalPTW click Approval button
+    And PinEntry enter pin for rank "MAS"
+    And CommonSection navigate to "Section 6"
+    Then Section6 verify submit button is "enabled"
+    And Section6 verify submit button text is "Submit for Office Approval"
+    Then Section6 "should" see submit and update button
+
+
+  Scenario Outline: Verify non Master will not see office approval, request update and close button for oa permit
+    Given PermitGenerator create oa pending status permit
+      | permit_type     | permit_status    | oa_status             | eic | gas_reading | bfr_photo |
+      | use_safe_camera | pending_approval | PENDING_MASTER_REVIEW | yes | yes         | 2         |
+    And SmartForms open "pending-approval" page
+    And PendingApprovalPTW click Approval button
+    And PinEntry enter pin for rank "<rank>"
+    And CommonSection navigate to "Section 6"
+    Then Section6 "should not" see submit and update button
+    Examples:
+      | rank |
+      | C/O  |
+      | C/E  |
+
+  Scenario Outline: Verify non Master will not see approve and request update button for non oa permit
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+    And SmartForms open "pending-approval" page
+    And PendingApprovalPTW click Approval button
+    And PinEntry enter pin for rank "<rank>"
+    And CommonSection navigate to "Section 6"
+    Then Section6 "should not" see submit and update button
+    Examples:
+      | rank |
+      | C/O  |
+      | C/E  |

@@ -7,7 +7,7 @@ Feature: Compressor room entry creation
   # Scenario: Verify new scheduled CRE permit will replace existing active CRE permit
   Scenario: Verify new active CRE permit will replace existing active CRE permit
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     Then SmartForms open hamburger menu
@@ -15,7 +15,7 @@ Feature: Compressor room entry creation
     And CreateEntryPermit save permit id from list
     Then CreateEntryPermit verify current permit presents in the list
     And NavigationDrawer click go back button
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     And CommonSection sleep for "5" sec
@@ -182,7 +182,7 @@ Feature: Compressor room entry creation
 
   Scenario Outline: Verify these roles can terminate CRE permit
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     Then SmartForms open hamburger menu
@@ -349,7 +349,7 @@ Feature: Compressor room entry creation
 
   Scenario: The Responsible Officer Signature should be displayed CRE
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status           |
       | cre        | APPROVED_FOR_ACTIVATION |
     And CommonSection sleep for "1" sec
@@ -362,7 +362,7 @@ Feature: Compressor room entry creation
 
   Scenario: The Responsible Officer Signature should be displayed in terminated list CRE
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     Then SmartForms open hamburger menu

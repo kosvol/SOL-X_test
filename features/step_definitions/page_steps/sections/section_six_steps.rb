@@ -57,3 +57,8 @@ Given('Section6 click submit button') do
   @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.click_submit_btn
 end
+
+Given('Section6 {string} see submit and update button') do |visibility|
+  @section_six_page ||= SectionSixPage.new(@driver)
+  @section_six_page.verify_submit_update_btn(visibility)
+end

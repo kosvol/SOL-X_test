@@ -43,10 +43,6 @@ class Postgres
 
     connection.exec("DELETE FROM vw_permit_archive WHERE id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} sit_reporting vw_permit_archive deleted")
-
-    # form table
-    connection.exec("DELETE FROM ods_form WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting ods_form deleted")
   end
 
   private
