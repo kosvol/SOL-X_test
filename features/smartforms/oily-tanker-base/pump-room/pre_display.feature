@@ -9,9 +9,18 @@ Feature: Pump room entry display
     When  PermitGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
     And CommonSection sleep for "5" sec
     And I acknowledge the new entry log via service
@@ -45,19 +54,18 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I enter new entry log
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-
-
-
-    And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     Then I should see correct signed in entrants
@@ -74,13 +82,27 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     Then I should see entrant count equal 2
-    And I enter new entry log
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     Then I should not see entered entrant on optional entrant list
 
   Scenario: Verify PRE duration display on PRED
@@ -146,8 +168,18 @@ Feature: Pump room entry display
       | type   | background|
       | active |  green    |
 
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
@@ -214,9 +246,18 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
@@ -235,9 +276,18 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     And I signout the entrant
@@ -250,7 +300,12 @@ Feature: Pump room entry display
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And I enter same entry log
-    And I send entry report with 0 optional entrants
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I sleep for 3 seconds
     Then I should not see dashboard gas reading popup
 
@@ -260,8 +315,18 @@ Feature: Pump room entry display
       | entry_type | permit_status |
       | pre        | ACTIVE        |
 
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I sleep for 5 seconds
     Then I should see dashboard gas reading popup
 
@@ -278,9 +343,18 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 1 optional entrants
     And I dismiss gas reader dialog box
     And CommonSection sleep for "5" sec
     And I acknowledge the new entry log pre via service
@@ -298,13 +372,24 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "5" sec
+
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
+
     And CommonSection sleep for "5" sec
+
     Then I should see entrant count equal 1
 
   Scenario: Verify total entrant count is valid before entry log approval
@@ -319,10 +404,19 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "5" sec
+
     And I dismiss gas reader dialog box
     Then I should see entrant count equal 0
 
@@ -545,10 +639,19 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I enter new entry log
-    And I send entry report with 2 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 2               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "2" sec
+
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     And CommonSection sleep for "3" sec
@@ -567,9 +670,9 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "<rank>"
 
-    And I click on new entry log button
-    And I enter pin via service for rank <rank>
     Then I should see not authorize error message
 
     Examples:
@@ -593,11 +696,17 @@ Feature: Pump room entry display
       | pre        | ACTIVE        |
     And SmartForms open page
     And I navigate to PRE Display until see active permit
-    And I click on new entry log button
-    And I enter pin via service for rank <rank>
-    And I enter without sign new entry log
-    And I sign for gas
-    And I send entry report with 1 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     Examples:
       | rank  |
       | MAS   |
@@ -610,8 +719,7 @@ Feature: Pump room entry display
       | A 3/O |
 
   Scenario Outline: Verify gas testers can submit entry log in PRED
-    Given I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    Given PermitGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     Then SmartForms open hamburger menu
@@ -621,12 +729,17 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I click on new entry log button
-    And I enter pin via service for rank <rank>
-    And I enter without sign new entry log
-    And I sign for gas
-    And I send entry report with 1 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "<rank>"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     Examples:
       | rank  |
       | 4/O   |

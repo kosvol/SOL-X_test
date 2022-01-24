@@ -34,4 +34,8 @@ class SmartFormsPage < BasePage
     click(SMART_FORMS[:create_new_cre_btn])
   end
 
+  def click_hamburger_menu_btn
+    click(SMART_FORMS[:hamburger_menu_btn])
+  end
+
 end

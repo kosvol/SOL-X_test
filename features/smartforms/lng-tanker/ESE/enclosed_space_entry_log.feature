@@ -9,7 +9,9 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     When SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
     Then I should see no new entry log message
 
@@ -18,8 +20,9 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     When SmartForms open page
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
 
-    And I click on active filter
     And I click New Entrant button on Enclose Space Entry PWT
 
     And EntryDisplay click enter new entry log button
@@ -35,15 +38,22 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     When SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 5 required entrants
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+
     Then I check the Send Report button is enabled
 
   Scenario: Check enabled selected Entrants on New Entry page
@@ -51,15 +61,22 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 5 required entrants
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+
     Then I should see required entrants count equal 5
 
   Scenario: Check names of  selected Entrants on New Entry page
@@ -67,10 +84,22 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
-    And I enter new entry log
-    And I fill entry report with 5 required entrants
+
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+
     Then I check names of entrants 5 on New Entry page
 
   Scenario: Check Enclosed Spaces Entry first log
@@ -78,23 +107,34 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 2 required entrants
-    And I send Report
-    And I sleep for 5 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 2               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "3" sec
+
     And I acknowledge the new entry log via service
     And I click on entry log tab
-    And I click on back arrow
-    And I click on back arrow
-    And I click on active filter
+
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer click back arrow button
+
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I click New Entrant button on Enclose Space Entry PWT
     Then I should see only entry log message
 
@@ -103,7 +143,9 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
@@ -113,11 +155,15 @@ Feature: EnclosedSpaceEntryLog
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 1 required entrants
-    And I send Report
-    And I sleep for 3 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
+    And CommonSection sleep for "3" sec
     And I acknowledge the new entry log via service
-    And I sleep for 5 seconds
+    And CommonSection sleep for "3" sec
     Then I should see entry log details display as filled api
 
   Scenario: Entry log should indicate "Competent Person" on PWT view
@@ -125,21 +171,28 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 1 required entrants
-    And I send Report
-    And I sleep for 3 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
+    And CommonSection sleep for "3" sec
     And I acknowledge the new entry log via service
-    And I sleep for 5 seconds
+    And CommonSection sleep for "3" sec
     Then I check all header-cells in Entry log table on PWT
 
   Scenario: Entry log should indicate "Competent Person" on Dashboard
@@ -147,23 +200,33 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 1 required entrants
-    And I send Report
-    And I sleep for 3 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
+    And CommonSection sleep for "3" sec
+
     And I acknowledge the new entry log via service
-    And I sleep for 5 seconds
-    And I click on back arrow
-    And I click on back arrow
+
+    And CommonSection sleep for "3" sec
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer click back arrow button
+
     And I launch sol-x portal dashboard
     And I go to ESE log in dashboard
     And I check all header-cells in Entry log table on Dashboard
@@ -173,40 +236,55 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PRE id
     And I enter without toxic entry log
-    And I fill entry report with 1 required entrants
-    And I send Report
-    And I sleep for 3 seconds
+
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "3" sec
     And I acknowledge the new entry log via service
     Then I check toxic gas readings on previous PTW Entry log table
-    And I sleep for 5 seconds
-    And I click on back arrow
-    And I click on back arrow
-    Given PermitGenerator create permit
+    And CommonSection sleep for "3" sec
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer click back arrow button
+    When PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
-    And I click on active filter
+    And SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 1 required entrants
-    Then I send Report
-    And I sleep for 3 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "3" sec
+
     And I acknowledge the new entry log via service
     Then I check toxic gas readings on last PTW Entry log table
-    And I sleep for 5 seconds
-    And I click on back arrow
-    And I click on back arrow
+
+    And CommonSection sleep for "3" sec
+    And NavigationDrawer click back arrow button
+    And NavigationDrawer click back arrow button
+
     When I launch sol-x portal dashboard
     And I go to ESE log in dashboard
     Then I check toxic gas readings on last PTW Entry log dashboard
@@ -216,7 +294,9 @@ Feature: EnclosedSpaceEntryLog
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     Given SmartForms open page
-    And I click on active filter
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
     And Get PWT id
@@ -226,25 +306,40 @@ Feature: EnclosedSpaceEntryLog
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-    And I fill entry report with 1 required entrants
-    And I send Report
-    And I sleep for 3 seconds
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "3" sec
+
     And I acknowledge the new entry log via service
-    And I sleep for 5 seconds
-    And I sleep for 5 seconds
-    And I click on back arrow
+
+    And CommonSection sleep for "3" sec
+    And NavigationDrawer click back arrow button
+
     And I click New Entrant button on Enclose Space Entry PWT
-    And I enter new entry log
+
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+
     Then I should not see entered entrant on required entrant list
 
   Scenario: User have to choose yourself in "Add entrants" field for displaying in the log
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
-    Given SmartForms open page
-    And I click on active filter
+    When SmartForms open page
+    Then SmartForms open hamburger menu
+    And NavigationDrawer navigate to Permit to work "Active"
+
     And I take note of issued date and time
     And I click New Entrant button on Enclose Space Entry PWT
+
     And Get PWT id
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"

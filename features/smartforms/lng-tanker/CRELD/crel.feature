@@ -70,10 +70,13 @@ Feature: Compressor room entry log
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
 
-
-    And I send entry report with 5 optional entrants
     And I switch to last tab in browser
     Then I should see alert message
     And I click terminate new gas readings on dashboard page
@@ -106,11 +109,20 @@ Feature: Compressor room entry log
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
 
-    And I send entry report with 0 optional entrants
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And I acknowledge the new entry log cre via service
     And I dismiss gas reader dialog box
     And I enter random entry log with role 2/O
     And I send entry report with 1 optional entrants
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "5" sec
     And I switch to last tab in browser
     Then I should see alert message
@@ -123,6 +135,7 @@ Feature: Compressor room entry log
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
+
     When I launch sol-x portal without unlinking wearable
     And I click on active filter
     And I take note of issued date and time
@@ -135,10 +148,13 @@ Feature: Compressor room entry log
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-
-    And I fill entry report with 1 required entrants
-    And I send Report
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | required | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "5" sec
+
     And I acknowledge the new entry log via service
 
     When PermitGenerator create entry permit
@@ -159,6 +175,7 @@ Feature: Compressor room entry log
     Given PermitGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
+
     When I launch sol-x portal dashboard
     And I open new dashboard page
     And I switch to first tab in browser
@@ -171,13 +188,31 @@ Feature: Compressor room entry log
       | type   | background|
       | active |  green    |
 
-    And I enter new entry log
-    And I send entry report with 5 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I dismiss gas reader dialog box
     And I acknowledge the new entry log cre via service
-    And I click on back arrow
+
+    And NavigationDrawer click back arrow button
+
     And I enter random entry log
-    And I send entry report with 1 optional entrants
+
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I dismiss gas reader dialog box
     And I switch to last tab in browser
     Then I should see alert message

@@ -22,9 +22,18 @@ Feature: Pump room entry log
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 3               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
 
-    And I enter new entry log
-    And I send entry report with 3 optional entrants
     And I switch to last tab in browser
     Then I should see alert message
     And I click terminate new gas readings on dashboard page
@@ -49,15 +58,33 @@ Feature: Pump room entry log
       | type   | background|
       | active |  green    |
 
-    And I enter new entry log
-    And I send entry report with 0 optional entrants
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+
     And I acknowledge the new entry log pre via service
+
     And CommonSection sleep for "5" sec
+
     And I dismiss gas reader dialog box
     And I click on back arrow
     And I enter random entry log with role 2/O
-    And I send entry report with 1 optional entrants
+
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "5" sec
+
     And I switch to last tab in browser
     Then I should see alert message
     And I click close new gas readings on dashboard page

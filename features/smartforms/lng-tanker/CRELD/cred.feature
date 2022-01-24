@@ -57,6 +57,7 @@ Feature: Compressor room entry display
       | entry_type | ranks |
       | cre        | A 2/O |
     And CommonSection sleep for "10" sec
+
     And I acknowledge the new entry log cre via service
     Then I should see entrant count equal 3
     And I terminate the PRE permit via service
@@ -66,7 +67,7 @@ Feature: Compressor room entry display
     When PermitGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
-    And CommonSection sleep for "10" sec
+    And CommonSection sleep for "5" sec
     Then SmartForms open hamburger menu
     When NavigationDrawer navigate to settings
     And Setting select mode for "CRE"
@@ -74,23 +75,43 @@ Feature: Compressor room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I enter new entry log
-    And I fill entry report with 5 optional entrants
-    And I send Report
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 5               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "10" sec
+
     And I acknowledge the new entry log via service
+
     And CommonSection sleep for "3" sec
-    And I click on back arrow
+    And NavigationDrawer click back arrow button
+
     And I signout the entrant
     Then I should see entrant count equal 5
+
     And CommonSection sleep for "5" sec
-    And I enter new entry log
-    And I fill entry report with 1 optional entrants
-    And I send Report
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 1               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
     And CommonSection sleep for "10" sec
+
     And I acknowledge the new entry log via service
-    And I click on back arrow
+    And NavigationDrawer click back arrow button
     Then I should see entrant count equal 7
     And I terminate the PRE permit via service
 
