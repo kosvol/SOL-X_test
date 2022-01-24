@@ -3,7 +3,6 @@
 require 'rest-client'
 # cre update form answer api requests
 class UpdateCreFormAnswerAPI < BaseSectionApi
-
   def initialize
     super
     @current_time = @time_service.retrieve_current_date_time
@@ -50,5 +49,4 @@ class UpdateCreFormAnswerAPI < BaseSectionApi
     # entry duration
     @payload['variables']['answers'][10]['value'] = "\"#{@permit_duration} hours\"" # entry duration
   end
-
 end

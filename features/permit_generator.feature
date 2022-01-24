@@ -36,7 +36,7 @@ Feature: Generate various permit type
 
   @create_pre
   Scenario Outline: Create pre permit
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status   |
       | pre        | <permit_status> |
     Examples:
@@ -48,7 +48,7 @@ Feature: Generate various permit type
 
   @create_cre
   Scenario Outline: Create cre permit
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | <permit_status> |
     Examples:

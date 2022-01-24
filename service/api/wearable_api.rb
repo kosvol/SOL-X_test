@@ -49,5 +49,4 @@ class WearableAPI
     payload['variables']['beacons'].first['mac'] = mac
     payload
   end
-
 end

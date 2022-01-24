@@ -1,0 +1,158 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "COTAUTO/PTW/2022/045",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "descOfWork",
+        "value": "\"Test automation\""
+      },
+      {
+        "fieldId": "cl_eec_aFormalRiskAssessmentHasBeenProduced",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasPermitToWorkAndEICIssued",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasPowerBeenSwitchedOffLocally",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_haveFusesBeenRemoved",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_haveLiveWiresAndPointsBeenTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_haveAllCapacitorsDrainedDischarged",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_areWorkersCompetentToPerform",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_haveDryInsulatingMatsBeenPlaced",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_areWorkersWearingAppropriateClothing",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_areTheNecessaryFirstAidFacilitiesProvided",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_havePersonnelRemovedAllWristWatchesRings",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_arePortableLadderSideRailsInsulated",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_areInsulatedHooksPlacedNearby",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_co2FireExtinguisherPlacedNearAreaOfWork",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasTheAccessInVicinityBeenRestricted",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hangOrRestMeterToMinimize",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_oneHandInThePocketOrBehindYourBackWhenWorking",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_allMetersAndToolsAreTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_aCompetentStandbyPersonWearingPPE",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_allToolsAndMeasuringEquipmentInsulated",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_isTheAreaWellLitVentilated",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_probeTipsHaveMinimumExposedMetal",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_areEscapeRoutesIdentifiedAndAllAccessClear",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_isTheStandbyPersonAwareOfCircuitIsolation",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasTheEquipmentBeenMadeDead",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasTheAbsenceOfVoltageFromAllConductoreVerified",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasTheEquipmentBeenIsolatedAndAllStepsTakenToLock",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_haveAllPointsOfDisconnectedHighVoltageSupplyBeenEarthed",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasTheAccessInVicinityBeenRestrictedHighVoltage",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_isTheSafetyStandbyPersonWearingAppropriateClothing",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasGroundingRemoved",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_hasHighVoltageEquipmentBeenTested",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_eec_followingPersonProtectiveToBeWorn",
+        "value": "[\"cl_eec_followingPersonProtectiveToBeWorn_dropdown_safetyOverall\",\"cl_eec_followingPersonProtectiveToBeWorn_dropdown_safetyShoes\"]"
+      },
+      {
+        "fieldId": "cl_eec_specialPrecautions",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_eec__pin",
+        "value": "{\"signed\":{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,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\",\"signedAt\":\"COTAUTO-Z-COT-4-PORT\",\"signedOn\":{\"dateTime\":\"2022-01-18T07:20:08.738Z\",\"utcOffset\":1}}"
+      }
+    ],
+    "submissionTimestamp": "2022-01-18T07:20:12.738Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

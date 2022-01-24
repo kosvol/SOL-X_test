@@ -31,7 +31,7 @@ Feature: Compressor room entry display
 
   Scenario: [CRED] Just exited entrant can create new entry again api
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And AddNewEntryRecord create new entry record with additional entrants
@@ -64,7 +64,7 @@ Feature: Compressor room entry display
 
   Scenario: CRED Just exited entrant can create new entry again
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And CommonSection sleep for "5" sec
@@ -132,7 +132,7 @@ Feature: Compressor room entry display
     And (for pred) I should see the disabled "Permit" button
 
   Scenario: [CRED] Users can exit from an active CRE[SOL-6243]
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status   |
       | cre        | ACTIVE          |
     And AddNewEntryRecord create new entry record with additional entrants
