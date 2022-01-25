@@ -11,8 +11,8 @@ Feature: EnclosedSpaceEntryLog
     When SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
+    And ActivePTW click New Entrant button
 
-    And I click New Entrant button on Enclose Space Entry PWT
     Then I should see no new entry log message
 
   Scenario: Check button Send Report is disabled
@@ -22,15 +22,14 @@ Feature: EnclosedSpaceEntryLog
     When SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I click New Entrant button on Enclose Space Entry PWT
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+
     Then I check the Send Report button is disabled
 
   Scenario: Check button Send Report is enabled
@@ -40,9 +39,7 @@ Feature: EnclosedSpaceEntryLog
     When SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I click New Entrant button on Enclose Space Entry PWT
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -63,9 +60,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I click New Entrant button on Enclose Space Entry PWT
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -86,9 +81,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I click New Entrant button on Enclose Space Entry PWT
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -109,10 +102,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I click New Entrant button on Enclose Space Entry PWT
-    And Get PWT id
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -127,15 +117,14 @@ Feature: EnclosedSpaceEntryLog
     And CommonSection sleep for "3" sec
 
     And I acknowledge the new entry log via service
-    And I click on entry log tab
 
+    And EntryDisplay click "entry log" tab
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
-
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
+    And ActivePTW click New Entrant button
 
-    And I click New Entrant button on Enclose Space Entry PWT
     Then I should see only entry log message
 
   Scenario: Check Enclosed Spaces Entry LOG values
@@ -145,10 +134,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
-    And Get PWT id
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -160,10 +146,12 @@ Feature: EnclosedSpaceEntryLog
       | required | 1               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And CommonSection sleep for "3" sec
+
+    And I acknowledge the new entry log via service
 
     And CommonSection sleep for "3" sec
-    And I acknowledge the new entry log via service
-    And CommonSection sleep for "3" sec
+
     Then I should see entry log details display as filled api
 
   Scenario: Entry log should indicate "Competent Person" on PWT view
@@ -173,11 +161,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
-    And Get PWT id
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -191,8 +175,11 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click send report button
 
     And CommonSection sleep for "3" sec
+
     And I acknowledge the new entry log via service
+
     And CommonSection sleep for "3" sec
+
     Then I check all header-cells in Entry log table on PWT
 
   Scenario: Entry log should indicate "Competent Person" on Dashboard
@@ -202,11 +189,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
-    And Get PWT id
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -218,7 +201,6 @@ Feature: EnclosedSpaceEntryLog
       | required | 5               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
     And CommonSection sleep for "3" sec
 
     And I acknowledge the new entry log via service
@@ -226,9 +208,10 @@ Feature: EnclosedSpaceEntryLog
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
+    And Dashboard open dashboard page
+    And Dashboard click view entry log button on dashboard
+    And DashboardEntryLog switch to "ESE" log
 
-    And I launch sol-x portal dashboard
-    And I go to ESE log in dashboard
     And I check all header-cells in Entry log table on Dashboard
 
   Scenario: Additional Toxic Gas Readings should be displayed only for the ESE PTW they are relating to
@@ -238,10 +221,9 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
+    And ActivePTW click New Entrant button
     And Get PRE id
+
     And I enter without toxic entry log
 
     And AddEntrants add new entrants
@@ -260,11 +242,7 @@ Feature: EnclosedSpaceEntryLog
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
-    And Get PWT id
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -284,9 +262,9 @@ Feature: EnclosedSpaceEntryLog
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
-
-    When I launch sol-x portal dashboard
-    And I go to ESE log in dashboard
+    When Dashboard open dashboard page
+    And Dashboard click view entry log button on dashboard
+    And DashboardEntryLog switch to "ESE" log
     Then I check toxic gas readings on last PTW Entry log dashboard
 
   Scenario: User can't add additional entrant, who is already inside the ESE
@@ -296,9 +274,7 @@ Feature: EnclosedSpaceEntryLog
     Given SmartForms open page
     Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
+    And ActivePTW click New Entrant button
     And Get PWT id
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
@@ -317,9 +293,7 @@ Feature: EnclosedSpaceEntryLog
 
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
-
-    And I click New Entrant button on Enclose Space Entry PWT
-
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -336,16 +310,13 @@ Feature: EnclosedSpaceEntryLog
     When SmartForms open page
     Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
-
-    And I take note of issued date and time
-    And I click New Entrant button on Enclose Space Entry PWT
-
-    And Get PWT id
+    And ActivePTW click New Entrant button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+
     And I check the entrants "C/O" are presents on New Entry page
 

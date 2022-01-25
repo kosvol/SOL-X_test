@@ -17,6 +17,11 @@ And('GasReadings add normal gas readings') do
   @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
 end
 
+And('GasReadings add normal gas readings') do
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
+end
+
 And('GasReadings add toxic gas readings') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.add_toxic_gas_readings('Test', '20', '1.5', 'cc')
@@ -66,3 +71,8 @@ And('GasReadings verify location in sign') do |table|
   @gas_readings_page.verify_location_in_sign(parms['location'])
 end
 
+And('GasReadings add gas readings') do |table|
+  parms = table.hashes.first
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.add_normal_gas_readings(parms['o2_gas'], parms['hc_gas'], parms['h2s_gas'], parms['co_gas'])
+end

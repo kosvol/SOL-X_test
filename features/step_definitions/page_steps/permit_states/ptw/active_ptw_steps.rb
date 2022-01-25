@@ -11,3 +11,8 @@ And('ActivePTW save time info') do
   @active_ptw_page ||= ActivePTWPage.new(@driver)
   @active_ptw_page.save_time_info(@permit_id)
 end
+
+And('ActivePTW click New Entrant button') do
+  @active_ptw_page ||= ActivePTWPage.new(@driver)
+  @active_ptw_page.click_new_entrant_btn(@permit_id)
+end

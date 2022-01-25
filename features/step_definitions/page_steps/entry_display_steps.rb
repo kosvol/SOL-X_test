@@ -29,3 +29,8 @@ And('EntryDisplay click enter new entry log button') do
   @entry_display.check_with_new_entry
 end
 
+And('EntryDisplay click {string} tab') do |condition|
+  @entry_display = EntryDisplay.new(@driver)
+  @entry_display.click_entry_tab(condition)
+end
+

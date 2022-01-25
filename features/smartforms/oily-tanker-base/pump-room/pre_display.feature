@@ -6,7 +6,7 @@ Feature: Pump room entry display
 
   Scenario: Verify PRE permit hand over is working
     Given SmartForms open page
-    When  PermitGenerator create entry permit
+    When  EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And EntryDisplay click enter new entry log button
@@ -20,14 +20,14 @@ Feature: Pump room entry display
       | optional | 1               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
-    And I dismiss gas reader dialog box
+    And GasReadings click done button on gas reader dialog box
     And CommonSection sleep for "5" sec
+
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
     And I click on back arrow
 
-    When  PermitGenerator create entry permit
+    When  EntryGenerator create entry permit
       | entry_type | permit_status           |
       | pre        | ACTIVE APPROVAL        |
     Then SmartForms open hamburger menu
@@ -43,7 +43,7 @@ Feature: Pump room entry display
     And I terminate the PRE permit via service
 
   Scenario: Verify entrant crew list displayed the correct entrants
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -65,13 +65,13 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     Then I should see correct signed in entrants
 
   Scenario: Verify crew already entered pumproom should not be listed on optional crew list
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -93,21 +93,23 @@ Feature: Pump room entry display
       | optional | 1               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     Then I should see entrant count equal 2
+
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
+
     Then I should not see entered entrant on optional entrant list
 
   Scenario: Verify PRE duration display on PRED
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -167,7 +169,6 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -180,13 +181,13 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
 
-    And I dismiss gas reader dialog box
+    And GasReadings click done button on gas reader dialog box
     And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -257,21 +258,21 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     And I acknowledge the new entry log via service
     And I should see PRE display timezone
 
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
     Given I clear gas reader entries
     And I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
     Then SmartForms open hamburger menu
     When NavigationDrawer navigate to settings
-    And Setting select mode for "CRE"
+    And Setting select mode for "PRE"
     And PinEntry enter pin for rank "C/O"
     And EntryDisplay wait for permit
       | type   | background|
@@ -287,8 +288,8 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
     And I signout the entrant
     Then I should see entrant count equal 0
@@ -296,25 +297,13 @@ Feature: Pump room entry display
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
     Given SmartForms open page
-    When  PermitGenerator create entry permit
+    When  EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
-    And I enter same entry log
-    And AddEntrants add new entrants
-      | type     | entrants_number |
-      | optional | 0               |
-    And AddEntrants click confirm button
-    And AddEntrants click send report button
-
-    And I sleep for 3 seconds
-    Then I should not see dashboard gas reading popup
-
-  Scenario: Verify PRE gas entry popup display if there is difference in gas reading
-    Given SmartForms open page
-    When  PermitGenerator create entry permit
-      | entry_type | permit_status |
-      | pre        | ACTIVE        |
-
+    Then SmartForms open hamburger menu
+    When NavigationDrawer navigate to settings
+    And Setting select mode for "PRE"
+    And PinEntry enter pin for rank "C/O"
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -326,13 +315,48 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
+    And EntryDisplay click "permit" tab
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "2" sec
 
-    And I sleep for 5 seconds
+    Then I should not see dashboard gas reading popup
+
+  Scenario: Verify PRE gas entry popup display if there is difference in gas reading
+    Given SmartForms open page
+    When  EntryGenerator create entry permit
+      | entry_type | permit_status |
+      | pre        | ACTIVE        |
+    Then SmartForms open hamburger menu
+    When NavigationDrawer navigate to settings
+    And Setting select mode for "PRE"
+    And EntryDisplay click enter new entry log button
+    Then PinEntry enter pin for rank "C/O"
+    And GasReadings add normal gas readings
+    And GasReadings add toxic gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
+    And AddEntrants add new entrants
+      | type     | entrants_number |
+      | optional | 0               |
+    And AddEntrants click confirm button
+    And AddEntrants click send report button
+    And CommonSection sleep for "2" sec
+
     Then I should see dashboard gas reading popup
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I clear gas reader entries
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -354,14 +378,14 @@ Feature: Pump room entry display
       | optional | 1               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
-    And I dismiss gas reader dialog box
+    And GasReadings click done button on gas reader dialog box
     And CommonSection sleep for "5" sec
+
     And I acknowledge the new entry log pre via service
     Then I should see entrant count equal 2
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -385,7 +409,8 @@ Feature: Pump room entry display
     And AddEntrants click send report button
     And CommonSection sleep for "5" sec
 
-    And I dismiss gas reader dialog box
+    And GasReadings click done button on gas reader dialog box
+
     And I acknowledge the new entry log pre via service
 
     And CommonSection sleep for "5" sec
@@ -393,7 +418,7 @@ Feature: Pump room entry display
     Then I should see entrant count equal 1
 
   Scenario: Verify total entrant count is valid before entry log approval
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -416,8 +441,8 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "5" sec
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     Then I should see entrant count equal 0
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
@@ -428,7 +453,6 @@ Feature: Pump room entry display
     And PinEntry enter pin for rank "<role>"
 
     Then I should see not authorize error message
-
     Examples:
       | role |
       | ETO  |
@@ -511,17 +535,17 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And I should see Permit Activated PRE status on screen
-    And I should see green background color
     And (for pred) I should see the enabled "Home" button
     And (for pred) I should see the enabled "Entry Log" button
     And (for pred) I should see the enabled "Permit" button
     And (for pred) I should see warning box for activated status
     Then I set the activity end time in 1 minutes
-    And I sleep for 90 seconds
-    And I should see red background color
-    And I should see Permit Terminated PRE status on screen
+
+    And CommonSection sleep for "90" sec
+    And EntryDisplay wait for permit
+      | type   | background|
+      | active |  red      |
+
     And (for pred) I should see the enabled "Home" button
     And (for pred) I should see the disabled "Entry Log" button
     And (for pred) I should see the disabled "Permit" button
@@ -529,7 +553,7 @@ Feature: Pump room entry display
 
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
     Given I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -541,7 +565,7 @@ Feature: Pump room entry display
       | type   | background|
       | active |  green    |
     And EntryDisplay check background color is "green"
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status           |
       | pre        | APPROVED_FOR_ACTIVATION |
     And EntryDisplay wait for permit
@@ -549,7 +573,7 @@ Feature: Pump room entry display
       | inactive | red        |
 
   Scenario: Verify PRE permit is terminated after terminating via dashboard popup
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -619,8 +643,6 @@ Feature: Pump room entry display
       | type   | background|
       | active |  green    |
 
-    And I should see Permit Activated PRE status on screen
-    And I should see green background color
     And (for pred) I should see the enabled "Home" button
     And (for pred) I should see the enabled "Entry Log" button
     And (for pred) I should see the enabled "Permit" button
@@ -628,7 +650,7 @@ Feature: Pump room entry display
 
   Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings
     Given I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -651,15 +673,16 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "2" sec
+    And GasReadings click done button on gas reader dialog box
 
-    And I dismiss gas reader dialog box
     And I acknowledge the new entry log pre via service
+
     And CommonSection sleep for "3" sec
     And I should see Entry Log tab
 
   Scenario Outline: Verify Non AGT and Gas Tester cannot submit entry log in PRED
     Given I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -691,7 +714,7 @@ Feature: Pump room entry display
 
   Scenario Outline: Verify AGT can submit entry log in PRED
     Given I get active PRE permit and terminate
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     And SmartForms open page
@@ -719,7 +742,7 @@ Feature: Pump room entry display
       | A 3/O |
 
   Scenario Outline: Verify gas testers can submit entry log in PRED
-    Given PermitGenerator create entry permit
+    Given EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     Then SmartForms open hamburger menu

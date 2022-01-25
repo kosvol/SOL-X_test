@@ -10,7 +10,9 @@ class EntryDisplay < BasePage
     entry_log_btn: "//a[contains(.,'Entry Log')]",
     info_gas_testing_is_missing: "//div[starts-with(@class,'GasTesting')]/*",
     entry_log_table: "//div[@data-testid='entry-log-column']/div",
-    new_entry_button: "//span[contains(text(),'Log Entrant(s)')]"
+    new_entry_button: "//span[contains(text(),'Log Entrant(s)')]",
+    entry_log_tab: "//a[contains(.,'Entry Log')]",
+    permit_tab: "//a[contains(.,'Permit')]"
   }.freeze
 
   BACKGROUND_COLOR = {
@@ -51,6 +53,17 @@ class EntryDisplay < BasePage
 
   def click_new_entry_btn
     click(ENTRY_DISPLAY[:new_entry_button])
+  end
+
+  def click_entry_tab(which_tab)
+    case which_tab
+    when 'entry log'
+      click(DASHBOARD_ENTRY_LOG[:entry_log_tab])
+    when 'permit'
+      click(DASHBOARD_ENTRY_LOG[:permit_tab])
+    else
+      raise "Wrong condition >>> #{which_tab}"
+    end
   end
 
 end

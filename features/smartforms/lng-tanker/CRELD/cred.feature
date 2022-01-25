@@ -6,7 +6,7 @@ Feature: Compressor room entry display
 
   Scenario: CRED should not displayed permit terminated when new CRE permit is created
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     Then SmartForms open hamburger menu
@@ -22,7 +22,7 @@ Feature: Compressor room entry display
       | active |  green    |
     And EntryDisplay check background color is "green"
     And EntryDisplay check entry display without new entry
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
     And EntryDisplay check background color is "red"
@@ -111,7 +111,9 @@ Feature: Compressor room entry display
     And CommonSection sleep for "10" sec
 
     And I acknowledge the new entry log via service
+
     And NavigationDrawer click back arrow button
+
     Then I should see entrant count equal 7
     And I terminate the PRE permit via service
 
