@@ -451,8 +451,7 @@ Feature: Pump room entry display
     When NavigationDrawer navigate to settings
     And Setting select mode for "PRE"
     And PinEntry enter pin for rank "<role>"
-
-    Then I should see not authorize error message
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
     Examples:
       | role |
       | ETO  |
@@ -468,8 +467,7 @@ Feature: Pump room entry display
     When NavigationDrawer navigate to settings
     And Setting select mode for "PRE"
     And PinEntry enter pin for rank "<role>"
-
-    Then I should see the header 'Pump Room Entry Display'
+    Then PRE verify landing screen is "Pump Room Entry Display"
 
     Examples:
       | role  |
@@ -535,20 +533,31 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-    And (for pred) I should see the enabled "Home" button
-    And (for pred) I should see the enabled "Entry Log" button
-    And (for pred) I should see the enabled "Permit" button
-    And (for pred) I should see warning box for activated status
+    And CommonSection verify button availability
+      | button | availability |
+      | Home   | enabled      |
+    And CommonSection verify button availability
+      | button    | availability |
+      | Entry Log | enabled      |
+    And CommonSection verify button availability
+      | button | availability |
+      | Permit | enabled      |
+
     Then I set the activity end time in 1 minutes
 
     And CommonSection sleep for "90" sec
     And EntryDisplay wait for permit
       | type   | background|
       | active |  red      |
-
-    And (for pred) I should see the enabled "Home" button
-    And (for pred) I should see the disabled "Entry Log" button
-    And (for pred) I should see the disabled "Permit" button
+    And CommonSection verify button availability
+      | button | availability |
+      | Home   | enabled      |
+    And CommonSection verify button availability
+      | button    | availability |
+      | Entry Log | disabled      |
+    And CommonSection verify button availability
+      | button | availability |
+      | Permit | disabled      |
     And (for pred) I should see warning box for deactivated status
 
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
@@ -642,10 +651,15 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    And (for pred) I should see the enabled "Home" button
-    And (for pred) I should see the enabled "Entry Log" button
-    And (for pred) I should see the enabled "Permit" button
+    And CommonSection verify button availability
+      | button | availability |
+      | Home   | enabled      |
+    And CommonSection verify button availability
+      | button    | availability |
+      | Entry Log | enabled      |
+    And CommonSection verify button availability
+      | button | availability |
+      | Permit | enabled      |
     And (for pred) I should see warning box for activated status
 
   Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings

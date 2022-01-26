@@ -32,4 +32,28 @@ And('Dashboard check active entrants number {string}') do |number|
   @dashboard_page.check_active_entrants(number)
 end
 
+Then('Dashboard verify alert message {string} does not show up') do |message|
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.verify_text_not_present(message)
+end
+
+Then('Dashboard verify alert message {string}') do |message|
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.verify_error_msg(message)
+end
+
+Then('Dashboard verify gas readings acknowledge message') do
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.verify_ackn_message
+end
+
+Then('Dashboard click discard gas readings') do
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.click_discard_gr
+end
+
+Then('Dashboard click close gas readings message') do
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.click_close_gas_msg
+end
 

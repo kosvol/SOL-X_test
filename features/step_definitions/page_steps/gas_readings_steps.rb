@@ -17,9 +17,9 @@ And('GasReadings add normal gas readings') do
   @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
 end
 
-And('GasReadings add normal gas readings') do
+And('GasReadings add random gas readings') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
+  @gas_readings_page.add_normal_gas_readings(rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s, rand(1..10).to_s)
 end
 
 And('GasReadings add toxic gas readings') do

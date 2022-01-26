@@ -125,13 +125,17 @@ Feature: Compressor room entry display
     And Setting select mode for "CRE"
     And PinEntry enter pin for rank "C/O"
     And EntryDisplay wait for permit
-      | type     | background |
-      | inactive | red        |
-    And EntryDisplay check background color is "red"
-
-    And (for pred) I should see the enabled "Home" button
-    And (for pred) I should see the disabled "Entry Log" button
-    And (for pred) I should see the disabled "Permit" button
+      | type   | background|
+      | active |  green    |
+    And CommonSection verify button availability
+      | button | availability |
+      | Home   | disabled      |
+    And CommonSection verify button availability
+      | button    | availability |
+      | Entry Log | disabled      |
+    And CommonSection verify button availability
+      | button | availability |
+      | Permit | enabled      |
 
   Scenario: [CRED] Users can exit from an active CRE[SOL-6243]
     When EntryGenerator create entry permit
