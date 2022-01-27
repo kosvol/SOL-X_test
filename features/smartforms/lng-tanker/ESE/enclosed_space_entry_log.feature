@@ -12,8 +12,7 @@ Feature: EnclosedSpaceEntryLog
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
     And ActivePTW click New Entrant button
-
-    Then I should see no new entry log message
+    Then EntryDisplay check entry display without new entry
 
   Scenario: Check button Send Report is disabled
     Given PermitGenerator create permit
@@ -29,8 +28,9 @@ Feature: EnclosedSpaceEntryLog
     And GasReadings add toxic gas readings
     And GasReadings click Review & Sign button
     And SignatureLocation sign off first zone area
-
-    Then I check the Send Report button is disabled
+    And CommonSection verify button availability
+      | button      | availability |
+      | Send Report | disabled     |
 
   Scenario: Check button Send Report is enabled
     Given PermitGenerator create permit
@@ -50,8 +50,9 @@ Feature: EnclosedSpaceEntryLog
       | type     | entrants_number |
       | required | 5               |
     And AddEntrants click confirm button
-
-    Then I check the Send Report button is enabled
+    And CommonSection verify button availability
+      | button      | availability |
+      | Send Report | enabled     |
 
   Scenario: Check enabled selected Entrants on New Entry page
     Given PermitGenerator create permit
@@ -71,8 +72,7 @@ Feature: EnclosedSpaceEntryLog
       | type     | entrants_number |
       | required | 5               |
     And AddEntrants click confirm button
-
-    Then I should see required entrants count equal 5
+    And EntryDisplay check required entrants count "5"
 
   Scenario: Check names of  selected Entrants on New Entry page
     Given PermitGenerator create permit
@@ -115,17 +115,15 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "3" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And EntryDisplay click "entry log" tab
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
     And ActivePTW click New Entrant button
-
-    Then I should see only entry log message
+    Then EntryDisplay check entry display with new entry
 
   Scenario: Check Enclosed Spaces Entry LOG values
     Given PermitGenerator create permit
@@ -147,9 +145,8 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "3" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
 
     Then I should see entry log details display as filled api
@@ -173,14 +170,10 @@ Feature: EnclosedSpaceEntryLog
       | required | 5               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
-
-    And I acknowledge the new entry log via service
-
-    And CommonSection sleep for "3" sec
-
-    Then I check all header-cells in Entry log table on PWT
+    Then EntryDisplay check entry log table
 
   Scenario: Entry log should indicate "Competent Person" on Dashboard
     Given PermitGenerator create permit
@@ -201,10 +194,8 @@ Feature: EnclosedSpaceEntryLog
       | required | 5               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-    And CommonSection sleep for "3" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
@@ -222,10 +213,9 @@ Feature: EnclosedSpaceEntryLog
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
     And ActivePTW click New Entrant button
-    And Get PRE id
-
-    And I enter without toxic entry log
-
+    And GasReadings add normal gas readings
+    And GasReadings click Review & Sign button
+    And SignatureLocation sign off first zone area
     And AddEntrants add new entrants
       | type     | entrants_number |
       | required | 5               |
@@ -255,8 +245,9 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
 
-    And I acknowledge the new entry log via service
     Then I check toxic gas readings on last PTW Entry log table
 
     And CommonSection sleep for "3" sec
@@ -265,6 +256,7 @@ Feature: EnclosedSpaceEntryLog
     When Dashboard open dashboard page
     And Dashboard click view entry log button on dashboard
     And DashboardEntryLog switch to "ESE" log
+
     Then I check toxic gas readings on last PTW Entry log dashboard
 
   Scenario: User can't add additional entrant, who is already inside the ESE
@@ -275,7 +267,6 @@ Feature: EnclosedSpaceEntryLog
     Then SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
     And ActivePTW click New Entrant button
-    And Get PWT id
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -288,9 +279,8 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "3" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
     And ActivePTW click New Entrant button

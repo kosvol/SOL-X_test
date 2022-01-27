@@ -5,6 +5,7 @@ require_relative '../service/api/couch_db_api'
 # db service
 class DBService
   include EnvUtils
+  attr_accessor :gas_entry_id
 
   def initialize
     @couch_db_api = CouchDBAPI.new
@@ -26,6 +27,12 @@ class DBService
     end
     response = @couch_db_api.post_request(db_type, table, payload.to_json)
     @logger.info("delete form request response: #{response}")
+  end
+
+  def get_gas_entry(db_type, table, permit_id)
+    response = @couch_db_api.get_custom_request(db_type, table, permit_id)
+    @logger.info("gas entry response: #{response}")
+    self.gas_entry_id = response['records'].first['entryId']
   end
 
   private

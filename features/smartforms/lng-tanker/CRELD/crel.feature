@@ -46,9 +46,8 @@ Feature: Compressor room entry log
     And AddNewEntryRecord create new entry record with additional entrants
       | entry_type | ranks |
       | cre        | A 2/O |
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And Dashboard click view entry log button on dashboard
     And DashboardEntryLog switch to "CRE" log
     And Dashboard "save" permit date on entry log
@@ -66,16 +65,15 @@ Feature: Compressor room entry log
     And AddNewEntryRecord create new entry record with additional entrants
       | entry_type | ranks               |
       | cre        | A 2/O,3/O,A 3/O,4/O |
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     When Dashboard open dashboard page
     And CommonSection sleep for "3" sec
     And Dashboard check active entrants number "5"
 
     When I signout entrants "A 2/O"
-    And I check number 4 of entrants on dashboard
-    And I terminate the PRE permit via service
+
+    And Dashboard check active entrants number "4"
 
   Scenario: Verify CRE permit is terminated after terminating via dashboard popup
     When EntryGenerator create entry permit
@@ -140,9 +138,8 @@ Feature: Compressor room entry log
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And GasReadings click done button on gas reader dialog box
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "2/O"
@@ -167,7 +164,6 @@ Feature: Compressor room entry log
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading | bfr_photo |
       | enclosed_spaces_entry | pending_approval | yes | yes         | 2         |
-
     When Dashboard open dashboard page
     And SmartForms open hamburger menu
     And NavigationDrawer navigate to Permit to work "Active"
@@ -184,9 +180,8 @@ Feature: Compressor room entry log
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "5" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     When EntryGenerator create entry permit
       | entry_type | permit_status |
       | cre        | ACTIVE        |
@@ -194,9 +189,8 @@ Feature: Compressor room entry log
       | entry_type | ranks               |
       | cre        | A 3/O,4/O           |
     And CommonSection sleep for "5" sec
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And Dashboard open new dashboard tab
     And CommonSection sleep for "5" sec
     And Dashboard click view entry log button on dashboard
@@ -229,9 +223,8 @@ Feature: Compressor room entry log
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And NavigationDrawer click back arrow button
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"

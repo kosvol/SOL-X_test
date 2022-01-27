@@ -15,4 +15,9 @@ class CouchDBAPI
                                payload, 'Content-Type' => 'application/json')
     JSON.parse response.body
   end
+
+  def get_custom_request(db_type, table, permit_id)
+    response = RestClient.get("#{retrieve_db_url(db_type)}/#{table}/#{permit_id}")
+    JSON.parse response.body
+  end
 end

@@ -22,11 +22,12 @@ Feature: Pump room entry display
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
     And CommonSection sleep for "5" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
 
-    And I acknowledge the new entry log via service
     Then I should see entry log details display as filled
-    And I click on back arrow
 
+    And NavigationDrawer click back arrow button
     When  EntryGenerator create entry permit
       | entry_type | permit_status           |
       | pre        | ACTIVE APPROVAL        |
@@ -37,8 +38,8 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
+    And EntryDisplay click "permit" tab
 
-    And I click on permit tab
     Then I should see new PRE permit number
     And I terminate the PRE permit via service
 
@@ -66,8 +67,10 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
 
-    And I acknowledge the new entry log pre via service
     Then I should see correct signed in entrants
 
   Scenario: Verify crew already entered pumproom should not be listed on optional crew list
@@ -94,10 +97,10 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
-
-    And I acknowledge the new entry log pre via service
-    Then I should see entrant count equal 2
-
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    And EntryDisplay check entrants count "2"
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
     And GasReadings add normal gas readings
@@ -180,9 +183,11 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
     And GasReadings click done button on gas reader dialog box
-    And I acknowledge the new entry log via service
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+
     Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
@@ -259,8 +264,10 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
 
-    And I acknowledge the new entry log via service
     And I should see PRE display timezone
 
   Scenario: Verify exit time update to timestamp an entrant count updated after entrant sign out
@@ -289,10 +296,13 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    And EntryDisplayPage signout entrants by order "1"
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "0"
 
-    And I acknowledge the new entry log pre via service
-    And I signout the entrant
-    Then I should see entrant count equal 0
     And I should see exit timestamp updated
 
   Scenario: Verify PRE gas entry popup don't show if no difference in gas reading
@@ -328,8 +338,9 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "2" sec
-
-    Then I should not see dashboard gas reading popup
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    #Then I should not see dashboard gas reading popup
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given SmartForms open page
@@ -351,8 +362,9 @@ Feature: Pump room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "2" sec
-
-    Then I should see dashboard gas reading popup
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    #Then I should see dashboard gas reading popup
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I clear gas reader entries
@@ -380,9 +392,10 @@ Feature: Pump room entry display
     And AddEntrants click send report button
     And GasReadings click done button on gas reader dialog box
     And CommonSection sleep for "5" sec
-
-    And I acknowledge the new entry log pre via service
-    Then I should see entrant count equal 2
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "2"
 
   Scenario: Verify only 1 total entrant is valid after entry log approval
     Given EntryGenerator create entry permit
@@ -407,15 +420,13 @@ Feature: Pump room entry display
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-    And CommonSection sleep for "5" sec
-
     And GasReadings click done button on gas reader dialog box
-
-    And I acknowledge the new entry log pre via service
-
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "5" sec
-
-    Then I should see entrant count equal 1
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "1"
 
   Scenario: Verify total entrant count is valid before entry log approval
     Given EntryGenerator create entry permit
@@ -442,8 +453,8 @@ Feature: Pump room entry display
     And AddEntrants click send report button
     And CommonSection sleep for "5" sec
     And GasReadings click done button on gas reader dialog box
-
-    Then I should see entrant count equal 0
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "0"
 
   Scenario Outline: Verify role which CANNOT navigate to Pump Room Entry Display (6024)
     Given SmartForms open page
@@ -558,7 +569,6 @@ Feature: Pump room entry display
     And CommonSection verify button availability
       | button | availability |
       | Permit | disabled      |
-    And (for pred) I should see warning box for deactivated status
 
   Scenario: PRE should not displayed permit terminated when new PRE permit is created
     Given I get active PRE permit and terminate
@@ -660,7 +670,6 @@ Feature: Pump room entry display
     And CommonSection verify button availability
       | button | availability |
       | Permit | enabled      |
-    And (for pred) I should see warning box for activated status
 
   Scenario: PRED Entry log - Verify user stays in Entry log tab when after submitting gas readings
     Given I get active PRE permit and terminate
@@ -688,11 +697,11 @@ Feature: Pump room entry display
     And AddEntrants click send report button
     And CommonSection sleep for "2" sec
     And GasReadings click done button on gas reader dialog box
-
-    And I acknowledge the new entry log pre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
-    And I should see Entry Log tab
+    And EntryDisplay click enter new entry log button
+    And EntryDisplay check entry display with new entry
 
   Scenario Outline: Verify Non AGT and Gas Tester cannot submit entry log in PRED
     Given I get active PRE permit and terminate
@@ -709,8 +718,7 @@ Feature: Pump room entry display
       | active |  green    |
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "<rank>"
-
-    Then I should see not authorize error message
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
     Examples:
       | rank  |

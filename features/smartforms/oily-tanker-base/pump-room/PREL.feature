@@ -35,10 +35,12 @@ Feature: Pump room entry log
 
     Then I should see alert message
     And I click terminate new gas readings on dashboard page
-    And I enter pin for rank A C/O
+
+    And PinEntry enter pin for rank "C/O"
     And Dashboard switch to "first" tab in browser
-    Then I should see red background color
-    And I should see Permit Terminated PRE status on screen
+    And EntryDisplay wait for permit
+      | type   | background|
+      | active |  red      |
 
   Scenario: PRE Dashboard Gas reading pop up should have a independent close option
     Given EntryGenerator create entry permit
@@ -65,9 +67,8 @@ Feature: Pump room entry log
       | optional | 0               |
     And AddEntrants click confirm button
     And AddEntrants click send report button
-
-    And I acknowledge the new entry log pre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "5" sec
     And GasReadings click done button on gas reader dialog box
     And NavigationDrawer click back arrow button
@@ -104,9 +105,7 @@ Feature: Pump room entry log
       | entry_type | ranks |
       | pre        | A 2/O |
     And CommonSection sleep for "5" sec
-
-    And I acknowledge the new entry log pre via service
-
-    And CommonSection sleep for "5" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
 
     When I check PRE elements on dashboard active

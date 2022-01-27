@@ -57,10 +57,10 @@ Feature: Compressor room entry display
       | entry_type | ranks |
       | cre        | A 2/O |
     And CommonSection sleep for "10" sec
-
-    And I acknowledge the new entry log cre via service
-    Then I should see entrant count equal 3
-    And I terminate the PRE permit via service
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "3"
 
   Scenario: CRED Just exited entrant can create new entry again
     Given SmartForms open page
@@ -87,15 +87,15 @@ Feature: Compressor room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "10" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
 
     And I signout the entrant
-    Then I should see entrant count equal 5
 
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "5"
     And CommonSection sleep for "5" sec
     And EntryDisplay click enter new entry log button
     Then PinEntry enter pin for rank "C/O"
@@ -109,13 +109,11 @@ Feature: Compressor room entry display
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "10" sec
-
-    And I acknowledge the new entry log via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And NavigationDrawer click back arrow button
-
-    Then I should see entrant count equal 7
-    And I terminate the PRE permit via service
+    Then EntryDisplay click home tab
+    And EntryDisplay check entrants count "7"
 
 
   Scenario: Displaying CRED without an active CRE[SOL-6222]
@@ -145,9 +143,8 @@ Feature: Compressor room entry display
       | entry_type | ranks           |
       | cre        | A 2/O,3/O,A 3/O |
     And CommonSection sleep for "20" sec
-
-    And I acknowledge the new entry log cre via service
-
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     When SmartForms open page
     Then SmartForms open hamburger menu
     When NavigationDrawer navigate to settings
@@ -156,6 +153,5 @@ Feature: Compressor room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    When I signout "A 2/O" entrants by rank
+    And EntryDisplayPage signout entrants by rank "A 2/O"
     Then I check that entrants "A 2/O" not present in list
