@@ -37,10 +37,9 @@ Feature: Compressor room entry display
     And AddNewEntryRecord create new entry record with additional entrants
       | entry_type | ranks           |
       | cre        | A 2/O,3/O,A 3/O |
-    And CommonSection sleep for "20" sec
-
-    And I acknowledge the new entry log cre via service
-
+    And CommonSection sleep for "3" sec
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     When SmartForms open page
     Then SmartForms open hamburger menu
     When NavigationDrawer navigate to settings
@@ -49,9 +48,7 @@ Feature: Compressor room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    When I signout entrants "A 2/O"
-
+    When EntryDisplayLog signout entrants by rank "A 2/O"
     And CommonSection sleep for "10" sec
     And AddNewEntryRecord create new entry record with additional entrants
       | entry_type | ranks |
@@ -91,9 +88,7 @@ Feature: Compressor room entry display
     And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
     And NavigationDrawer click back arrow button
-
-    And I signout the entrant
-
+    And EntryDisplayLog signout entrants by order "1"
     Then EntryDisplay click home tab
     And EntryDisplay check entrants count "5"
     And CommonSection sleep for "5" sec
@@ -153,5 +148,6 @@ Feature: Compressor room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-    And EntryDisplayPage signout entrants by rank "A 2/O"
+    And EntryDisplayLog signout entrants by rank "A 2/O"
+
     Then I check that entrants "A 2/O" not present in list

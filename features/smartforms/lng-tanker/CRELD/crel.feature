@@ -5,6 +5,7 @@ Feature: Compressor room entry log
   So that ...
 
   Scenario: The log should display entries with the correct date
+    #Todo: Api calls used in  step
     Given I change ship local time to -11 GMT
     When EntryGenerator create entry permit
       | entry_type | permit_status |
@@ -19,8 +20,9 @@ Feature: Compressor room entry log
     And Dashboard click view entry log button on dashboard
     And DashboardEntryLog switch to "CRE" log
     And Dashboard "save" permit date on entry log
-
+      #Todo: Api calls used in  step
     When I terminate the PRE permit via service
+    #Todo: Api calls used in  step
     Then I change ship local time to +12 GMT
 
     When EntryGenerator create entry permit
@@ -70,9 +72,7 @@ Feature: Compressor room entry log
     When Dashboard open dashboard page
     And CommonSection sleep for "3" sec
     And Dashboard check active entrants number "5"
-
-    When I signout entrants "A 2/O"
-
+    When EntryDisplayLog signout entrants by rank "A 2/O"
     And Dashboard check active entrants number "4"
 
   Scenario: Verify CRE permit is terminated after terminating via dashboard popup

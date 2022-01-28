@@ -24,7 +24,7 @@ Feature: Pump room entry display
     And CommonSection sleep for "5" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-
+   #Todo: create and use *.yaml for data in step
     Then I should see entry log details display as filled
 
     And NavigationDrawer click back arrow button
@@ -39,9 +39,7 @@ Feature: Pump room entry display
       | type   | background|
       | active |  green    |
     And EntryDisplay click "permit" tab
-
-    Then I should see new PRE permit number
-    And I terminate the PRE permit via service
+    Then EntryDisplay check new permit number
 
   Scenario: Verify entrant crew list displayed the correct entrants
     Given EntryGenerator create entry permit
@@ -123,8 +121,7 @@ Feature: Pump room entry display
     And EntryDisplay wait for permit
       | type   | background|
       | active |  green    |
-
-    Then I should see timer countdown
+    Then EntryDisplay check timer countdown
 
   Scenario: Verify entry log details populated as filled
     Given SmartForms open page
@@ -187,7 +184,7 @@ Feature: Pump room entry display
     And CommonSection sleep for "3" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-
+    #Todo: create and use *.yaml for data in step
     Then I should see entry log details display as filled
 
   Scenario: Verify PRE permit creator name display on PRED
@@ -299,7 +296,7 @@ Feature: Pump room entry display
     And CommonSection sleep for "3" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-    And EntryDisplayPage signout entrants by order "1"
+    And EntryDisplayLog signout entrants by order "1"
     Then EntryDisplay click home tab
     And EntryDisplay check entrants count "0"
 
@@ -340,7 +337,8 @@ Feature: Pump room entry display
     And CommonSection sleep for "2" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-    #Then I should not see dashboard gas reading popup
+    #Todo:  API calls user in step
+    Then I should not see dashboard gas reading popup
 
   Scenario: Verify PRE gas entry popup display if there is difference in gas reading
     Given SmartForms open page
@@ -364,7 +362,8 @@ Feature: Pump room entry display
     And CommonSection sleep for "2" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-    #Then I should see dashboard gas reading popup
+
+    Then I should see dashboard gas reading popup
 
   Scenario: Verify only 2 total entrant is valid after entry log approval with optional entrant
     Given I clear gas reader entries

@@ -32,10 +32,8 @@ Feature: Pump room entry log
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And Dashboard switch to "last" tab in browser
-
-    Then I should see alert message
-    And I click terminate new gas readings on dashboard page
-
+    Then Dashboard verify gas readings acknowledge message
+    And Dashboard click discard gas readings
     And PinEntry enter pin for rank "C/O"
     And Dashboard switch to "first" tab in browser
     And EntryDisplay wait for permit
@@ -87,12 +85,11 @@ Feature: Pump room entry log
     And AddEntrants click send report button
     And CommonSection sleep for "5" sec
     And Dashboard switch to "last" tab in browser
-
-    Then I should see alert message
-    And I click close new gas readings on dashboard page
-    And I enter pin for rank A C/O
+    Then Dashboard verify gas readings acknowledge message
+    And Dashboard click close gas readings message
+    And PinEntry enter pin for rank "A C/O"
     And Dashboard switch to "first" tab in browser
-    Then I should see alert message
+    Then Dashboard verify gas readings acknowledge message
 
   Scenario: Dashboard - Verify updated view and icon is displayed in Dashboard main page for entry log and PRE status
     Given I get active PRE permit and terminate

@@ -3,7 +3,7 @@
 require_relative 'base_page'
 
 # Entry display page object
-class EntryDisplayPTW < BasePage
+class EntryDisplay < BasePage
 
   ENTRY_DISPLAY = {
     page_header: "//*[@id='root']/div/nav/header",
@@ -15,13 +15,20 @@ class EntryDisplayPTW < BasePage
     permit_tab: "//a[contains(.,'Permit')]",
     home_tab: "//a[contains(.,'Home')]",
     entrant_count: "//span[starts-with(@aria-label,'active-entrant-counter')]",
-    header_cell: "//div[starts-with(@class,'header-cell')]"
+    header_cell: "//div[starts-with(@class,'header-cell')]",
+    generic_data: "//*[starts-with(@class,'AnswerComponent__Answer')]",
+    duration_timer: "//h4/strong[contains(@class,'PermitValidUntil__')]",
+    resp_off_signature: "//h2[contains(.,'Responsible Officer Signature')",
+    resp_off_signature_rank: "//h3[contains(.,'Rank/Name')]",
+    template_path: "//div[contains(.,'%s')]"
   }.freeze
 
   BACKGROUND_COLOR = {
     green: 'rgba(216, 75, 75, 1)',
     red: 'rgba(67, 160, 71, 1)'
   }.freeze
+
+  TIMER = %w[03:58: 03:57: 03:56:].freeze
 
   def initialize(driver)
     super
@@ -93,6 +100,23 @@ class EntryDisplayPTW < BasePage
     check_gas_headers
   end
 
+  def check_new_permit_num(permit_id)
+    actual_permit = find_elements(ENTRY_DISPLAY[:generic_data])[2].text
+    raise "Wrong permit number #{actual_permit}" unless actual_permit.text.eql?(permit_id)
+  end
+
+  def check_timer
+    actual_timer = retrieve_text(ENTRY_DISPLAY[:duration_timer])
+    raise 'Wrong timer countdown' unless TIMER.any? { |element| actual_timer.include? element }
+  end
+
+  def check_response_officer(rank, area)
+    retrieve_text(ENTRY_DISPLAY[:resp_off_signature]).eql? 'Responsible Officer Signature:'
+    find_elements(ENTRY_DISPLAY[:resp_off_signature_rank])[0].text.eql? 'Rank/Name'
+    get_element_by_value(rank, 1)
+    get_element_by_value(area, 1)
+  end
+
   private
 
   def check_log_headers
@@ -118,6 +142,12 @@ class EntryDisplayPTW < BasePage
     @driver
       .find_element(:xpath,
                     "//*[starts-with(@class,'UnorderedList')]/li[#{count}]")
+  end
+
+  def get_element_by_value(element_value_text, count)
+    xpath_str = format(ENTRY_DISPLAY[:template_path], element_value_text)
+    arr = find_elements(xpath_str)
+    arr[count.to_i]
   end
 
 end

@@ -148,7 +148,7 @@ Feature: EnclosedSpaceEntryLog
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
-
+    #Todo: create and use *.yaml for data in step
     Then I should see entry log details display as filled api
 
   Scenario: Entry log should indicate "Competent Person" on PWT view
@@ -202,7 +202,7 @@ Feature: EnclosedSpaceEntryLog
     And Dashboard open dashboard page
     And Dashboard click view entry log button on dashboard
     And DashboardEntryLog switch to "ESE" log
-
+    #Todo: create and use *.yaml for data in step
     And I check all header-cells in Entry log table on Dashboard
 
   Scenario: Additional Toxic Gas Readings should be displayed only for the ESE PTW they are relating to
@@ -222,9 +222,12 @@ Feature: EnclosedSpaceEntryLog
     And AddEntrants click confirm button
     And AddEntrants click send report button
     And CommonSection sleep for "3" sec
-    And I acknowledge the new entry log via service
-    Then I check toxic gas readings on previous PTW Entry log table
+    And DB get gas entry log id
+    And AcknowledgeEntry acknowledge existing gas entry record
     And CommonSection sleep for "3" sec
+    #Todo: create and use *.yaml for data in step
+    Then I check toxic gas readings on previous PTW Entry log table
+
     And NavigationDrawer click back arrow button
     And NavigationDrawer click back arrow button
     When PermitGenerator create permit
@@ -247,7 +250,7 @@ Feature: EnclosedSpaceEntryLog
     And CommonSection sleep for "3" sec
     And DB get gas entry log id
     And AcknowledgeEntry acknowledge existing gas entry record
-
+   #Todo: create and use *.yaml for data in step
     Then I check toxic gas readings on last PTW Entry log table
 
     And CommonSection sleep for "3" sec
@@ -256,7 +259,7 @@ Feature: EnclosedSpaceEntryLog
     When Dashboard open dashboard page
     And Dashboard click view entry log button on dashboard
     And DashboardEntryLog switch to "ESE" log
-
+    #Todo: create and use *.yaml for data in step
     Then I check toxic gas readings on last PTW Entry log dashboard
 
   Scenario: User can't add additional entrant, who is already inside the ESE
