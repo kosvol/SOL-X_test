@@ -2,14 +2,14 @@
 
 require_relative '../../../../page_objects/office_portal/op_email_verification_page'
 
-Then('EmailVerification should see all the page attributes') do
+Then('EmailVerification page should be displayed') do
   @op_email_verification ||= OPEmailVerificationPage.new(@driver)
-  @op_email_verification.verify_verification_page_attr
+  @op_email_verification.verify_page_header
 end
 
 Then('EmailVerification should see all the page attributes') do
   @op_email_verification ||= OPEmailVerificationPage.new(@driver)
-  @op_email_verification.verify_verification_page_attributes
+  @op_email_verification.verify_verification_page_attr
 end
 
 And('EmailVerification click Cancel') do
@@ -47,10 +47,10 @@ And('EmailVerification enter verification code {string}') do |code|
   @op_email_verification.enter_verification_code(code)
 end
 
-And(/^EmailVerification click Verify code$/) do
+And('EmailVerification click Verify code') do
   @op_email_verification.click_verify_code
 end
 
-And(/^EmailVerification remove the last character from the Email$/) do
+And('EmailVerification remove the last character from the Email') do
   @op_email_verification.remove_email_character
 end

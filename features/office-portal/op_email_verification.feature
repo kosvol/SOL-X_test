@@ -61,8 +61,8 @@ Feature: Office Portal Email Verification
     And EmailVerification enter verification code "code"
     And EmailVerification click Verify code
     Then EmailVerification should see the error message below the heading
-      | heading | message                                   |
-      | Account | That code is incorrect. Please try again. |
+      | heading | message                          |
+      | Account | You have entered the wrong code. |
 
   Scenario: Verify user should see the Email verification page before entering an email if do any changes to the email entered
     When EmailVerification enter email "ksergeenko@ipolecat.com"
