@@ -7,7 +7,8 @@ class SectionNinePage < BasePage
   include EnvUtils
   SECTION_NINE = {
     section_header: "//h3[contains(.,'Section 9: Withdrawal of Permit')]",
-    withdraw_ptw_btn: "//button[contains(., 'Withdraw Permit To Work')]"
+    withdraw_ptw_btn: "//button[contains(., 'Withdraw Permit To Work')]",
+    request_update_btn: "//button[contains(., 'Request Updates')]"
   }.freeze
 
   def initialize(driver)
@@ -22,5 +23,9 @@ class SectionNinePage < BasePage
   def verify_signature_is_hidden
     verify_element_not_exist(SECTION_NINE[:withdraw_ptw_btn])
     verify_element_not_exist("//*[span='Permit Withdrawn By:']")
+  end
+
+  def verify_request_update_btn(option)
+    verify_btn_availability(SECTION_NINE[:request_update_btn], option)
   end
 end
