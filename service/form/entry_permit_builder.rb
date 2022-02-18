@@ -3,6 +3,7 @@
 require 'require_all'
 require 'logger'
 require_relative 'permit'
+require_relative 'base_permit_builder'
 require_all 'service/api'
 
 # entry permit builder to create sections

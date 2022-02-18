@@ -22,6 +22,9 @@ class PermitMap
     work_on_pipelines: 'work_on_pipelines',
     working_aloft: 'working_aloft',
     lifting_operation: 'lifting_operation',
+    pressure_pipe_vessel: 'pressure_pipe_vessel',
+    main_anchor: 'main_anchor',
+    ele_equip_circuit: 'ele_equip_circuit',
     cre: 'cre',
     pre: 'pre'
   }.freeze
@@ -29,7 +32,6 @@ class PermitMap
   CHECKLIST_MAP = {
     cold_work_cleaning_spill: 'openChecklistColdWorkOp',
     cold_work_in_hazardous: 'openChecklistWorkOnHazardousSubstances',
-    maintenance_on_anchor: 'openChecklistCriticalEquipMaintenance',
     enclosed_spaces_entry: 'openChecklistEnclosedSpaceEntry',
     helicopter_operation: 'openChecklistHelicopterOp',
     hot_work_outside_designated: 'openChecklistHotWorkOutsideDesignatedArea',
@@ -40,10 +42,11 @@ class PermitMap
     use_safe_camera: 'openChecklistUseOfCamera',
     use_of_odme: 'openChecklistUseOfOdmeInManualMode',
     work_on_deck: 'openChecklistHeavyWeather',
-    work_on_electrical_equipment: 'openChecklistElectricalEquipmentAndCircuit',
-    work_on_pipelines: 'openChecklistPressurePipelines',
     working_aloft: 'openChecklistWorkingAloftOverside',
-    lifting_operation: 'openChecklistLiftingOperation'
+    lifting_operation: 'openChecklistLiftingOperation',
+    pressure_pipe_vessel: 'openChecklistPressurePipelines',
+    ele_equip_circuit: 'openChecklistElectricalEquipmentAndCircuit',
+    main_anchor: 'openChecklistCriticalEquipMaintenance'
   }.freeze
 
   APPROVE_MAP = {
@@ -65,18 +68,36 @@ class PermitMap
     working_aloft: 'PENDING_MASTER_APPROVAL',
     pre: 'PENDING_OFFICER_APPROVAL',
     cre: 'PENDING_OFFICER_APPROVAL',
-    lifting_operation: 'PENDING_MASTER_APPROVAL'
+    lifting_operation: 'PENDING_MASTER_APPROVAL',
+    pressure_pipe_vessel: 'PENDING_MASTER_APPROVAL',
+    ele_equip_circuit: 'PENDING_MASTER_APPROVAL',
+    main_anchor: 'PENDING_MASTER_APPROVAL'
   }.freeze
 
+  MAINTENANCE_LIST = ['main_anchor'].freeze
+
   def retrieve_permit_type(permit_type_plain)
-    PERMIT_MAP[permit_type_plain.to_sym]
+    permit_type = PERMIT_MAP[permit_type_plain.to_sym]
+    raise "#{permit_type_plain} hasn't setup permit map" if permit_type.nil?
+
+    permit_type
   end
 
   def retrieve_checklist_string(permit_type)
-    CHECKLIST_MAP[permit_type.to_sym]
+    check_list_str = CHECKLIST_MAP[permit_type.to_sym]
+    raise "#{check_list_str} hasn't setup checklist map" if check_list_str.nil?
+
+    check_list_str
   end
 
   def retrieve_approve_type(permit_type)
-    APPROVE_MAP[permit_type.to_sym]
+    approve_type = APPROVE_MAP[permit_type.to_sym]
+    raise "#{permit_type} hasn't setup approve map" if approve_type.nil?
+
+    approve_type
+  end
+
+  def maintenance_permit?(permit_type)
+    MAINTENANCE_LIST.include? permit_type
   end
 end

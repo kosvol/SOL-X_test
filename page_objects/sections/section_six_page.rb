@@ -16,6 +16,7 @@ class SectionSixPage < BasePage
     add_gas_btn: "//button[contains(., 'Add Gas Test Record')]",
     done_btn: '//button[contains(.,"Done")]',
     submit_btn: "//button[contains(., 'Submit')]",
+    updates_needed_btn: "//button[contains(., 'Updates Needed')]",
     gas_equipment_text: '//input[@id="gasEquipment"]',
     gas_sr_number_text: '//input[@id="gasSrNumber"]',
     gas_last_calibrate_text: '//button[@id="gasLastCalibrationDate"]',
@@ -98,6 +99,16 @@ class SectionSixPage < BasePage
 
   def click_submit_btn
     click(SECTION_SIX[:submit_btn])
+  end
+
+  def verify_submit_update_btn(visibility)
+    if visibility == 'should'
+      find_element(SECTION_SIX[:submit_btn])
+      find_element(SECTION_SIX[:updates_needed_btn])
+    else
+      verify_element_not_exist(SECTION_SIX[:submit_btn])
+      verify_element_not_exist(SECTION_SIX[:updates_needed_btn])
+    end
   end
 
   private

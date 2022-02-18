@@ -4,6 +4,7 @@ require 'require_all'
 require 'logger'
 require_relative 'permit'
 require_relative 'base_permit_builder'
+require_relative 'permit_map'
 require_all 'service/api'
 
 # ptw builder to create sections
@@ -12,6 +13,7 @@ class PermitToWorkBuilder < BasePermitBuilder
 
   def create_section0(permit_type = @permit_type, pin = @default_pin)
     response = Section0API.new.request(permit_type, pin)
+    @logger.info("section creation response: #{response}")
     self.permit_id = response['data']['createForm']['_id']
     @logger.info("created permit id: #{permit_id}")
   end
@@ -25,7 +27,8 @@ class PermitToWorkBuilder < BasePermitBuilder
   end
 
   def create_section1(permit_id = self.permit_id, pin = @default_pin)
-    Section1API.new.request(permit_id, pin)
+    is_maintenance_permit = PermitMap.new.maintenance_permit?(@permit_type)
+    Section1API.new.request(permit_id, is_maintenance_permit, pin)
   end
 
   def create_section3a(permit_id = self.permit_id, pin = @default_pin)

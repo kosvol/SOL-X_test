@@ -6,7 +6,7 @@ Feature: Pump room entry permit creation
 
   Scenario: SOL-5707 Display message on Entry Log tab if no entry records exist
     Given SmartForms open page
-    When  PermitGenerator create entry permit
+    When  EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
     Then SmartForms open hamburger menu
@@ -219,7 +219,7 @@ Feature: Pump room entry permit creation
 
   Scenario: Verify creator PRE cannot request update needed
     Given SmartForms open page
-    When PermitGenerator create entry permit
+    When EntryGenerator create entry permit
       | entry_type | permit_status            |
       | pre        | PENDING_OFFICER_APPROVAL |
     And CommonSection sleep for "2" sec
