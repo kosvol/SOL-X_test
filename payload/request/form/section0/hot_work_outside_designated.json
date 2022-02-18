@@ -1,0 +1,32 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 6,
+    "permitType": "Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)",
+    "answers": [{
+      "fieldId": "team",
+      "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
+    }, {
+      "fieldId": "permitType",
+      "value": "\"Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)\""
+    }, {
+      "fieldId": "openChecklistHotWorkOutsideDesignatedArea",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "permitValidDuration",
+      "value": "\"8\""
+    }, {
+      "fieldId": "gasReaderRequired",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "shipsApproval",
+      "value": "\"Master\""
+    }, {
+      "fieldId": "officeApproval",
+      "value": "\"VS/MS\""
+    }],
+    "submissionTimestamp": "2022-02-15T10:54:25.228Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

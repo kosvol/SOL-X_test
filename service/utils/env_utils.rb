@@ -58,7 +58,7 @@ module EnvUtils
 
   def retrieve_prefix
     if ENV['APPLICATION'] == 'office_portal'
-      "office-#{ENV['ENVIRONMENT']}"
+      'office-sit'
     elsif ENV['VERSION'] == '2.0'
       "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}-2-0"
     else

@@ -1,0 +1,14 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "DRA",
+    "templateVersion": 6,
+    "parentFormId": "COTAUTO/PTW/2022/163",
+    "answers": [{
+      "fieldId": "riskHazard",
+      "value": "{\"__typename\":\"RiskHazardsWithMethod\",\"hazards\":[{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Oil pollution\",\"existingMeasures\":\"1. Strip and drain all lines from any cargo or oil.\\n2. Plug in the save alls and scuppers.\\n3. Oil Spill equipment to be kept in readiness.\\n4. Ceased all cargo transfer operations.\\n5. Emergency plan for oil spill to be prepared.\",\"additionalMeasures\":null,\"likelihood\":3,\"consequence\":3,\"likelihoodAfterExistingMeasures\":2,\"consequenceAfterExistingMeasures\":3,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null},{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Equipment damage\",\"existingMeasures\":\"1. Operate equipment within its operating limits - This must be confirmed with reference to operating manual.\\n2. Emergency stop switches to be tested prior any operations.\\n3. Ensure that the pressure gauges have been calibrated.\\n4. Maintain equipment as per PMS.\\n5. Use the correct tools for the task.\",\"additionalMeasures\":null,\"likelihood\":2,\"consequence\":3,\"likelihoodAfterExistingMeasures\":1,\"consequenceAfterExistingMeasures\":3,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null},{\"__typename\":\"RiskHazard\",\"identifiedHazard\":\"Personal injury\",\"existingMeasures\":\"1. Toolbox meeting to be carried out.\\n2. Comply with PPE matrix.\\n3. Stand clear from weak points of the system.\\n4. Use the correct tools for the task.\",\"additionalMeasures\":null,\"likelihood\":2,\"consequence\":1,\"likelihoodAfterExistingMeasures\":1,\"consequenceAfterExistingMeasures\":1,\"likelihoodAfterAdditionalMeasures\":null,\"consequenceAfterAdditionalMeasures\":null}],\"methodDescription\":\"Standard procedures for work on pressure pipelines pressure vessels\"}"
+    }],
+    "submissionTimestamp": "2022-02-15T15:23:25.695Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}
