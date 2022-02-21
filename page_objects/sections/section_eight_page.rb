@@ -14,7 +14,8 @@ class SectionEightPage < BasePage
     competent_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[1]",
     issuing_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[2]",
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",
-    rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]"
+    rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]",
+    task_status: '//*[@name="taskStatus" and @value="%s"]'
   }.freeze
 
   def initialize(driver)
@@ -66,6 +67,11 @@ class SectionEightPage < BasePage
     wait_for_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
     compare_string(params['location_stamp'], retrieve_text(SECTION_EIGHT[:location_stamp]))
+  end
+
+  def answer_task_status(task_status)
+    scroll_times_direction(1, 'down')
+    scroll_click(SECTION_EIGHT[:task_status] % task_status)
   end
 
   private
