@@ -21,8 +21,9 @@ class SectionNinePage < BasePage
   end
 
   def verify_signature_is_hidden
-    verify_element_not_exist(SECTION_NINE[:withdraw_ptw_btn])
     verify_element_not_exist("//*[span='Permit Withdrawn By:']")
+    verify_element_not_exist(SECTION_NINE[:withdraw_ptw_btn])
+    verify_element_not_exist(SECTION_NINE[:request_update_btn])
   end
 
   def verify_request_update_btn(option)
