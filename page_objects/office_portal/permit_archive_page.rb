@@ -2,7 +2,7 @@
 
 require_relative '../base_page'
 
-#OPPermitArchivePage objects
+# OPPermitArchivePage objects
 class OPPermitArchivePage < BasePage
   include EnvUtils
 

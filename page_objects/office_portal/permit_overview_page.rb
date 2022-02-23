@@ -3,7 +3,7 @@
 require_relative '../base_page'
 require_relative '../../service/api/couch_db_api'
 
-#OPPermitOverviewPage objects
+# OPPermitOverviewPage objects
 class OPPermitOverviewPage < BasePage
   include EnvUtils
 
