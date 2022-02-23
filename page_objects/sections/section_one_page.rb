@@ -34,6 +34,7 @@ class SectionOnePage < BasePage
   end
 
   def verify_ddl_value(ddl_type, table)
+    @driver.execute_script('window.scrollBy(0,300)', '')
     ddl_type == 'sea states' ? click(SECTION_ONE[:sea_state_btn]) : click(SECTION_ONE[:wind_force_btn])
     @driver.execute_script('window.scrollBy(0,300)', '') # need to scroll to pop up value
     dropdown_elements = @driver.find_elements(xpath: SECTION_ONE[:dd_list_value])

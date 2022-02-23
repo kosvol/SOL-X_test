@@ -22,13 +22,13 @@ Feature: Section 2: Approving Authority
 
     Examples:
       | level_one_permit                                             |
-      | Enclosed Spaces Entry                                        |
-      | Working Aloft/Overside                                       |
+      | Enclosed Space Entry                                         |
+      | Working Aloft / Overside                                     |
       | Work on Pressure Pipeline/Vessels                            |
-      | Personnel Transfer By Transfer Basket                        |
+      | Personnel Transfer by Transfer Basket                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Working on Deck During Heavy Weather                         |
-      | Helicopter Operations                                        |
+      | Helicopter Operation                                         |
 
   Scenario Outline: Verify user can see the level2 permits correct approval for non-OA
     Given SmartForms open page

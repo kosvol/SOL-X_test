@@ -5,7 +5,7 @@ Feature: Section 3A: DRA - Method & Hazards
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     When CommonSection navigate to "Section 3A"
     Then Section3A verify answers
 
@@ -35,6 +35,7 @@ Feature: Section 3A: DRA - Method & Hazards
       | 2          | 3           |
       | 3          | 1           |
       | 3          | 2           |
+
 
   Scenario Outline: Verify risk matrix meets criteria for medium risk for without applying measure
     Given SmartForms open page
@@ -238,6 +239,7 @@ Feature: Section 3A: DRA - Method & Hazards
       | 3          | 2           |
       | 4          | 1           |
 
+
   Scenario Outline: Verify risk matrix meets criteria for medium risk for additional hazard
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -341,6 +343,7 @@ Feature: Section 3A: DRA - Method & Hazards
     And DRA Save DRA
     And Section3A click edit hazards
     Then DRA should see additional measures
+
 
   Scenario: Verify delete risk button
     Given SmartForms open page
