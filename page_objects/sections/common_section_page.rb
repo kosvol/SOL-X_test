@@ -46,7 +46,7 @@ class CommonSectionPage < BasePage
   end
 
   def click_sign_sign
-    click(COMMON_SECTION[:sign_btn])
+    scroll_click(COMMON_SECTION[:sign_btn])
   end
 
   def click_done_dialog

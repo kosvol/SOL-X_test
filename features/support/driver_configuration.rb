@@ -60,7 +60,7 @@ class DriverConfiguration
   def setup_chrome_mode
     case ENV['PLATFORM']
     when 'chrome_headless'
-      @options.headless!
+      setup_headless
     when 'chrome_incognito'
       @options.add_argument('--incognito')
       @options.add_argument('--private')
@@ -72,5 +72,11 @@ class DriverConfiguration
   def setup_camera
     @options.add_argument('--use-fake-device-for-media-stream')
     @options.add_argument('--use-fake-ui-for-media-stream')
+  end
+
+  def setup_headless
+    @options.headless!
+    @options.add_argument('--disable-gpu')
+    @options.add_argument('--allow-insecure-localhost')
   end
 end

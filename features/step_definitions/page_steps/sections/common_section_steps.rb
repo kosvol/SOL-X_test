@@ -5,6 +5,7 @@ require_relative '../../../../page_objects/sections/common_section_page'
 Given('CommonSection navigate to {string}') do |section|
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.navigate_to_section(section)
+  sleep 1 # to make it stable
 end
 
 Given('CommonSection click Save & Next') do

@@ -45,7 +45,7 @@ class SignatureLocationPage < BasePage
   end
 
   def select_zone(zone)
-    sleep 0.5 # need to wait for the list loaded
+    sleep 1 # need to wait for the list loaded
     scroll_click(SIGNATURE_LOCATION[:zone_option] % zone)
   end
 
