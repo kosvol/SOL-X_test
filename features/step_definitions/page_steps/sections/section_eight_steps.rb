@@ -37,3 +37,8 @@ Given('Section8 verify signed detail') do |table|
   @section_eight_page = SectionEightPage.new(@driver)
   @section_eight_page.verify_signed_detail(table)
 end
+
+Given('Section8 answer task status {string}') do |task_status|
+  @section_eight_page = SectionEightPage.new(@driver)
+  @section_eight_page.answer_task_status(task_status)
+end

@@ -1,112 +1,87 @@
 @section9
-Feature: Section9
-  As a ...
-  I want to ...
-  So that ...
+Feature: Section9: Withdrawal of Permit
 
-  # Scenario: Verify permit is removed from Pending Withdrawal filter after update requested
-  # Scenario: Verify permit is removed from Pending Withdrawal filter after manual termination
 
   Scenario: Verify section 9 buttons display are correct via pending termination state
-    Given I submit permit submit_enclose_space_entry via service with 9015 user and set to pending approval state
-    And I launch sol-x portal without unlinking wearable
-    And I set non oa permit to ACTIVE state
-    And I set non oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I open a permit pending termination with 5/E rank
-    Then I should see previous and close buttons
+    Given PermitGenerator create permit
+      | permit_type           | permit_status      | eic | gas_reading | aft_photo |
+      | enclosed_spaces_entry | pending_withdrawal | no  | yes         | 2         |
+    And SmartForms open "pending-withdrawal" page
+    And PendingWithdrawalPTW click Review & Withdraw button
+    And PinEntry enter pin for rank "4/E"
+    And CommonSection click Previous
+    When CommonSection click Next button
+    Then CommonSection click Close button
 
-  Scenario Outline: Verify Master can see terminate and update buttons for non oa permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
-    And I sleep for 1 seconds
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I set oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I click on permit for review and termination
-    And I enter pin for rank MAS
-    Then I should see terminate permit to work and request update buttons
 
+  Scenario: Verify Master can see terminate and update buttons for non oa permit
+    Given PermitGenerator create permit
+      | permit_type           | permit_status      | eic | gas_reading | aft_photo |
+      | enclosed_spaces_entry | pending_withdrawal | no  | yes         | 2         |
+    And SmartForms open "pending-withdrawal" page
+    And PendingWithdrawalPTW click Review & Withdraw button
+    When PinEntry enter pin for rank "MAS"
+    Then Section9 verify withdraw button is "enabled"
+    And Section9 verify request updates button is "enabled"
+
+
+  Scenario: Verify Master can see terminate and update buttons for oa permit
+    Given PermitGenerator create permit
+      | permit_type     | permit_status      | eic | gas_reading | aft_photo |
+      | use_safe_camera | pending_withdrawal | no  | yes         | 2         |
+    And SmartForms open "pending-withdrawal" page
+    And PendingWithdrawalPTW click Review & Withdraw button
+    When PinEntry enter pin for rank "MAS"
+    Then Section9 verify withdraw button is "enabled"
+    And Section9 verify request updates button is "enabled"
+
+
+  Scenario Outline: Verify non Master will not see withdraw and request update button for oa permit
+    Given PermitGenerator create permit
+      | permit_type     | permit_status      | eic | gas_reading | aft_photo |
+      | use_safe_camera | pending_withdrawal | no  | yes         | 2         |
+    And SmartForms open "pending-withdrawal" page
+    And PendingWithdrawalPTW click Review & Withdraw button
+    When PinEntry enter pin for rank "<rank>"
+    Then Section9 verify withdrawn signature section is hidden
     Examples:
-      | permit_types          | permit_payload             |
-      | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | rank |
+      | C/O  |
+      | 3/E  |
+#      | A 3/E |
+      | 4/E  |
+#      | A 4/E |
+#      | ETO   |
 
-  Scenario Outline: Verify Master can see terminate and update buttons for oa permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
-    And I sleep for 1 seconds
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I set oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I click on permit for review and termination
-    And I enter pin for rank MAS
-    Then I should see terminate permit to work and request update buttons
 
-    Examples:
-      | permit_types                         | permit_payload                |
-      | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
+  Scenario: Verify non Master will not see withdraw and request update button for non oa permit
+    Given PermitGenerator create permit
+      | permit_type           | permit_status      | eic | gas_reading | aft_photo |
+      | enclosed_spaces_entry | pending_withdrawal | no  | yes         | 2         |
+    And SmartForms open "pending-withdrawal" page
+    And PendingWithdrawalPTW click Review & Withdraw button
+    When PinEntry enter pin for rank "C/O"
+    Then Section9 verify withdrawn signature section is hidden
 
-  Scenario Outline: Verify non Master will not see terminate and update button for oa permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I set oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I open a permit pending termination with <rank> rank
-    Then I should not see terminate permit to work and request update buttons
-
-    Examples:
-      | rank  | pin  | permit_types                         | permit_payload                |
-      # | C/O | 9015 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 3/E   | 4685 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 3/E | 6727 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | 4/E   | 1311 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | A 4/E | 0703 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      # | Chief Engineer | 8248 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Chief Engineer  | 5718 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Second Engineer            | 2523 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      ## | Additional Second Engineer | 3030 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-      | ETO   | 0856 | Use of non-intrinsically safe Camera | submit_non_intrinsical_camera |
-
-  Scenario Outline: Verify non Master will not see approve and request update button for non oa permit
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I set oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I open a permit pending termination with <rank> rank
-    Then I should not see terminate permit to work and request update buttons
-
-    Examples:
-      | rank | pin  | permit_types | permit_payload             |
-      | C/O  | 9015 | NA           | submit_enclose_space_entry |
 
   Scenario Outline: Verify Status Update display as completed when user submit as continue
-    Given I submit permit <permit_payload> via service with 9015 user and set to active state with EIC not require
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I click on active filter
-    And I manually put the permit to pending termination state
-    And I click on pending withdrawal filter
-    Then I should <status> as task status
-
+    Given PermitGenerator create permit
+      | permit_type           | permit_status | eic | gas_reading | bfr_photo | aft_photo |
+      | enclosed_spaces_entry | active        | yes | no          | 2         | 2         |
+    And SmartForms open "active" page
+    And ActivePTW click View/Terminate button
+    And PinEntry enter pin for rank "C/O"
+    And Section8 answer task status "<task_status>"
+    And CommonSection sleep for "3" sec
+    And Section8 click Submit For Termination
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection sleep for "3" sec
+    When SmartForms open "pending-withdrawal" page
+    Then PendingWithdrawalPTW verify task status is "<task_status>"
     Examples:
-      | permit_types          | permit_payload             | status    |
-      # | Cold Work - Cleaning Up of Spill | submit_cold_work_clean_spill | Completed |
-      | Enclosed Spaces Entry | submit_enclose_space_entry | Completed |
-  # | Hot Work                           | submit_Hot Work               | Suspended |
-
-  Scenario Outline: Verify date and time are pre-fill
-    Given I submit permit <permit_payload> via service with 9015 user and set to pending approval state
-    And I sleep for 1 seconds
-    And I launch sol-x portal without unlinking wearable
-    And I set oa permit to ACTIVE state
-    And I set oa permit to PENDING_TERMINATION state
-    And I click on pending withdrawal filter
-    And I click on permit for review and termination
-    And I enter pin for rank MAS
-    Then I should see date and time pre-fill on section 9
-
-    Examples:
-      | permit_types          | permit_payload             |
-      | Enclosed Spaces Entry | submit_enclose_space_entry |
+      | task_status |
+      | Completed   |
+      | Suspended   |
