@@ -123,6 +123,13 @@ subheaders_eic_yes_fsu:
       "Responsible Authority:"
   ]
 
+subheaders_eic_no_fsu:
+  [
+      "Section 8: Task Status",
+      "Submit For Termination",
+      "Responsible Authority:"
+  ]
+
 fields_exceptions: [""]
 labels_exceptions: [""]
 subheaders_exceptions: [""]

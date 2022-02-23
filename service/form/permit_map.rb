@@ -7,7 +7,7 @@ class PermitMap
   PERMIT_MAP = {
     cold_work_in_hazardous: 'cold_work_in_hazardous',
     cold_work_cleaning_spill: 'cold_work_cleaning_spill',
-    maintenance_on_anchor: 'maintenance_on_anchor',
+    main_anchor: 'main_anchor',
     enclosed_spaces_entry: 'enclosed_spaces_entry',
     helicopter_operation: 'helicopter_operation',
     hot_work_outside_designated: 'hot_work_outside_designated',
@@ -18,13 +18,10 @@ class PermitMap
     use_safe_camera: 'use_safe_camera',
     use_of_odme: 'use_of_odme',
     work_on_deck: 'work_on_deck',
-    work_on_electrical_equipment: 'work_on_electrical_equipment',
-    work_on_pipelines: 'work_on_pipelines',
+    ele_equip_circuit: 'ele_equip_circuit',
+    pressure_pipe_vessel: 'pressure_pipe_vessel',
     working_aloft: 'working_aloft',
     lifting_operation: 'lifting_operation',
-    pressure_pipe_vessel: 'pressure_pipe_vessel',
-    main_anchor: 'main_anchor',
-    ele_equip_circuit: 'ele_equip_circuit',
     cre: 'cre',
     pre: 'pre'
   }.freeze
@@ -32,6 +29,7 @@ class PermitMap
   CHECKLIST_MAP = {
     cold_work_cleaning_spill: 'openChecklistColdWorkOp',
     cold_work_in_hazardous: 'openChecklistWorkOnHazardousSubstances',
+    main_anchor: 'openChecklistCriticalEquipMaintenance',
     enclosed_spaces_entry: 'openChecklistEnclosedSpaceEntry',
     helicopter_operation: 'openChecklistHelicopterOp',
     hot_work_outside_designated: 'openChecklistHotWorkOutsideDesignatedArea',
@@ -42,17 +40,16 @@ class PermitMap
     use_safe_camera: 'openChecklistUseOfCamera',
     use_of_odme: 'openChecklistUseOfOdmeInManualMode',
     work_on_deck: 'openChecklistHeavyWeather',
-    working_aloft: 'openChecklistWorkingAloftOverside',
-    lifting_operation: 'openChecklistLiftingOperation',
     pressure_pipe_vessel: 'openChecklistPressurePipelines',
     ele_equip_circuit: 'openChecklistElectricalEquipmentAndCircuit',
-    main_anchor: 'openChecklistCriticalEquipMaintenance'
+    working_aloft: 'openChecklistWorkingAloftOverside',
+    lifting_operation: 'openChecklistLiftingOperation'
   }.freeze
 
   APPROVE_MAP = {
     cold_work_cleaning_spill: 'PENDING_MASTER_APPROVAL',
     cold_work_in_hazardous: 'PENDING_MASTER_APPROVAL',
-    maintenance_on_anchor: 'PENDING_MASTER_APPROVAL',
+    main_anchor: 'PENDING_MASTER_APPROVAL',
     enclosed_spaces_entry: 'PENDING_MASTER_APPROVAL',
     helicopter_operation: 'PENDING_MASTER_APPROVAL',
     hot_work_outside_designated: 'PENDING_OFFICE_APPROVAL',
@@ -63,15 +60,12 @@ class PermitMap
     use_safe_camera: 'PENDING_OFFICE_APPROVAL',
     use_of_odme: 'PENDING_OFFICE_APPROVAL',
     work_on_deck: 'PENDING_MASTER_APPROVAL',
-    work_on_electrical_equipment: 'PENDING_MASTER_APPROVAL',
-    work_on_pipelines: 'PENDING_MASTER_APPROVAL',
+    ele_equip_circuit: 'PENDING_MASTER_APPROVAL',
+    pressure_pipe_vessel: 'PENDING_MASTER_APPROVAL',
     working_aloft: 'PENDING_MASTER_APPROVAL',
     pre: 'PENDING_OFFICER_APPROVAL',
     cre: 'PENDING_OFFICER_APPROVAL',
-    lifting_operation: 'PENDING_MASTER_APPROVAL',
-    pressure_pipe_vessel: 'PENDING_MASTER_APPROVAL',
-    ele_equip_circuit: 'PENDING_MASTER_APPROVAL',
-    main_anchor: 'PENDING_MASTER_APPROVAL'
+    lifting_operation: 'PENDING_MASTER_APPROVAL'
   }.freeze
 
   MAINTENANCE_LIST = ['main_anchor'].freeze

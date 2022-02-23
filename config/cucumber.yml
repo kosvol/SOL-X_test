@@ -24,8 +24,6 @@ android_chrome_tablet_b_fsu_auto: --profile json PLATFORM=Android APPLICATION=c2
 ### use in sit-sol-x-web-app-office-portal-ui-test ###
 mac_chrome_sit_fsu_office_portal_dashboard: --profile json PLATFORM=chrome_incognito APPLICATION=office_portal ENVIRONMENT=sit VESSEL=fsu DEVICE=dashboard PROJECT=solx
 mac_chrome_sit_fsu_office_portal_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=office_portal ENVIRONMENT=sit VESSEL=fsu DEVICE=dashboard PROJECT=solx
-mac_chrome_auto_fsu_office_portal_dashboard: --profile json PLATFORM=chrome_incognito APPLICATION=office_portal ENVIRONMENT=auto VESSEL=fsu DEVICE=dashboard PROJECT=solx
-mac_chrome_auto_fsu_office_portal_dashboard_headless: --profile json PLATFORM=chrome_headless APPLICATION=office_portal ENVIRONMENT=auto VESSEL=fsu DEVICE=dashboard PROJECT=solx
 
 ### SIT 2.0 environment sample ###
 mac_chrome_sit_cot_tablet_headless_2.0: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=sit VESSEL=lng DEVICE=tablet VERSION=2.0 PROJECT=solx

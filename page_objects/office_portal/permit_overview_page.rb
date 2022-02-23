@@ -11,10 +11,10 @@ class OPPermitOverviewPage < BasePage
     permit_section1_header: "//div[@class='screen-only']//h2[contains(text(),'Section 1')]",
     section_fields: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h4",
     section_labels: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//label",
-    section_headers: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h2",
+    section_subheaders: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h2",
     eic_fields: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h4",
     eic_labels: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//label",
-    eic_headers: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h2"
+    eic_subheaders: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h2"
   }.freeze
 
   def open_overview_page(permit_id)
@@ -34,137 +34,115 @@ class OPPermitOverviewPage < BasePage
     end
   end
 
-  def check_section_fields(what_section, eic_condition, gas_reading_condition)
-    p "> #{eic_condition}"
-    p "> #{gas_reading_condition}"
-    fields_arr = retrieve_actual_fields_list(what_section)
-    base_fields = retrieve_base_fields_list(what_section, eic_condition, gas_reading_condition)
-    p "> #{fields_arr}"
-    p ">> #{base_fields}"
-    p ">>> difference #{fields_arr - base_fields}"
+  def check_section_fields(what_section, eic_condition, gas_reading_cond, permit_type)
+    fields_arr = retrieve_actual_elements_list(what_section, 'fields')
+    base_fields = retrieve_base_fields_list(what_section, eic_condition, gas_reading_cond, permit_type)
     compare_string(base_fields, fields_arr)
   end
 
   def check_section_labels(what_section)
-    labels_arr = retrieve_actual_labels_list(what_section)
+    labels_arr = retrieve_actual_elements_list(what_section, 'labels')
     base_labels = retrieve_base_labels_list(what_section)
-    p "> #{labels_arr}"
-    p ">> #{base_labels}"
-    p ">>> difference #{labels_arr - base_labels}"
     compare_string(base_labels, labels_arr)
   end
 
-  def check_section_headers(what_section, permit_id)
-    headers_arr = retrieve_actual_headers_list(what_section)
-    base_headers = retrieve_base_headers_list(what_section, permit_id)
-    p "> #{headers_arr}"
-    p ">> #{base_headers}"
-    p ">>> difference #{headers_arr - base_headers}"
+  def check_section_headers(what_section, permit_id, eic_condition)
+    headers_arr = retrieve_actual_elements_list(what_section, 'subheaders')
+    base_headers = retrieve_base_headers_list(what_section, permit_id, eic_condition)
     compare_string(base_headers, headers_arr)
   end
 
   def check_checklist_questions(checklist)
-    actual_questions_arr = questions?(checklist)
+    actual_questions_arr = questions(checklist)
     base_data = ['Vessel Name:', 'Created On:']
     base_data += (YAML.load_file("data/checklist/#{checklist}.yml")['questions'] - YAML
                  .load_file('data/checklist/checklist_exceptions.yml')['exceptions'])
-    p "> difference #{actual_questions_arr - base_data}"
-    compare_string(actual_questions_arr, base_data)
+    compare_string(base_data, actual_questions_arr)
   end
 
   private
 
-  def retrieve_actual_fields_list(section)
-    fields_arr = []
-    elements = if section == 'Energy Isolation Certificate'
-                 PERMIT_OVERVIEW[:eic_fields]
-               else
-                 format(PERMIT_OVERVIEW[:section_fields], section)
-               end
-    find_elements(elements).each do |field|
-      fields_arr << field.text
-    end
-    fields_arr -= YAML.load_file("data/screens-label/#{section}.yml")['fields_exceptions']
-    fields_arr
+  def retrieve_actual_elements_list(section, elements_type)
+    elements = select_section_elements(section, elements_type)
+    create_elements_array(elements) - YAML.load_file("data/screens-label/#{section}.yml")["#{elements_type}_exceptions"]
   end
 
-  def retrieve_base_fields_list(section, eic_condition, gas_reading_condition)
+  def retrieve_base_fields_list(section, eic_condition, gas_reading_cond, permit_type)
     case section
+    when 'Section 1'
+      [] + YAML.load_file("data/screens-label/#{section}.yml")['fields_maintenance'] if permit_type == 'main_anchor'
     when 'Section 4B'
       [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_eic_#{eic_condition}"]
     when 'Section 8'
-      [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_eic_#{eic_condition}"]
+      section8_base_fields_with_cond(eic_condition, permit_type)
     when 'Section 6'
-      [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_eic_#{gas_reading_condition}"]
+      [] + YAML.load_file("data/screens-label/#{section}.yml")["fields_eic_#{gas_reading_cond}"]
     else
       [] + YAML.load_file("data/screens-label/#{section}.yml")['fields']
     end
-      #[] + YAML.load_file("data/screens-label/#{section}.yml")['fields']
-    #if @permit_type == 'submit_maintenance_on_anchor'
-    #            [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields_maintenance']
-    #          else
-    #            [] + YAML.load_file("data/screens-label/#{what_section}.yml")['fields']
-    #          end
   end
 
-  def retrieve_actual_labels_list(section)
-    labels_arr = []
-    elements = if section == 'Energy Isolation Certificate'
-                 PERMIT_OVERVIEW[:eic_labels]
-               else
-                 format(PERMIT_OVERVIEW[:section_labels], section)
-               end
-    find_elements(elements).each do |label|
-      labels_arr << label.text
+  def section8_base_fields_with_cond(eic_condition, permit_type)
+    case permit_type
+    when 'main_anchor'
+      [] + YAML.load_file('data/screens-label/Section 8.yml')['fields_critical']
+    when 'ele_equip_circuit'
+      [] + YAML.load_file('data/screens-label/Section 8.yml')['fields_electrical']
+    when 'pressure_pipe_vessel'
+      [] + YAML.load_file('data/screens-label/Section 8.yml')['fields_pipe']
+    else
+      [] + YAML.load_file('data/screens-label/Section 8.yml')["fields_eic_#{eic_condition}"]
     end
-    labels_arr -= YAML.load_file("data/screens-label/#{section}.yml")['labels_exceptions']
-    labels_arr
   end
 
   def retrieve_base_labels_list(section)
     [] + YAML.load_file("data/screens-label/#{section}.yml")['labels']
   end
 
-  def retrieve_actual_headers_list(section)
-    headers_arr = []
-    elements = if section == 'Energy Isolation Certificate'
-                 PERMIT_OVERVIEW[:eic_headers]
-               else
-                 format(PERMIT_OVERVIEW[:section_headers], section)
-               end
-    find_elements(elements).each do |header|
-      headers_arr << header.text
-    end
-    headers_arr -= YAML.load_file("data/screens-label/#{section}.yml")['subheaders_exceptions']
-    headers_arr
-  end
-
-  def retrieve_base_headers_list(what_section, permit_id)
-    if (permit_id.include? 'FSU') && what_section == 'Energy Isolation Certificate'
-      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_fsu']
+  def retrieve_base_headers_list(what_section, permit_id, eic_condition)
+    case what_section
+    when 'Energy Isolation Certificate'
+      [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders_fsu'] if permit_id.include? 'FSU'
+    when 'Section 4B'
+      [] + YAML.load_file("data/screens-label/#{what_section}.yml")["subheaders_eic_#{eic_condition}"]
+    when 'Section 8'
+      if permit_id.include? 'FSU'
+        [] + YAML.load_file("data/screens-label/#{what_section}.yml")["subheaders_eic_#{eic_condition}_fsu"]
+      else
+        [] + YAML.load_file("data/screens-label/#{what_section}.yml")["subheaders_eic_#{eic_condition}"]
+      end
     else
       [] + YAML.load_file("data/screens-label/#{what_section}.yml")['subheaders']
     end
   end
 
-  def questions?(checklist)
-    questions_arr = []
-    case checklist
-    when 'Work on Pressure Pipelines'
-      find_elements("//div[@class='screen-only']//h2[contains(text(),'Work on Pressure Pipeline/Pressure Vessels')]/../..//h4")
-        .each do |question|
-        questions_arr << question.text
-      end
-    when 'Working Aloft Overside'
-      find_elements("//div[@class='screen-only']//h2[contains(text(),'Working Aloft/Overside')]/../..//h4")
-        .each do |question|
-        questions_arr << question.text
+  def select_section_elements(section, elements_type)
+    if section == 'Energy Isolation Certificate'
+      PERMIT_OVERVIEW["eic_#{elements_type}".to_sym]
+    else
+      format(PERMIT_OVERVIEW["section_#{elements_type}".to_sym], section)
+    end
+  end
+
+  def create_elements_array(elements)
+    elements_arr = []
+    if @driver.find_elements(xpath: elements).size.positive?
+      find_elements(elements).each do |element|
+      elements_arr << element.text
       end
     else
-      find_elements("//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
-        .each do |question|
-        questions_arr << question.text
-      end
+      Log.instance.info "#{elements} elements do not exist"
+    end
+    elements_arr
+  end
+
+  def questions(checklist)
+    questions_arr = []
+    checklist = 'Work on Pressure Pipeline/Pressure Vessels' if checklist == 'Work on Pressure Pipelines'
+    checklist = 'Working Aloft/Overside' if checklist == 'Working Aloft Overside'
+    find_elements("//div[@class='screen-only']//h2[contains(text(),'#{checklist}')]/../..//h4")
+      .each do |question|
+      questions_arr << question.text
     end
     questions_arr
   end

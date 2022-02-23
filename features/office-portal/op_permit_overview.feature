@@ -1,18 +1,21 @@
 @op_permit_overview_page
+  # Probably require a separate Jenkins job
+  # Should be performed with the FSU vessel
 Feature: Office Portal Permit Overview
 
+  @close_browser
   Scenario Outline: Verify the PTW Sections shows the same fields as in the Client app (non-maintenance, non-condition)
     Given PermitGenerator create permit
-      | permit_type         | permit_status | eic | gas_reading | bfr_photo | aft_photo |
-      | hot_work_designated | withdrawn     | yes  | no          | 0         | 0         |
+      | permit_type         | permit_status | eic | gas_reading |
+      | hot_work_designated | withdrawn     | yes | no          |
     When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
-    And PermitOverview follow the permit link
-    And PermitOverview should see the "<section>" shows the same fields as in the Client app
+    When PermitOverview follow the permit link
+    Then PermitOverview should see the "<section>" shows the same fields as in the Client app
 
     Examples:
       | section                      |
@@ -29,45 +32,60 @@ Feature: Office Portal Permit Overview
       | Section 7B                   |
       | Section 9                    |
 
-    Scenario Outline: Verify the PTW Sections shows the same fields as in the Client app (non-maintenance, with conditions)
-      Given PermitGenerator create permit
-        | permit_type         | permit_status | eic   | gas_reading   | bfr_photo | aft_photo |
-        | hot_work_designated | withdrawn     | <eic> | <gas_reading> | 0         | 0         |
-      When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
-      And OfficeLogin open page
-      And OfficeLogin enter email "qa-test-group@sol-x.co"
-      And OfficeLogin enter password "Solxtester12345!"
-      And OfficeLogin click the Sign in button
-      Then PermitArchive page should be displayed
-      And PermitOverview follow the permit link
-      Then PermitOverview should see the "<section>" shows the same fields as in the Client app
-
-      Examples:
-        | section    | eic | gas_reading |
-        | Section 4B | yes | yes         |
-        | Section 6  | no  | yes         |
-        | Section 8  | yes | yes         |
-        | Section 4B | no  | no          |
-        | Section 6  | no  | no          |
-        | Section 8  | no  | no          |
- @close_browser
-  Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
+  Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
     Given PermitGenerator create permit
-      | permit_type         | permit_status | eic   | gas_reading   | bfr_photo | aft_photo |
-      | <permit_type>       | withdrawn     | no    | no            | 0         | 0         |
+      | permit_type | permit_status | eic | gas_reading |
+      | main_anchor | withdrawn     | no  | no          |
     When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
-    And PermitOverview follow the permit link
+    When PermitOverview follow the permit link
+    Then PermitOverview should see the "Section 1" shows the same fields as in the Client app
+
+  @close_browser
+  Scenario Outline: Verify the PTW Sections 4B, 6 and 8 shows the same fields as in the Client app with conditions (non-maintenance, with conditions)
+    Given PermitGenerator create permit
+      | permit_type         | permit_status | eic   | gas_reading   |
+      | hot_work_designated | withdrawn     | <eic> | <gas_reading> |
+    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    And OfficeLogin open page
+    And OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+    When PermitOverview follow the permit link
+    Then PermitOverview should see the "<section>" shows the same fields as in the Client app
+
+    Examples:
+      | section    | eic | gas_reading |
+      | Section 4B | yes | yes         |
+      | Section 6  | no  | yes         |
+      | Section 8  | yes | yes         |
+      | Section 4B | no  | no          |
+      | Section 6  | no  | no          |
+      | Section 8  | no  | no          |
+
+  @close_browser
+  Scenario Outline: Verify the different PTW checklist questions are displayed the same as in the Client app
+    Given PermitGenerator create permit
+      | permit_type         | permit_status | eic   | gas_reading   |
+      | <permit_type>       | withdrawn     | no    | no            |
+    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    And OfficeLogin open page
+    And OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+    When PermitOverview follow the permit link
     Then PermitOverview should see the "<checklist>" checklist shows the same fields as in the Client app
 
     Examples:
     | permit_type                  | checklist                                 |
     | cold_work_cleaning_spill     | Cold Work Operation                       |
-    | maintenance_on_anchor        | Critical Equipment Maintenance            |
+    | main_anchor                  | Critical Equipment Maintenance            |
     | enclosed_spaces_entry        | Enclosed Spaces Entry                     |
     | helicopter_operation         | Helicopter Operation                      |
     | hot_work_outside_designated  | Hot Work Outside Designated Area          |
@@ -78,7 +96,33 @@ Feature: Office Portal Permit Overview
     | use_safe_camera              | Use of Camera                             |
     | use_of_odme                  | Use of ODME in Manual Mode                |
     | work_on_deck                 | Work on Deck During Heavy Weather         |
-    | work_on_electrical_equipment | Work on Electrical Equipment and Circuits |
+    | ele_equip_circuit            | Work on Electrical Equipment and Circuits |
     | cold_work_in_hazardous       | Work on Hazardous Substances              |
-    | work_on_pipelines            | Work on Pressure Pipelines                |
+    | pressure_pipe_vessel         | Work on Pressure Pipelines                |
     | working_aloft                | Working Aloft Overside                    |
+
+  @close_browser
+  Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
+    Given PermitGenerator create permit
+      | permit_type         | permit_status | eic   | gas_reading   |
+      | <permit_type>       | withdrawn     | no    | no            |
+    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    And OfficeLogin open page
+    And OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+    When PermitOverview follow the permit link
+    Then PermitOverview should see the "Section 8" shows the same fields as in the Client app
+
+    Examples:
+      | permit_type          |
+      | main_anchor          |
+      | ele_equip_circuit    |
+      | pressure_pipe_vessel |
+
+  # Scenario: Verify ROL form shows the same fields as in the client app
+
+  # Scenario: Verify CRE form shows the same fields as in the client app
+
+  # Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
