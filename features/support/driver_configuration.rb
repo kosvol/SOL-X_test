@@ -44,9 +44,9 @@ class DriverConfiguration
   end
 
   def setup_browser_timeouts
-    @driver.manage.timeouts.script_timeout = 15
-    @driver.manage.timeouts.page_load = 15
-    @driver.manage.timeouts.implicit_wait = 15
+    @driver.manage.timeouts.script_timeout = 10
+    @driver.manage.timeouts.page_load = 10
+    @driver.manage.timeouts.implicit_wait = 10
   end
 
   def setup_chrome_window
@@ -76,7 +76,9 @@ class DriverConfiguration
 
   def setup_headless
     @options.headless!
-    @options.add_argument('--disable-gpu')
+    @options.add_argument('--no-sandbox')
+    @options.add_argument('--disable-extensions')
+    @options.add_argument('--disable-dev-shm-usage')
     @options.add_argument('--allow-insecure-localhost')
   end
 end

@@ -64,12 +64,12 @@ Feature: Section0 Form prelude
       | Cold Work                                                                       |
       | Critical Equipment Maintenance                                                  |
       | Enclosed Space Entry                                                            |
-      | Helicopter Operations                                                           |
+      | Helicopter Operation                                                            |
       | Hot Work                                                                        |
-      | Personnel Transfer By Transfer Basket                                           |
+      | Personnel Transfer by Transfer Basket                                           |
       | Rigging of Gangway & Pilot Ladder                                               |
       | Rotational Portable Power Tools                                                 |
-      | Underwater Operation                                                            |
+      | Underwater Operations                                                           |
       | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces |
       | Use of ODME in Manual Mode                                                      |
       | Work on Electrical Equipment and Circuits – Low/High Voltage                    |

@@ -66,7 +66,9 @@ class SectionOnePage < BasePage
   end
 
   def enter_desc_of_work(text)
-    enter_text(SECTION_ONE[:desc_of_work], text)
+    element = find_element(SECTION_ONE[:desc_of_work])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
   end
 
   def select_zone(area, zone)

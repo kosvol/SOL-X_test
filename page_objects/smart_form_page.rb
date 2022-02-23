@@ -23,8 +23,8 @@ class SmartFormsPage < BasePage
   end
 
   def click_create_permit_to_work
-    sleep 0.5 # add to make it stable
-    scroll_click(SMART_FORMS[:create_permit_btn])
+    sleep 0.5 # monitor the performance
+    click(SMART_FORMS[:create_permit_btn])
   end
 
   def click_create_new_pre_btn
@@ -34,5 +34,4 @@ class SmartFormsPage < BasePage
   def click_create_new_cre_btn
     click(SMART_FORMS[:create_new_cre_btn])
   end
-
 end

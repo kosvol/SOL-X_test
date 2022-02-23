@@ -37,7 +37,7 @@ Feature: Section 3B: DRA - Checks & Measures
     When CommonSection navigate to "Section 3B"
     When Section3B answer work site inspection carried out "no"
     Then Section3B "should not" see inspection crew list
-@22
+
   Scenario Outline: Verify method name is populated for level1 permit
     Given SmartForms open page
     And SmartForms click create permit to work

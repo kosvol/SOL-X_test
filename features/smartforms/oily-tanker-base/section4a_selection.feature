@@ -97,10 +97,10 @@ Feature: Section 4A: Safety Checklist selection
       | level_one_permit                                                                | checklist                                 |
       | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces | Use of Camera Checklist                   |
       | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
-      | Enclosed Spaces Entry                                                           | Enclosed Space Entry Checklist            |
-      | Working Aloft/Overside                                                          | Working Aloft/Overside                    |
+      | Enclosed Space Entry                                                            | Enclosed Space Entry Checklist            |
+      | Working Aloft / Overside                                                        | Working Aloft / Overside                  |
       | Work on Pressure Pipeline/Vessels                                               | Work on Pressure Pipelines                |
       | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | Personnel Transfer By Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
-      | Helicopter Operations                                                           | Helicopter Operation Checklist            |
+      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
+      | Helicopter Operation                                                            | Helicopter Operation Checklist            |
       | Work on Electrical Equipment and Circuits – Low/High Voltage                    | Work on Electrical Equipment and Circuits |
