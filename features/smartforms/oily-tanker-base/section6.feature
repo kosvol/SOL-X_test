@@ -32,7 +32,8 @@ Feature: Section 6: Gas Testing/Equipment
 
 
   Scenario: Verify gas reading dead flow not exists
-    Given SmartForms open page
+    Given Wearable service unlink all wearables
+    And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
     And FormPrelude select level1 "Enclosed Space Entry"
@@ -107,7 +108,8 @@ Feature: Section 6: Gas Testing/Equipment
 
 
   Scenario Outline: Verify AGT can add gas readings
-    Given SmartForms open page
+    Given Wearable service unlink all wearables
+    And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
     And FormPrelude select level1 "Enclosed Space Entry"
@@ -154,7 +156,8 @@ Feature: Section 6: Gas Testing/Equipment
 
 
   Scenario: Verify new gas reading without the initial toxic gas will show '-' on the row
-    Given SmartForms open page
+    Given Wearable service unlink all wearables
+    And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
     And FormPrelude select level1 "Enclosed Space Entry"
