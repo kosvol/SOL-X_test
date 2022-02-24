@@ -6,7 +6,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -34,7 +34,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1  |
@@ -56,7 +56,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1  |
@@ -78,7 +78,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     Then Section5 verify role full list
 
@@ -87,7 +87,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -112,7 +112,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -124,7 +124,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -137,10 +137,11 @@ Feature: Section 5: Responsibility Acceptance
 
 
   Scenario Outline: Verify only sponsor crews can sign
-    Given SmartForms open page
+    Given Wearable service unlink all wearables
+    And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -176,7 +177,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -193,7 +194,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |
@@ -219,7 +220,7 @@ Feature: Section 5: Responsibility Acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 5"
     And Section5 select role
       | Authorized Entrant 1 |

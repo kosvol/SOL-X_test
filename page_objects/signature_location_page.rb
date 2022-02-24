@@ -37,10 +37,11 @@ class SignatureLocationPage < BasePage
 
   def click_location_dropdown
     click(SIGNATURE_LOCATION[:zone_ddl])
+    sleep 1
   end
 
   def select_area(area)
-    sleep 0.5 # need to wait for the list loaded
+    sleep 1 # need to wait for the list loaded
     scroll_click(SIGNATURE_LOCATION[:zone_option] % area)
   end
 

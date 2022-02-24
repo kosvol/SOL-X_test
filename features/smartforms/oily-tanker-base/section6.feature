@@ -6,7 +6,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     Then Section6 verify incomplete fields warning
     And Section6 verify incomplete signature warning
@@ -16,7 +16,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 answer gas reading as "Yes"
     Then Section6 verify gas reading note
@@ -26,7 +26,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     Then Section6 verify submit button is "disabled"
 
@@ -35,7 +35,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "C/O"
@@ -56,7 +56,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "C/O"
@@ -70,7 +70,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "C/O"
@@ -80,7 +80,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "C/O"
@@ -93,7 +93,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "<rank>"
@@ -110,7 +110,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And Section1 select zone
       | area        | zone             |
       | Bridge Deck | Port Bridge Wing |
@@ -157,7 +157,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
     And PinEntry enter pin for rank "2/O"
@@ -192,11 +192,11 @@ Feature: Section 6: Gas Testing/Equipment
     And Section6 verify submit button text is "Submit for Master's Approval"
     Examples:
       | level_one_permit                                             |
-      | Enclosed Spaces Entry                                        |
-      | Working Aloft/Overside                                       |
+      | Enclosed Space Entry                                         |
+      | Working Aloft / Overside                                     |
       | Work on Pressure Pipeline/Vessels                            |
-      | Personnel Transfer By Transfer Basket                        |
-      | Helicopter Operations                                        |
+      | Personnel Transfer by Transfer Basket                        |
+      | Helicopter Operation                                         |
       | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Working on Deck During Heavy Weather                         |
 
@@ -288,7 +288,7 @@ Feature: Section 6: Gas Testing/Equipment
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 answer gas reading as "N/A"
     And Section6 "should not" see gas text fields
