@@ -61,9 +61,8 @@ class SectionOnePage < BasePage
   end
 
   def answer_duration_maintenance(option)
-    sleep 1 # monitoring
     scroll_click(SECTION_ONE[:duration_ddl])
-    scroll_click("//button[contains(.,'#{option}')]")
+    click("//button[contains(.,'#{option}')]")
   end
 
   def enter_desc_of_work(text)
