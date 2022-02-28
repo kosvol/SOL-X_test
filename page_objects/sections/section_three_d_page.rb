@@ -34,16 +34,5 @@ class SectionThreeDPage < BasePage
   def verify_sign_button(option)
     verify_btn_availability(SECTION_THREE_D[:sign_btn], option)
   end
-
-  private
-
-  def wait_until_text_update(element, text_to_update)
-    wait = 0
-    until element.text != text_to_update
-      sleep 0.5
-      wait += 1
-      break if wait > 5
-    end
-  end
 end
 

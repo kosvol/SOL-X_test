@@ -18,7 +18,7 @@ class EntryPermitBuilder < BasePermitBuilder
                      end
     response = create_request.request(pin)
     self.permit_id = response['data']['createForm']['_id']
-    @logger.info("Entry permit id: #{permit_id}")
+    @logger.debug("Entry permit id: #{permit_id}")
   end
 
   def update_entry_answer(pin = @default_pin)
