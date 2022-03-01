@@ -8,15 +8,16 @@ Feature: Office Portal Permit Overview
     Given PermitGenerator create permit
       | permit_type         | permit_status | eic | gas_reading |
       | hot_work_designated | withdrawn     | yes | no          |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "<section>" shows the same fields as in the Client app
-
+    Then PermitOverview verify section
+    | section   | permit_type         | eic | gas |
+    | <section> | hot_work_designated | yes | no  |
     Examples:
       | section                      |
       | Section 1                    |
@@ -36,29 +37,32 @@ Feature: Office Portal Permit Overview
     Given PermitGenerator create permit
       | permit_type | permit_status | eic | gas_reading |
       | main_anchor | withdrawn     | no  | no          |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "Section 1" shows the same fields as in the Client app
+    Then PermitOverview verify section
+      | section   | permit_type | eic | gas |
+      | Section 1 | main_anchor | no  | no  |
 
   @close_browser
   Scenario Outline: Verify the PTW Sections 4B, 6 and 8 shows the same fields as in the Client app with conditions (non-maintenance, with conditions)
     Given PermitGenerator create permit
       | permit_type         | permit_status | eic   | gas_reading   |
       | hot_work_designated | withdrawn     | <eic> | <gas_reading> |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "<section>" shows the same fields as in the Client app
-
+    Then PermitOverview verify section
+      | section   | permit_type         | eic   | gas           |
+      | <section> | hot_work_designated | <eic> | <gas_reading> |
     Examples:
       | section    | eic | gas_reading |
       | Section 4B | yes | yes         |
@@ -73,15 +77,14 @@ Feature: Office Portal Permit Overview
     Given PermitGenerator create permit
       | permit_type         | permit_status | eic   | gas_reading   |
       | <permit_type>       | withdrawn     | no    | no            |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "<checklist>" checklist shows the same fields as in the Client app
-
+    Then PermitOverview verify the checklist "<checklist>"
     Examples:
     | permit_type                  | checklist                                 |
     | cold_work_cleaning_spill     | Cold Work Operation                       |
@@ -106,15 +109,16 @@ Feature: Office Portal Permit Overview
     Given PermitGenerator create permit
       | permit_type         | permit_status | eic   | gas_reading   |
       | <permit_type>       | withdrawn     | no    | no            |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "Section 8" shows the same fields as in the Client app
-
+    Then PermitOverview verify section
+      | section   | permit_type   | eic | gas |
+      | Section 8 | <permit_type> | no  | no  |
     Examples:
       | permit_type          |
       | main_anchor          |

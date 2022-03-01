@@ -16,19 +16,6 @@ class CouchDBAPI
     JSON.parse response.body
   end
 
-  def wait_until_state(what_status, server, permit_id)
-    iteration = 16
-    status = nil
-    while iteration.positive? && status != what_status.to_s
-      request = request_to_server(server, permit_id)
-      docs = (JSON.parse request.to_s)['docs']
-      status = docs[0]['status'] if docs != []
-      iteration -= 1
-      sleep(20)
-    end
-    Log.instance.info(status)
-  end
-
   def request_to_server(db_type, permit_id)
     payload = { selector: { _id: permit_id } }.to_json.to_s
     RestClient.post("#{retrieve_db_url(db_type)}/forms/_find", payload, 'Content-Type' => 'application/json')

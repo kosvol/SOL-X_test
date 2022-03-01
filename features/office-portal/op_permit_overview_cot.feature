@@ -8,15 +8,16 @@ Feature: Office Portal Permit Overview (COT vessel)
     Given PermitGenerator create permit
       | permit_type               | permit_status | eic   | gas_reading   |
       | hot_work_designated       | withdrawn     | yes   | no            |
-    When CouchDBAPI wait for form status get changed to "CLOSED" on "cloud"
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
     And OfficeLogin open page
     And OfficeLogin enter email "qa-test-group@sol-x.co"
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview should see the "<section>" shows the same fields as in the Client app
-
+    Then PermitOverview verify section
+      | section   | permit_type         | eic | gas |
+      | <section> | hot_work_designated | yes | no  |
     Examples:
       | section                      |
       | Energy Isolation Certificate |
