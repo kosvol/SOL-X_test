@@ -55,6 +55,7 @@ class DRAPage < BasePage
   end
 
   def verify_risk_indicator(type, expected)
+    sleep 1 # wait for screen load
     element_index = retrieve_element_index(type)
     risk_indicator_elements = find_elements(DRA[:risk_indicator])
     compare_string(expected, risk_indicator_elements[element_index].text)
