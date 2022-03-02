@@ -95,7 +95,7 @@ Feature: Section 2: Approving Authority
     And FormPrelude select level1 "<level_one_permit>"
     And FormPrelude select level2 "<level_two_permit>"
     And Section1 answer duration of maintenance over 2 hours as "No"
-    When Section1 click Save & Next
+  When CommonSection navigate to "Section 2"
     Then Section2 check Approving Authority
       | ship_approval | office_approval |
       | Master        | N/A             |
