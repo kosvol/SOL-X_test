@@ -38,10 +38,7 @@ class SectionOnePage < BasePage
     ddl_type == 'sea states' ? click(SECTION_ONE[:sea_state_btn]) : click(SECTION_ONE[:wind_force_btn])
     @driver.execute_script('window.scrollBy(0,300)', '') # need to scroll to pop up value
     dropdown_elements = @driver.find_elements(xpath: SECTION_ONE[:dd_list_value])
-    table.raw.each_with_index do |item, index|
-      WAIT.until { dropdown_elements[index].displayed? }
-      compare_string(item.first, dropdown_elements[index].text)
-    end
+    verify_each_value(table, dropdown_elements)
   end
 
   def verify_no_previous_btn
@@ -79,5 +76,14 @@ class SectionOnePage < BasePage
 
   def verify_next_btn(option)
     find_element("//button[contains(.,'#{option}')]")
+  end
+
+  private
+
+  def verify_each_value(table, dropdown_elements)
+    table.raw.each_with_index do |item, index|
+      WAIT.until { dropdown_elements[index].displayed? }
+      compare_string(item.first, dropdown_elements[index].text)
+    end
   end
 end

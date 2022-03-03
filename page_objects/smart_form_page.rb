@@ -50,4 +50,3 @@ class SmartFormsPage < BasePage
     end
   end
 end
-

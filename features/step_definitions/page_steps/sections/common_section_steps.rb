@@ -53,4 +53,3 @@ Then('CommonSection check Responsible Officer Signature') do |table|
   params = table.hashes.first
   @common_section_page.check_ra_signature(params['rank'], params['zone'])
 end
-

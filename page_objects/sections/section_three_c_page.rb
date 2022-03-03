@@ -51,4 +51,3 @@ class SectionThreeCPage < BasePage
     end
   end
 end
-

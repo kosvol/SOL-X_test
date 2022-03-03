@@ -35,4 +35,3 @@ class SectionThreeDPage < BasePage
     verify_btn_availability(SECTION_THREE_D[:sign_btn], option)
   end
 end
-

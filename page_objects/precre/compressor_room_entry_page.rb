@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 require_relative '../base_page'
 require_relative 'create_entry_permit_page'
 
@@ -105,5 +104,4 @@ class CompressorRoomEntryPage < CreateEntryPermitPage
     end
     answers_for_section_second
   end
-
 end

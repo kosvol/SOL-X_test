@@ -72,4 +72,3 @@ class CommonSectionPage < BasePage
     find_element("//*[contains(.,'#{location}')]")
   end
 end
-

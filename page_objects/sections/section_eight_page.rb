@@ -51,7 +51,7 @@ class SectionEightPage < BasePage
   end
 
   def click_sign_btn(type)
-    sleep 1  # wait for the page load
+    sleep 1 # wait for the page load
     case type
     when 'Issuing Authorized'
       scroll_click(SECTION_EIGHT[:issuing_sign_btn])

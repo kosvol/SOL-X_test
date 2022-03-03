@@ -9,7 +9,6 @@ class ScheduledEntryPage < BasePage
     view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]"
   }.freeze
 
-
   def initialize(driver)
     super
     find_element(SCHEDULED_ENTRY[:page_header])
@@ -19,5 +18,4 @@ class ScheduledEntryPage < BasePage
     permit_xpath = SCHEDULED_ENTRY[:view_terminate_btn] % permit_id
     click(permit_xpath)
   end
-
 end

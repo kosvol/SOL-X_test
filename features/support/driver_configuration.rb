@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'selenium-webdriver'
+
 # Initialize the driver setup
 class DriverConfiguration
   def initialize
