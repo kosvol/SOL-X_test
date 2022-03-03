@@ -23,4 +23,3 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'solargraph'
 gem 'spreadsheet'
-
