@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'pageobjects/**/**/*'
+    - 'library/**/*'
+    - 'features/step_definitions/ui/**/*'
+    - 'features/step_definitions/ui/**/**/*'
+    - 'features/step_definitions/service/*'
+Metrics/ClassLength:
+  Max: 150

@@ -15,7 +15,6 @@ class PendingApprovalEntryPage < BasePage
     approve_for_activation: "//button[contains(.,'Approve for Activation')]"
   }.freeze
 
-
   def initialize(driver)
     super
     find_element(PENDING_APPROVAL_ENTRY[:page_header])
@@ -36,5 +35,4 @@ class PendingApprovalEntryPage < BasePage
   def approve_for_activation
     click(PENDING_APPROVAL_ENTRY[:approve_for_activation])
   end
-
 end

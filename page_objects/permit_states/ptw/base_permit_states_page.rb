@@ -8,8 +8,8 @@ class BasePermitStatesPage < BasePage
 
   def wait_for_permit_display(xpath)
     wait = 0
-    element = find_element(xpath)
-    until element.displayed?
+    until @driver.find_elements(:xpath, xpath).size.positive?
+      @logger.debug("wait for permit xpath display #{xpath}, retrying #{wait} times")
       sleep 0.5
       @driver.navigate.refresh
       wait += 1

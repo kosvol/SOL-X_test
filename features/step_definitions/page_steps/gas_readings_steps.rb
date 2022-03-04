@@ -65,4 +65,3 @@ And('GasReadings verify location in sign') do |table|
   parms = table.hashes.first
   @gas_readings_page.verify_location_in_sign(parms['location'])
 end
-

@@ -38,6 +38,7 @@ class SectionEightPage < BasePage
   end
 
   def verify_extra_question(question_type, eic)
+    sleep 1 # wait for the page load
     page_span = retrieve_page_span
     extra_questions = YAML.load_file('data/section8-questions.yml')[question_type]['questions']
     verify_general_question(extra_questions, page_span)
@@ -50,6 +51,7 @@ class SectionEightPage < BasePage
   end
 
   def click_sign_btn(type)
+    sleep 1 # wait for the page load
     case type
     when 'Issuing Authorized'
       scroll_click(SECTION_EIGHT[:issuing_sign_btn])
@@ -64,7 +66,7 @@ class SectionEightPage < BasePage
     params = table.hashes.first
     expected_rank_name = UserService.new.retrieve_rank_and_name(params['rank'])
     actual_element = find_element(SECTION_EIGHT[:rank_name])
-    wait_for_update(actual_element, 'Not Answered') # wait for location update
+    wait_until_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
     compare_string(params['location_stamp'], retrieve_text(SECTION_EIGHT[:location_stamp]))
   end
@@ -87,7 +89,7 @@ class SectionEightPage < BasePage
 
   def verify_general_question(extra_questions, page_span)
     extra_questions.each do |questions|
-      raise 'extra question verify failed' unless page_span.include? questions
+      raise "question verify failed: expected #{page_span}, actual: #{questions}" unless page_span.include? questions
     end
   end
 

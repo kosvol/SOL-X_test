@@ -117,5 +117,4 @@ class CreateEntryPermitPage < BasePage
     end
     [format('%02d', hh), format('%02d', mm)]
   end
-
 end

@@ -13,9 +13,9 @@ class PermitToWorkBuilder < BasePermitBuilder
 
   def create_section0(permit_type = @permit_type, pin = @default_pin)
     response = Section0API.new.request(permit_type, pin)
-    @logger.info("section creation response: #{response}")
+    @logger.debug("section creation response: #{response}")
     self.permit_id = response['data']['createForm']['_id']
-    @logger.info("created permit id: #{permit_id}")
+    @logger.debug("created permit id: #{permit_id}")
   end
 
   def create_dra(permit_id = self.permit_id, permit_type = @permit_type, pin = @default_pin)
@@ -58,7 +58,7 @@ class PermitToWorkBuilder < BasePermitBuilder
   def create_section4b_eic(permit_id = self.permit_id, pin = @default_pin)
     @permit.section4b_eic = Section4bEicApi.new.request(permit_id, pin)
     @permit.eic_id = @permit.section4b_eic['data']['createForm']['_id']
-    @logger.info("created eic id: #{@permit.eic_id}")
+    @logger.debug("created eic id: #{@permit.eic_id}")
   end
 
   def create_section4b_eic_detail(permit_id = self.permit_id, eic_id = @permit.eic_id, pin = @default_pin)

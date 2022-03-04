@@ -120,5 +120,4 @@ class GasReadingsPage < BasePage
                        6 => '4 PPM',
                        7 => '1.5 CC',
                        8 => 'C/O STG C/O' }.freeze
-
 end

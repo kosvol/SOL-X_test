@@ -29,7 +29,8 @@ class OPLoginPage < BasePage
   end
 
   def verify_login_page_attributes
-    verify_logos_and_names
+    verify_logos
+    verify_names
     verify_email_block
     verify_password_block
   end
@@ -71,9 +72,12 @@ class OPLoginPage < BasePage
 
   private
 
-  def verify_logos_and_names
+  def verify_logos
     find_element(OP_LOGIN[:company_logo])
     find_element(OP_LOGIN[:app_logo])
+  end
+
+  def verify_names
     portal_name = YAML.load_file('data/office-portal/common_items.yml')['portal_name']
     portal_footer = YAML.load_file('data/office-portal/common_items.yml')['portal_footer']
     compare_string(portal_name, retrieve_text(OP_LOGIN[:portal_name]))

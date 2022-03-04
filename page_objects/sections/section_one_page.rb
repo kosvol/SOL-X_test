@@ -34,13 +34,11 @@ class SectionOnePage < BasePage
   end
 
   def verify_ddl_value(ddl_type, table)
+    @driver.execute_script('window.scrollBy(0,300)', '')
     ddl_type == 'sea states' ? click(SECTION_ONE[:sea_state_btn]) : click(SECTION_ONE[:wind_force_btn])
     @driver.execute_script('window.scrollBy(0,300)', '') # need to scroll to pop up value
     dropdown_elements = @driver.find_elements(xpath: SECTION_ONE[:dd_list_value])
-    table.raw.each_with_index do |item, index|
-      WAIT.until { dropdown_elements[index].displayed? }
-      compare_string(item.first, dropdown_elements[index].text)
-    end
+    verify_each_value(table, dropdown_elements)
   end
 
   def verify_no_previous_btn
@@ -61,11 +59,13 @@ class SectionOnePage < BasePage
 
   def answer_duration_maintenance(option)
     scroll_click(SECTION_ONE[:duration_ddl])
-    scroll_click("//button[contains(.,'#{option}')]")
+    click("//button[contains(.,'#{option}')]")
   end
 
   def enter_desc_of_work(text)
-    enter_text(SECTION_ONE[:desc_of_work], text)
+    element = find_element(SECTION_ONE[:desc_of_work])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
   end
 
   def select_zone(area, zone)
@@ -76,5 +76,14 @@ class SectionOnePage < BasePage
 
   def verify_next_btn(option)
     find_element("//button[contains(.,'#{option}')]")
+  end
+
+  private
+
+  def verify_each_value(table, dropdown_elements)
+    table.raw.each_with_index do |item, index|
+      WAIT.until { dropdown_elements[index].displayed? }
+      compare_string(item.first, dropdown_elements[index].text)
+    end
   end
 end

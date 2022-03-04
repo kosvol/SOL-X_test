@@ -55,6 +55,7 @@ class DRAPage < BasePage
   end
 
   def verify_risk_indicator(type, expected)
+    sleep 1 # wait for screen load
     element_index = retrieve_element_index(type)
     risk_indicator_elements = find_elements(DRA[:risk_indicator])
     compare_string(expected, risk_indicator_elements[element_index].text)
@@ -69,6 +70,7 @@ class DRAPage < BasePage
 
   def add_additional_measures
     scroll_click(DRA[:addition_measures])
+    sleep 1 # to prevent ui failed
     find_element(DRA[:additional_measures_textarea]).send_keys('Test Automation')
   end
 
@@ -77,11 +79,12 @@ class DRAPage < BasePage
   end
 
   def verify_measures_text
-    actual_text = @driver.find_element(:xpath, DRA[:additional_textarea]).attribute('value')
+    actual_text = @driver.find_element(:xpath, DRA[:additional_measures_textarea]).attribute('value')
     compare_string('Test Automation', actual_text)
   end
 
   def delete_hazard
+    element = find_element(DRA[:delete_btn])
     @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     element.click
     click("//*[starts-with(@class,'ConfirmationModal')]/div/button[2]")
@@ -94,6 +97,7 @@ class DRAPage < BasePage
 
   def add_extra_hazard
     scroll_click(DRA[:add_hazard])
+    sleep 1 # to prevent ui failed
     find_element(DRA[:extra_hazard_textarea]).send_keys('Test Automation')
   end
 

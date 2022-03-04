@@ -20,14 +20,14 @@ class SectionThreeDPage < BasePage
 
   def verify_location_stamp(zone)
     actual_element = find_element(SECTION_THREE_D[:location_stamp])
-    wait_for_update(actual_element, 'Not Answered') # wait for location update
+    wait_until_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(zone, actual_element.text)
   end
 
   def verify_rank(rank)
     expected_rank_name = UserService.new.retrieve_rank_and_name(rank)
     actual_element = find_element(SECTION_THREE_D[:rank_name])
-    wait_for_update(actual_element, 'Not Answered') # wait for location update
+    wait_until_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
   end
 
@@ -35,4 +35,3 @@ class SectionThreeDPage < BasePage
     verify_btn_availability(SECTION_THREE_D[:sign_btn], option)
   end
 end
-

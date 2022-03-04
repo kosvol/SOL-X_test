@@ -21,11 +21,11 @@ class SectionThreeAPage < BasePage
     actual_vessel_name = answers[0].text
     actual_dra_no = answers[1].text
     compare_string(retrieve_vessel_name, actual_vessel_name)
-    raise 'DRA format is wrong' unless actual_dra_no.include? 'DRA/TEMP/'
+    raise 'DRA no is not updated' if actual_dra_no.include? 'DRA/TEMP'
   end
 
   def click_edit_hazards
-    click(SECTION_THREE_A[:edit_hazard_btn])
+    scroll_click(SECTION_THREE_A[:edit_hazard_btn])
     sleep 0.5
   end
 end

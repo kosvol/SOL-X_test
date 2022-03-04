@@ -106,10 +106,10 @@ Feature: Section 3D: DRA - Summary & Assessment
     Examples:
       | level_one_permit                      | signed_rank | created_rank |
 #      | Enclosed Spaces Entry                                        | A C/O       | A C/O        |
-      | Working Aloft/Overside                | 2/O         | 2/O          |
+      | Working Aloft / Overside              | 2/O         | 2/O          |
 #      | Work on Pressure Pipeline/Vessels                            | A 2/O       | A 2/O        |
-      | Personnel Transfer By Transfer Basket | C/E         | C/E          |
-#      | Helicopter Operations                                        | A C/E       | A C/E        |
+      | Personnel Transfer by Transfer Basket | C/E         | C/E          |
+#      | Helicopter Operation                                        | A C/E       | A C/E        |
 #      | Work on Electrical Equipment and Circuits – Low/High Voltage | A 2/E       | A 2/E        |
       | Working on Deck During Heavy Weather  | 3/O         | 3/O          |
 #      | Working on Deck During Heavy Weather                         | A 3/O       | A 3/O        |
@@ -131,7 +131,7 @@ Feature: Section 3D: DRA - Summary & Assessment
     Examples:
       | level_one_permit                      | non_ra_rank |
       | Work on Pressure Pipeline/Vessels     | D/C         |
-      | Personnel Transfer By Transfer Basket | 4/O         |
-      | Helicopter Operations                 | ETR         |
-      | Helicopter Operations                 | ELC         |
-      | Helicopter Operations                 | PMN         |
+      | Personnel Transfer by Transfer Basket | 4/O         |
+      | Helicopter Operation                  | ETR         |
+      | Helicopter Operation                  | ELC         |
+      | Helicopter Operation                  | PMN         |

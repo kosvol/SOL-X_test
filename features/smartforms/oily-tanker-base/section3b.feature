@@ -23,7 +23,7 @@ Feature: Section 3B: DRA - Checks & Measures
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 3B"
     When Section3B answer work site inspection carried out "yes"
     Then Section3B "should" see inspection crew list
@@ -47,8 +47,8 @@ Feature: Section 3B: DRA - Checks & Measures
     Then Section3B verify method description "<method_desc>"
     Examples:
       | level_one_permit                      | method_desc                                                   |
-      | Personnel Transfer By Transfer Basket | Standard procedures for Personnel Transfer by Transfer Basket |
-      | Enclosed Spaces Entry                 | General procedures for Enclosed Space Entry                   |
+      | Personnel Transfer by Transfer Basket | Standard procedures for Personnel Transfer by Transfer Basket |
+      | Enclosed Space Entry                  | General procedures for Enclosed Space Entry                   |
 
   Scenario Outline: Verify method name is populated for level2 permit
     Given SmartForms open page

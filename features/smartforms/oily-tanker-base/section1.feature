@@ -86,6 +86,7 @@ Feature: Section 1: Task Description
       | Maintenance on P/P Room Gas Detection Alarm System                         |
       | Maintenance on Radio Battery                                               |
 
+
   Scenario Outline: Verify question input field does not exists in permits
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -94,15 +95,16 @@ Feature: Section 1: Task Description
     Then Section1 "should not" see duration of maintenance dropdown
     Examples:
       | permit                                                                          |
-      | Enclosed Spaces Entry                                                           |
-      | Helicopter Operations                                                           |
-      | Personnel Transfer By Transfer Basket                                           |
+      | Enclosed Space Entry                                                            |
+      | Helicopter Operation                                                            |
+      | Personnel Transfer by Transfer Basket                                           |
       | Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces |
       | Use of ODME in Manual Mode                                                      |
       | Work on Electrical Equipment and Circuits – Low/High Voltage                    |
       | Work on Pressure Pipeline/Vessels                                               |
-      | Working Aloft/Overside                                                          |
+      | Working Aloft / Overside                                                        |
       | Working on Deck During Heavy Weather                                            |
+
 
   Scenario Outline: Verify question input field does not exists in level2 permits
     Given SmartForms open page
@@ -118,12 +120,14 @@ Feature: Section 1: Task Description
       | Rotational Portable Power Tools | Use of Portable Power Tools                                             |
       | Underwater Operations           | Underwater Operations at night for mandatory drug and contraband search |
 
+
   Scenario: Verify user can fill up the form, save and proceed to next page
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
     And FormPrelude select level1 "Use of ODME in Manual Mode"
     When Section1 click Save & Next
+    And CommonSection sleep for "1" sec
     Then Section2 should see section header
 
   Scenario: Verify user can fill up the form, save and proceed to next page for critical maintenance permit
