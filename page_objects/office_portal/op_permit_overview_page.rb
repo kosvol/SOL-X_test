@@ -88,11 +88,7 @@ class OPPermitOverviewPage < BasePage
     transformer = SECTION_MAP[section.to_sym]
     case section
     when 'Section 1'
-      if permit_type == 'main_anchor'
-      [] + YAML.load_file("data/sections-data/#{transformer}.yml")['fields_maintenance']
-      else
-      [] + YAML.load_file("data/sections-data/#{transformer}.yml")['fields']
-      end
+      section1_base_fields_by_type(permit_type)
     when 'Section 4B'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["fields_eic_#{eic_condition}"]
     when 'Section 8'
@@ -101,6 +97,14 @@ class OPPermitOverviewPage < BasePage
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["fields_gas_#{gas_reading_cond}"]
     else
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['fields']
+    end
+  end
+
+  def section1_base_fields_by_type(permit_type)
+    if permit_type == 'main_anchor'
+      [] + YAML.load_file('data/sections-data/section_1.yml')['fields_maintenance']
+    else
+      [] + YAML.load_file('data/sections-data/section_1.yml')['fields']
     end
   end
 
@@ -130,13 +134,17 @@ class OPPermitOverviewPage < BasePage
     when 'Section 4B'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["subheaders_eic_#{eic_condition}"]
     when 'Section 8'
-      if permit_id.include? 'FSU'
-        [] + YAML.load_file("data/sections-data/#{transformer}.yml")["subheaders_eic_#{eic_condition}_fsu"]
-      else
-        [] + YAML.load_file("data/sections-data/#{transformer}.yml")["subheaders_eic_#{eic_condition}"]
-      end
+      sectio8_base_headers_by_vessel_type(permit_id, eic_condition)
     else
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['subheaders']
+    end
+  end
+
+  def sectio8_base_headers_by_vessel_type(permit_id, eic_condition)
+    if permit_id.include? 'FSU'
+      [] + YAML.load_file('data/sections-data/section_8.yml')["subheaders_eic_#{eic_condition}_fsu"]
+    else
+      [] + YAML.load_file('data/sections-data/section_8.yml')["subheaders_eic_#{eic_condition}"]
     end
   end
 
@@ -152,7 +160,7 @@ class OPPermitOverviewPage < BasePage
     elements_arr = []
     if @driver.find_elements(xpath: elements).size.positive?
       find_elements(elements).each do |element|
-      elements_arr << element.text
+        elements_arr << element.text
       end
     else
       Log.instance.info "#{elements} elements do not exist"

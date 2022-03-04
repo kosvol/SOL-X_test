@@ -23,7 +23,7 @@ Feature: Office Portal Login
     When OfficeLogin enter email "<example>"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the "Email" field is highlighted in red
-    Then OfficeLogin should see the error message below the heading
+    And OfficeLogin should see the error message below the heading
       | heading | message                             |
       | Email   | Please enter a valid email address. |
     Examples:
@@ -38,7 +38,7 @@ Feature: Office Portal Login
   Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page
     When OfficeLogin enter email "test@test.com"
-    When OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
@@ -54,25 +54,25 @@ Feature: Office Portal Login
   Scenario: Verify the correct error message when enter a different incorrect password three times (7901, 8046)
     Given OfficeLogin open page
     When OfficeLogin enter email "qa-test-group@sol-x.co"
-    When OfficeLogin enter password "test"
+    And OfficeLogin enter password "test"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
-    And OfficeLogin remove password
-    When OfficeLogin enter password "1234"
+    When OfficeLogin remove password
+    And OfficeLogin enter password "1234"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
-    And OfficeLogin remove password
-    When OfficeLogin enter password "NewPassword"
+    When OfficeLogin remove password
+    And OfficeLogin enter password "NewPassword"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
-    And OfficeLogin remove password
-    When OfficeLogin enter password "Solxtester12345!"
+    When OfficeLogin remove password
+    And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                                                                          |

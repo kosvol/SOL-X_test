@@ -16,7 +16,7 @@ class CouchDBAPI
     JSON.parse response.body
   end
 
-  def request_to_server(db_type, permit_id)
+  def request_form_by_permit_id(db_type, permit_id)
     payload = { selector: { _id: permit_id } }.to_json.to_s
     RestClient.post("#{retrieve_db_url(db_type)}/forms/_find", payload, 'Content-Type' => 'application/json')
   end

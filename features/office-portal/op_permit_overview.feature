@@ -105,7 +105,7 @@ Feature: Office Portal Permit Overview
     | working_aloft                | Working Aloft Overside                    |
 
   @close_browser
-  Scenario Outline: Verify Section 8 shows the sae fields as in the client app with different checklists
+  Scenario Outline: Verify Section 8 shows the same fields as in the client app with different checklists
     Given PermitGenerator create permit
       | permit_type         | permit_status | eic   | gas_reading   |
       | <permit_type>       | withdrawn     | no    | no            |
