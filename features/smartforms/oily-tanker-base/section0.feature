@@ -47,9 +47,7 @@ Feature: Section0 Form prelude
       | MAS  |
       | 4/O  |
       | D/C  |
-      | 3/E  |
 #      | A 3/E |
-      | 4/E  |
 #      | A 4/E |
       | BOS  |
       | PMN  |
