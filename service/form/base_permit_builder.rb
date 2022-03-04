@@ -10,8 +10,8 @@ class BasePermitBuilder
     @default_pin = default_pin
     @permit = Permit.new
     @logger = Logger.new($stdout)
-    @logger.info("permit type #{@permit_type}")
-    @logger.info("default pin: #{@default_pin}")
+    @logger.debug("permit type #{@permit_type}")
+    @logger.debug("default pin: #{@default_pin}")
   end
 
   def update_form_status(status, permit_id = self.permit_id, pin = @default_pin)
@@ -23,7 +23,7 @@ class BasePermitBuilder
       request_retry += 1
       break if request_retry > 10
     end
-    @logger.info("form update response: #{response}")
+    @logger.debug("form #{status} update response: #{response}")
     response
   end
 

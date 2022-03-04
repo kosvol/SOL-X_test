@@ -41,7 +41,8 @@ Feature: Section 4B: Energy Isolation Certificate
 
 
   Scenario Outline: Verify location stamping on signature section for competent person
-    Given SmartForms open page
+    Given Wearable service unlink all wearables
+    And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "<rank_create>"
     And FormPrelude select level1 "Use of ODME in Manual Mode"
@@ -136,7 +137,7 @@ Feature: Section 4B: Energy Isolation Certificate
       | rank |
       | C/O  |
       | 2/E  |
-      | ETO  |
+#      | ETO  |
       | C/E  |
 
 

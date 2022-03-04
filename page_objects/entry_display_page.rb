@@ -4,7 +4,6 @@ require_relative 'base_page'
 
 # Entry display page object
 class EntryDisplay < BasePage
-
   ENTRY_DISPLAY = {
     page_header: "//*[@id='root']/div/nav/header"
   }.freeze
@@ -21,5 +20,4 @@ class EntryDisplay < BasePage
       raise 'timeout for waiting active ptw' if attempt == 6
     end
   end
-
 end

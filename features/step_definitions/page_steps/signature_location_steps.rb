@@ -14,7 +14,7 @@ end
 
 And('SignatureLocation select area {string}') do |area|
   @signature_page ||= SignatureLocationPage.new(@driver)
-  @signature_page.select_zone(area)
+  @signature_page.select_area(area)
 end
 
 And('SignatureLocation select zone {string}') do |zone|

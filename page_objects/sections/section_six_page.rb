@@ -63,7 +63,7 @@ class SectionSixPage < BasePage
   end
 
   def verify_submit_btn_text(text)
-    wait_for_update(retrieve_text(SECTION_SIX[:submit_btn]), text)
+    compare_string(retrieve_text(SECTION_SIX[:submit_btn]), text)
   end
 
   def verify_gas_text_fields(option)

@@ -26,7 +26,7 @@ class SectionFourAPage < BasePage
   def uncheck_all_checklist
     elements = find_elements(SECTION_FOUR_A[:checklist_na_button])
     elements.each do |element|
-      element.location_once_scrolled_into_view
+      @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
       element.click
     end
   end

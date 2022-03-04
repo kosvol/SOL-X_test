@@ -5,6 +5,7 @@ require_relative '../../../../page_objects/sections/common_section_page'
 Given('CommonSection navigate to {string}') do |section|
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.navigate_to_section(section)
+  sleep 1 # to make it stable
 end
 
 Given('CommonSection click Save & Next') do
@@ -52,4 +53,3 @@ Then('CommonSection check Responsible Officer Signature') do |table|
   params = table.hashes.first
   @common_section_page.check_ra_signature(params['rank'], params['zone'])
 end
-

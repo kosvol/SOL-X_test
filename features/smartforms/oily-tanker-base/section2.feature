@@ -22,13 +22,13 @@ Feature: Section 2: Approving Authority
 
     Examples:
       | level_one_permit                                             |
-      | Enclosed Spaces Entry                                        |
-      | Working Aloft/Overside                                       |
+      | Enclosed Space Entry                                         |
+      | Working Aloft / Overside                                     |
       | Work on Pressure Pipeline/Vessels                            |
-      | Personnel Transfer By Transfer Basket                        |
+      | Personnel Transfer by Transfer Basket                        |
       | Work on Electrical Equipment and Circuits – Low/High Voltage |
       | Working on Deck During Heavy Weather                         |
-      | Helicopter Operations                                        |
+      | Helicopter Operation                                         |
 
   Scenario Outline: Verify user can see the level2 permits correct approval for non-OA
     Given SmartForms open page
@@ -95,7 +95,7 @@ Feature: Section 2: Approving Authority
     And FormPrelude select level1 "<level_one_permit>"
     And FormPrelude select level2 "<level_two_permit>"
     And Section1 answer duration of maintenance over 2 hours as "No"
-    When Section1 click Save & Next
+  When CommonSection navigate to "Section 2"
     Then Section2 check Approving Authority
       | ship_approval | office_approval |
       | Master        | N/A             |

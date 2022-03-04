@@ -2,7 +2,6 @@
 
 require_relative '../../../page_objects/navigation_drawer_page'
 
-
 And('NavigationDrawer expand all menu items') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.expand_all_menu_items

@@ -20,5 +20,4 @@ class PendingApprovalPTWPage < BasePermitStatesPage
     wait_for_permit_display(permit_xpath)
     click(permit_xpath)
   end
-
 end

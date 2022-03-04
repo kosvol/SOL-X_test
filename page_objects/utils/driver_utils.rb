@@ -7,33 +7,29 @@ module DriverUtils
   RETRY_LIMIT = 5
 
   def click(xpath)
-    element = @driver.find_element(:xpath, xpath)
-    WAIT.until { element.displayed? }
-    element.click
+    WAIT.until { @driver.find_element(:xpath, xpath).displayed? }
+    @driver.find_element(:xpath, xpath).click
   end
 
   def scroll_click(xpath)
     element = @driver.find_element(:xpath, xpath)
-    element.location_once_scrolled_into_view
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     element.click
   end
 
   def retrieve_text(xpath)
-    element = @driver.find_element(:xpath, xpath)
-    WAIT.until { element.displayed? }
-    element.text
+    WAIT.until { @driver.find_element(:xpath, xpath).displayed? }
+    @driver.find_element(:xpath, xpath).text
   end
 
   def find_element(xpath)
-    element = @driver.find_element(:xpath, xpath)
-    WAIT.until { element.displayed? }
-    element
+    WAIT.until { @driver.find_element(:xpath, xpath).displayed? }
+    @driver.find_element(:xpath, xpath)
   end
 
   def find_elements(xpath)
-    elements = @driver.find_elements(:xpath, xpath)
-    WAIT.until { elements.size.positive? }
-    elements
+    WAIT.until { @driver.find_elements(:xpath, xpath).size.positive? }
+    @driver.find_elements(:xpath, xpath)
   end
 
   def verify_element_not_exist(xpath)
@@ -64,12 +60,12 @@ module DriverUtils
     @driver.execute_script("window.scrollBy(#{x_coordinate},#{y_coordinate})", '')
   end
 
-  def wait_for_update(actual, expected, timeout = 5)
+  def wait_until_text_update(element, text_to_update)
     wait = 0
-    until actual == expected
+    until element.text != text_to_update
       sleep 0.5
       wait += 1
-      raise "wait time out for #{actual} to #{expected}" if wait > timeout
+      break if wait > 10
     end
   end
 
