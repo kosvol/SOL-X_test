@@ -56,4 +56,3 @@ Then('Dashboard click close gas readings message') do
   @dashboard_page ||= DashboardPage.new(@driver)
   @dashboard_page.click_close_gas_msg
 end
-

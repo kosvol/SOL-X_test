@@ -23,7 +23,6 @@ class EntryDisplayLog < BasePage
     confirm_btn: "//button[contains(.,'Confirm')]"
   }.freeze
 
-
   def initialize(driver)
     super
     find_element(ENTRY_DISPLAY[:heading_text])
@@ -61,8 +60,7 @@ class EntryDisplayLog < BasePage
     entrants = []
     while entrant_count.positive?
       find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrant_count + 1}]/label/label/span").click
-      new_entrant = find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrant_count + 1}]/label/div")
-                      .text
+      new_entrant = find_element("//*[starts-with(@class,'UnorderedList')]/li[#{entrant_count + 1}]/label/div").text
       entrants.push(new_entrant)
       entrant_count -= 1
     end

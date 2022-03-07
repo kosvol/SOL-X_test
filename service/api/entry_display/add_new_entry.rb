@@ -50,5 +50,4 @@ class CreateNewCrePreEntry < BaseSectionApi
     end
     payload
   end
-
 end

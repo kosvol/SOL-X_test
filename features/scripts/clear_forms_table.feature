@@ -11,7 +11,6 @@ Feature: DB reset
       | edge    | gas_reader_entry       |
       | cloud   | gas_reader_entry       |
       | edge    | geofence               |
-      | edge    | wearables_history      |
       | edge    | alerts                 |
 
   @clear_postgres

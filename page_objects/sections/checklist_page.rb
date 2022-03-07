@@ -9,7 +9,7 @@ class ChecklistPage < BasePage
   CHECKLIST = {
     info_box: "//div[starts-with(@class,'InfoBox__')]",
     warning_box: "//div[starts-with(@class,'WarningBox__')]",
-    heavy_weather_note_box: '//div[@id="4A_HEAVY_WEATHER_12"]',
+    heavy_weather_note_box: '//div[@id="4A_HEAVY_WEATHER_2"]',
     rank_name: "(//*[starts-with(@class,'Cell__Description')])[1]",
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[last()]",
     vessel_name: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",
@@ -38,14 +38,14 @@ class ChecklistPage < BasePage
 
   def verify_location_stamp(zone)
     actual_element = find_element(CHECKLIST[:location_stamp])
-    wait_for_update(actual_element, 'Not Answered') # wait for location update
+    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(zone, actual_element.text)
   end
 
   def verify_rank_name(rank)
     expected_rank_name = UserService.new.retrieve_rank_and_name(rank)
     actual_element = find_element(CHECKLIST[:rank_name])
-    wait_for_update(actual_element, 'Not Answered') # wait for location update
+    wait_util_text_update(actual_element, 'Not Answered') # wait for location update
     compare_string(expected_rank_name, actual_element.text)
   end
 
@@ -79,5 +79,14 @@ class ChecklistPage < BasePage
     expected_date = (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
     actual_date_time = retrieve_text(CHECKLIST[:created_on])
     raise 'verify check list time failed' unless actual_date_time.include? expected_date
+  end
+
+  def wait_util_text_update(element, text_to_update)
+    wait = 0
+    until element.text != text_to_update
+      sleep 0.5
+      wait += 1
+      break if wait > 5
+    end
   end
 end

@@ -32,4 +32,5 @@ mac_chrome_sit_cot_tablet_headless_2.0: --profile json PLATFORM=chrome_headless 
 mac_chrome_dev_lng_tablet_2.0: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=dev VESSEL=lng DEVICE=tablet VERSION=2.0 PROJECT=shell
 
 ########################### DIRECTORIES AND REPORT CONFIG ##############################
-json: --format pretty --expand -f json -o json_report.json
+json: --publish-quiet --format pretty --expand -f json -o json_report.json
+default: --publish-quiet

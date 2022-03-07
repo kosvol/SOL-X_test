@@ -5,7 +5,6 @@ require_relative 'base_page'
 
 # PinEntryPage object
 class PinEntryPage < BasePage
-
   PIN_ENTRY = {
     pin_entry_header: "//h2[contains(.,'Please enter your PIN')]",
     pin_pad: '//*[@id="root"]/div/section/main/ol/li[%s]/button',

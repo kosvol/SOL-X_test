@@ -2,7 +2,7 @@
 
 require_relative 'base_page'
 
-#  dd entrants page object
+#  Dashboard entrants page object
 class AddEntrantsPage < BasePage
   include EnvUtils
   attr_accessor :entrants
@@ -37,9 +37,9 @@ class AddEntrantsPage < BasePage
     while entrants_number.positive?
       @driver.find_element(:xpath,
                            "//*[starts-with(@class,'UnorderedList')]/li[#{entrants_number + 1}]/label/label/span").click
-      entrants.push(@driver
-                      .find_element(:xpath,
-                                    "//*[starts-with(@class,'UnorderedList')]/li[#{entrants_number + 1}]/label/div").text)
+      entrants.push(@driver.find_element(:xpath,
+                                         "//*[starts-with(@class,'UnorderedList')]/li[#{entrants_number + 1}]/label/div")
+                           .text)
       entrants_number -= 1
     end
   end
@@ -51,6 +51,4 @@ class AddEntrantsPage < BasePage
   def click_send_report_btn
     click(ADD_ENTRANTS[:send_report])
   end
-
-
 end

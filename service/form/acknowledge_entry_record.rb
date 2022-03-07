@@ -7,7 +7,6 @@ require_all 'service/api'
 
 # Acknowledge entry record
 class AcknowledgeEntryRecord
-
   def initialize
     @default_pin = UserService.new.retrieve_pin_by_rank('C/O')
     @logger = Logger.new($stdout)
@@ -18,5 +17,4 @@ class AcknowledgeEntryRecord
     create_request = AcknowledgeGasReadings.new
     create_request.request(pin, pre_number, entry_id)
   end
-
 end

@@ -4,7 +4,6 @@ require_relative 'base_page'
 
 # Settings page object
 class SettingPage < BasePage
-
   SETTINGS = {
     page_header: "//h1[contains(.,'Settings')]",
     pump_room_display_setting: "//span[contains(.,'Pump Room')]",

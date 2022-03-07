@@ -23,6 +23,4 @@ class DashboardEntryLogPage < BasePage
       find_elements(DASHBOARD_ENTRY_LOG[:radio_button_enclosed])[1].click
     end
   end
-  
-
 end

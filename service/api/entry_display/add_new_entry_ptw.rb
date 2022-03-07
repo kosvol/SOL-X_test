@@ -50,5 +50,4 @@ class CreateNewPTWEntry < BaseSectionApi
     end
     payload
   end
-
 end

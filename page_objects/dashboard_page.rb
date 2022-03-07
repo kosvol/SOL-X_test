@@ -86,7 +86,4 @@ class DashboardPage < BasePage
   def click_close_gas_msg
     @driver.find_element(:css, DASHBOARD[:gas_close_btn]).click
   end
-
-
-
 end

@@ -6,7 +6,6 @@ require_all 'service/api'
 
 # add new entry builder to create sections
 class AddNewEntryBuilder
-
   def initialize(permit_type, default_pin)
     @permit_type = permit_type
     @default_pin = default_pin
@@ -23,5 +22,4 @@ class AddNewEntryBuilder
     response = create_request.request(pin, array)
     response['data']['createEntryRecord']['gasReadingStatus'].eql?('PENDING')
   end
-
 end

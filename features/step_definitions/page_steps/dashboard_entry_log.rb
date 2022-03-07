@@ -6,5 +6,3 @@ And('DashboardEntryLog switch to {string} log') do |condition|
   @dashboard_entry_log_page ||= DashboardEntryLogPage.new(@driver)
   @dashboard_entry_log_page.select_entry_log_tab(condition)
 end
-
-

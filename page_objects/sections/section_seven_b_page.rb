@@ -11,7 +11,6 @@ class SectionSevenBPage < BasePage
     permit_valid_until: "(//*[starts-with(@class,'AnswerComponent__Answer')])[2]"
   }.freeze
 
-
   def initialize(driver)
     super
     find_element(SECTION_SEVEN_B[:section_header])

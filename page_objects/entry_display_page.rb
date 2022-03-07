@@ -4,7 +4,6 @@ require_relative 'base_page'
 
 # Entry display page object
 class EntryDisplay < BasePage
-
   ENTRY_DISPLAY = {
     page_header: "//*[@id='root']/div/nav/header",
     entry_log_btn: "//a[contains(.,'Entry Log')]",
@@ -139,9 +138,7 @@ class EntryDisplay < BasePage
   end
 
   def ret_required_entrants(count)
-    @driver
-      .find_element(:xpath,
-                    "//*[starts-with(@class,'UnorderedList')]/li[#{count}]")
+    @driver.find_element(:xpath, "//*[starts-with(@class,'UnorderedList')]/li[#{count}]")
   end
 
   def get_element_by_value(element_value_text, count)
@@ -149,5 +146,4 @@ class EntryDisplay < BasePage
     arr = find_elements(xpath_str)
     arr[count.to_i]
   end
-
 end

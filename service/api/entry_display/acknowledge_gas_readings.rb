@@ -27,5 +27,4 @@ class AcknowledgeGasReadings < BaseSectionApi
     payload['variables']['entryId'] = entry_id
     payload
   end
-
 end

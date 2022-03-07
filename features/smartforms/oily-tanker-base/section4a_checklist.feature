@@ -11,11 +11,11 @@ Feature: Section 4A: Safety Checklist
     Then Checklist verify checklist questions "<checklist>"
     Examples:
       | level1_permit                                                                   | checklist                                 |
-      | Enclosed Spaces Entry                                                           | Enclosed Spaces Entry                     |
-      | Working Aloft/Overside                                                          | Working Aloft Overside                    |
+      | Enclosed Space Entry                                                            | Enclosed Spaces Entry                     |
+      | Working Aloft / Overside                                                        | Working Aloft Overside                    |
       | Work on Pressure Pipeline/Vessels                                               | Work on Pressure Pipelines                |
       | Use of ODME in Manual Mode                                                      | Use of ODME in Manual Mode                |
-      | Personnel Transfer By Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
+      | Personnel Transfer by Transfer Basket                                           | Personnel Transfer by Transfer Basket     |
       | Helicopter Operation                                                            | Helicopter Operation                      |
       | Work on Electrical Equipment and Circuits                                       | Work on Electrical Equipment and Circuits |
       | Working on Deck During Heavy Weather                                            | Work on Deck During Heavy Weather         |
@@ -33,8 +33,7 @@ Feature: Section 4A: Safety Checklist
     Then Checklist verify checklist questions "<checklist>"
     Examples:
       | level1_permit                   | level2_permit                                                           | checklist                             |
-#      TODO SOL-2929 change Hot Work Outside checklist question in 3.0. This will only pass in 3.0 version
-#      | Hot Work                        | Hot Work Level-2 outside E/R (Ballast Passage)                          | Hot Work Outside Designated Area      |
+      | Hot Work                        | Hot Work Level-2 outside E/R (Ballast Passage)                          | Hot Work Outside Designated Area      |
       | Hot Work                        | Hot Work Level-2 in Designated Area                                     | Hot Work Within Designated Area       |
       | Underwater Operations           | Underwater Operation during daytime without any simultaneous operations | Underwater Operation                  |
       | Rotational Portable Power Tools | Use of Hydro blaster/working with High-pressure tools                   | Rotational Portable Power Tools (PPT) |
@@ -55,11 +54,11 @@ Feature: Section 4A: Safety Checklist
     Then Checklist verify checklist questions "Work on Hazardous Substances"
 
 
-  Scenario: Verify Enclosed Spaces Entry checklist boxes
+  Scenario: Verify Enclosed Space Entry checklist boxes
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Spaces Entry"
+    And FormPrelude select level1 "Enclosed Space Entry"
     When CommonSection navigate to "Section 4A"
     And CommonSection click Save & Next
     Then Checklist verify checklist box
@@ -136,10 +135,10 @@ Feature: Section 4A: Safety Checklist
     And Checklist verify signature rank "<rank>"
     Examples:
       | rank | level_one_permit           |
-      | 3/O  | Enclosed Spaces Entry      |
-      | 2/E  | Working Aloft/Overside     |
+      | 3/O  | Enclosed Space Entry       |
+      | 2/E  | Working Aloft / Overside   |
       | 3/E  | Use of ODME in Manual Mode |
-      | 4/E  | Helicopter Operations      |
+      | 4/E  | Helicopter Operation       |
 
 
   Scenario Outline: Verify checklist creator signature can be signed on checklist for non maintenance level2 permits
@@ -177,9 +176,9 @@ Feature: Section 4A: Safety Checklist
     Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
     Examples:
       | rank | level_one_permit                     |
-      | MAS  | Enclosed Spaces Entry                |
+      | MAS  | Enclosed Space Entry                 |
       | D/C  | Use of ODME in Manual Mode           |
-      | BOS  | Working Aloft/Overside               |
+      | BOS  | Working Aloft / Overside             |
       | PMN  | Working on Deck During Heavy Weather |
       | FTR  | Use of non-intrinsically safe Camera |
 
@@ -249,11 +248,11 @@ Feature: Section 4A: Safety Checklist
     Then Checklist verify checklist answer
     Examples:
       | level_one_permit                      |
-      | Working Aloft/Overside                |
+      | Working Aloft / Overside              |
       | Work on Pressure Pipeline/Vessels     |
       | Use of ODME in Manual Mode            |
-      | Personnel Transfer By Transfer Basket |
-      | Helicopter Operations                 |
+      | Personnel Transfer by Transfer Basket |
+      | Helicopter Operation                  |
       | Use of non-intrinsically safe Camera  |
       | Working on Deck During Heavy Weather  |
 

@@ -68,4 +68,3 @@ class SectionThreeBPage < BasePage
     end
   end
 end
-

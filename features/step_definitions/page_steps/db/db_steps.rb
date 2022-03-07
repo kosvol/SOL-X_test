@@ -21,5 +21,4 @@ Given('DB get gas entry log id') do |table|
   table.hashes.each do |row|
     db_service.get_gas_entry(row['db_type'], row['table'], @permit_id)
   end
-
 end

@@ -37,6 +37,7 @@ class SectionFivePage < BasePage
   def select_role(table)
     click(SECTION_FIVE[:role_ddl_btn])
     table.raw.each do |role_option|
+      sleep 1
       click(SECTION_FIVE[:role_ddl_option] % role_option)
     end
     click(SECTION_FIVE[:confirm_btn])
@@ -81,7 +82,7 @@ class SectionFivePage < BasePage
   end
 
   def click_non_crew_checkbox
-    click(SECTION_FIVE[:non_crew_checkbox])
+    scroll_click(SECTION_FIVE[:non_crew_checkbox])
   end
 
   def verify_sign_btn(option)
@@ -95,6 +96,7 @@ class SectionFivePage < BasePage
 
   def enter_non_crew_info(table)
     values = table.hashes.first
+    sleep 1
     enter_text(SECTION_FIVE[:other_name], values['name'])
     enter_text(SECTION_FIVE[:other_company], values['company'])
   end
@@ -112,13 +114,10 @@ class SectionFivePage < BasePage
   end
 
   def verify_signature_list(table)
-
     role_elements = find_elements(SECTION_FIVE[:role_list])
     table.raw.each_with_index do |row, index|
       compare_string(row.first, role_elements[index].text)
     end
-
-
     table.hashes.each do |row|
       compare_string(row['role'], retrieve_text(SECTION_FIVE[:role_headings] % element_index))
     end

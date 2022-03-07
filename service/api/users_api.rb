@@ -3,6 +3,7 @@
 require_relative '../utils/time_service'
 require_relative '../utils/env_utils'
 require 'rest-client'
+require 'json'
 # api for retrieve users
 class UsersApi
   include EnvUtils

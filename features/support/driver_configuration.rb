@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'selenium-webdriver'
+
 # Initialize the driver setup
 class DriverConfiguration
   def initialize
@@ -44,9 +46,7 @@ class DriverConfiguration
   end
 
   def setup_browser_timeouts
-    @driver.manage.timeouts.script_timeout = 15
-    @driver.manage.timeouts.page_load = 15
-    @driver.manage.timeouts.implicit_wait = 15
+    @driver.manage.timeouts.implicit_wait = 0.5
   end
 
   def setup_chrome_window
@@ -60,7 +60,7 @@ class DriverConfiguration
   def setup_chrome_mode
     case ENV['PLATFORM']
     when 'chrome_headless'
-      @options.headless!
+      setup_headless
     when 'chrome_incognito'
       @options.add_argument('--incognito')
       @options.add_argument('--private')
@@ -72,5 +72,13 @@ class DriverConfiguration
   def setup_camera
     @options.add_argument('--use-fake-device-for-media-stream')
     @options.add_argument('--use-fake-ui-for-media-stream')
+  end
+
+  def setup_headless
+    @options.headless!
+    @options.add_argument('--no-sandbox')
+    @options.add_argument('--disable-extensions')
+    @options.add_argument('--disable-dev-shm-usage')
+    @options.add_argument('--allow-insecure-localhost')
   end
 end

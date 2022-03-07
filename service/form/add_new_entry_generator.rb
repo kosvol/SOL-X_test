@@ -6,7 +6,6 @@ require_relative 'add_new_entry_builder'
 require_relative '../utils/user_service'
 # service to generate permit
 class AddNewEntryGenerator
-
   def initialize(permit_type)
     default_pin = UserService.new.retrieve_pin_by_rank('C/O')
     @builder = AddNewEntryBuilder.new(permit_type, default_pin)
