@@ -16,7 +16,6 @@ class OPPermitOverviewPage < BasePage
     eic_subheaders: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h2"
   }.freeze
 
-  #  @section_map = YAML.load_file('data/sections-data/sections_map.yml')['section_map']
   SECTION_MAP = {
     'Section 1': 'section_1',
     'Section 2': 'section_2',
