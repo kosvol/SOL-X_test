@@ -45,7 +45,7 @@ And('OfficeLogin remove password') do
   @office_portal_login.remove_password
 end
 
-#The following steps to be removed after refactoring is finished
+# The following steps to be removed after refactoring is finished
 
 Then(/^I should see the "([^"]*)" name on the top bar and page body$/) do |name|
   is_equal(on(OfficePortalPage).topbar_header_element.text, name)

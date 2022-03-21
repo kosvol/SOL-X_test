@@ -16,6 +16,7 @@ class OPPermitOverviewPage < BasePage
     eic_subheaders: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h2"
   }.freeze
 
+  #  @section_map = YAML.load_file('data/sections-data/sections_map.yml')['section_map']
   SECTION_MAP = {
     'Section 1': 'section_1',
     'Section 2': 'section_2',
@@ -81,7 +82,8 @@ class OPPermitOverviewPage < BasePage
   def retrieve_actual_elements_list(section, elements_type)
     transformer = SECTION_MAP[section.to_sym]
     elements = select_section_elements(section, elements_type)
-    create_elements_array(elements) - YAML.load_file("data/sections-data/#{transformer}.yml")["#{elements_type}_exceptions"]
+    create_elements_array(elements) - YAML
+                                      .load_file("data/sections-data/#{transformer}.yml")["#{elements_type}_exceptions"]
   end
 
   def retrieve_base_fields_list(section, eic_condition, gas_reading_cond, permit_type)
@@ -134,13 +136,13 @@ class OPPermitOverviewPage < BasePage
     when 'Section 4B'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["subheaders_eic_#{eic_condition}"]
     when 'Section 8'
-      sectio8_base_headers_by_vessel_type(permit_id, eic_condition)
+      section8_base_headers_by_type(permit_id, eic_condition)
     else
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['subheaders']
     end
   end
 
-  def sectio8_base_headers_by_vessel_type(permit_id, eic_condition)
+  def section8_base_headers_by_type(permit_id, eic_condition)
     if permit_id.include? 'FSU'
       [] + YAML.load_file('data/sections-data/section_8.yml')["subheaders_eic_#{eic_condition}_fsu"]
     else
