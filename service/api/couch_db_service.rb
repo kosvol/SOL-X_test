@@ -12,7 +12,5 @@ class CouchDBService
       iteration -= 1
       sleep(20)
     end
-    @logger = Logger.new($stdout)
-    @logger.debug(status)
   end
 end

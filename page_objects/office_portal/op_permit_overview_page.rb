@@ -52,7 +52,14 @@ class OPPermitOverviewPage < BasePage
 
   def check_section_fields(what_section, eic_condition, gas_reading_cond, permit_type)
     fields_arr = retrieve_actual_elements_list(what_section, 'fields')
-    base_fields = retrieve_base_fields_list(what_section, eic_condition, gas_reading_cond, permit_type)
+    base_fields = case what_section
+                  when 'Section 1'
+                    section1_base_fields_by_type(permit_type)
+                  when 'Section 8'
+                    section8_base_fields_with_cond(eic_condition, permit_type)
+                  else
+                    retrieve_base_fields_list(what_section, eic_condition, gas_reading_cond)
+                  end
     compare_string(base_fields, fields_arr)
   end
 
@@ -64,7 +71,11 @@ class OPPermitOverviewPage < BasePage
 
   def check_section_headers(what_section, permit_id, eic_condition)
     headers_arr = retrieve_actual_elements_list(what_section, 'subheaders')
-    base_headers = retrieve_base_headers_list(what_section, permit_id, eic_condition)
+    base_headers = if what_section == 'Section 8'
+                     section8_base_headers_by_type(permit_id, eic_condition)
+                   else
+                     retrieve_base_headers_list(what_section, permit_id, eic_condition)
+                   end
     compare_string(base_headers, headers_arr)
   end
 
@@ -85,15 +96,11 @@ class OPPermitOverviewPage < BasePage
                                       .load_file("data/sections-data/#{transformer}.yml")["#{elements_type}_exceptions"]
   end
 
-  def retrieve_base_fields_list(section, eic_condition, gas_reading_cond, permit_type)
+  def retrieve_base_fields_list(section, eic_condition, gas_reading_cond)
     transformer = SECTION_MAP[section.to_sym]
     case section
-    when 'Section 1'
-      section1_base_fields_by_type(permit_type)
     when 'Section 4B'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["fields_eic_#{eic_condition}"]
-    when 'Section 8'
-      section8_base_fields_with_cond(eic_condition, permit_type)
     when 'Section 6'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["fields_gas_#{gas_reading_cond}"]
     else
@@ -134,8 +141,6 @@ class OPPermitOverviewPage < BasePage
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['subheaders_fsu'] if permit_id.include? 'FSU'
     when 'Section 4B'
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")["subheaders_eic_#{eic_condition}"]
-    when 'Section 8'
-      section8_base_headers_by_type(permit_id, eic_condition)
     else
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['subheaders']
     end
