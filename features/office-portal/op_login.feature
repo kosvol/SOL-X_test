@@ -2,7 +2,7 @@
 Feature: Office Portal Login
   Correct credentials for test
   email: qa-test-group@sol-x.co
-  password: Solxqa12345!
+  password: Solxtester12345!
 
   Scenario: Verify new login page attributes (Desktop) (7782)
     Given OfficeLogin open page
@@ -23,7 +23,7 @@ Feature: Office Portal Login
     When OfficeLogin enter email "<example>"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the "Email" field is highlighted in red
-    Then OfficeLogin should see the error message below the heading
+    And OfficeLogin should see the error message below the heading
       | heading | message                             |
       | Email   | Please enter a valid email address. |
     Examples:
@@ -35,25 +35,50 @@ Feature: Office Portal Login
     |test@@test.com|
     |test@test/com |
 
-  Scenario: Verify the correct error message when enter an incorrect password (7901)
+  Scenario: Verify the correct error message when enter an unregistered Email (7902)
     Given OfficeLogin open page
-    When OfficeLogin enter email "qa-test-group@sol-x.co"
-    When OfficeLogin enter password "test"
+    When OfficeLogin enter email "test@test.com"
+    And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
 
-  Scenario: Verify the correct error message when enter an unregistered Email (7902)
+  Scenario: Verify users should be redirected to the Permit Archive page when enter the correct email and password
     Given OfficeLogin open page
-    When OfficeLogin enter email "test@test.com"
-    When OfficeLogin enter password "Solxqa12345!"
+    When OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+
+  Scenario: Verify the correct error message when enter a different incorrect password three times (7901, 8046)
+    Given OfficeLogin open page
+    When OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "test"
     And OfficeLogin click the Sign in button
     Then OfficeLogin should see the error message below the heading
       | heading | message                         |
       | Login   | Email or password is incorrect. |
+    When OfficeLogin remove password
+    And OfficeLogin enter password "1234"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+    When OfficeLogin remove password
+    And OfficeLogin enter password "NewPassword"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
+    When OfficeLogin remove password
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then OfficeLogin should see the error message below the heading
+      | heading | message                                                                          |
+      | Login   | Your account is temporarily locked to prevent unauthorized use. Try again later. |
 
   Scenario: Verify users should be redirected to the email verification page when click Forgot Password
     Given OfficeLogin open page
     When OfficeLogin click Forgot password
-    Then EmailVerification should see all the page attributes
+    Then EmailVerification page should be displayed

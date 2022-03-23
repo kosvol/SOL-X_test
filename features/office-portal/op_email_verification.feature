@@ -4,6 +4,9 @@ Feature: Office Portal Email Verification
   Background:
     Given OfficeLogin open page
     And OfficeLogin click Forgot password
+    And EmailVerification page should be displayed
+
+  Scenario: Verify Email Verification page attributes (Desktop)
     Then EmailVerification should see all the page attributes
 
   Scenario: Verify user should see the login page when click Cancel before entering an Email
@@ -58,8 +61,8 @@ Feature: Office Portal Email Verification
     And EmailVerification enter verification code "code"
     And EmailVerification click Verify code
     Then EmailVerification should see the error message below the heading
-      | heading | message                                   |
-      | Account | That code is incorrect. Please try again. |
+      | heading | message                          |
+      | Account | You have entered the wrong code. |
 
   Scenario: Verify user should see the Email verification page before entering an email if do any changes to the email entered
     When EmailVerification enter email "ksergeenko@ipolecat.com"

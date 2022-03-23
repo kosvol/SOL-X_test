@@ -8,8 +8,16 @@ Before do
   @driver = DRIVER
 end
 
+Before('@close_browser') do
+  @driver = DriverConfiguration.new.setup_driver
+end
+
 Before('@skip') do
   skip_this_scenario
+end
+
+After('@close_browser') do
+  @driver.close
 end
 
 After do |scenario|

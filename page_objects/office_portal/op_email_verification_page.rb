@@ -11,13 +11,13 @@ class OPEmailVerificationPage < BasePage
     app_logo: "//div[@id='background_branding_container']//img[@class='app-logo']",
     portal_name: "//div[@id='background_branding_container']//img[@class='app-logo']/following-sibling::span",
     account_heading: "//h1[@class='reset-password-heading']",
-    account_error: "//div[@id='emailVerificationControl_error_message']",
+    account_error: "//div[@class='verificationErrorText error']",
     email_error: "//label[contains(text(),'Email')]/following-sibling::div",
     account_description: "//div[@class='verificationSuccessText']",
     email_heading: "//label[contains(text(),'Email')]",
     email_field: "//input[@id='email']",
     verification_heading: "//label[contains(text(),'Verification Code')]",
-    verification_error: "//label[contains(text(),'Verification Code')]/following-sibling::div",
+    verification_error: "//label[contains(text(),'Verification code')]/following-sibling::div",
     verification_code_field: "//input[@id='emailVerificationCode']",
     cancel_btn: "//button[contains(text(),'Cancel')]",
     send_code_btn: "//button[contains(text(),'Send verification code')]",
@@ -89,6 +89,10 @@ class OPEmailVerificationPage < BasePage
 
   def remove_email_character
     enter_text(OP_EMAIL_VERIFICATION[:email_field], "\ue003")
+  end
+
+  def verify_page_header
+    compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
   end
 
   private

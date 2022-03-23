@@ -1,0 +1,32 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 6,
+    "permitType": "Use of Portable Power Tools",
+    "answers": [{
+      "fieldId": "team",
+      "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
+    }, {
+      "fieldId": "permitType",
+      "value": "\"Use of Portable Power Tools\""
+    }, {
+      "fieldId": "openChecklistRotationalPortablePowerTools",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "permitValidDuration",
+      "value": "\"8\""
+    }, {
+      "fieldId": "gasReaderRequired",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "shipsApproval",
+      "value": "\"Master\""
+    }, {
+      "fieldId": "officeApproval",
+      "value": "\"N/A\""
+    }],
+    "submissionTimestamp": "2022-02-15T10:55:58.228Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}
