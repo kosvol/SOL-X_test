@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../../../../service/db_service'
+require_relative '../../../service/db_service'
+require_relative '../../../library/utils/postgres'
 
 Given('DB service clear couch table') do |table|
   db_service ||= DBService.new
