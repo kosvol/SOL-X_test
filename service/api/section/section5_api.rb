@@ -14,7 +14,7 @@ class Section5Api < BaseSectionApi
   private
 
   def create_payload(permit_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/5.section5_responsibility_acceptance.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/5.section5_responsibility_acceptance.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     payload['variables']['answers'].last['value'] =

@@ -1,0 +1,153 @@
+questions:
+  [
+    "Reason for Entry",
+    "Type of Operation in progress",
+    "Date and Time of First Entry",
+    "Date",
+    "Time",
+    "Location of vessel",
+    "At Sea",
+    "In Port",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Gas Equipment:",
+    "Sr. No:",
+    "Date of Last Calibration:",
+    "Add Gas Test Record",
+    "Start Time",
+    "Date",
+    "Time",
+    "Permit Duration",
+    "Select",
+    "Submit for Approval",
+    "Save",
+    "Close",
+  ]
+
+titles:
+  [
+    "Compressor/Motor Room Entry Checklist",
+    "Gas Reading",
+    "Permit Validity",
+    "Responsible Officer Signature:"
+  ]
+
+gas_readings_section:
+  [
+    "Add Gas Test Record",
+    "Note",
+    "1. Gas shall be checked once every entry.
+     2. Permit to be cancelled if any change in condition.
+     3. Other toxic gases to be tested and recorded if applicable"
+  ]
+
+subtitles:
+  [
+    "Applicable for Gas Tankers",
+    "Not Answered"
+  ]
+
+permit_validity_section:
+  [
+    "Start Time",
+    "Date",
+    "Time",
+    "Permit Duration"
+  ]
+
+cre_structure_creation:
+  titles_and_questions:
+    [
+      "Created On:",
+      "Vessel Name",
+      "Compressor/Motor Room Entry Permit No.",
+      "Fixed gas detectors are working?",
+      "Fixed gas detectors readout are working?",
+      "Space tested for Hydrocarbon gas and a reading of < 1% LEL obtained. (Fixed detectors)",
+      "Ventilation fans working and the space are properly ventilated?",
+      "All lights in the space working and well illuminated?",
+      "Enclosed space tested for Oxygen and a reading of 21% obtained."
+    ]
+  titles_of_sections:
+    [
+      "Compressor/Motor Room Entry Checklist",
+      "Gas Reading",
+      "Permit Validity",
+      "Responsible Officer Signature:"
+    ]
+  answears_first_section:
+    [
+      "Location of vessel",
+      "At Sea",
+      "In Port",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No",
+      "Compressor",
+      "Yes",
+      "No",
+      "Motor",
+      "Yes",
+      "No"
+    ]
+  entry_titles:
+    [
+      "Reason for Entry",
+      "Type of Operation in progress",
+      "Date and Time of First Entry",
+      "Date",
+      "Time"
+    ]
+  gas_section:
+    [
+      "Gas Equipment:",
+      "Sr. No:",
+      "Date of Last Calibration:"
+    ]
+  permit_validity:
+    [
+      "Start Time",
+      "Date",
+      "Time",
+      "Permit Duration"
+    ]
+
+
+

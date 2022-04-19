@@ -1,0 +1,105 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2021/012",
+    "answers": [
+      {
+        "fieldId": "updatesNeededComment",
+        "typename": "StringFormAnswer",
+        "value": "\"\""
+      },
+      {
+        "fieldId": "toolBoxMeetingCarriedOut",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistColdWorkOp",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistCriticalEquipMaintenance",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistEnclosedSpaceEntry",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHelicopterOp",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkOutsideDesignatedArea",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPersonnelTransferByBasket",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPumpRoomEntry",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistRotationalPortablePowerTools",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUnderwaterOp",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfCamera",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistUseOfOdmeInManualMode",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistHeavyWeather",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistElectricalEquipmentAndCircuit",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkOnHazardousSubstances",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistPressurePipelines",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      },
+      {
+        "fieldId": "openChecklistWorkingAloftOverside",
+        "typename": "StringFormAnswer",
+        "value": "\"na\""
+      }
+    ],
+    "submissionTimestamp": "2021-04-05T10:56:31.115Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

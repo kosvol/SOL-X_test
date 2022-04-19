@@ -7,30 +7,37 @@
     "answers": [
       {
         "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
         "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",
+        "typename": "StringFormAnswer",
         "value": "\"Hot Work Level-2 in Designated Area\""
       },
       {
         "fieldId": "openChecklistHotWorkWithinDesignatedArea",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
         "value": "\"8\""
       },
       {
         "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
         "value": "\"Master\""
       },
       {
         "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
         "value": "\"N/A\""
       }
     ],

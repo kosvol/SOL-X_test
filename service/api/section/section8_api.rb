@@ -20,7 +20,8 @@ class Section8Api < BaseSectionApi
   private
 
   def create_payload(permit_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/8.section8_task_status_and_EIC_normalisation.json")
+    payload =
+      JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/8.section8_task_status_and_EIC_normalisation.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @current_time
     payload = update_answers(payload)

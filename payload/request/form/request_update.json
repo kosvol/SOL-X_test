@@ -5,18 +5,22 @@
     "answers": [
       {
         "fieldId": "pdf_section7_approverName",
+        "typename": "StringFormAnswer",
         "value": "\"\""
       },
       {
         "fieldId": "pdf_section7_approverDesignation",
+        "typename": "StringFormAnswer",
         "value": "\"\""
       },
       {
         "fieldId": "showUpdatesNeeded",
+        "typename": "StringFormAnswer",
         "value": "\"true\""
       },
       {
         "fieldId": "updatesNeededComment",
+        "typename": "StringFormAnswer",
         "value": "\"Test Automation Comment\""
       }
     ],

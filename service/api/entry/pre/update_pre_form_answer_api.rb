@@ -21,7 +21,7 @@ class UpdatePreFormAnswerAPI < BaseSectionApi
   private
 
   def create_payload(permit_id)
-    @payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/pre/1.section1_pump_room_entry_permit.json")
+    @payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/entry/pre/1.pump_room_entry_permit.json")
     @payload['variables']['formId'] = permit_id
     @payload['variables']['submissionTimestamp'] = @current_time
 
@@ -32,21 +32,20 @@ class UpdatePreFormAnswerAPI < BaseSectionApi
   end
 
   def update_signature
-    @payload['variables']['answers'][7]['value'] = @user_service.create_gas_reading('C/O', retrieve_vessel_name)
-    @payload['variables']['answers'][24]['value'] =
+    @payload['variables']['answers'][21]['value'] = @user_service.create_gas_reading('C/O', retrieve_vessel_name)
+    @payload['variables']['answers'][-2]['value'] =
       @user_service.create_default_signature('C/O', retrieve_vessel_name)
   end
 
   def update_time_property
-    # start with 5 minutes later
-    @payload['variables']['answers'][21]['value'] =
-      "{\"dateTime\":\"#{@time_service.retrieve_time_cal_minutes(5)}\",\"utcOffset\":#{@offset}}"
+    @payload['variables']['answers'][22]['value'] =
+      "{\"dateTime\":\"#{@time_service.retrieve_current_date_time}\",\"utcOffset\":#{@offset}}"
 
     # end time
-    @payload['variables']['answers'][22]['value'] =
+    @payload['variables']['answers'][23].to_h['value'] =
       "{\"dateTime\":\"#{@time_service.retrieve_time_cal_hours(@permit_duration)}\",\"utcOffset\":#{@offset}}"
 
     # entry duration
-    @payload['variables']['answers'][23]['value'] = "\"#{@permit_duration} hours\"" # entry duration
+    @payload['variables']['answers'][24]['value'] = "\"#{@permit_duration} hours\"" # entry duration
   end
 end

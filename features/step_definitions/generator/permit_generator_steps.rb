@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../../service/form/permit_generator'
+require_relative '../../../service/form/ptw/permit_generator'
 Given('PermitGenerator create permit') do |table|
   parms = table.hashes.first
   permit_generator = PermitGenerator.new(parms['permit_type'])

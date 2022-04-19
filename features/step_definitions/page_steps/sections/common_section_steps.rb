@@ -48,8 +48,7 @@ And('CommonSection verify button availability') do |table|
   @common_section_page.verify_button(params['button'], params['availability'])
 end
 
-Then('CommonSection check Responsible Officer Signature') do |table|
+And('CommonSection verify header is {string}') do |expected_header|
   @common_section_page ||= CommonSectionPage.new(@driver)
-  params = table.hashes.first
-  @common_section_page.check_ra_signature(params['rank'], params['zone'])
+  @common_section_page.verify_header_text(expected_header)
 end

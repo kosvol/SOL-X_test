@@ -8,7 +8,7 @@ class Section0API < BaseSectionApi
     payload = create_payload(permit_type)
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
-                               { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
+                               { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
     JSON.parse response.body
   end
 

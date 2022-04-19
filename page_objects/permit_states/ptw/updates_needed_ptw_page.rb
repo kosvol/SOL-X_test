@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base_permit_states_page'
+require_relative '../base_permit_states_page'
 
 # UpdateNeededPTWPage object
 class UpdateNeededPTWPage < BasePermitStatesPage

@@ -7,30 +7,37 @@
     "answers": [
       {
         "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
         "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
       },
       {
         "fieldId": "permitType",
+        "typename": "StringFormAnswer",
         "value": "\"Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces\""
       },
       {
         "fieldId": "openChecklistUseOfCamera",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
         "value": "\"8\""
       },
       {
         "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
         "value": "\"Master\""
       },
       {
         "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
         "value": "\"MS/VS\""
       }
     ],

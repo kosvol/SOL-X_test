@@ -18,7 +18,7 @@ class Section4bEicApi
   private
 
   def create_payload(permit_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/4.section4b_eic.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/4.section4b_eic.json")
     payload['variables']['parentFormId'] = permit_id
     payload['variables']['submissionTimestamp'] = TimeService.new.retrieve_current_date_time
     payload

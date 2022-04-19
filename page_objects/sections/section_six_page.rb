@@ -13,7 +13,7 @@ class SectionSixPage < BasePage
     note: "//div[starts-with(@class,'WarningBox__')]/h3",
     field_missing_warning: "(//h3[starts-with(@class,'Heading')])[2]",
     sign_missing_warning: "(//h3[starts-with(@class,'Heading')])[4]",
-    add_gas_btn: "//button[contains(., 'Add Gas Test Record')]",
+    add_gas_btn: "//button[contains(., 'Add Gas Reader Details & Test Records')]",
     done_btn: '//button[contains(.,"Done")]',
     submit_btn: "//button[contains(., 'Submit')]",
     updates_needed_btn: "//button[contains(., 'Updates Needed')]",
@@ -21,12 +21,6 @@ class SectionSixPage < BasePage
     gas_sr_number_text: '//input[@id="gasSrNumber"]',
     gas_last_calibrate_text: '//button[@id="gasLastCalibrationDate"]',
     gas_disabled_warning: "//h3[contains(.,'Gas Testing Disabled')]"
-  }.freeze
-
-  GAS_READING = {
-    o2: '(//*[@data-testid="gas-reading"])[1]', hc: '(//*[@data-testid="gas-reading"])[2]',
-    co: '(//*[@data-testid="gas-reading"])[3]', h2s: '(//*[@data-testid="gas-reading"])[4]',
-    toxic: '(//*[@data-testid="gas-reading"])[5]', signature: '//*[@class="cell signature"]'
   }.freeze
 
   FIELD_MISSING_NOTE = 'Please Complete The Following Sections'
@@ -90,13 +84,6 @@ class SectionSixPage < BasePage
     click(SECTION_SIX[:done_btn])
   end
 
-  def verify_gas_reading(table)
-    params = table.hashes.first
-    verify_normal_gas_reading(params)
-    verify_toxic(params['Toxic'])
-    verify_signature(params['Rank'])
-  end
-
   def click_submit_btn
     click(SECTION_SIX[:submit_btn])
   end
@@ -109,24 +96,5 @@ class SectionSixPage < BasePage
       verify_element_not_exist(SECTION_SIX[:submit_btn])
       verify_element_not_exist(SECTION_SIX[:updates_needed_btn])
     end
-  end
-
-  private
-
-  def verify_normal_gas_reading(params)
-    compare_string(params['O2'], retrieve_text(GAS_READING[:o2]))
-    compare_string(params['HC'], retrieve_text(GAS_READING[:hc]))
-    compare_string(params['CO'], retrieve_text(GAS_READING[:co]))
-    compare_string(params['H2S'], retrieve_text(GAS_READING[:h2s]))
-  end
-
-  def verify_toxic(expected_toxic)
-    expected_toxic += ' ' if expected_toxic == '-' # add space to match display
-    compare_string(expected_toxic, retrieve_text(GAS_READING[:toxic]))
-  end
-
-  def verify_signature(rank)
-    rank_name = UserService.new.retrieve_rank_and_name(rank)
-    compare_string(rank_name, retrieve_text(GAS_READING[:signature]))
   end
 end

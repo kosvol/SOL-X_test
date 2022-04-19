@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../base_page'
+require_relative '../base_permit_states_page'
 
 # TerminatedEntryPage object
-class TerminatedEntryPage < BasePage
+class TerminatedEntryPage < BasePermitStatesPage
   TERMINATED_ENTRY = {
     page_header: "//*[@id='root']/div/nav[1]/header/h1",
     view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]"
@@ -15,7 +15,8 @@ class TerminatedEntryPage < BasePage
   end
 
   def click_view_btn(permit_id)
-    permit_xpath = SCHEDULED_ENTRY[:view_terminate_btn] % permit_id
+    permit_xpath = TERMINATED_ENTRY[:view_btn] % permit_id
+    wait_for_permit_display(permit_xpath)
     click(permit_xpath)
   end
 end

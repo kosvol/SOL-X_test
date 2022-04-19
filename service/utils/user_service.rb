@@ -65,23 +65,32 @@ class UserService
 
   def create_gas_reading(rank, vessel)
     rank_id = retrieve_user_id_by_rank(rank)
-    time_service = TimeService.new
-    encoded_string = Base64.encode64(File.open("#{Dir.pwd}/data/photos/signature.png", 'rb').read)
+    ts = TimeService.new
     [{ "formId": '', "entryId": 'entry', "crewId": rank_id, "gasReadings": default_gas_reading,
-       "gasReadingTime": { "dateTime": time_service.retrieve_current_date_time,
-                           "utcOffset": time_service.retrieve_ship_utc_offset },
-       "signature": "data:image/jpeg;base64, #{encoded_string}", "signed": { "userId": rank_id, "rank": rank },
+       "gasReadingEquipment": { "gasEquipment": 'gasEquipment', "gasSrNumber": 'gasSrNumber',
+                                "gasLastCalibrationDate": ts.retrieve_current_date_time },
+       "gasReadingTime": { "dateTime": ts.retrieve_current_date_time, "utcOffset": ts.retrieve_ship_utc_offset },
+       "signature": "data:image/jpeg;base64, #{gen_encoded_signature}", "signed": { "userId": rank_id, "rank": rank },
        "gasReadingStatus": 'PENDING', "entryStatus": 'ACTIVE', "purposeOfEntry": 'Test Automation',
-       "entrant": { "clientId": '', "_id": rank_id, "accessGroups": [], "firstName": 'COT', "lastName": rank,
+       "entrant": { "clientId": '', "_id": rank_id, "accessGroups": [], "firstName": 'first name', "lastName": rank,
                     "rank": rank }, "locationId": "#{vessel}-Z-AFT-STATION" }].to_json
   end
-
-  private
 
   def default_gas_reading
     [{ "gasName": 'O2', "reading": '1', "unit": '%', "threshold": '20.9' },
      { "gasName": 'HC', "reading": '2', "unit": '% LEL', "threshold": '1' },
      { "gasName": 'H2S', "reading": '3', "unit": 'PPM', "threshold": '5' },
      { "gasName": 'CO', "reading": '4', "unit": 'PPM', "threshold": '25' }]
+  end
+
+  def random_gas_reading
+    [{ "gasName": 'O2', "reading": rand(100).to_s, "unit": '%', "threshold": '20.9' },
+     { "gasName": 'HC', "reading": rand(100).to_s, "unit": '% LEL', "threshold": '1' },
+     { "gasName": 'H2S', "reading": rand(100).to_s, "unit": 'PPM', "threshold": '5' },
+     { "gasName": 'CO', "reading": rand(100).to_s, "unit": 'PPM', "threshold": '25' }]
+  end
+
+  def gen_encoded_signature
+    Base64.encode64(File.open("#{Dir.pwd}/data/photos/signature.png", 'rb').read)
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../form/permit_map'
+require_relative '../../form/ptw/permit_map'
 require 'rest-client'
 # service to request section4A
 class Section4AAPI < BaseSectionApi
@@ -15,7 +15,7 @@ class Section4AAPI < BaseSectionApi
   private
 
   def create_payload(form_id, permit_type)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/4.section4a_safety_checklist.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/4.section4a_safety_checklist.json")
     update_checklist_answer(payload, permit_type)
     payload['variables']['formId'] = form_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time

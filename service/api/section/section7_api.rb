@@ -20,7 +20,7 @@ class Section7Api < BaseSectionApi
   private
 
   def create_payload(permit_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/7.section7_validity_of_permit.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/7.section7_validity_of_permit.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @current_time
     update_answers(payload)

@@ -1,0 +1,8 @@
+{
+  "operationName": "acknowledgeUnsafeGasReading",
+  "variables": {
+    "formId": "SIT/PRE/2021/018",
+    "entryId": "01EVT6EZMDB2B3HYJNV8HSET86"
+  },
+  "query": "mutation acknowledgeUnsafeGasReading($formId: ID!, $entryId: ID!) {\n  acknowledgeUnsafeGasReading(formId: $formId, entryId: $entryId) {\n    crewId\n    gasReadings {\n      gasName\n      threshold\n      reading\n      unit\n      __typename\n    }\n    entryStatus\n    gasReadingStatus\n    __typename\n  }\n}\n"
+}

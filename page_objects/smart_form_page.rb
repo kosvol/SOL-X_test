@@ -8,8 +8,7 @@ class SmartFormsPage < BasePage
 
   SMART_FORMS = {
     create_permit_btn: "//button[contains(.,'Create Permit To Work')]",
-    create_new_pre_btn: "//span[contains(.,'Pump Room')]",
-    create_new_cre_btn: "//span[contains(.,'Compressor/Motor')]",
+    create_entry_permit_btn: "//span[contains(.,'Entry Permit')]",
     hamburger_menu_btn: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button",
     loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]"
   }.freeze
@@ -20,8 +19,14 @@ class SmartFormsPage < BasePage
     find_element(SMART_FORMS[:hamburger_menu_btn])
   end
 
-  def open_state_page(state)
-    @driver.get("#{retrieve_env_url}/forms/ptw/#{state}")
+  def open_state_page(table)
+    params = table.hashes.first
+    @driver.get("#{retrieve_env_url}/forms/#{params['type']}/#{params['state']}")
+    wait_for_loading
+  end
+
+  def open_entry_display
+    @driver.get("#{retrieve_env_url}/entry-display")
     wait_for_loading
   end
 
@@ -30,17 +35,20 @@ class SmartFormsPage < BasePage
     click(SMART_FORMS[:create_permit_btn])
   end
 
-  def click_create_new_pre_btn
-    click(SMART_FORMS[:create_new_pre_btn])
+  def click_create_entry_permit
+    sleep 0.5
+    click(SMART_FORMS[:create_entry_permit_btn])
   end
 
-  def click_create_new_cre_btn
-    click(SMART_FORMS[:create_new_cre_btn])
+  def click_hamburger_menu_btn
+    click(SMART_FORMS[:hamburger_menu_btn])
+    sleep 1
   end
 
   private
 
   def wait_for_loading
+    sleep 0.5
     wait = 0
     until @driver.find_elements(:xpath, SMART_FORMS[:loading_screen]).size.zero?
       @logger.debug "wait for loading screen, retrying: #{wait} times"

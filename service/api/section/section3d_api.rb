@@ -14,7 +14,7 @@ class Section3DAPI < BaseSectionApi
   private
 
   def create_payload(form_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/3.section3d_DRA_summary_assessment.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/3.section3d_DRA_summary_assessment.json")
     payload['variables']['formId'] = form_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     payload['variables']['answers'][-1]['value'] =

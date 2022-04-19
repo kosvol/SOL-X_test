@@ -7,30 +7,37 @@
     "answers": [
       {
         "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
         "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
       },
       {
         "fieldId": "permitType",
+        "typename": "StringFormAnswer",
         "value": "\"Work on Electrical Equipment and Circuits – Low/High Voltage\""
       },
       {
         "fieldId": "openChecklistElectricalEquipmentAndCircuit",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
         "value": "\"8\""
       },
       {
         "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
         "value": "\"Master\""
       },
       {
         "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
         "value": "\"N/A\""
       }
     ],

@@ -14,7 +14,7 @@ class Section3CAPI < BaseSectionApi
   private
 
   def create_payload(form_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/3.section3c_DRA_team_members.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/3.section3c_DRA_team_members.json")
     payload['variables']['formId'] = form_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     co_rank_id = @user_service.retrieve_user_id_by_rank('C/O')

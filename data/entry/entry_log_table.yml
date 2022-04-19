@@ -1,0 +1,16 @@
+headers:
+  [
+    'Entrant',
+    'Purpose',
+    'Validity',
+    'Time In/Out',
+    'UTC',
+    'Gas Equipment',
+    'Serial No.',
+    'Last Calibration',
+    'O2',
+    'HC',
+    'H2S',
+    'CO',
+    'OOW',
+  ]

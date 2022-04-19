@@ -1,0 +1,10 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "CRE",
+    "answers": [],
+    "templateVersion": 6,
+    "submissionTimestamp": "2021-04-17T15:27:38.079Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}
