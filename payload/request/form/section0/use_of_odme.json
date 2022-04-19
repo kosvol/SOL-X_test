@@ -1,0 +1,32 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 6,
+    "permitType": "Use of ODME in Manual Mode",
+    "answers": [{
+      "fieldId": "team",
+      "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
+    }, {
+      "fieldId": "permitType",
+      "value": "\"Use of ODME in Manual Mode\""
+    }, {
+      "fieldId": "openChecklistUseOfOdmeInManualMode",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "permitValidDuration",
+      "value": "\"8\""
+    }, {
+      "fieldId": "gasReaderRequired",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "shipsApproval",
+      "value": "\"Master\""
+    }, {
+      "fieldId": "officeApproval",
+      "value": "\"Director, Fleet Operations (shore Approving Authority)\""
+    }],
+    "submissionTimestamp": "2022-02-15T10:58:57.326Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

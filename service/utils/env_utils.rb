@@ -15,7 +15,12 @@ module EnvUtils
   end
 
   def retrieve_api_url
-    "#{generate_base_url}:#{API_PORT}"
+    if ENV['APPLICATION'] == 'office_portal'
+      "#{format(BASE_URL, env: "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}", server: 'edge',
+                          project: ENV['PROJECT'])}:#{API_PORT}"
+    else
+      "#{generate_base_url}:#{API_PORT}"
+    end
   end
 
   def retrieve_db_url(db_type)
@@ -43,7 +48,7 @@ module EnvUtils
     if ENV['APPLICATION'] == 'office_portal'
       generate_base_url
     else
-      "#{generate_base_url}:8080"
+      "#{generate_base_url}:#{UI_PORT}"
     end
   end
 
@@ -53,7 +58,7 @@ module EnvUtils
 
   def retrieve_prefix
     if ENV['APPLICATION'] == 'office_portal'
-      "office-#{ENV['ENVIRONMENT']}"
+      'office-sit'
     elsif ENV['VERSION'] == '2.0'
       "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}-2-0"
     else

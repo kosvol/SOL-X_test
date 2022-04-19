@@ -1,0 +1,32 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 6,
+    "permitType": "Underwater Operation during daytime without any simultaneous operations",
+    "answers": [{
+      "fieldId": "team",
+      "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
+    }, {
+      "fieldId": "permitType",
+      "value": "\"Underwater Operation during daytime without any simultaneous operations\""
+    }, {
+      "fieldId": "openChecklistUnderwaterOp",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "permitValidDuration",
+      "value": "\"4\""
+    }, {
+      "fieldId": "gasReaderRequired",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "shipsApproval",
+      "value": "\"Master\""
+    }, {
+      "fieldId": "officeApproval",
+      "value": "\"Head, Fleet Operations\""
+    }],
+    "submissionTimestamp": "2022-02-15T10:58:06.326Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

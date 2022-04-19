@@ -6,4 +6,4 @@ AllCops:
     - 'features/step_definitions/ui/**/**/*'
     - 'features/step_definitions/service/*'
 Metrics/ClassLength:
-  Max: 150
+  Max: 200

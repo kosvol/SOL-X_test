@@ -14,7 +14,7 @@ class OPLoginPage < BasePage
     login_error: "//div[@class='error pageLevel']",
     email_heading: "//label[contains(text(),'Email')]",
     email_error: "//label[contains(text(),'Email')]/following-sibling::div/p",
-    email_field: "//input[@id='email']",
+    email_field: "//input[@id='signInName']",
     password_heading: "//label[contains(text(),'Password')]",
     forgot_password_link: "//a[@id='forgotPassword']",
     password_error: "//div[@class='password-label']/following-sibling::div/p",
@@ -62,7 +62,12 @@ class OPLoginPage < BasePage
     xpath_key = "#{field.downcase}_field".to_sym
     element = find_element(OP_LOGIN[xpath_key])
     border_colour = element.css_value('border-color')
-    compare_string('rgb(216, 75, 75)', border_colour)
+    compare_string('rgb(104, 110, 119)', border_colour)
+  end
+
+  def remove_password
+    element = OP_LOGIN[:password_field]
+    enter_text(element, "\ue003") until retrieve_text(element).length.zero?
   end
 
   private
