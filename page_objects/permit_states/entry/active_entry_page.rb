@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require_relative '../../base_page'
+require_relative '../base_permit_states_page'
 
 # ActiveEntryPage object
-class ActiveEntryPage < BasePage
+class ActiveEntryPage < BasePermitStatesPage
   include EnvUtils
   ACTIVE_ENTRY = {
     page_header: "//*[@id='root']/div/nav[1]/header/h1",
-    terminate_btn: "//button[contains(.,'Terminate')]",
-    view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]"
+    view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]",
+    submit_for_terminate_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'Submit for Termination')]"
   }.freeze
 
   def initialize(driver)
@@ -16,16 +16,13 @@ class ActiveEntryPage < BasePage
     find_element(ACTIVE_ENTRY[:page_header])
   end
 
-  def terminate_permit(permit_id)
-    click("//span[contains(text(),'#{permit_id}')]//following::span[contains(text(),'Submit for Termination')][1]")
-  end
-
-  def click_terminate_button
-    click(ACTIVE_ENTRY[:terminate_btn])
-  end
-
   def click_view_btn(permit_id)
-    permit_xpath = ACTIVE_ENTRY[:view_terminate_btn] % permit_id
+    click(ACTIVE_ENTRY[:view_terminate_btn] % permit_id)
+  end
+
+  def click_submit_for_terminate(permit_id)
+    permit_xpath = ACTIVE_ENTRY[:submit_for_terminate_btn] % permit_id
+    wait_for_permit_display(permit_xpath)
     click(permit_xpath)
   end
 end

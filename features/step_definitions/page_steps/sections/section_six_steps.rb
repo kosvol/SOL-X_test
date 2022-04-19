@@ -44,15 +44,6 @@ Given('Section6 {string} see gas testing disabled warning') do |option|
   @section_six_page.verify_gas_disabled_warning(option)
 end
 
-Given('Section6 click done button') do
-  @section_six_page ||= SectionSixPage.new(@driver)
-  @section_six_page.click_done_btn
-end
-
-Given('Section6 verify gas reading display') do |table|
-  @section_six_page.verify_gas_reading(table)
-end
-
 Given('Section6 click submit button') do
   @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.click_submit_btn

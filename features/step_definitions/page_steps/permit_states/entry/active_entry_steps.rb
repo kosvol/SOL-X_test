@@ -4,15 +4,15 @@ require_relative '../../../../../page_objects/permit_states/entry/active_entry_p
 
 And('ActiveEntry click Submit for termination') do
   @active_entry_page ||= ActiveEntryPage.new(@driver)
-  @active_entry_page.terminate_permit(CreateEntryPermitPage.permit_id)
+  @active_entry_page.click_submit_for_terminate(@permit_id)
 end
 
-And('ActiveEntry click Terminate button') do
-  @active_entry_page ||= ActiveEntryPage.new(@driver)
-  @active_entry_page.click_terminate_button
-end
+# And('ActiveEntry click Terminate button') do
+#   @active_entry_page ||= ActiveEntryPage.new(@driver)
+#   @active_entry_page.click_terminate_button
+# end
 
-And('ActiveEntry open current permit for view') do
-  @active_entry_page ||= ActiveEntryPage.new(@driver)
-  @active_entry_page.click_view_btn(CreateEntryPermitPage.permit_id)
-end
+# And('ActiveEntry open current permit for view') do
+#   @active_entry_page ||= ActiveEntryPage.new(@driver)
+#   @active_entry_page.click_view_btn(CreateEntryPermitPage.permit_id)
+# end

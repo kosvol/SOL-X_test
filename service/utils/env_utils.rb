@@ -42,8 +42,6 @@ module EnvUtils
   def retrieve_env_url
     if ENV['APPLICATION'] == 'office_portal'
       generate_base_url
-    elsif ENV['DEVICE'] == 'dashboard'
-      "#{generate_base_url}:8080/dashboard"
     else
       "#{generate_base_url}:8080"
     end

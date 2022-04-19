@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../../base_page'
+require_relative '../base_permit_states_page'
 
 # UpdatesNeededEntryPage object
-class UpdatesNeededEntryPage < BasePage
+class UpdatesNeededEntryPage < BasePermitStatesPage
   include EnvUtils
   UPDATES_NEEDED_ENTRY = {
-    page_header: "//*[@id='root']/div/nav[1]/header/h1",
-    edit_update_btn: "//button[contains(.,'Edit/Update')]"
+    page_header: "//h1[contains(.,'Updates Needed')]",
+    edit_update_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'Edit/Update')]"
   }.freeze
 
   def initialize(driver)
@@ -15,7 +15,9 @@ class UpdatesNeededEntryPage < BasePage
     find_element(UPDATES_NEEDED_ENTRY[:page_header])
   end
 
-  def click_edit_update
-    click(UPDATES_NEEDED_ENTRY[:edit_update_btn])
+  def click_edit_update(permit_id)
+    permit_xpath = UPDATES_NEEDED_ENTRY[:edit_update_btn] % permit_id
+    wait_for_permit_display(permit_xpath)
+    click(permit_xpath)
   end
 end

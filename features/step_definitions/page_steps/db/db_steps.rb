@@ -15,10 +15,3 @@ Given('DB service clear postgres data') do
   postgres.clear_savefue_db
   postgres.clear_reporting_db
 end
-
-Given('DB get gas entry log id') do |table|
-  db_service ||= DBService.new
-  table.hashes.each do |row|
-    db_service.get_gas_entry(row['db_type'], row['table'], @permit_id)
-  end
-end

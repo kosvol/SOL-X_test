@@ -14,7 +14,8 @@ class Section4bDetailApi < BaseSectionApi
   private
 
   def create_payload(permit_id, eic)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/4.section4b_energy_isolation_certificate.json")
+    payload =
+      JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/4.section4b_energy_isolation_certificate.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     update_eic(payload, eic)

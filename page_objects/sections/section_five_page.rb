@@ -21,7 +21,7 @@ class SectionFivePage < BasePage
     non_crew_checkbox: '//*[@class="checkbox"]',
     other_name: '//*[@id="otherName"]',
     other_company: '//*[@name="otherCompany"]',
-    non_crew_text: '//*[@id="root"]/div/main/form/section/div/section[2]/div/div/ul/li/div[3]/span',
+    non_crew_text: '//*[@id="root"]/div/main/ptw/section/div/section[2]/div/div/ul/li/div[3]/span',
     supervised_by: "(//*[starts-with(@class, 'Text')])[1]",
     signed_name: "(//*[starts-with(@class, 'Text')])[2]",
     signed_company: "(//*[starts-with(@class, 'Text')])[4]"

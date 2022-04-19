@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'logger'
-require_relative 'permit'
+require_relative 'ptw/permit'
 
 # base permit builder to create sections
 class BasePermitBuilder
@@ -23,7 +23,7 @@ class BasePermitBuilder
       request_retry += 1
       break if request_retry > 10
     end
-    @logger.debug("form #{status} update response: #{response}")
+    @logger.debug("PTW #{status} update response: #{response}")
     response
   end
 

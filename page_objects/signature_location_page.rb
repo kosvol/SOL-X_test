@@ -36,7 +36,7 @@ class SignatureLocationPage < BasePage
   end
 
   def click_location_dropdown
-    click(SIGNATURE_LOCATION[:zone_ddl])
+    scroll_click(SIGNATURE_LOCATION[:zone_ddl])
     sleep 1
   end
 
@@ -51,7 +51,7 @@ class SignatureLocationPage < BasePage
   end
 
   def sign_off(area, zone)
-    click(SIGNATURE_LOCATION[:signature_pad])
+    scroll_click(SIGNATURE_LOCATION[:signature_pad])
     click_location_dropdown
     select_area(area)
     select_zone(zone)

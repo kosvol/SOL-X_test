@@ -1,17 +1,22 @@
 # frozen_string_literal: true
 
 require_relative '../../base_page'
+require_relative '../../../service/utils/index_db_utils'
 
 # CreatedEntryPage object
 class CreatedEntryPage < BasePage
   include EnvUtils
+  include IndexDBUtils
+
   CREATED_ENTRY = {
-    page_header: "//*[@id='root']/div/nav[1]/header/h1",
-    first_edit_btn: "(//button[contains(., 'Edit')])[1]",
-    delete_btn: "//button[contains(.,'Delete')]",
-    parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
-    ptw_id: 'header > h1',
-    ptw_number: "//ul[starts-with(@class,'FormsList__Container')]/li/span"
+    page_header: "//h1[contains(.,'Created')]",
+    edit_btn: "//*[span='%s']/*[@class='note-row']/button",
+    # first_edit_btn: "(//button[contains(., 'Edit')])[1]",
+    first_delete_btn: "(//button[contains(.,'Delete')])[1]",
+    first_permit_id: "(//ul[starts-with(@class,'FormsList__Container')]/li/span)[1]"
+    # parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
+    # ptw_id: 'header > h1',
+    # ptw_number: "//ul[starts-with(@class,'FormsList__Container')]/li/span"
   }.freeze
 
   def initialize(driver)
@@ -19,21 +24,20 @@ class CreatedEntryPage < BasePage
     find_element(CREATED_ENTRY[:page_header])
   end
 
-  def click_first_permit
-    click(CREATED_ENTRY[:first_edit_btn])
-  end
-
-  def delete_current_permit
-    click(CREATED_ENTRY[:delete_btn])
+  def delete_first_permit
+    click(CREATED_ENTRY[:first_delete_btn])
   end
 
   def verify_deleted_permit(permit_id)
-    find_elements(CREATED_ENTRY[:parent_container]).each_with_index do |_permit, index|
-      p(find_element("//ul[starts-with(@class,'FormsList__Container')]/li#{[index + 1]}/span").text)
-      raise 'Verification failed' if find_element(
-        "//ul[starts-with(@class,'FormsList__Container')]/li#{[index + 1]}/span"
-      ).text == permit_id
-      break if index > 10
-    end
+    verify_element_not_exist("//*[text()='#{permit_id}']")
+  end
+
+  def verify_temp_permit(temp_id)
+    permit_id = retrieve_id_by_temp(temp_id)
+    find_element(CREATED_ENTRY[:edit_btn] % permit_id)
+  end
+
+  def save_first_permit_id
+    retrieve_text(CREATED_ENTRY[:first_permit_id])
   end
 end

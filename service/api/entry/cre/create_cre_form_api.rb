@@ -14,7 +14,7 @@ class CreateCreFormAPI < BaseSectionApi
   private
 
   def create_payload
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/cre/0.create_compressor_room_entry.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/entry/cre/0.create_compressor_room_entry.json")
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     payload
   end

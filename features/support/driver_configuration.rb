@@ -16,7 +16,6 @@ class DriverConfiguration
               else
                 setup_selenium_driver
               end
-    setup_browser_timeouts
     @driver.manage.delete_all_cookies
     BrowserActions.turn_on_wifi_by_default if @platform.upcase == 'Android'
     @driver
@@ -26,15 +25,14 @@ class DriverConfiguration
 
   def setup_selenium_driver
     @options = Selenium::WebDriver::Chrome::Options.new
-    setup_chrome_window
-    setup_chrome_mode
-    setup_camera
+    setup_options
     caps_chrome = Selenium::WebDriver::Remote::Capabilities.chrome('goog:loggingPrefs' => { browser: 'ALL' })
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.read_timeout = 60
-    @options.add_option('excludeSwitches', ['enable-automation']) # to disable chrome info bar
     caps = [caps_chrome, @options]
-    Selenium::WebDriver.for :chrome, http_client: client, capabilities: caps
+    @driver = Selenium::WebDriver.for :chrome, http_client: client, capabilities: caps
+    setup_chrome_window
+    @driver
   end
 
   def setup_appium_driver
@@ -45,15 +43,17 @@ class DriverConfiguration
     Appium::Driver.new(appium_opts, true).start_driver
   end
 
-  def setup_browser_timeouts
-    @driver.manage.timeouts.implicit_wait = 0.5
+  def setup_options
+    setup_chrome_mode
+    setup_camera
+    @options.add_option('excludeSwitches', ['enable-automation']) # to disable chrome info bar
   end
 
   def setup_chrome_window
     if ENV['DEVICE'] == 'dashboard'
-      @options.add_argument('--window-size=2560,1440')
+      @driver.manage.window.resize_to(2560, 1440)
     else
-      @options.add_argument('--window-size=720,1280')
+      @driver.manage.window.resize_to(720, 1280)
     end
   end
 

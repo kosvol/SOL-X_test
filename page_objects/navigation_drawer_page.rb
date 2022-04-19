@@ -7,17 +7,15 @@ class NavigationDrawerPage < BasePage
   include EnvUtils
   NAVIGATION = {
     heading_text: "//nav[starts-with(@class,'NavigationDrawer__Drawer')]",
-    menu_categories: "(//a[starts-with(@class,'NavigationDrawer__DrawerLink')])",
+    menu_categories: "//a[starts-with(@class,'NavigationDrawer__DrawerLink')]",
     category: "//a[contains(text(),'%s')]",
     settings_btn: "//a[contains(text(),'Settings')]",
-    main_page: "//*[@id='root']/div/main",
     back_arrow: "//button/*[@data-testid='arrow']",
     back_arr: "//button/*[@aria-label='Go back']",
     go_back_btn: "//*[@id='root']/div/nav/header/button",
     view_button: "//button[contains(text(),'View')]",
     entry_states: "(//a[contains(.,'%s')])/parent::li",
-    entry_show_more_ptw: "(//*[contains(.,'Show More')][1])",
-    entry_show_more_entry: "(//*[contains(.,'Show More')][2])",
+    menu_show_more: "//button[contains(.,'Show More')]",
     show_more: "//button[starts-with(@class,'CollapsibleButton__Button')][2]"
   }.freeze
 
@@ -32,16 +30,6 @@ class NavigationDrawerPage < BasePage
     menu_elements.each_with_index do |element, index|
       compare_string(menu_categories[index], element.text)
     end
-  end
-
-  def navigate_to_ptw(page)
-    scroll_click(NAVIGATION[:entry_show_more_ptw])
-    click(NAVIGATION[:category] % page)
-  end
-
-  def navigate_to_entry(state)
-    scroll_click(NAVIGATION[:entry_show_more_entry])
-    click(NAVIGATION[:entry_states] % state)
   end
 
   def click_back_arrow
@@ -61,13 +49,8 @@ class NavigationDrawerPage < BasePage
   end
 
   def expand_all_menu_items
-    scroll_click(NAVIGATION[:entry_show_more_ptw])
-    scroll_click(NAVIGATION[:entry_show_more_entry])
-  end
-
-  private
-
-  def return_background_color
-    find_element(NAVIGATION[:main_page]).css_value('background-color')
+    find_element(NAVIGATION[:heading_text])
+    scroll_click(NAVIGATION[:menu_show_more])
+    scroll_click(NAVIGATION[:menu_show_more])
   end
 end

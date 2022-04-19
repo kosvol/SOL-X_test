@@ -12,6 +12,7 @@ module DriverUtils
   end
 
   def scroll_click(xpath)
+    WAIT.until { @driver.find_element(:xpath, xpath).displayed? }
     element = @driver.find_element(:xpath, xpath)
     @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     element.click

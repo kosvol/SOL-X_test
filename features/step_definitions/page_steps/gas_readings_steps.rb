@@ -7,12 +7,8 @@ And('GasReadings fill equipment fields') do
   @gas_readings_page.fill_gas_equipment_fields
 end
 
-And('GasReadings click add gas readings') do
-  @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @gas_readings_page.click_button('Add Gas Test Record')
-end
-
 And('GasReadings add normal gas readings') do
+  step('GasReadings fill equipment fields')
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.add_normal_gas_readings('1', '2', '3', '4')
 end
@@ -47,6 +43,7 @@ end
 
 And('GasReadings verify placeholder text') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
+  step('GasReadings fill equipment fields')
   @gas_readings_page.verify_placeholder
 end
 
@@ -58,14 +55,15 @@ end
 And('GasReadings click done button on gas reader dialog box') do
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.click_done_button
+  sleep 1 # wait for screen
 end
 
-And('GasReadings verify gas table titles') do
+And('GasReadings verify gas reading display') do |table|
   @gas_readings_page ||= GasReadingsPage.new(@driver)
-  @gas_readings_page.verify_gas_table_titles
+  @gas_readings_page.verify_gas_reading(table)
 end
 
-And('GasReadings verify location in sign') do |table|
+And('GasReadings verify location from signature') do |table|
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   parms = table.hashes.first
   @gas_readings_page.verify_location_in_sign(parms['location'])
@@ -75,4 +73,9 @@ And('GasReadings add gas readings') do |table|
   parms = table.hashes.first
   @gas_readings_page ||= GasReadingsPage.new(@driver)
   @gas_readings_page.add_normal_gas_readings(parms['o2_gas'], parms['hc_gas'], parms['h2s_gas'], parms['co_gas'])
+end
+
+Then('GasReadings select Date of Last Calibration as current day') do
+  @gas_readings_page ||= GasReadingsPage.new(@driver)
+  @gas_readings_page.select_calibration_date
 end

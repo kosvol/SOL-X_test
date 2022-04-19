@@ -19,7 +19,7 @@ class Section4APage < Section3DPage
           xpath: "//div[starts-with(@class,'Card-')]/div/div/div[starts-with(@class,'Cell__Content')][2]")
   elements(:textarea, xpath: '//textarea')
   spans(:list_of_checklist,
-        css: 'form > section > div >section:nth-child(2) > div > div > div > span')
+        css: 'ptw > section > div >section:nth-child(2) > div > div > div > span')
   elements(:rol_checklist, xpath: "//div/*[local-name()='span']")
   divs(:heavy_weather_note, xpath: "//div[starts-with(@id,'4A_HEAVY_WEATHER_subsection13')]")
   elements(:info_box, xpath: "//div[starts-with(@class,'InfoBox__')]")

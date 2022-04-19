@@ -5,154 +5,192 @@
     "answers": [
       {
         "fieldId": "cl_enclosedSpacesEntry_nameOfEnclosedSpace",
+        "typename": "StringFormAnswer",
         "value": "\"Test Automation\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_reasonForEntry",
+        "typename": "StringFormAnswer",
         "value": "\"Test Automation\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_detailedRiskAssessmentCarriedOut",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenCleanedWhereNecessary",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenVentilatedByMechanicalMeans",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheGasMetersBeenTestedPriorToUse",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_srNoOfEquipmentUsed",
+        "typename": "StringFormAnswer",
         "value": "\"1234\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheSpaceBeenSegregated",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheEnclosedSpaceAtmosphereBeenTested",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForFrequentAtmosphereChecksToBeMade",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveArrangementsBeenMadeForTheSpaceToBeContinuouslyVentilated",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_areAccessAndIlluminationAdequate",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isRescueAndResuscitationEquipmentAvailable",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasAResponsibleCrewBeenDesignatedToBeInConstantAttendance",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasTheOfficerOfTheWatchBeenAdvisedOfThePlannedEntry",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_hasASystemOfCommunicationBetweenAllPartiesBeenTested",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_areEmergencyAndEvacuationProceduresEstablished",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isAllEquipmentUsedInGoodWorkingCondition",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_arePersonnelUsingPpe",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_isEntryLogAvailableForRecordingWhoIsInTheSpace",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_safetyBriefingToolBoxMeetingConducted",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_haveReceivedInstructionsOrPersmissionFromTheMaster",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_section1OfThisPermitHaBeenSatisfactorilyCompleted",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedAndUnderstandTheCommunicationProcedures",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iHaveAgreedUponAReportingInterval",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_reportingIntervalMinutes",
+        "typename": "FloatFormAnswer",
         "value": "1"
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_emergencyAndEvacuationProceduresHaveBeenUnderstood",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iAmFamiliarWithTheBreathingApparatus",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_iAmAwareThatTheSpaceMustBeVacated",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_thoseEnteringTheSpaceAreaFamiliarWithAnyBreathingApparatus",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_gaugeAndCapacityOfAirSupply",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_pressureOfTheAirSupply",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_lowPressureAudibleAlarmIfFitted",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_faceMask",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_theMeansOfCommunicationHasBeenTested",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_allPersonnelEnteringTheSpaceHaveBeenProvidedWithRescueHarnesses",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry_personalGasDetectorsHaveBeenTested",
+        "typename": "StringFormAnswer",
         "value": "\"yes\""
       },
       {
         "fieldId": "cl_enclosedSpacesEntry__pin",
+        "typename": "FormAnswerSignatureWithLocation",
         "value": "{\"signedBy\":\"AUTO_SOLX0012\",\"signed\":{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAB6AyADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAUGAQIDBAf/xAAsEAEAAgEDAwIEBgMAAAAAAAAAAQIDBAURITFBBhITMlJhBxQVIjRRYmNx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjtx37b9o1mk024Zvy0aybVxZskcYvdERPtm/aLTHPET39spEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEfvmyaD1FtOfa9yw/F0+eOsRPE1mOsTE+JiVU2zVbj+HkY9r33UX1uw+6KaTdJjm2lie2PNHiviLdo6R0jiIvbnmw4tTgvgz46ZcWSs1vS9ea2ie8TE94BvW0XrFqzE1mOYmJ6Syq2DDk9ER8OMl83p7np75m19u/wCz3nD9+9PPNeZraK2i1YtWYmJjmJjyDIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMWrFqzW0RMTHExPlX9LS3pbVU0czM7LqLxXTWmf4d5npjn/XM/L9M/t7TXiwuWo0+HV6bJptRjrlw5azS9LRzFqzHExIOog9r1WXbNw/Qdx1E5LTE32/Pknm2oxR3pafOSnn6q8W6z7uJwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHg3jasW76H4F72xZaWjLgz0+fBkj5b1+8f15iZieky32rLrs230nc9PXBq6zNMkUtzS0xPHur/jPeInrHPEvYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z\",\"signedAt\":\"COTAUTO-Z-AFT-STATION\",\"signedOn\":{\"dateTime\":\"2021-07-08T04:00:23.566Z\",\"utcOffset\":12}}"
       }
     ],

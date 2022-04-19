@@ -14,7 +14,7 @@ class Section9Api < BaseSectionApi
   private
 
   def create_payload(permit_id)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/9.section9_withdrawal_of_permit.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/9.section9_withdrawal_of_permit.json")
     current_time = @time_service.retrieve_current_date_time
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = current_time

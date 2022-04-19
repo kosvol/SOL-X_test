@@ -2,7 +2,7 @@
 
 require_relative '../../../../../page_objects/permit_states/ptw/pending_approval_ptw_page'
 
-And('PendingApprovalPTW click Approval button') do
+And('PendingApprovalPTW click Approval') do
   @pending_approval_ptw_page ||= PendingApprovalPTWPage.new(@driver)
   @pending_approval_ptw_page.click_approval_btn(@permit_id)
 end

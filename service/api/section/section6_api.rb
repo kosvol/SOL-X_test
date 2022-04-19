@@ -14,7 +14,7 @@ class Section6Api < BaseSectionApi
   private
 
   def create_payload(permit_id, gas_reading)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/6.section6_gas_testing_equipment.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/6.section6_gas_testing_equipment.json")
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     update_answers(payload, gas_reading)
@@ -22,21 +22,15 @@ class Section6Api < BaseSectionApi
 
   def update_answers(payload, gas_reading)
     payload['variables']['answers'][-2]['value'] = @user_service.create_default_signature('C/O', retrieve_vessel_name)
-    update_gas_yes_answers(payload) if gas_reading == 'yes'
-    update_gas_no_answers(payload)
+    update_gas_reading_answers(payload, gas_reading)
   end
 
-  def update_gas_yes_answers(payload)
-    payload['variables']['answers'][1].to_h['value'] = '"yes"'
-    payload['variables']['answers'][-3]['value'] =
-      @user_service.create_gas_reading('C/O', retrieve_vessel_name)
-    payload
-  end
-
-  def update_gas_no_answers(payload)
-    payload['variables']['answers'][1].to_h['value'] = '"no"'
-    4.times do
-      payload['variables']['answers'].delete_at(2) # delete gas reading keys
+  def update_gas_reading_answers(payload, gas_reading)
+    if gas_reading == 'yes'
+      payload['variables']['answers'][1].to_h['value'] = '"yes"'
+      payload['variables']['answers'][-3]['value'] = @user_service.create_gas_reading('C/O', retrieve_vessel_name)
+    else
+      payload['variables']['answers'][1].to_h['value'] = '"no"'
     end
     payload
   end

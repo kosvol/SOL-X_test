@@ -11,9 +11,8 @@ Given('SmartForms click create permit to work') do
   @smart_form_page.click_create_permit_to_work
 end
 
-When('SmartForms click create {string}') do |permit_type|
-  @smart_form_page.click_create_new_pre_btn if permit_type.to_s.upcase == 'PRE'
-  @smart_form_page.click_create_new_cre_btn if permit_type.to_s.upcase == 'CRE'
+When('SmartForms click create entry permit') do
+  @smart_form_page.click_create_entry_permit
 end
 
 And('SmartForms open hamburger menu') do
@@ -24,7 +23,12 @@ And('SmartForms verify hamburger categories') do
   @smart_form_page.verify_base_menu
 end
 
-And('SmartForms open {string} page') do |state|
+And('SmartForms navigate to state page') do |table|
   @smart_form_page ||= SmartFormsPage.new(@driver)
-  @smart_form_page.open_state_page(state)
+  @smart_form_page.open_state_page(table)
+end
+
+And('SmartForms open entry display page') do
+  @smart_form_page ||= SmartFormsPage.new(@driver)
+  @smart_form_page.open_entry_display
 end

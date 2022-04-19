@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../base_page'
+require_relative '../base_permit_states_page'
 
 # ScheduledEntryPage object
-class ScheduledEntryPage < BasePage
+class ScheduledEntryPage < BasePermitStatesPage
   SCHEDULED_ENTRY = {
     page_header: "//*[@id='root']/div/nav[1]/header/h1",
     view_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View')]"

@@ -14,11 +14,12 @@ class Section1API < BaseSectionApi
   private
 
   def create_payload(form_id, is_maintenance)
-    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/1.section1_task_description.json")
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/sections/1.section1_task_description.json")
     payload['variables']['formId'] = form_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     zone = "#{retrieve_vessel_name}-Z-AFT-STATION"
     payload['variables']['answers'].append({ "fieldId": 'locationOfWork',
+                                             "typename": 'LocationFormAnswer',
                                              "value": "{\"zone\":\"#{zone}\",\"zoneDetails\":\"Test Automation\"}" })
     payload = update_main_answer(payload) if is_maintenance
     payload

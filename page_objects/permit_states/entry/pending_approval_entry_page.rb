@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 
-require_relative '../../base_page'
+require_relative '../base_permit_states_page'
 
 # PendingApprovalEntryPage object
-class PendingApprovalEntryPage < BasePage
+class PendingApprovalEntryPage < BasePermitStatesPage
   PENDING_APPROVAL_ENTRY = {
-    page_header: "//*[@id='root']/div/nav[1]/header/h1",
-    request_update_btn: "//button[contains(.,'Request Updates')]",
-    update_comment_box: "//textarea[@id='updatesNeededComment']",
-    submit_update_btn: "//button[contains(.,'Submit')]",
-    submit_for_approval_btn: "//*[contains(.,'Submit for Approval')]",
-    update_btn: "//button[contains(.,'Updates Needed')]",
-    close_btn: "//button[contains(.,'Close')]",
-    approve_for_activation: "//button[contains(.,'Approve for Activation')]"
+    page_header: "//h1[contains(.,'Pending Approval')]",
+    officer_approval_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'Officer Approval')]"
   }.freeze
 
   def initialize(driver)
@@ -20,19 +14,9 @@ class PendingApprovalEntryPage < BasePage
     find_element(PENDING_APPROVAL_ENTRY[:page_header])
   end
 
-  def request_for_update
-    click(PENDING_APPROVAL_ENTRY[:request_for_update])
-    enter_text(PENDING_APPROVAL_ENTRY[:update_comment_box], 'Test Automation')
-    find_elements(PENDING_APPROVAL_ENTRY[:submit_update_btn]).last.click
-  end
-
-  def verify_buttons_not_ro
-    verify_element_not_exist(PENDING_APPROVAL_ENTRY[:submit_for_approval_btn])
-    verify_element_not_exist(PENDING_APPROVAL_ENTRY[:update_btn])
-    raise 'Close button is disabled' unless find_element(PENDING_APPROVAL_ENTRY[:close_btn]).enabled?
-  end
-
-  def approve_for_activation
-    click(PENDING_APPROVAL_ENTRY[:approve_for_activation])
+  def click_officer_approval(permit_id)
+    permit_xpath = PENDING_APPROVAL_ENTRY[:officer_approval_btn] % permit_id
+    wait_for_permit_display(permit_xpath)
+    click(permit_xpath)
   end
 end
