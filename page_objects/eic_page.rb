@@ -17,9 +17,9 @@ class EICPage < BasePage
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[4]",
     rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]",
     save_eic_btn: "//button[contains(.,'Save EIC')]",
-    loto_yes_btn: '//*[@name="eicPreWork_LOTO" and @value="yes"]',
-    elect_yes_btn: '//*[@name="eicPreWork_ElectricalIsolation" and @value="yes"]',
-    physical_yes_btn: '//*[@name="eicPreWork_PhysicalIsolation" and @value="yes"]'
+    loto_yes_btn: '//*[@name="eicPreWork_LOTO" and @value="yes"]/following-sibling::span',
+    elect_yes_btn: '//*[@name="eicPreWork_ElectricalIsolation" and @value="yes"]/following-sibling::span',
+    physical_yes_btn: '//*[@name="eicPreWork_PhysicalIsolation" and @value="yes"]/following-sibling::span'
   }.freeze
 
   def initialize(driver)

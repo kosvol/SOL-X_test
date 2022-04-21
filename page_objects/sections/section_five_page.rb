@@ -21,7 +21,6 @@ class SectionFivePage < BasePage
     non_crew_checkbox: '//*[@class="checkbox"]',
     other_name: '//*[@id="otherName"]',
     other_company: '//*[@name="otherCompany"]',
-    non_crew_text: '//*[@id="root"]/div/main/ptw/section/div/section[2]/div/div/ul/li/div[3]/span',
     supervised_by: "(//*[starts-with(@class, 'Text')])[1]",
     signed_name: "(//*[starts-with(@class, 'Text')])[2]",
     signed_company: "(//*[starts-with(@class, 'Text')])[4]"
@@ -102,7 +101,7 @@ class SectionFivePage < BasePage
   end
 
   def verify_non_crew_hint
-    compare_string(NON_CREW_TEXT, retrieve_text(SECTION_FIVE[:non_crew_text]))
+    find_element(format("//span[text()='%s']", NON_CREW_TEXT))
   end
 
   def verify_supervised_signature(table)

@@ -25,15 +25,14 @@ class GasReadingsPage < BasePage
 
   GAS_READINGS = {
     gas_last_calibration_button: "//button[@id='gasLastCalibrationDate']",
-    o2_input: "//input[@id='O2']",
-    hc_input: "//input[@id='HC']",
-    h2s_input: "//input[@id='H2S']",
-    co_input: "//input[@id='CO']",
-    gas_name_input: "//input[@id='gasName']",
-    threshold_input: "//input[@id='threshold']",
-    reading_input: "//input[@id='reading']",
-    unit_input: "//input[@id='unit']",
-    gas_reading_table: "//div[starts-with(@class,'cell')]",
+    o2_input: '//input[@name="defaultGasReadings.0.reading"]',
+    hc_input: '//input[@name="defaultGasReadings.1.reading"]',
+    h2s_input: '//input[@name="defaultGasReadings.2.reading"]',
+    co_input: '//input[@name="defaultGasReadings.3.reading"]',
+    gas_name_input: '//input[@name="otherGasReadings.0.gasName"]',
+    threshold_input: '//input[@name="otherGasReadings.0.threshold"]',
+    reading_input: '//input[@name="otherGasReadings.0.reading"]',
+    unit_input: '//input[@name="otherGasReadings.0.unit"]',
     current_day_date: "//*[contains(@class, 'current')]"
   }.freeze
 
@@ -101,10 +100,10 @@ class GasReadingsPage < BasePage
   end
 
   def verify_placeholder
-    compare_string('Required', find_element(GAS_READINGS[:o2_input]).attribute('placeholder'))
-    compare_string('Required', find_element(GAS_READINGS[:hc_input]).attribute('placeholder'))
-    compare_string('Required', find_element(GAS_READINGS[:h2s_input]).attribute('placeholder'))
-    compare_string('Required', find_element(GAS_READINGS[:co_input]).attribute('placeholder'))
+    compare_string('Value', find_element(GAS_READINGS[:o2_input]).attribute('placeholder'))
+    compare_string('Value', find_element(GAS_READINGS[:hc_input]).attribute('placeholder'))
+    compare_string('Value', find_element(GAS_READINGS[:h2s_input]).attribute('placeholder'))
+    compare_string('Value', find_element(GAS_READINGS[:co_input]).attribute('placeholder'))
   end
 
   def verify_submit_btn(option)
@@ -130,10 +129,6 @@ class GasReadingsPage < BasePage
   end
 
   private
-
-  def verify_gas_titles(gas_reading_table)
-    (3..8).each { |number| compare_string(gas_reading_table[number].text, GAS_TABLE_TITLES[number]) }
-  end
 
   def verify_normal_gas_reading(params)
     compare_string(params['O2'], retrieve_text(GAS_DISPLAY[:o2]))

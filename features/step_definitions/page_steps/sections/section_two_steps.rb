@@ -6,7 +6,7 @@ Given('Section2 should see section header') do
   @section_two_page ||= SectionTwoPage.new(@driver)
 end
 
-Then(/^Section2 should see Previous and Next buttons$/) do
+Then('Section2 should see Previous and Next buttons') do
   @section_two_page ||= SectionTwoPage.new(@driver)
   @section_two_page.verify_previous_and_next
 end

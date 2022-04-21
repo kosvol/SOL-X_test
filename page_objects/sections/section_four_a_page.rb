@@ -32,7 +32,7 @@ class SectionFourAPage < BasePage
   end
 
   def select_checklist(checklist)
-    scroll_click("//*[@name='#{CHECKLIST_NAME_MAP[checklist.to_sym]}' and @value='yes']")
+    scroll_click("//*[@name='#{CHECKLIST_NAME_MAP[checklist.to_sym]}' and @value='yes']/following-sibling::span")
   end
 
   def verify_checklist(table)
