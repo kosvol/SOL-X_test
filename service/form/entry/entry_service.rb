@@ -17,8 +17,8 @@ class EntryService
     @logger.debug("accept gas reading response #{response}")
   end
 
-  def create_entry_record(permit_id, ranks_table, rank = @default_rank)
-    response = CreateEntryRecordAPI.new.request(permit_id, ranks_table, rank)
+  def create_entry_record(permit_id, ranks_table, gas_type = 'random')
+    response = CreateEntryRecordAPI.new.request(permit_id, ranks_table, @default_rank, gas_type)
     @logger.debug("create entry response: #{response}")
     response
   end

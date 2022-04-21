@@ -30,45 +30,37 @@ class CompressorRoomEntryPage < BasePage
     select_permit_duration(duration)
   end
 
-  def verify_titles_and_questions
+  def verify_titles_and_questions(entry_type)
+    expected_questions = retrieve_expected_structure(entry_type)['titles_and_questions']
     titles_and_questions_arr = []
     find_elements('//h4').each do |field|
       titles_and_questions_arr << field.text
     end
-    base_titles_and_questions =
-      [] + YAML.load_file('data/cre/cre_forms.yml')['cre_structure_creation']['titles_and_questions']
-    raise 'Verify failed' unless (titles_and_questions_arr - base_titles_and_questions) != []
+    raise 'title and questions verify failed' unless titles_and_questions_arr == expected_questions
   end
 
-  def verify_titles_of_sections
+  def verify_titles_of_sections(entry_type)
+    expected_title = retrieve_expected_structure(entry_type)['titles_of_sections']
     titles_of_sections = []
     find_elements('//h2').each do |field|
       titles_of_sections << field.text
     end
-    base_titles_of_sections = YAML.load_file('data/cre/cre_forms.yml')['cre_structure_creation']['titles_of_sections']
-    raise 'Verify failed' unless (titles_of_sections - base_titles_of_sections).eql?([])
+    raise 'title of section verify failed' unless titles_of_sections == expected_title
   end
 
-  def verify_answers_of_sections_one
+  def verify_answers_of_sections_one(entry_type)
+    expected_section_one = retrieve_expected_structure(entry_type)['answer_first_section']
     answers = []
     find_elements('//span').each do |field|
       answers << field.text
     end
-    base_answers =
-      [] + YAML.load_file('data/cre/cre_forms.yml')['cre_structure_creation']['answears_first_section']
-    raise 'Verify failed' unless (answers & base_answers).any? { |x| base_answers.include?(x) }
+    raise 'section one verify failed' unless answers == expected_section_one
   end
 
-  def verify_answers_of_sections_two
+  def verify_answers_of_entry_titles(entry_type)
+    expected_section_two = retrieve_expected_structure(entry_type)['entry_titles']
     answers_for_sections = retrieve_answers_for_sections
-    base_entry_titles = [] + YAML.load_file('data/cre/cre_forms.yml')['cre_structure_creation']['entry_titles']
-    raise 'Verify failed' unless (answers_for_sections & base_entry_titles) != base_entry_titles
-  end
-
-  def verify_gas_sections
-    answers_for_sections = retrieve_answers_for_sections
-    base_gas_section = [] + YAML.load_file('data/cre/cre_forms.yml')['cre_structure_creation']['gas_section']
-    raise 'Verify failed' unless (answers_for_sections & base_gas_section) == base_gas_section
+    raise 'entry titles verify failed' unless answers_for_sections == expected_section_two
   end
 
   def verify_cre_section_title(text)
@@ -86,6 +78,14 @@ class CompressorRoomEntryPage < BasePage
   end
 
   private
+
+  def retrieve_expected_structure(entry_type)
+    if entry_type == 'CRE'
+      YAML.load_file('data/cre/cre_forms.yml')['structure_creation']
+    else
+      YAML.load_file('data/pre/pre_forms.yml')['structure_creation']
+    end
+  end
 
   def retrieve_answers_for_sections
     answers_for_section_second = []

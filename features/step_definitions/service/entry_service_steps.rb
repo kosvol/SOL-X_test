@@ -14,6 +14,12 @@ Given('EntryService create entry record') do |table|
   @entry_id = entry_response['data']['createEntryRecord'].first['entryId']
 end
 
+Given('EntryService create default gas reading entry record') do |table|
+  @entry_service ||= EntryService.new
+  entry_response = @entry_service.create_entry_record(@permit_id, table, 'default')
+  @entry_id = entry_response['data']['createEntryRecord'].first['entryId']
+end
+
 Given('EntryService verify no new gas reading') do
   @entry_service ||= EntryService.new
   @entry_service.verify_no_pending_record(@permit_id, @entry_id)

@@ -1,6 +1,14 @@
 @pre_permit_creation
 Feature: Pump room entry permit creation
 
+  Scenario: Verify user can see all the PRE questions
+    Given SmartForms open page
+    And SmartForms click create entry permit
+    When PinEntry enter pin for rank "C/O"
+    Then CompressorRoomEntry verify form titles and questions for "PRE"
+    And CompressorRoomEntry verify form titles of sections for "PRE"
+    And CompressorRoomEntry verify form answers for questions for "PRE"
+
   @SOL-5707
   Scenario: Display message on Entry Log tab if no entry records exist
     Given EntryGenerator create entry permit

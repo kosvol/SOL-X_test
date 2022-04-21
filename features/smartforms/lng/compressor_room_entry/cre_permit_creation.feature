@@ -22,14 +22,14 @@ Feature: Compressor room entry permit creation
     And EntryDisplay click "permit" tab
     And PermitDetail wait for latest permit active
 
-# expected to be failed until SOL-8695 is fixed
+
   Scenario: Verify user can see all the CRE questions
     Given SmartForms open page
     And SmartForms click create entry permit
     When PinEntry enter pin for rank "C/O"
-    Then CompressorRoomEntry verify form titles and questions
-    And CompressorRoomEntry verify form titles of sections
-    And CompressorRoomEntry verify form answers for questions
+    Then CompressorRoomEntry verify form titles and questions for "CRE"
+    And CompressorRoomEntry verify form titles of sections for "CRE"
+    And CompressorRoomEntry verify form answers for questions for "CRE"
 
 
   Scenario: Verify gas table titles are saved correct on created CRE form
@@ -44,7 +44,6 @@ Feature: Compressor room entry permit creation
     When SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
-    And CRE verify gas added by "By C/O STG C/O"
     When GasReadings click done button on gas reader dialog box
     Then GasReadings verify gas reading display
       | O2  | HC      | CO    | H2S   | Toxic  | Rank |
