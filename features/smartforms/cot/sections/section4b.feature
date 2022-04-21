@@ -125,7 +125,7 @@ Feature: Section 4B: Energy Isolation Certificate
       | C/E  |
 
 
-  Scenario: Verify sub questions
+  Scenario: Verify EIC sub questions
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/E"

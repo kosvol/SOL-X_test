@@ -9,12 +9,12 @@ class ActivePTWPage < BasePermitStatesPage
   include EnvUtils
   ACTIVE_PTW = {
     page_header: "//h1[contains(.,'Active Permits to Work')]",
-    view_terminate_btn: "//button[span='%s']/*[@class='note-row']/button[contains(.,'View / Terminate')]",
+    view_terminate_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'View / Terminate')]",
     submitted_time: "(//*[span='%s']/div/*[@class='note-row']/div/span)[2]",
     issued_time: "(//*[span='%s']/div/*[@class='note-row']/div/span)[4]",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
     ptw_id: "//ul[starts-with(@class,'FormsList__Container')]/li/span",
-    new_entrant_btn: "//button[span='%s']/*[@class='note-row']/button[contains(.,'New Entrant')]"
+    new_entrant_btn: "//*[span='%s']/*[@class='note-row']/button[contains(.,'New Entrant')]"
   }.freeze
 
   def initialize(driver)

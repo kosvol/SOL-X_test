@@ -26,7 +26,9 @@ class Section1API < BaseSectionApi
   end
 
   def update_main_answer(payload)
-    payload['variables']['answers'].append({ "fieldId": 'duration_of_maintenance_over_2_hours', "value": '"no"' })
+    payload['variables']['answers'].append({ "fieldId": 'duration_of_maintenance_over_2_hours',
+                                             "typename": 'StringFormAnswer',
+                                             "value": '"no"' })
     payload
   end
 end

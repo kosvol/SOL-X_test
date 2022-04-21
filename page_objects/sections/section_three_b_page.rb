@@ -14,7 +14,7 @@ class SectionThreeBPage < BasePage
     work_inspect_by_btn: "//button[@id='workInspectionBy']",
     ddl_options: '//*[@class="option-text"]',
     method_desc: "(//p[starts-with(@class,'AnswerComponent__Answer-')])[1]",
-    dra_sent: '//*[@name="sentForReview" and @value="%s"]',
+    dra_sent: '//*[@name="sentForReview" and @value="%s"]/following-sibling::span',
     dra_sent_answer: "(//p[starts-with(@class,'AnswerComponent__Answer-')])[2]"
   }.freeze
 
@@ -60,6 +60,7 @@ class SectionThreeBPage < BasePage
 
   def verify_inspect_crew_list
     click(SECTION_THREE_B[:work_inspect_by_btn])
+    sleep 1
     options = find_elements(SECTION_THREE_B[:ddl_options])
     user_list = UsersApi.new.request
     user_list['data']['users'].each_with_index do |users, index|

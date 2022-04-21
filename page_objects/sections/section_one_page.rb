@@ -55,6 +55,7 @@ class SectionOnePage < BasePage
 
   def click_save_next
     scroll_click(SECTION_ONE[:save_next_btn])
+    sleep 1
   end
 
   def answer_duration_maintenance(option)
