@@ -1,0 +1,97 @@
+questions:
+  [
+    "Reason for Entry",
+    "Type of Operation in progress",
+    "Date and Time of First Entry",
+    "Date",
+    "Time",
+    "Location of vessel",
+    "At Sea",
+    "In Port",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Compressor",
+    "Motor",
+    "Gas Equipment:",
+    "Sr. No:",
+    "Date of Last Calibration:",
+    "Add Gas Test Record",
+    "Start Time",
+    "Date",
+    "Time",
+    "Permit Duration",
+    "Select",
+    "Submit for Approval",
+    "Save",
+    "Close",
+  ]
+
+titles:
+  [
+    "Compressor/Motor Room Entry Checklist",
+    "Gas Reading",
+    "Permit Validity",
+    "Responsible Officer Signature:"
+  ]
+
+gas_readings_section:
+  [
+    "Add Gas Test Record",
+    "Note",
+    "1. Gas shall be checked once every entry.
+     2. Permit to be cancelled if any change in condition.
+     3. Other toxic gases to be tested and recorded if applicable"
+  ]
+
+subtitles:
+  [
+    "Applicable for Gas Tankers",
+    "Not Answered"
+  ]
+
+permit_validity_section:
+  [
+    "Start Time",
+    "Date",
+    "Time",
+    "Permit Duration"
+  ]
+
+structure_creation:
+  titles_and_questions:
+    [
+      "Created On:",
+      "Date",
+      "Time",
+      "Vessel Name:",
+      "Pump Room Entry Entry Permit No.:"
+    ]
+  titles_of_sections:
+    [
+      "Pump Room Entry Permit",
+      "Gas Test Records",
+      "Permit Validity",
+      "Responsible Officer Signature:"
+    ]
+  answer_first_section:
+    [ "Select Date", "Select Time", "Location of vessel", "At Sea", "In Port", "Has the exhaust ventilation system been switched on and running for at least 15 mins?", "Yes", "No", "Are all the Pump room lights switched on?", "Yes", "No", "Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?", "Yes", "No", "Has communication with the responsible officer been established?", "Yes", "No", "Has the exhaust uptake been set to draw air from the lowest point in the pump room?", "Yes", "No", "Is the Emergency evacuation harness ready for use?", "Yes", "No", "Have the personal monitors for persons entering the pump room been checked for readiness?", "Yes", "No", "Are the personnel entering the pump room aware of the locations of the ELSA / EEBD and familiar with its use?", "Yes", "No", "Are the personnel entering the pump room aware of the reporting interval?", "Yes", "No", "Are emergency and evacuation procedures established and understood by the Person(s) entering the pump room?", "Yes", "No", "Have the names of the person(s) entering the pump room been recorded in the Port operations log together with the time of entry?", "Yes", "No", "Are the person(s) entering the pump room aware that after exiting the space a report to the responsible officer must be made?", "Yes", "No", "Are the persons entering the pump room familiar with the emergency alarm meant for CO2 / Foam flooding?", "Yes", "No", "Are the persons entering the pump room familiar with the location of the emergency trips for the cargo pumps?", "Yes", "No", "Is the pumproom bilge dry?", "Yes", "No", "Add Gas Reader Details & Test Records", "Select Date", "Select Time", "Select Permit Duration", "Responsible Officer Signature:", "Submit for Approval", "Save & Close" ]
+  entry_titles:
+    [ "Reason for Entry", "Type of Operation", "Date", "Time", "At Sea", "In Port", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Date", "Time", "Permit Duration" ]
+  permit_validity:
+    [
+      "Start Time",
+      "Date",
+      "Time",
+      "Permit Duration"
+    ]
+
+
+

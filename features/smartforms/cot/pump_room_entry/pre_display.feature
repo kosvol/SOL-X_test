@@ -98,10 +98,10 @@ Feature: Pump room entry display
     And EntryGenerator create entry permit
       | entry_type | permit_status |
       | pre        | ACTIVE        |
-    And EntryService create entry record
+    And EntryService create default gas reading entry record
       | MAS |
     And EntryService acknowledge new gas reading
-    And EntryService create entry record
+    And EntryService create default gas reading entry record
       | MAS |
     Then EntryService verify no new gas reading
 

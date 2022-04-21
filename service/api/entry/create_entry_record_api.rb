@@ -13,8 +13,8 @@ class CreateEntryRecordAPI
     @user_service = UserService.new
   end
 
-  def request(form_id, array, pin)
-    payload = create_payload(form_id, array)
+  def request(form_id, array, pin, gas_type)
+    payload = create_payload(form_id, array, gas_type)
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
                                { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
@@ -23,10 +23,10 @@ class CreateEntryRecordAPI
 
   private
 
-  def create_payload(form_id, array)
+  def create_payload(form_id, array, gas_type)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/form/entry/create_entry_record.json")
     update_answers(form_id, payload)
-    add_gas_readings(payload)
+    add_gas_readings(payload, gas_type)
     add_entrants(array, payload)
     payload
   end
@@ -40,8 +40,13 @@ class CreateEntryRecordAPI
     payload
   end
 
-  def add_gas_readings(payload)
-    payload['variables']['gasReadings'] = @user_service.random_gas_reading
+  def add_gas_readings(payload, gas_type)
+    gas_reading = if gas_type == 'default'
+                    @user_service.default_gas_reading
+                  else
+                    @user_service.random_gas_reading
+                  end
+    payload['variables']['gasReadings'] = gas_reading
     payload['variables']['gasReadingEquipment']['gasLastCalibrationDate'] = TimeService.new.retrieve_current_date_time
     payload
   end

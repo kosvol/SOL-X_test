@@ -65,12 +65,14 @@ permit_validity_section:
     "Permit Duration"
   ]
 
-cre_structure_creation:
+structure_creation:
   titles_and_questions:
     [
       "Created On:",
-      "Vessel Name",
-      "Compressor/Motor Room Entry Permit No.",
+      "Date",
+      "Time",
+      "Vessel Name:",
+      "Compressor/Motor Room Entry Permit No.:",
       "Fixed gas detectors are working?",
       "Fixed gas detectors readout are working?",
       "Space tested for Hydrocarbon gas and a reading of < 1% LEL obtained. (Fixed detectors)",
@@ -80,67 +82,15 @@ cre_structure_creation:
     ]
   titles_of_sections:
     [
-      "Compressor/Motor Room Entry Checklist",
-      "Gas Reading",
+      "Compressor/Motor Room Entry Permit",
+      "Gas Test Records",
       "Permit Validity",
       "Responsible Officer Signature:"
     ]
-  answears_first_section:
-    [
-      "Location of vessel",
-      "At Sea",
-      "In Port",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No",
-      "Compressor",
-      "Yes",
-      "No",
-      "Motor",
-      "Yes",
-      "No"
-    ]
+  answer_first_section:
+    [ "Select Date", "Select Time", "Location of vessel", "At Sea", "In Port", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Compressor", "Yes", "No", "Motor", "Yes", "No", "Add Gas Reader Details & Test Records", "Select Date", "Select Time", "Select Permit Duration", "Responsible Officer Signature:", "Submit for Approval", "Save & Close" ]
   entry_titles:
-    [
-      "Reason for Entry",
-      "Type of Operation in progress",
-      "Date and Time of First Entry",
-      "Date",
-      "Time"
-    ]
-  gas_section:
-    [
-      "Gas Equipment:",
-      "Sr. No:",
-      "Date of Last Calibration:"
-    ]
+    [ "Reason for Entry", "Type of Operation", "Date", "Time", "At Sea", "In Port", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Date", "Time", "Permit Duration" ]
   permit_validity:
     [
       "Start Time",
