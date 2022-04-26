@@ -24,7 +24,7 @@ class DBService
       deleted_docs = { "_id": row['id'], "_rev": row['value']['rev'], "_deleted": true }
       payload[:docs].append(deleted_docs)
     end
-    response = @couch_db_api.post_request(db_type, table, payload.to_json)
+    response = @couch_db_api.request_bulk_docs(db_type, table, payload.to_json)
     @logger.info("delete form request response: #{response}")
   end
 

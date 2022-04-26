@@ -1,0 +1,330 @@
+[
+  {
+    "_id": "%{vessel_type}%{env}_0001",
+    "lastName": "MAS",
+    "firstName": "STG",
+    "rank": "MAS",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1111"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0026",
+    "lastName": "A/M",
+    "firstName": "STG",
+    "rank": "A/M",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1026"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0002",
+    "lastName": "C/O",
+    "firstName": "STG",
+    "rank": "C/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "2222"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0027",
+    "lastName": "A C/O",
+    "firstName": "STG",
+    "rank": "A C/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1027"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0003",
+    "lastName": "2/O",
+    "firstName": "STG",
+    "rank": "2/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "3333"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0028",
+    "lastName": "A 2/O",
+    "firstName": "STG",
+    "rank": "A 2/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1028"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0004",
+    "lastName": "3/O",
+    "firstName": "STG",
+    "rank": "3/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "4444"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0029",
+    "lastName": "A 3/O",
+    "firstName": "STG",
+    "rank": "A 3/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1029"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0005",
+    "lastName": "4/O",
+    "firstName": "STG",
+    "rank": "4/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "5555"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0030",
+    "lastName": "A 4/O",
+    "firstName": "STG",
+    "rank": "A 4/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1030"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0006",
+    "lastName": "5/O",
+    "firstName": "STG",
+    "rank": "5/O",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "6666"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0007",
+    "lastName": "D/C",
+    "firstName": "STG",
+    "rank": "D/C",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "7777"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0008",
+    "lastName": "BOS",
+    "firstName": "STG",
+    "rank": "BOS",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "8888"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0009",
+    "lastName": "A/B",
+    "firstName": "STG",
+    "rank": "A/B",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "9999"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0010",
+    "lastName": "O/S",
+    "firstName": "STG",
+    "rank": "O/S",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1010"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0011",
+    "lastName": "SAA",
+    "firstName": "STG",
+    "rank": "SAA",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1011"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0012",
+    "lastName": "C/E",
+    "firstName": "STG",
+    "rank": "C/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1012"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0031",
+    "lastName": "A C/E",
+    "firstName": "STG",
+    "rank": "A C/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1031"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0013",
+    "lastName": "2/E",
+    "firstName": "STG",
+    "rank": "2/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1013"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0032",
+    "lastName": "A 2/E",
+    "firstName": "STG",
+    "rank": "A 2/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1032"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0014",
+    "lastName": "3/E",
+    "firstName": "STG",
+    "rank": "3/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1014"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0033",
+    "lastName": "A 3/E",
+    "firstName": "STG",
+    "rank": "A 3/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1033"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0015",
+    "lastName": "CGENG",
+    "firstName": "STG",
+    "rank": "CGENG",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1015"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0016",
+    "lastName": "4/E",
+    "firstName": "STG",
+    "rank": "4/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1016"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0034",
+    "lastName": "A 4/E",
+    "firstName": "STG",
+    "rank": "A 4/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1034"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0017",
+    "lastName": "5/E",
+    "firstName": "STG",
+    "rank": "5/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1017"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0018",
+    "lastName": "T/E",
+    "firstName": "STG",
+    "rank": "T/E",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1018"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0019",
+    "lastName": "E/C",
+    "firstName": "STG",
+    "rank": "E/C",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1019"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0020",
+    "lastName": "ETO",
+    "firstName": "STG",
+    "rank": "ETO",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1020"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0021",
+    "lastName": "ELC",
+    "firstName": "STG",
+    "rank": "ELC",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1021"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0022",
+    "lastName": "ETR",
+    "firstName": "STG",
+    "rank": "ETR",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1022"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0023",
+    "lastName": "PMN",
+    "firstName": "STG",
+    "rank": "PMN",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1023"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0024",
+    "lastName": "FTR",
+    "firstName": "STG",
+    "rank": "FTR",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1024"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0025",
+    "lastName": "OLR",
+    "firstName": "STG",
+    "rank": "OLR",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1025"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0035",
+    "lastName": "WPR",
+    "firstName": "STG",
+    "rank": "WPR",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1035"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0036",
+    "lastName": "CCK",
+    "firstName": "STG",
+    "rank": "CCK",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1036"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0037",
+    "lastName": "2CK",
+    "firstName": "STG",
+    "rank": "2CK",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1037"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0038",
+    "lastName": "STWD",
+    "firstName": "STG",
+    "rank": "STWD",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1038"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0039",
+    "lastName": "FSTO",
+    "firstName": "STG",
+    "rank": "FSTO",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1039"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0040",
+    "lastName": "RDCRW",
+    "firstName": "STG",
+    "rank": "RDCRW",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1040"
+  },
+  {
+    "_id": "%{vessel_type}%{env}_0041",
+    "lastName": "SPM",
+    "firstName": "STG",
+    "rank": "SPM",
+    "vesselId": "%{env}-%{vessel_type}-VESSEL",
+    "pin": "1041"
+  }
+]

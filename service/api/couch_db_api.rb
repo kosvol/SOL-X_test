@@ -11,6 +11,12 @@ class CouchDBAPI
   end
 
   def post_request(db_type, table, payload)
+    response = RestClient.post("#{retrieve_db_url(db_type)}/#{table}",
+                               payload, 'Content-Type' => 'application/json')
+    JSON.parse response.body
+  end
+
+  def request_bulk_docs(db_type, table, payload)
     response = RestClient.post("#{retrieve_db_url(db_type)}/#{table}/_bulk_docs",
                                payload, 'Content-Type' => 'application/json')
     JSON.parse response.body
