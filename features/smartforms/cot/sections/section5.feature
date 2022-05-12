@@ -136,60 +136,6 @@ Feature: Section 5: Responsibility Acceptance
     And Section5 verify non-crew hint
 
 
-  Scenario Outline: Verify only sponsor crews can sign
-    Given Wearable service unlink all wearables
-    And SmartForms open page
-    And SmartForms click create permit to work
-    And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Space Entry"
-    And CommonSection navigate to "Section 5"
-    And Section5 select role
-      | Authorized Entrant 1 |
-    And Section5 click Sign as non-crew member
-    And Section5 enter non-crew info
-      | name                 | company                 |
-      | test_crew_automation | test_company_automation |
-    And Section5 click Enter PIN & Sign button
-    When PinEntry enter pin for rank "<rank>"
-    When SignatureLocation sign off
-      | area        | zone             |
-      | Bridge Deck | Port Bridge Wing |
-    Then Section5 verify supervised signature
-      | rank   | role                 | name                 | company                 |
-      | <rank> | Authorized Entrant 1 | test_crew_automation | test_company_automation |
-
-    Examples:
-      | rank |
-      | C/O  |
-#      | A C/O |
-      | 2/O  |
-#      | A 2/O |
-      | 3/O  |
-      | C/E  |
-#      | A C/E |
-      | 2/E  |
-#      | A 2/E |
-      | 3/E  |
-#      | A 3/E |
-      | 4/E  |
-
-  Scenario: Verify non sponsor crews cannot sign
-    Given SmartForms open page
-    And SmartForms click create permit to work
-    And PinEntry enter pin for rank "C/O"
-    And FormPrelude select level1 "Enclosed Space Entry"
-    And CommonSection navigate to "Section 5"
-    And Section5 select role
-      | Authorized Entrant 1 |
-    And Section5 click Sign as non-crew member
-    And Section5 enter non-crew info
-      | name      | company      |
-      | test_crew | test_company |
-    And Section5 click Enter PIN & Sign button
-    When PinEntry enter pin for rank "MAS"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-
-
   Scenario: Verify crew can sign
     Given SmartForms open page
     And SmartForms click create permit to work

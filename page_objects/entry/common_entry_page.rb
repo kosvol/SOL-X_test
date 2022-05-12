@@ -21,7 +21,8 @@ class CommonEntryPage < BasePage
     header_temp_id: '(//p[starts-with(@class, "AnswerComponent__Answer")])[last()]',
     resp_of_signature: "//h2[contains(.,'Responsible Officer Signature:')]",
     resp_of_sig_rank: "//h3[contains(.,'Rank/Name')]",
-    validation_pop: '//div[starts-with(@class, "ValidationModal__Content")]'
+    validation_pop: '//div[starts-with(@class, "ValidationModal__Content")]',
+    approve_activation_btn: "//button[span='Approve for Activation']"
   }.freeze
 
   def initialize(driver)
@@ -74,5 +75,9 @@ class CommonEntryPage < BasePage
 
   def click_submit_approval
     click(COMMON_ENTRY[:submit_approval_btn])
+  end
+
+  def click_approve_for_activation
+    scroll_click(COMMON_ENTRY[:approve_activation_btn])
   end
 end

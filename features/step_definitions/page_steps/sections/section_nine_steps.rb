@@ -15,3 +15,8 @@ end
 Given('Section9 verify request updates button is {string}') do |option|
   @section_nine_page.verify_request_update_btn(option)
 end
+
+And('Section9 click Withdraw Permit To Work') do
+  @section_nine_page ||= SectionNinePage.new(@driver)
+  @section_nine_page.click_withdraw
+end

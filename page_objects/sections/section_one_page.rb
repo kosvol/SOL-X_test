@@ -76,6 +76,7 @@ class SectionOnePage < BasePage
   end
 
   def verify_next_btn(option)
+    sleep 0.5
     find_element("//button[contains(.,'#{option}')]")
   end
 

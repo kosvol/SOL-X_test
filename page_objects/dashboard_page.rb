@@ -15,7 +15,8 @@ class DashboardPage < BasePage
     terminate_current_permit_btn: '//span[contains(.,"Terminate Current Permit")]',
     gas_reading_change_close: '//button[@aria-label="Close"]',
     acknowledge_btn: "//button[contains(.,'Acknowledge')]",
-    loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]"
+    loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]",
+    create_geofence: "//button[span='Create GeoFence']"
   }.freeze
 
   def open_page
@@ -60,6 +61,10 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
       sleep 2
       raise "dashboard entry status is wrong after #{retry_count} retries" if retry_count > 10
     end
+  end
+
+  def click_create_geofence
+    click(DASHBOARD[:create_geofence])
   end
 
   private

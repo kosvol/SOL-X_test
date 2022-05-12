@@ -25,4 +25,8 @@ class SectionSevenPage < BasePage
   def verify_request_update_btn(option)
     verify_btn_availability(SECTION_SEVEN[:request_update_btn], option)
   end
+
+  def click_activate
+    click(SECTION_SEVEN[:active_btn])
+  end
 end

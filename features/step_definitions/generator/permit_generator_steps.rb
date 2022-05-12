@@ -5,6 +5,8 @@ Given('PermitGenerator create permit') do |table|
   parms = table.hashes.first
   permit_generator = PermitGenerator.new(parms['permit_type'])
   case parms['permit_status']
+  when 'created'
+    permit_generator.create_created(parms['eic'], parms['gas_reading'], parms['bfr_photo'])
   when 'pending_approval'
     permit_generator.create_pending_approval(parms['eic'], parms['gas_reading'], parms['bfr_photo'])
   when 'active'

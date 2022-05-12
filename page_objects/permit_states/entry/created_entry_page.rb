@@ -11,12 +11,9 @@ class CreatedEntryPage < BasePage
   CREATED_ENTRY = {
     page_header: "//h1[contains(.,'Created')]",
     edit_btn: "//*[span='%s']/*[@class='note-row']/button",
-    # first_edit_btn: "(//button[contains(., 'Edit')])[1]",
+    first_edit_btn: "(//button[contains(., 'Edit')])[1]",
     first_delete_btn: "(//button[contains(.,'Delete')])[1]",
     first_permit_id: "(//ul[starts-with(@class,'FormsList__Container')]/li/span)[1]"
-    # parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
-    # ptw_id: 'header > h1',
-    # ptw_number: "//ul[starts-with(@class,'FormsList__Container')]/li/span"
   }.freeze
 
   def initialize(driver)
@@ -39,5 +36,9 @@ class CreatedEntryPage < BasePage
 
   def save_first_permit_id
     retrieve_text(CREATED_ENTRY[:first_permit_id])
+  end
+
+  def click_first_permit
+    click(CREATED_ENTRY[:first_edit_btn])
   end
 end

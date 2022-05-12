@@ -4,6 +4,12 @@ Feature: Generate various permit type
   For photo, if you don't want any photo, you could skip this column
   If you want to attach photo, just specify the amount in "bfr_photo", "aft_photo" columns
 
+  @create_created
+  Scenario: Create created permit
+    Given PermitGenerator create permit
+      | permit_type           | permit_status | eic | gas_reading | bfr_photo |
+      | enclosed_spaces_entry | created       | yes | yes         | 2         |
+
   @create_pending_approval
   Scenario: Create pending approval permit
     Given PermitGenerator create permit

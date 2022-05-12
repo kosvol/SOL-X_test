@@ -52,3 +52,13 @@ And('CommonSection verify header is {string}') do |expected_header|
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.verify_header_text(expected_header)
 end
+
+Given('CommonSection click Save button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_save
+end
+
+Given('CommonSection click Save & Close button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_save_close_btn
+end

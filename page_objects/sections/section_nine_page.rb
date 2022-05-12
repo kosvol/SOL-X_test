@@ -29,4 +29,8 @@ class SectionNinePage < BasePage
   def verify_request_update_btn(option)
     verify_btn_availability(SECTION_NINE[:request_update_btn], option)
   end
+
+  def click_withdraw
+    click(SECTION_NINE[:withdraw_ptw_btn])
+  end
 end

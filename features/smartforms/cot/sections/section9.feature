@@ -42,26 +42,6 @@ Feature: Section9: Withdrawal of Permit
     And Section9 verify request updates button is "enabled"
 
 
-  Scenario Outline: Verify non Master will not see withdraw and request update button for oa permit
-    Given PermitGenerator create permit
-      | permit_type     | permit_status      | eic | gas_reading | aft_photo |
-      | use_safe_camera | pending_withdrawal | no  | yes         | 2         |
-    And SmartForms navigate to state page
-      | type | state              |
-      | ptw  | pending-withdrawal |
-    And PendingWithdrawalPTW click Review & Withdraw button
-    When PinEntry enter pin for rank "<rank>"
-    Then Section9 verify withdrawn signature section is hidden
-    Examples:
-      | rank |
-      | C/O  |
-      | 3/E  |
-#      | A 3/E |
-      | 4/E  |
-#      | A 4/E |
-#      | ETO   |
-
-
   Scenario: Verify non Master will not see withdraw and request update button for non oa permit
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading | aft_photo |
