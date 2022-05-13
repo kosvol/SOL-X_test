@@ -26,4 +26,21 @@ class CouchDBAPI
     payload = { selector: { _id: permit_id } }.to_json.to_s
     RestClient.post("#{retrieve_db_url(db_type)}/forms/_find", payload, 'Content-Type' => 'application/json')
   end
+
+  def request_changes(db_type, table)
+    response = RestClient.get("#{retrieve_db_url(db_type)}/#{table}/_changes")
+    JSON.parse response.body
+  end
+
+  def request_purge(db_type, table, payload)
+    response = RestClient.post("#{retrieve_db_url(db_type)}/#{table}/_purge",
+                               payload, 'Content-Type' => 'application/json')
+    JSON.parse response.body
+  end
+
+  def request_compact(db_type, table)
+    response = RestClient.post("#{retrieve_db_url(db_type)}/#{table}/_compact",
+                               {}.to_json, 'Content-Type' => 'application/json')
+    JSON.parse response.body
+  end
 end
