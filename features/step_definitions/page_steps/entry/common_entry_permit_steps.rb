@@ -53,3 +53,8 @@ And('CommonEntry verify validation pop up') do
   @common_entry_page ||= CommonEntryPage.new(@driver)
   @common_entry_page.verify_validation
 end
+
+And('CommonEntry click approve for activation') do
+  @common_entry_page ||= CommonEntryPage.new(@driver)
+  @common_entry_page.click_approve_for_activation
+end

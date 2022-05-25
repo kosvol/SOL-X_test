@@ -15,8 +15,13 @@ class PermitGenerator
     @builder = PermitToWorkBuilder.new(permit_type, default_pin)
   end
 
-  def create_pending_approval(eic, gas_reading, bfr_photo)
+  def create_created(eic, gas_reading, bfr_photo)
     create_pending_sections(eic, gas_reading, bfr_photo)
+    self.permit_id = @builder.permit_id
+  end
+
+  def create_pending_approval(eic, gas_reading, bfr_photo)
+    create_created(eic, gas_reading, bfr_photo)
     update_pending_status('PENDING_MASTER_APPROVAL')
     self.permit_id = @builder.permit_id
   end

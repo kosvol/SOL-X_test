@@ -20,7 +20,7 @@ class SectionEightPage < BasePage
 
   def initialize(driver)
     super
-    find_element(SECTION_EIGHT[:section_header])
+    find_elements(SECTION_EIGHT[:section_header])
   end
 
   def verify_termination_btn(option)

@@ -13,7 +13,7 @@ class SectionSixPage < BasePage
     note: "//div[starts-with(@class,'WarningBox__')]/h3",
     field_missing_warning: "(//h3[starts-with(@class,'Heading')])[2]",
     sign_missing_warning: "(//h3[starts-with(@class,'Heading')])[4]",
-    add_gas_btn: "//button[contains(., 'Add Gas Reader Details & Test Records')]",
+    add_gas_btn: "//button[contains(., 'Add')]",
     done_btn: '//button[contains(.,"Done")]',
     submit_btn: "//button[contains(., 'Submit')]",
     updates_needed_btn: "//button[contains(., 'Updates Needed')]",
@@ -85,7 +85,7 @@ class SectionSixPage < BasePage
   end
 
   def click_submit_btn
-    click(SECTION_SIX[:submit_btn])
+    scroll_click(SECTION_SIX[:submit_btn])
   end
 
   def verify_submit_update_btn(visibility)

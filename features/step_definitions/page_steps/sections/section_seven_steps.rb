@@ -10,3 +10,8 @@ end
 Given('Section7 verify request update button is {string}') do |option|
   @section_seven_page.verify_request_update_btn(option)
 end
+
+Given('Section7 click activate') do
+  @section_seven_page = SectionSevenPage.new(@driver)
+  @section_seven_page.click_activate
+end

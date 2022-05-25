@@ -58,7 +58,7 @@ Feature: Compressor room entry permit creation
       | type | state   |
       | cre  | created |
     And CreatedEntry save first permit id
-    And CreatedEntry click button Delete
+    And CreatedEntry click delete
     And PinEntry enter pin for rank "MAS"
     And CommonSection sleep for "3" sec
     And CreatedEntry verify deleted permit not presents in list

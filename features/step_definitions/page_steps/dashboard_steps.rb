@@ -30,3 +30,7 @@ end
 And('Dashboard acknowledge gas reading change') do
   @dashboard_page.acknowledge_gas_change
 end
+
+And('Dashboard click Create GeoFence') do
+  @dashboard_page.click_create_geofence
+end
