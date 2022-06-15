@@ -92,7 +92,7 @@ class OPEmailVerificationPage < BasePage
   end
 
   def verify_page_header
-    compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
+    compare_string('Account verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
   end
 
   private
