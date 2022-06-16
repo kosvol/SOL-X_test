@@ -14,18 +14,18 @@ Feature: Office Portal Login
     Then OfficeLogin should see the "Email" field is highlighted in red
     And OfficeLogin should see the "Password" field is highlighted in red
     And OfficeLogin should see the error message below the heading
-      | heading  | message                         |
-      | Email    | Please enter your Email Address |
-      | Password | Please enter your password      |
+      | heading  | message                    |
+      | Email    | Please enter your Email    |
+      | Password | Please enter your password |
 
   Scenario Outline: Verify the correct error message when enter an invalid Email (7900)
     Given OfficeLogin open page
     When OfficeLogin enter email "<example>"
+    And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
-    Then OfficeLogin should see the "Email" field is highlighted in red
     And OfficeLogin should see the error message below the heading
-      | heading | message                             |
-      | Email   | Please enter a valid email address. |
+      | heading | message                         |
+      | Login   | Email or password is incorrect. |
     Examples:
     |example       |
     |test          |
@@ -78,7 +78,7 @@ Feature: Office Portal Login
       | heading | message                                                                          |
       | Login   | Your account is temporarily locked to prevent unauthorized use. Try again later. |
 
-  Scenario: Verify users should be redirected to the email verification page when click Forgot Password
+  Scenario: Verify users should be redirected to the email verification page when click Forgot Password (7907)
     Given OfficeLogin open page
     When OfficeLogin click Forgot password
     Then EmailVerification page should be displayed

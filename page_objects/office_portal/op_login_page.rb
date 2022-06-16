@@ -62,7 +62,7 @@ class OPLoginPage < BasePage
     xpath_key = "#{field.downcase}_field".to_sym
     element = find_element(OP_LOGIN[xpath_key])
     border_colour = element.css_value('border-color')
-    compare_string('rgb(104, 110, 119)', border_colour)
+    compare_string('rgb(216, 75, 75)', border_colour)
   end
 
   def remove_password
