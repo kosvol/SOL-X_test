@@ -19,7 +19,7 @@ Feature: Office Portal Email Verification
       | heading  | message                       |
       | Email    | This information is required. |
 
-  Scenario Outline: Verify the correct error message when enter an invalid Email
+  Scenario Outline: Verify the correct error message when enter an invalid Email (7915)
     And EmailVerification enter email "<example>"
     And EmailVerification click Send verification code
     Then EmailVerification should see the error message below the heading
@@ -34,7 +34,7 @@ Feature: Office Portal Email Verification
       |test@@test.com|
       |test@test/com |
 
-  Scenario: Verify new elements appear when enter a valid email and click Send code
+  Scenario: Verify new elements appear when enter a valid email and click Send code (7942)
     When EmailVerification enter email "ksergeenko@ipolecat.com"
     And EmailVerification click Send verification code
     Then EmailVerification should see the email "ksergeenko@ipolecat.com" entered

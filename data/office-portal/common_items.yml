@@ -1,4 +1,4 @@
 portal_name: 'Office Portal'
 portal_footer: '© 2022 SOL-X Pte. Ltd. All Rights Reserved'
 portal_placeholder: 'Required'
-verification_code_description: 'Verification code has been sent to your inbox. Please copy it to the input box below.'
+verification_code_description: 'Verification code has been sent to your inbox. Please copy code into the field below.'

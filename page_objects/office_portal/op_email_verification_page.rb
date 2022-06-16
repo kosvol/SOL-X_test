@@ -16,13 +16,13 @@ class OPEmailVerificationPage < BasePage
     account_description: "//div[@class='verificationSuccessText']",
     email_heading: "//label[contains(text(),'Email')]",
     email_field: "//input[@id='email']",
-    verification_heading: "//label[contains(text(),'Verification Code')]",
+    verification_heading: "//label[contains(text(),'Verification code')]",
     verification_error: "//label[contains(text(),'Verification code')]/following-sibling::div",
     verification_code_field: "//input[@id='emailVerificationCode']",
     cancel_btn: "//button[contains(text(),'Cancel')]",
     send_code_btn: "//button[contains(text(),'Send verification code')]",
     verify_code_btn: "//button[contains(text(),'Verify code')]",
-    resend_code_btn: "//button[contains(text(),'Send new code')]",
+    resend_code_btn: "//button[contains(text(),'Resend code')]",
     page_footer: "//footer[contains(text(),'SOL-X Pte.')]"
   }.freeze
 
@@ -102,7 +102,7 @@ class OPEmailVerificationPage < BasePage
     find_element(OP_EMAIL_VERIFICATION[:app_logo])
     expected_items = YAML.load_file('data/office-portal/common_items.yml')
     compare_string(expected_items['portal_name'], retrieve_text(OP_EMAIL_VERIFICATION[:portal_name]))
-    compare_string('Account Verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
+    compare_string('Account verification', retrieve_text(OP_EMAIL_VERIFICATION[:account_heading]))
     compare_string(expected_items['portal_footer'], retrieve_text(OP_EMAIL_VERIFICATION[:page_footer]))
   end
 
@@ -120,7 +120,7 @@ class OPEmailVerificationPage < BasePage
     actual_placeholder = verification_code_field.attribute('placeholder')
     field_heading = retrieve_text(OP_EMAIL_VERIFICATION[:verification_heading])
     real_heading = field_heading.sub('Resend code', '').chomp
-    compare_string('Verification Code', real_heading)
+    compare_string('Verification code', real_heading)
     compare_string('Resend code', retrieve_text(OP_EMAIL_VERIFICATION[:resend_code_btn]))
     compare_string(portal_placeholder, actual_placeholder)
   end
