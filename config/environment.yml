@@ -19,12 +19,12 @@ office_approval:
   password: Solxtester12345!
 postgres:
   safevue:
-    database: safevue_sit
+    database: safevue_%<env>s
     host: safevue-solx.postgres.database.azure.com
     password: 79-window-CHOOSE-nation-38
     username: write_user@safevue-solx
   reporting:
-    database: reporting_sit
+    database: reporting_%<env>s
     host: safevue-solx.postgres.database.azure.com
     password: 10-joined-TEAR-greek-36
     username: reporting_user@safevue-solx

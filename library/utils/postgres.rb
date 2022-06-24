@@ -26,30 +26,31 @@ class Postgres
     connection = generate_connection('reporting')
     # risk tables
     connection.exec("DELETE FROM risk_assessment_best_practices WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting risk_assessment_best_practices deleted")
+    @logger.info("#{@env} risk_assessment_best_practices deleted")
 
     connection.exec("DELETE FROM risk_assessment_near_misses WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting risk_assessment_near_misses deleted")
+    @logger.info("#{@env} risk_assessment_near_misses deleted")
 
     connection.exec("DELETE FROM risk_assessment_new_hazards WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting risk_assessment_new_hazards deleted")
+    @logger.info("#{@env} risk_assessment_new_hazards deleted")
 
     connection.exec("DELETE FROM risk_assessment_new_measures WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting risk_assessment_new_measures deleted")
+    @logger.info("#{@env} risk_assessment_new_measures deleted")
 
     # vm tables
     connection.exec("DELETE FROM vw_enclosed_space_entry WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting vw_enclosed_space_entry deleted")
+    @logger.info("#{@env} vw_enclosed_space_entry deleted")
 
     connection.exec("DELETE FROM vw_permit_archive WHERE id LIKE '%#{@env.upcase}%';")
-    @logger.info("#{@env} sit_reporting vw_permit_archive deleted")
+    @logger.info("#{@env} vw_permit_archive deleted")
   end
 
   private
 
   def generate_connection(database)
     config = retrieve_env_file['postgres'][database]
-    connection = PG::Connection.new(host: config['host'], user: config['username'], dbname: config['database'],
+    connection = PG::Connection.new(host: config['host'], user: config['username'],
+                                    dbname: format(config['database'], env: ENV['ENVIRONMENT']),
                                     port: '5432', password: config['password'])
     @logger.info("Successfully created connection to #{database}")
     connection
