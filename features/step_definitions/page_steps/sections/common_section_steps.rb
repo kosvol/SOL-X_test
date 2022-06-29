@@ -125,4 +125,3 @@ Given('CommonSection fill up required fields') do
       | Main Deck | No. 1 Cargo Tank Port |
     )
 end
-
