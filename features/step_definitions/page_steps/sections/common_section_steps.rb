@@ -62,3 +62,67 @@ Given('CommonSection click Save & Close button') do
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.click_save_close_btn
 end
+
+Given('CommonSection fill up maintenance required fields') do
+  steps %(
+    And Section1 answer duration of maintenance over 2 hours as "No"
+    And Section1 select zone
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection navigate to "Section 4A"
+    And CommonSection click Save & Next
+    And CommonSection click sign button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Enter PIN & Sign button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection click Save & Next
+    And Section6 save permit id
+    And Section6 answer gas reading as "N/A"
+    And Section6 click submit button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    )
+end
+
+Given('CommonSection fill up required fields') do
+  steps %(
+    And Section1 select zone
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection navigate to "Section 4A"
+    And CommonSection click Save & Next
+    And CommonSection click sign button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection navigate to "Section 5"
+    And Section5 select role
+      | Authorized Entrant 1 |
+    And Section5 click Enter PIN & Sign button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    And CommonSection click Save & Next
+    And Section6 save permit id
+    And Section6 answer gas reading as "N/A"
+    And Section6 click submit button
+    And PinEntry enter pin for rank "C/O"
+    And SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    )
+end
+

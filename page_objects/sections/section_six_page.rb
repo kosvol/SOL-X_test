@@ -85,6 +85,8 @@ class SectionSixPage < BasePage
   end
 
   def click_submit_btn
+    sleep 1
+    scroll_times_direction(2, 'down')
     scroll_click(SECTION_SIX[:submit_btn])
   end
 
@@ -96,5 +98,9 @@ class SectionSixPage < BasePage
       verify_element_not_exist(SECTION_SIX[:submit_btn])
       verify_element_not_exist(SECTION_SIX[:updates_needed_btn])
     end
+  end
+
+  def retrieve_permit_id
+    retrieve_text('//h1')
   end
 end
