@@ -14,8 +14,7 @@ class SectionEightPage < BasePage
     competent_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[1]",
     issuing_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[2]",
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",
-    rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]",
-    task_status: '//*[@name="taskStatus" and @value="%s"]'
+    rank_name: "(//*[starts-with(@class, 'Cell__Description')])[1]"
   }.freeze
 
   def initialize(driver)
@@ -73,7 +72,12 @@ class SectionEightPage < BasePage
 
   def answer_task_status(task_status)
     scroll_times_direction(1, 'down')
-    scroll_click(SECTION_EIGHT[:task_status] % task_status)
+    click(format("//span[span='%<status>s']", status: task_status))
+  end
+
+  def verify_sign_btn_disabled
+    verify_element_not_exist(SECTION_EIGHT[:issuing_sign_btn])
+    verify_element_not_exist(SECTION_EIGHT[:competent_sign_btn])
   end
 
   private

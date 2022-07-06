@@ -8,6 +8,7 @@ Given('Section6 answer gas reading as {string}') do |option|
 end
 
 Given('Section6 verify gas reading note') do
+  @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.verify_note
 end
 
@@ -52,4 +53,9 @@ end
 Given('Section6 {string} see submit and update button') do |visibility|
   @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.verify_submit_update_btn(visibility)
+end
+
+Given('Section6 save permit id') do
+  @section_six_page ||= SectionSixPage.new(@driver)
+  @permit_id = @section_six_page.retrieve_permit_id
 end

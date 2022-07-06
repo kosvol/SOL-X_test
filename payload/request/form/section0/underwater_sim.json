@@ -6,24 +6,31 @@
     "permitType": "Underwater Operation during daytime without any simultaneous operations",
     "answers": [{
       "fieldId": "team",
+      "typename": "ListOfCrewsFormAnswer",
       "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
     }, {
       "fieldId": "permitType",
+      "typename": "StringFormAnswer",
       "value": "\"Underwater Operation during daytime without any simultaneous operations\""
     }, {
       "fieldId": "openChecklistUnderwaterOp",
+      "typename": "StringFormAnswer",
       "value": "\"yes\""
     }, {
       "fieldId": "permitValidDuration",
+      "typename": "StringFormAnswer",
       "value": "\"4\""
     }, {
       "fieldId": "gasReaderRequired",
+      "typename": "StringFormAnswer",
       "value": "\"yes\""
     }, {
       "fieldId": "shipsApproval",
+      "typename": "StringFormAnswer",
       "value": "\"Master\""
     }, {
       "fieldId": "officeApproval",
+      "typename": "StringFormAnswer",
       "value": "\"Head, Fleet Operations\""
     }],
     "submissionTimestamp": "2022-02-15T10:58:06.326Z"

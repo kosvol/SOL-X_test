@@ -42,3 +42,8 @@ Given('Section8 answer task status {string}') do |task_status|
   @section_eight_page = SectionEightPage.new(@driver)
   @section_eight_page.answer_task_status(task_status)
 end
+
+Given('Section8 verify sign button are disabled') do
+  @section_eight_page = SectionEightPage.new(@driver)
+  @section_eight_page.verify_sign_btn_disabled
+end
