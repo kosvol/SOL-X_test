@@ -26,8 +26,7 @@ module EnvUtils
   def retrieve_db_url(db_type)
     case db_type
     when 'cloud'
-      format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{ENV['ENVIRONMENT']}",
-                       server: db_type, project: ENV['PROJECT'])
+      retrieve_cloud_url
     when 'edge'
       format(BASE_URL, env: "#{EDGE_CREDENTIALS}@#{retrieve_prefix}",
                        server: db_type, project: ENV['PROJECT']).insert(-1, ':5984')
@@ -64,5 +63,17 @@ module EnvUtils
     else
       "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}"
     end
+  end
+
+  private
+
+  def retrieve_cloud_url
+    cloud_env =
+      if (ENV['ENVIRONMENT'] == 'sit') || (ENV['ENVIRONMENT'] == 'auto')
+        'sit'
+      else
+        'uat'
+      end
+    format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{cloud_env}", server: 'cloud', project: ENV['PROJECT'])
   end
 end
