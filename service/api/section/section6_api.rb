@@ -28,9 +28,11 @@ class Section6Api < BaseSectionApi
   def update_gas_reading_answers(payload, gas_reading)
     if gas_reading == 'yes'
       payload['variables']['answers'][1].to_h['value'] = '"yes"'
-      payload['variables']['answers'][-3]['value'] = @user_service.create_gas_reading('C/O', retrieve_vessel_name)
+      payload['variables']['answers'].append({ "fieldId": 'gasInitialReading',
+                                               "typename": 'ListOfGasReadersFormAnswer',
+                                               "value": @user_service.create_gas_reading('C/O', retrieve_vessel_name) })
     else
-      payload['variables']['answers'][1].to_h['value'] = '"no"'
+      payload['variables']['answers'][1].to_h['value'] = '"na"'
     end
     payload
   end
