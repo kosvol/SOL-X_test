@@ -49,10 +49,19 @@ class Postgres
 
   def generate_connection(database)
     config = retrieve_env_file['postgres'][database]
+
     connection = PG::Connection.new(host: config['host'], user: config['username'],
-                                    dbname: format(config['database'], env: ENV['ENVIRONMENT']),
+                                    dbname: format(config['database'], env: retrieve_db_env),
                                     port: '5432', password: config['password'])
     @logger.info("Successfully created connection to #{database}")
     connection
+  end
+
+  def retrieve_db_env
+    if (ENV['ENVIRONMENT'] == 'sit') || (ENV['ENVIRONMENT'] == 'auto')
+      'sit'
+    else
+      'uat'
+    end
   end
 end
