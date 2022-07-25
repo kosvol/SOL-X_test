@@ -50,7 +50,7 @@ Feature: Office Portal Login
     And OfficeLogin enter password "Solxtester12345!"
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
-
+  @close_browser
   Scenario: Verify the correct error message when enter a different incorrect password three times (7901, 8046)
     Given OfficeLogin open page
     When OfficeLogin enter email "qa-test-group@sol-x.co"
@@ -77,7 +77,7 @@ Feature: Office Portal Login
     Then OfficeLogin should see the error message below the heading
       | heading | message                                                                          |
       | Login   | Your account is temporarily locked to prevent unauthorized use. Try again later. |
-
+  @close_browser
   Scenario: Verify users should be redirected to the email verification page when click Forgot Password (7907)
     Given OfficeLogin open page
     When OfficeLogin click Forgot password
