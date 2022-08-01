@@ -23,7 +23,9 @@ class DRAPage < BasePage
 
   def initialize(driver)
     super
-    find_element(DRA[:section_header])
+    # TODO: fix this back after SOL-9202 is fixed
+    # find_element(DRA[:section_header])
+    find_element("//h3[contains(.,'Edit to match current task, and work environment')]")
   end
 
   def select_likelihood(type, likelihood)
