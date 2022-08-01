@@ -9,8 +9,8 @@ class SectionEightPage < BasePage
   SECTION_EIGHT = {
     section_header: "//h3[contains(.,'Section 8: Task Status & EIC Normalisation')]",
     termination_btn: "//button[contains(., 'Submit For Termination')]",
-    task_commenced_at_date: "(//button[@id='taskCommencedAt'])[1]",
-    task_commenced_at_time: "(//button[@id='taskCommencedAt'])[2]",
+    task_commenced_at_date: "//button[@id='taskCommencedAt-datepicker']",
+    task_commenced_at_time: "//button[@id='taskCommencedAt-timepicker']",
     competent_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[1]",
     issuing_sign_btn: "(//button[contains(., 'Enter PIN & Sign')])[2]",
     location_stamp: "(//*[starts-with(@class,'AnswerComponent__Answer')])[1]",

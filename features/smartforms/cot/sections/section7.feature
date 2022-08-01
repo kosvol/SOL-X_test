@@ -9,6 +9,7 @@ Feature: Section 7: Validity of Permit
     And SmartForms navigate to state page
       | type | state  |
       | ptw  | active |
+    And CommonSection sleep for "3" sec
     And ActivePTW save time info
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"

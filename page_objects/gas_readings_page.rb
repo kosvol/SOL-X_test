@@ -17,7 +17,7 @@ class GasReadingsPage < BasePage
     add_toxic_gas_btn: "//button[span='Add Gas']",
     continue_btn: "//button[contains(.,'Continue')]",
     enter_pin_and_submit_btn: 'div[role="dialog"] > div > div > div > button:nth-child(2)',
-    toxic_delete_btn: '//*[@aria-label="deleteGas"]',
+    toxic_delete_btn: '//button[@aria-label="delete reading"]',
     button_template: "//button[contains(.,'%s')]",
     done_btn: '//button[contains(.,"Done")]',
     show_signature_btn: "//button[@data-testid='show-signature-display']"

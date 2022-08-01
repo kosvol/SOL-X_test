@@ -8,6 +8,7 @@ Feature: Section 8: Task Status & EIC Normalisation
     And SmartForms navigate to state page
       | type | state  |
       | ptw  | active |
+    And CommonSection sleep for "3" sec
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "MAS"
     Then Section8 verify RA signature section is hidden

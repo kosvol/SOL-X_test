@@ -46,7 +46,6 @@ Feature: Section 6: Gas Testing/Equipment
     And CommonSection click Back button
     And CommonSection click Back button
     And GasReadings add normal gas readings
-    And GasReadings add toxic gas readings
     When GasReadings click Review & Sign button
     Then SignatureLocation sign off
       | area        | zone             |
