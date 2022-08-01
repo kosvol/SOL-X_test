@@ -6,27 +6,34 @@
     "permitType": "Use of Portable Power Tools",
     "answers": [{
       "fieldId": "team",
-      "value": "[{\"userId\":\"COTAUTO_0002\",\"rank\":\"C/O\"}]"
+      "typename": "ListOfCrewsFormAnswer",
+      "value": "[{\"userId\":\"FSUAUTO_0002\",\"rank\":\"C/O\"}]"
     }, {
       "fieldId": "permitType",
+      "typename": "StringFormAnswer",
       "value": "\"Use of Portable Power Tools\""
     }, {
       "fieldId": "openChecklistRotationalPortablePowerTools",
+      "typename": "StringFormAnswer",
       "value": "\"yes\""
     }, {
       "fieldId": "permitValidDuration",
+      "typename": "StringFormAnswer",
       "value": "\"8\""
     }, {
       "fieldId": "gasReaderRequired",
+      "typename": "StringFormAnswer",
       "value": "\"yes\""
     }, {
       "fieldId": "shipsApproval",
+      "typename": "StringFormAnswer",
       "value": "\"Master\""
     }, {
       "fieldId": "officeApproval",
+      "typename": "StringFormAnswer",
       "value": "\"N/A\""
     }],
-    "submissionTimestamp": "2022-02-15T10:55:58.228Z"
+    "submissionTimestamp": "2022-07-29T13:02:26.254Z"
   },
   "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }
