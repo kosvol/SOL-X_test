@@ -84,7 +84,7 @@ class OPEmailVerificationPage < BasePage
   end
 
   def enter_verification_code(code)
-    sleep(1)
+    wait_until_enabled(OP_EMAIL_VERIFICATION[:verification_code_field])
     enter_text(OP_EMAIL_VERIFICATION[:verification_code_field], code)
   end
 
