@@ -85,7 +85,6 @@ Feature: LOA LNG Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-#    checked ranks list
 
 
   Scenario Outline: Verify default ptw updater can edit permit for APPROVAL_UPDATES_NEEDED
