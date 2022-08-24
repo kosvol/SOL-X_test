@@ -12,7 +12,7 @@ Feature: LOA LNG Permit to Work for created
       | cloud   | gas_reader_entry       |
     And DB service clear postgres data
 
-  @loa_lng_created_ptw1
+
   Scenario Outline: Verify default ptw creator can create permit
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -38,7 +38,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw2
+
   Scenario Outline: Verify only default ptw creator can create permit
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -68,7 +68,7 @@ Feature: LOA LNG Permit to Work for created
       | RDCRW |
       | SPM   |
 
-  @loa_lng_created_ptw3
+
   Scenario Outline: Verify default ptw editor can edit permit
     And SmartForms open page
     And SmartForms click create permit to work
@@ -101,7 +101,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw4
+
   Scenario Outline: Verify non default ptw editor can not edit permit
     And SmartForms open page
     And SmartForms click create permit to work
@@ -141,7 +141,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw5
+
   Scenario Outline: Verify default dra signee can sign dra
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -177,7 +177,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw6
+
   Scenario Outline: Verify non default dra signee can not sign dra
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -214,7 +214,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw7
+
   Scenario Outline: Verify default checklist creator can sign checklist
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -249,7 +249,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw8
+
   Scenario Outline: Verify non default checklist creator can not sign checklist
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -287,7 +287,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw9
+
   Scenario Outline: Verify default eic responsible authority can sign on responsible authority
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -322,7 +322,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw10
+
   Scenario Outline: Verify non default eic responsible authority cannot sign on responsible authority
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -360,7 +360,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw11
+
   Scenario Outline: Verify eic competent person can sign on EIC competent person
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -385,7 +385,7 @@ Feature: LOA LNG Permit to Work for created
       | A 2/E |
       | ETO   |
 
-  @loa_lng_created_ptw12
+
   Scenario Outline: Verify non eic competent person can not sign on EIC competent person
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -436,7 +436,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw13
+
   Scenario Outline: Verify eic issuing authorizer can sign on issuing authority
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -458,7 +458,7 @@ Feature: LOA LNG Permit to Work for created
       | C/E   |
       | A C/E |
 
-  @loa_lng_created_ptw14
+
   Scenario Outline: Verify non eic issuing authorizer can not sign on issuing authority
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -512,7 +512,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw15
+
   Scenario Outline: Verify default responsibility acceptor on responsibility acceptance
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -584,7 +584,7 @@ Feature: LOA LNG Permit to Work for created
       | RDCRW   |
       | SPM     |
 
-  @loa_lng_created_ptw16
+
   Scenario Outline: Verify default rank sponsor can sign on non-crew member
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -626,7 +626,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw17
+
   Scenario Outline: Verify non default rank sponsor can not sign on non-crew member
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -670,7 +670,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw18
+
   Scenario Outline: Verify default responsible authority can submit for approval
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
@@ -705,7 +705,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw19
+
   Scenario Outline: Verify non default responsible authority can not submit for approval
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
@@ -747,7 +747,7 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-  @loa_lng_created_ptw20
+
   Scenario Outline: Verify default initial gas tester can add gas test record
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -779,7 +779,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-  @loa_lng_created_ptw21
+
   Scenario Outline: Verify non default initial gas tester can not add gas test record
     Given Wearable service unlink all wearables
     And SmartForms open page

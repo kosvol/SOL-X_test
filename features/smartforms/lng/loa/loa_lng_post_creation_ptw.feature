@@ -12,7 +12,7 @@ Feature: LOA LNG Permit to Work for post creation
       | cloud   | gas_reader_entry       |
     And DB service clear postgres data
 
-  @loa_lng_post_created_ptw1
+
   Scenario Outline: Verify default approval authority can approve permit
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading |
@@ -29,8 +29,8 @@ Feature: LOA LNG Permit to Work for post creation
     Examples:
       | rank |
       | MAS  |
-#      | A/M  |
-  @loa_lng_post_created_ptw2
+      | A/M  |
+
   Scenario Outline: Verify non default approval authority can not approve permit
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading |
@@ -87,7 +87,7 @@ Feature: LOA LNG Permit to Work for post creation
       | SPM   |
 #    checked ranks list
 
-  @loa_lng_post_created_ptw3
+
   Scenario Outline: Verify default ptw updater can edit permit for APPROVAL_UPDATES_NEEDED
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status              | eic | gas_reading |
@@ -118,7 +118,7 @@ Feature: LOA LNG Permit to Work for post creation
       | ETO   |
       | CGENG |
 
-  @loa_lng_post_created_ptw4
+
   Scenario Outline: Verify non default ptw updater can not edit permit for APPROVAL_UPDATES_NEEDED
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status              | eic | gas_reading |
@@ -156,7 +156,7 @@ Feature: LOA LNG Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  @loa_lng_post_created_ptw5
+
   Scenario Outline: Verify default ptw updater can edit permit for TERMINATION_UPDATES_NEEDED
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status                 | eic | gas_reading |
@@ -187,7 +187,7 @@ Feature: LOA LNG Permit to Work for post creation
       | ETO   |
       | CGENG |
 
-  @loa_lng_post_created_ptw6
+
   Scenario Outline: Verify non default ptw updater can not edit permit for TERMINATION_UPDATES_NEEDED
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status                 | eic | gas_reading |
@@ -225,7 +225,7 @@ Feature: LOA LNG Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  @loa_lng_post_created_ptw7
+
   Scenario Outline: Verify default ptw terminator can submit for termination
     Given SmartForms open page
     Given PermitGenerator create permit
@@ -259,7 +259,7 @@ Feature: LOA LNG Permit to Work for post creation
       | ETO   |
       | CGENG |
 
-  @loa_lng_post_created_ptw8
+
   Scenario Outline: Verify non default ptw terminator can not submit for termination
     Given SmartForms open page
     Given PermitGenerator create permit
@@ -300,7 +300,7 @@ Feature: LOA LNG Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  @loa_lng_post_created_ptw9
+
   Scenario Outline: Verify default ptw withdrawer can withdraw permit
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading |
@@ -318,7 +318,7 @@ Feature: LOA LNG Permit to Work for post creation
       | MAS  |
       | A/M  |
 
-  @loa_lng_post_created_ptw10
+
   Scenario Outline: Verify non default ptw withdrawer can not withdraw permit
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading |
@@ -363,7 +363,7 @@ Feature: LOA LNG Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  @loa_lng_post_created_ptw11
+
   Scenario Outline: Verify default ptw eraser can delete created permit
     And SmartForms open page
     And SmartForms click create permit to work
@@ -382,7 +382,7 @@ Feature: LOA LNG Permit to Work for post creation
       | MAS  |
       | A/M  |
 
-  @loa_lng_post_created_ptw12
+
   Scenario Outline: Verify non default ptw eraser can not delete created permit
     And SmartForms open page
     And SmartForms click create permit to work
@@ -427,7 +427,7 @@ Feature: LOA LNG Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  @loa_lng_post_created_ptw13
+
   Scenario Outline: Verify default periodic gas tester can add periodic test record
     Given SmartForms open page
     Given PermitGenerator create permit
@@ -463,7 +463,7 @@ Feature: LOA LNG Permit to Work for post creation
       | ETO   |
       | CGENG |
 
-  @loa_lng_post_created_ptw14
+
   Scenario Outline: Verify non default periodic gas tester can not add periodic test record
     Given SmartForms open page
     Given PermitGenerator create permit
