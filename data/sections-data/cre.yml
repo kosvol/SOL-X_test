@@ -1,0 +1,52 @@
+fields:
+  [
+    "Created On:",
+    "Date",
+    "Time",
+    "Vessel Name:",
+    "Compressor/Motor Room Entry Permit No.:",
+    "Reason for Entry",
+    "Type of Operation",
+    "Date and Time of Inspection",
+    "Date",
+    "Time",
+    "Location of vessel",
+    "Fixed gas detectors are working?",
+    "Compressor",
+    "Motor",
+    "Fixed gas detectors readout are working?",
+    "Compressor",
+    "Motor",
+    "Space tested for Hydrocarbon gas and a reading of < 1% LEL obtained. (Fixed detectors)",
+    "Compressor",
+    "Motor",
+    "Ventilation fans working and the space are properly ventilated?",
+    "Compressor",
+    "Motor",
+    "All lights in the space working and well illuminated?",
+    "Compressor",
+    "Motor",
+    "Enclosed space tested for Oxygen and a reading of 21% obtained.",
+    "Compressor",
+    "Motor",
+    "Start Date",
+    "Start Time",
+    "Permit Duration"
+  ]
+
+subheaders:
+  [
+    "Compressor/Motor Room Entry Permit",
+    "Gas Testing/Equipment",
+    "Gas equipment:",
+    "Sr. No:",
+    "Date of Last Calibration:",
+    "Permit Validity",
+    "Responsible Officer Signature:",
+    "Chief Officer/Relieved Officer Signature:",
+    "Chief Officer/Relieved Officer Termination Signature:"
+  ]
+
+fields_exceptions: [""]
+
+subheaders_exceptions: [""]
