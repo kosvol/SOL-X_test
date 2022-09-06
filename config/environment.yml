@@ -21,11 +21,11 @@ postgres:
   safevue:
     database: safevue_%<env>s
     host: safevue-solx.postgres.database.azure.com
-    password: 79-window-CHOOSE-nation-38
+    password: 00-speak-MACHINE-island-89
     username: write_user@safevue-solx
   reporting:
     database: reporting_%<env>s
     host: safevue-solx.postgres.database.azure.com
-    password: 10-joined-TEAR-greek-36
+    password: 44-sell-BLOCK-compound-42
     username: reporting_user@safevue-solx
 screenshot: 'true'

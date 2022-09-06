@@ -17,3 +17,8 @@ end
 Then('PermitOverview verify the checklist {string}') do |checklist|
   @permit_overview.check_checklist_questions(checklist)
 end
+
+Then('PermitOverview verify {string}') do |entry_type|
+  @permit_overview.check_entry_fields(entry_type)
+  @permit_overview.check_entry_headers(entry_type)
+end

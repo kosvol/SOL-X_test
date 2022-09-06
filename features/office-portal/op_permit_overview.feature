@@ -33,6 +33,7 @@ Feature: Office Portal Permit Overview
       | Section 7B                   |
       | Section 9                    |
 
+  @close_browser
   Scenario: Verify Section 1 for Maintenance type shows the same fields as in the Client app
     Given PermitGenerator create permit
       | permit_type | permit_status | eic | gas_reading |
@@ -126,7 +127,18 @@ Feature: Office Portal Permit Overview
       | pressure_pipe_vessel |
 
   # Scenario: Verify ROL form shows the same fields as in the client app
-
-  # Scenario: Verify CRE form shows the same fields as in the client app
+  @close_browser
+  Scenario: Verify CRE form shows the same fields as in the client app
+    Given EntryGenerator create entry permit
+      | entry_type | permit_status |
+      | cre        | TERMINATED    |
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
+    And OfficeLogin open page
+    And OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+    When PermitOverview follow the permit link
+    Then PermitOverview verify "CRE"
 
   # Scenario: An Entrant's rank, name, second name should be displayed in the ESE logs table [Office portal]
