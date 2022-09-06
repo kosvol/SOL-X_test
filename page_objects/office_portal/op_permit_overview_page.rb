@@ -8,9 +8,12 @@ class OPPermitOverviewPage < BasePage
 
   PERMIT_OVERVIEW = {
     permit_section1_header: "//div[@class='screen-only']//h2[contains(text(),'Section 1')]",
+    permit_pre_cre_header: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]",
     section_fields: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h4",
     section_labels: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//label",
     section_subheaders: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h2",
+    pre_cre_fields: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]/../..//h4",
+    pre_cre_subheaders: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]/../..//h2",
     eic_fields: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h4",
     eic_labels: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//label",
     eic_subheaders: "(//div[@class='screen-only']//h2[contains(text(),'Energy Isolation Certificate')])[2]/../..//h2"
@@ -31,12 +34,18 @@ class OPPermitOverviewPage < BasePage
     'Section 7': 'section_7',
     'Section 7B': 'section_7B',
     'Section 8': 'section_8',
-    'Section 9': 'section_9'
+    'Section 9': 'section_9',
+    'CRE': 'cre',
+    'PRE': 'pre'
   }.freeze
 
   def open_overview_page(permit_id)
     @driver.get(format("#{generate_base_url}/permit-overview?formId=%s", permit_id))
-    section_header = PERMIT_OVERVIEW[:permit_section1_header]
+    section_header = if permit_id.include? 'PTW'
+                       PERMIT_OVERVIEW[:permit_section1_header]
+                     else
+                       PERMIT_OVERVIEW[:permit_pre_cre_header]
+                     end
     wait_for_copy_display(section_header)
   end
 
@@ -63,6 +72,12 @@ class OPPermitOverviewPage < BasePage
     compare_string(base_fields, fields_arr)
   end
 
+  def check_entry_fields(entry_type)
+    fields_arr = retrieve_actual_elements_list(entry_type, 'fields')
+    base_fields = retrieve_base_entry_fields(entry_type)
+    compare_string(base_fields, fields_arr)
+  end
+
   def check_section_labels(what_section)
     labels_arr = retrieve_actual_elements_list(what_section, 'labels')
     base_labels = retrieve_base_labels_list(what_section)
@@ -76,6 +91,12 @@ class OPPermitOverviewPage < BasePage
                    else
                      retrieve_base_headers_list(what_section, permit_id, eic_condition)
                    end
+    compare_string(base_headers, headers_arr)
+  end
+
+  def check_entry_headers(entry_type)
+    headers_arr = retrieve_actual_elements_list(entry_type, 'subheaders')
+    base_headers = retrieve_base_entry_headers(entry_type)
     compare_string(base_headers, headers_arr)
   end
 
@@ -106,6 +127,11 @@ class OPPermitOverviewPage < BasePage
     else
       [] + YAML.load_file("data/sections-data/#{transformer}.yml")['fields']
     end
+  end
+
+  def retrieve_base_entry_fields(entry_type)
+    transformer = SECTION_MAP[entry_type.to_sym]
+    [] + YAML.load_file("data/sections-data/#{transformer}.yml")['fields']
   end
 
   def section1_base_fields_by_type(permit_type)
@@ -154,9 +180,19 @@ class OPPermitOverviewPage < BasePage
     end
   end
 
+  def retrieve_base_entry_headers(entry_type)
+    transformer = SECTION_MAP[entry_type.to_sym]
+    [] + YAML.load_file("data/sections-data/#{transformer}.yml")['subheaders']
+  end
+
   def select_section_elements(section, elements_type)
-    if section == 'Energy Isolation Certificate'
+    case section
+    when 'Energy Isolation Certificate'
       PERMIT_OVERVIEW["eic_#{elements_type}".to_sym]
+    when 'CRE'
+      PERMIT_OVERVIEW["pre_cre_#{elements_type}".to_sym]
+    when 'PRE'
+      PERMIT_OVERVIEW["pre_cre_#{elements_type}".to_sym]
     else
       format(PERMIT_OVERVIEW["section_#{elements_type}".to_sym], section)
     end
