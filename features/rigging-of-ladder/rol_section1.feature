@@ -15,7 +15,7 @@ Feature: RoL Section 1: Detailed Risk Assessments
     When FormPrelude select level1 "Rigging of Gangway & Pilot Ladder"
     Then RoLSectionOne verify section 1 data
 
-  Scenario: Verify there only save & next button in section 1
+  Scenario: Verify there is only save & next button in section 1
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"

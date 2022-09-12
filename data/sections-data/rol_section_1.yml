@@ -23,5 +23,7 @@ questions:
     "Personnel training and skills adequate for the specific task",
     "Work Plan carried out?",
     "DRA carried out?",
-    "Safety Meeting carried out?"
+    "Safety Meeting carried out?",
+    "Last Assessment for similar work activity",
+    "DRA number of last assessment"
   ]

@@ -2,7 +2,7 @@
 
 require_relative '../../../../page_objects/rol_sections/rol_section_one_page'
 
-Given('RoLSectionOne verify DRA details') do
+Then('RoLSectionOne verify DRA details') do
   @rol_section_one_page ||= RoLSectionOnePage.new(@driver)
   @rol_section_one_page.verify_rol_dra_details
 end

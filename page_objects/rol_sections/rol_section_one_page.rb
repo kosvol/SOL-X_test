@@ -11,7 +11,8 @@ class RoLSectionOnePage < BasePage
     edit_hazard_btn: "//button[contains(.,'View/Edit Hazards')]",
     headers: "//div[contains(@class,'Section__Description')]//h2",
     subheaders: "//div[contains(@class,'Section__Description')]//h4",
-    questions: "//div[contains(@class,'Section__Description')]/div/div/span"
+    questions: "//div[contains(@class,'Section__Description')]/div/div/span",
+    other: "//div[contains(@class,'Section__Description')]//label[contains(@for, 'lastAssessment')]"
   }.freeze
 
   def initialize(driver)
@@ -20,13 +21,13 @@ class RoLSectionOnePage < BasePage
   end
 
   def verify_rol_dra_details
-    current_created_time = retrieve_created_time
+    current_created_date = retrieve_created_date
     actual_answers = retrieve_actual_dra_answers
     compare_string(retrieve_vessel_name, actual_answers[0])
     compare_string('Rigging of Gangway & Pilot Ladder', actual_answers[3])
     compare_string('Standard procedure for rigging Pilot/Combination Ladder', actual_answers[4])
     raise 'DRA no is not updated' if actual_answers[1].include? 'DRA/TEMP'
-    raise 'DRA date/time is not pre-filled' unless actual_answers[2].include? current_created_time
+    raise 'DRA date/time is not pre-filled' unless actual_answers[2].include? current_created_date
   end
 
   def verify_rol_section_one_data
@@ -35,6 +36,7 @@ class RoLSectionOnePage < BasePage
       next if retrieve_section_items('headers').include? question
       next if retrieve_section_items('subheaders').include? question
       next if retrieve_section_items('questions').include? question
+      next if retrieve_section_items('other').include? question
 
       raise "#{question} verified failed"
     end
@@ -60,7 +62,7 @@ class RoLSectionOnePage < BasePage
     result
   end
 
-  def retrieve_created_time
+  def retrieve_created_date
     time_offset = TimeService.new.retrieve_ship_utc_offset
     (Time.now + (60 * 60 * time_offset.to_i)).utc.strftime('%d/%b/%Y')
   end
