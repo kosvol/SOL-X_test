@@ -28,4 +28,9 @@ postgres:
     host: safevue-solx.postgres.database.azure.com
     password: 44-sell-BLOCK-compound-42
     username: reporting_user@safevue-solx
+  dwh:
+    database: dwh_%<env>s
+    host: safevue-solx.postgres.database.azure.com
+    password: 87-produce-THIN-count-51
+    username: dwh_user@safevue-solx
 screenshot: 'true'

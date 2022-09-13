@@ -18,3 +18,16 @@ Given('DB service clear postgres data') do
   postgres.clear_savefue_db
   postgres.clear_reporting_db
 end
+
+Given('Clean postgres data of wellbeing reports') do
+  postgres = Postgres.new
+  postgres.clear_dwh_db
+  postgres.clear_steps_reporting_db
+end
+
+Given('DB service create reports postgres data') do
+  postgres = Postgres.new
+  1.times do postgres.insert_well_safevue_db
+
+  end
+end

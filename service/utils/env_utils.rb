@@ -65,6 +65,37 @@ module EnvUtils
     end
   end
 
+  def retrieve_date_from
+    date_from = ENV['DATEFROM']
+    return "#{date_from}"
+
+  end
+
+  def retrieve_days
+    days = ENV['DAYS']
+    return "#{days}"
+
+  end
+
+
+  def retrieve_steps_disable
+    steps_dsbl = ENV['STEPSOFF']
+    return "#{steps_dsbl}"
+
+  end
+
+  def retrieve_heart_disable
+    heart_dsbl = ENV['HEARTOFF']
+    return "#{heart_dsbl}"
+
+  end
+
+  def retrieve_heat_disable
+    heat_dsbl = ENV['HEATOFF']
+    return "#{heat_dsbl}"
+
+  end
+
   private
 
   def retrieve_cloud_url
@@ -76,4 +107,5 @@ module EnvUtils
       end
     format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{cloud_env}", server: 'cloud', project: ENV['PROJECT'])
   end
+
 end
