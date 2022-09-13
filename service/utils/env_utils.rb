@@ -143,6 +143,24 @@ module EnvUtils
 
   end
 
+  def retrieve_cotuat_enable
+    cotuat_enbl = ENV['COTUAT']
+    return "#{cotuat_enbl}"
+
+  end
+
+  def retrieve_fsuuat_enable
+    fsuuat_enbl = ENV['FSUUAT']
+    return "#{fsuuat_enbl}"
+
+  end
+
+  def retrieve_lnguat_enable
+    lnguat_enbl = ENV['LNGUAT']
+    return "#{lnguat_enbl}"
+
+  end
+
   private
 
   def retrieve_cloud_url

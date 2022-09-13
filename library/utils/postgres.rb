@@ -24,6 +24,9 @@ class Postgres
     @lngauto_enbl = retrieve_lngauto_enable
     @cotsit20_enbl = retrieve_cotsit20_enable
     @fsusit20_enbl = retrieve_fsusit20_enable
+    @cotuat_enbl = retrieve_cotuat_enable
+    @fsuuat_enbl = retrieve_fsuuat_enable
+    @lnguat_enbl = retrieve_lnguat_enable
   end
 
   def clear_savefue_db
@@ -561,6 +564,183 @@ class Postgres
   #{@steps_dsbl} insert into public.steps_data
   #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
 
+
+    # -- ///COT_UAT\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+      ON COMMIT drop;
+      INSERT INTO cache_table VALUES
+
+    (0 ,'UAT-COT-VESSEL' ,'COTUAT_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'UAT-COT-VESSEL' ,'COTUAT_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'UAT-COT-VESSEL' ,'COTUAT_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'UAT-COT-VESSEL' ,'COTUAT_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (480 ,'UAT-COT-VESSEL' ,'COTUAT_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+    (0 ,'UAT-COT-VESSEL' ,'COTUAT_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'UAT-COT-VESSEL' ,'COTUAT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'UAT-COT-VESSEL' ,'COTUAT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'UAT-COT-VESSEL' ,'COTUAT_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (-480 ,'UAT-COT-VESSEL' ,'COTUAT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
+
+
+      CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+      ON COMMIT drop;
+      INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+      SELECT t.t + (days.days||' days')::INTERVAL,
+      (SELECT vessel_offset
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_offset,
+      (SELECT vessel_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_id,
+      (SELECT user_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS user_id,
+      (SELECT beacon_mac
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS beacon_mac,
+        floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+         floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@cotuat_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+    # -- ///FSUUAT\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+      ON COMMIT drop;
+      INSERT INTO cache_table VALUES
+
+    (0 ,'UAT-FSU-VESSEL' ,'FSUUAT_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'UAT-FSU-VESSEL' ,'FSUUAT_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'UAT-FSU-VESSEL' ,'FSUUAT_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'UAT-FSU-VESSEL' ,'FSUUAT_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (480 ,'UAT-FSU-VESSEL' ,'FSUUAT_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+    (0 ,'UAT-FSU-VESSEL' ,'FSUUAT_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'UAT-FSU-VESSEL' ,'FSUUAT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'UAT-FSU-VESSEL' ,'FSUUAT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'UAT-FSU-VESSEL' ,'FSUUAT_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (-480 ,'UAT-FSU-VESSEL' ,'FSUUAT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
+
+
+      CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+      ON COMMIT drop;
+      INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+      SELECT t.t + (days.days||' days')::INTERVAL,
+      (SELECT vessel_offset
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_offset,
+      (SELECT vessel_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_id,
+      (SELECT user_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS user_id,
+      (SELECT beacon_mac
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS beacon_mac,
+        floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+         floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@fsuuat_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+    # -- ///LNGUAT\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+      ON COMMIT drop;
+      INSERT INTO cache_table VALUES
+
+    (0 ,'UAT-LNG-VESSEL' ,'LNGUAT_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'UAT-LNG-VESSEL' ,'LNGUAT_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'UAT-LNG-VESSEL' ,'LNGUAT_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'UAT-LNG-VESSEL' ,'LNGUAT_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (480 ,'UAT-LNG-VESSEL' ,'LNGUAT_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+    (0 ,'UAT-LNG-VESSEL' ,'LNGUAT_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'UAT-LNG-VESSEL' ,'LNGUAT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'UAT-LNG-VESSEL' ,'LNGUAT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'UAT-LNG-VESSEL' ,'LNGUAT_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (-480 ,'UAT-LNG-VESSEL' ,'LNGUAT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
+
+
+      CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+      ON COMMIT drop;
+      INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+      SELECT t.t + (days.days||' days')::INTERVAL,
+      (SELECT vessel_offset
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_offset,
+      (SELECT vessel_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS vessel_id,
+      (SELECT user_id
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS user_id,
+      (SELECT beacon_mac
+      FROM cache_table
+      ORDER BY random()
+      LIMIT 1) AS beacon_mac,
+        floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+         floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@lnguat_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
 
     @logger.info("#{@env} generated data inserted to the safevue_DB - Date from: #{@date_from}; Days #{@days}; ")
   end
