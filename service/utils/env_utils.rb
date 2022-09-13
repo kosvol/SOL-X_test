@@ -77,7 +77,6 @@ module EnvUtils
 
   end
 
-
   def retrieve_steps_disable
     steps_dsbl = ENV['STEPSOFF']
     return "#{steps_dsbl}"
@@ -93,6 +92,54 @@ module EnvUtils
   def retrieve_heat_disable
     heat_dsbl = ENV['HEATOFF']
     return "#{heat_dsbl}"
+
+  end
+
+  def retrieve_cotsit_enable
+    cotsit_enbl = ENV['COTSIT']
+    return "#{cotsit_enbl}"
+
+  end
+
+  def retrieve_fsusit_enable
+    fsusit_enbl = ENV['FSUSIT']
+    return "#{fsusit_enbl}"
+
+  end
+
+  def retrieve_lngsit_enable
+    lngsit_enbl = ENV['LNGSIT']
+    return "#{lngsit_enbl}"
+
+  end
+
+  def retrieve_cotauto_enable
+    cotauto_enbl = ENV['COTAUTO']
+    return "#{cotauto_enbl}"
+
+  end
+
+  def retrieve_fsuauto_enable
+    fsuauto_enbl = ENV['FSUAUTO']
+    return "#{fsuauto_enbl}"
+
+  end
+
+  def retrieve_lngauto_enable
+    lngauto_enbl = ENV['LNGAUTO']
+    return "#{lngauto_enbl}"
+
+  end
+
+  def retrieve_cotsit20_enable
+    cotsit20_enbl = ENV['COTSIT20']
+    return "#{cotsit20_enbl}"
+
+  end
+
+  def retrieve_fsusit20_enable
+    fsusit20_enbl = ENV['FSUSIT20']
+    return "#{fsusit20_enbl}"
 
   end
 

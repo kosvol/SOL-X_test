@@ -16,6 +16,14 @@ class Postgres
     @heat_dsbl = retrieve_heat_disable
     @heart_dsbl = retrieve_heart_disable
     @steps_dsbl = retrieve_steps_disable
+    @cotsit_enbl = retrieve_cotsit_enable
+    @fsusit_enbl = retrieve_fsusit_enable
+    @lngsit_enbl = retrieve_lngsit_enable
+    @cotauto_enbl = retrieve_cotauto_enable
+    @fsuauto_enbl = retrieve_fsuauto_enable
+    @lngauto_enbl = retrieve_lngauto_enable
+    @cotsit20_enbl = retrieve_cotsit20_enable
+    @fsusit20_enbl = retrieve_fsusit20_enable
   end
 
   def clear_savefue_db
@@ -54,13 +62,13 @@ class Postgres
     connection = generate_connection('dwh')
     # birthday table
     connection.exec("
-  DELETE FROM fact_watch_5min WHERE time_epoch = '1';
-  DELETE FROM cube_heart_stress WHERE date_epoch = '1';
-  DELETE FROM cube_heat_stress_31 WHERE date_epoch = '1';
-  DELETE FROM cube_heat_stress_51 WHERE date_epoch = '1';
-  DELETE FROM cube_step_heat WHERE date_epoch = '1';
-  DELETE FROM cube_zone_traffic WHERE date_epoch = '1';
-  DELETE FROM cube_step_heat WHERE date_epoch = '1';
+  DELETE FROM fact_watch_5min WHERE time_epoch >= '1';
+  DELETE FROM cube_heart_stress WHERE date_epoch >= '1';
+  DELETE FROM cube_heat_stress_31 WHERE date_epoch >= '1';
+  DELETE FROM cube_heat_stress_51 WHERE date_epoch >= '1';
+  DELETE FROM cube_step_heat WHERE date_epoch >= '1';
+  DELETE FROM cube_zone_traffic WHERE date_epoch >= '1';
+  DELETE FROM cube_step_heat WHERE date_epoch >= '1';
   ")
     @logger.info("#{@env} wellbeing tables are cleared")
 
@@ -80,16 +88,16 @@ class Postgres
     ON COMMIT drop;
     INSERT INTO cache_table VALUES
 
-    (0 ,'SIT-COT-VESSEL' ,'COTSIT_0002' ,'00:00:00:00:00:09'), -- Deck Officer
-    (60 ,'SIT-COT-VESSEL' ,'COTSIT_0009' ,'00:00:00:00:00:00'), -- Deck Rating
-    (180 ,'SIT-COT-VESSEL' ,'COTSIT_0012' ,'00:00:00:00:00:07'), -- Engineering Officer
-    (300 ,'SIT-COT-VESSEL' ,'COTSIT_0024' ,'00:00:00:00:00:2d'), -- Engineering Rating
-    (480 ,'SIT-COT-VESSEL' ,'COTSIT_0036' ,'00:00:00:00:00:34'), -- Admin/Catering
-    (0 ,'SIT-COT-VESSEL' ,'COTSIT_0003' ,'00:00:00:00:00:09'), -- Deck Officer
-    (-60 ,'SIT-COT-VESSEL' ,'COTSIT_0010' ,'00:00:00:00:00:00'), -- Deck Rating
-    (-180 ,'SIT-COT-VESSEL' ,'COTSIT_0013' ,'00:00:00:00:00:2d'), -- Engineering Officer
-    (-300 ,'SIT-COT-VESSEL' ,'COTSIT_0025' ,'00:00:00:00:00:34'), -- Engineering Rating
-    (-480 ,'SIT-COT-VESSEL' ,'COTSIT_0038' ,'00:00:00:00:00:07'); -- Admin/Catering
+    (0 ,'SIT-COT-VESSEL' ,'COTSIT_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'SIT-COT-VESSEL' ,'COTSIT_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'SIT-COT-VESSEL' ,'COTSIT_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'SIT-COT-VESSEL' ,'COTSIT_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (480 ,'SIT-COT-VESSEL' ,'COTSIT_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+    (0 ,'SIT-COT-VESSEL' ,'COTSIT_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'SIT-COT-VESSEL' ,'COTSIT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'SIT-COT-VESSEL' ,'COTSIT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'SIT-COT-VESSEL' ,'COTSIT_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (-480 ,'SIT-COT-VESSEL' ,'COTSIT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
 
 
   CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -119,12 +127,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@cotsit_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -133,23 +141,22 @@ class Postgres
   #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
   #{@steps_dsbl} insert into public.steps_data
   #{@steps_dsbl} (timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
-    @logger.info("#{@env} generated data inserted to the safevue_DB - Date from: #{@date_from}; Days #{@days}; ")
 
     # -- ///FSUSIT\\\ -- #
     connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
       ON COMMIT drop;
       INSERT INTO cache_table VALUES
 
-      (0 ,'SIT-FSU-VESSEL' ,'FSUSIT_0002' ,'00:00:00:00:00:21'), -- Deck Officer
-      (60 ,'SIT-FSU-VESSEL' ,'FSUSIT_0009' ,'00:00:00:00:00:2e'), -- Deck Rating
-      (180 ,'SIT-FSU-VESSEL' ,'FSUSIT_0012' ,'00:00:00:00:00:08'), -- Engineering Officer
-      (300 ,'SIT-FSU-VESSEL' ,'FSUSIT_0024' ,'00:00:00:00:00:0c'), -- Engineering Rating
-      (480 ,'SIT-FSU-VESSEL' ,'FSUSIT_0036' ,'00:00:00:00:00:01'), -- Admin/Catering
-      (0 ,'SIT-FSU-VESSEL' ,'FSUSIT_0003' ,'00:00:00:00:00:21'), -- Deck Officer
-      (-60 ,'SIT-FSU-VESSEL' ,'FSUSIT_0010' ,'00:00:00:00:00:2e'), -- Deck Rating
-      (-180 ,'SIT-FSU-VESSEL' ,'FSUSIT_0013' ,'00:00:00:00:00:08'), -- Engineering Officer
-      (-300 ,'SIT-FSU-VESSEL' ,'FSUSIT_0025' ,'00:00:00:00:00:0c'), -- Engineering Rating
-      (-480 ,'SIT-FSU-VESSEL' ,'FSUSIT_0038' ,'00:00:00:00:00:01'); -- Admin/Catering
+      (0 ,'SIT-FSU-VESSEL' ,'FSUSIT_0002' ,'00:00:00:00:00:01'), -- Deck Officer
+      (60 ,'SIT-FSU-VESSEL' ,'FSUSIT_0009' ,'00:00:00:00:00:02'), -- Deck Rating
+      (180 ,'SIT-FSU-VESSEL' ,'FSUSIT_0012' ,'00:00:00:00:00:03'), -- Engineering Officer
+      (300 ,'SIT-FSU-VESSEL' ,'FSUSIT_0024' ,'00:00:00:00:00:04'), -- Engineering Rating
+      (480 ,'SIT-FSU-VESSEL' ,'FSUSIT_0036' ,'00:00:00:00:00:05'), -- Admin/Catering
+      (0 ,'SIT-FSU-VESSEL' ,'FSUSIT_0003' ,'00:00:00:00:00:00'), -- Deck Officer
+      (-60 ,'SIT-FSU-VESSEL' ,'FSUSIT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+      (-180 ,'SIT-FSU-VESSEL' ,'FSUSIT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (-300 ,'SIT-FSU-VESSEL' ,'FSUSIT_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (-480 ,'SIT-FSU-VESSEL' ,'FSUSIT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
 
 
     CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -179,12 +186,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@fsusit_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -200,16 +207,16 @@ class Postgres
     ON COMMIT drop;
     INSERT INTO cache_table VALUES
 
-    (0 ,'SIT-LNG-VESSEL' ,'LNGSIT_0002' ,'fe:bb:7f:85:68:16'), -- Deck Officer
-    (60 ,'SIT-LNG-VESSEL' ,'LNGSIT_0009' ,'9c:f6:dd:3b:76:69'), -- Deck Rating
-    (180 ,'SIT-LNG-VESSEL' ,'LNGSIT_0012' ,'b0:b4:48:fb:7b:a7'), -- Engineering Officer
-    (300 ,'SIT-LNG-VESSEL' ,'LNGSIT_0024' ,'00:00:00:00:00:5e'), -- Engineering Rating
-    (480 ,'SIT-LNG-VESSEL' ,'LNGSIT_0036' ,'f8:77:b8:af:b3:54'), -- Admin/Catering
-    (0 ,'SIT-LNG-VESSEL' ,'LNGSIT_0003' ,'f8:77:b8:af:b3:54'), -- Deck Officer
-    (-60 ,'SIT-LNG-VESSEL' ,'LNGSIT_0010' ,'00:00:00:00:00:5e'), -- Deck Rating
-    (-180 ,'SIT-LNG-VESSEL' ,'LNGSIT_0013' ,'b0:b4:48:fb:7b:a7'), -- Engineering Officer
-    (-300 ,'SIT-LNG-VESSEL' ,'LNGSIT_0025' ,'9c:f6:dd:3b:76:69') -- Engineering Rating
-    ,(-480 ,'SIT-LNG-VESSEL' ,'LNGSIT_0038' ,'fe:bb:7f:85:68:16'); -- Admin/Catering
+    (0 ,'SIT-LNG-VESSEL' ,'LNGSIT_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'SIT-LNG-VESSEL' ,'LNGSIT_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'SIT-LNG-VESSEL' ,'LNGSIT_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'SIT-LNG-VESSEL' ,'LNGSIT_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (480 ,'SIT-LNG-VESSEL' ,'LNGSIT_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+    (0 ,'SIT-LNG-VESSEL' ,'LNGSIT_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'SIT-LNG-VESSEL' ,'LNGSIT_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'SIT-LNG-VESSEL' ,'LNGSIT_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'SIT-LNG-VESSEL' ,'LNGSIT_0025' ,'00:00:00:00:00:03') -- Engineering Rating
+    ,(-480 ,'SIT-LNG-VESSEL' ,'LNGSIT_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
 
 
     CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -239,12 +246,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@lngsit_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -260,16 +267,16 @@ class Postgres
       ON COMMIT drop;
       INSERT INTO cache_table VALUES
 
-      (0 ,'AUTO-COT-VESSEL' ,'COTAUTO_0002' ,'00:00:00:00:00:18'), -- Deck Officer
-      (60 ,'AUTO-COT-VESSEL' ,'COTAUTO_0009' ,'00:00:00:00:00:1d'), -- Deck Rating
-      (180 ,'AUTO-COT-VESSEL' ,'COTAUTO_0012' ,'00:00:00:00:00:2a'), -- Engineering Officer
-      (300 ,'AUTO-COT-VESSEL' ,'COTAUTO_0024' ,'00:00:00:00:00:2e'), -- Engineering Rating
-      (480 ,'AUTO-COT-VESSEL' ,'COTAUTO_0036' ,'00:00:00:00:00:05'), -- Admin/Catering
-      (0 ,'AUTO-COT-VESSEL' ,'COTAUTO_0003' ,'00:00:00:00:00:09'), -- Deck Officer
-      (-60 ,'AUTO-COT-VESSEL' ,'COTAUTO_0010' ,'00:00:00:00:00:18'), -- Deck Rating
-      (-180 ,'AUTO-COT-VESSEL' ,'COTAUTO_0013' ,'00:00:00:00:00:1d'), -- Engineering Officer
-      (-300 ,'AUTO-COT-VESSEL' ,'COTAUTO_0025' ,'00:00:00:00:00:2a'), -- Engineering Rating
-      (-480 ,'AUTO-COT-VESSEL' ,'COTAUTO_0038' ,'00:00:00:00:00:2e'); -- Admin/Catering
+      (0 ,'AUTO-COT-VESSEL' ,'COTAUTO_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+      (60 ,'AUTO-COT-VESSEL' ,'COTAUTO_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+      (180 ,'AUTO-COT-VESSEL' ,'COTAUTO_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (300 ,'AUTO-COT-VESSEL' ,'COTAUTO_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (480 ,'AUTO-COT-VESSEL' ,'COTAUTO_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+      (0 ,'AUTO-COT-VESSEL' ,'COTAUTO_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+      (-60 ,'AUTO-COT-VESSEL' ,'COTAUTO_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+      (-180 ,'AUTO-COT-VESSEL' ,'COTAUTO_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (-300 ,'AUTO-COT-VESSEL' ,'COTAUTO_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (-480 ,'AUTO-COT-VESSEL' ,'COTAUTO_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
 
 
     CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -299,12 +306,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@cotauto_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -320,16 +327,16 @@ class Postgres
     ON COMMIT drop;
     INSERT INTO cache_table VALUES
 
-    (0 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0002' ,'00:00:00:00:00:04'), -- Deck Officer
-    (60 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0009' ,'00:00:00:00:00:19'), -- Deck Rating
-    (180 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0012' ,'00:00:00:00:00:3a'), -- Engineering Officer
-    (300 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0024' ,'00:00:00:00:00:0e'), -- Engineering Rating
-    (480 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0036' ,'00:00:00:00:00:10'), -- Admin/Catering
-    (0 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0003' ,'00:00:00:00:00:12'), -- Deck Officer
-    (-60 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0010' ,'00:00:00:00:00:04'), -- Deck Rating
-    (-180 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0013' ,'00:00:00:00:00:19'), -- Engineering Officer
-    (-300 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0025' ,'00:00:00:00:00:3a'), -- Engineering Rating
-    (-480 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0038' ,'00:00:00:00:00:0e'); -- Admin/Catering
+    (0 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0002' ,'00:00:00:00:00:01'), -- Deck Officer
+    (60 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0009' ,'00:00:00:00:00:02'), -- Deck Rating
+    (180 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0012' ,'00:00:00:00:00:03'), -- Engineering Officer
+    (300 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0024' ,'00:00:00:00:00:04'), -- Engineering Rating
+    (480 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0036' ,'00:00:00:00:00:05'), -- Admin/Catering
+    (0 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0003' ,'00:00:00:00:00:01'), -- Deck Officer
+    (-60 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0010' ,'00:00:00:00:00:02'), -- Deck Rating
+    (-180 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0013' ,'00:00:00:00:00:03'), -- Engineering Officer
+    (-300 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0025' ,'00:00:00:00:00:04'), -- Engineering Rating
+    (-480 ,'AUTO-FSU-VESSEL' ,'FSUAUTO_0038' ,'00:00:00:00:00:00'); -- Admin/Catering
 
 
 
@@ -360,12 +367,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@fsuauto_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -381,16 +388,16 @@ class Postgres
       ON COMMIT drop;
       INSERT INTO cache_table VALUES
 
-      (0 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0002' ,'00:00:00:00:00:08'), -- Deck Officer
-      (60 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0009' ,'00:00:00:00:00:09'), -- Deck Rating
-      (180 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0012' ,'00:00:00:00:00:04'), -- Engineering Officer
-      (300 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0024' ,'00:00:00:00:00:5e'), -- Engineering Rating
-      (480 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0036' ,'00:00:00:00:00:0c'), -- Admin/Catering
-      (0 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0003' ,'00:00:00:00:00:10'), -- Deck Officer
-      (-60 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0010' ,'00:00:00:00:00:08'), -- Deck Rating
-      (-180 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0013' ,'00:00:00:00:00:09'), -- Engineering Officer
-      (-300 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0025' ,'00:00:00:00:00:04'), -- Engineering Rating
-      (-480 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0038' ,'00:00:00:00:00:5e'); -- Admin/Catering
+      (0 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+      (60 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+      (180 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (300 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (480 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0036' ,'00:00:00:00:00:04'), -- Admin/Catering
+      (0 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+      (-60 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+      (-180 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (-300 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (-480 ,'AUTO-LNG-VESSEL' ,'LNGAUTO_0038' ,'00:00:00:00:00:04'); -- Admin/Catering
 
 
     CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -420,12 +427,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@lngauto_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -441,16 +448,16 @@ class Postgres
     ON COMMIT drop;
     INSERT INTO cache_table VALUES
 
-    (0 ,'SIT20-COT-VESSEL' ,'COTSIT20_0002' ,'00:00:00:00:00:31'), -- Deck Officer
-    (60 ,'SIT20-COT-VESSEL' ,'COTSIT20_0009' ,'00:00:00:00:00:19'), -- Deck Rating
-    (180 ,'SIT20-COT-VESSEL' ,'COTSIT20_0012' ,'00:00:00:00:00:0e'), -- Engineering Officer
-    (300 ,'SIT20-COT-VESSEL' ,'COTSIT20_0024' ,'00:00:00:00:00:1d'), -- Engineering Rating
-    (480 ,'SIT20-COT-VESSEL' ,'COTSIT20_0020' ,'00:00:00:00:00:0b'), -- non Admin/Catering
-    (0 ,'SIT20-COT-VESSEL' ,'COTSIT20_0003' ,'00:00:00:00:00:34'), -- Deck Officer
-    (-60 ,'SIT20-COT-VESSEL' ,'COTSIT20_0010' ,'00:00:00:00:00:31'), -- Deck Rating
-    (-180 ,'SIT20-COT-VESSEL' ,'COTSIT20_0013' ,'00:00:00:00:00:19'), -- Engineering Officer
-    (-300 ,'SIT20-COT-VESSEL' ,'COTSIT20_0025' ,'00:00:00:00:00:0e'), -- Engineering Rating
-    (-480 ,'SIT20-COT-VESSEL' ,'COTSIT20_0021' ,'00:00:00:00:00:1d'); -- non Admin/Catering
+    (0 ,'SIT20-COT-VESSEL' ,'COTSIT20_0002' ,'00:00:00:00:00:01'), -- Deck Officer
+    (60 ,'SIT20-COT-VESSEL' ,'COTSIT20_0009' ,'00:00:00:00:00:02'), -- Deck Rating
+    (180 ,'SIT20-COT-VESSEL' ,'COTSIT20_0012' ,'00:00:00:00:00:03'), -- Engineering Officer
+    (300 ,'SIT20-COT-VESSEL' ,'COTSIT20_0024' ,'00:00:00:00:00:04'), -- Engineering Rating
+    (480 ,'SIT20-COT-VESSEL' ,'COTSIT20_0020' ,'00:00:00:00:00:05'), -- non Admin/Catering
+    (0 ,'SIT20-COT-VESSEL' ,'COTSIT20_0003' ,'00:00:00:00:00:00'), -- Deck Officer
+    (-60 ,'SIT20-COT-VESSEL' ,'COTSIT20_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'SIT20-COT-VESSEL' ,'COTSIT20_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'SIT20-COT-VESSEL' ,'COTSIT20_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (-480 ,'SIT20-COT-VESSEL' ,'COTSIT20_0021' ,'00:00:00:00:00:04'); -- non Admin/Catering
 
 
   CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -480,12 +487,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@cotsit20_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -500,16 +507,16 @@ class Postgres
       ON COMMIT drop;
       INSERT INTO cache_table VALUES
 
-      (0 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0002' ,'00:00:00:00:00:15'), -- Deck Officer
-      (60 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0009' ,'00:00:00:00:00:3b'), -- Deck Rating
-      (180 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0012' ,'00:00:00:00:00:2d'), -- Engineering Officer
+      (0 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+      (60 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+      (180 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
       (300 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
-      (480 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0020' ,'00:00:00:00:00:0a'), -- non Admin/Catering
-      (0 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0003' ,'00:00:00:00:00:16'), -- Deck Officer
-      (-60 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0010' ,'00:00:00:00:00:15'), -- Deck Rating
-      (-180 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0013' ,'00:00:00:00:00:3b'), -- Engineering Officer
-      (-300 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0025' ,'00:00:00:00:00:2d'), -- Engineering Rating
-      (-480 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0021' ,'00:00:00:00:00:03'); -- non Admin/Catering
+      (480 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0020' ,'00:00:00:00:00:04'), -- non Admin/Catering
+      (0 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+      (-60 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+      (-180 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (-300 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0025' ,'00:00:00:00:00:03'), -- Engineering Rating
+      (-480 ,'SIT20-FSU-VESSEL' ,'FSUSIT20_0021' ,'00:00:00:00:00:04'); -- non Admin/Catering
 
 
       CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
@@ -539,12 +546,12 @@ class Postgres
 
   FROM generate_series
 
-  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(11)}:00:00',
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
        '5 min') t(t)
 
   CROSS JOIN generate_series(0, #{@days}-1) days(days)
   ORDER BY 1;
-
+  #{@fsusit20_enbl}delete from cache_data;
   #{@heat_dsbl}insert into public.humidity_data
   #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
   #{@heat_dsbl}insert into public.temperature_data
@@ -552,7 +559,7 @@ class Postgres
   #{@heart_dsbl}insert into public.heart_rate_data
   #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
   #{@steps_dsbl} insert into public.steps_data
-  #{@steps_dsbl} (timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+  #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
 
 
     @logger.info("#{@env} generated data inserted to the safevue_DB - Date from: #{@date_from}; Days #{@days}; ")
