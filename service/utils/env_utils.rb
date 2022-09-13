@@ -67,97 +67,97 @@ module EnvUtils
 
   def retrieve_date_from
     date_from = ENV['DATEFROM']
-    return "#{date_from}"
+    "#{date_from}"
 
   end
 
   def retrieve_days
     days = ENV['DAYS']
-    return "#{days}"
+    "#{days}"
 
   end
 
   def retrieve_steps_disable
     steps_dsbl = ENV['STEPSOFF']
-    return "#{steps_dsbl}"
+    "#{steps_dsbl}"
 
   end
 
   def retrieve_heart_disable
     heart_dsbl = ENV['HEARTOFF']
-    return "#{heart_dsbl}"
+    "#{heart_dsbl}"
 
   end
 
   def retrieve_heat_disable
     heat_dsbl = ENV['HEATOFF']
-    return "#{heat_dsbl}"
+    "#{heat_dsbl}"
 
   end
 
   def retrieve_cotsit_enable
     cotsit_enbl = ENV['COTSIT']
-    return "#{cotsit_enbl}"
+    "#{cotsit_enbl}"
 
   end
 
   def retrieve_fsusit_enable
     fsusit_enbl = ENV['FSUSIT']
-    return "#{fsusit_enbl}"
+    "#{fsusit_enbl}"
 
   end
 
   def retrieve_lngsit_enable
     lngsit_enbl = ENV['LNGSIT']
-    return "#{lngsit_enbl}"
+    "#{lngsit_enbl}"
 
   end
 
   def retrieve_cotauto_enable
     cotauto_enbl = ENV['COTAUTO']
-    return "#{cotauto_enbl}"
+    "#{cotauto_enbl}"
 
   end
 
   def retrieve_fsuauto_enable
     fsuauto_enbl = ENV['FSUAUTO']
-    return "#{fsuauto_enbl}"
+    "#{fsuauto_enbl}"
 
   end
 
   def retrieve_lngauto_enable
     lngauto_enbl = ENV['LNGAUTO']
-    return "#{lngauto_enbl}"
+    "#{lngauto_enbl}"
 
   end
 
   def retrieve_cotsit20_enable
     cotsit20_enbl = ENV['COTSIT20']
-    return "#{cotsit20_enbl}"
+    "#{cotsit20_enbl}"
 
   end
 
   def retrieve_fsusit20_enable
     fsusit20_enbl = ENV['FSUSIT20']
-    return "#{fsusit20_enbl}"
+    "#{fsusit20_enbl}"
 
   end
 
   def retrieve_cotuat_enable
     cotuat_enbl = ENV['COTUAT']
-    return "#{cotuat_enbl}"
+    "#{cotuat_enbl}"
 
   end
 
   def retrieve_fsuuat_enable
     fsuuat_enbl = ENV['FSUUAT']
-    return "#{fsuuat_enbl}"
+    "#{fsuuat_enbl}"
 
   end
 
   def retrieve_lnguat_enable
     lnguat_enbl = ENV['LNGUAT']
-    return "#{lnguat_enbl}"
+    "#{lnguat_enbl}"
 
   end
 

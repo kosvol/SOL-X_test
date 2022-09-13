@@ -27,7 +27,7 @@ end
 
 Given('DB service create reports postgres data') do
   postgres = Postgres.new
-  10.times do postgres.insert_well_safevue_db
-
+  10.times do
+    postgres.insert_well_safevue_db
   end
 end
