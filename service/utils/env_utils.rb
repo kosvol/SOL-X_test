@@ -67,98 +67,97 @@ module EnvUtils
 
   def retrieve_date_from
     date_from = ENV['DATEFROM']
-    "#{date_from}"
-
+    date_from.to_s
   end
 
   def retrieve_days
     days = ENV['DAYS']
-    "#{days}"
-
+    days.to_s
   end
 
   def retrieve_steps_disable
     steps_dsbl = ENV['STEPSOFF']
-    "#{steps_dsbl}"
-
+    steps_dsbl.to_s
   end
 
   def retrieve_heart_disable
     heart_dsbl = ENV['HEARTOFF']
-    "#{heart_dsbl}"
-
+    heart_dsbl.to_s
   end
 
   def retrieve_heat_disable
     heat_dsbl = ENV['HEATOFF']
-    "#{heat_dsbl}"
-
+    heat_dsbl.to_s
   end
 
   def retrieve_cotsit_enable
     cotsit_enbl = ENV['COTSIT']
-    "#{cotsit_enbl}"
-
+    cotsit_enbl.to_s
   end
 
   def retrieve_fsusit_enable
     fsusit_enbl = ENV['FSUSIT']
-    "#{fsusit_enbl}"
-
+    fsusit_enbl.to_s
   end
 
   def retrieve_lngsit_enable
     lngsit_enbl = ENV['LNGSIT']
-    "#{lngsit_enbl}"
-
+    lngsit_enbl.to_s
   end
 
   def retrieve_cotauto_enable
     cotauto_enbl = ENV['COTAUTO']
-    "#{cotauto_enbl}"
-
+    cotauto_enbl.to_s
   end
 
   def retrieve_fsuauto_enable
     fsuauto_enbl = ENV['FSUAUTO']
-    "#{fsuauto_enbl}"
-
+    fsuauto_enbl.to_s
   end
 
   def retrieve_lngauto_enable
     lngauto_enbl = ENV['LNGAUTO']
-    "#{lngauto_enbl}"
-
+    lngauto_enbl.to_s
   end
 
   def retrieve_cotsit20_enable
     cotsit20_enbl = ENV['COTSIT20']
-    "#{cotsit20_enbl}"
-
+    cotsit20_enbl.to_s
   end
 
   def retrieve_fsusit20_enable
     fsusit20_enbl = ENV['FSUSIT20']
-    "#{fsusit20_enbl}"
-
+    fsusit20_enbl.to_s
   end
 
   def retrieve_cotuat_enable
     cotuat_enbl = ENV['COTUAT']
-    "#{cotuat_enbl}"
-
+    cotuat_enbl.to_s
   end
 
   def retrieve_fsuuat_enable
     fsuuat_enbl = ENV['FSUUAT']
-    "#{fsuuat_enbl}"
-
+    fsuuat_enbl.to_s
   end
 
   def retrieve_lnguat_enable
     lnguat_enbl = ENV['LNGUAT']
-    "#{lnguat_enbl}"
+    lnguat_enbl.to_s
+  end
 
+  def retrieve_cotdev_enable
+    cotdev_enbl = ENV['COTDEV']
+    cotdev_enbl.to_s
+  end
+
+  def retrieve_fsudev_enable
+    fsudev_enbl = ENV['FSUDEV']
+    fsudev_enbl.to_s
+  end
+
+  def retrieve_lngdev_enable
+    lngdev_enbl = ENV['LNGDEV']
+    lngdev_enbl.to_s
   end
 
   private
@@ -172,5 +171,4 @@ module EnvUtils
       end
     format(BASE_URL, env: "#{CLOUD_CREDENTIALS}@couchdb-#{cloud_env}", server: 'cloud', project: ENV['PROJECT'])
   end
-
 end

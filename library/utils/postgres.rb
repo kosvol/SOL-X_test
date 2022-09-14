@@ -27,6 +27,9 @@ class Postgres
     @cotuat_enbl = retrieve_cotuat_enable
     @fsuuat_enbl = retrieve_fsuuat_enable
     @lnguat_enbl = retrieve_lnguat_enable
+    @cotdev_enbl = retrieve_cotdev_enable
+    @fsudev_enbl = retrieve_fsudev_enable
+    @lngdev_enbl = retrieve_lngdev_enable
   end
 
   def clear_savefue_db
@@ -125,8 +128,8 @@ class Postgres
      LIMIT 1) AS beacon_mac,
      floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
        floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-       floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-       floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -184,8 +187,8 @@ class Postgres
        LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -244,8 +247,8 @@ class Postgres
     LIMIT 1) AS beacon_mac,
      floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
        floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-       floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-       floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -304,8 +307,8 @@ class Postgres
        LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -365,8 +368,8 @@ class Postgres
     LIMIT 1) AS beacon_mac,
      floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
        floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-       floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-       floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -425,8 +428,8 @@ class Postgres
        LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -485,8 +488,8 @@ class Postgres
      LIMIT 1) AS beacon_mac,
      floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
        floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-       floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-       floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -544,8 +547,8 @@ class Postgres
       LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -604,8 +607,8 @@ class Postgres
       LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -663,8 +666,8 @@ class Postgres
       LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -722,8 +725,8 @@ class Postgres
       LIMIT 1) AS beacon_mac,
         floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
          floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
-         floor(random() * 80 + '#{60 + Random.rand(50)}')               as heart_rate, -- Heart rate from 60 to 190
-         floor(random() * 200 + #{5 + Random.rand(75)})                as steps -- steps from 10 to 255
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
 
   FROM generate_series
 
@@ -741,6 +744,180 @@ class Postgres
   #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
   #{@steps_dsbl} insert into public.steps_data
   #{@steps_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+    # -- ///COTDEV\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+    ON COMMIT drop;
+    INSERT INTO cache_table VALUES
+
+	  (0 ,'DEV-COT-VESSEL' ,'COTDEV_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'DEV-COT-VESSEL' ,'COTDEV_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'DEV-COT-VESSEL' ,'COTDEV_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'DEV-COT-VESSEL' ,'COTDEV_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (0 ,'DEV-COT-VESSEL' ,'COTDEV_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'DEV-COT-VESSEL' ,'COTDEV_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'DEV-COT-VESSEL' ,'COTDEV_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'DEV-COT-VESSEL' ,'COTDEV_0025' ,'00:00:00:00:00:03'); -- Engineering Rating
+
+
+  CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+  ON COMMIT drop;
+  INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+  SELECT t.t + (days.days||' days')::INTERVAL,
+    (SELECT vessel_offset
+     FROM cache_table
+     ORDER BY random()
+     LIMIT 1) AS vessel_offset,
+    (SELECT vessel_id
+     FROM cache_table
+     ORDER BY random()
+     LIMIT 1) AS vessel_id,
+    (SELECT user_id
+     FROM cache_table
+     ORDER BY random()
+     LIMIT 1) AS user_id,
+    (SELECT beacon_mac
+     FROM cache_table
+     ORDER BY random()
+     LIMIT 1) AS beacon_mac,
+     floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+       floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@cotdev_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl} (timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+    # -- ///FSUDEV\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+      ON COMMIT drop;
+      INSERT INTO cache_table VALUES
+
+      (0 ,'DEV-FSU-VESSEL' ,'FSUDEV_0002' ,'00:00:00:00:00:01'), -- Deck Officer
+      (60 ,'DEV-FSU-VESSEL' ,'FSUDEV_0009' ,'00:00:00:00:00:02'), -- Deck Rating
+      (180 ,'DEV-FSU-VESSEL' ,'FSUDEV_0012' ,'00:00:00:00:00:03'), -- Engineering Officer
+      (300 ,'DEV-FSU-VESSEL' ,'FSUDEV_0024' ,'00:00:00:00:00:04'), -- Engineering Rating
+      (0 ,'DEV-FSU-VESSEL' ,'FSUDEV_0003' ,'00:00:00:00:00:00'), -- Deck Officer
+      (-60 ,'DEV-FSU-VESSEL' ,'FSUDEV_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+      (-180 ,'DEV-FSU-VESSEL' ,'FSUDEV_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+      (-300 ,'DEV-FSU-VESSEL' ,'FSUDEV_0025' ,'00:00:00:00:00:03'); -- Engineering Rating
+
+
+    CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+    ON COMMIT drop;
+    INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+    SELECT t.t + (days.days||' days')::INTERVAL,
+      (SELECT vessel_offset
+       FROM cache_table
+       ORDER BY random()
+       LIMIT 1) AS vessel_offset,
+      (SELECT vessel_id
+       FROM cache_table
+       ORDER BY random()
+       LIMIT 1) AS vessel_id,
+      (SELECT user_id
+       FROM cache_table
+       ORDER BY random()
+       LIMIT 1) AS user_id,
+      (SELECT beacon_mac
+       FROM cache_table
+       ORDER BY random()
+       LIMIT 1) AS beacon_mac,
+        floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+         floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+         floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+         floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@fsudev_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl} (timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+
+    # -- ///LNGDEV\\\ -- #
+    connection.exec "CREATE TEMP TABLE cache_table(vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr)
+    ON COMMIT drop;
+    INSERT INTO cache_table VALUES
+
+    (0 ,'DEV-LNG-VESSEL' ,'LNGDEV_0002' ,'00:00:00:00:00:00'), -- Deck Officer
+    (60 ,'DEV-LNG-VESSEL' ,'LNGDEV_0009' ,'00:00:00:00:00:01'), -- Deck Rating
+    (180 ,'DEV-LNG-VESSEL' ,'LNGDEV_0012' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (300 ,'DEV-LNG-VESSEL' ,'LNGDEV_0024' ,'00:00:00:00:00:03'), -- Engineering Rating
+    (0 ,'DEV-LNG-VESSEL' ,'LNGDEV_0003' ,'00:00:00:00:00:05'), -- Deck Officer
+    (-60 ,'DEV-LNG-VESSEL' ,'LNGDEV_0010' ,'00:00:00:00:00:01'), -- Deck Rating
+    (-180 ,'DEV-LNG-VESSEL' ,'LNGDEV_0013' ,'00:00:00:00:00:02'), -- Engineering Officer
+    (-300 ,'DEV-LNG-VESSEL' ,'LNGDEV_0025' ,'00:00:00:00:00:03'); -- Engineering Rating
+
+
+    CREATE TEMP TABLE cache_data(timestamp timestamp, vessel_offset int2, vessel_id text, user_id text,beacon_mac macaddr, temperature float8, humidity float8, heart_rate numeric, steps float8 )
+    ON COMMIT drop;
+    INSERT INTO cache_data (timestamp, vessel_offset, vessel_id, user_id, beacon_mac,temperature, humidity, heart_rate, steps)
+    SELECT t.t + (days.days||' days')::INTERVAL,
+    (SELECT vessel_offset
+    FROM cache_table
+    ORDER BY random()
+    LIMIT 1) AS vessel_offset,
+    (SELECT vessel_id
+    FROM cache_table
+    ORDER BY random()
+    LIMIT 1) AS vessel_id,
+    (SELECT user_id
+    FROM cache_table
+    ORDER BY random()
+    LIMIT 1) AS user_id,
+    (SELECT beacon_mac
+    FROM cache_table
+    ORDER BY random()
+    LIMIT 1) AS beacon_mac,
+     floor(random() * 5 + '#{18 + Random.rand(25)}')  AS temperature, -- Temperature form 18 to 18+25+5=48
+       floor(random() * 30 + '#{10 + Random.rand(30)}')                AS humidity, -- Humidity form 10 to 70
+       floor(random() * 80 + '#{60 + Random.rand(60)}')               as heart_rate, -- Heart rate from 60 to 190
+       floor(random() * 150 + #{5 + Random.rand(50)})                as steps -- steps from 10 to 255
+
+  FROM generate_series
+
+  (TIMESTAMP '#{@date_from} 00:00:00' , '#{@date_from} #{1 + Random.rand(10)}:00:00',
+       '5 min') t(t)
+
+  CROSS JOIN generate_series(0, #{@days}-1) days(days)
+  ORDER BY 1;
+  #{@lngdev_enbl}delete from cache_data;
+  #{@heat_dsbl}insert into public.humidity_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, humidity from cache_data;
+  #{@heat_dsbl}insert into public.temperature_data
+  #{@heat_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, temperature  from cache_data;
+  #{@heart_dsbl}insert into public.heart_rate_data
+  #{@heart_dsbl}(timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, heart_rate  from cache_data;
+  #{@steps_dsbl} insert into public.steps_data
+  #{@steps_dsbl} (timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps)select timestamp, vessel_offset, vessel_id, user_id, beacon_mac, steps  from cache_data;"
+
+
 
     @logger.info("#{@env} generated data inserted to the safevue_DB - Date from: #{@date_from}; Days #{@days}; ")
   end
@@ -760,6 +937,8 @@ class Postgres
   def retrieve_db_env
     if (ENV['ENVIRONMENT'] == 'sit') || (ENV['ENVIRONMENT'] == 'auto')
       'sit'
+    elsif (ENV['ENVIRONMENT'] == 'dev') || (ENV['ENVIRONMENT'] == 'os')
+      'dev'
     else
       'uat'
     end
