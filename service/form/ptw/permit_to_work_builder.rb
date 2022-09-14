@@ -31,6 +31,14 @@ class PermitToWorkBuilder < BasePermitBuilder
     Section1API.new.request(permit_id, is_maintenance_permit, pin)
   end
 
+  def create_rol_section1(permit_id = self.permit_id, pin = @default_pin)
+    RolSection1API.new.request(permit_id, pin)
+  end
+
+  def create_rol_section2_checklist(permit_id = self.permit_id, pin = @default_pin)
+    RolSection2CheckLAPI.new.request(permit_id, pin)
+  end
+
   def create_section3a(permit_id = self.permit_id, pin = @default_pin)
     Section3AAPI.new.request(permit_id, pin)
   end
@@ -81,11 +89,23 @@ class PermitToWorkBuilder < BasePermitBuilder
     Section7Api.new.request(permit_id, pin)
   end
 
+  def create_rol_section2_validity(permit_id = self.permit_id, pin = @default_pin)
+    RolSection2ValidityAPI.new.request(permit_id, pin)
+  end
+
   def create_section8(permit_id = self.permit_id, pin = @default_pin)
     Section8Api.new.request(permit_id, pin)
   end
 
+  def create_rol_section3_task_st(permit_id = self.permit_id, pin = @default_pin)
+    RolSection3TaskStAPI.new.request(permit_id, pin)
+  end
+
   def create_section9(permit_id = self.permit_id, pin = @default_pin)
     Section9Api.new.request(permit_id, pin)
+  end
+
+  def create_rol_section3_withdrawn(permit_id = self.permit_id, pin = @default_pin)
+    RolSection3WithdrawnAPI.new.request(permit_id, pin)
   end
 end

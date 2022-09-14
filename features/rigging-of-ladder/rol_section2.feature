@@ -32,3 +32,12 @@ Feature: RoL Section 2: Checklist
       | Port Gangway                 |
       | Starboard Gangway            |
       | MOT                          |
+
+  Scenario: SOL-4477 Active RoL permit should only have 'View' and 'View / Termination' button
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    |
+      | rigging_of_ladder     | active           |
+    And SmartForms navigate to state page
+      | type | state  |
+      | ptw  | active |
+    Then ActivePTW should see view and termination buttons
