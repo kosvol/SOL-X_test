@@ -31,3 +31,8 @@ And('ActivePTW verify time left less than {string}') do |time|
   @active_ptw_page ||= ActivePTWPage.new(@driver)
   @active_ptw_page.verify_time_left(@permit_id, time)
 end
+
+Then('ActivePTW should see view and termination buttons') do
+  @active_ptw_page ||= ActivePTWPage.new(@driver)
+  @active_ptw_page.verify_view_termination_btns(@permit_id)
+end
