@@ -28,6 +28,10 @@ And('SmartForms navigate to state page') do |table|
   @smart_form_page.open_state_page(table)
 end
 
+And('SmartForms navigate to {string} page using UI') do |page|
+  @smart_form_page.open_state_page_by_ui(page)
+end
+
 And('SmartForms open entry display page') do
   @smart_form_page ||= SmartFormsPage.new(@driver)
   @smart_form_page.open_entry_display

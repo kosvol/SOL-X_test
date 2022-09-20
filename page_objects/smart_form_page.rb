@@ -10,6 +10,7 @@ class SmartFormsPage < BasePage
     create_permit_btn: "//button[contains(.,'Create Permit To Work')]",
     create_entry_permit_btn: "//span[contains(.,'Entry Permit')]",
     hamburger_menu_btn: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/header/button",
+    ptw_state_card: "//div[starts-with(@class, 'PermitsByStatus')]//div[@role='listitem']/div[contains(., '%s')]",
     loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]"
   }.freeze
 
@@ -43,6 +44,11 @@ class SmartFormsPage < BasePage
   def click_hamburger_menu_btn
     click(SMART_FORMS[:hamburger_menu_btn])
     sleep 1
+  end
+
+  def open_state_page_by_ui(page)
+    sleep 3
+    click(SMART_FORMS[:ptw_state_card] % page)
   end
 
   private
