@@ -126,7 +126,25 @@ Feature: Office Portal Permit Overview
       | ele_equip_circuit    |
       | pressure_pipe_vessel |
 
-  # Scenario: Verify ROL form shows the same fields as in the client app
+  @close_browser
+    @ska
+  Scenario Outline: Verify ROL form shows the same fields as in the client app
+    Given PermitGenerator create permit
+      | permit_type           | permit_status  |
+      | rigging_of_ladder     | withdrawn      |
+    When CouchDBService wait for form status get changed to "CLOSED" on "cloud"
+    And OfficeLogin open page
+    And OfficeLogin enter email "qa-test-group@sol-x.co"
+    And OfficeLogin enter password "Solxtester12345!"
+    And OfficeLogin click the Sign in button
+    Then PermitArchive page should be displayed
+    When PermitOverview follow the permit link
+    Then PermitOverview verify RoL "<section>"
+      | section   |
+      | section 1 |
+      | section 2 |
+      | section 3 |
+
   @close_browser
   Scenario: Verify CRE form shows the same fields as in the client app
     Given EntryGenerator create entry permit

@@ -7,7 +7,7 @@ class OPPermitOverviewPage < BasePage
   include EnvUtils
 
   PERMIT_OVERVIEW = {
-    permit_section1_header: "//div[@class='screen-only']//h2[contains(text(),'Section 1')]",
+    permit_withdrawn_header: "//div[@class='screen-only']//h2[contains(text(),'Permit Withdrawn')]",
     permit_pre_cre_header: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]",
     section_fields: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h4",
     section_labels: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//label",
@@ -42,7 +42,7 @@ class OPPermitOverviewPage < BasePage
   def open_overview_page(permit_id)
     @driver.get(format("#{generate_base_url}/permit-overview?formId=%s", permit_id))
     section_header = if permit_id.include? 'PTW'
-                       PERMIT_OVERVIEW[:permit_section1_header]
+                       PERMIT_OVERVIEW[:permit_withdrawn_header]
                      else
                        PERMIT_OVERVIEW[:permit_pre_cre_header]
                      end
@@ -50,12 +50,13 @@ class OPPermitOverviewPage < BasePage
   end
 
   def wait_for_copy_display(xpath)
+    sleep 0.5
     wait = 0
-    element = find_element(xpath)
-    until element.displayed?
-      sleep 2
+    until @driver.find_elements(:xpath, xpath).size.zero?
+      @logger.debug "wait for loading screen, retrying: #{wait} times"
+      sleep 0.5
       wait += 1
-      raise 'time out waiting for copy display' if wait > 10
+      raise 'time out waiting for loading screen' if wait > 30
     end
   end
 
@@ -106,6 +107,18 @@ class OPPermitOverviewPage < BasePage
     base_data += (YAML.load_file("data/checklist/#{checklist}.yml")['questions'] - YAML
                  .load_file('data/checklist/checklist_exceptions.yml')['exceptions'])
     compare_string(base_data, actual_questions_arr)
+  end
+
+  def verify_rol_section_data(section)
+    expected_checklist = YAML.load_file('data/sections-data/rol_section_1.yml')['questions']
+    expected_checklist.each do |question|
+      next if retrieve_section_items('headers').include? question
+      next if retrieve_section_items('subheaders').include? question
+      next if retrieve_section_items('questions').include? question
+      next if retrieve_section_items('other').include? question
+
+      raise "#{question} verified failed"
+    end
   end
 
   private
