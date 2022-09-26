@@ -17,7 +17,32 @@ Then('RoLSectionTwo verify checklist warning box') do
   @rol_section_two_page.verify_checklist_warn_box
 end
 
-Then('RoLSectionTwo verify dropdown for Description of boarding arrangement') do |table|
+Then('RoLSectionTwo verify dropdown for {string}') do |ddl_type, table|
   @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
-  @rol_section_two_page.verify_ddl_value(table)
+  @rol_section_two_page.verify_ddl_value(ddl_type, table)
+end
+
+And('RoLSectionTwo should not see extra buttons') do
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.verify_no_extra_btns
+end
+
+Then('RoLSectionTwo verify submit button is {string}') do |option|
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.verify_submit_btn(option)
+end
+
+Then('RoLSectionTwo verify duration dropdown cannot be clicked') do
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.verify_no_duration_dd
+end
+
+And('RoLSectionTwo select the duration {int}') do |duration|
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.select_permit_duration(duration)
+end
+
+And('RoLSectionTwo click activate') do
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.click_activate
 end

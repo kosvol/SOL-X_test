@@ -13,7 +13,11 @@ class RoLSectionTwoPage < BasePage
     questions: "//div[contains(@class,'Section__Description')]/div/div/span",
     warning_box: "//div[starts-with(@class,'WarningBox__')]",
     boarding_arr_btn: "//button[@id='cl_riggingOfLadder_boardingArrangement']",
-    dd_list_value: "//ul[starts-with(@class,'UnorderedList-')]/li/button"
+    dd_list_value: "//ul[starts-with(@class,'UnorderedList-')]/li/button",
+    duration_dd_btn: "//button[@id='permitValidDuration']",
+    submit_btn: "//button[contains(., 'Submit')]",
+    previous_btn: "//button[contains(.,'Previous')]",
+    active_btn: "//button[contains(., 'Activate Permit To Work')]"
   }.freeze
 
   def initialize(driver)
@@ -48,10 +52,40 @@ class RoLSectionTwoPage < BasePage
     end
   end
 
-  def verify_ddl_value(table)
-    @driver.find_element(xpath: ROL_SECTION_TWO[:boarding_arr_btn]).click
+  def verify_ddl_value(ddl_type, table)
+    case ddl_type
+    when 'Duration'
+      @driver.execute_script('window.scrollBy(0,document.body.scrollHeight)', '')
+      click(ROL_SECTION_TWO[:duration_dd_btn])
+    else
+      click(ROL_SECTION_TWO[:boarding_arr_btn])
+    end
     dropdown_elements = find_elements(ROL_SECTION_TWO[:dd_list_value])
     verify_each_value(table, dropdown_elements)
+  end
+
+  def verify_submit_btn(option)
+    verify_btn_availability(ROL_SECTION_TWO[:submit_btn], option)
+  end
+
+  def verify_no_extra_btns
+    verify_element_not_exist("//button[contains(.,'Save')]")
+    verify_element_not_exist("//button[contains(.,'Close')]")
+    compare_string(@driver.find_elements(xpath: ROL_SECTION_TWO[:previous_btn]).size, 1)
+  end
+
+  def verify_no_duration_dd
+    verify_element_not_exist(ROL_SECTION_TWO[:duration_dd_btn])
+  end
+
+  def select_permit_duration(duration)
+    @driver.execute_script('window.scrollBy(0,document.body.scrollHeight)', '')
+    click(ROL_SECTION_TWO[:duration_dd_btn])
+    find_elements(ROL_SECTION_TWO[:dd_list_value])[duration - 1].click
+  end
+
+  def click_activate
+    click(ROL_SECTION_TWO[:active_btn])
   end
 
   private
