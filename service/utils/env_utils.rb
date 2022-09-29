@@ -3,7 +3,7 @@
 require 'yaml'
 # module for environment
 module EnvUtils
-  BASE_URL = 'https://%<env>s.%<server>s.%<project>s.safevue.ai'
+  BASE_URL = 'https://%<env>s.%<server>s.%<project>s.sg-lab.safevue.ai'
   UI_PORT = '8080'
   API_PORT = '4000'
   EDGE_CREDENTIALS = 'admin:magellanx'
