@@ -34,5 +34,4 @@ class PendingApprovalPTWPage < BasePermitStatesPage
   def verify_permit_is_deleted(permit_id)
     verify_element_not_exist("//span[text()='#{permit_id}']")
   end
-
 end

@@ -30,7 +30,7 @@ class PinEntryPage < BasePage
       nrank = rank.join('').delete('"')
       enter_pin(nrank)
       actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
-      compare_string("You Are Not Authorized To Perform That Action", actual_msg)
+      compare_string('You Are Not Authorized To Perform That Action', actual_msg)
     end
   end
 

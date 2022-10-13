@@ -38,7 +38,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-@do
+
   Scenario: Verify non default ptw creator can not create permit (SOL-8337)
     Given SmartForms open page
     And SmartForms click create permit to work
