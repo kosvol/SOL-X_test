@@ -46,3 +46,8 @@ And('RoLSectionTwo click activate') do
   @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
   @rol_section_two_page.click_activate
 end
+
+And('RoLSectionTwo click submit') do
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.click_submit_btn
+end

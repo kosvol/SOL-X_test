@@ -13,7 +13,7 @@ Feature: LOA COT Permit to Work for created
     And DB service clear postgres data
 
 
-  Scenario Outline: Verify default ptw creator can create permit
+  Scenario Outline: Verify default ptw creator can create permit (SOL-8337)
     Given SmartForms open page
     And SmartForms click create permit to work
     When PinEntry enter pin for rank "<rank>"
@@ -38,15 +38,14 @@ Feature: LOA COT Permit to Work for created
       | ETO   |
       | CGENG |
 
-  Scenario Outline: Verify only default ptw creator can create permit
+
+  Scenario: Verify non default ptw creator can not create permit (SOL-8337)
     Given SmartForms open page
     And SmartForms click create permit to work
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -66,8 +65,10 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify default ptw editor can edit permit
+
+  Scenario Outline: Verify default ptw editor can edit permit (SOL-8340)
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/E"
@@ -99,7 +100,8 @@ Feature: LOA COT Permit to Work for created
       | ETO   |
       | CGENG |
 
-  Scenario Outline: Verify non default ptw editor can not edit permit
+
+  Scenario Outline: Verify non default ptw editor can not edit permit (SOL-8340)
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/E"
@@ -115,6 +117,7 @@ Feature: LOA COT Permit to Work for created
       | rank  |
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -135,7 +138,8 @@ Feature: LOA COT Permit to Work for created
       | RDCRW |
       | SPM   |
 
-  Scenario Outline: Verify default dra signee can sign dra
+
+  Scenario Outline: Verify default dra signee can sign dra (SOL-8306)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -170,7 +174,8 @@ Feature: LOA COT Permit to Work for created
       | ETO   |
       | CGENG |
 
-  Scenario Outline: Verify non default dra signee can not sign dra
+
+  Scenario: Verify non default dra signee can not sign dra (SOL-8306)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -178,11 +183,9 @@ Feature: LOA COT Permit to Work for created
     And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 3D"
     And CommonSection click sign button
-    And PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -202,8 +205,10 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify default checklist creator can sign checklist
+
+  Scenario Outline: Verify default checklist creator can sign checklist (SOL-8384)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -237,7 +242,8 @@ Feature: LOA COT Permit to Work for created
       | ETO   |
       | CGENG |
 
-  Scenario Outline: Verify non default checklist creator can not sign checklist
+
+  Scenario: Verify non default checklist creator can not sign checklist (SOL-8384)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -245,12 +251,10 @@ Feature: LOA COT Permit to Work for created
     And CommonSection navigate to "Section 4A"
     And CommonSection click Save & Next
     And CommonSection click sign button
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -270,8 +274,10 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify default eic responsible authority can sign on responsible authority
+
+  Scenario Outline: Verify default eic responsible authority can sign on responsible authority (SOL-8386)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -306,7 +312,7 @@ Feature: LOA COT Permit to Work for created
       | CGENG |
 
 
-  Scenario Outline: Verify non default eic responsible authority cannot sign on responsible authority
+  Scenario: Verify non default eic responsible authority can not sign on responsible authority (SOL-8386)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -314,12 +320,10 @@ Feature: LOA COT Permit to Work for created
     And FormPrelude select level2 "Hot Work Level-2 in Designated Area"
     And CommonSection navigate to "Section 4B"
     And Section4B click sign button
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -339,8 +343,10 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify eic competent person can sign on EIC competent person
+
+  Scenario Outline: Verify eic competent person can sign on EIC competent person (SOL-8389)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -363,9 +369,10 @@ Feature: LOA COT Permit to Work for created
       | 2/E   |
       | A 2/E |
       | ETO   |
+      | A C/E |
 
 
-  Scenario Outline: Verify non eic competent person can not sign on EIC competent person
+  Scenario: Verify non eic competent person can not sign on EIC competent person (SOL-8389)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -374,18 +381,46 @@ Feature: LOA COT Permit to Work for created
     And Section4B select Yes for EIC
     And Section4B click create EIC
     And EIC click competent person sign button
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | A/M   |
-      | C/E   |
-      | A C/E |
       | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | RDCRW |
+      | C/E   |
       | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | CGENG |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify eic issuing authorizer can sign on issuing authority
+
+  Scenario Outline: Verify eic issuing authorizer can sign on issuing authority (SOL-8391)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -406,7 +441,8 @@ Feature: LOA COT Permit to Work for created
       | C/E   |
       | A C/E |
 
-  Scenario Outline: Verify non eic issuing authorizer can not sign on issuing authority
+
+  Scenario: Verify non eic issuing authorizer can not sign on issuing authority (SOL-8391)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -416,17 +452,49 @@ Feature: LOA COT Permit to Work for created
     And Section4B select Yes for EIC
     And Section4B click create EIC
     And EIC click issuing person sign button
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | A/M   |
       | C/O   |
       | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | O/S   |
+      | A/B   |
+      | RDCRW |
       | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | CGENG |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify default responsibility acceptor on responsibility acceptance
+
+  Scenario Outline: Verify default responsibility acceptor on responsibility acceptance (SOL-8400)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/O"
@@ -456,15 +524,10 @@ Feature: LOA COT Permit to Work for created
       | A 4/O   |
       | 5/O     |
       | D/C     |
-#      | A D/C   |
-#      | D/CDT   |
-#      | A D/CDT |
       | BOS     |
-#      | A BOS   |
       | A/B     |
       | O/S     |
       | SAA     |
-#      | A SAA   |
       | C/E     |
       | A C/E   |
       | 2/E     |
@@ -476,16 +539,10 @@ Feature: LOA COT Permit to Work for created
       | A 4/E   |
       | 5/E     |
       | T/E     |
-#      | A T/E   |
       | E/C     |
-#      | A E/C   |
-#      | E/CDT   |
-#      | A E/CDT |
       | ETO     |
-#      | A ETO   |
       | ELC     |
       | ETR     |
-#      | PMAN    |
       | PMN     |
       | FTR     |
       | OLR     |
@@ -498,7 +555,7 @@ Feature: LOA COT Permit to Work for created
       | SPM     |
 
 
-  Scenario Outline: Verify default rank sponsor can sign on non-crew member
+  Scenario Outline: Verify default rank sponsor can sign on non-crew member (SOL-8402)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -540,7 +597,7 @@ Feature: LOA COT Permit to Work for created
       | CGENG |
 
 
-  Scenario Outline: Verify non default rank sponsor can not sign on non-crew member
+  Scenario: Verify non default rank sponsor can not sign on non-crew member (SOL-8402)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -554,12 +611,10 @@ Feature: LOA COT Permit to Work for created
       | name                 | company                 |
       | test_crew_automation | test_company_automation |
     And Section5 click Enter PIN & Sign button
-    When PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -579,8 +634,9 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
-  Scenario Outline: Verify default responsible authority can submit for approval
+  Scenario Outline: Verify default responsible authority can submit for approval (SOL-8344)
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
       | enclosed_spaces_entry | created       | no  | no          |
@@ -614,7 +670,8 @@ Feature: LOA COT Permit to Work for created
       | ETO   |
       | CGENG |
 
-  Scenario Outline: Verify non default responsible authority can not submit for approval
+
+  Scenario: Verify non default responsible authority can not submit for approval (SOL-8344)
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
       | enclosed_spaces_entry | created       | no  | no          |
@@ -626,12 +683,10 @@ Feature: LOA COT Permit to Work for created
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
     And Section6 click submit button
-    And PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | MAS   |
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -651,13 +706,10 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
-
-# TODO: will do it later
-#  Scenario Outline: Verify rigging of ladder responsible authority can submit for rigging permit approval
-#  Scenario Outline: Verify non rigging of ladder responsible authority can not submit for rigging permit approval
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
-  Scenario Outline: Verify default initial gas tester can add gas test record
+  Scenario Outline: Verify default initial gas tester can add gas test record (SOL-8408)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -689,7 +741,7 @@ Feature: LOA COT Permit to Work for created
       | CGENG |
 
 
-  Scenario Outline: Verify non default initial gas tester can not add gas test record
+  Scenario: Verify non default initial gas tester can not add gas test record (SOL-8408)
     Given Wearable service unlink all wearables
     And SmartForms open page
     And SmartForms click create permit to work
@@ -697,11 +749,9 @@ Feature: LOA COT Permit to Work for created
     And FormPrelude select level1 "Enclosed Space Entry"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
-    And PinEntry enter pin for rank "<rank>"
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
-    Examples:
-      | rank  |
+    When PinEntry enter pins for "wrong" rank group
       | 4/O   |
+      | A 4/O |
       | 5/O   |
       | 5/E   |
       | T/E   |
@@ -721,9 +771,102 @@ Feature: LOA COT Permit to Work for created
       | FSTO  |
       | RDCRW |
       | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
+   Scenario Outline: Verify default ptw creator can create ROL permit (SOL-)
+    Given SmartForms open page
+    And SmartForms click create permit to work
+    And PinEntry enter pin for rank "<rank>"
+    When FormPrelude select level1 "Rigging of Gangway & Pilot Ladder"
+    Examples:
+      | rank  |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | ETO   |
+      | CGENG |
 
 
+  Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval (SOL-5079)
+    Given PermitGenerator create permit
+      | permit_type           | permit_status |
+      | rigging_of_ladder     | created       |
+    And SmartForms navigate to state page
+      | type | state   |
+      | ptw  | created |
+    And CommonSection sleep for "2" sec
+    And CreatedPTW click edit
+    And PinEntry enter pin for rank "C/O"
+    And CommonSection click Save & Next
+    And RoLSectionTwo click submit
+    When PinEntry enter pin for rank "<rank>"
+    Then SignatureLocation click location dropdown
+    Examples:
+      | rank  |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | ETO   |
+      | CGENG |
 
 
+  Scenario: Verify non default rigging of ladder responsible authority can not submit rol permit for approval (SOL-5079)
+    Given PermitGenerator create permit
+      | permit_type           | permit_status |
+      | rigging_of_ladder     | created       |
+    And SmartForms navigate to state page
+      | type | state   |
+      | ptw  | created |
+    And CommonSection sleep for "2" sec
+    And CreatedPTW click edit
+    And PinEntry enter pin for rank "C/O"
+    And CommonSection click Save & Next
+    And RoLSectionTwo click submit
+    When PinEntry enter pins for "wrong" rank group
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | 5/E   |
+      | T/E   |
+      | E/C   |
+      | ETR   |
+      | O/S   |
+      | SAA   |
+      | D/C   |
+      | BOS   |
+      | PMN   |
+      | A/B   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | RDCRW |
+      | SPM   |
+    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
