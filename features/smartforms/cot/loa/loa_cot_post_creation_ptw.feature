@@ -43,7 +43,7 @@ Feature: LOA COT Permit to Work for post creation
     And PinEntry enter pin for rank "MAS"
     And CommonSection navigate to "Section 7"
     And Section7 click activate
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
@@ -83,7 +83,6 @@ Feature: LOA COT Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw updater can edit permit for APPROVAL_UPDATES_NEEDED (SOL-8351)
@@ -265,29 +264,30 @@ Feature: LOA COT Permit to Work for post creation
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
     And Section8 click Submit For Termination
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
-      | 5/E   |
-      | T/E   |
-      | E/C   |
-      | ETR   |
-      | O/S   |
-      | SAA   |
       | D/C   |
+      | SAA   |
       | BOS   |
-      | PMN   |
       | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
       | OLR   |
       | WPR   |
       | CCK   |
       | 2CK   |
       | STWD  |
       | FSTO  |
-      | RDCRW |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw withdrawer can withdraw permit (SOL-8361)
@@ -318,7 +318,7 @@ Feature: LOA COT Permit to Work for post creation
     And PendingWithdrawalPTW click Review & Withdraw button
     And PinEntry enter pin for rank "MAS"
     And Section9 click Withdraw Permit To Work
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
@@ -357,7 +357,6 @@ Feature: LOA COT Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw eraser can delete created permit (SOL-8341)
@@ -378,7 +377,7 @@ Feature: LOA COT Permit to Work for post creation
       | MAS  |
       | A/M  |
 
-
+  @test2
   Scenario: Verify non default ptw eraser can not delete created permit (SOL-8341)
     And SmartForms open page
     And SmartForms click create permit to work
@@ -389,7 +388,7 @@ Feature: LOA COT Permit to Work for post creation
       | ptw  | created |
     And CommonSection sleep for "1" sec
     And CreatedPTW delete first permit id
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
@@ -428,7 +427,6 @@ Feature: LOA COT Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_APPROVAL state (SOL-8341)
@@ -447,8 +445,8 @@ Feature: LOA COT Permit to Work for post creation
       | MAS  |
       | A/M  |
 
-
- Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_REVIEW state (SOL-8341)
+  @test3
+  Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_REVIEW state (SOL-8341)
     Given PermitGenerator create oa pending status permit
       | permit_type           | eic | gas_reading |
       | underwater_sim        | no  | no          |
@@ -513,29 +511,30 @@ Feature: LOA COT Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
-      | 5/E   |
-      | T/E   |
-      | E/C   |
-      | ETR   |
-      | O/S   |
-      | SAA   |
       | D/C   |
+      | SAA   |
       | BOS   |
-      | PMN   |
       | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
       | OLR   |
       | WPR   |
       | CCK   |
       | 2CK   |
       | STWD  |
       | FSTO  |
-      | RDCRW |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default initial gas tester can update the gas test record in Updates Needed state (SOL-8410)
@@ -586,32 +585,33 @@ Feature: LOA COT Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
-      | 5/E   |
-      | T/E   |
-      | E/C   |
-      | ETR   |
-      | O/S   |
-      | SAA   |
       | D/C   |
+      | SAA   |
       | BOS   |
-      | PMN   |
       | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
       | OLR   |
       | WPR   |
       | CCK   |
       | 2CK   |
       | STWD  |
       | FSTO  |
-      | RDCRW |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
-  Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval (SOL-)
+  Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval from Updates needed (SOL-)
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status              |
       | rigging_of_ladder     | updates_needed | APPROVAL_UPDATES_NEEDED |
@@ -646,11 +646,11 @@ Feature: LOA COT Permit to Work for post creation
       | CGENG |
 
 
-  Scenario: Verify default rigging of ladder responsible authority can not submit rol permit for approval (SOL-)
+  Scenario: Verify default rigging of ladder responsible authority can submit rol permit for approval from Updates needed (SOL-)
     Given PermitGenerator create permit
       | permit_type           | permit_status  | new_status              |
       | rigging_of_ladder     | updates_needed | APPROVAL_UPDATES_NEEDED |
-     And SmartForms navigate to state page
+    And SmartForms navigate to state page
       | type | state          |
       | ptw  | updates-needed |
     And CommonSection sleep for "2" sec
@@ -658,26 +658,27 @@ Feature: LOA COT Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
     And RoLSectionTwo click submit
-  When PinEntry enter pins for "wrong" rank group
-    | 4/O   |
-    | A 4/O |
-    | 5/O   |
-    | 5/E   |
-    | T/E   |
-    | E/C   |
-    | ETR   |
-    | O/S   |
-    | SAA   |
-    | D/C   |
-    | BOS   |
-    | PMN   |
-    | A/B   |
-    | OLR   |
-    | WPR   |
-    | CCK   |
-    | 2CK   |
-    | STWD  |
-    | FSTO  |
-    | RDCRW |
-    | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
+    Then PinEntry verify the error message is correct for the wrong rank
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |

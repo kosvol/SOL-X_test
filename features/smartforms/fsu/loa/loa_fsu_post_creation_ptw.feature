@@ -1,5 +1,5 @@
-@loa_fsu_post_creation_ptw
-Feature: LOA FSU Permit to Work for post creation
+@loa_lng_post_creation_ptw
+Feature: LOA LNG Permit to Work for post creation
 
   @clear_form
   Scenario: clear form data
@@ -13,7 +13,7 @@ Feature: LOA FSU Permit to Work for post creation
     And DB service clear postgres data
 
 
-  Scenario Outline: Verify default approval authority can approve permit (SOL-8719)
+  Scenario Outline: Verify default approval authority can approve permit (SOL-8717)
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading |
       | enclosed_spaces_entry | pending_approval | no  | no          |
@@ -30,11 +30,9 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-      | C/E   |
-      | A C/E |
 
 
-  Scenario: Verify non default approval authority can not approve permit (SOL-8719)
+  Scenario: Verify non default approval authority can not approve permit (SOL-8717)
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading |
       | enclosed_spaces_entry | pending_approval | no  | no          |
@@ -45,13 +43,15 @@ Feature: LOA FSU Permit to Work for post creation
     And PinEntry enter pin for rank "MAS"
     And CommonSection navigate to "Section 7"
     And Section7 click activate
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
       | A 2/O |
       | 3/O   |
       | A 3/O |
+      | C/E   |
+      | A C/E |
       | 4/O   |
       | A 4/O |
       | 5/O   |
@@ -83,7 +83,6 @@ Feature: LOA FSU Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw updater can edit permit for APPROVAL_UPDATES_NEEDED (SOL-8351)
@@ -136,8 +135,8 @@ Feature: LOA FSU Permit to Work for post creation
       | D/C   |
       | SAA   |
       | BOS   |
-      | A/B   |
       | O/S   |
+      | A/B   |
       | RDCRW |
       | 5/E   |
       | E/C   |
@@ -205,8 +204,8 @@ Feature: LOA FSU Permit to Work for post creation
       | D/C   |
       | SAA   |
       | BOS   |
-      | A/B   |
       | O/S   |
+      | A/B   |
       | RDCRW |
       | 5/E   |
       | E/C   |
@@ -269,8 +268,7 @@ Feature: LOA FSU Permit to Work for post creation
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
     And Section8 click Submit For Termination
-    When PinEntry enter pins for "wrong" rank group
-      | MAS   |
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
@@ -294,10 +292,9 @@ Feature: LOA FSU Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
-  Scenario Outline: Verify default ptw withdrawer can withdraw permit (SOL-)
+  Scenario Outline: Verify default ptw withdrawer can withdraw permit (SOL-8361)
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading |
       | enclosed_spaces_entry | pending_withdrawal | no  | no          |
@@ -313,11 +310,9 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-      | C/E   |
-      | A C/E |
 
 
-  Scenario: Verify non default ptw withdrawer can not withdraw permit (SOL-)
+  Scenario: Verify non default ptw withdrawer can not withdraw permit (SOL-8361)
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading |
       | enclosed_spaces_entry | pending_withdrawal | no  | no          |
@@ -327,21 +322,23 @@ Feature: LOA FSU Permit to Work for post creation
     And PendingWithdrawalPTW click Review & Withdraw button
     And PinEntry enter pin for rank "MAS"
     And Section9 click Withdraw Permit To Work
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
       | A 2/O |
       | 3/O   |
       | A 3/O |
+      | C/E   |
+      | A C/E |
       | 4/O   |
       | A 4/O |
       | 5/O   |
       | D/C   |
       | SAA   |
       | BOS   |
-      | A/B   |
       | O/S   |
+      | A/B   |
       | RDCRW |
       | 2/E   |
       | A 2/E |
@@ -351,7 +348,6 @@ Feature: LOA FSU Permit to Work for post creation
       | A 4/E |
       | 5/E   |
       | E/C   |
-      | ETO   |
       | ELC   |
       | ETR   |
       | T/E   |
@@ -365,7 +361,6 @@ Feature: LOA FSU Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw eraser can delete created permit (SOL-8341)
@@ -385,11 +380,9 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-      | C/E   |
-      | A C/E |
 
 
-  Scenario: Verify non default ptw eraser can not delete created permit
+  Scenario: Verify non default ptw eraser can not delete created permit (SOL-8341)
     And SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "C/E"
@@ -399,21 +392,23 @@ Feature: LOA FSU Permit to Work for post creation
       | ptw  | created |
     And CommonSection sleep for "1" sec
     And CreatedPTW delete first permit id
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
       | 2/O   |
       | A 2/O |
       | 3/O   |
       | A 3/O |
+      | C/E   |
+      | A C/E |
       | 4/O   |
       | A 4/O |
       | 5/O   |
       | D/C   |
       | SAA   |
       | BOS   |
-      | A/B   |
       | O/S   |
+      | A/B   |
       | RDCRW |
       | 2/E   |
       | A 2/E |
@@ -423,7 +418,6 @@ Feature: LOA FSU Permit to Work for post creation
       | A 4/E |
       | 5/E   |
       | E/C   |
-      | ETO   |
       | ELC   |
       | ETR   |
       | T/E   |
@@ -437,7 +431,6 @@ Feature: LOA FSU Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_APPROVAL state (SOL-8341)
@@ -455,8 +448,6 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-      | C/E   |
-      | A C/E |
 
 
   Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_REVIEW state (SOL-8341)
@@ -474,8 +465,6 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-      | C/E   |
-      | A C/E |
 
 
   Scenario Outline: Verify default periodic gas tester can add periodic test record (SOL-8552)
@@ -514,7 +503,7 @@ Feature: LOA FSU Permit to Work for post creation
       | CGENG |
 
 
-  Scenario: Verify non default periodic gas tester can not add periodic test record (SOL-8552)
+  Scenario: Verify non default periodic gas tester can not add periodic test record
     Given SmartForms open page
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
@@ -526,7 +515,7 @@ Feature: LOA FSU Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
@@ -550,7 +539,6 @@ Feature: LOA FSU Permit to Work for post creation
       | STWD  |
       | FSTO  |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default initial gas tester can update the gas test record in Updates Needed state (SOL-8410)
@@ -601,29 +589,30 @@ Feature: LOA FSU Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
     And Section6 click Add Gas Test Record
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
-      | 5/E   |
-      | T/E   |
-      | E/C   |
-      | ETR   |
-      | O/S   |
-      | SAA   |
       | D/C   |
+      | SAA   |
       | BOS   |
-      | PMN   |
       | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
       | OLR   |
       | WPR   |
       | CCK   |
       | 2CK   |
       | STWD  |
       | FSTO  |
-      | RDCRW |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
 
 
   Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval (SOL-)
@@ -673,26 +662,27 @@ Feature: LOA FSU Permit to Work for post creation
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
     And RoLSectionTwo click submit
-    When PinEntry enter pins for "wrong" rank group
+    Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
       | 5/O   |
-      | 5/E   |
-      | T/E   |
-      | E/C   |
-      | ETR   |
-      | O/S   |
-      | SAA   |
       | D/C   |
+      | SAA   |
       | BOS   |
-      | PMN   |
       | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
       | OLR   |
       | WPR   |
       | CCK   |
       | 2CK   |
       | STWD  |
       | FSTO  |
-      | RDCRW |
       | SPM   |
-    Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
