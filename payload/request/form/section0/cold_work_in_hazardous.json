@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 6,
+    "templateVersion": 7,
     "permitType": "Cold Work - Working in Hazardous or Dangerous Areas",
     "answers": [{
       "fieldId": "team",

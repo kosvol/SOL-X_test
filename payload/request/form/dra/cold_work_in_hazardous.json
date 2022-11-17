@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Cold Work - Working in Hazardous or Dangerous Areas",
-    "templateVersion": 6,
+    "templateVersion": 7,
     "parentFormId": "FSUAUTO/PTW/2022/340",
     "answers": [{
       "fieldId": "riskHazard",
