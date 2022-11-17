@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Work on Electrical Equipment and Circuits – Low/High Voltage",
-    "templateVersion": 6,
+    "templateVersion": 7,
     "parentFormId": "PTW/TEMP/1648545933",
     "answers": [
       {
