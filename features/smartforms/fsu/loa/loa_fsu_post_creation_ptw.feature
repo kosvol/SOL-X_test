@@ -694,6 +694,81 @@ Feature: LOA FSU Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
+  Scenario Outline: Verify default dra signee can sign dra in Pending Approval (SOL-8500)
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading |
+      | enclosed_spaces_entry | pending_approval | no  | no          |
+    And SmartForms navigate to state page
+      | type | state            |
+      | ptw  | pending-approval |
+    And PendingApprovalPTW click Approval button
+    And CommonSection sleep for "1" sec
+    And PinEntry enter pin for rank "C/E"
+    And CommonSection navigate to "Section 3D"
+    And CommonSection click sign button
+    And PinEntry enter pin for rank "<rank>"
+    When SignatureLocation sign off
+      | area      | zone                  |
+      | Main Deck | No. 1 Cargo Tank Port |
+    Then Section3D should see location stamp "No. 1 Cargo Tank Port"
+    And Section3D verify signature rank "<rank>"
+    Examples:
+      | rank  |
+      | MAS   |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | ETO   |
+      | CGENG |
+
+  Scenario: Verify non default dra signee can not sign dra Pending Approval (SOL-8500)
+    Given PermitGenerator create permit
+      | permit_type           | permit_status    | eic | gas_reading |
+      | enclosed_spaces_entry | pending_approval | no  | no          |
+    And SmartForms navigate to state page
+      | type | state            |
+      | ptw  | pending-approval |
+    And PendingApprovalPTW click Approval button
+    And PinEntry enter pin for rank "C/E"
+    And CommonSection navigate to "Section 3D"
+    And CommonSection click sign button
+    Then PinEntry verify the error message is correct for the wrong rank
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |
+
   Scenario Outline:Verify the "permit creator" should be able to approve the PTW which he created (SOL-8371)
     Given SmartForms open page
     And SmartForms click create permit to work
