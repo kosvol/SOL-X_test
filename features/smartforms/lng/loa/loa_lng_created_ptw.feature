@@ -12,7 +12,6 @@ Feature: LOA LNG Permit to Work for created
       | cloud   | gas_reader_entry       |
     And DB service clear postgres data
 
-
   Scenario Outline: Verify default ptw creator can create permit (SOL-8337)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -37,7 +36,6 @@ Feature: LOA LNG Permit to Work for created
       | A 4/E |
       | ETO   |
       | CGENG |
-
 
   Scenario: Verify non default ptw creator can not create permit (SOL-8337)
     Given SmartForms open page
@@ -67,8 +65,6 @@ Feature: LOA LNG Permit to Work for created
       | STWD  |
       | FSTO  |
       | SPM   |
-
-
 
   Scenario Outline: Verify default ptw editor can edit permit (SOL-8340)
     And SmartForms open page
@@ -101,7 +97,6 @@ Feature: LOA LNG Permit to Work for created
       | A 4/E |
       | ETO   |
       | CGENG |
-
 
   Scenario Outline: Verify non default ptw editor can not edit permit (SOL-8340)
     And SmartForms open page
@@ -142,7 +137,6 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-
   Scenario Outline: Verify default dra signee can sign dra (SOL-8306)
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -178,7 +172,6 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
   Scenario: Verify non default dra signee can not sign dra (SOL-8306)
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -211,8 +204,6 @@ Feature: LOA LNG Permit to Work for created
       | STWD  |
       | FSTO  |
       | SPM   |
-
-
 
   Scenario Outline: Verify default checklist creator can sign checklist (SOL-8384)
     Given SmartForms open page
@@ -248,7 +239,6 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
   Scenario: Verify non default checklist creator can not sign checklist (SOL-8384)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -282,7 +272,6 @@ Feature: LOA LNG Permit to Work for created
       | STWD  |
       | FSTO  |
       | SPM   |
-
 
   Scenario Outline: Verify default eic responsible authority can sign on responsible authority (SOL-8386)
     Given SmartForms open page
@@ -318,7 +307,6 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
   Scenario: Verify non default eic responsible authority can not sign on responsible authority (SOL-8386)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -353,7 +341,6 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-
   Scenario Outline: Verify eic competent person can sign on EIC competent person (SOL-8389)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -377,7 +364,7 @@ Feature: LOA LNG Permit to Work for created
       | 2/E   |
       | A 2/E |
       | ETO   |
-
+      | A C/E |
 
   Scenario: Verify non eic competent person can not sign on EIC competent person (SOL-8389)
     Given SmartForms open page
@@ -425,7 +412,6 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-
   Scenario Outline: Verify eic issuing authorizer can sign on issuing authority (SOL-8391)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -446,7 +432,6 @@ Feature: LOA LNG Permit to Work for created
       | rank  |
       | C/E   |
       | A C/E |
-
 
   Scenario: Verify non eic issuing authorizer can not sign on issuing authority (SOL-8391)
     Given SmartForms open page
@@ -497,7 +482,6 @@ Feature: LOA LNG Permit to Work for created
       | STWD  |
       | FSTO  |
       | SPM   |
-
 
   Scenario Outline: Verify default responsibility acceptor on responsibility acceptance (SOL-8400)
     Given SmartForms open page
@@ -559,7 +543,6 @@ Feature: LOA LNG Permit to Work for created
       | RDCRW   |
       | SPM     |
 
-
   Scenario Outline: Verify default rank sponsor can sign on non-crew member (SOL-8402)
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -601,7 +584,6 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
   Scenario: Verify non default rank sponsor can not sign on non-crew member (SOL-8402)
     Given Wearable service unlink all wearables
     And SmartForms open page
@@ -642,7 +624,6 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-
   Scenario Outline: Verify default responsible authority can submit for approval (SOL-8344)
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
@@ -654,7 +635,7 @@ Feature: LOA LNG Permit to Work for created
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
-    And Section6 click submit button
+    And Section6 click Submit button
     When PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
     Examples:
@@ -677,7 +658,6 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
   Scenario: Verify non default responsible authority can not submit for approval (SOL-8344)
     Given PermitGenerator create permit
       | permit_type           | permit_status | eic | gas_reading |
@@ -689,7 +669,7 @@ Feature: LOA LNG Permit to Work for created
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
-    And Section6 click submit button
+    And Section6 click Submit button
     Then PinEntry verify the error message is correct for the wrong rank
       | MAS   |
       | 4/O   |
@@ -716,6 +696,77 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
+  Scenario Outline: Verify default responsible authority can submit for review (SOL-8368)
+    Given PermitGenerator create permit
+      | permit_type    | permit_status | eic | gas_reading |
+      | underwater_sim | created       | no  | no          |
+    And SmartForms navigate to state page
+      | type | state   |
+      | ptw  | created |
+    And CommonSection sleep for "2" sec
+    And CreatedPTW click edit
+    And PinEntry enter pin for rank "C/O"
+    And CommonSection navigate to "Section 6"
+    And Section6 click Submit button
+    When PinEntry enter pin for rank "<rank>"
+    Then SignatureLocation click location dropdown
+    Examples:
+      | rank  |
+      | A/M   |
+      | C/O   |
+      | A C/O |
+      | 2/O   |
+      | A 2/O |
+      | 3/O   |
+      | A 3/O |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | ETO   |
+      | CGENG |
+
+  Scenario: Verify not default responsible authority can not submit for review (SOL-8368)
+    Given PermitGenerator create permit
+      | permit_type    | permit_status | eic | gas_reading |
+      | underwater_sim | created       | no  | no          |
+    And SmartForms navigate to state page
+      | type | state   |
+      | ptw  | created |
+    And CommonSection sleep for "2" sec
+    And CreatedPTW click edit
+    And PinEntry enter pin for rank "C/O"
+    And CommonSection navigate to "Section 6"
+    And Section6 click Submit button
+    Then PinEntry verify the error message is correct for the wrong rank
+      | MAS   |
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | RDCRW |
+      | 5/E   |
+      | E/C   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |
 
   Scenario Outline: Verify default initial gas tester can add gas test record (SOL-8408)
     Given Wearable service unlink all wearables
@@ -747,7 +798,6 @@ Feature: LOA LNG Permit to Work for created
       | A 4/E |
       | ETO   |
       | CGENG |
-
 
   Scenario: Verify non default initial gas tester can not add gas test record (SOL-8408)
     Given Wearable service unlink all wearables
@@ -782,8 +832,8 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-
-  Scenario Outline: Verify default ptw creator can create ROL permit (SOL-)
+#ROL
+  Scenario Outline: Verify default ptw creator can create ROL permit (SOL-5079)
     Given SmartForms open page
     And SmartForms click create permit to work
     And PinEntry enter pin for rank "<rank>"
@@ -808,8 +858,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
-  Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval (SOL-5079)
+  Scenario Outline: Verify default rigging of ladder responsible authority can submit rol permit for approval (SOL-3679)
     Given PermitGenerator create permit
       | permit_type           | permit_status |
       | rigging_of_ladder     | created       |
@@ -820,7 +869,7 @@ Feature: LOA LNG Permit to Work for created
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
-    And RoLSectionTwo click submit
+    And RoLSectionTwo click Submit
     When PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
     Examples:
@@ -843,8 +892,7 @@ Feature: LOA LNG Permit to Work for created
       | ETO   |
       | CGENG |
 
-
-  Scenario: Verify non default rigging of ladder responsible authority can not submit rol permit for approval (SOL-5079)
+  Scenario: Verify non default rigging of ladder responsible authority can not submit rol permit for approval (SOL-3679)
     Given PermitGenerator create permit
       | permit_type           | permit_status |
       | rigging_of_ladder     | created       |
@@ -855,7 +903,7 @@ Feature: LOA LNG Permit to Work for created
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
-    And RoLSectionTwo click submit
+    And RoLSectionTwo click Submit
     Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |

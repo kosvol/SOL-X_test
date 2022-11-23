@@ -9,10 +9,16 @@ end
 
 And('PendingApprovalPTW delete first permit id') do
   @pending_approval_ptw_page ||= PendingApprovalPTWPage.new(@driver)
-  @permit_id = @pending_approval_ptw_page.save_first_permit_id
-  @pending_approval_ptw_page.delete_first_permit
+  @pending_approval_ptw_page.delete_first_permit(@permit_id)
 end
 
 And('PendingApprovalPTW verify deleted permit') do
   @pending_approval_ptw_page.verify_permit_is_deleted(@permit_id)
 end
+
+And('PendingApprovalPTW click Review button') do
+  @pending_approval_ptw_page ||= PendingApprovalPTWPage.new(@driver)
+  @pending_approval_ptw_page.click_review_btn(@permit_id)
+end
+
+

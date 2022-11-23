@@ -20,7 +20,9 @@ class SectionSixPage < BasePage
     gas_equipment_text: '//input[@id="gasEquipment"]',
     gas_sr_number_text: '//input[@id="gasSrNumber"]',
     gas_last_calibrate_text: '//button[@id="gasLastCalibrationDate"]',
-    gas_disabled_warning: "//h3[contains(.,'Gas Testing Disabled')]"
+    gas_disabled_warning: "//h3[contains(.,'Gas Testing Disabled')]",
+    submit_oa_btn: "//button[contains(., 'Submit for Office Approval')]",
+    aa_comments: '//textarea[@id="updatesNeededComment"]'
   }.freeze
 
   FIELD_MISSING_NOTE = 'Please Complete The Following Sections'
@@ -102,5 +104,21 @@ class SectionSixPage < BasePage
 
   def retrieve_permit_id
     retrieve_text('//h1')
+  end
+
+  def click_submit_oa_btn
+    sleep 1
+    scroll_times_direction(2, 'down')
+    scroll_click(SECTION_SIX[:submit_oa_btn])
+  end
+
+  def click_updates_needed_btn
+    click(SECTION_SIX[:updates_needed_btn])
+  end
+
+  def enter_aa_comments(text)
+    element = find_element(SECTION_SIX[:aa_comments])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
   end
 end

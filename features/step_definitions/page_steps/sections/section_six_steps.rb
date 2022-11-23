@@ -45,7 +45,7 @@ Given('Section6 {string} see gas testing disabled warning') do |option|
   @section_six_page.verify_gas_disabled_warning(option)
 end
 
-Given('Section6 click submit button') do
+Given('Section6 click Submit button') do
   @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.click_submit_btn
 end
@@ -59,3 +59,20 @@ Given('Section6 save permit id') do
   @section_six_page ||= SectionSixPage.new(@driver)
   @permit_id = @section_six_page.retrieve_permit_id
 end
+
+Given('Section6 click Submit for OA') do
+  @section_six_page ||= SectionSixPage.new(@driver)
+  @section_six_page.click_submit_oa_btn
+end
+
+Given('Section6 click Updates Needed') do
+  @section_six_page ||= SectionSixPage.new(@driver)
+  @section_six_page.click_updates_needed_btn
+end
+
+Given('Section6 enter AA comments {string}') do |text|
+  @section_six_page ||= SectionSixPage.new(@driver)
+  @section_six_page.enter_aa_comments(text)
+end
+
+
