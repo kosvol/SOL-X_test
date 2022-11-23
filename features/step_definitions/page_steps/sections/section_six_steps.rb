@@ -74,5 +74,3 @@ Given('Section6 enter AA comments {string}') do |text|
   @section_six_page ||= SectionSixPage.new(@driver)
   @section_six_page.enter_aa_comments(text)
 end
-
-

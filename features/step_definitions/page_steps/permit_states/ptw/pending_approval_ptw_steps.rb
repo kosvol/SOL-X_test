@@ -20,5 +20,3 @@ And('PendingApprovalPTW click Review button') do
   @pending_approval_ptw_page ||= PendingApprovalPTWPage.new(@driver)
   @pending_approval_ptw_page.click_review_btn(@permit_id)
 end
-
-
