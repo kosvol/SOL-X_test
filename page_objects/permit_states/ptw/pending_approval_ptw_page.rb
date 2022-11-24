@@ -30,10 +30,6 @@ class PendingApprovalPTWPage < BasePermitStatesPage
     click(permit_xpath)
   end
 
-  def save_first_permit_id
-    retrieve_text(PENDING_APPROVAL_PTW[:first_permit_id])
-  end
-
   def verify_permit_is_deleted(permit_id)
     verify_element_not_exist("//span[text()='#{permit_id}']")
   end

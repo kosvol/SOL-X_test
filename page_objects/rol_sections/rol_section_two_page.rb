@@ -91,7 +91,6 @@ class RoLSectionTwoPage < BasePage
   end
 
   def click_submit_btn
-    sleep 1
     scroll_click(ROL_SECTION_TWO[:submit_btn])
   end
 

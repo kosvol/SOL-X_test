@@ -37,7 +37,6 @@ class SectionNinePage < BasePage
   end
 
   def click_request_updates_btn
-    sleep 1
     scroll_click(SECTION_NINE[:request_update_btn])
   end
 
@@ -48,7 +47,6 @@ class SectionNinePage < BasePage
   end
 
   def click_submit_btn
-    sleep 1
     scroll_click(SECTION_NINE[:submit_btn])
   end
 end

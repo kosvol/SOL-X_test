@@ -95,8 +95,7 @@ Feature: LOA FSU Permit to Work for post creation
     And Section7 click Request Updates
     And Section7 enter AA comments "Test automation. Pending_master_approval "
     And Section7 click Submit
-    And CommonSection sleep for "1" sec
-    And CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -104,7 +103,7 @@ Feature: LOA FSU Permit to Work for post creation
       | C/E   |
       | A C/E |
 
-  Scenario Outline: Verify default approval authority can send terminated permit for updates (SOL-)
+  Scenario Outline: Verify default approval authority can send terminated permit for updates
     Given PermitGenerator create permit
       | permit_type           | permit_status      | eic | gas_reading |
       | enclosed_spaces_entry | pending_withdrawal | no  | no          |
@@ -116,8 +115,7 @@ Feature: LOA FSU Permit to Work for post creation
     And Section9 click Request Updates
     And Section9 enter AA comments "Test automation, Pending_withdrawal"
     And Section9 click Submit
-    And CommonSection sleep for "1" sec
-    And CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -402,10 +400,8 @@ Feature: LOA FSU Permit to Work for post creation
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "1" sec
     And CreatedPTW delete first permit id
     And PinEntry enter pin for rank "<rank>"
-    And CommonSection sleep for "1" sec
     Then CreatedPTW verify deleted permit
     Examples:
       | rank |
@@ -422,7 +418,6 @@ Feature: LOA FSU Permit to Work for post creation
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "1" sec
     And CreatedPTW delete first permit id
     Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
@@ -627,7 +622,6 @@ Feature: LOA FSU Permit to Work for post creation
       | type | state            |
       | ptw  | pending-approval |
     And PendingApprovalPTW click Approval button
-    And CommonSection sleep for "1" sec
     And PinEntry enter pin for rank "MAS"
     And CommonSection navigate to "Section 3D"
     And CommonSection click sign button
@@ -702,7 +696,6 @@ Feature: LOA FSU Permit to Work for post creation
       | type | state            |
       | ptw  | pending-approval |
     And PendingApprovalPTW click Approval button
-    And CommonSection sleep for "1" sec
     And PinEntry enter pin for rank "C/E"
     And CommonSection navigate to "Section 3D"
     And CommonSection click sign button
@@ -800,12 +793,8 @@ Feature: LOA FSU Permit to Work for post creation
     And SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
-    And CommonSection sleep for "1" sec
-    Then CommonSection verify header is "Successfully Submitted"
-    And CommonSection sleep for "5" sec
-    And SmartForms navigate to state page
-      | type | state            |
-      | ptw  | pending-approval |
+    And Verify the form is Successfully Submitted
+    And SmartForms navigate to "Pending Approval" page using UI
     And PendingApprovalPTW click Approval button
     And PinEntry enter pin for rank "MAS"
     And CommonSection navigate to "Section 7"
@@ -816,8 +805,7 @@ Feature: LOA FSU Permit to Work for post creation
       | rank |
       | A/M  |
 
- #OA
-  Scenario Outline: Verify default dra signee can sign dra in Master Review (SOL-8309)
+   Scenario Outline: Verify default dra signee can sign dra in Master Review (SOL-8309)
     Given PermitGenerator create oa pending status permit
       | permit_type    | oa_status            | eic | gas_reading |
       | underwater_sim | PENDING_MASTER_REVIEW| no  | no          |
@@ -825,7 +813,6 @@ Feature: LOA FSU Permit to Work for post creation
       | type | state            |
       | ptw  | pending-approval |
     And PendingApprovalPTW click Review button
-    And CommonSection sleep for "1" sec
     And PinEntry enter pin for rank "MAS"
     And CommonSection navigate to "Section 3D"
     And CommonSection click sign button
@@ -867,8 +854,7 @@ Feature: LOA FSU Permit to Work for post creation
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 6"
     When Section6 click Submit for OA
-    And CommonSection sleep for "1" sec
-    Then CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -889,8 +875,7 @@ Feature: LOA FSU Permit to Work for post creation
     And Section6 click Updates Needed
     And Section6 enter AA comments "Test automation. Pending_master_review"
     And Section6 click Submit button
-    And CommonSection sleep for "1" sec
-    And CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -915,8 +900,7 @@ Feature: LOA FSU Permit to Work for post creation
       | C/E   |
       | A C/E |
 
-#ROL
-  Scenario Outline: Verify default approval authority can approve ROL permit (SOL-)
+  Scenario Outline: Verify default approval authority can approve ROL permit
     Given PermitGenerator create permit
       | permit_type       | permit_status    | eic | gas_reading |
       | rigging_of_ladder | pending_approval | no  | no          |
@@ -928,7 +912,6 @@ Feature: LOA FSU Permit to Work for post creation
     And CommonSection click Next button
     And RoLSectionTwo select the duration 8
     And RoLSectionTwo click Activate
-    And CommonSection sleep for "1" sec
     When PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
     Examples:
@@ -938,7 +921,7 @@ Feature: LOA FSU Permit to Work for post creation
       | C/E   |
       | A C/E |
 
-  Scenario: Verify non default approval authority can not approve permit (SOL-)
+  Scenario: Verify non default approval authority can not approve permit
     Given PermitGenerator create permit
       | permit_type           | permit_status    | eic | gas_reading |
       | rigging_of_ladder     | pending_approval | no  | no          |
@@ -950,7 +933,6 @@ Feature: LOA FSU Permit to Work for post creation
     And CommonSection click Next button
     And RoLSectionTwo select the duration 8
     And RoLSectionTwo click Activate
-    And CommonSection sleep for "1" sec
     Then PinEntry verify the error message is correct for the wrong rank
       | C/O   |
       | A C/O |
@@ -1003,8 +985,7 @@ Feature: LOA FSU Permit to Work for post creation
     And RoLSectionTwo click Updates Needed
     And RoLSectionTwo enter AA comments "Test automation. Pending_master_approval"
     And RoLSectionTwo click Submit
-    And CommonSection sleep for "1" sec
-    And CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -1081,17 +1062,15 @@ Feature: LOA FSU Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  Scenario Outline: Verify default ptw terminator can submit ROL permit for termination (SOL-)
+  Scenario Outline: Verify default ptw terminator can submit ROL permit for termination
     Given PermitGenerator create permit
       | permit_type        | permit_status | eic | gas_reading |
       | rigging_of_ladder  | active        | no  | no          |
     And SmartForms navigate to state page
       | type | state  |
       | ptw  | active |
-    And CommonSection sleep for "1" sec
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
-    And CommonSection sleep for "1" sec
     And RoLSectionThree click Submit For Termination
     When PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
@@ -1115,17 +1094,15 @@ Feature: LOA FSU Permit to Work for post creation
       | ETO   |
       | CGENG |
 
-  Scenario: Verify non default ptw terminator can not submit ROL permit for termination (SOL-)
+  Scenario: Verify non default ptw terminator can not submit ROL permit for termination
     Given PermitGenerator create permit
       | permit_type       | permit_status | eic | gas_reading |
       | rigging_of_ladder | active        | no  | no          |
     And SmartForms navigate to state page
       | type | state  |
       | ptw  | active |
-    And CommonSection sleep for "1" sec
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
-    And CommonSection sleep for "1" sec
     And RoLSectionThree click Submit For Termination
     Then PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
@@ -1152,7 +1129,7 @@ Feature: LOA FSU Permit to Work for post creation
       | FSTO  |
       | SPM   |
 
-  Scenario Outline: Verify default ptw withdrawer can withdraw ROL permit (SOL-)
+  Scenario Outline: Verify default ptw withdrawer can withdraw ROL permit
     Given PermitGenerator create permit
       | permit_type       | permit_status      | eic | gas_reading |
       | rigging_of_ladder | pending_withdrawal | no  | no          |
@@ -1171,7 +1148,7 @@ Feature: LOA FSU Permit to Work for post creation
       | C/E   |
       | A C/E |
 
-  Scenario: Verify non default ptw withdrawer can not withdraw permit (SOL-)
+  Scenario: Verify non default ptw withdrawer can not withdraw permit
     Given PermitGenerator create permit
       | permit_type       | permit_status      | eic | gas_reading |
       | rigging_of_ladder | pending_withdrawal | no  | no          |
@@ -1231,8 +1208,7 @@ Feature: LOA FSU Permit to Work for post creation
     And RoLSectionThree click request_updates
     And RoLSectionThree enter AA comments "Test automation. Pending_withdrawal"
     And RoLSectionThree click Submit
-    And CommonSection sleep for "1" sec
-    And CommonSection verify header is "Successfully Submitted"
+    And Verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |

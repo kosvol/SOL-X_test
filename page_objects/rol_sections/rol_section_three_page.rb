@@ -50,17 +50,14 @@ class RoLSectionThreePage < BasePage
   end
 
   def click_termination_btn
-    sleep 1
     scroll_click(ROL_SECTION_THREE[:termination_btn])
   end
 
   def click_withdraw
-    sleep 1
     scroll_click(ROL_SECTION_THREE[:withdraw_btn])
   end
 
   def click_request_updates_btn
-    sleep 1
     scroll_click(ROL_SECTION_THREE[:request_updates_btn])
   end
 
@@ -71,7 +68,6 @@ class RoLSectionThreePage < BasePage
   end
 
   def click_submit_btn
-    sleep 1
     scroll_click(ROL_SECTION_THREE[:submit_btn])
   end
 

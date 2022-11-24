@@ -87,7 +87,6 @@ class SectionSixPage < BasePage
   end
 
   def click_submit_btn
-    sleep 1
     scroll_times_direction(2, 'down')
     scroll_click(SECTION_SIX[:submit_btn])
   end
@@ -107,7 +106,6 @@ class SectionSixPage < BasePage
   end
 
   def click_submit_oa_btn
-    sleep 1
     scroll_times_direction(2, 'down')
     scroll_click(SECTION_SIX[:submit_oa_btn])
   end

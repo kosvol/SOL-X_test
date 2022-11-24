@@ -74,7 +74,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "1" sec
     And CreatedPTW click first permit id
     And PinEntry enter pin for rank "<rank>"
     Then Section1 verify next button is "Save & Next"
@@ -106,7 +105,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "1" sec
     And CreatedPTW click first permit id
     And PinEntry enter pin for rank "<rank>"
     Then Section1 verify next button is "Next"
@@ -631,7 +629,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
@@ -665,7 +662,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
@@ -703,7 +699,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
@@ -737,7 +732,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 6"
@@ -832,7 +826,6 @@ Feature: LOA LNG Permit to Work for created
       | FSTO  |
       | SPM   |
 
-#ROL
   Scenario Outline: Verify default ptw creator can create ROL permit (SOL-5079)
     Given SmartForms open page
     And SmartForms click create permit to work
@@ -865,7 +858,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
@@ -899,7 +891,6 @@ Feature: LOA LNG Permit to Work for created
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
-    And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection click Save & Next
