@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Maintenance on Anchor",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "PTW/TEMP/1648546418",
     "answers": [
       {

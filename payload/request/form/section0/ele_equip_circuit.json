@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "permitType": "Work on Electrical Equipment and Circuits – Low/High Voltage",
     "answers": [
       {

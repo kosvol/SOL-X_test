@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "permitType": "Rigging of Gangway & Pilot Ladder",
     "answers": [
       {
