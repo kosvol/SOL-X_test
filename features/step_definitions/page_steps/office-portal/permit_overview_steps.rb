@@ -23,6 +23,6 @@ Then('PermitOverview verify {string}') do |entry_type|
   @permit_overview.check_entry_headers(entry_type)
 end
 
-Then('PermitOverview verify RoL {string}') do |section|
+Then('PermitOverview verify RoL {string} data') do |section|
   @permit_overview.verify_rol_section_data(section)
 end

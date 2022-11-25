@@ -125,10 +125,9 @@ Feature: Office Portal Permit Overview
       | main_anchor          |
       | ele_equip_circuit    |
       | pressure_pipe_vessel |
-
+@ska
   @close_browser
-    @ska
-  Scenario Outline: Verify ROL form shows the same fields as in the client app
+  Scenario Outline: Verify ROL form shows the same data as in the client app
     Given PermitGenerator create permit
       | permit_type           | permit_status  |
       | rigging_of_ladder     | withdrawn      |
@@ -139,11 +138,12 @@ Feature: Office Portal Permit Overview
     And OfficeLogin click the Sign in button
     Then PermitArchive page should be displayed
     When PermitOverview follow the permit link
-    Then PermitOverview verify RoL "<section>"
+    Then PermitOverview verify RoL "<section>" data
+    Examples:
       | section   |
-      | section 1 |
-      | section 2 |
-      | section 3 |
+      | section_1 |
+      | section_2 |
+      | section_3 |
 
   @close_browser
   Scenario: Verify CRE form shows the same fields as in the client app
