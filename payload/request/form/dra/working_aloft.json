@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Working Aloft / Overside",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "FSUAUTO/PTW/2022/347",
     "answers": [
       {

@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Rigging of Gangway & Pilot Ladder",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "FSUSIT/PTW/2022/019",
     "answers": [
       {
