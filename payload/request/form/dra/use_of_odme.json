@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Use of ODME in Manual Mode",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "FSUAUTO/PTW/2022/345",
     "answers": [
       {

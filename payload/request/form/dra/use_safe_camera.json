@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "PTW/TEMP/1648546502",
     "answers": [
       {

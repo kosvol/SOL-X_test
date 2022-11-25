@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Working on Deck During Heavy Weather",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "FSUAUTO/PTW/2022/346",
     "answers": [
       {

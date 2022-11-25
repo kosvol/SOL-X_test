@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "permitType": "Cold Work - Cleaning Up of Spill",
     "answers": [{
       "fieldId": "team",

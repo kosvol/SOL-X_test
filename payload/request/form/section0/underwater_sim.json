@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "permitType": "Underwater Operation during daytime without any simultaneous operations",
     "answers": [{
       "fieldId": "team",
