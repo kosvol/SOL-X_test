@@ -95,7 +95,7 @@ Feature: LOA LNG Permit to Work for post creation
     And Section7 click Request Updates
     And Section7 enter AA comments "Test automation. Pending_master_approval "
     And Section7 click Submit
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -113,7 +113,7 @@ Feature: LOA LNG Permit to Work for post creation
     And Section9 click Request Updates
     And Section9 enter AA comments "Test automation, Pending_withdrawal"
     And Section9 click Submit
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -712,7 +712,7 @@ Feature: LOA LNG Permit to Work for post creation
     And SignatureLocation sign off
       | area      | zone                  |
       | Main Deck | No. 1 Cargo Tank Port |
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     And SmartForms navigate to "Pending Approval" page using UI
     And PendingApprovalPTW click Approval button
     And PinEntry enter pin for rank "MAS"
@@ -773,7 +773,7 @@ Feature: LOA LNG Permit to Work for post creation
     And PinEntry enter pin for rank "<rank>"
     And CommonSection navigate to "Section 6"
     When Section6 click Submit for OA
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -792,7 +792,7 @@ Feature: LOA LNG Permit to Work for post creation
     And Section6 click Updates Needed
     And Section6 enter AA comments "Test automation. Pending_master_review"
     And Section6 click Submit button
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -898,7 +898,7 @@ Feature: LOA LNG Permit to Work for post creation
     And RoLSectionTwo click Updates Needed
     And RoLSectionTwo enter AA comments "Test automation. Pending_master_approval"
     And RoLSectionTwo click Submit
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
@@ -1119,7 +1119,7 @@ Feature: LOA LNG Permit to Work for post creation
     And RoLSectionThree click request_updates
     And RoLSectionThree enter AA comments "Test automation. Pending_withdrawal"
     And RoLSectionThree click Submit
-    And Verify the form is Successfully Submitted
+    And Submitted verify the form is Successfully Submitted
     Examples:
       | rank |
       | MAS  |
