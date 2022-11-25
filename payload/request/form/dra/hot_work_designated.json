@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Hot Work Level-2 in Designated Area",
-    "templateVersion": 7,
+    "templateVersion": 8,
     "parentFormId": "PTW/TEMP/1648545966",
     "answers": [
       {
