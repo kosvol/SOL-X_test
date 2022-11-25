@@ -87,7 +87,7 @@ class SectionSixPage < BasePage
   end
 
   def click_submit_btn
-    scroll_click(SECTION_SIX[:submit_btn])
+    click(SECTION_SIX[:submit_btn])
   end
 
   def verify_submit_update_btn(visibility)
