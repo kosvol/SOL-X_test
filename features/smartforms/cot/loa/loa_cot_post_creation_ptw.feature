@@ -761,7 +761,7 @@ Feature: LOA COT Permit to Work for post creation
       | A 4/E |
       | ETO   |
       | CGENG |
-  @test
+
   Scenario Outline: Verify default approval authority can submit OA permit (SOL-8347)
     Given PermitGenerator create oa pending status permit
       | permit_type    | oa_status            | eic | gas_reading |
@@ -778,7 +778,7 @@ Feature: LOA COT Permit to Work for post creation
       | rank |
       | MAS  |
       | A/M  |
-@test
+
   Scenario Outline: Verify default approval authority can send OA permit for updates (SOL-8720)
     Given PermitGenerator create oa pending status permit
       | permit_type    | oa_status            | eic | gas_reading |
