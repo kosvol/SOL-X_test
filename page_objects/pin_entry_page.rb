@@ -25,6 +25,15 @@ class PinEntryPage < BasePage
     end
   end
 
+  def enter_pins(table)
+    table.raw.each do |rank|
+      nrank = rank.join('').delete('"')
+      enter_pin(nrank)
+      actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
+      compare_string('You Are Not Authorized To Perform That Action', actual_msg)
+    end
+  end
+
   def verify_error_msg(error_msg)
     actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
     compare_string(error_msg, actual_msg)
