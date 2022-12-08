@@ -17,7 +17,9 @@ class RoLSectionTwoPage < BasePage
     duration_dd_btn: "//button[@id='permitValidDuration']",
     submit_btn: "//button[contains(., 'Submit')]",
     previous_btn: "//button[contains(.,'Previous')]",
-    active_btn: "//button[contains(., 'Activate Permit To Work')]"
+    active_btn: "//button[contains(., 'Activate Permit To Work')]",
+    updates_needed_btn: "//button[contains(., 'Updates Needed')]",
+    aa_comments: '//textarea[@id="updatesNeededComment"]'
   }.freeze
 
   def initialize(driver)
@@ -86,6 +88,21 @@ class RoLSectionTwoPage < BasePage
 
   def click_activate
     click(ROL_SECTION_TWO[:active_btn])
+  end
+
+  def click_submit_btn
+    scroll_click(ROL_SECTION_TWO[:submit_btn])
+  end
+
+  def click_updates_needed_btn
+    @driver.execute_script('window.scrollBy(0,document.body.scrollHeight)', '')
+    click(ROL_SECTION_TWO[:updates_needed_btn])
+  end
+
+  def enter_aa_comments(text)
+    element = find_element(ROL_SECTION_TWO[:aa_comments])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
   end
 
   private

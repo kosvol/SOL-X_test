@@ -42,7 +42,22 @@ And('RoLSectionTwo select the duration {int}') do |duration|
   @rol_section_two_page.select_permit_duration(duration)
 end
 
-And('RoLSectionTwo click activate') do
+And('RoLSectionTwo click Activate') do
   @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
   @rol_section_two_page.click_activate
+end
+
+And('RoLSectionTwo click Submit') do
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.click_submit_btn
+end
+
+Given('RoLSectionTwo click Updates Needed') do
+  @rol_section_two_page = RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.click_updates_needed_btn
+end
+
+Given('RoLSectionTwo enter AA comments {string}') do |text|
+  @rol_section_two_page ||= RoLSectionTwoPage.new(@driver)
+  @rol_section_two_page.enter_aa_comments(text)
 end

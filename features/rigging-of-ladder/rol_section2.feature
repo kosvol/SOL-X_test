@@ -104,7 +104,7 @@ Feature: RoL Section 2: Checklist
     When PinEntry enter pin for rank "MAS"
     And CommonSection click Next button
     And RoLSectionTwo select the duration <duration>
-    And RoLSectionTwo click activate
+    And RoLSectionTwo click Activate
     And PinEntry enter pin for rank "MAS"
     And SignatureLocation sign off
       | area      | zone                  |

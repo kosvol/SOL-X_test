@@ -15,7 +15,11 @@ class RoLSectionThreePage < BasePage
     previous_btn: "//button[contains(.,'Previous')]",
     close_btn: "//button[contains(.,'Close')]",
     task_commenced_at_date: "//button[@id='taskCommencedAt-datepicker']",
-    task_commenced_at_time: "//button[@id='taskCommencedAt-timepicker']"
+    task_commenced_at_time: "//button[@id='taskCommencedAt-timepicker']",
+    termination_btn: "//button[contains(., 'Submit For Termination')]",
+    withdraw_btn: "//button[contains(., 'Withdraw Permit To Work')]",
+    request_updates_btn: "//button[contains(., 'Request Updates')]",
+    aa_comments: '//textarea[@id="updatesNeededComment"]'
   }.freeze
 
   def initialize(driver)
@@ -43,6 +47,28 @@ class RoLSectionThreePage < BasePage
     verify_element_not_exist("//button[contains(.,'Save')]")
     compare_string(@driver.find_elements(xpath: ROL_SECTION_THREE[:previous_btn]).size, 1)
     compare_string(@driver.find_elements(xpath: ROL_SECTION_THREE[:close_btn]).size, 1)
+  end
+
+  def click_termination_btn
+    scroll_click(ROL_SECTION_THREE[:termination_btn])
+  end
+
+  def click_withdraw
+    scroll_click(ROL_SECTION_THREE[:withdraw_btn])
+  end
+
+  def click_request_updates_btn
+    scroll_click(ROL_SECTION_THREE[:request_updates_btn])
+  end
+
+  def enter_aa_comments(text)
+    element = find_element(ROL_SECTION_THREE[:aa_comments])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
+  end
+
+  def click_submit_btn
+    scroll_click(ROL_SECTION_THREE[:submit_btn])
   end
 
   private

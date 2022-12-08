@@ -8,7 +8,9 @@ class SectionNinePage < BasePage
   SECTION_NINE = {
     section_header: "//h3[contains(.,'Section 9: Withdrawal of Permit')]",
     withdraw_ptw_btn: "//button[contains(., 'Withdraw Permit To Work')]",
-    request_update_btn: "//button[contains(., 'Request Updates')]"
+    request_update_btn: "//button[contains(., 'Request Updates')]",
+    submit_btn: "//button[contains(., 'Submit')]",
+    aa_comments: '//textarea[@id="updatesNeededComment"]'
   }.freeze
 
   def initialize(driver)
@@ -32,5 +34,19 @@ class SectionNinePage < BasePage
 
   def click_withdraw
     click(SECTION_NINE[:withdraw_ptw_btn])
+  end
+
+  def click_request_updates_btn
+    scroll_click(SECTION_NINE[:request_update_btn])
+  end
+
+  def enter_aa_comments(text)
+    element = find_element(SECTION_NINE[:aa_comments])
+    @driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+    element.send_keys(text)
+  end
+
+  def click_submit_btn
+    scroll_click(SECTION_NINE[:submit_btn])
   end
 end
