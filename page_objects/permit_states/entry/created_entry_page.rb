@@ -13,7 +13,7 @@ class CreatedEntryPage < BasePage
     edit_btn: "//*[span='%s']/*[@class='note-row']/button",
     first_edit_btn: "(//button[contains(., 'Edit')])[1]",
     first_delete_btn: "(//button[contains(.,'Delete')])[1]",
-    first_permit_id: "(//ul[starts-with(@class,'FormsList__Container')]/li/span)[1]"
+    first_permit_id: "(//ul[starts-with(@class,'FormsList__FormsListContainer')]/li/span)[1]"
   }.freeze
 
   def initialize(driver)

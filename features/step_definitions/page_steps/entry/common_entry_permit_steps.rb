@@ -58,3 +58,13 @@ And('CommonEntry click approve for activation') do
   @common_entry_page ||= CommonEntryPage.new(@driver)
   @common_entry_page.click_approve_for_activation
 end
+
+Given('CommonEntry verify the request updates option') do
+  @common_entry_page ||= CommonEntryPage.new(@driver)
+  @common_entry_page.verify_comment_btn
+end
+
+And('CommonEntry verify add gas reading button') do
+  @common_entry_page ||= CommonEntryPage.new(@driver)
+  @common_entry_page.verify_add_gas_btn
+end
