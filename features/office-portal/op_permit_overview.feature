@@ -125,7 +125,7 @@ Feature: Office Portal Permit Overview
       | main_anchor          |
       | ele_equip_circuit    |
       | pressure_pipe_vessel |
-@ska
+
   @close_browser
   Scenario Outline: Verify ROL form shows the same data as in the client app
     Given PermitGenerator create permit
