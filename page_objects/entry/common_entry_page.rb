@@ -80,4 +80,13 @@ class CommonEntryPage < BasePage
   def click_approve_for_activation
     scroll_click(COMMON_ENTRY[:approve_activation_btn])
   end
+
+  def verify_request_elements_exist
+    find_element(COMMON_ENTRY[:comment_text_area])
+    find_element(COMMON_ENTRY[:submit_comment_btn])
+  end
+
+  def verify_add_gas_btn
+    find_element(COMMON_ENTRY[:add_gas_reader_button])
+  end
 end
