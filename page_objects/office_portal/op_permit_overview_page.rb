@@ -8,8 +8,6 @@ class OPPermitOverviewPage < BasePage
 
   PERMIT_OVERVIEW = {
     nav_bar: '//h1',
-    permit_withdrawn_header: "//div[@class='screen-only']//h2[contains(text(),'Permit Withdrawn')]",
-    permit_pre_cre_header: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]",
     rol_headers: "//div[@class='screen-only']//div[contains(@class,'Section__Description')]//h2",
     rol_subheaders: "//div[@class='screen-only']//div[contains(@class,'Section__Description')]//h4",
     rol_other:
@@ -46,11 +44,6 @@ class OPPermitOverviewPage < BasePage
 
   def open_overview_page(permit_id)
     @driver.get(format("#{generate_base_url}/permit-overview?formId=%s", permit_id))
-    section_header = if permit_id.include? 'PTW'
-                       PERMIT_OVERVIEW[:permit_withdrawn_header]
-                     else
-                       PERMIT_OVERVIEW[:permit_pre_cre_header]
-                     end
     wait_for_copy_display
   end
 
