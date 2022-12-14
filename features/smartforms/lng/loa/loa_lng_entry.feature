@@ -435,9 +435,6 @@ Feature: Entry LNG LOA
       | cre  | updates-needed |
     And UpdatesNeededEntry click Edit Update button
     And PinEntry enter pin for rank "C/O"
-    And CompressorRoomEntry Select Location of vessel "At Sea"
-    And CompressorRoomEntry answer all questions "No"
-    And CompressorRoomEntry select Permit Duration 6
     And CommonEntry click submit for approval
     And PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
@@ -460,9 +457,6 @@ Feature: Entry LNG LOA
       | cre  | updates-needed |
     And UpdatesNeededEntry click Edit Update button
     And PinEntry enter pin for rank "C/O"
-    And CompressorRoomEntry Select Location of vessel "At Sea"
-    And CompressorRoomEntry answer all questions "No"
-    And CompressorRoomEntry select Permit Duration 6
     And CommonEntry click submit for approval
     Then PinEntry verify the error message is correct for the wrong rank
       | MAS   |

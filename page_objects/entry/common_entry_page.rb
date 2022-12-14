@@ -81,8 +81,8 @@ class CommonEntryPage < BasePage
     scroll_click(COMMON_ENTRY[:approve_activation_btn])
   end
 
-  def verify_comment_btn
-    enter_text(COMMON_ENTRY[:comment_text_area], 'Test Automation')
+  def verify_request_elements_exist
+    find_element(COMMON_ENTRY[:comment_text_area])
     find_element(COMMON_ENTRY[:submit_comment_btn])
   end
 

@@ -304,7 +304,7 @@ Feature: Entry COT LOA
       | Location of vessel                                                                                    | At Sea |
       | Has the exhaust ventilation system been switched on and running for at least 15 mins?                 | No     |
       | Are all the Pump room lights switched on?                                                             | Yes    |
-      | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?   | No    |
+      | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?   | No     |
     And CommonEntry verify add gas reading button
     Then CommonSection click Save & Close button
     Examples:
@@ -357,23 +357,23 @@ Feature: Entry COT LOA
   Then PinEntry enter pin for rank "C/O"
   And PumpRoomEntry fill text area
   Then PumpRoomEntry answer question
-    | Location of vessel                                                                                    | At Sea |
-    | Has the exhaust ventilation system been switched on and running for at least 15 mins?                 | No     |
-    | Are all the Pump room lights switched on?                                                             | Yes    |
-    | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?   | Yes    |
-    | Are the personnel entering the pump room aware of the reporting interval?                             | Yes    |
-    | Has communication with the responsible officer been established?                                      | Yes    |
-    | Has the exhaust uptake been set to draw air from the lowest point in the pump room?                   | Yes    |
-    | Is the Emergency evacuation harness ready for use?                                                    | Yes    |
-    | Have the personal monitors for persons entering the pump room been checked for readiness?             | Yes    |
+    | Location of vessel                                                                                                                | At Sea |
+    | Has the exhaust ventilation system been switched on and running for at least 15 mins?                                             | No     |
+    | Are all the Pump room lights switched on?                                                                                         | Yes    |
+    | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?                               | Yes    |
+    | Are the personnel entering the pump room aware of the reporting interval?                                                         | Yes    |
+    | Has communication with the responsible officer been established?                                                                  | Yes    |
+    | Has the exhaust uptake been set to draw air from the lowest point in the pump room?                                               | Yes    |
+    | Is the Emergency evacuation harness ready for use?                                                                                | Yes    |
+    | Have the personal monitors for persons entering the pump room been checked for readiness?                                         | Yes    |
     | Are the personnel entering the pump room aware of the locations of the ELSA / EEBD and familiar with its use?                     | Yes    |
-    | Are the personnel entering the pump room aware of the reporting interval?                             | No    |
+    | Are the personnel entering the pump room aware of the reporting interval?                                                         | No     |
     | Are emergency and evacuation procedures established and understood by the Person(s) entering the pump room?                       | Yes    |
     | Have the names of the person(s) entering the pump room been recorded in the Port operations log together with the time of entry?  | Yes    |
     | Are the person(s) entering the pump room aware that after exiting the space a report to the responsible officer must be made?     | Yes    |
     | Are the persons entering the pump room familiar with the emergency alarm meant for  CO2 / Foam flooding?                          | Yes    |
     | Are the persons entering the pump room familiar with the location of the emergency trips for the cargo pumps?                     | Yes    |
-    | Is the pumproom bilge dry?                                                                            | Yes    |
+    | Is the pumproom bilge dry?                                                                                                        | Yes    |
   And CommonEntry click Add Gas Reader
   And PinEntry enter pin for rank "A C/O"
   Then GasReadings add normal gas readings
@@ -402,23 +402,23 @@ Feature: Entry COT LOA
     Then PinEntry enter pin for rank "C/O"
     And PumpRoomEntry fill text area
     Then PumpRoomEntry answer question
-      | Location of vessel                                                                                    | At Sea |
-      | Has the exhaust ventilation system been switched on and running for at least 15 mins?                 | No     |
-      | Are all the Pump room lights switched on?                                                             | Yes    |
-      | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?   | Yes    |
-      | Are the personnel entering the pump room aware of the reporting interval?                             | Yes    |
-      | Has communication with the responsible officer been established?                                      | Yes    |
-      | Has the exhaust uptake been set to draw air from the lowest point in the pump room?                   | Yes    |
-      | Is the Emergency evacuation harness ready for use?                                                    | Yes    |
-      | Have the personal monitors for persons entering the pump room been checked for readiness?             | Yes    |
+      | Location of vessel                                                                                                                | At Sea |
+      | Has the exhaust ventilation system been switched on and running for at least 15 mins?                                             | No     |
+      | Are all the Pump room lights switched on?                                                                                         | Yes    |
+      | Is the fixed equipment for continuous monitoring of the atmosphere working properly and calibrated?                               | Yes    |
+      | Are the personnel entering the pump room aware of the reporting interval?                                                         | Yes    |
+      | Has communication with the responsible officer been established?                                                                  | Yes    |
+      | Has the exhaust uptake been set to draw air from the lowest point in the pump room?                                               | Yes    |
+      | Is the Emergency evacuation harness ready for use?                                                                                | Yes    |
+      | Have the personal monitors for persons entering the pump room been checked for readiness?                                         | Yes    |
       | Are the personnel entering the pump room aware of the locations of the ELSA / EEBD and familiar with its use?                     | Yes    |
-      | Are the personnel entering the pump room aware of the reporting interval?                             | No    |
+      | Are the personnel entering the pump room aware of the reporting interval?                                                         | No     |
       | Are emergency and evacuation procedures established and understood by the Person(s) entering the pump room?                       | Yes    |
       | Have the names of the person(s) entering the pump room been recorded in the Port operations log together with the time of entry?  | Yes    |
       | Are the person(s) entering the pump room aware that after exiting the space a report to the responsible officer must be made?     | Yes    |
       | Are the persons entering the pump room familiar with the emergency alarm meant for  CO2 / Foam flooding?                          | Yes    |
       | Are the persons entering the pump room familiar with the location of the emergency trips for the cargo pumps?                     | Yes    |
-      | Is the pumproom bilge dry?                                                                            | Yes    |
+      | Is the pumproom bilge dry?                                                                                                        | Yes    |
     And CommonEntry click Add Gas Reader
     And PinEntry enter pin for rank "A C/O"
     And GasReadings add normal gas readings
@@ -474,11 +474,6 @@ Feature: Entry COT LOA
       | pre  | updates-needed |
     And UpdatesNeededEntry click Edit Update button
     And PinEntry enter pin for rank "C/O"
-    Then PumpRoomEntry answer question
-      | Location of vessel                                                                                    | At Sea |
-      | Has the exhaust ventilation system been switched on and running for at least 15 mins?                 | No     |
-      | Are all the Pump room lights switched on?                                                             | Yes    |
-    And PumpRoomEntry select Permit Duration 6
     And CommonEntry click submit for approval
     And PinEntry enter pin for rank "<rank>"
     Then SignatureLocation click location dropdown
@@ -501,11 +496,6 @@ Feature: Entry COT LOA
       | pre  | updates-needed |
     And UpdatesNeededEntry click Edit Update button
     And PinEntry enter pin for rank "C/O"
-    Then PumpRoomEntry answer question
-      | Location of vessel                                                                                    | At Sea |
-      | Has the exhaust ventilation system been switched on and running for at least 15 mins?                 | No     |
-      | Are all the Pump room lights switched on?                                                             | No     |
-    And PumpRoomEntry select Permit Duration 6
     And CommonEntry click submit for approval
     Then PinEntry verify the error message is correct for the wrong rank
       | MAS   |
