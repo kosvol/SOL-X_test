@@ -10,10 +10,15 @@ class CompressorRoomEntryPage < BasePage
     cre_header: "//*[contains(text(),'Compressor/Motor Room Entry')]",
     cre_scrap: "//div/*/*[local-name()='span' or local-name()='label']",
     compressor_room_display_setting: "//span[contains(.,'Compressor/Motor Room')]",
-    button_sample: "//span[contains(.,'%s')]",
+    loc_radio_button: "//span[contains(.,'%s')]",
+    location_question: "//span[contains(text(),'%s')]/following::*[1]/label",
+    radio_button: "//div[starts-with(@class,'RadioButton__')]/label/span/span[contains(.,'%s')]",
     text_area: '//textarea',
     gas_added_by: 'div[role="dialog"] > div > section > div > span',
-    ptw_id: 'header > h1'
+    ptw_id: 'header > h1',
+    duration_dd_btn: "//button[@id='permitValidDuration']",
+    dd_list_value: "//ul[starts-with(@class,'UnorderedList-')]/li/button/div[contains(text(),'%s')]",
+    terminate_btn: "//button[span='Terminate']"
   }.freeze
 
   def initialize(driver)
@@ -21,13 +26,11 @@ class CompressorRoomEntryPage < BasePage
     find_element(COMPRESSOR_ROOM[:heading_text])
   end
 
-  def fill_cre_form(duration)
+  def fill_text_area
     all_page_text_areas = find_elements(COMPRESSOR_ROOM[:text_area])
     all_page_text_areas.each do |element|
       element.send_keys('Test Automation')
     end
-    click(format(COMPRESSOR_ROOM[:button_sample], ['At Sea', 'In Port'].sample).to_s)
-    select_permit_duration(duration)
   end
 
   def verify_titles_and_questions(entry_type)
@@ -75,6 +78,33 @@ class CompressorRoomEntryPage < BasePage
   def verify_permit_not_in_list
     permit_number_actual = @driver.find_element(:css, COMPRESSOR_ROOM[:ptw_id]).text
     raise "Permit #{permit_id} is present in list" unless permit_number_actual.eql?(permit_id) == false
+  end
+
+  def select_location_of_vessel(loc_type)
+    xpath_str = format(COMPRESSOR_ROOM[:location_question], 'Location of vessel')
+    xpath_str2 = format(COMPRESSOR_ROOM[:loc_radio_button], loc_type)
+    click((xpath_str + xpath_str2).to_s)
+  end
+
+  def select_all_checkboxes(answer)
+    all_page_radiobutton = find_elements(format(COMPRESSOR_ROOM[:radio_button], answer))
+    all_page_radiobutton.each(&:click)
+  end
+
+  def verify_non_editable
+    verify_element_not_exist(COMPRESSOR_ROOM[:text_area])
+    verify_element_not_exist(COMPRESSOR_ROOM[:radio_button])
+    verify_element_not_exist(COMPRESSOR_ROOM[:duration_dd_btn])
+  end
+
+  def select_permit_duration(duration)
+    @driver.execute_script('window.scrollBy(0,document.body.scrollHeight)', '')
+    click(COMPRESSOR_ROOM[:duration_dd_btn])
+    click(format(COMPRESSOR_ROOM[:dd_list_value], duration))
+  end
+
+  def click_terminate_btn
+    scroll_click(COMPRESSOR_ROOM[:terminate_btn])
   end
 
   private
