@@ -34,3 +34,7 @@ end
 And('Dashboard click Create GeoFence') do
   @dashboard_page.click_create_geofence
 end
+
+And('Dashboard click time button') do
+  @dashboard_page.click_time_button
+end

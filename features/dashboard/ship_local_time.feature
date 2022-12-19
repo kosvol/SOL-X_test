@@ -4,9 +4,18 @@ Feature: ShipLocalTime
   I want to ...
   So that ...
 
+
   Scenario: Verify base time is UTC
-    Given I launch sol-x portal
-    Then I should see base time is UTC
+    Given Dashboard open dashboard page
+    And Dashboard click time button
+    Then ShipLocalTime verify the time at UTC
+
+  @test
+  Scenario: Verify the minimum range offset
+    Given Dashboard open dashboard page
+    And Dashboard click time button
+    Then ShipLocalTime set UTC to minimum
+
 
   Scenario Outline: Verify only Captain and 2nd Officer can change ship time
     Given I launch sol-x portal

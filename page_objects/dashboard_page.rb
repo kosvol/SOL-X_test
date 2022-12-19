@@ -16,7 +16,8 @@ class DashboardPage < BasePage
     gas_reading_change_close: '//button[@aria-label="Close"]',
     acknowledge_btn: "//button[contains(.,'Acknowledge')]",
     loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]",
-    create_geofence: "//button[span='Create GeoFence']"
+    create_geofence: "//button[span='Create GeoFence']",
+    time_button: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/section/button"
   }.freeze
 
   def open_page
@@ -65,6 +66,10 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
 
   def click_create_geofence
     click(DASHBOARD[:create_geofence])
+  end
+
+  def click_time_button
+    click(DASHBOARD[:time_button])
   end
 
   private
