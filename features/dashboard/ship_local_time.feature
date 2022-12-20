@@ -9,11 +9,15 @@ Feature: ShipLocalTime
     Given Dashboard open dashboard page
     And Dashboard click time button
     Then ShipLocalTime verify the time at UTC
+    And CommonSection sleep for "4" sec
+    And PinEntry enter pin for rank "C/O"
 
   @test
   Scenario: Verify the minimum range offset
     Given Dashboard open dashboard page
+    And CommonSection sleep for "4" sec
     And Dashboard click time button
+    And CommonSection sleep for "1" sec
     Then ShipLocalTime set UTC to minimum
 
 
