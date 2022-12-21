@@ -12,7 +12,7 @@ class RoLSectionOnePage < BasePage
     headers: "//div[contains(@class,'Section__Description')]//h2",
     subheaders: "//div[contains(@class,'Section__Description')]//h4",
     questions: "//div[contains(@class,'Section__Description')]/div/div/span",
-    other: "//div[contains(@class,'Section__Description')]//label[contains(@for, 'lastAssessment')]"
+    other: "//div[contains(@class,'Section__Description')]//div[contains(@class, 'ontainer')]/label"
   }.freeze
 
   def initialize(driver)
