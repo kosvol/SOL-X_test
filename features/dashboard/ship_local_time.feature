@@ -10,15 +10,29 @@ Feature: ShipLocalTime
     And Dashboard click time button
     Then ShipLocalTime verify the time at UTC
     And CommonSection sleep for "4" sec
-    And PinEntry enter pin for rank "C/O"
 
-  @test
+  @test2
+  Scenario: Verify the minimum range offset
+    Given ShipLocalTime set UTC to default
+    Given Dashboard open dashboard page
+    And Dashboard click time button
+    When ShipLocalTime set UTC to minimum
+
+  @test3
   Scenario: Verify the minimum range offset
     Given Dashboard open dashboard page
-    And CommonSection sleep for "4" sec
     And Dashboard click time button
-    And CommonSection sleep for "1" sec
-    Then ShipLocalTime set UTC to minimum
+    Then ShipLocalTime set UTC to minus "+"
+    And ShipLocalTime click Confirm button
+    And PinEntry enter pin for rank "C/O"
+
+  @test4
+  Scenario: Verify the minimum range offset
+    Then ShipLocalTime set UTC to default
+
+  @test
+  Scenario: Update offset
+    Then ShipLocalTime set UTC to value by API -270
 
 
   Scenario Outline: Verify only Captain and 2nd Officer can change ship time
