@@ -96,6 +96,18 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     end
   end
 
+  def time_offset_comparing
+    ship_time = retrieve_vessel_time
+    time_now = Time.new.utc.to_datetime
+    time_with_offset = time_now.new_offset('-02:30').strftime('%H:%M')
+    if ship_time == time_with_offset
+      puts "Time on ship is equal to Time now #{ship_time} = #{time_with_offset}"
+    else
+      raise ArgumentError,
+            "Time on ship is NOT equal to Time now #{ship_time} != #{time_with_offset}"
+    end
+  end
+
   private
 
   def wait_for_loading

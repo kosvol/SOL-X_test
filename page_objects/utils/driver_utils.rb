@@ -60,16 +60,6 @@ module DriverUtils
     @driver.find_element(:xpath, xpath).send_keys(text)
   end
 
-  #my_new
-  def drag_and_drop
-    draggable = driver.find_element(id: 'draggable')
-    start = draggable.rect
-    finish = driver.find_element(id: 'droppable').rect
-    driver.action
-          .drag_and_drop_by(draggable, finish.x - start.x, finish.y - start.y)
-          .perform
-  end
-
   private
 
   def scroll_by_dist(x_coordinate, y_coordinate)

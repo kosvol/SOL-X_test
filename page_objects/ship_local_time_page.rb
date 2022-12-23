@@ -85,68 +85,6 @@ class ShipLocalTimePage < BasePage
     end
   end
 
-  def time_offset_comparing
-    ship_time = retrieve_ship_time
-    time_now = Time.new.utc.new_offset('-02:30').strftime('%H:%M')
-    puts" ship#{ship_time} now#{time_now}"
-  end
-
-  #DRAFT
-  #
-  def get_ship_time
-    puts TimeService.new.retrieve_ship_time
-    puts TimeService.new.retrieve_ship_utc_offset
-  end
-
-  def get_utc_off
-    offset = TimeApi.new.request_ship_local_time['data']['currentTime']['utcOffset']
-    puts offset
-  end
-  # def retrieve_ship_date
-  #   retrieve_text(SHIPTIME[:ship_date]).scan(/\d+/).first.to_i
-  # end
-
-  def time_ship_executing
-    hour = retrieve_ship_time[0, 2]
-    minute = retrieve_ship_time[3, 4]
-    utc = retrieve_ship_utc
-    t_ship = Time.new(1111, 11, 11, hour, minute, 11, utc).strftime('%H:%M')
-    # t_ship_utc = t_ship - t_ship.gmt_offset
-    # t_ship_utc.strftime('%H:%M')
-  end
-
-
-
-  # def get_utc_api(duration)
-  #   TimeService.new.set_default_ship_time(duration)
-  # end
-
-  def set_utc_default
-    hour = retrieve_ship_utc[1, 2]
-    min = retrieve_ship_utc[4, 5]
-    while hour != '00'
-      (move_picker(SHIPTIME[:hour], 0, +50))
-      hour = retrieve_ship_utc[1, 2]
-      puts hour
-    end
-    while min != '00'
-      min = retrieve_ship_utc[4, 5]
-      (move_picker(SHIPTIME[:min], 0, +50))
-      puts min
-    end
-  end
-
-  def set_utc_min
-    el = @driver.find_element(:xpath, SHIPTIME[:sign])
-    @driver.action.click_and_hold(el).perform
-    @driver.action.move_by(0, -50).perform
-    @driver.action.release.perform
-    el2 = @driver.find_element(:xpath, SHIPTIME[:hour])
-    @driver.action.click_and_hold(el2).perform
-    @driver.action.move_by(0, -50).perform
-    @driver.action.release.perform
-  end
-
   private
 
   def move_picker(element, x_offset, y_offset)
