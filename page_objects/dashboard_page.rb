@@ -17,7 +17,9 @@ class DashboardPage < BasePage
     acknowledge_btn: "//button[contains(.,'Acknowledge')]",
     loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]",
     create_geofence: "//button[span='Create GeoFence']",
-    time_button: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/section/button"
+    time_button: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/section/button",
+    popup: "//h3[contains(., 'Local time changed')]",
+    vessel_time: "//time[starts-with(@class,'Clock__Clock')]"
   }.freeze
 
   def open_page
@@ -70,6 +72,28 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
 
   def click_time_button
     click(DASHBOARD[:time_button])
+  end
+
+  def verify_popup
+    find_element(DASHBOARD[:popup])
+  end
+
+  def retrieve_vessel_time
+    retrieve_text(DASHBOARD[:vessel_time])
+  end
+
+  def verify_time_with_server
+    time_server = TimeService.new.retrieve_ship_time_hh_mm
+    time_ship = retrieve_vessel_time
+    wait = 0
+    while time_ship.to_s != time_server.to_s
+      @logger.debug "wait for local time to be updated, retrying: #{wait} times"
+      # sleep 0.5
+      wait += 1
+      time_ship = retrieve_vessel_time
+      time_server = TimeService.new.retrieve_ship_time_hh_mm
+      raise 'time out waiting for loading' if wait > 30
+    end
   end
 
   private
