@@ -18,7 +18,11 @@ Feature: ShipLocalTime
     And Dashboard open dashboard page
     Then Dashboard verify the local time
     And Dashboard click time button
-      Then ShipLocalTime set UTC hour to value "12"
+    Then ShipLocalTime set UTC hour to value "02"
+    Then ShipLocalTime set UTC min to value "30"
+    And ShipLocalTime set UTC sign to value "-"
+    Then ShipLocalTime verify the time with offset is correct
+
   #pass
   Scenario: Verify the user is able to set minimum range offset
     And Dashboard open dashboard page

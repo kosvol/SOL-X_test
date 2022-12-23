@@ -85,6 +85,12 @@ class ShipLocalTimePage < BasePage
     end
   end
 
+  def time_offset_comparing
+    ship_time = retrieve_ship_time
+    time_now = Time.new.utc.new_offset('-02:30').strftime('%H:%M')
+    puts" ship#{ship_time} now#{time_now}"
+  end
+
   #DRAFT
   #
   def get_ship_time

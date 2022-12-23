@@ -36,6 +36,12 @@ Then('ShipLocalTime set UTC min to value {string}') do |min|
   @ship_local_time_page ||= ShipLocalTimePage.new(@driver)
   @ship_local_time_page.update_min_to_value(min)
 end
+
+Then('ShipLocalTime verify the time with offset is correct') do
+  @ship_local_time_page ||= ShipLocalTimePage.new(@driver)
+  @ship_local_time_page.time_offset_comparing
+end
+
 #draft
 #
 Then('ShipLocalTime get ship time') do
