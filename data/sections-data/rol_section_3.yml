@@ -8,5 +8,14 @@ questions:
     "Task status:",
     "All personnel, materials and equipments have been withdrawn:",
     "Space secured and house keeping completed:",
+    "Best Practice:",
     "Master notified on task status:"
   ]
+
+exceptions: [""]
+
+additions:
+   [
+     "Permit Withdrawn By:",
+     "Task completed at:",
+   ]

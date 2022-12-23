@@ -7,8 +7,11 @@ class OPPermitOverviewPage < BasePage
   include EnvUtils
 
   PERMIT_OVERVIEW = {
-    permit_section1_header: "//div[@class='screen-only']//h2[contains(text(),'Section 1')]",
-    permit_pre_cre_header: "//div[@class='screen-only']//h2[contains(text(),'Entry Permit')]",
+    nav_bar: '//h1',
+    rol_headers: "//div[@class='screen-only']//div[contains(@class,'Section__Description')]//h2",
+    rol_subheaders: "//div[@class='screen-only']//div[contains(@class,'Section__Description')]//h4",
+    rol_other:
+     "//div[@class='screen-only']//div[contains(@class,'Section__Description')]//label[contains(@for, 'bestPractice')]",
     section_fields: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h4",
     section_labels: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//label",
     section_subheaders: "//div[@class='screen-only']//h2[contains(text(),'%s')]/../..//h2",
@@ -41,21 +44,17 @@ class OPPermitOverviewPage < BasePage
 
   def open_overview_page(permit_id)
     @driver.get(format("#{generate_base_url}/permit-overview?formId=%s", permit_id))
-    section_header = if permit_id.include? 'PTW'
-                       PERMIT_OVERVIEW[:permit_section1_header]
-                     else
-                       PERMIT_OVERVIEW[:permit_pre_cre_header]
-                     end
-    wait_for_copy_display(section_header)
+    wait_for_copy_display
   end
 
-  def wait_for_copy_display(xpath)
+  def wait_for_copy_display
+    sleep 0.5
     wait = 0
-    element = find_element(xpath)
-    until element.displayed?
-      sleep 2
+    while find_element(PERMIT_OVERVIEW[:nav_bar]).text == 'Loading...'
+      @logger.debug "wait for loading screen, retrying: #{wait} times"
+      sleep 0.5
       wait += 1
-      raise 'time out waiting for copy display' if wait > 10
+      raise 'time out waiting for loading screen' if wait > 30
     end
   end
 
@@ -106,6 +105,17 @@ class OPPermitOverviewPage < BasePage
     base_data += (YAML.load_file("data/checklist/#{checklist}.yml")['questions'] - YAML
                  .load_file('data/checklist/checklist_exceptions.yml')['exceptions'])
     compare_string(base_data, actual_questions_arr)
+  end
+
+  def verify_rol_section_data(section)
+    expected_data = retrieve_expected_data(section)
+    expected_data.each do |question|
+      next if retrieve_rol_section_items('rol_headers').include? question
+      next if retrieve_rol_section_items('rol_subheaders').include? question
+      next if retrieve_rol_section_items('rol_other').include? question
+
+      raise "Verification failed for the question: '#{question}'"
+    end
   end
 
   private
@@ -219,5 +229,20 @@ class OPPermitOverviewPage < BasePage
       questions_arr << question.text
     end
     questions_arr
+  end
+
+  def retrieve_expected_data(section)
+    [] + YAML.load_file("data/sections-data/rol_#{section}.yml")['questions'] -
+      YAML.load_file("data/sections-data/rol_#{section}.yml")['exceptions'] +
+      YAML.load_file("data/sections-data/rol_#{section}.yml")['additions']
+  end
+
+  def retrieve_rol_section_items(items)
+    questions = []
+    elements = @driver.find_elements(:xpath, PERMIT_OVERVIEW[:"#{items.to_sym}"])
+    elements.each do |element|
+      questions << element.text
+    end
+    questions
   end
 end
