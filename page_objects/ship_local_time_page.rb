@@ -22,14 +22,6 @@ class ShipLocalTimePage < BasePage
     TimeApi.new.update_ship_utc(value)
   end
 
-  def retrieve_ship_time
-    retrieve_text(SHIPTIME[:ship_time])
-  end
-
-  def retrieve_ship_utc
-    retrieve_text(SHIPTIME[:ship_utc])
-  end
-
   def click_confirm_btn
     click(SHIPTIME[:confirm_btn])
   end
@@ -38,14 +30,14 @@ class ShipLocalTimePage < BasePage
     click(SHIPTIME[:cancel_btn])
   end
 
-  def time_comparing
+  def compare_time
     ship_time = retrieve_ship_time
     time_now = Time.now.utc.strftime('%H:%M')
     if ship_time == time_now
-      puts "Time on ship is equal to Time now #{ship_time} = #{time_now}"
+      puts 'Time on ship is equal to Time now'
     else
       raise ArgumentError,
-            "Time on ship is NOT equal to Time now #{ship_time} != #{time_now}"
+            'Time on ship is NOT equal to Time now'
     end
   end
 
@@ -86,6 +78,14 @@ class ShipLocalTimePage < BasePage
   end
 
   private
+
+  def retrieve_ship_time
+    retrieve_text(SHIPTIME[:ship_time])
+  end
+
+  def retrieve_ship_utc
+    retrieve_text(SHIPTIME[:ship_utc])
+  end
 
   def move_picker(element, x_offset, y_offset)
     sleep 1

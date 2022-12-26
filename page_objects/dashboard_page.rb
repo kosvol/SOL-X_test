@@ -78,17 +78,12 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     find_element(DASHBOARD[:popup])
   end
 
-  def retrieve_vessel_time
-    retrieve_text(DASHBOARD[:vessel_time])
-  end
-
   def verify_time_with_server
     time_server = TimeService.new.retrieve_ship_time_hh_mm
     time_ship = retrieve_vessel_time
     wait = 0
     while time_ship.to_s != time_server.to_s
       @logger.debug "wait for local time to be updated, retrying: #{wait} times"
-      # sleep 0.5
       wait += 1
       time_ship = retrieve_vessel_time
       time_server = TimeService.new.retrieve_ship_time_hh_mm
@@ -96,15 +91,15 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     end
   end
 
-  def time_offset_comparing
+  def compare_time_offset
     ship_time = retrieve_vessel_time
     time_now = Time.new.utc.to_datetime
     time_with_offset = time_now.new_offset('-02:30').strftime('%H:%M')
     if ship_time == time_with_offset
-      puts "Time on ship is equal to Time now #{ship_time} = #{time_with_offset}"
+      puts 'Time on ship is equal to Time now'
     else
       raise ArgumentError,
-            "Time on ship is NOT equal to Time now #{ship_time} != #{time_with_offset}"
+            'Time on ship is NOT equal to Time now'
     end
   end
 
@@ -119,5 +114,9 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
       wait += 1
       raise 'time out waiting for loading screen' if wait > 30
     end
+  end
+
+  def retrieve_vessel_time
+    retrieve_text(DASHBOARD[:vessel_time])
   end
 end

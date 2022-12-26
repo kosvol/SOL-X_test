@@ -48,5 +48,5 @@ And('Dashboard verify the local time') do
 end
 
 Then('Dashboard verify the time with offset is correct') do
-  @dashboard_page.time_offset_comparing
+  @dashboard_page.compare_time_offset
 end

@@ -14,7 +14,7 @@ end
 
 Then('ShipLocalTime verify the time at UTC') do
   @ship_local_time_page ||= ShipLocalTimePage.new(@driver)
-  @ship_local_time_page.time_comparing
+  @ship_local_time_page.compare_time
 end
 
 Then('ShipLocalTime set UTC to value by API {int}') do |value|
