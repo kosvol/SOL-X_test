@@ -34,12 +34,22 @@ class TimeService
   def retrieve_ship_time_hh_mm
     epoch_time = TimeApi.new.request_ship_local_time['data']['currentTime']['secondsSinceEpoch']
     utc = retrieve_ship_utc_offset
-    if utc >= 30
+    if utc.abs >= 30
       utc *= 60
-    elsif utc < 30
+    elsif utc.abs < 30
       utc = utc * 60 * 60
     end
     ship_time_sec = epoch_time + utc
     Time.at(ship_time_sec).utc.to_datetime.strftime('%H:%M')
+  end
+
+  def retrieve_ship_utc_hh_mm
+    utc = retrieve_ship_utc_offset
+    if utc.abs >= 30
+      utc *= 60
+    elsif utc.abs < 30
+      utc = utc * 60 * 60
+    end
+    utc.negative? ? "-#{Time.at(utc.abs).utc.strftime('%H:%M')}" : Time.at(utc.abs).utc.strftime('%H:%M')
   end
 end

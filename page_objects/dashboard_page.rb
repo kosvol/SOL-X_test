@@ -79,22 +79,21 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
   end
 
   def verify_time_with_server
-    time_server = TimeService.new.retrieve_ship_time_hh_mm
-    time_ship = retrieve_vessel_time
     wait = 0
-    while time_ship.to_s != time_server.to_s
+    while retrieve_vessel_time.to_s != TimeService.new.retrieve_ship_time_hh_mm.to_s
       @logger.debug "wait for local time to be updated, retrying: #{wait} times"
       wait += 1
-      time_ship = retrieve_vessel_time
-      time_server = TimeService.new.retrieve_ship_time_hh_mm
+      retrieve_vessel_time
+      TimeService.new.retrieve_ship_time_hh_mm
       raise 'time out waiting for loading' if wait > 30
     end
   end
 
   def compare_time_offset
     ship_time = retrieve_vessel_time
+    utc = TimeService.new.retrieve_ship_utc_hh_mm
     time_now = Time.new.utc.to_datetime
-    time_with_offset = time_now.new_offset('-02:30').strftime('%H:%M')
+    time_with_offset = time_now.new_offset(utc).strftime('%H:%M')
     if ship_time == time_with_offset
       puts 'Time on ship is equal to Time now'
     else

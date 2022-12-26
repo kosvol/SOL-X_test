@@ -77,14 +77,14 @@ class ShipLocalTimePage < BasePage
     end
   end
 
+  def retrieve_ship_utc
+    retrieve_text(SHIPTIME[:ship_utc])
+  end
+
   private
 
   def retrieve_ship_time
     retrieve_text(SHIPTIME[:ship_time])
-  end
-
-  def retrieve_ship_utc
-    retrieve_text(SHIPTIME[:ship_utc])
   end
 
   def move_picker(element, x_offset, y_offset)
