@@ -43,4 +43,10 @@ class WearableService
       @wearable_api.unlink_wearable(wearable['_id'], pin) unless wearable['userId'].nil?
     end
   end
+
+  def send_crew_assist(wearable_id, rank, pin = '1111')
+    user_id = UserService.new.retrieve_user_id_by_rank(rank)
+    @logger.debug("link wearable: #{wearable_id} with user: #{user_id}")
+    @wearable_api.send_alert(wearable_id, user_id, pin)
+  end
 end

@@ -1,8 +1,8 @@
 {
   "operationName": null,
   "variables": {
-    "wearableId": "fcd1363b7bd69fc526a74c7620000ac5",
-    "userId": "AUTO_SOLX0012"
+    "wearableId": "01GMZEHS0BBPXSNPJ08AQAG7HA",
+    "userId": "COTAUTO_0004"
   },
   "query": "mutation ($wearableId: ID!, $userId: ID!) {\n  linkUserWithWearable(wearableId: $wearableId, userId: $userId)\n}\n"
 }

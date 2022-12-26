@@ -1,6 +1,25 @@
 @crew-assist
 Feature: CrewAssist
 
+  @test
+    Scenario: test
+#      Given Wearable service unlink all wearables
+#      And Wearable service link crew member
+#      | rank |zone_id |        mac       |
+#      | MAS  |        | 00:00:00:00:00:01|
+#    And Wearable service link crew member
+#      | rank |zone_id |        mac       |
+#      | PMN  |        | 00:00:00:00:00:02|
+#    Then Dashboard open dashboard page
+    And Wearable service send crew assist
+      | rank |
+      | PMN  |
+
+
+
+
+
+
   # Background: Given I clear wearable history and active users
 
   Scenario: Verify alert dialog popup display crew rank,name and location

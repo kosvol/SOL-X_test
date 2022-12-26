@@ -46,3 +46,10 @@ And('Wearable service unlink all wearables') do
   @wearable_service ||= WearableService.new
   @wearable_service.unlink_all_wearables
 end
+
+And('Wearable service send crew assist') do |table|
+  params = table.hashes.first
+  @wearable_service ||= WearableService.new
+  wearable_id = @wearable_service.retrieve_wearables
+  @wearable_service.send_crew_assist(wearable_id, params['rank'])
+end
