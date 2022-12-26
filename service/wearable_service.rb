@@ -44,9 +44,8 @@ class WearableService
     end
   end
 
-  def send_crew_assist(wearable_id, rank, pin = '1111')
-    user_id = UserService.new.retrieve_user_id_by_rank(rank)
-    @logger.debug("link wearable: #{wearable_id} with user: #{user_id}")
-    @wearable_api.send_alert(wearable_id, user_id, pin)
+  def send_crew_assist(wearable_id, pin = '1111')
+    @logger.debug("#{wearable_id} Send an alert")
+    @wearable_api.send_alert(wearable_id, pin)
   end
 end

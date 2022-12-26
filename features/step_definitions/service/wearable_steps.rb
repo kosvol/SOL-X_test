@@ -50,6 +50,9 @@ end
 And('Wearable service send crew assist') do |table|
   params = table.hashes.first
   @wearable_service ||= WearableService.new
-  wearable_id = @wearable_service.retrieve_wearables
-  @wearable_service.send_crew_assist(wearable_id, params['rank'])
+  wearables = @wearable_service.retrieve_wearables
+  unused_wearable_id = @wearable_service.retrieve_unused_wearable_id(wearables)
+  @wearable_service.link_crew_member(unused_wearable_id, params['rank'])
+  @wearable_service.update_wearable_location(unused_wearable_id, params['zone_id'], params['mac'])
+  @wearable_service.send_crew_assist(wearables, params['rank'])
 end

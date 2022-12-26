@@ -12,8 +12,8 @@ Feature: CrewAssist
 #      | PMN  |        | 00:00:00:00:00:02|
 #    Then Dashboard open dashboard page
     And Wearable service send crew assist
-      | rank |
-      | PMN  |
+      | rank |zone_id |        mac       |
+      | PMN  |        | 00:00:00:00:00:02|
 
 
 

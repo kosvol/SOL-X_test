@@ -42,10 +42,9 @@ class WearableAPI
     JSON.parse response.body
   end
 
-  def send_alert(wearable_id, user_id, pin)
+  def send_alert(wearable_id, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/trigger_panic.json")
     payload['variables']['id'] = wearable_id
-    payload['variables']['userId'] = user_id
     puts "!!! Its payload #{payload}"
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
