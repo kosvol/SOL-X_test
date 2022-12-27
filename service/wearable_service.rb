@@ -30,10 +30,9 @@ class WearableService
     @wearable_api.link_crew_wearable(wearable_id, user_id, pin)
   end
 
-  def update_wearable_location(wearable_id, zone_id, mac, pin = '1111')
-    zone = "#{retrieve_vessel_name}-#{zone_id}"
-    @logger.debug("update wearable: #{wearable_id} with zone: #{zone}")
-    @wearable_api.update_wearable_location(wearable_id, zone, mac, pin)
+  def update_wearable_location(wearable_id, mac, pin = '1111')
+    @logger.debug("update wearable: #{wearable_id}")
+    @wearable_api.update_wearable_location(wearable_id, mac, pin)
   end
 
   def unlink_all_wearables(pin = '1111')
@@ -45,7 +44,7 @@ class WearableService
   end
 
   def send_crew_assist(wearable_id, pin = '1111')
-    @logger.debug("#{wearable_id} Send an alert")
+    @logger.debug("Send an alert to #{wearable_id}")
     @wearable_api.send_alert(wearable_id, pin)
   end
 end

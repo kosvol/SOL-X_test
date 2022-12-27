@@ -23,10 +23,10 @@ class WearableAPI
     JSON.parse response.body
   end
 
-  def update_wearable_location(wearable_id, zone, mac, pin)
+  def update_wearable_location(wearable_id, mac, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/update_wearable_location.json")
     payload['variables']['id'] = wearable_id
-    updated_payload = update_beacons(payload, zone, mac)
+    updated_payload = update_beacons(payload, mac)
     response = RestClient.post(retrieve_api_url,
                                updated_payload.to_json,
                                { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
@@ -54,8 +54,7 @@ class WearableAPI
 
   private
 
-  def update_beacons(payload, zone, mac)
-    payload['variables']['beacons'].first['id'] = zone
+  def update_beacons(payload, mac)
     payload['variables']['beacons'].first['mac'] = mac
     payload
   end
