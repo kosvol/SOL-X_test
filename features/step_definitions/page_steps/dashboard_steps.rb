@@ -34,3 +34,19 @@ end
 And('Dashboard click Create GeoFence') do
   @dashboard_page.click_create_geofence
 end
+
+And('Dashboard click time button') do
+  @dashboard_page.click_time_button
+end
+
+And('Dashboard verify the local time popup message') do
+  @dashboard_page.verify_popup
+end
+
+And('Dashboard verify the local time') do
+  @dashboard_page.verify_time_with_server
+end
+
+Then('Dashboard verify the time with offset is correct') do
+  @dashboard_page.compare_time_offset
+end
