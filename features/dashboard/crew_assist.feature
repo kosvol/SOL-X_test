@@ -13,6 +13,11 @@ Feature: CrewAssist
     | rank |        mac       |
     | FTR  | 00:00:00:00:00:01|
 
+    And Wearable service send crew assist
+    | rank |        mac       |
+    | MAS  | 00:00:00:00:00:00|
+
+
 
 
   # Background: Given I clear wearable history and active users
