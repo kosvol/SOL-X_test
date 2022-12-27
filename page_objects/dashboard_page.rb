@@ -83,8 +83,6 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     while retrieve_vessel_time.to_s != TimeService.new.retrieve_ship_time_hh_mm.to_s
       @logger.debug "wait for local time to be updated, retrying: #{wait} times"
       wait += 1
-      retrieve_vessel_time
-      TimeService.new.retrieve_ship_time_hh_mm
       raise 'time out waiting for loading' if wait > 30
     end
   end
