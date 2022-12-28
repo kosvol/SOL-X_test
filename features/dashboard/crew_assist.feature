@@ -3,33 +3,29 @@ Feature: CrewAssist
 
   @test2
   Scenario: test
-    Then Dashboard open dashboard page
-    Given Wearable service unlink all wearables
-    And CommonSection sleep for "10" sec
-#    And Wearable service link crew member
-    And Wearable service send crew assist alert
+    Given Dashboard open dashboard page
+    Then Wearable service unlink all wearables
+    And Wearable service link crew member
     | rank |        mac       |
     | MAS  | 00:00:00:00:00:00|
-
-    And Wearable service dismiss crew assist alert
-    And CommonSection sleep for "10" sec
-    Then DashboardAlert click Acknowledge button
-#
-#    And Wearable service send crew assist
-#    | rank |        mac       |
-#    | FTR  | 00:00:00:00:00:01|
-
-  @test
-  Scenario: test 2 dismiss
-#    Given Wearable service unlink all wearables
-#    And Wearable service send crew assist
-#      | rank |        mac       |
-#      | PMN  | 00:00:00:00:00:00|
-#    And Wearable service send crew assist
-#      | rank |        mac       |
-#      | MAS  | 00:00:00:00:00:02|
+    And Wearable service link crew member
+    | rank |        mac       |
+    | O/S  | 00:00:00:00:00:01|
     And Wearable service send crew assist alert
     And Wearable service dismiss crew assist alert
+    Then Wearable service unlink all wearables
+
+  @test
+  Scenario: test 2
+    Then Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank |        mac       |
+      | C/E  | 00:00:00:00:00:00|
+    Given Dashboard open dashboard page
+    And Wearable service send crew assist alert
+    Then DashboardAlert click Acknowledge button
+    And PinEntry enter pin for rank "MAS"
+    Then Wearable service unlink all wearables
 
 
 
