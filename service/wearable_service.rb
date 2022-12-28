@@ -43,8 +43,31 @@ class WearableService
     end
   end
 
-  def send_crew_assist(wearable_id, pin = '1111')
-    @logger.debug("Send an alert to #{wearable_id}")
-    @wearable_api.send_alert(wearable_id, pin)
+  # def send_crew_assist(wearable_id, pin = '1111')
+  #   @logger.debug("Send an alert to #{wearable_id}")
+  #   @wearable_api.send_alert(wearable_id, pin)
+  # end
+
+
+  def send_crew_assist(wearable_list)
+    wearable_list['data']['wearables'].each do |wearable|
+      if !wearable['userId'].nil?
+        @wearable_api.send_alert(wearable['_id'], '1111')
+      else
+        puts 'There is no Active Wearable'
+      end
+
+    end
+  end
+
+  def dismiss_crew_assist(wearable_list)
+    wearable_list['data']['wearables'].each do |wearable|
+      if !wearable['userId'].nil?
+        @wearable_api.dismiss_alert(wearable['_id'], '1111')
+      else
+        puts 'There is no Active Wearable'
+      end
+
+    end
   end
 end

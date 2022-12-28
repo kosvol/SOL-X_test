@@ -47,12 +47,14 @@ And('Wearable service unlink all wearables') do
   @wearable_service.unlink_all_wearables
 end
 
-And('Wearable service send crew assist') do |table|
-  params = table.hashes.first
+And('Wearable service send crew assist alert') do
   @wearable_service ||= WearableService.new
   wearables = @wearable_service.retrieve_wearables
-  unused_wearable_id = @wearable_service.retrieve_unused_wearable_id(wearables)
-  @wearable_service.link_crew_member(unused_wearable_id, params['rank'])
-  @wearable_service.update_wearable_location(unused_wearable_id, params['mac'])
-  @wearable_service.send_crew_assist(unused_wearable_id)
+  @wearable_service.send_crew_assist(wearables)
+end
+
+And('Wearable service dismiss crew assist alert') do
+  @wearable_service ||= WearableService.new
+  wearables = @wearable_service.retrieve_wearables
+  @wearable_service.dismiss_crew_assist(wearables)
 end
