@@ -14,4 +14,13 @@ class TimeApi
                                { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
     JSON.parse response.body
   end
+
+  def update_ship_utc(duration, pin = 1111)
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/ship-local-time/change-ship-local-time.json")
+    payload['variables']['utcOffset'] = duration.to_i
+    response = RestClient.post(retrieve_api_url,
+                               payload.to_json,
+                               { 'Content-Type' => 'application/json', 'Accept' => '/', 'x-auth-pin' => pin })
+    JSON.parse response.body
+  end
 end

@@ -16,7 +16,10 @@ class DashboardPage < BasePage
     gas_reading_change_close: '//button[@aria-label="Close"]',
     acknowledge_btn: "//button[contains(.,'Acknowledge')]",
     loading_screen: "//*[starts-with(@class,'SplashScreen__LoadingIndicator')]",
-    create_geofence: "//button[span='Create GeoFence']"
+    create_geofence: "//button[span='Create GeoFence']",
+    time_button: "//nav[starts-with(@class,'NavigationBar__NavBar-')]/section/button",
+    popup: "//h3[contains(., 'Local time changed')]",
+    vessel_time: "//time[starts-with(@class,'Clock__Clock')]"
   }.freeze
 
   def open_page
@@ -67,6 +70,36 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     click(DASHBOARD[:create_geofence])
   end
 
+  def click_time_button
+    click(DASHBOARD[:time_button])
+  end
+
+  def verify_popup
+    find_element(DASHBOARD[:popup])
+  end
+
+  def verify_time_with_server
+    wait = 0
+    while retrieve_vessel_time.to_s != TimeService.new.retrieve_ship_time_hh_mm.to_s
+      @logger.debug "wait for local time to be updated, retrying: #{wait} times"
+      wait += 1
+      raise 'time out waiting for loading' if wait > 30
+    end
+  end
+
+  def compare_time_offset
+    ship_time = retrieve_vessel_time
+    utc = TimeService.new.retrieve_ship_utc_hh_mm
+    time_now = Time.new.utc.to_datetime
+    time_with_offset = time_now.new_offset(utc).strftime('%H:%M')
+    if ship_time == time_with_offset
+      puts 'Time on ship is equal to Time now'
+    else
+      raise ArgumentError,
+            'Time on ship is NOT equal to Time now'
+    end
+  end
+
   private
 
   def wait_for_loading
@@ -78,5 +111,9 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
       wait += 1
       raise 'time out waiting for loading screen' if wait > 30
     end
+  end
+
+  def retrieve_vessel_time
+    retrieve_text(DASHBOARD[:vessel_time])
   end
 end
