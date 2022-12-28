@@ -15,7 +15,7 @@ Feature: CrewAssist
     And Wearable service dismiss crew assist alert
     Then Wearable service unlink all wearables
 
-  @test
+  @test2
   Scenario: test 2
     Then Wearable service unlink all wearables
     And Wearable service link crew member
@@ -26,6 +26,12 @@ Feature: CrewAssist
     Then DashboardAlert click Acknowledge button
     And PinEntry enter pin for rank "MAS"
     Then Wearable service unlink all wearables
+
+  @test
+  Scenario: test 2
+    Given Dashboard open dashboard page
+    Then DashboardAlert verify crew assist alert from "MAS"
+    And CommonSection sleep for "2" sec
 
 
 

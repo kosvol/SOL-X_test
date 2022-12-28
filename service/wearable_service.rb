@@ -48,7 +48,7 @@ class WearableService
       if !wearable['userId'].nil?
         @wearable_api.send_alert(wearable['_id'], '1111')
       else
-        @logger.debug "There is no Active user for Wearable #{wearable['_id']} "
+        @logger.debug "There is no Active user for Wearable #{wearable['_id']}"
       end
     end
   end
@@ -58,8 +58,17 @@ class WearableService
       if !wearable['userId'].nil?
         @wearable_api.dismiss_alert(wearable['_id'], '1111')
       else
-        puts 'There is no Active Wearable'
+        @logger.debug "There is no Active user for Wearable #{wearable['_id']}"
       end
+    end
+  end
+
+  def crew_assist_get_location(rank)
+    wearable_list = retrieve_wearables
+    wearable_list['data']['wearables'].each do |wearable|
+      puts "!!Rank = #{wearable['crewMember']['rank']}"
+      puts "!!Location = #{wearable['location']['zone']['name']}"
+      return wearable['location']['zone']['name'] if wearable['crewMember']['rank'] == rank
     end
   end
 end
