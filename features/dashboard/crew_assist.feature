@@ -43,7 +43,14 @@ Feature: CrewAssist
       | rank |
       | C/O  |
     And CommonSection sleep for "2" sec
-
+    Then DashboardAlert verify crew assist alert
+      | rank |
+      | C/O  |
+    Then DashboardAlert click Acknowledge button
+      | rank |
+      | C/O  |
+    And PinEntry enter pin for rank "MAS"
+    And CommonSection sleep for "2" sec
 
 
   # Background: Given I clear wearable history and active users
