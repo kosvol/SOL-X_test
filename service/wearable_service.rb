@@ -66,8 +66,6 @@ class WearableService
   def crew_assist_retrieve_location(rank)
     wearable_list = retrieve_wearables
     wearable_list['data']['wearables'].each do |wearable|
-      puts "!!Rank = #{wearable['crewMember']['rank']}"
-      puts "!!Location = #{wearable['location']['zone']['name']}"
       return wearable['location']['zone']['name'] if wearable['crewMember']['rank'] == rank
     end
   end

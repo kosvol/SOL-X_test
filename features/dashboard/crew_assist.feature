@@ -1,42 +1,55 @@
 @crew-assist
 Feature: CrewAssist
 
+  @test
+  Scenario: test
+    Given Wearable service unlink all wearables
+    And Wearable service link crew member
+    | rank |        mac       |
+    | MAS  | 00:00:00:00:00:05|
+    Then Dashboard open dashboard page
+    And CommonSection sleep for "1" sec
+    And Wearable service send crew assist alert
+#    Then DashboardAlert click Acknowledge button2
+    Then DashboardAlert click Acknowledge button
+      | rank |
+      | C/O  |
+    And PinEntry enter pin for rank "MAS"
+    Then Wearable service unlink all wearables
+
   @test2
   Scenario: test
     Given Dashboard open dashboard page
     Then Wearable service unlink all wearables
     And Wearable service link crew member
-    | rank |        mac       |
-    | MAS  | 00:00:00:00:00:00|
-    And Wearable service link crew member
-    | rank |        mac       |
-    | O/S  | 00:00:00:00:00:01|
+      | rank |        mac       |
+      | MAS  | 00:00:00:00:00:01|
     And Wearable service send crew assist alert
     And Wearable service dismiss crew assist alert
     Then Wearable service unlink all wearables
 
-  @test1
-  Scenario: test 2
+  @test2
+  Scenario: test ackn alarm
     Then Wearable service unlink all wearables
-    And Wearable service link crew member
-      | rank |        mac       |
-      | C/E  | 00:00:00:00:00:00|
     And Wearable service link crew member
       | rank |        mac       |
       | O/S  | 00:00:00:00:00:01|
     And Wearable service link crew member
       | rank |        mac       |
-      | MAS  | 00:00:00:00:00:01|
+      | MAS  | 00:00:00:00:00:02|
     Given Dashboard open dashboard page
     And Wearable service send crew assist alert
-    Then DashboardAlert verify crew assist alert
+    Then DashboardAlert verify crew assist alert data
       | rank |
       | O/S  |
-#    Then DashboardAlert click Acknowledge button
+    Then DashboardAlert click Acknowledge button
+      | rank |
+      | MAS  |
     And PinEntry enter pin for rank "MAS"
+    And CommonSection sleep for "2" sec
     Then Wearable service unlink all wearables
 
-  @test
+  @test22
   Scenario: test 2
     Given Dashboard open dashboard page
     Then DashboardAlert verify crew assist alert
