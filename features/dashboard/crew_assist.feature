@@ -1,5 +1,31 @@
 @crew-assist
 Feature: CrewAssist
+  @test
+  Scenario: Verify the crew assist message is shown
+    Given Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank |        mac        |
+      | C/O  | 00:00:00:00:00:01 |
+    Then Dashboard open dashboard page
+    And Dashboard verify the local time
+    When Wearable service send crew assist alert
+    And DashboardAlert verify alert availability
+      | alert       | availability  |
+      | Crew Assist | displayed     |
+
+  @test
+  Scenario: Verify the crew assist message is disappear
+    Given Wearable service unlink all wearables
+    And Wearable service link crew member
+      | rank |        mac        |
+      | C/E  | 00:00:00:00:00:02 |
+    Then Dashboard open dashboard page
+    And Dashboard verify the local time
+    And Wearable service send crew assist alert
+    Then Wearable service dismiss crew assist alert
+    And DashboardAlert verify alert availability
+      | alert       | availability  |
+      | Crew Assist | not displayed |
 
   @test
   Scenario: test
@@ -8,12 +34,14 @@ Feature: CrewAssist
     | rank |        mac       |
     | MAS  | 00:00:00:00:00:05|
     Then Dashboard open dashboard page
+    And Dashboard verify the local time
     And CommonSection sleep for "1" sec
     And Wearable service send crew assist alert
-#    Then DashboardAlert click Acknowledge button2
+
+    And CommonSection sleep for "6" sec
     Then DashboardAlert click Acknowledge button
       | rank |
-      | C/O  |
+      | MAS  |
     And PinEntry enter pin for rank "MAS"
     Then Wearable service unlink all wearables
 
