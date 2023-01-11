@@ -50,3 +50,12 @@ end
 Then('Dashboard verify the time with offset is correct') do
   @dashboard_page.compare_time_offset
 end
+
+And('Dashboard open new window dashboard page') do
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.open_page_new_window
+end
+
+And('Dashboard switch to window {int}') do |window|
+  @dashboard_page.switch_window(window)
+end

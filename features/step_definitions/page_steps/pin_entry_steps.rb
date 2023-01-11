@@ -15,3 +15,13 @@ Given('PinEntry verify the error message is correct for the wrong rank') do |tab
   @pin_entry_page ||= PinEntryPage.new(@driver)
   @pin_entry_page.enter_pins(table)
 end
+
+Given('PinEntry click Cancel button') do
+  @pin_entry_page ||= PinEntryPage.new(@driver)
+  @pin_entry_page.click_cancel
+end
+
+Given('PinEntry enter invalid pin {string}') do |pin|
+  @pin_entry_page ||= PinEntryPage.new(@driver)
+  @pin_entry_page.enter_invalid_pin(pin)
+end

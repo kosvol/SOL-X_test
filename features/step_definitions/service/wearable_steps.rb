@@ -47,13 +47,13 @@ And('Wearable service unlink all wearables') do
   @wearable_service.unlink_all_wearables
 end
 
-And('Wearable service send crew assist alert') do
+And('Wearable service send crew assist alerts') do
   @wearable_service ||= WearableService.new
   wearables = @wearable_service.retrieve_wearables
   @wearable_service.send_crew_assist(wearables)
 end
 
-And('Wearable service dismiss crew assist alert') do
+And('Wearable service dismiss crew assist alerts') do
   @wearable_service ||= WearableService.new
   wearables = @wearable_service.retrieve_wearables
   @wearable_service.dismiss_crew_assist(wearables)

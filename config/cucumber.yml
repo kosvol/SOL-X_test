@@ -1,6 +1,7 @@
 #************** Browser Profiles *************#
 tablet_sample: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=tablet PROJECT=solx
 dashboard_sample: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=dashboard PROJECT=solx
+#test_cot_tablet: --profile json PLATFORM=chrome_incognito ENVIRONMENT=auto VESSEL=cot DEVICE=dashboard PROJECT=solx --tags @test
 test_cot_tablet: --profile json PLATFORM=chrome_incognito APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=dashboard PROJECT=solx --tags @test
 test_cot_tablet_inc: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=dashboard PROJECT=solx --tags @test
 test_cot: --profile json PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=auto VESSEL=cot DEVICE=tablet PROJECT=solx --tags @test
