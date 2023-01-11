@@ -58,3 +58,8 @@ And('Wearable service dismiss crew assist alerts') do
   wearables = @wearable_service.retrieve_wearables
   @wearable_service.dismiss_crew_assist(wearables)
 end
+
+And('Wearable create new {int} wearables') do |quantity|
+  @wearable_service ||= WearableService.new
+  @wearable_service.create_wearables(quantity)
+end

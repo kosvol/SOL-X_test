@@ -79,4 +79,12 @@ class WearableService
       return name if wearable['crewMember']['rank'] == rank
     end
   end
+
+  def create_wearables(quantity)
+    quantity.times do
+      device_id = "#{Time.new.utc.strftime('%Y%m%d%H%M%S')}_TEST_AUTO_WEARABLE"
+      sleep 0.5
+      @wearable_api.create_wearable(device_id, '1111')
+    end
+  end
 end

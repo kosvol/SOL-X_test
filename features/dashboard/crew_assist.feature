@@ -3,10 +3,9 @@ Feature: CrewAssist
 
   @test
   Scenario: Create wearable
-    Given Wearable service create wearables
+    Given Wearable create new 3 wearables
 
-
-  @test1
+  @test
   Scenario: Verify the crew assist message is shown on the Dashboard
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -221,12 +220,12 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | displayed     |
-    And DashboardAlert refresh page
+    And Browser refresh page
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
 
-  @test11
+  @test11 #second window doesn't see  old alerts
   Scenario: Verify the crew assist alert is shown in another window
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -242,8 +241,9 @@ Feature: CrewAssist
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
 
-  @test0
+  @test12 #second window doesn't see  old alerts
   Scenario: Verify the crew assist alert is disappear in both windows after dismissing
+    When Wearable service dismiss crew assist alerts
     Given Wearable service unlink all wearables
     And Wearable service link crew member
       | rank |        mac        |
@@ -261,7 +261,7 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-    And Dashboard switch to window 1
+    And Browser switch to window 1
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |

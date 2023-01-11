@@ -45,7 +45,6 @@ class WearableAPI
   def send_alert(wearable_id, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/trigger_panic.json")
     payload['variables']['id'] = wearable_id
-    puts "!!! Its payload #{payload}"
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
                                { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
@@ -55,6 +54,15 @@ class WearableAPI
   def dismiss_alert(wearable_id, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/dismiss_panic.json")
     payload['variables']['id'] = wearable_id
+    response = RestClient.post(retrieve_api_url,
+                               payload.to_json,
+                               { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
+    JSON.parse response.body
+  end
+
+  def create_wearable(device_id, pin)
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/create_wearable.json")
+    payload['variables']['deviceId'] = device_id
     puts "!!! Its payload #{payload}"
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,

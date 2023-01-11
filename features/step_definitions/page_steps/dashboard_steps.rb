@@ -52,10 +52,8 @@ Then('Dashboard verify the time with offset is correct') do
 end
 
 And('Dashboard open new window dashboard page') do
+  @browser_page ||= BrowserPage.new(@driver)
+  @browser_page.open_second_window
   @dashboard_page ||= DashboardPage.new(@driver)
   @dashboard_page.open_page_new_window
-end
-
-And('Dashboard switch to window {int}') do |window|
-  @dashboard_page.switch_window(window)
 end
