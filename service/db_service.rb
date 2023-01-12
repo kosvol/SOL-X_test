@@ -24,7 +24,6 @@ class DBService
     vessel_name = retrieve_vessel_name
     vessel_id = retrieve_vessel_id
     table_response['rows'].each do |row|
-      puts table_response['rows']
       next unless row_data_match?(table, row, vessel_name, vessel_id)
 
       deleted_docs = { "_id": row['id'], "_rev": row['value']['rev'], "_deleted": true }

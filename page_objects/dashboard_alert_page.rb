@@ -66,7 +66,7 @@ class DashboardAlertPage < BasePage
       wait_alert_screen
       find_element(xpath).displayed?
     when 'not displayed'
-      sleep 1
+      sleep 1.5
       verify_element_not_exist(xpath)
     else
       raise "unknown option - #{option}"

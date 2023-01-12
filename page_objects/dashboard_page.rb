@@ -100,11 +100,6 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     end
   end
 
-  def open_page_new_window
-    @driver.get("#{retrieve_env_url}/dashboard")
-    wait_for_loading
-  end
-
   private
 
   def wait_for_loading
