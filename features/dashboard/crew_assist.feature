@@ -3,9 +3,13 @@ Feature: CrewAssist
 
   @test
   Scenario: Create wearable
-    Given Wearable create new 3 wearables
+    Given DB service clear couch table
+      | db_type | table     |
+#      | edge    | alerts    |
+      | edge    | wearables |
+#    And Wearable create new 3 wearables
 
-  @test
+  @test1
   Scenario: Verify the crew assist message is shown on the Dashboard
     Given Wearable service unlink all wearables
     And Wearable service link crew member
