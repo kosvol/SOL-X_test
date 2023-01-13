@@ -1,13 +1,13 @@
 @crew-assist
 Feature: CrewAssist
-  @test
-  Scenario: Create wearable
+
+    Background:
     Given DB service clear couch table
       | db_type | table     |
       | edge    | alerts    |
       | edge    | wearables |
     And Wearable create new 3 wearables
-  @test1
+
   Scenario: Verify the crew assist message is shown on the Dashboard
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -18,7 +18,7 @@ Feature: CrewAssist
     And DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | displayed     |
-  @test2
+
   Scenario: Verify the crew assist message is disappear after dismissing
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -31,7 +31,7 @@ Feature: CrewAssist
     And DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-  @test3
+
   Scenario: Verify the crew assist data match with wearable data
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -42,10 +42,9 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |
       | 2/O  |
-  @test4
+
   Scenario Outline: Verify the 'Crew Assist Acknowledger' is able to acknowledge
-    Given Wearable service dismiss crew assist alerts
-    And Wearable service unlink all wearables
+    Given Wearable service unlink all wearables
     Then Wearable service link crew member
       | rank |        mac        |
       | 3/O  | 00:00:00:00:00:05 |
@@ -101,7 +100,7 @@ Feature: CrewAssist
       | FSTO    |
       | RDCRW   |
       | SPM     |
-  @test5
+
   Scenario: Verify the multiple crew assist messages are displayed on the Dashboard
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -125,7 +124,7 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:03 |
-  @test6
+
   Scenario: Verify the crew members is able to dismissed multiple crew assist messages
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -144,8 +143,8 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-  @test7
-  Scenario: Verify another alerts are shown when one was closed by crew member
+
+  Scenario: Verify other alerts are shown when one was closed by crew member
     Given Wearable service unlink all wearables
     And Wearable service link crew member
       | rank |        mac        |
@@ -169,8 +168,8 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:03 |
-  @test8 # problem Cancel button and back to dashboard
-  Scenario: Verify alert is shown when approve canceled by crew member
+#Test below can has a problem with step 'click Cancel button and back to dashboard'
+  Scenario: Verify alert is shown when acknowledge canceled by crew member
     Given Wearable service unlink all wearables
     And Wearable service link crew member
       | rank |        mac        |
@@ -184,7 +183,7 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | displayed     |
-  @test9 # problem Cancel button and back to dashboard
+#Test below can has a problem with step 'click Cancel button and back to dashboard'
   Scenario: Verify crew member isn't able to acknowledge by incorrect pin
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -202,7 +201,7 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | displayed     |
-  @test10
+
   Scenario: Verify the crew assist alert is shown after refreshing page
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -217,7 +216,7 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
-  @test11 #Periodically error - second window doesn't see old alerts (cache issue)
+#Test below can has periodically error - second window doesn't see old alerts (cache issue)
   Scenario: Verify the crew assist alert is shown in another window
     Given Wearable service unlink all wearables
     And Wearable service link crew member
@@ -232,10 +231,9 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
-  @test12 #Periodically error - second window doesn't see old alerts (cache issue)
+#Test below can has periodically error - second window doesn't see old alerts (cache issue)
   Scenario: Verify the crew assist alert is disappear in both windows after dismissing
-    Given Wearable service dismiss crew assist alerts
-    Then Wearable service unlink all wearables
+    Given Wearable service unlink all wearables
     And Wearable service link crew member
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
@@ -256,7 +254,7 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-  @test
+
   Scenario: Smoke test
     Then Wearable service unlink all wearables
     And Wearable service link crew member
@@ -267,7 +265,7 @@ Feature: CrewAssist
       | 3/O  | 00:00:00:00:00:02|
     And Wearable service link crew member
       | rank |        mac       |
-      | C/O  | 00:00:00:00:00:02|
+      | C/O  | 00:00:00:00:00:03|
     Given Dashboard open dashboard page
     And Wearable service send crew assist alerts
     Then DashboardAlert verify crew assist alert data
@@ -289,6 +287,7 @@ Feature: CrewAssist
     Then DashboardAlert verify crew assist alert data
       | rank |
       | C/O  |
+    And Browser refresh page
     And DashboardAlert click Acknowledge button
       | rank |
       | 2/O  |
@@ -316,77 +315,4 @@ Feature: CrewAssist
       | alert       | availability  |
       | Crew Assist | not displayed |
 
-  # Background: Given I clear wearable history and active users
-
-  Scenario: Verify alert dialog popup display crew rank,name and location
-    Given I clear wearable history and active users
-    Given I launch sol-x portal
-    When I trigger crew assist from wearable
-    Then I should see crew assist popup display crew rank,name and location on dashboard
-    And I unlink all crew from wearable
-
-  # @skip
-  # Scenario: Verify location pin is red
-  #   Given I launch sol-x portal
-  #   When I trigger crew assist from wearable
-  #   Then I should crew location indicator is red
-  #   And I unlink all crew from wearable
-
-  Scenario: Verify multiple dialog show on screen
-    Given I launch sol-x portal
-    When I trigger crew assist from wearable
-    When I trigger second crew assist
-    And I should see two crew assist dialogs on dashboard
-    And I unlink all crew from wearable
-
-  # @skip
-  # Scenario: Verify crew assist dialog display current time ?
-
-  # @skip
-  # Scenario: Verify map location pin turn red after triggering crew assist ?
-
-  # @skip
-  # Scenario: Verify active permits display on crew assists dialog box
-
-  # @skip
-  # Scenario: Versify pending permits display on crew assists dialog box
-
-  Scenario: Verify crew assist dialog should not display on refresh after acknowledging
-    Given I launch sol-x portal
-    And I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 1111
-    Then I should not see crew assist dialog
-    When I refresh the browser
-    Then I should not see crew assist dialog
-    And I unlink all crew from wearable
-
-  Scenario: Verify crew assist dialog still display after cancel from pin screen
-    Given I launch sol-x portal
-    When I trigger crew assist from wearable
-    And I acknowledge the assistance with invalid pin 1234
-    And I dismiss enter pin screen
-    Then I should see crew assist popup display crew rank,name and location on dashboard
-    And I unlink all crew from wearable
-
-  Scenario: Verify crew assist dialog cannot be dismissed with invalid pin
-    Given I launch sol-x portal
-    When I trigger crew assist from wearable
-    And I acknowledge the assistance with invalid pin 1234
-    Then I should see invalid pin message
-    And I unlink all crew from wearable
-
-  Scenario: Verify crew assist dialog dismiss from all other tablet after acknowledge
-    Given I launch sol-x portal
-    And I launch sol-x portal on another tab
-    When I trigger crew assist from wearable
-    And I acknowledge the assistance with pin 8383
-    Then I should see crew assist dialog dismiss in both tab
-    And I unlink all crew from wearable
-
-  Scenario: Verify crew can dismiss from multiple browser after dismiss from wearable
-    Given I launch sol-x portal
-    And I launch sol-x portal on another tab
-    When I trigger crew assist from wearable
-    And I dismiss crew assist from wearable
-    Then I should see crew assist dialog dismiss in both tab
-    And I unlink all crew from wearable
+    # TODO: clear comments after all issues was resolved by new deployment

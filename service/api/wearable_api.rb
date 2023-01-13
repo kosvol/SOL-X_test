@@ -63,7 +63,6 @@ class WearableAPI
   def create_wearable(device_id, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/create_wearable.json")
     payload['variables']['deviceId'] = device_id
-    puts "!!! Its payload #{payload}"
     response = RestClient.post(retrieve_api_url,
                                payload.to_json,
                                { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })

@@ -36,7 +36,6 @@ class DashboardAlertPage < BasePage
   def retrieve_ca_name_ui(rank)
     rank_path = format((DASHBOARD_ALERT[:ca_rank]), rank)
     name_path = format((DASHBOARD_ALERT[:ca_name]), 1)
-    puts(rank_path + name_path)
     retrieve_text(rank_path + name_path)
   end
 
