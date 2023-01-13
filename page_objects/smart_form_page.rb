@@ -57,7 +57,7 @@ class SmartFormsPage < BasePage
   def wait_for_loading
     sleep 0.5
     wait = 0
-    until @driver.find_elements(:xpath, SMART_FORMS[:loading_screen]).size.zero?
+    until @driver.find_elements(:xpath, SMART_FORMS[:loading_screen]).empty?
       @logger.debug "wait for loading screen, retrying: #{wait} times"
       sleep 0.5
       wait += 1
