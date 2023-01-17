@@ -27,14 +27,7 @@ class BrowserPage
     sleep 0.5
   end
 
-  def switch_window(window)
-    window_number = window - 1
-    @driver.switch_to.window(@driver.window_handles[window_number])
-  end
-
-  def open_second_window
+  def open_new_window
     @driver.manage.new_window(:window)
-    sleep 0.5
-    @driver.switch_to.window(@driver.window_handles[1])
   end
 end

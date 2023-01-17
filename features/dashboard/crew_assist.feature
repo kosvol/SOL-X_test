@@ -25,7 +25,6 @@ Feature: CrewAssist
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:02 |
     Then Dashboard open dashboard page
-    And Dashboard verify the local time
     And Wearable service send crew assist alerts
     Then Wearable service dismiss crew assist alerts
     And DashboardAlert verify alert availability
@@ -113,7 +112,6 @@ Feature: CrewAssist
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:03 |
     Then Dashboard open dashboard page
-    And Dashboard verify the local time
     And Wearable service send crew assist alerts
     Then DashboardAlert verify crew assist alert data
       | rank |        mac        |
@@ -137,7 +135,6 @@ Feature: CrewAssist
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:03 |
     Then Dashboard open dashboard page
-    And Dashboard verify the local time
     And Wearable service send crew assist alerts
     When Wearable service dismiss crew assist alerts
     Then DashboardAlert verify alert availability
@@ -156,7 +153,6 @@ Feature: CrewAssist
       | rank |        mac        |
       | C/E  | 00:00:00:00:00:03 |
     Then Dashboard open dashboard page
-    And Dashboard verify the local time
     And Wearable service send crew assist alerts
     And DashboardAlert click Acknowledge button
       | rank |
@@ -190,7 +186,6 @@ Feature: CrewAssist
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
     Then Dashboard open dashboard page
-    And Dashboard verify the local time
     Then Wearable service send crew assist alerts
     And DashboardAlert click Acknowledge button
       | rank |
@@ -250,7 +245,7 @@ Feature: CrewAssist
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-    And Browser switch to window 1
+    And Browser switch to "first" tab in browser
     Then DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
@@ -292,7 +287,7 @@ Feature: CrewAssist
       | rank |
       | 2/O  |
     Then PinEntry enter pin for rank "MAS"
-    And Browser switch to window 1
+    And Browser switch to "first" tab in browser
     And DashboardAlert click Acknowledge button
       | rank |
       | 3/O  |
@@ -310,7 +305,7 @@ Feature: CrewAssist
     And DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
-    And Browser switch to window 2
+    And Browser switch to "last" tab in browser
     And DashboardAlert verify alert availability
       | alert       | availability  |
       | Crew Assist | not displayed |
