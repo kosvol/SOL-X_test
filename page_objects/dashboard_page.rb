@@ -105,7 +105,7 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
   def wait_for_loading
     sleep 1
     wait = 0
-    until @driver.find_elements(:xpath, DASHBOARD[:loading_screen]).size.zero?
+    until @driver.find_elements(:xpath, DASHBOARD[:loading_screen]).empty?
       @logger.debug "wait for loading screen, retrying: #{wait} times"
       sleep 0.5
       wait += 1

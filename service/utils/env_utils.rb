@@ -65,6 +65,14 @@ module EnvUtils
     end
   end
 
+  def retrieve_vessel_id
+    vessel_id = "#{ENV['ENVIRONMENT']}-#{ENV['VESSEL']}-vessel"
+    return 'AAMR' if ENV['PROJECT'] == 'shell'
+    return "#{vessel_id}20".upcase if ENV['VERSION'] == '2.0'
+
+    vessel_id.upcase
+  end
+
   private
 
   def retrieve_cloud_url

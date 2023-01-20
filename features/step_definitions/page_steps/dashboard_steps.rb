@@ -50,3 +50,11 @@ end
 Then('Dashboard verify the time with offset is correct') do
   @dashboard_page.compare_time_offset
 end
+
+And('Dashboard open new window dashboard page') do
+  @browser_page ||= BrowserPage.new(@driver)
+  @browser_page.open_new_window
+  @browser_page.switch_browser_tab('last')
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.open_page
+end

@@ -5,6 +5,7 @@ AllCops:
     - 'features/step_definitions/ui/**/*'
     - 'features/step_definitions/ui/**/**/*'
     - 'features/step_definitions/service/*'
+    - 'service/db_service.rb'
 Metrics/ClassLength:
   Max: 250
 Metrics/BlockLength:

@@ -23,10 +23,10 @@ class WearableAPI
     JSON.parse response.body
   end
 
-  def update_wearable_location(wearable_id, zone, mac, pin)
+  def update_wearable_location(wearable_id, mac, pin)
     payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/update_wearable_location.json")
     payload['variables']['id'] = wearable_id
-    updated_payload = update_beacons(payload, zone, mac)
+    updated_payload = update_beacons(payload, mac)
     response = RestClient.post(retrieve_api_url,
                                updated_payload.to_json,
                                { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
@@ -42,10 +42,36 @@ class WearableAPI
     JSON.parse response.body
   end
 
+  def send_alert(wearable_id, pin)
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/trigger_panic.json")
+    payload['variables']['id'] = wearable_id
+    response = RestClient.post(retrieve_api_url,
+                               payload.to_json,
+                               { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
+    JSON.parse response.body
+  end
+
+  def dismiss_alert(wearable_id, pin)
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/dismiss_panic.json")
+    payload['variables']['id'] = wearable_id
+    response = RestClient.post(retrieve_api_url,
+                               payload.to_json,
+                               { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
+    JSON.parse response.body
+  end
+
+  def create_wearable(device_id, pin)
+    payload = JSON.parse File.read("#{Dir.pwd}/payload/request/wearable/create_wearable.json")
+    payload['variables']['deviceId'] = device_id
+    response = RestClient.post(retrieve_api_url,
+                               payload.to_json,
+                               { 'Content-Type' => 'application/json', 'x-auth-pin' => pin })
+    JSON.parse response.body
+  end
+
   private
 
-  def update_beacons(payload, zone, mac)
-    payload['variables']['beacons'].first['id'] = zone
+  def update_beacons(payload, mac)
     payload['variables']['beacons'].first['mac'] = mac
     payload
   end

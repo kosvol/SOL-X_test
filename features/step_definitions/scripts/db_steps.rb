@@ -15,6 +15,6 @@ end
 
 Given('DB service clear postgres data') do
   postgres = Postgres.new
-  postgres.clear_savefue_db
+  postgres.clear_safevue_db
   postgres.clear_reporting_db
 end

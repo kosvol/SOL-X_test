@@ -22,8 +22,9 @@ class DBService
   def delete_table(db_type, table, table_response)
     payload = { docs: [] }
     vessel_name = retrieve_vessel_name
+    vessel_id = retrieve_vessel_id
     table_response['rows'].each do |row|
-      next unless row_data_match?(table, row, vessel_name)
+      next unless row_data_match?(table, row, vessel_name, vessel_id)
 
       deleted_docs = { "_id": row['id'], "_rev": row['value']['rev'], "_deleted": true }
       payload[:docs].append(deleted_docs)
@@ -34,9 +35,10 @@ class DBService
 
   def purge_table(db_type, table)
     vessel_name = retrieve_vessel_name
+    vessel_id = retrieve_vessel_id
     changes = retrieve_changes(db_type, table)
     changes['results'].each do |row|
-      next unless row_data_match?(table, row, vessel_name)
+      next unless row_data_match?(table, row, vessel_name, vessel_id)
       next unless row.key?('deleted') && (row['deleted'] == true)
 
       purge_row = { "#{row['id']}": [row['changes'].first['rev']] }
@@ -50,12 +52,16 @@ class DBService
 
   private
 
-  def row_data_match?(table, row, vessel_name)
+  def row_data_match?(table, row, vessel_name, vessel_id)
     case table
     when 'office_approval_events'
       row['doc']['formId'].include? vessel_name
     when 'geofence'
       row['doc']['externalId'].include? vessel_name
+    when 'wearables'
+      row['doc']['vesselId'].include? vessel_id
+    when 'alerts'
+      row['doc']['vesselId'].include? vessel_id
     else
       row['id'].include? vessel_name
     end
