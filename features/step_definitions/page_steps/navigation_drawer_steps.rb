@@ -17,12 +17,7 @@ And('NavigationDrawer navigate to Permit to work {string}') do |page|
   @navigation_drawer_page.navigate_to_ptw(page)
 end
 
-And('NavigationDrawer navigate to Compressor Motor Room {string}') do |page|
-  @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
-  @navigation_drawer_page.navigate_to_entry(page)
-end
-
-And('NavigationDrawer navigate to Pump Room {string}') do |page|
+And('NavigationDrawer navigate to Room Entry {string}') do |page|
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.navigate_to_entry(page)
 end
@@ -45,4 +40,14 @@ end
 And('NavigationDrawer click view button') do
   @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
   @navigation_drawer_page.click_view_button
+end
+
+And('NavigationDrawer hide additional items') do
+  @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
+  @navigation_drawer_page.hide_menu_items
+end
+
+And('NavigationDrawer navigate to Dashboard {string}') do |page|
+  @navigation_drawer_page ||= NavigationDrawerPage.new(@driver)
+  @navigation_drawer_page.navigate_to_dashboard(page)
 end

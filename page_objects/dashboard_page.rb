@@ -100,6 +100,10 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     end
   end
 
+  def click_hamburger_menu_btn
+    click(DASHBOARD[:hamburger_menu_btn])
+  end
+
   private
 
   def wait_for_loading

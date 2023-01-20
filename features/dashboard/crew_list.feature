@@ -16,6 +16,25 @@ Feature: CrewList
     And I view pin
     Then I should see count down start from 10 seconds
 
+    #### REFACTORING
+
+@test
+  Scenario: Verify the elements of Crew Management page
+  Given Dashboard open dashboard page
+  And Dashboard open hamburger menu
+  And NavigationDrawer navigate to Dashboard "Crew Management"
+  Then CrewManagement verify elements
+
+
+
+
+
+
+
+
+
+
+
   Scenario: Verify table column headers are correct
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
