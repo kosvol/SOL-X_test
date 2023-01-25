@@ -4,57 +4,121 @@ Feature: CrewList
   I want to ...
   So that ...
 
+  Background: Navigate to the "Crew Management" page
+    Given Dashboard open dashboard page
+    And Dashboard verify the local time
+    And Dashboard open hamburger menu
+    And NavigationDrawer navigate to Dashboard "Crew Management"
+
   # @manual
   # Scenario: Verify Email notification sent to the assign crew
 
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
-  Scenario: Verify count down timer not started after clicking of View pin
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    And I view pin
-    Then I should see count down start from 10 seconds
-
-    #### REFACTORING
-
-@test
-  Scenario: Verify the elements of Crew Management page
-  Given Dashboard open dashboard page
-  And Dashboard open hamburger menu
-  And NavigationDrawer navigate to Dashboard "Crew Management"
-  Then CrewManagement verify elements
-
-
-
-
-
-
-
-
-
-
-
   Scenario: Verify table column headers are correct
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see correct column headers
+#### REFACTORED
+#pass
+  Scenario: Verify the elements of Crew Management page
+  Given Dashboard open dashboard page
+  And Dashboard open hamburger menu
+  And NavigationDrawer navigate to Dashboard "Crew Management"
+  Then CrewManagement verify the elements are available
+###
 
   Scenario: Verify crew count match
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see total crew count match inactive crew
+### REFACTORED
+  Scenario: Verify the total crew quantity match with quantity in crew list
+    Given CrewManagement compare crew count summary with crew list
+     And CrewManagement compare crew count UI with DB
+###
+
+  Scenario: Verify count down timer not started after clicking of View pin
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    And I view pin
+    Then I should see count down start from 10 seconds
+### REFACTORED
+  Scenario Outline: Verify Master is able to View pin
+    Given CrewManagement click View PINs button
+    And PinEntry enter pin for rank "<rank>"
+    Then CrewManagement verify the count down timer
+    And CrewManagement verify the PIN is "shown"
+    Examples:
+    | rank |
+    | MAS  |
+    | A/M  |
+#pass
+  Scenario: Verify user with non-Master is not able to View pin
+    Given CrewManagement click View PINs button
+    And PinEntry verify the error message is correct for the wrong rank
+      | 4/O   |
+      | A 4/O |
+      | 5/O   |
+      | D/C   |
+      | SAA   |
+      | BOS   |
+      | A/B   |
+      | O/S   |
+      | RDCRW |
+      | C/E   |
+      | A C/E |
+      | 2/E   |
+      | A 2/E |
+      | 3/E   |
+      | A 3/E |
+      | 4/E   |
+      | A 4/E |
+      | 5/E   |
+      | E/C   |
+      | ETO   |
+      | ELC   |
+      | ETR   |
+      | T/E   |
+      | CGENG |
+      | PMN   |
+      | FTR   |
+      | OLR   |
+      | WPR   |
+      | CCK   |
+      | 2CK   |
+      | STWD  |
+      | FSTO  |
+      | SPM   |
+###
 
   Scenario: Verify crew pin is hidden before view pin
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see pin hidden
+### REFACTORED
+    Scenario: Verify crew pin is hidden before view pin
+      Given CrewManagement verify the PIN is "not shown"
+###
 
   # Scenario: Verify crew details match
   #   Given I launch sol-x portal
   #   When I navigate to "Crew Management" screen for forms
   #   Then I should see all crew details match
 
+@test ##START
+  Scenario: Verify the crew data match
+#  And Wearable create new 1 wearables
+#  And Wearable service link crew member
+#    | rank |        mac        |
+#    | C/O  | 00:00:00:00:00:01 |
+#  Given CrewManagement click View PINs button
+  Then CrewManagement verify crew member data
+    | rank |
+    | 4/O  |
+
+  ###
   Scenario: Verify location pin turn green below 5 minutes
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms

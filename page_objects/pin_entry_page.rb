@@ -9,7 +9,8 @@ class PinEntryPage < BasePage
     pin_entry_header: "//h2[contains(.,'Please enter your PIN')]",
     pin_pad: '//*[@id="root"]/div/section/main/ol/li[%s]/button',
     error_msg: "//section[@class='pin-indicators-section']/h2",
-    cancel_btn: "//button[contains(.,'Cancel')]"
+    cancel_btn: "//button[contains(.,'Cancel')]",
+    custom_msg: "//section[@class='pin-indicators-section']/h2[contains(., '%s')]"
   }.freeze
 
   def initialize(driver)
@@ -30,6 +31,7 @@ class PinEntryPage < BasePage
     table.raw.each do |rank|
       nrank = rank.join('').delete('"')
       enter_pin(nrank)
+      wait_and_check_element(5, format(PIN_ENTRY[:custom_msg], 'not authorized'))
       actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
       compare_string('You Are Not Authorized To Perform That Action', actual_msg)
     end
@@ -53,6 +55,13 @@ class PinEntryPage < BasePage
   end
 
   private
+
+  def wait_and_check_element(time, element)
+    wait = Selenium::WebDriver::Wait.new(timeout: time)
+    wait.until { @driver.find_element(:xpath, element).displayed? }
+  rescue StandardError
+    raise "Time out waiting for #{element}"
+  end
 
   def retrieve_pin(rank)
     pin = UserService.new.retrieve_pin_by_rank(rank)
