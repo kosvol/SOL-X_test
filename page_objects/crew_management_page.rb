@@ -24,7 +24,8 @@ class CrewManagementPage < BasePage
     crew_sname: '/following::*[2]',
     crew_fname: '/following::*[4]',
     crew_loc: "/following::*[@class[contains(., 'LocationName')]]",
-    crew_pin: '/following::*[8]',
+    crew_loc_time: "/following::*[@class[contains(., 'LocationName')]]/span",
+    crew_pin: "/following::*[@data-testid[contains(., 'pin')]]",
     timer: "//button[@class[contains(., 'view-pin')]]",
     timer_btn: "//button[contains(., 'Hiding')]",
     pin: '//tbody/tr/td[5]'
@@ -46,33 +47,6 @@ class CrewManagementPage < BasePage
     raise 'Quantity did not match with DB' if db_quantity.to_i != crew_list.to_i
   end
 
-  def retrieve_crew_data_ui(rank)
-    result = []
-    wait_crew_table
-    rank_path = (format(CREW_MANAGEMENT[:crew_rank], rank))
-
-    surname = retrieve_text(rank_path + CREW_MANAGEMENT[:crew_sname])
-    puts surname
-    firstname = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_fname]))
-    puts firstname
-    location = retrieve_text2(rank_path + (CREW_MANAGEMENT[:crew_loc]))
-    location = location.scan(/\d+/).first.to_i
-    location = location.delete("\\Last seen mins ago")
-    puts location
-    # pin = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_pin]))
-    # result.append(rank, surname, firstname, location, pin)
-    puts result
-    end
-   # puts "Its a >>#{res.attribute("value")}"
-   # end
-   #  def retrieve_actual_dra_answers
-   #     result = []
-   #     actual_answers = @driver.find_elements(:xpath, ROL_SECTION_ONE[:form_answers])
-   #     actual_answers.each do |element|
-   #       result.append(element.text)
-   #     end
-   #     result
-
   def click_view_pin
     click(CREW_MANAGEMENT[:pin_btn])
   end
@@ -91,22 +65,23 @@ class CrewManagementPage < BasePage
   end
 
   def verify_pin_availability(option)
-    puts retrieve_pin
+    puts retrieve_rand_pin
     if option == 'not shown'
-      compare_string('••••', retrieve_pin)
-    elsif option == 'shown' && retrieve_pin == '••••'
+      compare_string('••••', retrieve_rand_pin)
+    elsif option == 'shown' && retrieve_rand_pin == '••••'
       raise 'The PIN is not shown'
     end
   end
 
   def compare_ui_api_data(rank)
-    puts(retrieve_crew_data_api(rank))
-    puts(retrieve_crew_data_ui(rank))
+    api_data = retrieve_crew_data_api(rank).to_s
+    ui_data = retrieve_crew_data_ui(rank).to_s
+    raise "The crew member data don not match UI > #{ui_data} < vs API > #{api_data} <" if api_data != ui_data
   end
 
   private
 
-  def retrieve_pin
+  def retrieve_rand_pin
     retrieve_text(CREW_MANAGEMENT[:pin])
   end
 
@@ -155,11 +130,42 @@ class CrewManagementPage < BasePage
   end
 
   def retrieve_crew_data_api(rank)
-    user_list_response = UsersApi.new.request
-    user_list_response['data']['users'].each do |user|
-      user_db_list = user['crewMember']['rank'], user['crewMember']['lastName'], user['crewMember']['firstName'],
-                     user['pin']
-      return user_db_list if user['crewMember']['rank'] == rank
-    end
+    result = []
+    name = UserService.new.retrieve_rank_and_name(rank)
+    pin = UserService.new.retrieve_pin_by_rank(rank)
+    location = WearableService.new.crew_assist_retrieve_location(rank)
+    result.append(name, location, pin)
+    result.join(' ')
+  end
+
+  def retrieve_crew_data_ui(rank)
+    result = []
+    wait_crew_table
+    result.append(rank, retrieve_firstname(rank), retrieve_surname(rank), retrieve_location(rank), retrieve_pin(rank))
+    result.join(' ')
+  end
+
+  def retrieve_surname(rank)
+    rank_path = format(CREW_MANAGEMENT[:crew_rank], rank)
+    retrieve_text(rank_path + CREW_MANAGEMENT[:crew_sname])
+  end
+
+  def retrieve_firstname(rank)
+    rank_path = format(CREW_MANAGEMENT[:crew_rank], rank)
+    retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_fname]))
+  end
+
+  def retrieve_location(rank)
+    rank_path = format(CREW_MANAGEMENT[:crew_rank], rank)
+    location = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_loc]))
+    last_seen = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_loc_time]))
+    location = location.gsub('Last Seen:', ' ')
+    location = location.gsub(last_seen, ' ')
+    location.lstrip
+  end
+
+  def retrieve_pin(rank)
+    rank_path = format(CREW_MANAGEMENT[:crew_rank], rank)
+    retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_pin]))
   end
 end

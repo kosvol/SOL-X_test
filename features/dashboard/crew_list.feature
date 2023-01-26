@@ -109,14 +109,18 @@ Feature: CrewList
 
 @test ##START
   Scenario: Verify the crew data match
+  Given Wearable service unlink all wearables
 #  And Wearable create new 1 wearables
-#  And Wearable service link crew member
-#    | rank |        mac        |
-#    | C/O  | 00:00:00:00:00:01 |
+  And Wearable service link crew member
+    | rank |        mac        |
+    | C/O  | 00:00:00:00:00:01 |
 #  Given CrewManagement click View PINs button
+#  And PinEntry enter pin for rank "MAS"
+#  And CrewManagement verify the PIN is "shown"
+  And Browser refresh page
   Then CrewManagement verify crew member data
     | rank |
-    | 4/O  |
+    | C/O  |
 
   ###
   Scenario: Verify location pin turn green below 5 minutes
