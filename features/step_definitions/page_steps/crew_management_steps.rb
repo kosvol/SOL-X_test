@@ -37,3 +37,8 @@ Then('CrewManagement verify crew member data') do |table|
   @crew_management_page ||= CrewManagementPage.new(@driver)
   @crew_management_page.compare_ui_api_data(params['rank'])
 end
+
+Given('CrewManagement verify the indicator is {string} color') do |option|
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  @crew_management_page.verify_indicator(option)
+end

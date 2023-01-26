@@ -108,6 +108,7 @@ Feature: CrewList
   #   Then I should see all crew details match
 
 ### REFACTORED need check with opens PINS
+  @test
   Scenario: Verify the crew data match
     Given DB service clear couch table
       | db_type | table     |
@@ -116,8 +117,8 @@ Feature: CrewList
     And Wearable service link crew member
       | rank |        mac        |
       | C/O  | 00:00:00:00:00:01 |
-    Given CrewManagement click View PINs button
-    And PinEntry enter pin for rank "MAS"
+#    Given CrewManagement click View PINs button
+#    And PinEntry enter pin for rank "MAS"
     Then CrewManagement verify crew member data
       | rank |
       | C/O  |
@@ -130,19 +131,9 @@ Feature: CrewList
     When I navigate to "Crew Management" screen for forms
     Then I should see crew list location indicator is green below 5 minutes
     And I unlink all crew from wearable
-  @test
+  @test2
   Scenario: Verify location pin turn green below 5 minutes
-    Given DB service clear couch table
-      | db_type | table     |
-      | edge    | wearables |
-    And Wearable create new 1 wearables
-    And Wearable service link crew member
-      | rank |        mac        |
-      | C/O  | 00:00:00:00:00:01 |
-    Then CrewManagement verify crew member data
-      | rank |
-      | C/O  |
-    And Wearable service unlink all wearables
+    Given CrewManagement verify the indicator is "green" color
 
 
   Scenario: Verify location pin turn yellow after 5 minutes

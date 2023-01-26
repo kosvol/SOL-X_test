@@ -22,10 +22,12 @@ class CrewManagementPage < BasePage
     crew_rank: "//tbody/tr/td[@data-testid[contains(., 'rank')]][contains(., '%s')]",
     crew_sname: "/following-sibling::*[@data-testid[contains(., 'lastName')]]",
     crew_fname: "/following-sibling::*[@data-testid[contains(., 'firstName')]]",
-    crew_loc: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
-    /child::*[@class[contains(., 'LocationName')]]",
-    crew_loc_time: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
-    /child::*[@class[contains(., 'LocationName')]]/span",
+    # crew_loc: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
+    # /child::*[@class[contains(., 'LocationName')]]",
+    crew_loc: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p[1]",
+    # crew_loc_time: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
+    # /child::*[@class[contains(., 'LocationName')]]/span",
+    crew_loc_time: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p[1]/span",
     crew_pin: "/following-sibling::*[@data-testid[contains(., 'pin')]]",
     timer: "//button[@class[contains(., 'view-pin')]]",
     timer_btn: "//button[contains(., 'Hiding')]",
@@ -77,7 +79,12 @@ class CrewManagementPage < BasePage
   def compare_ui_api_data(rank)
     api_data = retrieve_crew_data_api(rank).to_s
     ui_data = retrieve_crew_data_ui(rank).to_s
+    property.data
     raise "The crew member data don not match UI << #{ui_data} >> vs API << #{api_data} >>" if api_data != ui_data
+  end
+
+  def verify_indicator
+    find_element
   end
 
   private
