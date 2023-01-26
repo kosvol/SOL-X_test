@@ -107,27 +107,43 @@ Feature: CrewList
   #   When I navigate to "Crew Management" screen for forms
   #   Then I should see all crew details match
 
-@test ##START
+### REFACTORED need check with opens PINS
   Scenario: Verify the crew data match
-  Given Wearable service unlink all wearables
-#  And Wearable create new 1 wearables
-  And Wearable service link crew member
-    | rank |        mac        |
-    | C/O  | 00:00:00:00:00:01 |
-#  Given CrewManagement click View PINs button
-#  And PinEntry enter pin for rank "MAS"
-#  And CrewManagement verify the PIN is "shown"
-  And Browser refresh page
-  Then CrewManagement verify crew member data
-    | rank |
-    | C/O  |
-
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    And Wearable service link crew member
+      | rank |        mac        |
+      | C/O  | 00:00:00:00:00:01 |
+    Given CrewManagement click View PINs button
+    And PinEntry enter pin for rank "MAS"
+    Then CrewManagement verify crew member data
+      | rank |
+      | C/O  |
+  And Wearable service unlink all wearables
   ###
+
+   ## STARTED
   Scenario: Verify location pin turn green below 5 minutes
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crew list location indicator is green below 5 minutes
     And I unlink all crew from wearable
+  @test
+  Scenario: Verify location pin turn green below 5 minutes
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    And Wearable service link crew member
+      | rank |        mac        |
+      | C/O  | 00:00:00:00:00:01 |
+    Then CrewManagement verify crew member data
+      | rank |
+      | C/O  |
+    And Wearable service unlink all wearables
+
 
   Scenario: Verify location pin turn yellow after 5 minutes
     Given I launch sol-x portal

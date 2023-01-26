@@ -19,13 +19,14 @@ class CrewManagementPage < BasePage
     work_clmn: "//th[contains(., 'Work Availability')]",
     total_crew: "//strong[contains(., 'Total')]/following::*[1]",
     crew_table: '//tbody/tr',
-    # crew_data_ui: "//tbody/tr/td[contains(., '%s')]/following::*[1]",
     crew_rank: "//tbody/tr/td[@data-testid[contains(., 'rank')]][contains(., '%s')]",
-    crew_sname: '/following::*[2]',
-    crew_fname: '/following::*[4]',
-    crew_loc: "/following::*[@class[contains(., 'LocationName')]]",
-    crew_loc_time: "/following::*[@class[contains(., 'LocationName')]]/span",
-    crew_pin: "/following::*[@data-testid[contains(., 'pin')]]",
+    crew_sname: "/following-sibling::*[@data-testid[contains(., 'lastName')]]",
+    crew_fname: "/following-sibling::*[@data-testid[contains(., 'firstName')]]",
+    crew_loc: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
+    /child::*[@class[contains(., 'LocationName')]]",
+    crew_loc_time: "/following-sibling::*[@data-testid[contains(., 'location')]]/child::*[1]
+    /child::*[@class[contains(., 'LocationName')]]/span",
+    crew_pin: "/following-sibling::*[@data-testid[contains(., 'pin')]]",
     timer: "//button[@class[contains(., 'view-pin')]]",
     timer_btn: "//button[contains(., 'Hiding')]",
     pin: '//tbody/tr/td[5]'
@@ -76,7 +77,7 @@ class CrewManagementPage < BasePage
   def compare_ui_api_data(rank)
     api_data = retrieve_crew_data_api(rank).to_s
     ui_data = retrieve_crew_data_ui(rank).to_s
-    raise "The crew member data don not match UI > #{ui_data} < vs API > #{api_data} <" if api_data != ui_data
+    raise "The crew member data don not match UI << #{ui_data} >> vs API << #{api_data} >>" if api_data != ui_data
   end
 
   private
@@ -158,9 +159,9 @@ class CrewManagementPage < BasePage
   def retrieve_location(rank)
     rank_path = format(CREW_MANAGEMENT[:crew_rank], rank)
     location = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_loc]))
-    last_seen = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_loc_time]))
+    time_ago = retrieve_text(rank_path + (CREW_MANAGEMENT[:crew_loc_time]))
     location = location.gsub('Last Seen:', ' ')
-    location = location.gsub(last_seen, ' ')
+    location = location.gsub(time_ago, ' ')
     location.lstrip
   end
 
