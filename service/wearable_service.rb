@@ -87,4 +87,10 @@ class WearableService
       @wearable_api.create_wearable(device_id, '1111')
     end
   end
+
+  def retrieve_used_wearable_id(wearable_list, rank)
+    wearable_list['data']['wearables'].each do |wearable|
+      return wearable['_id'] if wearable['crewMember']['rank'] == rank
+    end
+  end
 end

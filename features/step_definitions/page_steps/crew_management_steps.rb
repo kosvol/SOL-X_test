@@ -38,7 +38,14 @@ Then('CrewManagement verify crew member data') do |table|
   @crew_management_page.compare_ui_api_data(params['rank'])
 end
 
-Given('CrewManagement verify the indicator is {string} color') do |option|
+Given('CrewManagement verify the indicator') do |table|
+  params = table.hashes.first
   @crew_management_page ||= CrewManagementPage.new(@driver)
-  @crew_management_page.verify_indicator(option)
+  @crew_management_page.verify_indicator(params['rank'], params['color'])
+end
+
+Given('CrewManagement verify location interval') do |table|
+  params = table.hashes.first
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  @crew_management_page.verify_interval(params['rank'], params['time'])
 end

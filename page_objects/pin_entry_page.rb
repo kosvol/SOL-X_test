@@ -38,6 +38,7 @@ class PinEntryPage < BasePage
   end
 
   def verify_error_msg(error_msg)
+    wait_and_check_element(5, format(PIN_ENTRY[:custom_msg], 'Incorrect pin'))
     actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
     compare_string(error_msg, actual_msg)
   end

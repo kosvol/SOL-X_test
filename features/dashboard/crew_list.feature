@@ -16,12 +16,12 @@ Feature: CrewList
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
+#OLD
   Scenario: Verify table column headers are correct
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see correct column headers
 #### REFACTORED
-#pass
   Scenario: Verify the elements of Crew Management page
   Given Dashboard open dashboard page
   And Dashboard open hamburger menu
@@ -29,6 +29,7 @@ Feature: CrewList
   Then CrewManagement verify the elements are available
 ###
 
+#OLD
   Scenario: Verify crew count match
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
@@ -39,11 +40,18 @@ Feature: CrewList
      And CrewManagement compare crew count UI with DB
 ###
 
+#OLD
   Scenario: Verify count down timer not started after clicking of View pin
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I view pin
     Then I should see count down start from 10 seconds
+#OLD
+  Scenario: Verify crew pin is shown after tapping on view pin with captain pin
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    And I view pin
+    Then I should see pin reviewed
 ### REFACTORED
   Scenario Outline: Verify Master is able to View pin
     Given CrewManagement click View PINs button
@@ -54,7 +62,15 @@ Feature: CrewList
     | rank |
     | MAS  |
     | A/M  |
-#pass
+###
+
+#OLD
+  Scenario: Verify error message shown for non-existent pin on view pin feature
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    And I enter a non-existent pin
+    Then I should see invalid pin message
+### REFACTORED
   Scenario: Verify user with non-Master is not able to View pin
     Given CrewManagement click View PINs button
     And PinEntry verify the error message is correct for the wrong rank
@@ -92,7 +108,21 @@ Feature: CrewList
       | FSTO  |
       | SPM   |
 ###
+#OLD
+  Scenario: Verify error message shown for invalid master pin on view pin feature
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    And I enter a invalid master pin
+    Then I should see not authorize error message
+### REFACTORED
+  Scenario: Verify error message shown for invalid master pin on view pin feature
+    Given CrewManagement click View PINs button
+    And PinEntry enter invalid pin "1234"
+    Then PinEntry should see error msg "Incorrect Pin, Please Enter Again"
 
+  ##
+
+#OLD
   Scenario: Verify crew pin is hidden before view pin
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
@@ -102,46 +132,11 @@ Feature: CrewList
       Given CrewManagement verify the PIN is "not shown"
 ###
 
+#OLD
   # Scenario: Verify crew details match
   #   Given I launch sol-x portal
   #   When I navigate to "Crew Management" screen for forms
   #   Then I should see all crew details match
-
-### REFACTORED need check with opens PINS
-  @test
-  Scenario: Verify the crew data match
-    Given DB service clear couch table
-      | db_type | table     |
-      | edge    | wearables |
-    And Wearable create new 1 wearables
-    And Wearable service link crew member
-      | rank |        mac        |
-      | C/O  | 00:00:00:00:00:01 |
-#    Given CrewManagement click View PINs button
-#    And PinEntry enter pin for rank "MAS"
-    Then CrewManagement verify crew member data
-      | rank |
-      | C/O  |
-  And Wearable service unlink all wearables
-  ###
-
-   ## STARTED
-  Scenario: Verify location pin turn green below 5 minutes
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    Then I should see crew list location indicator is green below 5 minutes
-    And I unlink all crew from wearable
-  @test2
-  Scenario: Verify location pin turn green below 5 minutes
-    Given CrewManagement verify the indicator is "green" color
-
-
-  Scenario: Verify location pin turn yellow after 5 minutes
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    Then I should see crew list location indicator is yellow after 5 minutes
-    And I unlink all crew from wearable
-
   Scenario: Verify crew latest location is display on crew listing
     Given I clear wearable history and active users
     Given I launch sol-x portal
@@ -149,7 +144,65 @@ Feature: CrewList
     And I link wearable
     Then I should see crew location details on crew screen
     And I unlink all crew from wearable
+### REFACTORED need check with opens PINS
+  Scenario: Verify the crew data match
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    Then Wearable service link crew member
+      | rank |        mac        |
+      | D/C  | 00:00:00:00:00:04 |
+    And CrewManagement click View PINs button
+    Then PinEntry enter pin for rank "MAS"
+    And CrewManagement verify crew member data
+      | rank |
+      | D/C  |
+    Then Wearable service unlink all wearables
+  ###
 
+#OLD
+  Scenario: Verify location pin turn green below 5 minutes
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    Then I should see crew list location indicator is green below 5 minutes
+    And I unlink all crew from wearable
+### REFACTORED
+  Scenario: Verify location pin turn green below 5 minutes
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    Then Wearable service link crew member
+      | rank |        mac        |
+      | C/O  | 00:00:00:00:00:01 |
+    Given CrewManagement verify the indicator
+      | rank | color |
+      | C/O  | green |
+      ###
+
+#OLD
+  Scenario: Verify location pin turn yellow after 5 minutes
+    Given I launch sol-x portal
+    When I navigate to "Crew Management" screen for forms
+    Then I should see crew list location indicator is yellow after 5 minutes
+    And I unlink all crew from wearable
+## REFACTORED
+  Scenario: Verify location pin turn yellow after 5 minutes
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    Then Wearable service link crew member
+      | rank |        mac        |
+      | C/O  | 00:00:00:00:00:01 |
+    And CommonSection sleep for "305" sec
+    Given CrewManagement verify the indicator
+      | rank | color  |
+      | C/O  | yellow |
+###
+
+#OLD
   Scenario Outline: Verify crew updated location is display on crew listing
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
@@ -162,34 +215,59 @@ Feature: CrewList
       | zone        | zoneid            | mac               | new_zone    | new_zoneid    | new_mac           |
       | Engine Room | Z-FORE-PEAK-STORE | 00:00:00:00:00:00 | Aft Station | Z-AFT-STATION | 00:00:00:00:00:10 |
 
-  Scenario: Verify crew pin is shown after tapping on view pin with captain pin
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    And I view pin
-    Then I should see pin reviewed
+@test2 ## REFACTOR
+  Scenario: Verify crew updated location is display on crew listing
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    Then Wearable service link crew member
+      | rank |        mac        |
+      | 2/O  | 00:00:00:00:00:04 |
+    Then Wearable service update location
+      | rank |        mac        |
+      | 2/O  | 00:00:00:00:00:01 |
+#    And CrewManagement click View PINs button
+#    Then PinEntry enter pin for rank "MAS"
+    And CrewManagement verify crew member data
+      | rank |
+      | 2/O  |
+     And CommonSection sleep for "2" sec
+    Then Wearable service unlink all wearables
+@test
+  Scenario: Verify location time period
+    Given DB service clear couch table
+      | db_type | table     |
+      | edge    | wearables |
+    And Wearable create new 1 wearables
+    When Wearable service link crew member
+      | rank |        mac        |
+      | 2/O  | 00:00:00:00:00:01 |
+    Then CrewManagement verify location interval
+      | rank |  time    |
+      | 2/O  | Just Now |
+    And CommonSection sleep for "65" sec
+    Then CrewManagement verify location interval
+      | rank |  time    |
+      | 2/O  | min ago  |
+    And CommonSection sleep for "245" sec
+    Then CrewManagement verify location interval
+      | rank |  time    |
+      | 2/O  | mins ago |
 
-  Scenario: Verify error message shown for non-existent pin on view pin feature
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    And I enter a non-existent pin
-    Then I should see invalid pin message
 
-  Scenario: Verify error message shown for invalid master pin on view pin feature
-    Given I launch sol-x portal
-    When I navigate to "Crew Management" screen for forms
-    And I enter a invalid master pin
-    Then I should see not authorize error message
-
+#OLD not to do
   Scenario: Verify error message disappear after backspace on entered pin on view pin feature
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I enter a non-existent pin
     Then I should see invalid pin message
+#OLD
   Scenario: Verify crew list is sorted in descending order of seniority
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crews are sorted by descending order on seniority
-
+#OLD
   Scenario: Verify user can add crew on an ad-hoc manner
     Given I launch sol-x portal
     And I remove crew from vessel
@@ -199,7 +277,7 @@ Feature: CrewList
     When I create the ptw with the new pin
     Then I should see smart form landing screen
     And I remove crew from vessel
-
+#OLD
   Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
@@ -246,12 +324,12 @@ Feature: CrewList
   # | test_A039     | FSTO         |
   # | test_A042     | RDCRW        |
   # | test_A046     | SPM          |
-
+#OLD
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see Retrieve My Data button disabled
-
+#OLD
   Scenario: Verify existing crew id cannot be added to the voyage
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
