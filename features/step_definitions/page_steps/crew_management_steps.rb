@@ -49,3 +49,14 @@ Given('CrewManagement verify crew list sorting') do
   @crew_management_page ||= CrewManagementPage.new(@driver)
   @crew_management_page.verify_crew_list_sort
 end
+
+Given('CrewManagement open Add Crew window') do
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  @crew_management_page.open_add_crew_window
+end
+
+Given('CrewManagement verify button availability') do |table|
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  params = table.hashes.first
+  @crew_management_page.verify_button(params['button'], params['availability'])
+end

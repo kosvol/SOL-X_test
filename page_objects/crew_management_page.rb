@@ -64,10 +64,10 @@ class CrewManagementPage < BasePage
   end
 
   def verify_pin_availability(option)
-    puts retrieve_rand_pin
+    pin = retrieve_text(CREW_MANAGEMENT[:pin])
     if option == 'not shown'
-      compare_string('••••', retrieve_rand_pin)
-    elsif option == 'shown' && retrieve_rand_pin == '••••'
+      compare_string('••••', pin)
+    elsif option == 'shown' && pin == '••••'
       raise 'The PIN is not shown'
     end
   end
@@ -112,11 +112,11 @@ class CrewManagementPage < BasePage
     raise 'The crew member list don not match' if rank_list != crew_list.uniq
   end
 
-  private
-
-  def retrieve_rand_pin
-    retrieve_text(CREW_MANAGEMENT[:pin])
+  def open_add_crew_window
+    click(CREW_MANAGEMENT[:add_crew_btn])
   end
+
+  private
 
   def retrieve_text_timer
     find_element(CREW_MANAGEMENT[:timer_btn])
@@ -128,10 +128,6 @@ class CrewManagementPage < BasePage
     wait.until { @driver.find_element(:xpath, CREW_MANAGEMENT[:crew_table]).displayed? }
   rescue StandardError
     raise 'Time out waiting for Crew Table data'
-  end
-
-  def total_crew
-    retrieve_text(CREW_MANAGEMENT[:total_crew])
   end
 
   def crew_list

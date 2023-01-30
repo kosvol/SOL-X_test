@@ -7,7 +7,7 @@ Feature: CrewList
   Background: Navigate to the "Crew Management" page
     Given Dashboard open dashboard page
     And Dashboard verify the local time
-    And Dashboard open hamburger menu
+    Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
 
   # @manual
@@ -18,12 +18,12 @@ Feature: CrewList
 
 #OLD
   Scenario: Verify table column headers are correct
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see correct column headers
 #### REFACTORED
   Scenario: Verify the elements of Crew Management page
-  Given Dashboard open dashboard page
+  And Dashboard open dashboard page
   And Dashboard open hamburger menu
   And NavigationDrawer navigate to Dashboard "Crew Management"
   Then CrewManagement verify the elements are available
@@ -31,29 +31,29 @@ Feature: CrewList
 
 #OLD
   Scenario: Verify crew count match
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see total crew count match inactive crew
 ### REFACTORED
   Scenario: Verify the total crew quantity match with quantity in crew list
-    Given CrewManagement compare crew count
+    And CrewManagement compare crew count
 ###
 
 #OLD
   Scenario: Verify count down timer not started after clicking of View pin
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I view pin
     Then I should see count down start from 10 seconds
 #OLD
   Scenario: Verify crew pin is shown after tapping on view pin with captain pin
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I view pin
     Then I should see pin reviewed
 ### REFACTORED
   Scenario Outline: Verify Master is able to View pin
-    Given CrewManagement click View PINs button
+    And CrewManagement click View PINs button
     And PinEntry enter pin for rank "<rank>"
     Then CrewManagement verify the count down timer
     And CrewManagement verify the PIN is "shown"
@@ -65,13 +65,13 @@ Feature: CrewList
 
 #OLD
   Scenario: Verify error message shown for non-existent pin on view pin feature
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I enter a non-existent pin
     Then I should see invalid pin message
 ### REFACTORED
   Scenario: Verify user with non-Master is not able to View pin
-    Given CrewManagement click View PINs button
+    And CrewManagement click View PINs button
     And PinEntry verify the error message is correct for the wrong rank
       | 4/O   |
       | A 4/O |
@@ -109,13 +109,13 @@ Feature: CrewList
 ###
 #OLD
   Scenario: Verify error message shown for invalid master pin on view pin feature
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I enter a invalid master pin
     Then I should see not authorize error message
 ### REFACTORED
   Scenario: Verify error message shown for invalid master pin on view pin feature
-    Given CrewManagement click View PINs button
+    And CrewManagement click View PINs button
     And PinEntry enter invalid pin "1234"
     Then PinEntry should see error msg "Incorrect Pin, Please Enter Again"
 
@@ -123,29 +123,29 @@ Feature: CrewList
 
 #OLD
   Scenario: Verify crew pin is hidden before view pin
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see pin hidden
 ### REFACTORED
     Scenario: Verify crew pin is hidden before view pin
-      Given CrewManagement verify the PIN is "not shown"
+      And CrewManagement verify the PIN is "not shown"
 ###
 
 #OLD
   # Scenario: Verify crew details match
-  #   Given I launch sol-x portal
+  #   And I launch sol-x portal
   #   When I navigate to "Crew Management" screen for forms
   #   Then I should see all crew details match
   Scenario: Verify crew latest location is display on crew listing
-    Given I clear wearable history and active users
-    Given I launch sol-x portal
+    And I clear wearable history and active users
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I link wearable
     Then I should see crew location details on crew screen
     And I unlink all crew from wearable
 ### REFACTORED need check with opens PINS
   Scenario: Verify the crew data match
-    Given DB service clear couch table
+    And DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
     And Wearable create new 1 wearables
@@ -162,33 +162,33 @@ Feature: CrewList
 
 #OLD
   Scenario: Verify location pin turn green below 5 minutes
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crew list location indicator is green below 5 minutes
     And I unlink all crew from wearable
 ### REFACTORED
   Scenario: Verify location pin turn green below 5 minutes
-    Given DB service clear couch table
+    And DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
     And Wearable create new 1 wearables
     Then Wearable service link crew member
       | rank |        mac        |
       | C/O  | 00:00:00:00:00:01 |
-    Given CrewManagement verify the indicator
+    And CrewManagement verify the indicator
       | rank | color |
       | C/O  | green |
       ###
 
 #OLD
   Scenario: Verify location pin turn yellow after 5 minutes
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crew list location indicator is yellow after 5 minutes
     And I unlink all crew from wearable
 ## REFACTORED
   Scenario: Verify location pin turn yellow after 5 minutes
-    Given DB service clear couch table
+    And DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
     And Wearable create new 1 wearables
@@ -196,14 +196,14 @@ Feature: CrewList
       | rank |        mac        |
       | C/O  | 00:00:00:00:00:01 |
     And CommonSection sleep for "305" sec
-    Given CrewManagement verify the indicator
+    And CrewManagement verify the indicator
       | rank | color  |
       | C/O  | yellow |
 ###
 
 #OLD
   Scenario Outline: Verify crew updated location is display on crew listing
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I link wearable to zone <zoneid> and mac <mac>
     And I update location to new zone <new_zoneid> and mac <new_mac>
@@ -216,7 +216,7 @@ Feature: CrewList
 
 @test2 ## REFACTOR
   Scenario: Verify crew updated location is display on crew listing
-    Given DB service clear couch table
+    And DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
     And Wearable create new 1 wearables
@@ -235,7 +235,7 @@ Feature: CrewList
     Then Wearable service unlink all wearables
 ### REFACTORED
   Scenario: Verify location time period
-    Given DB service clear couch table
+    And DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
     And Wearable create new 1 wearables
@@ -261,25 +261,23 @@ Feature: CrewList
 
 #OLD not to do
   Scenario: Verify error message disappear after backspace on entered pin on view pin feature
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I enter a non-existent pin
     Then I should see invalid pin message
 #OLD
   Scenario: Verify crew list is sorted in descending order of seniority
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crews are sorted by descending order on seniority
-   @test ### REF
+### REFACTORED
    Scenario: Verify crew list is sorted in descending order of seniority
-     Given CrewManagement verify crew list sorting
-
-     ##
-
+     And CrewManagement verify crew list sorting
+ ##
 
 #OLD
   Scenario: Verify user can add crew on an ad-hoc manner
-    Given I launch sol-x portal
+    And I launch sol-x portal
     And I remove crew from vessel
     When I navigate to "Crew Management" screen for forms
     And I add crew
@@ -289,7 +287,7 @@ Feature: CrewList
     And I remove crew from vessel
 #OLD
   Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I add crew <crew_id> id
     Then I should see rank listing for <current_rank> showing 1 rank before and after
@@ -334,14 +332,32 @@ Feature: CrewList
   # | test_A039     | FSTO         |
   # | test_A042     | RDCRW        |
   # | test_A046     | SPM          |
+
+
 #OLD
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see Retrieve My Data button disabled
+##REFACTORED
+Scenario: Verify Retrieve My Data button is disable if empty Crew ID
+  And CrewManagement open Add Crew window
+  Then AddCrew verify button availability
+    | button           | availability |
+    | Retrieve My Data | disabled     |
+  ##
+
 #OLD
   Scenario: Verify existing crew id cannot be added to the voyage
-    Given I launch sol-x portal
+    And I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     And I add an existing crew id
     Then I should see duplicate crew error message
+##REFACTORED
+  Scenario: Verify existing crew id cannot be added to the vessel
+    And CrewManagement open Add Crew window
+    When AddCrew add crew member
+      | crew_id   |
+      | AUTO_0002 |
+    Then AddCrew verify error message "Unable to add crew to the crew list. Please enter a correct Crew ID."
+ ##
