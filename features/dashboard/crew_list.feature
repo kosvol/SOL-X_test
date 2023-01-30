@@ -36,8 +36,7 @@ Feature: CrewList
     Then I should see total crew count match inactive crew
 ### REFACTORED
   Scenario: Verify the total crew quantity match with quantity in crew list
-    Given CrewManagement compare crew count summary with crew list
-     And CrewManagement compare crew count UI with DB
+    Given CrewManagement compare crew count
 ###
 
 #OLD
@@ -234,7 +233,7 @@ Feature: CrewList
       | 2/O  |
      And CommonSection sleep for "2" sec
     Then Wearable service unlink all wearables
-@test
+### REFACTORED
   Scenario: Verify location time period
     Given DB service clear couch table
       | db_type | table     |
@@ -246,11 +245,15 @@ Feature: CrewList
     Then CrewManagement verify location interval
       | rank |  time    |
       | 2/O  | Just Now |
-    And CommonSection sleep for "65" sec
+    And CommonSection sleep for "25" sec
+    Then CrewManagement verify location interval
+      | rank |  time    |
+      | 2/O  | secs ago |
+    And CommonSection sleep for "60" sec
     Then CrewManagement verify location interval
       | rank |  time    |
       | 2/O  | min ago  |
-    And CommonSection sleep for "245" sec
+    And CommonSection sleep for "240" sec
     Then CrewManagement verify location interval
       | rank |  time    |
       | 2/O  | mins ago |
@@ -267,6 +270,13 @@ Feature: CrewList
     Given I launch sol-x portal
     When I navigate to "Crew Management" screen for forms
     Then I should see crews are sorted by descending order on seniority
+   @test ### REF
+   Scenario: Verify crew list is sorted in descending order of seniority
+     Given CrewManagement verify crew list sorting
+
+     ##
+
+
 #OLD
   Scenario: Verify user can add crew on an ad-hoc manner
     Given I launch sol-x portal

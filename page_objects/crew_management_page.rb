@@ -19,7 +19,7 @@ class CrewManagementPage < BasePage
     work_clmn: "//th[contains(., 'Work Availability')]",
     total_crew: "//strong[contains(., 'Total')]/following::*[1]",
     crew_table: '//tbody/tr',
-    crew_rank: "//tbody/tr/td[@data-testid[contains(., 'rank')]][contains(., '%s')]",
+    crew_rank: "//tbody/tr/td[@data-testid[contains(., 'rank')]]",
     crew_sname: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'lastName')]]",
     crew_fname: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'firstName')]]",
     crew_loc: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p[1]",
@@ -40,12 +40,10 @@ class CrewManagementPage < BasePage
 
   def compare_crew_count
     wait_crew_table
-    raise 'Quantity did not match' if total_crew.to_i != crew_list.to_i
-  end
-
-  def compare_crew_qnt_ui_db
+    summary = retrieve_text(CREW_MANAGEMENT[:total_crew])
+    ui_quantity = crew_list.size.to_i
     db_quantity = create_rank_list_api.length
-    raise 'Quantity did not match with DB' if db_quantity.to_i != crew_list.to_i
+    raise 'Quantity did not match' if summary.to_i != ui_quantity || db_quantity != ui_quantity
   end
 
   def click_view_pin
@@ -98,7 +96,7 @@ class CrewManagementPage < BasePage
     when 'Just Now'
       compare_string(' - Just now', retrieve_time_ago(rank))
     when 'secs ago'
-      compare_string(' - secs ago', retrieve_time_ago(rank))
+      compare_string(' -  secs ago', retrieve_time_ago(rank).tr('0-9', ''))
     when 'min ago'
       compare_string(' -  min ago', retrieve_time_ago(rank).tr('0-9', ''))
     when 'mins ago'
@@ -107,6 +105,11 @@ class CrewManagementPage < BasePage
     else
       raise "Undefined parameter #{time}"
     end
+  end
+
+  def verify_crew_list_sort
+    rank_list = YAML.load_file('data/crew-management/rank_list.yml')
+    raise 'The crew member list don not match' if rank_list != crew_list.uniq
   end
 
   private
@@ -132,7 +135,12 @@ class CrewManagementPage < BasePage
   end
 
   def crew_list
-    find_elements(CREW_MANAGEMENT[:crew_table]).size
+    rank_list_ui = []
+    el = find_elements(CREW_MANAGEMENT[:crew_rank])
+    el.each do |item|
+      rank_list_ui.append(item.text)
+    end
+    rank_list_ui
   end
 
   def verify_btns
