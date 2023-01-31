@@ -244,7 +244,7 @@ Feature: CrewList
       | 2/O  | 00:00:00:00:00:01 |
     Then CrewManagement verify location interval
       | rank |  time    |
-      | 2/O  | Just Now |
+      | 2/O  | Just now |
     And CommonSection sleep for "25" sec
     Then CrewManagement verify location interval
       | rank |  time    |
@@ -285,6 +285,20 @@ Feature: CrewList
     When I create the ptw with the new pin
     Then I should see smart form landing screen
     And I remove crew from vessel
+    
+ @test2   ##REF
+  Scenario: Verify user can add crew on an ad-hoc manner
+#    Given DB service clear couch table
+#      | db_type | table        |
+#      | edge    | crew_members |
+#      | cloud   | crew_members |
+#    Then CrewMember service reset with empty vessel
+    And CrewManagement open Add Crew window
+    When AddCrew add crew member
+      | crew_id   |
+      | AUTO_0002 |
+   And AddCrew confirm add crew operation
+    And CommonSection sleep for "5" sec
 #OLD
   Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
     And I launch sol-x portal
@@ -332,8 +346,47 @@ Feature: CrewList
   # | test_A039     | FSTO         |
   # | test_A042     | RDCRW        |
   # | test_A046     | SPM          |
-
-
+@test ##REF
+  Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
+    And CrewManagement open Add Crew window
+    When AddCrew add crew member "<crew_id>"
+    Then AddCrew verify available rank list for "<current_rank>"
+    Examples:
+      | crew_id   | current_rank |
+#      | AUTO_0026 |     A/M      |
+#      | AUTO_0002 |     C/O      |
+#      | AUTO_0027 |     A C/O    |
+#      | AUTO_0003 |     2/O      |
+#      | AUTO_0028 |     A 2/O    |
+#      | AUTO_0004 |     3/O      |
+#      | AUTO_0029 |     A 3/O    |
+#      | AUTO_0005 |     4/O      |
+#      | AUTO_0030 |     A 4/O    |
+#      | AUTO_0006 |     5/O      |
+#      | AUTO_0007 |     D/C      |
+      | AUTO_0008 |     BOS      |
+#      | AUTO_0009 |     A/B      |
+#      | AUTO_0010 |     O/S      |
+      | AUTO_0011 |     SAA      |
+      | AUTO_0012 |     C/E      |
+#      | AUTO_0031 |     A C/E    |
+#      | AUTO_0013 |     2/E      |
+#      | AUTO_0032 |     A 2/E    |
+#      | AUTO_0014 |     3/E      |
+#      | AUTO_0033 |     A 3/E    |
+#      | AUTO_0015 |     CGENG    |
+#      | AUTO_0016 |     4/E      |
+      | AUTO_0034 |     A 4/E    |
+#      | AUTO_0017 |     5/E      |
+#      | AUTO_0018 |     T/E      |
+#      | AUTO_0019 |     E/C      |
+#      | AUTO_0020 |     ETO      |
+#      | AUTO_0021 |     ELC      |
+#      | AUTO_0022 |     ETR      |
+#      | AUTO_0023 |     PMN      |
+#      | AUTO_0024 |     FTR      |
+#      | AUTO_0025 |     OLR      |
+      | AUTO_0035 |     WPR      |
 #OLD
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     And I launch sol-x portal

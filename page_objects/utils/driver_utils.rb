@@ -83,4 +83,13 @@ module DriverUtils
       raise "#{xpath} btn is enabled"
     end
   end
+
+  def retrieve_elements_text_list(xpath)
+    list = []
+    elements = @driver.find_elements(:xpath, xpath)
+    elements.each do |element|
+      list << element.text
+    end
+    list
+  end
 end

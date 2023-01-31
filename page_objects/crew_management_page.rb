@@ -92,22 +92,19 @@ class CrewManagementPage < BasePage
   end
 
   def verify_interval(rank, time)
-    case time
-    when 'Just Now'
-      compare_string(' - Just now', retrieve_time_ago(rank))
-    when 'secs ago'
-      compare_string(' -  secs ago', retrieve_time_ago(rank).tr('0-9', ''))
-    when 'min ago'
-      compare_string(' -  min ago', retrieve_time_ago(rank).tr('0-9', ''))
-    when 'mins ago'
-      compare_string('Last Seen: ', retrieve_last_seen(rank))
-      compare_string(' -  mins ago', retrieve_time_ago(rank).tr('0-9', ''))
+    value = retrieve_time_ago(rank).tr('0-9', '').delete('-').lstrip
+    if ['Just now', 'secs ago', 'min ago'].include?(time)
+      compare_string(time, value)
+    elsif ['mins ago', 'hrs ago'].include?(time)
+      compare_string('Last Seen:', retrieve_last_seen(rank).rstrip)
+      compare_string(time, value)
     else
       raise "Undefined parameter #{time}"
     end
   end
 
   def verify_crew_list_sort
+    crew_list = retrieve_elements_text_list(CREW_MANAGEMENT[:crew_rank])
     rank_list = YAML.load_file('data/crew-management/rank_list.yml')
     raise 'The crew member list don not match' if rank_list != crew_list.uniq
   end
@@ -130,14 +127,14 @@ class CrewManagementPage < BasePage
     raise 'Time out waiting for Crew Table data'
   end
 
-  def crew_list
-    rank_list_ui = []
-    el = find_elements(CREW_MANAGEMENT[:crew_rank])
-    el.each do |item|
-      rank_list_ui.append(item.text)
-    end
-    rank_list_ui
-  end
+  # def crew_list
+  #   rank_list_ui = []
+  #   el = find_elements(CREW_MANAGEMENT[:crew_rank])
+  #   el.each do |item|
+  #     rank_list_ui.append(item.text)
+  #   end
+  #   rank_list_ui
+  # end
 
   def verify_btns
     find_element(CREW_MANAGEMENT[:pin_btn])

@@ -11,7 +11,9 @@ class AddCrewWindow < BasePage
     retrieve_data_btn: "//button/span[contains(., 'Retrieve My Data')]",
     add_crew_input: "//div[label[contains(., 'Crew ID')]]/div/input",
     error_msg: "//div[@aria-label[contains(., 'error message')]]",
-    custom_msg: "//div[label[contains(., 'Crew ID')]]/div[contains(., '%s')]"
+    custom_msg: "//div[label[contains(., 'Crew ID')]]/div[contains(., '%s')]",
+    rank_btn: "//button[@class[contains(.,'SelectButton')]]",
+    rank: "//ul[starts-with(@class,'UnorderedList-')]/li/button/div"
   }.freeze
 
   def initialize(driver)
@@ -25,8 +27,8 @@ class AddCrewWindow < BasePage
     verify_btn_availability("//button[span=\"#{text}\"]", option)
   end
 
-  def add_crew(id)
-    enter_text(ADD_CREW[:add_crew_input], @vessel_type + id)
+  def add_crew(crew_id)
+    enter_text(ADD_CREW[:add_crew_input], @vessel_type + crew_id)
     sleep 1.5
     click(ADD_CREW[:retrieve_data_btn])
   end
@@ -35,6 +37,20 @@ class AddCrewWindow < BasePage
     wait_and_check_element(5, format(ADD_CREW[:custom_msg], 'Unable to add crew'))
     actual_msg = retrieve_text(ADD_CREW[:error_msg])
     compare_string(error_msg, actual_msg)
+  end
+
+  def verify_rank_ddlist(rank)
+    click(ADD_CREW[:rank_btn])
+    actual_rank = retrieve_elements_text_list(ADD_CREW[:rank])
+    expected_rank = expected_rank_list(rank)
+    raise 'The crew list don not match' if actual_rank != expected_rank
+  end
+
+  def expected_rank_list(rank)
+    list = []
+    rank_list = YAML.load_file('data/crew-management/rank_list.yml')
+    index = rank_list.index(rank)
+    list.append(rank_list[index - 1], rank_list[index], rank_list[index + 1])
   end
 
   private
