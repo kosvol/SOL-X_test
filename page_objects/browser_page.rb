@@ -21,4 +21,13 @@ class BrowserPage
       raise "Wrong condition >>> #{condition}"
     end
   end
+
+  def refresh_page
+    @driver.navigate.refresh
+    sleep 0.5
+  end
+
+  def open_new_window
+    @driver.manage.new_window(:window)
+  end
 end

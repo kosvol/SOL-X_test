@@ -3,7 +3,6 @@ questions:
     "DRA - Method & Hazards",
     "Identified Hazards",
     "Evaluation of Residual Risk",
-    "Method No: 1",
     "Work Activity Accepted",
     "Checks and Measures",
     "Measures for Unplanned Occurrences",
@@ -24,6 +23,15 @@ questions:
     "Work Plan carried out?",
     "DRA carried out?",
     "Safety Meeting carried out?",
+    "Reason:",
     "Last Assessment for similar work activity",
     "DRA number of last assessment"
   ]
+
+exceptions:
+  [
+    "Identified Hazards",
+    "DRA Approved By:"
+  ]
+
+additions: ["By:"]

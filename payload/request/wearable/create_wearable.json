@@ -1,0 +1,7 @@
+{
+  "operationName": null,
+  "variables": {
+   "deviceId": "01GPGHNQXS435E7NEX1YHKYSAN"
+   },
+  "query": "mutation ($deviceId: ID!) {\n  registerWearable(deviceId: $deviceId) {\n    _id\n    __typename\n  }\n}\n"
+}

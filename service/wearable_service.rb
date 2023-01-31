@@ -30,10 +30,9 @@ class WearableService
     @wearable_api.link_crew_wearable(wearable_id, user_id, pin)
   end
 
-  def update_wearable_location(wearable_id, zone_id, mac, pin = '1111')
-    zone = "#{retrieve_vessel_name}-#{zone_id}"
-    @logger.debug("update wearable: #{wearable_id} with zone: #{zone}")
-    @wearable_api.update_wearable_location(wearable_id, zone, mac, pin)
+  def update_wearable_location(wearable_id, mac, pin = '1111')
+    @logger.debug("update wearable: #{wearable_id}")
+    @wearable_api.update_wearable_location(wearable_id, mac, pin)
   end
 
   def unlink_all_wearables(pin = '1111')
@@ -41,6 +40,51 @@ class WearableService
     @logger.debug('unlink all wearables')
     wearables['data']['wearables'].each do |wearable|
       @wearable_api.unlink_wearable(wearable['_id'], pin) unless wearable['userId'].nil?
+    end
+  end
+
+  def send_crew_assist(wearable_list)
+    wearable_list['data']['wearables'].each do |wearable|
+      if !wearable['userId'].nil?
+        @wearable_api.send_alert(wearable['_id'], '1111')
+      else
+        @logger.debug "There is no Active user for Wearable #{wearable['_id']}"
+      end
+    end
+  end
+
+  def dismiss_crew_assist(wearable_list)
+    wearable_list['data']['wearables'].each do |wearable|
+      if !wearable['userId'].nil?
+        @wearable_api.dismiss_alert(wearable['_id'], '1111')
+      else
+        @logger.debug "There is no Active user for Wearable #{wearable['_id']}"
+      end
+    end
+  end
+
+  def crew_assist_retrieve_location(rank)
+    wearable_list = retrieve_wearables
+    wearable_list['data']['wearables'].each do |wearable|
+      return wearable['location']['zone']['name'] if wearable['crewMember']['rank'] == rank
+    end
+  end
+
+  def crew_assist_retrieve_name(rank)
+    wearable_list = retrieve_wearables
+    wearable_list['data']['wearables'].each do |wearable|
+      first = wearable['crewMember']['firstName']
+      second = wearable['crewMember']['lastName']
+      name = "#{first} #{second}"
+      return name if wearable['crewMember']['rank'] == rank
+    end
+  end
+
+  def create_wearables(quantity)
+    quantity.times do
+      device_id = "#{Time.new.utc.strftime('%Y%m%d%H%M%S')}_TEST_AUTO_WEARABLE"
+      sleep 0.5
+      @wearable_api.create_wearable(device_id, '1111')
     end
   end
 end

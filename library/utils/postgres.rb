@@ -13,7 +13,7 @@ class Postgres
     @env = retrieve_vessel_name
   end
 
-  def clear_savefue_db
+  def clear_safevue_db
     connection = generate_connection('safevue')
     connection.exec("DELETE FROM form WHERE id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} safevue form deleted")

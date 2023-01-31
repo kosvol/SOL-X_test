@@ -11,3 +11,13 @@ And('Browser open new tab') do
   @browser_page ||= BrowserPage.new(@driver)
   @browser_page.open_new_page
 end
+
+And('Browser refresh page') do
+  @browser_page ||= BrowserPage.new(@driver)
+  @browser_page.refresh_page
+end
+
+And('Browser open new window') do
+  @browser_page ||= BrowserPage.new(@driver)
+  @browser_page.open_new_window
+end
