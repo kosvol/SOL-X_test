@@ -55,6 +55,16 @@ class PinEntryPage < BasePage
     end
   end
 
+  def enter_saved_pin(saved_pin)
+    puts "!!!its a pin = #{saved_pin}"
+    pin = saved_pin
+    pin_xpath = PIN_ENTRY[:pin_pad]
+    pin.each_char do |num|
+      xpath = num == '0' ? pin_xpath % '10' : pin_xpath % num
+      click(xpath)
+    end
+  end
+
   private
 
   def retrieve_pin(rank)

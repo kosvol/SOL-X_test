@@ -13,7 +13,10 @@ class AddCrewWindow < BasePage
     error_msg: "//div[@aria-label[contains(., 'error message')]]",
     custom_msg: "//div[label[contains(., 'Crew ID')]]/div[contains(., '%s')]",
     rank_btn: "//button[@class[contains(.,'SelectButton')]]",
-    rank: "//ul[starts-with(@class,'UnorderedList-')]/li/button/div"
+    rank: "//ul[starts-with(@class,'UnorderedList-')]/li/button/div",
+    view_crew_pin: "//button[contains(., 'View Pin')]",
+    crew_pin: "//div[@class[contains(., 'pin-code')]]",
+    done_btn: "//button[contains(., 'Done')]"
   }.freeze
 
   def initialize(driver)
@@ -39,18 +42,38 @@ class AddCrewWindow < BasePage
     compare_string(error_msg, actual_msg)
   end
 
-  def verify_rank_ddlist(rank)
+  def verify_rank_ddlist(rank, group)
     click(ADD_CREW[:rank_btn])
     actual_rank = retrieve_elements_text_list(ADD_CREW[:rank])
-    expected_rank = expected_rank_list(rank)
-    raise 'The crew list don not match' if actual_rank != expected_rank
+    expected_rank = expected_rank_list(rank, group)
+    raise 'The crew drop down list do not match' if actual_rank != expected_rank
   end
 
-  def expected_rank_list(rank)
+  def expected_rank_list(rank, group)
     list = []
     rank_list = YAML.load_file('data/crew-management/rank_list.yml')
     index = rank_list.index(rank)
-    list.append(rank_list[index - 1], rank_list[index], rank_list[index + 1])
+    case group
+    when 'group_1'
+      list.append(rank_list[index - 1], rank, rank_list[index + 1])
+    when 'group_2'
+      list.append(rank_list[index - 1], rank)
+    when 'group_3'
+      list.append(rank, rank_list[index + 1])
+    when 'group_4'
+      list.append(rank)
+    else
+      raise "Unknown type of group #{group}"
+    end
+  end
+
+  def view_crew_pin
+    click(ADD_CREW[:view_crew_pin])
+  end
+
+  def save_pin
+    wait_until_enabled(ADD_CREW[:done_btn])
+    retrieve_text(ADD_CREW[:crew_pin])
   end
 
   private

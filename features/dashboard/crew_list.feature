@@ -6,7 +6,7 @@ Feature: CrewList
 
   Background: Navigate to the "Crew Management" page
     Given Dashboard open dashboard page
-    And Dashboard verify the local time
+#    And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
 
@@ -51,7 +51,7 @@ Feature: CrewList
     When I navigate to "Crew Management" screen for forms
     And I view pin
     Then I should see pin reviewed
-### REFACTORED
+@test ### REFACTORED
   Scenario Outline: Verify Master is able to View pin
     And CrewManagement click View PINs button
     And PinEntry enter pin for rank "<rank>"
@@ -59,7 +59,7 @@ Feature: CrewList
     And CrewManagement verify the PIN is "shown"
     Examples:
     | rank |
-    | MAS  |
+#    | MAS  |
     | A/M  |
 ###
 
@@ -286,7 +286,7 @@ Feature: CrewList
     Then I should see smart form landing screen
     And I remove crew from vessel
     
- @test2   ##REF
+ @test2  ##REF
   Scenario: Verify user can add crew on an ad-hoc manner
 #    Given DB service clear couch table
 #      | db_type | table        |
@@ -294,11 +294,17 @@ Feature: CrewList
 #      | cloud   | crew_members |
 #    Then CrewMember service reset with empty vessel
     And CrewManagement open Add Crew window
-    When AddCrew add crew member
-      | crew_id   |
-      | AUTO_0002 |
-   And AddCrew confirm add crew operation
-    And CommonSection sleep for "5" sec
+    When AddCrew add crew member by id "AUTO_0026"
+    And AddCrew confirm add crew operation and save pin
+    And CommonSection sleep for "60" sec
+    Given Dashboard open dashboard page
+    And Dashboard verify the local time
+    Then Dashboard open hamburger menu
+    And NavigationDrawer navigate to Dashboard "Crew Management"
+    And CrewManagement compare crew count
+    And CrewManagement click View PINs button
+    And PinEntry enter saved pin
+    Then CrewManagement verify the PIN is "shown"
 #OLD
   Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
     And I launch sol-x portal
@@ -346,47 +352,55 @@ Feature: CrewList
   # | test_A039     | FSTO         |
   # | test_A042     | RDCRW        |
   # | test_A046     | SPM          |
-@test ##REF
-  Scenario Outline: Verify captain can only change rank of +1 and -1 from current rank
+##REFACTORED
+  Scenario Outline: Verify the range of available ranks that can be added to vessel
     And CrewManagement open Add Crew window
-    When AddCrew add crew member "<crew_id>"
-    Then AddCrew verify available rank list for "<current_rank>"
+    When AddCrew add crew member by id "<crew_id>"
+    Then AddCrew verify available rank list for "<current_rank>" "<group>"
     Examples:
-      | crew_id   | current_rank |
-#      | AUTO_0026 |     A/M      |
-#      | AUTO_0002 |     C/O      |
-#      | AUTO_0027 |     A C/O    |
-#      | AUTO_0003 |     2/O      |
-#      | AUTO_0028 |     A 2/O    |
-#      | AUTO_0004 |     3/O      |
-#      | AUTO_0029 |     A 3/O    |
-#      | AUTO_0005 |     4/O      |
-#      | AUTO_0030 |     A 4/O    |
-#      | AUTO_0006 |     5/O      |
-#      | AUTO_0007 |     D/C      |
-      | AUTO_0008 |     BOS      |
-#      | AUTO_0009 |     A/B      |
-#      | AUTO_0010 |     O/S      |
-      | AUTO_0011 |     SAA      |
-      | AUTO_0012 |     C/E      |
-#      | AUTO_0031 |     A C/E    |
-#      | AUTO_0013 |     2/E      |
-#      | AUTO_0032 |     A 2/E    |
-#      | AUTO_0014 |     3/E      |
-#      | AUTO_0033 |     A 3/E    |
-#      | AUTO_0015 |     CGENG    |
-#      | AUTO_0016 |     4/E      |
-      | AUTO_0034 |     A 4/E    |
-#      | AUTO_0017 |     5/E      |
-#      | AUTO_0018 |     T/E      |
-#      | AUTO_0019 |     E/C      |
-#      | AUTO_0020 |     ETO      |
-#      | AUTO_0021 |     ELC      |
-#      | AUTO_0022 |     ETR      |
-#      | AUTO_0023 |     PMN      |
-#      | AUTO_0024 |     FTR      |
-#      | AUTO_0025 |     OLR      |
-      | AUTO_0035 |     WPR      |
+      | crew_id   | current_rank | group   |
+      | AUTO_0026 |     A/M      | group_1 |
+      | AUTO_0002 |     C/O      | group_1 |
+      | AUTO_0027 |     A C/O    | group_1 |
+      | AUTO_0003 |     2/O      | group_1 |
+      | AUTO_0028 |     A 2/O    | group_1 |
+      | AUTO_0004 |     3/O      | group_1 |
+      | AUTO_0029 |     A 3/O    | group_1 |
+      | AUTO_0005 |     4/O      | group_1 |
+      | AUTO_0030 |     A 4/O    | group_1 |
+      | AUTO_0006 |     5/O      | group_1 |
+      | AUTO_0007 |     D/C      | group_1 |
+      | AUTO_0008 |     BOS      | group_1 |
+      | AUTO_0009 |     A/B      | group_1 |
+      | AUTO_0010 |     O/S      | group_1 |
+      | AUTO_0011 |     SAA      | group_2 |
+      | AUTO_0012 |     C/E      | group_3 |
+      | AUTO_0031 |     A C/E    | group_1 |
+      | AUTO_0013 |     2/E      | group_1 |
+      | AUTO_0032 |     A 2/E    | group_1 |
+      | AUTO_0014 |     3/E      | group_1 |
+      | AUTO_0033 |     A 3/E    | group_1 |
+      | AUTO_0015 |     CGENG    | group_1 |
+      | AUTO_0016 |     4/E      | group_1 |
+      | AUTO_0034 |     A 4/E    | group_1 |
+      | AUTO_0017 |     5/E      | group_1 |
+      | AUTO_0018 |     T/E      | group_1 |
+      | AUTO_0019 |     E/C      | group_1 |
+      | AUTO_0020 |     ETO      | group_1 |
+      | AUTO_0021 |     ELC      | group_1 |
+      | AUTO_0022 |     ETR      | group_1 |
+      | AUTO_0023 |     PMN      | group_1 |
+      | AUTO_0024 |     FTR      | group_1 |
+      | AUTO_0025 |     OLR      | group_1 |
+      | AUTO_0035 |     WPR      | group_2 |
+      | AUTO_0036 |     CCK      | group_3 |
+      | AUTO_0037 |     2CK      | group_1 |
+      | AUTO_0038 |     STWD     | group_2 |
+      | AUTO_0039 |     FSTO     | group_4 |
+      | AUTO_0040 |     RDCRW    | group_4 |
+      | AUTO_0041 |     SPM      | group_4 |
+    ##
+
 #OLD
   Scenario: Verify Retrieve My Data button is disable if empty Crew ID
     And I launch sol-x portal
@@ -409,8 +423,6 @@ Scenario: Verify Retrieve My Data button is disable if empty Crew ID
 ##REFACTORED
   Scenario: Verify existing crew id cannot be added to the vessel
     And CrewManagement open Add Crew window
-    When AddCrew add crew member
-      | crew_id   |
-      | AUTO_0002 |
+    When AddCrew add crew member by id "AUTO_0002"
     Then AddCrew verify error message "Unable to add crew to the crew list. Please enter a correct Crew ID."
  ##

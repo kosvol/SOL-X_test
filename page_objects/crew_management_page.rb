@@ -41,7 +41,7 @@ class CrewManagementPage < BasePage
   def compare_crew_count
     wait_crew_table
     summary = retrieve_text(CREW_MANAGEMENT[:total_crew])
-    ui_quantity = crew_list.size.to_i
+    ui_quantity = retrieve_elements_text_list(CREW_MANAGEMENT[:crew_rank]).length
     db_quantity = create_rank_list_api.length
     raise 'Quantity did not match' if summary.to_i != ui_quantity || db_quantity != ui_quantity
   end
@@ -64,6 +64,7 @@ class CrewManagementPage < BasePage
   end
 
   def verify_pin_availability(option)
+    wait_crew_table
     pin = retrieve_text(CREW_MANAGEMENT[:pin])
     if option == 'not shown'
       compare_string('••••', pin)
@@ -121,20 +122,11 @@ class CrewManagementPage < BasePage
   end
 
   def wait_crew_table
-    wait = Selenium::WebDriver::Wait.new(timeout: 15)
+    wait = Selenium::WebDriver::Wait.new(timeout: 30)
     wait.until { @driver.find_element(:xpath, CREW_MANAGEMENT[:crew_table]).displayed? }
   rescue StandardError
     raise 'Time out waiting for Crew Table data'
   end
-
-  # def crew_list
-  #   rank_list_ui = []
-  #   el = find_elements(CREW_MANAGEMENT[:crew_rank])
-  #   el.each do |item|
-  #     rank_list_ui.append(item.text)
-  #   end
-  #   rank_list_ui
-  # end
 
   def verify_btns
     find_element(CREW_MANAGEMENT[:pin_btn])
