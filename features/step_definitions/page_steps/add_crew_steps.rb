@@ -2,10 +2,9 @@
 
 require_relative '../../../page_objects/add_crew_window'
 
-And('AddCrew verify button availability') do |table|
+And('AddCrew verify window elements') do
   @add_crew_window ||= AddCrewWindow.new(@driver)
-  params = table.hashes.first
-  @add_crew_window.verify_button(params['button'], params['availability'])
+  @add_crew_window.verify_elements
 end
 
 And('AddCrew add crew member by id {string}') do |crew_id|
@@ -27,4 +26,10 @@ And('AddCrew confirm add crew operation and save pin') do
   @add_crew_window ||= AddCrewWindow.new(@driver)
   @add_crew_window.view_crew_pin
   @saved_pin = @add_crew_window.save_pin
+end
+
+And('AddCrew verify new pin is shown') do
+  @add_crew_window ||= AddCrewWindow.new(@driver)
+  @add_crew_window.view_crew_pin
+  @add_crew_window.verify_new_pin
 end

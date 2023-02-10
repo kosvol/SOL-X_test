@@ -33,14 +33,14 @@ class PinEntryPage < BasePage
       enter_pin(nrank)
       wait_until_enabled(format(PIN_ENTRY[:custom_msg], 'not authorized'))
       actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
-      compare_string('You Are Not Authorized To Perform That Action', actual_msg)
+      compare_string('You are not authorized to perform that action', actual_msg.capitalize)
     end
   end
 
   def verify_error_msg(error_msg)
     wait_until_enabled(format(PIN_ENTRY[:custom_msg], 'Incorrect pin'))
     actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
-    compare_string(error_msg, actual_msg)
+    compare_string(error_msg.capitalize, actual_msg.capitalize)
   end
 
   def click_cancel

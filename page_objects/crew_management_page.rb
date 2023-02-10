@@ -8,6 +8,9 @@ class CrewManagementPage < BasePage
 
   CREW_MANAGEMENT = {
     header: "//h1[contains(., 'Crew Management')]",
+    total_summary: "//strong[contains(., 'Total Crew on Board')]",
+    vessel: "//strong[contains(., 'Vessel Flag')]",
+    vessel_imo: "//strong[contains(., 'Vessel IMO')]",
     pin_btn: "//button[contains(., 'View PINs')]",
     wrh_btn: "//button[contains(., 'View Work Rest Hours')]",
     add_crew_btn: "//button[contains(., 'Add New Crew')]",
@@ -35,7 +38,7 @@ class CrewManagementPage < BasePage
   def verify_elements
     find_element(CREW_MANAGEMENT[:header])
     verify_table
-    verify_btns
+    verify_summary_btns
   end
 
   def compare_crew_count
@@ -65,6 +68,7 @@ class CrewManagementPage < BasePage
 
   def verify_pin_availability(option)
     wait_crew_table
+    # sleep 1
     pin = retrieve_text(CREW_MANAGEMENT[:pin])
     if option == 'not shown'
       compare_string('••••', pin)
@@ -128,10 +132,13 @@ class CrewManagementPage < BasePage
     raise 'Time out waiting for Crew Table data'
   end
 
-  def verify_btns
+  def verify_summary_btns
     find_element(CREW_MANAGEMENT[:pin_btn])
     find_element(CREW_MANAGEMENT[:wrh_btn])
     find_element(CREW_MANAGEMENT[:add_crew_btn])
+    find_element(CREW_MANAGEMENT[:total_summary])
+    find_element(CREW_MANAGEMENT[:vessel])
+    find_element(CREW_MANAGEMENT[:vessel_imo])
   end
 
   def verify_table
@@ -181,9 +188,8 @@ class CrewManagementPage < BasePage
   def retrieve_location(rank)
     loc_path = format(CREW_MANAGEMENT[:crew_loc], rank)
     location = retrieve_text(loc_path)
-    location = location.gsub(retrieve_last_seen(rank), ' ')
     location = location.gsub(retrieve_time_ago(rank), ' ')
-    location.lstrip
+    location.strip
   end
 
   def retrieve_last_seen(rank)

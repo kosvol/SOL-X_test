@@ -8,8 +8,11 @@ class AddCrewWindow < BasePage
 
   ADD_CREW = {
     add_crew_header: "//h2[contains(., 'Add Crew')]",
-    retrieve_data_btn: "//button/span[contains(., 'Retrieve My Data')]",
+    description: "//div[@class[contains(., 'Description')]]",
+    retrieve_data_btn: "//button[span='Retrieve My Data']",
     add_crew_input: "//div[label[contains(., 'Crew ID')]]/div/input",
+    id_header: "//div[label[contains(., 'Enter Your Crew ID')]]",
+    placeholder: "//div[input[@placeholder='Required']]",
     error_msg: "//div[@aria-label[contains(., 'error message')]]",
     custom_msg: "//div[label[contains(., 'Crew ID')]]/div[contains(., '%s')]",
     rank_btn: "//button[@class[contains(.,'SelectButton')]]",
@@ -26,8 +29,13 @@ class AddCrewWindow < BasePage
     sleep 1
   end
 
-  def verify_button(text, option)
-    verify_btn_availability("//button[span=\"#{text}\"]", option)
+  def verify_elements
+    find_element(ADD_CREW[:id_header])
+    find_element(ADD_CREW[:placeholder])
+    description = retrieve_text(ADD_CREW[:description])
+    message = "Enter your Crew ID to use Safevue on #{@vessel_type}AUTO Vessel"
+    compare_string(message.capitalize, description.capitalize)
+    verify_button_disable
   end
 
   def add_crew(crew_id)
@@ -76,7 +84,17 @@ class AddCrewWindow < BasePage
     retrieve_text(ADD_CREW[:crew_pin])
   end
 
+  def verify_new_pin
+    raise 'The PIN not shown' if save_pin.is_a?(Integer)
+
+    click(ADD_CREW[:done_btn])
+  end
+
   private
+
+  def verify_button_disable
+    verify_btn_availability(ADD_CREW[:retrieve_data_btn], 'disabled')
+  end
 
   def wait_and_check_element(time, element)
     wait = Selenium::WebDriver::Wait.new(timeout: time)
