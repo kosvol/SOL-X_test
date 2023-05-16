@@ -2,13 +2,14 @@
 
 require_relative '../base_page'
 
-# AddPhotosPage object
+# PhotoAttachmentPage object
 class PhotoAttachmentPage < BasePage
+  include EnvUtils
   PHOTO_ATTACHMENTS = {
-    open_photo_btn: "//button[contains(@class,'OpenPhotosButton')]",
+    page_header: "//h1[contains(.,'Take photo')]",
     capture_photo_btn: "//button[contains(@class,'Camera__CapturePhotoButton')]",
     add_photo_btn: "//button[span='Add this photo']",
-    photos_attached_num: "//div[contains(@class, 'Camera__Thumbnail')]/div",
+    photos_attached_count: "//div[contains(@class, 'Camera__Thumbnail')]/div",
     photo_limit_warning: "//div[contains(@class, 'CameraError__ErrorContainer')]/p"
   }.freeze
 
@@ -17,16 +18,29 @@ class PhotoAttachmentPage < BasePage
   BFR_APVL_PHOTOS_LIMIT_NOTE = 'You have reached the max. limit of 3 photos before sending for approval'
   AFT_APVL_PHOTOS_LIMIT_NOTE = 'You have reached the max. limit of 3 photos before sending for Permit withdrawal'
 
-  def verify_camera_btn(section)
-    find_element(PHOTO_ATTACHMENTS[:open_photo_btn] % section)
+  def initialize(driver)
+    super
+    find_element(PHOTO_ATTACHMENTS[:page_header])
   end
 
-  def verify_no_camera_btn(section)
-    verify_element_not_exist(PHOTO_ATTACHMENTS[:open_photo_btn] % section)
+  def verify_photo_count(count)
+    count == find_element(PHOTO_ATTACHMENTS[:photos_attached_count])
   end
 
-  def click_open_photo_btn
-    click(PHOTO_ATTACHMENTS[:open_photo_btn])
+  def verify_bfr_photo_limit_warning(count)
+    if count == '3'
+      compare_string(BFR_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    else
+      compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    end
+  end
+
+  def verify_aft_photo_limit_warning(count)
+    if count == '3'
+      compare_string(AFT_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    else
+      compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    end
   end
 
   def click_capture_photo_btn
@@ -39,25 +53,5 @@ class PhotoAttachmentPage < BasePage
 
   def click_add_photo_btn
     click(PHOTO_ATTACHMENTS[:add_photo_btn])
-  end
-
-  def verify_photo_num(photo_num)
-    photo_num == find_element(PHOTO_ATTACHMENTS[:photos_attached_num])
-  end
-
-  def verify_bfr_photo_limit_warning(photo_num)
-    if photo_num == '3'
-      compare_string(BFR_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    else
-      compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    end
-  end
-
-  def verify_aft_photo_limit_warning(photo_num)
-    if photo_num == '3'
-      compare_string(AFT_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    else
-      compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    end
   end
 end

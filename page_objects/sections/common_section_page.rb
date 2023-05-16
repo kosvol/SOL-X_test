@@ -20,7 +20,8 @@ class CommonSectionPage < BasePage
     back_to_home_btn: "//button[span='Back to Home']",
     close_btn: "//button[span='Close']",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
-    save_close_btn: "//button[span='Save & Close']"
+    save_close_btn: "//button[span='Save & Close']",
+    open_photo_btn: "//button[contains(@class,'OpenPhotosButton')]"
   }.freeze
 
   def initialize(driver)
@@ -80,5 +81,17 @@ class CommonSectionPage < BasePage
 
   def click_back_to_home_btn
     click(COMMON_SECTION[:back_to_home_btn])
+  end
+
+  def verify_camera_btn(visibility)
+    if visibility == 'should'
+      find_element(COMMON_SECTION[:open_photo_btn])
+    else
+      verify_element_not_exist(COMMON_SECTION[:open_photo_btn])
+    end
+  end
+
+  def click_camera_btn
+    click(COMMON_SECTION[:open_photo_btn])
   end
 end

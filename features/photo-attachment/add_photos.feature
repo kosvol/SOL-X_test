@@ -12,7 +12,7 @@ Feature: Photo Attachment: Add Photos
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "<section>"
-    Then "<section>" should see Open Photos button
+    Then CommonSection "should" see camera button
     Examples:
       | section               |
       | Section 1             |
@@ -37,15 +37,15 @@ Feature: Photo Attachment: Add Photos
     And CommonSection sleep for "2" sec
     And CreatedPTW click edit
     And PinEntry enter pin for rank "C/O"
-    And PhotoAttachment click Open Photos button
-    And I sleep for 3 seconds
-    And PhotoAttachment verify photo thumbnail is "2"
-    Then PhotoAttachment verify "2" photo limit warning before approval
-    And PhotoAttachment click Capture Photo button
+    And CommonSection click camera button
+    Then PhotoAttachment should see section header
+    And PhotoAttachment verify photo count "2"
+    And PhotoAttachment verify "2" photo limit warning before approval
+    Then PhotoAttachment click Capture Photo button
     And PhotoAttachment click Add Photo button
-    And PhotoAttachment verify photo thumbnail is "3"
-    Then PhotoAttachment verify "3" photo limit warning before approval
-    And PhotoAttachment verify Capture Photo button is "disable"
+    And PhotoAttachment verify photo count "3"
+    And PhotoAttachment verify "3" photo limit warning before approval
+    Then PhotoAttachment verify Capture Photo button is "disable"
 
   Scenario Outline: Verify user can see the camera button in APPROVAL_UPDATES_NEEDED state
     Given PermitGenerator create permit
@@ -57,7 +57,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "<section>"
-    Then "<section>" should see Open Photos button
+    Then CommonSection "should" see camera button
     Examples:
       | section               |
       | Section 1             |
@@ -81,7 +81,7 @@ Feature: Photo Attachment: Add Photos
       | ptw  | updates-needed |
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
-    And PhotoAttachment click Open Photos button
+    And PhotoAttachment click camera button
     And I sleep for 3 seconds
     And PhotoAttachment verify photo thumbnail is "2"
     Then PhotoAttachment verify "2" photo limit warning before approval
@@ -101,7 +101,7 @@ Feature: Photo Attachment: Add Photos
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    Then "Section 8" should see Open Photos button
+    Then CommonSection "should" see camera button
 
   Scenario Outline: Verify user cannot see the camera button in other sections of ACTIVE state
     Given PermitGenerator create permit
@@ -113,7 +113,7 @@ Feature: Photo Attachment: Add Photos
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "<section>"
-    Then  "<section>" should not see Open Photos button
+    Then CommonSection "should not" see camera button
     Examples:
       | section                         |
       | Section 1                       |
@@ -128,6 +128,7 @@ Feature: Photo Attachment: Add Photos
       | Section 5                       |
       | Section 6                       |
       | Section 7                       |
+      | Section 7B                      |
 
   Scenario: Verify user cannot add more than 3 photos in ACTIVE state
     Given PermitGenerator create permit
@@ -139,7 +140,7 @@ Feature: Photo Attachment: Add Photos
     And ActivePTW click View/Terminate button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    And PhotoAttachment click Open Photos button
+    And PhotoAttachment click camera button
     And I sleep for 3 seconds
     And PhotoAttachment verify photo thumbnail is "2"
     Then PhotoAttachment verify "2" photo limit warning after approval
@@ -159,7 +160,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    Then "Section 8" should see Open Photos button
+    Then CommonSection "should" see camera button
 
   Scenario Outline: Verify user cannot see the camera button in other sections of ACTIVE_UPDATES_NEEDED state
     Given PermitGenerator create permit
@@ -171,7 +172,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "<section>"
-    Then  "<section>" should not see Open Photos button
+    Then CommonSection "should not" see camera button
     Examples:
       | section               |
       | Section 1             |
@@ -186,6 +187,7 @@ Feature: Photo Attachment: Add Photos
       | Section 5             |
       | Section 6             |
       | Section 7             |
+      | Section 7B            |
 
   Scenario: Verify user cannot add more than 3 photos in ACTIVE_UPDATES_NEEDED state
     Given PermitGenerator create permit
@@ -197,7 +199,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    And PhotoAttachment click Open Photos button
+    And PhotoAttachment click camera button
     And I sleep for 3 seconds
     And PhotoAttachment verify photo thumbnail is "2"
     Then PhotoAttachment verify "2" photo limit warning after approval
@@ -217,7 +219,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    Then "Section 8" should see Open Photos button
+    Then CommonSection "should" see camera button
 
   Scenario Outline: Verify user cannot see the camera button in other sections of Termination Updates Needed state
     Given PermitGenerator create permit
@@ -229,7 +231,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "<section>"
-    Then  "<section>" should not see Open Photos button
+    Then CommonSection "should not" see camera button
     Examples:
       | section               |
       | Section 1             |
@@ -244,6 +246,7 @@ Feature: Photo Attachment: Add Photos
       | Section 5             |
       | Section 6             |
       | Section 7             |
+      | Section 7B            |
 
   Scenario: Verify user cannot add more than 3 photos in ACTIVE_UPDATES_NEEDED state
     Given PermitGenerator create permit
@@ -255,7 +258,7 @@ Feature: Photo Attachment: Add Photos
     And UpdatesNeededPTW click Edit/Update button
     And PinEntry enter pin for rank "C/O"
     And CommonSection navigate to "Section 8"
-    And PhotoAttachment click Open Photos button
+    And PhotoAttachment click camera button
     And I sleep for 3 seconds
     And PhotoAttachment verify photo thumbnail is "2"
     Then PhotoAttachment verify "2" photo limit warning after approval
