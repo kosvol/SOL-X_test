@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../../page_objects/photo_attachment/add_photos_page'
+require_relative '../../../page_objects/photo_attachment/photo_attachment_page'
 
 Given('PhotoAttachment should see section header') do
   @section_two_page ||= PhotoAttachmentPage.new(@driver)
