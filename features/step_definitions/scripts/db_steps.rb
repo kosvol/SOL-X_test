@@ -18,3 +18,13 @@ Given('DB service clear postgres data') do
   postgres.clear_safevue_db
   postgres.clear_reporting_db
 end
+
+Given('DB service clear Manage role list') do
+  postgres = Postgres.new
+  postgres.manage_role_clear_users
+end
+
+Given('DB Manage role create {string} roles') do |option|
+  postgres = Postgres.new
+  postgres.create_roles(option)
+end
