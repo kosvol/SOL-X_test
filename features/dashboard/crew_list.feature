@@ -1,27 +1,34 @@
 @crew-list
-Feature: CrewList
-  As a ...
-  I want to ...
-  So that ...
-
+Feature: CrewList / Crew Management page
   # @manual
   # Scenario: Verify Email notification sent to the assign crew
 
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
 
+  Scenario: Reset auto env to defaults
+    Given DB service clear couch table
+      | db_type | table        |
+      | edge    | crew_members |
+      | cloud   | crew_members |
+      | edge    | wearables    |
+    Then DB service sleep "120" sec for data reloaded
+    And CrewMember service reset
+
   Scenario: Verify the elements of Crew Management page (SOL-3772)
-  Given Dashboard open dashboard page
-  And Dashboard verify the local time
-  Then Dashboard open hamburger menu
-  And NavigationDrawer navigate to Dashboard "Crew Management"
-  Then CrewManagement verify the elements are available
+    Given Dashboard open dashboard page
+    And Dashboard verify the local time
+    Then Dashboard open hamburger menu
+    And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
+    Then CrewManagement verify the elements are available
 
   Scenario: Verify the total crew list match with DB active crew members (SOL-3522)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement compare crew count
 
   Scenario: Verify crew pin is hidden before view pin
@@ -29,6 +36,7 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     When NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement verify the PIN is "not shown"
 
   Scenario: Verify error message shown for invalid master pin on view pin feature (SOL-3774)
@@ -36,6 +44,7 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     When CrewManagement click View PINs button
     And PinEntry enter invalid pin "1234"
     Then PinEntry should see error msg "Incorrect Pin, Please Enter Again"
@@ -45,9 +54,11 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     Then DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
+    Then DB service sleep "2" sec for data reloaded
     And Wearable create new 1 wearables
     Then Wearable service link crew member
       | rank |        mac        |
@@ -64,9 +75,11 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     Then DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
+    Then DB service sleep "2" sec for data reloaded
     And Wearable create new 1 wearables
     Then Wearable service link crew member
       | rank |        mac        |
@@ -81,9 +94,11 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     Then DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
+    Then DB service sleep "2" sec for data reloaded
     And Wearable create new 1 wearables
     Then Wearable service link crew member
       | rank |        mac        |
@@ -94,14 +109,16 @@ Feature: CrewList
       | C/O  | yellow |
     Then Wearable service unlink all wearables
 
-#  Scenario: Verify crew updated location is display on crew listing (SOL-3521) / pin = ****
+  Scenario: Verify crew updated location is display on crew listing (SOL-3521)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     Then DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
+    Then DB service sleep "2" sec for data reloaded
     And Wearable create new 1 wearables
     Then Wearable service link crew member
       | rank |        mac        |
@@ -121,9 +138,11 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     Then DB service clear couch table
       | db_type | table     |
       | edge    | wearables |
+    Then DB service sleep "2" sec for data reloaded
     And Wearable create new 1 wearables
     When Wearable service link crew member
       | rank |        mac        |
@@ -145,11 +164,12 @@ Feature: CrewList
       | 2/O  | mins ago |
     Then Wearable service unlink all wearables
 
-#   Scenario: Verify crew list is sorted in descending order of seniority (SOL-3773) / do not match
+   Scenario: Verify crew list is sorted in descending order of seniority (SOL-3773)
      Given Dashboard open dashboard page
      And Dashboard verify the local time
      Then Dashboard open hamburger menu
      And NavigationDrawer navigate to Dashboard "Crew Management"
+     Then CrewManagement verify the crew list are loaded
      Then CrewManagement verify crew list sorting
 
   Scenario: Verify Add Crew modal window (SOL-3797)
@@ -157,6 +177,7 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     When CrewManagement open Add Crew window
     Then AddCrew verify window elements
 
@@ -165,34 +186,39 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "AUTO_0002"
     Then AddCrew verify error message "Unable to add crew to the crew list. Please enter a correct Crew ID."
 
-#  Scenario: Verify user can add crew from Dashboard (SOL-3516) /409
+  Scenario: Verify user can add crew from Dashboard (SOL-3516)
     Given DB service clear couch table
       | db_type | table        |
       | edge    | crew_members |
       | cloud   | crew_members |
+    Then DB service sleep "10" sec for data reloaded
     Then CrewMember service add team with empty vessel
     Then Dashboard open dashboard page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "AUTO_0002"
     And AddCrew verify new pin is shown
 
-#  Scenario: Verify newly added crew is able to sign by PIN /409
+  Scenario: Verify newly added crew is able to sign by PIN
     Given DB service clear couch table
       | db_type | table        |
       | edge    | crew_members |
       | cloud   | crew_members |
+    Then DB service sleep "10" sec for data reloaded
     Then CrewMember service add team with empty vessel
     Then Dashboard open dashboard page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "AUTO_0026"
     And AddCrew confirm add crew operation and save pin
@@ -201,6 +227,7 @@ Feature: CrewList
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement compare crew count
     And CrewManagement click View PINs button
     And PinEntry enter saved pin
@@ -212,11 +239,13 @@ Feature: CrewList
       | db_type | table        |
       | edge    | crew_members |
       | cloud   | crew_members |
+    Then DB service sleep "10" sec for data reloaded
     Then CrewMember service add team with empty vessel
     And Dashboard open dashboard page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
+    Then CrewManagement verify the crew list are loaded
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "<crew_id>"
     Then AddCrew verify available rank list for "<current_rank>" "<group>"
@@ -233,10 +262,10 @@ Feature: CrewList
       | AUTO_0030 |     A 4/O    | group_1 |
       | AUTO_0006 |     5/O      | group_1 |
       | AUTO_0007 |     D/C      | group_1 |
-#      | AUTO_0008 |     BOS      | group_1 | 409
-#      | AUTO_0009 |     A/B      | group_1 | 500
+      | AUTO_0008 |     BOS      | group_1 |
+      | AUTO_0009 |     A/B      | group_1 |
       | AUTO_0010 |     O/S      | group_1 |
-#      | AUTO_0011 |     SAA      | group_2 | do not match
+      | AUTO_0011 |     SAA      | group_2 |
       | AUTO_0012 |     C/E      | group_3 |
       | AUTO_0031 |     A C/E    | group_1 |
       | AUTO_0013 |     2/E      | group_1 |
@@ -248,9 +277,9 @@ Feature: CrewList
       | AUTO_0034 |     A 4/E    | group_1 |
       | AUTO_0017 |     5/E      | group_1 |
       | AUTO_0018 |     T/E      | group_1 |
-#      | AUTO_0019 |     E/C      | group_1 |
-#      | AUTO_0020 |     ETO      | group_1 |
-#      | AUTO_0021 |     ELC      | group_1 |
+      | AUTO_0019 |     E/C      | group_1 |
+      | AUTO_0020 |     ETO      | group_1 |
+      | AUTO_0021 |     ELC      | group_1 |
       | AUTO_0022 |     ETR      | group_1 |
       | AUTO_0023 |     PMN      | group_1 |
       | AUTO_0024 |     FTR      | group_1 |
@@ -263,10 +292,11 @@ Feature: CrewList
       | AUTO_0040 |     RDCRW    | group_4 |
       | AUTO_0041 |     SPM      | group_4 |
 
-  Scenario: Reset crew team and wearables
+  Scenario: Reset auto env to defaults
     Given DB service clear couch table
       | db_type | table        |
       | edge    | crew_members |
       | cloud   | crew_members |
       | edge    | wearables    |
+    Then DB service sleep "120" sec for data reloaded
     And CrewMember service reset

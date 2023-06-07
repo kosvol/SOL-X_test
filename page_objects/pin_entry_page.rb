@@ -56,7 +56,6 @@ class PinEntryPage < BasePage
   end
 
   def enter_saved_pin(saved_pin)
-    puts "!!!its a pin = #{saved_pin}"
     pin = saved_pin
     pin_xpath = PIN_ENTRY[:pin_pad]
     pin.each_char do |num|

@@ -118,18 +118,18 @@ class CrewManagementPage < BasePage
     click(CREW_MANAGEMENT[:add_crew_btn])
   end
 
-  private
-
-  def retrieve_text_timer
-    find_element(CREW_MANAGEMENT[:timer_btn])
-    retrieve_text(CREW_MANAGEMENT[:timer])
-  end
-
   def wait_crew_table
     wait = Selenium::WebDriver::Wait.new(timeout: 30)
     wait.until { @driver.find_element(:xpath, CREW_MANAGEMENT[:crew_table]).displayed? }
   rescue StandardError
     raise 'Time out waiting for Crew Table data'
+  end
+
+  private
+
+  def retrieve_text_timer
+    find_element(CREW_MANAGEMENT[:timer_btn])
+    retrieve_text(CREW_MANAGEMENT[:timer])
   end
 
   def verify_summary_btns
