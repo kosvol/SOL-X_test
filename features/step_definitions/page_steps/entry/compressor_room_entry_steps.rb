@@ -21,3 +21,33 @@ end
 And('CompressorRoomEntry verify page title') do
   @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
 end
+
+And('CompressorRoomEntry fill text area') do
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.fill_text_area
+end
+
+Then('CompressorRoomEntry Select Location of vessel {string}') do |loc_type|
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.select_location_of_vessel(loc_type)
+end
+
+Then('CompressorRoomEntry answer all questions {string}') do |answer|
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.select_all_checkboxes(answer)
+end
+
+Then('CompressorRoomEntry verify the fields are not editable') do
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.verify_non_editable
+end
+
+Then('CompressorRoomEntry select Permit Duration {int}') do |duration|
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.select_permit_duration(duration)
+end
+
+And('CompressorRoomEntry click Terminate') do
+  @compressor_room_entry_page ||= CompressorRoomEntryPage.new(@driver)
+  @compressor_room_entry_page.click_terminate_btn
+end

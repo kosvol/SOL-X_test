@@ -423,7 +423,7 @@ Feature: SHELL level of authority PTW creation
       | Main Deck | No. 1 Cargo Tank Port |
     And CommonSection navigate to "Section 6"
     And CommonSection sleep for "1" sec
-    Then Section6 click submit button
+    Then Section6 click Submit button
     When PinEntry enter pin for rank "<rank>"
     Then PinEntry should see error msg "You Are Not Authorized To Perform That Action"
     Examples:

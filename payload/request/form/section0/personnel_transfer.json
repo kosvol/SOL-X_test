@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "permitType": "Personnel Transfer by Transfer Basket",
     "answers": [{
       "fieldId": "team",

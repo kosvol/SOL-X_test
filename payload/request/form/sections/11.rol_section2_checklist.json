@@ -1,0 +1,86 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "FSUSIT/PTW/2022/019",
+    "answers": [
+      {
+      "fieldId": "cl_riggingOfLadder_boardingArrangement",
+      "typename": "StringFormAnswer",
+      "value": "\"Port Pilot Ladder\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_hasInformationObtained",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_workingOutboardGuidelines",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_hasConsiderationMadeForReduction",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_hasLadderArrangementVerifiedByResponsibileOfficer",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_toolBoxMeetingMeetingCarriedOut",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_allCrewInvolvedInOperationFamiliarWithGangway",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_hasCommunicationWithResponsibleOfficerBeenEstablished",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_ropesAndGantlinesAndLifelinesInGoodConditionAndLongEnough",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_ppeUsedAsPerPpeMatrix",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_lifebouyAndLineReady",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_safetyHarnessAndLineSecuringAggangmentToAStrongPointAvailable",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_lifeVestWornByPersonnelWorkingOverside",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_sufficientIlluminationAvailableToComplete",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_heavingLineAvailable",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_accessPointFreeOfObstruction",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_ladderMadeFastWithShipside",
+      "typename": "StringFormAnswer",
+      "value": "\"yes\""
+    }, {
+      "fieldId": "cl_riggingOfLadder_responsibleAuthority",
+      "typename": "FormAnswerSignatureWithLocation",
+      "value": "{\"signed\":{\"userId\":\"FSUSIT_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,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\",\"signedAt\":\"FSUSIT-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2022-09-06T13:06:20.714Z\",\"utcOffset\":14}}"
+    }, {
+      "fieldId": "showUpdatesNeeded",
+      "typename": "StringFormAnswer",
+      "value": "\"false\""
+    }],
+    "submissionTimestamp": "2022-09-06T13:06:21.714Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

@@ -23,8 +23,7 @@ end
 
 Then('PumpRoomEntry answer question') do |table|
   @pump_room_entry_page ||= PumpRoomEntryPage.new(@driver)
-  params = table.hashes.first
-  @pump_room_entry_page.select_checkbox(params['answer'], params['question'])
+  @pump_room_entry_page.select_answer(table)
 end
 
 And('PumpRoomEntry verify scheduled date') do
@@ -35,4 +34,14 @@ end
 And('PumpRoomEntry click Terminate') do
   @pump_room_entry_page ||= PumpRoomEntryPage.new(@driver)
   @pump_room_entry_page.click_terminate_btn
+end
+
+And('PumpRoomEntry fill text area') do
+  @pump_room_entry_page ||= PumpRoomEntryPage.new(@driver)
+  @pump_room_entry_page.fill_text_area
+end
+
+Then('PumpRoomEntry verify the fields are not editable') do
+  @pump_room_entry_page ||= PumpRoomEntryPage.new(@driver)
+  @pump_room_entry_page.verify_non_editable
 end

@@ -20,3 +20,18 @@ And('Section9 click Withdraw Permit To Work') do
   @section_nine_page ||= SectionNinePage.new(@driver)
   @section_nine_page.click_withdraw
 end
+
+Given('Section9 click Request Updates') do
+  @section_nine_page = SectionNinePage.new(@driver)
+  @section_nine_page.click_request_updates_btn
+end
+
+Given('Section9 enter AA comments {string}') do |text|
+  @section_nine_page ||= SectionNinePage.new(@driver)
+  @section_nine_page.enter_aa_comments(text)
+end
+
+Given('Section9 click Submit') do
+  @section_nine_page = SectionNinePage.new(@driver)
+  @section_nine_page.click_submit_btn
+end

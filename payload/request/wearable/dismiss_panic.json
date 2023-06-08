@@ -1,0 +1,7 @@
+{
+  "operationName": null,
+  "variables": {
+    "id": "fcd1363b7bd69fc526a74c76200001c1"
+  },
+  "query": "mutation ($id: ID!) {\n  dismissPanic(wearableId: $id)\n}\n"
+}

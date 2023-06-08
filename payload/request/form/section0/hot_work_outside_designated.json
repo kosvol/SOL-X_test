@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "permitType": "Hot Work Level-2 outside E/R Workshop but within E/R (Loaded & Ballast Passage)",
     "answers": [{
       "fieldId": "team",

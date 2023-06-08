@@ -3,7 +3,7 @@
 require 'yaml'
 # module for environment
 module EnvUtils
-  BASE_URL = 'https://%<env>s.%<server>s.%<project>s.safevue.ai'
+  BASE_URL = 'https://%<env>s.%<server>s.%<project>s.sg-lab.safevue.ai'
   UI_PORT = '8080'
   API_PORT = '4000'
   EDGE_CREDENTIALS = 'admin:magellanx'
@@ -63,6 +63,14 @@ module EnvUtils
     else
       "#{ENV['ENVIRONMENT']}#{ENV['VESSEL']}"
     end
+  end
+
+  def retrieve_vessel_id
+    vessel_id = "#{ENV['ENVIRONMENT']}-#{ENV['VESSEL']}-vessel"
+    return 'AAMR' if ENV['PROJECT'] == 'shell'
+    return "#{vessel_id}20".upcase if ENV['VERSION'] == '2.0'
+
+    vessel_id.upcase
   end
 
   private

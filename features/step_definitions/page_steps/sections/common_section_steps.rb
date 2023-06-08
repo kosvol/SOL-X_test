@@ -32,6 +32,11 @@ Given('CommonSection click Back button') do
   @common_section_page.click_back_btn
 end
 
+And('CommonSection click Back to Home button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_back_to_home_btn
+end
+
 Given('CommonSection click Close button') do
   @common_section_page ||= CommonSectionPage.new(@driver)
   @common_section_page.click_close_btn

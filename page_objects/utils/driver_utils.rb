@@ -60,6 +60,13 @@ module DriverUtils
     @driver.find_element(:xpath, xpath).send_keys(text)
   end
 
+  def clear_text(xpath)
+    key1 = "\ue009"
+    key2 = 'a'
+    key3 = "\ue017"
+    @driver.find_element(:xpath, xpath).send_keys(key1 + key2 + key3)
+  end
+
   private
 
   def scroll_by_dist(x_coordinate, y_coordinate)
@@ -82,5 +89,14 @@ module DriverUtils
     elsif btn_element.enabled?
       raise "#{xpath} btn is enabled"
     end
+  end
+
+  def retrieve_elements_text_list(xpath)
+    list = []
+    elements = @driver.find_elements(:xpath, xpath)
+    elements.each do |element|
+      list << element.text
+    end
+    list
   end
 end

@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Use of Portable Power Tools",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "parentFormId": "FSUAUTO/PTW/2022/344",
     "answers": [{
       "fieldId": "riskHazard",

@@ -67,7 +67,7 @@ class OPLoginPage < BasePage
 
   def remove_password
     element = OP_LOGIN[:password_field]
-    enter_text(element, "\ue003") until retrieve_text(element).length.zero?
+    enter_text(element, "\ue003") until retrieve_text(element).empty?
   end
 
   private

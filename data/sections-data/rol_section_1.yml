@@ -1,0 +1,37 @@
+questions:
+  [
+    "DRA - Method & Hazards",
+    "Identified Hazards",
+    "Evaluation of Residual Risk",
+    "Work Activity Accepted",
+    "Checks and Measures",
+    "Measures for Unplanned Occurrences",
+    "DRA - Team Members",
+    "Summary & Assessment",
+    "DRA Approved By:",
+    "Name of Vessel:",
+    "DRA No:",
+    "Created On:",
+    "Task:",
+    "Method Description:",
+    "Work Site Inspection Carried Out?",
+    "At Risk?",
+    "Has this DRA been sent to the office for review?",
+    "Contingency & evacuation plans and recovery procedures available to manage the emergencies",
+    "Availability of necessary emergency equipment relevant to the specific hazards",
+    "Personnel training and skills adequate for the specific task",
+    "Work Plan carried out?",
+    "DRA carried out?",
+    "Safety Meeting carried out?",
+    "Reason:",
+    "Last Assessment for similar work activity",
+    "DRA number of last assessment"
+  ]
+
+exceptions:
+  [
+    "Identified Hazards",
+    "DRA Approved By:"
+  ]
+
+additions: ["By:"]

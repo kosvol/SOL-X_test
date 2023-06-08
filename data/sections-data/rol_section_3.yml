@@ -1,0 +1,21 @@
+questions:
+  [
+    "Task Status",
+    "Submit For Termination",
+    "Responsible Authority:",
+    "All control measures as per DRA (FR-S05) are implemented and found satisfactory.",
+    "Email notification to office on commencement of Hot Work (Applicable, where office approval is required)?",
+    "Task status:",
+    "All personnel, materials and equipments have been withdrawn:",
+    "Space secured and house keeping completed:",
+    "Best Practice:",
+    "Master notified on task status:"
+  ]
+
+exceptions: [""]
+
+additions:
+   [
+     "Permit Withdrawn By:",
+     "Task completed at:",
+   ]

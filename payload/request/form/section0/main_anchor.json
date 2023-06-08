@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "permitType": "Maintenance on Anchor",
     "answers": [
       {

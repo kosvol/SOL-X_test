@@ -6,26 +6,26 @@ edge:
   get_workrest: work_rest_hour/_all_docs?skip=0&limit=10000
 jira_url: https://teamsolas.atlassian.net/browse/
 cloud:
-  base_cloud_url: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.safevue.ai
+  base_cloud_url: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.sg-lab.safevue.ai
   get_crew_members: /crew_members/_find
   set_crew_members: /crew_members/_bulk_docs
 office_approval:
-  format_link: https://office-sit.cloud.solx.safevue.ai/permit-preview/%s?formId=%s&staffId=%s
-  get_event_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.safevue.ai/office_approval_events/_find
-  get_form_status: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.safevue.ai/forms/_find
-  get_staff_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.safevue.ai/office_staff/_find
-  office_portal: https://office-sit.cloud.solx.safevue.ai/
-  office_portal_permit_view: https://office-sit.cloud.solx.safevue.ai/permit-overview?formId=%s
+  format_link: https://office-sit.cloud.solx.sg-lab.safevue.ai/permit-preview/%s?formId=%s&staffId=%s
+  get_event_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.sg-lab.safevue.ai/office_approval_events/_find
+  get_form_status: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.sg-lab.safevue.ai/forms/_find
+  get_staff_id: https://admin:gkmQjrP6Lmsd1tvZLTez@couchdb-sit.cloud.solx.sg-lab.safevue.ai/office_staff/_find
+  office_portal: https://office-sit.cloud.solx.sg-lab.safevue.ai/
+  office_portal_permit_view: https://office-sit.cloud.solx.sg-lab.safevue.ai/permit-overview?formId=%s
   password: Solxtester12345!
 postgres:
   safevue:
     database: safevue_%<env>s
-    host: safevue-solx.postgres.database.azure.com
+    host: safevue-solx-sg-lab.postgres.database.azure.com
     password: 00-speak-MACHINE-island-89
-    username: write_user@safevue-solx
+    username: write_user@safevue-solx-sg-lab
   reporting:
     database: reporting_%<env>s
-    host: safevue-solx.postgres.database.azure.com
+    host: safevue-solx-sg-lab.postgres.database.azure.com
     password: 44-sell-BLOCK-compound-42
-    username: reporting_user@safevue-solx
+    username: reporting_user@safevue-solx-sg-lab
 screenshot: 'true'

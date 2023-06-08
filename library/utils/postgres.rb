@@ -13,7 +13,7 @@ class Postgres
     @env = retrieve_vessel_name
   end
 
-  def clear_savefue_db
+  def clear_safevue_db
     connection = generate_connection('safevue')
     connection.exec("DELETE FROM form WHERE id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} safevue form deleted")
@@ -43,6 +43,23 @@ class Postgres
 
     connection.exec("DELETE FROM vw_permit_archive WHERE id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} vw_permit_archive deleted")
+  end
+
+  def manage_role_clear_users
+    connection = generate_connection('safevue')
+    connection.exec("DELETE FROM role WHERE id > '1';")
+    # connection.exec("DELETE FROM role WHERE label LIKE '%Automation%';") - can be used only with Auto environment
+    @logger.info("#{@env} Automation roles list cleared")
+  end
+
+  def create_roles(option)
+    connection = generate_connection('safevue')
+    role = 1
+    while role <= option.to_i do
+        connection.exec("insert into role (label, description, is_admin)
+        values ('Automation Name #{role}', 'Automation test of #{option} roles', false);")
+        role = role + 1
+    end
   end
 
   private

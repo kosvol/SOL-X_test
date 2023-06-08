@@ -17,6 +17,7 @@ class CommonSectionPage < BasePage
     sign_btn: "//button[contains(.,'Sign')]",
     done_button: "//button[span='Done']",
     back_btn: "//button[span='Back']",
+    back_to_home_btn: "//button[span='Back to Home']",
     close_btn: "//button[span='Close']",
     parent_container: "//ul[starts-with(@class,'FormsList__Container')]/li",
     save_close_btn: "//button[span='Save & Close']"
@@ -75,5 +76,9 @@ class CommonSectionPage < BasePage
 
   def click_save_close_btn
     click(COMMON_SECTION[:save_close_btn])
+  end
+
+  def click_back_to_home_btn
+    click(COMMON_SECTION[:back_to_home_btn])
   end
 end

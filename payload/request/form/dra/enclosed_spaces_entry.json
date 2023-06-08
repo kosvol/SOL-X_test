@@ -3,7 +3,7 @@
   "variables": {
     "formType": "DRA",
     "permitType": "Enclosed Space Entry",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "parentFormId": "PTW/TEMP/1648542967",
     "answers": [
       {

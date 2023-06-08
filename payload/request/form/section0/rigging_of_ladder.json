@@ -1,0 +1,42 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 8,
+    "permitType": "Rigging of Gangway & Pilot Ladder",
+    "answers": [
+      {
+        "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
+        "value": "[{\"userId\":\"FSUSIT_0002\",\"rank\":\"C/O\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "typename": "StringFormAnswer",
+        "value": "\"Rigging of Gangway & Pilot Ladder\""
+      },
+      {
+        "fieldId": "openChecklistRiggingOfLadder",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
+        "value": "\"no\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2022-09-06T13:03:17.714Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

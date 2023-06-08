@@ -2,7 +2,7 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 6,
+    "templateVersion": 8,
     "permitType": "Use of Portable Power Tools",
     "answers": [{
       "fieldId": "team",

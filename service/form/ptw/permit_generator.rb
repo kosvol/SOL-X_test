@@ -8,6 +8,7 @@ class PermitGenerator
   attr_accessor :permit_id
 
   def initialize(permit_type_plain)
+    @permit_type = permit_type_plain
     permit_map = PermitMap.new
     permit_type = permit_map.retrieve_permit_type(permit_type_plain)
     @approve_type = permit_map.retrieve_approve_type(permit_type)
@@ -16,7 +17,11 @@ class PermitGenerator
   end
 
   def create_created(eic, gas_reading, bfr_photo)
-    create_pending_sections(eic, gas_reading, bfr_photo)
+    if @permit_type == 'rigging_of_ladder'
+      create_rol_pending_sections
+    else
+      create_pending_sections(eic, gas_reading, bfr_photo)
+    end
     self.permit_id = @builder.permit_id
   end
 
@@ -28,20 +33,32 @@ class PermitGenerator
 
   def create_active(eic, gas_reading, bfr_photo, aft_photo)
     create_pending_approval(eic, gas_reading, bfr_photo)
-    @builder.create_section7
-    @builder.attach_photo('AFTER_APPROVAL', aft_photo.to_i) if aft_photo.to_i.positive?
+    if @permit_type == 'rigging_of_ladder'
+      @builder.create_rol_section2_validity
+    else
+      @builder.create_section7
+      @builder.attach_photo('AFTER_APPROVAL', aft_photo.to_i) if aft_photo.to_i.positive?
+    end
     @builder.update_form_status('ACTIVE')
   end
 
   def create_pending_withdrawal(eic, gas_reading, bfr_photo, aft_photo)
     create_active(eic, gas_reading, bfr_photo, aft_photo)
-    @builder.create_section8
+    if @permit_type == 'rigging_of_ladder'
+      @builder.create_rol_section3_task_st
+    else
+      @builder.create_section8
+    end
     @builder.update_form_status('PENDING_TERMINATION')
   end
 
   def create_withdrawn(eic, gas_reading, bfr_photo, aft_photo)
     create_pending_withdrawal(eic, gas_reading, bfr_photo, aft_photo)
-    @builder.create_section9
+    if @permit_type == 'rigging_of_ladder'
+      @builder.create_rol_section3_withdrawn
+    else
+      @builder.create_section9
+    end
     @builder.update_form_status('CLOSED')
   end
 
@@ -87,6 +104,13 @@ class PermitGenerator
     create_section4(eic)
     @builder.create_section5
     @builder.create_section6(gas_reading)
+  end
+
+  def create_rol_pending_sections
+    @builder.create_section0
+    @builder.create_dra
+    @builder.create_rol_section1
+    @builder.create_rol_section2_checklist
   end
 
   def create_section3
