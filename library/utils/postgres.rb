@@ -31,10 +31,10 @@ class Postgres
     connection.exec("DELETE FROM risk_assessment_near_misses WHERE id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} risk_assessment_near_misses deleted")
 
-    connection.exec("DELETE FROM risk_assessment_new_hazards WHERE id LIKE '%#{@env.upcase}%';")
+    connection.exec("DELETE FROM risk_assessment_new_hazards WHERE ptw_id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} risk_assessment_new_hazards deleted")
 
-    connection.exec("DELETE FROM risk_assessment_new_measures WHERE id LIKE '%#{@env.upcase}%';")
+    connection.exec("DELETE FROM risk_assessment_new_measures WHERE ptw_id LIKE '%#{@env.upcase}%';")
     @logger.info("#{@env} risk_assessment_new_measures deleted")
 
     # vm tables
