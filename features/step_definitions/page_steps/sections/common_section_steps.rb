@@ -132,11 +132,11 @@ Given('CommonSection fill up required fields') do
 end
 
 Given('CommonSection {string} see camera button') do |visibility|
-  @add_photos_page ||= CommonSectionPage.new(@driver)
-  @add_photos_page.verify_camera_btn(visibility)
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.verify_camera_btn(visibility)
 end
 
 Given('CommonSection click camera button') do
-  @add_photos_page ||= CommonSectionPage.new(@driver)
-  @add_photos_page.click_camera_btn
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_camera_btn
 end

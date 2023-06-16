@@ -27,19 +27,11 @@ class PhotoAttachmentPage < BasePage
     count == find_element(PHOTO_ATTACHMENTS[:photos_attached_count])
   end
 
-  def verify_bfr_photo_limit_warning(count)
-    if count == '3'
-      compare_string(BFR_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    else
+  def verify_photo_limit_warning(count, state)
+    if count < 3
       compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
-    end
-  end
-
-  def verify_aft_photo_limit_warning(count)
-    if count == '3'
-      compare_string(AFT_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
     else
-      compare_string(LESS_THAN_THREE_PHOTOS_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+      check_photo_limit_text(state)
     end
   end
 
@@ -53,5 +45,18 @@ class PhotoAttachmentPage < BasePage
 
   def click_add_photo_btn
     click(PHOTO_ATTACHMENTS[:add_photo_btn])
+  end
+
+  private
+
+  def check_photo_limit_text(state)
+    case state
+    when 'before'
+      compare_string(BFR_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    when 'after'
+      compare_string(AFT_APVL_PHOTOS_LIMIT_NOTE, retrieve_text(PHOTO_ATTACHMENTS[:photo_limit_warning]))
+    else
+      raise 'Wrong state'
+    end
   end
 end
