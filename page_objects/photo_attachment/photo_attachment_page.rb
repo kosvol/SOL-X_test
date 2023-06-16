@@ -24,7 +24,7 @@ class PhotoAttachmentPage < BasePage
   end
 
   def verify_photo_count(count)
-    count == find_element(PHOTO_ATTACHMENTS[:photos_attached_count])
+    compare_string(count, retrieve_text(PHOTO_ATTACHMENTS[:photos_attached_count]))
   end
 
   def verify_photo_limit_warning(count, state)
