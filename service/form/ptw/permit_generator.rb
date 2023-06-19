@@ -66,6 +66,8 @@ class PermitGenerator
     case new_status
     when 'APPROVAL_UPDATES_NEEDED'
       create_pending_approval(eic, gas_reading, bfr_photo)
+    when 'ACTIVE_UPDATES_NEEDED'
+      create_active(eic, gas_reading, bfr_photo, aft_photo)
     when 'TERMINATION_UPDATES_NEEDED'
       create_pending_withdrawal(eic, gas_reading, bfr_photo, aft_photo)
     else

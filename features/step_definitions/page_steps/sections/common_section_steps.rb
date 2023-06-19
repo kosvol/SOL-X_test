@@ -130,3 +130,13 @@ Given('CommonSection fill up required fields') do
       | Main Deck | No. 1 Cargo Tank Port |
     )
 end
+
+Given('CommonSection {string} see camera button') do |visibility|
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.verify_camera_btn(visibility)
+end
+
+Given('CommonSection click camera button') do
+  @common_section_page ||= CommonSectionPage.new(@driver)
+  @common_section_page.click_camera_btn
+end
