@@ -19,12 +19,29 @@ class Section4bEicDetailApi < BaseSectionApi
     payload['variables']['formId'] = eic_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     update_signature(payload)
+    update_users(payload)
+    update_answers(payload)
   end
 
   def update_signature(payload)
     vessel_name = retrieve_vessel_name
-    payload['variables']['answers'][-3]['value'] = @user_service.create_default_signature('C/O', vessel_name)
+    payload['variables']['answers'][-4]['value'] = @user_service.create_default_signature('C/O', vessel_name)
+    payload['variables']['answers'][-3]['value'] = @user_service.create_default_signature('A/M', vessel_name)
     payload['variables']['answers'][-2]['value'] = @user_service.create_default_signature('C/E', vessel_name)
+    payload
+  end
+
+  def update_users(payload)
+    co_rank_id = @user_service.retrieve_user_id_by_rank('C/O')
+    payload['variables']['answers'][11]['value'] = "[{\"userId\":\"#{co_rank_id}\",\"rank\":\"C/O\"}]"
+    payload['variables']['answers'][19]['value'] = "[{\"userId\":\"#{co_rank_id}\",\"rank\":\"C/O\"}]"
+    payload
+  end
+
+  def update_answers(payload)
+    zone = "#{retrieve_vessel_name}-Z-AFT-STATION"
+    payload['variables']['answers'][12]['value'] = "{\"zoneList\":[\"#{zone}\"],\"zoneDetails\":\"Test Automation\"}"
+    payload['variables']['answers'][13]['value'] = "{\"zoneList\":[\"#{zone}\"],\"zoneDetails\":\"Test Automation\"}"
     payload
   end
 end

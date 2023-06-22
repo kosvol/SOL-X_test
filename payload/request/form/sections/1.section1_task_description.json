@@ -37,11 +37,6 @@
         "fieldId": "descOfWork",
         "typename": "StringFormAnswer",
         "value": "\"Test Automation\""
-      },
-      {
-        "fieldId": "locationOfWork",
-        "typename": "LocationFormAnswer",
-        "value": "{\"zone\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"zoneDetails\":\"Test Automation\"}"
       }
     ],
     "submissionTimestamp": "2023-06-21T09:35:49.184Z"
