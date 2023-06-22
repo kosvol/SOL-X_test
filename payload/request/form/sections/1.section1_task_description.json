@@ -1,22 +1,17 @@
 {
   "operationName": "UpdateFormAnswers",
   "variables": {
-    "formId": "DEV/PTW/2020/045",
+    "formId": "LNGSIT/PTW/2023/169",
     "answers": [
       {
-        "fieldId": "updatesNeededComment",
-        "typename": "StringFormAnswer",
-        "value": "\"\""
-      },
-      {
-        "fieldId": "showUpdatesNeeded",
-        "typename": "StringFormAnswer",
-        "value": "\"\""
+        "fieldId": "formFieldComment",
+        "typename": "CommentsFormAnswer",
+        "value": "[]"
       },
       {
         "fieldId": "locationOfVessel",
         "typename": "StringFormAnswer",
-        "value": "\"In Port\""
+        "value": "\"At Sea\""
       },
       {
         "fieldId": "conditionOfVessel",
@@ -31,20 +26,25 @@
       {
         "fieldId": "seaState",
         "typename": "StringFormAnswer",
-        "value": "\"1 : Calm (rippled)\""
+        "value": "\"0 : Calm (glassy)\""
       },
       {
         "fieldId": "windforce",
         "typename": "StringFormAnswer",
-        "value": "\"5 : Fresh Breeze\""
+        "value": "\"0 : Calm\""
       },
       {
         "fieldId": "descOfWork",
         "typename": "StringFormAnswer",
         "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "locationOfWork",
+        "typename": "LocationFormAnswer",
+        "value": "{\"zone\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"zoneDetails\":\"Test Automation\"}"
       }
     ],
-    "submissionTimestamp": "2020-07-02T04:46:07.939Z"
+    "submissionTimestamp": "2023-06-21T09:35:49.184Z"
   },
   "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }

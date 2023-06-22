@@ -1,217 +1,275 @@
 {
   "operationName": "UpdateFormAnswers",
   "variables": {
-    "formId": "FSUAUTO/PTW/2022/349",
-    "answers": [{
-      "fieldId": "descOfWork",
-      "typename": "StringFormAnswer",
-      "value": "\"Test Automation\""
-    }, {
-      "fieldId": "cl_heli_formalRiskAssessmentCarriedOut",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_maneuveringRequirementAgreed",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_landingOrWinching",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_communicationBetweenShipAndHelicopter",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_noDirectCommunicationAlternativeThirdParty",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_thirdPartyCommunicationsInUseVisualSignals",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_looseObjectsSecuredOrRemoved",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_allAerialsBeenLoweredOrSecured",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_pennantWindsockHoisted",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_officerOfTheWatchConsulted",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_leaderHasPortableRadioTransceiver",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_firePumpsRunningAndPressure",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_fireHosesReady",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_foamEquipmentReady",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_dryPowderFireExtinguishersAvailable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_firePartyReadyAndDressed",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_separateRescuePartyDetailed",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_fireHosesAndFoamNozzlesPointingAway",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_rescueBoatReadyForLowering",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_signalingLampFlagsBatons",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_largeAxe",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_crowbar",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_adjustableWrench",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_fireResistantBlanket",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_60cmBoltWireCutters",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_grabOrSalvingHook",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_heavyDutyHacksaw",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_ladder",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_lifeline",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_sideCuttingPliers",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_assortedScrewdrivers",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_harnessKnife",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_firstAidKit",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_correctLightingOn",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_deckPartyReady",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_hookHandlerEquippedWithHelmet",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_operatingAreaClear",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_deckPartyAwareOfLanding",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_operatingAreaFreeOfHeavySprayOrSeas",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_sideRailsAwningAndObstructionsLoweredOrRemoved",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_portablePipesRemoved",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_ropeMessengersSecuringHelicopter",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_personnelWarnedToKeepClear",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_instructedNotTouchHelicopterWinchWire",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_notSecureHelicopterWinchWireOnDeck",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_bridgeTeamAwareAlterationOnlyInAnEmergency",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_noInertGasSystemPressureReleasedWithin30Minutes",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_inertGasSystemPressureReduced",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_cargoTankOpeningsSecured",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli_allPrecautionsTakenToPreventVaporEmissionOnDeck",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_heli__pin",
-      "typename": "FormAnswerSignatureWithLocation",
-      "value": "{\"signed\":{\"userId\":\"FSUAUTO_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//2Q==\",\"signedAt\":\"FSUAUTO-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2022-07-29T14:35:09.212Z\",\"utcOffset\":0}}"
-    }],
-    "submissionTimestamp": "2022-07-29T14:35:11.212Z"
+    "formId": "LNGSIT/PTW/2023/177",
+    "answers": [
+      {
+        "fieldId": "formFieldComment",
+        "typename": "CommentsFormAnswer",
+        "value": "[]"
+      },
+      {
+        "fieldId": "descOfWork",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_heli_formalRiskAssessmentCarriedOut",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_maneuveringRequirementAgreed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_landingOrWinching",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_communicationBetweenShipAndHelicopter",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_noDirectCommunicationAlternativeThirdParty",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_thirdPartyCommunicationsInUseVisualSignals",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_looseObjectsSecuredOrRemoved",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_allAerialsBeenLoweredOrSecured",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_pennantWindsockHoisted",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_officerOfTheWatchConsulted",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_leaderHasPortableRadioTransceiver",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_firePumpsRunningAndPressure",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_fireHosesReady",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_foamEquipmentReady",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_dryPowderFireExtinguishersAvailable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_firePartyReadyAndDressed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_separateRescuePartyDetailed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_fireHosesAndFoamNozzlesPointingAway",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_rescueBoatReadyForLowering",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_signalingLampFlagsBatons",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_largeAxe",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_crowbar",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_adjustableWrench",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_fireResistantBlanket",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_60cmBoltWireCutters",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_grabOrSalvingHook",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_heavyDutyHacksaw",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_ladder",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_lifeline",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_sideCuttingPliers",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_assortedScrewdrivers",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_harnessKnife",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_firstAidKit",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_correctLightingOn",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_deckPartyReady",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_hookHandlerEquippedWithHelmet",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_operatingAreaClear",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_deckPartyAwareOfLanding",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_operatingAreaFreeOfHeavySprayOrSeas",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_sideRailsAwningAndObstructionsLoweredOrRemoved",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_portablePipesRemoved",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_ropeMessengersSecuringHelicopter",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_personnelWarnedToKeepClear",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_instructedNotTouchHelicopterWinchWire",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_notSecureHelicopterWinchWireOnDeck",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_bridgeTeamAwareAlterationOnlyInAnEmergency",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_noInertGasSystemPressureReleasedWithin30Minutes",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_inertGasSystemPressureReduced",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_cargoTankOpeningsSecured",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli_allPrecautionsTakenToPreventVaporEmissionOnDeck",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_heli__pin",
+        "typename": "FormAnswerSignatureWithLocation",
+        "value": "{\"signed\":{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAEbAyADASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAEFB//EAB0QAQABBQADAAAAAAAAAAAAAAABAgMEBREGEyH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A7MAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADC0nlWLvNztNZZxsi1c1l313K7lPKa57z5IN0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABIiImZiIjqgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/Z\",\"signedAt\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2023-06-22T06:33:53.431Z\",\"utcOffset\":90}}"
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T06:33:55.431Z"
   },
   "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }

@@ -2,38 +2,47 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 8,
+    "templateVersion": 9,
     "permitType": "Use of ODME in Manual Mode",
-    "answers": [{
-      "fieldId": "team",
-      "typename": "ListOfCrewsFormAnswer",
-      "value": "[{\"userId\":\"FSUAUTO_0002\",\"rank\":\"C/O\"}]"
-    }, {
-      "fieldId": "permitType",
-      "typename": "StringFormAnswer",
-      "value": "\"Use of ODME in Manual Mode\""
-    }, {
-      "fieldId": "openChecklistUseOfOdmeInManualMode",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "permitValidDuration",
-      "typename": "StringFormAnswer",
-      "value": "\"8\""
-    }, {
-      "fieldId": "gasReaderRequired",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "shipsApproval",
-      "typename": "StringFormAnswer",
-      "value": "\"Master\""
-    }, {
-      "fieldId": "officeApproval",
-      "typename": "StringFormAnswer",
-      "value": "\"Director, Fleet Operations (shore Approving Authority)\""
-    }],
-    "submissionTimestamp": "2022-07-29T13:03:43.352Z"
+    "permitTypeHash": "d61a0a7051f3dfd719a7334cc35bed3e",
+    "answers": [
+      {
+        "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
+        "value": "[{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "typename": "StringFormAnswer",
+        "value": "\"Use of ODME in Manual Mode\""
+      },
+      {
+        "fieldId": "openChecklistUseOfOdmeInManualMode",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
+        "value": "\"8\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Director, Fleet Operations (shore Approving Authority)\""
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T08:05:22.301Z"
   },
-  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $permitTypeHash: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, permitTypeHash: $permitTypeHash, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }

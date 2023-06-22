@@ -1,169 +1,210 @@
 {
   "operationName": "UpdateFormAnswers",
   "variables": {
-    "formId": "FSUAUTO/PTW/2022/349",
-    "answers": [{
-      "fieldId": "updatesNeededComment",
-      "typename": "StringFormAnswer",
-      "value": "\"\""
-    }, {
-      "fieldId": "cl_personnelTransfer_personnelTransferAgreedUpon",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_craneWorkingCondition",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_basketHooksGoodCondition",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_sufficientManpower",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_ropesAttached",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_personToBeTransferredAppraised",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_confirmNoSafetyLimitSwitches",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_adequateLightingAvailable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_adequateLiftRings",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_lsvArrangements",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_vesselMovementAcceptable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_dryRunCompleted",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_permissionGiven",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_moreThanOneBasketAvailable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_basketTestMaintained",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_lastInspectionOnBasket",
-      "typename": "StringFormAnswer",
-      "value": "\"2022-07-01T00:00:00.000Z\""
-    }, {
-      "fieldId": "cl_personnelTransfer_weightOfBasket",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_craneTested",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_lastLoadTest",
-      "typename": "StringFormAnswer",
-      "value": "\"2022-07-01T00:00:00.000Z\""
-    }, {
-      "fieldId": "cl_personnelTransfer_lastInspectionDate",
-      "typename": "StringFormAnswer",
-      "value": "\"2022-07-01T00:00:00.000Z\""
-    }, {
-      "fieldId": "cl_personnelTransfer_preventFreeFall",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_craneCertified",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_outreachOfCrane",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_outreachOfCraneMeters",
-      "typename": "FloatFormAnswer",
-      "value": "28"
-    }, {
-      "fieldId": "cl_personnelTransfer_heightOfCrane",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_hookLatchInPlace",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_weatherConditionsConducive",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_weatherConditionsSuitableForTransfer",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_sufficientPersonnelAvailableForTransfer",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_craneOperatorTrained",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_allPersonnelAgreedCommunicationByHandSignal",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_craneOperatorHasClearView",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_adequateLightingAvailableIfOperationAtNight",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_adequateLifeRingsWithLightsAvailable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_arrangementsMadeWithLsvRegardingLee",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_allPartiesInvolvedInTransferHaveBeenBriefed",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_vesselMovementInSeawayAcceptable",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer_emergencyContingenciesDiscussed",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "cl_personnelTransfer__pin",
-      "typename": "FormAnswerSignatureWithLocation",
-      "value": "{\"signed\":{\"userId\":\"FSUAUTO_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,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\",\"signedAt\":\"FSUAUTO-Z-PORT-MANIFOLD\",\"signedOn\":{\"dateTime\":\"2022-07-29T14:10:39.740Z\",\"utcOffset\":0}}"
-    }],
-    "submissionTimestamp": "2022-07-29T14:10:41.740Z"
+    "formId": "LNGSIT/PTW/2023/181",
+    "answers": [
+      {
+        "fieldId": "formFieldComment",
+        "typename": "CommentsFormAnswer",
+        "value": "[]"
+      },
+      {
+        "fieldId": "cl_personnelTransfer_personnelTransferAgreedUpon",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_craneWorkingCondition",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_basketHooksGoodCondition",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_sufficientManpower",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_ropesAttached",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_personToBeTransferredAppraised",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_confirmNoSafetyLimitSwitches",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_adequateLightingAvailable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_adequateLiftRings",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_lsvArrangements",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_vesselMovementAcceptable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_dryRunCompleted",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_permissionGiven",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_moreThanOneBasketAvailable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_basketTestMaintained",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_lastInspectionOnBasket",
+        "typename": "StringFormAnswer",
+        "value": "\"2023-05-31T22:30:00.000Z\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_weightOfBasket",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_craneTested",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_lastLoadTest",
+        "typename": "StringFormAnswer",
+        "value": "\"2023-05-31T22:30:00.000Z\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_lastInspectionDate",
+        "typename": "StringFormAnswer",
+        "value": "\"2023-05-31T22:30:00.000Z\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_preventFreeFall",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_craneCertified",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_outreachOfCrane",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_outreachOfCraneMeters",
+        "typename": "FloatFormAnswer",
+        "value": "10"
+      },
+      {
+        "fieldId": "cl_personnelTransfer_heightOfCrane",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_hookLatchInPlace",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_weatherConditionsConducive",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_weatherConditionsSuitableForTransfer",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_sufficientPersonnelAvailableForTransfer",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_craneOperatorTrained",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_allPersonnelAgreedCommunicationByHandSignal",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_craneOperatorHasClearView",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_adequateLightingAvailableIfOperationAtNight",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_adequateLifeRingsWithLightsAvailable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_arrangementsMadeWithLsvRegardingLee",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_allPartiesInvolvedInTransferHaveBeenBriefed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_vesselMovementInSeawayAcceptable",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer_emergencyContingenciesDiscussed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_personnelTransfer__pin",
+        "typename": "FormAnswerSignatureWithLocation",
+        "value": "{\"signed\":{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAEbAyADASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAEFB//EAB4QAQABBAMBAQAAAAAAAAAAAAABAgMEEQYSIQVR/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnamKop7R2n2I36CgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMfK45ZyuT4v3qszLou41mbUWKLmrVUbmdzH762AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/2Q==\",\"signedAt\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2023-06-22T07:06:02.496Z\",\"utcOffset\":90}}"
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T07:06:22.539Z"
   },
   "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
 }
