@@ -21,8 +21,8 @@ class OPModalWindow < BasePage
 
   def verify_popup(table)
     values = table.hashes.first
-    find_element(format(OP_MODAL_WINDOW[:pop_message], values['title']))
-    find_element(format(OP_MODAL_WINDOW[:pop_message], values['message']))
+    find_element(format(OP_MODAL_WINDOW[:pop_message], values['title'])) if values['list'] != ''
+    find_element(format(OP_MODAL_WINDOW[:pop_message], values['message'])) if values['list'] != ''
     find_element(format(OP_MODAL_WINDOW[:pop_list], values['list'])) if values['list'] != ''
   end
 
