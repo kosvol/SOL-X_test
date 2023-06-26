@@ -1,7 +1,7 @@
 AllCops:
   Exclude:
     - 'pageobjects/**/**/*'
-    - 'library/**/*'
+    - 'library/**/*'q
     - 'features/step_definitions/ui/**/*'
     - 'features/step_definitions/ui/**/**/*'
     - 'features/step_definitions/service/*'
