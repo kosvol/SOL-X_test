@@ -14,6 +14,7 @@ Feature: CrewList / Crew Management page
       | edge    | wearables    |
     Then DB service sleep "120" sec for data reloaded
     And CrewMember service reset
+    Then DB service sleep "120" sec for data reloaded
 
   Scenario: Verify the elements of Crew Management page (SOL-3772)
     Given Dashboard open dashboard page
