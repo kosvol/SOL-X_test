@@ -2,13 +2,14 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 8,
+    "templateVersion": 9,
     "permitType": "Use of non-intrinsically safe Camera outside Accommodation and Machinery spaces",
+    "permitTypeHash": "aa4d6f59053e19aa6f1c12caa2ec27d9",
     "answers": [
       {
         "fieldId": "team",
         "typename": "ListOfCrewsFormAnswer",
-        "value": "[{\"userId\":\"AUTO_SOLX0012\",\"rank\":\"A/M\"}]"
+        "value": "[{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"}]"
       },
       {
         "fieldId": "permitType",
@@ -41,7 +42,7 @@
         "value": "\"MS/VS\""
       }
     ],
-    "submissionTimestamp": "2021-02-08T04:42:10.846Z"
+    "submissionTimestamp": "2023-06-22T08:17:17.781Z"
   },
-  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $permitTypeHash: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, permitTypeHash: $permitTypeHash, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }

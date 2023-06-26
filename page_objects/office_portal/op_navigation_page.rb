@@ -17,7 +17,10 @@ class OPNavigationPage < BasePage
 
   def initialize(driver)
     super
-    find_element(OP_NAVIGATION[:heading_text])
+    wait = Selenium::WebDriver::Wait.new(timeout: 20)
+    wait.until { @driver.find_element(:xpath, OP_NAVIGATION[:heading_text]).displayed? }
+  rescue StandardError
+    raise 'Time out waiting for Office Portal Navigation Menu'
   end
 
   def navigate_to_page(page)

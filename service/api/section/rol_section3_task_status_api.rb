@@ -25,13 +25,19 @@ class RolSection3TaskStAPI < BaseSectionApi
     payload['variables']['formId'] = permit_id
     payload['variables']['submissionTimestamp'] = @current_time
     update_answers(payload)
+    update_users(payload)
   end
 
   def update_answers(payload)
-    payload['variables']['answers'][1]['value'] =
+    payload['variables']['answers'][2]['value'] =
       "{\"__typename\":\"DateTimeWithOffset\",\"dateTime\":\"#{@current_time}\",\"utcOffset\":#{@utc_offset}}"
-    payload['variables']['answers'][4]['value'] = "{\"dateTime\":\"#{@current_time}\",\"utcOffset\":#{@utc_offset}}"
-    payload['variables']['answers'][-2]['value'] = @user_service.create_section8_signature('C/O', retrieve_vessel_name)
+    payload['variables']['answers'][5]['value'] = "{\"dateTime\":\"#{@current_time}\",\"utcOffset\":#{@utc_offset}}"
+    payload
+  end
+
+  def update_users(payload)
+    payload['variables']['answers'][-3]['value'] = @user_service.create_section8_signature('C/O', retrieve_vessel_name)
+    payload['variables']['answers'][-2]['value'] = @user_service.create_section8_signature('A/M', retrieve_vessel_name)
     payload
   end
 end

@@ -93,6 +93,7 @@ module DriverUtils
 
   def retrieve_elements_text_list(xpath)
     list = []
+    WAIT.until { @driver.find_element(:xpath, xpath).enabled? }
     elements = @driver.find_elements(:xpath, xpath)
     elements.each do |element|
       list << element.text

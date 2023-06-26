@@ -58,3 +58,8 @@ And('Dashboard open new window dashboard page') do
   @dashboard_page ||= DashboardPage.new(@driver)
   @dashboard_page.open_page
 end
+
+And('Dashboard open hamburger menu') do
+  @dashboard_page ||= DashboardPage.new(@driver)
+  @dashboard_page.click_hamburger_menu_btn
+end

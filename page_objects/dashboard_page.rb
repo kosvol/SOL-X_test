@@ -100,6 +100,10 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
     end
   end
 
+  def click_hamburger_menu_btn
+    click(DASHBOARD[:hamburger_menu_btn])
+  end
+
   private
 
   def wait_for_loading
@@ -109,7 +113,7 @@ current status #{retrieve_text(DASHBOARD[:entry_status])} retrying #{retry_count
       @logger.debug "wait for loading screen, retrying: #{wait} times"
       sleep 0.5
       wait += 1
-      raise 'time out waiting for loading screen' if wait > 30
+      raise 'time out waiting for loading screen' if wait > 120
     end
   end
 

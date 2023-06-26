@@ -1,0 +1,135 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2023/171",
+    "answers": [
+      {
+        "fieldId": "formFieldComment",
+        "typename": "CommentsFormAnswer",
+        "value": "[]"
+      },
+      {
+        "fieldId": "descOfWork",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_areThereAnyOtherPermitsInvolved",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_areThereAnyOtherPermitsInvolved_Specify",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenVented",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenDrained",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenWashed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasTheEquipmentBeenPurged",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_linesBlanked",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_linesDisconnected",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_valvesClosed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_othersInput",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_oil",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_gas",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_H2S",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_steam",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_pressure",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_isSurroundingAreaFreeFromHazards",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasEquipmentBeenIsolated",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_hasWarningNoticeBeenPosted",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_coldWork_followingPersonProtectiveToBeWorn",
+        "typename": "ListOfStringsFormAnswer",
+        "value": "[\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_safetyOverall\",\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_helmetWithVisor\",\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_safetyLines\",\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_nonRespiratoryMask\",\"cl_coldWork_followingPersonProtectiveToBeWorn_dropdown_chemicalSuit\"]"
+      },
+      {
+        "fieldId": "cl_coldWork_pipelineContainedFollowingMaterial",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_pipelineExpectedToContainTheFollowingHazardousMaterial",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork_specialPrecautions",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_coldWork__pin",
+        "typename": "FormAnswerSignatureWithLocation",
+        "value": "{\"signed\":{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAEbAyADASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAEFB//EAB4QAQACAgIDAQAAAAAAAAAAAAACBQEDBBEGEkFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AOzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMW48m49NbV1dt43I2zsJ+kJ64dxh+5bSdYz8BQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/2Q==\",\"signedAt\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2023-06-22T04:49:51.744Z\",\"utcOffset\":90}}"
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T04:50:02.744Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}

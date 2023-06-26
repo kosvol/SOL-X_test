@@ -1,0 +1,110 @@
+{
+  "operationName": "UpdateFormAnswers",
+  "variables": {
+    "formId": "LNGSIT/PTW/2023/172",
+    "answers": [
+      {
+        "fieldId": "formFieldComment",
+        "typename": "CommentsFormAnswer",
+        "value": "[]"
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_1FormalRiskAssessment",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_2AreTheAnyOtherPermits",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_2AreTheAnyOtherPermits_specify",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_3InformationAvailableOnHealthHazard",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_CanProcessAndHandlingSystemBeEnclosed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_4CanTheHazardousSubstanceBeSuppressed",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_5LimitedQuantityOfTheSubstances",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_6CanTheNumberOfPersonalReducedToMinimum",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_7IsTheProhibitionOfEating",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_8AreThereEnoughWashingAndLaundering",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_9AreWarningSingsPosted",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_10AreTheProperProceduresToStore",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_11HasTheExposureLevelRecorded",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_12AreThePersonnelInvolvedComplying",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_13DustAsbestosMaterials",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_14ToxicFumesPresentAtWorkPlace",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_ProtectiveEquipment",
+        "typename": "ListOfStringsFormAnswer",
+        "value": "[\"cl_workOnHazardousSubstance_ProtectiveEquipment_dropdown_safetyShoes\",\"cl_workOnHazardousSubstance_ProtectiveEquipment_dropdown_safetyEyewear\",\"cl_workOnHazardousSubstance_ProtectiveEquipment_dropdown_safetyGloves\",\"cl_workOnHazardousSubstance_ProtectiveEquipment_dropdown_lifeVest\"]"
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance_SpecialPrecaution",
+        "typename": "StringFormAnswer",
+        "value": "\"Test Automation\""
+      },
+      {
+        "fieldId": "cl_workOnHazardousSubstance__pin",
+        "typename": "FormAnswerSignatureWithLocation",
+        "value": "{\"signed\":{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"},\"signatureString\":\"data:image/jpeg;base64,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\",\"signedAt\":\"LNGSIT-Z-PORT-BRIDGE-WING\",\"signedOn\":{\"dateTime\":\"2023-06-22T05:01:50.568Z\",\"utcOffset\":90}}"
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T05:02:25.568Z"
+  },
+  "query": "mutation UpdateFormAnswers($formId: ID!, $parentFormId: ID, $submissionTimestamp: DateTime, $answers: [SerializedFormAnswerInput!]!) {\n  updateFormAnswers(formId: $formId, parentFormId: $parentFormId, submissionTimestamp: $submissionTimestamp, answers: $answers) {\n    _id\n    __typename\n  }\n}\n"
+}
