@@ -36,7 +36,8 @@ class Section8Api < BaseSectionApi
   end
 
   def update_signature(payload)
-    payload['variables']['answers'][-2]['value'] = @user_service.create_section8_signature('C/O', retrieve_vessel_name)
+    payload['variables']['answers'][-3]['value'] = @user_service.create_section8_signature('C/O', retrieve_vessel_name)
+    payload['variables']['answers'][-2]['value'] = @user_service.create_section8_signature('A/M', retrieve_vessel_name)
     payload
   end
 end

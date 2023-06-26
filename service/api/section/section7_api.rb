@@ -27,8 +27,8 @@ class Section7Api < BaseSectionApi
   end
 
   def update_answers(payload)
-    payload['variables']['answers'][2]['value'] = @user_service.create_default_signature('MAS', retrieve_vessel_name)
-    payload['variables']['answers'][3]['value'] = "{\"dateTime\":\"#{@current_time}\",\"utcOffset\":#{@utc_offset}}"
+    payload['variables']['answers'][3]['value'] = @user_service.create_default_signature('MAS', retrieve_vessel_name)
+    payload['variables']['answers'][4]['value'] = "{\"dateTime\":\"#{@current_time}\",\"utcOffset\":#{@utc_offset}}"
     payload['variables']['answers'].last['value'] =
       "{\"dateTime\":\"#{@time_service.retrieve_time_cal_hours(8)}\",\"utcOffset\":#{@utc_offset}}"
     payload
