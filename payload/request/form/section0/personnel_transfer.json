@@ -2,38 +2,47 @@
   "operationName": "CreateForm",
   "variables": {
     "formType": "PTW",
-    "templateVersion": 8,
+    "templateVersion": 9,
     "permitType": "Personnel Transfer by Transfer Basket",
-    "answers": [{
-      "fieldId": "team",
-      "typename": "ListOfCrewsFormAnswer",
-      "value": "[{\"userId\":\"FSUAUTO_0002\",\"rank\":\"C/O\"}]"
-    }, {
-      "fieldId": "permitType",
-      "typename": "StringFormAnswer",
-      "value": "\"Personnel Transfer by Transfer Basket\""
-    }, {
-      "fieldId": "openChecklistPersonnelTransferByBasket",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "permitValidDuration",
-      "typename": "StringFormAnswer",
-      "value": "\"8\""
-    }, {
-      "fieldId": "gasReaderRequired",
-      "typename": "StringFormAnswer",
-      "value": "\"yes\""
-    }, {
-      "fieldId": "shipsApproval",
-      "typename": "StringFormAnswer",
-      "value": "\"Master\""
-    }, {
-      "fieldId": "officeApproval",
-      "typename": "StringFormAnswer",
-      "value": "\"N/A\""
-    }],
-    "submissionTimestamp": "2022-07-29T13:01:34.254Z"
+    "permitTypeHash": "93639e40b18b61d69cc0fe98d5095653",
+    "answers": [
+      {
+        "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
+        "value": "[{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "typename": "StringFormAnswer",
+        "value": "\"Personnel Transfer by Transfer Basket\""
+      },
+      {
+        "fieldId": "openChecklistPersonnelTransferByBasket",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
+        "value": "\"8\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"N/A\""
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T07:03:21.496Z"
   },
-  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $permitTypeHash: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, permitTypeHash: $permitTypeHash, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
 }

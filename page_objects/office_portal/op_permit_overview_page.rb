@@ -158,7 +158,7 @@ class OPPermitOverviewPage < BasePage
       [] + YAML.load_file('data/sections-data/section_8.yml')['fields_critical']
     when 'ele_equip_circuit'
       [] + YAML.load_file('data/sections-data/section_8.yml')['fields_electrical']
-    when 'pressure_pipe_vessel'
+    when 'pressure_pipe_bunker_line'
       [] + YAML.load_file('data/sections-data/section_8.yml')['fields_pipe']
     else
       [] + YAML.load_file('data/sections-data/section_8.yml')["fields_eic_#{eic_condition}"]

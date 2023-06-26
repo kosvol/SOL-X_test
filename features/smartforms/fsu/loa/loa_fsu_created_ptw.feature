@@ -694,8 +694,8 @@ Feature: LOA FSU Permit to Work for created
 
   Scenario Outline: Verify default responsible authority can submit for review (SOL-8368)
     Given PermitGenerator create permit
-      | permit_type    | permit_status | eic | gas_reading |
-      | underwater_sim | created       | no  | no          |
+      | permit_type   | permit_status | eic | gas_reading |
+      | underwater_op | created       | no  | no          |
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |
@@ -727,8 +727,8 @@ Feature: LOA FSU Permit to Work for created
 
   Scenario: Verify not default responsible authority can not submit for review (SOL-8368)
     Given PermitGenerator create permit
-      | permit_type    | permit_status | eic | gas_reading |
-      | underwater_sim | created       | no  | no          |
+      | permit_type   | permit_status | eic | gas_reading |
+      | underwater_op | created       | no  | no          |
     And SmartForms navigate to state page
       | type | state   |
       | ptw  | created |

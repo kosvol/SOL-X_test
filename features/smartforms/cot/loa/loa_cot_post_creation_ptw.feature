@@ -726,8 +726,8 @@ Feature: LOA COT Permit to Work for post creation
 
   Scenario Outline: Verify default dra signee can sign dra in Master Review (SOL-8309)
     Given PermitGenerator create oa pending status permit
-      | permit_type    | oa_status            | eic | gas_reading |
-      | underwater_sim | PENDING_MASTER_REVIEW| no  | no          |
+      | permit_type   | oa_status            | eic | gas_reading |
+      | underwater_op | PENDING_MASTER_REVIEW| no  | no          |
     And SmartForms navigate to state page
       | type | state            |
       | ptw  | pending-approval |
@@ -764,8 +764,8 @@ Feature: LOA COT Permit to Work for post creation
 
   Scenario Outline: Verify default approval authority can submit OA permit (SOL-8347)
     Given PermitGenerator create oa pending status permit
-      | permit_type    | oa_status            | eic | gas_reading |
-      | underwater_sim | PENDING_MASTER_REVIEW| no  | no          |
+      | permit_type   | oa_status            | eic | gas_reading |
+      | underwater_op | PENDING_MASTER_REVIEW| no  | no          |
     And SmartForms navigate to state page
       | type | state            |
       | ptw  | pending-approval |
@@ -781,8 +781,8 @@ Feature: LOA COT Permit to Work for post creation
 
   Scenario Outline: Verify default approval authority can send OA permit for updates (SOL-8720)
     Given PermitGenerator create oa pending status permit
-      | permit_type    | oa_status            | eic | gas_reading |
-      | underwater_sim | PENDING_MASTER_REVIEW| no  | no          |
+      | permit_type   | oa_status            | eic | gas_reading |
+      | underwater_op | PENDING_MASTER_REVIEW| no  | no          |
     And SmartForms navigate to state page
       | type | state            |
       | ptw  | pending-approval |
@@ -800,8 +800,8 @@ Feature: LOA COT Permit to Work for post creation
 
   Scenario Outline: Verify default ptw eraser can delete a permit with PENDING_MASTER_REVIEW state (SOL-8341)
     Given PermitGenerator create oa pending status permit
-      | permit_type    | oa_status            | eic | gas_reading |
-      | underwater_sim | PENDING_MASTER_REVIEW| no  | no          |
+      | permit_type   | oa_status            | eic | gas_reading |
+      | underwater_op | PENDING_MASTER_REVIEW| no  | no          |
     And SmartForms navigate to state page
       | type | state            |
       | ptw  | pending-approval |

@@ -26,9 +26,4 @@ class RolSection3WithdrawnAPI < BaseSectionApi
     payload['variables']['answers'].last['value'] = @user_service.create_default_signature('MAS', retrieve_vessel_name)
     payload
   end
-
-  def update_answers(payload)
-    payload['variables']['answers'].last['value'] = @user_service.create_default_signature('MAS', retrieve_vessel_name)
-    payload
-  end
 end
