@@ -60,6 +60,13 @@ module DriverUtils
     @driver.find_element(:xpath, xpath).send_keys(text)
   end
 
+  def clear_text(xpath)
+    key1 = "\ue009"
+    key2 = 'a'
+    key3 = "\ue017"
+    @driver.find_element(:xpath, xpath).send_keys(key1 + key2 + key3)
+  end
+
   private
 
   def scroll_by_dist(x_coordinate, y_coordinate)
