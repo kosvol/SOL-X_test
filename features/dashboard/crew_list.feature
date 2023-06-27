@@ -1,11 +1,11 @@
-@crew-list
+@crew-list_all
 Feature: CrewList / Crew Management page
   # @manual
   # Scenario: Verify Email notification sent to the assign crew
 
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
-
+  @crew-list_1
   Scenario: Reset auto env to defaults
     Given DB service clear couch table
       | db_type | table        |
@@ -15,7 +15,7 @@ Feature: CrewList / Crew Management page
     Then DB service sleep "120" sec for data reloaded
     And CrewMember service reset
     Then DB service sleep "120" sec for data reloaded
-
+  @crew-list_2
   Scenario: Verify the elements of Crew Management page (SOL-3772)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -23,7 +23,7 @@ Feature: CrewList / Crew Management page
     And NavigationDrawer navigate to Dashboard "Crew Management"
     Then CrewManagement verify the crew list are loaded
     Then CrewManagement verify the elements are available
-
+  @crew-list_3
   Scenario: Verify the total crew list match with DB active crew members (SOL-3522)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -31,7 +31,7 @@ Feature: CrewList / Crew Management page
     And NavigationDrawer navigate to Dashboard "Crew Management"
     Then CrewManagement verify the crew list are loaded
     And CrewManagement compare crew count
-
+  @crew-list_4
   Scenario: Verify crew pin is hidden before view pin
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -39,7 +39,7 @@ Feature: CrewList / Crew Management page
     When NavigationDrawer navigate to Dashboard "Crew Management"
     Then CrewManagement verify the crew list are loaded
     And CrewManagement verify the PIN is "not shown"
-
+  @crew-list_5
   Scenario: Verify error message shown for invalid master pin on view pin feature (SOL-3774)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -49,7 +49,7 @@ Feature: CrewList / Crew Management page
     When CrewManagement click View PINs button
     And PinEntry enter invalid pin "1234"
     Then PinEntry should see error msg "Incorrect Pin, Please Enter Again"
-
+  @crew-list_6
   Scenario: Verify the crew data match
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -70,7 +70,7 @@ Feature: CrewList / Crew Management page
       | rank |
       | 2/O  |
     Then Wearable service unlink all wearables
-
+  @crew-list_7
   Scenario: Verify location pin turn green below 5 minutes
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -89,7 +89,7 @@ Feature: CrewList / Crew Management page
       | rank | color |
       | C/O  | green |
     Then Wearable service unlink all wearables
-
+  @crew-list_8
   Scenario: Verify location pin turn yellow after 5 minutes
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -109,7 +109,7 @@ Feature: CrewList / Crew Management page
       | rank | color  |
       | C/O  | yellow |
     Then Wearable service unlink all wearables
-
+  @crew-list_9
   Scenario: Verify crew updated location is display on crew listing (SOL-3521)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -133,7 +133,7 @@ Feature: CrewList / Crew Management page
       | rank |
       | 2/O  |
     Then Wearable service unlink all wearables
-
+  @crew-list_10
   Scenario: Verify location time period
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -164,7 +164,7 @@ Feature: CrewList / Crew Management page
       | rank |  time    |
       | 2/O  | mins ago |
     Then Wearable service unlink all wearables
-
+  @crew-list_11
    Scenario: Verify crew list is sorted in descending order of seniority (SOL-3773)
      Given Dashboard open dashboard page
      And Dashboard verify the local time
@@ -172,7 +172,7 @@ Feature: CrewList / Crew Management page
      And NavigationDrawer navigate to Dashboard "Crew Management"
      Then CrewManagement verify the crew list are loaded
      Then CrewManagement verify crew list sorting
-
+  @crew-list_12
   Scenario: Verify Add Crew modal window (SOL-3797)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -181,7 +181,7 @@ Feature: CrewList / Crew Management page
     Then CrewManagement verify the crew list are loaded
     When CrewManagement open Add Crew window
     Then AddCrew verify window elements
-
+  @crew-list_13
   Scenario: Verify existing crew id cannot be added to the vessel (SOL-3518)
     Given Dashboard open dashboard page
     And Dashboard verify the local time
@@ -191,7 +191,7 @@ Feature: CrewList / Crew Management page
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "AUTO_0002"
     Then AddCrew verify error message "Unable to add crew to the crew list. Please enter a correct Crew ID."
-
+  @crew-list_14
   Scenario: Verify user can add crew from Dashboard (SOL-3516)
     Given DB service clear couch table
       | db_type | table        |
@@ -207,7 +207,7 @@ Feature: CrewList / Crew Management page
     And CrewManagement open Add Crew window
     When AddCrew add crew member by id "AUTO_0002"
     And AddCrew verify new pin is shown
-
+  @crew-list_15
   Scenario: Verify newly added crew is able to sign by PIN
     Given DB service clear couch table
       | db_type | table        |
@@ -234,7 +234,7 @@ Feature: CrewList / Crew Management page
     And PinEntry enter saved pin
     Then CrewManagement verify the count down timer
     Then CrewManagement verify the PIN is "shown"
-
+  @crew-list_16
   Scenario Outline: Verify the range of available ranks that can be added to vessel
     Given DB service clear couch table
       | db_type | table        |
@@ -292,7 +292,7 @@ Feature: CrewList / Crew Management page
       | AUTO_0039 |     FSTO     | group_4 |
       | AUTO_0040 |     RDCRW    | group_4 |
       | AUTO_0041 |     SPM      | group_4 |
-
+  @crew-list_17
   Scenario: Reset auto env to defaults
     Given DB service clear couch table
       | db_type | table        |
