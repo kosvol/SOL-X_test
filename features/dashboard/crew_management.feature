@@ -1,4 +1,4 @@
-@crew-list
+@crew-management
 Feature: CrewList / Crew Management page
   # @manual
   # Scenario: Verify Email notification sent to the assign crew
