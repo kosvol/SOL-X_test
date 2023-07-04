@@ -48,9 +48,9 @@ class CrewManagementPage < BasePage
   end
 
   def compare_crew_count
-    summary = retrieve_text(CREW_MANAGEMENT[:total_crew])
     ui_quantity = retrieve_elements_text_list(CREW_MANAGEMENT[:crew_rank]).length
     db_quantity = create_rank_list_api.length
+    summary = retrieve_text(CREW_MANAGEMENT[:total_crew])
     raise 'Quantity did not match' if summary.to_i != ui_quantity || db_quantity != ui_quantity
   end
 
@@ -128,6 +128,12 @@ class CrewManagementPage < BasePage
     raise 'Time out waiting for Crew Table data'
   end
 
+  def compare_ui_api_pin(rank)
+    ui_pin = retrieve_pin(rank)
+    api_pin = UserService.new.retrieve_pin_by_rank(rank)
+    raise "The crew member PIN don not match << #{ui_pin} >> vs API << #{api_pin} >>" if api_pin != ui_pin
+  end
+
   private
 
   def retrieve_text_timer
@@ -165,15 +171,14 @@ class CrewManagementPage < BasePage
   def retrieve_crew_data_api(rank)
     result = []
     name = UserService.new.retrieve_rank_and_name(rank)
-    pin = UserService.new.retrieve_pin_by_rank(rank)
     location = WearableService.new.crew_assist_retrieve_location(rank)
-    result.append(name, location, pin)
+    result.append(name, location)
     result.join(' ')
   end
 
   def retrieve_crew_data_ui(rank)
     result = []
-    result.append(rank, retrieve_firstname(rank), retrieve_surname(rank), retrieve_location(rank), retrieve_pin(rank))
+    result.append(rank, retrieve_firstname(rank), retrieve_surname(rank), retrieve_location(rank))
     result.join(' ')
   end
 

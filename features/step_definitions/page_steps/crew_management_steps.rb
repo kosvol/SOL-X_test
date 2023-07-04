@@ -60,3 +60,8 @@ Given('CrewManagement verify button availability') do |table|
   params = table.hashes.first
   @crew_management_page.verify_button(params['button'], params['availability'])
 end
+
+Then('CrewManagement verify PIN for crew member {string}') do |option|
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  @crew_management_page.compare_ui_api_pin(option)
+end

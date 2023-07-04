@@ -5,14 +5,14 @@ Feature: CrewList / Crew Management page
 
   # @manual
   # Scenario: Verify Crew to receive pin by email 2 weeks before boarding
-  @test
+
   Scenario: Reset environment to defaults
-#    Given DB service clear couch table
-#      | db_type | table        |
-#      | edge    | crew_members |
-#      | cloud   | crew_members |
-#      | edge    | wearables    |
-#    Then DB service sleep "310" sec for data reloaded
+    Given DB service clear couch table
+      | db_type | table        |
+      | edge    | crew_members |
+      | cloud   | crew_members |
+      | edge    | wearables    |
+    Then DB service sleep "310" sec for data reloaded
     And CrewMember service reset
     Then DB service sleep "60" sec for data reloaded
 
@@ -45,7 +45,7 @@ Feature: CrewList / Crew Management page
     When CrewManagement click View PINs button
     And PinEntry enter invalid pin "1234"
     Then PinEntry should see error msg "Incorrect Pin, Please Enter Again"
-@test
+
   Scenario: Verify the crew data match
     Given DB service clear couch table
       | db_type | table     |
@@ -59,11 +59,13 @@ Feature: CrewList / Crew Management page
     And Dashboard verify the local time
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
-    And CrewManagement click View PINs button
-    Then PinEntry enter pin for rank "MAS"
     And CrewManagement verify crew member data
       | rank |
       | 2/O  |
+    And CrewManagement click View PINs button
+    Then PinEntry enter pin for rank "MAS"
+  Then CrewManagement verify the count down timer
+    And CrewManagement verify PIN for crew member "2/O"
     Then Wearable service unlink all wearables
 
   Scenario: Verify location pin turn green below 5 minutes
@@ -214,10 +216,7 @@ Feature: CrewList / Crew Management page
     Then Wearable service link crew member
       | rank |        mac        |
       | 2/O  | 00:00:00:00:00:01 |
-    Then DB service sleep "5" sec for data reloaded
-    And CrewManagement click View PINs button
-    Then PinEntry enter pin for rank "MAS"
-    Then CrewManagement verify the count down timer
+    When DB service sleep "5" sec for data reloaded
     Then CrewManagement verify crew member data
       | rank |
       | 2/O  |
@@ -234,7 +233,7 @@ Feature: CrewList / Crew Management page
     Then Dashboard open hamburger menu
     And NavigationDrawer navigate to Dashboard "Crew Management"
     And CrewManagement open Add Crew window
-    When AddCrew add crew member by id "0026"
+    When AddCrew add crew member by id "0022"
     And AddCrew confirm add crew operation and save pin
     And CommonSection sleep for "60" sec
     Given Dashboard open dashboard page
