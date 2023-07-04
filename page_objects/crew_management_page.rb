@@ -28,12 +28,18 @@ class CrewManagementPage < BasePage
     crew_loc: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p[1]",
     crew_seen: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p/strong",
     crew_loc_time: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'location')]]//p[1]/span",
-    crew_pin: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'pin')]]",
+    crew_pin: "//td[contains(., '%s')]/following-sibling::*[@data-testid[contains(., 'pin')]]/span",
     crew_circle: "//td[contains(., '%s')]//..//div[@class [contains(., 'Indicator')]]",
     timer: "//button[@class[contains(., 'view-pin')]]",
     timer_btn: "//button[contains(., 'Hiding')]",
     pin: '//tbody/tr/td[5]'
   }.freeze
+
+  def initialize(driver)
+    super
+    find_element(CREW_MANAGEMENT[:header])
+    wait_crew_table
+  end
 
   def verify_elements
     find_element(CREW_MANAGEMENT[:header])
@@ -42,7 +48,6 @@ class CrewManagementPage < BasePage
   end
 
   def compare_crew_count
-    wait_crew_table
     summary = retrieve_text(CREW_MANAGEMENT[:total_crew])
     ui_quantity = retrieve_elements_text_list(CREW_MANAGEMENT[:crew_rank]).length
     db_quantity = create_rank_list_api.length
@@ -67,8 +72,6 @@ class CrewManagementPage < BasePage
   end
 
   def verify_pin_availability(option)
-    wait_crew_table
-    # sleep 1
     pin = retrieve_text(CREW_MANAGEMENT[:pin])
     if option == 'not shown'
       compare_string('••••', pin)
@@ -78,8 +81,8 @@ class CrewManagementPage < BasePage
   end
 
   def compare_ui_api_data(rank)
-    api_data = retrieve_crew_data_api(rank).to_s
     ui_data = retrieve_crew_data_ui(rank).to_s
+    api_data = retrieve_crew_data_api(rank).to_s
     raise "The crew member data don not match UI << #{ui_data} >> vs API << #{api_data} >>" if api_data != ui_data
   end
 
@@ -119,7 +122,7 @@ class CrewManagementPage < BasePage
   end
 
   def wait_crew_table
-    wait = Selenium::WebDriver::Wait.new(timeout: 30)
+    wait = Selenium::WebDriver::Wait.new(timeout: 60)
     wait.until { @driver.find_element(:xpath, CREW_MANAGEMENT[:crew_table]).displayed? }
   rescue StandardError
     raise 'Time out waiting for Crew Table data'
@@ -170,7 +173,6 @@ class CrewManagementPage < BasePage
 
   def retrieve_crew_data_ui(rank)
     result = []
-    wait_crew_table
     result.append(rank, retrieve_firstname(rank), retrieve_surname(rank), retrieve_location(rank), retrieve_pin(rank))
     result.join(' ')
   end

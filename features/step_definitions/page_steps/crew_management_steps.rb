@@ -7,11 +7,6 @@ Given('CrewManagement verify the elements are available') do
   @crew_management_page.verify_elements
 end
 
-Given('CrewManagement verify the crew list are loaded') do
-  @crew_management_page ||= CrewManagementPage.new(@driver)
-  @crew_management_page.wait_crew_table
-end
-
 Given('CrewManagement compare crew count') do
   @crew_management_page ||= CrewManagementPage.new(@driver)
   @crew_management_page.compare_crew_count
