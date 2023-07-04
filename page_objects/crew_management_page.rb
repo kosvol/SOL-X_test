@@ -122,7 +122,7 @@ class CrewManagementPage < BasePage
   end
 
   def wait_crew_table
-    wait = Selenium::WebDriver::Wait.new(timeout: 60)
+    wait = Selenium::WebDriver::Wait.new(timeout: 30)
     wait.until { @driver.find_element(:xpath, CREW_MANAGEMENT[:crew_table]).displayed? }
   rescue StandardError
     raise 'Time out waiting for Crew Table data'

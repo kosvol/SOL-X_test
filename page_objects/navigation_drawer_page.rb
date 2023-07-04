@@ -25,7 +25,6 @@ class NavigationDrawerPage < BasePage
   def initialize(driver)
     super
     find_element(NAVIGATION[:heading_text])
-    sleep 1.5
   end
 
   def verify_base_menu
