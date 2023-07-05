@@ -25,3 +25,8 @@ Given('PinEntry enter invalid pin {string}') do |pin|
   @pin_entry_page ||= PinEntryPage.new(@driver)
   @pin_entry_page.enter_invalid_pin(pin)
 end
+
+Given('PinEntry enter saved pin') do
+  @pin_entry_page ||= PinEntryPage.new(@driver)
+  @pin_entry_page.enter_saved_pin(@saved_pin)
+end

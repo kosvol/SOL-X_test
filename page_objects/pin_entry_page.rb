@@ -9,7 +9,8 @@ class PinEntryPage < BasePage
     pin_entry_header: "//h2[contains(.,'Please enter your PIN')]",
     pin_pad: '//*[@id="root"]/div/section/main/ol/li[%s]/button',
     error_msg: "//section[@class='pin-indicators-section']/h2",
-    cancel_btn: "//button[contains(.,'Cancel')]"
+    cancel_btn: "//button[contains(.,'Cancel')]",
+    custom_msg: "//section[@class='pin-indicators-section']/h2[contains(., '%s')]"
   }.freeze
 
   def initialize(driver)
@@ -30,14 +31,16 @@ class PinEntryPage < BasePage
     table.raw.each do |rank|
       nrank = rank.join('').delete('"')
       enter_pin(nrank)
+      wait_until_enabled(format(PIN_ENTRY[:custom_msg], 'not authorized'))
       actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
-      compare_string('You Are Not Authorized To Perform That Action', actual_msg)
+      compare_string('You are not authorized to perform that action', actual_msg.capitalize)
     end
   end
 
   def verify_error_msg(error_msg)
+    wait_until_enabled(format(PIN_ENTRY[:custom_msg], 'Incorrect pin'))
     actual_msg = retrieve_text(PIN_ENTRY[:error_msg])
-    compare_string(error_msg, actual_msg)
+    compare_string(error_msg.capitalize, actual_msg.capitalize)
   end
 
   def click_cancel
@@ -45,6 +48,15 @@ class PinEntryPage < BasePage
   end
 
   def enter_invalid_pin(pin)
+    pin_xpath = PIN_ENTRY[:pin_pad]
+    pin.each_char do |num|
+      xpath = num == '0' ? pin_xpath % '10' : pin_xpath % num
+      click(xpath)
+    end
+  end
+
+  def enter_saved_pin(saved_pin)
+    pin = saved_pin
     pin_xpath = PIN_ENTRY[:pin_pad]
     pin.each_char do |num|
       xpath = num == '0' ? pin_xpath % '10' : pin_xpath % num

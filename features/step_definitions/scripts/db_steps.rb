@@ -18,3 +18,7 @@ Given('DB service clear postgres data') do
   postgres.clear_safevue_db
   postgres.clear_reporting_db
 end
+
+And('DB service sleep {string} sec for data reloaded') do |sec|
+  sleep sec.to_i
+end
