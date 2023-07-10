@@ -1,0 +1,48 @@
+{
+  "operationName": "CreateForm",
+  "variables": {
+    "formType": "PTW",
+    "templateVersion": 9,
+    "permitType": "Underwater Operation",
+    "permitTypeHash": "d57b96d8891ade342ed4cf653e8d40cd",
+    "answers": [
+      {
+        "fieldId": "team",
+        "typename": "ListOfCrewsFormAnswer",
+        "value": "[{\"userId\":\"LNGSIT_0002\",\"rank\":\"C/O\"}]"
+      },
+      {
+        "fieldId": "permitType",
+        "typename": "StringFormAnswer",
+        "value": "\"Underwater Operation\""
+      },
+      {
+        "fieldId": "openChecklistUnderwaterOp",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "permitValidDuration",
+        "typename": "StringFormAnswer",
+        "value": "\"4\""
+      },
+      {
+        "fieldId": "gasReaderRequired",
+        "typename": "StringFormAnswer",
+        "value": "\"yes\""
+      },
+      {
+        "fieldId": "shipsApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Master\""
+      },
+      {
+        "fieldId": "officeApproval",
+        "typename": "StringFormAnswer",
+        "value": "\"Head, Fleet Operations\""
+      }
+    ],
+    "submissionTimestamp": "2023-06-22T07:33:26.383Z"
+  },
+  "query": "mutation CreateForm($formType: FormType!, $templateVersion: Int!, $answers: [SerializedFormAnswerInput!]!, $permitType: String, $permitTypeHash: String, $submissionTimestamp: DateTime, $parentFormId: ID) {\n  createForm(formType: $formType, templateVersion: $templateVersion, answers: $answers, permitType: $permitType, permitTypeHash: $permitTypeHash, submissionTimestamp: $submissionTimestamp, parentFormId: $parentFormId) {\n    _id\n    __typename\n  }\n}\n"
+}

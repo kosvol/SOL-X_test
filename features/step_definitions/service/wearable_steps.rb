@@ -63,3 +63,11 @@ And('Wearable create new {int} wearables') do |quantity|
   @wearable_service ||= WearableService.new
   @wearable_service.create_wearables(quantity)
 end
+
+And('Wearable service update location') do |table|
+  params = table.hashes.first
+  @wearable_service ||= WearableService.new
+  wearables = @wearable_service.retrieve_wearables
+  wearable_id = @wearable_service.retrieve_used_wearable_id(wearables, params['rank'])
+  @wearable_service.update_wearable_location(wearable_id, params['mac'])
+end

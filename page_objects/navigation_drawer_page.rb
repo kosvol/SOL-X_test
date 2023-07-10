@@ -10,13 +10,16 @@ class NavigationDrawerPage < BasePage
     menu_categories: "//a[starts-with(@class,'NavigationDrawer__DrawerLink')]",
     category: "//a[contains(text(),'%s')]",
     settings_btn: "//a[contains(text(),'Settings')]",
-    back_arrow: "//button/*[@data-testid='arrow']",
-    back_arr: "//button/*[@aria-label='Go back']",
+    back_arr: "//button[@aria-label='Go back']",
     go_back_btn: "//*[@id='root']/div/nav/header/button",
     view_button: "//button[contains(text(),'View')]",
     entry_states: "(//a[contains(.,'%s')])/parent::li",
     menu_show_more: "//button[contains(.,'Show More')]",
-    show_more: "//button[starts-with(@class,'CollapsibleButton__Button')][2]"
+    menu_show_less: "//button[contains(.,'Show Less')]",
+    ptw: "//h3[contains(., 'Permit to Work')]/following::li[contains(., '%s')]",
+    pre: "//h3[contains(., 'Pump Room Entry')]/following::li[contains(., '%s')]",
+    entry: "//h3[contains(., 'Entry')]/following::li[contains(., '%s')]",
+    dashboard: "//li[contains(., '%s')]"
   }.freeze
 
   def initialize(driver)
@@ -52,5 +55,25 @@ class NavigationDrawerPage < BasePage
     find_element(NAVIGATION[:heading_text])
     scroll_click(NAVIGATION[:menu_show_more])
     scroll_click(NAVIGATION[:menu_show_more])
+  end
+
+  def hide_menu_items
+    scroll_click(NAVIGATION[:menu_show_less])
+    scroll_click(NAVIGATION[:menu_show_less])
+  end
+
+  def navigate_to_ptw(page)
+    link = format(NAVIGATION[:ptw], page)
+    click(link.to_s)
+  end
+
+  def navigate_to_entry(page)
+    link = format(NAVIGATION[:entry], page)
+    click(link.to_s)
+  end
+
+  def navigate_to_dashboard(page)
+    link = format(NAVIGATION[:dashboard], page)
+    click(link.to_s)
   end
 end

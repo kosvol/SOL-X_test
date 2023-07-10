@@ -28,3 +28,7 @@ Given('DB Manage role create {string} roles') do |option|
   postgres = Postgres.new
   postgres.create_roles(option)
 end
+
+And('DB service sleep {string} sec for data reloaded') do |sec|
+  sleep sec.to_i
+end

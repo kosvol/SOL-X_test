@@ -40,13 +40,13 @@ Feature: Section 8: Task Status & EIC Normalisation
       | question_type   | eic   |
       | <question_type> | <eic> |
     Examples:
-      | permit_type          | question_type | eic |
-      | pressure_pipe_vessel | pipe          | yes |
-      | pressure_pipe_vessel | pipe          | no  |
-      | ele_equip_circuit    | electrical    | yes |
-      | ele_equip_circuit    | electrical    | no  |
-      | main_anchor          | critical      | yes |
-      | main_anchor          | critical      | no  |
+      | permit_type               | question_type | eic |
+      | pressure_pipe_bunker_line | pipe          | yes |
+      | pressure_pipe_bunker_line | pipe          | no  |
+      | ele_equip_circuit         | electrical    | yes |
+      | ele_equip_circuit         | electrical    | no  |
+      | main_anchor               | critical      | yes |
+      | main_anchor               | critical      | no  |
 
 
   Scenario: Verify section 8 EIC can only be signed by RA for non oa permit

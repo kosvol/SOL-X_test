@@ -87,23 +87,23 @@ Feature: Office Portal Permit Overview
     When PermitOverview follow the permit link
     Then PermitOverview verify the checklist "<checklist>"
     Examples:
-    | permit_type                  | checklist                                 |
-    | cold_work_cleaning_spill     | Cold Work Operation                       |
-    | main_anchor                  | Critical Equipment Maintenance            |
-    | enclosed_spaces_entry        | Enclosed Spaces Entry                     |
-    | helicopter_operation         | Helicopter Operation                      |
-    | hot_work_outside_designated  | Hot Work Outside Designated Area          |
-    | hot_work_designated          | Hot Work Within Designated Area           |
-    | personnel_transfer           | Personnel Transfer by Transfer Basket     |
-    | portable_tools               | Rotational Portable Power Tools (PPT)     |
-    | underwater_sim               | Underwater Operation                      |
-    | use_safe_camera              | Use of Camera                             |
-    | use_of_odme                  | Use of ODME in Manual Mode                |
-    | work_on_deck                 | Work on Deck During Heavy Weather         |
-    | ele_equip_circuit            | Work on Electrical Equipment and Circuits |
-    | cold_work_in_hazardous       | Work on Hazardous Substances              |
-    | pressure_pipe_vessel         | Work on Pressure Pipelines                |
-    | working_aloft                | Working Aloft Overside                    |
+    | permit_type                          | checklist                                 |
+    | cold_work_line_cooldown              | Cold Work Operation                       |
+    | main_anchor                          | Critical Equipment Maintenance            |
+    | enclosed_spaces_entry                | Enclosed Spaces Entry                     |
+    | helicopter_operation                 | Helicopter Operation                      |
+    | hot_work_outside_but_within          | Hot Work Outside Designated Area          |
+    | hot_work_designated                  | Hot Work Within Designated Area           |
+    | personnel_transfer                   | Personnel Transfer by Transfer Basket     |
+    | portable_tools_hydro_blaster         | Rotational Portable Power Tools (PPT)     |
+    | underwater_op                        | Underwater Operation                      |
+    | use_safe_camera                      | Use of Camera                             |
+    | use_of_odme                          | Use of ODME in Manual Mode                |
+    | work_on_deck                         | Work on Deck During Heavy Weather         |
+    | ele_equip_circuit                    | Work on Electrical Equipment and Circuits |
+    | chemical_cleaning_of_fresh_water_gen | Work on Hazardous Substances              |
+    | pressure_pipe_bunker_line            | Work on Pressure Pipelines                |
+    | working_aloft_crane_wire             | Working Aloft Overside                    |
 
   @close_browser
   Scenario Outline: Verify Section 8 shows the same fields as in the client app with different checklists
@@ -121,10 +121,10 @@ Feature: Office Portal Permit Overview
       | section   | permit_type   | eic | gas |
       | Section 8 | <permit_type> | no  | no  |
     Examples:
-      | permit_type          |
-      | main_anchor          |
-      | ele_equip_circuit    |
-      | pressure_pipe_vessel |
+      | permit_type               |
+      | main_anchor               |
+      | ele_equip_circuit         |
+      | pressure_pipe_bunker_line |
 
   @close_browser
   Scenario Outline: Verify ROL form shows the same data as in the client app

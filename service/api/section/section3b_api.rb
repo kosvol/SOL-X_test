@@ -18,7 +18,7 @@ class Section3BAPI < BaseSectionApi
     payload['variables']['formId'] = form_id
     payload['variables']['submissionTimestamp'] = @time_service.retrieve_current_date_time
     master_rank_id = @user_service.retrieve_user_id_by_rank('MAS')
-    payload['variables']['answers'][2]['value'] = "[{\"userId\":\"#{master_rank_id}\",\"rank\":\"MAS\"}]"
+    payload['variables']['answers'][3]['value'] = "[{\"userId\":\"#{master_rank_id}\",\"rank\":\"MAS\"}]"
     payload
   end
 end

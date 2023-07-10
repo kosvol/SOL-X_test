@@ -334,7 +334,7 @@ Feature: Office Portal Login by Admin and check the Manage Role page
     And OfficeManageRole "Create|Edit Role" select the checkbox
       |                   | Permit Trends |
     Then OfficeManageRole "Create|Edit Role" verify the "Save" button is "disabled"
-@test
+
   @close_browser
   Scenario: Verify the toast message "Role <Role name> updated successfully“ is present when user successfully update a role. (SOL-10690)
     When DB service clear Manage role list
