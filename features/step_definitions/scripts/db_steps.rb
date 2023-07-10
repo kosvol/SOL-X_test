@@ -32,13 +32,3 @@ end
 And('DB service sleep {string} sec for data reloaded') do |sec|
   sleep sec.to_i
 end
-
-Given('DB service clear Manage role list') do
-  postgres = Postgres.new
-  postgres.manage_role_clear_users
-end
-
-Given('DB Manage role create {string} roles') do |option|
-  postgres = Postgres.new
-  postgres.create_roles(option)
-end
