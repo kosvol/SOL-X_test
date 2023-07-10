@@ -26,13 +26,11 @@ class OPManageRolePage < BasePage
     role_name: "//div[@class='ant-col ant-col-24']/span[contains(., 'Role Name')]",
     description: "//div[@class='ant-col ant-col-24']/span[contains(., 'Description')]",
     permissions: "//div[@class='ant-col ant-col-24']/span[contains(., 'Permissions')]",
-    perm_note: "//div[@class='ant-list-header']/div[contains(., '%s')]",
+    perm_note: "//div[@class='ant-list-header']/span[contains(., '%s')]",
     field_name: "//input[@id='name' and @placeholder='Name']",
     field_descr: "//textarea[@id='description' and @placeholder='Description']",
-    group_role: "//span[@class='ant-checkbox']/following::span[contains(., '%s')]",
-    single_role: "//span[@class='ant-checkbox']/following::h4[contains(., '%s')]",
-    chk_box_single: "//h4[contains(., '%s')]/preceding::*[3]",
-    chk_box_group: "//span[contains(., '%s')]/preceding::*[3]",
+    role: "//span[@class='ant-typography']/following::span[contains(., '%s')]",
+    check_box: "//span[contains(., '%s')]/following::*[2]",
     toast_msg: "//div[@class='ant-message-notice']/div/div/span[2]",
     valid_msg: "//span[@class[contains(.,'ant-typography-danger')]]",
     numb_items: "//span[@class[contains(.,'ant-select-selection-item')]]",
@@ -80,30 +78,16 @@ class OPManageRolePage < BasePage
 
   def verify_permission(table)
     table.raw.each do |group, single|
-      xpath_str = format(OP_MANAGE_ROLE[:group_role], group)
-      xpath_str2 = format(OP_MANAGE_ROLE[:single_role], single)
+      xpath_str = format(OP_MANAGE_ROLE[:role], group)
+      xpath_str2 = format(OP_MANAGE_ROLE[:role], single)
       find_element(xpath_str.to_s)
       find_element(xpath_str2.to_s)
     end
   end
 
-  def verify_group_checkbox(table)
-    table.raw.each do |group, checkbox|
-      value = find_element(format(OP_MANAGE_ROLE[:chk_box_group], group)).attribute('class')
-      case checkbox
-      when 'checked'
-        compare_string('ant-checkbox ant-checkbox-checked', value)
-      when 'indeterminate'
-        compare_string('ant-checkbox ant-checkbox-indeterminate', value)
-      else
-        compare_string('ant-checkbox', value)
-      end
-    end
-  end
-
-  def verify_single_checkbox(table)
-    table.raw.each do |single, checkbox|
-      value = find_element(format(OP_MANAGE_ROLE[:chk_box_single], single)).attribute('class')
+  def verify_checkbox(table)
+    table.raw.each do |name, checkbox|
+      value = find_element(format(OP_MANAGE_ROLE[:check_box], name)).attribute('class')
       case checkbox
       when 'checked'
         compare_string('ant-checkbox ant-checkbox-checked', value)
@@ -125,17 +109,9 @@ class OPManageRolePage < BasePage
   end
 
   def select_checkbox(table)
-    table.raw.each do |group, single|
-      single_path = format(OP_MANAGE_ROLE[:chk_box_single], single)
-      group_path = format(OP_MANAGE_ROLE[:chk_box_group], group)
-      if group.to_s == ''
-        click(single_path)
-      elsif single.to_s == ''
-        click(group_path)
-      else
-        click(group_path)
-        click(single_path)
-      end
+    table.raw.each do |name|
+      checkbox_path = format(OP_MANAGE_ROLE[:check_box], name.join('').delete('""'))
+      click(checkbox_path)
     end
   end
 

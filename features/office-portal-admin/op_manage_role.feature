@@ -33,10 +33,9 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       |                                      | Work Rest Hours      |
       |                                      | Heat Stress          |
       |                                      | Heart Rate Trends    |
-    And OfficeManageRole verify "Create|Edit Role" the group checkbox
+    And OfficeManageRole verify "Create|Edit Role" the checkbox
       | Control of work: Safety & Compliance      | unchecked       |
       | Crew Protect: Wellbeing reports           | unchecked       |
-    Then OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox
       | Permit Archive                            | unchecked       |
       | Permit Trends                             | unchecked       |
       | Risk Assessment                           | unchecked       |
@@ -57,7 +56,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     When OfficeNavigation click "Back" arrow
     Then OfficeManageRole verify page without roles
 
@@ -70,7 +70,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Cancel" button
     Then OfficeManageRole verify page without roles
 
@@ -93,7 +94,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name    | Automation Description     |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" verify the "Create Role" button is "enabled"
 
   @close_browser
@@ -105,7 +107,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name    | Automation Description     |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     And OfficeManageRole verify the toast message is shown "Role 'Automation Name' created successfully"
 
@@ -119,7 +122,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
      | name              | description                 |
      | Automation Name    | Automation Description     |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-     | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" verify the "Create Role" button is "enabled"
     When OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole verify the toast message is shown "Role 'Automation Name' created successfully"
@@ -138,7 +142,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole click Create new role button
     And OfficeManageRole verify "Create New Role" page elements
@@ -146,7 +151,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     And OfficeManageRole "Create|Edit Role" verify the validation message is shown 'This role name is already in use. Please create a unique role name.'
 
@@ -159,7 +165,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation_Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     And OfficeManageRole verify the toast message is shown "name cannot have special characters or symbols, please check"
 
@@ -173,7 +180,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole click Create new role button
     And OfficeManageRole verify "Create New Role" page elements
@@ -181,7 +189,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name 2 | Automation Description 2    |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Crew Protect: Wellbeing reports | Heart Rate Trends |
+      | Crew Protect: Wellbeing reports |
+      | Heart Rate Trends               |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     And OfficeManageRole verify the data of created role
       | Automation Name    | Automation Description       | 0 |
@@ -197,7 +206,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole 'Automation Name' click 'Delete' button
     Then OfficeManageRole verify "Delete modal window" of role "Automation Name"
@@ -232,16 +242,16 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | name              | description                 |
       | Automation Name   | Automation Description      |
     And OfficeManageRole "Create|Edit Role" select the checkbox
-      | Control of work: Safety & Compliance | Average Crew Steps |
+      | Control of work: Safety & Compliance |
+      | Average Crew Steps                   |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole 'Automation Name' click 'Edit' button
     And OfficeManageRole verify "Edit Role" page elements
       | name              | description                 |
       | Automation Name   | Automation Description      |
-    And OfficeManageRole verify "Create|Edit Role" the group checkbox
+    And OfficeManageRole verify "Create|Edit Role" the checkbox
       | Control of work: Safety & Compliance      | checked       |
       | Crew Protect: Wellbeing reports           | indeterminate |
-    Then OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox
       | Permit Archive                            | checked       |
       | Permit Trends                             | checked       |
       | Risk Assessment                           | checked       |
@@ -265,9 +275,8 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       | Control of work: Safety & Compliance |       |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole 'Automation Name' click 'Edit' button
-    And OfficeManageRole verify "Create|Edit Role" the group checkbox
+    And OfficeManageRole verify "Create|Edit Role" the checkbox
       | Control of work: Safety & Compliance      | checked       |
-    Then OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox
       | Permit Archive                            | checked       |
       | Permit Trends                             | checked       |
       | Risk Assessment                           | checked       |
@@ -287,11 +296,9 @@ Feature: Office Portal Login by Admin and check the Manage Role page
       |                   | Near Misses |
     Then OfficeManageRole "Create|Edit Role" click on "Create Role" button
     Then OfficeManageRole 'Automation Name' click 'Edit' button
-    And OfficeManageRole verify "Create|Edit Role" the group checkbox
+    And OfficeManageRole verify "Create|Edit Role" the checkbox
       | Control of work: Safety & Compliance      | indeterminate  |
-    Then OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox
       | Risk Assessment                           | indeterminate  |
-    Then OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox
       | Near Misses                               | checked        |
 
   @close_browser

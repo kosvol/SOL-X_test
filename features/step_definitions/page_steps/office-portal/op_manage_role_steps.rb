@@ -27,14 +27,9 @@ Then('OfficeManageRole verify "Create New Role" permissions list') do |table|
   @office_portal_manage_role.verify_permission(table)
 end
 
-Then('OfficeManageRole verify "Create|Edit Role" the group checkbox') do |table|
+Then('OfficeManageRole verify "Create|Edit Role" the checkbox') do |table|
   @office_portal_manage_role ||= OPManageRolePage.new(@driver)
-  @office_portal_manage_role.verify_group_checkbox(table)
-end
-
-Then('OfficeManageRole verify "Create|Edit Role" the sub-group and single checkbox') do |table|
-  @office_portal_manage_role ||= OPManageRolePage.new(@driver)
-  @office_portal_manage_role.verify_single_checkbox(table)
+  @office_portal_manage_role.verify_checkbox(table)
 end
 
 Then('OfficeManageRole "Create|Edit Role" fill fields') do |table|
