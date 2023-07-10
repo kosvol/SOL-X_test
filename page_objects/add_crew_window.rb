@@ -14,7 +14,6 @@ class AddCrewWindow < BasePage
     id_header: "//div[label[contains(., 'Enter Your Crew ID')]]",
     placeholder: "//div[input[@placeholder='Required']]",
     error_msg: "//div[@aria-label[contains(., 'error message')]]",
-    custom_msg: "//div[label[contains(., 'Crew ID')]]/div[contains(., '%s')]",
     rank_btn: "//button[@class[contains(.,'SelectButton')]]",
     rank: "//ul[starts-with(@class,'UnorderedList-')]/li/button/div",
     view_crew_pin: "//button[contains(., 'View Pin')]",
@@ -26,6 +25,7 @@ class AddCrewWindow < BasePage
     super
     find_element(ADD_CREW[:add_crew_header])
     @vessel_type = ENV['VESSEL'].upcase
+    @env = ENV['ENVIRONMENT'].upcase
     sleep 1
   end
 
@@ -33,19 +33,18 @@ class AddCrewWindow < BasePage
     find_element(ADD_CREW[:id_header])
     find_element(ADD_CREW[:placeholder])
     description = retrieve_text(ADD_CREW[:description])
-    message = "Enter your Crew ID to use Safevue on #{@vessel_type}AUTO Vessel"
+    message = "Enter your Crew ID to use Safevue on #{@vessel_type}#{@env} Vessel"
     compare_string(message.capitalize, description.capitalize)
     verify_button_disable
   end
 
   def add_crew(crew_id)
-    enter_text(ADD_CREW[:add_crew_input], @vessel_type + crew_id)
+    enter_text(ADD_CREW[:add_crew_input], "#{@vessel_type}#{@env}_#{crew_id}")
     sleep 1.5
     click(ADD_CREW[:retrieve_data_btn])
   end
 
   def verify_message(error_msg)
-    wait_and_check_element(5, format(ADD_CREW[:custom_msg], 'Unable to add crew'))
     actual_msg = retrieve_text(ADD_CREW[:error_msg])
     compare_string(error_msg, actual_msg)
   end
@@ -94,12 +93,5 @@ class AddCrewWindow < BasePage
 
   def verify_button_disable
     verify_btn_availability(ADD_CREW[:retrieve_data_btn], 'disabled')
-  end
-
-  def wait_and_check_element(time, element)
-    wait = Selenium::WebDriver::Wait.new(timeout: time)
-    wait.until { @driver.find_element(:xpath, element).displayed? }
-  rescue StandardError
-    raise "Time out waiting for #{element}"
   end
 end

@@ -7,11 +7,6 @@ Given('CrewManagement verify the elements are available') do
   @crew_management_page.verify_elements
 end
 
-Given('CrewManagement verify the crew list are loaded') do
-  @crew_management_page ||= CrewManagementPage.new(@driver)
-  @crew_management_page.wait_crew_table
-end
-
 Given('CrewManagement compare crew count') do
   @crew_management_page ||= CrewManagementPage.new(@driver)
   @crew_management_page.compare_crew_count
@@ -64,4 +59,9 @@ Given('CrewManagement verify button availability') do |table|
   @crew_management_page ||= CrewManagementPage.new(@driver)
   params = table.hashes.first
   @crew_management_page.verify_button(params['button'], params['availability'])
+end
+
+Then('CrewManagement verify PIN for crew member {string}') do |option|
+  @crew_management_page ||= CrewManagementPage.new(@driver)
+  @crew_management_page.compare_ui_api_pin(option)
 end
