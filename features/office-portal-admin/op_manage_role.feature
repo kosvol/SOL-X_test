@@ -128,7 +128,7 @@ Feature: Office Portal Login by Admin and check the Manage Role page
     Then OfficeManageRole verify the 'Edit' button is "enabled" for role 'Automation Name'
     Then OfficeManageRole verify the 'Delete' button is "enabled" for role 'Automation Name'
 
-    @close_browser
+  @close_browser
   Scenario: Verify the user is NOT able create non unique role name (SOL-10495).
     When DB service clear Manage role list
     And OfficeNavigation navigate to the "Manage Role" page
@@ -186,7 +186,7 @@ Feature: Office Portal Login by Admin and check the Manage Role page
     And OfficeManageRole verify the data of created role
       | Automation Name    | Automation Description       | 0 |
       | Automation Name 2  | Automation Description 2     | 0 |
-  @test_passed
+
   @close_browser
   Scenario: Verify the user is able to delete roles with users = 0. (SOL-10501).
     When DB service clear Manage role list
@@ -212,7 +212,7 @@ Feature: Office Portal Login by Admin and check the Manage Role page
     Then OfficeManageRole 'Automation Name 1' click 'Delete' button
     When OfficeManageRole click 'Delete' button of "Delete modal window"
     And OfficeManageRole verify the toast message is shown "Role 'Automation Name 1' deleted"
-@test_passed
+
   @close_browser
   Scenario: Verify a user is able to cancel deleting operation by "Cancel" button. (SOL-10695).
     When DB service clear Manage role list
