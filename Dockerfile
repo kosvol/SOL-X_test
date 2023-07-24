@@ -1,4 +1,10 @@
-FROM ruby:2.7.0-alpine
+FROM jenkins/jenkins:alpine
+
+USER root
+
+RUN apk --update-cache --nocache \
+		--allow-untrusted add \
+	docker docker-compose
 
 RUN apk update && apk add \
     bash supervisor git nodejs \
@@ -7,8 +13,8 @@ RUN apk update && apk add \
 
 RUN apk update && apk add --no-cache bash \
         alsa-lib \
-        at-spi2-atk \
-        atk \
+        #at-spi2-atk \
+        #atk \
         cairo \
         cups-libs \
         dbus-libs \
