@@ -8,3 +8,9 @@ Given("Google find Sign in") do
     @driver.find_element(:xpath, path)
     puts('test complete')
 end
+
+Given("Google get error") do
+    path = "//a[contains(.,'error')]"
+    @driver.find_element(:xpath, path)
+    puts('error catched')
+end
