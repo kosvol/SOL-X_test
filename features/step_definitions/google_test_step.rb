@@ -5,6 +5,6 @@ end
 
 Given("Google find Sign in") do
     xpath = "//a[contains(.,'Sign in')]"
-    @driver.find_element(xpath)"
+    @driver.find_element(xpath)
     puts('test complete')
 end
