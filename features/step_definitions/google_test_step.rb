@@ -4,7 +4,7 @@ Given("Google open main page") do
 end
 
 Given("Google find Sign in") do
-    xpath = "//a[contains(.,'Sign in')]"
-    @driver.find_element(xpath)
+    path = "//a[contains(.,'Sign in')]"
+    @driver.find_element(xpath, path)
     puts('test complete')
 end
