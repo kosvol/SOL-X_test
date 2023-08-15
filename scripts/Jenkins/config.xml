@@ -1,0 +1,134 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>ENV</name>
+          <description>Please, select the environment.</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>AUTO</string>
+              <string>SIT</string>
+              <string>DEV</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>VESSEL</name>
+          <description>Please, select the vessel.</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>COT</string>
+              <string>FSU</string>
+              <string>LNG</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.0.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/kosvol/SOL-X_test.git</url>
+        <credentialsId>53a66d73-71f5-4b0a-907f-14f495901289</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="empty-list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>bundle install
+cucumber PLATFORM=chrome_headless APPLICATION=c2_preview ENVIRONMENT=${ENV} VESSEL=${VESSEL} DEVICE=tablet VERSION=3.0 PROJECT=solx -t @reset_personal_data</command>
+      <configuredLocalRules/>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <net.masterthought.jenkins.CucumberReportPublisher plugin="cucumber-reports@5.7.5">
+      <fileIncludePattern>json_report.json</fileIncludePattern>
+      <fileExcludePattern></fileExcludePattern>
+      <jsonReportDirectory></jsonReportDirectory>
+      <reportTitle>Cucumber reports</reportTitle>
+      <failedStepsNumber>-1</failedStepsNumber>
+      <skippedStepsNumber>-1</skippedStepsNumber>
+      <pendingStepsNumber>-1</pendingStepsNumber>
+      <undefinedStepsNumber>-1</undefinedStepsNumber>
+      <failedScenariosNumber>-1</failedScenariosNumber>
+      <failedFeaturesNumber>-1</failedFeaturesNumber>
+      <failedStepsPercentage>0.0</failedStepsPercentage>
+      <skippedStepsPercentage>0.0</skippedStepsPercentage>
+      <pendingStepsPercentage>0.0</pendingStepsPercentage>
+      <undefinedStepsPercentage>0.0</undefinedStepsPercentage>
+      <failedScenariosPercentage>0.0</failedScenariosPercentage>
+      <failedFeaturesPercentage>0.0</failedFeaturesPercentage>
+      <buildStatus>null</buildStatus>
+      <stopBuildOnFailedReport>false</stopBuildOnFailedReport>
+      <failedAsNotFailingStatus>false</failedAsNotFailingStatus>
+      <skippedAsNotFailingStatus>false</skippedAsNotFailingStatus>
+      <pendingAsNotFailingStatus>false</pendingAsNotFailingStatus>
+      <undefinedAsNotFailingStatus>false</undefinedAsNotFailingStatus>
+      <trendsLimit>0</trendsLimit>
+      <sortingMethod>ALPHABETICAL</sortingMethod>
+      <customJsFiles></customJsFiles>
+      <customCssFiles></customCssFiles>
+      <mergeFeaturesById>false</mergeFeaturesById>
+      <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+      <hideEmptyHooks>false</hideEmptyHooks>
+      <skipEmptyJSONFiles>false</skipEmptyJSONFiles>
+      <expandAllSteps>false</expandAllSteps>
+      <classificationsFilePattern></classificationsFilePattern>
+    </net.masterthought.jenkins.CucumberReportPublisher>
+    <jenkins.plugins.slack.SlackNotifier plugin="slack@664.vc9a_90f8b_c24a_">
+      <baseUrl></baseUrl>
+      <teamDomain>mglx</teamDomain>
+      <authToken>AhfCAGdsFEG89tP3WM5uPjnJ</authToken>
+      <tokenCredentialId>dec17e18-7598-4fdb-9c40-d764e6de0b81</tokenCredentialId>
+      <botUser>false</botUser>
+      <room>D02RQATHC5U</room>
+      <sendAsText>false</sendAsText>
+      <iconEmoji></iconEmoji>
+      <username>KosV</username>
+      <startNotification>false</startNotification>
+      <notifySuccess>true</notifySuccess>
+      <notifyAborted>false</notifyAborted>
+      <notifyNotBuilt>false</notifyNotBuilt>
+      <notifyUnstable>false</notifyUnstable>
+      <notifyRegression>false</notifyRegression>
+      <notifyFailure>false</notifyFailure>
+      <notifyEveryFailure>true</notifyEveryFailure>
+      <notifyBackToNormal>false</notifyBackToNormal>
+      <notifyRepeatedFailure>false</notifyRepeatedFailure>
+      <includeTestSummary>false</includeTestSummary>
+      <includeFailedTests>true</includeFailedTests>
+      <uploadFiles>false</uploadFiles>
+      <artifactIncludes></artifactIncludes>
+      <commitInfoChoice>NONE</commitInfoChoice>
+      <includeCustomMessage>true</includeCustomMessage>
+      <customMessage></customMessage>
+      <customMessageSuccess>EDGE Environment ${ENV} ${VESSEL} has been cleaned successful</customMessageSuccess>
+      <customMessageAborted></customMessageAborted>
+      <customMessageNotBuilt></customMessageNotBuilt>
+      <customMessageUnstable></customMessageUnstable>
+      <customMessageFailure></customMessageFailure>
+    </jenkins.plugins.slack.SlackNotifier>
+  </publishers>
+  <buildWrappers/>
+</project>
